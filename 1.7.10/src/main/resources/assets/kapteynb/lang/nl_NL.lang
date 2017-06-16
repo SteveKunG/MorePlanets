@@ -1,0 +1,115 @@
+# More Planets 1.7.10 : Kapteyn B = NETHERLANDS DUTCH
+
+# BLOCK
+tile.kapteyn-b_block.surface_ice.name=Kapteyn B Oppervlakte Ijs
+tile.kapteyn-b_block.sub_surface_ice.name=Kapteyn B Ondergrond Ijs
+tile.kapteyn-b_block.stone.name=Kapteyn B Steen
+tile.kapteyn-b_block.cobblestone.name=Kapteyn B Keisteen
+tile.kapteyn-b_block.namerium_ore.name=Namerium Kristal Erts
+tile.kapteyn-b_block.frozen_iron_ore.name=Bevroren Ijzer Erts
+tile.kapteyn-b_block.uranium_ore.name=Uranium Erts
+tile.kapteyn-b_block.tin_ore.name=Tin Erts
+tile.kapteyn-b_block.copper_ore.name=Koper Erts
+tile.kapteyn-b_block.redstone_ore.name=Redstone Erts
+tile.kapteyn-b_block.namerium_block.name=Namerium Blok
+tile.kapteyn-b_block.frozen_iron_block.name=Bevroren Ijzer Blok
+tile.kapteyn-b_block.uranium_block.name=Uranium Blok
+tile.kapteyn-b_block.dungeon_brick.name=Kapteyn B Kerker Bakstenen
+tile.rocky_soild_water.name=Rotsachtig Solide Water
+tile.default_kapteyn-b_ice.name=Kapteyn B Ijs
+tile.dirty_kapteyn-b_ice.name=Vies Kapteyn B Ijs
+tile.kapteyn-b_treasure_chest.name=Tier 8 Kapteyn B Schatkist
+tile.kapteyn-b_ancient_chest.name=Kapteyn B Oeroude Kist
+tile.kapteyn-b_cobblestone_stairs.name=Kapteyn B Keistenen Treden
+tile.kapteyn-b_dungeon_brick_stairs.name=Kapteyn B Kerker Baksten Treden
+tile.uranium_waste.active.name=Uranium Afval
+tile.uranium_waste.inactive.name=Inactief Uranium Afval
+tile.uranium_bomb.name=Uranium Bom
+tile.frozen_water_fluid.name=Bevroren Water
+tile.fallen_ice_crystal_meteor.name=Gevallen Ijskristal Meteoor
+tile.frozen_water_geyser.name=Bevroren Water Gijser
+tile.icy_poison_crystal.name=Ijzige Gif Kristal
+
+# SLABS
+tile.mp_stone_half_slab2.kapteyn.name=Kapteyn B Keistenen Plaat
+tile.dungeon_brick_half_slab1.kapteynBrick.name=Kapteyn B Kerker Bakstenen Plaat
+
+# WALLS
+tile.mp_wall.kapteyn.name=Kapteyn B Keistenen Muur
+tile.mp_dungeon_brick_wall.kapteynBrick.name=Kapteyn B Kerker Bakstenen Muur
+
+# ITEMS
+item.kapteyn-b_dungeon_key.name=Tier 8 Kapteyn B Kerker Sleutel
+item.uranium_battery.name=Uranium Batterij
+item.kapteyn-b_item.frozen_iron_ingot.name=Bevroren Ijzer Staaf
+item.kapteyn-b_item.uranium_gem.name=Uranium Juweel
+item.kapteyn-b_item.compressed_frozen_iron.name=Samengeperst Bevroren Ijzer
+item.frozen_water_bucket.name=Bevroren Water Emmer
+item.kapteyn-b_item.uranium_stick.name=Uranium Stok
+item.kapteyn-b_item.frozen_iron_stick.name=Bevroren Ijzer Stok
+item.kapteyn-b_item.ice_crystal_shard.name=Ijzige Kristal Scherf
+item.namerium_crystal.name=Namerium Kristal
+item.tier_8_rocket.name=Tier 8 Raket
+item.tier_8_rocket_schematic.name=NASA Werkbank Schematic
+item.tier_8_rocket_module.tier8_rocket_engine.name=Tier 8 Raket Motor
+item.tier_8_rocket_module.tier8_booster.name=Tier 8 Booster
+item.tier_8_rocket_module.tier8_heavy_duty_plate.name=Zware Beplating
+
+# TOOLS
+item.frozen_iron_pickaxe.name=Bevroren IJzeren Houweel
+item.frozen_iron_axe.name=Bevroren Ijzeren Bijl
+item.frozen_iron_hoe.name=Bevroren Ijzeren Schoffel
+item.frozen_iron_spade.name=Bevroren Ijzeren Schep
+item.frozen_iron_sword.name=Bevroeren Ijzeren Zwaard
+item.uranium_pickaxe.name=Uranium Houweel
+item.uranium_axe.name=Uranium Bijl
+item.uranium_hoe.name=Uranium Schoffel
+item.uranium_spade.name=Uranium Schep
+item.uranium_sword.name=Uranium Zwaard
+item.ice_crystal_sword.name=Ijs Kristallen Zwaard
+item.ice_crystal_shovel.name=Ijs Kristallen Schep
+item.ice_crystal_axe.name=Ijs Kristallen Bijl
+item.ice_crystal_pickaxe.name=Ijs Kristallen Houweel
+item.ice_crystal_hoe.name=Ijs Kristallen Schoffel
+
+# ARMORS
+item.uranium_helmet.name=Uranium Helm
+item.uranium_chestplate.name=Uranium Borstplaat
+item.uranium_leggings.name=Uranium Beenstukken
+item.uranium_boots.name=Uranium Voetstukken
+item.frozen_iron_helmet.name=Bevroren IJzeren Helm
+item.frozen_iron_chestplate.name=Bevroren IJzeren Borstplaat
+item.frozen_iron_leggings.name=Bevroren IJzeren Beenstukken
+item.frozen_iron_boots.name=Bevroren IJzeren Voetstukken
+item.ice_crystal_helmet.name=Ijs Kristallen Helm
+item.ice_crystal_chestplate.name=Ijs Kristallen Borstplaat
+item.ice_crystal_leggings.name=Ijs Kristallen Beenstukken
+item.ice_crystal_boots.name=Ijs Kristallen Voetstukken
+item.breathable_uranium_helmet.name=Ademhaalbare Uranium Helm
+item.breathable_frozen_iron_helmet.name=Ademhaalbare Bevroren IJzeren Helm
+item.breathable_ice_crystal_helmet.name=Ademhaalbare Ijs Kristallen Helm
+
+# ENTITIES
+entity.MorePlanet.FrozenSludgeling.name=Bevroren Sludgeling
+
+# DESCRIFTION
+schematic.tier8.rocket.name=Tier 8 Raket
+desc.tier8.name=Tier 8
+
+# DEATH MESSSAGE
+death.attack.chemical=%1$s Is gedood Door een Chemicaal
+death.attack.icy_poison=%1$s Is Vergiftigd Door een Ijzige Gif Kristal
+
+# CONTAINER
+container.kapteynb.treasurechest.name=Kapteyn B Schatkist
+container.kapteynb.ancientchest.name=Kapteyn B Oeroude Kist
+schematics.container.rocket.tier8=Tier 8 Raket
+
+# PLANET
+star.kapteyn=Kapteyn
+planet.kapteynB=Kapteyn B
+solarsystem.kapteyn=Kapteyn Zonnestelsel
+
+# POTION
+potion.chemical=Chemicaal
+potion.icy_poison=Ijzig Gif

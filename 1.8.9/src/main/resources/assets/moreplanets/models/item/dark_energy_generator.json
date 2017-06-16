@@ -1,0 +1,15 @@
+{
+    "parent": "builtin/entity",
+	"display": {
+        "thirdperson": {
+            "rotation": [ 180, -90, 180 ],
+            "translation": [ 0.5, 1.5, 1.25 ],
+            "scale": [ 1.0, 1.0, 1.0 ]
+        },
+		"gui": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, -1.15, 0 ],
+            "scale": [ 1.0, 1.0, 1.0 ]
+        }
+    }
+}

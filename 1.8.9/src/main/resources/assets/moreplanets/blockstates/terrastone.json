@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "moreplanets:terrastone" },
+            { "model": "moreplanets:terrastone_mirrored" },
+            { "model": "moreplanets:terrastone", "y": 180 },
+            { "model": "moreplanets:terrastone_mirrored", "y": 180 }
+        ]
+    }
+}

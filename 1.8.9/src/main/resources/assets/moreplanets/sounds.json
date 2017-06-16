@@ -1,0 +1,167 @@
+{
+	"mob.infected.explode":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/infected/explode"]
+	},
+	"mob.infected.attack":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/infected/attack"]
+	},
+	"mob.infected.hurt":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/infected/hurt1", "hostile/infected/hurt2"]
+	},
+	"mob.alienminer.ambient":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/alienminer/ambient1", "hostile/alienminer/ambient2", "hostile/alienminer/ambient3"]
+	},
+	"mob.alienminer.charged":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/alienminer/charged"]
+	},
+	"mob.alienminer.attack":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/alienminer/attack"]
+	},
+	"mob.alienminer.shock":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/alienminer/electric_shock"]
+	},
+	"mob.witch.idle":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/witch/ambient1", "hostile/witch/ambient2", "hostile/witch/ambient3", "hostile/witch/ambient4", "hostile/witch/ambient5"]
+	},
+	"mob.witch.hurt":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/witch/hurt1", "hostile/witch/hurt2", "hostile/witch/hurt3"]
+	},
+	"mob.witch.death":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/witch/death1", "hostile/witch/death2", "hostile/witch/death3"]
+	},
+	"mob.witch.drink":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/witch/drink1", "hostile/witch/drink2", "hostile/witch/drink3", "hostile/witch/drink4"]
+	},
+	"mob.witch.throw":
+	{
+		"category": "hostile",
+		"sounds": ["hostile/witch/throw1", "hostile/witch/throw2", "hostile/witch/throw3"]
+	},
+	"player.unlock_treasure_chest":
+	{
+		"category": "player",
+		"sounds": ["player/unlock_treasure_chest"]
+	},
+	"player.shoot_laser":
+	{
+		"category": "player",
+		"sounds": ["player/shoot_laser"]
+	},
+	"block.egg.destroy":
+	{
+		"category": "block",
+		"sounds": ["block/egg_destroy"]
+	},
+	"block.lily.place":
+	{
+		"category": "block",
+		"sounds": ["block/lily_place1", "block/lily_place2", "block/lily_place3", "block/lily_place4"]
+	},
+	"mob.fronos.say":
+	{
+		"category": "neutral",
+		"sounds": ["neutral/fronos/say"]
+	},
+	"mob.fronos.step":
+	{
+		"category": "neutral",
+		"sounds": ["neutral/fronos/step"]
+	},
+	"mob.fronos.hurt":
+	{
+		"category": "neutral",
+		"sounds": ["neutral/fronos/hurt1", "neutral/fronos/hurt2"]
+	},
+	"mob.fronos.death":
+	{
+		"category": "neutral",
+		"sounds": ["neutral/fronos/death"]
+	},
+	"mob.shlime.death":
+	{
+		"category": "neutral",
+		"sounds": ["neutral/shlime/death"]
+	},
+	"mob.shlime.hurt":
+	{
+		"category": "neutral",
+		"sounds": ["neutral/shlime/hurt1", "neutral/shlime/hurt2", "neutral/shlime/hurt3"]
+	},
+	"ambient.alienbeam":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/alien_beam"]
+	},
+	"ambient.machine.danger":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/machine_danger"]
+	},
+	"ambient.machine.alert":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/machine_alert"]
+	},
+	"ambient.machine.start":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/machine_start"]
+	},
+	"ambient.machine.stop":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/machine_stop"]
+	},
+	"ambient.machine.ambient":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/machine_ambient1", "ambient/machine_ambient2", "ambient/machine_ambient3"]
+	},
+	"ambient.generator.ambient":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/generator1", "ambient/generator2", "ambient/generator3"]
+	},
+	"ambient.black_hole":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/black_hole_ambient"]
+	},
+	"ambient.black_hole.explode":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/black_hole_explode"]
+	},
+	"ambient.black_hole.start":
+	{
+		"category": "ambient",
+		"sounds": ["ambient/black_hole_start"]
+	},
+	"weather.thunder":
+	{
+		"category": "weather",
+		"sounds": ["weather/thunder1", "weather/thunder2", "weather/thunder3", "weather/thunder4"]
+	}
+}

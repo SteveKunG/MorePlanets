@@ -1,0 +1,56 @@
+# More Planets 1.7.10 : Mercury = RUSSIAN
+
+# BLOCK
+tile.mercury_block.surface_rock.name=Поверхностный камень Меркурия
+tile.mercury_block.sub_surface_rock.name=Подповерхностный камень Меркурия
+tile.mercury_block.rock.name=Камень Меркурия
+tile.mercury_block.cobblestone.name=Булыжник Меркурия
+tile.mercury_block.tin_ore.name=Оловянная руда
+tile.mercury_block.copper_ore.name=Медная руда
+tile.mercury_block.aluminum_ore.name=Алюминиевая руда
+tile.mercury_block.iron_ore.name=Железная руда
+tile.mercury_block.metal_meteoric_iron_ore.name=Металлическая руда железного метеорита
+tile.mercury_block.silicate_rock.name=Силикатный камень
+tile.mercury_block.solid_metal_meteoric_iron.name=Твердый металл железного метеорита
+tile.mercury_block.dungeon_brick.name=Кирпич сокровищницы Меркурия
+tile.metallic_rock.name=Металлический камень
+tile.mercury_ice.name=Грязный лед Меркурия
+tile.mercury_ancient_chest.name=Древний сундук Меркурия
+tile.mercury_treasure_chest.name=Сундук с сокровищами Меркурия
+tile.mercury_cobblestone_stairs.name=Ступеньки из булыжника Меркурия
+tile.mercury_dungeon_brick_stairs.name=Ступеньки из крипича сокровищницы Меркурия
+
+# SLABS
+tile.mp_stone_half_slab2.mercury.name=Плита из булыжника Меркурия
+tile.dungeon_brick_half_slab1.mercury.name=Плита из крипича сокровищницы Меркурия
+
+# WALLS
+tile.mp_wall.mercury.name=Стена из булыжника Меркурия
+tile.mp_dungeon_brick_wall.mercury.name=Стена из крипича сокровищницы Меркурия
+
+# ITEMS
+item.mercury_item.metallic_shard.name=Металлический осколок
+item.mercury_item.raw_metal_meteoric_iron.name=Необработанный металл железного метеорита
+item.mercury_item.metallic_ingot.name=Металлический слиток
+item.mercury_item.metal_meteoric_iron_ingot.name=Слиток металла железного метеорита
+item.mercury_item.compressed_metallic.name=Сжатый металл
+item.mercury_item.compressed_metal_meteoric_iron.name=Сжатый металл железного метеорита
+item.mercury_item.gravity_core.name=Гравитационное ядро
+item.mercury_item.gravity_controller.name=Гравитационный контроллер
+item.dirty_water_bucket.name=Ведро грязной воды
+
+# TOOLS
+
+# ARMORS
+
+# ENTITIES
+
+# DESCRIFTION
+
+# DEATH MESSSAGE
+
+# CONTAINER
+container.mercury.treasurechest.name=Сундук с сокровищами Меркурия
+container.mercury.ancientchest.name=Древний сундук Меркурия
+
+# PLANET

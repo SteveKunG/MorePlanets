@@ -1,0 +1,58 @@
+# More Planets 1.7.10 : Europa = ENGLISH
+
+# BLOCKS
+tile.europa_ice.ice.name=Europa Ice
+tile.europa_ice.dirty.name=Dirty Europa Ice
+tile.europa_ice.dense.name=Dense Europa Ice
+tile.packed_europa_ice.name=Packed Europa Ice
+tile.europa_snow_block.name=Europa Snow
+tile.europa_ice_slush.name=Europa Ice Slush
+tile.europa_salt.name=Europa Salt
+tile.europa_water_bomb.name=Europa Water Bomb
+tile.europa_geyser.default.name=Europa Underwater Geyser
+tile.europa_geyser.smoke.name=Europa Underwater Smoke Geyser
+tile.europa_snow_layer.name=Europa Snow
+tile.europa_log.europa_wood.name=Europa Wood
+tile.europa_planks.name=Europa Wood Planks
+tile.europa_leaves.europa.name=Europa Leaves
+tile.europa_sapling.name=Europa Sapling
+tile.europa_sand.name=Europa Sand
+tile.europa_sandstone.europaSandstone.name=Europa Sandstone
+tile.europa_sandstone.europaSandstoneChiseled.name=Chiseled Europa Sandstone
+tile.europa_sandstone.europaSandstoneSmooth.name=Smooth Europa Sandstone
+tile.half_europa_sandstone_slab.europa.name=Europa Sandstone Slab
+tile.europa_fence.name=Europa Fence
+tile.europa_fence_gate.name=Europa Fence Gate
+tile.europa_sandstone_stairs.name=Europa Sandstone Stairs
+tile.europa_wood_stairs.name=Europa Wood Stairs
+item.europa_door.name=Europa Door
+tile.mp_wood_half_slab.europaWood.name=Europa Wood Slab
+
+# ITEMS
+item.europa_water_bucket.name=Europa Water Bucket
+item.europa_apple.name=Europa Apple
+item.europa_food.raw_europa_eel_meat.name=Raw Europa Eel Meat
+item.europa_food.cooked_europa_eel_meat.name=Cooked Europa Eel Meat
+item.europa_gunpowder.name=Europa Gunpowder
+
+# DESCRIPTION
+
+# SCHEMATIC
+
+# TOOLS
+
+# ARMORS
+
+# ENTITIES
+entity.MorePlanet.EuropaSquid.name=Europa Squid
+entity.MorePlanet.EuropaCrab.name=Europa Crab
+
+# GUI
+
+# CONTAINER
+
+# PLANET
+
+# POTION
+
+# DEATH MESSAGES

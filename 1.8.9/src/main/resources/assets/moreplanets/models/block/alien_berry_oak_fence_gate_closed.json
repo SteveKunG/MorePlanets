@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_gate_closed",
+    "textures": {
+        "texture": "moreplanets:blocks/alien_berry_oak_planks"
+    }
+}

@@ -1,0 +1,141 @@
+# More Planets 1.7.10 : Diona = NETHERLANDS DUTCH
+
+# BLOCKS
+tile.diona_block.surface_rock.name=Diona Oppervlakte Steen
+tile.diona_block.sub_surface.name=Diona Ondergrond Steen
+tile.diona_block.rock.name=Diona Steen
+tile.diona_block.cobblestone.name=Diona Keisteen
+tile.diona_block.quontonium_ore.name=Quontonium Erts
+tile.diona_block.fronisium_ore.name=Fronisium Erts
+tile.diona_block.copper_ore.name=Koper Erts
+tile.diona_block.tin_ore.name=Tin Erts
+tile.diona_block.silicon_ore.name=Silicium Erts
+tile.diona_block.aluminum_ore.name=Aluminium Erts
+tile.diona_block.quontonium_block.name=Quontonium Blok
+tile.diona_block.smooth_quontonium.name=Glad Quontonium
+tile.diona_block.quontonium_brick.name=Quontonium Baksteen
+tile.diona_block.chiseled_quontonium.name=Versierd Quontonium
+tile.diona_block.dungeon_brick.name=Diona Kerker Baksteen
+tile.diona_cobblestone_stairs.name=Diona Keistenen Treden
+tile.quontonium_brick_stairs.name=Quontonium Bakstenen Treden
+tile.chiseled_quontonium_stairs.name=Versierde Quontonium Treden
+tile.diona_dungeon_brick_stairs.name=Diona Kerker Bakstenen Treden
+tile.fronisium_tnt.name=Fronisium TNT
+tile.minion_creeper_egg.name=Creeper Volgeling Ei
+tile.diona_treasure_chest.name=Tier 4 Diona Schatkist
+tile.diona_ancient_chest.name=Diona Oeroude Kist
+tile.fronisium_block.name=Fronisium Blok
+
+# SLABS
+tile.mp_stone_half_slab1.diona.name=Diona Keistenen Plaat
+tile.mp_stone_half_slab1.quonBrick.name=Quontonium Bakstenen Plaat
+tile.mp_stone_half_slab1.chiseledQuon.name=Versierde Quontonium Plaat
+tile.dungeon_brick_half_slab1.dionaBrick.name=Diona Kerker Bakstenen Plaat
+
+# WALLS
+tile.mp_wall.diona.name=Diona Keistenen Muur
+tile.mp_wall.quonBrick.name=Quontonium Bakstenen Muur
+tile.mp_wall.quonChiseled.name=Versierde Quontonium Muur
+tile.mp_dungeon_brick_wall.dionaBrick.name=Diona Kerker Bakstenen Muur
+
+# ITEMS
+item.diona_item.quontonium_ingot.name=Quontonium Staaf
+item.diona_item.fronisium_ingot.name=Fronisium Staaf
+item.diona_item.compressed_quontonium.name=Samengeperst Quontonium
+item.diona_item.compressed_fronisium.name=Samengeperst Fronisium
+item.diona_item.red_canvas.name=Rood Canvas
+item.diona_item.white_canvas.name=Wit Canvas
+item.diona_item.blue_canvas.name=Blauw Canvas
+item.diona_item.thai_canvas_bottom.name=Thai Canvas
+item.diona_item.thai_canvas_top.name=Thais Canvas
+item.diona_item.quontonium_stick.name=Quontonium Stok
+item.diona_item.fronisium_stick.name=Fronisium Stok
+item.diona_item.green_redstone_torch.name=Groene Redstone Fakkel
+item.mp_flag.thai.name=Thaise Vlag
+item.tier_4_rocket_module.tier4_heavy_duty_plate.name=Zware Beplating
+item.diona_treasure_key.name=Tier 4 Diona Kerker Sleutel
+item.tier_4_rocket_module.tier4_nose_cone.name=Tier 4 Neuskegel
+item.diona_item.tier5_heavy_duty_plate.name=Zware Beplating
+item.tier_4_rocket_module.tier4_rocket_engine.name=Tier 4 Raket Motor
+item.tier_4_rocket_module.tier4_booster.name=Tier 4 Booster
+item.tier_4_rocket_module.tier4_nose_cone_no_flag.name=Tier 4 Neuskegel
+item.tier_4_rocket_module.tier5_rocket_engine.name=Tier 5 Raket Motor
+item.tier_4_rocket_module.tier5_booster.name=Tier 5 Booster
+item.tier_4_rocket_schematic.tier4_rocket_schematic.name=NASA Werkbank Schema
+item.tier_4_rocket_schematic.tier4_rocket_schematic_no_flag.name=NASA Werkbank Schema
+item.laser_gun.name=Laser Pistool
+item.normal_charge.laser_charge.name=Normale Laser Lading
+item.hyper_charge.laser_charge.name=Hyper Laser Lading
+item.emp_charge.laser_charge.name=EMP Laser Lading
+item.uranium_charge.laser_charge.name=Uranium Laser Lading
+item.icy_poison_charge.laser_charge.name=IJzige Gif Laser Lading
+item.tier_4_rocket.name=Tier 4 Raket
+item.mp_flag.laos.name=Laos Vlag
+item.mp_flag.singapore.name=Singapore Vlag
+item.mp_flag.myanmar.name=Myanmar Vlag
+item.mp_flag.malaysia.name=Maleisische Vlag
+item.mp_flag.vietnam.name=Vietnamnese Vlag
+item.mp_flag.indonesia.name=Indonesische Vlag
+item.mp_flag.philippines.name=Filippijnse Vlag
+item.mp_flag.cambodia.name=Cambodja Vlag
+item.mp_flag.brunei.name=Brunesiche Vlag
+
+# DESCRIPTION
+desc.tier4.name=Tier 4
+desc.tier5.name=Tier 5
+desc.rocket.noflag.name=Geen Vlag
+desc.red.canvas.name=Rood
+desc.white.canvas.name=Wit
+desc.blue.canvas.name=Blauw
+
+# SCHEMATIC
+schematic.tier4.rocket.name=Tier 4 Raket
+schematic.tier4.rocket.noflag.name=Tier 4 Raket Zonder Vlag
+
+# TOOLS
+item.quontonium_pickaxe.name=Quontonium Houweel
+item.quontonium_axe.name=Quontonium Bijl
+item.quontonium_hoe.name=Quontonium Schoffel
+item.quontonium_spade.name=Quontonium Schep
+item.quontonium_sword.name=Quontonium Zwaard
+item.fronisium_pickaxe.name=Fronisium Houweel
+item.fronisium_axe.name=Fronisium Bijl
+item.fronisium_hoe.name=Fronisium Schoffel
+item.fronisium_spade.name=Fronisium Schep
+item.fronisium_sword.name=Fronisium Zwaard
+
+# ARMORS
+item.quontonium_helmet.name=Quontonium Helm
+item.quontonium_chestplate.name=Quontonium Kuras
+item.quontonium_leggings.name=Quontonium Beenstukken
+item.quontonium_boots.name=Quontonium Laarzen
+item.fronisium_helmet.name=Fronisium Helm
+item.fronisium_chestplate.name=Fronisium Kuras
+item.fronisium_leggings.name=Fronisium Beenstukken
+item.fronisium_boots.name=Fronisium Laarzen
+item.breathable_quontonium_helmet.name=Ademhaalbare Quontonium Helm
+item.breathable_fronisium_helmet.name=Ademhaalbare Fronisium Helm
+
+# ENTITIES
+entity.MorePlanet.SpaceWolf.name=Ruimte Wolf
+entity.MorePlanet.EvolvedEnderman.name=Geëvolueerde Enderman
+entity.MorePlanet.DustSludgeling.name=Stof Modderling
+entity.MorePlanet.DionaCreeperBoss.name=Diona Creeper Baas
+entity.MorePlanet.DionaMinionCreeper.name=Diona Creeper Volgeling
+
+# GUI
+
+# CONTAINER
+container.diona.treasurechest.name=Diona Schatkist
+container.diona.ancientchest.name=Diona Oeroude Kist
+schematics.container.rocket.tier4=Tier 4 Raket
+schematics.container.rocket.noflag.tier4=Tier 4 Raket Zonder Vlag
+
+# PLANET
+planet.diona=Diona
+
+# POTION
+potion.emp=EMP
+
+DEATH MESSAGES
+death.attack.laser=%1$s Is Neergeschoten Door Een Laser

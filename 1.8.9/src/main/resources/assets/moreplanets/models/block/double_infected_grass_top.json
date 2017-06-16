@@ -1,0 +1,6 @@
+{
+    "parent": "block/tallgrass",
+    "textures": {
+        "cross": "moreplanets:blocks/double_infected_grass_top"
+    }
+}

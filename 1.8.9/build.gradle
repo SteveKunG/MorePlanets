@@ -1,0 +1,72 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "2.0.4-GC100"
+group = "stevekung.mods.moreplanets"
+archivesBaseName = "More-Planets-All"
+
+sourceCompatibility = targetCompatibility = "1.8"
+
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+	options.encoding = 'UTF-8'
+}
+
+minecraft {
+    version = "1.8.9-11.15.1.1902-1.8.9"
+    runDir = "run"
+    mappings = "stable_20"
+	makeObfSourceJar = false
+}
+
+dependencies {}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
+ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'license.txt', 'META-INF/moreplanets_at.cfg']
+
+task buildJar(type: Jar, dependsOn: "rePackAllJar") {
+	outputs.upToDateWhen { false }
+	baseName = "More-Planets-1.8.9"
+
+	from(zipTree(project.ext.coreJar)) {
+		includes.addAll(project.ext.coreFiles)
+	}
+	manifest {
+		attributes.put("FMLAT", "moreplanets_at.cfg")
+		attributes.put("FMLCorePluginContainsFMLMod", "true")
+	}
+}
+
+task rePackAllJar(type: Jar, dependsOn: "copyModFiles") {
+	from 'temporary'
+}
+
+task copyModFiles(type: Copy, dependsOn: "reobfJar") {
+	from(zipTree(project.ext.coreJar))
+	into 'temporary'
+}

@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "moreplanets:blocks/machine_blank",
+        "down": "moreplanets:blocks/machine_blank",
+        "up": "moreplanets:blocks/machine_blank",
+        "north": "moreplanets:blocks/rocket_crusher",
+        "east": "moreplanets:blocks/machine_input",
+        "south": "moreplanets:blocks/machine_side",
+        "west": "moreplanets:blocks/machine_side"
+    }
+}

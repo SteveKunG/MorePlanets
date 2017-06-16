@@ -1,0 +1,30 @@
+{
+    "parent": "moreplanets:block/infected_crystallize_torch",
+    "display": {
+        "thirdperson": {
+            "rotation": [ 90, -45, 135 ],
+            "translation": [ 0, 1, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+		"firstperson": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3.5, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+		"gui": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 1.5, 0 ],
+            "scale": [ 1.65, 1.65, 1.65 ]
+        },
+		"fixed": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 2, 0 ],
+            "scale": [ 1.45, 1.45, 1.45 ]
+        },
+		"ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1.65, 1.65, 1.65 ]
+        }
+    }
+}

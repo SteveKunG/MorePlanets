@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_nse",
+    "textures": {
+        "texture": "moreplanets:blocks/cheese_spore_planks"
+    }
+}

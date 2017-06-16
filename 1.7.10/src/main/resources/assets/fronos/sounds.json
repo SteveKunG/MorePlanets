@@ -1,0 +1,22 @@
+{
+  "mob.fronos.say": {
+    "category": "neutral",
+    "sounds": ["mob/fronos/say"]
+  },
+  "mob.fronos.step": {
+    "category": "neutral",
+    "sounds": ["mob/fronos/step"]
+  },
+    "mob.fronos.hurt": {
+    "category": "neutral",
+    "sounds": ["mob/fronos/hurt1", "mob/fronos/hurt2"]
+  },
+    "mob.fronos.death": {
+    "category": "neutral",
+    "sounds": ["mob/fronos/death"]
+  },
+    "mob.cheese_boss.hit": {
+    "category": "neutral",
+    "sounds": ["mob/cheese_cube_boss/hit"]
+  }
+}

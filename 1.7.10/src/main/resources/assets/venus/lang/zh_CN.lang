@@ -1,0 +1,57 @@
+# More Planets 1.7.10 : Venus = CHINESE
+
+# BLOCK
+tile.venus_block.surface.name=金星地表岩石
+tile.venus_block.sub_surface.name=金星地底岩石
+tile.venus_block.rock.name=金星石头
+tile.venus_block.cobblestone.name=金星圆石
+tile.venus_block.sulfur_ore.name=硫矿石
+tile.venus_block.lead_ore.name=铅矿石
+tile.venus_block.tin_ore.name=锡矿石
+tile.venus_block.copper_ore.name=铜矿石
+tile.venus_block.coal_ore.name=煤矿石
+tile.venus_block.iron_ore.name=铁矿石
+tile.venus_block.gold_ore.name=金矿石
+tile.venus_block.lead_block.name=铅块
+tile.venus_block.stone_brick.name=金星石砖
+tile.venus_block.cracked_stone_brick.name=金星裂石砖
+tile.venus_block.dungeon_brick.name=金星地牢石砖
+tile.venus_redstone_ore.name=红石矿石
+tile.venus_smoke_geyser.name=金星喷烟岩
+tile.venus_magma_rock.name=金星岩浆岩
+tile.venus_sand.name=金星沙子
+tile.sulfur_torch.name=硫火把
+tile.venusian_blaze_egg.name=金星烈焰人蛋
+tile.venus_ancient_chest.name=金星箱子
+tile.venus_treasure_chest.name=3阶宝箱
+tile.venus_sandstone.venusSandstone.name=金星沙石
+tile.venus_sandstone.venusSandstoneChiseled.name=錾制金星沙石
+tile.venus_sandstone.venusSandstoneSmooth.name=平滑金星沙石
+tile.half_venus_sandstone_slab.venus.name=金星沙石台阶
+tile.venus_sandstone_stairs.name=金星沙石楼梯
+
+# ITEMS
+item.venus_item.lead_ingot.name=铅锭
+item.sulfur_battery.name=硫电池
+item.jetpack.name=喷气机
+item.venus_dungeon_key.name=3阶宝箱钥匙
+
+# TOOLS
+
+# ARMORS
+
+# ENTITIES
+entity.MorePlanet.VenusianBlaze.name=金星烈焰人
+entity.MorePlanet.VenusianSlime.name=金星史莱姆
+entity.MorePlanet.VenusianVillager.name=金星村民
+entity.MorePlanet.VenusianBlazeMP.name=金星烈焰人
+entity.MorePlanet.VenusianSlimeMP.name=金星史莱姆
+entity.MorePlanet.VenusianVillagerMP.name=金星村民
+
+# DESCRIFTION
+
+# CONTAINER
+container.venus.treasurechest.name=3阶宝箱
+container.venus.ancientchest.name=金星箱子
+
+# PLANET

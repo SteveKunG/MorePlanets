@@ -1,0 +1,39 @@
+# More Planets 1.7.10 : Io = CHINESE
+
+# BLOCKS
+tile.io_block.surface_rock.name=木卫一地表岩石
+tile.io_block.sub_surface_rock.name=木卫一地底岩石
+tile.io_block.rock.name=木卫一石头
+tile.io_block.cobblestone.name=木卫一圆石
+tile.io_block.sulfur_ore.name=硫矿石
+tile.io_block.ash_stone.name=灰烬石
+tile.io_block.ash_cobblestone.name=灰烬圆石
+tile.io_block.silicate_rock.name=硅酸盐岩
+tile.io_block.dungeon_brick.name=木卫一地牢石砖
+tile.io_magma_rock.magma_rock.name=岩浆岩
+tile.io_magma_rock.sulfur_rock.name=硫岩
+
+# SLABS
+
+# WALLS
+
+# ITEMS
+item.titanium_bucket.name=钛桶
+item.io_lava_bucket.name=木卫一岩浆桶
+item.liquid_red_sulfur_bucket.name=液态红硫桶
+item.liquid_yellow_sulfur_bucket.name=液态黄硫桶
+item.liquid_orange_sulfur_bucket.name=液态橙硫桶
+item.liquid_brown_sulfur_bucket.name=液态棕硫桶
+item.io_black_lava_bucket.name=黑岩浆桶
+
+# TOOLS
+
+# ARMORS
+
+# ENTITIES
+
+# GUI
+
+# CONTAINER
+
+# PLANET

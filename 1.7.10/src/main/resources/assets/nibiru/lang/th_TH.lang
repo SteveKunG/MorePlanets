@@ -1,0 +1,148 @@
+# More Planets 1.7.10 : Nibiru = THAI
+
+# BLOCKS
+tile.nibiru_block.surface_rock.name=หินพื้นผิวนิบิรุ
+tile.nibiru_block.sub_surface_rock.name=หินรองพื้นผิวนิบิรุ
+tile.nibiru_block.rock.name=หินนิบิรุ
+tile.nibiru_block.cobblestone.name=หินหยาบนิบิรุ
+tile.nibiru_block.ichorius_ore.name=Ichorius Gem Ore
+tile.nibiru_block.norium_ore.name=แร่โนเรียม
+tile.nibiru_block.diamond_ore.name=แร่เพชร
+tile.nibiru_block.coal_ore.name=แร่ถ่าน
+tile.nibiru_block.red_gem_ore.name=Red Gem Ore
+tile.nibiru_block.ichorius_block.name=Ichorius Block
+tile.nibiru_block.norium_block.name=บล็อคโนเรียม
+tile.nibiru_block.red_gem_block.name=Red Gem Block
+tile.nibiru_block.dungeon_brick.name=อิฐดันเจี้ยนนิบิรุ
+tile.oil_rock.oil_rock.name=หินน้ำมันแห้ง
+tile.oil_rock.oil_ore.name=หินน้ำมัน
+tile.helium_block.name=บล็อคฮีเลียม
+tile.nibiru_treasure_chest.name=กล่องสมบัตินิบิรุ
+tile.nibiru_ancient_chest.name=กล่องสมบัตินิบิรุโบราณ
+tile.infected_worm_egg.name=Infected Worm Egg Rock
+tile.infected_zombie_egg.name=Infected Zombie Egg
+tile.power_crystal_generator.name=Power Crystal Generator
+tile.nibiru_cobblestone_stairs.name=Nibiru Cobblestone Stairs
+tile.ancient_dark_wood_stairs.name=Ancient Dark Wood Stairs
+tile.nibiru_dungeon_brick_stairs.name=Nibiru Dungeon Brick Stairs
+tile.nibiru_planks.ancient_dark.name=Ancient Dark Wood Planks
+tile.nibiru_sapling.ancient_dark.name=Ancient Dark Sapling
+tile.ancient_dark_leaves.state1.name=Ancient Dark Leaves
+tile.ancient_dark_leaves.state2.name=Ancient Dark Flower Leaves
+tile.ancient_dark_leaves.state3.name=Ancient Dark Raw Apple Leaves
+tile.ancient_dark_leaves.state4.name=Ancient Dark Fruit Leaves
+tile.nibiru_log.ancient_dark_wood.name=Ancient Dark Wood
+tile.nibiru_log.orange_wood.name=Orange Wood
+tile.ichorius_torch.name=Ichorius Torch
+tile.nibiru_sapling.orange.name=Orange Sapling
+tile.orange_leaves.state1.name=Orange Leaves
+tile.orange_leaves.state2.name=Orange Flower Leaves
+tile.orange_leaves.state3.name=Raw Orange Leaves
+tile.orange_leaves.state4.name=Orange Fruit Leaves
+tile.nibiru_planks.orange.name=Orange Wood Planks
+tile.orange_wood_stairs.name=Orange Wood Stairs
+tile.infected_grass.name=Infected Grass
+tile.infected_dirt.dirt.name=Infected Dirt
+tile.infected_dirt.coarse.name=Coarse Infected Dirt
+tile.infected_vine.name=Infected Vines
+tile.nibiru_fence.ancient_dark.name=Ancient Dark Fence
+tile.nibiru_fence.orange.name=Orange Fence
+tile.ancient_dark_fence_gate.name=Ancient Dark Fence Gate
+tile.orange_fence_gate.name=Orange Fence Gate
+tile.infected_cavernous_vine.name=Infected Cavernous Vines
+
+# SLABS
+tile.mp_stone_half_slab1.nibiru.name=Nibiru Cobblestone Slab
+tile.mp_wood_half_slab.ancientDarkWood.name=Ancient Dark Wood Slab
+tile.mp_wood_half_slab.orangeWood.name=Orange Wood Slab
+tile.dungeon_brick_half_slab1.nibiruBrick.name=Nibiru Dungeon Brick Slab
+
+# WALLS
+tile.mp_wall.nibiru.name=Nibiru Cobblestone Wall
+tile.mp_dungeon_brick_wall.nibiruBrick.name=Nibiru Dungeon Brick Wall
+
+# ITEMS
+item.nibiru_dungeon_key.name=Tier 6 Dungeon Key
+item.nibiru_food.space_apple.name=แอปเปิ้ลอวกาศ
+item.nibiru_food.space_orange.name=ส้มอวกาศ
+item.power_crystal.name=Ichorius Gem
+item.nibiru_food.orange_juice.name=น้ำส้ม
+item.nibiru_item.compressed_red_gem.name=Compressed Red Gem
+item.nibiru_item.red_gem.name=Red Gem
+item.nibiru_item.red_gem_stick.name=Red Gem Stick
+item.nibiru_item.norium_ingot.name=แท่งโนเรียม
+item.nibiru_item.compressed_norium.name=Compressed Norium
+item.nibiru_item.norium_stick.name=Norium Stick
+item.tier_6_rocket.name=จรวด
+item.tier_7_rocket_module.tier7_booster.name=บูสเตอร์ เทียร์ 7
+item.tier_7_rocket_module.tier7_rocket_engine.name=เครื่องยนต์จรวด เทียร์ 7
+item.tier_7_rocket_module.tier7_heavy_duty_plate.name=Heavy Duty Plate
+item.tier_7_rocket_module.tier7_rocket_fin.name=ปีกจรวด เทียร์ 7
+item.tier_7_rocket_module.tier7_nose_cone.name=กรวยจรวด เทียร์ 7
+item.tier_6_rocket_schematic.tier6_schematic_rocket_no_flag.name=แผนผังโต๊ะทำงานนาซ่า
+item.tier_6_rocket_schematic.tier6_schematic_rocket.name=แผนผังโต๊ะทำงานนาซ่า
+item.ancient_dark_door.name=Ancient Dark Door
+item.orange_door.name=ประตูสีส้ม
+
+# DESCRIPTION
+desc.tier7.name=เทียร์ 7
+
+# SCHEMATIC
+schematic.tier6.rocket.name=จรวด เทียร์ 6
+schematic.tier6.rocket.noflag.name=จรวด เทียร์ 6 ไม่มีธง
+
+# TOOLS
+item.red_gem_pickaxe.name=Red Gem Pickaxe
+item.red_gem_axe.name=Red Gem Axe
+item.red_gem_hoe.name=Red Gem Hoe
+item.red_gem_spade.name=Red Gem Shovel
+item.red_gem_sword.name=Red Gem Sword
+item.norium_pickaxe.name=อีเต้อโนเรียม
+item.norium_axe.name=ขวานโนเรียม
+item.norium_hoe.name=จอบโนเรียม
+item.norium_spade.name=พลั่วโนเรียม
+item.norium_sword.name=ดาบโนเรียม
+
+# ARMOR
+item.red_gem_helmet.name=Red Gem Helmet
+item.red_gem_chestplate.name=Red Gem Chestplate
+item.red_gem_leggings.name=Red Gem Leggings
+item.red_gem_boots.name=Red Gem Boots
+item.norium_helmet.name=หมวกโนเรียม
+item.norium_chestplate.name=เสื้อเกราะโนเรียม
+item.norium_leggings.name=กางเกงโนเรียม
+item.norium_boots.name=รองเท้าโนเรียม
+item.breathable_red_gem_helmet.name=Breathable Red Gem Helmet
+item.breathable_norium_helmet.name=Breathable Norium Helmet
+
+# ENTITIES
+entity.MorePlanet.InfectedWorm.name=Infected Worm
+entity.MorePlanet.GiantWorm.name=Giant Worm
+entity.MorePlanet.InfectedZombie.name=Infected Zombie
+entity.MorePlanet.EvolvedInfectedSpiderBoss.name=Evolved Infected Spider Boss
+
+# DESCRIPTION
+tile.power_crystal_generator.desc=Power Crystal Generator will collect energy from power crystal gem for energy collection.
+
+# GUI
+gui.status.power.name=Collecting
+
+# CONTAINER
+container.nibiru.ancientchest.name=กล่องสมบัติโบราณนิบิรุ
+container.powercrystal.name=Power Crystal Generator
+container.nibiru.treasurechest.name=กล่องสมบัตินิบิรุ
+schematics.container.rocket.tier6=จรวด เทียร์ 6
+schematics.container.rocket.noflag.tier6=จรวด เทียร์ 6 ไม่มีธง
+
+# PLANET
+planet.nibiru=นิบิรุ
+
+# POTION
+potion.infected.gas=Infected Gas
+
+# MESSAGES
+message.warning.infected.gas=Invalid Tiered Thermal Armor!
+
+# DEATH MESSAGES
+death.attack.infectionVine=%1$s was infected by an infected vine
+death.attack.infectedGas=%1$s was killed by infected gas

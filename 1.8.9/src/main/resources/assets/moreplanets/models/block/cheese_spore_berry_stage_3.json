@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "moreplanets:blocks/cheese_spore_berry_3"
+    }
+}

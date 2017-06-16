@@ -1,0 +1,69 @@
+# More Planets 1.7.10 : Sirius B = RUSSIAN
+
+# BLOCKS
+tile.sirius_block.surface_carbon.name=Поверхностный углеродный камень Сириуса B
+tile.sirius_block.sub_surface_carbon.name=Подповерхностный углеродный камень Сириуса B
+tile.sirius_block.carbon_stone.name=Углеродный камень Сириуса B
+tile.sirius_block.carbon_cobblestone.name=Углеродный булыжник Сириуса B
+tile.sirius_block.sulfur_ore.name=Серная руда
+tile.sirius_block.diamond_ore.name=Алмазная руда
+tile.sirius_block.glowstone_ore.name=Светящийся камень Сириуса
+tile.sirius_block.black_spot.name=Черная крапинка Сириуса B
+tile.sirius_block.sulfur_block.name=Блок серы
+tile.sirius_block.dungeon_brick.name=Кирпич сокровищницы Сириуса B
+tile.magma_rock.name=Камень из магмы
+tile.sirius_obsidian.name=Обсидиан Сириуса
+tile.sirius-b_ancient_chest.name=Древний сундук Сириуса B
+tile.sirius-b_treasure_chest.name=Сундук с сокровищами 8-го уровня Сириуса B
+tile.sirius_blaze_egg.name=Яйцо Блейза Сириуса B
+tile.sirius-b_cobblestone_stairs.name=Ступеньки из углеродного булыжника Сириуса B
+tile.sirius-b_dungeon_brick_stairs.name=Ступеньки из кирпича сокровищницы Сириуса B
+tile.sirius_glowstone.name=Светящийся камень Сириуса
+tile.sirius_redstone_lamp.name=Красная лампа Сириуса
+
+# SLABS
+tile.mp_stone_half_slab2.sirius.name=Плита из углеродного булыжника Сириуса B
+tile.dungeon_brick_half_slab1.siriusBrick.name=Плита из кирпича сокровищницы Сириуса B
+
+# WALLS
+tile.mp_wall.sirius.name=Стена из углеродного булыжника Сириуса B
+tile.mp_dungeon_brick_wall.siriusBrick.name=Стена из кирпича сокровищницы Сириуса B
+
+# ITEMS
+item.sirius-b_item.small_diamond_pieces.name=Малые осколки алмаза
+item.sirius-b_item.large_diamond_pieces.name=Большие осколки алмаза
+item.sirius_fire_charge.name=Огнерый заряд Сириуса
+item.sirius_obsidian_bucket.name=Обсидиановое ведро Сириуса
+item.sirius_lava_bucket.name=Ведро лавы Сириуса
+item.sirius-b_dungeon_key.name=Ключ от подземелья 8-го уровня Сириуса B
+item.sirius-b_item.sulfur_dust.name=Серная пыль
+item.sirius-b_item.sulfur_ingot.name=Серный слиток
+item.sirius-b_item.compressed_sulfur.name=Сжатая сера
+item.sirius_glowstone_dust.name=Светящаяся пыль Сириуса
+item.sirius-b_item.sulfur_stick.name=Палка из серы
+
+item.sulfur_helmet.name=Шлем из серы
+item.sulfur_chestplate.name=Кираса из серы
+item.sulfur_leggings.name=Поножи из серы
+item.sulfur_boots.name=Ботинки из серы
+item.breathable_sulfur_helmet.name=Скафандр из серы
+item.sulfur_sword.name=Меч из серы
+item.sulfur_shovel.name=Лопата из серы
+item.sulfur_pickaxe.name=Кирка из серы
+item.sulfur_axe.name=Топор из серы
+item.sulfur_hoe.name=Мотыга из серы
+
+# ENTITIES
+entity.MorePlanet.SiriusCreeper.name=Крипер Сириуса
+entity.MorePlanet.SiriusBlaze.name=Блэйз Сириуса
+entity.MorePlanet.SiriusMagmaCube.name=Куб магмы Сириуса
+entity.MorePlanet.EvolvedSiriusBlazeBoss.name=Эволюционировавший босс-блейз Сириуса
+
+# GUI
+
+# CONTAINER
+container.siriusb.treasurechest.name=Сундук с сокровищами Сириуса B
+container.siriusb.ancientchest.name=Древний сундук Сириуса B
+
+# PLANET
+planet.siriusB=Сириус B

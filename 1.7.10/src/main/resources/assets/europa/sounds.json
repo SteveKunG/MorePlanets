@@ -1,0 +1,6 @@
+{
+  "mob.crab": {
+    "category": "neutral",
+    "sounds": ["crab/crab1", "crab/crab2"]
+  }
+}

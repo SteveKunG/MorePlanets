@@ -1,0 +1,117 @@
+# More Planets 1.7.10 : Kapteyn B = RISSIAN
+
+# BLOCK
+tile.kapteyn-b_block.surface_ice.name=Поверхностный лед Каптейна B
+tile.kapteyn-b_block.sub_surface_ice.name=Подповерхностный лед Каптейна B
+tile.kapteyn-b_block.stone.name=Камень Каптейна B
+tile.kapteyn-b_block.cobblestone.name=Булыжник Каптейна B
+tile.kapteyn-b_block.namerium_ore.name=Кристальная руда намериума
+tile.kapteyn-b_block.frozen_iron_ore.name=Замороженная железная руда
+tile.kapteyn-b_block.uranium_ore.name=Урановая руда
+tile.kapteyn-b_block.tin_ore.name=Оловянная руда
+tile.kapteyn-b_block.copper_ore.name=Медная руда
+tile.kapteyn-b_block.redstone_ore.name=Красная руда
+tile.kapteyn-b_block.namerium_block.name=Блок намериума
+tile.kapteyn-b_block.frozen_iron_block.name=Замороженный железный блок
+tile.kapteyn-b_block.uranium_block.name=Урановый блок
+tile.kapteyn-b_block.dungeon_brick.name=Кирпич сокровищницы Каптейна B
+tile.rocky_soild_water.name=Каменистая твердая вода
+tile.default_kapteyn-b_ice.name=Лед Каптейна B
+tile.dirty_kapteyn-b_ice.name=Грязный лед Каптейна B
+tile.kapteyn-b_treasure_chest.name=Сундук с сокровищами 8-го уровня Каптейна B
+tile.kapteyn-b_ancient_chest.name=Древний сундук Коптейна B
+tile.kapteyn-b_cobblestone_stairs.name=Лестница из булыжника Коптейна B
+tile.kapteyn-b_dungeon_brick_stairs.name=Лестница из кирпича подземелья Коптейна B
+tile.uranium_waste.active.name=Урановые отходы
+tile.uranium_waste.inactive.name=Неактивные урановые отходы
+tile.uranium_bomb.name=Ядерная бомба
+tile.frozen_water_fluid.name=Замороженная вода
+tile.fallen_ice_crystal_meteor.name=Ледянные кристаллы упавшего метеорита
+tile.frozen_water_geyser.name=Гейзер замерзшей воды
+tile.icy_poison_crystal.name=Ледянные кристаллы яда
+
+# SLABS
+tile.mp_stone_half_slab2.kapteyn.name=Плита из булыжника Каптейна B
+tile.dungeon_brick_half_slab1.kapteynBrick.name=Плита из кирпича сокровищницы Каптейна B
+
+# WALLS
+tile.mp_wall.kapteyn.name=Стена из булыжника Каптейна B
+tile.mp_dungeon_brick_wall.kapteynBrick.name=Стена из кирпича сокровищницы Каптейна B
+
+# ITEMS
+item.kapteyn-b_dungeon_key.name=Ключ от подземелья 8-го уровня
+item.uranium_battery.name=Урановая батарея
+item.kapteyn-b_item.frozen_iron_ingot.name=Замороженный железный слиток
+item.kapteyn-b_item.uranium_gem.name=Урановый драгоценный камень
+item.kapteyn-b_item.compressed_frozen_iron.name=Сжатое замороженное железо
+item.frozen_water_bucket.name=Ведро замерзшей воды
+item.kapteyn-b_item.uranium_stick.name=Палка из урана
+item.kapteyn-b_item.frozen_iron_stick.name=Палка из замороженного железа
+item.kapteyn-b_item.ice_crystal_shard.name=Куски ледянных кристаллов
+item.namerium_crystal.name=Кристаллы намериума
+item.tier_8_rocket.name=Ракета 8-го уровня
+item.tier_8_rocket_schematic.name=Схема для верстака NASA
+item.tier_8_rocket_module.tier8_rocket_engine.name=Ракетный двигатель 8-го уровня
+item.tier_8_rocket_module.tier8_booster.name=Ускоритель 8-го уровня
+item.tier_8_rocket_module.tier8_heavy_duty_plate.name=Сверхпрочное покрытие
+item.ice_crystal_meteor_chunk.name=Кусок метеоритного ледянного кристалла
+
+# TOOLS
+item.frozen_iron_pickaxe.name=Кирка из замороженного железа
+item.frozen_iron_axe.nameТопро из замороженного железа
+item.frozen_iron_hoe.name=Мотыга из замороженного железа
+item.frozen_iron_spade.name=Лопата из замороженного железа
+item.frozen_iron_sword.name=Меч из замороженного железа
+item.uranium_pickaxe.name=Кирка из урана
+item.uranium_axe.name=Топор из урана
+item.uranium_hoe.name=Мотыга из урана
+item.uranium_spade.name=Лопата из урана
+item.uranium_sword.name=Меч из урана
+item.ice_crystal_sword.name=Меч из ледянных кристаллов
+item.ice_crystal_shovel.name=Лопата из ледянных кристаллов
+item.ice_crystal_axe.name=Топор из ледянных кристаллов
+item.ice_crystal_pickaxe.name=Кирка из ледянных кристаллов
+item.ice_crystal_hoe.name=Мотыга из ледянных кристаллов
+
+# ARMORS
+item.uranium_helmet.name=Шлем из урана
+item.uranium_chestplate.name=Кираса из урана
+item.uranium_leggings.name=Поножи из урана
+item.uranium_boots.name=Ботинки из урана
+item.frozen_iron_helmet.name=Шлем из замороженного железа
+item.frozen_iron_chestplate.name=Кираса из замороженного железа
+item.frozen_iron_leggings.name=Поножи из замороженного железа
+item.frozen_iron_boots.name=Ботинки из замороженного железа
+item.ice_crystal_helmet.name=Шлем из ледянных кристаллов
+item.ice_crystal_chestplate.name=Кираса из ледянных кристаллов
+item.ice_crystal_leggings.name=Поножи из ледянных кристаллов
+item.ice_crystal_boots.name=Ботинки из ледянных кристаллов
+item.breathable_uranium_helmet.name=Скафандр из урана
+item.breathable_frozen_iron_helmet.name=Скафандр из замороженного железа
+item.breathable_ice_crystal_helmet.name=Скафандр из ледянных кристаллов
+
+# ENTITIES
+entity.MorePlanet.FrozenSludgeling.name=Замороженный сладжелинг
+entity.MorePlanet.KapteynBCreeperBoss.name=Крипер босс Каптейна В
+
+# DESCRIFTION
+schematic.tier8.rocket.name=Ракета 8-го уровня
+desc.tier8.name=8-й уровнь
+
+# DEATH MESSSAGE
+death.attack.chemical=%1$s был убит химически
+death.attack.icy_poison=%1$s был отравлен ядом ледянного кристалла
+
+# CONTAINER
+container.kapteynb.treasurechest.name=Сундук Коптейна B
+container.kapteynb.ancientchest.name=Древний сундук Коптейна B
+schematics.container.rocket.tier8=Ракета 8-го уровня
+
+# PLANET
+star.kapteyn=Каптейн
+planet.kapteynB=Каптейн B
+solarsystem.kapteyn=ЗС Каптейн
+
+# POTION
+potion.chemical=Химикалии
+potion.icy_poison=Ледянной яд

@@ -1,0 +1,30 @@
+# More Planets 1.7.10 : Phobos = CHINESE
+
+# BLOCKS
+tile.phobos_block.surface_rock.name=火卫一地表岩石
+tile.phobos_block.sub_surface_rock.name=火卫一地底岩石
+tile.phobos_block.rock.name=火卫一石头
+tile.phobos_block.cobblestone.name=火卫一圆石
+tile.phobos_block.tin_ore.name=锡矿石
+tile.phobos_block.copper_ore.name=铜矿石
+tile.phobos_block.iron_ore.name=铁矿石
+tile.phobos_block.desh_ore.name=戴斯矿石
+
+# SLABS
+
+# WALLS
+
+# ITEMS
+
+# TOOLS
+
+# ARMORS
+
+# ENTITIES
+
+# GUI
+
+# CONTAINER
+
+# PLANET
+moon.phobos=火卫一

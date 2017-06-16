@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_nsew",
+    "textures": {
+        "wall": "moreplanets:blocks/nibiru_cobblestone"
+    }
+}

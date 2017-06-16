@@ -1,0 +1,15 @@
+-Added- Added Black Hole Storage
+-Added- Added Rocket Recipes support for JEI
+-Added- Added Glowing Iron Ingot and Black Hole Fragment
+-Update- Update to use Galacticraft Build 107 or higher
+-Update- Optimized performance
+-Update- Optimized network handler
+-Update- Tier 4 Rocket Schematic generated on Venus
+-Update- Iron Ingot can use to craft Glowing Iron Ingot
+-Fixed- Fixed some entities doesn't sync between client-server
+-Fixed- Fixed Multalic Crystal armor rendering
+-Fixed- Fixed player spawning issue when enable started planet feature
+-Fixed- Fixed step sound for Space Fishing Hook
+-Fixed- Minor model error fixes
+-Fixed- Some bug fixes
+-Remove- Removed Evolved Enderman and Witch

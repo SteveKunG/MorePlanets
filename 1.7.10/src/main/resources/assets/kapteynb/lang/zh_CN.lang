@@ -1,0 +1,116 @@
+# More Planets 1.7.10 : Kapteyn B = CHINESE
+
+# BLOCK
+tile.kapteyn-b_block.surface_ice.name=卡普坦B地表冰
+tile.kapteyn-b_block.sub_surface_ice.name=卡普坦B地底冰
+tile.kapteyn-b_block.stone.name=卡普坦B石头
+tile.kapteyn-b_block.cobblestone.name=卡普坦B圆石
+tile.kapteyn-b_block.namerium_ore.name=命名者水晶矿石
+tile.kapteyn-b_block.frozen_iron_ore.name=冰冻铁矿石
+tile.kapteyn-b_block.uranium_ore.name=铀矿石
+tile.kapteyn-b_block.tin_ore.name=锡矿石
+tile.kapteyn-b_block.copper_ore.name=铜矿石
+tile.kapteyn-b_block.redstone_ore.name=红石矿石
+tile.kapteyn-b_block.namerium_block.name=命名者水晶块
+tile.kapteyn-b_block.frozen_iron_block.name=冰冻铁块
+tile.kapteyn-b_block.uranium_block.name=铀块
+tile.kapteyn-b_block.dungeon_brick.name=卡普坦B地牢石砖
+tile.rocky_soild_water.name=固态水方块
+tile.default_kapteyn-b_ice.name=卡普坦B冰
+tile.dirty_kapteyn-b_ice.name=卡普坦B脏冰
+tile.kapteyn-b_treasure_chest.name=8阶宝箱
+tile.kapteyn-b_ancient_chest.name=卡普坦B箱子
+tile.kapteyn-b_cobblestone_stairs.name=卡普坦B圆石楼梯
+tile.kapteyn-b_dungeon_brick_stairs.name=卡普坦B地牢石砖楼梯
+tile.uranium_waste.active.name=铀污染点
+tile.uranium_waste.inactive.name=不活跃的铀污染点
+tile.uranium_bomb.name=铀弹
+tile.frozen_water_fluid.name=冷冻水
+tile.fallen_ice_crystal_meteor.name=冰晶陨石
+tile.frozen_water_geyser.name=冷冻水喷泉
+tile.icy_poison_crystal.name=冰毒水晶
+item.ice_crystal_meteor_chunk.name=可投掷冰晶碎片
+
+# SLABS
+tile.mp_stone_half_slab2.kapteyn.name=卡普坦B圆石台阶
+tile.dungeon_brick_half_slab1.kapteynBrick.name=卡普坦B地牢石砖台阶
+
+# WALLS
+tile.mp_wall.kapteyn.name=卡普坦B圆石墙
+tile.mp_dungeon_brick_wall.kapteynBrick.name=卡普坦B地牢石砖墙
+
+# ITEMS
+item.kapteyn-b_dungeon_key.name=8阶宝箱钥匙
+item.uranium_battery.name=铀电池
+item.kapteyn-b_item.frozen_iron_ingot.name=冰冻铁锭
+item.kapteyn-b_item.uranium_gem.name=铀宝石(可发电宝石)
+item.kapteyn-b_item.compressed_frozen_iron.name=致密冷冻铁板
+item.frozen_water_bucket.name=冷冻水桶
+item.kapteyn-b_item.uranium_stick.name=铀棍
+item.kapteyn-b_item.frozen_iron_stick.name=冷冻铁棍
+item.kapteyn-b_item.ice_crystal_shard.name=冰晶碎片
+item.namerium_crystal.name=命名者水晶(可发电水晶)
+item.tier_8_rocket.name=8阶火箭
+item.tier_8_rocket_schematic.name=NASA工作台图纸
+item.tier_8_rocket_module.tier8_rocket_engine.name=8阶火箭引擎
+item.tier_8_rocket_module.tier8_booster.name=8阶助推器
+item.tier_8_rocket_module.tier8_heavy_duty_plate.name=重型防护板
+
+# TOOLS
+item.frozen_iron_pickaxe.name=冷冻铁镐
+item.frozen_iron_axe.name=冷冻铁斧
+item.frozen_iron_hoe.name=冷冻铁锄
+item.frozen_iron_spade.name=冷冻铁锹
+item.frozen_iron_sword.name=冷冻铁剑
+item.uranium_pickaxe.name=铀镐
+item.uranium_axe.name=铀斧
+item.uranium_hoe.name=铀锄
+item.uranium_spade.name=铀锹
+item.uranium_sword.name=铀剑
+item.ice_crystal_sword.name=冰晶剑
+item.ice_crystal_shovel.name=冰晶锹
+item.ice_crystal_axe.name=冰晶斧
+item.ice_crystal_pickaxe.name=冰晶镐
+item.ice_crystal_hoe.name=冰晶锄
+
+# ARMORS
+item.uranium_helmet.name=铀头盔
+item.uranium_chestplate.name=铀胸甲
+item.uranium_leggings.name=铀护腿
+item.uranium_boots.name=铀靴子
+item.frozen_iron_helmet.name=冷冻铁头盔
+item.frozen_iron_chestplate.name=冷冻铁胸甲
+item.frozen_iron_leggings.name=冷冻铁护腿
+item.frozen_iron_boots.name=冷冻铁靴子
+item.ice_crystal_helmet.name=冰晶头盔
+item.ice_crystal_chestplate.name=冰晶胸甲
+item.ice_crystal_leggings.name=冰晶护腿
+item.ice_crystal_boots.name=冰晶靴子
+item.breathable_uranium_helmet.name=透氧铀头盔
+item.breathable_frozen_iron_helmet.name=透氧冷冻铁头盔
+item.breathable_ice_crystal_helmet.name=透氧冰晶头盔
+
+# ENTITIES
+entity.MorePlanet.FrozenSludgeling.name=冷冻泥浆怪
+entity.MorePlanet.KapteynBCreeperBoss.name=卡普坦B苦力怕之王
+# DESCRIFTION
+schematic.tier8.rocket.name=8阶火箭
+desc.tier8.name=8阶
+
+# DEATH MESSSAGE
+death.attack.chemical=%1$s 死于辐射
+death.attack.icy_poison=%1$s 被冰毒水晶毒死了
+
+# CONTAINER
+container.kapteynb.treasurechest.name=8阶宝箱
+container.kapteynb.ancientchest.name=卡普坦B箱子
+schematics.container.rocket.tier8=8阶火箭
+
+# PLANET
+star.kapteyn=卡普坦
+planet.kapteynB=卡普坦B
+solarsystem.kapteyn=卡普坦系
+
+# POTION
+potion.chemical=辐射
+potion.icy_poison=冰毒

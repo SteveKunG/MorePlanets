@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "moreplanets:blocks/cheese_spore_stem_top",
+        "side": "moreplanets:blocks/cheese_spore_stem_side"
+    }
+}

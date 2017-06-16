@@ -1,0 +1,58 @@
+# More Planets 1.7.10 : Europa = ENGLISH
+
+# BLOCKS
+tile.europa_ice.ice.name=Лед Европы
+tile.europa_ice.dirty.name=Грязный лед Европы
+tile.europa_ice.dense.name=Плотный лед Европы
+tile.packed_europa_ice.name=Упакованный лед Европы
+tile.europa_snow_block.name=Снег Европы
+tile.europa_ice_slush.name=Ледовая слякоть Европы
+tile.europa_salt.name=Соль Европы
+tile.europa_water_bomb.name=Водяная бомба Европы
+tile.europa_geyser.default.name=Подводный гейзер Европы
+tile.europa_geyser.smoke.name=Подводный дымовой гейзер Европы
+tile.europa_snow_layer.name=Снег Европы
+tile.europa_log.europa_wood.name=Дерево Европы
+tile.europa_planks.name=Планки из дерева Европы
+tile.europa_leaves.europa.name=Листья дерева Европы
+tile.europa_sapling.name=Саженцы Европы
+tile.europa_sand.name=Песок Европы
+tile.europa_sandstone.europaSandstone.name=Песчаник Европы
+tile.europa_sandstone.europaSandstoneChiseled.name=Резной песчаник Европы
+tile.europa_sandstone.europaSandstoneSmooth.name=Гладкий песчаник Европы
+tile.half_europa_sandstone_slab.europa.name=Плита из песчаника Европы
+tile.europa_fence.name=Забор из дерева Европы
+tile.europa_fence_gate.name=Ворота из дерева Европы
+tile.europa_sandstone_stairs.name=Лестница из песчаника Европы
+tile.europa_wood_stairs.name=Лестница из дерева Европы
+item.europa_door.name=Дверь из дерева Европы
+tile.mp_wood_half_slab.europaWood.name=Плита из дерева Европы
+
+# ITEMS
+item.europa_water_bucket.name=Ведро воды Европы
+item.europa_apple.name=Яблоко Европы
+item.europa_food.raw_europa_eel_meat.name=Сырое мясо Угря Европы
+item.europa_food.cooked_europa_eel_meat.name=Жаренное мясо Угря Европы
+item.europa_gunpowder.name=Порох Европы
+
+# DESCRIPTION
+
+# SCHEMATIC
+
+# TOOLS
+
+# ARMORS
+
+# ENTITIES
+entity.MorePlanet.EuropaSquid.name=Кальмар Европы
+entity.MorePlanet.EuropaCrab.name=Краб Европы
+
+# GUI
+
+# CONTAINER
+
+# PLANET
+
+# POTION
+
+# DEATH MESSAGES

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "moisture=0": { "model": "moreplanets:cheese_farmland_dry" },
+        "moisture=1": { "model": "moreplanets:cheese_farmland_moist" }
+    }
+}

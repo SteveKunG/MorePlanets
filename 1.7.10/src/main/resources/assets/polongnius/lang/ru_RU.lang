@@ -1,0 +1,136 @@
+# More Planets 1.7.10 : Polongnius = RUSSIAN
+
+# BLOCKS
+tile.polongnius_block.cheese_gas.name=Сырный газ
+tile.polongnius_block.solid_cheese_gas.name=Твердый сырный газ
+tile.polongnius_block.stone.name=Камень Полония
+tile.polongnius_block.cobblestone.name=Булыжник Полония
+tile.polongnius_block.copper_ore.name=Медная руда
+tile.polongnius_block.tin_ore.name=Оловянная руда
+tile.polongnius_block.iron_ore.name=Железная руда
+tile.polongnius_block.palladium_ore.name=Палладиевая руда
+tile.polongnius_block.flonium_ore.name=Флониумная руда
+tile.polongnius_block.purple_crystal_ore.name=Фиолетовая кристальная руда
+tile.polongnius_block.meteor_block.name=Твердое метеоритное железо Полония
+tile.polongnius_block.purple_crystal_block.name=Фиолетовый кристальный блок
+tile.polongnius_block.palladium_block.name=Паладиевый блок
+tile.polongnius_block.dungeon_brick.name=Кирпич сокровищницы Полония
+tile.polongnius_block.dungeon_brick2.name=Кирпич сокровищницы Полония
+tile.cheese_of_milk_cake.name=Сырный молочный торт
+tile.floniumTorch.name=Факел из Фолониума
+tile.fallen_polongnius_meteor.name=Упавший метеорит Полония
+tile.polongnius_cobblestone_stairs.name=Ступеньки из булыжника Полония
+tile.polongnius_dungeon_brick_stairs.name=Ступеньки из кирпича сокровищницы Полония
+tile.cheese_slime_egg.name=Яйцо сырного слизня
+tile.cheese_of_milk_fluid.name=Молочный сыр
+tile.flonium_torch.name=Факел из Фолониума
+tile.polongnius_treasure_chest.name=Сундук с совкровищами 5-го уровня
+tile.polongnius_ancient_chest.name=Древний сундук Полония
+tile.ultra_violet_solar_panel.name=Ультрофиолетовая солнечная панель
+tile.cheese_slime_block.name=Блок сыра слизня
+tile.cheese_gas.name=Блок сырного газа
+
+# SLABS
+tile.mp_stone_half_slab1.polongnius.name=Плита из булыжника Полония
+tile.dungeon_brick_half_slab1.polongniusBrick.name=Плита из кирпича сокровищницы Полония
+
+# WALLS
+tile.mp_wall.polongnius.name=Стена из булыжника Полония
+tile.mp_dungeon_brick_wall.polongniusBrick.name=Стена из кирпича сокровищницы Полония
+
+# ITEMS
+item.polongnius_item.flonium.name=Флониум
+item.polongnius_item.purple_crystal.name=Фиолетовый кристалл
+item.polongnius_item.raw_polongnius_meteoric_iron.name=Необработанное метеоритное железо Полония
+item.polongnius_item.raw_palladium.name=Необработанный палладий
+item.polongnius_item.polongnius_meteoric_iron_ingot.name=Слиток метеоритного железа Полония
+item.polongnius_item.palladium_ingot.name=Паладиевый слиток
+item.polongnius_item.compressed_polongnius_meteoric_iron.name=Сжатое метеоритное железо Полония
+item.polongnius_item.polongnius_meteoric_iron_stick.name=Палка из метеоритного железа Полония
+item.polongnius_item.palladium_stick.name=Палка из палладия
+item.polongnius_item.cheese_leather.name=Сырная кожа
+item.polongnius_food.cheese_of_milk_curd.name=Сырный молочный творог
+item.polongnius_food.raw_cheese_beef.name=Сырой говяжий сыр
+item.polongnius_food.cooked_cheese_beef.name=Приготовленный говяжий сыр
+item.polongnius_dungeon_key.name=Ключ от подземелья 5-го уровня Полония
+item.purple_crystal_solar_module.purple_crystal_wafer.name=Фиолетовая полупроводниковая пластина
+item.polongnius_item.compressed_palladium.name=Сжатый паладий
+item.cheese_slimeball.name=Сырная слизь
+item.purple_crystal_solar_module.purple_crystal_solar_wafer.name=Фиолетовая солнечная полупроводниковая пластина
+item.purple_crystal_solar_module.purple_crystal_solar_single.name=Одиночный фиолетовый солнечный модуль
+item.purple_crystal_solar_module.purple_crystal_solar_panel.name=Целый фиолетовый солнечный модуль
+item.cheese_of_milk_bucket.name=Ведро сырного молока
+item.tier_5_rocket.name=Ракета 5-го уровня
+item.tier_6_rocket_module.tier6_heavy_duty_plate.name=Сверхпрочное покрытие
+item.tier_6_rocket_module.tier6_rocket_engine.name=Ракетный двигатель 6-го уровня
+item.tier_6_rocket_module.tier6_booster.name=Ускоритель 6-го уровня
+item.tier_5_rocket_schematic.schematic_tier5_rocket_no_flag.name=Схема для верстака NASA
+item.tier_5_rocket_schematic.schematic_tier5_rocket.name=Схема для верстака NASA
+item.polongnius_meteor_chunk.name=Метеоритный кусок Полония
+
+# TOOLS
+item.polongnius_meteor_pickaxe.name=Кирка из метеоритного железа Полония
+item.polongnius_meteor_axe.name=Топор из метеоритного железа Полония
+item.polongnius_meteor_hoe.name=Мотыга из метеоритного железа Полония
+item.polongnius_meteor_spade.name=Лопата из метеоритного железа Полония
+item.polongnius_meteor_sword.name=Меч из метеоритного железа Полония
+item.palladium_pickaxe.name=Кирка из палладия
+item.palladium_axe.name=Топор из палладия
+item.palladium_hoe.name=Мотыга из палладия
+item.palladium_spade.name=Лопата из палладия
+item.palladium_sword.name=Меч из палладия
+item.purple_crystal_pickaxe.name=Кирка из фиолетового кристалла
+item.purple_crystal_axe.name=Топор из фиолетового кристалла
+item.purple_crystal_hoe.name=Мотыга из фиолетового кристалла
+item.purple_crystal_spade.name=Лопата из фиолетового кристалла
+item.purple_crystal_sword.name=Меч из фиолетового кристалла
+
+# ARMOR
+item.polongnius_meteor_helmet.name=Шлем из метеоритного железа Полония
+item.polongnius_meteor_chestplate.name=Кираса из метеоритного железа Полония
+item.polongnius_meteor_leggings.name=Поножи из метеоритного железа Полония
+item.polongnius_meteor_boots.name=Ботинки из метеоритного железа Полония
+item.cheese_leather_helmet.name=Шлем из сырной кожи
+item.cheese_leather_chestplate.name=Кираса из сырной кожи
+item.cheese_leather_leggings.name=Поножи из сырной кожи
+item.cheese_leather_boots.name=Ботинки из сырной кожи
+item.palladium_helmet.name=Шлем из палладия
+item.palladium_chestplate.name=Кираса из палладия
+item.palladium_leggings.name=Поножи из палладия
+item.palladium_boots.name=ботинки из палладия
+item.purple_crystal_helmet.name=Шлем из фиолетового кристалла
+item.purple_crystal_chestplate.name=Кираса из фиолетового кристалла
+item.purple_crystal_leggings.name=Поножи из фиолетового кристалла
+item.purple_crystal_boots.name=Ботинки из фиолетового кристалла
+item.breathable_polongnius_meteor_helmet.name=Breathable Polongnius Meteoric Iron Helmet
+item.breathable_palladium_helmet.name=Breathable Palladium Helmet
+
+# DESCRIPTION
+desc.tier6.name=6-й уровень
+tile.cheese_of_milk_cake.desc=Блоки сырного молока создаются из сыра с молоком Полония.
+tile.ultra_violet_solar_panel.desc=Ультрафиолетовые солнечные панели собирают энергию от видимого и ультрафиолетового света звезд и хранят ее для дальнейшего использования.
+desc.slime.name=Тип слизи
+
+# SCHEMATIC
+schematic.tier5.rocket.name=Ракета 5-го уровня
+schematic.tier5.rocket.noflag.name=Ракета 5-го уровня без флага
+
+# ENTITIES
+entity.MorePlanet.CheeseCow.name=Сырная корова
+entity.MorePlanet.CheeseSlime.name=Сырный слизень
+entity.MorePlanet.CheeseCubeBoss.name=Сырный босс-куб
+
+# GUI
+gui.status.star.blockedfully.name=Звезду не видно
+gui.status.star.blockedpartial.name=Звезда видна частично
+gui.status.starVisible.name=Звезду хорошо видно
+
+# CONTAINER
+container.polongnius.ancientchest.name=Древний сундук Полония
+container.ultraviolet.solar.name=Ультра фиолетовая солнечная панель
+container.polongnius.treasurechest.name=Сундук с сокровищами Полония
+schematics.container.rocket.tier5=Ракета 5-го уровня
+schematics.container.rocket.noflag.tier5=Ракета 5-го уровня без флага
+
+# PLANET
+planet.polongnius=Полоний

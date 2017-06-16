@@ -1,0 +1,148 @@
+# More Planets 1.7.10 : Nibiru = RUSSIAN
+
+# BLOCKS
+tile.nibiru_block.surface_rock.name=Поверхностный камень Нибиру
+tile.nibiru_block.sub_surface_rock.name=Подповерхностный камень Нибиру
+tile.nibiru_block.rock.name=Камень Нибиру
+tile.nibiru_block.cobblestone.name=Булыжник Нибиру
+tile.nibiru_block.ichorius_ore.name=Драгоценная руда Нибиру
+tile.nibiru_block.norium_ore.name=Ториевая руда
+tile.nibiru_block.diamond_ore.name=Алмазная руда
+tile.nibiru_block.coal_ore.name=Угольная руда
+tile.nibiru_block.red_gem_ore.name=Красная драгоценная руда
+tile.nibiru_block.ichorius_block.name=Блок ихориуса
+tile.nibiru_block.norium_block.name=Ториевый блок
+tile.nibiru_block.red_gem_block.name=Красный драгоценный блок
+tile.nibiru_block.dungeon_brick.name=Кирпич сокровищницы Нибиру
+tile.oil_rock.oil_rock.name=Камень с нефтью
+tile.oil_rock.oil_ore.name=Руда с нефтью
+tile.helium_block.name=Гелиевый блок
+tile.nibiru_treasure_chest.name=Сундук с сокровищами 6-го уровня Нибиру
+tile.nibiru_ancient_chest.name=Древний суендук Нибиру
+tile.infected_worm_egg.name=Яйцо зараженного каменного червяка
+tile.infected_zombie_egg.name=Яйцо зараженного зомби
+tile.power_crystal_generator.name=Мощный кристаллический генератор
+tile.nibiru_cobblestone_stairs.name=Ступеньки из булыжника Нибиру
+tile.ancient_dark_wood_stairs.name=Ступеньки из древнего темного дерева
+tile.nibiru_dungeon_brick_stairs.name=Ступеньки из кирпича сокровищницы Нибиру
+tile.nibiru_planks.ancient_dark.name=Доски из древнего темного дерева
+tile.nibiru_sapling.ancient_dark.name=Саженец древного темного дерева
+tile.ancient_dark_leaves.state1.name=Листья древного темного дерева
+tile.ancient_dark_leaves.state2.name=Цветы древного темного дерева
+tile.ancient_dark_leaves.state3.name=Яблоки древнего темного дерева
+tile.ancient_dark_leaves.state4.name=Фрукты древнего темного дерева
+tile.nibiru_log.ancient_dark_wood.name=Древнее темное дерево
+tile.nibiru_log.orange_wood.name=Оранжевое дерево
+tile.ichorius_torch.name=Факел из ихориуса
+tile.nibiru_sapling.orange.name=Саженец оранжевого дерева
+tile.orange_leaves.state1.name=Листья оранжевого дерева
+tile.orange_leaves.state2.name=Цветы оранжевого дерева
+tile.orange_leaves.state3.name=Необработанные листья оранжевого дерева
+tile.orange_leaves.state4.name=Фрукты оранжевого дерева
+tile.nibiru_planks.orange.name=Доски из оранжевого дерева
+tile.orange_wood_stairs.name=Ступеньки из оранжевого дерева
+tile.infected_grass.name=Зараженная трава
+tile.infected_dirt.dirt.name=Зараженная грязь
+tile.infected_dirt.coarse.name=Грубая зараженная грязь
+tile.infected_vine.name=Зараженные лианы
+tile.nibiru_fence.ancient_dark.name=Забор из древнего темного дерева
+tile.nibiru_fence.orange.name=Забор из оранжевого дерева
+tile.ancient_dark_fence_gate.name=Ворота из древнего темного дерева
+tile.orange_fence_gate.name=Ворота из оранжевого дерева
+tile.infected_cavernous_vine.name=Зараженные кавернозные лозы
+
+# SLABS
+tile.mp_stone_half_slab1.nibiru.name=Плита из булыжника Нибиру
+tile.mp_wood_half_slab.ancientDarkWood.name=Плита из древнего темного дерева
+tile.mp_wood_half_slab.orangeWood.name=Плита из оранжевого дерева
+tile.dungeon_brick_half_slab1.nibiruBrick.name=Плита из кирпича сокровищницы Нибиру
+
+# WALLS
+tile.mp_wall.nibiru.name=Стена из булыжника Нибиру
+tile.mp_dungeon_brick_wall.nibiruBrick.name=Стена из кирпича сокровищницы Нибиру
+
+# ITEMS
+item.nibiru_dungeon_key.name=Ключ от подземелья 6-го уровня Нибиру
+item.nibiru_food.space_apple.name=Космическое яблоко
+item.nibiru_food.space_orange.name=Космический апельсин
+item.power_crystal.name=Кристаллический камень
+item.nibiru_food.orange_juice.name=Апельсиновый сок
+item.nibiru_item.compressed_red_gem.name=Сжатый красный драгоценный камень
+item.nibiru_item.red_gem.name=Красный драгоценный камень
+item.nibiru_item.red_gem_stick.name=Палка из красного драгоценного камня
+item.nibiru_item.norium_ingot.name=Норуимный слиток
+item.nibiru_item.compressed_norium.name=Сжатый нориум
+item.nibiru_item.norium_stick.name=Палка из нориума
+item.tier_6_rocket.name=Ракета 6-го уровня
+item.tier_7_rocket_module.tier7_booster.name=Ускоритель 7-го уровня
+item.tier_7_rocket_module.tier7_rocket_engine.name=Ракетный двигатель 7-го уровня
+item.tier_7_rocket_module.tier7_heavy_duty_plate.name=Сверхпрочное покрытие
+item.tier_7_rocket_module.tier7_rocket_fin.name=Ракетный стабилизатор 7-го уровня
+item.tier_7_rocket_module.tier7_nose_cone.name=Головной обтекатель 7-го уровня
+item.tier_6_rocket_schematic.tier6_schematic_rocket_no_flag.name=Схема для верстака NASA
+item.tier_6_rocket_schematic.tier6_schematic_rocket.name=Схема для верстака NASA
+item.ancient_dark_door.name=Дверь из темного дерева
+item.orange_door.name=Дверь из оранжевого дерева
+
+# DESCRIPTION
+desc.tier7.name=Ракета 7-го уровня
+
+# SCHEMATIC
+schematic.tier6.rocket.name=Ракета 6-го уровня
+schematic.tier6.rocket.noflag.name=Ракета 6-го уровня без флага
+
+# TOOLS
+item.red_gem_pickaxe.name=Кирка из красного драгоценного камня
+item.red_gem_axe.name=Топор из красного драгоценного камня
+item.red_gem_hoe.name=Мотыга из красного драгоценного камня
+item.red_gem_spade.name=Лопата из красного драгоценного камня
+item.red_gem_sword.name=Меч из красного драгоценного камня
+item.norium_pickaxe.name=Кирка из Нориума
+item.norium_axe.name=Топор из Нориума
+item.norium_hoe.name=Мотыга из Нориума
+item.norium_spade.name=Лопата из Нориума
+item.norium_sword.name=Меч из Нориума
+
+# ARMOR
+item.red_gem_helmet.name=Шлем из красного драгоценного камня
+item.red_gem_chestplate.name=Кираса из красного драгоценного камня
+item.red_gem_leggings.name=Поножи из красного драгоценного камня
+item.red_gem_boots.name=Ботинки из красного драгоценного камня
+item.norium_helmet.name=Шлем из Нориума
+item.norium_chestplate.name=Кираса из Нориума
+item.norium_leggings.name=Поножи из Нориума
+item.norium_boots.name=Ботинки из Нориума
+item.breathable_red_gem_helmet.name=Скафандр из красного драгоценного камня
+item.breathable_norium_helmet.name=Скафандр из Нориума
+
+# ENTITIES
+entity.MorePlanet.InfectedWorm.name=Зараженный червь
+entity.MorePlanet.GiantWorm.name=Гигантский червь
+entity.MorePlanet.InfectedZombie.name=Зараженный зомби
+entity.MorePlanet.EvolvedInfectedSpiderBoss.name=Эволюционировавший зараженный босс-паук
+
+# DESCRIPTION
+tile.power_crystal_generator.desc=Мощный кристаллический генератор будет собирать энергию из кристаллических камней.
+
+# GUI
+gui.status.power.name=Collecting
+
+# CONTAINER
+container.nibiru.ancientchest.name=Древний сундук Нибиру
+container.powercrystal.name=Кристалл генератора энергии
+container.nibiru.treasurechest.name=Сундук с сокровищами Нибиру
+schematics.container.rocket.tier6=Ракета 6-го уровня
+schematics.container.rocket.noflag.tier6=Ракета 6-го уровня без флага
+
+# PLANET
+planet.nibiru=Нибиру
+
+# POTION
+potion.infected.gas=Зараженный газ
+
+# MESSAGES
+message.warning.infected.gas=Неверная многоуровняя термическая броня
+
+# DEATH MESSAGES
+death.attack.infectionVine=%1$s был заражен лозой
+death.attack.infectedGas=%1$s был убит зараженным газом

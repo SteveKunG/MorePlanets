@@ -1,0 +1,30 @@
+# More Planets 1.7.10 : Deimos = THAI
+
+# BLOCKS
+tile.deimos_block.surface_rock.name=หินพื้นผิวไดมอส
+tile.deimos_block.sub_surface_rock.name=หินรองพื้นผิวไดมอส
+tile.deimos_block.rock.name=หินไดมอส
+tile.deimos_block.cobblestone.name=หินหยาบไดมอส
+tile.deimos_block.tin_ore.name=แร่ดีบุก
+tile.deimos_block.copper_ore.name=แร่ทองแดง
+tile.deimos_block.iron_ore.name=แร่เหล็ก
+tile.deimos_block.desh_ore.name=แร่เดรช
+
+# SLABS
+
+# WALLS
+
+# ITEMS
+
+# TOOLS
+
+# ARMORS
+
+# ENTITIES
+
+# GUI
+
+# CONTAINER
+
+# PLANET
+moon.deimos=ไดมอส

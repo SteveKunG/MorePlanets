@@ -1,0 +1,52 @@
+# More Planets 1.7.10 : Pluto = ENGLISH
+
+# BLOCKS
+tile.pluto_block.surface_rock.name=Pluto Surface Rock
+tile.pluto_block.sub_surface_rock.name=Pluto Sub-Surface Rock
+tile.pluto_block.rock.name=Pluto Rock
+tile.pluto_block.cobblestone.name=Pluto Cobblestone
+tile.pluto_block.meteoric_iron_ore.name=Meteoric Iron Ore
+tile.pluto_block.frozen_iron_ore.name=Frozen Iron Ore
+tile.pluto_block.iron_ore.name=Iron Ore
+tile.pluto_block.xeonium_ore.name=Xeonium Ore
+tile.pluto_block.dungeon_brick.name=Pluto Dungeon Brick
+tile.xeonium_glowstone.name=Xeonium Glowstone
+tile.frozen_methane_block.name=Frozen Methane Block
+tile.frozen_nitrogen_block.name=Frozen Nitrogen Block
+tile.pluto_ancient_chest.name=Pluto Ancient Chest
+tile.pluto_treasure_chest.name=Pluto Treasure Chest
+tile.xeonium_torch.name=Xeonium Torch
+tile.pluto_block.surface_rock_brown.name=Brown Pluto Surface Rock
+tile.pluto_block.surface_rock_light_brown.name=Light Brown Pluto Surface Rock
+
+# SLABS
+
+# WALLS
+
+# ITEMS
+item.pluto_item.xeonium_gem.name=Xeonium Gem
+item.xeonium_dust.name=Xeonium Dust
+item.space_potato.space_potato.name=Space Potato
+item.space_potato.baked_space_potato.name=Baked Space Potato
+item.gravity_boots.name=Gravity Boots
+
+# TOOLS
+item.xeonium_pickaxe.name=Xeonium Pickaxe
+item.xeonium_axe.name=Xeonium Axe
+item.xeonium_hoe.name=Xeonium Hoe
+item.xeonium_shovel.name=Xeonium Shovel
+item.xeonium_sword.name=Xeonium Sword
+
+# ARMORS
+
+# ENTITIES
+entity.MorePlanet.PlutoCreeperBoss.name=Pluto Creeper Boss
+
+# GUI
+
+# CONTAINER
+container.pluto.treasurechest.name=Pluto Treasure Chest
+container.pluto.ancientchest.name=Pluto Ancient Chest
+
+# PLANET
+planet.pluto=Pluto

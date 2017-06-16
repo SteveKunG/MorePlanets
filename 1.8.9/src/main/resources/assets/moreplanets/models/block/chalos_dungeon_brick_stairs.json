@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "moreplanets:blocks/chalos_dungeon_brick",
+        "top": "moreplanets:blocks/chalos_dungeon_brick",
+        "side": "moreplanets:blocks/chalos_dungeon_brick"
+    }
+}

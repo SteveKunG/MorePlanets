@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "moreplanets:blocks/chalos_crafting_table_front",
+        "down": "moreplanets:blocks/cheese_spore_planks",
+        "up": "moreplanets:blocks/chalos_crafting_table_top",
+        "north": "moreplanets:blocks/chalos_crafting_table_front",
+        "east": "moreplanets:blocks/chalos_crafting_table_side",
+        "south": "moreplanets:blocks/chalos_crafting_table_side",
+        "west": "moreplanets:blocks/chalos_crafting_table_front"
+    }
+}

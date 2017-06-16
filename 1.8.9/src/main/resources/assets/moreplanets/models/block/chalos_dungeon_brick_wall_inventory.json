@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_inventory",
+    "textures": {
+        "wall": "moreplanets:blocks/chalos_dungeon_brick"
+    }
+}

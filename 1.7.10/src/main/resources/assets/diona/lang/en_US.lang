@@ -1,0 +1,141 @@
+# More Planets 1.7.10 : Diona = ENGLISH
+
+# BLOCKS
+tile.diona_block.surface_rock.name=Diona Surface Rock
+tile.diona_block.sub_surface.name=Diona Sub-Surface Rock
+tile.diona_block.rock.name=Diona Rock
+tile.diona_block.cobblestone.name=Diona Cobblestone
+tile.diona_block.quontonium_ore.name=Quontonium Ore
+tile.diona_block.fronisium_ore.name=Fronisium Ore
+tile.diona_block.copper_ore.name=Copper Ore
+tile.diona_block.tin_ore.name=Tin Ore
+tile.diona_block.silicon_ore.name=Silicon Ore
+tile.diona_block.aluminum_ore.name=Aluminum Ore
+tile.diona_block.quontonium_block.name=Quontonium Block
+tile.diona_block.smooth_quontonium.name=Smooth Quontonium
+tile.diona_block.quontonium_brick.name=Quontonium Brick
+tile.diona_block.chiseled_quontonium.name=Chiseled Quontonium
+tile.diona_block.dungeon_brick.name=Diona Dungeon Brick
+tile.diona_cobblestone_stairs.name=Diona Cobblestone Stairs
+tile.quontonium_brick_stairs.name=Quontonium Brick Stairs
+tile.chiseled_quontonium_stairs.name=Chiseled Quontonium Stairs
+tile.diona_dungeon_brick_stairs.name=Diona Dungeon Brick Stairs
+tile.fronisium_tnt.name=Fronisium TNT
+tile.minion_creeper_egg.name=Creeper Minion Egg
+tile.diona_treasure_chest.name=Tier 4 Diona Treasure Chest
+tile.diona_ancient_chest.name=Diona Ancient Chest
+tile.fronisium_block.name=Fronisium Block
+
+# SLABS
+tile.mp_stone_half_slab1.diona.name=Diona Cobblestone Slab
+tile.mp_stone_half_slab1.quonBrick.name=Quontonium Brick Slab
+tile.mp_stone_half_slab1.chiseledQuon.name=Chiseled Quontonium Slab
+tile.dungeon_brick_half_slab1.dionaBrick.name=Diona Dungeon Brick Slab
+
+# WALLS
+tile.mp_wall.diona.name=Diona Cobblestone Wall
+tile.mp_wall.quonBrick.name=Quontonium Brick Wall
+tile.mp_wall.quonChiseled.name=Chiseled Quontonium Wall
+tile.mp_dungeon_brick_wall.dionaBrick.name=Diona Dungeon Brick Wall
+
+# ITEMS
+item.diona_item.quontonium_ingot.name=Quontonium Ingot
+item.diona_item.fronisium_ingot.name=Fronisium Ingot
+item.diona_item.compressed_quontonium.name=Compressed Quontonium
+item.diona_item.compressed_fronisium.name=Compressed Fronisium
+item.diona_item.red_canvas.name=Red Canvas
+item.diona_item.white_canvas.name=White Canvas
+item.diona_item.blue_canvas.name=Blue Canvas
+item.diona_item.thai_canvas_bottom.name=Thai Canvas
+item.diona_item.thai_canvas_top.name=Thai Canvas
+item.diona_item.quontonium_stick.name=Quontonium Stick
+item.diona_item.fronisium_stick.name=Fronisium Stick
+item.diona_item.green_redstone_torch.name=Green Redstone Torch
+item.mp_flag.thai.name=Thai Flag
+item.tier_4_rocket_module.tier4_heavy_duty_plate.name=Heavy Duty Plate
+item.diona_treasure_key.name=Tier 4 Dungeon Key
+item.tier_4_rocket_module.tier4_nose_cone.name=Tier 4 Nose Cone
+item.diona_item.tier5_heavy_duty_plate.name=Heavy Duty Plate
+item.tier_4_rocket_module.tier4_rocket_engine.name=Tier 4 Rocket Engine
+item.tier_4_rocket_module.tier4_booster.name=Tier 4 Booster
+item.tier_4_rocket_module.tier4_nose_cone_no_flag.name=Tier 4 Nose Cone
+item.tier_4_rocket_module.tier5_rocket_engine.name=Tier 5 Rocket Engine
+item.tier_4_rocket_module.tier5_booster.name=Tier 5 Booster
+item.tier_4_rocket_schematic.tier4_rocket_schematic.name=NASA Workbench Schematic
+item.tier_4_rocket_schematic.tier4_rocket_schematic_no_flag.name=NASA Workbench Schematic
+item.laser_gun.name=Laser Gun
+item.normal_charge.laser_charge.name=Normal Laser Charge
+item.hyper_charge.laser_charge.name=Hyper Laser Charge
+item.emp_charge.laser_charge.name=EMP Laser Charge
+item.uranium_charge.laser_charge.name=Uranium Laser Charge
+item.icy_poison_charge.laser_charge.name=Icy Poison Laser Charge
+item.tier_4_rocket.name=Tier 4 Rocket
+item.mp_flag.laos.name=Laos Flag
+item.mp_flag.singapore.name=Singapore Flag
+item.mp_flag.myanmar.name=Myanmar Flag
+item.mp_flag.malaysia.name=Malaysia Flag
+item.mp_flag.vietnam.name=Vietnam Flag
+item.mp_flag.indonesia.name=Indonesia Flag
+item.mp_flag.philippines.name=Philippines Flag
+item.mp_flag.cambodia.name=Cambodia Flag
+item.mp_flag.brunei.name=Brunei Flag
+
+# DESCRIPTION
+desc.tier4.name=Tier 4
+desc.tier5.name=Tier 5
+desc.rocket.noflag.name=No Flag
+desc.red.canvas.name=Red
+desc.white.canvas.name=White
+desc.blue.canvas.name=Blue
+
+# SCHEMATIC
+schematic.tier4.rocket.name=Tier 4 Rocket
+schematic.tier4.rocket.noflag.name=Tier 4 Rocket No Flag
+
+# TOOLS
+item.quontonium_pickaxe.name=Quontonium Pickaxe
+item.quontonium_axe.name=Quontonium Axe
+item.quontonium_hoe.name=Quontonium Hoe
+item.quontonium_spade.name=Quontonium Shovel
+item.quontonium_sword.name=Quontonium Sword
+item.fronisium_pickaxe.name=Fronisium Pickaxe
+item.fronisium_axe.name=Fronisium Axe
+item.fronisium_hoe.name=Fronisium Hoe
+item.fronisium_spade.name=Fronisium Shovel
+item.fronisium_sword.name=Fronisium Sword
+
+# ARMORS
+item.quontonium_helmet.name=Quontonium Helmet
+item.quontonium_chestplate.name=Quontonium Chestplate
+item.quontonium_leggings.name=Quontonium Leggings
+item.quontonium_boots.name=Quontonium Boots
+item.fronisium_helmet.name=Fronisium Helmet
+item.fronisium_chestplate.name=Fronisium Chestplate
+item.fronisium_leggings.name=Fronisium Leggings
+item.fronisium_boots.name=Fronisium Boots
+item.breathable_quontonium_helmet.name=Breathable Quontonium Helmet
+item.breathable_fronisium_helmet.name=Breathable Fronisium Helmet
+
+# ENTITIES
+entity.MorePlanet.SpaceWolf.name=Space Wolf
+entity.MorePlanet.EvolvedEnderman.name=Evolved Enderman
+entity.MorePlanet.DustSludgeling.name=Dust Sludgeling
+entity.MorePlanet.DionaCreeperBoss.name=Diona Creeper Boss
+entity.MorePlanet.DionaMinionCreeper.name=Diona Minion Creeper
+
+# GUI
+
+# CONTAINER
+container.diona.treasurechest.name=Diona Treasure Chest
+container.diona.ancientchest.name=Diona Ancient Chest
+schematics.container.rocket.tier4=Tier 4 Rocket
+schematics.container.rocket.noflag.tier4=Tier 4 Rocket No Flag
+
+# PLANET
+planet.diona=Diona
+
+# POTION
+potion.emp=EMP
+
+# DEATH MESSAGES
+death.attack.laser=%1$s was shot by a laser
