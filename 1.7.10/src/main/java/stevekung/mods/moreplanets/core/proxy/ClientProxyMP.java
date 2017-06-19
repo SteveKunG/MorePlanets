@@ -13,12 +13,14 @@ import java.util.Map;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import micdoodle8.mods.galacticraft.api.world.IZeroGDimension;
 import micdoodle8.mods.galacticraft.core.client.render.block.BlockRendererMachine;
 import micdoodle8.mods.galacticraft.core.client.render.block.BlockRendererMeteor;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.block.BlockRendererEgg;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.particle.EntityBreakingFX;
 import net.minecraft.client.particle.EntityFX;
@@ -126,6 +128,8 @@ public class ClientProxyMP extends CommonProxyMP
     private static int mercuryAncientChestRenderID;
     private static int venusAncientChestRenderID;
     private static int plutoAncientChestRenderID;
+
+    private static int jumpTimer;
 
     public static Map<Item, ModelBiped> jetpackModel = new HashMap<Item, ModelBiped>();
 
@@ -622,6 +626,31 @@ public class ClientProxyMP extends CommonProxyMP
         if (player instanceof EntityPlayerMP)
         {
             ObfuscationReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, ((EntityPlayerMP)player).playerNetServerHandler, Integer.valueOf(0), new String[] { "field_147365_f", "floatingTickCount" });
+        }
+    }
+
+    @Override
+    public void fixJumping(EntityPlayer player)
+    {
+        if (player instanceof EntityPlayerSP)
+        {
+            EntityPlayerSP playerSP = (EntityPlayerSP) player;
+
+            if (playerSP.worldObj.provider instanceof IZeroGDimension)
+            {
+                if (playerSP.movementInput.jump && playerSP.onGround && ClientProxyMP.jumpTimer <= 0)
+                {
+                    playerSP.jump();
+                    ClientProxyMP.jumpTimer = 10;
+                }
+                else
+                {
+                    if (ClientProxyMP.jumpTimer > 0)
+                    {
+                        ClientProxyMP.jumpTimer--;
+                    }
+                }
+            }
         }
     }
 }

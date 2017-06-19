@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import micdoodle8.mods.galacticraft.api.event.ZeroGravityEvent;
 import net.minecraft.entity.player.EntityPlayer;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.planets.pluto.items.PlutoItems;
 
 public class GravityEvents
@@ -33,6 +34,7 @@ public class GravityEvents
         if (((EntityPlayer)event.entityLiving).inventory.armorInventory[0] != null && ((EntityPlayer)event.entityLiving).inventory.armorInventory[0].getItem() == PlutoItems.gravity_boots)
         {
             event.setCanceled(true);
+            MorePlanetsCore.proxy.fixJumping((EntityPlayer) event.entityLiving);
         }
     }
 }
