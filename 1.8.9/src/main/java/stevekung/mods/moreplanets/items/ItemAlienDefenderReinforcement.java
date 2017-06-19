@@ -30,8 +30,9 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
         Vec3 playerLook = player.getLook(1.0F);
         Vec3 lookRange = playerEye.addVector(playerLook.xCoord * range, playerLook.yCoord * range, playerLook.zCoord * range);
         MovingObjectPosition moving = world.rayTraceBlocks(playerEye, lookRange);
+        boolean disable = false;
 
-        if (moving != null)
+        if (moving != null && disable)
         {
             BlockPos pos = moving.getBlockPos();
 
@@ -65,7 +66,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
         }
         else
         {
-            if (world.isRemote)
+            if (world.isRemote && disable)
             {
                 FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.target_too_far.message", range)).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
                 player.swingItem();
