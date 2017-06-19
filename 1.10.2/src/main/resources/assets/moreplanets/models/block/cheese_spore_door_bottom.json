@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "moreplanets:blocks/door_cheese_spore_lower",
+        "top": "moreplanets:blocks/door_cheese_spore_upper"
+    }
+}

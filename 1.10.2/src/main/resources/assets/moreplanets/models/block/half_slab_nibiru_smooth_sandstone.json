@@ -1,0 +1,8 @@
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "moreplanets:blocks/nibiru_sandstone_top",
+        "top": "moreplanets:blocks/nibiru_sandstone_top",
+        "side": "moreplanets:blocks/nibiru_sandstone_smooth"
+    }
+}

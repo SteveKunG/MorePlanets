@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "moreplanets:nibiru_furnace" },
+        "facing=south": { "model": "moreplanets:nibiru_furnace", "y": 180 },
+        "facing=west":  { "model": "moreplanets:nibiru_furnace", "y": 270 },
+        "facing=east":  { "model": "moreplanets:nibiru_furnace", "y": 90 }
+    }
+}

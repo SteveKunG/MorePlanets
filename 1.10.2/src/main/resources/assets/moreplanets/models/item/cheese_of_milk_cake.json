@@ -1,0 +1,15 @@
+{
+    "parent": "moreplanets:block/cheese_of_milk_cake_uneaten",
+    "display": {
+        "thirdperson": {
+            "rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1.25, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+        "firstperson": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 4.0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        }
+    }
+}

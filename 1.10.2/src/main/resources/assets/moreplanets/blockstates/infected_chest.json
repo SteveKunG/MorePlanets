@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "moreplanets:infected_chest" },
+        "facing=east":  { "model": "moreplanets:infected_chest" },
+        "facing=west":  { "model": "moreplanets:infected_chest" },
+        "facing=south": { "model": "moreplanets:infected_chest" }
+    }
+}

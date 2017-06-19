@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "moreplanets:dark_machine_blank" },
+        "facing=east":  { "model": "moreplanets:dark_machine_blank" },
+        "facing=west":  { "model": "moreplanets:dark_machine_blank" },
+        "facing=south": { "model": "moreplanets:dark_machine_blank" }
+    }
+}

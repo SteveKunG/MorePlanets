@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "moreplanets:blocks/alien_berry_oak_planks",
+        "top": "moreplanets:blocks/alien_berry_oak_planks",
+        "side": "moreplanets:blocks/alien_berry_oak_planks"
+    }
+}

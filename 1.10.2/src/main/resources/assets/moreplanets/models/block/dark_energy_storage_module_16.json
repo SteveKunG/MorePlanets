@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "moreplanets:blocks/machine_blank",
+        "down": "moreplanets:blocks/machine_blank",
+        "up": "moreplanets:blocks/machine_blank",
+        "north": "moreplanets:blocks/dark_energy_storage_module_16",
+        "east": "moreplanets:blocks/machine_output",
+        "south": "moreplanets:blocks/dark_energy_storage_module_16",
+        "west": "moreplanets:blocks/machine_input"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "moreplanets:alien_berry_chest" },
+        "facing=east":  { "model": "moreplanets:alien_berry_chest" },
+        "facing=west":  { "model": "moreplanets:alien_berry_chest" },
+        "facing=south": { "model": "moreplanets:alien_berry_chest" }
+    }
+}

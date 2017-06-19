@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_ne",
+    "textures": {
+        "texture": "moreplanets:blocks/infected_dead_oak_planks"
+    }
+}

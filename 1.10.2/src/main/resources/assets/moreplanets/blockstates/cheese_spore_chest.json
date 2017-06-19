@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "moreplanets:cheese_spore_chest" },
+        "facing=east":  { "model": "moreplanets:cheese_spore_chest" },
+        "facing=west":  { "model": "moreplanets:cheese_spore_chest" },
+        "facing=south": { "model": "moreplanets:cheese_spore_chest" }
+    }
+}

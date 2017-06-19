@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "moreplanets:rocket_crusher" },
+        "facing=east":  { "model": "moreplanets:rocket_crusher", "y": 90 },
+        "facing=west":  { "model": "moreplanets:rocket_crusher", "y": 270 },
+        "facing=south": { "model": "moreplanets:rocket_crusher", "y": 180 }
+    }
+}

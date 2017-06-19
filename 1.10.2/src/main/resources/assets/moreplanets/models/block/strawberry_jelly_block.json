@@ -1,0 +1,8 @@
+{
+    "parent": "moreplanets:block/slime_core",
+    "textures": {
+        "particle": "moreplanets:blocks/strawberry_jelly_block",
+        "texture": "moreplanets:blocks/strawberry_jelly_block",
+		"core": "moreplanets:blocks/strawberry_jelly_block"
+    }
+}

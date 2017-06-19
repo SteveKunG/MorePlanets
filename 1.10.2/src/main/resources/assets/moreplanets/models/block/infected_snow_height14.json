@@ -1,0 +1,7 @@
+{
+    "parent": "moreplanets:block/snow_height14",
+    "textures": {
+        "particle": "moreplanets:blocks/infected_snow",
+        "texture": "moreplanets:blocks/infected_snow"
+    }
+}

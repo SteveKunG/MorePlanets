@@ -10,7 +10,7 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "2.0.4-GC100"
+version = "2.0.5-GC108"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
 
@@ -22,7 +22,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.10.2-12.18.3.2297"
+    version = "1.10.2-12.18.3.2316"
     runDir = "run"
     mappings = "snapshot_20161111"
 	makeObfSourceJar = false

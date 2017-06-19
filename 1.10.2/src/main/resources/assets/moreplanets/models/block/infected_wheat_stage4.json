@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "moreplanets:blocks/infected_wheat_stage_4"
+    }
+}

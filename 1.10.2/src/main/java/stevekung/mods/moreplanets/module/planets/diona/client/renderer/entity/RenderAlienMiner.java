@@ -1,0 +1,131 @@
+package stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity;
+
+import org.lwjgl.opengl.GL11;
+
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelAlienMiner;
+import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.layer.LayerGlowingAlienMiner;
+import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
+
+@SideOnly(Side.CLIENT)
+public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
+{
+    public RenderAlienMiner(RenderManager manager)
+    {
+        super(manager, new ModelAlienMiner(), 0.4F);
+        this.addLayer(new LayerGlowingAlienMiner(this));
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(EntityAlienMiner entity)
+    {
+        return new ResourceLocation("moreplanets:textures/entity/alien_miner.png");
+    }
+
+    @Override
+    public void doRender(EntityAlienMiner entity, double x, double y, double z, float entityYaw, float partialTicks)
+    {
+        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+        EntityLivingBase entitylivingbase = entity.getTargetedEntity();
+
+        if (entitylivingbase != null && entity.getChargedTime(partialTicks) > 0.925F)
+        {
+            Tessellator tessellator = Tessellator.getInstance();
+            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+            this.bindTexture(new ResourceLocation("moreplanets:textures/entity/alien_miner_beam.png"));
+            GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
+            GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
+            GlStateManager.disableLighting();
+            GlStateManager.disableCull();
+            GlStateManager.disableBlend();
+            GlStateManager.depthMask(true);
+            GlStateManager.enableAlpha();
+            float f1 = 240.0F;
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, f1, f1);
+            GlStateManager.blendFunc(770, 771);
+            float f2 = entity.worldObj.getTotalWorldTime() + partialTicks;
+            float f3 = f2 * 0.5F % 1.0F;
+            float f4 = entity.getEyeHeight() + 0.25F;
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)x, (float)y + f4, (float)z);
+            Vec3 vec3 = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, partialTicks);
+            Vec3 vec31 = this.getPosition(entity, f4, partialTicks);
+            Vec3 vec32 = vec3.subtract(vec31);
+            double d0 = vec32.lengthVector();
+            vec32 = vec32.normalize();
+            float f5 = (float)Math.acos(vec32.yCoord);
+            float f6 = (float)Math.atan2(vec32.zCoord, vec32.xCoord);
+            GlStateManager.rotate(((float)Math.PI / 2F + -f6) * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(f5 * (180F / (float)Math.PI), 1.0F, 0.0F, 0.0F);
+            int i = 1;
+            double d1 = f2 * 0.05D * (1.0D - (i & 1) * 2.5D);
+            worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+            int j = 255;
+            int k = 255;
+            int l = 255;
+            double d2 = i * 0.2D;
+            double d3 = d2 * 1.41D;
+            double d4 = 0.0D + Math.cos(d1 + 2.356194490192345D) * d3;
+            double d5 = 0.0D + Math.sin(d1 + 2.356194490192345D) * d3;
+            double d6 = 0.0D + Math.cos(d1 + Math.PI / 4D) * d3;
+            double d7 = 0.0D + Math.sin(d1 + Math.PI / 4D) * d3;
+            double d8 = 0.0D + Math.cos(d1 + 3.9269908169872414D) * d3;
+            double d9 = 0.0D + Math.sin(d1 + 3.9269908169872414D) * d3;
+            double d10 = 0.0D + Math.cos(d1 + 5.497787143782138D) * d3;
+            double d11 = 0.0D + Math.sin(d1 + 5.497787143782138D) * d3;
+            double d12 = 0.0D + Math.cos(d1 + Math.PI) * d2;
+            double d13 = 0.0D + Math.sin(d1 + Math.PI) * d2;
+            double d14 = 0.0D + Math.cos(d1 + 0.0D) * d2;
+            double d15 = 0.0D + Math.sin(d1 + 0.0D) * d2;
+            double d16 = 0.0D + Math.cos(d1 + Math.PI / 2D) * d2;
+            double d17 = 0.0D + Math.sin(d1 + Math.PI / 2D) * d2;
+            double d18 = 0.0D + Math.cos(d1 + Math.PI * 3D / 2D) * d2;
+            double d19 = 0.0D + Math.sin(d1 + Math.PI * 3D / 2D) * d2;
+            double d22 = -1.0F + f3;
+            double d23 = d0 * (0.5D / d2) + d22;
+            worldrenderer.pos(d12, d0, d13).tex(0.4999D, d23).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d12, 0.0D, d13).tex(0.4999D, d22).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d14, 0.0D, d15).tex(0.0D, d22).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d14, d0, d15).tex(0.0D, d23).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d16, d0, d17).tex(0.4999D, d23).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d16, 0.0D, d17).tex(0.4999D, d22).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d18, 0.0D, d19).tex(0.0D, d22).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d18, d0, d19).tex(0.0D, d23).color(j, k, l, 100).endVertex();
+            double d24 = 0.0D;
+
+            if (entity.ticksExisted % 2 == 0)
+            {
+                d24 = 0.5D;
+            }
+
+            worldrenderer.pos(d4, d0, d5).tex(0.5D, d24 + 0.5D).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d6, d0, d7).tex(1.0D, d24 + 0.5D).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d10, d0, d11).tex(1.0D, d24).color(j, k, l, 100).endVertex();
+            worldrenderer.pos(d8, d0, d9).tex(0.5D, d24).color(j, k, l, 100).endVertex();
+            tessellator.draw();
+            GlStateManager.enableLighting();
+            GlStateManager.enableCull();
+            GlStateManager.enableBlend();
+            GlStateManager.popMatrix();
+        }
+    }
+
+    private Vec3 getPosition(EntityLivingBase entity, double height, float partialTicks)
+    {
+        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks;
+        double d1 = height + entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks;
+        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks;
+        return new Vec3(d0, d1, d2);
+    }
+}
