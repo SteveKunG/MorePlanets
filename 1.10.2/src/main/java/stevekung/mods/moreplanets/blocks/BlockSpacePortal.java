@@ -8,7 +8,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -24,7 +28,7 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
 {
     public BlockSpacePortal(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setResistance(2000.0F);
         this.setHardness(35.0F);
         this.setUnlocalizedName(name);
@@ -32,11 +36,11 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (ConfigManagerMP.enableStartedPlanet && !(ConfigManagerMP.startedPlanet.equals("planet.") || ConfigManagerMP.startedPlanet.equals("moon.") || ConfigManagerMP.startedPlanet.equals("satellite.")))
         {
-            if (player.ridingEntity == null && player.riddenByEntity == null && player instanceof EntityPlayerMP)
+            if (!player.isRiding() && !player.isBeingRidden() && player.isNonBoss() && player instanceof EntityPlayerMP)
             {
                 EntityPlayerMP playerMP = (EntityPlayerMP)player;
 
@@ -47,7 +51,7 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
                 }
                 else
                 {
-                    int dimID = WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimensionId();
+                    int dimID = WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimension();
                     playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, dimID, new TeleporterMP(playerMP.mcServer.worldServerForDimension(dimID)));
                     ClientEventHandler.loadRenderers = true;
                 }
@@ -57,31 +61,31 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
         return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0F, pos.getY() + 0.75F, pos.getZ() + 1.0F);
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.TRANSLUCENT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if (rand.nextInt(20) == 0)
         {
-            world.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "portal.portal", 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+            world.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
 
         double d0 = pos.getX() + rand.nextFloat();

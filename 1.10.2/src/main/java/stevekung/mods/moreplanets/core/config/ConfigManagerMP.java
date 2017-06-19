@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.util.StatCollector;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
@@ -104,7 +104,7 @@ public class ConfigManagerMP
         ArrayList<String> propOrder = Lists.newArrayList();
         Property prop;
         prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Planet to Start", "planet.");
-        prop.comment = "Put planet name that you would like to spawn (Also you need to enable started planet in the config). For example \"planet.nibiru\", \"moon.moon\", \"satellite.spacestation.overworld\" ";
+        prop.setComment("Put planet name that you would like to spawn (Also you need to enable started planet in the config). For example \"planet.nibiru\", \"moon.moon\", \"satellite.spacestation.overworld\" ");
         ConfigManagerMP.startedPlanet = prop.getString();
         propOrder.add(prop.getName());
 
@@ -293,23 +293,23 @@ public class ConfigManagerMP
     {
         List<IConfigElement> list = Lists.newArrayList();
         ConfigCategory configGeneral = ConfigManagerMP.config.getCategory(ConfigManagerMP.GENERAL);
-        configGeneral.setComment(StatCollector.translateToLocal("gui.config.mp.general"));
+        configGeneral.setComment(GCCoreUtil.translate("gui.config.mp.general"));
         list.add(new ConfigElement(configGeneral));
 
         ConfigCategory configDimension = ConfigManagerMP.config.getCategory(ConfigManagerMP.DIMENSIONS);
-        configDimension.setComment(StatCollector.translateToLocal("gui.config.mp.dimension"));
+        configDimension.setComment(GCCoreUtil.translate("gui.config.mp.dimension"));
         list.add(new ConfigElement(configDimension));
 
         ConfigCategory configBiome = ConfigManagerMP.config.getCategory(ConfigManagerMP.BIOMES);
-        configBiome.setComment(StatCollector.translateToLocal("gui.config.mp.biome"));
+        configBiome.setComment(GCCoreUtil.translate("gui.config.mp.biome"));
         list.add(new ConfigElement(configBiome));
 
         ConfigCategory configSchematic = ConfigManagerMP.config.getCategory(ConfigManagerMP.OTHERS);
-        configSchematic.setComment(StatCollector.translateToLocal("gui.config.mp.schematic"));
+        configSchematic.setComment(GCCoreUtil.translate("gui.config.mp.schematic"));
         list.add(new ConfigElement(configSchematic));
 
         ConfigCategory configGUIs = ConfigManagerMP.config.getCategory(ConfigManagerMP.OTHERS);
-        configGUIs.setComment(StatCollector.translateToLocal("gui.config.mp.other"));
+        configGUIs.setComment(GCCoreUtil.translate("gui.config.mp.other"));
         list.add(new ConfigElement(configGUIs));
         return list;
     }

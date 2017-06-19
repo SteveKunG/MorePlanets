@@ -6,9 +6,10 @@ import java.util.Random;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,15 +41,15 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
 
     public BlockRocketCrusher(String name)
     {
-        super(Material.iron);
+        super(Material.IRON);
         this.setHardness(2.0F);
-        this.setStepSound(Block.soundTypeMetal);
+        this.setSoundType(SoundType.METAL);
         this.setUnlocalizedName(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         TileEntity tile = world.getTileEntity(pos);
 
@@ -81,7 +87,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     }
 
     @Override
-    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         IBlockState state = world.getBlockState(pos);
         TileBaseUniversalElectrical.onUseWrenchBlock(state, world, pos, state.getValue(FACING));
@@ -89,7 +95,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     }
 
     @Override
-    public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (!world.isRemote)
         {
@@ -106,7 +112,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, 0);
     }
@@ -144,25 +150,24 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, FACING);
+        return new BlockStateContainer(this, FACING);
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
     {
         if (tile instanceof TileEntityRocketCrusher)
         {
-            ItemStack machine = new ItemStack(this);
             TileEntityRocketCrusher electric = (TileEntityRocketCrusher) tile;
 
             if (electric.getEnergyStoredGC() > 0)
             {
-                machine.setTagCompound(new NBTTagCompound());
-                machine.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
+                itemStack.setTagCompound(new NBTTagCompound());
+                itemStack.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
             }
-            Block.spawnAsEntity(world, pos, machine);
+            Block.spawnAsEntity(world, pos, itemStack);
         }
     }
 

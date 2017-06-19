@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -23,7 +23,7 @@ public class BlockPolishedSpaceDecoration extends BlockBaseMP implements IBlockV
 
     public BlockPolishedSpaceDecoration(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.POLISHED_TIN_DECORATION_BLOCK));
         this.setHardness(1.5F);
         this.setUnlocalizedName(name);
@@ -46,9 +46,9 @@ public class BlockPolishedSpaceDecoration extends BlockBaseMP implements IBlockV
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

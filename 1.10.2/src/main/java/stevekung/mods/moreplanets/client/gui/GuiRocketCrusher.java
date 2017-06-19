@@ -8,10 +8,10 @@ import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.inventory.ContainerRocketCrusher;
@@ -43,8 +43,8 @@ public class GuiRocketCrusher extends GuiContainerGC
         this.electricInfoRegion.parentHeight = this.height;
         this.infoRegions.add(this.electricInfoRegion);
         List<String> batterySlotDesc = Lists.newArrayList();
-        batterySlotDesc.add(StatCollector.translateToLocal("gui.battery_slot.desc.0"));
-        batterySlotDesc.add(StatCollector.translateToLocal("gui.battery_slot.desc.1"));
+        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
+        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 54, (this.height - this.ySize) / 2 + 74, 18, 18, batterySlotDesc, this.width, this.height, this));
         this.processInfoRegion.tooltipStrings = Lists.newArrayList();
         this.processInfoRegion.xPosition = (this.width - this.xSize) / 2 + 77;
@@ -62,15 +62,15 @@ public class GuiRocketCrusher extends GuiContainerGC
 
         if (this.tileEntity.processTicks > 0)
         {
-            displayText = EnumColor.BRIGHT_GREEN + StatCollector.translateToLocal("gui.status.running.name");
+            displayText = EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.status.running.name");
         }
         else
         {
-            displayText = EnumColor.ORANGE + StatCollector.translateToLocal("gui.status.idle.name");
+            displayText = EnumColor.ORANGE + GCCoreUtil.translate("gui.status.idle.name");
         }
-        String str = StatCollector.translateToLocal("gui.message.status.name") + ": " + displayText;
+        String str = GCCoreUtil.translate("gui.message.status.name") + ": " + displayText;
         this.fontRendererObj.drawString(str, 120 - this.fontRendererObj.getStringWidth(str) / 2, 75, 4210752);
-        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 93, 4210752);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 93, 4210752);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class GuiRocketCrusher extends GuiContainerGC
         this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize);
         int scale;
         List<String> electricityDesc = Lists.newArrayList();
-        electricityDesc.add(StatCollector.translateToLocal("gui.energy_storage.desc.0"));
+        electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
 
@@ -98,7 +98,7 @@ public class GuiRocketCrusher extends GuiContainerGC
 
         List<String> processDesc = Lists.newArrayList();
         processDesc.clear();
-        processDesc.add(StatCollector.translateToLocal("gui.electric_compressor.desc.0") + ": " + scale + "%");
+        processDesc.add(GCCoreUtil.translate("gui.electric_compressor.desc.0") + ": " + scale + "%");
         this.processInfoRegion.tooltipStrings = processDesc;
 
         if (this.tileEntity.processTicks > 0)

@@ -5,19 +5,20 @@ import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import net.minecraft.block.BlockBeacon;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -29,11 +30,11 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
 {
     public BlockTintedGlass(String name)
     {
-        super(Material.glass);
+        super(Material.GLASS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.COLOR, EnumDyeColor.WHITE));
         this.setHardness(0.5F);
         this.setResistance(20.0F);
-        this.setStepSound(soundTypeGlass);
+        this.setSoundType(SoundType.GLASS);
         this.setUnlocalizedName(name);
     }
 
@@ -61,9 +62,9 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.TRANSLUCENT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
@@ -79,7 +80,7 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -115,9 +116,9 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {BlockStateHelper.COLOR});
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.COLOR});
     }
 
     @Override

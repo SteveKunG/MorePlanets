@@ -17,8 +17,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.inventory.ContainerDarkEnergyReceiver;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
@@ -143,8 +143,8 @@ public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCa
         }
         if (this.tile.successful)
         {
-            return EnumChatFormatting.DARK_GREEN + GCCoreUtil.translate("gui.status.dark_energy_core_created.name");
+            return TextFormatting.DARK_GREEN + GCCoreUtil.translate("gui.status.dark_energy_core_created.name");
         }
-        return this.tile.getEnergyStoredGC() > 0.0F ? EnumChatFormatting.DARK_GREEN + GCCoreUtil.translate("gui.status.ready.name") : EnumChatFormatting.DARK_RED + GCCoreUtil.translate("gui.status.dark_energy_offline.name");
+        return this.tile.getEnergyStoredGC() > 0.0F ? TextFormatting.DARK_GREEN + GCCoreUtil.translate("gui.status.ready.name") : TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.dark_energy_offline.name");
     }
 }

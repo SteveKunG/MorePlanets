@@ -14,8 +14,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -82,10 +82,10 @@ public class GuiFullChangeLog extends GuiScreen
 
                 while ((s = bufferedreader.readLine()) != null)
                 {
-                    s = s.replaceAll("-Added-", EnumChatFormatting.GREEN + "+" + EnumChatFormatting.RESET);
-                    s = s.replaceAll("-Remove-", EnumChatFormatting.RED + "-" + EnumChatFormatting.RESET);
-                    s = s.replaceAll("-Fixed-", EnumChatFormatting.GOLD + "*" + EnumChatFormatting.RESET);
-                    s = s.replaceAll("-Update-", EnumChatFormatting.YELLOW + "*" + EnumChatFormatting.RESET);
+                    s = s.replaceAll("-Added-", TextFormatting.GREEN + "+" + TextFormatting.RESET);
+                    s = s.replaceAll("-Remove-", TextFormatting.RED + "-" + TextFormatting.RESET);
+                    s = s.replaceAll("-Fixed-", TextFormatting.GOLD + "*" + TextFormatting.RESET);
+                    s = s.replaceAll("-Update-", TextFormatting.YELLOW + "*" + TextFormatting.RESET);
                     this.stringList.addAll(this.mc.fontRendererObj.listFormattedStringToWidth(s, 360));
                     this.stringList.add("");
                 }

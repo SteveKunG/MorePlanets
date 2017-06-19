@@ -36,14 +36,14 @@ public class FronosBlocks
         /************************REGISTER STUFF************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_GRASS, ItemBlockFronosGrass.class);
-        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_DIRT, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_GRASS, ItemBlockFronosGrass::new);
+        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_DIRT, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_FARMLAND);
-        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_BLOCK, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_ORE, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(FronosBlocks.CANDY_CANE_1, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(FronosBlocks.CANDY_CANE_2, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(FronosBlocks.JELLY_BLOCK, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_BLOCK, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_ORE, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(FronosBlocks.CANDY_CANE_1, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(FronosBlocks.CANDY_CANE_2, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(FronosBlocks.JELLY_BLOCK, ItemBlockMultiVariant::new);
 
         /**************************************************************/
         /**********************HARVEST LEVEL STUFF*********************/

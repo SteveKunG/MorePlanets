@@ -1,22 +1,26 @@
 package stevekung.mods.moreplanets.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.particle.EffectRenderer;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -37,71 +41,43 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
 
     public BlockDummy(String name)
     {
-        super(Material.iron);
+        super(Material.IRON);
         this.setHardness(1.0F);
-        this.setStepSound(Block.soundTypeMetal);
+        this.setSoundType(SoundType.METAL);
         this.setUnlocalizedName(name);
         this.setResistance(1000000000000000.0F);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.WARP_PAD));
     }
 
     @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         int meta = this.getMetaFromState(world.getBlockState(pos));
 
         if (meta == 0)
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 3.0F / 16.0F, 1.0F);
+            return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D / 16.0D, 1.0D);
         }
         else if (meta == 1)
         {
-            this.setBlockBounds(-0.25F, 0.3F, 0.3F, 0.5F, 0.6F, 0.7F);
+            return new AxisAlignedBB(-0.25D, 0.3D, 0.3D, 0.5D, 0.6D, 0.7D);
         }
         else if (meta == 2)
         {
-            this.setBlockBounds(0.5F, 0.3F, 0.3F, 1.25F, 0.6F, 0.7F);
+            return new AxisAlignedBB(0.5D, 0.3D, 0.3D, 1.25D, 0.6D, 0.7D);
         }
         else if (meta == 3)
         {
-            this.setBlockBounds(0.3F, 0.3F, -0.25F, 0.7F, 0.6F, 0.5F);
+            return new AxisAlignedBB(0.3D, 0.3D, -0.25D, 0.7D, 0.6D, 0.5D);
         }
         else if (meta == 4)
         {
-            this.setBlockBounds(0.3F, 0.3F, 0.5F, 0.7F, 0.6F, 1.25F);
+            return new AxisAlignedBB(0.3D, 0.3D, 0.5D, 0.7D, 0.6D, 1.25D);
         }
         else
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
         }
-    }
-
-    @Override
-    public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB axisalignedbb, List list, Entity entity)
-    {
-        this.setBlockBoundsBasedOnState(world, pos);
-        super.addCollisionBoxesToList(world, pos, state, axisalignedbb, list, entity);
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
-    {
-        this.setBlockBoundsBasedOnState(world, pos);
-        return super.getCollisionBoundingBox(world, pos, state);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getSelectedBoundingBox(World world, BlockPos pos)
-    {
-        this.setBlockBoundsBasedOnState(world, pos);
-        return super.getSelectedBoundingBox(world, pos);
     }
 
     @Override
@@ -118,7 +94,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     }
 
     @Override
-    public float getBlockHardness(World world, BlockPos pos)
+    public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
         TileEntity tileEntity = world.getTileEntity(pos);
 
@@ -139,10 +115,10 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
                         return -1.0F;
                     }
                 }
-                return world.getBlockState(mainBlockPosition).getBlock().getBlockHardness(world, mainBlockPosition);
+                return world.getBlockState(mainBlockPosition).getBlock().getBlockHardness(state, world, mainBlockPosition);
             }
         }
-        return super.getBlockHardness(world, pos);
+        return super.getBlockHardness(state, world, pos);
     }
 
     @Override
@@ -170,10 +146,9 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntityDummy tileEntity = (TileEntityDummy) world.getTileEntity(pos);
-        ItemStack itemStack = player.inventory.getCurrentItem();
         TileEntity tile = world.getTileEntity(pos.down());
         TileEntity tile1 = world.getTileEntity(pos.down(2));
 
@@ -183,13 +158,13 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         }
         if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_MIDDLE) && world.getBlockState(pos.down()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.DEPLETE, false))
         {
-            if (itemStack != null)
+            if (heldItem != null)
             {
-                if (itemStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
+                if (heldItem.getItem() == NibiruItems.WASTE_ROD_PICKER)
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
-                        itemStack.damageItem(1, player);
+                        heldItem.damageItem(1, player);
                     }
                     if (tile instanceof TileEntityNuclearWasteTank)
                     {
@@ -204,13 +179,13 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         }
         if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_TOP) && world.getBlockState(pos.down(2)) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.DEPLETE, false))
         {
-            if (itemStack != null)
+            if (heldItem != null)
             {
-                if (itemStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
+                if (heldItem.getItem() == NibiruItems.WASTE_ROD_PICKER)
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
-                        itemStack.damageItem(1, player);
+                        heldItem.damageItem(1, player);
                     }
                     if (tile1 instanceof TileEntityNuclearWasteTank)
                     {
@@ -233,13 +208,13 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     }
 
     @Override
-    public int getRenderType()
+    public boolean isFullCube(IBlockState state)
     {
-        return 3;
+        return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
@@ -251,7 +226,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         TileEntity tileEntity = world.getTileEntity(pos);
 
@@ -263,9 +238,9 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
             {
                 Block mainBlock = world.getBlockState(mainBlockPosition).getBlock();
 
-                if (Blocks.air != mainBlock)
+                if (Blocks.AIR != mainBlock)
                 {
-                    return mainBlock.getPickBlock(target, world, mainBlockPosition, player);
+                    return mainBlock.getPickBlock(state, target, world, mainBlockPosition, player);
                 }
             }
         }
@@ -274,7 +249,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean addHitEffects(World world, MovingObjectPosition target, EffectRenderer effectRenderer)
+    public boolean addHitEffects(IBlockState state, World world, RayTraceResult target, ParticleManager manager)
     {
         TileEntity tileEntity = world.getTileEntity(target.getBlockPos());
 
@@ -284,16 +259,16 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
 
             if (mainBlockPosition != null && !mainBlockPosition.equals(new BlockPos(target.getBlockPos().getX(), target.getBlockPos().getY(), target.getBlockPos().getZ())))
             {
-                effectRenderer.addBlockHitEffects(mainBlockPosition, target);
+                manager.addBlockHitEffects(mainBlockPosition, target);
             }
         }
-        return super.addHitEffects(world, target, effectRenderer);
+        return super.addHitEffects(state, world, target, manager);
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

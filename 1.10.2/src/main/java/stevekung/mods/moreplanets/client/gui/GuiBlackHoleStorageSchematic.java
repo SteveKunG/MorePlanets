@@ -7,9 +7,8 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.inventory.ContainerBlackHoleStorageSchematic;
@@ -38,7 +37,7 @@ public class GuiBlackHoleStorageSchematic extends GuiPositionedContainer impleme
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.schematic.black_hole_storage"), 7, -20 + 27, 4210752);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("container.schematic.black_hole_storage"), 7, -20 + 27, 4210752);
         this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, 220 - 104 + 2 + 27, 4210752);
     }
 

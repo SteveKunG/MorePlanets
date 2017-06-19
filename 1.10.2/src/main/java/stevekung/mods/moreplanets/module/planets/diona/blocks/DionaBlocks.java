@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
@@ -54,7 +55,7 @@ public class DionaBlocks
         DionaBlocks.ALBETIUS_WORM_EGG_ROCK = new BlockAlbetiusWormEgg("albetius_worm_egg_rock");
         DionaBlocks.DIONA_ANCIENT_CHEST = new BlockDionaAncientChest("diona_ancient_chest");
         DionaBlocks.DIONA_TREASURE_CHEST = new BlockDionaTreasureChest("diona_treasure_chest");
-        DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS = new BlockBaseMP("infected_crystallize_planks", Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood);
+        DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS = new BlockBaseMP("infected_crystallize_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         DionaBlocks.INFECTED_CRYSTALLIZE_FENCE = new BlockFenceMP("infected_crystallize_fence");
         DionaBlocks.INFECTED_CRYSTALLIZE_WEB = new BlockInfectedCrystallizeWeb("infected_crystallize_web");
         DionaBlocks.INFECTED_CRYSTALLIZE_TORCH = new BlockCrystallizeTorch("infected_crystallize_torch");
@@ -81,8 +82,8 @@ public class DionaBlocks
         /************************REGISTER STUFF************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_BLOCK, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_PART, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_BLOCK, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_PART, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(DionaBlocks.ALBETIUS_WORM_EGG_ROCK);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_FENCE);
@@ -91,15 +92,15 @@ public class DionaBlocks
         CommonRegisterHelper.registerBlock(DionaBlocks.ZELIUS_EGG);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_WEB);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_TORCH);
-        CommonRegisterHelper.registerBlock(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, ItemBlockLargeInfectedCrystallize.class);
+        CommonRegisterHelper.registerBlock(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, ItemBlockLargeInfectedCrystallize::new);
         CommonRegisterHelper.registerBlock(DionaBlocks.ALIEN_MINER_BLOOD);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_CORE, ItemBlockDescription.class);
+        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_CORE, ItemBlockDescription::new);
         CommonRegisterHelper.registerBlock(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_COBBLESTONE_STAIRS);
         CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_DUNGEON_BRICK_STAIRS);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_GENERATOR, ItemBlockDarkEnergyGenerator.class);
+        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_GENERATOR, ItemBlockDarkEnergyGenerator::new);
         CommonRegisterHelper.registerBlock(DionaBlocks.GLOWING_IRON_BLOCK);
         CommonRegisterHelper.registerBlock(DionaBlocks.CRASHED_ALIEN_PROBE);
 

@@ -11,7 +11,7 @@ import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.recipe.BlackHoleStorageRecipes;
@@ -129,7 +129,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
                 Item item = slotStack.getItem();
                 int meta = slotStack.getItemDamage();
 
-                if (item == DionaItems.DIONA_ITEM && meta == 6 || item == Items.ender_eye || item == DionaItems.DIONA_ITEM && meta == 7 || item == GCItems.flagPole || item == DionaItems.TIER_4_ROCKET_PART && meta == 0)
+                if (item == DionaItems.DIONA_ITEM && meta == 6 || item == Items.ENDER_EYE || item == DionaItems.DIONA_ITEM && meta == 7 || item == GCItems.flagPole || item == DionaItems.TIER_4_ROCKET_PART && meta == 0)
                 {
                     for (int i = 1; i < 23; i++)
                     {

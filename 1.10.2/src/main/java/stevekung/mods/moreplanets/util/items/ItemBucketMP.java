@@ -19,12 +19,12 @@ public class ItemBucketMP extends ItemBucket implements ISortableItem, ISingleIt
         super(fluid);
         this.name = name;
         this.setUnlocalizedName(name);
-        this.setContainerItem(Items.bucket);
+        this.setContainerItem(Items.BUCKET);
     }
 
     public ItemBucketMP()
     {
-        super(Blocks.air);
+        super(Blocks.AIR);
     }
 
     @Override

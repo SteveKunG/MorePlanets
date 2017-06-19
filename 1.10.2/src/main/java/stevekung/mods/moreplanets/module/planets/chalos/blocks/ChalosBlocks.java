@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
@@ -62,7 +63,7 @@ public class ChalosBlocks
         ChalosBlocks.CHALOS_TREASURE_CHEST = new BlockChalosTreasureChest("chalos_treasure_chest");
         ChalosBlocks.CHEESE_SPORE = new BlockCheeseSpore("cheese_spore_block");
         ChalosBlocks.CHEESE_SPORE_STEM = new BlockCheeseSporeStem("cheese_spore_stem");
-        ChalosBlocks.CHEESE_SPORE_PLANKS = new BlockBaseMP("cheese_spore_planks", Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood);
+        ChalosBlocks.CHEESE_SPORE_PLANKS = new BlockBaseMP("cheese_spore_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         ChalosBlocks.CHEESE_TALL_GRASS = new BlockCheeseTallGrass("cheese_tall_grass");
         ChalosBlocks.CHEESE_SPORE_BERRY_CROPS = new BlockCheeseSporeBerryCrops("cheese_spore_berry_crops");
         ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS = new BlockChalosDoubleTallGrass("cheese_double_tall_grass");
@@ -87,15 +88,15 @@ public class ChalosBlocks
         /**************************************************************/
 
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_GRASS);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_DIRT, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_BLOCK, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_DIRT, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_BLOCK, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_STEM);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_PLANKS);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SLIME_BLOCK);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_ANCIENT_CHEST);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_TREASURE_CHEST);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_CAKE, ItemBlockDescription.class);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_CAKE, ItemBlockDescription::new);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_FLOWER);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_TALL_GRASS);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_FARMLAND);

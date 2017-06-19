@@ -4,6 +4,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
@@ -21,7 +24,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -38,6 +45,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
+import stevekung.mods.moreplanets.util.SoundEventMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
 import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
@@ -56,12 +64,18 @@ public class CommonRegisterHelper
 
     public static void registerBlock(Block block)
     {
-        CommonRegisterHelper.registerBlock(block, ItemBlock.class);
+        CommonRegisterHelper.registerBlock(block, ItemBlock::new);
     }
 
-    public static void registerBlock(Block block, Class<? extends ItemBlock> itemBlock)
+    public static void registerBlock(Block block, @Nullable Function<Block, ItemBlock> itemBlock)
     {
-        GameRegistry.registerBlock(block, itemBlock, block.getUnlocalizedName().substring(5));
+        String name = block.getUnlocalizedName().substring(5);
+        GameRegistry.register(block.setRegistryName(name));
+
+        if (itemBlock != null)
+        {
+            GameRegistry.register(itemBlock.apply(block).setRegistryName(block.getRegistryName()));
+        }
 
         if (block instanceof ISingleBlockRender)
         {
@@ -85,7 +99,8 @@ public class CommonRegisterHelper
 
     public static void registerItem(Item item)
     {
-        GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+        String name = item.getUnlocalizedName().substring(5);
+        GameRegistry.register(item.setRegistryName(name));
 
         if (item instanceof ISingleItemRender)
         {
@@ -102,6 +117,26 @@ public class CommonRegisterHelper
         }
     }
 
+    public static void registerSound(String name)
+    {
+        GameRegistry.register(new SoundEventMP(name).setRegistryName(new ResourceLocation("moreplanets:" + name)));
+    }
+
+    public static void registerLootTable(String name)
+    {
+        LootTableList.register(new ResourceLocation("moreplanets:" + name));
+    }
+
+    public static void registerPotion(Potion potion)
+    {
+        GameRegistry.register(potion);
+    }
+
+    public static void registerBiome(Biome biome)
+    {
+        GameRegistry.register(biome);
+    }
+
     public static void registerTileEntity(Class<? extends TileEntity> tile, String name)
     {
         GameRegistry.registerTileEntity(tile, name);
@@ -109,7 +144,7 @@ public class CommonRegisterHelper
 
     public static void registerFluidContainer(Fluid fluid, ItemStack filledContainer)
     {
-        CommonRegisterHelper.registerFluidContainer(fluid, filledContainer, new ItemStack(Items.bucket));
+        CommonRegisterHelper.registerFluidContainer(fluid, filledContainer, new ItemStack(Items.BUCKET));
     }
 
     public static void registerFluidContainer(Fluid fluid, ItemStack filledContainer, ItemStack emptyContainer)
@@ -129,7 +164,7 @@ public class CommonRegisterHelper
 
     public static void setFireBurn(Block block, int encouragement, int flammibility)
     {
-        Blocks.fire.setFireInfo(block, encouragement, flammibility);
+        Blocks.FIRE.setFireInfo(block, encouragement, flammibility);
     }
 
     public static void registerEntity(Class<? extends Entity> entity, String name, int backgroundColor, int foregroundColor)
@@ -209,7 +244,7 @@ public class CommonRegisterHelper
 
     public static void registerProjectileDispense(Item item, IBehaviorDispenseItem projectile)
     {
-        BlockDispenser.dispenseBehaviorRegistry.putObject(item, projectile);
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(item, projectile);
     }
 
     public static boolean isClient()

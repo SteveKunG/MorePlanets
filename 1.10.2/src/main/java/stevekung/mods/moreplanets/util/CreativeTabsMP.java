@@ -36,9 +36,9 @@ public class CreativeTabsMP extends CreativeTabs
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void displayAllReleventItems(List list)
+    public void displayAllRelevantItems(List<ItemStack> list)
     {
-        super.displayAllReleventItems(list);
+        super.displayAllRelevantItems(list);
 
         if (this.tabSorter != null)
         {

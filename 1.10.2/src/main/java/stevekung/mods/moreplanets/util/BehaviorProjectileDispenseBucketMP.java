@@ -3,9 +3,11 @@ package stevekung.mods.moreplanets.util;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import stevekung.mods.moreplanets.util.items.ItemBucketMP;
 
 public class BehaviorProjectileDispenseBucketMP extends BehaviorDefaultDispenseItem
@@ -16,17 +18,17 @@ public class BehaviorProjectileDispenseBucketMP extends BehaviorDefaultDispenseI
     public ItemStack dispenseStack(IBlockSource source, ItemStack itemStack)
     {
         ItemBucketMP bucket = (ItemBucketMP)itemStack.getItem();
-        BlockPos pos = source.getBlockPos().offset(BlockDispenser.getFacing(source.getBlockMetadata()));
+        BlockPos blockpos = source.getBlockPos().offset((EnumFacing)source.getBlockState().getValue(BlockDispenser.FACING));
 
-        if (bucket.tryPlaceContainedLiquid(source.getWorld(), pos))
+        if (bucket.tryPlaceContainedLiquid((EntityPlayer)null, source.getWorld(), blockpos))
         {
-            itemStack.setItem(Items.bucket);
+            itemStack.setItem(Items.BUCKET);
             itemStack.stackSize = 1;
             return itemStack;
         }
         else
         {
-            return this.item.dispense(source, itemStack);
+            return this.dispense(source, itemStack);
         }
     }
 }

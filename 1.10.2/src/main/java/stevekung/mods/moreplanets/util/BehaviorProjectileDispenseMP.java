@@ -4,6 +4,7 @@ import net.minecraft.dispenser.BehaviorProjectileDispense;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class BehaviorProjectileDispenseMP extends BehaviorProjectileDispense
@@ -23,14 +24,14 @@ public class BehaviorProjectileDispenseMP extends BehaviorProjectileDispense
     }
 
     @Override
-    protected IProjectile getProjectileEntity(World world, IPosition pos)
+    protected IProjectile getProjectileEntity(World world, IPosition pos, ItemStack itemStack)
     {
         if (this.isArrow)
         {
             try
             {
                 EntityArrow arrow = (EntityArrow) this.projectile.getConstructor(World.class, double.class, double.class, double.class).newInstance(world, pos.getX(), pos.getY(), pos.getZ());
-                arrow.canBePickedUp = 1;
+                arrow.pickupStatus = EntityArrow.PickupStatus.ALLOWED;
                 return arrow;
             }
             catch (Exception e) {}

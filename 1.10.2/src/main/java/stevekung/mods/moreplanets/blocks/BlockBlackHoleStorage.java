@@ -3,20 +3,24 @@ package stevekung.mods.moreplanets.blocks;
 import java.util.List;
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,15 +39,15 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
 {
     public BlockBlackHoleStorage(String name)
     {
-        super(Material.iron);
-        this.setStepSound(Block.soundTypeMetal);
+        super(Material.IRON);
+        this.setSoundType(SoundType.METAL);
         this.setHardness(2.0F);
         this.setUnlocalizedName(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         TileEntity tile = world.getTileEntity(pos);
 
@@ -82,7 +86,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                 blackHole.setTileEntityPos(pos);
                 blackHole.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, 0.0F, 0.0F);
                 world.spawnEntityInWorld(blackHole);
-                world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, "moreplanets:ambient.black_hole.start", 1.0F, 1.0F);
+                world.playSound(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, "moreplanets:ambient.black_hole.start", 1.0F, 1.0F);
 
                 if (tile instanceof TileEntityBlackHoleStorage)
                 {
@@ -115,7 +119,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (world.isRemote)
         {
@@ -137,7 +141,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         int drainExp = rand.nextInt(25) == 0 ? 24 + rand.nextInt(16) : rand.nextInt(10) == 0 ? 20 + rand.nextInt(5) : rand.nextInt(5) == 0 ? 10 + rand.nextInt(5) : 3 + rand.nextInt(5);
                         storage.xp -= storage.xp < drainExp ? storage.xp : drainExp;
                         player.addExperience(drainExp);
-                        player.worldObj.playSoundAtEntity(player, "random.orb", 0.1F, 0.5F * ((player.worldObj.rand.nextFloat() - player.worldObj.rand.nextFloat()) * 0.7F + 1.8F));
+                        player.worldObj.playSound(player, pos, SoundEvents.ENTITY_EXPERIENCE_ORB_TOUCH, null, 0.1F, 0.5F * ((player.worldObj.rand.nextFloat() - player.worldObj.rand.nextFloat()) * 0.7F + 1.8F));
                     }
                     else
                     {
@@ -147,7 +151,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                 else
                 {
                     JsonUtils json = new JsonUtils();
-                    player.addChatMessage(json.text(StatCollector.translateToLocal("gui.bh_storage_not_owner.message")).setChatStyle(json.red()));
+                    player.addChatMessage(json.text(GCCoreUtil.translate("gui.bh_storage_not_owner.message")).setStyle(json.red()));
                 }
             }
             return true;
@@ -158,15 +162,14 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
         world.updateComparatorOutputLevel(pos, this);
-        world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, "moreplanets:ambient.black_hole.explode", 1.0F, 1.0F);
+        world.playSound(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, "moreplanets:ambient.black_hole.explode", 1.0F, 1.0F);
         super.breakBlock(world, pos, state);
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
     {
         player.addExhaustion(0.025F);
-        ItemStack itemStack = new ItemStack(this);
 
         if (tile instanceof TileEntityBlackHoleStorage)
         {
@@ -195,7 +198,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     }
 
     @Override
-    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, BlockPos pos)
+    public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos)
     {
         TileEntity tile = world.getTileEntity(pos);
 
@@ -208,35 +211,35 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                 return -1.0F;
             }
         }
-        return super.getPlayerRelativeBlockHardness(player, world, pos);
+        return super.getPlayerRelativeBlockHardness(state, player, world, pos);
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public int getRenderType()
+    public EnumBlockRenderType getRenderType(IBlockState state)
     {
-        return 2;
+        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
-    public boolean hasComparatorInputOverride()
+    public boolean hasComparatorInputOverride(IBlockState state)
     {
         return true;
     }
 
     @Override
-    public int getComparatorInputOverride(World world, BlockPos pos)
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
         return Container.calcRedstone(world.getTileEntity(pos));
     }

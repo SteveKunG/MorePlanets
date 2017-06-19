@@ -6,17 +6,18 @@ import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockPane;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,11 +32,11 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
 {
     public BlockTintedGlassPane(String name)
     {
-        super(Material.glass, false);
+        super(Material.GLASS, false);
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(BlockStateHelper.COLOR, EnumDyeColor.WHITE));
         this.setHardness(0.5F);
         this.setResistance(20.0F);
-        this.setStepSound(soundTypeGlass);
+        this.setSoundType(SoundType.GLASS);
         this.setUnlocalizedName(name);
     }
 
@@ -69,9 +70,10 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     }
 
     @Override
-    public EnumWorldBlockLayer getBlockLayer()
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.TRANSLUCENT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
@@ -81,9 +83,9 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {NORTH, EAST, WEST, SOUTH, BlockStateHelper.COLOR});
+        return new BlockStateContainer(this, new IProperty[] {NORTH, EAST, WEST, SOUTH, BlockStateHelper.COLOR});
     }
 
     @Override
@@ -102,59 +104,6 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
         {
             BlockBeacon.updateColorAsync(world, pos);
         }
-    }
-
-    @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
-    {
-        float f = 0.4375F;
-        float f1 = 0.5625F;
-        float f2 = 0.4375F;
-        float f3 = 0.5625F;
-        boolean flag = this.canGlassPaneConnectToBlock(world.getBlockState(pos.north()).getBlock());
-        boolean flag1 = this.canGlassPaneConnectToBlock(world.getBlockState(pos.south()).getBlock());
-        boolean flag2 = this.canGlassPaneConnectToBlock(world.getBlockState(pos.west()).getBlock());
-        boolean flag3 = this.canGlassPaneConnectToBlock(world.getBlockState(pos.east()).getBlock());
-
-        if ((!flag2 || !flag3) && (flag2 || flag3 || flag || flag1))
-        {
-            if (flag2)
-            {
-                f = 0.0F;
-            }
-            else if (flag3)
-            {
-                f1 = 1.0F;
-            }
-        }
-        else
-        {
-            f = 0.0F;
-            f1 = 1.0F;
-        }
-
-        if ((!flag || !flag1) && (flag2 || flag3 || flag || flag1))
-        {
-            if (flag)
-            {
-                f2 = 0.0F;
-            }
-            else if (flag1)
-            {
-                f3 = 1.0F;
-            }
-        }
-        else
-        {
-            f2 = 0.0F;
-            f3 = 1.0F;
-        }
-        this.setBlockBounds(f, 0.0F, f2, f1, 1.0F, f3);
-    }
-
-    private boolean canGlassPaneConnectToBlock(Block block)
-    {
-        return this.canPaneConnectToBlock(block) || block == MPBlocks.TINTED_GLASS ;
     }
 
     @Override

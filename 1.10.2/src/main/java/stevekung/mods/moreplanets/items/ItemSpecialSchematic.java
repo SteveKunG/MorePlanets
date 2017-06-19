@@ -2,10 +2,10 @@ package stevekung.mods.moreplanets.items;
 
 import java.util.List;
 
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.items.ItemSchematicVariantsMP;
@@ -26,11 +26,11 @@ public class ItemSpecialSchematic extends ItemSchematicVariantsMP
     {
         if (itemStack.getItemDamage() == 0)
         {
-            list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("desc.ion_cannon.name"));
+            list.add(TextFormatting.GRAY + GCCoreUtil.translate("desc.ion_cannon.name"));
         }
         else
         {
-            list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("desc.black_hole_storage.name"));
+            list.add(TextFormatting.GRAY + GCCoreUtil.translate("desc.black_hole_storage.name"));
         }
     }
 

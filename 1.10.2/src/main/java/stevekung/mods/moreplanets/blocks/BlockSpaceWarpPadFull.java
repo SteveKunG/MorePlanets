@@ -11,19 +11,26 @@ import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
@@ -38,12 +45,11 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
 {
     public BlockSpaceWarpPadFull(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setHardness(3.0F);
         this.setResistance(10.0F);
-        this.setStepSound(soundTypeMetal);
+        this.setSoundType(SoundType.METAL);
         this.setUnlocalizedName(name);
-        this.maxY = 0.39D;
     }
 
     @Override
@@ -71,16 +77,16 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        return AxisAlignedBB.fromBounds(pos.getX() + this.minX, pos.getY() + this.minY, pos.getZ() + this.minZ, pos.getX() + this.maxX, pos.getY() + this.maxY, pos.getZ() + this.maxZ);
+        return new AxisAlignedBB(pos.getX() + Block.FULL_BLOCK_AABB.minX, pos.getY() + Block.FULL_BLOCK_AABB.minY, pos.getZ() + Block.FULL_BLOCK_AABB.minZ, pos.getX() + Block.FULL_BLOCK_AABB.maxX, pos.getY() + Block.FULL_BLOCK_AABB.maxY, pos.getZ() + Block.FULL_BLOCK_AABB.maxZ);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getSelectedBoundingBox(World world, BlockPos pos)
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        return AxisAlignedBB.fromBounds(pos.getX() + this.minX, pos.getY() + this.minY, pos.getZ() + this.minZ, pos.getX() + this.maxX, pos.getY() + this.maxY, pos.getZ() + this.maxZ);
+        return new AxisAlignedBB(pos.getX() + Block.FULL_BLOCK_AABB.minX, pos.getY() + Block.FULL_BLOCK_AABB.minY, pos.getZ() + Block.FULL_BLOCK_AABB.minZ, pos.getX() + Block.FULL_BLOCK_AABB.maxX, pos.getY() + Block.FULL_BLOCK_AABB.maxY, pos.getZ() + Block.FULL_BLOCK_AABB.maxZ);
     }
 
     @Override
@@ -106,26 +112,26 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
-        world.markBlockForUpdate(pos);
+        world.notifyBlockUpdate(pos, state, state, 3);
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
         return true;
     }
@@ -137,7 +143,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(MPBlocks.SPACE_WARP_PAD, 1, 0);
     }
@@ -149,7 +155,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (world.isRemote)
         {
@@ -175,12 +181,12 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                     if (warpCoreData != null && warpCoreData.hasKey("DimensionID"))
                     {
                         warpPad.setTeleportData(new BlockPos(warpCoreData.getInteger("X"), warpCoreData.getInteger("Y"), warpCoreData.getInteger("Z")), warpCoreData.getInteger("DimensionID"), true);
-                        player.addChatMessage(new JsonUtils().text(StatCollector.translateToLocal("gui.warp_pad_data_add.message")).setChatStyle(new JsonUtils().colorFromConfig("green")));
+                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.warp_pad_data_add.message")).setStyle(new JsonUtils().colorFromConfig("green")));
                         return true;
                     }
                     else
                     {
-                        player.addChatMessage(new JsonUtils().text(StatCollector.translateToLocal("gui.warp_pad_data_add_fail.message")).setChatStyle(new JsonUtils().red()));
+                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.warp_pad_data_add_fail.message")).setStyle(new JsonUtils().red()));
 
                         if (warpCoreData == null)
                         {
@@ -196,7 +202,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                     {
                         if (warpPad.getCheckInvalid())
                         {
-                            player.addChatMessage(new JsonUtils().text(StatCollector.translateToLocal("gui.cannot_detect_pad.message")).setChatStyle(new JsonUtils().red()));
+                            player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.cannot_detect_pad.message")).setStyle(new JsonUtils().red()));
                             return false;
                         }
                         if (!warpPad.disabled)
@@ -204,7 +210,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                             if (warpPad.getEnergyStoredGC() >= 5000.0F)
                             {
                                 warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
-                                MinecraftServer server = MinecraftServer.getServer();
+                                MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
                                 WorldServer worldserver = server.worldServerForDimension(GCCoreUtil.getDimensionID(server.worldServers[0]));
 
                                 if (player instanceof EntityPlayerMP)
@@ -212,20 +218,20 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                                     TeleportHandler.setWarpDimension((EntityPlayerMP) player, worldserver, warpPad.getBlockPos().getX(), warpPad.getBlockPos().getY(), warpPad.getBlockPos().getZ(), warpPad.getDimensionID(), false);
                                 }
 
-                                world.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "mob.endermen.portal", 1.0F, 1.0F);
-                                player.playSound("mob.endermen.portal", 1.0F, 1.0F);
-                                MPLog.debug("Teleport player to %s, %s, %s, %s, %s", warpPad.getBlockPos().getX(), warpPad.getBlockPos().getY(), warpPad.getBlockPos().getZ(), warpPad.getDimensionID(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionID()).getDimensionName());
+                                world.playSound(player, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, null, 1.0F, 1.0F);
+                                player.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
+                                MPLog.debug("Teleport player to %s, %s, %s, %s, %s", warpPad.getBlockPos().getX(), warpPad.getBlockPos().getY(), warpPad.getBlockPos().getZ(), warpPad.getDimensionID(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionID()).getDimensionType().getName());
                                 return true;
                             }
                             else
                             {
-                                player.addChatMessage(new JsonUtils().text(StatCollector.translateToLocal("gui.status.missingpower.name")).setChatStyle(new JsonUtils().red()));
+                                player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.status.missingpower.name")).setStyle(new JsonUtils().red()));
                                 return true;
                             }
                         }
                         else
                         {
-                            player.addChatMessage(new JsonUtils().text(StatCollector.translateToLocal("gui.dark_energy_disabled.message")).setChatStyle(new JsonUtils().red()));
+                            player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtils().red()));
                         }
                     }
                     else
@@ -238,7 +244,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                 {
                     if (player.isSneaking())
                     {
-                        player.addChatMessage(new JsonUtils().text(StatCollector.translateToLocal("gui.no_warp_data.message")).setChatStyle(new JsonUtils().red()));
+                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.no_warp_data.message")).setStyle(new JsonUtils().red()));
                         return true;
                     }
                     else
@@ -253,9 +259,9 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
     {
-        super.harvestBlock(world, player, pos, state, tile);
+        super.harvestBlock(world, player, pos, state, tile, itemStack);
 
         if (tile instanceof TileEntitySpaceWarpPadFull)
         {

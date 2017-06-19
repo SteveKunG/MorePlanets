@@ -7,8 +7,8 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.util.EnumFacing;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockCrashedAlienProbe;
@@ -55,13 +55,13 @@ public class BlockStateMapper
             @Override
             protected ModelResourceLocation getModelResourceLocation(IBlockState state)
             {
-                Map<IProperty, Comparable> map = Maps.<IProperty, Comparable>newLinkedHashMap(state.getProperties());
+                Map<IProperty<?>, Comparable<?>> map = Maps.newLinkedHashMap(state.getProperties());
 
                 if (state.getValue(BlockStemMP.FACING) != EnumFacing.UP)
                 {
                     map.remove(BlockStemMP.AGE);
                 }
-                return new ModelResourceLocation(Block.blockRegistry.getNameForObject(state.getBlock()), this.getPropertyString(map));
+                return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), this.getPropertyString(map));
             }
         });
     }

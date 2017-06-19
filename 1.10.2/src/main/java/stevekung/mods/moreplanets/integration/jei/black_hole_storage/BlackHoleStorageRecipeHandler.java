@@ -42,4 +42,11 @@ public class BlackHoleStorageRecipeHandler implements IRecipeHandler<BlackHoleSt
         }
         return true;
     }
+
+    @Nonnull
+    @Override
+    public String getRecipeCategoryUid(BlackHoleStorageRecipeWrapper recipe)
+    {
+        return "moreplanets.blackHoleStorage";
+    }
 }

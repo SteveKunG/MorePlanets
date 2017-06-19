@@ -7,7 +7,7 @@ public class MaterialGas extends Material
 {
     public MaterialGas()
     {
-        super(MapColor.airColor);
+        super(MapColor.AIR);
         this.setReplaceable();
         this.setNoPushMobility();
     }

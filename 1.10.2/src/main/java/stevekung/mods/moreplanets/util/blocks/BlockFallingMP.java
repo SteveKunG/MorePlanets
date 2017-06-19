@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.util.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
+import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -17,6 +18,12 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISin
     {
         this.setUnlocalizedName(name);
         this.name = name;
+    }
+
+    public BlockFallingMP setSoundType(SoundType sound)
+    {
+        this.blockSoundType = sound;
+        return this;
     }
 
     @Override

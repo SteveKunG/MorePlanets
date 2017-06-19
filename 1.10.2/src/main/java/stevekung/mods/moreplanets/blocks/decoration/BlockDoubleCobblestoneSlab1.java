@@ -7,8 +7,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
 
@@ -16,7 +16,7 @@ public class BlockDoubleCobblestoneSlab1 extends BlockHalfCobblestoneSlab1
 {
     public BlockDoubleCobblestoneSlab1(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setUnlocalizedName(name);
     }
 
@@ -33,7 +33,7 @@ public class BlockDoubleCobblestoneSlab1 extends BlockHalfCobblestoneSlab1
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(MPBlocks.HALF_COBBLESTONE_SLAB_1, 1, this.getMetaFromState(world.getBlockState(pos)) & 7);
     }

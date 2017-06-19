@@ -3,19 +3,19 @@ package stevekung.mods.moreplanets.util;
 import com.google.gson.JsonParseException;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.event.ClickEvent;
-import net.minecraft.event.HoverEvent;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.IChatComponent.Serializer;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.ITextComponent.Serializer;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
+import net.minecraft.util.text.event.HoverEvent;
 
 public class JsonUtils
 {
-    public static IChatComponent rawTextToJson(String json)
+    public static ITextComponent rawTextToJson(String json)
     {
-        IChatComponent text = new JsonUtils().text("null ").setChatStyle(new JsonUtils().red());
+        ITextComponent text = new JsonUtils().text("null ").setStyle(new JsonUtils().red());
 
         try
         {
@@ -25,103 +25,103 @@ public class JsonUtils
         {
             if (Minecraft.getMinecraft().thePlayer.ticksExisted % 300 == 0)
             {
-                Minecraft.getMinecraft().thePlayer.addChatMessage(new JsonUtils().text(jsonparseexception.getMessage()).setChatStyle(new JsonUtils().red()));
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new JsonUtils().text(jsonparseexception.getMessage()).setStyle(new JsonUtils().red()));
             }
         }
         return text;
     }
 
-    public ChatComponentText text(String text)
+    public TextComponentString text(String text)
     {
-        return new ChatComponentText(text);
+        return new TextComponentString(text);
     }
 
-    public ChatStyle style()
+    public Style style()
     {
-        return new ChatStyle();
+        return new Style();
     }
 
-    public ChatStyle colorFromConfig(String color)
+    public Style colorFromConfig(String color)
     {
         return this.style().setColor(this.color(color));
     }
 
-    private EnumChatFormatting color(String color)
+    private TextFormatting color(String color)
     {
         if (color.equalsIgnoreCase("black"))
         {
-            return EnumChatFormatting.BLACK;
+            return TextFormatting.BLACK;
         }
         else if (color.equalsIgnoreCase("dark_blue"))
         {
-            return EnumChatFormatting.DARK_BLUE;
+            return TextFormatting.DARK_BLUE;
         }
         else if (color.equalsIgnoreCase("dark_green"))
         {
-            return EnumChatFormatting.DARK_GREEN;
+            return TextFormatting.DARK_GREEN;
         }
         else if (color.equalsIgnoreCase("dark_aqua"))
         {
-            return EnumChatFormatting.DARK_AQUA;
+            return TextFormatting.DARK_AQUA;
         }
         else if (color.equalsIgnoreCase("dark_red"))
         {
-            return EnumChatFormatting.DARK_RED;
+            return TextFormatting.DARK_RED;
         }
         else if (color.equalsIgnoreCase("dark_purple"))
         {
-            return EnumChatFormatting.DARK_PURPLE;
+            return TextFormatting.DARK_PURPLE;
         }
         else if (color.equalsIgnoreCase("gold"))
         {
-            return EnumChatFormatting.GOLD;
+            return TextFormatting.GOLD;
         }
         else if (color.equalsIgnoreCase("gray"))
         {
-            return EnumChatFormatting.GRAY;
+            return TextFormatting.GRAY;
         }
         else if (color.equalsIgnoreCase("dark_gray"))
         {
-            return EnumChatFormatting.DARK_GRAY;
+            return TextFormatting.DARK_GRAY;
         }
         else if (color.equalsIgnoreCase("blue"))
         {
-            return EnumChatFormatting.BLUE;
+            return TextFormatting.BLUE;
         }
         else if (color.equalsIgnoreCase("green"))
         {
-            return EnumChatFormatting.GREEN;
+            return TextFormatting.GREEN;
         }
         else if (color.equalsIgnoreCase("aqua"))
         {
-            return EnumChatFormatting.AQUA;
+            return TextFormatting.AQUA;
         }
         else if (color.equalsIgnoreCase("red"))
         {
-            return EnumChatFormatting.RED;
+            return TextFormatting.RED;
         }
         else if (color.equalsIgnoreCase("light_purple"))
         {
-            return EnumChatFormatting.LIGHT_PURPLE;
+            return TextFormatting.LIGHT_PURPLE;
         }
         else if (color.equalsIgnoreCase("yellow"))
         {
-            return EnumChatFormatting.YELLOW;
+            return TextFormatting.YELLOW;
         }
         else
         {
-            return EnumChatFormatting.WHITE;
+            return TextFormatting.WHITE;
         }
     }
 
-    public ChatStyle white()
+    public Style white()
     {
-        return this.style().setColor(EnumChatFormatting.WHITE);
+        return this.style().setColor(TextFormatting.WHITE);
     }
 
-    public ChatStyle red()
+    public Style red()
     {
-        return this.style().setColor(EnumChatFormatting.RED);
+        return this.style().setColor(TextFormatting.RED);
     }
 
     public ClickEvent click(ClickEvent.Action action, String url)
@@ -129,7 +129,7 @@ public class JsonUtils
         return new ClickEvent(action, url);
     }
 
-    public HoverEvent hover(HoverEvent.Action action, IChatComponent text)
+    public HoverEvent hover(HoverEvent.Action action, ITextComponent text)
     {
         return new HoverEvent(action, text);
     }

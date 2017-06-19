@@ -6,7 +6,7 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -25,7 +25,7 @@ public class BlockHalfDungeonBrickSlab1 extends BlockSlabMP
 
     public BlockHalfDungeonBrickSlab1(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setUnlocalizedName(name);
         this.useNeighborBrightness = true;
         this.setHardness(4.0F);
@@ -71,7 +71,7 @@ public class BlockHalfDungeonBrickSlab1 extends BlockSlabMP
     }
 
     @Override
-    public Object getVariant(ItemStack itemStack)
+    public Comparable getTypeForItem(ItemStack itemStack)
     {
         return BlockType.valuesCached()[itemStack.getMetadata() & 7];
     }
@@ -102,9 +102,9 @@ public class BlockHalfDungeonBrickSlab1 extends BlockSlabMP
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return this.isDouble() ? new BlockState(this, new IProperty[] {VARIANT}): new BlockState(this, new IProperty[] {HALF, VARIANT});
+        return this.isDouble() ? new BlockStateContainer(this, new IProperty[] {VARIANT}): new BlockStateContainer(this, new IProperty[] {HALF, VARIANT});
     }
 
     @Override

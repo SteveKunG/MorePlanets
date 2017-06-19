@@ -10,7 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 
 public class SlotBlackHoleStorageSchematic extends Slot
@@ -68,7 +68,7 @@ public class SlotBlackHoleStorageSchematic extends Slot
         case 21:
             return itemStack.getItem() == DionaItems.TIER_4_ROCKET_PART && itemStack.getItemDamage() == 0;
         case 20:
-            return itemStack.getItem() == Items.ender_eye;
+            return itemStack.getItem() == Items.ENDER_EYE;
         }
         return false;
     }

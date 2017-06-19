@@ -10,8 +10,8 @@ import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 
 public class CelestialRegisterHelper
 {
@@ -81,7 +81,7 @@ public class CelestialRegisterHelper
         celestial.addMobInfo(new SpawnListEntry(entity, weight, min, max));
     }
 
-    public static void setBiomeInfo(CelestialBody celestial, BiomeGenBase... biome)
+    public static void setBiomeInfo(CelestialBody celestial, Biome... biome)
     {
         celestial.setBiomeInfo(biome);
     }
@@ -91,10 +91,10 @@ public class CelestialRegisterHelper
         celestial.addChecklistKeys(keys);
     }
 
-    public static void registerProvider(int id, int staticId, Class<? extends WorldProvider> provider)
+    public static void registerProvider(String name, int id, int staticId, Class<? extends WorldProvider> provider)
     {
-        GalacticraftRegistry.registerProvider(id, provider, false, 0);
-        GalacticraftRegistry.registerProvider(staticId, provider, true, 0);
+        GalacticraftRegistry.registerDimension(name, "_" + name.toLowerCase(), id, provider, false);
+        GalacticraftRegistry.registerDimension(name, "_" + name.toLowerCase(), staticId, provider, true);
     }
 
     public static void registerSolarSystem(SolarSystem solarSystem)

@@ -5,10 +5,9 @@ import javax.vecmath.Vector3f;
 
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
-import net.minecraft.client.resources.model.IBakedModel;
 
-@SuppressWarnings("deprecation")
 public class ItemRendererTieredRocket extends ModelTransformWrapper
 {
     public ItemRendererTieredRocket(IBakedModel model)
@@ -52,7 +51,7 @@ public class ItemRendererTieredRocket extends ModelTransformWrapper
             ret.mul(mul);
             return ret;
         }
-        if (type == TransformType.FIRST_PERSON)
+        if (type == TransformType.FIRST_PERSON_RIGHT_HAND)
         {
             Vector3f trans = new Vector3f(0.5F, 0.5F, -1.2F);
             Matrix4f ret = new Matrix4f();
@@ -75,7 +74,7 @@ public class ItemRendererTieredRocket extends ModelTransformWrapper
             ret.mul(mul);
             return ret;
         }
-        if (type == TransformType.THIRD_PERSON)
+        if (type == TransformType.THIRD_PERSON_RIGHT_HAND)
         {
             Vector3f trans = new Vector3f(0.0F, -0.4F, -0.3F);
             Matrix4f ret = new Matrix4f();

@@ -12,6 +12,9 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
@@ -21,24 +24,23 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.client.model.IModelState;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
+import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.EnumStateMapper;
+import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.client.model.ModelBipedTranslucent;
 
 @SideOnly(Side.CLIENT)
@@ -315,10 +317,10 @@ public class ClientRegisterHelper
 
     public static void registerSpriteTexture(TextureStitchEvent.Pre event, String texture)
     {
-        event.map.registerSprite(new ResourceLocation("moreplanets:" + texture));
+        event.getMap().registerSprite(new ResourceLocation("moreplanets:" + texture));
     }
 
-    public static ModelBiped getTranclucentArmorModel(int armorSlot, ModelBiped defaultModel)
+    public static ModelBiped getTranclucentArmorModel(int armorSlot, ModelBiped defaultModel)//TODO Fix slot?
     {
         //Damn, mojang -.-
         //Leggings
@@ -340,41 +342,55 @@ public class ClientRegisterHelper
         return defaultModel;
     }
 
-    public static void registerOBJModel(ModelBakeEvent event, String name, String file, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState)
+    public static void registerOBJModel(ModelBakeEvent event, String name, String file, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState, String... variants)
     {
-        ModelResourceLocation modelResourceLocation = new ModelResourceLocation("moreplanets:" + name, "inventory");
-        IBakedModel object = event.modelRegistry.getObject(modelResourceLocation);
-
-        if (object != null)
+        if (variants.length == 0)
         {
-            IBakedModel newModel;
+            variants = new String[] { "inventory" };
+        }
 
-            try
+        OBJModel model;
+
+        try
+        {
+            model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:" + name, "inventory"));
+            model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
+
+        for (String variant : variants)
+        {
+            ModelResourceLocation modelResourceLocation = new ModelResourceLocation("moreplanets:obj/" + file + ".obj", variant);
+            IBakedModel object = event.getModelRegistry().getObject(modelResourceLocation);
+
+            if (object != null)
             {
-                OBJModel model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/" + file + ".obj"));
-                model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
-
-                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = new Function<ResourceLocation, TextureAtlasSprite>()
+                if (!variant.equals("inventory"))
                 {
-                    @Override
-                    public TextureAtlasSprite apply(ResourceLocation location)
-                    {
-                        return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-                    }
-                };
+                    parentState = TRSRTransformation.identity();
+                }
 
-                newModel = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState), DefaultVertexFormats.ITEM, spriteFunction);
+                IBakedModel newModel = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState), DefaultVertexFormats.ITEM, spriteFunction);
 
                 if (clazz != null)
                 {
-                    newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
+                    try
+                    {
+                        newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
+                    }
+                    catch (Exception e)
+                    {
+                        MPLog.error("ItemModel constructor problem for " + modelResourceLocation);
+                        e.printStackTrace();
+                    }
                 }
+                event.getModelRegistry().putObject(modelResourceLocation, newModel);
             }
-            catch (Exception e)
-            {
-                throw new RuntimeException(e);
-            }
-            event.modelRegistry.putObject(modelResourceLocation, newModel);
         }
     }
 

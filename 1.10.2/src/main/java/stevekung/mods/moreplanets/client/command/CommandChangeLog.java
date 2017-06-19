@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.client.command;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.server.MinecraftServer;
 import stevekung.mods.moreplanets.client.gui.GuiFullChangeLog;
 
 public class CommandChangeLog extends CommandBase
@@ -14,7 +15,7 @@ public class CommandChangeLog extends CommandBase
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) throws CommandException
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
     {
         new GuiFullChangeLog().display();
     }

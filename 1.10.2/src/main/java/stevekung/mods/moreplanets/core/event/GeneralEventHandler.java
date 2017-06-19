@@ -14,7 +14,7 @@ import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.AchievementList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
@@ -97,7 +97,7 @@ public class GeneralEventHandler
     @SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent event)
     {
-        if (event.modID.equals(MorePlanetsCore.MOD_ID))
+        if (event.getModID().equals(MorePlanetsCore.MOD_ID))
         {
             ConfigManagerMP.syncConfig(false);
         }
@@ -106,14 +106,14 @@ public class GeneralEventHandler
     @SubscribeEvent
     public void onBreakSpeed(BreakSpeed event)
     {
-        Block block = event.state.getBlock();
-        EntityPlayer player = event.entityPlayer;
+        Block block = event.getState().getBlock();
+        EntityPlayer player = event.getEntityPlayer();
 
         if (this.isShears(player))
         {
             if (block == FronosBlocks.CANDY_CANE_1 || block == FronosBlocks.CANDY_CANE_2)
             {
-                event.newSpeed = 7.5F;
+                event.setNewSpeed(7.5F);
             }
         }
     }
@@ -121,11 +121,11 @@ public class GeneralEventHandler
     @SubscribeEvent
     public void onBlockBreak(BreakEvent event)
     {
-        IBlockState sourceState = event.state;
+        IBlockState sourceState = event.getState();
         Block source = sourceState.getBlock();
         EntityPlayer player = event.getPlayer();
 
-        if (source == NibiruBlocks.INFECTED_FARMLAND && event.world.getBiomeGenForCoords(event.pos) == MPBiomes.GREEN_VEIN)
+        if (source == NibiruBlocks.INFECTED_FARMLAND && event.getWorld().getBiomeForCoordsBody(event.getPos()) == MPBiomes.GREEN_VEIN)
         {
             return;
         }
@@ -172,16 +172,16 @@ public class GeneralEventHandler
             }
             if (flag && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
             {
-                player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 60));
+                player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
             }
         }
-        if (source.getRegistryName().contains("moreplanets"))
+        if (source.getRegistryName().toString().contains("moreplanets"))
         {
             if (source.getUnlocalizedName().contains("infected") || source.getUnlocalizedName().contains("nibiru") || source.getLocalizedName().contains("infected"))
             {
                 if (!player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
                 {
-                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 60));
+                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
                 }
             }
         }
@@ -203,7 +203,7 @@ public class GeneralEventHandler
 
         if (block == ChalosBlocks.CHEESE_SPORE_STEM || block == NibiruBlocks.NIBIRU_LOG)
         {
-            event.player.triggerAchievement(AchievementList.mineWood);
+            event.player.triggerAchievement(AchievementList.MINE_WOOD);
         }
     }
 
@@ -215,15 +215,15 @@ public class GeneralEventHandler
 
         if (block == ChalosBlocks.CHALOS_CRAFTING_TABLE || block == NibiruBlocks.NIBIRU_CRAFTING_TABLE)
         {
-            event.player.triggerAchievement(AchievementList.buildWorkBench);
+            event.player.triggerAchievement(AchievementList.BUILD_WORK_BENCH);
         }
         if (item == NibiruItems.NIBIRU_STONE_PICKAXE)
         {
-            event.player.triggerAchievement(AchievementList.buildBetterPickaxe);
+            event.player.triggerAchievement(AchievementList.BUILD_BETTER_PICKAXE);
         }
         if (block == NibiruBlocks.NIBIRU_FURNACE || block == NibiruBlocks.TERRASTONE_FURNACE)
         {
-            event.player.triggerAchievement(AchievementList.buildFurnace);
+            event.player.triggerAchievement(AchievementList.BUILD_FURNACE);
         }
     }
 
@@ -235,8 +235,8 @@ public class GeneralEventHandler
             return;
         }
 
-        World world = event.world;
-        BlockPos pos = event.pos;
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
 
@@ -272,8 +272,8 @@ public class GeneralEventHandler
     @SubscribeEvent
     public void onBucketFill(FillBucketEvent event)
     {
-        World world = event.world;
-        BlockPos pos = event.target.getBlockPos();
+        World world = event.getWorld();
+        BlockPos pos = event.getTarget().getBlockPos();
         this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET), false);
         this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_GAS_BUCKET), false);
         this.registerBucket(event, world, pos, NibiruBlocks.HELIUM_GAS_BLOCK, new ItemStack(NibiruItems.HELIUM_GAS_BUCKET), false);
@@ -290,7 +290,7 @@ public class GeneralEventHandler
         {
             if (cancelBucket)
             {
-                if (event.current.getItem() == Items.bucket)
+                if (event.getEmptyBucket().getItem() == Items.BUCKET)
                 {
                     event.setCanceled(true);
                 }
@@ -298,7 +298,7 @@ public class GeneralEventHandler
             else
             {
                 world.setBlockToAir(pos);
-                event.result = itemStack;
+                event.setFilledBucket(itemStack);
                 event.setResult(Result.ALLOW);
             }
         }
@@ -316,7 +316,7 @@ public class GeneralEventHandler
         }
         event.setResult(Result.ALLOW);
         world.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), Block.soundTypeGravel.getStepSound(), (Block.soundTypeGravel.getVolume() + 1.0F) / 2.0F, Block.soundTypeGravel.getFrequency() * 0.8F);
-        event.entityPlayer.swingItem();
+        event.getEntityPlayer().swingItem();
     }
 
     private void setFarmland(UseHoeEvent event, World world, BlockPos pos, Block farmland)
@@ -324,7 +324,7 @@ public class GeneralEventHandler
         world.setBlockState(pos, farmland.getDefaultState());
         event.setResult(Result.ALLOW);
         world.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), Block.soundTypeGravel.getStepSound(), (Block.soundTypeGravel.getVolume() + 1.0F) / 2.0F, Block.soundTypeGravel.getFrequency() * 0.8F);
-        event.entityPlayer.swingItem();
+        event.getEntityPlayer().swingItem();
     }
 
     private boolean isShears(EntityPlayer player)

@@ -14,8 +14,8 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.inventory.ContainerBlackHoleStorage;
@@ -73,13 +73,13 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
         this.fontRendererObj.drawString(this.tile.getWorld().getPlayerEntityByUUID(UUID.fromString(this.tile.ownerUUID)).getName() + "'s", this.xSize - 92 + 8, this.ySize - 97 + 12, 4210752);
         this.fontRendererObj.drawString(GCCoreUtil.translate("container.black_hole_storage_short.name"), this.xSize - 92 + 8, this.ySize - 87 + 12, 4210752);
 
-        String bhStatus = this.tile.disableBlackHole ? EnumChatFormatting.RED + GCCoreUtil.translate("gui.button.disable.name") : EnumChatFormatting.GREEN + GCCoreUtil.translate("gui.button.enable.name");
+        String bhStatus = this.tile.disableBlackHole ? TextFormatting.RED + GCCoreUtil.translate("gui.button.disable.name") : TextFormatting.GREEN + GCCoreUtil.translate("gui.button.enable.name");
         this.fontRendererObj.drawString(GCCoreUtil.translate("gui.message.status.name") + ": " + bhStatus, this.xSize - 91 + 8, this.ySize - 86 + 42, 2536735);
 
-        String hopperStatus = !this.tile.useHopper ? EnumChatFormatting.RED + GCCoreUtil.translate("gui.button.disable.name") : EnumChatFormatting.GREEN + GCCoreUtil.translate("gui.button.enable.name");
+        String hopperStatus = !this.tile.useHopper ? TextFormatting.RED + GCCoreUtil.translate("gui.button.disable.name") : TextFormatting.GREEN + GCCoreUtil.translate("gui.button.enable.name");
         this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.use_hopper.name") + ": " + hopperStatus, this.xSize - 91 + 8, this.ySize - 86 + 52, 2536735);
 
-        String collectMode = this.tile.collectMode.equals("item") ? EnumChatFormatting.GOLD + GCCoreUtil.translate("gui.status.collect_item.name") : EnumChatFormatting.YELLOW + GCCoreUtil.translate("gui.status.collect_xp.name");
+        String collectMode = this.tile.collectMode.equals("item") ? TextFormatting.GOLD + GCCoreUtil.translate("gui.status.collect_item.name") : TextFormatting.YELLOW + GCCoreUtil.translate("gui.status.collect_xp.name");
         this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.collect_mode.name") + ": " + collectMode, this.xSize - 91 + 8, this.ySize - 86 + 62, 2536735);
 
         List<String> renderDesc = Lists.newArrayList(GCCoreUtil.translate("gui.xp_value.desc") + ": " + this.tile.xp + "/" + this.tile.getMaxXP());

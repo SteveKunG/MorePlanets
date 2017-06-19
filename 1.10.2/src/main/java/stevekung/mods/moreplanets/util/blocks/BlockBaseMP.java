@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.util.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,6 +23,12 @@ public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRe
         super(material);
         this.name = name;
         this.setUnlocalizedName(name);
+    }
+
+    public BlockBaseMP setSoundType(SoundType sound)
+    {
+        this.blockSoundType = sound;
+        return this;
     }
 
     @Override

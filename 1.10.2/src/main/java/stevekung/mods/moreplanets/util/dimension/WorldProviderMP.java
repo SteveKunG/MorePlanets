@@ -11,8 +11,8 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.WorldChunkManager;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -101,12 +101,6 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
     }
 
     @Override
-    public String getInternalNameSuffix()
-    {
-        return "_" + this.getCelestialBody().getName();
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public IRenderHandler getSkyRenderer()
     {
@@ -140,13 +134,13 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
     }
 
     @Override
-    public Class<? extends IChunkProvider> getChunkProviderClass()
+    public Class<? extends IChunkGenerator> getChunkProviderClass()
     {
         return null;
     }
 
     @Override
-    public Class<? extends WorldChunkManager> getWorldChunkManagerClass()
+    public Class<? extends BiomeProvider> getBiomeProviderClass()
     {
         return null;
     }
@@ -155,7 +149,7 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
     protected abstract void renderCloud();
     protected abstract void renderWeather();
     @Override
-    public abstract void registerWorldChunkManager();
+    public abstract void createBiomeProvider();
     @Override
-    public abstract IChunkProvider createChunkGenerator();
+    public abstract IChunkGenerator createChunkGenerator();
 }

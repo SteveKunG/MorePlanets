@@ -26,13 +26,13 @@ public class EntityEffectHelper
             }
             else if (!player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION))
             {
-                player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 40, 0));
+                player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40, 0));
                 return true;
             }
             else
             {
                 EntityLivingBase living = (EntityLivingBase) entity;
-                living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 40, 0));
+                living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40, 0));
                 return true;
             }
         }

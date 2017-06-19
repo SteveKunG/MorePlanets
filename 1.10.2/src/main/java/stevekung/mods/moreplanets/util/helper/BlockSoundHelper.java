@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.util.helper;
 
-import net.minecraft.block.Block.SoundType;
+import net.minecraft.block.SoundType;
 
 public class BlockSoundHelper
 {

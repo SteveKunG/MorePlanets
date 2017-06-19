@@ -22,10 +22,11 @@ public class WorldDataStartedDimension extends WorldSavedData
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         nbt.setBoolean("StartedDimension", this.startedDimension);
         nbt.setString("PlanetToBack", this.planetToBack);
+        return nbt;
     }
 
     @Override

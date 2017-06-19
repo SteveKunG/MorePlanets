@@ -6,9 +6,10 @@ import micdoodle8.mods.galacticraft.api.world.IMobSpawnBiome;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAmbientCreature;
 import net.minecraft.entity.passive.EntityWaterMob;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 
-public class BiomeBaseMP extends BiomeGenBase implements IMobSpawnBiome
+public class BiomeBaseMP extends Biome implements IMobSpawnBiome
 {
     public BiomeBaseMP(int id)
     {
