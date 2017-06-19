@@ -1,7 +1,10 @@
 -Added- Added Black Hole Storage
 -Added- Added Rocket Recipes support for JEI
 -Added- Added Glowing Iron Ingot and Black Hole Fragment
--Update- Update to use Galacticraft Build 107 or higher
+-Added- Added Alien Defender Reinforcement (WIP)
+-Added- Added Alien Defender Beacon (WIP)
+-Added- Added Creative Space Kit
+-Update- Update to use Galacticraft Build 108 or higher
 -Update- Optimized performance
 -Update- Optimized network handler
 -Update- Tier 4 Rocket Schematic generated on Venus
