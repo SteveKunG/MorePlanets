@@ -35,7 +35,7 @@ import stevekung.mods.moreplanets.util.ReflectionUtils;
 import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
-@Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = "required-after:GalacticraftCore; required-after:GalacticraftPlanets; required-after:Micdoodlecore; after:Forge@[11.15.1.1722,);", guiFactory = MorePlanetsCore.GUI_FACTORY)
+@Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = MorePlanetsCore.DEPENDENCIES, guiFactory = MorePlanetsCore.GUI_FACTORY)
 public class MorePlanetsCore
 {
     public static final String NAME = "More Planets";
@@ -47,6 +47,8 @@ public class MorePlanetsCore
     public static final String GUI_FACTORY = "stevekung.mods.moreplanets.core.config.ConfigGuiFactoryMP";
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
+    public static final String FORGE_VERSION = "after:Forge@[11.15.1.1722,);";
+    public static final String DEPENDENCIES = "required-after:GalacticraftCore; required-after:GalacticraftPlanets; required-after:Micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
     public static final String MC_VERSION = (String) FMLInjectionData.data()[4];
     private static boolean DEOBFUSCATED;
 
