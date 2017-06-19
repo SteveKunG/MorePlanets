@@ -155,7 +155,7 @@ public class MorePlanetsCore
         info.name = MorePlanetsCore.NAME;
         info.version = MorePlanetsCore.VERSION;
         info.description = "An add-on exploration with custom planets for Galacticraft!";
-        info.url = "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2358057";
+        info.url = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
         info.credits = "All credits to Galacticraft Sources/API and some people who helped.";
         info.authorList = Arrays.asList("SteveKunG");
     }
