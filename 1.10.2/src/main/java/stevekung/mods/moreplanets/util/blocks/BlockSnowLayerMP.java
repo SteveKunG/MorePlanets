@@ -5,17 +5,15 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,7 +28,7 @@ public class BlockSnowLayerMP extends BlockBaseMP
 
     public BlockSnowLayerMP(String name, Item snow, int meta)
     {
-        super(Material.snow);
+        super(Material.SNOW);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.LAYERS, Integer.valueOf(1)));
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
         this.setTickRandomly(true);
@@ -64,21 +62,15 @@ public class BlockSnowLayerMP extends BlockBaseMP
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public void setBlockBoundsForItemRender()
-    {
-        this.getBoundsForLayers(0);
     }
 
     @Override

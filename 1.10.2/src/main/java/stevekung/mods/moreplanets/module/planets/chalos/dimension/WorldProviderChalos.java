@@ -3,16 +3,18 @@ package stevekung.mods.moreplanets.module.planets.chalos.dimension;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
 import stevekung.mods.moreplanets.module.planets.chalos.client.sky.SkyProviderChalos;
-import stevekung.mods.moreplanets.module.planets.chalos.world.gen.ChunkProviderChalos;
-import stevekung.mods.moreplanets.module.planets.chalos.world.gen.WorldChunkManagerChalos;
+import stevekung.mods.moreplanets.module.planets.chalos.world.gen.BiomeProviderChalos;
+import stevekung.mods.moreplanets.module.planets.chalos.world.gen.ChunkGeneratorChalos;
 import stevekung.mods.moreplanets.util.dimension.WorldProviderMP;
 
 public class WorldProviderChalos extends WorldProviderMP
@@ -147,14 +149,20 @@ public class WorldProviderChalos extends WorldProviderMP
     protected void renderWeather() {}
 
     @Override
-    public void registerWorldChunkManager()
+    public void createBiomeProvider()
     {
-        this.worldChunkMgr = new WorldChunkManagerChalos(this.worldObj.getSeed());
+        this.biomeProvider = new BiomeProviderChalos(this.worldObj.getSeed());
     }
 
     @Override
-    public IChunkProvider createChunkGenerator()
+    public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderChalos(this.worldObj, this.worldObj.getSeed());
+        return new ChunkGeneratorChalos(this.worldObj, this.worldObj.getSeed());
+    }
+
+    @Override
+    public DimensionType getDimensionType()
+    {
+        return MPDimensions.CHALOS;
     }
 }

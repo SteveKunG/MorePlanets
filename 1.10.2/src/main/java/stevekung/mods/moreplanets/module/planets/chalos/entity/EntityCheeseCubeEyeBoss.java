@@ -21,19 +21,26 @@ import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
 import stevekung.mods.moreplanets.util.entity.EntityFlyingBossMP;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
 public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IMorePlanetsBossDisplayData, IBoss
@@ -51,25 +58,25 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     {
         super(world);
         this.setSize(1.8F, 2.0F);
-        this.moveHelper = new EntityCheeseCubeEyeBoss.GhastMoveHelper();
-        this.tasks.addTask(5, new EntityCheeseCubeEyeBoss.AIRandomFly());
-        this.tasks.addTask(7, new EntityCheeseCubeEyeBoss.AILookAround());
-        this.tasks.addTask(7, new EntityCheeseCubeEyeBoss.AIFireballAttack());
-        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
+        this.moveHelper = new GhastMoveHelper(this);
     }
 
-    public void func_175454_a(boolean p_175454_1_)
+    @Override
+    protected void initEntityAI()
     {
-        this.dataWatcher.updateObject(16, Byte.valueOf((byte)(p_175454_1_ ? 1 : 0)));
+        this.tasks.addTask(5, new AIRandomFly(this));
+        this.tasks.addTask(7, new AILookAround(this));
+        this.tasks.addTask(7, new AIFireballAttack(this));
+        this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(750.0F * ConfigManagerCore.dungeonBossHealthMod);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(15.0F);
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(100.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(750.0F * ConfigManagerCore.dungeonBossHealthMod);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(15.0F);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(100.0D);
     }
 
     @Override
@@ -79,7 +86,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     }
 
     @Override
-    public void knockBack(Entity entity, float knock, double x, double z) {}
+    public void knockBack(Entity entity, float strength, double x, double z) {}
 
     @Override
     public boolean canBePushed()
@@ -173,12 +180,12 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
                         chest.setInventorySlotContents(k, null);
                     }
 
-                    ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON);
+                    /*ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON);//TODO Loot Table
 
                     // Generate twice, since it's an extra special chest
                     WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
                     WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
+                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));*/
 
                     ItemStack schematic = this.getGuaranteedLoot(this.rand);
                     int slot = this.rand.nextInt(chest.getSizeInventory());
@@ -201,7 +208,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     @Override
     public void onLivingUpdate()
     {
-        EntityPlayer player = this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 256.0);
+        EntityPlayer player = this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 256.0, false);
 
         if (player != null && !player.equals(this.targetedEntity) && !player.capabilities.isCreativeMode)
         {
@@ -227,7 +234,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
                 for (EntityPlayer p : entitiesWithin2)
                 {
-                    p.addChatMessage(new ChatComponentText(GCCoreUtil.translate("gui.skeleton_boss.message")));
+                    p.addChatMessage(new TextComponentString(GCCoreUtil.translate("gui.skeleton_boss.message")));
                 }
                 this.setDead();
                 return;
@@ -298,19 +305,6 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         }
     }
 
-    public ItemStack getGuaranteedLoot(Random rand)
-    {
-        List<ItemStack> stackList = GalacticraftRegistry.getDungeonLoot(5);
-        return stackList.get(rand.nextInt(stackList.size()));
-    }
-
-    @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
-    }
-
     @Override
     public boolean attackEntityFrom(DamageSource source, float damage)
     {
@@ -335,7 +329,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             {
                 Entity entity = source.getEntity();
 
-                if (this.riddenByEntity != entity && this.ridingEntity != entity)
+                if (this.getPassengers().contains(entity) && this.getRidingEntity() != entity)
                 {
                     if (entity != this)
                     {
@@ -357,15 +351,15 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "mob.slime.big";
+        return SoundEvents.ENTITY_SLIME_HURT;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "mob.slime.big";
+        return SoundEvents.ENTITY_SLIME_DEATH;
     }
 
     @Override
@@ -408,74 +402,80 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     }
 
     @Override
-    public IChatComponent getBossDisplayName()
+    public ITextComponent getBossDisplayName()
     {
         return this.getDisplayName();
     }
 
-    class AIFireballAttack extends EntityAIBase
+    private ItemStack getGuaranteedLoot(Random rand)
     {
-        private EntityCheeseCubeEyeBoss field_179470_b = EntityCheeseCubeEyeBoss.this;
-        public int field_179471_a;
+        List<ItemStack> stackList = GalacticraftRegistry.getDungeonLoot(5);
+        return stackList.get(rand.nextInt(stackList.size()));
+    }
+
+    private static class AIFireballAttack extends EntityAIBase
+    {
+        private EntityCheeseCubeEyeBoss parentEntity;
+        public int attackTimer;
+
+        public AIFireballAttack(EntityCheeseCubeEyeBoss ghast)
+        {
+            this.parentEntity = ghast;
+        }
 
         @Override
         public boolean shouldExecute()
         {
-            return this.field_179470_b.getAttackTarget() != null;
+            return this.parentEntity.getAttackTarget() != null;
         }
 
         @Override
         public void startExecuting()
         {
-            this.field_179471_a = 0;
+            this.attackTimer = 0;
         }
 
         @Override
-        public void resetTask()
-        {
-            this.field_179470_b.func_175454_a(false);
-        }
+        public void resetTask() {}
 
         @Override
         public void updateTask()
         {
-            EntityLivingBase entitylivingbase = this.field_179470_b.getAttackTarget();
-            double d0 = 512.0D;
-
-            if (entitylivingbase.getDistanceSqToEntity(this.field_179470_b) < d0 * d0 && this.field_179470_b.canEntityBeSeen(entitylivingbase))
+            EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
+            if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
             {
-                World world = this.field_179470_b.worldObj;
-                ++this.field_179471_a;
+                World world = this.parentEntity.worldObj;
+                ++this.attackTimer;
 
-                if (this.field_179471_a == 20)
+                if (this.attackTimer == 20)
                 {
-                    double d1 = 4.0D;
-                    Vec3 vec3 = this.field_179470_b.getLook(1.0F);
-                    double d2 = entitylivingbase.posX - (this.field_179470_b.posX + vec3.xCoord * d1);
-                    double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (0.5D + this.field_179470_b.posY + this.field_179470_b.height / 2.0F);
-                    double d4 = entitylivingbase.posZ - (this.field_179470_b.posZ + vec3.zCoord * d1);
-                    EntityCheeseSpore entitylargefireball = new EntityCheeseSpore(world, this.field_179470_b, d2, d3, d4);
-                    entitylargefireball.posX = this.field_179470_b.posX + vec3.xCoord * d1;
-                    entitylargefireball.posY = this.field_179470_b.posY + this.field_179470_b.height / 2.0F + 0.5D;
-                    entitylargefireball.posZ = this.field_179470_b.posZ + vec3.zCoord * d1;
-                    world.spawnEntityInWorld(entitylargefireball);
-                    this.field_179471_a = -40;
+                    Vec3d vec3d = this.parentEntity.getLook(1.0F);
+                    double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.xCoord * 4.0D);
+                    double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (0.5D + this.parentEntity.posY + this.parentEntity.height / 2.0F);
+                    double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.zCoord * 4.0D);
+                    world.playEvent((EntityPlayer)null, 1016, new BlockPos(this.parentEntity), 0);
+                    EntityCheeseSpore cheeseSpore = new EntityCheeseSpore(world, this.parentEntity, d2, d3, d4);
+                    cheeseSpore.posX = this.parentEntity.posX + vec3d.xCoord * 4.0D;
+                    cheeseSpore.posY = this.parentEntity.posY + this.parentEntity.height / 2.0F + 0.5D;
+                    cheeseSpore.posZ = this.parentEntity.posZ + vec3d.zCoord * 4.0D;
+                    world.spawnEntityInWorld(cheeseSpore);
+                    this.attackTimer = -40;
                 }
             }
-            else if (this.field_179471_a > 0)
+            else if (this.attackTimer > 0)
             {
-                --this.field_179471_a;
+                --this.attackTimer;
             }
-            this.field_179470_b.func_175454_a(this.field_179471_a > 10);
         }
     }
 
-    class AILookAround extends EntityAIBase
+    private static class AILookAround extends EntityAIBase
     {
-        private EntityCheeseCubeEyeBoss field_179472_a = EntityCheeseCubeEyeBoss.this;
+        private EntityCheeseCubeEyeBoss entity;
 
-        public AILookAround()
+        public AILookAround(EntityCheeseCubeEyeBoss entity)
         {
+            this.entity = entity;
             this.setMutexBits(2);
         }
 
@@ -488,38 +488,40 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         @Override
         public void updateTask()
         {
-            if (this.field_179472_a.getAttackTarget() == null)
+            if (this.entity.getAttackTarget() == null)
             {
-                this.field_179472_a.renderYawOffset = this.field_179472_a.rotationYaw = -((float)Math.atan2(this.field_179472_a.motionX, this.field_179472_a.motionZ)) * 180.0F / (float)Math.PI;
+                this.entity.rotationYaw = -((float)MathHelper.atan2(this.entity.motionX, this.entity.motionZ)) * (180F / (float)Math.PI);
+                this.entity.renderYawOffset = this.entity.rotationYaw;
             }
             else
             {
-                EntityLivingBase entitylivingbase = this.field_179472_a.getAttackTarget();
-                double d0 = 512.0D;
+                EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
 
-                if (entitylivingbase.getDistanceSqToEntity(this.field_179472_a) < d0 * d0)
+                if (entitylivingbase.getDistanceSqToEntity(this.entity) < 4096.0D)
                 {
-                    double d1 = entitylivingbase.posX - this.field_179472_a.posX;
-                    double d2 = entitylivingbase.posZ - this.field_179472_a.posZ;
-                    this.field_179472_a.renderYawOffset = this.field_179472_a.rotationYaw = -((float)Math.atan2(d1, d2)) * 180.0F / (float)Math.PI;
+                    double d1 = entitylivingbase.posX - this.entity.posX;
+                    double d2 = entitylivingbase.posZ - this.entity.posZ;
+                    this.entity.rotationYaw = -((float)MathHelper.atan2(d1, d2)) * (180F / (float)Math.PI);
+                    this.entity.renderYawOffset = this.entity.rotationYaw;
                 }
             }
         }
     }
 
-    class AIRandomFly extends EntityAIBase
+    private static class AIRandomFly extends EntityAIBase
     {
-        private EntityCheeseCubeEyeBoss field_179454_a = EntityCheeseCubeEyeBoss.this;
+        private EntityCheeseCubeEyeBoss entity;
 
-        public AIRandomFly()
+        public AIRandomFly(EntityCheeseCubeEyeBoss entity)
         {
+            this.entity = entity;
             this.setMutexBits(1);
         }
 
         @Override
         public boolean shouldExecute()
         {
-            EntityMoveHelper entitymovehelper = this.field_179454_a.getMoveHelper();
+            EntityMoveHelper entitymovehelper = this.entity.getMoveHelper();
 
             if (!entitymovehelper.isUpdating())
             {
@@ -527,9 +529,9 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             }
             else
             {
-                double d0 = entitymovehelper.getX() - this.field_179454_a.posX;
-                double d1 = entitymovehelper.getY() - this.field_179454_a.posY;
-                double d2 = entitymovehelper.getZ() - this.field_179454_a.posZ;
+                double d0 = entitymovehelper.getX() - this.entity.posX;
+                double d1 = entitymovehelper.getY() - this.entity.posY;
+                double d2 = entitymovehelper.getZ() - this.entity.posZ;
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
                 return d3 < 1.0D || d3 > 3600.0D;
             }
@@ -544,65 +546,66 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         @Override
         public void startExecuting()
         {
-            Random random = this.field_179454_a.getRNG();
-            double d0 = this.field_179454_a.posX + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
-            double d1 = this.field_179454_a.posY + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
-            double d2 = this.field_179454_a.posZ + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
-            this.field_179454_a.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
+            Random random = this.entity.getRNG();
+            double d0 = this.entity.posX + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            double d1 = this.entity.posY + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            double d2 = this.entity.posZ + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            this.entity.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
         }
     }
 
-    class GhastMoveHelper extends EntityMoveHelper
+    private static class GhastMoveHelper extends EntityMoveHelper
     {
-        private EntityCheeseCubeEyeBoss field_179927_g = EntityCheeseCubeEyeBoss.this;
-        private int field_179928_h;
+        private EntityCheeseCubeEyeBoss entity;
+        private int courseChangeCooldown;
 
-        public GhastMoveHelper()
+        public GhastMoveHelper(EntityCheeseCubeEyeBoss entity)
         {
-            super(EntityCheeseCubeEyeBoss.this);
+            super(entity);
+            this.entity = entity;
         }
 
         @Override
         public void onUpdateMoveHelper()
         {
-            if (this.update)
+            if (this.action == EntityMoveHelper.Action.MOVE_TO)
             {
-                double d0 = this.posX - this.field_179927_g.posX;
-                double d1 = this.posY - this.field_179927_g.posY;
-                double d2 = this.posZ - this.field_179927_g.posZ;
+                double d0 = this.posX - this.entity.posX;
+                double d1 = this.posY - this.entity.posY;
+                double d2 = this.posZ - this.entity.posZ;
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 
-                if (this.field_179928_h-- <= 0)
+                if (this.courseChangeCooldown-- <= 0)
                 {
-                    this.field_179928_h += this.field_179927_g.getRNG().nextInt(5) + 2;
+                    this.courseChangeCooldown += this.entity.getRNG().nextInt(5) + 2;
                     d3 = MathHelper.sqrt_double(d3);
 
-                    if (this.func_179926_b(this.posX, this.posY, this.posZ, d3))
+                    if (this.isNotColliding(this.posX, this.posY, this.posZ, d3))
                     {
-                        this.field_179927_g.motionX += d0 / d3 * 0.1D;
-                        this.field_179927_g.motionY += d1 / d3 * 0.1D;
-                        this.field_179927_g.motionZ += d2 / d3 * 0.1D;
+                        this.entity.motionX += d0 / d3 * 0.1D;
+                        this.entity.motionY += d1 / d3 * 0.1D;
+                        this.entity.motionZ += d2 / d3 * 0.1D;
                     }
                     else
                     {
-                        this.update = false;
+                        this.action = EntityMoveHelper.Action.WAIT;
                     }
                 }
             }
         }
 
-        private boolean func_179926_b(double p_179926_1_, double p_179926_3_, double p_179926_5_, double p_179926_7_)
+        private boolean isNotColliding(double x, double y, double z, double distance)
         {
-            double d4 = (p_179926_1_ - this.field_179927_g.posX) / p_179926_7_;
-            double d5 = (p_179926_3_ - this.field_179927_g.posY) / p_179926_7_;
-            double d6 = (p_179926_5_ - this.field_179927_g.posZ) / p_179926_7_;
-            AxisAlignedBB axisalignedbb = this.field_179927_g.getEntityBoundingBox();
+            double d0 = (x - this.entity.posX) / distance;
+            double d1 = (y - this.entity.posY) / distance;
+            double d2 = (z - this.entity.posZ) / distance;
+            AxisAlignedBB axisalignedbb = this.entity.getEntityBoundingBox();
 
-            for (int i = 1; i < p_179926_7_; ++i)
+            for (int i = 1; i < distance; ++i)
             {
-                axisalignedbb = axisalignedbb.offset(d4, d5, d6);
+                axisalignedbb = axisalignedbb.offset(d0, d1, d2);
 
-                if (!this.field_179927_g.worldObj.getCollidingBoundingBoxes(this.field_179927_g, axisalignedbb).isEmpty())
+                if (!this.entity.worldObj.getCollisionBoxes(this.entity, axisalignedbb).isEmpty())
                 {
                     return false;
                 }

@@ -6,7 +6,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -15,10 +15,12 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -38,12 +40,12 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
 
     public BlockInfectedCrystallizePart(String name)
     {
-        super(Material.ground);
+        super(Material.GROUND);
         this.setHardness(0.5F);
         this.setResistance(50.0F);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.INFECTED_CRYSTALLIZE_BLOCK));
         this.setUnlocalizedName(name);
-        this.setStepSound(BlockSoundHelper.ALIEN_EGG);
+        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
         this.slipperiness = 0.8F;
     }
 
@@ -74,7 +76,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (Math.abs(entity.motionY) < 0.1D && !entity.isSneaking())
         {
@@ -85,7 +87,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, this.getMetaFromState(world.getBlockState(pos)));
     }
@@ -107,21 +109,21 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        this.setBlockBounds(0.1875F, 0.0F, 0.1875F, 0.8125F, 1.0F, 0.8125F);
+        return new AxisAlignedBB(0.1875D, 0.0D, 0.1875D, 0.8125D, 1.0D, 0.8125D);
     }
 
     @Override
@@ -131,7 +133,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (state == this.getStateFromMeta(0))
         {
@@ -148,7 +150,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
                     world.setBlockState(pos, this.getStateFromMeta(1));
                     return true;
                 }
-                else if (itemStack.getItem() == Items.ender_eye)
+                else if (itemStack.getItem() == Items.ENDER_EYE)
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
@@ -181,9 +183,9 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.module.planets.diona.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -14,10 +15,10 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -26,17 +27,16 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityLarg
 import stevekung.mods.moreplanets.util.blocks.BlockContainerMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class BlockLargeInfectedCrystallize extends BlockContainerMP implements ISingleBlockRender
 {
     public BlockLargeInfectedCrystallize(String name)
     {
-        super(Material.glass);
+        super(Material.GLASS);
         this.setLightLevel(0.4F);
         this.setResistance(1.0F);
         this.setHardness(0.4F);
-        this.setStepSound(soundTypeGlass);
+        this.setSoundType(SoundType.GLASS);
         this.setUnlocalizedName(name);
         this.setLightOpacity(255);
     }
@@ -80,17 +80,15 @@ public class BlockLargeInfectedCrystallize extends BlockContainerMP implements I
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
     {
-        ItemStack itemStack = player.getCurrentEquippedItem();
-
-        if (itemStack == null || !(player.getCurrentEquippedItem().getItem() instanceof ItemPickaxe))
+        if (itemStack == null || !(player.getHeldItemMainhand().getItem() instanceof ItemPickaxe))
         {
-            player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE.id, 60));
+            player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 60));
         }
-        if (itemStack != null && player.getCurrentEquippedItem().getItem() instanceof ItemPickaxe)
+        if (itemStack != null && player.getHeldItemMainhand().getItem() instanceof ItemPickaxe)
         {
-            super.harvestBlock(world, player, pos, state, tile);
+            super.harvestBlock(world, player, pos, state, tile, itemStack);
         }
     }
 
@@ -116,7 +114,7 @@ public class BlockLargeInfectedCrystallize extends BlockContainerMP implements I
                 else
                 {
                     EntityLivingBase living = (EntityLivingBase) entity;
-                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE.id, 60));
+                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 60));
                 }
             }
         }
@@ -134,7 +132,7 @@ public class BlockLargeInfectedCrystallize extends BlockContainerMP implements I
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, 0);
     }
@@ -174,19 +172,13 @@ public class BlockLargeInfectedCrystallize extends BlockContainerMP implements I
     }
 
     @Override
-    public int colorMultiplier(IBlockAccess world, BlockPos pos, int render)
-    {
-        return ColorHelper.rgbToDecimal(120, 85, 190);
-    }
-
-    @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -198,7 +190,7 @@ public class BlockLargeInfectedCrystallize extends BlockContainerMP implements I
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
         if (this.checkIfAttachedToBlock(world, pos))
         {

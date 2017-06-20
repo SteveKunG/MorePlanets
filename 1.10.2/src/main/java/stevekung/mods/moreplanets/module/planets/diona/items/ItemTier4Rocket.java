@@ -4,10 +4,10 @@ import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.entity.IRocketType.EnumRocketType;
 import micdoodle8.mods.galacticraft.core.GCFluids;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -57,6 +57,6 @@ public class ItemTier4Rocket extends ItemRocketBaseMP
     protected void addDescription(ItemStack itemStack, List list)
     {
         EntityTier4Rocket rocket = new EntityTier4Rocket(Minecraft.getMinecraft().theWorld, 0, 0, 0, EnumRocketType.values()[itemStack.getItemDamage()]);
-        list.add(StatCollector.translateToLocal("gui.message.fuel.name") + ": " + itemStack.getTagCompound().getInteger("RocketFuel") + " / " + rocket.fuelTank.getCapacity());
+        list.add(GCCoreUtil.translate("gui.message.fuel.name") + ": " + itemStack.getTagCompound().getInteger("RocketFuel") + " / " + rocket.fuelTank.getCapacity());
     }
 }

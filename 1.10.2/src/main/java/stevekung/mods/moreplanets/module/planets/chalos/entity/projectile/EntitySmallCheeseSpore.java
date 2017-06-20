@@ -8,7 +8,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -67,15 +70,15 @@ public class EntitySmallCheeseSpore extends EntityFireball
                 ++this.ticksInAir;
             }
 
-            Vec3 vec3 = new Vec3(this.posX, this.posY, this.posZ);
-            Vec3 vec31 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks(vec3, vec31);
-            vec3 = new Vec3(this.posX, this.posY, this.posZ);
-            vec31 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            Vec3d vec3 = new Vec3d(this.posX, this.posY, this.posZ);
+            Vec3d vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            RayTraceResult movingobjectposition = this.worldObj.rayTraceBlocks(vec3, vec31);
+            vec3 = new Vec3d(this.posX, this.posY, this.posZ);
+            vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
             if (movingobjectposition != null)
             {
-                vec31 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+                vec31 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
             }
 
             Entity entity = null;
@@ -90,7 +93,7 @@ public class EntitySmallCheeseSpore extends EntityFireball
                 {
                     float f = 0.3F;
                     AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f, f, f);
-                    MovingObjectPosition movingobjectposition1 = axisalignedbb.calculateIntercept(vec3, vec31);
+                    RayTraceResult movingobjectposition1 = axisalignedbb.calculateIntercept(vec3, vec31);
 
                     if (movingobjectposition1 != null)
                     {
@@ -107,7 +110,7 @@ public class EntitySmallCheeseSpore extends EntityFireball
 
             if (entity != null)
             {
-                movingobjectposition = new MovingObjectPosition(entity);
+                movingobjectposition = new RayTraceResult(entity);
             }
             if (movingobjectposition != null)
             {
@@ -163,7 +166,7 @@ public class EntitySmallCheeseSpore extends EntityFireball
     }
 
     @Override
-    protected void onImpact(MovingObjectPosition moving)
+    protected void onImpact(RayTraceResult moving)
     {
         if (!this.worldObj.isRemote)
         {
@@ -200,7 +203,7 @@ public class EntitySmallCheeseSpore extends EntityFireball
         nbt.setShort("xTile", (short)this.xTile);
         nbt.setShort("yTile", (short)this.yTile);
         nbt.setShort("zTile", (short)this.zTile);
-        ResourceLocation resourcelocation = Block.blockRegistry.getNameForObject(this.inTile);
+        ResourceLocation resourcelocation = Block.REGISTRY.getNameForObject(this.inTile);
         nbt.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
         nbt.setByte("inGround", (byte)(this.inGround ? 1 : 0));
         nbt.setTag("direction", this.newDoubleNBTList(new double[] {this.motionX, this.motionY, this.motionZ}));

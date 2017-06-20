@@ -22,6 +22,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IInteractionObject;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -121,7 +123,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     @Override
     public String getName()
     {
-        return StatCollector.translateToLocal("container." + this.name + ".treasurechest.name");
+        return GCCoreUtil.translate("container." + this.name + ".treasurechest.name");
     }
 
     @Override
@@ -413,9 +415,9 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     }
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
-        return new ChatComponentText(this.getName());
+        return new TextComponentString(this.getName());
     }
 
     @Override

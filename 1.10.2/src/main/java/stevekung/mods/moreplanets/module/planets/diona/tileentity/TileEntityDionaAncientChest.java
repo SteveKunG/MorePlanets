@@ -1,8 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.diona.tileentity;
 
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAncientChestMP;
 

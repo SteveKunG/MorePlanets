@@ -6,8 +6,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
@@ -45,9 +45,8 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         NBTTagList list = new NBTTagList();
 
         for (int i = 0; i < this.containingItems.length; ++i)
@@ -61,6 +60,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
             }
         }
         nbt.setTag("Items", list);
+        return super.writeToNBT(nbt);
     }
 
     @Override
@@ -186,8 +186,8 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     public void clear() {}
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
-        return new ChatComponentTranslation(this.getName());
+        return new TextComponentTranslation(this.getName());
     }
 }

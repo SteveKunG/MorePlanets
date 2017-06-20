@@ -5,14 +5,18 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public abstract class BlockCakeMP extends BlockBaseMP
@@ -59,13 +63,13 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
@@ -124,7 +128,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
 
     private boolean canBlockStay(World world, BlockPos pos)
     {
-        return world.getBlockState(pos.down()).getBlock().getMaterial().isSolid();
+        return world.getBlockState(pos.down()).getMaterial().isSolid();
     }
 
     @Override
@@ -146,6 +150,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
         return EnumWorldBlockLayer.CUTOUT;
@@ -164,19 +169,19 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { BlockStateHelper.BITES });
+        return new BlockStateContainer(this, new IProperty[] { BlockStateHelper.BITES });
     }
 
     @Override
-    public int getComparatorInputOverride(World world, BlockPos pos)
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
         return (7 - world.getBlockState(pos).getValue(BlockStateHelper.BITES).intValue()) * 2;
     }
 
     @Override
-    public boolean hasComparatorInputOverride()
+    public boolean hasComparatorInputOverride(IBlockState state)
     {
         return true;
     }

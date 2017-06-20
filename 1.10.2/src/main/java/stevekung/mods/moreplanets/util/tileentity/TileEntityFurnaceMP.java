@@ -158,9 +158,8 @@ public abstract class TileEntityFurnaceMP extends TileEntityLockable implements 
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound)
+    public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
-        super.writeToNBT(compound);
         compound.setInteger("BurnTime", this.furnaceBurnTime);
         compound.setInteger("CookTime", this.cookTime);
         compound.setInteger("CookTimeTotal", this.totalCookTime);
@@ -183,6 +182,7 @@ public abstract class TileEntityFurnaceMP extends TileEntityLockable implements 
         {
             compound.setString("CustomName", this.furnaceCustomName);
         }
+        return super.writeToNBT(compound);
     }
 
     @Override

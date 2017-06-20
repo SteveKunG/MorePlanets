@@ -3,11 +3,9 @@ package stevekung.mods.moreplanets.module.planets.diona.world.gen.feature;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ChestGenHooks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
@@ -40,7 +38,7 @@ public class WorldGenCrashedAlienProbe extends WorldGenerator
 
                     if (distance <= radiusSq)
                     {
-                        world.setBlockState(posnew, Blocks.air.getDefaultState(), 2);
+                        world.setBlockState(posnew, Blocks.AIR.getDefaultState(), 2);
                     }
                     else if (world.getBlockState(posnew).getBlock() == DionaBlocks.DIONA_BLOCK && poolY < 0 && rand.nextInt(4) == 0)
                     {

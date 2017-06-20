@@ -3,11 +3,16 @@ package stevekung.mods.moreplanets.util.itemblocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockSlab.EnumBlockHalf;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,23 +29,15 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (this.block instanceof ISlabBlock)
         {
             ISlabBlock singleSlab = (ISlabBlock) this.block;
 
-            if (itemStack.stackSize == 0)
+            if (itemStack.stackSize != 0 && player.canPlayerEdit(pos.offset(facing), facing, itemStack))
             {
-                return false;
-            }
-            else if (!player.canPlayerEdit(pos.offset(side), side, itemStack))
-            {
-                return false;
-            }
-            else
-            {
-                Object object = singleSlab.getHalf().getVariant(itemStack);
+                Object object = singleSlab.getHalf().getTypeForItem(itemStack);
                 IBlockState state = world.getBlockState(pos);
 
                 if (state.getBlock() == singleSlab.getHalf())
@@ -49,22 +46,28 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
                     Comparable comparable = state.getValue(iproperty);
                     EnumBlockHalf enumblockhalf = state.getValue(BlockSlab.HALF);
 
-                    if ((side == EnumFacing.UP && enumblockhalf == EnumBlockHalf.BOTTOM || side == EnumFacing.DOWN && enumblockhalf == BlockSlab.EnumBlockHalf.TOP) && comparable == object)
+                    if ((facing == EnumFacing.UP && enumblockhalf == EnumBlockHalf.BOTTOM || facing == EnumFacing.DOWN && enumblockhalf == BlockSlab.EnumBlockHalf.TOP) && comparable == object)
                     {
                         IBlockState state1 = singleSlab.getDouble().getDefaultState().withProperty(iproperty, comparable);
+                        AxisAlignedBB axisalignedbb = state1.getCollisionBoundingBox(world, pos);
 
-                        if (world.checkNoEntityCollision(singleSlab.getDouble().getCollisionBoundingBox(world, pos, state1)) && world.setBlockState(pos, state1, 3))
+                        if (axisalignedbb != Block.NULL_AABB && world.checkNoEntityCollision(axisalignedbb.offset(pos)) && world.setBlockState(pos, state1, 11))
                         {
-                            world.playSoundEffect(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, singleSlab.getDouble().stepSound.getPlaceSound(), (singleSlab.getDouble().stepSound.getVolume() + 1.0F) / 2.0F, singleSlab.getDouble().stepSound.getFrequency() * 0.8F);
+                            SoundType sound = singleSlab.getDouble().getSoundType(state1, world, pos, player);
+                            world.playSound(player, pos, sound.getPlaceSound(), SoundCategory.BLOCKS, (sound.getVolume() + 1.0F) / 2.0F, sound.getPitch() * 0.8F);
                             --itemStack.stackSize;
                         }
-                        return true;
+                        return EnumActionResult.SUCCESS;
                     }
                 }
-                return this.tryPlace(itemStack, world, pos.offset(side), object, singleSlab.getHalf(), singleSlab.getDouble()) ? true : super.onItemUse(itemStack, player, world, pos, side, hitX, hitY, hitZ);
+                return this.tryPlace(player, itemStack, world, pos.offset(facing), object, singleSlab.getHalf(), singleSlab.getDouble()) ? EnumActionResult.SUCCESS : super.onItemUse(itemStack, player, world, pos, hand, facing, hitX, hitY, hitZ);
             }
         }
-        return super.onItemUse(itemStack, player, world, pos, side, hitX, hitY, hitZ);
+        else
+        {
+            return EnumActionResult.FAIL;
+        }
+        return EnumActionResult.FAIL;
     }
 
     @Override
@@ -77,7 +80,7 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
 
             BlockPos blockpos1 = pos;
             IProperty iproperty = singleSlab.getHalf().getVariantProperty();
-            Object object = singleSlab.getHalf().getVariant(itemStack);
+            Object object = singleSlab.getHalf().getTypeForItem(itemStack);
             IBlockState state = world.getBlockState(pos);
 
             if (state.getBlock() == singleSlab.getHalf())
@@ -106,7 +109,7 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
         return new String[] {};
     }
 
-    private boolean tryPlace(ItemStack itemStack, World world, BlockPos pos, Object variantInStack, BlockSlabMP half, BlockSlabMP doubleSlab)
+    private boolean tryPlace(EntityPlayer player, ItemStack itemStack, World world, BlockPos pos, Object variantInStack, BlockSlabMP half, BlockSlabMP doubleSlab)
     {
         IBlockState state = world.getBlockState(pos);
 
@@ -117,10 +120,12 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
             if (comparable == variantInStack)
             {
                 IBlockState state1 = doubleSlab.getDefaultState().withProperty((IProperty)half.getVariantProperty(), comparable);
+                AxisAlignedBB axisalignedbb = state1.getCollisionBoundingBox(world, pos);
 
-                if (world.checkNoEntityCollision(doubleSlab.getCollisionBoundingBox(world, pos, state1)) && world.setBlockState(pos, state1, 3))
+                if (axisalignedbb != Block.NULL_AABB && world.checkNoEntityCollision(axisalignedbb.offset(pos)) && world.setBlockState(pos, state1, 11))
                 {
-                    world.playSoundEffect(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, doubleSlab.stepSound.getPlaceSound(), (doubleSlab.stepSound.getVolume() + 1.0F) / 2.0F, doubleSlab.stepSound.getFrequency() * 0.8F);
+                    SoundType soundtype = doubleSlab.getSoundType(state1, world, pos, player);
+                    world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                     --itemStack.stackSize;
                 }
                 return true;

@@ -14,8 +14,11 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.network.play.server.S2BPacketChangeGameState;
-import net.minecraft.util.*;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.network.play.server.SPacketChangeGameState;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
@@ -29,16 +32,6 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
     public EntityArrowMP(World world, double x, double y, double z)
     {
         super(world, x, y, z);
-    }
-
-    public EntityArrowMP(World world, EntityLivingBase shooter, EntityLivingBase target, float velocity, float inaccuracy)
-    {
-        super(world, shooter, target, velocity, inaccuracy);
-    }
-
-    public EntityArrowMP(World world, EntityLivingBase shooter, float velocity)
-    {
-        super(world, shooter, velocity);
     }
 
     @Override
@@ -57,12 +50,11 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
         IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
 
-        if (block.getMaterial() != Material.air)
+        if (iblockstate.getMaterial() != Material.AIR)
         {
-            block.setBlockBoundsBasedOnState(this.worldObj, blockpos);
-            AxisAlignedBB axisalignedbb = block.getCollisionBoundingBox(this.worldObj, blockpos, iblockstate);
+            AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.worldObj, blockpos);
 
-            if (axisalignedbb != null && axisalignedbb.isVecInside(new Vec3(this.posX, this.posY, this.posZ)))
+            if (axisalignedbb != null && axisalignedbb.offset(blockpos).isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
             {
                 this.inGround = true;
             }
@@ -99,15 +91,15 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
         else
         {
             ++this.ticksInAir;
-            Vec3 vec31 = new Vec3(this.posX, this.posY, this.posZ);
-            Vec3 vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3, false, true, false);
-            vec31 = new Vec3(this.posX, this.posY, this.posZ);
-            vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            Vec3d vec31 = new Vec3d(this.posX, this.posY, this.posZ);
+            Vec3d vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            RayTraceResult movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3, false, true, false);
+            vec31 = new Vec3d(this.posX, this.posY, this.posZ);
+            vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
             if (movingobjectposition != null)
             {
-                vec3 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+                vec3 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
             }
 
             Entity entity = null;
@@ -122,7 +114,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                 {
                     float f1 = 0.3F;
                     AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expand(f1, f1, f1);
-                    MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
+                    RayTraceResult movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
                     if (movingobjectposition1 != null)
                     {
@@ -139,7 +131,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
 
             if (entity != null)
             {
-                movingobjectposition = new MovingObjectPosition(entity);
+                movingobjectposition = new RayTraceResult(entity);
             }
 
             if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer)
@@ -209,11 +201,11 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                             }
                             if (this.shootingEntity != null && movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
                             {
-                                ((EntityPlayerMP)this.shootingEntity).playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
+                                ((EntityPlayerMP)this.shootingEntity).connection.sendPacket(new SPacketChangeGameState(6, 0.0F));
                             }
                         }
 
-                        this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+                        this.playSound(SoundEvents.ENTITY_ARROW_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 
                         if (!(movingobjectposition.entityHit instanceof EntityEnderman))
                         {
@@ -246,12 +238,12 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                     this.posX -= this.motionX / f5 * 0.05000000074505806D;
                     this.posY -= this.motionY / f5 * 0.05000000074505806D;
                     this.posZ -= this.motionZ / f5 * 0.05000000074505806D;
-                    this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+                    this.playSound(SoundEvents.ENTITY_ARROW_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
                     this.inGround = true;
                     this.arrowShake = 7;
                     this.setIsCritical(false);
 
-                    if (this.inTile.getMaterial() != Material.air)
+                    if (iblockstate1.getMaterial() != Material.AIR)
                     {
                         this.inTile.onEntityCollidedWithBlock(this.worldObj, blockpos1, iblockstate1, this);
                     }

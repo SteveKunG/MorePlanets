@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
@@ -163,16 +163,16 @@ public class MapGenChalosCave extends MapGenBase
                                             {
                                                 if (j3 < 10)
                                                 {
-                                                    chunk.setBlockState(k2, j3, j4, Blocks.lava.getDefaultState());
+                                                    chunk.setBlockState(k2, j3, j4, Blocks.LAVA.getDefaultState());
                                                 }
                                                 else
                                                 {
-                                                    chunk.setBlockState(k2, j3, j4, Blocks.air.getDefaultState());
+                                                    chunk.setBlockState(k2, j3, j4, Blocks.AIR.getDefaultState());
                                                 }
                                             }
                                             else if (state.getBlock() == ChalosBlocks.CHEESE_GRASS || state.getBlock() == ChalosBlocks.CHEESE_SLIME_BLOCK)
                                             {
-                                                chunk.setBlockState(k2, j3, j4, Blocks.air.getDefaultState());
+                                                chunk.setBlockState(k2, j3, j4, Blocks.AIR.getDefaultState());
                                             }
                                         }
                                     }

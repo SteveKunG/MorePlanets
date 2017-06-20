@@ -15,12 +15,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.dimension.IDarkEnergyProvider;
@@ -138,9 +137,8 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         nbt.setFloat("MaxEnergy", this.getMaxEnergyStoredGC());
         nbt.setInteger("DisabledCooldown", this.disableCooldown);
         nbt.setBoolean("Disabled", this.getDisabled(0));
@@ -159,18 +157,19 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
             }
         }
         nbt.setTag("Items", list);
+        return super.writeToNBT(nbt);
     }
 
     @Override
-    public Packet getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("Facing", this.facing);
-        return new S35PacketUpdateTileEntity(this.pos, -1, nbt);
+        return new SPacketUpdateTileEntity(this.pos, -1, nbt);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         if (pkt.getTileEntityType() == -1)
         {
@@ -212,7 +211,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox()
     {
-        return AxisAlignedBB.fromBounds(this.getPos().getX() - 1, this.getPos().getY(), this.getPos().getZ() - 1, this.getPos().getX() + 2, this.getPos().getY() + 4, this.getPos().getZ() + 2);
+        return new AxisAlignedBB(this.getPos().getX() - 1, this.getPos().getY(), this.getPos().getZ() - 1, this.getPos().getX() + 2, this.getPos().getY() + 4, this.getPos().getZ() + 2);
     }
 
     @Override
@@ -387,8 +386,8 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     public void clear() {}
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
-        return new ChatComponentTranslation(this.getName());
+        return new TextComponentTranslation(this.getName());
     }
 }

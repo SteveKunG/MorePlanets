@@ -2,11 +2,12 @@ package stevekung.mods.moreplanets.util.blocks;
 
 import java.util.Iterator;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
@@ -15,10 +16,10 @@ public abstract class BlockLogMP extends BlockBaseMP
 {
     public BlockLogMP()
     {
-        super(Material.wood);
+        super(Material.WOOD);
         this.setHardness(2.0F);
         this.setResistance(5.0F);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
     }
 
     public BlockLogMP(Material material)
@@ -26,7 +27,7 @@ public abstract class BlockLogMP extends BlockBaseMP
         super(material);
         this.setHardness(2.0F);
         this.setResistance(5.0F);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
     }
 
     @Override
@@ -50,16 +51,16 @@ public abstract class BlockLogMP extends BlockBaseMP
                 BlockPos blockpos1 = (BlockPos)iterator.next();
                 IBlockState iblockstate1 = world.getBlockState(blockpos1);
 
-                if (iblockstate1.getBlock().isLeaves(world, blockpos1))
+                if (iblockstate1.getBlock().isLeaves(iblockstate1, world, blockpos1))
                 {
-                    iblockstate1.getBlock().beginLeavesDecay(world, blockpos1);
+                    iblockstate1.getBlock().beginLeavesDecay(iblockstate1, world, blockpos1);
                 }
             }
         }
     }
 
     @Override
-    public boolean canSustainLeaves(IBlockAccess world, BlockPos pos)
+    public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return true;
     }

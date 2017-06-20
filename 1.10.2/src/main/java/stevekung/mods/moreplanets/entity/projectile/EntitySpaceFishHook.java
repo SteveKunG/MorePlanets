@@ -14,24 +14,22 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.WeightedRandom;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.storage.loot.LootContext;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 
 public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditionalSpawnData
 {
@@ -142,7 +140,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport)
+    public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport)
     {
         this.fishX = x;
         this.fishY = y;
@@ -174,7 +172,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
             double d7 = this.posX + (this.fishX - this.posX) / this.fishPosRotationIncrements;
             double d8 = this.posY + (this.fishY - this.posY) / this.fishPosRotationIncrements;
             double d9 = this.posZ + (this.fishZ - this.posZ) / this.fishPosRotationIncrements;
-            double d1 = MathHelper.wrapAngleTo180_double(this.fishYaw - this.rotationYaw);
+            double d1 = MathHelper.wrapDegrees(this.fishYaw - this.rotationYaw);
             this.rotationYaw = (float)(this.rotationYaw + d1 / this.fishPosRotationIncrements);
             this.rotationPitch = (float)(this.rotationPitch + (this.fishPitch - this.rotationPitch) / this.fishPosRotationIncrements);
             --this.fishPosRotationIncrements;
@@ -187,7 +185,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
             {
                 if (this.angler != null)
                 {
-                    ItemStack itemStack = this.angler.getCurrentEquippedItem();
+                    ItemStack itemStack = this.angler.getHeldItemMainhand();
 
                     if (this.angler == null || this.angler.isDead || !this.angler.isEntityAlive() || itemStack == null || itemStack.getItem() == null || itemStack.getItem() != MPItems.SPACE_FISHING_ROD || !itemStack.hasTagCompound() || itemStack.hasTagCompound() && !itemStack.getTagCompound().getBoolean("Cast") || this.getDistanceSqToEntity(this.angler) > 1024.0D)
                     {
@@ -216,11 +214,6 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                 }
             }
 
-            if (this.shake > 0)
-            {
-                --this.shake;
-            }
-
             if (this.inGround)
             {
                 if (this.worldObj.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock() == this.inTile)
@@ -246,15 +239,15 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                 ++this.ticksInAir;
             }
 
-            Vec3 vec31 = new Vec3(this.posX, this.posY, this.posZ);
-            Vec3 vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3);
-            vec31 = new Vec3(this.posX, this.posY, this.posZ);
-            vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            Vec3d vec31 = new Vec3d(this.posX, this.posY, this.posZ);
+            Vec3d vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            RayTraceResult movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3);
+            vec31 = new Vec3d(this.posX, this.posY, this.posZ);
+            vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
             if (movingobjectposition != null)
             {
-                vec3 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+                vec3 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
             }
 
             Entity entity = null;
@@ -269,7 +262,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                 {
                     float f = 0.3F;
                     AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f, f, f);
-                    MovingObjectPosition movingobjectposition1 = axisalignedbb.calculateIntercept(vec31, vec3);
+                    RayTraceResult movingobjectposition1 = axisalignedbb.calculateIntercept(vec31, vec3);
 
                     if (movingobjectposition1 != null)
                     {
@@ -286,7 +279,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
 
             if (entity != null)
             {
-                movingobjectposition = new MovingObjectPosition(entity);
+                movingobjectposition = new RayTraceResult(entity);
             }
 
             if (movingobjectposition != null)
@@ -345,7 +338,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                     double d5 = axisalignedbb1.minY + d3 * (k + 1) / j;
                     AxisAlignedBB axisalignedbb2 = new AxisAlignedBB(axisalignedbb1.minX, d4, axisalignedbb1.minZ, axisalignedbb1.maxX, d5, axisalignedbb1.maxZ);
 
-                    if (this.worldObj.isAABBInMaterial(axisalignedbb2, Material.water))
+                    if (this.worldObj.isAABBInMaterial(axisalignedbb2, Material.WATER))
                     {
                         d10 += 1.0D / j;
                     }
@@ -357,7 +350,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                     int l = 1;
                     BlockPos blockpos = new BlockPos(this).up();
 
-                    if (this.rand.nextFloat() < 0.25F && this.worldObj.canLightningStrike(blockpos))
+                    if (this.rand.nextFloat() < 0.25F && this.worldObj.isRainingAt(blockpos))
                     {
                         l = 2;
                     }
@@ -383,7 +376,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                         if (this.ticksCatchableDelay <= 0)
                         {
                             this.motionY -= 0.20000000298023224D;
-                            this.playSound("random.splash", 0.25F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
+                            this.playSound(SoundEvents.ENTITY_BOBBER_SPLASH, 0.25F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
                             float f8 = MathHelper.floor_double(this.getEntityBoundingBox().minY);
                             worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX, f8 + 1.0F, this.posZ, (int)(1.0F + this.width * 20.0F), this.width, 0.0D, this.width, 0.20000000298023224D, new int[0]);
                             worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, this.posX, f8 + 1.0F, this.posZ, (int)(1.0F + this.width * 20.0F), this.width, 0.0D, this.width, 0.20000000298023224D, new int[0]);
@@ -400,7 +393,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                             double d16 = this.posZ + f11 * this.ticksCatchableDelay * 0.1F;
                             Block block1 = worldserver.getBlockState(new BlockPos((int)d13, (int)d15 - 1, (int)d16)).getBlock();
 
-                            if (block1 == Blocks.water || block1 == Blocks.flowing_water || block1 instanceof IFishableLiquidBlock)
+                            if (block1 == Blocks.WATER || block1 == Blocks.FLOWING_WATER || block1 instanceof IFishableLiquidBlock)
                             {
                                 if (this.rand.nextFloat() < 0.15F)
                                 {
@@ -440,7 +433,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                             double d6 = this.posZ + MathHelper.cos(f9) * f2 * 0.1F;
                             Block block = worldserver.getBlockState(new BlockPos((int)d12, (int)d14 - 1, (int)d6)).getBlock();
 
-                            if (block == Blocks.water || block == Blocks.flowing_water || block instanceof IFishableLiquidBlock)
+                            if (block == Blocks.WATER || block == Blocks.FLOWING_WATER || block instanceof IFishableLiquidBlock)
                             {
                                 worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d12, d14, d6, 2 + this.rand.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D, new int[0]);
                             }
@@ -487,9 +480,8 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
         tagCompound.setShort("xTile", (short)this.xTile);
         tagCompound.setShort("yTile", (short)this.yTile);
         tagCompound.setShort("zTile", (short)this.zTile);
-        ResourceLocation resourcelocation = Block.blockRegistry.getNameForObject(this.inTile);
+        ResourceLocation resourcelocation = Block.REGISTRY.getNameForObject(this.inTile);
         tagCompound.setString("inTile", resourcelocation == null ? "" : resourcelocation.toString());
-        tagCompound.setByte("shake", (byte)this.shake);
         tagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
     }
 
@@ -508,7 +500,6 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
         {
             this.inTile = Block.getBlockById(tagCompund.getByte("inTile") & 255);
         }
-        this.shake = tagCompund.getByte("shake") & 255;
         this.inGround = tagCompund.getByte("inGround") == 1;
     }
 
@@ -537,17 +528,22 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
             }
             else if (this.ticksCatchable > 0)
             {
-                EntityItem entityitem = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, this.getFishingResult());
-                double d1 = this.angler.posX - this.posX;
-                double d3 = this.angler.posY - this.posY;
-                double d5 = this.angler.posZ - this.posZ;
-                double d7 = MathHelper.sqrt_double(d1 * d1 + d3 * d3 + d5 * d5);
-                double d9 = 0.1D;
-                entityitem.motionX = d1 * d9;
-                entityitem.motionY = d3 * d9 + MathHelper.sqrt_double(d7) * 0.08D;
-                entityitem.motionZ = d5 * d9;
-                this.worldObj.spawnEntityInWorld(entityitem);
-                this.angler.worldObj.spawnEntityInWorld(new EntityXPOrb(this.angler.worldObj, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
+                LootContext.Builder context = new LootContext.Builder((WorldServer)this.worldObj);
+                context.withLuck(EnchantmentHelper.getLuckOfSeaModifier(this.angler) + this.angler.getLuck());
+
+                for (ItemStack itemStack : this.worldObj.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, context.build()))//TODO Custom Fishing Loot Table
+                {
+                    EntityItem entityitem = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, itemStack);
+                    double d0 = this.angler.posX - this.posX;
+                    double d1 = this.angler.posY - this.posY;
+                    double d2 = this.angler.posZ - this.posZ;
+                    double d3 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+                    entityitem.motionX = d0 * 0.1D;
+                    entityitem.motionY = d1 * 0.1D + MathHelper.sqrt_double(d3) * 0.08D;
+                    entityitem.motionZ = d2 * 0.1D;
+                    this.worldObj.spawnEntityInWorld(entityitem);
+                    this.angler.worldObj.spawnEntityInWorld(new EntityXPOrb(this.angler.worldObj, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
+                }
                 i = 1;
             }
             if (this.inGround)
@@ -560,7 +556,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
         }
     }
 
-    private ItemStack getFishingResult()
+    /*private ItemStack getFishingResult() TODO
     {
         float chance = this.worldObj.rand.nextFloat();
         int luck = EnchantmentHelper.getLuckOfSeaModifier(this.angler);
@@ -649,7 +645,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                 return WeightedRandom.getRandomItem(this.rand, EntityFishHook.FISH).getItemStack(this.rand);
             }
         }
-    }
+    }*/
 
     @Override
     public void setDead()

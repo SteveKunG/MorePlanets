@@ -6,14 +6,15 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -27,11 +28,11 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
 
     public BlockLeavesMP()
     {
-        super(Material.leaves);
+        super(Material.LEAVES);
         this.setTickRandomly(true);
         this.setHardness(0.2F);
         this.setLightOpacity(1);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.PLANT);
     }
 
     @Override
@@ -54,9 +55,9 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
                         BlockPos blockpos1 = pos.add(i1, j1, k1);
                         IBlockState iblockstate1 = world.getBlockState(blockpos1);
 
-                        if (iblockstate1.getBlock().isLeaves(world, blockpos1))
+                        if (iblockstate1.getBlock().isLeaves(iblockstate1, world, blockpos1))
                         {
-                            iblockstate1.getBlock().beginLeavesDecay(world, blockpos1);
+                            iblockstate1.getBlock().beginLeavesDecay(iblockstate1, world, blockpos1);
                         }
                     }
                 }
@@ -101,9 +102,9 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
                                 BlockPos tmp = new BlockPos(j + k1, k + l1, l + i2);
                                 Block block = world.getBlockState(tmp).getBlock();
 
-                                if (!block.canSustainLeaves(world, tmp))
+                                if (!block.canSustainLeaves(world.getBlockState(tmp), world, tmp))
                                 {
-                                    if (block.isLeaves(world, tmp))
+                                    if (block.isLeaves(world.getBlockState(tmp), world, tmp))
                                     {
                                         this.surroundings[(k1 + j1) * i1 + (l1 + j1) * b1 + i2 + j1] = -2;
                                     }
@@ -188,22 +189,23 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
-        return Blocks.leaves.isOpaqueCube();
-    }
-
-    @Override
-    public EnumWorldBlockLayer getBlockLayer()
-    {
-        return Blocks.leaves.getBlockLayer();
+        return Blocks.LEAVES.isOpaqueCube(state);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing side)
+    public BlockRenderLayer getBlockLayer()
     {
-        return Blocks.leaves.shouldSideBeRendered(world, pos, side);
+        return Blocks.LEAVES.getBlockLayer();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
+    {
+        return Blocks.LEAVES.shouldSideBeRendered(state, world, pos, side);
     }
 
     @Override
@@ -214,9 +216,9 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        if (world.canLightningStrike(pos.up()) && !World.doesBlockHaveSolidTopSurface(world, pos.down()) && rand.nextInt(15) == 1)
+        if (world.isRainingAt(pos.up()) && !world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && rand.nextInt(15) == 1)
         {
             double d0 = pos.getX() + rand.nextFloat();
             double d1 = pos.getY() - 0.05D;
@@ -276,16 +278,14 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
     }
 
     @Override
-    public boolean isLeaves(IBlockAccess world, BlockPos pos)
+    public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return true;
     }
 
     @Override
-    public void beginLeavesDecay(World world, BlockPos pos)
+    public void beginLeavesDecay(IBlockState state, World world, BlockPos pos)
     {
-        IBlockState state = world.getBlockState(pos);
-
         if (!(Boolean)state.getValue(BlockStateHelper.CHECK_DECAY))
         {
             world.setBlockState(pos, state.withProperty(BlockStateHelper.CHECK_DECAY, true), 4);

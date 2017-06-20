@@ -1,7 +1,13 @@
 package stevekung.mods.moreplanets.module.planets.diona.items;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizeBomb;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
@@ -17,21 +23,23 @@ public class ItemInfectedCrystallizeBomb extends ItemBaseMP
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if (!player.capabilities.isCreativeMode)
         {
             --itemStack.stackSize;
         }
 
-        world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (world.rand.nextFloat() * 0.4F + 0.8F));
-        player.swingItem();
+        world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         if (!world.isRemote)
         {
-            world.spawnEntityInWorld(new EntityInfectedCrystallizeBomb(world, player));
+            EntityInfectedCrystallizeBomb bomb = new EntityInfectedCrystallizeBomb(world, player);
+            bomb.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+            world.spawnEntityInWorld(bomb);
         }
-        return itemStack;
+        player.addStat(StatList.getObjectUseStats(this));
+        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
     }
 
     @Override

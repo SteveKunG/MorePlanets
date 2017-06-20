@@ -10,10 +10,19 @@ import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.network.play.server.SPacketChangeGameState;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,6 +31,7 @@ import stevekung.mods.moreplanets.util.DamageSourceMP;
 
 public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdditionalSpawnData
 {
+    private static DataParameter<Integer> LASER_TYPE = EntityDataManager.createKey(EntityLaserBullet.class, DataSerializers.VARINT);
     public Entity shootingEntity;
     public int ticksInAir;
     public double damage;
@@ -29,14 +39,12 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     public EntityLaserBullet(World world)
     {
         super(world);
-        Entity.renderDistanceWeight = 10.0D;
         this.setSize(0.1F, 0.1F);
     }
 
     public EntityLaserBullet(World world, double x, double y, double z)
     {
         super(world);
-        Entity.renderDistanceWeight = 10.0D;
         this.setSize(0.1F, 0.1F);
         this.setPosition(x, y, z);
     }
@@ -44,7 +52,6 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     public EntityLaserBullet(World world, EntityLivingBase shooter, EntityLivingBase indirect, float velocity, float inaccuracy)
     {
         super(world);
-        Entity.renderDistanceWeight = 10.0D;
         this.shootingEntity = shooter;
         this.posY = shooter.posY + shooter.getEyeHeight() - 0.10000000149011612D;
         double d0 = indirect.posX - shooter.posX;
@@ -67,7 +74,6 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     public EntityLaserBullet(World world, EntityLivingBase shooter, float velocity)
     {
         super(world);
-        Entity.renderDistanceWeight = 10.0D;
         this.shootingEntity = shooter;
         this.setSize(0.1F, 0.1F);
         this.setLocationAndAngles(shooter.posX, shooter.posY + shooter.getEyeHeight(), shooter.posZ, shooter.rotationYaw, shooter.rotationPitch);
@@ -84,8 +90,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     @Override
     protected void entityInit()
     {
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
+        this.dataManager.register(EntityLaserBullet.LASER_TYPE, 0);
     }
 
     @Override
@@ -111,7 +116,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
+    public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport)
     {
         this.setPosition(x, y, z);
         this.setRotation(yaw, pitch);
@@ -149,15 +154,15 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         }
 
         ++this.ticksInAir;
-        Vec3 vec31 = new Vec3(this.posX, this.posY, this.posZ);
-        Vec3 vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3, false, true, false);
-        vec31 = new Vec3(this.posX, this.posY, this.posZ);
-        vec3 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        Vec3d vec31 = new Vec3d(this.posX, this.posY, this.posZ);
+        Vec3d vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        RayTraceResult movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3, false, true, false);
+        vec31 = new Vec3d(this.posX, this.posY, this.posZ);
+        vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
         if (movingobjectposition != null)
         {
-            vec3 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+            vec3 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
         }
 
         Entity entity = null;
@@ -172,7 +177,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             {
                 float f1 = 0.3F;
                 AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expand(f1, f1, f1);
-                MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
+                RayTraceResult movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
                 if (movingobjectposition1 != null)
                 {
@@ -189,7 +194,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
 
         if (entity != null)
         {
-            movingobjectposition = new MovingObjectPosition(entity);
+            movingobjectposition = new RayTraceResult(entity);
         }
 
         if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer)
@@ -246,7 +251,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
                         }
                         if (this.shootingEntity != null && movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
                         {
-                            ((EntityPlayerMP)this.shootingEntity).playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
+                            ((EntityPlayerMP)this.shootingEntity).connection.sendPacket(new SPacketChangeGameState(6, 0.0F));
                         }
                     }
 
@@ -299,7 +304,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             for (int i = 0; i < 4; ++i)
             {
                 this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
-                this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "random.fizz", 0.25F, 0.9F);
+                this.worldObj.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 0.25F, 0.9F);
             }
             this.setDead();
         }
@@ -336,7 +341,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     }
 
     @Override
-    public boolean canAttackWithItem()
+    public boolean canBeAttackedWithItem()
     {
         return false;
     }
@@ -384,12 +389,12 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
 
     public int getLaserType()
     {
-        return this.dataWatcher.getWatchableObjectByte(17);
+        return this.dataManager.get(EntityLaserBullet.LASER_TYPE);
     }
 
     private void setLaserType(int type)
     {
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)type));
+        this.dataManager.set(EntityLaserBullet.LASER_TYPE, type);
     }
 
     public void setLaserType(EnumLaserType type)

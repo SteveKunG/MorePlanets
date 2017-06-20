@@ -9,15 +9,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -35,7 +35,7 @@ public class BlockDiona extends BlockBasicMP implements IDetectableResource, ITe
 
     public BlockDiona(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.DIONA_SURFACE_ROCK));
         this.setUnlocalizedName(name);
     }
@@ -57,7 +57,7 @@ public class BlockDiona extends BlockBasicMP implements IDetectableResource, ITe
     }
 
     @Override
-    public float getBlockHardness(World world, BlockPos pos)
+    public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos).getBlock();
 
@@ -152,9 +152,9 @@ public class BlockDiona extends BlockBasicMP implements IDetectableResource, ITe
     }
 
     @Override
-    public int getExpDrop(IBlockAccess world, BlockPos pos, int fortune)
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return this.getMetaFromState(world.getBlockState(pos)) == 4 ? MathHelper.getRandomIntegerInRange(new Random(), 3, 7) : 0;
+        return this.getMetaFromState(state) == 4 ? MathHelper.getRandomIntegerInRange(new Random(), 3, 7) : 0;
     }
 
     @Override
@@ -162,7 +162,7 @@ public class BlockDiona extends BlockBasicMP implements IDetectableResource, ITe
     {
         int meta = this.getMetaFromState(world.getBlockState(pos));
 
-        if ((meta == 0 || meta == 1) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube())
+        if ((meta == 0 || meta == 1) && !world.getBlockState(pos.up()).isOpaqueCube())
         {
             return true;
         }
@@ -201,9 +201,9 @@ public class BlockDiona extends BlockBasicMP implements IDetectableResource, ITe
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

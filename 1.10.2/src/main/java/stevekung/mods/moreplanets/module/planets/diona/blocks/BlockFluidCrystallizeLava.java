@@ -6,9 +6,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,29 +29,34 @@ public class BlockFluidCrystallizeLava extends BlockFluidLavaBaseMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        if (this.blockMaterial == Material.lava && world.getBlockState(pos.up()).getBlock().getMaterial() == Material.air && !world.getBlockState(pos.up()).getBlock().isOpaqueCube())
+        if (this.blockMaterial == Material.LAVA && world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube())
         {
             if (rand.nextInt(50) == 0)
             {
                 double d5 = pos.getX() + rand.nextFloat();
-                double d6 = pos.getY() + this.maxY;
+                double d6 = pos.getY() + state.getBoundingBox(world, pos).maxY;
                 double d7 = pos.getZ() + rand.nextFloat();
                 MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CRYSTALLIZE_LAVA, d5, d6, d7);
-                world.playSound(d5, d6, d7, "liquid.lavapop", 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+                world.playSound(d5, d6, d7, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
             if (rand.nextInt(200) == 0)
             {
-                world.playSound(pos.getX(), pos.getY(), pos.getZ(), "liquid.lava", 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+                world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
         }
-        if (rand.nextInt(10) == 0 && World.doesBlockHaveSolidTopSurface(world, pos.down()) && !world.getBlockState(pos.down(2)).getBlock().getMaterial().blocksMovement())
+        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isSideSolid(world, pos, EnumFacing.DOWN))
         {
-            double d5 = pos.getX() + rand.nextFloat();
-            double d6 = pos.getY() - 1.05D;
-            double d7 = pos.getZ() + rand.nextFloat();
-            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CRYSTALLIZE_LAVA_DRIP, d5, d6, d7);
+            Material material = world.getBlockState(pos.down(2)).getMaterial();
+
+            if (!material.blocksMovement() && !material.isLiquid())
+            {
+                double d5 = pos.getX() + rand.nextFloat();
+                double d6 = pos.getY() - 1.05D;
+                double d7 = pos.getZ() + rand.nextFloat();
+                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CRYSTALLIZE_LAVA_DRIP, d5, d6, d7);
+            }
         }
     }
 
@@ -64,7 +71,7 @@ public class BlockFluidCrystallizeLava extends BlockFluidLavaBaseMP
         {
             EnumFacing enumfacing = aenumfacing[j];
 
-            if (enumfacing != EnumFacing.DOWN && world.getBlockState(pos.offset(enumfacing)).getBlock().getMaterial() == Material.water)
+            if (enumfacing != EnumFacing.DOWN && world.getBlockState(pos.offset(enumfacing)).getMaterial() == Material.WATER)
             {
                 flag = true;
                 break;
@@ -105,7 +112,7 @@ public class BlockFluidCrystallizeLava extends BlockFluidLavaBaseMP
     @Override
     protected IBlockState getObsidianBlock()
     {
-        return Blocks.obsidian.getDefaultState();
+        return Blocks.OBSIDIAN.getDefaultState();
     }
 
     @Override
@@ -117,7 +124,7 @@ public class BlockFluidCrystallizeLava extends BlockFluidLavaBaseMP
     @Override
     protected IBlockState getFireBlock()
     {
-        return Blocks.fire.getDefaultState();
+        return Blocks.FIRE.getDefaultState();
     }
 
     @Override

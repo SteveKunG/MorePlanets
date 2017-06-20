@@ -3,17 +3,17 @@ package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
-import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,8 +27,8 @@ public class BlockCheeseDirt extends BlockBaseMP implements ITerraformableBlock,
 
     public BlockCheeseDirt(String name)
     {
-        super(Material.ground);
-        this.setStepSound(Block.soundTypeGravel);
+        super(Material.GROUND);
+        this.setSoundType(SoundType.GROUND);
         this.setHardness(0.55F);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.CHEESE_DIRT));
         this.setUnlocalizedName(name);
@@ -43,7 +43,7 @@ public class BlockCheeseDirt extends BlockBaseMP implements ITerraformableBlock,
     @Override
     public boolean isTerraformable(World world, BlockPos pos)
     {
-        return !world.getBlockState(pos.up()).getBlock().isOpaqueCube();
+        return !world.getBlockState(pos.up()).isOpaqueCube();
     }
 
     @Override
@@ -63,9 +63,9 @@ public class BlockCheeseDirt extends BlockBaseMP implements ITerraformableBlock,
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

@@ -23,7 +23,7 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
 {
     protected BlockAncientChestMP()
     {
-        super(Material.wood);
+        super(Material.WOOD);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.FACING, EnumFacing.NORTH));
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
         this.setResistance(5.0F);

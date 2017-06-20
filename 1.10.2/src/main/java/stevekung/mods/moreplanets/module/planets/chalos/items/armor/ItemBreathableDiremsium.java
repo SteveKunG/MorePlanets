@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,25 +15,21 @@ import stevekung.mods.moreplanets.util.items.armor.ItemBreathableArmor;
 
 public class ItemBreathableDiremsium extends ItemBreathableArmor
 {
-    public ItemBreathableDiremsium(String name, ArmorMaterial material, int type)
+    public ItemBreathableDiremsium(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, type);
         this.setUnlocalizedName(name);
     }
 
     @Override
-    public String getArmorTexture(ItemStack itemStack, Entity entity, int slot, String layer)
+    public String getArmorTexture(ItemStack itemStack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        if (itemStack.getItem() == this)
-        {
-            return "moreplanets:textures/model/armor/breathable_diremsium.png";
-        }
-        return null;
+        return "moreplanets:textures/model/armor/breathable_diremsium.png";
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot, ModelBiped defaultModel)
+    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
     {
         if (entityLiving instanceof EntityPlayer)
         {

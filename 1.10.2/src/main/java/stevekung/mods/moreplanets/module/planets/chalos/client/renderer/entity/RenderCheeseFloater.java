@@ -5,8 +5,8 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
@@ -36,7 +36,7 @@ public class RenderCheeseFloater extends RenderLiving<EntityCheeseFloater>
             item.hoverStart = 0.0F;
             GlStateManager.translate((float)x, (float)y + 1.655F - f1, (float)z);
             GlStateManager.rotate(0, 0, 1, 1);
-            this.renderManager.renderEntityWithPosYaw(item, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+            this.renderManager.doRenderEntity(item, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
             GlStateManager.popMatrix();
         }
         super.doRender(entity, x, y, z, entityYaw, partialTicks);

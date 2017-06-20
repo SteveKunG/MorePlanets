@@ -10,7 +10,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyCore;
 import stevekung.mods.moreplanets.util.ItemDescription;
@@ -24,29 +26,28 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
 {
     public BlockDarkEnergyCore(String name)
     {
-        super(Material.ground);
+        super(Material.GROUND);
         this.setResistance(0.0F);
         this.setHardness(0.5F);
         this.setUnlocalizedName(name);
-        this.setStepSound(BlockSoundHelper.ALIEN_EGG);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.62225F, 1.0F);
+        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
         this.slipperiness = 0.8F;
     }
 
     @Override
-    public int getRenderType()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return 3;
+        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.62225D, 1.0D);
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -84,7 +85,7 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (Math.abs(entity.motionY) < 0.1D && !entity.isSneaking())
         {

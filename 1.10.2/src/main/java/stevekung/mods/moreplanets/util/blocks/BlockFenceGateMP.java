@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.util.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,7 +17,7 @@ public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, 
     {
         super(BlockPlanks.EnumType.OAK);
         this.setUnlocalizedName(name);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
         this.setHardness(2.0F);
         this.setResistance(5.0F);
         this.name = name;

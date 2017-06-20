@@ -2,9 +2,10 @@ package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,18 +17,17 @@ public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
 {
     public BlockInfectedCrystallizeSlime(String name)
     {
-        super(Material.clay);
+        super(Material.CLAY);
         this.setUnlocalizedName(name);
         this.slipperiness = 0.8F;
-        this.setStepSound(BlockSoundHelper.ALIEN_EGG);
-        this.slipperiness = 0.8F;
+        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.TRANSLUCENT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (Math.abs(entity.motionY) < 0.1D && !entity.isSneaking())
         {

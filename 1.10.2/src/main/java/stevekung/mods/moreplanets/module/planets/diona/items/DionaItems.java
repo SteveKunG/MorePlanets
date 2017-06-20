@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.diona.items;
 
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -47,7 +49,7 @@ public class DionaItems
 
     // Material
     public static ToolMaterial ILLENIUM_TOOL = EnumHelper.addToolMaterial("ILLENIUM", 3, 1432, 8.5F, 4.5F, 10);
-    public static ArmorMaterial ILLENIUM_ARMOR = EnumHelper.addArmorMaterial("ILLENIUM", "ILLENIUM", 40, new int[] { 5, 10, 8, 5 }, 12);
+    public static ArmorMaterial ILLENIUM_ARMOR = EnumHelper.addArmorMaterial("ILLENIUM", "ILLENIUM", 40, new int[] { 5, 10, 8, 5 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.25F);
 
     public static void init()
     {
@@ -81,11 +83,11 @@ public class DionaItems
         /*********************INITIAL ARMOR STUFF**********************/
         /**************************************************************/
 
-        DionaItems.ILLENIUM_HELMET = new ItemArmorIllenium("illenium_helmet", DionaItems.ILLENIUM_ARMOR, 0);
-        DionaItems.ILLENIUM_CHESTPLATE = new ItemArmorIllenium("illenium_chestplate", DionaItems.ILLENIUM_ARMOR, 1);
-        DionaItems.ILLENIUM_LEGGINGS = new ItemArmorIllenium("illenium_leggings", DionaItems.ILLENIUM_ARMOR, 2);
-        DionaItems.ILLENIUM_BOOTS = new ItemArmorIllenium("illenium_boots", DionaItems.ILLENIUM_ARMOR, 3);
-        DionaItems.BREATHABLE_ILLENIUM_HELMET = new ItemBreathableIllenium("breathable_illenium_helmet", DionaItems.ILLENIUM_ARMOR, 0);
+        DionaItems.ILLENIUM_HELMET = new ItemArmorIllenium("illenium_helmet", DionaItems.ILLENIUM_ARMOR, EntityEquipmentSlot.HEAD);
+        DionaItems.ILLENIUM_CHESTPLATE = new ItemArmorIllenium("illenium_chestplate", DionaItems.ILLENIUM_ARMOR, EntityEquipmentSlot.CHEST);
+        DionaItems.ILLENIUM_LEGGINGS = new ItemArmorIllenium("illenium_leggings", DionaItems.ILLENIUM_ARMOR, EntityEquipmentSlot.LEGS);
+        DionaItems.ILLENIUM_BOOTS = new ItemArmorIllenium("illenium_boots", DionaItems.ILLENIUM_ARMOR, EntityEquipmentSlot.FEET);
+        DionaItems.BREATHABLE_ILLENIUM_HELMET = new ItemBreathableIllenium("breathable_illenium_helmet", DionaItems.ILLENIUM_ARMOR, EntityEquipmentSlot.HEAD);
 
         /**************************************************************/
         /**********************REGISTER STUFF**************************/

@@ -9,14 +9,13 @@ import micdoodle8.mods.galacticraft.core.world.gen.EnumCraterSize;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.ChunkProviderGenerate;
+import net.minecraft.world.gen.ChunkProviderOverworld;
 
-public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
+public abstract class ChunkProviderBaseMP extends ChunkProviderOverworld
 {
     protected NoiseModule noiseGen1;
     protected NoiseModule noiseGen2;
@@ -74,7 +73,7 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
                 {
                     if (y < this.getTerrainHeight() + yDev)
                     {
-                        chunk.setBlockState(this.getIndex(x, y, z), this.getBaseBlock().getStateFromMeta(this.getBlockMetadata()[2]));
+                        chunk.setBlockState(x, y, z, this.getBaseBlock().getStateFromMeta(this.getBlockMetadata()[2]));
                     }
                 }
             }
@@ -82,7 +81,7 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
     }
 
     @Override
-    public void replaceBlocksForBiome(int chunkX, int chunkZ, ChunkPrimer chunk, BiomeGenBase[] biomeGen)
+    public void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer chunk, Biome[] biomeGen)
     {
         int var5 = 20;
 
@@ -99,17 +98,15 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
 
                 for (int y = 255; y >= 0; --y)
                 {
-                    int index = this.getIndex(x, y, z);
-
                     if (y <= 0 + this.rand.nextInt(5))
                     {
-                        chunk.setBlockState(index, Blocks.bedrock.getDefaultState());
+                        chunk.setBlockState(x, y, z, Blocks.BEDROCK.getDefaultState());
                     }
                     else
                     {
-                        Block block = chunk.getBlockState(index).getBlock();
+                        Block block = chunk.getBlockState(x, y, z).getBlock();
 
-                        if (Blocks.air == block)
+                        if (Blocks.AIR == block)
                         {
                             var13 = -1;
                         }
@@ -119,7 +116,7 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
                             {
                                 if (noise <= 0)
                                 {
-                                    topBlock = Blocks.air;
+                                    topBlock = Blocks.AIR;
                                     topBlockMeta = 0;
                                     fillBlock = this.getBaseBlock();
                                     fillBlockMeta = this.getBlockMetadata()[1];
@@ -136,17 +133,17 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
 
                                 if (y >= var5 - 1)
                                 {
-                                    chunk.setBlockState(index, topBlock.getStateFromMeta(topBlockMeta));
+                                    chunk.setBlockState(x, y, z, topBlock.getStateFromMeta(topBlockMeta));
                                 }
                                 else if (y < var5 - 1 && y >= var5 - 2)
                                 {
-                                    chunk.setBlockState(index, fillBlock.getStateFromMeta(fillBlockMeta));
+                                    chunk.setBlockState(x, y, z, fillBlock.getStateFromMeta(fillBlockMeta));
                                 }
                             }
                             else if (var13 > 0)
                             {
                                 --var13;
-                                chunk.setBlockState(index, fillBlock.getStateFromMeta(fillBlockMeta));
+                                chunk.setBlockState(x, y, z, fillBlock.getStateFromMeta(fillBlockMeta));
                             }
                         }
                     }
@@ -201,9 +198,9 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
 
                     for (int y = 127; y > 0; y--)
                     {
-                        if (Blocks.air != chunk.getBlockState(this.getIndex(x, y, z)).getBlock() && helper <= yDev)
+                        if (Blocks.AIR != chunk.getBlockState(x, y, z).getBlock() && helper <= yDev)
                         {
-                            chunk.setBlockState(this.getIndex(x, y, z), Blocks.air.getDefaultState());
+                            chunk.setBlockState(x, y, z, Blocks.AIR.getDefaultState());
                             helper++;
                         }
                         if (helper > yDev)
@@ -216,29 +213,6 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
         }
     }
 
-    @Override
-    public boolean chunkExists(int chunkX, int chunkZ)
-    {
-        return true;
-    }
-
-    @Override
-    public boolean unloadQueuedChunks()
-    {
-        return false;
-    }
-
-    @Override
-    public int getLoadedChunkCount()
-    {
-        return 0;
-    }
-
-    private int getIndex(int x, int y, int z)
-    {
-        return (x * 16 + z) * 256 + y;
-    }
-
     private double randFromPoint(int x, int z)
     {
         int n;
@@ -248,27 +222,9 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
     }
 
     @Override
-    public boolean saveChunks(boolean save, IProgressUpdate update)
-    {
-        return true;
-    }
-
-    @Override
-    public boolean canSave()
-    {
-        return true;
-    }
-
-    @Override
-    public String makeString()
-    {
-        return this.getName() + "LevelSource";
-    }
-
-    @Override
     public List getPossibleCreatures(EnumCreatureType type, BlockPos pos)
     {
-        return this.worldObj.getBiomeGenForCoords(pos).getSpawnableList(type);
+        return this.worldObj.getBiome(pos).getSpawnableList(type);
     }
 
     protected int getCraterChance()
@@ -281,7 +237,6 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderGenerate
         return 64;
     }
 
-    protected abstract String getName();
     protected abstract Block getBaseBlock();
     protected abstract int[] getBlockMetadata();
 }

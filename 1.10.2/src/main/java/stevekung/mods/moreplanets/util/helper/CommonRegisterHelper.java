@@ -122,14 +122,14 @@ public class CommonRegisterHelper
         GameRegistry.register(sound.setRegistryName("moreplanets:" + name));
     }
 
-    public static void registerLootTable(String name)
+    public static ResourceLocation registerLootTable(ResourceLocation resource)
     {
-        LootTableList.register(new ResourceLocation("moreplanets:" + name));
+        return LootTableList.register(resource);
     }
 
-    public static void registerPotion(Potion potion)
+    public static void registerPotion(Potion potion, String name)
     {
-        GameRegistry.register(potion);
+        GameRegistry.register(potion.setRegistryName(name));
     }
 
     public static void registerBiome(int id, String name, Biome biome)

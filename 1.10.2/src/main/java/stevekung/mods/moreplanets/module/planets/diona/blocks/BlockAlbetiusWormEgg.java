@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlbetiusWorm;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
@@ -15,7 +15,7 @@ public class BlockAlbetiusWormEgg extends BlockBaseMP
 {
     public BlockAlbetiusWormEgg(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setResistance(5.0F);
         this.setHardness(4.0F);
         this.setUnlocalizedName(name);

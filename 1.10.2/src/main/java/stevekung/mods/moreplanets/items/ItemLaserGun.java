@@ -6,7 +6,6 @@ import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
@@ -57,26 +56,6 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem
             }
         });
     }
-
-    //    @Override
-    //    @SideOnly(Side.CLIENT)
-    //    public ModelResourceLocation getModel(ItemStack itemStack, EntityPlayer player, int useRemaining)
-    //    {
-    //        if (itemStack != null && itemStack.getItem() == this && player.getItemInUse() != null)
-    //        {
-    //            int i = itemStack.getMaxItemUseDuration() - player.getItemInUseCount();Items
-    //
-    //            if (i > 12)
-    //            {
-    //                return ClientRegisterHelper.getModelResourceLocation("moreplanets:laser_gun_shoot");
-    //            }
-    //            if (i > 0)
-    //            {
-    //                return ClientRegisterHelper.getModelResourceLocation("moreplanets:laser_gun_charged");
-    //            }
-    //        }
-    //        return null;
-    //    }
 
     @Override
     public EnumAction getItemUseAction(ItemStack stack)
@@ -173,16 +152,27 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem
 
     private ItemStack findBullet(EntityPlayer player)
     {
-        for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
+        if (this.isBullet(player.getHeldItem(EnumHand.OFF_HAND)))
         {
-            ItemStack itemStack = player.inventory.getStackInSlot(i);
-
-            if (this.isBullet(itemStack))
-            {
-                return itemStack;
-            }
+            return player.getHeldItem(EnumHand.OFF_HAND);
         }
-        return null;
+        else if (this.isBullet(player.getHeldItem(EnumHand.MAIN_HAND)))
+        {
+            return player.getHeldItem(EnumHand.MAIN_HAND);
+        }
+        else
+        {
+            for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
+            {
+                ItemStack itemStack = player.inventory.getStackInSlot(i);
+
+                if (this.isBullet(itemStack))
+                {
+                    return itemStack;
+                }
+            }
+            return null;
+        }
     }
 
     protected boolean isBullet(ItemStack itemStack)

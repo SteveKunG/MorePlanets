@@ -5,33 +5,36 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.Lists;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.init.Biomes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.WorldChunkManager;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.layer.GenLayerChalos;
 
-public class WorldChunkManagerChalos extends WorldChunkManager
+public class BiomeProviderChalos extends BiomeProvider
 {
-    public static ArrayList<BiomeGenBase> allowedBiomes = Lists.newArrayList(Arrays.asList(MPBiomes.CHALOS_PLAINS, MPBiomes.CHALOS_HILLS));
+    public static ArrayList<Biome> allowedBiomes = Lists.newArrayList(Arrays.asList(MPBiomes.CHALOS_PLAINS, MPBiomes.CHALOS_HILLS));
     private BiomeCache biomeCache;
-    private List<BiomeGenBase> biomesToSpawn;
+    private List<Biome> biomesToSpawn;
     private GenLayer zoomedBiomes;
     private GenLayer unzoomedBiomes;
 
-    protected WorldChunkManagerChalos()
+    protected BiomeProviderChalos()
     {
         this.biomeCache = new BiomeCache(this);
-        this.biomesToSpawn = Lists.<BiomeGenBase>newArrayList();
+        this.biomesToSpawn = Lists.<Biome>newArrayList();
         this.biomesToSpawn.addAll(allowedBiomes);
     }
 
-    public WorldChunkManagerChalos(long seed)
+    public BiomeProviderChalos(long seed)
     {
         this();
         GenLayer[] agenlayer = GenLayerChalos.initializeAllBiomeGenerators(seed);
@@ -40,86 +43,61 @@ public class WorldChunkManagerChalos extends WorldChunkManager
     }
 
     @Override
-    public List<BiomeGenBase> getBiomesToSpawnIn()
+    public List<Biome> getBiomesToSpawnIn()
     {
         return this.biomesToSpawn;
     }
 
     @Override
-    public BiomeGenBase getBiomeGenerator(BlockPos pos)
+    public Biome getBiome(BlockPos pos)
     {
-        return this.getBiomeGenerator(pos, (BiomeGenBase)null);
+        return this.getBiome(pos, (Biome)null);
     }
 
     @Override
-    public BiomeGenBase getBiomeGenerator(BlockPos pos, BiomeGenBase biome)
+    public Biome getBiome(BlockPos pos, Biome biome)
     {
-        return this.biomeCache.func_180284_a(pos.getX(), pos.getZ(), biome);
+        return this.biomeCache.getBiome(pos.getX(), pos.getZ(), biome);
     }
 
     @Override
-    public float[] getRainfall(float[] listToReuse, int x, int z, int width, int length)
-    {
-        IntCache.resetIntCache();
-
-        if (listToReuse == null || listToReuse.length < width * length)
-        {
-            listToReuse = new float[width * length];
-        }
-
-        int[] aint = this.zoomedBiomes.getInts(x, z, width, length);
-
-        for (int i = 0; i < width * length; ++i)
-        {
-            float f = BiomeGenBase.getBiomeFromBiomeList(aint[i], MPBiomes.CHALOS_PLAINS).getIntRainfall() / 65536.0F;
-
-            if (f > 1.0F)
-            {
-                f = 1.0F;
-            }
-            listToReuse[i] = f;
-        }
-        return listToReuse;
-    }
-
-    @Override
-    public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] biomes, int x, int z, int width, int height)
+    public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height)
     {
         IntCache.resetIntCache();
 
         if (biomes == null || biomes.length < width * height)
         {
-            biomes = new BiomeGenBase[width * height];
+            biomes = new Biome[width * height];
         }
 
         int[] aint = this.unzoomedBiomes.getInts(x, z, width, height);
 
         for (int i = 0; i < width * height; ++i)
         {
-            biomes[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], MPBiomes.CHALOS_PLAINS);
+            biomes[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
         }
         return biomes;
     }
 
     @Override
-    public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] oldBiomeList, int x, int z, int width, int depth)
+    public Biome[] getBiomes(@Nullable Biome[] oldBiomeList, int x, int z, int width, int depth)
     {
-        return this.getBiomeGenAt(oldBiomeList, x, z, width, depth, true);
+        return this.getBiomes(oldBiomeList, x, z, width, depth, true);
     }
 
     @Override
-    public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
+    public Biome[] getBiomes(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
     {
         IntCache.resetIntCache();
 
         if (listToReuse == null || listToReuse.length < width * length)
         {
-            listToReuse = new BiomeGenBase[width * length];
+            listToReuse = new Biome[width * length];
         }
 
         if (cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (z & 15) == 0)
         {
-            BiomeGenBase[] abiomegenbase = this.biomeCache.getCachedBiomes(x, z);
+            Biome[] abiomegenbase = this.biomeCache.getCachedBiomes(x, z);
             System.arraycopy(abiomegenbase, 0, listToReuse, 0, width * length);
             return listToReuse;
         }
@@ -129,29 +107,29 @@ public class WorldChunkManagerChalos extends WorldChunkManager
 
             for (int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], MPBiomes.CHALOS_PLAINS);
+                listToReuse[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
             }
             return listToReuse;
         }
     }
 
     @Override
-    public boolean areBiomesViable(int p_76940_1_, int p_76940_2_, int p_76940_3_, List<BiomeGenBase> p_76940_4_)
+    public boolean areBiomesViable(int x, int z, int radius, List<Biome> allowed)
     {
         IntCache.resetIntCache();
-        int i = p_76940_1_ - p_76940_3_ >> 2;
-            int j = p_76940_2_ - p_76940_3_ >> 2;
-        int k = p_76940_1_ + p_76940_3_ >> 2;
-        int l = p_76940_2_ + p_76940_3_ >> 2;
+        int i = x - radius >> 2;
+            int j = z - radius >> 2;
+        int k = x + radius >> 2;
+        int l = z + radius >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
         int[] aint = this.unzoomedBiomes.getInts(i, j, i1, j1);
 
         for (int k1 = 0; k1 < i1 * j1; ++k1)
         {
-            BiomeGenBase biomegenbase = BiomeGenBase.getBiome(aint[k1]);
+            Biome biome = Biome.getBiome(aint[k1]);
 
-            if (!p_76940_4_.contains(biomegenbase))
+            if (!allowed.contains(biome))
             {
                 return false;
             }
@@ -160,7 +138,7 @@ public class WorldChunkManagerChalos extends WorldChunkManager
     }
 
     @Override
-    public BlockPos findBiomePosition(int x, int z, int range, List<BiomeGenBase> biomes, Random random)
+    public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random random)
     {
         IntCache.resetIntCache();
         int i = x - range >> 2;
@@ -177,7 +155,7 @@ public class WorldChunkManagerChalos extends WorldChunkManager
         {
             int i2 = i + l1 % i1 << 2;
             int j2 = j + l1 / i1 << 2;
-            BiomeGenBase biomegenbase = BiomeGenBase.getBiome(aint[l1]);
+            Biome biomegenbase = Biome.getBiome(aint[l1]);
 
             if (biomes.contains(biomegenbase) && (blockpos == null || random.nextInt(k1 + 1) == 0))
             {

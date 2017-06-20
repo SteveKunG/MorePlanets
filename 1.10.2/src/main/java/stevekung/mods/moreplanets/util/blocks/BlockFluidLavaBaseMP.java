@@ -5,9 +5,9 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
@@ -19,7 +19,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 {
     public BlockFluidLavaBaseMP(Fluid fluid)
     {
-        super(fluid, Material.lava);
+        super(fluid, Material.LAVA);
         this.setQuantaPerBlock(4);
         this.setHardness(100.0F);
         this.setResistance(100.0F);
@@ -28,22 +28,22 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
     }
 
     @Override
-    public int getLightValue(IBlockAccess world, BlockPos pos)
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         Block block = world.getBlockState(pos).getBlock();
 
         if (block != this)
         {
-            return block.getLightValue(world, pos);
+            return block.getLightValue(state, world, pos);
         }
-        return this.getLightValue();
+        return this.getLightValue(state);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.SOLID;
+        return BlockRenderLayer.SOLID;
     }
 
     @Override
@@ -54,7 +54,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 
         if (this.canFlowingInto(world, pos.down(), world.getBlockState(pos.down())))
         {
-            if (this.blockMaterial == Material.lava && world.getBlockState(pos.down()).getBlock().getMaterial() == Material.water)
+            if (this.blockMaterial == Material.LAVA && world.getBlockState(pos.down()).getMaterial() == Material.WATER)
             {
                 world.setBlockState(pos.down(), this.getBlockFromWaterTo());
                 this.triggerMixEffects(world, pos.down());
@@ -73,9 +73,8 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
                 for (int j = 0; j < i; ++j)
                 {
                     blockpos1 = blockpos1.add(rand.nextInt(3) - 1, 1, rand.nextInt(3) - 1);
-                    Block block = world.getBlockState(blockpos1).getBlock();
 
-                    if (block.getMaterial() == Material.air)
+                    if (world.getBlockState(blockpos1).getMaterial() == Material.AIR)
                     {
                         if (this.isSurroundingBlockFlammable(world, blockpos1))
                         {
@@ -83,7 +82,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
                             return;
                         }
                     }
-                    else if (block.getMaterial().blocksMovement())
+                    else if (world.getBlockState(blockpos1).getMaterial().blocksMovement())
                     {
                         return;
                     }
@@ -111,9 +110,9 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock)
     {
-        super.onNeighborBlockChange(world, pos, state, block);
+        super.neighborChanged(state, world, pos, neighborBlock);
         this.checkForMixing(world, pos, state);
     }
 
@@ -153,9 +152,9 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
             return false;
         }
 
-        Material material = block.getMaterial();
+        Material material = state.getMaterial();
 
-        if (material.blocksMovement() || material == Material.portal)
+        if (material.blocksMovement() || material == Material.PORTAL)
         {
             return false;
         }
@@ -204,7 +203,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 
     private boolean getCanBlockBurn(World world, BlockPos pos)
     {
-        return world.getBlockState(pos).getBlock().getMaterial().getCanBurn();
+        return world.getBlockState(pos).getMaterial().getCanBurn();
     }
 
     protected boolean checkForMixing(World world, BlockPos pos, IBlockState state)
@@ -217,7 +216,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
         {
             EnumFacing enumfacing = aenumfacing[j];
 
-            if (enumfacing != EnumFacing.DOWN && world.getBlockState(pos.offset(enumfacing)).getBlock().getMaterial() == Material.water)
+            if (enumfacing != EnumFacing.DOWN && world.getBlockState(pos.offset(enumfacing)).getMaterial() == Material.WATER)
             {
                 flag = true;
                 break;
@@ -246,8 +245,8 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 
     private boolean canFlowingInto(World world, BlockPos pos, IBlockState state)
     {
-        Material material = state.getBlock().getMaterial();
-        return material != this.blockMaterial && material != Material.lava && !this.isBlocked(world, pos, state);
+        Material material = state.getMaterial();
+        return material != this.blockMaterial && material != Material.LAVA && !this.isBlocked(world, pos, state);
     }
 
     private boolean isBlocked(World world, BlockPos pos, IBlockState state)

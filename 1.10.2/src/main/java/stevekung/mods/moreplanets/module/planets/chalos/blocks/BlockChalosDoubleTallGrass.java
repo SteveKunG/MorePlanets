@@ -6,10 +6,11 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,9 +19,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -36,27 +37,11 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
 
     public BlockChalosDoubleTallGrass(String name)
     {
-        super(Material.vine);
+        super(Material.VINE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.CHEESE_DOUBLE_TALL_GRASS).withProperty(HALF, EnumBlockHalf.LOWER));
         this.setHardness(0.0F);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.PLANT);
         this.setUnlocalizedName(name);
-    }
-
-    private BlockType getVariant(IBlockAccess world, BlockPos pos)
-    {
-        IBlockState iblockstate = world.getBlockState(pos);
-
-        if (iblockstate.getBlock() == this)
-        {
-            iblockstate = this.getActualState(iblockstate, world, pos);
-            return (BlockType)iblockstate.getValue(VARIANT);
-        }
-        else
-        {
-            return BlockType.CHEESE_DOUBLE_TALL_GRASS;
-        }
     }
 
     @Override
@@ -66,7 +51,7 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
     }
 
     @Override
-    public boolean isReplaceable(World world, BlockPos pos)
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
         IBlockState iblockstate = world.getBlockState(pos);
 
@@ -97,11 +82,11 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
             }
             if (block == this)
             {
-                world.setBlockState(blockpos, Blocks.air.getDefaultState(), 2);
+                world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
             }
             if (block1 == this)
             {
-                world.setBlockState(blockpos1, Blocks.air.getDefaultState(), 3);
+                world.setBlockState(blockpos1, Blocks.AIR.getDefaultState(), 3);
             }
         }
         else
@@ -175,7 +160,7 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
 
                     if (!world.isRemote)
                     {
-                        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.shears)
+                        if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == Items.SHEARS)
                         {
                             this.onHarvest(world, pos, iblockstate1, player);
                             world.setBlockToAir(pos.down());
@@ -198,7 +183,7 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
         }
         else if (player.capabilities.isCreativeMode && world.getBlockState(pos.up()).getBlock() == this)
         {
-            world.setBlockState(pos.up(), Blocks.air.getDefaultState(), 2);
+            world.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);
         }
         super.onBlockHarvested(world, pos, state, player);
     }
@@ -220,12 +205,6 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
             BlockType BlockType = aBlockType[j];
             list.add(new ItemStack(item, 1, BlockType.ordinal()));
         }
-    }
-
-    @Override
-    public int getDamageValue(World world, BlockPos pos)
-    {
-        return this.getVariant(world, pos).ordinal();
     }
 
     @Override
@@ -256,9 +235,9 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {HALF, VARIANT});
+        return new BlockStateContainer(this, new IProperty[] {HALF, VARIANT});
     }
 
     @Override
@@ -289,10 +268,8 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
     }
 
     @Override
-    public boolean removedByPlayer(World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
     {
-        IBlockState state = world.getBlockState(pos);
-
         if (state.getBlock() ==  this && state.getValue(HALF) == EnumBlockHalf.LOWER && world.getBlockState(pos.up()).getBlock() == this)
         {
             world.setBlockToAir(pos.up());

@@ -25,6 +25,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -295,11 +296,6 @@ public class ClientRegisterHelper
         ClientRegisterHelper.registerModelRender(item, 15, "black_" + name);
     }
 
-    public static ModelResourceLocation getModelResourceLocation(String resource)
-    {
-        return new ModelResourceLocation(resource, "inventory");
-    }
-
     public static void registerStateMapper(Block block, EnumStateMapper mapper)
     {
         Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new StateMap.Builder().ignore(mapper.getProperty()).build());
@@ -320,19 +316,16 @@ public class ClientRegisterHelper
         event.getMap().registerSprite(new ResourceLocation("moreplanets:" + texture));
     }
 
-    public static ModelBiped getTranclucentArmorModel(int armorSlot, ModelBiped defaultModel)//TODO Fix slot?
+    public static ModelBiped getTranclucentArmorModel(EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
     {
-        //Damn, mojang -.-
-        //Leggings
-        if (armorSlot == 2)
+        if (armorSlot == EntityEquipmentSlot.LEGS)
         {
             ModelBipedTranslucent model = new ModelBipedTranslucent(0.5F);
             model.isChild = false;
             model.setModelAttributes(defaultModel);
             return model;
         }
-        //Helmet, Chestplate, Boots
-        if (armorSlot == 4 || armorSlot == 3 || armorSlot == 1)
+        if (armorSlot == EntityEquipmentSlot.HEAD || armorSlot == EntityEquipmentSlot.CHEST || armorSlot == EntityEquipmentSlot.FEET)
         {
             ModelBipedTranslucent model = new ModelBipedTranslucent(1.0F);
             model.isChild = false;

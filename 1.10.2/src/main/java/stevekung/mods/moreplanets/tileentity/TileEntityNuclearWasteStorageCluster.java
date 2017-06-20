@@ -17,9 +17,9 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
 
 public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElectricalSource implements ISidedInventory, IInventoryDefaults, IConnector, IMachineSides
@@ -84,9 +84,8 @@ public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElect
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         NBTTagList list = new NBTTagList();
         this.addMachineSidesToNBT(nbt);
 
@@ -101,6 +100,7 @@ public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElect
             }
         }
         nbt.setTag("Items", list);
+        return super.writeToNBT(nbt);
     }
 
     @Override
@@ -196,9 +196,9 @@ public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElect
     }
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
-        return new ChatComponentTranslation(this.getName());
+        return new TextComponentTranslation(this.getName());
     }
 
     @Override

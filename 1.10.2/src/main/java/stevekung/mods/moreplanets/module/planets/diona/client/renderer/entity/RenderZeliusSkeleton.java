@@ -25,8 +25,8 @@ public class RenderZeliusSkeleton extends RenderBiped<EntityZeliusSkeleton>
             @Override
             protected void initArmor()
             {
-                this.field_177189_c = new ModelSkeleton(0.5F, true);
-                this.field_177186_d = new ModelSkeleton(1.0F, true);
+                this.modelLeggings = new ModelSkeleton(0.5F, true);
+                this.modelArmor = new ModelSkeleton(1.0F, true);
             }
         });
     }

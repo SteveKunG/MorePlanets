@@ -3,8 +3,8 @@ package stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.l
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.RenderAlienMiner;
@@ -33,7 +33,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         GlStateManager.enableLighting();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.func_177105_a(entity, partialTicks);
+        this.render.setLightmap(entity, partialTicks);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
@@ -50,7 +50,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         float sin = (MathHelper.sin(time / 4) + 1F) / 2F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.func_177105_a(entity, partialTicks);
+        this.render.setLightmap(entity, partialTicks);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
@@ -67,7 +67,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         sin = (MathHelper.sin(time / 8) + 1F) / 2F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.func_177105_a(entity, partialTicks);
+        this.render.setLightmap(entity, partialTicks);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
@@ -82,7 +82,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         GlStateManager.enableLighting();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.func_177105_a(entity, partialTicks);
+        this.render.setLightmap(entity, partialTicks);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
@@ -99,7 +99,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         sin = (MathHelper.sin(time / 16) + 1F) / 1F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.func_177105_a(entity, partialTicks);
+        this.render.setLightmap(entity, partialTicks);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();

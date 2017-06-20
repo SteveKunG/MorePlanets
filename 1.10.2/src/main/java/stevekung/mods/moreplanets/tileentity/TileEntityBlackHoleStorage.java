@@ -14,10 +14,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -52,7 +52,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         if (this.worldObj != null && !this.worldObj.isRemote)
         {
             this.updateStorage();
-
             List<EntityBlackHoleStorage> blackHoleList = this.worldObj.getEntitiesWithinAABB(EntityBlackHoleStorage.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY() + 2, this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 3, this.pos.getZ() + 1.0D));
 
             for (EntityBlackHoleStorage bh : blackHoleList)
@@ -92,9 +91,8 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         NBTTagList list = new NBTTagList();
 
         for (int i = 0; i < this.inventory.length; ++i)
@@ -119,6 +117,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         nbt.setBoolean("UseHopper", this.useHopper);
         nbt.setInteger("XP", this.xp);
         nbt.setTag("Items", list);
+        return super.writeToNBT(nbt);
     }
 
     @Override
@@ -212,9 +211,9 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     }
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
-        return new ChatComponentTranslation(this.getName());
+        return new TextComponentTranslation(this.getName());
     }
 
     @Override

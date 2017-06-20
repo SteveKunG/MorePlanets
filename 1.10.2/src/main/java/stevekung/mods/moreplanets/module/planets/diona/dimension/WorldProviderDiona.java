@@ -2,16 +2,18 @@ package stevekung.mods.moreplanets.module.planets.diona.dimension;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
 import stevekung.mods.moreplanets.module.planets.diona.client.sky.SkyProviderDiona;
+import stevekung.mods.moreplanets.module.planets.diona.world.gen.BiomeProviderDiona;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.ChunkProviderDiona;
-import stevekung.mods.moreplanets.module.planets.diona.world.gen.WorldChunkManagerDiona;
 import stevekung.mods.moreplanets.util.dimension.WorldProviderMP;
 
 public class WorldProviderDiona extends WorldProviderMP
@@ -131,14 +133,20 @@ public class WorldProviderDiona extends WorldProviderMP
     protected void renderWeather() {}
 
     @Override
-    public void registerWorldChunkManager()
+    public void createBiomeProvider()
     {
-        this.worldChunkMgr = new WorldChunkManagerDiona();
+        this.biomeProvider = new BiomeProviderDiona();
     }
 
     @Override
-    public IChunkProvider createChunkGenerator()
+    public IChunkGenerator createChunkGenerator()
     {
         return new ChunkProviderDiona(this.worldObj, this.worldObj.getSeed());
+    }
+
+    @Override
+    public DimensionType getDimensionType()
+    {
+        return MPDimensions.DIONA;
     }
 }

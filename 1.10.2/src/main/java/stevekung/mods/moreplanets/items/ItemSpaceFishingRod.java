@@ -1,18 +1,21 @@
 package stevekung.mods.moreplanets.items;
 
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import javax.annotation.Nullable;
+
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
 
@@ -23,20 +26,16 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
         this.setMaxDamage(127);
         this.setMaxStackSize(1);
         this.setUnlocalizedName(name);
-    }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public ModelResourceLocation getModel(ItemStack itemStack, EntityPlayer player, int useRemaining)
-    {
-        if (itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast"))
+        this.addPropertyOverride(new ResourceLocation("cast"), new IItemPropertyGetter()
         {
-            return ClientRegisterHelper.getModelResourceLocation("moreplanets:space_fishing_rod_cast");
-        }
-        else
-        {
-            return null;
-        }
+            @Override
+            @SideOnly(Side.CLIENT)
+            public float apply(ItemStack itemStack, @Nullable World world, @Nullable EntityLivingBase entity)
+            {
+                return entity == null ? 0.0F : entity.getHeldItemMainhand() == itemStack && entity instanceof EntityPlayer && ((EntityPlayer)entity).fishEntity != null ? 1.0F : 0.0F;
+            }
+        });
     }
 
     @Override
@@ -67,43 +66,13 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     }
 
     @Override
-    public void onUpdate(ItemStack itemStack, World world, Entity entity, int slot, boolean isSelected)
-    {
-        if (!isSelected)
-        {
-            if (itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast"))
-            {
-                itemStack.getTagCompound().setBoolean("Cast", false);
-            }
-        }
-        else
-        {
-            if (entity instanceof EntityPlayer)
-            {
-                if (!world.isRemote)
-                {
-                    EntityPlayer player = (EntityPlayer) entity;
-
-                    if (player.fishEntity == null)
-                    {
-                        if (itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast"))
-                        {
-                            itemStack.getTagCompound().setBoolean("Cast", false);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if (player.fishEntity != null)
         {
             int i = player.fishEntity.handleHookRetraction();
             itemStack.damageItem(i, player);
-            player.swingItem();
+            player.swingArm(hand);
 
             if (itemStack.getTagCompound().getBoolean("Cast"))
             {
@@ -112,7 +81,7 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
         }
         else
         {
-            world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            world.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
             if (!world.isRemote)
             {
@@ -127,9 +96,9 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
                 itemStack.setTagCompound(new NBTTagCompound());
                 itemStack.getTagCompound().setBoolean("Cast", true);
             }
-            player.swingItem();
+            player.swingArm(hand);
         }
-        return itemStack;
+        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
     }
 
     @Override

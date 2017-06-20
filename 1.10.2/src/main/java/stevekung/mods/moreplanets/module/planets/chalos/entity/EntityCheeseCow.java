@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.chalos.entity;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
@@ -8,10 +10,15 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.util.entity.ai.EntityAITemptMP;
@@ -23,11 +30,15 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     {
         super(world);
         this.setSize(0.9F, 1.3F);
-        ((PathNavigateGroundMP)this.getNavigator()).setAvoidsWater(true);
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-        this.tasks.addTask(3, new EntityAITemptMP(this, 1.25D, new ItemStack(ChalosItems.CHEESE_FOOD, 1, 0), false));
+        this.tasks.addTask(3, new EntityAITemptMP(this, 1.25D, false, new ItemStack(ChalosItems.CHEESE_FOOD, 1, 0)));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -50,8 +61,8 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
     }
 
     @Override
@@ -67,27 +78,27 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     }
 
     @Override
-    protected String getLivingSound()
+    protected SoundEvent getAmbientSound()
     {
-        return "mob.cow.say";
+        return SoundEvents.ENTITY_COW_AMBIENT;
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "mob.cow.hurt";
+        return SoundEvents.ENTITY_COW_HURT;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "mob.cow.hurt";
+        return SoundEvents.ENTITY_COW_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, Block block)
     {
-        this.playSound("mob.cow.step", 0.15F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
     }
 
     @Override
@@ -97,25 +108,23 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     }
 
     @Override
-    public boolean interact(EntityPlayer player)
+    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack itemStack)
     {
-        ItemStack itemstack = player.inventory.getCurrentItem();
-
-        if (itemstack != null && itemstack.getItem() == Items.bucket && !player.capabilities.isCreativeMode)
+        if (itemStack != null && itemStack.getItem() == Items.BUCKET && !player.capabilities.isCreativeMode)
         {
-            if (itemstack.stackSize-- == 1)
+            if (itemStack.stackSize-- == 1)
             {
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET));
             }
             else if (!player.inventory.addItemStackToInventory(new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET)))
             {
-                player.dropPlayerItemWithRandomChoice(new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET, 1, 0), false);
+                player.dropItem(new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET, 1, 0), false);
             }
             return true;
         }
         else
         {
-            return super.interact(player);
+            return super.processInteract(player, hand, itemStack);
         }
     }
 
@@ -126,7 +135,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
 
         for (int i = 0; i < j; ++i) //TODO Leather?
         {
-            this.entityDropItem(new ItemStack(Items.leather, 1), 1.0F);
+            this.entityDropItem(new ItemStack(Items.LEATHER, 1), 1.0F);
         }
 
         j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + fortune);
@@ -145,8 +154,21 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     }
 
     @Override
+    @Nullable
+    protected ResourceLocation getLootTable()
+    {
+        return MPLootTables.CHEESE_COW;
+    }
+
+    @Override
     public boolean canBreath()
     {
         return true;
+    }
+
+    @Override
+    public float getEyeHeight()
+    {
+        return this.isChild() ? this.height : 1.3F;
     }
 }

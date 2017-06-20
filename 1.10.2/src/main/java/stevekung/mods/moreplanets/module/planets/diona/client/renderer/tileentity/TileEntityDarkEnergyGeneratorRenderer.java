@@ -3,8 +3,8 @@ package stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileenti
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelDarkEnergyGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
@@ -98,7 +98,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
     }
 
     @Override
-    public boolean func_181055_a()
+    public boolean isGlobalRenderer(TileEntityDarkEnergyGenerator tile)
     {
         return true;
     }

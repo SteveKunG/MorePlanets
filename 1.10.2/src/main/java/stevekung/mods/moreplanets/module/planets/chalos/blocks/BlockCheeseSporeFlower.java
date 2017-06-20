@@ -5,8 +5,9 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -18,19 +19,18 @@ import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
 public class BlockCheeseSporeFlower extends BlockBushMP implements IGrowable
 {
+    protected static AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
+
     public BlockCheeseSporeFlower(String name)
     {
         super();
-        this.setHardness(0.0F);
-        this.setStepSound(Block.soundTypeGrass);
         this.setUnlocalizedName(name);
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        float f = 0.275F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 3.0F, 0.5F + f);
+        return BUSH_AABB;
     }
 
     @Override

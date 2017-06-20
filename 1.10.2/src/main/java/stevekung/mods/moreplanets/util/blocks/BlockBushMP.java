@@ -3,10 +3,12 @@ package stevekung.mods.moreplanets.util.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -18,9 +20,9 @@ public class BlockBushMP extends BlockBaseMP
 {
     public BlockBushMP()
     {
-        super(Material.plants);
+        super(Material.PLANTS);
         this.setHardness(0.0F);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.PLANT);
         this.setTickRandomly(true);
     }
 
@@ -28,31 +30,31 @@ public class BlockBushMP extends BlockBaseMP
     {
         super(material);
         this.setHardness(0.0F);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.PLANT);
         this.setTickRandomly(true);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.CUTOUT;
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
         return null;
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -68,7 +70,7 @@ public class BlockBushMP extends BlockBaseMP
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
         this.checkAndDropBlock(world, pos, state);
     }
@@ -84,7 +86,7 @@ public class BlockBushMP extends BlockBaseMP
         if (!this.canBlockStay(world, pos, state))
         {
             this.dropBlockAsItem(world, pos, state, 0);
-            world.setBlockState(pos, Blocks.air.getDefaultState(), 3);
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
         }
     }
 

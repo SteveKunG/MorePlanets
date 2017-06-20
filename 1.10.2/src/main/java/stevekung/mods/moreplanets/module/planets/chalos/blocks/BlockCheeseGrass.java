@@ -5,8 +5,8 @@ import java.util.Random;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,7 +21,7 @@ public class BlockCheeseGrass extends BlockGrassMP implements IGrowable
     }
 
     @Override
-    public void onPlantGrow(World world, BlockPos pos, BlockPos source)
+    public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source)
     {
         if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS)
         {
@@ -46,7 +46,7 @@ public class BlockCheeseGrass extends BlockGrassMP implements IGrowable
 
                     if (world.getBlockState(pos1) == ChalosBlocks.CHEESE_DIRT.getDefaultState())
                     {
-                        if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getBlock().getLightOpacity() <= 2)
+                        if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity(world, pos1) <= 2)
                         {
                             world.setBlockState(pos1, this.getDefaultState());
                         }
@@ -64,7 +64,7 @@ public class BlockCheeseGrass extends BlockGrassMP implements IGrowable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if (rand.nextInt(10) == 0)
         {
@@ -112,7 +112,7 @@ public class BlockCheeseGrass extends BlockGrassMP implements IGrowable
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(blockpos1.down()).getBlock() != ChalosBlocks.CHEESE_GRASS || world.getBlockState(blockpos1).getBlock().isNormalCube())
+                if (world.getBlockState(blockpos1.down()).getBlock() != ChalosBlocks.CHEESE_GRASS || world.getBlockState(blockpos1).isNormalCube())
                 {
                     break;
                 }

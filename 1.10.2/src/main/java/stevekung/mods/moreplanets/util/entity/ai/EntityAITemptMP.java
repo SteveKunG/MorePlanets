@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.util.entity.ai;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,20 +14,19 @@ public class EntityAITemptMP extends EntityAIBase
     private double targetX;
     private double targetY;
     private double targetZ;
-    private double rotationPitch;
-    private double rotationYaw;
+    private double pitch;
+    private double yaw;
     private EntityPlayer temptingPlayer;
     private int delayTemptCounter;
-    private ItemStack itemStack;
+    private ItemStack temptStack;
     private boolean scaredByPlayerMovement;
-    private boolean avoidWater;
 
-    public EntityAITemptMP(EntityCreature entity, double speed, ItemStack itemStack, boolean scared)
+    public EntityAITemptMP(EntityCreature entity, double speed, boolean scaredByPlayerMovement, ItemStack itemStack)
     {
         this.temptedEntity = entity;
         this.speed = speed;
-        this.itemStack = itemStack;
-        this.scaredByPlayerMovement = scared;
+        this.temptStack = itemStack;
+        this.scaredByPlayerMovement = scaredByPlayerMovement;
         this.setMutexBits(3);
 
         if (!(entity.getNavigator() instanceof PathNavigateGroundMP))
@@ -45,16 +46,7 @@ public class EntityAITemptMP extends EntityAIBase
         else
         {
             this.temptingPlayer = this.temptedEntity.worldObj.getClosestPlayerToEntity(this.temptedEntity, 10.0D);
-
-            if (this.temptingPlayer == null)
-            {
-                return false;
-            }
-            else
-            {
-                ItemStack itemStack = this.temptingPlayer.getActiveItemStack();
-                return itemStack == null ? false : itemStack.getItem() == this.itemStack.getItem() && itemStack.getItemDamage() == this.itemStack.getItemDamage();
-            }
+            return this.temptingPlayer == null ? false : this.isTempting(this.temptingPlayer.getHeldItemMainhand()) || this.isTempting(this.temptingPlayer.getHeldItemOffhand());
         }
     }
 
@@ -69,7 +61,7 @@ public class EntityAITemptMP extends EntityAIBase
                 {
                     return false;
                 }
-                if (Math.abs(this.temptingPlayer.rotationPitch - this.rotationPitch) > 5.0D || Math.abs(this.temptingPlayer.rotationYaw - this.rotationYaw) > 5.0D)
+                if (Math.abs(this.temptingPlayer.rotationPitch - this.pitch) > 5.0D || Math.abs(this.temptingPlayer.rotationYaw - this.yaw) > 5.0D)
                 {
                     return false;
                 }
@@ -80,8 +72,8 @@ public class EntityAITemptMP extends EntityAIBase
                 this.targetY = this.temptingPlayer.posY;
                 this.targetZ = this.temptingPlayer.posZ;
             }
-            this.rotationPitch = this.temptingPlayer.rotationPitch;
-            this.rotationYaw = this.temptingPlayer.rotationYaw;
+            this.pitch = this.temptingPlayer.rotationPitch;
+            this.yaw = this.temptingPlayer.rotationYaw;
         }
         return this.shouldExecute();
     }
@@ -92,8 +84,6 @@ public class EntityAITemptMP extends EntityAIBase
         this.targetX = this.temptingPlayer.posX;
         this.targetY = this.temptingPlayer.posY;
         this.targetZ = this.temptingPlayer.posZ;
-        this.avoidWater = ((PathNavigateGroundMP)this.temptedEntity.getNavigator()).getAvoidsWater();
-        ((PathNavigateGroundMP)this.temptedEntity.getNavigator()).setAvoidsWater(false);
     }
 
     @Override
@@ -102,13 +92,12 @@ public class EntityAITemptMP extends EntityAIBase
         this.temptingPlayer = null;
         this.temptedEntity.getNavigator().clearPathEntity();
         this.delayTemptCounter = 100;
-        ((PathNavigateGroundMP)this.temptedEntity.getNavigator()).setAvoidsWater(this.avoidWater);
     }
 
     @Override
     public void updateTask()
     {
-        this.temptedEntity.getLookHelper().setLookPositionWithEntity(this.temptingPlayer, 30.0F, this.temptedEntity.getVerticalFaceSpeed());
+        this.temptedEntity.getLookHelper().setLookPositionWithEntity(this.temptingPlayer, this.temptedEntity.getHorizontalFaceSpeed() + 20, this.temptedEntity.getVerticalFaceSpeed());
 
         if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 6.25D)
         {
@@ -118,5 +107,10 @@ public class EntityAITemptMP extends EntityAIBase
         {
             this.temptedEntity.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.speed);
         }
+    }
+
+    private boolean isTempting(@Nullable ItemStack itemStack)
+    {
+        return itemStack == null ? false : itemStack.getItem() == this.temptStack.getItem() && itemStack.getItemDamage() == this.temptStack.getItemDamage();
     }
 }

@@ -5,8 +5,10 @@ import java.util.Random;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
@@ -20,22 +22,22 @@ public class ItemCheeseSpore extends ItemBaseMP
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (!player.canPlayerEdit(pos.offset(facing), facing, itemStack))
         {
-            return false;
+            return EnumActionResult.FAIL;
         }
         else
         {
-            if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS && !(World.doesBlockHaveSolidTopSurface(world, pos.up()) || world.getBlockState(pos.up()).getBlock() == ChalosBlocks.CHEESE_SPORE_FLOWER))
+            if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS && !world.getBlockState(pos).isSideSolid(world, pos.up(), EnumFacing.UP) || world.getBlockState(pos.up()).getBlock() == ChalosBlocks.CHEESE_SPORE_FLOWER)
             {
                 this.growCheeseSporeFlower(itemStack, world, pos, world.rand);
                 --itemStack.stackSize;
-                return true;
+                return EnumActionResult.SUCCESS;
             }
         }
-        return false;
+        return EnumActionResult.PASS;
     }
 
     private void growCheeseSporeFlower(ItemStack itemStack, World world, BlockPos pos, Random rand)
@@ -61,13 +63,13 @@ public class ItemCheeseSpore extends ItemBaseMP
                             {
                                 if (ChalosBlocks.CHEESE_SPORE_FLOWER.canBlockStay(world, blockpos1, iblockstate1))
                                 {
-                                    world.playAuxSFX(2005, blockpos1, 0);
+                                    world.playEvent(2005, blockpos1, 0);
                                     world.setBlockState(blockpos1, iblockstate1, 3);
                                 }
                             }
                             else
                             {
-                                world.playAuxSFX(2005, pos, 0);
+                                world.playEvent(2005, pos, 0);
                             }
                         }
                     }
@@ -76,7 +78,7 @@ public class ItemCheeseSpore extends ItemBaseMP
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(blockpos1.down()).getBlock() != ChalosBlocks.CHEESE_GRASS || world.getBlockState(blockpos1).getBlock().isNormalCube())
+                if (world.getBlockState(blockpos1.down()).getBlock() != ChalosBlocks.CHEESE_GRASS || world.getBlockState(blockpos1).isNormalCube())
                 {
                     break;
                 }

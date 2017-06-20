@@ -9,11 +9,15 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
+import net.minecraft.network.play.server.SPacketEntityEffect;
+import net.minecraft.network.play.server.SPacketRespawn;
+import net.minecraft.network.play.server.SPacketSetExperience;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -55,7 +59,7 @@ public class TeleportHandler
         boolean dimChange = player.worldObj != worldNew;
         player.worldObj.updateEntityWithOptionalForce(player, false);
         int oldDimID = GCCoreUtil.getDimensionID(player.worldObj);
-        ChunkCoordIntPair pair = worldNew.getChunkFromChunkCoords(x, z).getChunkCoordIntPair();
+        ChunkPos pair = worldNew.getChunkFromChunkCoords(x, z).getChunkCoordIntPair();
         y = (int) (y + 1.5F);
 
         if (dimChange)
@@ -64,7 +68,7 @@ public class TeleportHandler
 
             try
             {
-                ((WorldServer) worldOld).getPlayerManager().removePlayer(player);
+                ((WorldServer) worldOld).getPlayerChunkMap().removePlayer(player);
             }
             catch (Exception e)
             {
@@ -73,11 +77,13 @@ public class TeleportHandler
 
             player.closeScreen();
             player.dimension = dimID;
-            player.playerNetServerHandler.sendPacket(new S07PacketRespawn(dimID, player.worldObj.getDifficulty(), player.worldObj.getWorldInfo().getTerrainType(), player.theItemInWorldManager.getGameType()));
+            player.connection.sendPacket(new SPacketRespawn(dimID, player.worldObj.getDifficulty(), player.worldObj.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
             worldOld.playerEntities.remove(player);
             worldOld.updateAllPlayersSleepingFlag();
+            int i = player.chunkCoordX;
+            int j = player.chunkCoordZ;
 
-            if (player.addedToChunk && worldOld.getChunkProvider().chunkExists(player.chunkCoordX, player.chunkCoordZ))
+            if (player.addedToChunk && worldOld.isBlockLoaded(new BlockPos(i << 4, 63, j << 4), true))
             {
                 Chunk chunkOld = worldOld.getChunkFromChunkCoords(player.chunkCoordX, player.chunkCoordZ);
                 chunkOld.removeEntity(player);
@@ -88,14 +94,14 @@ public class TeleportHandler
             worldOld.onEntityRemoved(player);
             worldNew.spawnEntityInWorld(player);
             player.setWorld(worldNew);
-            ((WorldServer) worldNew).theChunkProviderServer.loadChunk(pair.chunkXPos, pair.chunkZPos);
+            ((WorldServer) worldNew).getChunkProvider().loadChunk(pair.chunkXPos, pair.chunkZPos);
             worldNew.updateEntityWithOptionalForce(player, false);
 
             if (!nether)
             {
                 player.setLocationAndAngles(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
-                player.mcServer.getConfigurationManager().preparePlayer(player, (WorldServer) worldNew);
-                player.playerNetServerHandler.setPlayerLocation(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
+                player.mcServer.getPlayerList().preparePlayer(player, (WorldServer) worldNew);
+                player.connection.setPlayerLocation(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
             }
             else
             {
@@ -111,24 +117,24 @@ public class TeleportHandler
                 }
             }
 
-            player.theItemInWorldManager.setWorld((WorldServer) worldNew);
-            player.mcServer.getConfigurationManager().updateTimeAndWeatherForPlayer(player, (WorldServer) worldNew);
-            player.mcServer.getConfigurationManager().syncPlayerInventory(player);
+            player.interactionManager.setWorld((WorldServer) worldNew);
+            player.mcServer.getPlayerList().updateTimeAndWeatherForPlayer(player, (WorldServer) worldNew);
+            player.mcServer.getPlayerList().syncPlayerInventory(player);
             player.setSneaking(false);
 
             for (Object o : player.getActivePotionEffects())
             {
                 PotionEffect potion = (PotionEffect) o;
-                player.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(player.getEntityId(), potion));
+                player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion));
             }
-            player.playerNetServerHandler.sendPacket(new S1FPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
+            player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
         }
         else
         {
             player.closeScreen();
             player.setSneaking(false);
             worldNew.updateEntityWithOptionalForce(player, false);
-            player.playerNetServerHandler.setPlayerLocation(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
+            player.connection.setPlayerLocation(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
             player.setLocationAndAngles(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
             worldNew.updateEntityWithOptionalForce(player, false);
         }
@@ -144,13 +150,13 @@ public class TeleportHandler
         boolean dimChange = player.worldObj != worldNew;
         player.worldObj.updateEntityWithOptionalForce(player, false);
         int oldDimID = GCCoreUtil.getDimensionID(player.worldObj);
-        ChunkCoordIntPair pair = worldNew.getChunkFromChunkCoords(blockpos.getX(), blockpos.getZ()).getChunkCoordIntPair();
+        ChunkPos pair = worldNew.getChunkFromChunkCoords(blockpos.getX(), blockpos.getZ()).getChunkCoordIntPair();
 
         if (dimChange)
         {
             try
             {
-                worldOld.getPlayerManager().removePlayer(player);
+                worldOld.getPlayerChunkMap().removePlayer(player);
             }
             catch (Exception e)
             {
@@ -159,7 +165,7 @@ public class TeleportHandler
 
             player.closeScreen();
             player.dimension = GCCoreUtil.getDimensionID(worldNew);
-            player.playerNetServerHandler.sendPacket(new S07PacketRespawn(GCCoreUtil.getDimensionID(worldNew), player.worldObj.getDifficulty(), player.worldObj.getWorldInfo().getTerrainType(), player.theItemInWorldManager.getGameType()));
+            player.connection.sendPacket(new SPacketRespawn(GCCoreUtil.getDimensionID(worldNew), player.worldObj.getDifficulty(), player.worldObj.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
             worldOld.playerEntities.remove(player);
             worldOld.updateAllPlayersSleepingFlag();
 
@@ -208,30 +214,30 @@ public class TeleportHandler
                 player.inventory.addItemStackToInventory(new ItemStack(AsteroidsItems.canisterLOX));
             }
 
-            worldNew.theChunkProviderServer.loadChunk(pair.chunkXPos, pair.chunkZPos);
+            worldNew.getChunkProvider().loadChunk(pair.chunkXPos, pair.chunkZPos);
             worldNew.updateEntityWithOptionalForce(player, false);
             player.setLocationAndAngles(blockpos.getX(), blockpos.getY() + 16.0D, blockpos.getZ(), player.rotationYaw, player.rotationPitch);
-            player.addPotionEffect(new PotionEffect(Potion.resistance.id, 15 * 20, 5));
-            player.mcServer.getConfigurationManager().preparePlayer(player, worldNew);
-            player.playerNetServerHandler.setPlayerLocation(blockpos.getX(), blockpos.getY() + 16.0D, blockpos.getZ(), player.rotationYaw, player.rotationPitch);
-            player.theItemInWorldManager.setWorld(worldNew);
-            player.mcServer.getConfigurationManager().updateTimeAndWeatherForPlayer(player, worldNew);
-            player.mcServer.getConfigurationManager().syncPlayerInventory(player);
+            player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 15 * 20, 5));
+            player.mcServer.getPlayerList().preparePlayer(player, worldNew);
+            player.connection.setPlayerLocation(blockpos.getX(), blockpos.getY() + 16.0D, blockpos.getZ(), player.rotationYaw, player.rotationPitch);
+            player.interactionManager.setWorld(worldNew);
+            player.mcServer.getPlayerList().updateTimeAndWeatherForPlayer(player, worldNew);
+            player.mcServer.getPlayerList().syncPlayerInventory(player);
 
             for (Object o : player.getActivePotionEffects())
             {
                 PotionEffect potion = (PotionEffect) o;
-                player.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(player.getEntityId(), potion));
+                player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion));
             }
-            player.playerNetServerHandler.sendPacket(new S1FPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
+            player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
         }
         else
         {
             player.closeScreen();
             worldNew.updateEntityWithOptionalForce(player, false);
-            player.playerNetServerHandler.setPlayerLocation(blockpos.getX(), blockpos.getY() + 16.0D, blockpos.getZ(), player.rotationYaw, player.rotationPitch);
+            player.connection.setPlayerLocation(blockpos.getX(), blockpos.getY() + 16.0D, blockpos.getZ(), player.rotationYaw, player.rotationPitch);
             player.setLocationAndAngles(blockpos.getX(), blockpos.getY() + 16.0D, blockpos.getZ(), player.rotationYaw, player.rotationPitch);
-            player.addPotionEffect(new PotionEffect(Potion.resistance.id, 15 * 20, 5));
+            player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 15 * 20, 5));
             worldNew.updateEntityWithOptionalForce(player, false);
         }
 

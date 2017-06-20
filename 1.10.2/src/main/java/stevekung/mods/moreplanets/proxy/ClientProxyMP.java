@@ -8,9 +8,9 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import stevekung.mods.moreplanets.client.renderer.*;
 import stevekung.mods.moreplanets.init.MPSchematics;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.module.planets.diona.client.particle.EntityAlienMinerSparkFX;
-import stevekung.mods.moreplanets.module.planets.diona.client.particle.EntityCrystallizeFlameFX;
-import stevekung.mods.moreplanets.module.planets.diona.client.particle.EntityDarkPortalFX;
+import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleAlienMinerSpark;
+import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleCrystallizeFlame;
+import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleDarkPortal;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.EntityAlienBerryFX;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.EntityInfectedGuardianAppearanceFX;
@@ -82,7 +82,7 @@ public class ClientProxyMP extends ServerProxyMP
 
             if (type == EnumParticleTypesMP.CRYSTALLIZE_FLAME)
             {
-                entityfx = new EntityCrystallizeFlameFX(mc.theWorld, x, y, z);
+                entityfx = new ParticleCrystallizeFlame(mc.theWorld, x, y, z);
             }
             else if (type == EnumParticleTypesMP.CHEESE_OF_MILK_DRIP)
             {
@@ -94,7 +94,7 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.ALIEN_MINER_SPARK)
             {
-                entityfx = new EntityAlienMinerSparkFX(mc.theWorld, x, y, z, (float) data[0]);
+                entityfx = new ParticleAlienMinerSpark(mc.theWorld, x, y, z, (float) data[0]);
             }
             else if (type == EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE)
             {
@@ -102,7 +102,7 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.DARK_PORTAL)
             {
-                entityfx = new EntityDarkPortalFX(mc.theWorld, x, y, z, motionX, motionY, motionZ);
+                entityfx = new ParticleDarkPortal(mc.theWorld, x, y, z, motionX, motionY, motionZ);
             }
             else if (type == EnumParticleTypesMP.ALIEN_BERRY_LEAVES)
             {

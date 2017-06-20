@@ -5,14 +5,13 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.ChunkCoordIntPair;
-import net.minecraft.world.SpawnerAnimals;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.WorldEntitySpawner;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkProvider;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockDiona;
@@ -33,7 +32,7 @@ import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenSpaceDungeons;
 public class ChunkProviderDiona extends ChunkProviderBaseMP
 {
     private BiomeDecoratorDiona biomeDecorator = new BiomeDecoratorDiona();
-    private BiomeGenBase[] biomesForGeneration = { MPBiomes.DIONA };
+    private Biome[] biomesForGeneration = { MPBiomes.DIONA };
     private MapGenCaveMP caveGenerator = new MapGenCaveMP(DionaBlocks.DIONA_BLOCK, DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, this.getBlockMetadata());
     private MapGenDionaMineshaft mineshaftGenerator = new MapGenDionaMineshaft();
     private MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(DionaBlocks.DIONA_BLOCK.getDefaultState().withProperty(BlockDiona.VARIANT, BlockDiona.BlockType.DIONA_DUNGEON_BRICK), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), DionaBlocks.INFECTED_CRYSTALLIZE_WEB.getDefaultState(), DionaBlocks.INFECTED_CRYSTALLIZE_TORCH.getDefaultState(), DionaBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
@@ -49,31 +48,31 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
         ChunkPrimer primer = new ChunkPrimer();
         this.rand.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
         this.generateTerrain(chunkX, chunkZ, primer);
-        this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
+        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
         this.createCraters(chunkX, chunkZ, primer);
-        this.replaceBlocksForBiome(chunkX, chunkZ, primer, this.biomesForGeneration);
-        this.caveGenerator.generate(this, this.worldObj, chunkX, chunkZ, primer);
-        this.mineshaftGenerator.generate(this, this.worldObj, chunkX, chunkZ, primer);
-        this.dungeonGenerator.generate(this, this.worldObj, chunkX, chunkZ, primer);
+        this.replaceBiomeBlocks(chunkX, chunkZ, primer, this.biomesForGeneration);
+        this.caveGenerator.generate(this.worldObj, chunkX, chunkZ, primer);
+        this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, primer);
+        this.dungeonGenerator.generate(this.worldObj, chunkX, chunkZ, primer);
         Chunk chunk = new Chunk(this.worldObj, primer, chunkX, chunkZ);
         chunk.generateSkylightMap();
         return chunk;
     }
 
     @Override
-    public void populate(IChunkProvider chunk, int chunkX, int chunkZ)
+    public void populate(int chunkX, int chunkZ)
     {
         BlockFalling.fallInstantly = true;
         int x = chunkX * 16;
         int z = chunkZ * 16;
         BlockPos pos = new BlockPos(x, 0, z);
-        BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos.add(16, 0, 16));
-        ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(chunkX, chunkZ);
+        Biome biomegenbase = this.worldObj.getBiome(pos.add(16, 0, 16));
+        ChunkPos chunkcoordintpair = new ChunkPos(chunkX, chunkZ);
         this.rand.setSeed(this.worldObj.getSeed());
         long k = this.rand.nextLong() / 2L * 2L + 1L;
         long l = this.rand.nextLong() / 2L * 2L + 1L;
         this.rand.setSeed(chunkX * k + chunkZ * l ^ this.worldObj.getSeed());
-        SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomegenbase, x + 8, z + 8, 16, 16, this.rand);
+        WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biomegenbase, x + 8, z + 8, 16, 16, this.rand);
         this.dungeonGenerator.generateStructure(this.worldObj, this.rand, chunkcoordintpair);
         this.biomeDecorator.decorate(this.worldObj, this.rand, biomegenbase, pos);
         this.mineshaftGenerator.generateStructure(this.worldObj, this.rand, chunkcoordintpair);
@@ -110,13 +109,7 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
     @Override
     public List getPossibleCreatures(EnumCreatureType type, BlockPos pos)
     {
-        return this.worldObj.getBiomeGenForCoords(pos).getSpawnableList(type);
-    }
-
-    @Override
-    protected String getName()
-    {
-        return "Diona";
+        return this.worldObj.getBiome(pos).getSpawnableList(type);
     }
 
     @Override
@@ -134,7 +127,7 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        this.mineshaftGenerator.generate(this, this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.dungeonGenerator.generate(this, this.worldObj, chunkX, chunkZ, null);
+        this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
+        this.dungeonGenerator.generate(this.worldObj, chunkX, chunkZ, null);
     }
 }

@@ -21,7 +21,7 @@ public abstract class StructureComponentMP extends StructureComponent
     @Override
     protected int getMetadataWithOffset(Block block, int meta)
     {
-        if (block == Blocks.rail)
+        if (block == Blocks.RAIL)
         {
             if (this.coordBaseMode == EnumFacing.WEST || this.coordBaseMode == EnumFacing.EAST)
             {

@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.module.planets.diona.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -38,7 +39,7 @@ public class EntityInfectedCrystallizeArrow extends EntityArrowMP
     {
         if (!this.worldObj.isRemote)
         {
-            living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE.id, 100, 0));
+            living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 100, 0));
         }
     }
 
@@ -47,15 +48,16 @@ public class EntityInfectedCrystallizeArrow extends EntityArrowMP
     {
         if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0)
         {
-            boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && player.capabilities.isCreativeMode;
+            boolean flag = this.pickupStatus == PickupStatus.ALLOWED || this.pickupStatus == PickupStatus.CREATIVE_ONLY && player.capabilities.isCreativeMode;
 
-            if (this.canBePickedUp == 1 && !player.inventory.addItemStackToInventory(new ItemStack(DionaItems.INFECTED_CRYSTALLIZE_ARROW, 1)))
+            if (this.pickupStatus == PickupStatus.ALLOWED && !player.inventory.addItemStackToInventory(new ItemStack(DionaItems.INFECTED_CRYSTALLIZE_ARROW, 1)))
             {
                 flag = false;
             }
+
             if (flag)
             {
-                this.playSound("random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                this.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
                 player.onItemPickup(this, 1);
                 this.setDead();
             }

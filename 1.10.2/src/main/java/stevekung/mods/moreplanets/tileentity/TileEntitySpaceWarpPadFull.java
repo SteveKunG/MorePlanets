@@ -21,6 +21,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.fml.relauncher.Side;
@@ -163,9 +165,8 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         nbt.setInteger("DimensionID", this.dimensionID);
         nbt.setBoolean("ReceiveData", this.receiveData);
         nbt.setBoolean("CheckInvalid", this.checkInvalid);
@@ -192,13 +193,14 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             }
         }
         nbt.setTag("Items", list);
+        return super.writeToNBT(nbt);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox()
     {
-        return AxisAlignedBB.fromBounds(this.getPos().getX() - 1, this.getPos().getY(), this.getPos().getZ() - 1, this.getPos().getX() + 2, this.getPos().getY() + 0.4D, this.getPos().getZ() + 2);
+        return new AxisAlignedBB(this.getPos().getX() - 1, this.getPos().getY(), this.getPos().getZ() - 1, this.getPos().getX() + 2, this.getPos().getY() + 0.4D, this.getPos().getZ() + 2);
     }
 
     public void setTeleportData(BlockPos pos, int dimension, boolean receiveData)
@@ -323,7 +325,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public String getName()
     {
-        return StatCollector.translateToLocal("container.space_warp_pad.name");
+        return GCCoreUtil.translate("container.space_warp_pad.name");
     }
 
     @Override
@@ -333,9 +335,9 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     }
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
-        return new ChatComponentTranslation(this.getName());
+        return new TextComponentTranslation(this.getName());
     }
 
     @Override
@@ -400,11 +402,11 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
         }
         if (!this.getHasReceiveData())
         {
-            return EnumColor.DARK_RED + StatCollector.translateToLocal("gui.status.no_warp_pos.name");
+            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.no_warp_pos.name");
         }
         if (this.getCheckInvalid())
         {
-            return EnumColor.DARK_RED + StatCollector.translateToLocal("gui.status.missing_warp_pad.name");
+            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.missing_warp_pad.name");
         }
         if (this.getDisabled(0))
         {

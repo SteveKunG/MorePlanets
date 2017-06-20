@@ -1,6 +1,9 @@
 package stevekung.mods.moreplanets.module.planets.chalos.world.gen;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import java.util.Random;
+
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.feature.WorldGenCheeseSporeTree;
 import stevekung.mods.moreplanets.util.helper.DecorateHelper;
@@ -15,50 +18,50 @@ public class BiomeDecoratorChalos extends BiomeDecoratorMP
     public int cheeseSporeStemPerChunk;
 
     @Override
-    protected void generate(BiomeGenBase biome)
+    protected void generate(Biome biome, World world, Random rand)
     {
         int i;
 
         for (i = 0; i < this.cheeseSporeFlowerPerChunk; ++i)
         {
-            DecorateHelper.generatePlants(new WorldGenFlowersMP(ChalosBlocks.CHEESE_SPORE_FLOWER.getDefaultState()), this.currentWorld, this.randomGenerator, this.field_180294_c);
+            DecorateHelper.generatePlants(new WorldGenFlowersMP(ChalosBlocks.CHEESE_SPORE_FLOWER.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.cheeseTallGrassPerChunk; ++i)
         {
-            DecorateHelper.generatePlants(new WorldGenFlowersMP(ChalosBlocks.CHEESE_TALL_GRASS.getDefaultState()), this.currentWorld, this.randomGenerator, this.field_180294_c);
+            DecorateHelper.generatePlants(new WorldGenFlowersMP(ChalosBlocks.CHEESE_TALL_GRASS.getDefaultState()), world, rand, this.chunkPos);
         }
 
         int chance;
         chance = this.cheeseSporeTreePerChunk;
 
-        if (this.randomGenerator.nextInt(1) == 0)
+        if (rand.nextInt(1) == 0)
         {
             --chance;
         }
-        if (this.randomGenerator.nextInt(6) == 0)
+        if (rand.nextInt(6) == 0)
         {
             ++chance;
         }
 
         for (i = 0; i < chance; ++i)
         {
-            DecorateHelper.generateCustomTrees(new WorldGenCheeseSporeTree(6 + this.randomGenerator.nextInt(4), true), this.currentWorld, this.randomGenerator, biome, this.field_180294_c);
+            DecorateHelper.generateCustomTrees(new WorldGenCheeseSporeTree(6 + rand.nextInt(4), true), world, rand, biome, this.chunkPos);
         }
 
         chance = this.cheeseSporeStemPerChunk;
 
-        if (this.randomGenerator.nextInt(1) == 0)
+        if (rand.nextInt(1) == 0)
         {
             --chance;
         }
-        if (this.randomGenerator.nextInt(8) == 0)
+        if (rand.nextInt(8) == 0)
         {
             ++chance;
         }
 
         for (i = 0; i < chance; ++i)
         {
-            DecorateHelper.generateCustomTrees(new WorldGenCheeseSporeTree(6 + this.randomGenerator.nextInt(4), false), this.currentWorld, this.randomGenerator, biome, this.field_180294_c);
+            DecorateHelper.generateCustomTrees(new WorldGenCheeseSporeTree(6 + rand.nextInt(4), false), world, rand, biome, this.chunkPos);
         }
     }
 }

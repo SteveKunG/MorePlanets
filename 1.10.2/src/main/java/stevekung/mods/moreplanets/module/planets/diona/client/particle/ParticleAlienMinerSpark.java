@@ -1,20 +1,20 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.particle;
 
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class EntityAlienMinerSparkFX extends EntityFX
+public class ParticleAlienMinerSpark extends Particle
 {
     float reddustParticleScale;
 
-    public EntityAlienMinerSparkFX(World world, double x, double y, double z, float time)
+    public ParticleAlienMinerSpark(World world, double x, double y, double z, float time)
     {
         super(world, x, y, z, 0.0D, 0.0D, 0.0D);
         this.motionX *= 0.10000000149011612D;
@@ -29,11 +29,10 @@ public class EntityAlienMinerSparkFX extends EntityFX
         this.reddustParticleScale = this.particleScale;
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
         this.particleMaxAge = (int)(this.particleMaxAge * 1.0F);
-        this.noClip = false;
     }
 
     @Override
-    public void renderParticle(WorldRenderer worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+    public void renderParticle(VertexBuffer worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         GlStateManager.depthMask(false);
         float f = (this.particleAge + partialTicks) / this.particleMaxAge * 32.0F;
@@ -56,12 +55,6 @@ public class EntityAlienMinerSparkFX extends EntityFX
     }
 
     @Override
-    public float getBrightness(float partialTicks)
-    {
-        return 1.0F;
-    }
-
-    @Override
     public void onUpdate()
     {
         this.prevPosX = this.posX;
@@ -70,7 +63,7 @@ public class EntityAlienMinerSparkFX extends EntityFX
 
         if (this.particleAge++ >= this.particleMaxAge)
         {
-            this.setDead();
+            this.setExpired();
         }
 
         this.setParticleTextureIndex(7 - this.particleAge * 8 / this.particleMaxAge);
@@ -86,7 +79,7 @@ public class EntityAlienMinerSparkFX extends EntityFX
         this.motionY -= 0.0025D;
         this.motionZ *= 0.9599999785423279D;
 
-        if (this.onGround)
+        if (this.isCollided)
         {
             this.motionX *= 0.699999988079071D;
             this.motionZ *= 0.699999988079071D;

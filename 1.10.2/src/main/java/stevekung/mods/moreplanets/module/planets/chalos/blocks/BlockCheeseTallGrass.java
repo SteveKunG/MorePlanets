@@ -10,7 +10,8 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -21,12 +22,18 @@ import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
 
 public class BlockCheeseTallGrass extends BlockBushMP implements IShearable, IGrowable
 {
+    protected static AxisAlignedBB TALL_GRASS_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+
     public BlockCheeseTallGrass(String name)
     {
-        super(Material.plants);
+        super(Material.PLANTS);
         this.setUnlocalizedName(name);
-        float f = 0.4F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return TALL_GRASS_AABB;
     }
 
     @Override
@@ -43,7 +50,7 @@ public class BlockCheeseTallGrass extends BlockBushMP implements IShearable, IGr
     }
 
     @Override
-    public boolean isReplaceable(World world, BlockPos pos)
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
         return true;
     }

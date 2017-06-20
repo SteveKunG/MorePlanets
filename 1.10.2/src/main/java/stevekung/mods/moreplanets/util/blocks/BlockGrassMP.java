@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.util.blocks;
 
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -11,7 +12,7 @@ public abstract class BlockGrassMP extends BlockBaseMP implements ITerraformable
     {
         super(Material.GRASS);
         this.setTickRandomly(true);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.PLANT);
         this.setHardness(0.6F);
     }
 

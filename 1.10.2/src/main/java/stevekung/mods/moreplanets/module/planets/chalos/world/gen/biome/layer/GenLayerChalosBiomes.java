@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
@@ -68,7 +69,7 @@ public class GenLayerChalosBiomes extends GenLayerChalos
             for (int dx = 0; dx < areaWidth; dx++)
             {
                 this.initChunkSeed(dx + areaX, dz + areaY);
-                dest[dx + dz * areaWidth] = this.getWeightedBiomeEntry(BiomeType.WARM).biome.biomeID;
+                dest[dx + dz * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeEntry(BiomeType.WARM).biome);
             }
         }
         return dest;

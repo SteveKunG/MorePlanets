@@ -1,7 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.chalos.world.gen;
 
+import java.util.Random;
+
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
@@ -33,29 +36,29 @@ public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
     }
 
     @Override
-    protected void generate(BiomeGenBase biome)
+    protected void generate(Biome biome, World world, Random rand)
     {
-        int x = this.randomGenerator.nextInt(16) + 8;
-        int z = this.randomGenerator.nextInt(16) + 8;
+        int x = rand.nextInt(16) + 8;
+        int z = rand.nextInt(16) + 8;
 
-        this.generateOre(this.zyptoriumGen, 8, 0, 24);
-        this.generateOre(this.diremsiumGen, 16, 0, 64);
-        this.generateOre(this.cheeseGen, 5, 0, 256);
-        this.generateOre(this.ironGen, EnumOreGen.IRON);
-        this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM);
-        this.generateOre(this.tinGen, EnumOreGen.TIN);
-        this.generateOre(this.copperGen, EnumOreGen.COPPER);
-        this.generateOre(this.dirtGen, EnumOreGen.DIRT);
+        this.generateOre(this.zyptoriumGen, 8, 0, 24, world, rand);
+        this.generateOre(this.diremsiumGen, 16, 0, 64, world, rand);
+        this.generateOre(this.cheeseGen, 5, 0, 256, world, rand);
+        this.generateOre(this.ironGen, EnumOreGen.IRON, world, rand);
+        this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
+        this.generateOre(this.tinGen, EnumOreGen.TIN, world, rand);
+        this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
+        this.generateOre(this.dirtGen, EnumOreGen.DIRT, world, rand);
 
         for (int j = 0; j < 50; ++j)
         {
-            int y = this.randomGenerator.nextInt(this.randomGenerator.nextInt(248) + 8);
-            new WorldGenCaveLiquids(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, ChalosBlocks.CHALOS_BLOCK, 0).generate(this.currentWorld, this.randomGenerator, this.field_180294_c.add(x, y, z));
+            int y = rand.nextInt(rand.nextInt(248) + 8);
+            new WorldGenCaveLiquids(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, ChalosBlocks.CHALOS_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (int j = 0; j < 20; ++j)
         {
-            int y = this.randomGenerator.nextInt(this.randomGenerator.nextInt(this.randomGenerator.nextInt(240) + 8) + 8);
-            new WorldGenCaveLiquids(Blocks.flowing_lava, ChalosBlocks.CHALOS_BLOCK, 0).generate(this.currentWorld, this.randomGenerator, this.field_180294_c.add(x, y, z));
+            int y = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
+            new WorldGenCaveLiquids(Blocks.FLOWING_LAVA, ChalosBlocks.CHALOS_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
         }
     }
 }

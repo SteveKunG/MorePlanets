@@ -12,10 +12,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
@@ -28,7 +28,7 @@ public class BlockInfectedCrystallizeWeb extends BlockBaseMP
 {
     public BlockInfectedCrystallizeWeb(String name)
     {
-        super(Material.web);
+        super(Material.WEB);
         this.setUnlocalizedName(name);
         this.setLightOpacity(1);
         this.setHardness(4.0F);
@@ -41,22 +41,28 @@ public class BlockInfectedCrystallizeWeb extends BlockBaseMP
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
         return null;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.CUTOUT;
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
@@ -66,15 +72,9 @@ public class BlockInfectedCrystallizeWeb extends BlockBaseMP
     }
 
     @Override
-    public boolean isFullCube()
-    {
-        return false;
-    }
-
-    @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Items.string;
+        return Items.STRING;
     }
 
     @Override
@@ -84,13 +84,13 @@ public class BlockInfectedCrystallizeWeb extends BlockBaseMP
 
         if (stack == null)
         {
-            return player.canHarvestBlock(this);
+            return player.canHarvestBlock(world.getBlockState(pos));
         }
         return stack != null && (stack.getItem() instanceof ItemShears || stack.getItem() instanceof ItemSword);
     }
 
     @Override
-    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, BlockPos pos)
+    public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos)
     {
         ItemStack stack = player.inventory.getCurrentItem();
 
@@ -102,7 +102,7 @@ public class BlockInfectedCrystallizeWeb extends BlockBaseMP
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, 0);
     }

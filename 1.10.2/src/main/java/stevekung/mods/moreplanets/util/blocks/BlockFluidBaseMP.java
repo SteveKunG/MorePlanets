@@ -9,8 +9,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
@@ -28,7 +31,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
 
     public BlockFluidBaseMP(Fluid fluid)
     {
-        super(fluid, Material.water);
+        super(fluid, Material.WATER);
         this.setHardness(100.0F);
     }
 
@@ -41,17 +44,17 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
     @Override
     public boolean isPassable(IBlockAccess world, BlockPos pos)
     {
-        return this.blockMaterial != Material.lava;
+        return this.blockMaterial != Material.LAVA;
     }
 
     @Override
     public boolean canDisplace(IBlockAccess world, BlockPos pos)
     {
-        if (world.getBlockState(pos).getBlock().getMaterial().isLiquid())
+        if (world.getBlockState(pos).getMaterial().isLiquid())
         {
             return false;
         }
-        if (world.getBlockState(pos).getBlock().getMaterial() == Material.lava)
+        if (world.getBlockState(pos).getMaterial() == Material.LAVA)
         {
             return false;
         }
@@ -61,11 +64,11 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
     @Override
     public boolean displaceIfPossible(World world, BlockPos pos)
     {
-        if (world.getBlockState(pos).getBlock().getMaterial().isLiquid())
+        if (world.getBlockState(pos).getMaterial().isLiquid())
         {
             return false;
         }
-        if (world.getBlockState(pos).getBlock().getMaterial() == Material.lava)
+        if (world.getBlockState(pos).getMaterial() == Material.LAVA)
         {
             return false;
         }
@@ -121,11 +124,11 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
                 {
                     IBlockState iblockstate2 = world.getBlockState(pos.down());
 
-                    if (iblockstate2.getBlock().getMaterial().isSolid())
+                    if (iblockstate2.getMaterial().isSolid())
                     {
                         l = 0;
                     }
-                    else if (iblockstate2.getBlock().getMaterial() == this.blockMaterial && iblockstate2.getValue(LEVEL).intValue() == 0)
+                    else if (iblockstate2.getMaterial() == this.blockMaterial && iblockstate2.getValue(LEVEL).intValue() == 0)
                     {
                         l = 0;
                     }
@@ -161,7 +164,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
         Block block = world.getBlockState(pos).getBlock();
 
@@ -169,7 +172,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
         {
             return true;
         }
-        return super.shouldSideBeRendered(world, pos, side);
+        return super.shouldSideBeRendered(state, world, pos, side);
     }
 
     @Override
@@ -180,6 +183,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
 
     //TODO: Remove in 1.11+
     @Override
+    @Deprecated
     @Nonnull
     public IBlockState getExtendedState(@Nonnull IBlockState oldState, @Nonnull IBlockAccess world, @Nonnull BlockPos pos)
     {
@@ -257,7 +261,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
 
     private boolean isFluid(@Nonnull IBlockState state)
     {
-        return state.getBlock().getMaterial().isLiquid() || state.getBlock() instanceof IFluidBlock;
+        return state.getMaterial().isLiquid() || state.getBlock() instanceof IFluidBlock;
     }
 
     private float getFluidHeightForRender(IBlockAccess world, BlockPos pos, @Nonnull IBlockState up)
@@ -266,7 +270,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
 
         if (here.getBlock() == this)
         {
-            if (up.getBlock().getMaterial().isLiquid() || up.getBlock() instanceof IFluidBlock)
+            if (up.getMaterial().isLiquid() || up.getBlock() instanceof IFluidBlock)
             {
                 return 1;
             }
@@ -279,7 +283,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
         {
             return Math.min(1 - BlockLiquid.getLiquidHeightPercent(here.getValue(BlockLiquid.LEVEL)), 14f / 16);
         }
-        return !here.getBlock().getMaterial().isSolid() && up.getBlock() == this ? 1 : this.getQuantaPercentage(world, pos) * 0.875F;
+        return !here.getMaterial().isSolid() && up.getBlock() == this ? 1 : this.getQuantaPercentage(world, pos) * 0.875F;
     }
 
     private void placeStaticBlock(World world, BlockPos pos, IBlockState state)
@@ -311,12 +315,12 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
 
     private int getLevel(IBlockAccess world, BlockPos pos)
     {
-        return world.getBlockState(pos).getBlock().getMaterial() == this.blockMaterial ? world.getBlockState(pos).getValue(LEVEL).intValue() : -1;
+        return world.getBlockState(pos).getMaterial() == this.blockMaterial ? world.getBlockState(pos).getValue(LEVEL).intValue() : -1;
     }
 
     protected void triggerMixEffects(World world, BlockPos pos)
     {
-        world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "random.fizz", 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
+        world.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
 
         for (int i = 0; i < 8; ++i)
         {

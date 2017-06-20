@@ -1,13 +1,16 @@
 package stevekung.mods.moreplanets.util.entity.ai;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathFinder;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import net.minecraftforge.fluids.BlockFluidBase;
 
 public class PathNavigateGroundMP extends PathNavigateGround
 {
@@ -22,14 +25,14 @@ public class PathNavigateGroundMP extends PathNavigateGround
     protected PathFinder getPathFinder()
     {
         this.nodeProcessor = new WalkNodeProcessorMP();
-        this.nodeProcessor.setEnterDoors(true);
+        this.nodeProcessor.setCanEnterDoors(true);
         return new PathFinder(this.nodeProcessor);
     }
 
     @Override
-    protected Vec3 getEntityPosition()
+    protected Vec3d getEntityPosition()
     {
-        return new Vec3(this.theEntity.posX, this.getPathablePosY(), this.theEntity.posZ);
+        return new Vec3d(this.theEntity.posX, this.getPathablePosY(), this.theEntity.posZ);
     }
 
     private int getPathablePosY()
@@ -40,7 +43,7 @@ public class PathNavigateGroundMP extends PathNavigateGround
             Block block = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.theEntity.posX), i, MathHelper.floor_double(this.theEntity.posZ))).getBlock();
             int j = 0;
 
-            while (block == NibiruBlocks.PURIFY_WATER_FLUID_BLOCK)
+            while (block == Blocks.FLOWING_WATER || block == Blocks.WATER || block instanceof BlockFluidBase && this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.theEntity.posX), i, MathHelper.floor_double(this.theEntity.posZ))).getMaterial() == Material.WATER)
             {
                 ++i;
                 block = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.theEntity.posX), i, MathHelper.floor_double(this.theEntity.posZ))).getBlock();
@@ -60,33 +63,21 @@ public class PathNavigateGroundMP extends PathNavigateGround
     }
 
     @Override
-    public void setAvoidsWater(boolean avoidsWater)
-    {
-        this.nodeProcessor.setAvoidsWater(avoidsWater);
-    }
-
-    @Override
-    public boolean getAvoidsWater()
-    {
-        return this.nodeProcessor.getAvoidsWater();
-    }
-
-    @Override
     public void setBreakDoors(boolean canBreakDoors)
     {
-        this.nodeProcessor.setBreakDoors(canBreakDoors);
+        this.nodeProcessor.setCanBreakDoors(canBreakDoors);
     }
 
     @Override
-    public void setEnterDoors(boolean enter)
+    public void setEnterDoors(boolean enterDoors)
     {
-        this.nodeProcessor.setEnterDoors(enter);
+        this.nodeProcessor.setCanEnterDoors(enterDoors);
     }
 
     @Override
     public boolean getEnterDoors()
     {
-        return this.nodeProcessor.getEnterDoors();
+        return this.nodeProcessor.getCanEnterDoors();
     }
 
     @Override

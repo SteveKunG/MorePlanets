@@ -25,11 +25,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -113,7 +116,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
                             if (!(living instanceof EntityPlayer))
                             {
-                                living.addPotionEffect(new PotionEffect(MPPotions.DARK_ENERGY.id, 200, 0));
+                                living.addPotionEffect(new PotionEffect(MPPotions.DARK_ENERGY, 200, 0));
                             }
                             if (around instanceof EntityPlayer)
                             {
@@ -121,7 +124,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
                                 if (!player.capabilities.isCreativeMode && !player.isPotionActive(MPPotions.DARK_ENERGY_PROTECTION))
                                 {
-                                    player.addPotionEffect(new PotionEffect(MPPotions.DARK_ENERGY.id, 200, 0));
+                                    player.addPotionEffect(new PotionEffect(MPPotions.DARK_ENERGY, 200, 0));
                                 }
                             }
                         }
@@ -132,11 +135,11 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     if (this.activatedTick % 20 == 0)
                     {
-                        this.worldObj.playSoundEffect(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.ambient", 1.0F, 1.025F);
+                        this.worldObj.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.ambient", 1.0F, 1.025F);
                     }
                     if (this.activatedTick >= this.getSuccessfulTick() - 5 && this.activatedTick <= this.getSuccessfulTick())
                     {
-                        this.worldObj.playSoundEffect(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.stop", 1.0F, 1.0F);
+                        this.worldObj.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.stop", 1.0F, 1.0F);
                     }
 
                     if (!this.failed)
@@ -199,8 +202,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     }
                     if (this.failedTick % 20 == 0)
                     {
-                        this.worldObj.playSoundEffect(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.ambient", 1.0F, 1.025F);
-                        this.worldObj.playSoundEffect(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.danger", 5.0F, 1.0F);
+                        this.worldObj.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.ambient", 1.0F, 1.025F);
+                        this.worldObj.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.danger", 5.0F, 1.0F);
                     }
                 }
 
@@ -224,9 +227,10 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
                 for (int yRender = this.pos.getY(); yRender < 256; yRender++)
                 {
-                    Block block = this.worldObj.getBlockState(new BlockPos(this.pos.getX(), yRender, this.pos.getZ())).getBlock();
+                    IBlockState state = this.worldObj.getBlockState(new BlockPos(this.pos.getX(), yRender, this.pos.getZ()));
+                    Block block = state.getBlock();
 
-                    if (block.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
+                    if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
                     {
                         this.failed = true;
                     }
@@ -235,14 +239,14 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     {
                         block = this.worldObj.getBlockState(new BlockPos(this.pos.getX() + 1, yRender + 1, this.pos.getZ())).getBlock();
 
-                        if (block.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
+                        if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
 
                         block = this.worldObj.getBlockState(new BlockPos(this.pos.getX() - 1, yRender + 1, this.pos.getZ())).getBlock();
 
-                        if (block.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
+                        if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
@@ -251,14 +255,14 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     {
                         block = this.worldObj.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() + 1)).getBlock();
 
-                        if (block.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
+                        if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
 
                         block = this.worldObj.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() - 1)).getBlock();
 
-                        if (block.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
+                        if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
@@ -273,7 +277,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         {
                             EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
                             bolt.setLocationAndAngles(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), 0.0F, 0.0F);
-                            this.worldObj.playSoundEffect(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), "random.explode", 0.5F, 0.5F + this.worldObj.rand.nextFloat() * 0.2F);
+                            this.worldObj.playSound(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), "random.explode", 0.5F, 0.5F + this.worldObj.rand.nextFloat() * 0.2F);
                             this.worldObj.spawnEntityInWorld(bolt);
                             this.worldObj.setBlockState(this.getPos().up(), DionaBlocks.DARK_ENERGY_CORE.getDefaultState());
                         }
@@ -289,13 +293,13 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         {
                             for (BlockPos pos : this.obsidianPosList)
                             {
-                                this.worldObj.setBlockState(pos, Blocks.obsidian.getDefaultState());
+                                this.worldObj.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
                             }
                         }
                         this.setDisabled(0, true);
                         this.activatedMessage = true;
                         this.successful = true;
-                        FMLClientHandler.instance().getClient().thePlayer.addChatMessage(new JsonUtils().text(StatCollector.translateToLocal("gui.status.dark_energy_core_created.name")).setChatStyle(new JsonUtils().colorFromConfig("green")));
+                        FMLClientHandler.instance().getClient().thePlayer.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.status.dark_energy_core_created.name")).setStyle(new JsonUtils().colorFromConfig("green")));
                     }
                 }
 
@@ -399,7 +403,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     }
 
     @Override
-    public Packet getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("Facing", this.facing);
@@ -411,11 +415,11 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         nbt.setBoolean("Rendered", this.rendered);
         nbt.setInteger("ActivatedTick", this.activatedTick);
         nbt.setInteger("FailedTick", this.failedTick);
-        return new S35PacketUpdateTileEntity(this.pos, -1, nbt);
+        return new SPacketUpdateTileEntity(this.pos, -1, nbt);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         if (pkt.getTileEntityType() == -1)
         {
@@ -435,7 +439,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     @Override
     public boolean onActivated(EntityPlayer player)
     {
-        return MPBlocks.DARK_ENERGY_RECEIVER.onBlockActivated(this.worldObj, this.mainBlockPosition, MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState(), player, player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
+        return MPBlocks.DARK_ENERGY_RECEIVER.onBlockActivated(this.worldObj, this.mainBlockPosition, MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState(), player, player.getActiveHand(), player.getHeldItemMainhand(), player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
     }
 
     @Override
@@ -604,7 +608,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     @Override
     public String getName()
     {
-        return StatCollector.translateToLocal("container.dark_energy_receiver.name");
+        return GCCoreUtil.translate("container.dark_energy_receiver.name");
     }
 
     @Override
@@ -614,9 +618,9 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     }
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
-        return new ChatComponentTranslation(this.getName());
+        return new TextComponentTranslation(this.getName());
     }
 
     @Override
@@ -727,13 +731,13 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         IBlockState iblockstate = this.worldObj.getBlockState(pos);
         Block block = iblockstate.getBlock();
 
-        if (block.getMaterial() == Material.air)
+        if (iblockstate.getMaterial() == Material.AIR)
         {
             return false;
         }
         else
         {
-            this.worldObj.playAuxSFX(2001, pos, Block.getStateId(iblockstate));
+            this.worldObj.playEvent(2001, pos, Block.getStateId(iblockstate));
 
             if (dropBlock)
             {
@@ -750,7 +754,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     Block.spawnAsEntity(this.worldObj, pos, machine);
                 }
             }
-            return this.worldObj.setBlockState(pos, Blocks.air.getDefaultState(), 3);
+            return this.worldObj.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
         }
     }
 

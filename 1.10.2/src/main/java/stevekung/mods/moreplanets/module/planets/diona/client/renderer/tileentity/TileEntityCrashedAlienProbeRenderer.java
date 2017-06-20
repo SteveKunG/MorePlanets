@@ -24,7 +24,7 @@ public class TileEntityCrashedAlienProbeRenderer extends TileEntitySpecialRender
             GlStateManager.rotate(-90.0F + rand.nextInt(10), 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(rand.nextInt(45), 0.0F, 0.0F, 1.0F);
             EntityAlienMiner miner = new EntityAlienMiner(Minecraft.getMinecraft().theWorld);
-            Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(miner, 0.0F, -0.75F, 0.6F, 0.0F, partialTicks);
+            Minecraft.getMinecraft().getRenderManager().doRenderEntity(miner, 0.0F, -0.75F, 0.6F, 0.0F, partialTicks, false);
         }
         GlStateManager.popMatrix();
     }

@@ -11,6 +11,7 @@ import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.inventory.PersistantInventoryCrafting;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,10 +22,9 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -74,15 +74,15 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
 
                     if (this.processTicks == 40)
                     {
-                        this.worldObj.playSoundEffect(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "random.anvil_land", 0.2F, 0.5F);
+                        this.worldObj.playSound(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "random.anvil_land", 0.2F, 0.5F);
                     }
                     if (this.processTicks == 80)
                     {
-                        this.worldObj.playSoundEffect(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "random.anvil_land", 0.2F, 0.5F);
+                        this.worldObj.playSound(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "random.anvil_land", 0.2F, 0.5F);
                     }
                     if (this.processTicks == 130)
                     {
-                        this.worldObj.playSoundEffect(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "random.anvil_land", 0.2F, 0.5F);
+                        this.worldObj.playSound(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "random.anvil_land", 0.2F, 0.5F);
                     }
                     if (this.processTicks >= this.processTimeRequired)
                     {
@@ -214,9 +214,8 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         nbt.setInteger("ProcessTicks", this.processTicks);
         NBTTagList list = new NBTTagList();
         int i;
@@ -242,6 +241,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
             }
         }
         nbt.setTag("Items", list);
+        return super.writeToNBT(nbt);
     }
 
     @Override
@@ -341,7 +341,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     @Override
     public String getName()
     {
-        return StatCollector.translateToLocal("tile.rocket_crusher.name");
+        return GCCoreUtil.translate("tile.rocket_crusher.name");
     }
 
     @Override
@@ -510,9 +510,9 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     public void clear() {}
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
-        return new ChatComponentTranslation(this.getName());
+        return new TextComponentTranslation(this.getName());
     }
 
     private boolean isItemCompressorInput(ItemStack itemStack, int id)

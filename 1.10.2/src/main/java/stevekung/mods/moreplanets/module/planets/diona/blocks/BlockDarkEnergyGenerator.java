@@ -5,16 +5,25 @@ import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -34,34 +43,39 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
 
     public BlockDarkEnergyGenerator(String name)
     {
-        super(Material.iron);
+        super(Material.IRON);
         this.setHardness(2.0F);
-        this.setStepSound(Block.soundTypeMetal);
-        this.setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 0.75F, 0.9F);
+        this.setSoundType(SoundType.METAL);
         this.setUnlocalizedName(name);
     }
 
     @Override
-    public int getRenderType()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return 2;
+        return new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.75D, 0.9D);
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         float particlePosX = pos.getX() + 0.5F;
         float particlePosY = pos.getY() + 0.0F + rand.nextFloat() * 6.0F / 16.0F;
@@ -141,37 +155,36 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
     {
         if (tile instanceof TileEntityDarkEnergyGenerator)
         {
-            ItemStack machine = new ItemStack(this);
             TileEntityDarkEnergyGenerator electric = (TileEntityDarkEnergyGenerator) tile;
 
             if (electric.getEnergyStoredGC() > 0)
             {
-                machine.setTagCompound(new NBTTagCompound());
-                machine.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
+                itemStack.setTagCompound(new NBTTagCompound());
+                itemStack.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
 
                 if (electric.darkEnergyFuel > 0)
                 {
-                    machine.getTagCompound().setInteger("DarkEnergyFuel", electric.darkEnergyFuel);
+                    itemStack.getTagCompound().setInteger("DarkEnergyFuel", electric.darkEnergyFuel);
                 }
             }
             else
             {
                 if (electric.darkEnergyFuel > 0)
                 {
-                    machine.setTagCompound(new NBTTagCompound());
-                    machine.getTagCompound().setInteger("DarkEnergyFuel", electric.darkEnergyFuel);
+                    itemStack.setTagCompound(new NBTTagCompound());
+                    itemStack.getTagCompound().setInteger("DarkEnergyFuel", electric.darkEnergyFuel);
                 }
             }
-            Block.spawnAsEntity(world, pos, machine);
+            Block.spawnAsEntity(world, pos, itemStack);
         }
     }
 
     @Override
-    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer entityPlayer, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         int change = world.getBlockState(pos).getValue(FACING).rotateY().getHorizontalIndex();
         TileEntity tile = world.getTileEntity(pos);
@@ -205,11 +218,9 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     }
 
     @Override
-    public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        ItemStack itemStack = player.getCurrentEquippedItem();
-
-        if (itemStack != null && itemStack.getItem() == DionaItems.DARK_ENERGY_PEARL)
+        if (heldItem != null && heldItem.getItem() == DionaItems.DARK_ENERGY_PEARL)
         {
             TileEntity tile = world.getTileEntity(pos);
 
@@ -223,7 +234,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
 
                     if (!player.capabilities.isCreativeMode)
                     {
-                        itemStack.stackSize--;
+                        heldItem.stackSize--;
                     }
                     return true;
                 }
@@ -255,7 +266,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, 0);
     }
@@ -274,9 +285,9 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, FACING);
+        return new BlockStateContainer(this, FACING);
     }
 
     @Override

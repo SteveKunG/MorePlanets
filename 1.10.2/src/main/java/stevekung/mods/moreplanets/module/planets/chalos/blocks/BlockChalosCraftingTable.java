@@ -1,14 +1,17 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
@@ -19,14 +22,14 @@ public class BlockChalosCraftingTable extends BlockBaseMP
 {
     protected BlockChalosCraftingTable(String name)
     {
-        super(Material.wood);
+        super(Material.WOOD);
         this.setHardness(2.5F);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
         this.setUnlocalizedName(name);
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (!world.isRemote)
         {
@@ -72,9 +75,9 @@ public class BlockChalosCraftingTable extends BlockBaseMP
         }
 
         @Override
-        public IChatComponent getDisplayName()
+        public ITextComponent getDisplayName()
         {
-            return new ChatComponentTranslation(ChalosBlocks.CHALOS_CRAFTING_TABLE.getUnlocalizedName() + ".name", new Object[0]);
+            return new TextComponentTranslation(ChalosBlocks.CHALOS_CRAFTING_TABLE.getUnlocalizedName() + ".name");
         }
 
         @Override

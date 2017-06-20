@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.util.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
+import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,7 +22,7 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, ISingl
 
         if (type == EnumStairsType.WOODEN)
         {
-            this.setStepSound(soundTypeWood);
+            this.setSoundType(SoundType.WOOD);
         }
         if (type == EnumStairsType.DUNGEON_BRICK)
         {
@@ -64,11 +65,11 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, ISingl
 
     public enum EnumStairsType
     {
-        COBBLESTONE(Blocks.stone, 2.0F),
-        STONE_BRICK(Blocks.stone, 1.5F),
-        DUNGEON_BRICK(Blocks.stone, 4.0F),
-        SANDSTONE(Blocks.stone, 0.8F),
-        WOODEN(Blocks.planks, 2.0F);
+        COBBLESTONE(Blocks.STONE, 2.0F),
+        STONE_BRICK(Blocks.STONE, 1.5F),
+        DUNGEON_BRICK(Blocks.STONE, 4.0F),
+        SANDSTONE(Blocks.STONE, 0.8F),
+        WOODEN(Blocks.PLANKS, 2.0F);
 
         private float hardness;
         private Block parent;

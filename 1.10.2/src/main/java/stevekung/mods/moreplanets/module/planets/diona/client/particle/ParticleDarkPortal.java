@@ -1,21 +1,21 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.particle;
 
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class EntityDarkPortalFX extends EntityFX
+public class ParticleDarkPortal extends Particle
 {
     private float portalParticleScale;
     private double portalPosX;
     private double portalPosY;
     private double portalPosZ;
 
-    public EntityDarkPortalFX(World world, double x, double y, double z, double motionX, double motionY, double motionZ)
+    public ParticleDarkPortal(World world, double x, double y, double z, double motionX, double motionY, double motionZ)
     {
         super(world, x, y, z, motionX, motionY, motionZ);
         this.motionX = motionX;
@@ -29,12 +29,18 @@ public class EntityDarkPortalFX extends EntityFX
         this.particleGreen = 0.1F;
         this.particleBlue = 0.1F;
         this.particleMaxAge = (int)(Math.random() * 10.0D) + 40;
-        this.noClip = true;
         this.setParticleTextureIndex((int)(Math.random() * 8.0D));
     }
 
     @Override
-    public void renderParticle(WorldRenderer worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+    public void moveEntity(double x, double y, double z)
+    {
+        this.setEntityBoundingBox(this.getEntityBoundingBox().offset(x, y, z));
+        this.resetPositionToBB();
+    }
+
+    @Override
+    public void renderParticle(VertexBuffer worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         float f = (this.particleAge + partialTicks) / this.particleMaxAge;
         f = 1.0F - f;
@@ -64,15 +70,6 @@ public class EntityDarkPortalFX extends EntityFX
     }
 
     @Override
-    public float getBrightness(float partialTicks)
-    {
-        float f = super.getBrightness(partialTicks);
-        float f1 = (float)this.particleAge / (float)this.particleMaxAge;
-        f1 = f1 * f1 * f1 * f1;
-        return f * (1.0F - f1) + f1;
-    }
-
-    @Override
     public void onUpdate()
     {
         this.prevPosX = this.posX;
@@ -87,7 +84,7 @@ public class EntityDarkPortalFX extends EntityFX
 
         if (this.particleAge++ >= this.particleMaxAge)
         {
-            this.setDead();
+            this.setExpired();
         }
     }
 }

@@ -6,10 +6,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 
 public class FakeAlienBeamRenderer
 {
@@ -18,7 +18,7 @@ public class FakeAlienBeamRenderer
         int k = 256;
         GlStateManager.alphaFunc(516, 0.1F);
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        VertexBuffer worldrenderer = tessellator.getBuffer();
         GlStateManager.disableFog();
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/entity/beacon_beam.png"));
         GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
@@ -28,7 +28,7 @@ public class FakeAlienBeamRenderer
         GlStateManager.blendFunc(770, 1);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         double d0 = (double)Minecraft.getMinecraft().theWorld.getTotalWorldTime() + (double)partialTicks;
-        double d1 = MathHelper.func_181162_h(-d0 * 0.2D - MathHelper.floor_double(-d0 * 0.1D));
+        double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor_double(-d0 * 0.1D));
         float red = 0.4F;
         float green = 0.6F;
         float blue = 1.0F;

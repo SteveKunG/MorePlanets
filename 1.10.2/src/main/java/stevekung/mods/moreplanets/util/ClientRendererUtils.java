@@ -23,10 +23,9 @@ public class ClientRendererUtils
 {
     public static void renderModel(IBlockState state)
     {
-        Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
+        Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         IBakedModel model = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getModelForState(state);
         Block block = state.getBlock();
-        block.setBlockBoundsForItemRender();
         GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
         int i = block.getRenderColor(block.getStateForEntityRender(state));
 

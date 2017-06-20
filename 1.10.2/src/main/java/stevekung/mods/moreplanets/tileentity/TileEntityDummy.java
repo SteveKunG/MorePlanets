@@ -78,10 +78,8 @@ public class TileEntityDummy extends TileBaseElectricBlock
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
-
         if (this.mainBlockPosition != null)
         {
             NBTTagCompound tag = new NBTTagCompound();
@@ -90,6 +88,7 @@ public class TileEntityDummy extends TileBaseElectricBlock
             tag.setInteger("z", this.mainBlockPosition.getZ());
             nbt.setTag("mainBlockPosition", tag);
         }
+        return super.writeToNBT(nbt);
     }
 
     @Override

@@ -1,10 +1,11 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,17 +17,17 @@ public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
 {
     public BlockCheeseSlime(String name)
     {
-        super(Material.glass);
-        this.setStepSound(Block.SLIME_SOUND);
+        super(Material.GLASS);
+        this.setSoundType(SoundType.SLIME);
         this.setUnlocalizedName(name);
         this.slipperiness = 0.8F;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.TRANSLUCENT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (Math.abs(entity.motionY) < 0.1D && !entity.isSneaking())
         {

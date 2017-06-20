@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.chalos.items;
 
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -50,7 +52,7 @@ public class ChalosItems
 
     // Material
     public static ToolMaterial DIREMSIUM_TOOL = EnumHelper.addToolMaterial("DIREMSIUM", 3, 1532, 9.0F, 5.0F, 10);
-    public static ArmorMaterial DIREMSIUM_ARMOR = EnumHelper.addArmorMaterial("DIREMSIUM", "DIREMSIUM", 48, new int[] { 7, 12, 10, 7 }, 12);
+    public static ArmorMaterial DIREMSIUM_ARMOR = EnumHelper.addArmorMaterial("DIREMSIUM", "DIREMSIUM", 48, new int[] { 7, 12, 10, 7 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.5F);
 
     public static void init()
     {
@@ -90,11 +92,11 @@ public class ChalosItems
         /*********************INITIAL ARMOR STUFF**********************/
         /**************************************************************/
 
-        ChalosItems.DIREMSIUM_HELMET = new ItemArmorDiremsium("diremsium_helmet", ChalosItems.DIREMSIUM_ARMOR, 0);
-        ChalosItems.DIREMSIUM_CHESTPLATE = new ItemArmorDiremsium("diremsium_chestplate", ChalosItems.DIREMSIUM_ARMOR, 1);
-        ChalosItems.DIREMSIUM_LEGGINGS = new ItemArmorDiremsium("diremsium_leggings", ChalosItems.DIREMSIUM_ARMOR, 2);
-        ChalosItems.DIREMSIUM_BOOTS = new ItemArmorDiremsium("diremsium_boots", ChalosItems.DIREMSIUM_ARMOR, 3);
-        ChalosItems.BREATHABLE_DIREMSIUM_HELMET = new ItemBreathableDiremsium("breathable_diremsium_helmet", ChalosItems.DIREMSIUM_ARMOR, 0);
+        ChalosItems.DIREMSIUM_HELMET = new ItemArmorDiremsium("diremsium_helmet", ChalosItems.DIREMSIUM_ARMOR, EntityEquipmentSlot.HEAD);
+        ChalosItems.DIREMSIUM_CHESTPLATE = new ItemArmorDiremsium("diremsium_chestplate", ChalosItems.DIREMSIUM_ARMOR, EntityEquipmentSlot.CHEST);
+        ChalosItems.DIREMSIUM_LEGGINGS = new ItemArmorDiremsium("diremsium_leggings", ChalosItems.DIREMSIUM_ARMOR, EntityEquipmentSlot.LEGS);
+        ChalosItems.DIREMSIUM_BOOTS = new ItemArmorDiremsium("diremsium_boots", ChalosItems.DIREMSIUM_ARMOR, EntityEquipmentSlot.FEET);
+        ChalosItems.BREATHABLE_DIREMSIUM_HELMET = new ItemBreathableDiremsium("breathable_diremsium_helmet", ChalosItems.DIREMSIUM_ARMOR, EntityEquipmentSlot.HEAD);
 
         /**************************************************************/
         /**********************REGISTER STUFF**************************/

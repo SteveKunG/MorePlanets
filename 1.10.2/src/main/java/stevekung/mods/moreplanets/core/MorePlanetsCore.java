@@ -87,6 +87,8 @@ public class MorePlanetsCore
         MPPlanets.init();
         MPPotions.init();
         MPBiomes.init();
+        MPDimensions.init();
+        MPSounds.init();
         MPOthers.init();
 
         if (CommonRegisterHelper.isClient())

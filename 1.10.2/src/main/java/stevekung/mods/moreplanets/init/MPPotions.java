@@ -6,6 +6,7 @@ import stevekung.mods.moreplanets.items.capsule.effect.InfectedSporeProtectionEf
 import stevekung.mods.moreplanets.module.planets.diona.potion.DarkEnergyEffect;
 import stevekung.mods.moreplanets.module.planets.diona.potion.InfectedCrystallizeEffect;
 import stevekung.mods.moreplanets.module.planets.nibiru.potion.InfectedSporeEffect;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class MPPotions
 {
@@ -22,5 +23,11 @@ public class MPPotions
         MPPotions.DARK_ENERGY = new DarkEnergyEffect();
         MPPotions.INFECTED_SPORE_PROTECTION = new InfectedSporeProtectionEffect();
         MPPotions.DARK_ENERGY_PROTECTION = new DarkEnergyProtectionEffect();
+
+        CommonRegisterHelper.registerPotion(MPPotions.INFECTED_CRYSTALLIZE, "infected_crystallize");
+        CommonRegisterHelper.registerPotion(MPPotions.INFECTED_SPORE, "infected_spore");
+        CommonRegisterHelper.registerPotion(MPPotions.DARK_ENERGY, "dark_energy");
+        CommonRegisterHelper.registerPotion(MPPotions.INFECTED_SPORE_PROTECTION, "infected_spore_protection");
+        CommonRegisterHelper.registerPotion(MPPotions.DARK_ENERGY_PROTECTION, "dark_energy_protection");
     }
 }

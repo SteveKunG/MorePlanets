@@ -1,15 +1,18 @@
 package stevekung.mods.moreplanets.util;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
 
+import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
@@ -19,7 +22,7 @@ public class TeleporterMP extends Teleporter
 {
     private WorldServer worldServerInstance;
     private Random random;
-    private LongHashMap<TeleporterMP.PortalPosition> destinationCoordinateCache = new LongHashMap();
+    private Long2ObjectMap<TeleporterMP.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
     private List<Long> destinationCoordinateKeys = Lists.<Long>newArrayList();
 
     public TeleporterMP(WorldServer world)
@@ -59,11 +62,11 @@ public class TeleporterMP extends Teleporter
         int k = MathHelper.floor_double(entity.posZ);
         boolean flag = true;
         BlockPos blockpos = BlockPos.ORIGIN;
-        long l = ChunkCoordIntPair.chunkXZ2Int(j, k);
+        long l = ChunkPos.asLong(j, k);
 
-        if (this.destinationCoordinateCache.containsItem(l))
+        if (this.destinationCoordinateCache.containsKey(l))
         {
-            TeleporterMP.PortalPosition teleporter$portalposition = this.destinationCoordinateCache.getValueByKey(l);
+            PortalPosition teleporter$portalposition = (PortalPosition)this.destinationCoordinateCache.get(l);
             d0 = 0.0D;
             blockpos = teleporter$portalposition;
             teleporter$portalposition.lastUpdateTime = this.worldServerInstance.getTotalWorldTime();
@@ -107,7 +110,7 @@ public class TeleporterMP extends Teleporter
         {
             if (flag)
             {
-                this.destinationCoordinateCache.add(l, new TeleporterMP.PortalPosition(blockpos, this.worldServerInstance.getTotalWorldTime()));
+                this.destinationCoordinateCache.put(l, new TeleporterMP.PortalPosition(blockpos, this.worldServerInstance.getTotalWorldTime()));
                 this.destinationCoordinateKeys.add(Long.valueOf(l));
             }
             double d5 = blockpos.getX() + 0.5D;
@@ -152,9 +155,9 @@ public class TeleporterMP extends Teleporter
                 label142:
                     for (int j3 = this.worldServerInstance.getActualHeight() - 1; j3 >= 0; --j3)
                     {
-                        if (this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.set(j2, j3, l2)))
+                        if (this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.setPos(j2, j3, l2)))
                         {
-                            while (j3 > 0 && this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.set(j2, j3 - 1, l2)))
+                            while (j3 > 0 && this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.setPos(j2, j3 - 1, l2)))
                             {
                                 --j3;
                             }
@@ -179,9 +182,9 @@ public class TeleporterMP extends Teleporter
                                             int i5 = j2 + (k4 - 1) * l3 + j4 * i4;
                                             int j5 = j3 + l4;
                                             int k5 = l2 + (k4 - 1) * i4 - j4 * l3;
-                                            blockpos$mutableblockpos.set(i5, j5, k5);
+                                            blockpos$mutableblockpos.setPos(i5, j5, k5);
 
-                                            if (l4 < 0 && !this.worldServerInstance.getBlockState(blockpos$mutableblockpos).getBlock().getMaterial().isSolid() || l4 >= 0 && !this.worldServerInstance.isAirBlock(blockpos$mutableblockpos))
+                                            if (l4 < 0 && !this.worldServerInstance.getBlockState(blockpos$mutableblockpos).getMaterial().isSolid() || l4 >= 0 && !this.worldServerInstance.isAirBlock(blockpos$mutableblockpos))
                                             {
                                                 continue label142;
                                             }
@@ -219,9 +222,9 @@ public class TeleporterMP extends Teleporter
                     label562:
                         for (int i7 = this.worldServerInstance.getActualHeight() - 1; i7 >= 0; --i7)
                         {
-                            if (this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.set(l5, i7, j6)))
+                            if (this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.setPos(l5, i7, j6)))
                             {
-                                while (i7 > 0 && this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.set(l5, i7 - 1, j6)))
+                                while (i7 > 0 && this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.setPos(l5, i7 - 1, j6)))
                                 {
                                     --i7;
                                 }
@@ -238,9 +241,9 @@ public class TeleporterMP extends Teleporter
                                             int j12 = l5 + (j10 - 1) * j8;
                                             int i13 = i7 + j11;
                                             int j13 = j6 + (j10 - 1) * j9;
-                                            blockpos$mutableblockpos.set(j12, i13, j13);
+                                            blockpos$mutableblockpos.setPos(j12, i13, j13);
 
-                                            if (j11 < 0 && !this.worldServerInstance.getBlockState(blockpos$mutableblockpos).getBlock().getMaterial().isSolid() || j11 >= 0 && !this.worldServerInstance.isAirBlock(blockpos$mutableblockpos))
+                                            if (j11 < 0 && !this.worldServerInstance.getBlockState(blockpos$mutableblockpos).getMaterial().isSolid() || j11 >= 0 && !this.worldServerInstance.isAirBlock(blockpos$mutableblockpos))
                                             {
                                                 continue label562;
                                             }
@@ -292,7 +295,7 @@ public class TeleporterMP extends Teleporter
                         int k10 = k2 + k8;
                         int k11 = k6 + (l7 - 1) * i3 - j7 * l6;
                         boolean flag = k8 < 0;
-                        this.worldServerInstance.setBlockState(new BlockPos(k9, k10, k11), flag ? Blocks.obsidian.getDefaultState() : Blocks.air.getDefaultState());
+                        this.worldServerInstance.setBlockState(new BlockPos(k9, k10, k11), flag ? Blocks.OBSIDIAN.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -306,18 +309,16 @@ public class TeleporterMP extends Teleporter
     {
         if (worldTime % 100L == 0L)
         {
-            Iterator<Long> iterator = this.destinationCoordinateKeys.iterator();
+            ObjectIterator<PortalPosition> objectiterator = this.destinationCoordinateCache.values().iterator();
             long i = worldTime - 300L;
 
-            while (iterator.hasNext())
+            while (objectiterator.hasNext())
             {
-                Long olong = iterator.next();
-                TeleporterMP.PortalPosition teleporter$portalposition = this.destinationCoordinateCache.getValueByKey(olong.longValue());
+                PortalPosition teleporter$portalposition = (PortalPosition)objectiterator.next();
 
                 if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i)
                 {
-                    iterator.remove();
-                    this.destinationCoordinateCache.remove(olong.longValue());
+                    objectiterator.remove();
                 }
             }
         }

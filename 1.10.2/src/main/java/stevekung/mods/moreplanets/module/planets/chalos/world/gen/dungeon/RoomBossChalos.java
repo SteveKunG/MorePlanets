@@ -4,8 +4,8 @@ import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import stevekung.mods.moreplanets.blocks.BlockSpaceDungeonSpawner;
@@ -80,7 +80,7 @@ public class RoomBossChalos extends RoomBossMP
                         }
                         else
                         {
-                            this.setBlockState(world, Blocks.air.getDefaultState(), i, j, k, boundingBox);
+                            this.setBlockState(world, Blocks.AIR.getDefaultState(), i, j, k, boundingBox);
                         }
                     }
                     else if (j == this.sizeY)
@@ -102,13 +102,13 @@ public class RoomBossChalos extends RoomBossMP
                         }
                         else
                         {
-                            this.setBlockState(world, Blocks.air.getDefaultState(), i, j, k, boundingBox);
+                            this.setBlockState(world, Blocks.AIR.getDefaultState(), i, j, k, boundingBox);
                         }
-                        this.setBlockState(world, Blocks.air.getDefaultState(), i, j, k, boundingBox);
+                        this.setBlockState(world, Blocks.AIR.getDefaultState(), i, j, k, boundingBox);
                     }
                     else
                     {
-                        this.setBlockState(world, Blocks.air.getDefaultState(), i, j, k, boundingBox);
+                        this.setBlockState(world, Blocks.AIR.getDefaultState(), i, j, k, boundingBox);
                     }
                 }
             }

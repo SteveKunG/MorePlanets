@@ -65,8 +65,8 @@ public class ItemDoorMP extends ItemBaseMP
     {
         BlockPos blockpos1 = pos.offset(facing.rotateY());
         BlockPos blockpos2 = pos.offset(facing.rotateYCCW());
-        int i = (world.getBlockState(blockpos2).getBlock().isNormalCube() ? 1 : 0) + (world.getBlockState(blockpos2.up()).getBlock().isNormalCube() ? 1 : 0);
-        int j = (world.getBlockState(blockpos1).getBlock().isNormalCube() ? 1 : 0) + (world.getBlockState(blockpos1.up()).getBlock().isNormalCube() ? 1 : 0);
+        int i = (world.getBlockState(blockpos2).isNormalCube() ? 1 : 0) + (world.getBlockState(blockpos2.up()).isNormalCube() ? 1 : 0);
+        int j = (world.getBlockState(blockpos1).isNormalCube() ? 1 : 0) + (world.getBlockState(blockpos1.up()).isNormalCube() ? 1 : 0);
         boolean flag = world.getBlockState(blockpos2).getBlock() == door || world.getBlockState(blockpos2.up()).getBlock() == door;
         boolean flag1 = world.getBlockState(blockpos1).getBlock() == door || world.getBlockState(blockpos1.up()).getBlock() == door;
         boolean flag2 = false;
@@ -81,6 +81,6 @@ public class ItemDoorMP extends ItemBaseMP
         world.setBlockState(blockpos3, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), 2);
         world.notifyNeighborsOfStateChange(pos, door);
         world.notifyNeighborsOfStateChange(blockpos3, door);
-        world.playSoundEffect(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, door.stepSound.getPlaceSound(), (door.stepSound.getVolume() + 1.0F) / 2.0F, door.stepSound.getFrequency() * 0.8F);
+        world.playSoundEffect(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, door.getSoundType(iblockstate, world, blockpos3, entity).getPlaceSound(), (door.stepSound.getVolume() + 1.0F) / 2.0F, door.stepSound.getFrequency() * 0.8F);
     }
 }

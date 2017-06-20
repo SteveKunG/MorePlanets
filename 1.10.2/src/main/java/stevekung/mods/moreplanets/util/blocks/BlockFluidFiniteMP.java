@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fluids.BlockFluidFinite;
@@ -105,7 +105,7 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements ISi
 
     private boolean isFluid(@Nonnull IBlockState state)
     {
-        return state.getBlock().getMaterial().isLiquid() || state.getBlock() instanceof IFluidBlock;
+        return state.getMaterial().isLiquid() || state.getBlock() instanceof IFluidBlock;
     }
 
     private float getFluidHeightForRender(IBlockAccess world, BlockPos pos, @Nonnull IBlockState up)
@@ -114,7 +114,7 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements ISi
 
         if (here.getBlock() == this)
         {
-            if (up.getBlock().getMaterial().isLiquid() || up.getBlock() instanceof IFluidBlock)
+            if (up.getMaterial().isLiquid() || up.getBlock() instanceof IFluidBlock)
             {
                 return 1;
             }
@@ -127,6 +127,6 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements ISi
         {
             return Math.min(1 - BlockLiquid.getLiquidHeightPercent(here.getValue(BlockLiquid.LEVEL)), 14f / 16);
         }
-        return !here.getBlock().getMaterial().isSolid() && up.getBlock() == this ? 1 : this.getQuantaPercentage(world, pos) * 0.875F;
+        return !here.getMaterial().isSolid() && up.getBlock() == this ? 1 : this.getQuantaPercentage(world, pos) * 0.875F;
     }
 }

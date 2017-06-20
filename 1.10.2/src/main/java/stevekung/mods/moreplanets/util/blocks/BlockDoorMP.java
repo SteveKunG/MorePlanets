@@ -9,9 +9,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockDoorMP extends BlockDoor
@@ -89,7 +88,7 @@ public class BlockDoorMP extends BlockDoor
             {
                 boolean flag = world.isBlockPowered(pos) || world.isBlockPowered(pos.up());
 
-                if ((flag || neighborBlock.canProvidePower()) && neighborBlock != this && flag != world.getBlockState(pos.up()).getValue(POWERED).booleanValue())
+                if ((flag || neighborBlock.canProvidePower(state)) && neighborBlock != this && flag != world.getBlockState(pos.up()).getValue(POWERED).booleanValue())
                 {
                     world.setBlockState(pos.up(), world.getBlockState(pos.up()).withProperty(POWERED, Boolean.valueOf(flag)), 2);
 

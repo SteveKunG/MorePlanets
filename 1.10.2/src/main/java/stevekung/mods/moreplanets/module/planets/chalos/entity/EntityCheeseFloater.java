@@ -8,11 +8,17 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -22,6 +28,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 
 public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
 {
+    private static DataParameter<Boolean> MINION = EntityDataManager.createKey(EntityCheeseFloater.class, DataSerializers.BOOLEAN);
     private float heightOffset = 0.25F;
     private int heightOffsetUpdateTime;
 
@@ -30,46 +37,57 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
         super(world);
         this.setSize(0.8F, 2.0F);
         this.experienceValue = 10;
-        this.tasks.addTask(4, new AIFireballAttack(this));
+        this.setPathPriority(PathNodeType.WATER, -1.0F);
+        this.setPathPriority(PathNodeType.LAVA, 8.0F);
+        this.setPathPriority(PathNodeType.DANGER_FIRE, 0.0F);
+        this.setPathPriority(PathNodeType.DAMAGE_FIRE, 0.0F);
+        this.isImmuneToFire = true;
+        this.experienceValue = 10;
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
+        this.tasks.addTask(4, new AICheeseSporeAttack(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.getLightBrightness(this.getPosition()) >= 0.0F;
+        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.getLightBrightness(this.getPosition()) >= 0.0F;
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(48.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(48.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
     }
 
     @Override
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataWatcher().addObject(16, Byte.valueOf((byte) 0));
+        this.dataManager.register(EntityCheeseFloater.MINION, false);
     }
 
     public void setMinion(boolean isMinion)
     {
-        this.getDataWatcher().updateObject(16, Byte.valueOf((byte) (isMinion ? 1 : 0)));
+        this.dataManager.set(EntityCheeseFloater.MINION, isMinion);
     }
 
     public boolean isMinion()
     {
-        return this.getDataWatcher().getWatchableObjectByte(16) == 1;
+        return this.dataManager.get(EntityCheeseFloater.MINION);
     }
 
     @Override
@@ -95,15 +113,15 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "mob.slime.big";
+        return SoundEvents.ENTITY_SLIME_HURT;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "mob.slime.big";
+        return SoundEvents.ENTITY_SLIME_DEATH;
     }
 
     @Override
@@ -164,7 +182,7 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
             {
                 Entity entity = damageSource.getEntity();
 
-                if (this.riddenByEntity != entity && this.ridingEntity != entity)
+                if (this.getPassengers().contains(entity) && this.getRidingEntity() != entity)
                 {
                     if (entity != this)
                     {
@@ -219,29 +237,29 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
         return true;
     }
 
-    class AIFireballAttack extends EntityAIBase
+    class AICheeseSporeAttack extends EntityAIBase
     {
-        private EntityCheeseFloater blaze;
-        private int field_179467_b;
-        private int field_179468_c;
+        private EntityCheeseFloater entity;
+        private int attackStep;
+        private int attackTime;
 
-        public AIFireballAttack(EntityCheeseFloater p_i45846_1_)
+        public AICheeseSporeAttack(EntityCheeseFloater entity)
         {
-            this.blaze = p_i45846_1_;
+            this.entity = entity;
             this.setMutexBits(3);
         }
 
         @Override
         public boolean shouldExecute()
         {
-            EntityLivingBase entitylivingbase = this.blaze.getAttackTarget();
+            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
             return entitylivingbase != null && entitylivingbase.isEntityAlive();
         }
 
         @Override
         public void startExecuting()
         {
-            this.field_179467_b = 0;
+            this.attackStep = 0;
         }
 
         @Override
@@ -250,61 +268,61 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
         @Override
         public void updateTask()
         {
-            --this.field_179468_c;
-            EntityLivingBase entitylivingbase = this.blaze.getAttackTarget();
-            double d0 = this.blaze.getDistanceSqToEntity(entitylivingbase);
+            --this.attackTime;
+            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
+            double d0 = this.entity.getDistanceSqToEntity(entitylivingbase);
 
             if (d0 < 1.5D)
             {
-                if (this.field_179468_c <= 0)
+                if (this.attackTime <= 0)
                 {
-                    this.field_179468_c = 20;
-                    this.blaze.attackEntityAsMob(entitylivingbase);
+                    this.attackTime = 20;
+                    this.entity.attackEntityAsMob(entitylivingbase);
                 }
-                this.blaze.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+                this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
             }
             else if (d0 < 30.0D)
             {
-                double d1 = entitylivingbase.posX - this.blaze.posX;
-                double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.blaze.posY + this.blaze.height / 2.0F);
-                double d3 = entitylivingbase.posZ - this.blaze.posZ;
+                double d1 = entitylivingbase.posX - this.entity.posX;
+                double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.entity.posY + this.entity.height / 2.0F);
+                double d3 = entitylivingbase.posZ - this.entity.posZ;
 
-                if (this.field_179468_c <= 0)
+                if (this.attackTime <= 0)
                 {
-                    ++this.field_179467_b;
+                    ++this.attackStep;
 
-                    if (this.field_179467_b == 1)
+                    if (this.attackStep == 1)
                     {
-                        this.field_179468_c = 35;
+                        this.attackTime = 35;
                     }
-                    else if (this.field_179467_b <= 6)
+                    else if (this.attackStep <= 6)
                     {
-                        this.field_179468_c = 5;
+                        this.attackTime = 5;
                     }
                     else
                     {
-                        this.field_179468_c = 50;
-                        this.field_179467_b = 0;
+                        this.attackTime = 50;
+                        this.attackStep = 0;
                     }
 
-                    if (this.field_179467_b > 1)
+                    if (this.attackStep > 1)
                     {
                         float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0)) * 0.5F;
 
                         for (int i = 0; i < 1; ++i)
                         {
-                            EntitySmallCheeseSpore entitysmallfireball = new EntitySmallCheeseSpore(this.blaze.worldObj, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * f, d2, d3 + this.blaze.getRNG().nextGaussian() * f);
-                            entitysmallfireball.posY = this.blaze.posY + this.blaze.height / 2.0F + 0.5D;
-                            this.blaze.worldObj.spawnEntityInWorld(entitysmallfireball);
+                            EntitySmallCheeseSpore cheeseSpore = new EntitySmallCheeseSpore(this.entity.worldObj, this.entity, d1 + this.entity.getRNG().nextGaussian() * f, d2, d3 + this.entity.getRNG().nextGaussian() * f);
+                            cheeseSpore.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
+                            this.entity.worldObj.spawnEntityInWorld(cheeseSpore);
                         }
                     }
                 }
-                this.blaze.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
+                this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
             }
             else
             {
-                this.blaze.getNavigator().clearPathEntity();
-                this.blaze.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+                this.entity.getNavigator().clearPathEntity();
+                this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
             }
             super.updateTask();
         }

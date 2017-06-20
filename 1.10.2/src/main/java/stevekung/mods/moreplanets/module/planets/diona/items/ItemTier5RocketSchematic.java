@@ -2,10 +2,10 @@ package stevekung.mods.moreplanets.module.planets.diona.items;
 
 import java.util.List;
 
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.items.ItemSchematicVariantsMP;
@@ -26,11 +26,11 @@ public class ItemTier5RocketSchematic extends ItemSchematicVariantsMP
     {
         if (itemStack.getItemDamage() == 0)
         {
-            list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("desc.tier_4.name"));
+            list.add(TextFormatting.GRAY + GCCoreUtil.translate("desc.tier_4.name"));
         }
         else
         {
-            list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("desc.tier_5.name"));
+            list.add(TextFormatting.GRAY + GCCoreUtil.translate("desc.tier_5.name"));
         }
     }
 

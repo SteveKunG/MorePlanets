@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import stevekung.mods.moreplanets.util.blocks.BlockLogMP;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
@@ -14,10 +13,7 @@ public class BlockCheeseSporeStem extends BlockLogMP
 {
     public BlockCheeseSporeStem(String name)
     {
-        super(Material.wood);
-        this.setHardness(2.0F);
-        this.setResistance(5.0F);
-        this.setStepSound(Block.soundTypeWood);
+        super(Material.WOOD);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.AXIS, EnumAxis.Y));
         this.setUnlocalizedName(name);
     }
@@ -64,9 +60,9 @@ public class BlockCheeseSporeStem extends BlockLogMP
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { BlockStateHelper.AXIS });
+        return new BlockStateContainer(this, new IProperty[] { BlockStateHelper.AXIS });
     }
 
     @Override
