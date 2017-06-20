@@ -2,10 +2,9 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSavannaTree;
@@ -15,15 +14,16 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 
 public class BiomeInfectedDeadSavanna extends BiomeNibiru
 {
-    public BiomeInfectedDeadSavanna()
+    public BiomeInfectedDeadSavanna(BiomeProperties properties)
     {
-        super(ConfigManagerMP.idBiomeInfectedDeadSavanna);
-        this.enableRain = false;
+        super(properties);
+        properties.setRainDisabled();
+        properties.setTemperature(1.2F);
+        properties.setBaseHeight(0.125F);
+        properties.setHeightVariation(0.05F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
-        this.setTemperatureRainfall(1.2F, 0.0F);
-        this.setHeight(new Height(0.125F, 0.05F));
         this.getBiomeDecorator().infectedTallGrassPerChunk = 128;
         this.getBiomeDecorator().infectedTreesPerChunk = 0;
         this.getBiomeDecorator().pureHurbPerChunk = -999;
@@ -48,7 +48,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
-        double d0 = GRASS_COLOR_NOISE.func_151601_a((pos.getX() + 8) / 200.0D, (pos.getZ() + 8) / 200.0D);
+        double d0 = GRASS_COLOR_NOISE.getValue((pos.getX() + 8) / 200.0D, (pos.getZ() + 8) / 200.0D);
 
         if (d0 > -0.8D)
         {

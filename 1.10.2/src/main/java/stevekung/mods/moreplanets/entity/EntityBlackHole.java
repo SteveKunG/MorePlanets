@@ -9,17 +9,19 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.DamageSourceMP;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 
@@ -50,7 +52,7 @@ public class EntityBlackHole extends Entity
         this.prevPosZ = this.posZ;
 
         int range = 64;
-        List<Entity> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.fromBounds(this.posX - range - this.radius, this.posY - range - this.radius, this.posZ - range - this.radius, this.posX + range + this.radius, this.posY + range + this.radius, this.posZ + range + this.radius));
+        List<Entity> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - range - this.radius, this.posY - range - this.radius, this.posZ - range - this.radius, this.posX + range + this.radius, this.posY + range + this.radius, this.posZ + range + this.radius));
 
         for (Entity entity : entitiesAroundBH)
         {
@@ -68,13 +70,13 @@ public class EntityBlackHole extends Entity
                 entity.motionX = motionX * 0.2F;
                 entity.motionY = motionY * 0.2F;
                 entity.motionZ = motionZ * 0.2F;
-                List<Entity> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), AxisAlignedBB.fromBounds(this.posX - 0.25D, this.posY - 0.25D, this.posZ - 0.25D, this.posX + 0.25D, this.posY + 0.5D, this.posZ + 0.25D));
+                List<Entity> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 0.25D, this.posY - 0.25D, this.posZ - 0.25D, this.posX + 0.25D, this.posY + 0.5D, this.posZ + 0.25D));
 
                 for (Entity near : entityNearBH)
                 {
                     if (near instanceof EntityLivingBase)
                     {
-                        ((EntityLivingBase)near).addPotionEffect(new PotionEffect(Potion.blindness.id, 32767, 0, false, false));
+                        ((EntityLivingBase)near).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 32767, 0, false, false));
                     }
                     if (near instanceof EntityPlayer)
                     {
@@ -90,7 +92,7 @@ public class EntityBlackHole extends Entity
 
         if (this.mass == 0)
         {
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "moreplanets:ambient.black_hole.start", 2.0F, 1.0F);
+            this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_CREATED, SoundCategory.AMBIENT, 2.0F, 1.0F);
         }
         if (this.mass < 6000)
         {
@@ -102,7 +104,7 @@ public class EntityBlackHole extends Entity
         }
         if (this.mass % 20 == 0)
         {
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "moreplanets:ambient.black_hole", 2.0F, 1.0F);
+            this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.AMBIENT, 2.0F, 1.0F);
         }
 
         if (!this.worldObj.isRemote)
@@ -192,7 +194,7 @@ public class EntityBlackHole extends Entity
                         {
                             this.worldObj.setBlockToAir(pos);
                         }
-                        if (!block.isAir(this.worldObj, pos) && block.getExtendedState(state, this.worldObj, pos) == state)
+                        if (!block.isAir(state, this.worldObj, pos) && block.getExtendedState(state, this.worldObj, pos) == state)
                         {
                             this.worldObj.setBlockToAir(pos);
                             EntityFallingBlock fallingBlock = new EntityFallingBlock(this.worldObj, blockPosX + x, blockPosY + y, blockPosZ + z, state);
@@ -211,7 +213,7 @@ public class EntityBlackHole extends Entity
     @Override
     public void setDead()
     {
-        this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "moreplanets:ambient.black_hole.explode", 2.0F, 1.0F);
+        this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_DESTROYED, SoundCategory.AMBIENT, 2.0F, 1.0F);
         super.setDead();
     }
 

@@ -3,10 +3,9 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 import java.util.LinkedList;
 import java.util.Random;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruFlower;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -18,10 +17,13 @@ import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
 
 public class BiomeGreenVein extends BiomeNibiru
 {
-    public BiomeGreenVein()
+    public BiomeGreenVein(BiomeProperties properties)
     {
-        super(ConfigManagerMP.idBiomeGreenVein);
-        this.enableRain = true;
+        super(properties);
+        properties.setTemperature(0.9F);
+        properties.setRainfall(1.0F);
+        properties.setBaseHeight(0.125F);
+        properties.setHeightVariation(0.05F);
         this.topBlock = NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
@@ -29,8 +31,6 @@ public class BiomeGreenVein extends BiomeNibiru
         this.getBiomeDecorator().terrapuffHurbPerChunk = 4;
         this.getBiomeDecorator().greenVeinTallGrassPerChunk = 128;
         this.getBiomeDecorator().infectedTreesPerChunk = 4;
-        this.setTemperatureRainfall(0.9F, 1.0F);
-        this.setHeight(new Height(0.125F, 0.05F));
     }
 
     @Override
@@ -43,7 +43,7 @@ public class BiomeGreenVein extends BiomeNibiru
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
-        double d0 = GRASS_COLOR_NOISE.func_151601_a((pos.getX() + 8) / 200.0D, (pos.getZ() + 8) / 200.0D);
+        double d0 = GRASS_COLOR_NOISE.getValue((pos.getX() + 8) / 200.0D, (pos.getZ() + 8) / 200.0D);
 
         if (d0 > -0.8D)
         {

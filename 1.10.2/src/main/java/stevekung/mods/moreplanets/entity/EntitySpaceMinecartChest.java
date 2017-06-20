@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 public class EntitySpaceMinecartChest extends EntityMinecartContainer
 {
     private String inventoryName = "container.minecart";
-    private IBlockState blockForDisplay = Blocks.chest.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.NORTH);
+    private IBlockState blockForDisplay = Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.NORTH);
     private int offset = 8;
 
     public EntitySpaceMinecartChest(World world)
@@ -43,9 +43,9 @@ public class EntitySpaceMinecartChest extends EntityMinecartContainer
     }
 
     @Override
-    public EnumMinecartType getMinecartType()
+    public Type getType()
     {
-        return EnumMinecartType.CHEST;
+        return Type.CHEST;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class EntitySpaceMinecartChest extends EntityMinecartContainer
     public void setBlockForDisplaying(IBlockState state)
     {
         this.blockForDisplay = state;
-        this.func_174899_a(state);
+        this.setDisplayTile(state);
     }
 
     public void setInventoryName(String name)

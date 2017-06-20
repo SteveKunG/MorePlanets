@@ -20,12 +20,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.ItemDescription;
@@ -86,7 +88,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                 blackHole.setTileEntityPos(pos);
                 blackHole.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, 0.0F, 0.0F);
                 world.spawnEntityInWorld(blackHole);
-                world.playSound(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, "moreplanets:ambient.black_hole.start", 1.0F, 1.0F);
+                world.playSound(player, pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, MPSounds.BLACK_HOLE_CREATED, SoundCategory.AMBIENT, 1.0F, 1.0F);
 
                 if (tile instanceof TileEntityBlackHoleStorage)
                 {
@@ -141,7 +143,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         int drainExp = rand.nextInt(25) == 0 ? 24 + rand.nextInt(16) : rand.nextInt(10) == 0 ? 20 + rand.nextInt(5) : rand.nextInt(5) == 0 ? 10 + rand.nextInt(5) : 3 + rand.nextInt(5);
                         storage.xp -= storage.xp < drainExp ? storage.xp : drainExp;
                         player.addExperience(drainExp);
-                        player.worldObj.playSound(player, pos, SoundEvents.ENTITY_EXPERIENCE_ORB_TOUCH, null, 0.1F, 0.5F * ((player.worldObj.rand.nextFloat() - player.worldObj.rand.nextFloat()) * 0.7F + 1.8F));
+                        player.worldObj.playSound(player, pos, SoundEvents.ENTITY_EXPERIENCE_ORB_TOUCH, SoundCategory.PLAYERS, 0.1F, 0.5F * ((player.worldObj.rand.nextFloat() - player.worldObj.rand.nextFloat()) * 0.7F + 1.8F));
                     }
                     else
                     {
@@ -162,7 +164,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
         world.updateComparatorOutputLevel(pos, this);
-        world.playSound(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, "moreplanets:ambient.black_hole.explode", 1.0F, 1.0F);
+        world.playSound(null, pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, MPSounds.BLACK_HOLE_DESTROYED, SoundCategory.AMBIENT, 1.0F, 1.0F);
         super.breakBlock(world, pos, state);
     }
 

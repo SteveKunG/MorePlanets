@@ -28,7 +28,7 @@ public class InfectedCrystallizeEffect extends PotionMP
     @Override
     public boolean isReady(int duration, int amplifier)
     {
-        if (this.id == MPPotions.INFECTED_CRYSTALLIZE.id)
+        if (this == MPPotions.INFECTED_CRYSTALLIZE)
         {
             int k = 20 >> amplifier;
             return k > 0 ? duration % k == 0 : true;
@@ -39,7 +39,7 @@ public class InfectedCrystallizeEffect extends PotionMP
     @Override
     public void performEffect(EntityLivingBase living, int food)
     {
-        if (this.id == MPPotions.INFECTED_CRYSTALLIZE.id)
+        if (this == MPPotions.INFECTED_CRYSTALLIZE)
         {
             living.attackEntityFrom(DamageSourceMP.INFECTED_CRYSTALLIZE, 1.0F);
         }

@@ -29,7 +29,7 @@ public class InfectedSporeEffect extends PotionMP
     @Override
     public boolean isReady(int duration, int amplifier)
     {
-        if (this.id == MPPotions.INFECTED_SPORE.id)
+        if (this == MPPotions.INFECTED_SPORE)
         {
             int k = 20 >> amplifier;
             return k > 0 ? duration % k == 0 : true;
@@ -40,7 +40,7 @@ public class InfectedSporeEffect extends PotionMP
     @Override
     public void performEffect(EntityLivingBase living, int food)
     {
-        if (this.id == MPPotions.INFECTED_SPORE.id)
+        if (this == MPPotions.INFECTED_SPORE)
         {
             living.attackEntityFrom(DamageSourceMP.INFECTED_GAS, 1.0F);
 

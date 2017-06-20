@@ -6,9 +6,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import stevekung.mods.moreplanets.blocks.BlockDummy;
@@ -34,7 +34,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
         {
             if (world.isRemote)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.place_in_liquid.message")).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
+                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.place_in_liquid.message")).setStyle(new JsonUtils().red()).getFormattedText(), false);
             }
             return false;
         }
@@ -46,19 +46,19 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             Block block = world.getBlockState(vecToAdd).getBlock();
             Block block1 = world.getBlockState(vecToAdd1).getBlock();
 
-            if (block.getMaterial() != Material.air && !block.isReplaceable(world, vecToAdd))
+            if (world.getBlockState(vecToAdd).getMaterial() != Material.AIR && !block.isReplaceable(world, vecToAdd))
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                 }
                 return false;
             }
-            else if (block1.getMaterial() != Material.air && !block1.isReplaceable(world, vecToAdd1))
+            else if (world.getBlockState(vecToAdd1).getMaterial() != Material.AIR && !block1.isReplaceable(world, vecToAdd1))
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                 }
                 return false;
             }
@@ -82,19 +82,19 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             Block block = world.getBlockState(vecToAdd).getBlock();
             Block block1 = world.getBlockState(vecToAdd1).getBlock();
 
-            if (block.getMaterial() != Material.air && !block.isReplaceable(world, vecToAdd))
+            if (world.getBlockState(vecToAdd).getMaterial() != Material.AIR && !block.isReplaceable(world, vecToAdd))
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                 }
                 return false;
             }
-            else if (block1.getMaterial() != Material.air && !block1.isReplaceable(world, vecToAdd1))
+            else if (world.getBlockState(vecToAdd1).getMaterial() != Material.AIR && !block1.isReplaceable(world, vecToAdd1))
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                 }
                 return false;
             }

@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.proxy;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -18,15 +18,15 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.EntityIn
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.client.particle.EntityBreakingMCFX;
-import stevekung.mods.moreplanets.util.client.particle.EntityLavaMCFX;
-import stevekung.mods.moreplanets.util.client.particle.EntityLiquidDripFX;
+import stevekung.mods.moreplanets.util.client.particle.ParticleLavaMC;
+import stevekung.mods.moreplanets.util.client.particle.ParticleLiquidDrip;
 
 public class ClientProxyMP extends ServerProxyMP
 {
     @Override
     public void registerRendering()
     {
-        OBJLoader.instance.addDomain("moreplanets");
+        OBJLoader.INSTANCE.addDomain("moreplanets");
         TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
         TileEntityRenderer.init();
         ItemModelRenderer.init();
@@ -56,7 +56,7 @@ public class ClientProxyMP extends ServerProxyMP
     @Override
     public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, double motionX, double motionY, double motionZ, Object[] data)
     {
-        EntityFX entityfx = null;
+        Particle entityfx = null;
         Minecraft mc = Minecraft.getMinecraft();
 
         if (mc.getRenderViewEntity() != null && mc.effectRenderer != null && mc.theWorld != null)
@@ -86,7 +86,7 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.CHEESE_OF_MILK_DRIP)
             {
-                entityfx = new EntityLiquidDripFX(mc.theWorld, x, y, z, 1.0F, 0.85F, 0.5F, 0.4F, false);
+                entityfx = new ParticleLiquidDrip(mc.theWorld, x, y, z, 1.0F, 0.85F, 0.5F, 0.4F, false);
             }
             else if (type == EnumParticleTypesMP.INFECTED_SPORE)
             {
@@ -126,19 +126,19 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.INFECTED_WATER_DRIP)
             {
-                entityfx = new EntityLiquidDripFX(mc.theWorld, x, y, z, 0.95F, 0.4F, 0.3F, 0.6F, false);
+                entityfx = new ParticleLiquidDrip(mc.theWorld, x, y, z, 0.95F, 0.4F, 0.3F, 0.6F, false);
             }
             else if (type == EnumParticleTypesMP.CRYSTALLIZE_WATER_DRIP)
             {
-                entityfx = new EntityLiquidDripFX(mc.theWorld, x, y, z, 0.6F, 0.2F, 0.8F, 0.6F, false);
+                entityfx = new ParticleLiquidDrip(mc.theWorld, x, y, z, 0.6F, 0.2F, 0.8F, 0.6F, false);
             }
             else if (type == EnumParticleTypesMP.CRYSTALLIZE_LAVA_DRIP)
             {
-                entityfx = new EntityLiquidDripFX(mc.theWorld, x, y, z, 0.6F, 0.2F, 0.8F, 1.0F, true);
+                entityfx = new ParticleLiquidDrip(mc.theWorld, x, y, z, 0.6F, 0.2F, 0.8F, 1.0F, true);
             }
             else if (type == EnumParticleTypesMP.CRYSTALLIZE_LAVA)
             {
-                entityfx = new EntityLavaMCFX(mc.theWorld, x, y, z, "crystallize_lava");
+                entityfx = new ParticleLavaMC(mc.theWorld, x, y, z, "crystallize_lava");
             }
             else if (type == EnumParticleTypesMP.MC_SMOKE_LARGE)
             {
@@ -146,18 +146,15 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.NUCLEAR_WASTE_DRIP)
             {
-                entityfx = new EntityLiquidDripFX(mc.theWorld, x, y, z, 0.4F, 0.8F, 0.1F, 1.0F, true);
+                entityfx = new ParticleLiquidDrip(mc.theWorld, x, y, z, 0.4F, 0.8F, 0.1F, 1.0F, true);
             }
             else if (type == EnumParticleTypesMP.PURIFY_WATER_DRIP)
             {
-                entityfx = new EntityLiquidDripFX(mc.theWorld, x, y, z, 0.45F, 0.8F, 1.0F, 0.6F, false);
+                entityfx = new ParticleLiquidDrip(mc.theWorld, x, y, z, 0.45F, 0.8F, 1.0F, 0.6F, false);
             }
 
             if (entityfx != null)
             {
-                entityfx.prevPosX = entityfx.posX;
-                entityfx.prevPosY = entityfx.posY;
-                entityfx.prevPosZ = entityfx.posZ;
                 mc.effectRenderer.addEffect(entityfx);
             }
         }

@@ -2,11 +2,11 @@ package stevekung.mods.moreplanets.util.items;
 
 import micdoodle8.mods.galacticraft.api.recipe.ISchematicItem;
 import micdoodle8.mods.galacticraft.core.entities.EntityHangingSchematic;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public abstract class ItemSchematicVariantsMP extends ItemBaseVariantsMP implements ISchematicItem
@@ -61,7 +61,7 @@ public abstract class ItemSchematicVariantsMP extends ItemBaseVariantsMP impleme
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        return StatCollector.translateToLocal("item.nasa_workbench_schematic");
+        return GCCoreUtil.translate("item.nasa_workbench_schematic");
     }
 
     @Override

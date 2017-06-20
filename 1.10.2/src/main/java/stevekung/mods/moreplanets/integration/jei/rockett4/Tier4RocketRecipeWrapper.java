@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
 
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import mezz.jei.api.recipe.wrapper.ICraftingRecipeWrapper;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
@@ -37,4 +38,7 @@ public class Tier4RocketRecipeWrapper extends BlankRecipeWrapper implements ICra
     {
         return Collections.singletonList(this.recipe.getRecipeOutput());
     }
+
+    @Override
+    public void getIngredients(IIngredients ingredients) {}
 }

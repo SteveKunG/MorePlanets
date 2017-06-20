@@ -3,11 +3,17 @@ package stevekung.mods.moreplanets.items.capsule;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -26,49 +32,41 @@ public class ItemCapsule extends ItemFoodMP
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack itemStack, World world, EntityPlayer player)
+    public ItemStack onItemUseFinish(ItemStack itemStack, World world, EntityLivingBase living)
     {
-        if (!player.capabilities.isCreativeMode)
+        if (living instanceof EntityPlayer)
         {
-            --itemStack.stackSize;
-        }
-        if (!world.isRemote)
-        {
-            NBTTagCompound nbt = itemStack.getTagCompound();
-            world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+            EntityPlayer player = (EntityPlayer) living;
 
-            if (nbt != null)
+            if (!player.capabilities.isCreativeMode)
             {
-                if (nbt.getBoolean("InfectedProtection"))
-                {
-                    player.removePotionEffect(MPPotions.INFECTED_SPORE_PROTECTION.id);
-                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE_PROTECTION.id, 36020, 0, true, true));
-                }
-                if (nbt.getBoolean("DarkEnergyProtection"))
-                {
-                    player.removePotionEffect(MPPotions.DARK_ENERGY_PROTECTION.id);
-                    player.addPotionEffect(new PotionEffect(MPPotions.DARK_ENERGY_PROTECTION.id, 15020, 0, true, true));
-                }
+                --itemStack.stackSize;
             }
-            if (!player.capabilities.isCreativeMode && !player.inventory.addItemStackToInventory(new ItemStack(this)))
+            if (!world.isRemote)
             {
-                player.dropPlayerItemWithRandomChoice(new ItemStack(this), false);
+                NBTTagCompound nbt = itemStack.getTagCompound();
+                world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+
+                if (nbt != null)
+                {
+                    if (nbt.getBoolean("InfectedProtection"))
+                    {
+                        player.removePotionEffect(MPPotions.INFECTED_SPORE_PROTECTION);
+                        player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE_PROTECTION, 36020, 0, true, true));
+                    }
+                    if (nbt.getBoolean("DarkEnergyProtection"))
+                    {
+                        player.removePotionEffect(MPPotions.DARK_ENERGY_PROTECTION);
+                        player.addPotionEffect(new PotionEffect(MPPotions.DARK_ENERGY_PROTECTION, 15020, 0, true, true));
+                    }
+                }
+                if (!player.capabilities.isCreativeMode && !player.inventory.addItemStackToInventory(new ItemStack(this)))
+                {
+                    player.dropItem(new ItemStack(this), false);
+                }
             }
         }
         return itemStack;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack itemStack, int renderPass)
-    {
-        NBTTagCompound nbt = itemStack.getTagCompound();
-
-        if (nbt != null && renderPass == 1)
-        {
-            return nbt.getInteger("Color");
-        }
-        return super.getColorFromItemStack(itemStack, renderPass);
     }
 
     @Override
@@ -104,13 +102,17 @@ public class ItemCapsule extends ItemFoodMP
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if (itemStack.hasTagCompound() && (player.canEat(true) || player.capabilities.isCreativeMode))
         {
-            player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
+            player.setActiveHand(hand);
+            return new ActionResult(EnumActionResult.SUCCESS, itemStack);
         }
-        return itemStack;
+        else
+        {
+            return new ActionResult(EnumActionResult.FAIL, itemStack);
+        }
     }
 
     @Override

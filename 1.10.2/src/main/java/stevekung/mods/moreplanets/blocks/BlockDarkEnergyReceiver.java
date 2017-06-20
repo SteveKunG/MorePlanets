@@ -18,6 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -27,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
@@ -141,7 +143,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                                 if (!tile.isActivated())
                                 {
                                     tile.setActivated(true);
-                                    tile.getWorld().playSound(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), "moreplanets:ambient.machine.start", 1.0F, 1.0F);
+                                    tile.getWorld().playSound(player, tile.getPos(), MPSounds.MACHINE_AMBIENT_ACTIVATE, SoundCategory.AMBIENT, 1.0F, 1.0F);
                                     player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_success.message")).setStyle(new JsonUtils().colorFromConfig("green")));
                                     return true;
                                 }

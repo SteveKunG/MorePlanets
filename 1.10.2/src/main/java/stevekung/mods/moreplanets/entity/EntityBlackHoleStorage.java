@@ -6,6 +6,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -19,6 +22,8 @@ import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 public class EntityBlackHoleStorage extends Entity
 {
     private BlockPos mainTilePos;
+    private static DataParameter<String> COLLECT_MODE = EntityDataManager.createKey(EntityBlackHoleStorage.class, DataSerializers.STRING);
+    private static DataParameter<Boolean> DISABLE = EntityDataManager.createKey(EntityBlackHoleStorage.class, DataSerializers.BOOLEAN);
 
     public EntityBlackHoleStorage(World world)
     {
@@ -66,7 +71,7 @@ public class EntityBlackHoleStorage extends Entity
             if (this.getCollectMode().equals("item") || collectAll)
             {
                 int range = 12;
-                List<EntityItem> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+                List<EntityItem> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
                 for (EntityItem entity : entitiesAroundBH)
                 {
@@ -81,7 +86,7 @@ public class EntityBlackHoleStorage extends Entity
             if (this.getCollectMode().equals("xp") || collectAll)
             {
                 int range = 12;
-                List<EntityXPOrb> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityXPOrb.class, AxisAlignedBB.fromBounds(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+                List<EntityXPOrb> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityXPOrb.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
                 for (EntityXPOrb entity : entitiesAroundBH)
                 {
@@ -118,8 +123,8 @@ public class EntityBlackHoleStorage extends Entity
     @Override
     protected void entityInit()
     {
-        this.dataWatcher.addObject(18, Byte.valueOf((byte) 0));
-        this.dataWatcher.addObject(19, Byte.valueOf((byte) 0));
+        this.dataManager.register(EntityBlackHoleStorage.COLLECT_MODE, "item");
+        this.dataManager.register(EntityBlackHoleStorage.DISABLE, false);
     }
 
     @Override
@@ -156,21 +161,21 @@ public class EntityBlackHoleStorage extends Entity
 
     public boolean isDisable()
     {
-        return this.dataWatcher.getWatchableObjectByte(18) == 1;
+        return this.dataManager.get(EntityBlackHoleStorage.DISABLE);
     }
 
     public void setDisable(boolean disable)
     {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte)(disable ? 1 : 0)));
+        this.dataManager.set(EntityBlackHoleStorage.DISABLE, disable);
     }
 
     public String getCollectMode()
     {
-        return this.dataWatcher.getWatchableObjectByte(19) == 0 ? "item" : "xp";
+        return this.dataManager.get(EntityBlackHoleStorage.COLLECT_MODE);
     }
 
     public void setCollectMode(String mode)
     {
-        this.dataWatcher.updateObject(19, Byte.valueOf((byte)(mode.equals("xp") ? 1 : 0)));
+        this.dataManager.set(EntityBlackHoleStorage.COLLECT_MODE, mode);
     }
 }

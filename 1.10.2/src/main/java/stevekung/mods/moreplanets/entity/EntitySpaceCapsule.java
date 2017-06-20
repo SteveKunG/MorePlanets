@@ -9,13 +9,17 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.IScaleableFuelLevel;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFuelLevel, ICameraZoomEntity, IIgnoreShift
 {
@@ -58,7 +62,8 @@ public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFu
     }
 
     @Override
-    public EntityFX getParticle(Random rand, double x, double y, double z, double motX, double motY, double motZ)
+    @SideOnly(Side.CLIENT)
+    public Particle getParticle(Random rand, double x, double y, double z, double motX, double motY, double motZ)
     {
         return null;
     }
@@ -178,7 +183,7 @@ public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFu
     }
 
     @Override
-    public boolean interactFirst(EntityPlayer player)
+    public boolean processInitialInteract(EntityPlayer player, ItemStack stack, EnumHand hand)
     {
         if (this.worldObj.isRemote)
         {
@@ -186,14 +191,13 @@ public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFu
             {
                 return false;
             }
-            if (this.riddenByEntity != null)
+            if (!this.getPassengers().isEmpty())
             {
-                this.riddenByEntity.mountEntity(this);
+                this.removePassengers();
             }
             return true;
         }
-
-        if (this.riddenByEntity == null && player instanceof EntityPlayerMP)
+        if (this.getPassengers().isEmpty() && player instanceof EntityPlayerMP)
         {
             GCCoreUtil.openParachestInv((EntityPlayerMP) player, this);
             return true;
@@ -204,7 +208,7 @@ public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFu
             {
                 return false;
             }
-            player.mountEntity(null);
+            this.removePassengers();
             return true;
         }
         else

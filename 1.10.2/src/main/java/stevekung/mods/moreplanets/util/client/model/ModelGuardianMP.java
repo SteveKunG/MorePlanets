@@ -5,8 +5,8 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityGuardian;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 public class ModelGuardianMP extends ModelBase
 {
@@ -72,7 +72,7 @@ public class ModelGuardianMP extends ModelBase
             float[] afloat3 = new float[] {0.0F, 0.0F, 8.0F, -8.0F, -8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F, 8.0F, -8.0F};
             float[] afloat4 = new float[] { -8.0F, -8.0F, -8.0F, -8.0F, 0.0F, 0.0F, 0.0F, 0.0F, 8.0F, 8.0F, 8.0F, 8.0F};
             float[] afloat5 = new float[] {8.0F, -8.0F, 0.0F, 0.0F, -8.0F, -8.0F, 8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F};
-            float f7 = (1.0F - entityguardian.func_175469_o(f6)) * 0.55F;
+            float f7 = (1.0F - entityguardian.getSpikesAnimation(f6)) * 0.55F;
 
             for (int i = 0; i < 12; ++i)
             {
@@ -93,8 +93,8 @@ public class ModelGuardianMP extends ModelBase
             }
             if (object != null)
             {
-                Vec3 vec3 = ((Entity)object).getPositionEyes(0.0F);
-                Vec3 vec31 = entity.getPositionEyes(0.0F);
+                Vec3d vec3 = ((Entity)object).getPositionEyes(0.0F);
+                Vec3d vec31 = entity.getPositionEyes(0.0F);
                 double d0 = vec3.yCoord - vec31.yCoord;
 
                 if (d0 > 0.0D)
@@ -105,14 +105,14 @@ public class ModelGuardianMP extends ModelBase
                 {
                     this.guardianEye.rotationPointY = 1.0F;
                 }
-                Vec3 vec32 = entity.getLook(0.0F);
-                vec32 = new Vec3(vec32.xCoord, 0.0D, vec32.zCoord);
-                Vec3 vec33 = new Vec3(vec31.xCoord - vec3.xCoord, 0.0D, vec31.zCoord - vec3.zCoord).normalize().rotateYaw((float)Math.PI / 2F);
+                Vec3d vec32 = entity.getLook(0.0F);
+                vec32 = new Vec3d(vec32.xCoord, 0.0D, vec32.zCoord);
+                Vec3d vec33 = new Vec3d(vec31.xCoord - vec3.xCoord, 0.0D, vec31.zCoord - vec3.zCoord).normalize().rotateYaw((float)Math.PI / 2F);
                 double d1 = vec32.dotProduct(vec33);
                 this.guardianEye.rotationPointX = MathHelper.sqrt_float((float)Math.abs(d1)) * 2.0F * (float)Math.signum(d1);
             }
             this.guardianEye.showModel = true;
-            float f8 = entityguardian.func_175471_a(f6);
+            float f8 = entityguardian.getTailAnimation(f6);
             this.guardianTail[0].rotateAngleY = MathHelper.sin(f8) * (float)Math.PI * 0.05F;
             this.guardianTail[1].rotateAngleY = MathHelper.sin(f8) * (float)Math.PI * 0.1F;
             this.guardianTail[1].rotationPointX = -1.5F;

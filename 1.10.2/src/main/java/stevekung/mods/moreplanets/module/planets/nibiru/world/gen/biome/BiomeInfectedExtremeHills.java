@@ -2,12 +2,10 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
@@ -17,22 +15,15 @@ import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenMinableMP;
 
 public class BiomeInfectedExtremeHills extends BiomeNibiru
 {
-    private WorldGenerator theWorldGenerator;
-    private int field_150635_aE;
-    private int field_150636_aF;
-    private int field_150638_aH;
-
-    public BiomeInfectedExtremeHills()
+    public BiomeInfectedExtremeHills(BiomeProperties properties)
     {
-        super(ConfigManagerMP.idBiomeInfectedExtremeHills);
-        this.theWorldGenerator = new WorldGenMinableMP(NibiruBlocks.NIBIRU_SILVERFISH_STONE.getDefaultState(), NibiruBlocks.NIBIRU_BLOCK.getDefaultState(), 8);
-        this.enableSnow = true;
-        this.field_150635_aE = 0;
-        this.field_150636_aF = 1;
-        this.field_150638_aH = this.field_150635_aE;
+        super(properties);
+        properties.setSnowEnabled();
+        properties.setTemperature(0.2F);
+        properties.setRainfall(0.3F);
+        properties.setBaseHeight(1.0F);
+        properties.setHeightVariation(0.5F);
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
-        this.setTemperatureRainfall(0.2F, 0.3F);
-        this.setHeight(new Height(1.0F, 0.5F));
         this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
     }
 
@@ -78,7 +69,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
             l = rand.nextInt(16);
             i1 = rand.nextInt(64);
             j1 = rand.nextInt(16);
-            this.theWorldGenerator.generate(world, rand, pos.add(l, i1, j1));
+            new WorldGenMinableMP(NibiruBlocks.NIBIRU_SILVERFISH_STONE.getDefaultState(), NibiruBlocks.NIBIRU_BLOCK.getDefaultState(), 8).generate(world, rand, pos.add(l, i1, j1));
         }
 
         for (int i = 0; i < 24; i++)
@@ -88,16 +79,16 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     }
 
     @Override
-    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double stoneNoise)
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double noise)
     {
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
 
-        if (stoneNoise > 1.0D && this.field_150638_aH != this.field_150636_aF)
+        if (noise > 1.0D)
         {
             this.topBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
             this.fillerBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         }
-        this.genPlanetTerrain(world, rand, chunkPrimer, chunkX, chunkZ, stoneNoise);
+        this.genPlanetTerrain(world, rand, chunkPrimer, chunkX, chunkZ, noise);
     }
 }

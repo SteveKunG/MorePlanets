@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +15,8 @@ import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.AchievementList;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
@@ -189,7 +192,7 @@ public class GeneralEventHandler
         {
             if (source == FronosBlocks.CANDY_CANE_1 || source == FronosBlocks.CANDY_CANE_2)
             {
-                player.getCurrentEquippedItem().damageItem(1, player);
+                player.getActiveItemStack().damageItem(1, player);
             }
         }
     }
@@ -203,7 +206,7 @@ public class GeneralEventHandler
 
         if (block == ChalosBlocks.CHEESE_SPORE_STEM || block == NibiruBlocks.NIBIRU_LOG)
         {
-            event.player.triggerAchievement(AchievementList.MINE_WOOD);
+            event.player.addStat(AchievementList.MINE_WOOD);
         }
     }
 
@@ -215,15 +218,15 @@ public class GeneralEventHandler
 
         if (block == ChalosBlocks.CHALOS_CRAFTING_TABLE || block == NibiruBlocks.NIBIRU_CRAFTING_TABLE)
         {
-            event.player.triggerAchievement(AchievementList.BUILD_WORK_BENCH);
+            event.player.addStat(AchievementList.BUILD_WORK_BENCH);
         }
         if (item == NibiruItems.NIBIRU_STONE_PICKAXE)
         {
-            event.player.triggerAchievement(AchievementList.BUILD_BETTER_PICKAXE);
+            event.player.addStat(AchievementList.BUILD_BETTER_PICKAXE);
         }
         if (block == NibiruBlocks.NIBIRU_FURNACE || block == NibiruBlocks.TERRASTONE_FURNACE)
         {
-            event.player.triggerAchievement(AchievementList.BUILD_FURNACE);
+            event.player.addStat(AchievementList.BUILD_FURNACE);
         }
     }
 
@@ -315,21 +318,29 @@ public class GeneralEventHandler
             world.setBlockState(pos, farmland.getDefaultState());
         }
         event.setResult(Result.ALLOW);
-        world.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), Block.soundTypeGravel.getStepSound(), (Block.soundTypeGravel.getVolume() + 1.0F) / 2.0F, Block.soundTypeGravel.getFrequency() * 0.8F);
-        event.getEntityPlayer().swingItem();
+        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
+
+        for (EnumHand hand : EnumHand.values())
+        {
+            event.getEntityPlayer().swingArm(hand);
+        }
     }
 
     private void setFarmland(UseHoeEvent event, World world, BlockPos pos, Block farmland)
     {
         world.setBlockState(pos, farmland.getDefaultState());
         event.setResult(Result.ALLOW);
-        world.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), Block.soundTypeGravel.getStepSound(), (Block.soundTypeGravel.getVolume() + 1.0F) / 2.0F, Block.soundTypeGravel.getFrequency() * 0.8F);
-        event.getEntityPlayer().swingItem();
+        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
+
+        for (EnumHand hand : EnumHand.values())
+        {
+            event.getEntityPlayer().swingArm(hand);
+        }
     }
 
     private boolean isShears(EntityPlayer player)
     {
-        return player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemShears;
+        return player.getActiveItemStack() != null && player.getActiveItemStack().getItem() instanceof ItemShears;
     }
 
     private static class BreakBlockData

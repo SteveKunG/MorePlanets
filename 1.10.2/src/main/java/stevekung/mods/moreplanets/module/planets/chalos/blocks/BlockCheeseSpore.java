@@ -5,10 +5,11 @@ import java.util.Random;
 
 import com.google.common.collect.Lists;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
@@ -18,10 +19,10 @@ public class BlockCheeseSpore extends BlockBaseMP
 {
     public BlockCheeseSpore(String name)
     {
-        super(Material.wood);
+        super(Material.WOOD);
         this.setHardness(0.2F);
         this.setUnlocalizedName(name);
-        this.setStepSound(soundTypeCloth);
+        this.setSoundType(SoundType.CLOTH);
     }
 
     @Override

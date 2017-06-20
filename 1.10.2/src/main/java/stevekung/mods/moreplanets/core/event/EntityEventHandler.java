@@ -14,7 +14,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
-import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -36,21 +36,21 @@ public class EntityEventHandler
     @SubscribeEvent
     public void onZombieSummonAid(SummonAidEvent event)
     {
-        if (event.entity instanceof EntityInfectedZombie)
+        if (event.getEntity() instanceof EntityInfectedZombie)
         {
-            event.customSummonedAid = new EntityInfectedZombie(event.world);
+            event.setCustomSummonedAid(new EntityInfectedZombie(event.getWorld()));
 
-            if (((EntityLivingBase) event.entity).getRNG().nextFloat() < ((EntityInfectedZombie) event.entity).getEntityAttribute(((EntityInfectedZombie) event.entity).getReinforcementsAttribute()).getAttributeValue())
+            if (((EntityLivingBase) event.getEntity()).getRNG().nextFloat() < ((EntityInfectedZombie) event.getEntity()).getEntityAttribute(((EntityInfectedZombie) event.getEntity()).getReinforcementsAttribute()).getAttributeValue())
             {
                 event.setResult(Result.ALLOW);
             }
             event.setResult(Result.DENY);
         }
-        if (event.entity instanceof EntityZeliusZombie)
+        if (event.getEntity() instanceof EntityZeliusZombie)
         {
-            event.customSummonedAid = new EntityZeliusZombie(event.world);
+            event.setCustomSummonedAid(new EntityZeliusZombie(event.getWorld()));
 
-            if (((EntityLivingBase) event.entity).getRNG().nextFloat() < ((EntityZeliusZombie) event.entity).getEntityAttribute(((EntityZeliusZombie) event.entity).getReinforcementsAttribute()).getAttributeValue())
+            if (((EntityLivingBase) event.getEntity()).getRNG().nextFloat() < ((EntityZeliusZombie) event.getEntity()).getEntityAttribute(((EntityZeliusZombie) event.getEntity()).getReinforcementsAttribute()).getAttributeValue())
             {
                 event.setResult(Result.ALLOW);
             }
@@ -61,7 +61,7 @@ public class EntityEventHandler
     @SubscribeEvent
     public void onLivingUpdate(LivingUpdateEvent event)
     {
-        EntityLivingBase living = event.entityLiving;
+        EntityLivingBase living = event.getEntityLiving();
         World world = living.worldObj;
 
         if (living instanceof EntityPlayerMP)
@@ -78,21 +78,21 @@ public class EntityEventHandler
             }
             if (player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) || this.isInOxygen(world, player))
             {
-                player.removePotionEffect(MPPotions.INFECTED_SPORE.id);
+                player.removePotionEffect(MPPotions.INFECTED_SPORE);
             }
             if (player.isPotionActive(MPPotions.DARK_ENERGY_PROTECTION))
             {
-                player.removePotionEffect(MPPotions.DARK_ENERGY.id);
+                player.removePotionEffect(MPPotions.DARK_ENERGY);
             }
             if (world.provider instanceof WorldProviderNibiru)
             {
-                if (world.canLightningStrike(player.getPosition()) && !this.isGodPlayer(player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiomeGenForCoords(player.getPosition()) != MPBiomes.GREEN_VEIN)
+                if (world.isRainingAt(player.getPosition()) && !this.isGodPlayer(player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiome(player.getPosition()) != MPBiomes.GREEN_VEIN)
                 {
-                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 40));
+                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
                 }
-                if (player.ticksExisted % 128 == 0 && !this.isGodPlayer(player) && !this.isInOxygen(world, player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiomeGenForCoords(player.getPosition()) != MPBiomes.GREEN_VEIN)
+                if (player.ticksExisted % 128 == 0 && !this.isGodPlayer(player) && !this.isInOxygen(world, player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiome(player.getPosition()) != MPBiomes.GREEN_VEIN)
                 {
-                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 80));
+                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
                 }
             }
             if (world.provider instanceof IMeteorType)
@@ -104,27 +104,27 @@ public class EntityEventHandler
         {
             if (!(living instanceof EntityPlayer) && !EntityEffectHelper.isGalacticraftMob(living) && !(living instanceof EntityJuicer))
             {
-                if (living.ticksExisted % 128 == 0 && world.getBiomeGenForCoords(living.getPosition()) != MPBiomes.GREEN_VEIN)
+                if (living.ticksExisted % 128 == 0 && world.getBiome(living.getPosition()) != MPBiomes.GREEN_VEIN)
                 {
-                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 80));
+                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
                 }
-                if (world.canLightningStrike(living.getPosition()) && world.getBiomeGenForCoords(living.getPosition()) != MPBiomes.GREEN_VEIN)
+                if (world.isRainingAt(living.getPosition()) && world.getBiome(living.getPosition()) != MPBiomes.GREEN_VEIN)
                 {
-                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 40));
+                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
                 }
             }
         }
     }
 
     @SubscribeEvent
-    public void onInteractEntity(EntityInteractEvent event)
+    public void onInteractEntity(EntityInteract event)
     {
-        ItemStack itemStack = event.entityPlayer.getCurrentEquippedItem();
-        Entity entity = event.target;
+        ItemStack itemStack = event.getEntityPlayer().getActiveItemStack();
+        Entity entity = event.getTarget();
 
         if (itemStack != null)
         {
-            if (itemStack.getItem() == Items.dye)
+            if (itemStack.getItem() == Items.DYE)
             {
                 EnumDyeColor color = EnumDyeColor.byDyeDamage(itemStack.getItemDamage() & 15);
 
@@ -136,7 +136,7 @@ public class EntityEventHandler
                     {
                         grappy.setFleeceColor(color);
 
-                        if (!event.entityPlayer.capabilities.isCreativeMode)
+                        if (!event.getEntityPlayer().capabilities.isCreativeMode)
                         {
                             --itemStack.stackSize;
                         }

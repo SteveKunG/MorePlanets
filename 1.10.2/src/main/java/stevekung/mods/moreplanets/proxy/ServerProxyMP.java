@@ -22,7 +22,7 @@ public class ServerProxyMP
     {
         if (player instanceof EntityPlayerMP)
         {
-            ObfuscationReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, ((EntityPlayerMP)player).playerNetServerHandler, Integer.valueOf(0), new String[] { "field_147365_f", "floatingTickCount" });
+            ObfuscationReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, ((EntityPlayerMP)player).connection, Integer.valueOf(0), new String[] { "field_147365_f", "floatingTickCount" });
         }
     }
 }

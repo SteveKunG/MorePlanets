@@ -2,10 +2,9 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedCanopyTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTree;
@@ -13,14 +12,14 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 
 public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
 {
-    public BiomeInfectedDeadRoofedForest()
+    public BiomeInfectedDeadRoofedForest(BiomeProperties properties)
     {
-        super(ConfigManagerMP.idBiomeInfectedDeadRoofedForest);
-        this.enableRain = true;
+        super(properties);
+        properties.setTemperature(0.7F);
+        properties.setRainfall(0.8F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
-        this.setTemperatureRainfall(0.7F, 0.8F);
         this.getBiomeDecorator().infectedTreesPerChunk = 5;
         this.getBiomeDecorator().infectedTallGrassPerChunk = 4;
         this.getBiomeDecorator().orangeBushPerChunk = 3;
@@ -60,7 +59,7 @@ public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
 
                 if (worldgenabstracttree.generate(world, rand, blockpos))
                 {
-                    worldgenabstracttree.func_180711_a(world, rand, blockpos);
+                    worldgenabstracttree.generateSaplings(world, rand, blockpos);
                 }
             }
         }

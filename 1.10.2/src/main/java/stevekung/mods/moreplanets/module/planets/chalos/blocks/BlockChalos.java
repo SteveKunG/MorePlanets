@@ -4,19 +4,18 @@ import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -35,7 +34,7 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
 
     public BlockChalos(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.CHALOS_ROCK));
         this.setUnlocalizedName(name);
     }
@@ -57,16 +56,9 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     }
 
     @Override
-    public float getBlockHardness(World world, BlockPos pos)
+    public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos).getBlock();
-
-        if (block != this)
-        {
-            return 0;
-        }
-
-        int meta = this.getMetaFromState(world.getBlockState(pos));
+        int meta = this.getMetaFromState(state);
 
         if (meta == 0)
         {
@@ -150,9 +142,9 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     }
 
     @Override
-    public int getExpDrop(IBlockAccess world, BlockPos pos, int fortune)
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return this.getMetaFromState(world.getBlockState(pos)) == 4 ? MathHelper.getRandomIntegerInRange(new Random(), 3, 7) : 0;
+        return this.getMetaFromState(state) == 4 ? MathHelper.getRandomIntegerInRange(new Random(), 3, 7) : 0;
     }
 
     @Override
@@ -187,9 +179,9 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

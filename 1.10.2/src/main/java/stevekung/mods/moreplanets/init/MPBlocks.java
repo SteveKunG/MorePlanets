@@ -87,23 +87,23 @@ public class MPBlocks
         /************************REGISTER STUFF************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerBlock(MPBlocks.DUMMY_BLOCK);
+        CommonRegisterHelper.registerBlock(MPBlocks.DUMMY_BLOCK, null);
         CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL);
+        CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL, null);
         CommonRegisterHelper.registerBlock(MPBlocks.ROCKET_CRUSHER, ItemBlockDescription::new);
         CommonRegisterHelper.registerBlock(MPBlocks.DUNGEON_GLOWSTONE);
-        CommonRegisterHelper.registerBlock(MPBlocks.SPACE_DUNGEON_SPAWNER);
+        CommonRegisterHelper.registerBlock(MPBlocks.SPACE_DUNGEON_SPAWNER, null);
         CommonRegisterHelper.registerBlock(MPBlocks.TINTED_GLASS, ItemBlockColoredMP::new);
         CommonRegisterHelper.registerBlock(MPBlocks.TINTED_GLASS_PANE, ItemBlockColoredMP::new);
         CommonRegisterHelper.registerBlock(MPBlocks.POLISHED_SPACE_DECORATION, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(MPBlocks.DARK_ENERGY_RECEIVER, ItemBlockDarkEnergyReceiver::new);
         CommonRegisterHelper.registerBlock(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1, null);
         CommonRegisterHelper.registerBlock(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, ItemBlockTieredEnergyStorage::new);
         CommonRegisterHelper.registerBlock(MPBlocks.HALF_COBBLESTONE_SLAB_1, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_COBBLESTONE_SLAB_1);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_COBBLESTONE_SLAB_1, null);
         CommonRegisterHelper.registerBlock(MPBlocks.HALF_WOODEN_SLAB_1, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_WOODEN_SLAB_1);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_WOODEN_SLAB_1, null);
         CommonRegisterHelper.registerBlock(MPBlocks.COBBLESTONE_WALL, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(MPBlocks.DUNGEON_BRICK_WALL, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(MPBlocks.SPACE_PORTAL);

@@ -6,7 +6,7 @@ import micdoodle8.mods.galacticraft.api.entity.IRocketType.EnumRocketType;
 import micdoodle8.mods.galacticraft.api.item.IHoldableItem;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityLandingPad;
-import micdoodle8.mods.galacticraft.core.util.EnumColor;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -124,7 +125,7 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
         }
         if (type.getPreFueled())
         {
-            list.add(EnumColor.RED + "\u00a7o" + StatCollector.translateToLocal("gui.creative_only.desc"));
+            list.add(TextFormatting.RED + "" + TextFormatting.ITALIC + GCCoreUtil.translate("gui.creative_only.desc"));
         }
         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("RocketFuel"))
         {

@@ -16,9 +16,9 @@ public class BiomeChalos extends BiomeBaseMP
 {
     protected IBlockState stoneBlock;
 
-    public BiomeChalos(int id)
+    public BiomeChalos(BiomeProperties properties)
     {
-        super(id);
+        super(properties);
         this.theBiomeDecorator.treesPerChunk = -999;
         this.theBiomeDecorator.flowersPerChunk = -999;
         this.theBiomeDecorator.grassPerChunk = -999;
@@ -55,13 +55,13 @@ public class BiomeChalos extends BiomeBaseMP
         {
             if (j1 <= rand.nextInt(5))
             {
-                chunkPrimer.setBlockState(i1, j1, l, Blocks.bedrock.getDefaultState());
+                chunkPrimer.setBlockState(i1, j1, l, Blocks.BEDROCK.getDefaultState());
             }
             else
             {
                 IBlockState iblockstate2 = chunkPrimer.getBlockState(i1, j1, l);
 
-                if (iblockstate2.getBlock().getMaterial() == Material.air)
+                if (iblockstate2.getMaterial() == Material.AIR)
                 {
                     j = -1;
                 }
@@ -84,7 +84,7 @@ public class BiomeChalos extends BiomeBaseMP
                             iblockstate1 = this.fillerBlock;
                         }
 
-                        if (j1 < i && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.air))
+                        if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
                         {
                             iblockstate = ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK.getDefaultState();
                         }

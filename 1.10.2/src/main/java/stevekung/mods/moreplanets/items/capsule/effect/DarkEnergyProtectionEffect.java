@@ -27,9 +27,9 @@ public class DarkEnergyProtectionEffect extends PotionMP
     @Override
     public void performEffect(EntityLivingBase living, int food)
     {
-        if (this.id == MPPotions.DARK_ENERGY_PROTECTION.id)
+        if (this == MPPotions.DARK_ENERGY_PROTECTION)
         {
-            living.removePotionEffect(MPPotions.DARK_ENERGY.id);
+            living.removePotionEffect(MPPotions.DARK_ENERGY);
         }
     }
 }

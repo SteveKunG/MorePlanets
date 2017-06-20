@@ -42,4 +42,10 @@ public class Tier4RocketRecipeHandler implements IRecipeHandler<Tier4RocketRecip
         }
         return true;
     }
+
+    @Override
+    public String getRecipeCategoryUid(Tier4RocketRecipeWrapper recipe)
+    {
+        return "moreplanets.rocketT4";
+    }
 }

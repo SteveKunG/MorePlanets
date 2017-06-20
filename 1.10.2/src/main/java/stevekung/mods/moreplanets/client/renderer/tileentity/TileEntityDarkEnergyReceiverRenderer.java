@@ -5,12 +5,12 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.client.model.ModelDarkEnergyReceiver;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
@@ -107,7 +107,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
     }
 
     @Override
-    public boolean func_181055_a()
+    public boolean isGlobalRenderer(TileEntityDarkEnergyReceiver tile)
     {
         return true;
     }
@@ -118,7 +118,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         {
             Block block = tile.getWorld().getBlockState(new BlockPos(tile.getPos().getX(), yRender, tile.getPos().getZ())).getBlock();
 
-            if (block.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE || !tile.isActivated())
+            if (block.isOpaqueCube(tile.getWorld().getBlockState(new BlockPos(tile.getPos().getX(), yRender, tile.getPos().getZ()))) && block != DionaBlocks.DARK_ENERGY_CORE || !tile.isActivated())
             {
                 return;
             }
@@ -129,7 +129,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         float f = 1.0F;
         GlStateManager.alphaFunc(516, 0.1F);
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        VertexBuffer worldrenderer = tessellator.getBuffer();
         GlStateManager.disableFog();
         int i = 0;
 
@@ -146,7 +146,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
             GlStateManager.depthMask(true);
             GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
             double d0 = (double)tile.getWorld().getTotalWorldTime() + (double)partialTicks;
-            double d1 = MathHelper.func_181162_h(-d0 * 0.2D - MathHelper.floor_double(-d0 * 0.1D));
+            double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor_double(-d0 * 0.1D));
             float f1 = tile.failedTick > 0 ? 0.1F : tile.successful ? 0.1F : 0.3F;
             float f2 = tile.failedTick > 0 ? 0.08F : tile.successful ? 0.1F : 0.2F;
             float f3 = tile.failedTick > 0 ? 0.12F : tile.successful ? 0.1F : 0.5F;

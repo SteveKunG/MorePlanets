@@ -6,8 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 
@@ -22,7 +21,7 @@ public class ItemGasBucketMP extends ItemBucketMP
         this.name = name;
         this.isFull = gas;
         this.setUnlocalizedName(name);
-        this.setContainerItem(Items.bucket);
+        this.setContainerItem(Items.BUCKET);
     }
 
     public ItemGasBucketMP(String name, Block gas, int gasState)
@@ -31,7 +30,7 @@ public class ItemGasBucketMP extends ItemBucketMP
         this.isFull = gas;
         this.gasState = gasState;
         this.setUnlocalizedName(name);
-        this.setContainerItem(Items.bucket);
+        this.setContainerItem(Items.BUCKET);
     }
 
     @Override
@@ -88,7 +87,7 @@ public class ItemGasBucketMP extends ItemBucketMP
     @Override
     public boolean tryPlaceContainedLiquid(World world, BlockPos pos)
     {
-        if (this.isFull == Blocks.air)
+        if (this.isFull == Blocks.AIR)
         {
             return false;
         }

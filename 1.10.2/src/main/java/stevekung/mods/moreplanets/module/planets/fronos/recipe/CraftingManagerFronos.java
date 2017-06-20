@@ -37,7 +37,7 @@ public class CraftingManagerFronos
         //        RecipeHelper.addRecipe(new ItemStack(FronosBlocks.CHALOS_DUNGEON_BRICK_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(FronosBlocks.CHALOS_BLOCK, 1, 11) });
         //        RecipeHelper.addRecipe(new ItemStack(FronosBlocks.CHEESE_SPORE_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(FronosBlocks.CHEESE_SPORE_PLANKS) });
 
-        RecipeHelper.addShapelessRecipe(new ItemStack(FronosBlocks.FRONOS_BLOCK, 1, 3), new ItemStack(FronosBlocks.FRONOS_BLOCK, 1, 2), Blocks.vine );
+        RecipeHelper.addShapelessRecipe(new ItemStack(FronosBlocks.FRONOS_BLOCK, 1, 3), new ItemStack(FronosBlocks.FRONOS_BLOCK, 1, 2), Blocks.VINE );
     }
 
     private static void addItemRecipe()
@@ -82,19 +82,19 @@ public class CraftingManagerFronos
 
     private static void addItemSmelting()
     {
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 0), new ItemStack(Items.iron_ingot), 0.7F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 1), new ItemStack(Items.gold_ingot), 1.0F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 0), new ItemStack(Items.IRON_INGOT), 0.7F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 1), new ItemStack(Items.GOLD_INGOT), 1.0F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 2), new ItemStack(GCItems.basicItem, 1, 4), 0.7F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 3), new ItemStack(GCItems.basicItem, 1, 3), 0.7F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 4), new ItemStack(GCItems.basicItem, 1, 5), 0.7F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 5), new ItemStack(VenusItems.basicItem, 1, 1), 0.8F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 6), new ItemStack(Items.coal), 0.1F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 7), new ItemStack(Items.dye, 1, 4), 0.2F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 8), new ItemStack(Items.diamond), 1.0F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 9), new ItemStack(Items.emerald), 1.0F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 10), new ItemStack(Items.redstone), 0.7F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 6), new ItemStack(Items.COAL), 0.1F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 7), new ItemStack(Items.DYE, 1, 4), 0.2F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 8), new ItemStack(Items.DIAMOND), 1.0F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 9), new ItemStack(Items.EMERALD), 1.0F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 10), new ItemStack(Items.REDSTONE), 0.7F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 11), new ItemStack(GCItems.basicItem, 1, 2), 0.7F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 12), new ItemStack(Items.quartz), 0.2F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 12), new ItemStack(Items.QUARTZ), 0.2F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 13), new ItemStack(FronosItems.FRONOS_ITEM, 1, 0), 1.0F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosItems.FRONOS_FOOD, 1, 2), new ItemStack(FronosItems.FRONOS_FOOD, 1, 3), 0.25F);
     }

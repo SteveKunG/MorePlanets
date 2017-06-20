@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -20,9 +20,9 @@ public class BiomeNibiru extends BiomeBaseMP
 {
     protected IBlockState stoneBlock;
 
-    public BiomeNibiru(int id)
+    public BiomeNibiru(BiomeProperties properties)
     {
-        super(id);
+        super(properties);
         this.getBiomeDecorator().clayPerChunk = 1;
         this.getBiomeDecorator().sandPerChunk = 1;
         this.getBiomeDecorator().sandPerChunk2 = 3;
@@ -70,13 +70,13 @@ public class BiomeNibiru extends BiomeBaseMP
         {
             if (j1 <= rand.nextInt(5))
             {
-                chunkPrimerIn.setBlockState(i1, j1, l, Blocks.bedrock.getDefaultState());
+                chunkPrimerIn.setBlockState(i1, j1, l, Blocks.BEDROCK.getDefaultState());
             }
             else
             {
                 IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
 
-                if (iblockstate2.getBlock().getMaterial() == Material.air)
+                if (iblockstate2.getMaterial() == Material.AIR)
                 {
                     j = -1;
                 }
@@ -99,9 +99,9 @@ public class BiomeNibiru extends BiomeBaseMP
                             iblockstate1 = this.fillerBlock;
                         }
 
-                        if (j1 < i && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.air))
+                        if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
                         {
-                            if (this.getFloatTemperature(blockpos$mutableblockpos.set(chunkX, j1, chunkZ)) < 0.15F)
+                            if (this.getFloatTemperature(blockpos$mutableblockpos.setPos(chunkX, j1, chunkZ)) < 0.15F)
                             {
                                 iblockstate = NibiruBlocks.INFECTED_ICE.getDefaultState();
                             }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import mezz.jei.api.recipe.wrapper.ICraftingRecipeWrapper;
 import net.minecraft.item.ItemStack;
@@ -47,4 +48,7 @@ public class RocketCrusherRecipesWrapper extends BlankRecipeWrapper implements I
     {
         return Collections.singletonList(this.recipe.getRecipeOutput());
     }
+
+    @Override
+    public void getIngredients(IIngredients ingredients) {}
 }

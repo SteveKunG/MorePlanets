@@ -6,16 +6,24 @@ import micdoodle8.mods.galacticraft.api.world.IMobSpawnBiome;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAmbientCreature;
 import net.minecraft.entity.passive.EntityWaterMob;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeBaseMP extends Biome implements IMobSpawnBiome
 {
-    public BiomeBaseMP(int id)
+    public BiomeBaseMP(BiomeProperties properties)
     {
-        super(id);
-        this.rainfall = 0.0F;
-        this.color = 747097;
+        super(properties);
+        properties.setRainfall(0.0F);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getGrassColorAtPos(BlockPos pos)
+    {
+        return 747097;
     }
 
     @Override

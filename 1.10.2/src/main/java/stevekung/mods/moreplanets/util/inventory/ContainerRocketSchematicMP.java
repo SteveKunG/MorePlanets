@@ -90,21 +90,21 @@ public class ContainerRocketSchematicMP extends Container
 
                 if (!done)
                 {
-                    if (itemStack.getItem() == Item.getItemFromBlock(Blocks.chest) && !this.inventorySlots.get(19).getHasStack())
+                    if (itemStack.getItem() == Item.getItemFromBlock(Blocks.CHEST) && !this.inventorySlots.get(19).getHasStack())
                     {
                         if (!this.mergeOneItem(slotStack, 19, 20))
                         {
                             return null;
                         }
                     }
-                    else if (itemStack.getItem() == Item.getItemFromBlock(Blocks.chest) && !this.inventorySlots.get(20).getHasStack())
+                    else if (itemStack.getItem() == Item.getItemFromBlock(Blocks.CHEST) && !this.inventorySlots.get(20).getHasStack())
                     {
                         if (!this.mergeOneItem(slotStack, 20, 21))
                         {
                             return null;
                         }
                     }
-                    else if (itemStack.getItem() == Item.getItemFromBlock(Blocks.chest) && !this.inventorySlots.get(21).getHasStack())
+                    else if (itemStack.getItem() == Item.getItemFromBlock(Blocks.CHEST) && !this.inventorySlots.get(21).getHasStack())
                     {
                         if (!this.mergeOneItem(slotStack, 21, 22))
                         {

@@ -9,7 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,7 +25,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
     public SkyProviderBaseMP()
     {
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        VertexBuffer worldrenderer = tessellator.getBuffer();
         int displayLists = GLAllocation.generateDisplayLists(3);
         this.starList = displayLists;
         this.glSkyList = displayLists + 1;
@@ -80,7 +80,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
     @SideOnly(Side.CLIENT)
     public void render(float partialTicks, WorldClient world, Minecraft mc)
     {
-        Vec3 vec3 = world.getSkyColor(mc.getRenderViewEntity(), partialTicks);
+        Vec3d vec3 = world.getSkyColor(mc.getRenderViewEntity(), partialTicks);
         float red = (float)vec3.xCoord;
         float green = (float)vec3.yCoord;
         float blue = (float)vec3.zCoord;
@@ -90,7 +90,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         RenderHelper.enableStandardItemLighting();
         GlStateManager.color(red, green, blue);
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        VertexBuffer worldrenderer = tessellator.getBuffer();
         GlStateManager.depthMask(false);
         GlStateManager.enableFog();
         GlStateManager.color(red, green, blue);
@@ -182,7 +182,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
     private void renderStars()
     {
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        VertexBuffer worldrenderer = tessellator.getBuffer();
         Random rand = new Random(10842L);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION);
 

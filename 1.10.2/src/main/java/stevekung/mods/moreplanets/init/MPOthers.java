@@ -9,7 +9,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityDispenser;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
@@ -59,7 +58,7 @@ public class MPOthers
             public ItemStack dispenseStack(IBlockSource source, ItemStack itemStack)
             {
                 World world = source.getWorld();
-                BlockPos pos = source.getBlockPos().offset((EnumFacing)source.getBlockState().getValue(BlockDispenser.FACING));
+                BlockPos pos = source.getBlockPos().offset(source.getBlockState().getValue(BlockDispenser.FACING));
                 IBlockState state = world.getBlockState(pos);
                 Block block = state.getBlock();
                 boolean isDefault = state.getValue(BlockFluidBase.LEVEL).intValue() == 0;

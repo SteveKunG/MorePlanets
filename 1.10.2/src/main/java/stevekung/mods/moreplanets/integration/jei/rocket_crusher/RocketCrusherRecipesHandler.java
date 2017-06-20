@@ -61,4 +61,11 @@ public class RocketCrusherRecipesHandler implements IRecipeHandler<ShapedRecipes
         }
         return inputCount > 0;
     }
+
+    @Nonnull
+    @Override
+    public String getRecipeCategoryUid(ShapedRecipesMP recipe)
+    {
+        return "moreplanets.rocketCrusherRecipes";
+    }
 }

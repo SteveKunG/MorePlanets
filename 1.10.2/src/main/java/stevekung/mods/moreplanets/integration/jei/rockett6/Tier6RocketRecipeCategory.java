@@ -8,10 +8,11 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 public class Tier6RocketRecipeCategory extends BlankRecipeCategory
 {
@@ -36,7 +37,7 @@ public class Tier6RocketRecipeCategory extends BlankRecipeCategory
     @Override
     public String getTitle()
     {
-        return StatCollector.translateToLocal("tile.rocket_workbench.name");
+        return I18n.translateToLocal("tile.rocket_workbench.name");
     }
 
     @Nonnull
@@ -47,7 +48,7 @@ public class Tier6RocketRecipeCategory extends BlankRecipeCategory
     }
 
     @Override
-    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper)
+    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper, @Nonnull IIngredients ingredients)
     {
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
         itemStacks.init(0, true, 44, 0);

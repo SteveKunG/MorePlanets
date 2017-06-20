@@ -15,9 +15,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -54,11 +54,11 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                         BlockPos posAt1 = pos.add(0, y2, 0);
                         Block block1 = world.getBlockState(posAt1).getBlock();
 
-                        if (block1.getMaterial() != Material.air && !block1.isReplaceable(world, posAt1))
+                        if (world.getBlockState(posAt1).getMaterial() != Material.AIR && !block1.isReplaceable(world, posAt1))
                         {
                             if (world.isRemote)
                             {
-                                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
+                                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                             }
                             return false;
                         }
@@ -67,7 +67,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                     {
                         if (world.isRemote)
                         {
-                            FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.bh_storage.too_close.message")).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
+                            FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.bh_storage.too_close.message")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                         }
                         return false;
                     }
@@ -104,8 +104,8 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                             if (nbt.hasKey("Disable") && nbt.hasKey("Mode") && nbt.hasKey("XP") && nbt.hasKey("Hopper") && nbt.hasKey("Items"))
                             {
                                 String mode = nbt.getString("Mode").equals("item") ? "Item" : "EXP";
-                                EnumChatFormatting disable = nbt.getBoolean("Disable") ? EnumChatFormatting.GREEN : EnumChatFormatting.RED;
-                                EnumChatFormatting hopper = nbt.getBoolean("Hopper") ? EnumChatFormatting.GREEN : EnumChatFormatting.RED;
+                                TextFormatting disable = nbt.getBoolean("Disable") ? TextFormatting.GREEN : TextFormatting.RED;
+                                TextFormatting hopper = nbt.getBoolean("Hopper") ? TextFormatting.GREEN : TextFormatting.RED;
                                 list.add(GCCoreUtil.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
                                 list.add(GCCoreUtil.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
                                 list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + mode);

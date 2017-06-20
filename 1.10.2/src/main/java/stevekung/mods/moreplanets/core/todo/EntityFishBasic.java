@@ -6,9 +6,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityFishBasic extends EntityWaterMob
@@ -47,7 +49,7 @@ public class EntityFishBasic extends EntityWaterMob
     @Override
     public boolean isInWater()
     {
-        return this.worldObj.handleMaterialAcceleration(this.getEntityBoundingBox(), Material.water, this);
+        return this.worldObj.handleMaterialAcceleration(this.getEntityBoundingBox(), Material.WATER, this);
     }
 
     @Override
@@ -83,7 +85,7 @@ public class EntityFishBasic extends EntityWaterMob
 
             IBlockState blockState = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.swimTargetX), MathHelper.floor_double(this.swimTargetY + this.height), MathHelper.floor_double(this.swimTargetZ)));
 
-            if (blockState.getBlock().getMaterial() == Material.water)
+            if (blockState.getMaterial() == Material.WATER)
             {
                 this.motionX += dx / dist * 0.05D * this.swimSpeed;
                 this.motionY += dy / dist * 0.1D * this.swimSpeed;
@@ -118,13 +120,18 @@ public class EntityFishBasic extends EntityWaterMob
             float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationPitch += ((float)Math.atan2(this.motionY, f) * 180.0F / 3.1415927F - this.rotationPitch) * 0.5F;
         }
-        else if (this.jumpOnLand && this.onGround && this.rand.nextInt(30) == 0 && this.riddenByEntity == null)
+        else if (this.jumpOnLand && this.onGround && this.rand.nextInt(30) == 0)
         {
             this.motionY = 0.30000001192092896D;
             this.motionX = -0.2F + this.rand.nextFloat() * 0.4F;
             this.motionZ = -0.2F + this.rand.nextFloat() * 0.4F;
-            this.playSound("mob.slime" + (this.height > 0.8F ? ".big" : ".small"), 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(this.getSquishSound(), 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
         }
+    }
+
+    protected SoundEvent getSquishSound()
+    {
+        return this.height > 0.8F ? SoundEvents.ENTITY_SLIME_SQUISH : SoundEvents.ENTITY_SMALL_SLIME_SQUISH;
     }
 
     protected Entity findEntityToAttack()
@@ -147,7 +154,7 @@ public class EntityFishBasic extends EntityWaterMob
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+        float f = (float)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
         return entity.attackEntityFrom(DamageSource.causeMobDamage(this), f);
     }
 
@@ -155,7 +162,7 @@ public class EntityFishBasic extends EntityWaterMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
     }
 
     @Override

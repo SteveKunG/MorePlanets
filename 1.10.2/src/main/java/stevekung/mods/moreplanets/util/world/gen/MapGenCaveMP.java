@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
@@ -13,7 +13,7 @@ import net.minecraft.world.gen.MapGenBase;
 public class MapGenCaveMP extends MapGenBase
 {
     private Block block;
-    private Block blockLava = Blocks.lava;
+    private Block blockLava = Blocks.LAVA;
     private int[] meta;
 
     public MapGenCaveMP(Block block, Block blockLava, int[] meta)
@@ -186,12 +186,12 @@ public class MapGenCaveMP extends MapGenBase
                                                 }
                                                 else
                                                 {
-                                                    chunk.setBlockState(k2, j3, j4, Blocks.air.getDefaultState());
+                                                    chunk.setBlockState(k2, j3, j4, Blocks.AIR.getDefaultState());
                                                 }
                                             }
                                             else if (state.getBlock() == this.block && this.block.getMetaFromState(state) == this.meta[0])
                                             {
-                                                chunk.setBlockState(k2, j3, j4, Blocks.air.getDefaultState());
+                                                chunk.setBlockState(k2, j3, j4, Blocks.AIR.getDefaultState());
                                             }
                                         }
                                     }

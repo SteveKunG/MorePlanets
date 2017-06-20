@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
 
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import mezz.jei.api.recipe.wrapper.ICraftingRecipeWrapper;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
@@ -36,5 +37,12 @@ public class BlackHoleStorageRecipeWrapper extends BlankRecipeWrapper implements
     public List<ItemStack> getOutputs()
     {
         return Collections.singletonList(this.recipe.getRecipeOutput());
+    }
+
+    @Override
+    public void getIngredients(IIngredients ingredients)
+    {
+        ingredients.setInputs(ItemStack.class, this.getInputs());
+        ingredients.setOutput(ItemStack.class, this.recipe.getRecipeOutput());
     }
 }

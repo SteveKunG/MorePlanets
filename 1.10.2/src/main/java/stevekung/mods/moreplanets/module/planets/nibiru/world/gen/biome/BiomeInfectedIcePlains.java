@@ -3,10 +3,9 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 import java.util.LinkedList;
 import java.util.Random;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedSnowman;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
@@ -15,9 +14,14 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 
 public class BiomeInfectedIcePlains extends BiomeNibiru
 {
-    public BiomeInfectedIcePlains()
+    public BiomeInfectedIcePlains(BiomeProperties properties)
     {
-        super(ConfigManagerMP.idBiomeInfectedIcePlains);
+        super(properties);
+        properties.setSnowEnabled();
+        properties.setTemperature(0.0F);
+        properties.setRainfall(0.5F);
+        properties.setBaseHeight(0.125F);
+        properties.setHeightVariation(0.05F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
@@ -25,9 +29,6 @@ public class BiomeInfectedIcePlains extends BiomeNibiru
         this.getBiomeDecorator().philipyPerChunk = 2;
         this.getBiomeDecorator().pureHurbPerChunk = 2;
         this.getBiomeDecorator().infectedTreesPerChunk = 0;
-        this.setEnableSnow();
-        this.setTemperatureRainfall(0.0F, 0.5F);
-        this.setHeight(new Height(0.125F, 0.05F));
     }
 
     @Override

@@ -32,29 +32,29 @@ public class ItemSpaceBow extends ItemBaseMP
         this.setUnlocalizedName(name);
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public ModelResourceLocation getModel(ItemStack itemStack, EntityPlayer player, int useRemaining)
-    {
-        if (itemStack != null && itemStack.getItem() == this && player.getItemInUse() != null)
-        {
-            int i = itemStack.getMaxItemUseDuration() - player.getItemInUseCount();
-
-            if (i >= 18)
-            {
-                return ClientRegisterHelper.getModelResourceLocation("moreplanets:space_bow_pulling_2");
-            }
-            if (i > 13)
-            {
-                return ClientRegisterHelper.getModelResourceLocation("moreplanets:space_bow_pulling_1");
-            }
-            if (i > 0)
-            {
-                return ClientRegisterHelper.getModelResourceLocation("moreplanets:space_bow_pulling_0");
-            }
-        }
-        return null;
-    }
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public ModelResourceLocation getModel(ItemStack itemStack, EntityPlayer player, int useRemaining)
+//    {
+//        if (itemStack != null && itemStack.getItem() == this && player.getItemInUse() != null)
+//        {
+//            int i = itemStack.getMaxItemUseDuration() - player.getItemInUseCount();
+//
+//            if (i >= 18)
+//            {
+//                return ClientRegisterHelper.getModelResourceLocation("moreplanets:space_bow_pulling_2");
+//            }
+//            if (i > 13)
+//            {
+//                return ClientRegisterHelper.getModelResourceLocation("moreplanets:space_bow_pulling_1");
+//            }
+//            if (i > 0)
+//            {
+//                return ClientRegisterHelper.getModelResourceLocation("moreplanets:space_bow_pulling_0");
+//            }
+//        }
+//        return null;
+//    }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int timeLeft)

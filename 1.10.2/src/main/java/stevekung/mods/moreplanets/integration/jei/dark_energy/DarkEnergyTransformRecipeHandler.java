@@ -29,4 +29,10 @@ public class DarkEnergyTransformRecipeHandler implements IRecipeHandler<DarkEner
     {
         return true;
     }
+
+    @Override
+    public String getRecipeCategoryUid(DarkEnergyRecipeData recipe)
+    {
+        return "moreplanets.darkEnergyTransform";
+    }
 }

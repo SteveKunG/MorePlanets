@@ -5,6 +5,7 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 
@@ -16,7 +17,7 @@ public class ItemDyeMP extends ItemBaseMP
     }
 
     @Override
-    public boolean itemInteractionForEntity(ItemStack itemStack, EntityPlayer player, EntityLivingBase target)
+    public boolean itemInteractionForEntity(ItemStack itemStack, EntityPlayer player, EntityLivingBase target, EnumHand hand)
     {
         if (target instanceof EntitySheep)
         {

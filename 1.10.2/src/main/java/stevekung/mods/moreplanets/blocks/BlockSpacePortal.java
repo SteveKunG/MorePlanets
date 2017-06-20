@@ -46,13 +46,13 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
 
                 if (playerMP.dimension != -1)
                 {
-                    playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, -1, new TeleporterMP(playerMP.mcServer.worldServerForDimension(-1)));
+                    playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, -1, new TeleporterMP(playerMP.mcServer.worldServerForDimension(-1)));
                     ClientEventHandler.loadRenderers = true;
                 }
                 else
                 {
                     int dimID = WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimension();
-                    playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, dimID, new TeleporterMP(playerMP.mcServer.worldServerForDimension(dimID)));
+                    playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterMP(playerMP.mcServer.worldServerForDimension(dimID)));
                     ClientEventHandler.loadRenderers = true;
                 }
             }

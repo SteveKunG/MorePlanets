@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.util.items.armor;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ import stevekung.mods.moreplanets.util.items.ISortableItem;
 
 public abstract class ItemArmorMP extends ItemArmor implements ISortableItem
 {
-    public ItemArmorMP(ArmorMaterial material, int type)
+    public ItemArmorMP(ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, -1, type);
     }
@@ -43,14 +44,14 @@ public abstract class ItemArmorMP extends ItemArmor implements ISortableItem
     {
         switch (this.armorType)
         {
-        case 0:
+        case HEAD:
         default:
             return EnumSortCategoryItem.HELMET;
-        case 1:
+        case CHEST:
             return EnumSortCategoryItem.CHESTPLATE;
-        case 2:
+        case LEGS:
             return EnumSortCategoryItem.LEGGINGS;
-        case 3:
+        case FEET:
             return EnumSortCategoryItem.BOOTS;
         }
     }

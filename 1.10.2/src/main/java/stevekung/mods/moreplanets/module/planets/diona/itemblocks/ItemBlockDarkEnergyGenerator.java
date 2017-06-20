@@ -16,7 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -52,7 +52,7 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
 
                         if (powerDrawn > 0)
                         {
-                            list.add(EnumChatFormatting.GREEN + GCCoreUtil.translateWithFormat("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
+                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
                         }
                     }
                     if (te instanceof TileBaseUniversalElectrical)
@@ -60,7 +60,7 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
                         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
                         {
                             int power = (int)itemStack.getTagCompound().getFloat("EnergyStored");
-                            list.add(EnumChatFormatting.GREEN + GCCoreUtil.translateWithFormat("desc.energy_stored.name", EnergyDisplayHelper.getEnergyDisplayS(power)));
+                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("desc.energy_stored.name", EnergyDisplayHelper.getEnergyDisplayS(power)));
                         }
                     }
                     if (te instanceof TileEntityDarkEnergyGenerator)
@@ -69,7 +69,7 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
                         {
                             int power = itemStack.getTagCompound().getInteger("DarkEnergyFuel");
                             power = power * 100 / 1000;
-                            list.add(EnumChatFormatting.GREEN + GCCoreUtil.translateWithFormat("desc.dark_energy_fuel.name", power) + "%");
+                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("desc.dark_energy_fuel.name", power) + "%");
                         }
                     }
                 }
@@ -83,7 +83,7 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
 
                         if (powerDrawn > 0)
                         {
-                            list.add(EnumChatFormatting.GREEN + GCCoreUtil.translateWithFormat("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
+                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
                         }
                     }
                 }

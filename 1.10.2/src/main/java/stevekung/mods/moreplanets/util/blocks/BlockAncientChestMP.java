@@ -5,16 +5,16 @@ import java.util.Iterator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
@@ -257,7 +257,7 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
                 return state;
             }
 
-            if (iblockstate1.getBlock().isFullBlock())
+            if (iblockstate1.isFullBlock())
             {
                 if (enumfacing != null)
                 {
@@ -276,17 +276,15 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
         {
             EnumFacing enumfacing2 = state.getValue(BlockStateHelper.FACING);
 
-            if (world.getBlockState(pos.offset(enumfacing2)).getBlock().isFullBlock())
+            if (world.getBlockState(pos.offset(enumfacing2)).isFullBlock())
             {
                 enumfacing2 = enumfacing2.getOpposite();
             }
-
-            if (world.getBlockState(pos.offset(enumfacing2)).getBlock().isFullBlock())
+            if (world.getBlockState(pos.offset(enumfacing2)).isFullBlock())
             {
                 enumfacing2 = enumfacing2.rotateY();
             }
-
-            if (world.getBlockState(pos.offset(enumfacing2)).getBlock().isFullBlock())
+            if (world.getBlockState(pos.offset(enumfacing2)).isFullBlock())
             {
                 enumfacing2 = enumfacing2.getOpposite();
             }
@@ -395,7 +393,7 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
     }
 
     @Override
-    public boolean hasComparatorInputOverride()
+    public boolean hasComparatorInputOverride(IBlockState state)
     {
         return true;
     }
@@ -419,9 +417,9 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {BlockStateHelper.FACING});
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING});
     }
 
     @Override

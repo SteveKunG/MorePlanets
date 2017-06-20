@@ -3,15 +3,15 @@ package stevekung.mods.moreplanets.util.client.particle;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class EntityLiquidDripFX extends EntityFX
+public class ParticleLiquidDrip extends Particle
 {
     private int bobTimer;
     private boolean isLavaDrip;
@@ -20,7 +20,7 @@ public class EntityLiquidDripFX extends EntityFX
     private float newBlue;
     private float newAlpha;
 
-    public EntityLiquidDripFX(World world, double x, double y, double z, float r, float g, float b, float alpha, boolean isLavaDrip)
+    public ParticleLiquidDrip(World world, double x, double y, double z, float r, float g, float b, float alpha, boolean isLavaDrip)
     {
         super(world, x, y, z);
         this.setParticleTextureIndex(113);
@@ -44,12 +44,6 @@ public class EntityLiquidDripFX extends EntityFX
     public int getBrightnessForRender(float partialTicks)
     {
         return this.isLavaDrip ? 257 : super.getBrightnessForRender(partialTicks);
-    }
-
-    @Override
-    public float getBrightness(float partialTicks)
-    {
-        return this.isLavaDrip ? 1.0F : super.getBrightness(partialTicks);
     }
 
     @Override
@@ -83,13 +77,13 @@ public class EntityLiquidDripFX extends EntityFX
 
         if (this.particleMaxAge-- <= 0)
         {
-            this.setDead();
+            this.setExpired();
         }
-        if (this.onGround)
+        if (this.isCollided)
         {
             if (!this.isLavaDrip)
             {
-                this.setDead();
+                this.setExpired();
             }
             else
             {
@@ -99,9 +93,9 @@ public class EntityLiquidDripFX extends EntityFX
             this.motionZ *= 0.699999988079071D;
         }
 
-        BlockPos pos = new BlockPos(this);
+        BlockPos pos = new BlockPos(this.posX, this.posY, this.posZ);
         IBlockState state = this.worldObj.getBlockState(pos);
-        Material material = state.getBlock().getMaterial();
+        Material material = state.getMaterial();
 
         if (material.isLiquid() || material.isSolid())
         {
@@ -116,7 +110,7 @@ public class EntityLiquidDripFX extends EntityFX
 
             if (this.posY < d1)
             {
-                this.setDead();
+                this.setExpired();
             }
         }
     }

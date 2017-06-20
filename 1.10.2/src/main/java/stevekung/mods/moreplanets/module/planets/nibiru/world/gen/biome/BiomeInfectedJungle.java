@@ -3,11 +3,10 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 import java.util.Random;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruTallGrass;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -19,10 +18,13 @@ public class BiomeInfectedJungle extends BiomeNibiru
     private IBlockState log = NibiruBlocks.NIBIRU_LOG.getDefaultState();
     private IBlockState leaves = NibiruBlocks.NIBIRU_LEAVES.getDefaultState();
 
-    public BiomeInfectedJungle()
+    public BiomeInfectedJungle(BiomeProperties properties)
     {
-        super(ConfigManagerMP.idBiomeInfectedJungle);
-        this.enableRain = true;
+        super(properties);
+        properties.setTemperature(0.95F);
+        properties.setRainfall(0.9F);
+        properties.setBaseHeight(0.1F);
+        properties.setHeightVariation(0.2F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
@@ -31,8 +33,6 @@ public class BiomeInfectedJungle extends BiomeNibiru
         this.getBiomeDecorator().pyoloniaPerChunk = 4;
         this.getBiomeDecorator().reedsPerChunk = 20;
         this.theBiomeDecorator.treesPerChunk = -999;
-        this.setTemperatureRainfall(0.95F, 0.9F);
-        this.setHeight(new Height(0.1F, 0.2F));
         this.getBiomeDecorator().infectedTreesPerChunk = 50;
         this.getBiomeDecorator().infectedFernPerChunk = 25;
         this.getBiomeDecorator().pureHurbPerChunk = 4;

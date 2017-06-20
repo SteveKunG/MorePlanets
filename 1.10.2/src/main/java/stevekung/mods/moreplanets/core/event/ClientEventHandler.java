@@ -26,16 +26,20 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
@@ -57,6 +61,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.FakeAlienBeamRenderer;
@@ -157,15 +162,15 @@ public class ClientEventHandler
                 {
                     if (!MorePlanetsCore.STATUS_CHECK[2] && VersionChecker.INSTANCE.noConnection())
                     {
-                        player.addChatMessage(json.text("Unable to check latest version, Please check your internet connection").setChatStyle(json.red()));
-                        player.addChatMessage(json.text(VersionChecker.INSTANCE.getExceptionMessage()).setChatStyle(json.red()));
+                        player.addChatMessage(json.text("Unable to check latest version, Please check your internet connection").setStyle(json.red()));
+                        player.addChatMessage(json.text(VersionChecker.INSTANCE.getExceptionMessage()).setStyle(json.red()));
                         MorePlanetsCore.STATUS_CHECK[2] = true;
                         return;
                     }
                     if (!MorePlanetsCore.STATUS_CHECK[0] && !MorePlanetsCore.STATUS_CHECK[2] && VersionChecker.INSTANCE.isLatestVersion())
                     {
-                        player.addChatMessage(json.text("New version of ").appendSibling(json.text("More Planets").setChatStyle(json.style().setColor(EnumChatFormatting.AQUA)).appendSibling(json.text(" is available ").setChatStyle(json.white()).appendSibling(json.text("v" + VersionChecker.INSTANCE.getLatestVersion().replace("[" + MorePlanetsCore.MC_VERSION + "]=", "")).setChatStyle(json.style().setColor(EnumChatFormatting.GREEN)).appendSibling(json.text(" for ").setChatStyle(json.white()).appendSibling(json.text("MC-" + MorePlanetsCore.MC_VERSION).setChatStyle(json.style().setColor(EnumChatFormatting.GOLD))))))));
-                        player.addChatMessage(json.text("Download Link ").setChatStyle(json.style().setColor(EnumChatFormatting.YELLOW)).appendSibling(json.text("[CLICK HERE]").setChatStyle(json.style().setColor(EnumChatFormatting.BLUE).setChatHoverEvent(json.hover(HoverEvent.Action.SHOW_TEXT, json.text("Click Here!").setChatStyle(json.style().setColor(EnumChatFormatting.DARK_GREEN)))).setChatClickEvent(json.click(ClickEvent.Action.OPEN_URL, URL)))));
+                        player.addChatMessage(json.text("New version of ").appendSibling(json.text("More Planets").setStyle(json.style().setColor(TextFormatting.AQUA)).appendSibling(json.text(" is available ").setStyle(json.white()).appendSibling(json.text("v" + VersionChecker.INSTANCE.getLatestVersion().replace("[" + MorePlanetsCore.MC_VERSION + "]=", "")).setStyle(json.style().setColor(TextFormatting.GREEN)).appendSibling(json.text(" for ").setStyle(json.white()).appendSibling(json.text("MC-" + MorePlanetsCore.MC_VERSION).setStyle(json.style().setColor(TextFormatting.GOLD))))))));
+                        player.addChatMessage(json.text("Download Link ").setStyle(json.style().setColor(TextFormatting.YELLOW)).appendSibling(json.text("[CLICK HERE]").setStyle(json.style().setColor(TextFormatting.BLUE).setHoverEvent(json.hover(HoverEvent.Action.SHOW_TEXT, json.text("Click Here!").setStyle(json.style().setColor(TextFormatting.DARK_GREEN)))).setClickEvent(json.click(ClickEvent.Action.OPEN_URL, URL)))));
                         MorePlanetsCore.STATUS_CHECK[0] = true;
                     }
                 }
@@ -175,9 +180,9 @@ public class ClientEventHandler
                     {
                         for (String log : VersionChecker.INSTANCE.getChangeLog())
                         {
-                            player.addChatMessage(json.text(log).setChatStyle(json.colorFromConfig("gray")));
+                            player.addChatMessage(json.text(log).setStyle(json.colorFromConfig("gray")));
                         }
-                        player.addChatMessage(json.text("To read More Planets full change log. Use /mpchangelog command!").setChatStyle(json.colorFromConfig("gray").setChatClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
+                        player.addChatMessage(json.text("To read More Planets full change log. Use /mpchangelog command!").setStyle(json.colorFromConfig("gray").setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
                     }
                     MorePlanetsCore.STATUS_CHECK[1] = true;
                 }
@@ -204,7 +209,7 @@ public class ClientEventHandler
     @SubscribeEvent
     public void onMouseEvent(MouseEvent event)
     {
-        int button = event.button - 100;
+        int button = event.getButton() - 100;
         EntityPlayer player = this.mc.thePlayer;
         World world = this.mc.theWorld;
         int key = this.mc.gameSettings.keyBindAttack.getKeyCode();
@@ -256,24 +261,24 @@ public class ClientEventHandler
     @SubscribeEvent
     public void onRenderLiving(RenderLivingEvent.Post event)
     {
-        EntityLivingBase living = event.entity;
+        EntityLivingBase living = event.getEntity();
 
-        if (living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE.id))
+        if (living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE))
         {
             GlStateManager.disableLighting();
             TextureMap texturemap = this.mc.getTextureMapBlocks();
             TextureAtlasSprite textureatlassprite = texturemap.getAtlasSprite("moreplanets:blocks/infected_crystallize");
             GlStateManager.pushMatrix();
-            GlStateManager.translate((float)event.x, (float)event.y, (float)event.z);
+            GlStateManager.translate((float)event.getX(), (float)event.getY(), (float)event.getZ());
             float f = living.width * 1.4F;
             GlStateManager.scale(f, f, f);
             Tessellator tessellator = Tessellator.getInstance();
-            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+            VertexBuffer worldrenderer = tessellator.getBuffer();
             float f1 = 0.5F;
             float f2 = 0.0F;
             float f3 = living.height / f;
             float f4 = (float)(living.posY - living.getEntityBoundingBox().minY);
-            GlStateManager.rotate(-event.renderer.getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(-event.getRenderer().getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
             GlStateManager.translate(0.0F, 0.0F, -0.3F + (int)f3 * 0.02F);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             float f5 = 0.0F;
@@ -282,7 +287,7 @@ public class ClientEventHandler
 
             while (f3 > 0.0F)
             {
-                event.renderer.bindTexture(TextureMap.locationBlocksTexture);
+                event.getRenderer().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
                 float f6 = textureatlassprite.getMinU();
                 float f7 = textureatlassprite.getMinV();
                 float f8 = textureatlassprite.getMaxU();
@@ -320,14 +325,14 @@ public class ClientEventHandler
     {
         this.renderMorePlanetsBossHealth();
 
-        if (event.type.equals(RenderGameOverlayEvent.ElementType.ALL))
+        if (event.getType().equals(RenderGameOverlayEvent.ElementType.ALL))
         {
             if (this.mc.gameSettings.thirdPersonView == 0)
             {
-                if (this.mc.thePlayer.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE.id))
+                if (this.mc.thePlayer.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE))
                 {
                     Tessellator tessellator = Tessellator.getInstance();
-                    WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+                    VertexBuffer worldrenderer = tessellator.getBuffer();
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 0.9F);
                     GlStateManager.depthFunc(519);
                     GlStateManager.depthMask(false);
@@ -339,7 +344,7 @@ public class ClientEventHandler
                     {
                         GlStateManager.pushMatrix();
                         TextureAtlasSprite textureatlassprite = this.mc.getTextureMapBlocks().getAtlasSprite("moreplanets:blocks/infected_crystallize");
-                        this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+                        this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
                         float f1 = textureatlassprite.getMinU();
                         float f2 = textureatlassprite.getMaxU();
                         float f3 = textureatlassprite.getMinV();
@@ -366,11 +371,11 @@ public class ClientEventHandler
                 }
                 if (this.isEntityInsideBlock(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK))
                 {
-                    this.renderOverlay("cheese_of_milk_gas", this.mc.thePlayer.getBrightness(event.partialTicks), 0.75F, event.partialTicks, -0.25D);
+                    this.renderOverlay("cheese_of_milk_gas", this.mc.thePlayer.getBrightness(event.getPartialTicks()), 0.75F, event.getPartialTicks(), -0.25D);
                 }
                 if (this.isEntityInsideBlock(NibiruBlocks.HELIUM_GAS_BLOCK))
                 {
-                    this.renderOverlay("helium_gas", this.mc.thePlayer.getBrightness(event.partialTicks), 0.75F, event.partialTicks, -0.25D);
+                    this.renderOverlay("helium_gas", this.mc.thePlayer.getBrightness(event.getPartialTicks()), 0.75F, event.getPartialTicks(), -0.25D);
                 }
             }
         }
@@ -380,9 +385,9 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onRenderBlockOverlay(RenderBlockOverlayEvent event)
     {
-        float partialTicks = event.renderPartialTicks;
+        float partialTicks = event.getRenderPartialTicks();
 
-        if (event.overlayType == OverlayType.WATER)
+        if (event.getOverlayType() == OverlayType.WATER)
         {
             if (this.checkInsideBlock(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK))
             {
@@ -406,37 +411,37 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onRenderFog(FogColors event)
     {
-        Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.theWorld, event.entity, (float) event.renderPartialTicks);
+        Block block = ActiveRenderInfo.getBlockStateAtEntityViewpoint(this.mc.theWorld, event.getEntity(), (float) event.getRenderPartialTicks()).getBlock();
 
         if (block == DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK)
         {
-            event.red = 0.5F;
-            event.green = 0.25F;
-            event.blue = 0.6F;
+            event.setRed(0.5F);
+            event.setGreen(0.25F);
+            event.setBlue(0.6F);
         }
         if (block == DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK)
         {
-            event.red = 0.35F;
-            event.green = 0.25F;
-            event.blue = 0.55F;
+            event.setRed(0.35F);
+            event.setGreen(0.25F);
+            event.setBlue(0.55F);
         }
         if (block == ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK)
         {
-            event.red = 0.65F;
-            event.green = 0.65F;
-            event.blue = 0.3F;
+            event.setRed(0.65F);
+            event.setGreen(0.65F);
+            event.setBlue(0.3F);
         }
         if (block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
         {
-            event.red = 0.1F;
-            event.green = 0.0F;
-            event.blue = 0.0F;
+            event.setRed(0.1F);
+            event.setGreen(0.0F);
+            event.setBlue(0.0F);
         }
         if (block == NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK)
         {
-            event.red = 0.3F;
-            event.green = 0.7F;
-            event.blue = 0.05F;
+            event.setRed(0.3F);
+            event.setGreen(0.7F);
+            event.setBlue(0.05F);
         }
     }
 
@@ -463,20 +468,20 @@ public class ClientEventHandler
     @SubscribeEvent
     public void onFOVUpdate(FOVUpdateEvent event)
     {
-        if (event.entity.isUsingItem() && event.entity.getItemInUse().getItem() == MPItems.SPACE_BOW)
+        if (event.getEntity().isHandActive() && event.getEntity().getActiveItemStack() != null && event.getEntity().getActiveItemStack().getItem() == MPItems.SPACE_BOW)
         {
-            int i = event.entity.getItemInUseDuration();
-            float f = i / 20.0F;
+            int i = event.getEntity().getItemInUseMaxCount();
+            float f1 = i / 20.0F;
 
-            if (f > 1.0F)
+            if (f1 > 1.0F)
             {
-                f = 1.0F;
+                f1 = 1.0F;
             }
             else
             {
-                f *= f;
+                f1 = f1 * f1;
             }
-            event.newfov *= 1.0F - f * 0.15F;
+            event.setNewfov(event.getNewfov() * (1.0F - f1 * 0.15F));
         }
     }
 
@@ -542,7 +547,7 @@ public class ClientEventHandler
 
                 if (mutableblockpos.getX() != k || mutableblockpos.getY() != j || mutableblockpos.getZ() != l)
                 {
-                    mutableblockpos.set(k, j, l);
+                    mutableblockpos.setPos(k, j, l);
 
                     if (this.mc.thePlayer.worldObj.getBlockState(mutableblockpos).getBlock() == block)
                     {
@@ -558,7 +563,7 @@ public class ClientEventHandler
     {
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/misc/" + texture + ".png"));
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        VertexBuffer worldrenderer = tessellator.getBuffer();
         GlStateManager.color(brightness, brightness, brightness, alpha);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
@@ -588,7 +593,10 @@ public class ClientEventHandler
                 {
                     if (world.isRemote)
                     {
-                        player.swingItem();
+                        for (EnumHand hand : EnumHand.values())
+                        {
+                            player.swingArm(hand);
+                        }
                     }
                     GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FIRE_EXTINGUISH, GCCoreUtil.getDimensionID(world), firePos));
                     event.setCanceled(true);
@@ -621,9 +629,9 @@ public class ClientEventHandler
             String bossType = MorePlanetsBossStatus.BOSS_TYPE;
             this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(bossType, i / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(bossType) / 2, barY - 12, 16777215);
             String s = MorePlanetsBossStatus.BOSS_NAME;
-            this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(EnumChatFormatting.ITALIC + s, i / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(s) / 2, barY + 4, MorePlanetsBossStatus.BOSS_TEXT_COLOR);
+            this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(TextFormatting.ITALIC + s, i / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(s) / 2, barY + 4, MorePlanetsBossStatus.BOSS_TEXT_COLOR);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            this.mc.getTextureManager().bindTexture(Gui.icons);
+            this.mc.getTextureManager().bindTexture(Gui.ICONS);
         }
     }
 
@@ -657,7 +665,7 @@ public class ClientEventHandler
                 double posX = player.posX + dX;
                 double posY = 48;
                 double posZ = player.posZ + dZ;
-                player.worldObj.playSound(posX, player.posY, posZ, "moreplanets:ambient.alienbeam", 10.0F, 1.0F + player.getRNG().nextFloat() * 0.8F, false);
+                player.worldObj.playSound(posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.AMBIENT, 10.0F, 1.0F + player.getRNG().nextFloat() * 0.8F, false);
                 this.beam.put(new BlockPos(posX, posY, posZ), 40);
             }
         }

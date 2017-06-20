@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -38,7 +38,7 @@ public class WorldGenCaveLiquids extends WorldGenerator
         {
             return false;
         }
-        else if (world.getBlockState(pos).getBlock().getMaterial() != Material.air && world.getBlockState(pos).getBlock() != this.blockToGen && world.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos)) != 2)
+        else if (world.getBlockState(pos).getMaterial() != Material.AIR && world.getBlockState(pos).getBlock() != this.blockToGen && world.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos)) != 2)
         {
             return false;
         }
@@ -101,7 +101,7 @@ public class WorldGenCaveLiquids extends WorldGenerator
             if (i == 3 && j == 1)
             {
                 world.setBlockState(pos, this.block.getDefaultState(), 2);
-                world.forceBlockUpdateTick(this.block, pos, rand);
+                world.immediateBlockTick(pos, this.block.getDefaultState(), rand);
             }
             return true;
         }

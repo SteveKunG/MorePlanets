@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 
 public class ModelGiantWorm extends ModelBase
 {

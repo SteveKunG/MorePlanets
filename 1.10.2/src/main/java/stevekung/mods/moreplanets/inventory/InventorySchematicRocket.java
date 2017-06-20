@@ -4,8 +4,8 @@ import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
 public class InventorySchematicRocket implements IInventoryDefaults
 {
@@ -112,8 +112,8 @@ public class InventorySchematicRocket implements IInventoryDefaults
     }
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
-        return new ChatComponentText(this.getName());
+        return new TextComponentString(this.getName());
     }
 }

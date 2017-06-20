@@ -4,23 +4,17 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 
 public class BiomeChalosHills extends BiomeChalos
 {
-    private int field_150635_aE;
-    private int field_150636_aF;
-    private int field_150638_aH;
-
-    public BiomeChalosHills()
+    public BiomeChalosHills(BiomeProperties properties)
     {
-        super(ConfigManagerMP.idBiomeChalosHills);
-        this.field_150635_aE = 0;
-        this.field_150636_aF = 1;
-        this.field_150638_aH = this.field_150635_aE;
-        this.setTemperatureRainfall(0.2F, 0.3F);
-        this.setHeight(new Height(1.0F, 0.5F));
+        super(properties);
+        properties.setTemperature(0.2F);
+        properties.setRainfall(0.3F);
+        properties.setBaseHeight(1.0F);
+        properties.setHeightVariation(0.5F);
         this.topBlock = ChalosBlocks.CHEESE_GRASS.getDefaultState();
         this.fillerBlock = ChalosBlocks.CHEESE_DIRT.getDefaultState();
         this.stoneBlock = ChalosBlocks.CHALOS_BLOCK.getDefaultState();
@@ -36,7 +30,7 @@ public class BiomeChalosHills extends BiomeChalos
         this.topBlock = ChalosBlocks.CHEESE_GRASS.getDefaultState();
         this.fillerBlock = ChalosBlocks.CHEESE_DIRT.getDefaultState();
 
-        if (noise > 1.0D && this.field_150638_aH != this.field_150636_aF)
+        if (noise > 1.0D)
         {
             this.topBlock = ChalosBlocks.CHALOS_BLOCK.getDefaultState();
             this.fillerBlock = ChalosBlocks.CHALOS_BLOCK.getDefaultState();

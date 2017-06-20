@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.util.items.armor;
 import micdoodle8.mods.galacticraft.api.item.IBreathableArmor;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,7 @@ import stevekung.mods.moreplanets.util.items.ISortableItem;
 
 public abstract class ItemBreathableArmor extends ItemArmor implements IBreathableArmor, ISortableItem, ISingleItemRender
 {
-    public ItemBreathableArmor(ArmorMaterial material, int type)
+    public ItemBreathableArmor(ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, -1, type);
     }

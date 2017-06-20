@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.util.world.gen.feature;
 
-import static net.minecraftforge.common.ChestGenHooks.DUNGEON_CHEST;
-
 import java.util.Iterator;
 import java.util.Random;
 
@@ -10,12 +8,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ChestGenHooks;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.blocks.BlockAncientChestMP;
 import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
@@ -71,7 +67,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                 for (j2 = i1; j2 <= j1; ++j2)
                 {
                     blockpos1 = pos.add(l1, i2, j2);
-                    Material material = world.getBlockState(blockpos1).getBlock().getMaterial();
+                    Material material = world.getBlockState(blockpos1).getMaterial();
                     boolean flag3 = material.isSolid();
 
                     if (i2 == -1 && !flag3)
@@ -108,11 +104,11 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                                 world.setBlockToAir(blockpos1);
                             }
                         }
-                        else if (blockpos1.getY() >= 0 && !world.getBlockState(blockpos1.down()).getBlock().getMaterial().isSolid())
+                        else if (blockpos1.getY() >= 0 && !world.getBlockState(blockpos1.down()).getMaterial().isSolid())
                         {
                             world.setBlockToAir(blockpos1);
                         }
-                        else if (world.getBlockState(blockpos1).getBlock().getMaterial().isSolid() && world.getBlockState(blockpos1).getBlock() != this.chest)
+                        else if (world.getBlockState(blockpos1).getMaterial().isSolid() && world.getBlockState(blockpos1).getBlock() != this.chest)
                         {
                             if (i2 == -1 && rand.nextInt(4) != 0)
                             {
@@ -153,7 +149,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                             {
                                 EnumFacing enumfacing = (EnumFacing)iterator.next();
 
-                                if (world.getBlockState(blockpos2.offset(enumfacing)).getBlock().getMaterial().isSolid())
+                                if (world.getBlockState(blockpos2.offset(enumfacing)).getMaterial().isSolid())
                                 {
                                     ++k2;
                                 }
@@ -180,7 +176,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                 }
             }
 
-            world.setBlockState(pos, Blocks.mob_spawner.getDefaultState(), 2);
+            world.setBlockState(pos, Blocks.MOB_SPAWNER.getDefaultState(), 2);
             TileEntity tileentity = world.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityMobSpawner)

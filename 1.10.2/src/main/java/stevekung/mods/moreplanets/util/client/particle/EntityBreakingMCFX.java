@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.util.client.particle;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -11,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class EntityBreakingMCFX extends EntityFX
+public class EntityBreakingMCFX extends Particle
 {
     public EntityBreakingMCFX(World world, double x, double y, double z, Item item)
     {

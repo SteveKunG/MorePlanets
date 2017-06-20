@@ -3,8 +3,8 @@ package stevekung.mods.moreplanets.client.renderer.tileentity;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.client.model.ModelBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 
@@ -78,7 +78,7 @@ public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRendere
     }
 
     @Override
-    public boolean func_181055_a()
+    public boolean isGlobalRenderer(TileEntityBlackHoleStorage tile)
     {
         return true;
     }

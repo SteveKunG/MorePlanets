@@ -27,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,7 +46,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
-import stevekung.mods.moreplanets.util.SoundEventMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
 import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
@@ -72,11 +72,6 @@ public class CommonRegisterHelper
         String name = block.getUnlocalizedName().substring(5);
         GameRegistry.register(block.setRegistryName(name));
 
-        if (itemBlock != null)
-        {
-            GameRegistry.register(itemBlock.apply(block).setRegistryName(block.getRegistryName()));
-        }
-
         if (block instanceof ISingleBlockRender)
         {
             ISingleBlockRender blockRender = (ISingleBlockRender) block;
@@ -86,9 +81,14 @@ public class CommonRegisterHelper
                 CommonRegisterHelper.SINGLE_BLOCK_RENDER_LIST.put(blockRender.getBlock(), blockRender.getName());
             }
         }
-        if (CommonRegisterHelper.isEffectiveClient() && itemBlock != null)
+        if (itemBlock != null)
         {
-            CommonRegisterHelper.registerSorted(block);
+            GameRegistry.register(itemBlock.apply(block).setRegistryName(block.getRegistryName()));
+
+            if (CommonRegisterHelper.isEffectiveClient())
+            {
+                CommonRegisterHelper.registerSorted(block);
+            }
         }
     }
 
@@ -117,9 +117,9 @@ public class CommonRegisterHelper
         }
     }
 
-    public static void registerSound(String name)
+    public static void registerSound(SoundEvent sound, String name)
     {
-        GameRegistry.register(new SoundEventMP(name).setRegistryName(new ResourceLocation("moreplanets:" + name)));
+        GameRegistry.register(sound.setRegistryName("moreplanets:" + name));
     }
 
     public static void registerLootTable(String name)
@@ -132,9 +132,9 @@ public class CommonRegisterHelper
         GameRegistry.register(potion);
     }
 
-    public static void registerBiome(Biome biome)
+    public static void registerBiome(int id, String name, Biome biome)
     {
-        GameRegistry.register(biome);
+        Biome.registerBiome(id, "moreplanets:" + name, biome);
     }
 
     public static void registerTileEntity(Class<? extends TileEntity> tile, String name)

@@ -25,7 +25,7 @@ public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
     }
 
     @Override
-    public void doRenderLayer(EntityLiving entity, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale)
+    public void doRenderLayer(EntityLiving entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/" + this.textureToRender + ".png"));
         GlStateManager.enableBlend();
@@ -47,8 +47,8 @@ public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         }
 
-        this.render.getMainModel().render(entity, p_177141_2_, p_177141_3_, p_177141_5_, p_177141_6_, p_177141_7_, scale);
-        this.render.func_177105_a(entity, partialTicks);
+        this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        this.render.setLightmap(entity, partialTicks);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();

@@ -28,7 +28,7 @@ public class DarkEnergyEffect extends PotionMP
     @Override
     public boolean isReady(int duration, int amplifier)
     {
-        if (this.id == MPPotions.DARK_ENERGY.id)
+        if (this == MPPotions.DARK_ENERGY)
         {
             int k = 20 >> amplifier;
             return k > 0 ? duration % k == 0 : true;
@@ -39,7 +39,7 @@ public class DarkEnergyEffect extends PotionMP
     @Override
     public void performEffect(EntityLivingBase living, int food)
     {
-        if (this.id == MPPotions.DARK_ENERGY.id)
+        if (this == MPPotions.DARK_ENERGY)
         {
             living.attackEntityFrom(DamageSourceMP.DARK_ENERGY, 1.0F);
         }

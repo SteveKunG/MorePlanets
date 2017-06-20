@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -39,8 +40,11 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     }
 
     @Override
-    public void drawInfo(Minecraft mc, int recipeWidth, int recipeHeight)
+    public void drawInfo(Minecraft mc, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
     {
         mc.currentScreen.drawCenteredString(mc.fontRendererObj, "Time : " + this.time, 50, 38, 16777215);
     }
+
+    @Override
+    public void getIngredients(IIngredients ingredients) {}
 }

@@ -3,22 +3,24 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedSwampTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
 
 public class BiomeInfectedSwampland extends BiomeNibiru
 {
-    public BiomeInfectedSwampland()
+    public BiomeInfectedSwampland(BiomeProperties properties)
     {
-        super(ConfigManagerMP.idBiomeInfectedSwampland);
-        this.enableRain = true;
+        super(properties);
+        properties.setTemperature(0.8F);
+        properties.setRainfall(0.9F);
+        properties.setBaseHeight(-0.2F);
+        properties.setHeightVariation(0.1F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
@@ -30,8 +32,6 @@ public class BiomeInfectedSwampland extends BiomeNibiru
         this.getBiomeDecorator().reedsPerChunk = 16;
         this.getBiomeDecorator().sandPerChunk2 = 0;
         this.getBiomeDecorator().sandPerChunk = 0;
-        this.setTemperatureRainfall(0.8F, 0.9F);
-        this.setHeight(new Height(-0.2F, 0.1F));
     }
 
     @Override
@@ -53,7 +53,7 @@ public class BiomeInfectedSwampland extends BiomeNibiru
     @Override
     public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double stoneNoise)
     {
-        double d0 = BiomeGenBase.GRASS_COLOR_NOISE.func_151601_a(chunkX * 0.25D, chunkZ * 0.25D);
+        double d0 = Biome.GRASS_COLOR_NOISE.getValue(chunkX * 0.25D, chunkZ * 0.25D);
 
         if (d0 > 0.0D)
         {
@@ -62,7 +62,7 @@ public class BiomeInfectedSwampland extends BiomeNibiru
 
             for (int k = 255; k >= 0; --k)
             {
-                if (chunkPrimer.getBlockState(j, k, i).getBlock().getMaterial() != Material.air)
+                if (chunkPrimer.getBlockState(j, k, i).getMaterial() != Material.AIR)
                 {
                     if (k == 62 && chunkPrimer.getBlockState(j, k, i).getBlock() != NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
                     {

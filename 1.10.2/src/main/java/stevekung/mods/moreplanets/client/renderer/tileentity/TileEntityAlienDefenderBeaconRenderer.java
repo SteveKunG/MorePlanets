@@ -74,7 +74,7 @@ public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRend
     }
 
     @Override
-    public boolean func_181055_a()
+    public boolean isGlobalRenderer(TileEntityAlienDefenderBeacon tile)
     {
         return true;
     }

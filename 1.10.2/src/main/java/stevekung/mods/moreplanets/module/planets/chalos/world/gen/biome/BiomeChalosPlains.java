@@ -2,19 +2,20 @@ package stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome;
 
 import java.util.Random;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.feature.WorldGenCheeseDoubleTallGrass;
 
 public class BiomeChalosPlains extends BiomeChalos
 {
-    public BiomeChalosPlains()
+    public BiomeChalosPlains(BiomeProperties properties)
     {
-        super(ConfigManagerMP.idBiomeChalosPlains);
-        this.setTemperatureRainfall(0.8F, 0.4F);
-        this.setHeight(new Height(0.125F, 0.05F));
+        super(properties);
+        properties.setTemperature(0.8F);
+        properties.setRainfall(0.4F);
+        properties.setBaseHeight(0.125F);
+        properties.setHeightVariation(0.05F);
         this.topBlock = ChalosBlocks.CHEESE_GRASS.getDefaultState();
         this.fillerBlock = ChalosBlocks.CHEESE_DIRT.getDefaultState();
         this.stoneBlock = ChalosBlocks.CHALOS_BLOCK.getDefaultState();

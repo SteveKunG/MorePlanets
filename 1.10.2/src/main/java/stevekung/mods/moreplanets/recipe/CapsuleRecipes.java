@@ -20,8 +20,8 @@ public class CapsuleRecipes
     {
         ItemStack capsule = new ItemStack(MPItems.CAPSULE);
         capsule.setTagCompound(null);
-        RecipeHelper.addRecipe(new ItemStack(MPItems.CAPSULE), new Object[] { " C", "X ", 'C', new ItemStack(GCItems.canister, 1, 0), 'X', Items.iron_ingot });
-        RecipeHelper.addShapelessRecipe(CapsuleType.getInfectedProtectionCapsule(), capsule, new ItemStack(ChalosItems.CHEESE_FOOD, 1, 3), ChalosBlocks.CHEESE_SPORE_FLOWER, Blocks.brown_mushroom);
+        RecipeHelper.addRecipe(new ItemStack(MPItems.CAPSULE), new Object[] { " C", "X ", 'C', new ItemStack(GCItems.canister, 1, 0), 'X', Items.IRON_INGOT });
+        RecipeHelper.addShapelessRecipe(CapsuleType.getInfectedProtectionCapsule(), capsule, new ItemStack(ChalosItems.CHEESE_FOOD, 1, 3), ChalosBlocks.CHEESE_SPORE_FLOWER, Blocks.BROWN_MUSHROOM);
         RecipeHelper.addShapelessRecipe(CapsuleType.getInfectedProtectionCapsule(), capsule, new ItemStack(NibiruBlocks.NIBIRU_FLOWER, 1, 0), new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 0));
         RecipeHelper.addShapelessRecipe(CapsuleType.getDarkEnergyProtectionCapsule(), capsule, new ItemStack(DionaItems.DIONA_ITEM, 1, 4), new ItemStack(MarsItems.marsItemBasic, 1, 0));
         RecipeHelper.addShapelessRecipe(CapsuleType.getDarkEnergyProtectionCapsule(), capsule, new ItemStack(NibiruBlocks.NIBIRU_FLOWER, 1, 1), new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 0), new ItemStack(MarsItems.marsItemBasic, 1, 0));

@@ -20,7 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.IInteractionObject;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -151,9 +152,8 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         nbt.setBoolean("isLocked", this.locked);
         nbt.setInteger("tier", this.tier);
         NBTTagList nbttaglist = new NBTTagList();
@@ -169,6 +169,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
             }
         }
         nbt.setTag("Items", nbttaglist);
+        return super.writeToNBT(nbt);
     }
 
     @Override

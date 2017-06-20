@@ -10,12 +10,16 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 
 public class ItemSpaceWarperCore extends ItemBaseMP
@@ -28,8 +32,10 @@ public class ItemSpaceWarperCore extends ItemBaseMP
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
+        JsonUtils json = new JsonUtils();
+
         if (!player.worldObj.isRemote)
         {
             if (player.isSneaking())
@@ -47,25 +53,25 @@ public class ItemSpaceWarperCore extends ItemBaseMP
                         itemStack.getTagCompound().setInteger("Y", MathHelper.floor_double(player.posY));
                         itemStack.getTagCompound().setInteger("Z", MathHelper.floor_double(player.posZ));
                         itemStack.getTagCompound().setBoolean("Checked", true);
-                        player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("gui.warp_core_data_add.message")));
-                        return itemStack;
+                        player.addChatMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add.message")));
+                        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
                     }
                     else if (world.getBlockState(new BlockPos(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ))) == MPBlocks.DUMMY_BLOCK.getDefaultState())
                     {
-                        player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("gui.warp_core_data_add_fail1.message")));
+                        player.addChatMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add_fail1.message")).setStyle(json.red()));
                     }
                     else
                     {
-                        player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("gui.warp_core_data_add_fail0.message")));
+                        player.addChatMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add_fail0.message")).setStyle(json.red()));
                     }
                 }
                 else
                 {
-                    player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("gui.space_dimension_only.message")));
+                    player.addChatMessage(json.text(GCCoreUtil.translate("gui.space_dimension_only.message")).setStyle(json.red()));
                 }
             }
         }
-        return itemStack;
+        return new ActionResult(EnumActionResult.PASS, itemStack);
     }
 
     @Override
@@ -82,7 +88,7 @@ public class ItemSpaceWarperCore extends ItemBaseMP
             list.add("Y: " + itemStack.getTagCompound().getInteger("Y"));
             list.add("Z: " + itemStack.getTagCompound().getInteger("Z"));
             list.add("Dimension ID: " + itemStack.getTagCompound().getInteger("DimensionID"));
-            list.add("Dimension Name: " + WorldUtil.getProviderForDimensionClient(itemStack.getTagCompound().getInteger("DimensionID")).getDimensionName());
+            list.add("Dimension Name: " + WorldUtil.getProviderForDimensionClient(itemStack.getTagCompound().getInteger("DimensionID")).getDimensionType().getName());
         }
     }
 

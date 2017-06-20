@@ -6,11 +6,12 @@ import javax.annotation.Nonnull;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 public class RocketCrusherRecipeCategory extends BlankRecipeCategory
 {
@@ -39,7 +40,7 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
     @Override
     public String getTitle()
     {
-        return StatCollector.translateToLocal("moreplanets.jei.rocketCrusher");
+        return I18n.translateToLocal("moreplanets.jei.rocketCrusher");
     }
 
     @Nonnull
@@ -56,7 +57,7 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
     }
 
     @Override
-    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper)
+    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper, @Nonnull IIngredients ingredients)
     {
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
 

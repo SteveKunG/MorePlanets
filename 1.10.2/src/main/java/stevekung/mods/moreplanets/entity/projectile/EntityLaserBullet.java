@@ -11,8 +11,9 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.S2BPacketChangeGameState;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,14 +29,14 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     public EntityLaserBullet(World world)
     {
         super(world);
-        this.renderDistanceWeight = 10.0D;
+        Entity.renderDistanceWeight = 10.0D;
         this.setSize(0.1F, 0.1F);
     }
 
     public EntityLaserBullet(World world, double x, double y, double z)
     {
         super(world);
-        this.renderDistanceWeight = 10.0D;
+        Entity.renderDistanceWeight = 10.0D;
         this.setSize(0.1F, 0.1F);
         this.setPosition(x, y, z);
     }
@@ -43,7 +44,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     public EntityLaserBullet(World world, EntityLivingBase shooter, EntityLivingBase indirect, float velocity, float inaccuracy)
     {
         super(world);
-        this.renderDistanceWeight = 10.0D;
+        Entity.renderDistanceWeight = 10.0D;
         this.shootingEntity = shooter;
         this.posY = shooter.posY + shooter.getEyeHeight() - 0.10000000149011612D;
         double d0 = indirect.posX - shooter.posX;
@@ -66,7 +67,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     public EntityLaserBullet(World world, EntityLivingBase shooter, float velocity)
     {
         super(world);
-        this.renderDistanceWeight = 10.0D;
+        Entity.renderDistanceWeight = 10.0D;
         this.shootingEntity = shooter;
         this.setSize(0.1F, 0.1F);
         this.setLocationAndAngles(shooter.posX, shooter.posY + shooter.getEyeHeight(), shooter.posZ, shooter.rotationYaw, shooter.rotationPitch);

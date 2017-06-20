@@ -80,7 +80,7 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
         GlStateManager.rotate(-rotationYaw, 0.0F, 1.0F, 0.0F);
 
         this.updateModels();
-        this.bindTexture(TextureMap.locationBlocksTexture);
+        this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.pushMatrix();

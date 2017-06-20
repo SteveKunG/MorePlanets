@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -83,7 +83,7 @@ public class WorldGenLiquidLakes extends WorldGenerator
 
                         if (flag)
                         {
-                            Material material = world.getBlockState(pos.add(j, k, k1)).getBlock().getMaterial();
+                            Material material = world.getBlockState(pos.add(j, k, k1)).getMaterial();
 
                             if (k >= 4 && material.isLiquid())
                             {
@@ -107,12 +107,12 @@ public class WorldGenLiquidLakes extends WorldGenerator
                     {
                         if (aboolean[(j * 16 + k1) * 8 + k])
                         {
-                            world.setBlockState(pos.add(j, k, k1), k >= 4 ? Blocks.air.getDefaultState() : this.liquid.getDefaultState(), 2);
+                            world.setBlockState(pos.add(j, k, k1), k >= 4 ? Blocks.AIR.getDefaultState() : this.liquid.getDefaultState(), 2);
                         }
                     }
                 }
             }
-            if (this.liquid.getMaterial() == Material.lava || this.genStone)
+            if (this.liquid.getDefaultState().getMaterial() == Material.LAVA || this.genStone)
             {
                 for (j = 0; j < 16; ++j)
                 {
@@ -122,7 +122,7 @@ public class WorldGenLiquidLakes extends WorldGenerator
                         {
                             flag = !aboolean[(j * 16 + k1) * 8 + k] && (j < 15 && aboolean[((j + 1) * 16 + k1) * 8 + k] || j > 0 && aboolean[((j - 1) * 16 + k1) * 8 + k] || k1 < 15 && aboolean[(j * 16 + k1 + 1) * 8 + k] || k1 > 0 && aboolean[(j * 16 + k1 - 1) * 8 + k] || k < 7 && aboolean[(j * 16 + k1) * 8 + k + 1] || k > 0 && aboolean[(j * 16 + k1) * 8 + k - 1]);
 
-                            if (flag && (k < 4 || rand.nextInt(2) != 0) && world.getBlockState(pos.add(j, k, k1)).getBlock().getMaterial().isSolid())
+                            if (flag && (k < 4 || rand.nextInt(2) != 0) && world.getBlockState(pos.add(j, k, k1)).getMaterial().isSolid())
                             {
                                 world.setBlockState(pos.add(j, k, k1), this.stone.getStateFromMeta(this.meta), 2);
                             }

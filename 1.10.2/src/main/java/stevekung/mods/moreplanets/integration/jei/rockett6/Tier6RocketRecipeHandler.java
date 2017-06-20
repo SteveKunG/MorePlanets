@@ -42,4 +42,10 @@ public class Tier6RocketRecipeHandler implements IRecipeHandler<Tier6RocketRecip
         }
         return true;
     }
+
+    @Override
+    public String getRecipeCategoryUid(Tier6RocketRecipeWrapper recipe)
+    {
+        return "moreplanets.rocketT6";
+    }
 }

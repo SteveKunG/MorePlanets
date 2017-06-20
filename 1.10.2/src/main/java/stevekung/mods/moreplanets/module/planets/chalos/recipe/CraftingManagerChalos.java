@@ -30,13 +30,13 @@ public class CraftingManagerChalos
     {
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 9), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 0) });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 10), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 1) });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_OF_MILK_CAKE), new Object[] { "MMM", "CCC", "CCC", 'C', new ItemStack(ChalosItems.CHEESE_FOOD), 'M', Items.milk_bucket });
+        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_OF_MILK_CAKE), new Object[] { "MMM", "CCC", "CCC", 'C', new ItemStack(ChalosItems.CHEESE_FOOD), 'M', Items.MILK_BUCKET });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_CRAFTING_TABLE), new Object[] { "XX", "XX", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SLIME_BLOCK), new Object[] { "XXX", "XXX", "XXX", 'X', ChalosItems.CHEESE_SLIMEBALL });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_DIRT, 4, 1), new Object[] { "DG", "GD", 'D', new ItemStack(ChalosBlocks.CHEESE_DIRT, 1, 0), 'G', Blocks.gravel });
+        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_DIRT, 4, 1), new Object[] { "DG", "GD", 'D', new ItemStack(ChalosBlocks.CHEESE_DIRT, 1, 0), 'G', Blocks.GRAVEL });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_CHEST), new Object[] { "XXX", "X X", "XXX", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_FENCE, 3), new Object[] { "XSX", "XSX", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'S', Items.stick });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_FENCE_GATE), new Object[] { "SXS", "SXS", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'S', Items.stick });
+        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_FENCE, 3), new Object[] { "XSX", "XSX", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'S', Items.STICK });
+        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_FENCE_GATE), new Object[] { "SXS", "SXS", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'S', Items.STICK });
 
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_COBBLESTONE_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1) });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_DUNGEON_BRICK_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 11) });
@@ -63,11 +63,11 @@ public class CraftingManagerChalos
         RecipeHelper.addRecipe(new ItemStack(ChalosItems.DIREMSIUM_PICKAXE), new Object[] { "XXX", " Y ", " Y ", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'Y', new ItemStack(MarsItems.marsItemBasic, 1, 1) });
         RecipeHelper.addRecipe(new ItemStack(ChalosItems.DIREMSIUM_SWORD), new Object[] { "X", "X", "Y", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'Y', new ItemStack(MarsItems.marsItemBasic, 1, 1) });
         RecipeHelper.addRecipe(new ItemStack(ChalosItems.DIREMSIUM_SHOVEL), new Object[] { "X", "Y", "Y", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'Y', new ItemStack(MarsItems.marsItemBasic, 1, 1) });
-        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_HOE), new Object[] { "XX", " Y", " Y", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.stick });
-        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_AXE), new Object[] { "XX", "XY", " Y", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.stick });
-        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_PICKAXE), new Object[] { "XXX", " Y ", " Y ", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.stick });
-        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_SWORD), new Object[] { "X", "X", "Y", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.stick });
-        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_SHOVEL), new Object[] { "X", "Y", "Y", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.stick });
+        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_HOE), new Object[] { "XX", " Y", " Y", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.STICK });
+        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_AXE), new Object[] { "XX", "XY", " Y", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.STICK });
+        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_PICKAXE), new Object[] { "XXX", " Y ", " Y ", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.STICK });
+        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_SWORD), new Object[] { "X", "X", "Y", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.STICK });
+        RecipeHelper.addRecipe(new ItemStack(ChalosItems.CHEESE_SPORE_WOOD_SHOVEL), new Object[] { "X", "Y", "Y", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'Y', Items.STICK });
     }
 
     private static void addBlockSmelting()
@@ -80,12 +80,12 @@ public class CraftingManagerChalos
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 2), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 0), 0.8F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 3), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 1), 0.8F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 4), new ItemStack(ChalosItems.CHEESE_FOOD, 2), 0.8F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 5), new ItemStack(Items.iron_ingot), 0.8F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 5), new ItemStack(Items.IRON_INGOT), 0.8F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 6), new ItemStack(GCItems.basicItem, 1, 4), 0.8F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 7), new ItemStack(GCItems.basicItem, 1, 3), 0.8F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 8), new ItemStack(GCItems.basicItem, 1, 5), 0.8F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosItems.CHEESE_FOOD, 1, 1), new ItemStack(ChalosItems.CHEESE_FOOD, 1, 2), 0.35F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_STEM), new ItemStack(Items.coal, 1, 1), 0.15F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_STEM), new ItemStack(Items.COAL, 1, 1), 0.15F);
     }
 
     private static void addRocketRecipe()
@@ -115,45 +115,45 @@ public class CraftingManagerChalos
         Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 0), input);
 
         HashMap<Integer, ItemStack> input2 = Maps.newHashMap(input);
-        input2.put(19, new ItemStack(Blocks.chest));
+        input2.put(19, new ItemStack(Blocks.CHEST));
         input2.put(20, null);
         input2.put(21, null);
         Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 1), input2);
 
         input2 = Maps.newHashMap(input);
         input2.put(19, null);
-        input2.put(20, new ItemStack(Blocks.chest));
+        input2.put(20, new ItemStack(Blocks.CHEST));
         input2.put(21, null);
         Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 1), input2);
 
         input2 = Maps.newHashMap(input);
         input2.put(19, null);
         input2.put(20, null);
-        input2.put(21, new ItemStack(Blocks.chest));
+        input2.put(21, new ItemStack(Blocks.CHEST));
         Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 1), input2);
 
         input2 = Maps.newHashMap(input);
-        input2.put(19, new ItemStack(Blocks.chest));
-        input2.put(20, new ItemStack(Blocks.chest));
+        input2.put(19, new ItemStack(Blocks.CHEST));
+        input2.put(20, new ItemStack(Blocks.CHEST));
         input2.put(21, null);
         Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 2), input2);
 
         input2 = Maps.newHashMap(input);
-        input2.put(19, new ItemStack(Blocks.chest));
+        input2.put(19, new ItemStack(Blocks.CHEST));
         input2.put(20, null);
-        input2.put(21, new ItemStack(Blocks.chest));
+        input2.put(21, new ItemStack(Blocks.CHEST));
         Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 2), input2);
 
         input2 = Maps.newHashMap(input);
         input2.put(19, null);
-        input2.put(20, new ItemStack(Blocks.chest));
-        input2.put(21, new ItemStack(Blocks.chest));
+        input2.put(20, new ItemStack(Blocks.CHEST));
+        input2.put(21, new ItemStack(Blocks.CHEST));
         Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 2), input2);
 
         input2 = Maps.newHashMap(input);
-        input2.put(19, new ItemStack(Blocks.chest));
-        input2.put(20, new ItemStack(Blocks.chest));
-        input2.put(21, new ItemStack(Blocks.chest));
+        input2.put(19, new ItemStack(Blocks.CHEST));
+        input2.put(20, new ItemStack(Blocks.CHEST));
+        input2.put(21, new ItemStack(Blocks.CHEST));
         Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 3), input2);
     }
 }

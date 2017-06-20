@@ -10,8 +10,10 @@ import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -105,7 +107,7 @@ public class PacketSimpleMP extends PacketBase
         {
         case S_FIRE_EXTINGUISH:
             pos = (BlockPos) this.data.get(0);
-            world.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "random.fizz", 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
+            world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
             world.setBlockToAir(pos);
             break;
         case S_RECEIVER_BLOCK_GUIDE:
@@ -124,7 +126,7 @@ public class PacketSimpleMP extends PacketBase
                 EntityPlayerMP playerMP = (EntityPlayerMP) player;
                 WorldServer worldNew = WorldDimensionHelper.getStartWorld(worldOld);
                 BlockPos spawnPos = worldNew.getTopSolidOrLiquidBlock(worldNew.getSpawnPoint());
-                TeleportHandler.setWarpDimension(playerMP, worldNew, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimensionId(), true);
+                TeleportHandler.setWarpDimension(playerMP, worldNew, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimension(), true);
                 player.respawnPlayer();
                 player.closeScreen();
             }

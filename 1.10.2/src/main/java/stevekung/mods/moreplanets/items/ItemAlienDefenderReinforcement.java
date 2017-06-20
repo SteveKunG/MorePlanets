@@ -3,9 +3,12 @@ package stevekung.mods.moreplanets.items;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -23,13 +26,13 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         int range = 16;
-        Vec3 playerEye = player.getPositionEyes(1.0F);
-        Vec3 playerLook = player.getLook(1.0F);
-        Vec3 lookRange = playerEye.addVector(playerLook.xCoord * range, playerLook.yCoord * range, playerLook.zCoord * range);
-        MovingObjectPosition moving = world.rayTraceBlocks(playerEye, lookRange);
+        Vec3d playerEye = player.getPositionEyes(1.0F);
+        Vec3d playerLook = player.getLook(1.0F);
+        Vec3d lookRange = playerEye.addVector(playerLook.xCoord * range, playerLook.yCoord * range, playerLook.zCoord * range);
+        RayTraceResult moving = world.rayTraceBlocks(playerEye, lookRange);
         boolean disable = false;
 
         if (moving != null && disable)
@@ -40,8 +43,8 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.alien_defender_beacon.message")).setChatStyle(new JsonUtils().colorFromConfig("yellow")).getFormattedText(), false);
-                    player.swingItem();
+                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.alien_defender_beacon.message")).setStyle(new JsonUtils().colorFromConfig("yellow")).getFormattedText(), false);
+                    player.swingArm(hand);
                 }
                 else
                 {
@@ -59,8 +62,8 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.not_air_block.message")).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
-                    player.swingItem();
+                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.not_air_block.message")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                    player.swingArm(hand);
                 }
             }
         }
@@ -68,11 +71,11 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
         {
             if (world.isRemote && disable)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.target_too_far.message", range)).setChatStyle(new JsonUtils().red()).getFormattedText(), false);
-                player.swingItem();
+                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.target_too_far.message", range)).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                player.swingArm(hand);
             }
         }
-        return itemStack;
+        return new ActionResult(EnumActionResult.PASS, itemStack);
     }
 
     @Override

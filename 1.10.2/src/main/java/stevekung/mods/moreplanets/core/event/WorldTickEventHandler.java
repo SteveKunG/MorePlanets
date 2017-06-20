@@ -1,16 +1,15 @@
 package stevekung.mods.moreplanets.core.event;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.base.Predicate;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -39,71 +38,84 @@ public class WorldTickEventHandler
         {
             if (world.provider instanceof WorldProviderDiona)
             {
-                for (ChunkCoordIntPair chunkcoordintpair : world.activeChunkSet)
+                if (world instanceof WorldServer)
                 {
-                    int k = chunkcoordintpair.chunkXPos * 16;
-                    int l = chunkcoordintpair.chunkZPos * 16;
+                    WorldServer worldServer = (WorldServer) world;
 
-                    if (world.rand.nextInt(50000) == 0)
+                    for (Iterator<Chunk> iterator = worldServer.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); worldServer.theProfiler.endSection())
                     {
-                        this.updateLCG = this.updateLCG * 3 + 1013904223;
-                        int i1 = this.updateLCG >> 2;
-                        BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(k + (i1 & 15), 0, l + (i1 >> 8 & 15)));
+                        Chunk chunk = iterator.next();
+                        int j = chunk.xPosition * 16;
+                        int k = chunk.zPosition * 16;
 
-                        if (this.canLightningStrike(world, blockpos))
+                        if (worldServer.rand.nextInt(50000) == 0)
                         {
-                            world.spawnEntityInWorld(new EntityAlienBeam(world, blockpos.getX(), blockpos.getY(), blockpos.getZ()));
+                            this.updateLCG = this.updateLCG * 3 + 1013904223;
+                            int l = this.updateLCG >> 2;
+                            BlockPos blockpos = this.adjustPosToNearbyEntity(worldServer, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
+
+                            if (this.canBeamStrike(worldServer, blockpos))
+                            {
+                                worldServer.spawnEntityInWorld(new EntityAlienBeam(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ()));
+                            }
                         }
                     }
                 }
             }
             if (world.provider instanceof WorldProviderNibiru)
             {
-                for (ChunkCoordIntPair chunkcoordintpair : world.activeChunkSet)
+                if (world instanceof WorldServer)
                 {
-                    int k = chunkcoordintpair.chunkXPos * 16;
-                    int l = chunkcoordintpair.chunkZPos * 16;
-                    Chunk chunk = world.getChunkFromChunkCoords(chunkcoordintpair.chunkXPos, chunkcoordintpair.chunkZPos);
+                    WorldServer worldServer = (WorldServer) world;
 
-                    if (world.rand.nextInt(16) == 0)
+                    for (Iterator<Chunk> iterator = worldServer.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); worldServer.theProfiler.endSection())
                     {
-                        this.updateLCG = this.updateLCG * 3 + 1013904223;
-                        int k2 = this.updateLCG >> 2;
-                        BlockPos blockpos2 = world.getPrecipitationHeight(new BlockPos(k + (k2 & 15), 0, l + (k2 >> 8 & 15)));
-                        BlockPos blockpos1 = blockpos2.down();
+                        Chunk chunk = iterator.next();
+                        int j = chunk.xPosition * 16;
+                        int k = chunk.zPosition * 16;
+                        boolean flag = worldServer.isRaining();
+                        boolean flag1 = worldServer.isThundering();
 
-                        if (world.canBlockFreezeNoWater(blockpos1))
-                        {
-                            world.setBlockState(blockpos1, NibiruBlocks.INFECTED_ICE.getDefaultState());
-                        }
-                        if (world.isRaining() && world.canSnowAt(blockpos2, true))
-                        {
-                            world.setBlockState(blockpos2, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
-                        }
-                        if (world.isRaining() && world.getBiomeGenForCoords(blockpos1).canSpawnLightningBolt())
-                        {
-                            world.getBlockState(blockpos1).getBlock().fillWithRain(world, blockpos1);
-                        }
-                    }
-                    if (world.provider.canDoLightning(chunk) && world.rand.nextInt(1000) == 0 && world.isRaining() && world.isThundering())
-                    {
-                        this.updateLCG = this.updateLCG * 3 + 1013904223;
-                        int i1 = this.updateLCG >> 2;
-                        BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(k + (i1 & 15), 0, l + (i1 >> 8 & 15)));
-
-                        if (world.canLightningStrike(blockpos))
-                        {
-                            world.spawnEntityInWorld(new EntityNibiruLightningBolt(world, blockpos.getX(), blockpos.getY(), blockpos.getZ(), true));
-                        }
-                    }
-                    if (world.getBiomeGenForCoords(new BlockPos(k, 0, l)) == MPBiomes.INFECTED_DESERT || world.getBiomeGenForCoords(new BlockPos(k, 0, l)) == MPBiomes.INFECTED_EXTREME_HILLS)
-                    {
-                        if (world.rand.nextInt(250000) == 0)
+                        if (worldServer.provider.canDoLightning(chunk) && flag && flag1 && worldServer.rand.nextInt(1000) == 0)
                         {
                             this.updateLCG = this.updateLCG * 3 + 1013904223;
-                            int i1 = this.updateLCG >> 2;
-                            BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(k + (i1 & 15), 0, l + (i1 >> 8 & 15)));
-                            world.spawnEntityInWorld(new EntityNibiruLightningBolt(world, blockpos.getX(), blockpos.getY(), blockpos.getZ(), false));
+                            int l = this.updateLCG >> 2;
+                            BlockPos blockpos = this.adjustPosToNearbyEntity(worldServer, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
+
+                            if (worldServer.isRainingAt(blockpos))
+                            {
+                                worldServer.spawnEntityInWorld(new EntityNibiruLightningBolt(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ(), true));
+                            }
+                        }
+                        if (worldServer.rand.nextInt(16) == 0)
+                        {
+                            this.updateLCG = this.updateLCG * 3 + 1013904223;
+                            int j2 = this.updateLCG >> 2;
+                            BlockPos blockpos1 = worldServer.getPrecipitationHeight(new BlockPos(j + (j2 & 15), 0, k + (j2 >> 8 & 15)));
+                            BlockPos blockpos2 = blockpos1.down();
+
+                            if (worldServer.canBlockFreezeNoWater(blockpos2))
+                            {
+                                worldServer.setBlockState(blockpos2, NibiruBlocks.INFECTED_ICE.getDefaultState());
+                            }
+                            if (flag && worldServer.canSnowAt(blockpos1, true))
+                            {
+                                worldServer.setBlockState(blockpos1, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                            }
+                            if (flag && worldServer.getBiome(blockpos2).canRain())
+                            {
+                                worldServer.getBlockState(blockpos2).getBlock().fillWithRain(worldServer, blockpos2);
+                            }
+                        }
+                        if (worldServer.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_DESERT || worldServer.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_EXTREME_HILLS)
+                        {
+                            if (worldServer.rand.nextInt(250000) == 0)
+                            {
+                                this.updateLCG = this.updateLCG * 3 + 1013904223;
+                                int l = this.updateLCG >> 2;
+                                BlockPos blockpos = this.adjustPosToNearbyEntity(worldServer, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
+                                worldServer.spawnEntityInWorld(new EntityNibiruLightningBolt(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ(), false));
+                            }
                         }
                     }
                 }
@@ -126,7 +138,7 @@ public class WorldTickEventHandler
             if (WorldTickEventHandler.startedDimensionData == null)
             {
                 World world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
-                WorldTickEventHandler.startedDimensionData = (WorldDataStartedDimension) world.getMapStorage().loadData(WorldDataStartedDimension.class, WorldDataStartedDimension.saveDataID);
+                WorldTickEventHandler.startedDimensionData = (WorldDataStartedDimension) world.getMapStorage().getOrLoadData(WorldDataStartedDimension.class, WorldDataStartedDimension.saveDataID);
 
                 if (WorldTickEventHandler.startedDimensionData == null)
                 {
@@ -137,22 +149,27 @@ public class WorldTickEventHandler
         }
     }
 
-    private BlockPos adjustPosToNearbyEntity(World world, BlockPos pos)
+    private BlockPos adjustPosToNearbyEntity(WorldServer world, BlockPos pos)
     {
         BlockPos blockpos = world.getPrecipitationHeight(pos);
-        AxisAlignedBB axisalignedbb = new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), world.getHeight(), blockpos.getZ())).expand(1.0D, 1.0D, 1.0D);
-        List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, new Predicate<EntityLivingBase>()
+        AxisAlignedBB axisalignedbb = new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), world.getHeight(), blockpos.getZ())).expandXyz(3.0D);
+        List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, (EntityLivingBase living) -> living != null && living.isEntityAlive() && world.canSeeSky(living.getPosition()));
+
+        if (!list.isEmpty())
         {
-            @Override
-            public boolean apply(EntityLivingBase entity)
+            return list.get(world.rand.nextInt(list.size())).getPosition();
+        }
+        else
+        {
+            if (blockpos.getY() == -1)
             {
-                return entity != null && entity.isEntityAlive() && world.canSeeSky(entity.getPosition());
+                blockpos = blockpos.up(2);
             }
-        });
-        return !list.isEmpty() ? list.get(world.rand.nextInt(list.size())).getPosition() : blockpos;
+            return blockpos;
+        }
     }
 
-    private boolean canLightningStrike(World world, BlockPos strikePosition)
+    private boolean canBeamStrike(WorldServer world, BlockPos strikePosition)
     {
         if (!world.canSeeSky(strikePosition))
         {

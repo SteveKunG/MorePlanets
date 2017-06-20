@@ -38,11 +38,11 @@ public class CorridorNibiru extends SizedPieceNibiru
                         }
                         else if (i == 1 || i == this.boundingBox.getXSize() - 2)
                         {
-                            this.setBlockState(worldIn, Blocks.iron_bars.getDefaultState(), i, j, k, this.boundingBox);
+                            this.setBlockState(worldIn, Blocks.IRON_BARS.getDefaultState(), i, j, k, this.boundingBox);
                         }
                         else
                         {
-                            this.setBlockState(worldIn, Blocks.air.getDefaultState(), i, j, k, this.boundingBox);
+                            this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, this.boundingBox);
                         }
                     }
                     else if (j == 2 && this.getDirection().getAxis() == EnumFacing.Axis.X && (i + 1) % 1 == 0 && i != this.boundingBox.getXSize() - 1)
@@ -53,11 +53,11 @@ public class CorridorNibiru extends SizedPieceNibiru
                         }
                         else if (k == 1 || k == this.boundingBox.getZSize() - 2)
                         {
-                            this.setBlockState(worldIn, Blocks.iron_bars.getDefaultState(), i, j, k, this.boundingBox);
+                            this.setBlockState(worldIn, Blocks.IRON_BARS.getDefaultState(), i, j, k, this.boundingBox);
                         }
                         else
                         {
-                            this.setBlockState(worldIn, Blocks.air.getDefaultState(), i, j, k, this.boundingBox);
+                            this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, this.boundingBox);
                         }
                     }
                     else if (this.getDirection().getAxis() == EnumFacing.Axis.Z && (i == 1 || i == this.boundingBox.getXSize() - 2) || j == 0 || j == this.boundingBox.getYSize() - 1 || this.getDirection().getAxis() == EnumFacing.Axis.X && (k == 1 || k == this.boundingBox.getZSize() - 2))
@@ -70,7 +70,7 @@ public class CorridorNibiru extends SizedPieceNibiru
                     }
                     else
                     {
-                        this.setBlockState(worldIn, Blocks.air.getDefaultState(), i, j, k, this.boundingBox);
+                        this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, this.boundingBox);
                     }
                 }
             }

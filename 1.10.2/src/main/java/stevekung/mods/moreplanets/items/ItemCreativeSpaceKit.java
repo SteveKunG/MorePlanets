@@ -9,7 +9,10 @@ import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -26,11 +29,11 @@ public class ItemCreativeSpaceKit extends ItemBaseMP
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
-        list.add(EnumChatFormatting.RED + GCCoreUtil.translate("gui.creative_only.desc"));
+        list.add(TextFormatting.RED + GCCoreUtil.translate("gui.creative_only.desc"));
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if (player instanceof EntityPlayerMP)
         {
@@ -47,7 +50,7 @@ public class ItemCreativeSpaceKit extends ItemBaseMP
             stats.getExtendedInventory().setInventorySlotContents(9, new ItemStack(VenusItems.thermalPaddingTier2, 1, 3)); //Thermal Armor Tier 2
             stats.getExtendedInventory().setInventorySlotContents(10, new ItemStack(VenusItems.basicItem, 1, 0)); //Shield Controller
         }
-        return itemStack;
+        return new ActionResult(EnumActionResult.PASS, itemStack);
     }
 
     @Override

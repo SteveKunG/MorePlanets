@@ -1,24 +1,23 @@
 package stevekung.mods.moreplanets.util.client.particle;
 
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.ClientRendererUtils;
 
 @SideOnly(Side.CLIENT)
-public class EntityLavaMCFX extends EntityFX
+public class ParticleLavaMC extends Particle
 {
     private String texture;
     private float lavaParticleScale;
 
-    public EntityLavaMCFX(World world, double x, double y, double z, String texture)
+    public ParticleLavaMC(World world, double x, double y, double z, String texture)
     {
         super(world, x, y, z, 0.0D, 0.0D, 0.0D);
         this.motionX *= 0.800000011920929D;
@@ -29,7 +28,6 @@ public class EntityLavaMCFX extends EntityFX
         this.particleScale *= this.rand.nextFloat() * 2.0F + 0.2F;
         this.lavaParticleScale = this.particleScale;
         this.particleMaxAge = (int)(16.0D / (Math.random() * 0.8D + 0.2D));
-        this.noClip = false;
         this.texture = "moreplanets:textures/particle/" + texture + ".png";
     }
 
@@ -37,22 +35,14 @@ public class EntityLavaMCFX extends EntityFX
     @SideOnly(Side.CLIENT)
     public int getBrightnessForRender(float partialTicks)
     {
-        float f = (this.particleAge + partialTicks) / this.particleMaxAge;
-        f = MathHelper.clamp_float(f, 0.0F, 1.0F);
         int i = super.getBrightnessForRender(partialTicks);
         int j = 240;
         int k = i >> 16 & 255;
-        return j | k << 16;
+        return 240 | k << 16;
     }
 
     @Override
-    public float getBrightness(float partialTicks)
-    {
-        return 1.0F;
-    }
-
-    @Override
-    public void renderParticle(WorldRenderer worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+    public void renderParticle(VertexBuffer worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         Tessellator tessellator = Tessellator.getInstance();
         float f6 = (this.particleAge + partialTicks) / this.particleMaxAge;
@@ -61,9 +51,9 @@ public class EntityLavaMCFX extends EntityFX
         tessellator.draw();
         ClientRendererUtils.bindTexture(this.texture);
         float sizeFactor = 0.1F * this.particleScale;
-        float var13 = (float)(this.prevPosX + (this.posX - this.prevPosX) * partialTicks - EntityFX.interpPosX);
-        float var14 = (float)(this.prevPosY + (this.posY - this.prevPosY) * partialTicks - EntityFX.interpPosY);
-        float var15 = (float)(this.prevPosZ + (this.posZ - this.prevPosZ) * partialTicks - EntityFX.interpPosZ);
+        float var13 = (float)(this.prevPosX + (this.posX - this.prevPosX) * partialTicks - Particle.interpPosX);
+        float var14 = (float)(this.prevPosY + (this.posY - this.prevPosY) * partialTicks - Particle.interpPosY);
+        float var15 = (float)(this.prevPosZ + (this.posZ - this.prevPosZ) * partialTicks - Particle.interpPosZ);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
         worldrenderer.pos(var13 - rotationX * sizeFactor - rotationXY * sizeFactor, var14 - rotationZ * sizeFactor, var15 - rotationYZ * sizeFactor - rotationXZ * sizeFactor).tex(0.0D, 1.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
         worldrenderer.pos(var13 - rotationX * sizeFactor + rotationXY * sizeFactor, var14 + rotationZ * sizeFactor, var15 - rotationYZ * sizeFactor + rotationXZ * sizeFactor).tex(1.0D, 1.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
@@ -82,7 +72,7 @@ public class EntityLavaMCFX extends EntityFX
 
         if (this.particleAge++ >= this.particleMaxAge)
         {
-            this.setDead();
+            this.setExpired();
         }
 
         float f = (float)this.particleAge / (float)this.particleMaxAge;
@@ -98,7 +88,7 @@ public class EntityLavaMCFX extends EntityFX
         this.motionY *= 0.9990000128746033D;
         this.motionZ *= 0.9990000128746033D;
 
-        if (this.onGround)
+        if (this.isCollided)
         {
             this.motionX *= 0.699999988079071D;
             this.motionZ *= 0.699999988079071D;

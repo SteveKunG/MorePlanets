@@ -45,14 +45,14 @@ public class CraftingManagerMP
     private static void addBlockRecipe()
     {
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_WARP_PAD, 9), new Object[] { "PPP", "MMM", 'P', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'M', new ItemStack(GCBlocks.basicBlock, 1, 12) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.ROCKET_CRUSHER, 1), new Object[] { "PPP", "HAH", "WFW", 'P', Blocks.piston, 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'A', Blocks.anvil, 'W', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'F', new ItemStack(GCItems.basicItem, 1, 14) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS, 8, 0), new Object[] {"III", "IDI", "III", 'I', new ItemStack(Blocks.glass), 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.ROCKET_CRUSHER, 1), new Object[] { "PPP", "HAH", "WFW", 'P', Blocks.PISTON, 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'A', Blocks.ANVIL, 'W', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'F', new ItemStack(GCItems.basicItem, 1, 14) });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS, 8, 0), new Object[] {"III", "IDI", "III", 'I', new ItemStack(Blocks.GLASS), 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5)});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_SPACE_DECORATION, 4, 0), new Object[] { "TT", "TT", 'T', new ItemStack(GCBlocks.basicBlock, 1, 4) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_SPACE_DECORATION, 8, 1), new Object[] { "TTT", "TAT", "TTT", 'T', new ItemStack(MPBlocks.POLISHED_SPACE_DECORATION, 1, 0), 'A', new ItemStack(GCItems.basicItem, 1, 8) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.DARK_ENERGY_RECEIVER), new Object[] { "HPH", "SCS", "ITI", 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'P', new ItemStack(GCItems.flagPole), 'S', new ItemStack(GCItems.basicItem, 1, 1), 'C', MPItems.SPACE_WARPER_CORE, 'I', Items.iron_ingot, 'T', new ItemStack(AsteroidsItems.basicItem, 1, 5) });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.DARK_ENERGY_RECEIVER), new Object[] { "HPH", "SCS", "ITI", 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'P', new ItemStack(GCItems.flagPole), 'S', new ItemStack(GCItems.basicItem, 1, 1), 'C', MPItems.SPACE_WARPER_CORE, 'I', Items.IRON_INGOT, 'T', new ItemStack(AsteroidsItems.basicItem, 1, 5) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER), new Object[] { "EAE", "AWA", "EAE", 'E', new ItemStack(GCBlocks.machineTiered, 1, 8), 'A', new ItemStack(DionaItems.DIONA_ITEM, 1, 5), 'W', new ItemStack(GCItems.basicItem, 1, 14) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, 1, 4), new Object[] { "EAE", "ANA", "EAE", 'E', new ItemStack(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, 1, 0), 'A', new ItemStack(DionaItems.DIONA_ITEM, 1, 5), 'N', NibiruBlocks.NUCLEAR_WASTE_TANK });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_PORTAL), new Object[] { "OFO", "OOO", "OOO", 'O', Blocks.obsidian, 'F', Items.flint_and_steel });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_PORTAL), new Object[] { "OFO", "OOO", "OOO", 'O', Blocks.OBSIDIAN, 'F', Items.FLINT_AND_STEEL });
 
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 6, 0), new Object[] { "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 11) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 6, 1), new Object[] { "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 11) });
@@ -79,7 +79,7 @@ public class CraftingManagerMP
         {
             if (i != 15)
             {
-                RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS, 8, 15 - i), new Object[] {"III", "IDI", "III", 'I', new ItemStack(MPBlocks.TINTED_GLASS, 1, 0), 'D', new ItemStack(Items.dye, 1, i)});
+                RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS, 8, 15 - i), new Object[] {"III", "IDI", "III", 'I', new ItemStack(MPBlocks.TINTED_GLASS, 1, 0), 'D', new ItemStack(Items.DYE, 1, i)});
             }
             RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS_PANE, 16, i), new Object[] {"GGG", "GGG", 'G', new ItemStack(MPBlocks.TINTED_GLASS, 1, i)});
         }
@@ -87,10 +87,10 @@ public class CraftingManagerMP
 
     private static void addItemRecipe()
     {
-        RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_WARPER_CORE), new Object[] { "PDP", "DED", "PDP", 'P', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'D', Items.diamond, 'E', Items.ender_eye });
-        RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_BOW), new Object[] { " XS", "X S", " XS", 'S', Items.string, 'X', new ItemStack(MarsItems.marsItemBasic, 1, 5) });
-        RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_FISHING_ROD), new Object[] {"  S", " SX", "S X", 'S', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'X', Items.string});
-        RecipeHelper.addRecipe(new ItemStack(MPItems.LASER_BULLET, 8, 0), new Object[] { " R", "I ", 'I', new ItemStack(Items.iron_ingot), 'R', new ItemStack(Items.redstone) });
+        RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_WARPER_CORE), new Object[] { "PDP", "DED", "PDP", 'P', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'D', Items.DIAMOND, 'E', Items.ENDER_EYE });
+        RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_BOW), new Object[] { " XS", "X S", " XS", 'S', Items.STRING, 'X', new ItemStack(MarsItems.marsItemBasic, 1, 5) });
+        RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_FISHING_ROD), new Object[] {"  S", " SX", "S X", 'S', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'X', Items.STRING});
+        RecipeHelper.addRecipe(new ItemStack(MPItems.LASER_BULLET, 8, 0), new Object[] { " R", "I ", 'I', new ItemStack(Items.IRON_INGOT), 'R', new ItemStack(Items.REDSTONE) });
         RecipeHelper.addRecipe(new ItemStack(MPItems.LASER_GUN), new Object[] { "C  ", " DT", "  D", 'C', new ItemStack(AsteroidsItems.basicItem, 1, 8), 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'T', new ItemStack(AsteroidsItems.basicItem, 1, 6) });
         RecipeHelper.addRecipe(new ItemStack(MPItems.ALIEN_DEFENDER_REINFORCEMENT), new Object[] { "C", "I", "I", 'I', new ItemStack(DionaItems.DIONA_ITEM, 1, 6), 'C', new ItemStack(MPItems.SPACE_WARPER_CORE) });
     }
@@ -112,12 +112,12 @@ public class CraftingManagerMP
             RecipeHelper.addRocketCrusherRecipe(new ItemStack(NibiruItems.NIBIRU_ITEM, 21, 4), "III", "DRD", "SSS", 'D', new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 21, 0), 'I', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'S', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 3), 'R', new ItemStack(ChalosItems.TIER_5_ROCKET, 1, i));
         }
 
-        input.put(0, new ItemStack(Items.ender_pearl));
+        input.put(0, new ItemStack(Items.ENDER_PEARL));
         input.put(1, new ItemStack(DionaItems.DIONA_ITEM, 4, 5));
         DarkEnergyRecipeData.registerRecipe(input, new ItemStack(DionaItems.DARK_ENERGY_PEARL), 120);
 
         input = Maps.newHashMap();
-        input.put(0, new ItemStack(Items.iron_ingot));
+        input.put(0, new ItemStack(Items.IRON_INGOT));
         input.put(1, new ItemStack(DionaItems.DIONA_ITEM, 2, 5));
         DarkEnergyRecipeData.registerRecipe(input, new ItemStack(DionaItems.DIONA_ITEM, 1, 6), 80);
 
@@ -141,7 +141,7 @@ public class CraftingManagerMP
         input.put(17, new ItemStack(DionaItems.DIONA_ITEM, 1, 6));
         input.put(18, new ItemStack(DionaItems.DIONA_ITEM, 1, 6));
         input.put(19, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0));
-        input.put(20, new ItemStack(Items.ender_eye));
+        input.put(20, new ItemStack(Items.ENDER_EYE));
         input.put(21, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0));
         input.put(22, new ItemStack(DionaItems.DIONA_ITEM, 1, 6));
         BlackHoleStorageRecipes.recipes.add(new NasaWorkbenchRecipe(new ItemStack(MPBlocks.BLACK_HOLE_STORAGE), input));

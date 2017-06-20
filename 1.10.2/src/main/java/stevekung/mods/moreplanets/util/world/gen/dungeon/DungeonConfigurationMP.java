@@ -45,14 +45,14 @@ public class DungeonConfigurationMP
 
     public void writeToNBT(NBTTagCompound tagCompound)
     {
-        tagCompound.setString("DungeonBrickBlock", Block.blockRegistry.getNameForObject(this.brickBlock.getBlock()).toString());
+        tagCompound.setString("DungeonBrickBlock", Block.REGISTRY.getNameForObject(this.brickBlock.getBlock()).toString());
         tagCompound.setInteger("DungeonBrickBlockMeta", this.brickBlock.getBlock().getMetaFromState(this.brickBlock));
-        tagCompound.setString("GlowstoneBlock", Block.blockRegistry.getNameForObject(this.glowstoneBlock.getBlock()).toString());
+        tagCompound.setString("GlowstoneBlock", Block.REGISTRY.getNameForObject(this.glowstoneBlock.getBlock()).toString());
         tagCompound.setInteger("GlowstoneBlockMeta", this.glowstoneBlock.getBlock().getMetaFromState(this.glowstoneBlock));
-        tagCompound.setString("WebBlock", Block.blockRegistry.getNameForObject(this.webBlock.getBlock()).toString());
+        tagCompound.setString("WebBlock", Block.REGISTRY.getNameForObject(this.webBlock.getBlock()).toString());
         tagCompound.setInteger("WebBlockMeta", this.webBlock.getBlock().getMetaFromState(this.webBlock));
-        tagCompound.setString("TorchBlock", Block.blockRegistry.getNameForObject(this.torchBlock.getBlock()).toString());
-        tagCompound.setString("AncientChestBlock", Block.blockRegistry.getNameForObject(this.ancientChestBlock.getBlock()).toString());
+        tagCompound.setString("TorchBlock", Block.REGISTRY.getNameForObject(this.torchBlock.getBlock()).toString());
+        tagCompound.setString("AncientChestBlock", Block.REGISTRY.getNameForObject(this.ancientChestBlock.getBlock()).toString());
         tagCompound.setInteger("YPosition", this.yPosition);
         tagCompound.setInteger("HallwayLengthMin", this.hallwayLengthMin);
         tagCompound.setInteger("HallwayLengthMax", this.hallwayLengthMax);
