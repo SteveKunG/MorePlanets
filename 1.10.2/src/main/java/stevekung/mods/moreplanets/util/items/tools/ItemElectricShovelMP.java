@@ -8,11 +8,12 @@ import com.google.common.collect.Multimap;
 import micdoodle8.mods.galacticraft.api.item.ElectricItemHelper;
 import micdoodle8.mods.galacticraft.api.item.IItemElectric;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
@@ -20,8 +21,8 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagFloat;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -50,23 +51,9 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, IS
     }
 
     @Override
-    public float getStrVsBlock(ItemStack itemStack, Block block)
+    public float getStrVsBlock(ItemStack itemStack, IBlockState state)
     {
-        if (this.getElectricityStored(itemStack) == 0.0F)
-        {
-            return 0.0F;
-        }
-        return super.getStrVsBlock(itemStack, block);
-    }
-
-    @Override
-    public float getDigSpeed(ItemStack itemStack, IBlockState state)
-    {
-        if (this.getElectricityStored(itemStack) == 0.0F)
-        {
-            return 0.1F;
-        }
-        return super.getDigSpeed(itemStack, state);
+        return this.getElectricityStored(itemStack) == 0.0F ? 0.0F : super.getStrVsBlock(itemStack, state);
     }
 
     @Override
@@ -81,9 +68,9 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, IS
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack itemStack, World world, Block block, BlockPos pos, EntityLivingBase player)
+    public boolean onBlockDestroyed(ItemStack itemStack, World world, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
     {
-        if (block.getBlockHardness(world, pos) > 0.0F)
+        if (state.getBlockHardness(world, pos) > 0.0F)
         {
             if (this.getElectricityStored(itemStack) > 0.0F)
             {
@@ -94,33 +81,29 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, IS
     }
 
     @Override
-    public Multimap getAttributeModifiers(ItemStack itemStack)
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack itemStack)
     {
-        if (this.getElectricityStored(itemStack) > 0.0F)
-        {
-            return super.getAttributeModifiers(itemStack);
-        }
-        return HashMultimap.create();
+        return this.getElectricityStored(itemStack) > 0.0F ? super.getAttributeModifiers(slot, itemStack) : HashMultimap.create();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
     {
-        EnumChatFormatting color = null;
+        TextFormatting color = null;
         float joules = this.getElectricityStored(itemStack);
 
         if (joules <= this.getMaxElectricityStored(itemStack) / 3)
         {
-            color = EnumChatFormatting.DARK_RED;
+            color = TextFormatting.DARK_RED;
         }
         else if (joules > this.getMaxElectricityStored(itemStack) * 2 / 3)
         {
-            color = EnumChatFormatting.DARK_GREEN;
+            color = TextFormatting.DARK_GREEN;
         }
         else
         {
-            color = EnumChatFormatting.GOLD;
+            color = TextFormatting.GOLD;
         }
         list.add(color + EnergyDisplayHelper.getEnergyDisplayS(joules) + "/" + EnergyDisplayHelper.getEnergyDisplayS(this.getMaxElectricityStored(itemStack)));
     }

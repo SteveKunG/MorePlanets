@@ -55,17 +55,18 @@ public class BlockSnowLayerMP extends BlockBaseMP
         return world.getBlockState(pos).getValue(BlockStateHelper.LAYERS).intValue() < 5;
     }
 
+    @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return SNOW_AABB[((Integer)state.getValue(BlockStateHelper.LAYERS)).intValue()];
+        return SNOW_AABB[state.getValue(BlockStateHelper.LAYERS).intValue()];
     }
 
+    @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
     {
-        int i = ((Integer)blockState.getValue(BlockStateHelper.LAYERS)).intValue() - 1;
-        float f = 0.125F;
+        int i = blockState.getValue(BlockStateHelper.LAYERS).intValue() - 1;
         AxisAlignedBB axisalignedbb = blockState.getBoundingBox(worldIn, pos);
-        return new AxisAlignedBB(axisalignedbb.minX, axisalignedbb.minY, axisalignedbb.minZ, axisalignedbb.maxX, (double)((float)i * 0.125F), axisalignedbb.maxZ);
+        return new AxisAlignedBB(axisalignedbb.minX, axisalignedbb.minY, axisalignedbb.minZ, axisalignedbb.maxX, i * 0.125F, axisalignedbb.maxZ);
     }
 
     @Override
@@ -152,7 +153,7 @@ public class BlockSnowLayerMP extends BlockBaseMP
         else
         {
             IBlockState iblockstate = world.getBlockState(pos.offset(side));
-            return iblockstate.getBlock() == this && ((Integer)iblockstate.getValue(BlockStateHelper.LAYERS)).intValue() >= ((Integer)state.getValue(BlockStateHelper.LAYERS)).intValue() ? true : super.shouldSideBeRendered(state, world, pos, side);
+            return iblockstate.getBlock() == this && iblockstate.getValue(BlockStateHelper.LAYERS).intValue() >= state.getValue(BlockStateHelper.LAYERS).intValue() ? true : super.shouldSideBeRendered(state, world, pos, side);
         }
     }
 

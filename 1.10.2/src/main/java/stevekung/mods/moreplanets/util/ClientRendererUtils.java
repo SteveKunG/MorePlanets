@@ -21,13 +21,14 @@ import net.minecraft.util.math.Vec3i;
 
 public class ClientRendererUtils
 {
+    //TODO Fix all rendering
     public static void renderModel(IBlockState state)
     {
         Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         IBakedModel model = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getModelForState(state);
         Block block = state.getBlock();
         GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
-        int i = block.getRenderColor(block.getStateForEntityRender(state));
+        int i = 0;
 
         if (EntityRenderer.anaglyphEnable)
         {
@@ -54,15 +55,15 @@ public class ClientRendererUtils
     {
         for (EnumFacing enumfacing : EnumFacing.VALUES)
         {
-            ClientRendererUtils.renderModelBrightnessColorQuads(brightness, red, green, blue, bakedModel.getFaceQuads(enumfacing));
+            //ClientRendererUtils.renderModelBrightnessColorQuads(brightness, red, green, blue, bakedModel.getFaceQuads(enumfacing));
         }
-        ClientRendererUtils.renderModelBrightnessColorQuads(brightness, red, green, blue, bakedModel.getGeneralQuads());
+        //ClientRendererUtils.renderModelBrightnessColorQuads(brightness, red, green, blue, bakedModel.getGeneralQuads());
     }
 
     private static void renderModelBrightnessColorQuads(float brightness, float red, float green, float blue, List<BakedQuad> listQuads)
     {
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        VertexBuffer worldrenderer = tessellator.getBuffer();
 
         for (BakedQuad bakedquad : listQuads)
         {
@@ -83,7 +84,7 @@ public class ClientRendererUtils
         }
     }
 
-    private static void putColorRGB_F4(WorldRenderer worldrenderer, float red, float green, float blue)
+    private static void putColorRGB_F4(VertexBuffer worldrenderer, float red, float green, float blue)
     {
         for (int i = 0; i < 4; ++i)
         {
@@ -91,7 +92,7 @@ public class ClientRendererUtils
         }
     }
 
-    private static void putColorRGB_F(WorldRenderer worldrenderer, float red, float green, float blue, int index)
+    private static void putColorRGB_F(VertexBuffer worldrenderer, float red, float green, float blue, int index)
     {
         int i = worldrenderer.getColorIndex(index);
         int j = MathHelper.clamp_int((int)(red * 255.0F), 0, 255);

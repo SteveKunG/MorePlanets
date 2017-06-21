@@ -14,6 +14,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.PotionEffect;
@@ -35,12 +36,11 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     {
         super(world);
         this.setSize(0.7F, 1.9F);
-        ((PathNavigateGroundMP)this.getNavigator()).setAvoidsWater(true);
         this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.25D, 20, 10.0F));
         this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(4, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, IMob.mobSelector));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, IMob.MOB_SELECTOR));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
@@ -53,15 +53,15 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
             {
                 this.attackEntityFrom(DamageSource.drown, 1.0F);
             }
-            if (this.worldObj.getBiomeGenForCoords(new BlockPos(i, 0, k)).getFloatTemperature(new BlockPos(i, j, k)) > 1.0F)
+            if (this.worldObj.getBiome(new BlockPos(i, 0, k)).getFloatTemperature(new BlockPos(i, j, k)) > 1.0F)
             {
                 this.attackEntityFrom(DamageSource.onFire, 1.0F);
             }
@@ -91,7 +91,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
                 k = MathHelper.floor_double(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
                 BlockPos blockpos = new BlockPos(i, j, k);
 
-                if (this.worldObj.getBlockState(blockpos).getBlock().getMaterial() == Material.AIR && this.worldObj.getBiomeGenForCoords(new BlockPos(i, 0, k)).getFloatTemperature(blockpos) < 0.8F && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.worldObj, blockpos))
+                if (this.worldObj.getBlockState(blockpos).getMaterial() == Material.AIR && this.worldObj.getBiome(new BlockPos(i, 0, k)).getFloatTemperature(blockpos) < 0.8F && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.worldObj, blockpos))
                 {
                     this.worldObj.setBlockState(blockpos, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                 }
@@ -102,7 +102,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.canSeeSky(this.getPosition()) && this.worldObj.getLightBrightness(this.getPosition()) >= 0.0F;
+        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.canSeeSky(this.getPosition()) && this.worldObj.getLightBrightness(this.getPosition()) >= 0.0F;
     }
 
     @Override
@@ -132,7 +132,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
         double d3 = target.posZ - this.posZ;
         float f = MathHelper.sqrt_double(d1 * d1 + d3 * d3) * 0.2F;
         entitysnowball.setThrowableHeading(d1, d2 + f, d3, 1.6F, 12.0F);
-        this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        this.playSound(SoundEvents.ENTITY_SNOWMAN_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.worldObj.spawnEntityInWorld(entitysnowball);
     }
 
@@ -152,24 +152,6 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     public EnumMobType getMobType()
     {
         return EnumMobType.NIBIRU;
-    }
-
-    @Override
-    protected String getLivingSound()
-    {
-        return null;
-    }
-
-    @Override
-    protected String getHurtSound()
-    {
-        return null;
-    }
-
-    @Override
-    protected String getDeathSound()
-    {
-        return null;
     }
 
     @Override

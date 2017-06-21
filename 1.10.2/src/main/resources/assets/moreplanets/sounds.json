@@ -2,136 +2,136 @@
 	"infected_mob_explode":
 	{
 		"category": "hostile",
-		"sounds": ["hostile/infected/explode"]
+		"sounds": ["moreplanets:hostile/infected/explode"]
 	},
 	"infected_mob_attack":
 	{
 		"category": "hostile",
-		"sounds": ["hostile/infected/attack"]
+		"sounds": ["moreplanets:hostile/infected/attack"]
 	},
 	"infected_mob_hurt":
 	{
 		"category": "hostile",
-		"sounds": ["hostile/infected/hurt1", "hostile/infected/hurt2"]
+		"sounds": ["moreplanets:hostile/infected/hurt1", "moreplanets:hostile/infected/hurt2"]
 	},
 	"alien_miner_ambient":
 	{
 		"category": "hostile",
-		"sounds": ["hostile/alienminer/ambient1", "hostile/alienminer/ambient2", "hostile/alienminer/ambient3"]
+		"sounds": ["moreplanets:hostile/alienminer/ambient1", "moreplanets:hostile/alienminer/ambient2", "moreplanets:hostile/alienminer/ambient3"]
 	},
 	"alien_miner_charged":
 	{
 		"category": "hostile",
-		"sounds": ["hostile/alienminer/charged"]
+		"sounds": ["moreplanets:hostile/alienminer/charged"]
 	},
 	"alien_miner_attack":
 	{
 		"category": "hostile",
-		"sounds": ["hostile/alienminer/attack"]
+		"sounds": ["moreplanets:hostile/alienminer/attack"]
 	},
 	"alien_miner_shock":
 	{
 		"category": "hostile",
-		"sounds": ["hostile/alienminer/electric_shock"]
+		"sounds": ["moreplanets:hostile/alienminer/electric_shock"]
 	},
-	"player.unlock_treasure_chest":
+	"unlock_treasure_chest":
 	{
 		"category": "player",
-		"sounds": ["player/unlock_treasure_chest"]
+		"sounds": ["moreplanets:player/unlock_treasure_chest"]
 	},
 	"laser_shooted":
 	{
 		"category": "player",
-		"sounds": ["player/shoot_laser"]
+		"sounds": ["moreplanets:player/shoot_laser"]
 	},
 	"alien_egg_destroyed":
 	{
 		"category": "block",
-		"sounds": ["block/egg_destroy"]
+		"sounds": ["moreplanets:block/egg_destroy"]
 	},
 	"fronos_mob_ambient":
 	{
 		"category": "neutral",
-		"sounds": ["neutral/fronos/ambient"]
+		"sounds": ["moreplanets:neutral/fronos/ambient"]
 	},
 	"fronos_mob_step":
 	{
 		"category": "neutral",
-		"sounds": ["neutral/fronos/step"]
+		"sounds": ["moreplanets:neutral/fronos/step"]
 	},
 	"fronos_mob_hurt":
 	{
 		"category": "neutral",
-		"sounds": ["neutral/fronos/hurt1", "neutral/fronos/hurt2"]
+		"sounds": ["moreplanets:neutral/fronos/hurt1", "moreplanets:neutral/fronos/hurt2"]
 	},
 	"fronos_mob_death":
 	{
 		"category": "neutral",
-		"sounds": ["neutral/fronos/death"]
+		"sounds": ["moreplanets:neutral/fronos/death"]
 	},
 	"mob.shlime.death":
 	{
 		"category": "neutral",
-		"sounds": ["neutral/shlime/death"]
+		"sounds": ["moreplanets:neutral/shlime/death"]
 	},
 	"mob.shlime.hurt":
 	{
 		"category": "neutral",
-		"sounds": ["neutral/shlime/hurt1", "neutral/shlime/hurt2", "neutral/shlime/hurt3"]
+		"sounds": ["moreplanets:neutral/shlime/hurt1", "moreplanets:neutral/shlime/hurt2", "moreplanets:neutral/shlime/hurt3"]
 	},
 	"alien_beam":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/alien_beam"]
+		"sounds": ["moreplanets:ambient/alien_beam"]
 	},
 	"machine_danger":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/machine_danger"]
+		"sounds": ["moreplanets:ambient/machine_danger"]
 	},
 	"machine_alert":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/machine_alert"]
+		"sounds": ["moreplanets:ambient/machine_alert"]
 	},
 	"ambient.machine.start":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/machine_start"]
+		"sounds": ["moreplanets:ambient/machine_start"]
 	},
 	"machine_stop":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/machine_stop"]
+		"sounds": ["moreplanets:ambient/machine_stop"]
 	},
 	"machine_activate_ambient":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/machine_ambient1", "ambient/machine_ambient2", "ambient/machine_ambient3"]
+		"sounds": ["moreplanets:ambient/machine_ambient1", "moreplanets:ambient/machine_ambient2", "moreplanets:ambient/machine_ambient3"]
 	},
 	"machine_generator_ambient":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/generator1", "ambient/generator2", "ambient/generator3"]
+		"sounds": ["moreplanets:ambient/generator1", "moreplanets:ambient/generator2", "moreplanets:ambient/generator3"]
 	},
 	"black_hole_ambient":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/black_hole_ambient"]
+		"sounds": ["moreplanets:ambient/black_hole_ambient"]
 	},
 	"black_hole_destroyed":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/black_hole_destroyed"]
+		"sounds": ["moreplanets:ambient/black_hole_destroyed"]
 	},
 	"black_hole_created":
 	{
 		"category": "ambient",
-		"sounds": ["ambient/black_hole_created"]
+		"sounds": ["moreplanets:ambient/black_hole_created"]
 	},
 	"loud_thunder":
 	{
 		"category": "weather",
-		"sounds": ["weather/thunder1", "weather/thunder2", "weather/thunder3", "weather/thunder4"]
+		"sounds": ["moreplanets:weather/thunder1", "moreplanets:weather/thunder2", "moreplanets:weather/thunder3", "moreplanets:weather/thunder4"]
 	}
 }

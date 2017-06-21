@@ -32,8 +32,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.SkyProviderNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
-import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.ChunkGeneratorNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.BiomeProviderNibiru;
+import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.ChunkGeneratorNibiru;
 import stevekung.mods.moreplanets.util.dimension.WorldProviderMP;
 
 public class WorldProviderNibiru extends WorldProviderMP

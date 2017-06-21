@@ -87,7 +87,6 @@ public class MorePlanetsCore
         MPPlanets.init();
         MPPotions.init();
         MPBiomes.init();
-        MPDimensions.init();
         MPSounds.init();
         MPOthers.init();
 
@@ -128,6 +127,7 @@ public class MorePlanetsCore
         CommonRegisterHelper.registerFuelHandler(new FuelHandlerMP());
         CraftingManagerMP.init();
         MPSchematics.init();
+        MPDimensions.init();
         ItemCapsule.init = true;
     }
 

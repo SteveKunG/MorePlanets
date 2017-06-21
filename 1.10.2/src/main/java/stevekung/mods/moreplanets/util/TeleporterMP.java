@@ -66,7 +66,7 @@ public class TeleporterMP extends Teleporter
 
         if (this.destinationCoordinateCache.containsKey(l))
         {
-            PortalPosition teleporter$portalposition = (PortalPosition)this.destinationCoordinateCache.get(l);
+            PortalPosition teleporter$portalposition = this.destinationCoordinateCache.get(l);
             d0 = 0.0D;
             blockpos = teleporter$portalposition;
             teleporter$portalposition.lastUpdateTime = this.worldServerInstance.getTotalWorldTime();
@@ -314,7 +314,7 @@ public class TeleporterMP extends Teleporter
 
             while (objectiterator.hasNext())
             {
-                PortalPosition teleporter$portalposition = (PortalPosition)objectiterator.next();
+                PortalPosition teleporter$portalposition = objectiterator.next();
 
                 if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i)
                 {

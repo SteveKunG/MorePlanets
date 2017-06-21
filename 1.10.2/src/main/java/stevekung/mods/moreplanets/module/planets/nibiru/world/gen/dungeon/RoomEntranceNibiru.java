@@ -20,7 +20,7 @@ public class RoomEntranceNibiru extends SizedPieceNibiru
     public RoomEntranceNibiru(World world, DungeonConfigurationMP configuration, Random rand, int blockPosX, int blockPosZ)
     {
         super(configuration, rand.nextInt(4) + 6, rand.nextInt(2) + 5, rand.nextInt(4) + 6, EnumFacing.Plane.HORIZONTAL.random(rand));
-        this.coordBaseMode = EnumFacing.SOUTH;
+        this.setCoordBaseMode(EnumFacing.SOUTH);
         this.boundingBox = new StructureBoundingBox(blockPosX - this.range, configuration.getYPosition(), blockPosZ - this.range, blockPosX + this.range, 150, blockPosZ + this.range);
         MPLog.debug("Generating boss dungeon at " + blockPosX + " " + Integer.valueOf(configuration.getYPosition() + 1) + " " + blockPosZ);
     }

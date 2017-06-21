@@ -15,18 +15,21 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IInteractionObject;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPSounds;
 
 public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKeyable, IInteractionObject, ISidedInventory
 {
@@ -231,7 +234,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
         {
             double d1 = i + 0.5D;
             d2 = k + 0.5D;
-            this.worldObj.playSoundEffect(d1, j + 0.5D, d2, "random.chestopen", 0.5F, this.worldObj.provider instanceof IGalacticraftWorldProvider ? this.worldObj.rand.nextFloat() * 0.1F + 0.6F : this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            this.worldObj.playSound((EntityPlayer)null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.worldObj.provider instanceof IGalacticraftWorldProvider ? this.worldObj.rand.nextFloat() * 0.1F + 0.6F : this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
         }
 
         if ((this.numPlayersUsing == 0 || this.locked) && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F)
@@ -258,7 +261,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
             {
                 d2 = i + 0.5D;
                 double d0 = k + 0.5D;
-                this.worldObj.playSoundEffect(d2, j + 0.5D, d0, "random.chestclosed", 0.5F, this.worldObj.provider instanceof IGalacticraftWorldProvider ? this.worldObj.rand.nextFloat() * 0.1F + 0.6F : this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                this.worldObj.playSound((EntityPlayer)null, d2, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.worldObj.provider instanceof IGalacticraftWorldProvider ? this.worldObj.rand.nextFloat() * 0.1F + 0.6F : this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
             }
             if (this.lidAngle < 0.0F)
             {
@@ -380,7 +383,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
 
             if (this.worldObj.isRemote)
             {
-                player.playSound("moreplanets:player.unlock_treasure_chest", 1.0F, 1.0F);
+                player.playSound(MPSounds.UNLOCK_TREASURE_CHEST, 1.0F, 1.0F);
             }
             else
             {

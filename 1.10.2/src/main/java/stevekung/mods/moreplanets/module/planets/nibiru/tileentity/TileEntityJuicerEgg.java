@@ -6,7 +6,7 @@ import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.math.AxisAlignedBB;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
 
@@ -53,7 +53,7 @@ public class TileEntityJuicerEgg extends TileEntityRenderTickable
                                         EntityJuicer juicer = new EntityJuicer(this.worldObj);
                                         juicer.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, 0.0F, 0.0F);
                                         this.worldObj.spawnEntityInWorld(juicer);
-                                        juicer.mountEntity(player);
+                                        juicer.startRiding(player);
                                     }
                                 }
                             }

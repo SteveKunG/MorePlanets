@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -16,7 +15,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.blocks.BlockAncientChestMP;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAncientChestMP;
 
 public class WorldGenSpaceDungeons extends WorldGenerator
@@ -26,12 +24,6 @@ public class WorldGenSpaceDungeons extends WorldGenerator
     private Block moss;
     private int cobbleMeta;
     private int mossMeta;
-
-    static
-    {
-        ItemLootHelper.register(ItemLootHelper.COMMON_SPACE_DUNGEON, ItemLootHelper.COMMON_SPACE_DUNGEON_LOOT, 8, 8);
-        ItemLootHelper.add(ItemLootHelper.COMMON_SPACE_DUNGEON, ItemLootHelper.ENCHANTED_BOOK);
-    }
 
     public WorldGenSpaceDungeons(Block chest, Block cobblestone, Block moss, int cobbleMeta, int mossMeta)
     {
@@ -165,7 +157,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                                 if (tileentity1 instanceof TileEntityAncientChestMP)
                                 {
                                     ((TileEntityAncientChestMP)tileentity1).setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());//TODO
-                                    WeightedRandomChestContent.generateChestContents(rand, ChestGenHooks.getItems(DUNGEON_CHEST, rand), (TileEntityAncientChestMP)tileentity1, ChestGenHooks.getCount(DUNGEON_CHEST, rand));
+                                    //WeightedRandomChestContent.generateChestContents(rand, ChestGenHooks.getItems(DUNGEON_CHEST, rand), (TileEntityAncientChestMP)tileentity1, ChestGenHooks.getCount(DUNGEON_CHEST, rand));
                                 }
                                 break label100;
                             }

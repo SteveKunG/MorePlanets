@@ -1,10 +1,18 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSnow;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -22,44 +30,48 @@ public class ItemInfectedSugarCane extends ItemBaseMP
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         IBlockState iblockstate = world.getBlockState(pos);
         Block block = iblockstate.getBlock();
         BlockBushMP cane = NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK;
 
-        if (block == NibiruBlocks.INFECTED_SNOW_LAYER && iblockstate.getValue(BlockStateHelper.LAYERS).intValue() < 1)
+        if (block == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1 || block == NibiruBlocks.INFECTED_SNOW_LAYER && iblockstate.getValue(BlockStateHelper.LAYERS).intValue() < 1)
         {
-            side = EnumFacing.UP;
+            facing = EnumFacing.UP;
         }
         else if (!block.isReplaceable(world, pos))
         {
-            pos = pos.offset(side);
+            pos = pos.offset(facing);
         }
 
-        if (!player.canPlayerEdit(pos, side, itemStack))
+        if (player.canPlayerEdit(pos, facing, stack) && stack.stackSize != 0 && world.canBlockBePlaced(cane, pos, false, facing, (Entity)null, stack))
         {
-            return false;
-        }
-        else if (itemStack.stackSize == 0)
-        {
-            return false;
-        }
-        else if (cane.canBlockStay(world, pos, cane.getDefaultState()) && world.isAirBlock(pos.up()))
-        {
-            if (world.getBlockState(pos).getBlock() != cane)
+            IBlockState iblockstate1 = cane.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, 0, player, stack);
+
+            if (!world.setBlockState(pos, iblockstate1, 11))
             {
-                world.playSoundEffect(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, cane.stepSound.getPlaceSound(), (cane.stepSound.getVolume() + 1.0F) / 2.0F, cane.stepSound.getFrequency() * 0.8F);
-                world.setBlockState(pos, cane.getDefaultState());
-                --itemStack.stackSize;
-                return true;
+                return EnumActionResult.FAIL;
             }
             else
             {
-                return false;
+                iblockstate1 = world.getBlockState(pos);
+
+                if (iblockstate1.getBlock() == cane)
+                {
+                    ItemBlock.setTileEntityNBT(world, player, pos, stack);
+                    iblockstate1.getBlock().onBlockPlacedBy(world, pos, iblockstate1, player, stack);
+                }
+                SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, world, pos, player);
+                world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                --stack.stackSize;
+                return EnumActionResult.SUCCESS;
             }
         }
-        return false;
+        else
+        {
+            return EnumActionResult.FAIL;
+        }
     }
 
     @Override

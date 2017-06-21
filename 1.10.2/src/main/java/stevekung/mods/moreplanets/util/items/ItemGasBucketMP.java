@@ -1,12 +1,18 @@
 package stevekung.mods.moreplanets.util.items;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 
@@ -34,58 +40,52 @@ public class ItemGasBucketMP extends ItemBucketMP
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
-        boolean flag = this.isFull == Blocks.air;
-        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, flag);
+        boolean flag = this.isFull == Blocks.AIR;
+        RayTraceResult raytraceresult = this.rayTrace(world, player, flag);
 
-        if (movingobjectposition == null)
+        if (raytraceresult == null)
         {
-            return itemStack;
+            return new ActionResult(EnumActionResult.PASS, itemStack);
         }
         else
         {
-            if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+            if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
             {
-                BlockPos blockpos = movingobjectposition.getBlockPos();
+                BlockPos blockpos = raytraceresult.getBlockPos();
 
                 if (!world.isBlockModifiable(player, blockpos))
                 {
-                    return itemStack;
+                    return new ActionResult(EnumActionResult.FAIL, itemStack);
                 }
-
                 if (flag)
                 {
-                    if (!player.canPlayerEdit(blockpos.offset(movingobjectposition.sideHit), movingobjectposition.sideHit, itemStack))
+                    if (!player.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStack))
                     {
-                        return itemStack;
+                        return new ActionResult(EnumActionResult.FAIL, itemStack);
                     }
                 }
                 else
                 {
-                    if (this.isFull == Blocks.air)
-                    {
-                        return new ItemStack(Items.BUCKET);
-                    }
+                    BlockPos blockpos1 = blockpos.offset(raytraceresult.sideHit);
 
-                    BlockPos blockpos1 = blockpos.offset(movingobjectposition.sideHit);
-
-                    if (!player.canPlayerEdit(blockpos1, movingobjectposition.sideHit, itemStack))
+                    if (!player.canPlayerEdit(blockpos1, raytraceresult.sideHit, itemStack))
                     {
-                        return itemStack;
+                        return new ActionResult(EnumActionResult.FAIL, itemStack);
                     }
-                    if (this.tryPlaceContainedLiquid(world, blockpos1) && !player.capabilities.isCreativeMode)
+                    if (this.tryPlaceContainedLiquid(player, world, blockpos1) && !player.capabilities.isCreativeMode)
                     {
-                        return new ItemStack(Items.BUCKET);
+                        return !player.capabilities.isCreativeMode ? new ActionResult(EnumActionResult.SUCCESS, new ItemStack(Items.BUCKET)) : new ActionResult(EnumActionResult.SUCCESS, itemStack);
                     }
                 }
             }
-            return itemStack;
+            return new ActionResult(EnumActionResult.FAIL, itemStack);
         }
     }
 
     @Override
-    public boolean tryPlaceContainedLiquid(World world, BlockPos pos)
+    public boolean tryPlaceContainedLiquid(@Nullable EntityPlayer player, World world, BlockPos pos)
     {
         if (this.isFull == Blocks.AIR)
         {
@@ -93,7 +93,7 @@ public class ItemGasBucketMP extends ItemBucketMP
         }
         else
         {
-            Material material = world.getBlockState(pos).getBlock().getMaterial();
+            Material material = world.getBlockState(pos).getMaterial();
             boolean flag = !material.isSolid();
 
             if (!world.isAirBlock(pos) && !flag)

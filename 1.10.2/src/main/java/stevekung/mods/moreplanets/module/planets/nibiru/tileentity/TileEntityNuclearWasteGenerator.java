@@ -7,6 +7,7 @@ import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
+import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,15 +16,17 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 
-public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectricalSource implements IConnector, IDisableableMachine, ISidedInventory
+public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectricalSource implements IConnector, IDisableableMachine, ISidedInventory, IInventoryDefaults
 {
     public int maxGenerate = 10000;
     private ItemStack[] containingItems = new ItemStack[1];
@@ -74,7 +77,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
                             {
                                 if (this.worldObj.rand.nextInt(5000000) == 0)
                                 {
-                                    this.worldObj.setBlockState(this.getPos().add(x, -1, z), Blocks.obsidian.getDefaultState());
+                                    this.worldObj.setBlockState(this.getPos().add(x, -1, z), Blocks.OBSIDIAN.getDefaultState());
                                 }
                             }
                         }
@@ -94,13 +97,13 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
                     if (this.ticks % 33 == 0)
                     {
-                        this.worldObj.playSoundEffect(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.generator.ambient", 0.05F, 1.0F);
+                        this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_GENERATOR_AMBIENT, SoundCategory.BLOCKS, 0.05F, 1.0F);
                     }
                     if (this.alertTick % 100 == 0)
                     {
                         if (this.missingWaste || this.missingTank)
                         {
-                            this.worldObj.playSoundEffect(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.alert", 5.0F, 1.0F);
+                            this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ALERT, SoundCategory.BLOCKS, 5.0F, 1.0F);
                         }
                     }
                 }
@@ -162,9 +165,8 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         nbt.setFloat("GenerateTick", this.generateTick);
         nbt.setInteger("DisabledCooldown", this.disableCooldown);
         nbt.setBoolean("Disabled", this.getDisabled(0));
@@ -183,6 +185,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
             }
         }
         nbt.setTag("Items", list);
+        return super.writeToNBT(nbt);
     }
 
     private boolean getWaste(BlockPos pos)
@@ -246,12 +249,6 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
             return false;
         }
         return direction == this.getElectricOutputDirection();
-    }
-
-    @Override
-    public boolean hasCustomName()
-    {
-        return true;
     }
 
     @Override
@@ -357,12 +354,6 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {}
-
-    @Override
-    public void closeInventory(EntityPlayer player) {}
-
-    @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
         return new int[] { 0 };
@@ -387,26 +378,8 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     }
 
     @Override
-    public int getField(int id)
+    public ITextComponent getDisplayName()
     {
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {}
-
-    @Override
-    public int getFieldCount()
-    {
-        return 0;
-    }
-
-    @Override
-    public void clear() {}
-
-    @Override
-    public IChatComponent getDisplayName()
-    {
-        return new ChatComponentTranslation(this.getName());
+        return new TextComponentTranslation(this.getName());
     }
 }

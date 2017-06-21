@@ -47,7 +47,7 @@ public class ItemBlockSporelily extends ItemBlock
                 BlockPos blockpos1 = blockpos.up();
                 IBlockState iblockstate = world.getBlockState(blockpos);
 
-                if (iblockstate.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && ((Integer)iblockstate.getValue(BlockFluidBase.LEVEL)).intValue() == 0 && world.isAirBlock(blockpos1))
+                if (iblockstate.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && iblockstate.getValue(BlockFluidBase.LEVEL).intValue() == 0 && world.isAirBlock(blockpos1))
                 {
                     world.setBlockState(blockpos1, NibiruBlocks.SPORELILY.getDefaultState(), 11);
 

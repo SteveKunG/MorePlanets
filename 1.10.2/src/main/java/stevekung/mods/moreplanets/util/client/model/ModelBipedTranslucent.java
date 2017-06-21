@@ -4,6 +4,7 @@ import micdoodle8.mods.galacticraft.core.client.model.ModelBipedGC;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,7 +36,7 @@ public class ModelBipedTranslucent extends ModelBipedGC
         {
             for (int i = 0; i < 4; i++)
             {
-                ItemStack stack = ((EntityLivingBase)entity).getEquipmentInSlot(i + 1);
+                ItemStack stack = ((EntityLivingBase)entity).getItemStackFromSlot(EntityEquipmentSlot.OFFHAND);//TODO
 
                 if (stack != null && stack.getItem() instanceof ItemArmor && stack.hasTagCompound())
                 {

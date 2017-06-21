@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.layer;
 
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -76,13 +77,13 @@ public class GenLayerNibiruKeyBiomes extends GenLayer
             {
             case 0:
             default:
-                return MPBiomes.INFECTED_PLAINS.biomeID;
+                return Biome.getIdForBiome(MPBiomes.INFECTED_PLAINS);
             case 1:
-                return MPBiomes.INFECTED_FOREST.biomeID;
+                return Biome.getIdForBiome(MPBiomes.INFECTED_FOREST);
             case 2:
-                return MPBiomes.INFECTED_DESERT.biomeID;
+                return Biome.getIdForBiome(MPBiomes.INFECTED_DESERT);
             case 3:
-                return MPBiomes.INFECTED_JUNGLE.biomeID;
+                return Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE);
             }
     }
 }

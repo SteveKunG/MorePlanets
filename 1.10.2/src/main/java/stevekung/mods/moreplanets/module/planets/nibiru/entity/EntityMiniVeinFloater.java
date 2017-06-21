@@ -22,15 +22,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
 public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBossDisplayData, IBoss, IEntityBreathable, ISpaceMob
@@ -84,7 +86,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
         if (this.useVineAttacking)
         {
             int range = 32;
-            List<EntityPlayer> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.fromBounds(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+            List<EntityPlayer> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
             for (EntityPlayer entity : entitiesAroundBH)
             {
@@ -96,7 +98,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
                     entity.motionX = motionX * 0.025F;
                     entity.motionY = motionY * 0.025F;
                     entity.motionZ = motionZ * 0.025F;
-                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), AxisAlignedBB.fromBounds(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 6.5D, this.posZ + 5.0D));
+                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 6.5D, this.posZ + 5.0D));
 
                     for (EntityPlayer near : entityNearBH)
                     {
@@ -128,7 +130,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
@@ -150,8 +152,8 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(750.0F * ConfigManagerCore.dungeonBossHealthMod);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(750.0F * ConfigManagerCore.dungeonBossHealthMod);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
     }
 
     @Override
@@ -251,12 +253,12 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
                         chest.setInventorySlotContents(k, null);
                     }
 
-                    ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON);
+                    /*ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON);TODO
 
                     // Generate twice, since it's an extra special chest
                     WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
                     WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
+                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));*/
                     ItemStack schematic = this.getGuaranteedLoot(this.rand);
                     int slot = this.rand.nextInt(chest.getSizeInventory());
                     chest.setInventorySlotContents(slot, schematic);
@@ -295,7 +297,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
 
                 for (EntityPlayer p : entitiesWithin2)
                 {
-                    p.addChatMessage(new ChatComponentText(GCCoreUtil.translate("gui.skeleton_boss.message")));
+                    p.addChatMessage(new TextComponentString(GCCoreUtil.translate("gui.skeleton_boss.message")));
                 }
                 this.setDead();
                 return;
@@ -362,7 +364,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     }
 
     @Override
-    public IChatComponent getBossDisplayName()
+    public ITextComponent getBossDisplayName()
     {
         return this.getDisplayName();
     }

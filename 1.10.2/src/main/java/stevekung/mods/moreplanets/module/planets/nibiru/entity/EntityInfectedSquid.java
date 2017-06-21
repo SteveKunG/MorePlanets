@@ -1,17 +1,20 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityWaterMob;
-import net.minecraft.init.Items;
-import net.minecraft.item.EnumDyeColor;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -46,14 +49,14 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
     }
 
     @Override
@@ -63,21 +66,19 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
     }
 
     @Override
-    protected String getLivingSound()
+    protected SoundEvent getAmbientSound()
     {
-        return null;
+        return SoundEvents.ENTITY_SQUID_AMBIENT;
     }
 
-    @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return null;
+        return SoundEvents.ENTITY_SQUID_HURT;
     }
 
-    @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return null;
+        return SoundEvents.ENTITY_SQUID_DEATH;
     }
 
     @Override
@@ -98,21 +99,16 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
         return false;
     }
 
-    @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    protected ResourceLocation getLootTable()
     {
-        int i = this.rand.nextInt(3 + fortune) + 1;
-
-        for (int j = 0; j < i; ++j)
-        {
-            this.entityDropItem(new ItemStack(Items.dye, 1, EnumDyeColor.BLACK.getDyeDamage()), 0.0F);
-        }
+        return LootTableList.ENTITIES_SQUID;
     }
 
     @Override
     public boolean isInWater()
     {
-        return this.worldObj.handleMaterialAcceleration(this.getEntityBoundingBox().expand(0.0D, -0.6000000238418579D, 0.0D), Material.water, this);
+        return this.worldObj.handleMaterialAcceleration(this.getEntityBoundingBox().expand(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, this);
     }
 
     @Override

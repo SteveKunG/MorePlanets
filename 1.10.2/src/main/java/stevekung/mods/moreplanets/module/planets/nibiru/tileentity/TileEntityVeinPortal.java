@@ -8,15 +8,14 @@ import com.google.common.collect.Lists;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.potion.Potion;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -41,28 +40,28 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         nbt.setLong("Age", this.age);
         nbt.setBoolean("Middle", this.isMiddle);
         nbt.setBoolean("SpawnedBoss", this.spawnedBoss);
         nbt.setInteger("DelayToTeleport", this.delayToTeleport);
+        return super.writeToNBT(nbt);
     }
 
     @Override
-    public Packet getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setLong("Age", this.age);
         nbt.setBoolean("Middle", this.isMiddle);
         nbt.setBoolean("SpawnedBoss", this.spawnedBoss);
         nbt.setInteger("DelayToTeleport", this.delayToTeleport);
-        return new S35PacketUpdateTileEntity(this.pos, -1, nbt);
+        return new SPacketUpdateTileEntity(this.pos, -1, nbt);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         if (pkt.getTileEntityType() == -1)
         {
@@ -136,7 +135,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
                     for (int yRender = this.pos.getY(); yRender < 99; yRender++)
                     {
                         this.worldObj.setBlockToAir(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ()));
-                        this.worldObj.markBlockForUpdate(this.pos);
+                        this.worldObj.notifyBlockUpdate(this.pos, this.worldObj.getBlockState(this.pos), NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
                     }
                 }
             }
@@ -144,7 +143,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
 
         if (this.isMiddle)
         {
-            EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 64);
+            EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 64, false);
             List<EntityVeinFloater> vein = this.worldObj.getEntitiesWithinAABB(EntityVeinFloater.class, new AxisAlignedBB(this.getPos().getX() - 256, this.getPos().getY() - 256, this.getPos().getZ() - 256, this.getPos().getX() + 256, this.getPos().getY() + 256, this.getPos().getZ() + 256));
 
             if (this.delayToTeleport > 0)
@@ -156,9 +155,9 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
                 if (player instanceof EntityPlayerMP)
                 {
                     EntityPlayerMP playerMP = (EntityPlayerMP) player;
-                    playerMP.mountEntity((Entity)null);
-                    playerMP.addPotionEffect(new PotionEffect(Potion.resistance.id, 120, 10));
-                    playerMP.playerNetServerHandler.setPlayerLocation(playerMP.posX, playerMP.posY + 64, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
+                    playerMP.startRiding((Entity)null);
+                    playerMP.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 120, 10));
+                    playerMP.connection.setPlayerLocation(playerMP.posX, playerMP.posY + 64, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
                 }
             }
             if (this.renderTicks % 50 == 0 && vein.isEmpty())

@@ -6,8 +6,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAncientChestMP;
 
 public class RoomChestMP extends RoomEmptyMP
@@ -38,12 +38,14 @@ public class RoomChestMP extends RoomEmptyMP
 
             if (chest != null)
             {
-                for (int i = 0; i < chest.getSizeInventory(); ++i)
+                chest.setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());
+
+                /*for (int i = 0; i < chest.getSizeInventory(); ++i)TODO
                 {
                     chest.setInventorySlotContents(i, null);
                 }
                 ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON);
-                WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest, info.getCount(rand));
+                WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest, info.getCount(rand));*/
             }
             return true;
         }

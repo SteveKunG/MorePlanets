@@ -346,7 +346,7 @@ public class ClientRegisterHelper
 
         try
         {
-            model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:" + name, "inventory"));
+            model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/" + file));
             model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
         }
         catch (Exception e)
@@ -358,7 +358,7 @@ public class ClientRegisterHelper
 
         for (String variant : variants)
         {
-            ModelResourceLocation modelResourceLocation = new ModelResourceLocation("moreplanets:obj/" + file + ".obj", variant);
+            ModelResourceLocation modelResourceLocation = new ModelResourceLocation("moreplanets:" + name, variant);
             IBakedModel object = event.getModelRegistry().getObject(modelResourceLocation);
 
             if (object != null)

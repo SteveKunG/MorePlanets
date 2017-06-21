@@ -2,8 +2,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
 
 public class TileEntityMultalicCrystal extends TileEntityRenderTickable
@@ -23,22 +22,22 @@ public class TileEntityMultalicCrystal extends TileEntityRenderTickable
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         nbt.setInteger("Facing", this.facing);
+        return super.writeToNBT(nbt);
     }
 
     @Override
-    public Packet getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("Facing", this.facing);
-        return new S35PacketUpdateTileEntity(this.pos, -1, nbt);
+        return new SPacketUpdateTileEntity(this.pos, -1, nbt);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         if (pkt.getTileEntityType() == -1)
         {

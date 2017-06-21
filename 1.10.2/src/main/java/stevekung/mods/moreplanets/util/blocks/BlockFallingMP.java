@@ -20,6 +20,7 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISin
         this.name = name;
     }
 
+    @Override
     public BlockFallingMP setSoundType(SoundType sound)
     {
         this.blockSoundType = sound;

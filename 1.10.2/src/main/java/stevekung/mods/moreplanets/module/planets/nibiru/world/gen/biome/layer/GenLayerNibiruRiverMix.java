@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.layer;
 
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -33,7 +34,7 @@ public class GenLayerNibiruRiverMix extends GenLayer
 
         for (int i = 0; i < areaWidth * areaHeight; ++i)
         {
-            if (riverInputs[i] == MPBiomes.INFECTED_RIVER.biomeID)
+            if (riverInputs[i] == Biome.getIdForBiome(MPBiomes.INFECTED_RIVER))
             {
                 outputs[i] = riverInputs[i] & 255;
             }

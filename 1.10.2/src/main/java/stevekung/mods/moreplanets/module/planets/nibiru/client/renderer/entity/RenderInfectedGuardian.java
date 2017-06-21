@@ -80,7 +80,7 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
 
         if (entitylivingbase != null)
         {
-            float f = entity.func_175477_p(partialTicks);
+            float f = entity.getAttackAnimationScale(partialTicks);
             Tessellator tessellator = Tessellator.getInstance();
             VertexBuffer worldrenderer = tessellator.getBuffer();
             this.bindTexture(new ResourceLocation("textures/entity/guardian_beam.png"));

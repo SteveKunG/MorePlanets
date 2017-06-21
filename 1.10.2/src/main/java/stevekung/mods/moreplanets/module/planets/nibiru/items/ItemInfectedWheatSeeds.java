@@ -1,8 +1,11 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.items;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -18,25 +21,19 @@ public class ItemInfectedWheatSeeds extends ItemBaseMP
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (side != EnumFacing.UP)
+        IBlockState state = world.getBlockState(pos);
+
+        if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == NibiruBlocks.INFECTED_FARMLAND && world.isAirBlock(pos.up()))
         {
-            return false;
-        }
-        else if (!player.canPlayerEdit(pos.offset(side), side, itemStack))
-        {
-            return false;
-        }
-        else if (world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_FARMLAND && world.isAirBlock(pos.up()))
-        {
-            world.setBlockState(pos.up(), NibiruBlocks.INFECTED_WHEAT_BLOCK.getDefaultState());
+            world.setBlockState(pos.up(), NibiruBlocks.INFECTED_WHEAT_BLOCK.getDefaultState(), 11);
             --itemStack.stackSize;
-            return true;
+            return EnumActionResult.SUCCESS;
         }
         else
         {
-            return false;
+            return EnumActionResult.FAIL;
         }
     }
 

@@ -23,6 +23,7 @@ public class ItemBlockInfectedSnow extends ItemBlock
         super(block);
     }
 
+    @Override
     public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (itemStack.stackSize != 0 && player.canPlayerEdit(pos, facing, itemStack))
@@ -40,7 +41,7 @@ public class ItemBlockInfectedSnow extends ItemBlock
 
             if (block == this.block)
             {
-                int i = ((Integer)iblockstate.getValue(BlockStateHelper.LAYERS)).intValue();
+                int i = iblockstate.getValue(BlockStateHelper.LAYERS).intValue();
 
                 if (i <= 7)
                 {

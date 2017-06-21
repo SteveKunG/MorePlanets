@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -209,7 +210,7 @@ public class MapGenNibiruRavine extends MapGenBase
         return block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK;
     }
 
-    private boolean isExceptionBiome(BiomeGenBase biome)
+    private boolean isExceptionBiome(Biome biome)
     {
         if (biome == MPBiomes.GREEN_VEIN)
         {
@@ -224,14 +225,14 @@ public class MapGenNibiruRavine extends MapGenBase
 
     private boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
-        BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
+        Biome biome = this.worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
         return this.isExceptionBiome(biome) ? state.getBlock() == NibiruBlocks.INFECTED_GRASS : state.getBlock() == biome.topBlock;
     }
 
     protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop)
     {
-        BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
+        Biome biome = this.worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
         IBlockState top = this.isExceptionBiome(biome) ? NibiruBlocks.INFECTED_GRASS.getDefaultState() : biome.topBlock;
         IBlockState filler = this.isExceptionBiome(biome) ? NibiruBlocks.INFECTED_DIRT.getDefaultState() : biome.fillerBlock;

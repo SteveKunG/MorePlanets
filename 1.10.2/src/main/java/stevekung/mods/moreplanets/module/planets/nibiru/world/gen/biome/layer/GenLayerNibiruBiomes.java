@@ -1,13 +1,13 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.layer;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
 
 public class GenLayerNibiruBiomes extends GenLayer
 {
-    private BiomeGenBase commonBiomes[] = new BiomeGenBase[] { MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.INFECTED_DEAD_ROOFED_FOREST, MPBiomes.INFECTED_EXTREME_HILLS, MPBiomes.INFECTED_DEAD_TAIGA, MPBiomes.INFECTED_SWAMPLAND, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_ICE_PLAINS };
+    private Biome commonBiomes[] = new Biome[] { MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.INFECTED_DEAD_ROOFED_FOREST, MPBiomes.INFECTED_EXTREME_HILLS, MPBiomes.INFECTED_DEAD_TAIGA, MPBiomes.INFECTED_SWAMPLAND, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_ICE_PLAINS };
 
     public GenLayerNibiruBiomes(long seed, GenLayer parent)
     {
@@ -33,11 +33,11 @@ public class GenLayerNibiruBiomes extends GenLayer
 
                 if (this.nextInt(8) == 0)
                 {
-                    dest[dx + dz * areaWidth] = MPBiomes.GREEN_VEIN.biomeID;
+                    dest[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN);
                 }
                 else
                 {
-                    dest[dx + dz * areaWidth] = this.commonBiomes[this.nextInt(this.commonBiomes.length)].biomeID;
+                    dest[dx + dz * areaWidth] = Biome.getIdForBiome(this.commonBiomes[this.nextInt(this.commonBiomes.length)]);
                 }
             }
         }

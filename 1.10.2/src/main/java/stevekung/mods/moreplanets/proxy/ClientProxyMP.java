@@ -17,7 +17,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.Particle
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedSpore;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.client.particle.EntityBreakingMCFX;
+import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLavaMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLiquidDrip;
 
@@ -110,19 +110,19 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.CHEESE_SLIME)
             {
-                entityfx = new EntityBreakingMCFX(mc.theWorld, x, y, z, ChalosItems.CHEESE_SLIMEBALL);
+                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, ChalosItems.CHEESE_SLIMEBALL);
             }
             else if (type == EnumParticleTypesMP.INFECTED_CRYSTALLIZE_SLIME)
             {
-                entityfx = new EntityBreakingMCFX(mc.theWorld, x, y, z, DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
+                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
             }
             else if (type == EnumParticleTypesMP.INFECTED_EGG)
             {
-                entityfx = new EntityBreakingMCFX(mc.theWorld, x, y, z, motionX, motionY, motionZ, NibiruItems.INFECTED_EGG, 0);
+                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, motionX, motionY, motionZ, NibiruItems.INFECTED_EGG, 0);
             }
             else if (type == EnumParticleTypesMP.INFECTED_SNOWBALL)
             {
-                entityfx = new EntityBreakingMCFX(mc.theWorld, x, y, z, NibiruItems.INFECTED_SNOWBALL);
+                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, NibiruItems.INFECTED_SNOWBALL);
             }
             else if (type == EnumParticleTypesMP.INFECTED_WATER_DRIP)
             {

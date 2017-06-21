@@ -25,6 +25,7 @@ public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRe
         this.setUnlocalizedName(name);
     }
 
+    @Override
     public BlockBaseMP setSoundType(SoundType sound)
     {
         this.blockSoundType = sound;

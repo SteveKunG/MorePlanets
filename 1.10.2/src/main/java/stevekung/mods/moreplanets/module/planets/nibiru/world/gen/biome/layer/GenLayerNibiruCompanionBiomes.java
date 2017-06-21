@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.layer;
 
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -32,17 +33,17 @@ public class GenLayerNibiruCompanionBiomes extends GenLayer
                 int down = input[dx + 1 + (dz + 2) * nwidth];
                 int center = input[dx + 1 + (dz + 1) * nwidth];
 
-                if (this.isKey(MPBiomes.INFECTED_DESERT.biomeID, center, right, left, up, down))
+                if (this.isKey(Biome.getIdForBiome(MPBiomes.INFECTED_DESERT), center, right, left, up, down))
                 {
-                    output[dx + dz * areaWidth] = MPBiomes.INFECTED_DEAD_SAVANNA.biomeID;
+                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_DEAD_SAVANNA);
                 }
-                else if (this.isKey(MPBiomes.INFECTED_DEAD_SAVANNA.biomeID, center, right, left, up, down))
+                else if (this.isKey(Biome.getIdForBiome(MPBiomes.INFECTED_DEAD_SAVANNA), center, right, left, up, down))
                 {
-                    output[dx + dz * areaWidth] = MPBiomes.INFECTED_FOREST.biomeID;
+                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_FOREST);
                 }
-                else if (this.isKey(MPBiomes.INFECTED_ICE_PLAINS.biomeID, center, right, left, up, down))
+                else if (this.isKey(Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS), center, right, left, up, down))
                 {
-                    output[dx + dz * areaWidth] = MPBiomes.GREEN_VEIN.biomeID;
+                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN);
                 }
                 else
                 {

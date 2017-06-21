@@ -31,7 +31,7 @@ public class ItemInfectedEgg extends ItemBaseMP
 
         world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_EGG_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
         player.swingArm(hand);
-        
+
         if (!world.isRemote)
         {
             EntityInfectedEgg entityegg = new EntityInfectedEgg(world, player);

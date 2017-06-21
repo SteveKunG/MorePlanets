@@ -1,12 +1,21 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.items;
 
+import com.google.common.base.Predicates;
+
+import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockPattern;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
+import net.minecraft.block.state.pattern.FactoryBlockPattern;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityVeinEye;
@@ -20,11 +29,11 @@ public class ItemVeinEye extends ItemBaseMP
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         IBlockState iblockstate = world.getBlockState(pos);
 
-        if (player.canPlayerEdit(pos.offset(side), side, itemStack) && iblockstate.getBlock() == NibiruBlocks.VEIN_FRAME && !iblockstate.getValue(BlockVeinFrame.EYE).booleanValue())
+        if (player.canPlayerEdit(pos.offset(facing), facing, itemStack) && iblockstate.getBlock() == NibiruBlocks.VEIN_FRAME && !iblockstate.getValue(BlockVeinFrame.EYE).booleanValue())
         {
             if (world.isRemote)
             {
@@ -33,137 +42,77 @@ public class ItemVeinEye extends ItemBaseMP
                     double d0 = pos.getX() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
                     double d1 = pos.getY() + 0.8125F;
                     double d2 = pos.getZ() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
-                    double d3 = 0.0D;
-                    double d4 = 0.0D;
-                    double d5 = 0.0D;
-                    world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
                 }
-                return true;
+                return EnumActionResult.SUCCESS;
             }
             else
             {
                 world.setBlockState(pos, iblockstate.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(true)), 2);
                 world.updateComparatorOutputLevel(pos, NibiruBlocks.VEIN_FRAME);
                 --itemStack.stackSize;
+                BlockPattern.PatternHelper blockpattern$patternhelper = this.getOrCreatePortalShape().match(world, pos);
 
-                EnumFacing enumfacing = iblockstate.getValue(BlockVeinFrame.FACING);
-                int l = 0;
-                int j = 0;
-                boolean flag1 = false;
-                boolean flag = true;
-                EnumFacing enumfacing1 = enumfacing.rotateY();
-
-                for (int k = -2; k <= 2; ++k)
+                if (blockpattern$patternhelper != null)
                 {
-                    BlockPos blockpos1 = pos.offset(enumfacing1, k);
-                    IBlockState iblockstate1 = world.getBlockState(blockpos1);
+                    BlockPos blockpos = blockpattern$patternhelper.getFrontTopLeft().add(-3, 0, -3);
 
-                    if (iblockstate1.getBlock() == NibiruBlocks.VEIN_FRAME)
+                    for (int j = 0; j < 3; ++j)
                     {
-                        if (!iblockstate1.getValue(BlockVeinFrame.EYE).booleanValue())
+                        for (int k = 0; k < 3; ++k)
                         {
-                            flag = false;
-                            break;
-                        }
-
-                        j = k;
-
-                        if (!flag1)
-                        {
-                            l = k;
-                            flag1 = true;
+                            world.setBlockState(blockpos.add(j, 0, k), NibiruBlocks.VEIN_PORTAL.getDefaultState(), 2);
                         }
                     }
                 }
-
-                if (flag && j == l + 2)
-                {
-                    BlockPos blockpos = pos.offset(enumfacing, 4);
-
-                    for (int i1 = l; i1 <= j; ++i1)
-                    {
-                        BlockPos blockpos2 = blockpos.offset(enumfacing1, i1);
-                        IBlockState iblockstate3 = world.getBlockState(blockpos2);
-
-                        if (iblockstate3.getBlock() != NibiruBlocks.VEIN_FRAME || !iblockstate3.getValue(BlockVeinFrame.EYE).booleanValue())
-                        {
-                            flag = false;
-                            break;
-                        }
-                    }
-
-                    for (int j1 = l - 1; j1 <= j + 1; j1 += 4)
-                    {
-                        blockpos = pos.offset(enumfacing1, j1);
-
-                        for (int l1 = 1; l1 <= 3; ++l1)
-                        {
-                            BlockPos blockpos3 = blockpos.offset(enumfacing, l1);
-                            IBlockState iblockstate2 = world.getBlockState(blockpos3);
-
-                            if (iblockstate2.getBlock() != NibiruBlocks.VEIN_FRAME || !iblockstate2.getValue(BlockVeinFrame.EYE).booleanValue())
-                            {
-                                flag = false;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (flag)
-                    {
-                        for (int k1 = l; k1 <= j; ++k1)
-                        {
-                            blockpos = pos.offset(enumfacing1, k1);
-
-                            for (int i2 = 1; i2 <= 3; ++i2)
-                            {
-                                BlockPos blockpos4 = blockpos.offset(enumfacing, i2);
-                                world.setBlockState(blockpos4, NibiruBlocks.VEIN_PORTAL.getDefaultState(), 2);
-
-                            }
-                        }
-                    }
-                }
-                return true;
+                return EnumActionResult.SUCCESS;
             }
         }
         else
         {
-            return false;
+            return EnumActionResult.FAIL;
         }
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
-        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, false);
+        RayTraceResult raytraceresult = this.rayTrace(world, player, false);
 
-        if (movingobjectposition != null && movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && world.getBlockState(movingobjectposition.getBlockPos()).getBlock() == NibiruBlocks.VEIN_FRAME && !world.getBlockState(movingobjectposition.getBlockPos()).getValue(BlockVeinFrame.EYE).booleanValue())
+        if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(raytraceresult.getBlockPos()).getBlock() == NibiruBlocks.VEIN_FRAME && !world.getBlockState(raytraceresult.getBlockPos()).getValue(BlockVeinFrame.EYE).booleanValue())
         {
-            return itemStack;
+            return new ActionResult(EnumActionResult.PASS, itemStack);
         }
         else
         {
             if (!world.isRemote)
             {
-                BlockPos blockpos = world.getStrongholdPos("NibiruStronghold", new BlockPos(player));
+                BlockPos blockpos = ((WorldServer)world).getChunkProvider().getStrongholdGen(world, "NibiruStronghold", new BlockPos(player));
 
                 if (blockpos != null)
                 {
-                    EntityVeinEye entityendereye = new EntityVeinEye(world, player.posX, player.posY, player.posZ);
+                    EntityVeinEye entityendereye = new EntityVeinEye(world, player.posX, player.posY + player.height / 2.0F, player.posZ);
                     entityendereye.moveTowards(blockpos);
                     world.spawnEntityInWorld(entityendereye);
-                    world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                    world.playAuxSFXAtEntity((EntityPlayer)null, 1002, new BlockPos(player), 0);
+                    world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDEREYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                    world.playEvent((EntityPlayer)null, 1003, new BlockPos(player), 0);
 
                     if (!player.capabilities.isCreativeMode)
                     {
                         --itemStack.stackSize;
                     }
+                    player.addStat(StatList.getObjectUseStats(this));
+                    return new ActionResult(EnumActionResult.SUCCESS, itemStack);
                 }
             }
-            return itemStack;
+
+            return new ActionResult(EnumActionResult.FAIL, itemStack);
         }
+    }
+
+    private BlockPattern getOrCreatePortalShape()
+    {
+        return FactoryBlockPattern.start().aisle(new String[] {"?vvv?", ">???<", ">???<", ">???<", "?^^^?"}).where('?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where('^', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.SOUTH)))).where('>', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.WEST)))).where('v', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.NORTH)))).where('<', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.EAST)))).build();
     }
 
     @Override

@@ -732,7 +732,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     private boolean destroyBlock(BlockPos pos, boolean dropBlock)
     {
         IBlockState iblockstate = this.worldObj.getBlockState(pos);
-        Block block = iblockstate.getBlock();
 
         if (iblockstate.getMaterial() == Material.AIR)
         {

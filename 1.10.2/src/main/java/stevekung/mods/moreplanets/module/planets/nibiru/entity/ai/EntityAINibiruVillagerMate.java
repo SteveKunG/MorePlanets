@@ -2,7 +2,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.entity.ai;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.Village;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;

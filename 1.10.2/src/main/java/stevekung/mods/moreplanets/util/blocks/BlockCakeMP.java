@@ -36,11 +36,13 @@ public abstract class BlockCakeMP extends BlockBaseMP
         this.setSoundType(SoundType.CLOTH);
     }
 
+    @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return CAKE_AABB[((Integer)state.getValue(BlockStateHelper.BITES)).intValue()];
+        return CAKE_AABB[state.getValue(BlockStateHelper.BITES).intValue()];
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos)
     {

@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.util.blocks;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
@@ -30,16 +29,9 @@ import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 public class BlockStemMP extends BlockBushMP implements IGrowable
 {
     public static PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
-    public static PropertyDirection FACING = PropertyDirection.create("facing", new Predicate<EnumFacing>()
-    {
-        @Override
-        public boolean apply(EnumFacing facing)
-        {
-            return facing != EnumFacing.DOWN;
-        }
-    });
+    public static PropertyDirection FACING = PropertyDirection.create("facing", facing -> facing != EnumFacing.DOWN);
     private Block crop;
-    protected static final AxisAlignedBB[] STEM_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.125D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.25D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.375D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.5D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.625D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.75D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.875D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D)};
+    protected static AxisAlignedBB[] STEM_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.125D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.25D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.375D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.5D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.625D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.75D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.875D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D)};
 
     public BlockStemMP(String name, Block crop)
     {

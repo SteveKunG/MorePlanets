@@ -23,7 +23,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
@@ -131,7 +135,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
         if (this.useVineAttacking)
         {
             int range = 16;
-            List<EntityPlayer> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.fromBounds(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+            List<EntityPlayer> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
             for (EntityPlayer entity : entitiesAroundBH)
             {
@@ -143,7 +147,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
                     entity.motionX = motionX * 0.025F;
                     entity.motionY = motionY * 0.025F;
                     entity.motionZ = motionZ * 0.025F;
-                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), AxisAlignedBB.fromBounds(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D));
+                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D));
 
                     for (EntityPlayer near : entityNearBH)
                     {
@@ -164,7 +168,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
 
             if (this.rand.nextFloat() > 0.975F && !this.isDead)
             {
-                EntityPlayer player = this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 32);
+                EntityPlayer player = this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 32, false);
 
                 if (player != null && !player.capabilities.isCreativeMode)
                 {
@@ -189,7 +193,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
             {
                 Entity entity = damageSource.getEntity();
 
-                if (this.riddenByEntity != entity && this.ridingEntity != entity)
+                if (this.getPassengers().contains(entity) && this.getRidingEntity() != entity)
                 {
                     if (entity != this)
                     {
@@ -231,7 +235,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
@@ -253,8 +257,8 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1000.0F * ConfigManagerCore.dungeonBossHealthMod);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1000.0F * ConfigManagerCore.dungeonBossHealthMod);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
     }
 
     @Override
@@ -349,7 +353,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
 
                 for (EntityPlayer p : entitiesWithin2)
                 {
-                    p.addChatMessage(new ChatComponentText(GCCoreUtil.translate("gui.skeleton_boss.message")));
+                    p.addChatMessage(new TextComponentString(GCCoreUtil.translate("gui.skeleton_boss.message")));
                 }
                 this.setDead();
                 return;
@@ -418,7 +422,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
     }
 
     @Override
-    public IChatComponent getBossDisplayName()
+    public ITextComponent getBossDisplayName()
     {
         return this.getDisplayName();
     }

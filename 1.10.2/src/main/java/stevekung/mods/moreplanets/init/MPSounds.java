@@ -28,6 +28,8 @@ public class MPSounds
     public static SoundEvent FRONOS_MOB_HURT;
     public static SoundEvent FRONOS_MOB_DEATH;
     public static SoundEvent LOUD_THUNDER;
+    public static SoundEvent LILYPAD_PLACE;
+    public static SoundEvent UNLOCK_TREASURE_CHEST;
 
     public static void init()
     {
@@ -54,5 +56,7 @@ public class MPSounds
         CommonRegisterHelper.registerSound(MPSounds.FRONOS_MOB_HURT, "fronos_mob_hurt");
         CommonRegisterHelper.registerSound(MPSounds.FRONOS_MOB_DEATH, "fronos_mob_death");
         CommonRegisterHelper.registerSound(MPSounds.LOUD_THUNDER, "loud_thunder");
+        CommonRegisterHelper.registerSound(MPSounds.LILYPAD_PLACE, "lilypad_place");
+        CommonRegisterHelper.registerSound(MPSounds.UNLOCK_TREASURE_CHEST, "unlock_treasure_chest");
     }
 }

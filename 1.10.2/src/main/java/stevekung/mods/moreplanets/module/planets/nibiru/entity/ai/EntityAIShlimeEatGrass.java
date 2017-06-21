@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.entity.ai;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruTallGrass;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -86,7 +86,7 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
                 {
                     if (this.entityWorld.getGameRules().getBoolean("mobGriefing"))
                     {
-                        this.entityWorld.playAuxSFX(2001, blockpos1, Block.getIdFromBlock(NibiruBlocks.INFECTED_GRASS));
+                        this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(NibiruBlocks.INFECTED_GRASS));
                         this.entityWorld.setBlockState(blockpos1, NibiruBlocks.INFECTED_DIRT.getDefaultState(), 2);
                     }
                     this.grassEaterEntity.eatGrassBonus();
@@ -95,7 +95,7 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
                 {
                     if (this.entityWorld.getGameRules().getBoolean("mobGriefing"))
                     {
-                        this.entityWorld.playAuxSFX(2001, blockpos1, Block.getIdFromBlock(NibiruBlocks.GREEN_VEIN_GRASS));
+                        this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(NibiruBlocks.GREEN_VEIN_GRASS));
                         this.entityWorld.setBlockState(blockpos1, NibiruBlocks.INFECTED_DIRT.getDefaultState(), 2);
                     }
                     this.grassEaterEntity.eatGrassBonus();

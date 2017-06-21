@@ -1,7 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen;
 
+import java.util.Random;
+
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
@@ -45,36 +48,36 @@ public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
     }
 
     @Override
-    protected void generate(BiomeGenBase biome)
+    protected void generate(Biome biome, World world, Random rand)
     {
         int i;
-        int x = this.randomGenerator.nextInt(16) + 8;
-        int z = this.randomGenerator.nextInt(16) + 8;
+        int x = rand.nextInt(16) + 8;
+        int z = rand.nextInt(16) + 8;
 
-        this.generateOre(this.dirtGen, EnumOreGen.DIRT);
-        this.generateOre(this.coalGen, EnumOreGen.COAL);
-        this.generateOre(this.ironGen, EnumOreGen.IRON);
-        this.generateOre(this.goldGen, EnumOreGen.GOLD);
-        this.generateOre(this.redstoneGen, EnumOreGen.REDSTONE);
-        this.generateOre(this.diamondGen, EnumOreGen.DIAMOND);
-        this.generateOre(this.tinGen, EnumOreGen.TIN);
-        this.generateOre(this.copperGen, EnumOreGen.COPPER);
-        this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM);
-        this.generateOre(this.siliconGen, EnumOreGen.SILICON);
-        this.generateOre(this.gravelGen, EnumOreGen.GRAVEL);
-        this.generateOre(this.inferumiteGen, 16, 0, 64);
-        this.generateOre(this.oilGen, 3, 0, 36);
-        this.generateLapis(this.lapisGen, EnumOreGen.LAPIS);
+        this.generateOre(this.dirtGen, EnumOreGen.DIRT, world, rand);
+        this.generateOre(this.coalGen, EnumOreGen.COAL, world, rand);
+        this.generateOre(this.ironGen, EnumOreGen.IRON, world, rand);
+        this.generateOre(this.goldGen, EnumOreGen.GOLD, world, rand);
+        this.generateOre(this.redstoneGen, EnumOreGen.REDSTONE, world, rand);
+        this.generateOre(this.diamondGen, EnumOreGen.DIAMOND, world, rand);
+        this.generateOre(this.tinGen, EnumOreGen.TIN, world, rand);
+        this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
+        this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
+        this.generateOre(this.siliconGen, EnumOreGen.SILICON, world, rand);
+        this.generateOre(this.gravelGen, EnumOreGen.GRAVEL, world, rand);
+        this.generateOre(this.inferumiteGen, 16, 0, 64, world, rand);
+        this.generateOre(this.oilGen, 3, 0, 36, world, rand);
+        this.generateLapis(this.lapisGen, EnumOreGen.LAPIS, world, rand);
 
         for (i = 0; i < 50; ++i)
         {
-            int y = this.randomGenerator.nextInt(this.randomGenerator.nextInt(248) + 8);
-            new WorldGenCaveLiquids(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, NibiruBlocks.NIBIRU_BLOCK, 0).generate(this.currentWorld, this.randomGenerator, this.field_180294_c.add(x, y, z));
+            int y = rand.nextInt(rand.nextInt(248) + 8);
+            new WorldGenCaveLiquids(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, NibiruBlocks.NIBIRU_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (i = 0; i < 20; ++i)
         {
-            int y = this.randomGenerator.nextInt(this.randomGenerator.nextInt(this.randomGenerator.nextInt(240) + 8) + 8);
-            new WorldGenCaveLiquids(Blocks.flowing_lava, NibiruBlocks.NIBIRU_BLOCK, 0).generate(this.currentWorld, this.randomGenerator, this.field_180294_c.add(x, y, z));
+            int y = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
+            new WorldGenCaveLiquids(Blocks.FLOWING_LAVA, NibiruBlocks.NIBIRU_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
         }
     }
 }

@@ -1,8 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.tileentity;
 
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAncientChestMP;
 

@@ -17,15 +17,22 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.Tuple;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.village.Village;
@@ -69,7 +76,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     private ITradeList[] librarianTradeList = new ITradeList[] {
             new EmeraldForItems(new ItemStack(Items.paper), new PriceInfo(24, 36)),
             new ListEnchantedBookForEmeralds(),
-            new EmeraldForItems(new ItemStack(Items.book), new PriceInfo(8, 10)),
+            new EmeraldForItems(new ItemStack(Items.BOOK), new PriceInfo(8, 10)),
             new ListItemForEmeralds(new ItemStack(NibiruBlocks.NIBIRU_BOOKSHELF, 1, 0), new PriceInfo(3, 4)),
             new ListItemForEmeralds(new ItemStack(NibiruBlocks.NIBIRU_BOOKSHELF, 1, 1), new PriceInfo(3, 4)),
             new ListEnchantedBookForEmeralds(),
@@ -117,7 +124,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
@@ -157,7 +164,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
     }
 
     @Override
@@ -212,7 +219,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
                         this.villageObj.setReputationForPlayer(this.lastBuyingPlayer, 1);
                     }
                 }
-                this.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
+                this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION.id, 200, 0));
             }
         }
         super.updateAITasks();
@@ -423,7 +430,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             i += 5;
         }
 
-        if (recipe.getItemToBuy().getItem() == Items.emerald)
+        if (recipe.getItemToBuy().getItem() == Items.EMERALD)
         {
             this.wealth += recipe.getItemToBuy().stackSize;
         }
@@ -466,15 +473,15 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     public void setRecipes(MerchantRecipeList recipeList) {}
 
     @Override
-    public IChatComponent getDisplayName()
+    public ITextComponent getDisplayName()
     {
         String s = this.getCustomNameTag();
 
         if (s != null && s.length() > 0)
         {
-            ChatComponentText chatcomponenttext = new ChatComponentText(s);
-            chatcomponenttext.getChatStyle().setChatHoverEvent(this.getHoverEvent());
-            chatcomponenttext.getChatStyle().setInsertion(this.getUniqueID().toString());
+            TextComponentString chatcomponenttext = new TextComponentString(s);
+            chatcomponenttext.getStyle().setHoverEvent(this.getHoverEvent());
+            chatcomponenttext.getStyle().setInsertion(this.getUniqueID().toString());
             return chatcomponenttext;
         }
         else
@@ -504,9 +511,9 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
             if (name != null)
             {
-                ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation("entity.nibiru_villager." + name);
-                chatcomponenttranslation.getChatStyle().setChatHoverEvent(this.getHoverEvent());
-                chatcomponenttranslation.getChatStyle().setInsertion(this.getUniqueID().toString());
+                TextComponentTranslation chatcomponenttranslation = new TextComponentTranslation("entity.nibiru_villager." + name);
+                chatcomponenttranslation.getStyle().setHoverEvent(this.getHoverEvent());
+                chatcomponenttranslation.getStyle().setInsertion(this.getUniqueID().toString());
                 return chatcomponenttranslation;
             }
             else
@@ -553,7 +560,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data)
     {
-        if (this.worldObj.getBiomeGenForCoords(this.getPosition()) == MPBiomes.GREEN_VEIN)
+        if (this.worldObj.getBiome(this.getPosition()) == MPBiomes.GREEN_VEIN)
         {
             this.setProfession(3 + this.rand.nextInt(3));
         }
@@ -706,7 +713,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
                 if (itemStack != null)
                 {
-                    if (itemStack.getItem() == Items.bread && itemStack.stackSize >= 3)
+                    if (itemStack.getItem() == Items.BREAD && itemStack.stackSize >= 3)
                     {
                         flag = true;
                         this.villagerInventory.decrStackSize(i, 3);
@@ -812,7 +819,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
             if (itemStack != null)
             {
-                if (itemStack.getItem() == Items.bread && itemStack.stackSize >= 3 * multiplier || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6 && itemStack.stackSize >= 12 * multiplier)
+                if (itemStack.getItem() == Items.BREAD && itemStack.stackSize >= 3 * multiplier || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6 && itemStack.stackSize >= 12 * multiplier)
                 {
                     return true;
                 }
@@ -859,7 +866,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             {
                 i = this.price.getPrice(rand);
             }
-            recipeList.add(new MerchantRecipe(new ItemStack(this.stackSell.getItem(), i, this.stackSell.getItemDamage()), Items.emerald));
+            recipeList.add(new MerchantRecipe(new ItemStack(this.stackSell.getItem(), i, this.stackSell.getItemDamage()), Items.EMERALD));
         }
     }
 
@@ -875,14 +882,14 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         {
             Enchantment enchantment = Enchantment.enchantmentsBookList[rand.nextInt(Enchantment.enchantmentsBookList.length)];
             int i = MathHelper.getRandomIntegerInRange(rand, enchantment.getMinLevel(), enchantment.getMaxLevel());
-            ItemStack itemstack = Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(enchantment, i));
+            ItemStack itemstack = Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(enchantment, i));
             int j = 2 + rand.nextInt(5 + i * 10) + 3 * i;
 
             if (j > 64)
             {
                 j = 64;
             }
-            recipeList.add(new MerchantRecipe(new ItemStack(Items.book), new ItemStack(Items.emerald, j), itemstack));
+            recipeList.add(new MerchantRecipe(new ItemStack(Items.BOOK), new ItemStack(Items.EMERALD, j), itemstack));
         }
     }
 
@@ -924,13 +931,13 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
                 if (i < 0)
                 {
-                    buyItem = new ItemStack(Items.emerald, 1, 0);
+                    buyItem = new ItemStack(Items.EMERALD, 1, 0);
                     capsule.stackSize = 1 + rand.nextInt(4);
                     sellItem = capsule;
                 }
                 else
                 {
-                    buyItem = new ItemStack(Items.emerald, i, 0);
+                    buyItem = new ItemStack(Items.EMERALD, i, 0);
                     capsule.stackSize = 1 + rand.nextInt(4);
                     sellItem = capsule;
                 }
@@ -939,12 +946,12 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             {
                 if (i < 0)
                 {
-                    buyItem = new ItemStack(Items.emerald, 1, 0);
+                    buyItem = new ItemStack(Items.EMERALD, 1, 0);
                     sellItem = new ItemStack(this.buyStack.getItem(), -i, this.buyStack.getMetadata());
                 }
                 else
                 {
-                    buyItem = new ItemStack(Items.emerald, i, 0);
+                    buyItem = new ItemStack(Items.EMERALD, i, 0);
                     sellItem = new ItemStack(this.buyStack.getItem(), 1, this.buyStack.getMetadata());
                 }
             }

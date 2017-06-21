@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
@@ -46,7 +45,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.eventhandler.Event;
@@ -77,7 +75,6 @@ import stevekung.mods.moreplanets.util.MorePlanetsBossStatus;
 import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.blocks.IFireBlock;
 import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
-import stevekung.mods.moreplanets.util.client.renderer.item.ItemRendererTieredRocket;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
 public class ClientEventHandler
@@ -137,9 +134,10 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onModelBake(ModelBakeEvent event)
     {
-        ClientRegisterHelper.registerOBJModel(event, "tier_4_rocket", "tier_4_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
-        ClientRegisterHelper.registerOBJModel(event, "tier_5_rocket", "tier_5_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
-        ClientRegisterHelper.registerOBJModel(event, "tier_6_rocket", "tier_6_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
+        //TODO Fix model loading
+        //ClientRegisterHelper.registerOBJModel(event, "tier_4_rocket", "tier_4_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
+        //ClientRegisterHelper.registerOBJModel(event, "tier_5_rocket", "tier_5_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
+        //ClientRegisterHelper.registerOBJModel(event, "tier_6_rocket", "tier_6_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
     }
 
     @SubscribeEvent

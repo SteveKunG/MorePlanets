@@ -191,10 +191,6 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
                     {
                         enumfacing = EnumFacing.NORTH;
                     }
-
-                    Block block6 = iblockstate6.getBlock();
-                    Block block7 = iblockstate7.getBlock();
-
                     if ((flag || iblockstate6.isFullBlock()) && !flag1 && !iblockstate7.isFullBlock())
                     {
                         enumfacing = EnumFacing.SOUTH;
@@ -226,10 +222,6 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
                 {
                     enumfacing = EnumFacing.WEST;
                 }
-
-                Block block4 = iblockstate4.getBlock();
-                Block block5 = iblockstate5.getBlock();
-
                 if ((iblockstate2.isFullBlock() || iblockstate4.isFullBlock()) && !iblockstate3.isFullBlock() && !iblockstate5.isFullBlock())
                 {
                     enumfacing = EnumFacing.EAST;

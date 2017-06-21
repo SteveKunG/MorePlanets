@@ -5,7 +5,9 @@ import micdoodle8.mods.galacticraft.core.entities.EntityHangingSchematic;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -17,39 +19,28 @@ public abstract class ItemSchematicVariantsMP extends ItemBaseVariantsMP impleme
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (side == EnumFacing.DOWN)
+        BlockPos blockpos = pos.offset(facing);
+
+        if (facing != EnumFacing.DOWN && facing != EnumFacing.UP && player.canPlayerEdit(blockpos, facing, itemStack))
         {
-            return false;
-        }
-        else if (side == EnumFacing.UP)
-        {
-            return false;
+            EntityHangingSchematic entityhanging = this.createEntity(world, blockpos, facing, this.getIndex(itemStack.getItemDamage()));
+
+            if (entityhanging != null && entityhanging.onValidSurface())
+            {
+                if (!world.isRemote)
+                {
+                    world.spawnEntityInWorld(entityhanging);
+                    entityhanging.sendToClient(world, blockpos);
+                }
+                --itemStack.stackSize;
+            }
+            return EnumActionResult.SUCCESS;
         }
         else
         {
-            BlockPos blockpos = pos.offset(side);
-
-            if (!player.canPlayerEdit(blockpos, side, itemStack))
-            {
-                return false;
-            }
-            else
-            {
-                EntityHangingSchematic hanging = this.createEntity(world, blockpos, side, this.getIndex(itemStack.getItemDamage()));
-
-                if (hanging != null && hanging.onValidSurface())
-                {
-                    if (!world.isRemote)
-                    {
-                        world.spawnEntityInWorld(hanging);
-                        hanging.sendToClient(world, blockpos);
-                    }
-                    --itemStack.stackSize;
-                }
-                return true;
-            }
+            return EnumActionResult.FAIL;
         }
     }
 

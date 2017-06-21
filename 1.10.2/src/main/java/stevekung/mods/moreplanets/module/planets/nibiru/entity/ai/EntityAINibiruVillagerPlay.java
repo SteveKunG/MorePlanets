@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.Vec3d;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerPlay extends EntityAIBase
@@ -54,7 +54,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
 
             if (this.targetVillager == null)
             {
-                Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
+                Vec3d vec3 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
 
                 if (vec3 == null)
                 {
@@ -102,7 +102,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
         }
         else if (this.villagerObj.getNavigator().noPath())
         {
-            Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
+            Vec3d vec3 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
 
             if (vec3 == null)
             {

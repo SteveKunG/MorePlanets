@@ -1,11 +1,15 @@
 package stevekung.mods.moreplanets.util.items;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDoor;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -27,60 +31,37 @@ public class ItemDoorMP extends ItemBaseMP
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (facing != EnumFacing.UP)
         {
-            return false;
+            return EnumActionResult.FAIL;
         }
         else
         {
-            IBlockState state = world.getBlockState(pos);
-            Block block = state.getBlock();
-            block = this.door;
+            IBlockState iblockstate = world.getBlockState(pos);
+            Block block = iblockstate.getBlock();
 
             if (!block.isReplaceable(world, pos))
             {
                 pos = pos.offset(facing);
             }
-
-            if (!player.canPlayerEdit(pos, facing, itemStack))
+            if (player.canPlayerEdit(pos, facing, itemStack) && this.door.canPlaceBlockAt(world, pos))
             {
-                return false;
-            }
-            else if (!block.canPlaceBlockAt(world, pos))
-            {
-                return false;
+                EnumFacing enumfacing = EnumFacing.fromAngle(player.rotationYaw);
+                int i = enumfacing.getFrontOffsetX();
+                int j = enumfacing.getFrontOffsetZ();
+                boolean flag = i < 0 && hitZ < 0.5F || i > 0 && hitZ > 0.5F || j < 0 && hitX > 0.5F || j > 0 && hitX < 0.5F;
+                ItemDoor.placeDoor(world, pos, enumfacing, this.door, flag);
+                SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);
+                world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                --itemStack.stackSize;
+                return EnumActionResult.SUCCESS;
             }
             else
             {
-                this.placeDoor(world, pos, EnumFacing.fromAngle(player.rotationYaw), block);
-                --itemStack.stackSize;
-                return true;
+                return EnumActionResult.FAIL;
             }
         }
-    }
-
-    private void placeDoor(World world, BlockPos pos, EnumFacing facing, Block door)
-    {
-        BlockPos blockpos1 = pos.offset(facing.rotateY());
-        BlockPos blockpos2 = pos.offset(facing.rotateYCCW());
-        int i = (world.getBlockState(blockpos2).isNormalCube() ? 1 : 0) + (world.getBlockState(blockpos2.up()).isNormalCube() ? 1 : 0);
-        int j = (world.getBlockState(blockpos1).isNormalCube() ? 1 : 0) + (world.getBlockState(blockpos1.up()).isNormalCube() ? 1 : 0);
-        boolean flag = world.getBlockState(blockpos2).getBlock() == door || world.getBlockState(blockpos2.up()).getBlock() == door;
-        boolean flag1 = world.getBlockState(blockpos1).getBlock() == door || world.getBlockState(blockpos1.up()).getBlock() == door;
-        boolean flag2 = false;
-
-        if (flag && !flag1 || j > i)
-        {
-            flag2 = true;
-        }
-        BlockPos blockpos3 = pos.up();
-        IBlockState iblockstate = door.getDefaultState().withProperty(BlockDoor.FACING, facing).withProperty(BlockDoor.HINGE, flag2 ? BlockDoor.EnumHingePosition.RIGHT : BlockDoor.EnumHingePosition.LEFT);
-        world.setBlockState(pos, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER), 2);
-        world.setBlockState(blockpos3, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), 2);
-        world.notifyNeighborsOfStateChange(pos, door);
-        world.notifyNeighborsOfStateChange(blockpos3, door);
-        world.playSoundEffect(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, door.getSoundType(iblockstate, world, blockpos3, entity).getPlaceSound(), (door.stepSound.getVolume() + 1.0F) / 2.0F, door.stepSound.getFrequency() * 0.8F);
     }
 }

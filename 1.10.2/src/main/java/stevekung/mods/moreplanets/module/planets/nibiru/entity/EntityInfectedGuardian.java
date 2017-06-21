@@ -11,6 +11,8 @@ import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
@@ -22,6 +24,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -123,6 +126,11 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         return this.isSyncedFlagSet(2);
     }
 
+    private void setMoving(boolean moving)
+    {
+        this.setSyncedFlag(2, moving);
+    }
+
     @Override
     public int getAttackDuration()
     {
@@ -185,7 +193,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
             }
             else
             {
-                Entity entity = this.worldObj.getEntityByID(this.dataWatcher.getWatchableObjectInt(17));
+                Entity entity = this.worldObj.getEntityByID(((Integer)this.dataManager.get(TARGET_ENTITY)).intValue());
 
                 if (entity instanceof EntityLivingBase)
                 {
@@ -204,19 +212,18 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         }
     }
 
-    @Override
-    public void onDataWatcherUpdate(int dataID)
+    public void notifyDataManagerChange(DataParameter key)
     {
-        super.onDataWatcherUpdate(dataID);
+        super.notifyDataManagerChange(key);
 
-        if (dataID == 16)
+        if (STATUS.equals(key))
         {
             if (this.isElder() && this.width < 1.0F)
             {
                 this.setSize(1.9975F, 1.9975F);
             }
         }
-        else if (dataID == 17)
+        else if (TARGET_ENTITY.equals(key))
         {
             this.clientSideAttackTime = 0;
             this.targetedEntity = null;
@@ -242,11 +249,11 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
 
                 if (this.motionY > 0.0D && this.clientSideTouchedGround && !this.isSilent())
                 {
-                    this.worldObj.playSound(this.posX, this.posY, this.posZ, "mob.guardian.flop", 1.0F, 1.0F, false);
+                    this.worldObj.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GUARDIAN_FLOP, this.getSoundCategory(), 1.0F, 1.0F, false);
                 }
                 this.clientSideTouchedGround = this.motionY < 0.0D && this.worldObj.isBlockNormalCube(new BlockPos(this).down(), false);
             }
-            else if (this.func_175472_n())
+            else if (this.isMoving())
             {
                 if (this.clientSideTailAnimationSpeed < 0.5F)
                 {
@@ -269,7 +276,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
             {
                 this.clientSideSpikesAnimation = this.rand.nextFloat();
             }
-            else if (this.func_175472_n())
+            else if (this.isMoving())
             {
                 this.clientSideSpikesAnimation += (0.0F - this.clientSideSpikesAnimation) * 0.25F;
             }
@@ -278,9 +285,9 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                 this.clientSideSpikesAnimation += (1.0F - this.clientSideSpikesAnimation) * 0.06F;
             }
 
-            if (this.func_175472_n() && this.isInWater())
+            if (this.isMoving() && this.isInWater())
             {
-                Vec3 vec3 = this.getLook(0.0F);
+                Vec3d vec3 = this.getLook(0.0F);
 
                 for (int i = 0; i < 2; ++i)
                 {
@@ -290,7 +297,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
 
             if (this.hasTargetedEntity())
             {
-                if (this.clientSideAttackTime < this.func_175464_ck())
+                if (this.clientSideAttackTime < this.getAttackDuration())
                 {
                     ++this.clientSideAttackTime;
                 }
@@ -301,7 +308,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                 {
                     this.getLookHelper().setLookPositionWithEntity(entitylivingbase, 90.0F, 90.0F);
                     this.getLookHelper().onUpdateLook();
-                    double d5 = this.func_175477_p(0.0F);
+                    double d5 = this.getAttackAnimationScale(0.0F);
                     double d0 = entitylivingbase.posX - this.posX;
                     double d1 = entitylivingbase.posY + entitylivingbase.height * 0.5F - (this.posY + this.getEyeHeight());
                     double d2 = entitylivingbase.posZ - this.posZ;
@@ -341,24 +348,21 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         super.onLivingUpdate();
     }
 
-    @Override
     @SideOnly(Side.CLIENT)
-    public float func_175471_a(float p_175471_1_)
+    public float getTailAnimation(float partialTicks)
     {
-        return this.clientSideTailAnimationO + (this.clientSideTailAnimation - this.clientSideTailAnimationO) * p_175471_1_;
+        return this.clientSideTailAnimationO + (this.clientSideTailAnimation - this.clientSideTailAnimationO) * partialTicks;
     }
 
-    @Override
     @SideOnly(Side.CLIENT)
-    public float func_175469_o(float p_175469_1_)
+    public float getSpikesAnimation(float partialTicks)
     {
-        return this.clientSideSpikesAnimationO + (this.clientSideSpikesAnimation - this.clientSideSpikesAnimationO) * p_175469_1_;
+        return this.clientSideSpikesAnimationO + (this.clientSideSpikesAnimation - this.clientSideSpikesAnimationO) * partialTicks;
     }
 
-    @Override
-    public float func_175477_p(float p_175477_1_)
+    public float getAttackAnimationScale(float partialTicks)
     {
-        return (this.clientSideAttackTime + p_175477_1_) / this.func_175464_ck();
+        return ((float)this.clientSideAttackTime + partialTicks) / (float)this.getAttackDuration();
     }
 
     @Override
@@ -368,26 +372,19 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         {
             if ((this.ticksExisted + this.getEntityId()) % 1200 == 0)
             {
-                Potion potion = Potion.digSlowdown;
+                Potion potion = MobEffects.MINING_FATIGUE;
 
-                for (EntityPlayerMP entityplayermp : this.worldObj.getPlayers(EntityPlayerMP.class, new Predicate<EntityPlayerMP>()
-                {
-                    @Override
-                    public boolean apply(EntityPlayerMP p_apply_1_)
-                    {
-                        return EntityInfectedGuardian.this.getDistanceSqToEntity(p_apply_1_) < 2500.0D && p_apply_1_.theItemInWorldManager.survivalOrAdventure();
-                    }
-                }))
+                for (EntityPlayerMP entityplayermp : this.worldObj.getPlayers(EntityPlayerMP.class, entity -> EntityInfectedGuardian.this.getDistanceSqToEntity(entity) < 2500.0D && entity.interactionManager.survivalOrAdventure()))
                 {
                     if (!entityplayermp.isPotionActive(potion) || entityplayermp.getActivePotionEffect(potion).getAmplifier() < 2 || entityplayermp.getActivePotionEffect(potion).getDuration() < 1200)
                     {
                         MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ);
-                        entityplayermp.worldObj.playSound(entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, "mob.guardian.curse", 1.0F, 1.0F, false);
-                        entityplayermp.addPotionEffect(new PotionEffect(potion.id, 6000, 2));
+                        //entityplayermp.worldObj.playSound(entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, "mob.guardian.curse", 1.0F, 1.0F, false);
+                        entityplayermp.addPotionEffect(new PotionEffect(potion, 6000, 2));
 
                         if (!entityplayermp.capabilities.isCreativeMode && !entityplayermp.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION))
                         {
-                            entityplayermp.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 80, 2));
+                            entityplayermp.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 2));
                         }
                     }
                 }
@@ -412,7 +409,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
 
         if (this.rand.nextInt(3 + fortune) > 1)
         {
-            this.entityDropItem(new ItemStack(Items.fish, 1, ItemFishFood.FishType.COD.getMetadata()), 1.0F);
+            this.entityDropItem(new ItemStack(Items.FISH, 1, ItemFishFood.FishType.COD.getMetadata()), 1.0F);
         }
         else if (this.rand.nextInt(3 + fortune) > 1)
         {
@@ -435,14 +432,14 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        if (!this.func_175472_n() && !source.isMagicDamage() && source.getSourceOfDamage() instanceof EntityLivingBase)
+        if (!this.isMoving() && !source.isMagicDamage() && source.getSourceOfDamage() instanceof EntityLivingBase)
         {
             EntityLivingBase entitylivingbase = (EntityLivingBase)source.getSourceOfDamage();
 
             if (!source.isExplosion())
             {
                 entitylivingbase.attackEntityFrom(DamageSource.causeThornsDamage(this), 2.0F);
-                entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 80, 0));
+                entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 0));
             }
         }
         this.wander.makeUpdate();
@@ -522,7 +519,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                     this.entity.setTargetedEntity(this.entity.getAttackTarget().getEntityId());
                     this.entity.worldObj.setEntityState(this.entity, (byte)21);
                 }
-                else if (this.tickCounter >= this.entity.func_175464_ck())
+                else if (this.tickCounter >= this.entity.getAttackDuration())
                 {
                     float f = 1.0F;
 
@@ -558,7 +555,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         @Override
         public void onUpdateMoveHelper()
         {
-            if (this.update && !this.entity.getNavigator().noPath())
+            if (this.action == EntityMoveHelper.Action.MOVE_TO && !this.entity.getNavigator().noPath())
             {
                 double d0 = this.posX - this.entity.posX;
                 double d1 = this.posY - this.entity.posY;
@@ -594,12 +591,12 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                     d12 = d9;
                 }
                 this.entity.getLookHelper().setLookPosition(d10 + (d7 - d10) * 0.125D, d11 + (d8 - d11) * 0.125D, d12 + (d9 - d12) * 0.125D, 10.0F, 40.0F);
-                this.entity.func_175476_l(true);
+                this.entity.setMoving(true);
             }
             else
             {
                 this.entity.setAIMoveSpeed(0.0F);
-                this.entity.func_175476_l(false);
+                this.entity.setMoving(false);
             }
         }
     }

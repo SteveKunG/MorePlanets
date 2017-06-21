@@ -8,12 +8,12 @@ import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EntitySelectors;
@@ -34,14 +34,13 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
     protected void applyEntityAI()
     {
         super.applyEntityAI();
-        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityNibiruVillager.class, 1.0D, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityNibiruVillager.class, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityNibiruVillager.class, false));
     }
 
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
@@ -79,13 +78,13 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(ConfigManagerCore.hardMode ? 5.0D : 3.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(ConfigManagerCore.hardMode ? 5.0D : 3.0D);
     }
 
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data)
     {
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextGaussian() * 0.05D, 1));
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextGaussian() * 0.05D, 1));
         float f = difficulty.getClampedAdditionalDifficulty();
         this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * f);
 
@@ -110,7 +109,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
                     {
                         EntityInfectedChicken entitychicken = list.get(0);
                         entitychicken.setChickenJockey(true);
-                        this.mountEntity(entitychicken);
+                        this.startRiding(entitychicken);
                     }
                 }
                 else if (this.worldObj.rand.nextFloat() < 0.05D)
@@ -120,7 +119,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
                     entitychicken1.onInitialSpawn(difficulty, (IEntityLivingData)null);
                     entitychicken1.setChickenJockey(true);
                     this.worldObj.spawnEntityInWorld(entitychicken1);
-                    this.mountEntity(entitychicken1);
+                    this.startRiding(entitychicken1);
                 }
             }
         }
@@ -129,29 +128,29 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setEnchantmentBasedOnDifficulty(difficulty);
 
-        if (this.getEquipmentInSlot(4) == null)
+        if (this.getItemStackFromSlot(EntityEquipmentSlot.HEAD) == null)
         {
             Calendar calendar = this.worldObj.getCurrentDate();
 
             if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31 && this.rand.nextFloat() < 0.25F)
             {
-                this.setCurrentItemOrArmor(4, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.lit_pumpkin : Blocks.pumpkin));
-                this.equipmentDropChances[4] = 0.0F;
+                this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
+                this.inventoryArmorDropChances[EntityEquipmentSlot.HEAD.getIndex()] = 0.0F;
             }
         }
 
-        this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * 0.05000000074505806D, 0));
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * 0.05000000074505806D, 0));
         double d0 = this.rand.nextDouble() * 1.5D * f;
 
         if (d0 > 1.0D)
         {
-            this.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(new AttributeModifier("Random zombie-spawn bonus", d0, 2));
+            this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).applyModifier(new AttributeModifier("Random zombie-spawn bonus", d0, 2));
         }
 
         if (this.rand.nextFloat() < f * 0.05F)
         {
-            this.getEntityAttribute(reinforcementChance).applyModifier(new AttributeModifier("Leader zombie bonus", this.rand.nextDouble() * 0.25D + 0.5D, 0));
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(new AttributeModifier("Leader zombie bonus", this.rand.nextDouble() * 3.0D + 1.0D, 2));
+            this.getEntityAttribute(SPAWN_REINFORCEMENTS_CHANCE).applyModifier(new AttributeModifier("Leader zombie bonus", this.rand.nextDouble() * 0.25D + 0.5D, 0));
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).applyModifier(new AttributeModifier("Leader zombie bonus", this.rand.nextDouble() * 3.0D + 1.0D, 2));
             this.setBreakDoorsAItask(true);
         }
         return data;
@@ -165,7 +164,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
 
     public IAttribute getReinforcementsAttribute()
     {
-        return EntityZombie.reinforcementChance;
+        return EntityZombie.SPAWN_REINFORCEMENTS_CHANCE;
     }
 
     class GroupData implements IEntityLivingData

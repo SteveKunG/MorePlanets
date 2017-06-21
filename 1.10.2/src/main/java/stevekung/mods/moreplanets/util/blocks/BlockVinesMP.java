@@ -88,36 +88,31 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
         int i = 0;
         AxisAlignedBB axisalignedbb = FULL_BLOCK_AABB;
 
-        if (((Boolean)state.getValue(UP)).booleanValue())
+        if (state.getValue(UP).booleanValue())
         {
             axisalignedbb = UP_AABB;
             ++i;
         }
-
-        if (((Boolean)state.getValue(NORTH)).booleanValue())
+        if (state.getValue(NORTH).booleanValue())
         {
             axisalignedbb = NORTH_AABB;
             ++i;
         }
-
-        if (((Boolean)state.getValue(EAST)).booleanValue())
+        if (state.getValue(EAST).booleanValue())
         {
             axisalignedbb = EAST_AABB;
             ++i;
         }
-
-        if (((Boolean)state.getValue(SOUTH)).booleanValue())
+        if (state.getValue(SOUTH).booleanValue())
         {
             axisalignedbb = SOUTH_AABB;
             ++i;
         }
-
-        if (((Boolean)state.getValue(WEST)).booleanValue())
+        if (state.getValue(WEST).booleanValue())
         {
             axisalignedbb = WEST_AABB;
             ++i;
         }
-
         return i == 1 ? axisalignedbb : FULL_BLOCK_AABB;
     }
 
@@ -168,7 +163,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
             }
         }
 
-        if (getNumGrownFaces(state) == 0)
+        if (this.getNumGrownFaces(state) == 0)
         {
             return false;
         }
@@ -252,7 +247,6 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
                     if (!flag)
                     {
                         BlockPos blockpos3 = pos.offset(enumfacing1);
-                        Block block1 = world.getBlockState(blockpos3).getBlock();
 
                         if (world.getBlockState(blockpos3).getMaterial() == Material.AIR)
                         {
@@ -421,7 +415,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
         }
     }
 
-    public static int getNumGrownFaces(IBlockState state)
+    private int getNumGrownFaces(IBlockState state)
     {
         int i = 0;
 

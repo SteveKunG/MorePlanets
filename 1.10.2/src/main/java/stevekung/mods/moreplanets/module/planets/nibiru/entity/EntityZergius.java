@@ -14,11 +14,13 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -69,47 +71,45 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.getLightBrightness(this.getPosition()) <= 1.0F;
+        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.getLightBrightness(this.getPosition()) <= 1.0F;
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.5D);
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(10.0D);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.5D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(10.0D);
     }
 
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+        float f = (float)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
         return entity.attackEntityFrom(DamageSource.causeMobDamage(this), f) && EntityEffectHelper.addInfectedSpore(entity);
     }
 
     @Override
-    protected String getLivingSound()
+    protected SoundEvent getAmbientSound()
     {
-        return "mob.silverfish.say";
+        return SoundEvents.ENTITY_SILVERFISH_AMBIENT;
     }
 
-    @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "mob.silverfish.hit";
+        return SoundEvents.ENTITY_SILVERFISH_HURT;
     }
 
-    @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "mob.silverfish.kill";
+        return SoundEvents.ENTITY_SILVERFISH_DEATH;
     }
 
     @Override
@@ -179,7 +179,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
 
         public boolean isBoxBlocked(AxisAlignedBB box)
         {
-            return !this.entity.worldObj.getCollidingBoundingBoxes(this.entity, box).isEmpty();
+            return !this.entity.worldObj.getCollisionBoxes(this.entity, box).isEmpty();
         }
 
         public boolean isPathClear(double howFar)
@@ -224,7 +224,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
         @Override
         public void onUpdateMoveHelper()
         {
-            if (!this.update)
+            if (this.action != EntityMoveHelper.Action.STRAFE)//TODO Check
             {
                 return;
             }
@@ -252,11 +252,11 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
 
             if (!this.targetPos.isPathClear(1.0D))
             {
-                this.update = false;
+                this.action = EntityMoveHelper.Action.WAIT;//TODO Check
             }
             else if (this.targetPos.dist < this.closeEnough)
             {
-                this.update = false;
+                this.action = EntityMoveHelper.Action.WAIT;//TODO Check
             }
         }
     }

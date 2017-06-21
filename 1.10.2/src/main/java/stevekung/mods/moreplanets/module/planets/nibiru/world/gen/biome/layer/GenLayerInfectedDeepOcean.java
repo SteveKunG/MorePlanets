@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.layer;
 
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -36,21 +37,21 @@ public class GenLayerInfectedDeepOcean extends GenLayer
                 int dr = input[dx + 0 + (dz + 2) * nwidth];
                 int dl = input[dx + 2 + (dz + 2) * nwidth];
 
-                if (this.onBorder(MPBiomes.INFECTED_SWAMPLAND.biomeID, center, right, left, up, down))
+                if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_SWAMPLAND), center, right, left, up, down))
                 {
-                    output[dx + dz * areaWidth] = MPBiomes.INFECTED_DEEP_OCEAN.biomeID;
+                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_DEEP_OCEAN);
                 }
-                else if (this.onBorder(MPBiomes.INFECTED_JUNGLE.biomeID, center, right, left, up, down))
+                else if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE), center, right, left, up, down))
                 {
-                    output[dx + dz * areaWidth] = MPBiomes.INFECTED_DEEP_OCEAN.biomeID;
+                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_DEEP_OCEAN);
                 }
-                else if (this.onBorder(MPBiomes.INFECTED_JUNGLE.biomeID, center, ur, ul, dr, dl))
+                else if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE), center, ur, ul, dr, dl))
                 {
-                    output[dx + dz * areaWidth] = MPBiomes.INFECTED_DEEP_OCEAN.biomeID;
+                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_DEEP_OCEAN);
                 }
-                else if (this.onBorder(MPBiomes.INFECTED_JUNGLE.biomeID, center, ur, ul, dr, dl))
+                else if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE), center, ur, ul, dr, dl))
                 {
-                    output[dx + dz * areaWidth] = MPBiomes.INFECTED_OCEAN.biomeID;
+                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
                 }
                 else
                 {

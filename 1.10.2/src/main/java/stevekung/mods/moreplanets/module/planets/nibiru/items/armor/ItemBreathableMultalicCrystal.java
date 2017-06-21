@@ -22,18 +22,14 @@ public class ItemBreathableMultalicCrystal extends ItemBreathableArmor
     }
 
     @Override
-    public String getArmorTexture(ItemStack itemStack, Entity entity, int slot, String layer)
+    public String getArmorTexture(ItemStack itemStack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        if (itemStack.getItem() == this)
-        {
-            return "moreplanets:textures/model/armor/breathable_multalic_crystal.png";
-        }
-        return null;
+        return "moreplanets:textures/model/armor/breathable_multalic_crystal.png";
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot, ModelBiped defaultModel)
+    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
     {
         if (entityLiving instanceof EntityPlayer)
         {

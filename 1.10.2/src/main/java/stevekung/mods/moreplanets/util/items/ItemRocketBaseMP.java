@@ -14,7 +14,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -31,14 +33,14 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         boolean padFound = false;
         TileEntity tile = null;
 
         if (world.isRemote)
         {
-            return false;
+            return EnumActionResult.PASS;
         }
         else
         {
@@ -77,21 +79,21 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
                 {
                     if (((TileEntityLandingPad)tile).getDockedEntity() != null)
                     {
-                        return false;
+                        return EnumActionResult.PASS;
                     }
                 }
                 else
                 {
-                    return false;
+                    return EnumActionResult.PASS;
                 }
                 this.spawnRocket(itemStack, world, player, centerX, centerY, centerZ);
             }
             else
             {
-                return false;
+                return EnumActionResult.PASS;
             }
         }
-        return true;
+        return EnumActionResult.SUCCESS;
     }
 
     @Override

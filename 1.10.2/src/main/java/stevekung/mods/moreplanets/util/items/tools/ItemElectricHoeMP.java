@@ -2,6 +2,9 @@ package stevekung.mods.moreplanets.util.items.tools;
 
 import java.util.List;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 import micdoodle8.mods.galacticraft.api.item.ElectricItemHelper;
 import micdoodle8.mods.galacticraft.api.item.IItemElectric;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
@@ -10,8 +13,11 @@ import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
@@ -19,9 +25,12 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagFloat;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.Side;
@@ -62,86 +71,87 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (this.getElectricityStored(itemStack) > 0.0F)
         {
-            if (!player.canPlayerEdit(pos.offset(side), side, itemStack))
+            if (!player.canPlayerEdit(pos.offset(facing), facing, itemStack))
             {
-                return false;
+                return EnumActionResult.FAIL;
             }
             else
             {
                 int hook = ForgeEventFactory.onHoeUse(itemStack, player, world, pos);
-
-                if (hook != 0)
-                {
-                    return hook > 0;
-                }
-
                 IBlockState iblockstate = world.getBlockState(pos);
                 Block block = iblockstate.getBlock();
 
-                if (side != EnumFacing.DOWN && world.isAirBlock(pos.up()))
+                if (hook != 0)
                 {
-                    if (block == Blocks.grass)
+                    return hook > 0 ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
+                }
+                if (facing != EnumFacing.DOWN && world.isAirBlock(pos.up()))
+                {
+                    if (block == Blocks.GRASS || block == Blocks.GRASS_PATH)
                     {
-                        return this.useHoe(itemStack, player, world, pos, Blocks.farmland.getDefaultState());
+                        this.setBlock(itemStack, player, world, pos, Blocks.FARMLAND.getDefaultState());
+                        return EnumActionResult.SUCCESS;
                     }
-
-                    if (block == Blocks.dirt)
+                    if (block == Blocks.DIRT)
                     {
                         switch (iblockstate.getValue(BlockDirt.VARIANT))
                         {
                         case DIRT:
                         default:
-                            return this.useHoe(itemStack, player, world, pos, Blocks.farmland.getDefaultState());
+                            this.setBlock(itemStack, player, world, pos, Blocks.FARMLAND.getDefaultState());
+                            return EnumActionResult.SUCCESS;
                         case COARSE_DIRT:
-                            return this.useHoe(itemStack, player, world, pos, Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+                            this.setBlock(itemStack, player, world, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+                            return EnumActionResult.SUCCESS;
                         }
                     }
                 }
-                return false;
+                return EnumActionResult.PASS;
             }
         }
-        return false;
+        return EnumActionResult.PASS;
     }
 
     @Override
-    protected boolean useHoe(ItemStack itemStack, EntityPlayer player, World world, BlockPos target, IBlockState newState)
+    protected void setBlock(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, IBlockState state)
     {
-        world.playSoundEffect(target.getX() + 0.5F, target.getY() + 0.5F, target.getZ() + 0.5F, newState.getBlock().stepSound.getStepSound(), (newState.getBlock().stepSound.getVolume() + 1.0F) / 2.0F, newState.getBlock().stepSound.getFrequency() * 0.8F);
+        world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
-        if (world.isRemote)
+        if (!world.isRemote)
         {
-            return true;
-        }
-        else
-        {
-            world.setBlockState(target, newState);
+            world.setBlockState(pos, state, 11);
             this.setElectricity(itemStack, this.getElectricityStored(itemStack) - 10.0F);
-            return true;
         }
+    }
+
+    @Override
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack itemStack)
+    {
+        return this.getElectricityStored(itemStack) > 0.0F ? super.getAttributeModifiers(slot, itemStack) : HashMultimap.create();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
     {
-        EnumChatFormatting color = null;
+        TextFormatting color = null;
         float joules = this.getElectricityStored(itemStack);
 
         if (joules <= this.getMaxElectricityStored(itemStack) / 3)
         {
-            color = EnumChatFormatting.DARK_RED;
+            color = TextFormatting.DARK_RED;
         }
         else if (joules > this.getMaxElectricityStored(itemStack) * 2 / 3)
         {
-            color = EnumChatFormatting.DARK_GREEN;
+            color = TextFormatting.DARK_GREEN;
         }
         else
         {
-            color = EnumChatFormatting.GOLD;
+            color = TextFormatting.GOLD;
         }
         list.add(color + EnergyDisplayHelper.getEnergyDisplayS(joules) + "/" + EnergyDisplayHelper.getEnergyDisplayS(this.getMaxElectricityStored(itemStack)));
     }
