@@ -6,11 +6,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityCrashedAlienProbe;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 
 public class WorldGenCrashedAlienProbe extends WorldGenerator
 {
@@ -79,8 +79,7 @@ public class WorldGenCrashedAlienProbe extends WorldGenerator
                 // Clear contents
                 probe.setInventorySlotContents(i, null);
             }
-            ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.CRASHED_ALIEN_PROBE);
-            WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), probe, info.getCount(rand));
+            probe.setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());
         }
         return true;
     }

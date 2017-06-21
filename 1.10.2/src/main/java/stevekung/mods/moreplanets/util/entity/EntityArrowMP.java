@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketChangeGameState;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -322,6 +323,12 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
         {
             this.shootingEntity = shooter;
         }
+    }
+
+    @Override
+    protected ItemStack getArrowStack()
+    {
+        return null;
     }
 
     public abstract void addEffect(EntityLivingBase living);

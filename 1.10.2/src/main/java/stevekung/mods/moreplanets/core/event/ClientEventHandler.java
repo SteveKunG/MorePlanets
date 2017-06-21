@@ -665,7 +665,7 @@ public class ClientEventHandler
                 double posX = player.posX + dX;
                 double posY = 48;
                 double posZ = player.posZ + dZ;
-                player.worldObj.playSound(posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.AMBIENT, 10.0F, 1.0F + player.getRNG().nextFloat() * 0.8F, false);
+                player.worldObj.playSound(posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 10.0F, 1.0F + player.getRNG().nextFloat() * 0.8F, false);
                 this.beam.put(new BlockPos(posX, posY, posZ), 40);
             }
         }

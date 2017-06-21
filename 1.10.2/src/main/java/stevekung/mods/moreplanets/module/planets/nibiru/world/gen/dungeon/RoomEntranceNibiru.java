@@ -42,7 +42,7 @@ public class RoomEntranceNibiru extends SizedPieceNibiru
                     j--;
                     Block block = this.getBlockStateFromPos(worldIn, i + this.range, j, k + this.range, this.boundingBox).getBlock();
 
-                    if (Blocks.air != block && block != null)
+                    if (Blocks.AIR != block && block != null)
                     {
                         break;
                     }
@@ -68,7 +68,7 @@ public class RoomEntranceNibiru extends SizedPieceNibiru
                     }
                     else
                     {
-                        this.setBlockState(worldIn, Blocks.air.getDefaultState(), i, j, k, this.boundingBox);
+                        this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, this.boundingBox);
                     }
                 }
             }
@@ -90,7 +90,7 @@ public class RoomEntranceNibiru extends SizedPieceNibiru
 
                     if (block1 == this.configuration.getBrickBlock() || j != this.sizeY)
                     {
-                        this.setBlockState(worldIn, Blocks.air.getDefaultState(), i + this.range, j, k + this.range, this.boundingBox);
+                        this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i + this.range, j, k + this.range, this.boundingBox);
                         helper++;
                     }
                 }

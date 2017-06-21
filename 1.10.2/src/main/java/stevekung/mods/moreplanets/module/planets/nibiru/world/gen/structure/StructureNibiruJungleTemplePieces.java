@@ -12,18 +12,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraftforge.common.ChestGenHooks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.blocks.BlockChestMP;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
 import stevekung.mods.moreplanets.util.world.gen.structure.StructureComponentMP;
 
@@ -218,10 +215,10 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.fillWithAir(world, box, 5, 2, 12, 6, 2, 12);
                 this.fillWithAir(world, box, 5, 5, 1, 6, 5, 1);
                 this.fillWithAir(world, box, 5, 5, 13, 6, 5, 13);
-                this.setBlockState(world, Blocks.air.getDefaultState(), 1, 5, 5, box);
-                this.setBlockState(world, Blocks.air.getDefaultState(), 10, 5, 5, box);
-                this.setBlockState(world, Blocks.air.getDefaultState(), 1, 5, 9, box);
-                this.setBlockState(world, Blocks.air.getDefaultState(), 10, 5, 9, box);
+                this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, 5, 5, box);
+                this.setBlockState(world, Blocks.AIR.getDefaultState(), 10, 5, 5, box);
+                this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, 5, 9, box);
+                this.setBlockState(world, Blocks.AIR.getDefaultState(), 10, 5, 9, box);
 
                 for (int i1 = 0; i1 <= 14; i1 += 14)
                 {
@@ -283,8 +280,8 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                     }
                 }
 
-                this.setBlockState(world, rand.nextBoolean() ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.air.getDefaultState(), 6, 10, 7, box);
-                this.setBlockState(world, rand.nextBoolean() ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.air.getDefaultState(), 5, 10, 7, box);
+                this.setBlockState(world, rand.nextBoolean() ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.AIR.getDefaultState(), 6, 10, 7, box);
+                this.setBlockState(world, rand.nextBoolean() ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.AIR.getDefaultState(), 5, 10, 7, box);
 
                 for (int l1 = 0; l1 < 4; ++l1)
                 {
@@ -403,7 +400,7 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 }
                 else if (rand.nextFloat() < 0.05F)
                 {
-                    this.blockstate = Blocks.air.getDefaultState();
+                    this.blockstate = Blocks.AIR.getDefaultState();
                 }
                 else if (rand.nextFloat() < 0.4F)
                 {

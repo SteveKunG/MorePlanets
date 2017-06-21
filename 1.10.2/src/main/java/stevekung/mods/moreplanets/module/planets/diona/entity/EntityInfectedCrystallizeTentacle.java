@@ -7,19 +7,25 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 
 public class EntityInfectedCrystallizeTentacle extends Entity
 {
+    private static DataParameter<Float> DAMAGE = EntityDataManager.createKey(EntityInfectedCrystallizeTentacle.class, DataSerializers.FLOAT);
     public int innerRotation;
     public int tentacleRod;
 
@@ -59,7 +65,7 @@ public class EntityInfectedCrystallizeTentacle extends Entity
     @Override
     protected void entityInit()
     {
-        this.dataWatcher.addObject(19, new Float(0.0F));
+        this.dataManager.register(DAMAGE, 0.0F);
     }
 
     @Override
@@ -120,12 +126,12 @@ public class EntityInfectedCrystallizeTentacle extends Entity
 
     public void setDamage(float damage)
     {
-        this.dataWatcher.updateObject(19, Float.valueOf(damage));
+        this.dataManager.set(DAMAGE, damage);
     }
 
     public float getDamage()
     {
-        return this.dataWatcher.getWatchableObjectFloat(19);
+        return this.dataManager.get(DAMAGE);
     }
 
     @Override
@@ -153,7 +159,7 @@ public class EntityInfectedCrystallizeTentacle extends Entity
             {
                 this.setBeenAttacked();
                 this.setDamage(this.getDamage() + amount * 10.0F);
-                this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "moreplanets:mob.infected.attack", 1.0F, 1.0F);
+                this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
                 if (this.worldObj instanceof WorldServer)
                 {
@@ -167,7 +173,7 @@ public class EntityInfectedCrystallizeTentacle extends Entity
                     this.setDead();
                     List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(4.0D, 4.0D, 4.0D));
                     this.worldObj.createExplosion(null, this.posX, this.posY, this.posZ, 1.0F + this.rand.nextFloat(), true);
-                    this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "moreplanets:block.egg.destroy", 1.0F, 1.0F);
+                    this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.HOSTILE, 1.0F, 1.0F);
                     int j = 1 + this.rand.nextInt(4);
 
                     for (int k = 0; k < j; ++k)
@@ -176,7 +182,7 @@ public class EntityInfectedCrystallizeTentacle extends Entity
                     }
                     for (EntityLivingBase living : list)
                     {
-                        living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE.id, 120, 0));
+                        living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 120, 0));
                     }
                 }
             }

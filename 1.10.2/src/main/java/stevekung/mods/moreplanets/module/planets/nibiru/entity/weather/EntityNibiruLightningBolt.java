@@ -4,11 +4,15 @@ import java.util.List;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 
 public class EntityNibiruLightningBolt extends Entity
@@ -48,8 +52,8 @@ public class EntityNibiruLightningBolt extends Entity
 
         if (this.lightningState == 2)
         {
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, this.worldObj.rand.nextInt(5) == 0 ? "ambient.weather.thunder" : "moreplanets:weather.thunder", 20.0F, 0.8F + this.rand.nextFloat() * 0.2F);
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "random.explode", 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
+            this.worldObj.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, this.worldObj.rand.nextInt(5) == 0 ? SoundEvents.ENTITY_LIGHTNING_THUNDER : MPSounds.LOUD_THUNDER, SoundCategory.WEATHER, 20.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+            this.worldObj.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LIGHTNING_IMPACT, SoundCategory.WEATHER, 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
         }
 
         --this.lightningState;
@@ -69,7 +73,7 @@ public class EntityNibiruLightningBolt extends Entity
 
                 if (!this.worldObj.isRemote && this.fire && this.worldObj.getGameRules().getBoolean("doFireTick"))
                 {
-                    if (this.worldObj.isAreaLoaded(blockpos, 10) && this.worldObj.getBlockState(blockpos).getBlock().getMaterial() == Material.air && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.worldObj, blockpos))
+                    if (this.worldObj.isAreaLoaded(blockpos, 10) && this.worldObj.getBlockState(blockpos).getMaterial() == Material.AIR && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.worldObj, blockpos))
                     {
                         this.worldObj.setBlockState(blockpos, NibiruBlocks.ELECTRICAL_FIRE.getDefaultState());
                     }
@@ -79,7 +83,7 @@ public class EntityNibiruLightningBolt extends Entity
                         {
                             BlockPos blockpos1 = blockpos.add(this.rand.nextInt(3) - 1, this.rand.nextInt(3) - 1, this.rand.nextInt(3) - 1);
 
-                            if (this.worldObj.getBlockState(blockpos1).getBlock().getMaterial() == Material.air && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.worldObj, blockpos1))
+                            if (this.worldObj.getBlockState(blockpos1).getMaterial() == Material.AIR && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.worldObj, blockpos1))
                             {
                                 this.worldObj.setBlockState(blockpos1, NibiruBlocks.ELECTRICAL_FIRE.getDefaultState());
                             }

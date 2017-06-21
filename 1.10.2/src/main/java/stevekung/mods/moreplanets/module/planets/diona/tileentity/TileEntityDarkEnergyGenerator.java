@@ -17,11 +17,13 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.dimension.IDarkEnergyProvider;
 
 public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSource implements IDisableableMachine, ISidedInventory, IConnector
@@ -91,7 +93,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
 
                 if (this.ticks % 33 == 0)
                 {
-                    this.worldObj.playSoundEffect(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.generator.ambient", 0.05F, 1.0F);
+                    this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_GENERATOR_AMBIENT, SoundCategory.BLOCKS, 0.05F, 1.0F);
                 }
                 this.generateWatts = Math.min(Math.max(this.getGenerate(), 0), 1500);
             }

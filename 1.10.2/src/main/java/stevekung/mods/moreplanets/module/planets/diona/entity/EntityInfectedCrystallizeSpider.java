@@ -26,7 +26,7 @@ public class EntityInfectedCrystallizeSpider extends EntitySpider implements IEn
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EntityInfectedCrystallizeSpider extends EntitySpider implements IEn
 
                 if (chance > 0)
                 {
-                    ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE.id, chance * 20, 0));
+                    ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, chance * 20, 0));
                 }
             }
             return true;
@@ -92,6 +92,6 @@ public class EntityInfectedCrystallizeSpider extends EntitySpider implements IEn
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_CRYSTALLIZE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZE ? false : super.isPotionApplicable(potion);
     }
 }

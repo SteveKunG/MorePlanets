@@ -46,7 +46,7 @@ public class BlockFluidCrystallizeLava extends BlockFluidLavaBaseMP
                 world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
         }
-        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isSideSolid(world, pos, EnumFacing.DOWN))
+        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP))
         {
             Material material = world.getBlockState(pos.down(2)).getMaterial();
 

@@ -4,24 +4,25 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.EntityInfectedRainFX;
 
 public class WeatherRendererNibiru extends IRenderHandler
 {
@@ -75,7 +76,7 @@ public class WeatherRendererNibiru extends IRenderHandler
             int j = MathHelper.floor_double(entity.posY);
             int k = MathHelper.floor_double(entity.posZ);
             Tessellator tessellator = Tessellator.getInstance();
-            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+            VertexBuffer worldrenderer = tessellator.getBuffer();
             GlStateManager.disableCull();
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             GlStateManager.enableBlend();
@@ -105,10 +106,10 @@ public class WeatherRendererNibiru extends IRenderHandler
                     int i2 = (k1 - k + 16) * 32 + l1 - i + 16;
                     double d3 = this.rainXCoords[i2] * 0.5D;
                     double d4 = this.rainYCoords[i2] * 0.5D;
-                    blockpos$mutableblockpos.set(l1, 0, k1);
-                    BiomeGenBase biomegenbase = world.getBiomeGenForCoords(blockpos$mutableblockpos);
+                    blockpos$mutableblockpos.setPos(l1, 0, k1);
+                    Biome biomegenbase = world.getBiome(blockpos$mutableblockpos);
 
-                    if (biomegenbase.canSpawnLightningBolt() || biomegenbase.getEnableSnow())
+                    if (biomegenbase.canRain() || biomegenbase.getEnableSnow())
                     {
                         int j2 = world.getPrecipitationHeight(blockpos$mutableblockpos).getY();
                         int k2 = j - i1;
@@ -133,10 +134,10 @@ public class WeatherRendererNibiru extends IRenderHandler
                         if (k2 != l2)
                         {
                             this.random.setSeed(l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761);
-                            blockpos$mutableblockpos.set(l1, k2, k1);
+                            blockpos$mutableblockpos.setPos(l1, k2, k1);
                             float f2 = biomegenbase.getFloatTemperature(blockpos$mutableblockpos);
 
-                            if (world.getWorldChunkManager().getTemperatureAtHeight(f2, j2) >= 0.15F)
+                            if (world.getBiomeProvider().getTemperatureAtHeight(f2, j2) >= 0.15F)
                             {
                                 if (j1 != 0)
                                 {
@@ -161,7 +162,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                                 double d7 = k1 + 0.5F - entity.posZ;
                                 float f3 = MathHelper.sqrt_double(d6 * d6 + d7 * d7) / i1;
                                 float f4 = ((1.0F - f3 * f3) * 0.5F + 0.5F) * f;
-                                blockpos$mutableblockpos.set(l1, i3, k1);
+                                blockpos$mutableblockpos.setPos(l1, i3, k1);
                                 int j3 = world.getCombinedLight(blockpos$mutableblockpos, 0);
                                 int k3 = j3 >> 16 & 65535;
                         int l3 = j3 & 65535;
@@ -189,7 +190,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                                 double d12 = k1 + 0.5F - entity.posZ;
                                 float f6 = MathHelper.sqrt_double(d11 * d11 + d12 * d12) / i1;
                                 float f5 = ((1.0F - f6 * f6) * 0.3F + 0.5F) * f;
-                                blockpos$mutableblockpos.set(l1, i3, k1);
+                                blockpos$mutableblockpos.setPos(l1, i3, k1);
                                 int i4 = (world.getCombinedLight(blockpos$mutableblockpos, 0) * 3 + 15728880) / 4;
                                 int j4 = i4 >> 16 & 65535;
                 int k4 = i4 & 65535;
@@ -249,31 +250,30 @@ public class WeatherRendererNibiru extends IRenderHandler
             for (int l = 0; l < k; ++l)
             {
                 BlockPos blockpos1 = world.getPrecipitationHeight(blockpos.add(this.random.nextInt(i) - this.random.nextInt(i), 0, this.random.nextInt(i) - this.random.nextInt(i)));
-                BiomeGenBase biomegenbase = world.getBiomeGenForCoords(blockpos1);
+                Biome biomegenbase = world.getBiome(blockpos1);
                 BlockPos blockpos2 = blockpos1.down();
-                Block block = world.getBlockState(blockpos2).getBlock();
 
-                if (blockpos1.getY() <= blockpos.getY() + i && blockpos1.getY() >= blockpos.getY() - i && biomegenbase.canSpawnLightningBolt() && biomegenbase.getFloatTemperature(blockpos1) >= 0.15F)
+                if (blockpos1.getY() <= blockpos.getY() + i && blockpos1.getY() >= blockpos.getY() - i && biomegenbase.canRain() && biomegenbase.getFloatTemperature(blockpos1) >= 0.15F)
                 {
                     double d3 = this.random.nextDouble();
                     double d4 = this.random.nextDouble();
+                    AxisAlignedBB axisalignedbb = world.getBlockState(blockpos2).getBoundingBox(world, blockpos2);
 
-                    if (block.getMaterial() == Material.lava)
+                    if (world.getBlockState(blockpos2).getMaterial() == Material.LAVA)
                     {
-                        mc.theWorld.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, blockpos1.getX() + d3, blockpos1.getY() + 0.1F - block.getBlockBoundsMinY(), blockpos1.getZ() + d4, 0.0D, 0.0D, 0.0D, new int[0]);
+                        mc.theWorld.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, blockpos1.getX() + d3, blockpos1.getY() + 0.1F - axisalignedbb.minY, blockpos1.getZ() + d4, 0.0D, 0.0D, 0.0D, new int[0]);
                     }
-                    else if (block.getMaterial() != Material.air)
+                    else if (world.getBlockState(blockpos2).getMaterial() != Material.AIR)
                     {
-                        block.setBlockBoundsBasedOnState(world, blockpos2);
                         ++j;
 
                         if (this.random.nextInt(j) == 0)
                         {
                             d0 = blockpos2.getX() + d3;
-                            d1 = blockpos2.getY() + 0.1F + block.getBlockBoundsMaxY() - 1.0D;
+                            d1 = blockpos2.getY() + 0.1F + axisalignedbb.maxY - 1.0D;
                             d2 = blockpos2.getZ() + d4;
                         }
-                        mc.effectRenderer.addEffect(new EntityInfectedRainFX(world, blockpos2.getX() + d3, blockpos2.getY() + 0.1F + block.getBlockBoundsMaxY(), blockpos2.getZ() + d4));
+                        //TODO mc.effectRenderer.addEffect(new EntityInfectedRainFX(world, blockpos2.getX() + d3, blockpos2.getY() + 0.1F + block.getBlockBoundsMaxY(), blockpos2.getZ() + d4));
                     }
                 }
             }
@@ -284,11 +284,11 @@ public class WeatherRendererNibiru extends IRenderHandler
 
                 if (d1 > blockpos.getY() + 1 && world.getPrecipitationHeight(blockpos).getY() > MathHelper.floor_float(blockpos.getY()))
                 {
-                    mc.theWorld.playSound(d0, d1, d2, "ambient.weather.rain", 0.1F, 0.5F, false);
+                    mc.theWorld.playSound(d0, d1, d2, SoundEvents.WEATHER_RAIN_ABOVE, SoundCategory.WEATHER, 0.1F, 0.5F, false);
                 }
                 else
                 {
-                    mc.theWorld.playSound(d0, d1, d2, "ambient.weather.rain", 0.2F, 1.0F, false);
+                    mc.theWorld.playSound(d0, d1, d2, SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.2F, 1.0F, false);
                 }
             }
         }

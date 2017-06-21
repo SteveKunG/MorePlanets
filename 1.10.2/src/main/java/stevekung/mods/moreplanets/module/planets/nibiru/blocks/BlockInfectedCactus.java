@@ -3,12 +3,17 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,12 +25,15 @@ import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class BlockInfectedCactus extends BlockBushMP
 {
+    protected static AxisAlignedBB CACTUS_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
+    protected static AxisAlignedBB CACTUS_COLLISION_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D);
+
     public BlockInfectedCactus(String name)
     {
-        super(Material.cactus);
+        super(Material.CACTUS);
         this.setUnlocalizedName(name);
         this.setHardness(0.4F);
-        this.setStepSound(soundTypeCloth);
+        this.setSoundType(SoundType.CLOTH);
         this.setTickRandomly(true);
     }
 
@@ -49,7 +57,7 @@ public class BlockInfectedCactus extends BlockBushMP
                     world.setBlockState(blockpos, this.getDefaultState());
                     IBlockState iblockstate = state.withProperty(BlockStateHelper.AGE, Integer.valueOf(0));
                     world.setBlockState(pos, iblockstate, 4);
-                    this.onNeighborBlockChange(world, blockpos, iblockstate, this);
+                    this.neighborChanged(iblockstate, world, blockpos, this);
                 }
                 else
                 {
@@ -60,41 +68,39 @@ public class BlockInfectedCactus extends BlockBushMP
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        float f = 0.0625F;
-        return new AxisAlignedBB(pos.getX() + f, pos.getY(), pos.getZ() + f, pos.getX() + 1 - f, pos.getY() + 1 - f, pos.getZ() + 1 - f);
+        return CACTUS_AABB;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getSelectedBoundingBox(World world, BlockPos pos)
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        float f = 0.0625F;
-        return new AxisAlignedBB(pos.getX() + f, pos.getY(), pos.getZ() + f, pos.getX() + 1 - f, pos.getY() + 1, pos.getZ() + 1 - f);
+        return CACTUS_COLLISION_AABB.offset(pos);
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.CUTOUT;
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
         if (!this.canBlockStay(world, pos, state))
         {
@@ -107,7 +113,7 @@ public class BlockInfectedCactus extends BlockBushMP
     {
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
         {
-            if (world.getBlockState(pos.offset(enumfacing)).getBlock().getMaterial().isSolid())
+            if (world.getBlockState(pos.offset(enumfacing)).getMaterial().isSolid())
             {
                 return false;
             }
@@ -145,9 +151,9 @@ public class BlockInfectedCactus extends BlockBushMP
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {BlockStateHelper.AGE});
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.AGE});
     }
 
     @Override

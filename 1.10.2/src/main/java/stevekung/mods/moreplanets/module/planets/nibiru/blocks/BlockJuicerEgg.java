@@ -10,8 +10,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityJuicerEgg;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
@@ -22,28 +22,22 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
 {
     public BlockJuicerEgg(String name)
     {
-        super(Material.ground);
+        super(Material.GROUND);
         this.setResistance(0.0F);
         this.setHardness(0.5F);
         this.setUnlocalizedName(name);
-        this.setStepSound(BlockSoundHelper.ALIEN_EGG);
+        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
         this.slipperiness = 0.8F;
     }
 
     @Override
-    public int getRenderType()
-    {
-        return 3;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -77,7 +71,7 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
                         EntityJuicer juicer = new EntityJuicer(world);
                         juicer.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0F, 0.0F);
                         world.spawnEntityInWorld(juicer);
-                        juicer.mountEntity(player);
+                        juicer.startRiding(player);
                     }
                 }
             }
@@ -111,7 +105,7 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (Math.abs(entity.motionY) < 0.1D && !entity.isSneaking())
         {

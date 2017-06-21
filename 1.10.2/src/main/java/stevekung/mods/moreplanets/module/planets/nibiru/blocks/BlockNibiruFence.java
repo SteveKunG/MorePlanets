@@ -2,16 +2,17 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.List;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -25,10 +26,10 @@ public class BlockNibiruFence extends BlockFenceMP implements IBlockVariants
 
     public BlockNibiruFence(String name)
     {
-        super(Material.wood);
+        super(Material.WOOD);
         this.setHardness(2.0F);
         this.setResistance(5.0F);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.getDefaultState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(VARIANT, BlockType.INFECTED_FENCE));
         this.setUnlocalizedName(name);
     }
@@ -50,9 +51,9 @@ public class BlockNibiruFence extends BlockFenceMP implements IBlockVariants
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {NORTH, EAST, WEST, SOUTH, VARIANT});
+        return new BlockStateContainer(this, new IProperty[] {NORTH, EAST, WEST, SOUTH, VARIANT});
     }
 
     @Override

@@ -1,18 +1,22 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.Random;
-import java.util.Set;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -24,19 +28,19 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
 
     public BlockHugeTerrashroom(String name)
     {
-        super(Material.wood);
+        super(Material.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.ALL_OUTSIDE));
         this.setHardness(0.2F);
         this.setLightOpacity(3);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
         this.setUnlocalizedName(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.TRANSLUCENT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
@@ -70,7 +74,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, 0);
     }
@@ -82,9 +86,9 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {VARIANT});
+        return new BlockStateContainer(this, new IProperty[] {VARIANT});
     }
 
     @Override
@@ -92,7 +96,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     {
         IBlockState state = world.getBlockState(pos);
 
-        for (IProperty prop : (Set<IProperty>)state.getProperties().keySet())
+        for (IProperty prop : state.getProperties().keySet())
         {
             if (prop.getName().equals("variant"))
             {

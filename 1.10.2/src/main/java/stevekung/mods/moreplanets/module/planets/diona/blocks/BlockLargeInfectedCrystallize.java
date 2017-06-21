@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -42,41 +43,32 @@ public class BlockLargeInfectedCrystallize extends BlockContainerMP implements I
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         TileEntityLargeInfectedCrystallize crystal = (TileEntityLargeInfectedCrystallize)world.getTileEntity(pos);
 
         if (crystal != null)
         {
             int facing = crystal.facing;
-            float f = 0.0625F;
+            double f = 0.0625D;
 
             switch (facing)
             {
             case 0:
-                this.setBlockBounds(0.0F + f, 0.0F + f, 0.0F + f, 1.0F - f, 1.0F, 1.0F - f);
-                break;
+                return new AxisAlignedBB(0.0D + f, 0.0D + f, 0.0D + f, 1.0D - f, 1.0D, 1.0D - f);
             case 1:
-                this.setBlockBounds(0.0F + f, 0.0F, 0.0F + f, 1.0F - f, 1.0F - f, 1.0F - f);
-                break;
+                return new AxisAlignedBB(0.0D + f, 0.0D, 0.0D + f, 1.0D - f, 1.0D - f, 1.0D - f);
             case 2:
-                this.setBlockBounds(0.0F + f, 0.0F + f, 0.0F + f, 1.0F - f, 1.0F - f, 1.0F);
-                break;
+                return new AxisAlignedBB(0.0D + f, 0.0D + f, 0.0D + f, 1.0D - f, 1.0D - f, 1.0D);
             case 3:
-                this.setBlockBounds(0.0F + f, 0.0F + f, 0.0F, 1.0F - f, 1.0F - f, 1.0F - f);
-                break;
+                return new AxisAlignedBB(0.0D + f, 0.0D + f, 0.0D, 1.0D - f, 1.0D - f, 1.0D - f);
             case 4:
-                this.setBlockBounds(0.0F + f, 0.0F + f, 0.0F + f, 1.0F, 1.0F - f, 1.0F - f);
-                break;
+                return new AxisAlignedBB(0.0D + f, 0.0D + f, 0.0D + f, 1.0D, 1.0D - f, 1.0D - f);
             case 5:
-                this.setBlockBounds(0.0F, 0.0F + f, 0.0F + f, 1.0F - f, 1.0F - f, 1.0F - f);
-                break;
+                return new AxisAlignedBB(0.0D, 0.0D + f, 0.0D + f, 1.0D - f, 1.0D - f, 1.0D - f);
             }
         }
-        else
-        {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        }
+        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     }
 
     @Override

@@ -10,26 +10,34 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 
 public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
 {
-    private AISummonSilverfish summonSilverfish;
+    private AISummonReinforcement summonReinforcement;
 
     public EntityAlbetiusWorm(World world)
     {
         super(world);
         this.setSize(0.3F, 0.3F);
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
+        this.summonReinforcement = new AISummonReinforcement(this);
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(3, this.summonSilverfish = new AISummonSilverfish(this));
-        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+        this.tasks.addTask(3, this.summonReinforcement);
+        this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, false));
         this.tasks.addTask(5, new AIHideInStone(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
@@ -37,9 +45,9 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
     }
 
     @Override
@@ -61,21 +69,27 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     }
 
     @Override
-    protected String getLivingSound()
+    protected SoundEvent getAmbientSound()
     {
-        return "mob.silverfish.say";
+        return SoundEvents.ENTITY_SILVERFISH_AMBIENT;
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "mob.silverfish.hit";
+        return SoundEvents.ENTITY_SILVERFISH_HURT;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "mob.silverfish.kill";
+        return SoundEvents.ENTITY_SILVERFISH_DEATH;
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, Block block)
+    {
+        this.playSound(SoundEvents.ENTITY_SILVERFISH_STEP, 0.15F, 1.0F);
     }
 
     @Override
@@ -87,18 +101,12 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
         }
         else
         {
-            if (source instanceof EntityDamageSource || source == DamageSource.magic)
+            if ((source instanceof EntityDamageSource || source == DamageSource.magic) && this.summonReinforcement != null)
             {
-                this.summonSilverfish.func_179462_f();
+                this.summonReinforcement.notifyHurt();
             }
             return super.attackEntityFrom(source, amount);
         }
-    }
-
-    @Override
-    protected void playStepSound(BlockPos pos, Block block)
-    {
-        this.playSound("mob.silverfish.step", 0.15F, 1.0F);
     }
 
     @Override
@@ -148,45 +156,45 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
 
     static class AIHideInStone extends EntityAIWander
     {
-        private final EntityAlbetiusWorm field_179485_a;
+        private EntityAlbetiusWorm entity;
         private EnumFacing facing;
-        private boolean field_179484_c;
+        private boolean doMerge;
 
-        public AIHideInStone(EntityAlbetiusWorm p_i45827_1_)
+        public AIHideInStone(EntityAlbetiusWorm entity)
         {
-            super(p_i45827_1_, 1.0D, 10);
-            this.field_179485_a = p_i45827_1_;
+            super(entity, 1.0D, 10);
+            this.entity = entity;
             this.setMutexBits(1);
         }
 
         @Override
         public boolean shouldExecute()
         {
-            if (this.field_179485_a.getAttackTarget() != null)
+            if (this.entity.getAttackTarget() != null)
             {
                 return false;
             }
-            else if (!this.field_179485_a.getNavigator().noPath())
+            else if (!this.entity.getNavigator().noPath())
             {
                 return false;
             }
             else
             {
-                Random random = this.field_179485_a.getRNG();
+                Random random = this.entity.getRNG();
 
                 if (random.nextInt(10) == 0)
                 {
                     this.facing = EnumFacing.random(random);
-                    BlockPos blockpos = new BlockPos(this.field_179485_a.posX, this.field_179485_a.posY + 0.5D, this.field_179485_a.posZ).offset(this.facing);
-                    IBlockState iblockstate = this.field_179485_a.worldObj.getBlockState(blockpos);
+                    BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
+                    IBlockState iblockstate = this.entity.worldObj.getBlockState(blockpos);
 
                     if (iblockstate == DionaBlocks.DIONA_BLOCK.getStateFromMeta(2))
                     {
-                        this.field_179484_c = true;
+                        this.doMerge = true;
                         return true;
                     }
                 }
-                this.field_179484_c = false;
+                this.doMerge = false;
                 return super.shouldExecute();
             }
         }
@@ -194,66 +202,66 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
         @Override
         public boolean continueExecuting()
         {
-            return this.field_179484_c ? false : super.continueExecuting();
+            return this.doMerge ? false : super.continueExecuting();
         }
 
         @Override
         public void startExecuting()
         {
-            if (!this.field_179484_c)
+            if (!this.doMerge)
             {
                 super.startExecuting();
             }
             else
             {
-                World world = this.field_179485_a.worldObj;
-                BlockPos blockpos = new BlockPos(this.field_179485_a.posX, this.field_179485_a.posY + 0.5D, this.field_179485_a.posZ).offset(this.facing);
+                World world = this.entity.worldObj;
+                BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
                 IBlockState iblockstate = world.getBlockState(blockpos);
 
                 if (iblockstate == DionaBlocks.DIONA_BLOCK.getStateFromMeta(2))
                 {
                     world.setBlockState(blockpos, DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
-                    this.field_179485_a.spawnExplosionParticle();
-                    this.field_179485_a.setDead();
+                    this.entity.spawnExplosionParticle();
+                    this.entity.setDead();
                 }
             }
         }
     }
 
-    static class AISummonSilverfish extends EntityAIBase
+    static class AISummonReinforcement extends EntityAIBase
     {
-        private EntityAlbetiusWorm silverfish;
-        private int field_179463_b;
+        private EntityAlbetiusWorm entity;
+        private int lookForFriends;
 
-        public AISummonSilverfish(EntityAlbetiusWorm p_i45826_1_)
+        public AISummonReinforcement(EntityAlbetiusWorm entity)
         {
-            this.silverfish = p_i45826_1_;
+            this.entity = entity;
         }
 
-        public void func_179462_f()
+        public void notifyHurt()
         {
-            if (this.field_179463_b == 0)
+            if (this.lookForFriends == 0)
             {
-                this.field_179463_b = 20;
+                this.lookForFriends = 20;
             }
         }
 
         @Override
         public boolean shouldExecute()
         {
-            return this.field_179463_b > 0;
+            return this.lookForFriends > 0;
         }
 
         @Override
         public void updateTask()
         {
-            --this.field_179463_b;
+            --this.lookForFriends;
 
-            if (this.field_179463_b <= 0)
+            if (this.lookForFriends <= 0)
             {
-                World world = this.silverfish.worldObj;
-                Random random = this.silverfish.getRNG();
-                BlockPos blockpos = new BlockPos(this.silverfish);
+                World world = this.entity.worldObj;
+                Random random = this.entity.getRNG();
+                BlockPos blockpos = new BlockPos(this.entity);
 
                 for (int i = 0; i <= 5 && i >= -5; i = i <= 0 ? 1 - i : 0 - i)
                 {

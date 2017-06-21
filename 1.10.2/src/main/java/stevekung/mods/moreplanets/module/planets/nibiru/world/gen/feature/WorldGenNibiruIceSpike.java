@@ -4,8 +4,8 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -52,7 +52,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                         {
                             Block block = world.getBlockState(position.add(i1, k, j1)).getBlock();
 
-                            if (block.getMaterial() == Material.air || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                            if (block.getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
                             {
                                 this.setBlockAndNotifyAdequately(world, position.add(i1, k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
                             }
@@ -61,7 +61,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                             {
                                 block = world.getBlockState(position.add(i1, -k, j1)).getBlock();
 
-                                if (block.getMaterial() == Material.air || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                                if (block.getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
                                 {
                                     this.setBlockAndNotifyAdequately(world, position.add(i1, -k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
                                 }
@@ -98,7 +98,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                     {
                         Block block1 = world.getBlockState(blockpos).getBlock();
 
-                        if (block1.getMaterial() != Material.air && block1 != NibiruBlocks.INFECTED_GRASS && block1 != NibiruBlocks.INFECTED_DIRT && block1 != NibiruBlocks.INFECTED_ICE && block1 != NibiruBlocks.INFECTED_PACKED_ICE)
+                        if (block1.getMaterial() != Material.AIR && block1 != NibiruBlocks.INFECTED_GRASS && block1 != NibiruBlocks.INFECTED_DIRT && block1 != NibiruBlocks.INFECTED_ICE && block1 != NibiruBlocks.INFECTED_PACKED_ICE)
                         {
                             break;
                         }

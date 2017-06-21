@@ -125,7 +125,7 @@ public class ModelGuardianMP extends ModelBase
         }
     }
 
-    public int func_178706_a()
+    public int getModelVersion()
     {
         return 54;
     }

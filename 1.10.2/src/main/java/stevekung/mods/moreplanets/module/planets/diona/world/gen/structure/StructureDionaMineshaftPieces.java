@@ -133,7 +133,7 @@ public class StructureDionaMineshaftPieces
             this.hasRails = rand.nextInt(3) == 0;
             this.hasSpiders = !this.hasRails && rand.nextInt(23) == 0;
 
-            if (this.coordBaseMode != EnumFacing.NORTH && this.coordBaseMode != EnumFacing.SOUTH)
+            if (this.getCoordBaseMode() != EnumFacing.NORTH && this.getCoordBaseMode() != EnumFacing.SOUTH)
             {
                 this.sectionCount = structurebb.getXSize() / 5;
             }
@@ -185,9 +185,9 @@ public class StructureDionaMineshaftPieces
             int i = this.getComponentType();
             int j = rand.nextInt(4);
 
-            if (this.coordBaseMode != null)
+            if (this.getCoordBaseMode() != null)
             {
-                switch (this.coordBaseMode)
+                switch (this.getCoordBaseMode())
                 {
                 case NORTH:
                     if (j <= 1)
@@ -234,7 +234,7 @@ public class StructureDionaMineshaftPieces
                 case EAST:
                     if (j <= 1)
                     {
-                        StructureDionaMineshaftPieces.func_175890_b(componentIn, listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, this.coordBaseMode, i);
+                        StructureDionaMineshaftPieces.func_175890_b(componentIn, listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY - 1 + rand.nextInt(3), this.boundingBox.minZ, this.getCoordBaseMode(), i);
                     }
                     else if (j == 2)
                     {
@@ -289,10 +289,10 @@ public class StructureDionaMineshaftPieces
         {
             BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
-            if (boundingBoxIn.isVecInside(blockpos) && world.getBlockState(blockpos).getBlock().getMaterial() == Material.air)
+            if (boundingBoxIn.isVecInside(blockpos) && world.getBlockState(blockpos).getBlock().getMaterial() == Material.AIR)
             {
                 int i = rand.nextBoolean() ? 1 : 0;
-                world.setBlockState(blockpos, Blocks.rail.getStateFromMeta(this.getMetadataWithOffset(Blocks.rail, i)), 2);
+                world.setBlockState(blockpos, Blocks.RAIL.getStateFromMeta(this.getMetadataWithOffset(Blocks.RAIL, i)), 2);
                 EntitySpaceMinecartChest entityminecartchest = new EntitySpaceMinecartChest(world, blockpos.getX() + 0.5F, blockpos.getY() + 0.5F, blockpos.getZ() + 0.5F);
                 entityminecartchest.setBlockForDisplaying(DionaBlocks.DIONA_ANCIENT_CHEST.getDefaultState().withProperty(BlockStateHelper.FACING, EnumFacing.NORTH));
                 entityminecartchest.setInventoryName("container.diona.ancientchest.name");
@@ -317,28 +317,28 @@ public class StructureDionaMineshaftPieces
             else
             {
                 int i1 = this.sectionCount * 5 - 1;
-                this.fillWithBlocks(world, box, 0, 0, 0, 2, 1, i1, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                this.func_175805_a(world, box, rand, 0.8F, 0, 2, 0, 2, 2, i1, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 0, 0, 0, 2, 1, i1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                this.func_175805_a(world, box, rand, 0.8F, 0, 2, 0, 2, 2, i1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
                 if (this.hasSpiders)
                 {
-                    this.func_175805_a(world, box, rand, 0.6F, 0, 0, 0, 2, 1, i1, DionaBlocks.INFECTED_CRYSTALLIZE_WEB.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.func_175805_a(world, box, rand, 0.6F, 0, 0, 0, 2, 1, i1, DionaBlocks.INFECTED_CRYSTALLIZE_WEB.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
 
                 for (int j1 = 0; j1 < this.sectionCount; ++j1)
                 {
                     int k1 = 2 + j1 * 5;
-                    this.fillWithBlocks(world, box, 0, 0, k1, 0, 1, k1, DionaBlocks.INFECTED_CRYSTALLIZE_FENCE.getDefaultState(), Blocks.air.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, 2, 0, k1, 2, 1, k1, DionaBlocks.INFECTED_CRYSTALLIZE_FENCE.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 0, 0, k1, 0, 1, k1, DionaBlocks.INFECTED_CRYSTALLIZE_FENCE.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 2, 0, k1, 2, 1, k1, DionaBlocks.INFECTED_CRYSTALLIZE_FENCE.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
                     if (rand.nextInt(4) == 0)
                     {
-                        this.fillWithBlocks(world, box, 0, 2, k1, 0, 2, k1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.air.getDefaultState(), false);
-                        this.fillWithBlocks(world, box, 2, 2, k1, 2, 2, k1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.air.getDefaultState(), false);
+                        this.fillWithBlocks(world, box, 0, 2, k1, 0, 2, k1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                        this.fillWithBlocks(world, box, 2, 2, k1, 2, 2, k1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                     }
                     else
                     {
-                        this.fillWithBlocks(world, box, 0, 2, k1, 2, 2, k1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.air.getDefaultState(), false);
+                        this.fillWithBlocks(world, box, 0, 2, k1, 2, 2, k1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                     }
 
                     this.randomlyPlaceBlock(world, box, rand, 0.1F, 0, 2, k1 - 1, DionaBlocks.INFECTED_CRYSTALLIZE_WEB.getDefaultState());
@@ -392,7 +392,7 @@ public class StructureDionaMineshaftPieces
                         int j3 = -1;
                         IBlockState iblockstate1 = this.getBlockStateFromPos(world, k2, j3, i3, box);
 
-                        if (iblockstate1.getBlock().getMaterial() == Material.air)
+                        if (iblockstate1.getBlock().getMaterial() == Material.AIR)
                         {
                             int k3 = -1;
                             this.setBlockState(world, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), k2, k3, i3, box);
@@ -406,9 +406,9 @@ public class StructureDionaMineshaftPieces
                     {
                         IBlockState iblockstate = this.getBlockStateFromPos(world, 1, -1, l2, box);
 
-                        if (iblockstate.getBlock().getMaterial() != Material.air && iblockstate.getBlock().isFullBlock())
+                        if (iblockstate.getBlock().getMaterial() != Material.AIR && iblockstate.getBlock().isFullBlock())
                         {
-                            this.randomlyPlaceBlock(world, box, rand, 0.7F, 1, 0, l2, Blocks.rail.getStateFromMeta(this.getMetadataWithOffset(Blocks.rail, 0)));
+                            this.randomlyPlaceBlock(world, box, rand, 0.7F, 1, 0, l2, Blocks.RAIL.getStateFromMeta(this.getMetadataWithOffset(Blocks.RAIL, 0)));
                         }
                     }
                 }
@@ -540,28 +540,28 @@ public class StructureDionaMineshaftPieces
             {
                 if (this.isMultipleFloors)
                 {
-                    this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.minY + 3 - 1, this.boundingBox.maxZ, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.minY + 3 - 1, this.boundingBox.maxZ - 1, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.maxY - 2, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.maxY - 2, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ - 1, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY + 3, this.boundingBox.minZ + 1, this.boundingBox.maxX - 1, this.boundingBox.minY + 3, this.boundingBox.maxZ - 1, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.minY + 3 - 1, this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.minY + 3 - 1, this.boundingBox.maxZ - 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.maxY - 2, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.maxY - 2, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ - 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY + 3, this.boundingBox.minZ + 1, this.boundingBox.maxX - 1, this.boundingBox.minY + 3, this.boundingBox.maxZ - 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 else
                 {
-                    this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ - 1, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ - 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
 
-                this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.minX + 1, this.boundingBox.maxY, this.boundingBox.minZ + 1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.air.getDefaultState(), false);
-                this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ - 1, this.boundingBox.minX + 1, this.boundingBox.maxY, this.boundingBox.maxZ - 1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.air.getDefaultState(), false);
-                this.fillWithBlocks(world, box, this.boundingBox.maxX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.minZ + 1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.air.getDefaultState(), false);
-                this.fillWithBlocks(world, box, this.boundingBox.maxX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 1, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ - 1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.air.getDefaultState(), false);
+                this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.minX + 1, this.boundingBox.maxY, this.boundingBox.minZ + 1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                this.fillWithBlocks(world, box, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.maxZ - 1, this.boundingBox.minX + 1, this.boundingBox.maxY, this.boundingBox.maxZ - 1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                this.fillWithBlocks(world, box, this.boundingBox.maxX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.minZ + 1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                this.fillWithBlocks(world, box, this.boundingBox.maxX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 1, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ - 1, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
                 for (int i = this.boundingBox.minX; i <= this.boundingBox.maxX; ++i)
                 {
                     for (int j = this.boundingBox.minZ; j <= this.boundingBox.maxZ; ++j)
                     {
-                        if (this.getBlockStateFromPos(world, i, this.boundingBox.minY - 1, j, box).getBlock().getMaterial() == Material.air)
+                        if (this.getBlockStateFromPos(world, i, this.boundingBox.minY - 1, j, box).getBlock().getMaterial() == Material.AIR)
                         {
                             this.setBlockState(world, DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState(), i, this.boundingBox.minY - 1, j, box);
                         }
@@ -679,14 +679,14 @@ public class StructureDionaMineshaftPieces
             }
             else
             {
-                this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.minY, this.boundingBox.maxZ, DionaBlocks.DIONA_BLOCK.getStateFromMeta(1), Blocks.air.getDefaultState(), true);
-                this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY + 1, this.boundingBox.minZ, this.boundingBox.maxX, Math.min(this.boundingBox.minY + 3, this.boundingBox.maxY), this.boundingBox.maxZ, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.minY, this.boundingBox.maxZ, DionaBlocks.DIONA_BLOCK.getStateFromMeta(1), Blocks.AIR.getDefaultState(), true);
+                this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY + 1, this.boundingBox.minZ, this.boundingBox.maxX, Math.min(this.boundingBox.minY + 3, this.boundingBox.maxY), this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
                 for (StructureBoundingBox structureboundingbox : this.roomsLinkedToTheRoom)
                 {
-                    this.fillWithBlocks(world, box, structureboundingbox.minX, structureboundingbox.maxY - 2, structureboundingbox.minZ, structureboundingbox.maxX, structureboundingbox.maxY, structureboundingbox.maxZ, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, structureboundingbox.minX, structureboundingbox.maxY - 2, structureboundingbox.minZ, structureboundingbox.maxX, structureboundingbox.maxY, structureboundingbox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
-                this.randomlyRareFillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY + 4, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.air.getDefaultState(), false);
+                this.randomlyRareFillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY + 4, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), false);
                 return true;
             }
         }
@@ -801,12 +801,12 @@ public class StructureDionaMineshaftPieces
             }
             else
             {
-                this.fillWithBlocks(world, box, 0, 5, 0, 2, 7, 1, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                this.fillWithBlocks(world, box, 0, 0, 7, 2, 2, 8, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 0, 5, 0, 2, 7, 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 0, 0, 7, 2, 2, 8, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
                 for (int i = 0; i < 5; ++i)
                 {
-                    this.fillWithBlocks(world, box, 0, 5 - i - (i < 4 ? 1 : 0), 2 + i, 2, 7 - i, 2 + i, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 0, 5 - i - (i < 4 ? 1 : 0), 2 + i, 2, 7 - i, 2 + i, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 return true;
             }

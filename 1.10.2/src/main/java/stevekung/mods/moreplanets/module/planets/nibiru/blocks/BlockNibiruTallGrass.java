@@ -9,15 +9,16 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -31,18 +32,23 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBlockVariants, IGrowable
 {
     public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    protected static AxisAlignedBB TALL_GRASS_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
     public BlockNibiruTallGrass(String name)
     {
-        super(Material.plants);
+        super(Material.PLANTS);
         this.setUnlocalizedName(name);
-        float f = 0.4F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.INFECTED_TALL_GRASS));
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return TALL_GRASS_AABB;
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, this.getMetaFromState(world.getBlockState(pos)));
     }
@@ -91,7 +97,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
     }
 
     @Override
-    public boolean isReplaceable(World world, BlockPos pos)
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
         return true;
     }
@@ -128,9 +134,9 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

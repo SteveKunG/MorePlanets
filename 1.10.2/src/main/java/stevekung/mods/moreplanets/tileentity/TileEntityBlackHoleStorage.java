@@ -15,12 +15,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPSounds;
 
 public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements IInventoryDefaults, ISidedInventory
 {
@@ -47,7 +49,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
 
         if (this.ticks % 20 == 0)
         {
-            this.worldObj.playSoundEffect(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.black_hole", 1.0F, 1.0F);
+            this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
         if (this.worldObj != null && !this.worldObj.isRemote)
         {

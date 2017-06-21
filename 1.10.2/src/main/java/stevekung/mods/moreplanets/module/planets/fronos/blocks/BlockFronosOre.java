@@ -9,7 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -18,7 +18,13 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -34,7 +40,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
 
     public BlockFronosOre(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.FRONOS_IRON_ORE));
         this.setUnlocalizedName(name);
         this.setHardness(3.0F);
@@ -43,7 +49,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     }
 
     @Override
-    public int getLightValue(IBlockAccess world, BlockPos pos)
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         if (world.getBlockState(pos).getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE_ACTIVE)
         {
@@ -53,7 +59,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     }
 
     @Override
-    public float getBlockHardness(World world, BlockPos pos)
+    public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos).getBlock();
 
@@ -68,11 +74,11 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
         {
             return 5.0F;
         }
-        return super.getBlockHardness(world, pos);
+        return super.getBlockHardness(state, world, pos);
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         if (world.getBlockState(pos).getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE_ACTIVE)
         {
@@ -119,9 +125,8 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     }
 
     @Override
-    public int getExpDrop(IBlockAccess world, BlockPos pos, int fortune)
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
-        IBlockState state = world.getBlockState(pos);
         Random rand = world instanceof World ? ((World)world).rand : new Random();
 
         if (this.getItemDropped(state, rand, fortune) != Item.getItemFromBlock(this))
@@ -162,23 +167,23 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     {
         if (state.getValue(VARIANT) == BlockType.FRONOS_COAL_ORE)
         {
-            return Items.coal;
+            return Items.COAL;
         }
         else if (state.getValue(VARIANT) == BlockType.FRONOS_DIAMOND_ORE)
         {
-            return Items.diamond;
+            return Items.DIAMOND;
         }
         else if (state.getValue(VARIANT) == BlockType.FRONOS_LAPIS_ORE)
         {
-            return Items.dye;
+            return Items.DYE;
         }
         else if (state.getValue(VARIANT) == BlockType.FRONOS_EMERALD_ORE)
         {
-            return Items.emerald;
+            return Items.EMERALD;
         }
         else if (state.getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE || state.getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE_ACTIVE)
         {
-            return Items.redstone;
+            return Items.REDSTONE;
         }
         else if (state.getValue(VARIANT) == BlockType.FRONOS_SILICON_ORE)
         {
@@ -186,7 +191,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
         }
         else if (state.getValue(VARIANT) == BlockType.FRONOS_QUARTZ_ORE)
         {
-            return Items.quartz;
+            return Items.QUARTZ;
         }
         return Item.getItemFromBlock(this);
     }
@@ -227,7 +232,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (world.getBlockState(pos).getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE)
         {
@@ -236,7 +241,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (state.getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE)
         {
@@ -262,7 +267,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if (state.getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE_ACTIVE)
         {
@@ -280,27 +285,27 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
             double d2 = pos.getY() + world.rand.nextFloat();
             double d3 = pos.getZ() + world.rand.nextFloat();
 
-            if (i == 0 && !world.getBlockState(pos.up()).getBlock().isOpaqueCube())
+            if (i == 0 && !world.getBlockState(pos.up()).isOpaqueCube())
             {
                 d2 = pos.getY() + d0 + 1.0D;
             }
-            if (i == 1 && !world.getBlockState(pos.down()).getBlock().isOpaqueCube())
+            if (i == 1 && !world.getBlockState(pos.down()).isOpaqueCube())
             {
                 d2 = pos.getY() - d0;
             }
-            if (i == 2 && !world.getBlockState(pos.south()).getBlock().isOpaqueCube())
+            if (i == 2 && !world.getBlockState(pos.south()).isOpaqueCube())
             {
                 d3 = pos.getZ() + d0 + 1.0D;
             }
-            if (i == 3 && !world.getBlockState(pos.north()).getBlock().isOpaqueCube())
+            if (i == 3 && !world.getBlockState(pos.north()).isOpaqueCube())
             {
                 d3 = pos.getZ() - d0;
             }
-            if (i == 4 && !world.getBlockState(pos.east()).getBlock().isOpaqueCube())
+            if (i == 4 && !world.getBlockState(pos.east()).isOpaqueCube())
             {
                 d1 = pos.getX() + d0 + 1.0D;
             }
-            if (i == 5 && !world.getBlockState(pos.west()).getBlock().isOpaqueCube())
+            if (i == 5 && !world.getBlockState(pos.west()).isOpaqueCube())
             {
                 d1 = pos.getX() - d0;
             }
@@ -331,9 +336,9 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

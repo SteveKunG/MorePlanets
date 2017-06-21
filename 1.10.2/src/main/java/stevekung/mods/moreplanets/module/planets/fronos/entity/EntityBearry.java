@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.fronos.entity;
 
+import java.util.UUID;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,7 +14,6 @@ import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFaceTe
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFronosPanic;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFronosTempt;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
-import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
 
 public class EntityBearry extends EntityFronosPet
 {
@@ -23,7 +24,13 @@ public class EntityBearry extends EntityFronosPet
         this.aiTexture = new EntityAIFaceTexture(this);
         this.aiPanic = new EntityAIFronosPanic(this, 1.75D);
         this.aiTempt = new EntityAIFronosTempt(this, 1.4D, new ItemStack(FronosItems.FRONOS_FOOD, 1, 0), false);
-        ((PathNavigateGroundMP)this.getNavigator()).setAvoidsWater(true);
+        this.timeUntilToDropItem = this.rand.nextInt(6000) + 2000;
+        this.setTamed(false);
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(1, this.aiPanic);
         this.tasks.addTask(2, this.aiSit);
@@ -35,15 +42,13 @@ public class EntityBearry extends EntityFronosPet
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
-        this.timeUntilToDropItem = this.rand.nextInt(6000) + 2000;
-        this.setTamed(false);
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.2D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
     }
 
     @Override
@@ -81,22 +86,22 @@ public class EntityBearry extends EntityFronosPet
             EntityMarshmallow marshmallow = new EntityMarshmallow(this.worldObj);
             marshmallow.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
             marshmallow.onInitialSpawn(difficulty, (IEntityLivingData)null);
-            marshmallow.mountEntity(this);
             marshmallow.setGrowingAge(-24000);
             this.worldObj.spawnEntityInWorld(marshmallow);
+            this.startRiding(marshmallow);
         }
         return super.onInitialSpawn(difficulty, data);
     }
 
     @Override
-    public EntityBearry createChild(EntityAgeable entity)
+    public EntityBearry createChild(EntityAgeable ageable)
     {
         EntityBearry pet = new EntityBearry(this.worldObj);
-        String owner = this.getOwnerId();
+        UUID uuid = this.getOwnerId();
 
-        if (owner != null && owner.trim().length() > 0)
+        if (uuid != null)
         {
-            pet.setOwnerId(owner);
+            pet.setOwnerId(uuid);
             pet.setTamed(true);
         }
         return pet;

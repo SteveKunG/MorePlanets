@@ -7,14 +7,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,14 +30,19 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, IGrowable
 {
     public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    protected static AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
     public BlockNibiruSapling(String name)
     {
         super();
-        float f = 0.4F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.INFECTED_OAK_SAPLING));
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return SAPLING_AABB;
     }
 
     @Override
@@ -85,12 +92,6 @@ public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, I
     public int damageDropped(IBlockState state)
     {
         return this.getMetaFromState(state);
-    }
-
-    @Override
-    public int getDamageValue(World world, BlockPos pos)
-    {
-        return this.getMetaFromState(world.getBlockState(pos));
     }
 
     @Override
@@ -165,7 +166,7 @@ public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, I
 
         if (obj != null)
         {
-            IBlockState iblockstate2 = Blocks.air.getDefaultState();
+            IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
 
             if (flag)
             {
@@ -208,9 +209,9 @@ public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, I
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

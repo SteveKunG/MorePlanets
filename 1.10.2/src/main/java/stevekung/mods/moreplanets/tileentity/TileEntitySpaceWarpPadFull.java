@@ -93,7 +93,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public boolean onActivated(EntityPlayer player)
     {
-        return MPBlocks.SPACE_WARP_PAD_FULL.onBlockActivated(this.worldObj, this.mainBlockPosition, MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState(), player, player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
+        return MPBlocks.SPACE_WARP_PAD_FULL.onBlockActivated(this.worldObj, this.mainBlockPosition, MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState(), player, player.getActiveHand(), player.getHeldItemMainhand(), player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
     }
 
     @Override

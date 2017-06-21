@@ -19,6 +19,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -29,6 +30,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -40,6 +42,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.entity.EntityBlackHole;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityDarkLightningBolt;
 import stevekung.mods.moreplanets.util.JsonUtils;
@@ -135,11 +138,11 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     if (this.activatedTick % 20 == 0)
                     {
-                        this.worldObj.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.ambient", 1.0F, 1.025F);
+                        this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
                     }
                     if (this.activatedTick >= this.getSuccessfulTick() - 5 && this.activatedTick <= this.getSuccessfulTick())
                     {
-                        this.worldObj.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.stop", 1.0F, 1.0F);
+                        this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_STOP, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     }
 
                     if (!this.failed)
@@ -202,8 +205,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     }
                     if (this.failedTick % 20 == 0)
                     {
-                        this.worldObj.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.ambient", 1.0F, 1.025F);
-                        this.worldObj.playSound(this.pos.getX(), this.pos.getY(), this.pos.getZ(), "moreplanets:ambient.machine.danger", 5.0F, 1.0F);
+                        this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
+                        this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_DANGER, SoundCategory.BLOCKS, 5.0F, 1.0F);
                     }
                 }
 
@@ -277,7 +280,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         {
                             EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
                             bolt.setLocationAndAngles(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), 0.0F, 0.0F);
-                            this.worldObj.playSound(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), "random.explode", 0.5F, 0.5F + this.worldObj.rand.nextFloat() * 0.2F);
+                            this.worldObj.playSound((EntityPlayer)null, this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 0.7F);
                             this.worldObj.spawnEntityInWorld(bolt);
                             this.worldObj.setBlockState(this.getPos().up(), DionaBlocks.DARK_ENERGY_CORE.getDefaultState());
                         }
@@ -375,9 +378,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         nbt.setInteger("Facing", this.facing);
         nbt.setBoolean("Activated", this.activated);
         nbt.setBoolean("ActivatedMessage", this.activatedMessage);
@@ -400,6 +402,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
             }
         }
         nbt.setTag("Items", list);
+        return super.writeToNBT(nbt);
     }
 
     @Override

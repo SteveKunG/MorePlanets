@@ -2,20 +2,19 @@ package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,13 +30,13 @@ public class BlockFronos extends BlockBaseMP implements IBlockVariants
 
     public BlockFronos(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setUnlocalizedName(name);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.FRONOS_STONE));
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, this.getMetaFromState(world.getBlockState(pos)));
     }
@@ -53,16 +52,9 @@ public class BlockFronos extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    public float getBlockHardness(World world, BlockPos pos)
+    public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos).getBlock();
-
-        if (block != this)
-        {
-            return 0;
-        }
-
-        switch (this.getMetaFromState(world.getBlockState(pos)))
+        switch (this.getMetaFromState(state))
         {
         case 0:
         case 2:
@@ -100,9 +92,9 @@ public class BlockFronos extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

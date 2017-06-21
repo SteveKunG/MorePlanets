@@ -6,10 +6,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,7 +38,7 @@ public class BlockInfectedGrass extends BlockGrassMP implements IGrowable
     }
 
     @Override
-    public void onPlantGrow(World world, BlockPos pos, BlockPos source)
+    public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source)
     {
         if (world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_GRASS)
         {
@@ -62,7 +63,7 @@ public class BlockInfectedGrass extends BlockGrassMP implements IGrowable
 
                     if (world.getBlockState(pos1) == NibiruBlocks.INFECTED_DIRT.getDefaultState())
                     {
-                        if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getBlock().getLightOpacity() <= 2)
+                        if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity(world, pos1.up()) <= 2)
                         {
                             world.setBlockState(pos1, this.getDefaultState());
                         }
@@ -80,11 +81,11 @@ public class BlockInfectedGrass extends BlockGrassMP implements IGrowable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if (rand.nextInt(8) == 0)
         {
-            if (!World.doesBlockHaveSolidTopSurface(world, pos.up()))
+            if (!state.getBlock().isSideSolid(state, world, pos.up(), EnumFacing.UP))
             {
                 MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_SPORE, pos.getX() + rand.nextFloat(), pos.getY() + 1.1F, pos.getZ() + rand.nextFloat());
             }
@@ -141,7 +142,7 @@ public class BlockInfectedGrass extends BlockGrassMP implements IGrowable
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(blockpos1.down()).getBlock() != NibiruBlocks.INFECTED_GRASS || world.getBlockState(blockpos1).getBlock().isNormalCube())
+                if (world.getBlockState(blockpos1.down()).getBlock() != NibiruBlocks.INFECTED_GRASS || world.getBlockState(blockpos1).isNormalCube())
                 {
                     break;
                 }
@@ -157,9 +158,9 @@ public class BlockInfectedGrass extends BlockGrassMP implements IGrowable
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {SNOWY});
+        return new BlockStateContainer(this, new IProperty[] {SNOWY});
     }
 
     @Override

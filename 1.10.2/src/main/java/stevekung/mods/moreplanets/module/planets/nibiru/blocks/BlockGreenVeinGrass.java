@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.util.blocks.BlockGrassMP;
 
@@ -18,7 +18,7 @@ public class BlockGreenVeinGrass extends BlockGrassMP implements IGrowable
     }
 
     @Override
-    public void onPlantGrow(World world, BlockPos pos, BlockPos source)
+    public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source)
     {
         if (world.getBlockState(pos).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS)
         {
@@ -43,7 +43,7 @@ public class BlockGreenVeinGrass extends BlockGrassMP implements IGrowable
 
                     if (world.getBlockState(pos1) == NibiruBlocks.INFECTED_DIRT.getDefaultState())
                     {
-                        if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getBlock().getLightOpacity() <= 2)
+                        if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity(world, pos1.up()) <= 2)
                         {
                             world.setBlockState(pos1, this.getDefaultState());
                         }
@@ -109,7 +109,7 @@ public class BlockGreenVeinGrass extends BlockGrassMP implements IGrowable
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(blockpos1.down()).getBlock() != NibiruBlocks.GREEN_VEIN_GRASS || world.getBlockState(blockpos1).getBlock().isNormalCube())
+                if (world.getBlockState(blockpos1.down()).getBlock() != NibiruBlocks.GREEN_VEIN_GRASS || world.getBlockState(blockpos1).isNormalCube())
                 {
                     break;
                 }

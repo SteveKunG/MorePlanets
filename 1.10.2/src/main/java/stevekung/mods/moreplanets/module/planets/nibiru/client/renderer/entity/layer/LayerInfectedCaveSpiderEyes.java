@@ -45,7 +45,7 @@ public class LayerInfectedCaveSpiderEyes implements LayerRenderer<EntityInfected
         j = i % 65536;
         k = i / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
-        this.render.func_177105_a(entity, partialTicks);
+        this.render.setLightmap(entity, partialTicks);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
     }

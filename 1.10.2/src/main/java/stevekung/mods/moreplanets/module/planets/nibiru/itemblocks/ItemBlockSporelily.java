@@ -3,14 +3,17 @@ package stevekung.mods.moreplanets.module.planets.nibiru.itemblocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.BlockSnapshot;
-import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.BlockFluidBase;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 
@@ -22,54 +25,44 @@ public class ItemBlockSporelily extends ItemBlock
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
-        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
+        RayTraceResult raytraceresult = this.rayTrace(world, player, true);
 
-        if (movingobjectposition == null)
+        if (raytraceresult == null)
         {
-            return itemStack;
+            return new ActionResult(EnumActionResult.PASS, itemStack);
         }
         else
         {
-            if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+            if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
             {
-                BlockPos blockpos = movingobjectposition.getBlockPos();
+                BlockPos blockpos = raytraceresult.getBlockPos();
 
-                if (!world.isBlockModifiable(player, blockpos))
+                if (!world.isBlockModifiable(player, blockpos) || !player.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStack))
                 {
-                    return itemStack;
-                }
-                if (!player.canPlayerEdit(blockpos.offset(movingobjectposition.sideHit), movingobjectposition.sideHit, itemStack))
-                {
-                    return itemStack;
+                    return new ActionResult(EnumActionResult.FAIL, itemStack);
                 }
 
                 BlockPos blockpos1 = blockpos.up();
                 IBlockState iblockstate = world.getBlockState(blockpos);
 
-                if (iblockstate.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && iblockstate.getValue(BlockFluidBase.LEVEL).intValue() == 0 && world.isAirBlock(blockpos1))
+                if (iblockstate.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && ((Integer)iblockstate.getValue(BlockFluidBase.LEVEL)).intValue() == 0 && world.isAirBlock(blockpos1))
                 {
-                    BlockSnapshot blocksnapshot = BlockSnapshot.getBlockSnapshot(world, blockpos1);
-                    world.playSound(blockpos.getX(), blockpos.getY(), blockpos.getZ(), "moreplanets:block.lily.place", 1.0F, 0.8F, false);
-                    world.setBlockState(blockpos1, NibiruBlocks.SPORELILY.getDefaultState());
+                    world.setBlockState(blockpos1, NibiruBlocks.SPORELILY.getDefaultState(), 11);
 
-                    if (world.isRemote)
-                    {
-                        player.swingItem();
-                    }
-                    if (ForgeEventFactory.onPlayerBlockPlace(player, blocksnapshot, EnumFacing.UP).isCanceled())
-                    {
-                        blocksnapshot.restore(true, false);
-                        return itemStack;
-                    }
                     if (!player.capabilities.isCreativeMode)
                     {
                         --itemStack.stackSize;
                     }
+
+                    player.addStat(StatList.getObjectUseStats(this));
+                    world.playSound(player, blockpos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    return new ActionResult(EnumActionResult.SUCCESS, itemStack);
                 }
             }
-            return itemStack;
+
+            return new ActionResult(EnumActionResult.FAIL, itemStack);
         }
     }
 }

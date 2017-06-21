@@ -2,11 +2,14 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
@@ -15,29 +18,37 @@ import stevekung.mods.moreplanets.util.helper.BlockSoundHelper;
 
 public class BlockSporelily extends BlockBushMP
 {
+    protected static AxisAlignedBB LILY_PAD_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.09375D, 0.9375D);
+
     public BlockSporelily(String name)
     {
         super();
         this.setUnlocalizedName(name);
-        float f = 0.5F;
-        float f1 = 0.015625F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);
-        this.setStepSound(BlockSoundHelper.LILYPAD);
+        this.setSoundType(BlockSoundHelper.LILYPAD);
     }
 
     @Override
-    public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity)
     {
-        if (collidingEntity == null || !(collidingEntity instanceof EntityBoat))
+        if (!(entity instanceof EntityBoat))
         {
-            super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, LILY_PAD_AABB);
         }
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        return new AxisAlignedBB(pos.getX() + this.minX, pos.getY() + this.minY, pos.getZ() + this.minZ, pos.getX() + this.maxX, pos.getY() + this.maxY, pos.getZ() + this.maxZ);
+        if (entity instanceof EntityBoat)
+        {
+            world.destroyBlock(new BlockPos(pos), true);
+        }
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return LILY_PAD_AABB;
     }
 
     @Override

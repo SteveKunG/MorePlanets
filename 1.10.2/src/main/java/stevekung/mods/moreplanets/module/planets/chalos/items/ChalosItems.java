@@ -11,6 +11,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemArmorDiremsium;
 import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemBreathableDiremsium;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
+import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.*;
 import stevekung.mods.moreplanets.util.items.tools.*;
@@ -80,12 +81,12 @@ public class ChalosItems
         ChalosItems.DIREMSIUM_SWORD = new ItemSwordMP("diremsium_sword", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2);
         ChalosItems.DIREMSIUM_SHOVEL = new ItemShovelMP("diremsium_shovel", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2);
         ChalosItems.DIREMSIUM_PICKAXE = new ItemPickaxeMP("diremsium_pickaxe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2);
-        ChalosItems.DIREMSIUM_AXE = new ItemAxeMP("diremsium_axe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2);
+        ChalosItems.DIREMSIUM_AXE = new ItemAxeMP("diremsium_axe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2, EnumToolSpeed.COMMON);
         ChalosItems.DIREMSIUM_HOE = new ItemHoeMP("diremsium_hoe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2);
         ChalosItems.CHEESE_SPORE_WOOD_SWORD = new ItemSwordMP("cheese_spore_wood_sword", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
         ChalosItems.CHEESE_SPORE_WOOD_SHOVEL = new ItemShovelMP("cheese_spore_wood_shovel", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
         ChalosItems.CHEESE_SPORE_WOOD_PICKAXE = new ItemPickaxeMP("cheese_spore_wood_pickaxe", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
-        ChalosItems.CHEESE_SPORE_WOOD_AXE = new ItemAxeMP("cheese_spore_wood_axe", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
+        ChalosItems.CHEESE_SPORE_WOOD_AXE = new ItemAxeMP("cheese_spore_wood_axe", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS, EnumToolSpeed.WOOD);
         ChalosItems.CHEESE_SPORE_WOOD_HOE = new ItemHoeMP("cheese_spore_wood_hoe", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
 
         /**************************************************************/

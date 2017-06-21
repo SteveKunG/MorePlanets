@@ -1,25 +1,25 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.client.particle;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
 
 @SideOnly(Side.CLIENT)
-public class EntityInfectedGuardianAppearanceFX extends EntityFX
+public class ParticleInfectedGuardianAppearance extends Particle
 {
     private EntityLivingBase entity;
 
-    public EntityInfectedGuardianAppearanceFX(World world, double x, double y, double z)
+    public ParticleInfectedGuardianAppearance(World world, double x, double y, double z)
     {
         super(world, x, y, z, 0.0D, 0.0D, 0.0D);
         this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
@@ -48,12 +48,12 @@ public class EntityInfectedGuardianAppearanceFX extends EntityFX
     }
 
     @Override
-    public void renderParticle(WorldRenderer worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+    public void renderParticle(VertexBuffer worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         if (this.entity != null)
         {
             RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
-            rendermanager.setRenderPosition(EntityFX.interpPosX, EntityFX.interpPosY, EntityFX.interpPosZ);
+            rendermanager.setRenderPosition(Particle.interpPosX, Particle.interpPosY, Particle.interpPosZ);
             float f = 0.42553192F;
             float f1 = (this.particleAge + partialTicks) / this.particleMaxAge;
             GlStateManager.depthMask(true);
@@ -72,7 +72,7 @@ public class EntityInfectedGuardianAppearanceFX extends EntityFX
             GlStateManager.scale(f, f, f);
             this.entity.rotationYaw = this.entity.prevRotationYaw = 0.0F;
             this.entity.rotationYawHead = this.entity.prevRotationYawHead = 0.0F;
-            rendermanager.renderEntityWithPosYaw(this.entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
+            rendermanager.doRenderEntity(this.entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
             GlStateManager.popMatrix();
             GlStateManager.enableDepth();
         }

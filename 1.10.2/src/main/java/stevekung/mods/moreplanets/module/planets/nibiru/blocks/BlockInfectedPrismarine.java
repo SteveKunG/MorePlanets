@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -23,7 +23,7 @@ public class BlockInfectedPrismarine extends BlockBaseMP implements IBlockVarian
 
     public BlockInfectedPrismarine(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setHardness(1.5F);
         this.setResistance(10.0F);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.INFECTED_PRISMARINE));
@@ -53,9 +53,9 @@ public class BlockInfectedPrismarine extends BlockBaseMP implements IBlockVarian
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

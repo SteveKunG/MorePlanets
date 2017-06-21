@@ -1,14 +1,14 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.client.particle;
 
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class EntityInfectedSporeFX extends EntityFX
+public class ParticleInfectedSpore extends Particle
 {
-    public EntityInfectedSporeFX(World world, double x, double y, double z, double motionX, double motionY, double motionZ)
+    public ParticleInfectedSpore(World world, double x, double y, double z, double motionX, double motionY, double motionZ)
     {
         super(world, x, y, z, motionX, motionY, motionZ);
         this.particleRed = 0.4F;
@@ -34,7 +34,7 @@ public class EntityInfectedSporeFX extends EntityFX
 
         if (this.particleMaxAge-- <= 0)
         {
-            this.setDead();
+            this.setExpired();
         }
     }
 }

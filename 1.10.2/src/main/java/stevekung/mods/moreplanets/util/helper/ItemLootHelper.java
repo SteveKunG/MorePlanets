@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.util.helper;
+/*package stevekung.mods.moreplanets.util.helper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -213,4 +213,4 @@ public class ItemLootHelper
     {
         ChestGenHooks.addItem(category, item);
     }
-}
+}*/

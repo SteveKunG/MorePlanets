@@ -30,7 +30,7 @@ public class BiomeProviderChalos extends BiomeProvider
     protected BiomeProviderChalos()
     {
         this.biomeCache = new BiomeCache(this);
-        this.biomesToSpawn = Lists.<Biome>newArrayList();
+        this.biomesToSpawn = Lists.newArrayList();
         this.biomesToSpawn.addAll(allowedBiomes);
     }
 

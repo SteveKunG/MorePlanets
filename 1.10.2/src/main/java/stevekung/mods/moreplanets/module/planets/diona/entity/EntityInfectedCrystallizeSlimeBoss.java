@@ -18,13 +18,18 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -32,7 +37,6 @@ import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
 import stevekung.mods.moreplanets.util.entity.EntitySlimeBaseMP;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
 public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implements IMorePlanetsBossDisplayData, IBoss
@@ -62,7 +66,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.getDetectRange());
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(this.getDetectRange());
     }
 
     @Override
@@ -177,12 +181,12 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
                         chest.setInventorySlotContents(k, null);
                     }
 
-                    ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON);
+                    /*ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON); TODO Loot table
 
                     // Generate twice, since it's an extra special chest
                     WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
                     WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
+                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));*/
 
                     ItemStack schematic = this.getGuaranteedLoot(this.rand);
                     int slot = this.rand.nextInt(chest.getSizeInventory());
@@ -257,7 +261,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
 
                 for (EntityPlayer p : entitiesWithin2)
                 {
-                    p.addChatMessage(new ChatComponentText(GCCoreUtil.translate("gui.skeleton_boss.message")));
+                    p.addChatMessage(new TextComponentString(GCCoreUtil.translate("gui.skeleton_boss.message")));
                 }
                 this.setDead();
                 return;
@@ -345,7 +349,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
         if (this.canEntityBeSeen(entity) && this.getDistanceSqToEntity(entity) < this.getDetectRange() && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
         {
             this.applyEnchantments(this, entity);
-            entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE.id, 200, 1));
+            entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 200, 1));
         }
     }
 
@@ -356,15 +360,15 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "mob.slime.big";
+        return SoundEvents.ENTITY_SLIME_HURT;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "mob.slime.big";
+        return SoundEvents.ENTITY_SLIME_DEATH;
     }
 
     @Override
@@ -382,7 +386,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
         {
             Entity entity = damageSource.getEntity();
 
-            if (this.riddenByEntity != entity && this.ridingEntity != entity)
+            if (this.getPassengers().contains(entity) && this.getRidingEntity() != entity)
             {
                 if (entity != this)
                 {
@@ -410,7 +414,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_CRYSTALLIZE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
@@ -451,7 +455,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     @Override
     protected void overrideHealth()
     {
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(500.0F * ConfigManagerCore.dungeonBossHealthMod);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(500.0F * ConfigManagerCore.dungeonBossHealthMod);
     }
 
     @Override
@@ -467,7 +471,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     }
 
     @Override
-    public IChatComponent getBossDisplayName()
+    public ITextComponent getBossDisplayName()
     {
         return this.getDisplayName();
     }

@@ -6,14 +6,17 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -25,28 +28,28 @@ public class BlockInfectedIce extends BlockBreakableMP
 {
     public BlockInfectedIce(String name)
     {
-        super(Material.ice);
+        super(Material.ICE);
         this.slipperiness = 0.98F;
         this.setTickRandomly(true);
         this.setHardness(0.5F);
         this.setLightOpacity(3);
-        this.setStepSound(soundTypeGlass);
+        this.setSoundType(SoundType.GLASS);
         this.setUnlocalizedName(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.TRANSLUCENT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
     {
         player.addExhaustion(0.025F);
 
-        if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getSilkTouchModifier(player))
+        if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, itemStack) > 0)
         {
             List<ItemStack> items = Lists.newArrayList();
             ItemStack itemstack = this.createStackedBlock(state);
@@ -71,11 +74,11 @@ public class BlockInfectedIce extends BlockBreakableMP
                 return;
             }
 
-            int i = EnchantmentHelper.getFortuneModifier(player);
+            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemStack);
             this.harvesters.set(player);
             this.dropBlockAsItem(world, pos, state, i);
             this.harvesters.set(null);
-            Material material = world.getBlockState(pos.down()).getBlock().getMaterial();
+            Material material = world.getBlockState(pos.down()).getMaterial();
 
             if (material.blocksMovement() || material.isLiquid())
             {
@@ -93,7 +96,7 @@ public class BlockInfectedIce extends BlockBreakableMP
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if (world.getLightFor(EnumSkyBlock.BLOCK, pos) > 11 - this.getLightOpacity())
+        if (world.getLightFor(EnumSkyBlock.BLOCK, pos) > 11 - state.getLightOpacity(world, pos))
         {
             if (world.provider.doesWaterVaporize())
             {
@@ -108,9 +111,9 @@ public class BlockInfectedIce extends BlockBreakableMP
     }
 
     @Override
-    public int getMobilityFlag()
+    public EnumPushReaction getMobilityFlag(IBlockState state)
     {
-        return 0;
+        return EnumPushReaction.NORMAL;
     }
 
     @Override

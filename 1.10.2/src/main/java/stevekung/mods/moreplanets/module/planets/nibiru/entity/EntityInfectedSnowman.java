@@ -1,21 +1,25 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import micdoodle8.mods.galacticraft.core.entities.EntityAIArrowAttack;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -87,7 +91,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
                 k = MathHelper.floor_double(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
                 BlockPos blockpos = new BlockPos(i, j, k);
 
-                if (this.worldObj.getBlockState(blockpos).getBlock().getMaterial() == Material.air && this.worldObj.getBiomeGenForCoords(new BlockPos(i, 0, k)).getFloatTemperature(blockpos) < 0.8F && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.worldObj, blockpos))
+                if (this.worldObj.getBlockState(blockpos).getBlock().getMaterial() == Material.AIR && this.worldObj.getBiomeGenForCoords(new BlockPos(i, 0, k)).getFloatTemperature(blockpos) < 0.8F && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.worldObj, blockpos))
                 {
                     this.worldObj.setBlockState(blockpos, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                 }

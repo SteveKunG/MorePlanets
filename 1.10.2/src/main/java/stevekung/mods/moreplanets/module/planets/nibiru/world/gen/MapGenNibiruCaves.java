@@ -7,10 +7,9 @@ import com.google.common.base.Objects;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -169,7 +168,7 @@ public class MapGenNibiruCaves extends MapGenBase
                                         if (d9 > -0.7D && d10 * d10 + d9 * d9 + d8 * d8 < 1.0D)
                                         {
                                             IBlockState iblockstate1 = p_180702_5_.getBlockState(j3, j2, i2);
-                                            IBlockState iblockstate2 = Objects.firstNonNull(p_180702_5_.getBlockState(j3, j2 + 1, i2), Blocks.air.getDefaultState());
+                                            IBlockState iblockstate2 = Objects.firstNonNull(p_180702_5_.getBlockState(j3, j2 + 1, i2), Blocks.AIR.getDefaultState());
 
                                             if (this.isTopBlock(p_180702_5_, j3, j2, i2, p_180702_3_, p_180702_4_))
                                             {
@@ -266,7 +265,7 @@ public class MapGenNibiruCaves extends MapGenBase
             }
             else
             {
-                data.setBlockState(x, y, z, Blocks.air.getDefaultState());
+                data.setBlockState(x, y, z, Blocks.AIR.getDefaultState());
 
                 if (foundTop && data.getBlockState(x, y - 1, z).getBlock() == filler.getBlock())
                 {

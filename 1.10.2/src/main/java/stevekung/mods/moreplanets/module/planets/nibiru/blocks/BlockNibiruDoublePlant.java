@@ -5,10 +5,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,9 +18,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -37,22 +38,21 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
 
     public BlockNibiruDoublePlant(String name)
     {
-        super(Material.vine);
+        super(Material.VINE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.INFECTED_ORANGE_ROSE_BUSH).withProperty(HALF, EnumBlockHalf.LOWER));
         this.setHardness(0.0F);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.PLANT);
         this.setUnlocalizedName(name);
     }
 
     @Override
     public boolean canReplace(World world, BlockPos pos, EnumFacing side, ItemStack itemStack)
     {
-        return super.canReplace(world, pos, side, itemStack) && world.getBlockState(pos.up()).getBlock() == Blocks.air;
+        return super.canReplace(world, pos, side, itemStack) && world.getBlockState(pos.up()).getBlock() == Blocks.AIR;
     }
 
     @Override
-    public boolean isReplaceable(World world, BlockPos pos)
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
         IBlockState iblockstate = world.getBlockState(pos);
 
@@ -84,11 +84,11 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
             }
             if (block == this)
             {
-                world.setBlockState(blockpos, Blocks.air.getDefaultState(), 2);
+                world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
             }
             if (block1 == this)
             {
-                world.setBlockState(blockpos1, Blocks.air.getDefaultState(), 3);
+                world.setBlockState(blockpos1, Blocks.AIR.getDefaultState(), 3);
             }
         }
         else
@@ -195,7 +195,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
                     }
                     else if (!world.isRemote)
                     {
-                        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.shears)
+                        if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == Items.SHEARS)
                         {
                             this.onHarvest(world, pos, iblockstate, player);
                             world.setBlockToAir(pos.down());
@@ -218,7 +218,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
         }
         else if (player.capabilities.isCreativeMode && world.getBlockState(pos.up()).getBlock() == this)
         {
-            world.setBlockState(pos.up(), Blocks.air.getDefaultState(), 2);
+            world.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);
         }
         super.onBlockHarvested(world, pos, state, player);
     }
@@ -231,12 +231,6 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
         {
             list.add(new ItemStack(item, 1, type.ordinal()));
         }
-    }
-
-    @Override
-    public int getDamageValue(World world, BlockPos pos)
-    {
-        return this.getVariant(world, pos).ordinal();
     }
 
     @Override
@@ -286,9 +280,9 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {HALF, VARIANT});
+        return new BlockStateContainer(this, new IProperty[] {HALF, VARIANT});
     }
 
     @Override
@@ -328,10 +322,8 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    public boolean removedByPlayer(World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
     {
-        IBlockState state = world.getBlockState(pos);
-
         if (state.getBlock() ==  this && state.getValue(HALF) == EnumBlockHalf.LOWER && world.getBlockState(pos.up()).getBlock() == this)
         {
             world.setBlockToAir(pos.up());

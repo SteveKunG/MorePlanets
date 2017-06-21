@@ -5,13 +5,16 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -29,121 +32,97 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     public static PropertyBool SOUTH = PropertyBool.create("south");
     public static PropertyBool WEST = PropertyBool.create("west");
     public static PropertyBool[] ALL_FACES = new PropertyBool[] {UP, NORTH, SOUTH, WEST, EAST};
+    protected static AxisAlignedBB UP_AABB = new AxisAlignedBB(0.0D, 0.9375D, 0.0D, 1.0D, 1.0D, 1.0D);
+    protected static AxisAlignedBB WEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0625D, 1.0D, 1.0D);
+    protected static AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.9375D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+    protected static AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.0625D);
+    protected static AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.9375D, 1.0D, 1.0D, 1.0D);
 
     public BlockVinesMP(String name)
     {
-        super(Material.vine);
+        super(Material.VINE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
         this.setTickRandomly(true);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.PLANT);
         this.setHardness(0.2F);
         this.setUnlocalizedName(name);
     }
 
     public BlockVinesMP()
     {
-        super(Material.vine);
+        super(Material.VINE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
         this.setTickRandomly(true);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.PLANT);
         this.setHardness(0.2F);
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return state.withProperty(UP, Boolean.valueOf(world.getBlockState(pos.up()).getBlock().isBlockNormalCube()));
+        return state.withProperty(UP, Boolean.valueOf(world.getBlockState(pos.up()).isBlockNormalCube()));
     }
 
     @Override
-    public void setBlockBoundsForItemRender()
-    {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-    }
-
-    @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isReplaceable(World world, BlockPos pos)
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
         return true;
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        float f1 = 1.0F;
-        float f2 = 1.0F;
-        float f3 = 1.0F;
-        float f4 = 0.0F;
-        float f5 = 0.0F;
-        float f6 = 0.0F;
-        boolean flag = false;
+        state = state.getActualState(source, pos);
+        int i = 0;
+        AxisAlignedBB axisalignedbb = FULL_BLOCK_AABB;
 
-        if (world.getBlockState(pos).getValue(WEST).booleanValue())
+        if (((Boolean)state.getValue(UP)).booleanValue())
         {
-            f4 = Math.max(f4, 0.0625F);
-            f1 = 0.0F;
-            f2 = 0.0F;
-            f5 = 1.0F;
-            f3 = 0.0F;
-            f6 = 1.0F;
-            flag = true;
+            axisalignedbb = UP_AABB;
+            ++i;
         }
-        if (world.getBlockState(pos).getValue(EAST).booleanValue())
+
+        if (((Boolean)state.getValue(NORTH)).booleanValue())
         {
-            f1 = Math.min(f1, 0.9375F);
-            f4 = 1.0F;
-            f2 = 0.0F;
-            f5 = 1.0F;
-            f3 = 0.0F;
-            f6 = 1.0F;
-            flag = true;
+            axisalignedbb = NORTH_AABB;
+            ++i;
         }
-        if (world.getBlockState(pos).getValue(NORTH).booleanValue())
+
+        if (((Boolean)state.getValue(EAST)).booleanValue())
         {
-            f6 = Math.max(f6, 0.0625F);
-            f3 = 0.0F;
-            f1 = 0.0F;
-            f4 = 1.0F;
-            f2 = 0.0F;
-            f5 = 1.0F;
-            flag = true;
+            axisalignedbb = EAST_AABB;
+            ++i;
         }
-        if (world.getBlockState(pos).getValue(SOUTH).booleanValue())
+
+        if (((Boolean)state.getValue(SOUTH)).booleanValue())
         {
-            f3 = Math.min(f3, 0.9375F);
-            f6 = 1.0F;
-            f1 = 0.0F;
-            f4 = 1.0F;
-            f2 = 0.0F;
-            f5 = 1.0F;
-            flag = true;
+            axisalignedbb = SOUTH_AABB;
+            ++i;
         }
-        if (!flag && this.canPlaceOn(world.getBlockState(pos.up()).getBlock()))
+
+        if (((Boolean)state.getValue(WEST)).booleanValue())
         {
-            f2 = Math.min(f2, 0.9375F);
-            f5 = 1.0F;
-            f1 = 0.0F;
-            f4 = 1.0F;
-            f3 = 0.0F;
-            f6 = 1.0F;
+            axisalignedbb = WEST_AABB;
+            ++i;
         }
-        this.setBlockBounds(f1, f2, f3, f4, f5, f6);
+
+        return i == 1 ? axisalignedbb : FULL_BLOCK_AABB;
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
         return null;
     }
@@ -154,20 +133,20 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
         switch (side)
         {
         case UP:
-            return this.canPlaceOn(world.getBlockState(pos.up()).getBlock());
+            return this.canAttachVineOn(world.getBlockState(pos.up()));
         case NORTH:
         case SOUTH:
         case EAST:
         case WEST:
-            return this.canPlaceOn(world.getBlockState(pos.offset(side.getOpposite())).getBlock());
+            return this.canAttachVineOn(world.getBlockState(pos.offset(side.getOpposite())));
         default:
             return false;
         }
     }
 
-    private boolean canPlaceOn(Block block)
+    private boolean canAttachVineOn(IBlockState state)
     {
-        return block.isFullCube() && block.getMaterial().blocksMovement();
+        return state.isFullCube() && state.getMaterial().blocksMovement();
     }
 
     private boolean recheckGrownSides(World world, BlockPos pos, IBlockState state)
@@ -178,7 +157,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
         {
             PropertyBool propertybool = getPropertyFor(enumfacing);
 
-            if (state.getValue(propertybool).booleanValue() && !this.canPlaceOn(world.getBlockState(pos.offset(enumfacing)).getBlock()))
+            if (state.getValue(propertybool).booleanValue() && !this.canAttachVineOn(world.getBlockState(pos.offset(enumfacing))))
             {
                 IBlockState iblockstate1 = world.getBlockState(pos.up());
 
@@ -204,7 +183,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
         if (!world.isRemote && !this.recheckGrownSides(world, pos, state))
         {
@@ -256,7 +235,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
 
                         for (EnumFacing enumfacing3 : EnumFacing.Plane.HORIZONTAL)
                         {
-                            if (rand.nextBoolean() || !this.canPlaceOn(world.getBlockState(blockpos1.offset(enumfacing3)).getBlock()))
+                            if (rand.nextBoolean() || !this.canAttachVineOn(world.getBlockState(blockpos1.offset(enumfacing3))))
                             {
                                 iblockstate2 = iblockstate2.withProperty(getPropertyFor(enumfacing3), Boolean.valueOf(false));
                             }
@@ -275,7 +254,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
                         BlockPos blockpos3 = pos.offset(enumfacing1);
                         Block block1 = world.getBlockState(blockpos3).getBlock();
 
-                        if (block1.getMaterial() == Material.air)
+                        if (world.getBlockState(blockpos3).getMaterial() == Material.AIR)
                         {
                             EnumFacing enumfacing2 = enumfacing1.rotateY();
                             EnumFacing enumfacing4 = enumfacing1.rotateYCCW();
@@ -284,28 +263,28 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
                             BlockPos blockpos4 = blockpos3.offset(enumfacing2);
                             BlockPos blockpos = blockpos3.offset(enumfacing4);
 
-                            if (flag1 && this.canPlaceOn(world.getBlockState(blockpos4).getBlock()))
+                            if (flag1 && this.canAttachVineOn(world.getBlockState(blockpos4)))
                             {
                                 world.setBlockState(blockpos3, this.getDefaultState().withProperty(getPropertyFor(enumfacing2), Boolean.valueOf(true)), 2);
                             }
-                            else if (flag2 && this.canPlaceOn(world.getBlockState(blockpos).getBlock()))
+                            else if (flag2 && this.canAttachVineOn(world.getBlockState(blockpos)))
                             {
                                 world.setBlockState(blockpos3, this.getDefaultState().withProperty(getPropertyFor(enumfacing4), Boolean.valueOf(true)), 2);
                             }
-                            else if (flag1 && world.isAirBlock(blockpos4) && this.canPlaceOn(world.getBlockState(pos.offset(enumfacing2)).getBlock()))
+                            else if (flag1 && world.isAirBlock(blockpos4) && this.canAttachVineOn(world.getBlockState(pos.offset(enumfacing2))))
                             {
                                 world.setBlockState(blockpos4, this.getDefaultState().withProperty(getPropertyFor(enumfacing1.getOpposite()), Boolean.valueOf(true)), 2);
                             }
-                            else if (flag2 && world.isAirBlock(blockpos) && this.canPlaceOn(world.getBlockState(pos.offset(enumfacing4)).getBlock()))
+                            else if (flag2 && world.isAirBlock(blockpos) && this.canAttachVineOn(world.getBlockState(pos.offset(enumfacing4))))
                             {
                                 world.setBlockState(blockpos, this.getDefaultState().withProperty(getPropertyFor(enumfacing1.getOpposite()), Boolean.valueOf(true)), 2);
                             }
-                            else if (this.canPlaceOn(world.getBlockState(blockpos3.up()).getBlock()))
+                            else if (this.canAttachVineOn(world.getBlockState(blockpos3.up())))
                             {
                                 world.setBlockState(blockpos3, this.getDefaultState(), 2);
                             }
                         }
-                        else if (block1.getMaterial().isOpaque() && block1.isFullCube())
+                        else if (world.getBlockState(blockpos3).getMaterial().isOpaque() && world.getBlockState(blockpos3).isFullCube())
                         {
                             world.setBlockState(pos, state.withProperty(getPropertyFor(enumfacing1), Boolean.valueOf(true)), 2);
                         }
@@ -319,7 +298,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
                         IBlockState iblockstate = world.getBlockState(blockpos2);
                         Block block = iblockstate.getBlock();
 
-                        if (block.getMaterial() == Material.air)
+                        if (iblockstate.getMaterial() == Material.AIR)
                         {
                             IBlockState iblockstate1 = state;
 
@@ -388,9 +367,9 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.CUTOUT;
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
@@ -418,9 +397,9 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {UP, NORTH, EAST, SOUTH, WEST});
+        return new BlockStateContainer(this, new IProperty[] {UP, NORTH, EAST, SOUTH, WEST});
     }
 
     public static PropertyBool getPropertyFor(EnumFacing side)
@@ -457,7 +436,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     }
 
     @Override
-    public boolean isLadder(IBlockAccess world, BlockPos pos, EntityLivingBase entity)
+    public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity)
     {
         return true;
     }

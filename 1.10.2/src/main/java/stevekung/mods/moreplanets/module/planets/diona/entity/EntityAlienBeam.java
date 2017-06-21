@@ -4,9 +4,11 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPSounds;
 
 public class EntityAlienBeam extends Entity
 {
@@ -42,7 +44,7 @@ public class EntityAlienBeam extends Entity
 
         if (this.lightningState == 2)
         {
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "moreplanets:ambient.alienbeam", 500.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+            this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 500.0F, 0.8F + this.rand.nextFloat() * 0.2F);
         }
 
         --this.lightningState;

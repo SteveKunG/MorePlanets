@@ -5,11 +5,14 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusCreeper;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusZombie;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityZeliusEgg;
@@ -93,7 +96,7 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
             {
                 EntityZeliusCreeper creeper = new EntityZeliusCreeper(world);
                 creeper.setPosition(pos.getX() + 0.5D, pos.getY() + 1, pos.getZ() + 0.5D);
-                creeper.getDataWatcher().updateObject(17, Byte.valueOf((byte)1));//TODO
+                creeper.getDataManager().set(EntityCreeper.POWERED, true);
                 world.spawnEntityInWorld(creeper);
             }
             else
@@ -104,7 +107,7 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
             }
             world.setBlockToAir(pos);
         }
-        world.playSound(pos.getX(), pos.getY(), pos.getZ(), "moreplanets:block.egg.destroy", 1.0F, 1.0F);
+        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.BLOCKS, 1.0F, 1.0F);
     }
 
     @Override

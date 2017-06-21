@@ -2,16 +2,17 @@ package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
 import java.util.List;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -28,10 +29,10 @@ public class BlockCandyCane1 extends BlockLogMP implements IBlockVariants
 
     public BlockCandyCane1(String name)
     {
-        super(Material.cloth);
+        super(Material.CLOTH);
         this.setHardness(0.55F);
         this.setResistance(3.0F);
-        this.setStepSound(soundTypeCloth);
+        this.setSoundType(SoundType.CLOTH);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.RED_CANDY_CANE).withProperty(BlockStateHelper.AXIS, EnumAxis.Y));
         this.setUnlocalizedName(name);
     }
@@ -89,9 +90,9 @@ public class BlockCandyCane1 extends BlockLogMP implements IBlockVariants
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT, BlockStateHelper.AXIS });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT, BlockStateHelper.AXIS });
     }
 
     @Override
@@ -113,7 +114,7 @@ public class BlockCandyCane1 extends BlockLogMP implements IBlockVariants
     }
 
     @Override
-    public boolean canSustainLeaves(IBlockAccess world, BlockPos pos)
+    public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return false;
     }

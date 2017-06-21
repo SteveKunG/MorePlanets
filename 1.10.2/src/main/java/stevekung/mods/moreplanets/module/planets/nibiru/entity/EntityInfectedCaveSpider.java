@@ -24,13 +24,13 @@ public class EntityInfectedCaveSpider extends EntitySpider implements ISpaceMob,
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
     }
 
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override

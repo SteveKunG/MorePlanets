@@ -5,14 +5,14 @@ import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityTier6Rocket;
@@ -55,7 +55,7 @@ public class RenderTier6Rocket extends Render<EntityTier6Rocket>
 
         this.updateModel();
         RenderHelper.disableStandardItemLighting();
-        this.bindTexture(TextureMap.locationBlocksTexture);
+        this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
         if (Minecraft.isAmbientOcclusionEnabled())
         {

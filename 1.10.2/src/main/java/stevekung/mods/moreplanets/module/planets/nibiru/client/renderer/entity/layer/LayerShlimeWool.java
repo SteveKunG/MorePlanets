@@ -36,13 +36,13 @@ public class LayerShlimeWool implements LayerRenderer<EntityShlime>
                 int k = i % j;
                 int l = (i + 1) % j;
                 float f = (entity.ticksExisted % 25 + partialTicks) / 25.0F;
-                float[] afloat1 = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(k));
-                float[] afloat2 = EntitySheep.func_175513_a(EnumDyeColor.byMetadata(l));
+                float[] afloat1 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(k));
+                float[] afloat2 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(l));
                 GlStateManager.color(afloat1[0] * (1.0F - f) + afloat2[0] * f, afloat1[1] * (1.0F - f) + afloat2[1] * f, afloat1[2] * (1.0F - f) + afloat2[2] * f);
             }
             else
             {
-                float[] afloat = EntitySheep.func_175513_a(entity.getFleeceColor());
+                float[] afloat = EntitySheep.getDyeRgb(entity.getFleeceColor());
                 GlStateManager.color(afloat[0], afloat[1], afloat[2]);
             }
             this.sheepModel.setModelAttributes(this.render.getMainModel());

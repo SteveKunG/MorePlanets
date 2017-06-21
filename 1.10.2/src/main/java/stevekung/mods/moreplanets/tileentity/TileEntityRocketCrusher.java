@@ -15,6 +15,7 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -23,6 +24,7 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -69,20 +71,11 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
                 if (this.canCompress())
                 {
                     ++this.processTicks;
-
                     this.processTimeRequired = TileEntityRocketCrusher.PROCESS_TIME_REQUIRED_BASE * 2 / (1 + this.poweredByTierGC);
 
-                    if (this.processTicks == 40)
+                    if (this.processTicks == 40 || this.processTicks == 80 || this.processTicks == 130)
                     {
-                        this.worldObj.playSound(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "random.anvil_land", 0.2F, 0.5F);
-                    }
-                    if (this.processTicks == 80)
-                    {
-                        this.worldObj.playSound(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "random.anvil_land", 0.2F, 0.5F);
-                    }
-                    if (this.processTicks == 130)
-                    {
-                        this.worldObj.playSound(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "random.anvil_land", 0.2F, 0.5F);
+                        this.worldObj.playSound(null, this.getPos(), SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.BLOCKS, 0.3F, 0.5F);
                     }
                     if (this.processTicks >= this.processTimeRequired)
                     {

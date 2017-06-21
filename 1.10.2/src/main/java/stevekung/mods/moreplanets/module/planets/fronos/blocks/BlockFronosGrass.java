@@ -4,17 +4,15 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.world.ColorizerGrass;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.BlockGrassMP;
@@ -32,30 +30,9 @@ public class BlockFronosGrass extends BlockGrassMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBlockColor()
+    public BlockRenderLayer getBlockLayer()
     {
-        return ColorizerGrass.getGrassColor(0.5D, 1.0D);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getRenderColor(IBlockState state)
-    {
-        return this.getBlockColor();
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess world, BlockPos pos, int renderPass)
-    {
-        return BiomeColorHelper.getGrassColorAtPos(world, pos);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
-    {
-        return EnumWorldBlockLayer.CUTOUT_MIPPED;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override
@@ -63,7 +40,7 @@ public class BlockFronosGrass extends BlockGrassMP
     {
         Block block = world.getBlockState(pos.up()).getBlock();
 
-        if (block == Blocks.snow || block == Blocks.snow_layer)
+        if (block == Blocks.SNOW || block == Blocks.SNOW_LAYER)
         {
             state = state.withProperty(HAS_LAYER, BlockType.SNOW);
         }
@@ -91,7 +68,7 @@ public class BlockFronosGrass extends BlockGrassMP
 
                     if (world.getBlockState(pos1) == FronosBlocks.FRONOS_DIRT.getDefaultState())
                     {
-                        if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getBlock().getLightOpacity() <= 2)
+                        if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity() <= 2)
                         {
                             world.setBlockState(pos1, FronosBlocks.FRONOS_GRASS.getDefaultState());
                         }
@@ -108,9 +85,9 @@ public class BlockFronosGrass extends BlockGrassMP
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, HAS_LAYER);
+        return new BlockStateContainer(this, HAS_LAYER);
     }
 
     @Override

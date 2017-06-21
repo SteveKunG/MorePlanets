@@ -65,7 +65,7 @@ public class ItemGasBucketMP extends ItemBucketMP
                 {
                     if (this.isFull == Blocks.air)
                     {
-                        return new ItemStack(Items.bucket);
+                        return new ItemStack(Items.BUCKET);
                     }
 
                     BlockPos blockpos1 = blockpos.offset(movingobjectposition.sideHit);
@@ -76,7 +76,7 @@ public class ItemGasBucketMP extends ItemBucketMP
                     }
                     if (this.tryPlaceContainedLiquid(world, blockpos1) && !player.capabilities.isCreativeMode)
                     {
-                        return new ItemStack(Items.bucket);
+                        return new ItemStack(Items.BUCKET);
                     }
                 }
             }

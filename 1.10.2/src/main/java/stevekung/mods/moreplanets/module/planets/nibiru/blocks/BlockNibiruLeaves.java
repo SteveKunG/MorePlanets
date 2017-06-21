@@ -9,15 +9,16 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -56,13 +57,13 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        super.randomDisplayTick(world, pos, state, rand);
+        super.randomDisplayTick(state, world, pos, rand);
 
         if (state.getValue(VARIANT) == BlockType.ALIEN_BERRY_OAK_LEAVES)
         {
-            if (!World.doesBlockHaveSolidTopSurface(world, pos.down()) && rand.nextInt(10) == 0)
+            if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && rand.nextInt(10) == 0)
             {
                 double d0 = pos.getX() + rand.nextFloat();
                 double d1 = pos.getY() - 0.05D;
@@ -85,9 +86,9 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT, BlockStateHelper.DECAYABLE, BlockStateHelper.CHECK_DECAY });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT, BlockStateHelper.DECAYABLE, BlockStateHelper.CHECK_DECAY });
     }
 
     @Override
@@ -114,7 +115,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, this.getMetaFromState(world.getBlockState(pos)) & 3);
     }

@@ -5,14 +5,14 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.model.ModelVeinFloater;
@@ -49,7 +49,7 @@ public class RenderMiniVeinFloater extends RenderLiving<EntityMiniVeinFloater>
                 if (player != null && !player.capabilities.isCreativeMode && entity.useVineAttacking)
                 {
                     Tessellator tessellator = Tessellator.getInstance();
-                    WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+                    VertexBuffer worldrenderer = tessellator.getBuffer();
                     this.bindTexture(new ResourceLocation("moreplanets:textures/blocks/infected_vines.png"));
                     GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
                     GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
@@ -66,9 +66,9 @@ public class RenderMiniVeinFloater extends RenderLiving<EntityMiniVeinFloater>
                     float f4 = entity.getEyeHeight() + 0.25F;
                     GlStateManager.pushMatrix();
                     GlStateManager.translate((float)x, (float)y + f4, (float)z);
-                    Vec3 vec3 = this.getPosition(player, player.height * 0.5D, partialTicks);
-                    Vec3 vec31 = this.getPosition(entity, f4, partialTicks);
-                    Vec3 vec32 = vec3.subtract(vec31);
+                    Vec3d vec3 = this.getPosition(player, player.height * 0.5D, partialTicks);
+                    Vec3d vec31 = this.getPosition(entity, f4, partialTicks);
+                    Vec3d vec32 = vec3.subtract(vec31);
                     double d0 = vec32.lengthVector();
                     vec32 = vec32.normalize();
                     float f5 = (float)Math.acos(vec32.yCoord);
@@ -143,11 +143,11 @@ public class RenderMiniVeinFloater extends RenderLiving<EntityMiniVeinFloater>
         GlStateManager.scale(6.0F, 6.0F, 6.0F);
     }
 
-    private Vec3 getPosition(EntityLivingBase entity, double height, float partialTicks)
+    private Vec3d getPosition(EntityLivingBase entity, double height, float partialTicks)
     {
         double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks;
         double d1 = height + entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks;
         double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks;
-        return new Vec3(d0, d1, d2);
+        return new Vec3d(d0, d1, d2);
     }
 }

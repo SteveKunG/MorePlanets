@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.util.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -10,9 +11,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,45 +25,26 @@ import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public abstract class BlockCakeMP extends BlockBaseMP
 {
+    protected static AxisAlignedBB[] CAKE_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.1875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.3125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.4375D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.5625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.6875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.8125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D)};
+
     public BlockCakeMP()
     {
-        super(Material.cake);
+        super(Material.CAKE);
         this.setTickRandomly(true);
         this.setHardness(0.5F);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.BITES, 0));
-        this.setStepSound(soundTypeCloth);
+        this.setSoundType(SoundType.CLOTH);
     }
 
-    @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        float f1 = 0.0625F;
-        float f2 = (1 + world.getBlockState(pos).getValue(BlockStateHelper.BITES).intValue() * 2) / 16.0F;
-        float f3 = 0.5F;
-        this.setBlockBounds(f2, 0.0F, f1, 1.0F - f1, f3, 1.0F - f1);
+        return CAKE_AABB[((Integer)state.getValue(BlockStateHelper.BITES)).intValue()];
     }
 
-    @Override
-    public void setBlockBoundsForItemRender()
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        float f1 = 0.0625F;
-        float f2 = 0.5F;
-        this.setBlockBounds(f1, 0.0F, f1, 1.0F - f1, f2, 1.0F - f1);
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
-    {
-        float f1 = 0.0625F;
-        float f2 = (1 + state.getValue(BlockStateHelper.BITES).intValue() * 2) / 16.0F;
-        float f3 = 0.5F;
-        return new AxisAlignedBB(pos.getX() + f2, pos.getY(), pos.getZ() + f1, pos.getX() + 1 - f1, pos.getY() + f3, pos.getZ() + 1 - f1);
-    }
-
-    @Override
-    public AxisAlignedBB getSelectedBoundingBox(World world, BlockPos pos)
-    {
-        return this.getCollisionBoundingBox(world, pos, world.getBlockState(pos));
+        return state.getCollisionBoundingBox(world, pos);
     }
 
     @Override
@@ -75,7 +60,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float x, float y, float z)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float x, float y, float z)
     {
         this.eatCake(world, pos, state, player);
         return true;
@@ -118,7 +103,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
         if (!this.canBlockStay(world, pos))
         {
@@ -144,16 +129,16 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, 0);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.CUTOUT;
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override

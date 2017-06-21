@@ -5,14 +5,16 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -25,24 +27,29 @@ public class EntityGiantWorm extends EntityMob implements IEntityBreathable, ISp
     {
         super(world);
         this.setSize(1.2F, 0.4F);
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
+        this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3F);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3F);
     }
 
     @Override
@@ -62,27 +69,27 @@ public class EntityGiantWorm extends EntityMob implements IEntityBreathable, ISp
     }
 
     @Override
-    protected String getLivingSound()
+    protected SoundEvent getAmbientSound()
     {
-        return "mob.silverfish.say";
+        return SoundEvents.ENTITY_SILVERFISH_AMBIENT;
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "mob.silverfish.hit";
+        return SoundEvents.ENTITY_SILVERFISH_HURT;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "mob.silverfish.kill";
+        return SoundEvents.ENTITY_SILVERFISH_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, Block block)
     {
-        this.worldObj.playSoundAtEntity(this, "mob.silverfish.step", 1.0F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_SILVERFISH_STEP, 0.15F, 1.0F);
     }
 
     @Override
@@ -101,7 +108,7 @@ public class EntityGiantWorm extends EntityMob implements IEntityBreathable, ISp
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.canSeeSky(this.getPosition()) && this.worldObj.getLightBrightness(this.getPosition()) <= 1.0F;
+        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.canSeeSky(this.getPosition()) && this.worldObj.getLightBrightness(this.getPosition()) <= 1.0F;
     }
 
     @Override

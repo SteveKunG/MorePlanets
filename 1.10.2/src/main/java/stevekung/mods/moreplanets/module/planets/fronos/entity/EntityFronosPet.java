@@ -1,17 +1,23 @@
 package stevekung.mods.moreplanets.module.planets.fronos.entity;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFaceTexture;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFronosPanic;
@@ -94,7 +100,7 @@ public abstract class EntityFronosPet extends EntityTameable
 
         if (this.getLayItem() != null && !this.isChild() && !this.worldObj.isRemote && --this.timeUntilToDropItem <= 0)
         {
-            this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.entityDropItem(this.getLayItem(), 1.0F);
             this.timeUntilToDropItem = this.rand.nextInt(6000) + 2000;
         }
@@ -125,36 +131,36 @@ public abstract class EntityFronosPet extends EntityTameable
 
         if (this.isTamed())
         {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12.0D);
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
         }
         else
         {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8.0D);
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
         }
     }
 
     @Override
     protected void playStepSound(BlockPos pos, Block block)
     {
-        this.playSound("moreplanets:mob.fronos.step", 0.15F, 1.0F);
+        this.playSound(MPSounds.FRONOS_MOB_STEP, 0.15F, 1.0F);
     }
 
     @Override
-    protected String getLivingSound()
+    protected SoundEvent getAmbientSound()
     {
-        return "moreplanets:mob.fronos.say";
+        return MPSounds.FRONOS_MOB_AMBIENT;
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "moreplanets:mob.fronos.hurt";
+        return MPSounds.FRONOS_MOB_HURT;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "moreplanets:mob.fronos.death";
+        return MPSounds.FRONOS_MOB_DEATH;
     }
 
     @Override
@@ -170,11 +176,11 @@ public abstract class EntityFronosPet extends EntityTameable
 
         if (tame)
         {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12.0D);
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
         }
         else
         {
-            this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8.0D);
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
         }
     }
 
@@ -220,12 +226,11 @@ public abstract class EntityFronosPet extends EntityTameable
     }
 
     @Override
-    public boolean interact(EntityPlayer player)
+    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack itemStack)
     {
-        ItemStack itemStack = player.inventory.getCurrentItem();
         boolean isTamedItem = itemStack != null && itemStack.getItem() == FronosItems.FRONOS_FOOD && itemStack.getItemDamage() == 1;
 
-        if (super.interact(player))
+        if (super.processInteract(player, hand, itemStack))
         {
             return true;
         }
@@ -263,7 +268,7 @@ public abstract class EntityFronosPet extends EntityTameable
                 {
                     this.setTamed(true);
                     this.setHealth(20.0F);
-                    this.setOwnerId(player.getUniqueID().toString());
+                    this.setOwnerId(player.getUniqueID());
                     this.playTameEffect(true);
                     this.worldObj.setEntityState(this, (byte)7);
                 }

@@ -8,8 +8,8 @@ import net.minecraft.block.BlockNewLeaf;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -215,7 +215,7 @@ public class WorldGenInfectedDeadSavannaTree extends WorldGenAbstractTree
 
         if (block.isAir(worldIn, p_175924_2_) || block.isLeaves(worldIn, p_175924_2_))
         {
-            this.setBlockAndNotifyAdequately(worldIn, p_175924_2_, Blocks.air.getDefaultState());
+            this.setBlockAndNotifyAdequately(worldIn, p_175924_2_, Blocks.AIR.getDefaultState());
         }
     }
 }

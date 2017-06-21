@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
@@ -8,13 +10,17 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
@@ -27,7 +33,11 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
     {
         super(world);
         this.setSize(0.9F, 1.3F);
-        ((PathNavigateGroundMP)this.getNavigator()).setAvoidsWater(true);
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
@@ -57,7 +67,7 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_SPORE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
@@ -76,32 +86,32 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
     }
 
     @Override
-    protected String getLivingSound()
+    protected SoundEvent getAmbientSound()
     {
-        return "mob.cow.say";
+        return SoundEvents.ENTITY_COW_AMBIENT;
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "mob.cow.hurt";
+        return SoundEvents.ENTITY_COW_HURT;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "mob.cow.hurt";
+        return SoundEvents.ENTITY_COW_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, Block block)
     {
-        this.playSound("mob.cow.step", 0.15F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
     }
 
     @Override
@@ -111,56 +121,32 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
     }
 
     @Override
-    protected Item getDropItem()
+    @Nullable
+    protected ResourceLocation getLootTable()
     {
-        return Items.leather;
+        return LootTableList.ENTITIES_COW;
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
-    {
-        int i = this.rand.nextInt(3) + this.rand.nextInt(1 + fortune);
-
-        for (int j = 0; j < i; ++j)
-        {
-            this.dropItem(Items.leather, 1);
-        }
-
-        i = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + fortune);
-
-        for (int k = 0; k < i; ++k)
-        {
-            if (this.isBurning())
-            {
-                this.dropItem(Items.cooked_beef, 1);
-            }
-            else
-            {
-                this.dropItem(Items.beef, 1);
-            }
-        }
-    }
-
-    @Override
-    public boolean interact(EntityPlayer player)
+    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack itemStack)
     {
         ItemStack itemstack = player.inventory.getCurrentItem();
 
-        if (itemstack != null && itemstack.getItem() == Items.bucket && !player.capabilities.isCreativeMode && !this.isChild())
+        if (itemstack != null && itemstack.getItem() == Items.BUCKET && !player.capabilities.isCreativeMode && !this.isChild())
         {
             if (itemstack.stackSize-- == 1)
             {
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.milk_bucket));
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.MILK_BUCKET));
             }
-            else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket)))
+            else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.MILK_BUCKET)))
             {
-                player.dropPlayerItemWithRandomChoice(new ItemStack(Items.milk_bucket, 1, 0), false);
+                player.dropItem(new ItemStack(Items.MILK_BUCKET, 1, 0), false);
             }
             return true;
         }
         else
         {
-            return super.interact(player);
+            return super.processInteract(player, hand, itemStack);
         }
     }
 

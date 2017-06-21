@@ -6,7 +6,7 @@ import net.minecraft.entity.ai.EntityAIMoveToBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;
@@ -65,7 +65,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
             {
                 world.destroyBlock(blockpos, true);
             }
-            else if (this.field_179501_f == 1 && block == Blocks.air)
+            else if (this.field_179501_f == 1 && block == Blocks.AIR)
             {
                 InventoryBasic inventorybasic = this.theVillager.getVillagerInventory();
 
@@ -121,7 +121,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
                 this.field_179501_f = 0;
                 return true;
             }
-            if (block == Blocks.air && this.hasFarmItem && (this.field_179501_f == 1 || this.field_179501_f < 0))
+            if (block == Blocks.AIR && this.hasFarmItem && (this.field_179501_f == 1 || this.field_179501_f < 0))
             {
                 this.field_179501_f = 1;
                 return true;

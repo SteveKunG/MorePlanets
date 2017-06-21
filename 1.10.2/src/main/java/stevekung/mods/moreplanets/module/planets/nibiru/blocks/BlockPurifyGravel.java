@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -14,7 +15,7 @@ public class BlockPurifyGravel extends BlockFallingMP
         super();
         this.setUnlocalizedName(name);
         this.setHardness(0.6F);
-        this.setStepSound(soundTypeGravel);
+        this.setSoundType(SoundType.GROUND);
     }
 
     @Override
@@ -24,7 +25,7 @@ public class BlockPurifyGravel extends BlockFallingMP
         {
             fortune = 3;
         }
-        return rand.nextInt(10 - fortune * 3) == 0 ? Items.flint : Item.getItemFromBlock(this);
+        return rand.nextInt(10 - fortune * 3) == 0 ? Items.FLINT : Item.getItemFromBlock(this);
     }
 
     @Override

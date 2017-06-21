@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
 
@@ -16,32 +17,27 @@ public class ItemAxeMP extends ItemAxe implements ISortableItem
     private Item repairItem;
     private int repairItemMeta;
 
-    public ItemAxeMP(String name, ToolMaterial material, Item item)
+    public ItemAxeMP(String name, ToolMaterial material, Item item, EnumToolSpeed speed)
     {
-        this(name, material, item, -1);
+        this(name, material, item, -1, speed);
     }
 
-    public ItemAxeMP(String name, ToolMaterial material, Block block)
+    public ItemAxeMP(String name, ToolMaterial material, Block block, EnumToolSpeed speed)
     {
-        this(name, material, Item.getItemFromBlock(block), -1);
+        this(name, material, Item.getItemFromBlock(block), -1, speed);
     }
 
-    public ItemAxeMP(String name, ToolMaterial material, Block block, int meta)
+    public ItemAxeMP(String name, ToolMaterial material, Block block, int meta, EnumToolSpeed speed)
     {
-        this(name, material, Item.getItemFromBlock(block), meta);
+        this(name, material, Item.getItemFromBlock(block), meta, speed);
     }
 
-    public ItemAxeMP(String name, ToolMaterial material, Item item, int meta)
+    public ItemAxeMP(String name, ToolMaterial material, Item item, int meta, EnumToolSpeed speed)
     {
-        super(material);
+        super(material, material.getDamageVsEntity(), speed.getSpeed());
         this.repairItem = item;
         this.repairItemMeta = meta;
         this.setUnlocalizedName(name);
-    }
-
-    public ItemAxeMP(ToolMaterial material)
-    {
-        super(material);
     }
 
     @Override

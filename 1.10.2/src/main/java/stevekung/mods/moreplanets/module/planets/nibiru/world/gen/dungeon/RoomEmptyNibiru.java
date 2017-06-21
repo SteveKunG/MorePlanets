@@ -76,12 +76,12 @@ public class RoomEmptyNibiru extends SizedPieceNibiru
                         }
                         else
                         {
-                            this.setBlockState(world, Blocks.air.getDefaultState(), i, j, k, boundingBox);
+                            this.setBlockState(world, Blocks.AIR.getDefaultState(), i, j, k, boundingBox);
                         }
                     }
                     else
                     {
-                        this.setBlockState(world, Blocks.air.getDefaultState(), i, j, k, boundingBox);
+                        this.setBlockState(world, Blocks.AIR.getDefaultState(), i, j, k, boundingBox);
                     }
                 }
             }

@@ -19,7 +19,6 @@ public class EntityAIFronosTempt extends EntityAIBase
     private int delayTemptCounter;
     private ItemStack itemStack;
     private boolean scaredByPlayerMovement;
-    private boolean avoidWater;
     int timer;
 
     public EntityAIFronosTempt(EntityCreature entity, double speed, ItemStack itemStack, boolean scared)
@@ -54,7 +53,7 @@ public class EntityAIFronosTempt extends EntityAIBase
             }
             else
             {
-                ItemStack itemStack = this.temptingPlayer.getCurrentEquippedItem();
+                ItemStack itemStack = this.temptingPlayer.getHeldItemMainhand();
                 return itemStack == null ? false : itemStack.getItem() == this.itemStack.getItem() && itemStack.getItemDamage() == this.itemStack.getItemDamage();
             }
         }
@@ -94,8 +93,6 @@ public class EntityAIFronosTempt extends EntityAIBase
         this.targetX = this.temptingPlayer.posX;
         this.targetY = this.temptingPlayer.posY;
         this.targetZ = this.temptingPlayer.posZ;
-        this.avoidWater = ((PathNavigateGroundMP)this.temptedEntity.getNavigator()).getAvoidsWater();
-        ((PathNavigateGroundMP)this.temptedEntity.getNavigator()).setAvoidsWater(false);
         this.timer = 1;
         this.temptedEntity.worldObj.setEntityState(this.temptedEntity, (byte)12);
     }
@@ -106,7 +103,6 @@ public class EntityAIFronosTempt extends EntityAIBase
         this.temptingPlayer = null;
         this.temptedEntity.getNavigator().clearPathEntity();
         this.delayTemptCounter = 100;
-        ((PathNavigateGroundMP)this.temptedEntity.getNavigator()).setAvoidsWater(this.avoidWater);
         this.timer = 0;
     }
 

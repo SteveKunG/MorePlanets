@@ -3,12 +3,15 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -17,20 +20,27 @@ import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
 public class BlockInfectedVinesDirt extends BlockBaseMP
 {
+    protected static AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
+
     public BlockInfectedVinesDirt(String name)
     {
-        super(Material.ground);
+        super(Material.GROUND);
         this.setUnlocalizedName(name);
         this.setHardness(0.55F);
-        this.setStepSound(soundTypeGravel);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.9375F, 1.0F);
+        this.setSoundType(SoundType.GROUND);
         this.setLightOpacity(255);
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        if (world.getBlockState(pos.up()).getBlock().getMaterial().isSolid())
+        return FARMLAND_AABB;
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    {
+        if (world.getBlockState(pos.up()).getMaterial().isSolid())
         {
             world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState());
         }
@@ -38,19 +48,19 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.CUTOUT;
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }

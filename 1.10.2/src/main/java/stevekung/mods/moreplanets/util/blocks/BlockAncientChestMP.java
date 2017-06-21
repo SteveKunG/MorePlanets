@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.util.blocks;
 import java.util.Iterator;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -12,7 +13,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -21,57 +24,43 @@ import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public abstract class BlockAncientChestMP extends BlockContainerMP implements ISingleBlockRender
 {
+    protected static AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 0.9375D, 0.875D, 0.9375D);
+    protected static AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 1.0D);
+    protected static AxisAlignedBB WEST_CHEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
+    protected static AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1.0D, 0.875D, 0.9375D);
+    protected static AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
+
     protected BlockAncientChestMP()
     {
         super(Material.WOOD);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.FACING, EnumFacing.NORTH));
-        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
         this.setResistance(5.0F);
         this.setHardness(2.0F);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public int getRenderType()
+    public EnumBlockRenderType getRenderType(IBlockState state)
     {
-        return 2;
+        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if (world.getBlockState(pos.north()).getBlock() == this)
-        {
-            this.setBlockBounds(0.0625F, 0.0F, 0.0F, 0.9375F, 0.875F, 0.9375F);
-        }
-        else if (world.getBlockState(pos.south()).getBlock() == this)
-        {
-            this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 1.0F);
-        }
-        else if (world.getBlockState(pos.west()).getBlock() == this)
-        {
-            this.setBlockBounds(0.0F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-        }
-        else if (world.getBlockState(pos.east()).getBlock() == this)
-        {
-            this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 1.0F, 0.875F, 0.9375F);
-        }
-        else
-        {
-            this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-        }
+        return world.getBlockState(pos.north()).getBlock() == this ? NORTH_CHEST_AABB : world.getBlockState(pos.south()).getBlock() == this ? SOUTH_CHEST_AABB : world.getBlockState(pos.west()).getBlock() == this ? WEST_CHEST_AABB : world.getBlockState(pos.east()).getBlock() == this ? EAST_CHEST_AABB : NOT_CONNECTED_AABB;
     }
 
     @Override
@@ -163,8 +152,8 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
 
             if (block != this && block1 != this)
             {
-                boolean flag = block.isFullBlock();
-                boolean flag1 = block1.isFullBlock();
+                boolean flag = iblockstate1.isFullBlock();
+                boolean flag1 = iblockstate2.isFullBlock();
 
                 if (block2 == this || block3 == this)
                 {
@@ -191,11 +180,11 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
                     Block block6 = iblockstate7.getBlock();
                     Block block7 = iblockstate8.getBlock();
 
-                    if ((flag || block6.isFullBlock()) && !flag1 && !block7.isFullBlock())
+                    if ((flag || iblockstate7.isFullBlock()) && !flag1 && !iblockstate8.isFullBlock())
                     {
                         enumfacing = EnumFacing.SOUTH;
                     }
-                    if ((flag1 || block7.isFullBlock()) && !flag && !block6.isFullBlock())
+                    if ((flag1 || iblockstate8.isFullBlock()) && !flag && !iblockstate7.isFullBlock())
                     {
                         enumfacing = EnumFacing.NORTH;
                     }
@@ -226,12 +215,12 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
                 Block block4 = iblockstate5.getBlock();
                 Block block5 = iblockstate6.getBlock();
 
-                if ((block2.isFullBlock() || block4.isFullBlock()) && !block3.isFullBlock() && !block5.isFullBlock())
+                if ((iblockstate3.isFullBlock() || iblockstate5.isFullBlock()) && !iblockstate4.isFullBlock() && !iblockstate6.isFullBlock())
                 {
                     enumfacing = EnumFacing.EAST;
                 }
 
-                if ((block3.isFullBlock() || block5.isFullBlock()) && !block2.isFullBlock() && !block4.isFullBlock())
+                if ((iblockstate4.isFullBlock() || iblockstate6.isFullBlock()) && !iblockstate3.isFullBlock() && !iblockstate5.isFullBlock())
                 {
                     enumfacing = EnumFacing.WEST;
                 }

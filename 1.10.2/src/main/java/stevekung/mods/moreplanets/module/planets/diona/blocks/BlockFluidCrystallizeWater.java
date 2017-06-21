@@ -1,13 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
@@ -17,7 +14,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidBaseMP;
 import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
@@ -50,7 +46,7 @@ public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFis
                 world.spawnParticle(EnumParticleTypes.SUSPENDED, pos.getX() + (double)rand.nextFloat(), pos.getY() + (double)rand.nextFloat(), pos.getZ() + (double)rand.nextFloat(), 0.0D, 0.0D, 0.0D);
             }
         }
-        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isSideSolid(world, pos, EnumFacing.DOWN))
+        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP))
         {
             Material material = world.getBlockState(pos.down(2)).getMaterial();
 
@@ -76,7 +72,7 @@ public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFis
         return "crystallize_water_fluid";
     }
 
-    @Override
+    /*@Override
     public List<WeightedRandomFishable> getFishLoot()
     {
         List<WeightedRandomFishable> FISH = Arrays.asList(new WeightedRandomFishable[] {
@@ -84,5 +80,5 @@ public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFis
                 new WeightedRandomFishable(new ItemStack(MPItems.SPACE_FISH, 1, 1), 1),
         });
         return FISH;
-    }
+    }*/
 }

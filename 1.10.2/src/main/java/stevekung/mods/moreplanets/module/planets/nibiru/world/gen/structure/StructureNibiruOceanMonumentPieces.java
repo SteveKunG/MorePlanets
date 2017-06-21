@@ -12,8 +12,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -1493,11 +1493,11 @@ public class StructureNibiruOceanMonumentPieces
                 {
                     for (int k = p_181655_5_; k <= p_181655_8_; ++k)
                     {
-                        if (!p_181655_9_ || this.getBlockStateFromPos(p_181655_1_, j, i, k, p_181655_2_).getBlock().getMaterial() != Material.air)
+                        if (!p_181655_9_ || this.getBlockStateFromPos(p_181655_1_, j, i, k, p_181655_2_).getBlock().getMaterial() != Material.AIR)
                         {
                             if (this.getYWithOffset(i) >= p_181655_1_.getSeaLevel())
                             {
-                                this.setBlockState(p_181655_1_, Blocks.air.getDefaultState(), j, i, k, p_181655_2_);
+                                this.setBlockState(p_181655_1_, Blocks.AIR.getDefaultState(), j, i, k, p_181655_2_);
                             }
                             else
                             {

@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,10 +15,9 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -36,7 +35,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
 
     protected BlockNibiruFurnace(String name, boolean isBurning)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING, EnumFacing.NORTH));
         this.setUnlocalizedName(name);
         this.setHardness(3.5F);
@@ -77,10 +76,10 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     {
         if (!world.isRemote)
         {
-            Block block = world.getBlockState(pos.north()).getBlock();
-            Block block1 = world.getBlockState(pos.south()).getBlock();
-            Block block2 = world.getBlockState(pos.west()).getBlock();
-            Block block3 = world.getBlockState(pos.east()).getBlock();
+            IBlockState block = world.getBlockState(pos.north());
+            IBlockState block1 = world.getBlockState(pos.south());
+            IBlockState block2 = world.getBlockState(pos.west());
+            IBlockState block3 = world.getBlockState(pos.east());
             EnumFacing enumfacing = state.getValue(BlockStateHelper.FACING);
 
             if (enumfacing == EnumFacing.NORTH && block.isFullBlock() && !block1.isFullBlock())
@@ -106,7 +105,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("incomplete-switch")
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if (this.isBurning)
         {
@@ -139,7 +138,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (world.isRemote)
         {
@@ -151,7 +150,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
 
             if (tileentity instanceof TileEntityNibiruFurnace)
             {
-                playerIn.displayGUIChest((TileEntityNibiruFurnace)tileentity);
+                player.displayGUIChest((TileEntityNibiruFurnace)tileentity);
             }
             return true;
         }
@@ -228,34 +227,33 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     }
 
     @Override
-    public boolean hasComparatorInputOverride()
+    public boolean hasComparatorInputOverride(IBlockState state)
     {
         return true;
     }
 
     @Override
-    public int getComparatorInputOverride(World world, BlockPos pos)
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
         return Container.calcRedstone(world.getTileEntity(pos));
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(NibiruBlocks.NIBIRU_FURNACE);
     }
 
     @Override
-    public int getRenderType()
+    public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        return 3;
+        return state.withProperty(BlockStateHelper.FACING, rot.rotate(state.getValue(BlockStateHelper.FACING)));
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public IBlockState getStateForEntityRender(IBlockState state)
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
     {
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING, EnumFacing.SOUTH);
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING)));
     }
 
     @Override
@@ -277,9 +275,9 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {BlockStateHelper.FACING});
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING});
     }
 
     @Override

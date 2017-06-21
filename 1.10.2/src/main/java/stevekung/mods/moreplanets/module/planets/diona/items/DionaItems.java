@@ -11,6 +11,7 @@ import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemArmorIllenium;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemBreathableIllenium;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
+import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
@@ -76,7 +77,7 @@ public class DionaItems
         DionaItems.ILLENIUM_SWORD = new ItemSwordMP("illenium_sword", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2);
         DionaItems.ILLENIUM_SHOVEL = new ItemShovelMP("illenium_shovel", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2);
         DionaItems.ILLENIUM_PICKAXE = new ItemPickaxeMP("illenium_pickaxe", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2);
-        DionaItems.ILLENIUM_AXE = new ItemAxeMP("illenium_axe", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2);
+        DionaItems.ILLENIUM_AXE = new ItemAxeMP("illenium_axe", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2, EnumToolSpeed.COMMON);
         DionaItems.ILLENIUM_HOE = new ItemHoeMP("illenium_hoe", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2);
 
         /**************************************************************/

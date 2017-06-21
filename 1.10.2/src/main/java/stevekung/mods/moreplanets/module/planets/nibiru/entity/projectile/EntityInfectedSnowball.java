@@ -5,7 +5,7 @@ import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -29,7 +29,7 @@ public class EntityInfectedSnowball extends EntityThrowable
     }
 
     @Override
-    protected void onImpact(MovingObjectPosition moving)
+    protected void onImpact(RayTraceResult moving)
     {
         if (moving.entityHit != null)
         {
@@ -41,7 +41,7 @@ public class EntityInfectedSnowball extends EntityThrowable
             }
             if (moving.entityHit instanceof EntityLivingBase)
             {
-                ((EntityLivingBase)moving.entityHit).addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE.id, 100, 0));
+                ((EntityLivingBase)moving.entityHit).addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 100, 0));
             }
             moving.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), i);
         }

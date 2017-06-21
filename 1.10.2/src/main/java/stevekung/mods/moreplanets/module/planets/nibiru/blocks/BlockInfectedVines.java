@@ -5,10 +5,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemArmor;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.util.DamageSourceMP;
 import stevekung.mods.moreplanets.util.blocks.BlockVinesMP;
@@ -43,7 +43,7 @@ public class BlockInfectedVines extends BlockVinesMP
                         if (!player.capabilities.isCreativeMode)
                         {
                             player.attackEntityFrom(DamageSourceMP.INFECTED_GAS, (int) (4.0D * 0.1D + 1.0D));
-                            player.addPotionEffect(new PotionEffect(Potion.poison.id, 50, 1));
+                            player.addPotionEffect(new PotionEffect(MobEffects.POISON, 50, 1));
                         }
                     }
                 }
@@ -51,7 +51,7 @@ public class BlockInfectedVines extends BlockVinesMP
             if (!(living instanceof EntityPlayer) && !(entity instanceof ISpaceMob && ((ISpaceMob)entity).getMobType() == EnumMobType.NIBIRU))
             {
                 living.attackEntityFrom(DamageSourceMP.INFECTED_GAS, (int) (4.0D * 0.1D + 1.0D));
-                living.addPotionEffect(new PotionEffect(Potion.poison.id, 50, 1));
+                living.addPotionEffect(new PotionEffect(MobEffects.POISON, 50, 1));
             }
         }
     }

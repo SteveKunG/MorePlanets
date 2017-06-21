@@ -5,18 +5,19 @@ import java.util.*;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Tuple;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -32,10 +33,10 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 
     public BlockInfectedSponge(String name)
     {
-        super(Material.sponge);
+        super(Material.SPONGE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(WET, Boolean.valueOf(false)));
         this.setHardness(0.6F);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.PLANT);
         this.setUnlocalizedName(name);
     }
 
@@ -52,10 +53,9 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
         this.tryAbsorb(world, pos, state);
-        super.onNeighborBlockChange(world, pos, state, neighborBlock);
     }
 
     private void tryAbsorb(World world, BlockPos pos, IBlockState state)
@@ -63,7 +63,7 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
         if (!state.getValue(WET).booleanValue() && this.absorb(world, pos))
         {
             world.setBlockState(pos, state.withProperty(WET, Boolean.valueOf(true)), 2);
-            world.playAuxSFX(2001, pos, Block.getIdFromBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK));
+            world.playEvent(2001, pos, Block.getIdFromBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK));
         }
     }
 
@@ -90,7 +90,7 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 
                 if (world.getBlockState(blockpos2).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
-                    world.setBlockState(blockpos2, Blocks.air.getDefaultState(), 2);
+                    world.setBlockState(blockpos2, Blocks.AIR.getDefaultState(), 2);
                     arraylist.add(blockpos2);
                     ++i;
 
@@ -111,7 +111,7 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
         while (iterator.hasNext())
         {
             blockpos1 = (BlockPos)iterator.next();
-            world.notifyNeighborsOfStateChange(blockpos1, Blocks.air);
+            world.notifyNeighborsOfStateChange(blockpos1, Blocks.AIR);
         }
         return i > 0;
     }
@@ -139,20 +139,20 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {WET});
+        return new BlockStateContainer(this, new IProperty[] {WET});
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if (state.getValue(WET).booleanValue())
         {
             EnumFacing enumfacing = EnumFacing.random(rand);
 
-            if (enumfacing != EnumFacing.UP && !World.doesBlockHaveSolidTopSurface(world, pos.offset(enumfacing)))
+            if (enumfacing != EnumFacing.UP && !world.getBlockState(pos.offset(enumfacing)).isSideSolid(world, pos.offset(enumfacing), EnumFacing.UP))
             {
                 double d0 = pos.getX();
                 double d1 = pos.getY();

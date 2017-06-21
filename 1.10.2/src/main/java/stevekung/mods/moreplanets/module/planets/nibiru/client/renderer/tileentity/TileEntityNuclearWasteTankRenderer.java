@@ -95,7 +95,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
     }
 
     @Override
-    public boolean func_181055_a()
+    public boolean isGlobalRenderer(TileEntityNuclearWasteTank tile)
     {
         return true;
     }

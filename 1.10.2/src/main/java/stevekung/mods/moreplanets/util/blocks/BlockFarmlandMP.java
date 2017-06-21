@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -18,6 +19,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -26,13 +28,14 @@ import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public abstract class BlockFarmlandMP extends BlockBaseMP
 {
+    protected static AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
+
     public BlockFarmlandMP()
     {
-        super(Material.ground);
+        super(Material.GROUND);
         this.setTickRandomly(true);
         this.setHardness(0.6F);
-        this.setStepSound(soundTypeGravel);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.9375F, 1.0F);
+        this.setSoundType(SoundType.GROUND);
         this.setLightOpacity(255);
     }
 
@@ -43,20 +46,19 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
         return null;
     }
 
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
+        return FARMLAND_AABB;
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -66,7 +68,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     {
         int i = state.getValue(BlockStateHelper.MOISTURE).intValue();
 
-        if (!this.hasWater(world, pos) && !world.canLightningStrike(pos.up()))
+        if (!this.hasWater(world, pos) && !world.isRainingAt(pos.up()))
         {
             if (i == 1)
             {
@@ -137,15 +139,15 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
                 }
                 mutableblockpos = (MutableBlockPos)iterator.next();
             }
-            while (world.getBlockState(mutableblockpos).getBlock().getMaterial() != Material.water);
+            while (world.getBlockState(mutableblockpos).getMaterial() != Material.WATER);
             return true;
         }
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
-        if (world.getBlockState(pos.up()).getBlock().getMaterial().isSolid())
+        if (world.getBlockState(pos.up()).getMaterial().isSolid())
         {
             world.setBlockState(pos, this.getDirtBlock().getDefaultState());
         }
@@ -164,7 +166,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition moving, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, 0);
     }
@@ -188,7 +190,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     }
 
     @Override
-    public boolean isSideSolid(IBlockAccess world, BlockPos pos, EnumFacing side)
+    public boolean isSideSolid(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
         return side != EnumFacing.DOWN && side != EnumFacing.UP;
     }

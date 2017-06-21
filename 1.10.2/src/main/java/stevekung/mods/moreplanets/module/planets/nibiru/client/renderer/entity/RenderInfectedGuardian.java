@@ -5,15 +5,15 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
@@ -22,12 +22,12 @@ import stevekung.mods.moreplanets.util.client.model.ModelGuardianMP;
 @SideOnly(Side.CLIENT)
 public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
 {
-    int field_177115_a;
+    int lastModelVersion;
 
     public RenderInfectedGuardian(RenderManager manager)
     {
         super(manager, new ModelGuardianMP(), 0.5F);
-        this.field_177115_a = ((ModelGuardianMP)this.mainModel).func_178706_a();
+        this.lastModelVersion = ((ModelGuardianMP)this.mainModel).getModelVersion();
     }
 
     @Override
@@ -45,10 +45,10 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
 
                 if (entitylivingbase != null)
                 {
-                    Vec3 vec3 = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, 1.0F);
-                    Vec3 vec31 = this.getPosition(entity, entity.getEyeHeight(), 1.0F);
+                    Vec3d vec3 = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, 1.0F);
+                    Vec3d vec31 = this.getPosition(entity, entity.getEyeHeight(), 1.0F);
 
-                    if (camera.isBoundingBoxInFrustum(AxisAlignedBB.fromBounds(vec31.xCoord, vec31.yCoord, vec31.zCoord, vec3.xCoord, vec3.yCoord, vec3.zCoord)))
+                    if (camera.isBoundingBoxInFrustum(new AxisAlignedBB(vec31.xCoord, vec31.yCoord, vec31.zCoord, vec3.xCoord, vec3.yCoord, vec3.zCoord)))
                     {
                         return true;
                     }
@@ -58,21 +58,21 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
         }
     }
 
-    private Vec3 getPosition(EntityLivingBase entity, double height, float partialTicks)
+    private Vec3d getPosition(EntityLivingBase entity, double height, float partialTicks)
     {
         double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks;
         double d1 = height + entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks;
         double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks;
-        return new Vec3(d0, d1, d2);
+        return new Vec3d(d0, d1, d2);
     }
 
     @Override
     public void doRender(EntityInfectedGuardian entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        if (this.field_177115_a != ((ModelGuardianMP)this.mainModel).func_178706_a())
+        if (this.lastModelVersion != ((ModelGuardianMP)this.mainModel).getModelVersion())
         {
             this.mainModel = new ModelGuardianMP();
-            this.field_177115_a = ((ModelGuardianMP)this.mainModel).func_178706_a();
+            this.lastModelVersion = ((ModelGuardianMP)this.mainModel).getModelVersion();
         }
 
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -82,7 +82,7 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
         {
             float f = entity.func_175477_p(partialTicks);
             Tessellator tessellator = Tessellator.getInstance();
-            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+            VertexBuffer worldrenderer = tessellator.getBuffer();
             this.bindTexture(new ResourceLocation("textures/entity/guardian_beam.png"));
             GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
             GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
@@ -98,9 +98,9 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
             float f4 = entity.getEyeHeight();
             GlStateManager.pushMatrix();
             GlStateManager.translate((float)x, (float)y + f4, (float)z);
-            Vec3 vec3 = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, partialTicks);
-            Vec3 vec31 = this.getPosition(entity, f4, partialTicks);
-            Vec3 vec32 = vec3.subtract(vec31);
+            Vec3d vec3 = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, partialTicks);
+            Vec3d vec31 = this.getPosition(entity, f4, partialTicks);
+            Vec3d vec32 = vec3.subtract(vec31);
             double d0 = vec32.lengthVector() + 1.0D;
             vec32 = vec32.normalize();
             float f5 = (float)Math.acos(vec32.yCoord);

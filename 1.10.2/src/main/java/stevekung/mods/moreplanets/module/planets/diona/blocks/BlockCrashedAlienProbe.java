@@ -20,15 +20,9 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityCras
 import stevekung.mods.moreplanets.util.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 
 public class BlockCrashedAlienProbe extends BlockTileMP implements ISingleBlockRender
 {
-    static
-    {
-        ItemLootHelper.register(ItemLootHelper.CRASHED_ALIEN_PROBE, ItemLootHelper.CRASHED_ALIEN_PROBE_LOOT, 5, 6);
-    }
-
     public static PropertyBool HAS_ALIEN = PropertyBool.create("has_alien");
 
     public BlockCrashedAlienProbe(String name)

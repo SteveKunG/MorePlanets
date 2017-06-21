@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.fronos.entity;
 
+import java.util.UUID;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,7 +14,6 @@ import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFaceTe
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFronosPanic;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFronosTempt;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
-import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
 
 public class EntityMarshmallow extends EntityFronosPet
 {
@@ -23,7 +24,6 @@ public class EntityMarshmallow extends EntityFronosPet
         this.aiTexture = new EntityAIFaceTexture(this);
         this.aiPanic = new EntityAIFronosPanic(this, 2.5D);
         this.aiTempt = new EntityAIFronosTempt(this, 1.4D, new ItemStack(FronosItems.FRONOS_FOOD, 1, 0), false);
-        ((PathNavigateGroundMP)this.getNavigator()).setAvoidsWater(true);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(1, this.aiPanic);
         this.tasks.addTask(2, this.aiSit);
@@ -45,7 +45,7 @@ public class EntityMarshmallow extends EntityFronosPet
 
         if (!this.worldObj.isRemote)
         {
-            if (this.ridingEntity instanceof EntityBearry || this.ridingEntity instanceof EntityGiantBlueberry || this.ridingEntity instanceof EntityMarshmallow)
+            if (this.getRidingEntity() instanceof EntityBearry || this.getRidingEntity() instanceof EntityGiantBlueberry || this.getRidingEntity() instanceof EntityMarshmallow)
             {
                 if (this.getGrowingAge() < 0)
                 {
@@ -75,7 +75,7 @@ public class EntityMarshmallow extends EntityFronosPet
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.15D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
     }
 
     @Override
@@ -103,9 +103,9 @@ public class EntityMarshmallow extends EntityFronosPet
         {
             EntityMarshmallow marshmallow = new EntityMarshmallow(this.worldObj);
             marshmallow.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-            this.worldObj.spawnEntityInWorld(marshmallow);
-            marshmallow.mountEntity(this);
             marshmallow.setGrowingAge(-24000);
+            this.worldObj.spawnEntityInWorld(marshmallow);
+            this.startRiding(marshmallow);
         }
         return super.onInitialSpawn(difficulty, data);
     }
@@ -114,9 +114,9 @@ public class EntityMarshmallow extends EntityFronosPet
     public EntityMarshmallow createChild(EntityAgeable entity)
     {
         EntityMarshmallow pet = new EntityMarshmallow(this.worldObj);
-        String owner = this.getOwnerId();
+        UUID owner = this.getOwnerId();
 
-        if (owner != null && owner.trim().length() > 0)
+        if (owner != null)
         {
             pet.setOwnerId(owner);
             pet.setTamed(true);

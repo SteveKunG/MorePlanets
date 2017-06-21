@@ -6,7 +6,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
@@ -96,7 +96,7 @@ public class EntityInfectedCrystallizeSlimeMinion extends EntitySlimeBaseMP
         if (this.canEntityBeSeen(entity) && this.getDistanceSqToEntity(entity) < this.getDetectRange() && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
         {
             this.applyEnchantments(this, entity);
-            entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE.id, 200, 1));
+            entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 200, 1));
         }
     }
 
@@ -117,7 +117,7 @@ public class EntityInfectedCrystallizeSlimeMinion extends EntitySlimeBaseMP
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_CRYSTALLIZE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZE ? false : super.isPotionApplicable(potion);
     }
 
     @Override
@@ -158,6 +158,6 @@ public class EntityInfectedCrystallizeSlimeMinion extends EntitySlimeBaseMP
     @Override
     protected void overrideHealth()
     {
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.getSlimeSize() * this.getSlimeSize());
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getSlimeSize() * this.getSlimeSize());
     }
 }

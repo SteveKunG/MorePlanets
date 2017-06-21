@@ -5,15 +5,15 @@ import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -29,20 +29,20 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
 
     public BlockJelly(String name)
     {
-        super(Material.cloth);
-        this.setStepSound(BlockSoundHelper.SMALL_SLIME);
+        super(Material.CLOTH);
+        this.setSoundType(BlockSoundHelper.SMALL_SLIME);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.GRAPE_JELLY_BLOCK));
         this.setUnlocalizedName(name);
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -55,9 +55,9 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.TRANSLUCENT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if (Math.abs(entity.motionY) < 0.1D && !entity.isSneaking())
         {
@@ -114,9 +114,9 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

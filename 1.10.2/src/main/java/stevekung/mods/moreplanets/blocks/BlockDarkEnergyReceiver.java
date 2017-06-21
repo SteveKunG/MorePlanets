@@ -143,7 +143,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                                 if (!tile.isActivated())
                                 {
                                     tile.setActivated(true);
-                                    tile.getWorld().playSound(player, tile.getPos(), MPSounds.MACHINE_AMBIENT_ACTIVATE, SoundCategory.AMBIENT, 1.0F, 1.0F);
+                                    tile.getWorld().playSound(player, tile.getPos(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
                                     player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_success.message")).setStyle(new JsonUtils().colorFromConfig("green")));
                                     return true;
                                 }

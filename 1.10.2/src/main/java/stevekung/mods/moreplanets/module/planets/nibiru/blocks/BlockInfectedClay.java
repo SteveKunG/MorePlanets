@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -12,10 +13,10 @@ public class BlockInfectedClay extends BlockBaseMP
 {
     public BlockInfectedClay(String name)
     {
-        super(Material.clay);
+        super(Material.CLAY);
         this.setUnlocalizedName(name);
         this.setHardness(0.6F);
-        this.setStepSound(soundTypeGravel);
+        this.setSoundType(SoundType.GROUND);
     }
 
     @Override

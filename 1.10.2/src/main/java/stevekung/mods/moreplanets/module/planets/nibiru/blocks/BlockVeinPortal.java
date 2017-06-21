@@ -3,20 +3,22 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,7 +29,7 @@ public class BlockVeinPortal extends BlockContainerMP
 {
     public BlockVeinPortal(String name)
     {
-        super(Material.barrier);
+        super(Material.BARRIER);
         this.setBlockUnbreakable();
         this.setLightLevel(1.0F);
         this.setResistance(6000000.0F);
@@ -41,16 +43,16 @@ public class BlockVeinPortal extends BlockContainerMP
     }
 
     @Override
-    public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity) {}
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {}
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -68,14 +70,14 @@ public class BlockVeinPortal extends BlockContainerMP
         {
             if (entity instanceof EntityLivingBase)
             {
-                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 120, 0, false, false));
+                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 120, 0, false, false));
             }
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         double d0 = pos.getX() + rand.nextFloat();
         double d1 = pos.getY() + 0.8F;
@@ -87,7 +89,7 @@ public class BlockVeinPortal extends BlockContainerMP
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return null;
     }
@@ -95,6 +97,6 @@ public class BlockVeinPortal extends BlockContainerMP
     @Override
     public MapColor getMapColor(IBlockState state)
     {
-        return MapColor.blackColor;
+        return MapColor.BLACK;
     }
 }

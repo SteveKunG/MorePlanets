@@ -1,13 +1,8 @@
 package stevekung.mods.moreplanets.util.blocks;
 
-import java.util.List;
-
-import net.minecraft.util.WeightedRandomFishable;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
-
 public interface IFishableLiquidBlock
 {
-    public default List<WeightedRandomFishable> getJunkLoot()
+    /*public default List<WeightedRandomFishable> getJunkLoot() TODO Loot table
     {
         return ItemLootHelper.SPACE_JUNK_LOOT;
     }
@@ -20,5 +15,5 @@ public interface IFishableLiquidBlock
     public default List<WeightedRandomFishable> getFishLoot()
     {
         return ItemLootHelper.SPACE_FISH_LOOT;
-    }
+    }*/
 }

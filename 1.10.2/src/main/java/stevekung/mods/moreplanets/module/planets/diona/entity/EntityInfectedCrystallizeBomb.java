@@ -6,8 +6,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.init.MPSounds;
 
 public class EntityInfectedCrystallizeBomb extends EntityThrowable
 {
@@ -27,7 +30,7 @@ public class EntityInfectedCrystallizeBomb extends EntityThrowable
     }
 
     @Override
-    protected void onImpact(MovingObjectPosition moving)
+    protected void onImpact(RayTraceResult moving)
     {
         if (moving.entityHit != null)
         {
@@ -39,11 +42,11 @@ public class EntityInfectedCrystallizeBomb extends EntityThrowable
             this.setDead();
             List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(2.5D, 2.5D, 2.5D));
             this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 1.0F + this.rand.nextFloat(), true);
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "moreplanets:block.egg.destroy", 1.5F, 1.0F);
+            this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.BLOCKS, 1.5F, 1.0F);
 
             for (EntityLivingBase living : list)
             {
-                living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE.id, 128, 1));
+                living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 128, 1));
             }
         }
     }

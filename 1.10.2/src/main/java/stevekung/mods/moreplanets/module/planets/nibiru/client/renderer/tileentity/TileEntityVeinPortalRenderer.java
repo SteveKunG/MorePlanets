@@ -9,11 +9,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityVeinPortal;
@@ -38,7 +38,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
         {
             int i = 0;
             Tessellator tessellator = Tessellator.getInstance();
-            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+            VertexBuffer worldrenderer = tessellator.getBuffer();
             int k = i + 66;
             this.bindTexture(END_GATEWAY_BEAM_TEXTURE);
             GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
@@ -49,7 +49,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             GlStateManager.depthMask(true);
             GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
             double d0 = tile.getWorld().getTotalWorldTime() + (double)partialTicks;
-            double d1 = MathHelper.func_181162_h(-d0 * 0.2D - MathHelper.floor_double(-d0 * 0.1D));
+            double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor_double(-d0 * 0.1D));
             float f1 = 0.85F;
             float f2 = 0.35F;
             float f3 = 0.2F;
@@ -210,7 +210,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             GlStateManager.multMatrix(PROJECTION);
             GlStateManager.multMatrix(MODELVIEW);
             Tessellator tessellator = Tessellator.getInstance();
-            WorldRenderer worldRenderer = tessellator.getWorldRenderer();
+            VertexBuffer worldRenderer = tessellator.getBuffer();
             worldRenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
             float f2 = RANDOM.nextFloat() * 0.85F * f5;
             float f3 = RANDOM.nextFloat() * 0.35F * f5;
@@ -259,7 +259,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
     }
 
     @Override
-    public boolean func_181055_a()
+    public boolean isGlobalRenderer(TileEntityVeinPortal tile)
     {
         return true;
     }

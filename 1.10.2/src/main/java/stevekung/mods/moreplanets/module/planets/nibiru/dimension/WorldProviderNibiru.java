@@ -13,15 +13,17 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.items.capsule.CapsuleType;
@@ -30,8 +32,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.SkyProviderNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
-import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.ChunkProviderNibiru;
-import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.WorldChunkManagerNibiru;
+import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.ChunkGeneratorNibiru;
+import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.BiomeProviderNibiru;
 import stevekung.mods.moreplanets.util.dimension.WorldProviderMP;
 
 public class WorldProviderNibiru extends WorldProviderMP
@@ -59,7 +61,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     @Override
     public boolean canBlockFreeze(BlockPos pos, boolean byWater)
     {
-        BiomeGenBase biomegenbase = this.getBiomeGenForCoords(pos);
+        Biome biomegenbase = this.getBiomeForCoords(pos);
         float f = biomegenbase.getFloatTemperature(pos);
 
         if (f > 0.15F)
@@ -99,7 +101,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     @Override
     public boolean canSnowAt(BlockPos pos, boolean checkLight)
     {
-        BiomeGenBase biomegenbase = this.getBiomeGenForCoords(pos);
+        Biome biomegenbase = this.getBiomeForCoords(pos);
         float f = biomegenbase.getFloatTemperature(pos);
 
         if (f > 0.15F)
@@ -116,7 +118,7 @@ public class WorldProviderNibiru extends WorldProviderMP
             {
                 Block block = this.worldObj.getBlockState(pos).getBlock();
 
-                if (block.isAir(this.worldObj, pos) && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.worldObj, pos))
+                if (block.isAir(this.worldObj.getBlockState(pos), this.worldObj, pos) && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.worldObj, pos))
                 {
                     return true;
                 }
@@ -251,7 +253,7 @@ public class WorldProviderNibiru extends WorldProviderMP
         SchematicRegistry.unlockNewPage(player, new ItemStack(MarsItems.schematic, 1, 0)); //Knows how to build T3 rocket
         SchematicRegistry.unlockNewPage(player, new ItemStack(DionaItems.TIER_5_ROCKET_SCHEMATIC, 1, 0)); //Knows how to build T4 rocket
         SchematicRegistry.unlockNewPage(player, new ItemStack(DionaItems.TIER_5_ROCKET_SCHEMATIC, 1, 1)); //Knows how to build T5 rocket
-        player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE_PROTECTION.id, 36020, 0, true, true));
+        player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE_PROTECTION, 36020, 0, true, true));
         stats.getExtendedInventory().setInventorySlotContents(0, new ItemStack(GCItems.oxMask, 1, 0));
         stats.getExtendedInventory().setInventorySlotContents(1, new ItemStack(GCItems.oxygenGear, 1, 0));
         stats.getExtendedInventory().setInventorySlotContents(2, new ItemStack(GCItems.oxTankHeavy, 1, 0));
@@ -286,14 +288,20 @@ public class WorldProviderNibiru extends WorldProviderMP
     }
 
     @Override
-    public void registerWorldChunkManager()
+    public void createBiomeProvider()
     {
-        this.worldChunkMgr = new WorldChunkManagerNibiru(this.worldObj.getSeed());
+        this.biomeProvider = new BiomeProviderNibiru(this.worldObj.getSeed());
     }
 
     @Override
-    public IChunkProvider createChunkGenerator()
+    public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderNibiru(this.worldObj, this.worldObj.getSeed());
+        return new ChunkGeneratorNibiru(this.worldObj, this.worldObj.getSeed());
+    }
+
+    @Override
+    public DimensionType getDimensionType()
+    {
+        return MPDimensions.NIBIRU;
     }
 }

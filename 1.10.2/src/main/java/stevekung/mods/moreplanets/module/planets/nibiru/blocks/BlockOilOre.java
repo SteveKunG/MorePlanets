@@ -9,15 +9,17 @@ import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
@@ -27,17 +29,17 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
 {
     public BlockOilOre(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setHardness(1.5F);
         this.setResistance(4.0F);
         this.setUnlocalizedName(name);
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
         float f = 0.125F;
-        return AxisAlignedBB.fromBounds(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1 - f, pos.getZ() + 1);
+        return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1 - f, pos.getZ() + 1);
     }
 
     @Override
@@ -53,9 +55,9 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     }
 
     @Override
-    public int getMobilityFlag()
+    public EnumPushReaction getMobilityFlag(IBlockState state)
     {
-        return 0;
+        return EnumPushReaction.NORMAL;
     }
 
     @Override
@@ -65,11 +67,11 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
     {
         player.addExhaustion(0.025F);
 
-        if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getSilkTouchModifier(player))
+        if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, itemStack) > 0)
         {
             List<ItemStack> items = Lists.newArrayList();
             ItemStack itemstack = this.createStackedBlock(state);
@@ -93,7 +95,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         entity.motionX *= 0.4D;
         entity.motionZ *= 0.4D;
@@ -102,7 +104,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     @Override
     public boolean isTerraformable(World world, BlockPos pos)
     {
-        return true && !world.getBlockState(pos.up()).getBlock().isOpaqueCube();
+        return true && !world.getBlockState(pos.up()).isOpaqueCube();
     }
 
     @Override

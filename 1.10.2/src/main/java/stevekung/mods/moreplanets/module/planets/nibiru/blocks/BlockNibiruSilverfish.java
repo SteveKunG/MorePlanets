@@ -6,13 +6,13 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -28,7 +28,7 @@ public class BlockNibiruSilverfish extends BlockBaseMP implements IBlockVariants
 
     public BlockNibiruSilverfish(String name)
     {
-        super(Material.clay);
+        super(Material.CLAY);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.NIBIRU_ROCK));
         this.setHardness(0.75F);
         this.setUnlocalizedName(name);
@@ -82,13 +82,6 @@ public class BlockNibiruSilverfish extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    public int getDamageValue(World world, BlockPos pos)
-    {
-        IBlockState iblockstate = world.getBlockState(pos);
-        return iblockstate.getBlock().getMetaFromState(iblockstate);
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
     {
@@ -99,9 +92,9 @@ public class BlockNibiruSilverfish extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

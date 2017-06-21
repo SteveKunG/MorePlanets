@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedChicken;
@@ -27,7 +27,7 @@ public class EntityInfectedEgg extends EntityThrowable
     }
 
     @Override
-    protected void onImpact(MovingObjectPosition moving)
+    protected void onImpact(RayTraceResult moving)
     {
         if (moving.entityHit != null)
         {

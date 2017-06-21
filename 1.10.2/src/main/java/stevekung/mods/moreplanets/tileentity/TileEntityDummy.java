@@ -25,7 +25,7 @@ public class TileEntityDummy extends TileBaseElectricBlock
 
         if (!this.worldObj.isRemote)
         {
-            this.worldObj.markBlockForUpdate(this.getPos());
+            this.worldObj.notifyBlockUpdate(this.getPos(), this.worldObj.getBlockState(this.getPos()), this.worldObj.getBlockState(this.mainBlockPosition), 3);
         }
     }
 

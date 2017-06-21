@@ -11,17 +11,16 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.IProgressUpdate;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.ChunkCoordIntPair;
-import net.minecraft.world.SpawnerAnimals;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.WorldEntitySpawner;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
@@ -36,7 +35,7 @@ import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenLiquidLakes;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenSpaceDungeons;
 
-public class ChunkProviderNibiru implements IChunkProvider
+public class ChunkGeneratorNibiru implements IChunkGenerator
 {
     private Random rand;
     private NoiseGeneratorOctaves minLimitPerlinNoise;
@@ -59,14 +58,14 @@ public class ChunkProviderNibiru implements IChunkProvider
     private MapGenBase ravineGenerator = new MapGenNibiruRavine();
     private MapGenNibiruOceanMonument oceanMonumentGenerator = new MapGenNibiruOceanMonument();
     public BiomeDecoratorNibiruOre biomedecoratorplanet = new BiomeDecoratorNibiruOre();
-    private MapGenNibiruDungeon dungeonGenerator = new MapGenNibiruDungeon(new DungeonConfigurationMP(NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.NIBIRU_DUNGEON_BRICK), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.web.getDefaultState(), NibiruBlocks.INFECTED_TORCH.getDefaultState(), NibiruBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossNibiru.class, RoomTreasureNibiru.class, RoomSpawnerNibiru.class, RoomChestNibiru.class));
-    private BiomeGenBase[] biomesForGeneration;
+    private MapGenNibiruDungeon dungeonGenerator = new MapGenNibiruDungeon(new DungeonConfigurationMP(NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.NIBIRU_DUNGEON_BRICK), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), NibiruBlocks.INFECTED_TORCH.getDefaultState(), NibiruBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossNibiru.class, RoomTreasureNibiru.class, RoomSpawnerNibiru.class, RoomChestNibiru.class));
+    private Biome[] biomesForGeneration;
     double[] mainNoiseRegion;
     double[] minLimitRegion;
     double[] maxLimitRegion;
     double[] depthRegion;
 
-    public ChunkProviderNibiru(World world, long seed)
+    public ChunkGeneratorNibiru(World world, long seed)
     {
         this.worldObj = world;
         this.rand = new Random(seed);
@@ -100,7 +99,7 @@ public class ChunkProviderNibiru implements IChunkProvider
 
     public void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer)
     {
-        this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
+        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
         this.generateHeightmap(chunkX * 4, 0, chunkZ * 4);
 
         for (int i = 0; i < 4; ++i)
@@ -165,16 +164,16 @@ public class ChunkProviderNibiru implements IChunkProvider
         }
     }
 
-    public void replaceBlocksForBiome(int chunkX, int chunkZ, ChunkPrimer chunkPrimer, BiomeGenBase[] biome)
+    public void replaceBlocksForBiome(int chunkX, int chunkZ, ChunkPrimer chunkPrimer, Biome[] biome)
     {
         double d0 = 0.03125D;
-        this.depthBuffer = this.surfaceNoise.func_151599_a(this.depthBuffer, chunkX * 16, chunkZ * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+        this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, chunkX * 16, chunkZ * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
 
         for (int i = 0; i < 16; ++i)
         {
             for (int j = 0; j < 16; ++j)
             {
-                BiomeGenBase biomegenbase = biome[j + i * 16];
+                Biome biomegenbase = biome[j + i * 16];
                 biomegenbase.genTerrainBlocks(this.worldObj, this.rand, chunkPrimer, chunkX * 16 + i, chunkZ * 16 + j, this.depthBuffer[j + i * 16]);
             }
         }
@@ -186,24 +185,24 @@ public class ChunkProviderNibiru implements IChunkProvider
         this.rand.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.setBlocksInChunk(chunkX, chunkZ, chunkprimer);
-        this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
+        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
         this.replaceBlocksForBiome(chunkX, chunkZ, chunkprimer, this.biomesForGeneration);
-        this.caveGenerator.generate(this, this.worldObj, chunkX, chunkZ, chunkprimer);
-        this.ravineGenerator.generate(this, this.worldObj, chunkX, chunkZ, chunkprimer);
-        this.mineshaftGenerator.generate(this, this.worldObj, chunkX, chunkZ, chunkprimer);
-        this.strongholdGenerator.generate(this, this.worldObj, chunkX, chunkZ, chunkprimer);
-        this.pyramidGenerator.generate(this, this.worldObj, chunkX, chunkZ, chunkprimer);
-        this.jungleTempleGenerator.generate(this, this.worldObj, chunkX, chunkZ, chunkprimer);
-        this.oceanMonumentGenerator.generate(this, this.worldObj, chunkX, chunkZ, chunkprimer);
-        this.villageGenerator.generate(this, this.worldObj, chunkX, chunkZ, chunkprimer);
-        this.dungeonGenerator.generate(this, this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.caveGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.ravineGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.strongholdGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.pyramidGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.jungleTempleGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.oceanMonumentGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.villageGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.dungeonGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
 
         Chunk chunk = new Chunk(this.worldObj, chunkprimer, chunkX, chunkZ);
         byte[] abyte = chunk.getBiomeArray();
 
         for (int i = 0; i < abyte.length; ++i)
         {
-            abyte[i] = (byte)this.biomesForGeneration[i].biomeID;
+            abyte[i] = (byte)Biome.getIdForBiome(this.biomesForGeneration[i]);
         }
         chunk.generateSkylightMap();
         return chunk;
@@ -230,18 +229,18 @@ public class ChunkProviderNibiru implements IChunkProvider
                 float f3 = 0.0F;
                 float f4 = 0.0F;
                 int i1 = 2;
-                BiomeGenBase biomegenbase = this.biomesForGeneration[k + 2 + (l + 2) * 10];
+                Biome biomegenbase = this.biomesForGeneration[k + 2 + (l + 2) * 10];
 
                 for (int j1 = -i1; j1 <= i1; ++j1)
                 {
                     for (int k1 = -i1; k1 <= i1; ++k1)
                     {
-                        BiomeGenBase biomegenbase1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
-                        float f5 = 0.0F + biomegenbase1.minHeight * 1.0F;
-                        float f6 = 0.0F + biomegenbase1.maxHeight * 1.0F;
+                        Biome biomegenbase1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
+                        float f5 = 0.0F + biomegenbase1.getBaseHeight() * 1.0F;
+                        float f6 = 0.0F + biomegenbase1.getHeightVariation() * 1.0F;
                         float f7 = this.parabolicField[j1 + 2 + (k1 + 2) * 5] / (f5 + 2.0F);
 
-                        if (biomegenbase1.minHeight > biomegenbase.minHeight)
+                        if (biomegenbase1.getBaseHeight() > biomegenbase.getBaseHeight())
                         {
                             f7 /= 2.0F;
                         }
@@ -318,18 +317,18 @@ public class ChunkProviderNibiru implements IChunkProvider
     }
 
     @Override
-    public void populate(IChunkProvider chunkProvider, int chunkX, int chunkZ)
+    public void populate(int chunkX, int chunkZ)
     {
         BlockFalling.fallInstantly = true;
         int x = chunkX * 16;
         int z = chunkZ * 16;
         BlockPos blockpos = new BlockPos(x, 0, z);
-        BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(blockpos.add(16, 0, 16));
+        Biome biomegenbase = this.worldObj.getBiome(blockpos.add(16, 0, 16));
         this.rand.setSeed(this.worldObj.getSeed());
         long k = this.rand.nextLong() / 2L * 2L + 1L;
         long l = this.rand.nextLong() / 2L * 2L + 1L;
         this.rand.setSeed(chunkX * k + chunkZ * l ^ this.worldObj.getSeed());
-        ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(chunkX, chunkZ);
+        ChunkPos chunkcoordintpair = new ChunkPos(chunkX, chunkZ);
         this.biomedecoratorplanet.decorate(this.worldObj, this.rand, biomegenbase, blockpos);
         this.mineshaftGenerator.generateStructure(this.worldObj, this.rand, chunkcoordintpair);
         this.strongholdGenerator.generateStructure(this.worldObj, this.rand, chunkcoordintpair);
@@ -358,7 +357,7 @@ public class ChunkProviderNibiru implements IChunkProvider
 
             if (y < 63 || this.rand.nextInt(10) == 0)
             {
-                new WorldGenLiquidLakes(Blocks.lava, NibiruBlocks.NIBIRU_BLOCK, 0, true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
+                new WorldGenLiquidLakes(Blocks.LAVA, NibiruBlocks.NIBIRU_BLOCK, 0, true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
             }
         }
 
@@ -368,7 +367,7 @@ public class ChunkProviderNibiru implements IChunkProvider
         }
 
         biomegenbase.decorate(this.worldObj, this.rand, blockpos);
-        SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomegenbase, x + 8, z + 8, 16, 16, this.rand);
+        WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biomegenbase, x + 8, z + 8, 16, 16, this.rand);
 
         blockpos = blockpos.add(8, 0, 8);
 
@@ -393,21 +392,15 @@ public class ChunkProviderNibiru implements IChunkProvider
     }
 
     @Override
-    public boolean func_177460_a(IChunkProvider chunkProvider, Chunk chunk, int chunkX, int chunkZ)
+    public boolean generateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         boolean flag = false;
 
         if (chunk.getInhabitedTime() < 3600L)
         {
-            flag |= this.oceanMonumentGenerator.generateStructure(this.worldObj, this.rand, new ChunkCoordIntPair(chunkX, chunkZ));
+            flag |= this.oceanMonumentGenerator.generateStructure(this.worldObj, this.rand, new ChunkPos(chunkX, chunkZ));
         }
         return flag;
-    }
-
-    @Override
-    public String makeString()
-    {
-        return "NibiruLevelSource";
     }
 
     @Override
@@ -423,12 +416,12 @@ public class ChunkProviderNibiru implements IChunkProvider
             {
                 return this.jungleTempleGenerator.getSpawnList();
             }
-            if (this.oceanMonumentGenerator.func_175796_a(this.worldObj, pos))
+            if (this.oceanMonumentGenerator.isPositionInStructure(this.worldObj, pos))
             {
                 return this.oceanMonumentGenerator.getSpawnList();
             }
         }
-        return this.worldObj.getBiomeGenForCoords(pos).getSpawnableList(type);
+        return this.worldObj.getBiome(pos).getSpawnableList(type);
     }
 
     @Override
@@ -440,13 +433,13 @@ public class ChunkProviderNibiru implements IChunkProvider
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        this.mineshaftGenerator.generate(this, this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.strongholdGenerator.generate(this, this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.pyramidGenerator.generate(this, this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.jungleTempleGenerator.generate(this, this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.oceanMonumentGenerator.generate(this, this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.villageGenerator.generate(this, this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.dungeonGenerator.generate(this, this.worldObj, chunkX, chunkZ, null);
+        this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
+        this.strongholdGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
+        this.pyramidGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
+        this.jungleTempleGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
+        this.oceanMonumentGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
+        this.villageGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
+        this.dungeonGenerator.generate(this.worldObj, chunkX, chunkZ, null);
     }
 
     private void generateGas(World world, Random rand, int xx, int zz)
@@ -523,7 +516,7 @@ public class ChunkProviderNibiru implements IChunkProvider
     {
         Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
 
-        if (block.getMaterial() == Material.air)
+        if (world.getBlockState(new BlockPos(x, y, z)).getMaterial() == Material.AIR)
         {
             return true;
         }
@@ -604,49 +597,10 @@ public class ChunkProviderNibiru implements IChunkProvider
     {
         Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
 
-        if (block.getMaterial() == Material.air)
+        if (world.getBlockState(new BlockPos(x, y, z)).getMaterial() == Material.AIR)
         {
             return true;
         }
         return block instanceof BlockLiquid && block != GCBlocks.crudeOil;
     }
-
-    @Override
-    public boolean chunkExists(int x, int z)
-    {
-        return true;
-    }
-
-    @Override
-    public Chunk provideChunk(BlockPos pos)
-    {
-        return this.provideChunk(pos.getX() >> 4, pos.getZ() >> 4);
-    }
-
-    @Override
-    public boolean saveChunks(boolean save, IProgressUpdate progressCallback)
-    {
-        return true;
-    }
-
-    @Override
-    public boolean unloadQueuedChunks()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean canSave()
-    {
-        return true;
-    }
-
-    @Override
-    public int getLoadedChunkCount()
-    {
-        return 0;
-    }
-
-    @Override
-    public void saveExtraData() {}
 }

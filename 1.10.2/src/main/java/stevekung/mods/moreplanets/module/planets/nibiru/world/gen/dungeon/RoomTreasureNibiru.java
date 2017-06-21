@@ -83,7 +83,7 @@ public class RoomTreasureNibiru extends SizedPieceNibiru
                         }
                         else
                         {
-                            this.setBlockState(world, Blocks.air.getDefaultState(), i, j, k, boundingBox);
+                            this.setBlockState(world, Blocks.AIR.getDefaultState(), i, j, k, boundingBox);
                         }
                     }
                     else if (i == 1 && k == 1 || i == 1 && k == this.sizeZ - 1 || i == this.sizeX - 1 && k == 1 || i == this.sizeX - 1 && k == this.sizeZ - 1)
@@ -102,7 +102,7 @@ public class RoomTreasureNibiru extends SizedPieceNibiru
                     }
                     else
                     {
-                        this.setBlockState(world, Blocks.air.getDefaultState(), i, j, k, boundingBox);
+                        this.setBlockState(world, Blocks.AIR.getDefaultState(), i, j, k, boundingBox);
                     }
                 }
             }

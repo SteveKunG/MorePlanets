@@ -8,10 +8,12 @@ public class MPDimensions
 {
     public static DimensionType DIONA;
     public static DimensionType CHALOS;
+    public static DimensionType NIBIRU;
 
     public static void init()
     {
         MPDimensions.DIONA = WorldUtil.getDimensionTypeById(ConfigManagerMP.idDimensionDiona);
         MPDimensions.CHALOS = WorldUtil.getDimensionTypeById(ConfigManagerMP.idDimensionChalos);
+        MPDimensions.NIBIRU = WorldUtil.getDimensionTypeById(ConfigManagerMP.idDimensionNibiru);
     }
 }

@@ -9,16 +9,18 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -35,15 +37,15 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
 
     public BlockNibiruSeaweed(String name)
     {
-        super(Material.water);
+        super(Material.WATER);
         this.setUnlocalizedName(name);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.NIBIRU_SEAWEED));
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.8F, 0.8F);
+        return new AxisAlignedBB(0.2D, 0.0D, 0.2D, 0.8D, 0.8D, 0.8D);
     }
 
     @Override
@@ -57,11 +59,11 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
     {
         player.addExhaustion(0.025F);
 
-        if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getSilkTouchModifier(player))
+        if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, itemStack) > 0)
         {
             List<ItemStack> items = Lists.newArrayList();
             ItemStack itemstack = this.createStackedBlock(state);
@@ -86,11 +88,11 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
                 return;
             }
 
-            int i = EnchantmentHelper.getFortuneModifier(player);
+            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemStack);
             this.harvesters.set(player);
             this.dropBlockAsItem(world, pos, state, i);
             this.harvesters.set(null);
-            Material material = world.getBlockState(pos.down()).getBlock().getMaterial();
+            Material material = world.getBlockState(pos.down()).getMaterial();
 
             if (material.blocksMovement() || material.isLiquid())
             {
@@ -109,15 +111,9 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
     }
 
     @Override
-    public boolean isReplaceable(World world, BlockPos pos)
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
         return false;
-    }
-
-    @Override
-    public int getDamageValue(World world, BlockPos pos)
-    {
-        return this.getMetaFromState(world.getBlockState(pos));
     }
 
     @Override
@@ -140,9 +136,9 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT, BlockLiquid.LEVEL });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT, BlockLiquid.LEVEL });
     }
 
     @Override

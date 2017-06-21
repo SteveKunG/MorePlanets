@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.module.planets.fronos.entity.ai;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.Vec3d;
 
 public class EntityAIFronosPanic extends EntityAIBase
 {
@@ -30,7 +30,7 @@ public class EntityAIFronosPanic extends EntityAIBase
         }
         else
         {
-            Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.entity, 5, 4);
+            Vec3d vec3 = RandomPositionGenerator.findRandomTarget(this.entity, 5, 4);
 
             if (vec3 == null)
             {

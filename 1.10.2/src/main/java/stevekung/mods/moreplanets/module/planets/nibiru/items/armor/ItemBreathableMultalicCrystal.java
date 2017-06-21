@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,7 +15,7 @@ import stevekung.mods.moreplanets.util.items.armor.ItemBreathableArmor;
 
 public class ItemBreathableMultalicCrystal extends ItemBreathableArmor
 {
-    public ItemBreathableMultalicCrystal(String name, ArmorMaterial material, int type)
+    public ItemBreathableMultalicCrystal(String name, ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, type);
         this.setUnlocalizedName(name);

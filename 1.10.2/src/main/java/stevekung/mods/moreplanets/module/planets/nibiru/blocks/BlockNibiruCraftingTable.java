@@ -2,10 +2,11 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.List;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,10 +14,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,9 +35,9 @@ public class BlockNibiruCraftingTable extends BlockBaseMP implements IBlockVaria
 
     protected BlockNibiruCraftingTable(String name)
     {
-        super(Material.wood);
+        super(Material.WOOD);
         this.setHardness(2.5F);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.NIBIRU_CRAFTING_TABLE));
         this.setUnlocalizedName(name);
     }
@@ -47,7 +49,7 @@ public class BlockNibiruCraftingTable extends BlockBaseMP implements IBlockVaria
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (!world.isRemote)
         {
@@ -80,9 +82,9 @@ public class BlockNibiruCraftingTable extends BlockBaseMP implements IBlockVaria
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override
@@ -121,7 +123,7 @@ public class BlockNibiruCraftingTable extends BlockBaseMP implements IBlockVaria
         }
 
         @Override
-        public IChatComponent getDisplayName()
+        public ITextComponent getDisplayName()
         {
             return null;
         }

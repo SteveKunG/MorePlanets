@@ -1,7 +1,13 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.items;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedEgg;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
@@ -16,20 +22,24 @@ public class ItemInfectedEgg extends ItemBaseMP
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if (!player.capabilities.isCreativeMode)
         {
             --itemStack.stackSize;
         }
 
-        world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-
+        world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_EGG_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+        player.swingArm(hand);
+        
         if (!world.isRemote)
         {
-            world.spawnEntityInWorld(new EntityInfectedEgg(world, player));
+            EntityInfectedEgg entityegg = new EntityInfectedEgg(world, player);
+            entityegg.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+            world.spawnEntityInWorld(entityegg);
         }
-        return itemStack;
+        player.addStat(StatList.getObjectUseStats(this));
+        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
     }
 
     @Override

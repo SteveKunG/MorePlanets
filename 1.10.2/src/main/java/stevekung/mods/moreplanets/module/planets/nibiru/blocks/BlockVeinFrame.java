@@ -3,20 +3,23 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityVeinFrame;
@@ -28,15 +31,17 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
 {
     public static PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static PropertyBool EYE = PropertyBool.create("eye");
+    protected static AxisAlignedBB AABB_BLOCK = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
+    protected static AxisAlignedBB AABB_EYE = new AxisAlignedBB(0.3175D, 0.0D, 0.3175D, 0.6825D, 0.875D, 0.6825D);
 
     public BlockVeinFrame(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(EYE, Boolean.valueOf(false)));
         this.setLightLevel(0.125F);
         this.setBlockUnbreakable();
         this.setResistance(6000000.0F);
-        this.setStepSound(BlockSoundHelper.ALIEN_EGG);
+        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
         this.setUnlocalizedName(name);
     }
 
@@ -47,29 +52,26 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
+        return AABB_BLOCK;
     }
 
     @Override
-    public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn)
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
-        super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+        Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BLOCK);
 
         if (world.getBlockState(pos).getValue(EYE).booleanValue())
         {
-            this.setBlockBounds(0.3175F, 0.0F, 0.3175F, 0.6825F, 0.875F, 0.6825F);
-            super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_EYE);
         }
-        this.setBlockBoundsBasedOnState(world, pos);
     }
 
     @Override
@@ -85,13 +87,13 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public boolean hasComparatorInputOverride()
+    public boolean hasComparatorInputOverride(IBlockState state)
     {
         return true;
     }
 
     @Override
-    public int getComparatorInputOverride(World world, BlockPos pos)
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
         return world.getBlockState(pos).getValue(EYE).booleanValue() ? 15 : 0;
     }
@@ -116,9 +118,9 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, EYE});
+        return new BlockStateContainer(this, new IProperty[] {FACING, EYE});
     }
 
     @Override

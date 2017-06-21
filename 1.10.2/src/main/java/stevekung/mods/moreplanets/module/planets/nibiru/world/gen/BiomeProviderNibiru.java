@@ -7,31 +7,32 @@ import java.util.Random;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.init.Biomes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.WorldChunkManager;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.layer.GenLayerNibiru;
 
-public class WorldChunkManagerNibiru extends WorldChunkManager
+public class BiomeProviderNibiru extends BiomeProvider
 {
-    public static ArrayList<BiomeGenBase> allowedBiomes = Lists.newArrayList(Arrays.asList(MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DEAD_TAIGA, MPBiomes.INFECTED_EXTREME_HILLS, MPBiomes.INFECTED_ICE_PLAINS, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_SWAMPLAND, MPBiomes.GREEN_VEIN));
+    public static ArrayList<Biome> allowedBiomes = Lists.newArrayList(Arrays.asList(MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DEAD_TAIGA, MPBiomes.INFECTED_EXTREME_HILLS, MPBiomes.INFECTED_ICE_PLAINS, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_SWAMPLAND, MPBiomes.GREEN_VEIN));
     private BiomeCache biomeCache;
-    private List<BiomeGenBase> biomesToSpawn;
+    private List<Biome> biomesToSpawn;
     private GenLayer zoomedBiomes;
     private GenLayer unzoomedBiomes;
 
-    protected WorldChunkManagerNibiru()
+    protected BiomeProviderNibiru()
     {
         this.biomeCache = new BiomeCache(this);
-        this.biomesToSpawn = Lists.<BiomeGenBase>newArrayList();
+        this.biomesToSpawn = Lists.newArrayList();
         this.biomesToSpawn.addAll(allowedBiomes);
     }
 
-    public WorldChunkManagerNibiru(long seed)
+    public BiomeProviderNibiru(long seed)
     {
         this();
         GenLayer[] agenlayer = GenLayerNibiru.initializeAllBiomeGenerators(seed);
@@ -40,86 +41,61 @@ public class WorldChunkManagerNibiru extends WorldChunkManager
     }
 
     @Override
-    public List<BiomeGenBase> getBiomesToSpawnIn()
+    public List<Biome> getBiomesToSpawnIn()
     {
         return this.biomesToSpawn;
     }
 
     @Override
-    public BiomeGenBase getBiomeGenerator(BlockPos pos)
+    public Biome getBiome(BlockPos pos)
     {
-        return this.getBiomeGenerator(pos, (BiomeGenBase)null);
+        return this.getBiome(pos, (Biome)null);
     }
 
     @Override
-    public BiomeGenBase getBiomeGenerator(BlockPos pos, BiomeGenBase biome)
+    public Biome getBiome(BlockPos pos, Biome biome)
     {
-        return this.biomeCache.func_180284_a(pos.getX(), pos.getZ(), biome);
+        return this.biomeCache.getBiome(pos.getX(), pos.getZ(), biome);
     }
 
     @Override
-    public float[] getRainfall(float[] listToReuse, int x, int z, int width, int length)
-    {
-        IntCache.resetIntCache();
-
-        if (listToReuse == null || listToReuse.length < width * length)
-        {
-            listToReuse = new float[width * length];
-        }
-
-        int[] aint = this.zoomedBiomes.getInts(x, z, width, length);
-
-        for (int i = 0; i < width * length; ++i)
-        {
-            float f = BiomeGenBase.getBiomeFromBiomeList(aint[i], MPBiomes.INFECTED_PLAINS).getIntRainfall() / 65536.0F;
-
-            if (f > 1.0F)
-            {
-                f = 1.0F;
-            }
-            listToReuse[i] = f;
-        }
-        return listToReuse;
-    }
-
-    @Override
-    public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] biomes, int x, int z, int width, int height)
+    public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height)
     {
         IntCache.resetIntCache();
 
         if (biomes == null || biomes.length < width * height)
         {
-            biomes = new BiomeGenBase[width * height];
+            biomes = new Biome[width * height];
         }
 
         int[] aint = this.unzoomedBiomes.getInts(x, z, width, height);
 
         for (int i = 0; i < width * height; ++i)
         {
-            biomes[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], MPBiomes.INFECTED_PLAINS);
+            biomes[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
         }
         return biomes;
     }
 
     @Override
-    public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] oldBiomeList, int x, int z, int width, int depth)
+    public Biome[] getBiomes(Biome[] oldBiomeList, int x, int z, int width, int depth)
     {
-        return this.getBiomeGenAt(oldBiomeList, x, z, width, depth, true);
+        return this.getBiomes(oldBiomeList, x, z, width, depth, true);
     }
 
     @Override
-    public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
+    public Biome[] getBiomes(Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
     {
         IntCache.resetIntCache();
 
         if (listToReuse == null || listToReuse.length < width * length)
         {
-            listToReuse = new BiomeGenBase[width * length];
+            listToReuse = new Biome[width * length];
         }
 
         if (cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (z & 15) == 0)
         {
-            BiomeGenBase[] abiomegenbase = this.biomeCache.getCachedBiomes(x, z);
+            Biome[] abiomegenbase = this.biomeCache.getCachedBiomes(x, z);
             System.arraycopy(abiomegenbase, 0, listToReuse, 0, width * length);
             return listToReuse;
         }
@@ -129,14 +105,14 @@ public class WorldChunkManagerNibiru extends WorldChunkManager
 
             for (int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], MPBiomes.INFECTED_PLAINS);
+                listToReuse[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
             }
             return listToReuse;
         }
     }
 
     @Override
-    public boolean areBiomesViable(int p_76940_1_, int p_76940_2_, int p_76940_3_, List<BiomeGenBase> biome)
+    public boolean areBiomesViable(int p_76940_1_, int p_76940_2_, int p_76940_3_, List<Biome> biome)
     {
         IntCache.resetIntCache();
         int i = p_76940_1_ - p_76940_3_ >> 2;
@@ -149,7 +125,7 @@ public class WorldChunkManagerNibiru extends WorldChunkManager
 
         for (int k1 = 0; k1 < i1 * j1; ++k1)
         {
-            BiomeGenBase biomegenbase = BiomeGenBase.getBiome(aint[k1]);
+            Biome biomegenbase = Biome.getBiome(aint[k1]);
 
             if (!biome.contains(biomegenbase))
             {
@@ -160,7 +136,7 @@ public class WorldChunkManagerNibiru extends WorldChunkManager
     }
 
     @Override
-    public BlockPos findBiomePosition(int x, int z, int range, List<BiomeGenBase> biomes, Random random)
+    public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random random)
     {
         IntCache.resetIntCache();
         int i = x - range >> 2;
@@ -177,7 +153,7 @@ public class WorldChunkManagerNibiru extends WorldChunkManager
         {
             int i2 = i + l1 % i1 << 2;
             int j2 = j + l1 / i1 << 2;
-            BiomeGenBase biomegenbase = BiomeGenBase.getBiome(aint[l1]);
+            Biome biomegenbase = Biome.getBiome(aint[l1]);
 
             if (biomes.contains(biomegenbase) && (blockpos == null || random.nextInt(k1 + 1) == 0))
             {

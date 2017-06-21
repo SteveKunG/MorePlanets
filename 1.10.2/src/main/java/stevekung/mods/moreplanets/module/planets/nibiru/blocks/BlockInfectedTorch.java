@@ -4,10 +4,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -25,7 +26,7 @@ public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, IS
         this.setUnlocalizedName(name);
         this.setHardness(0.0F);
         this.setLightLevel(0.9375F);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, IS
         {
             if (rand.nextInt(5) == 0)
             {
-                world.setBlockState(pos, Blocks.torch.getStateFromMeta(this.getMetaFromState(state)));
+                world.setBlockState(pos, Blocks.TORCH.getStateFromMeta(this.getMetaFromState(state)));
             }
         }
     }

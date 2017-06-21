@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
 import net.minecraft.block.Block;
-import stevekung.mods.moreplanets.module.planets.fronos.itemblocks.ItemBlockFronosGrass;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
@@ -36,7 +35,7 @@ public class FronosBlocks
         /************************REGISTER STUFF************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_GRASS, ItemBlockFronosGrass::new);
+        CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_GRASS);
         CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_DIRT, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_FARMLAND);
         CommonRegisterHelper.registerBlock(FronosBlocks.FRONOS_BLOCK, ItemBlockMultiVariant::new);

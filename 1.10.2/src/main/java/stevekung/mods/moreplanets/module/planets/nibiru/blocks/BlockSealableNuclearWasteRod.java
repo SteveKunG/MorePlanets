@@ -12,13 +12,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -40,34 +40,33 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
 
     public BlockSealableNuclearWasteRod(String name)
     {
-        super(Material.clay);
+        super(Material.CLAY);
         this.setResistance(0.2F);
         this.setHardness(0.4F);
-        this.setStepSound(Block.soundTypeStone);
         this.setUnlocalizedName(name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.TRANSLUCENT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block block)
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
         TileEntity tile = world.getTileEntity(pos);
 
@@ -125,9 +124,9 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, UP, DOWN, NORTH, EAST, SOUTH, WEST);
+        return new BlockStateContainer(this, UP, DOWN, NORTH, EAST, SOUTH, WEST);
     }
 
     @Override

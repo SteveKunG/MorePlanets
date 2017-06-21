@@ -5,11 +5,13 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class EntityDarkLightningBolt extends Entity
@@ -46,7 +48,8 @@ public class EntityDarkLightningBolt extends Entity
 
         if (this.lightningState == 2)
         {
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "moreplanets:weather.thunder", 5000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+            this.worldObj.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 5000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+            this.worldObj.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LIGHTNING_IMPACT, SoundCategory.WEATHER, 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
         }
 
         --this.lightningState;
@@ -86,7 +89,7 @@ public class EntityDarkLightningBolt extends Entity
                     }
                     if (entity instanceof EntityLivingBase)
                     {
-                        ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 60, 0, false, false));
+                        ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 60, 0, false, false));
                     }
                     entity.attackEntityFrom(DamageSource.lightningBolt, 10.0F);
                 }

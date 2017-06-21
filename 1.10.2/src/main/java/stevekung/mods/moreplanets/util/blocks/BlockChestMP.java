@@ -1,8 +1,10 @@
 package stevekung.mods.moreplanets.util.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +14,10 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -23,56 +28,43 @@ import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
 
 public abstract class BlockChestMP extends BlockContainerMP implements ISingleBlockRender
 {
+    protected static AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 0.9375D, 0.875D, 0.9375D);
+    protected static AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 1.0D);
+    protected static AxisAlignedBB WEST_CHEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
+    protected static AxisAlignedBB EAST_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 1.0D, 0.875D, 0.9375D);
+    protected static AxisAlignedBB NOT_CONNECTED_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
+
     protected BlockChestMP()
     {
         super(Material.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING, EnumFacing.NORTH));
-        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
+        this.setResistance(5.0F);
         this.setHardness(2.5F);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public int getRenderType()
+    public EnumBlockRenderType getRenderType(IBlockState state)
     {
-        return 2;
+        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if (world.getBlockState(pos.north()).getBlock() == this)
-        {
-            this.setBlockBounds(0.0625F, 0.0F, 0.0F, 0.9375F, 0.875F, 0.9375F);
-        }
-        else if (world.getBlockState(pos.south()).getBlock() == this)
-        {
-            this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 1.0F);
-        }
-        else if (world.getBlockState(pos.west()).getBlock() == this)
-        {
-            this.setBlockBounds(0.0F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-        }
-        else if (world.getBlockState(pos.east()).getBlock() == this)
-        {
-            this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 1.0F, 0.875F, 0.9375F);
-        }
-        else
-        {
-            this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-        }
+        return world.getBlockState(pos.north()).getBlock() == this ? NORTH_CHEST_AABB : world.getBlockState(pos.south()).getBlock() == this ? SOUTH_CHEST_AABB : world.getBlockState(pos.west()).getBlock() == this ? WEST_CHEST_AABB : world.getBlockState(pos.east()).getBlock() == this ? EAST_CHEST_AABB : NOT_CONNECTED_AABB;
     }
 
     @Override
@@ -175,8 +167,8 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
 
             if (block != this && block1 != this)
             {
-                boolean flag = block.isFullBlock();
-                boolean flag1 = block1.isFullBlock();
+                boolean flag = iblockstate.isFullBlock();
+                boolean flag1 = iblockstate1.isFullBlock();
 
                 if (block2 == this || block3 == this)
                 {
@@ -203,11 +195,11 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
                     Block block6 = iblockstate6.getBlock();
                     Block block7 = iblockstate7.getBlock();
 
-                    if ((flag || block6.isFullBlock()) && !flag1 && !block7.isFullBlock())
+                    if ((flag || iblockstate6.isFullBlock()) && !flag1 && !iblockstate7.isFullBlock())
                     {
                         enumfacing = EnumFacing.SOUTH;
                     }
-                    if ((flag1 || block7.isFullBlock()) && !flag && !block6.isFullBlock())
+                    if ((flag1 || iblockstate7.isFullBlock()) && !flag && !iblockstate6.isFullBlock())
                     {
                         enumfacing = EnumFacing.NORTH;
                     }
@@ -238,11 +230,11 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
                 Block block4 = iblockstate4.getBlock();
                 Block block5 = iblockstate5.getBlock();
 
-                if ((block2.isFullBlock() || block4.isFullBlock()) && !block3.isFullBlock() && !block5.isFullBlock())
+                if ((iblockstate2.isFullBlock() || iblockstate4.isFullBlock()) && !iblockstate3.isFullBlock() && !iblockstate5.isFullBlock())
                 {
                     enumfacing = EnumFacing.EAST;
                 }
-                if ((block3.isFullBlock() || block5.isFullBlock()) && !block2.isFullBlock() && !block4.isFullBlock())
+                if ((iblockstate3.isFullBlock() || iblockstate5.isFullBlock()) && !iblockstate2.isFullBlock() && !iblockstate4.isFullBlock())
                 {
                     enumfacing = EnumFacing.WEST;
                 }
@@ -266,7 +258,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
                 return state;
             }
 
-            if (iblockstate.getBlock().isFullBlock())
+            if (iblockstate.isFullBlock())
             {
                 if (enumfacing != null)
                 {
@@ -285,15 +277,15 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
         {
             EnumFacing enumfacing2 = state.getValue(BlockStateHelper.FACING);
 
-            if (world.getBlockState(pos.offset(enumfacing2)).getBlock().isFullBlock())
+            if (world.getBlockState(pos.offset(enumfacing2)).isFullBlock())
             {
                 enumfacing2 = enumfacing2.getOpposite();
             }
-            if (world.getBlockState(pos.offset(enumfacing2)).getBlock().isFullBlock())
+            if (world.getBlockState(pos.offset(enumfacing2)).isFullBlock())
             {
                 enumfacing2 = enumfacing2.rotateY();
             }
-            if (world.getBlockState(pos.offset(enumfacing2)).getBlock().isFullBlock())
+            if (world.getBlockState(pos.offset(enumfacing2)).isFullBlock())
             {
                 enumfacing2 = enumfacing2.getOpposite();
             }
@@ -378,7 +370,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (world.isRemote)
         {
@@ -390,8 +382,8 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
 
             if (ilockablecontainer != null)
             {
-                playerIn.displayGUIChest(ilockablecontainer);
-                playerIn.triggerAchievement(StatList.field_181723_aa);
+                player.displayGUIChest(ilockablecontainer);
+                player.addStat(StatList.CHEST_OPENED);
             }
             return true;
         }
@@ -414,13 +406,13 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
     }
 
     @Override
-    public boolean hasComparatorInputOverride()
+    public boolean hasComparatorInputOverride(IBlockState state)
     {
         return true;
     }
 
     @Override
-    public int getComparatorInputOverride(World world, BlockPos pos)
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
         return Container.calcRedstoneFromInventory(this.getLockableContainer(world, pos));
     }
@@ -444,9 +436,9 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {BlockStateHelper.FACING});
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING});
     }
 
     @Override

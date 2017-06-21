@@ -32,8 +32,8 @@ public class RenderInfectedZombie extends RenderBiped<EntityInfectedZombie>
             @Override
             protected void initArmor()
             {
-                this.field_177189_c = new ModelInfectedZombie(0.5F, true);
-                this.field_177186_d = new ModelInfectedZombie(1.0F, true);
+                this.modelLeggings = new ModelInfectedZombie(0.5F, true);
+                this.modelArmor = new ModelInfectedZombie(1.0F, true);
             }
         };
         this.addLayer(layerbipedarmor);

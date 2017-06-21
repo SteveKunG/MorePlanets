@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -24,7 +24,7 @@ public class BlockNibiruSandstone extends BlockBaseMP implements IBlockVariants
 
     public BlockNibiruSandstone(String name)
     {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.NIBIRU_SANDSTONE));
         this.setHardness(0.8F);
         this.setUnlocalizedName(name);
@@ -53,9 +53,9 @@ public class BlockNibiruSandstone extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

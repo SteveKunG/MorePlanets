@@ -7,14 +7,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.items.tools.ItemAxeMP;
 
 public class ItemInfectedWoodAxe extends ItemAxeMP
 {
     public ItemInfectedWoodAxe(String name, ToolMaterial material)
     {
-        super(material);
-        this.setUnlocalizedName(name);
+        super(name, material, NibiruBlocks.NIBIRU_PLANKS, -1, EnumToolSpeed.WOOD);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ItemInfectedWoodAxe extends ItemAxeMP
                 int i = itemStack.getItemDamage();
                 itemStack.setItemDamage(--i);
                 item.lifespan = 6000;
-                item.worldObj.playAuxSFX(2005, new BlockPos(item.posX, item.posY, item.posZ), 0);
+                item.worldObj.playEvent(2005, new BlockPos(item.posX, item.posY, item.posZ), 0);
             }
         }
         return false;

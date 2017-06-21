@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.items;
 
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -10,6 +12,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.items.armor.ItemArmorMul
 import stevekung.mods.moreplanets.module.planets.nibiru.items.armor.ItemBreathableMultalicCrystal;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.tools.*;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
+import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 import stevekung.mods.moreplanets.util.items.ItemBucketMP;
@@ -76,7 +79,7 @@ public class NibiruItems
 
     // Material
     public static ToolMaterial MULTALIC_CRYSTAL_TOOL = EnumHelper.addToolMaterial("MULTALIC_CRYSTAL", 3, 1951, 10.0F, 3.75F, 12);
-    public static ArmorMaterial MULTALIC_CRYSTAL_ARMOR = EnumHelper.addArmorMaterial("MULTALIC_CRYSTAL", "MULTALIC_CRYSTAL", 41, new int[] { 4, 10, 7, 4 }, 12);
+    public static ArmorMaterial MULTALIC_CRYSTAL_ARMOR = EnumHelper.addArmorMaterial("MULTALIC_CRYSTAL", "MULTALIC_CRYSTAL", 41, new int[] { 4, 10, 7, 4 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F);
 
     public static void init()
     {
@@ -121,7 +124,7 @@ public class NibiruItems
         NibiruItems.ALIEN_BERRY_WOOD_SWORD = new ItemSwordMP("alien_berry_wood_sword", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS, 2);
         NibiruItems.ALIEN_BERRY_WOOD_SHOVEL = new ItemShovelMP("alien_berry_wood_shovel", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS, 2);
         NibiruItems.ALIEN_BERRY_WOOD_PICKAXE = new ItemPickaxeMP("alien_berry_wood_pickaxe", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS, 2);
-        NibiruItems.ALIEN_BERRY_WOOD_AXE = new ItemAxeMP("alien_berry_wood_axe", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS, 2);
+        NibiruItems.ALIEN_BERRY_WOOD_AXE = new ItemAxeMP("alien_berry_wood_axe", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS, 2, EnumToolSpeed.WOOD);
         NibiruItems.ALIEN_BERRY_WOOD_HOE = new ItemHoeMP("alien_berry_wood_hoe", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS, 2);
         NibiruItems.NIBIRU_STONE_SWORD = new ItemNibiruStoneSword("nibiru_stone_sword", ToolMaterial.STONE);
         NibiruItems.NIBIRU_STONE_SHOVEL = new ItemNibiruStoneShovel("nibiru_stone_shovel", ToolMaterial.STONE);
@@ -131,18 +134,18 @@ public class NibiruItems
         NibiruItems.MULTALIC_CRYSTAL_SWORD = new ItemSwordMP("multalic_crystal_sword", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1);
         NibiruItems.MULTALIC_CRYSTAL_SHOVEL = new ItemShovelMP("multalic_crystal_shovel", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1);
         NibiruItems.MULTALIC_CRYSTAL_PICKAXE = new ItemPickaxeMP("multalic_crystal_pickaxe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1);
-        NibiruItems.MULTALIC_CRYSTAL_AXE = new ItemAxeMP("multalic_crystal_axe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1);
+        NibiruItems.MULTALIC_CRYSTAL_AXE = new ItemAxeMP("multalic_crystal_axe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1, EnumToolSpeed.COMMON);
         NibiruItems.MULTALIC_CRYSTAL_HOE = new ItemHoeMP("multalic_crystal_hoe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1);
 
         /**************************************************************/
         /*********************INITIAL ARMOR STUFF**********************/
         /**************************************************************/
 
-        NibiruItems.MULTALIC_CRYSTAL_HELMET = new ItemArmorMultalicCrystal("multalic_crystal_helmet", NibiruItems.MULTALIC_CRYSTAL_ARMOR, 0);
-        NibiruItems.MULTALIC_CRYSTAL_CHESTPLATE = new ItemArmorMultalicCrystal("multalic_crystal_chestplate", NibiruItems.MULTALIC_CRYSTAL_ARMOR, 1);
-        NibiruItems.MULTALIC_CRYSTAL_LEGGINGS = new ItemArmorMultalicCrystal("multalic_crystal_leggings", NibiruItems.MULTALIC_CRYSTAL_ARMOR, 2);
-        NibiruItems.MULTALIC_CRYSTAL_BOOTS = new ItemArmorMultalicCrystal("multalic_crystal_boots", NibiruItems.MULTALIC_CRYSTAL_ARMOR, 3);
-        NibiruItems.BREATHABLE_MULTALIC_CRYSTAL_HELMET = new ItemBreathableMultalicCrystal("breathable_multalic_crystal_helmet", NibiruItems.MULTALIC_CRYSTAL_ARMOR, 0);
+        NibiruItems.MULTALIC_CRYSTAL_HELMET = new ItemArmorMultalicCrystal("multalic_crystal_helmet", NibiruItems.MULTALIC_CRYSTAL_ARMOR, EntityEquipmentSlot.HEAD);
+        NibiruItems.MULTALIC_CRYSTAL_CHESTPLATE = new ItemArmorMultalicCrystal("multalic_crystal_chestplate", NibiruItems.MULTALIC_CRYSTAL_ARMOR, EntityEquipmentSlot.CHEST);
+        NibiruItems.MULTALIC_CRYSTAL_LEGGINGS = new ItemArmorMultalicCrystal("multalic_crystal_leggings", NibiruItems.MULTALIC_CRYSTAL_ARMOR, EntityEquipmentSlot.LEGS);
+        NibiruItems.MULTALIC_CRYSTAL_BOOTS = new ItemArmorMultalicCrystal("multalic_crystal_boots", NibiruItems.MULTALIC_CRYSTAL_ARMOR, EntityEquipmentSlot.FEET);
+        NibiruItems.BREATHABLE_MULTALIC_CRYSTAL_HELMET = new ItemBreathableMultalicCrystal("breathable_multalic_crystal_helmet", NibiruItems.MULTALIC_CRYSTAL_ARMOR, EntityEquipmentSlot.HEAD);
 
         /**************************************************************/
         /**********************REGISTER STUFF**************************/

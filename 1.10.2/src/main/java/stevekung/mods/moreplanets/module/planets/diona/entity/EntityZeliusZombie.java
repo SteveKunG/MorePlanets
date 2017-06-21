@@ -4,16 +4,18 @@ import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
 
@@ -22,14 +24,6 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     public EntityZeliusZombie(World world)
     {
         super(world);
-        ((PathNavigateGroundMP)this.getNavigator()).setBreakDoors(true);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.applyEntityAI();
         this.setSize(0.6F, 1.8F);
     }
 
@@ -43,9 +37,9 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
     }
 
     @Override
@@ -69,8 +63,8 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     {
         if (entity instanceof EntityLivingBase)
         {
-            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE.id, 120, 1));
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "moreplanets:mob.infected.attack", 1.0F, 1.0F);
+            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 120, 1));
+            this.worldObj.playSound((EntityPlayer) entity, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
         return super.attackEntityAsMob(entity);
     }
@@ -86,11 +80,11 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
 
             if (i == 0)
             {
-                this.setCurrentItemOrArmor(0, new ItemStack(DionaItems.ILLENIUM_SWORD));
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(DionaItems.ILLENIUM_SWORD));
             }
             else
             {
-                this.setCurrentItemOrArmor(0, new ItemStack(DionaItems.ILLENIUM_PICKAXE));
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(DionaItems.ILLENIUM_PICKAXE));
             }
         }
     }
@@ -104,11 +98,11 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotionID() == MPPotions.INFECTED_CRYSTALLIZE.id ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZE ? false : super.isPotionApplicable(potion);
     }
 
     public IAttribute getReinforcementsAttribute()
     {
-        return EntityZombie.reinforcementChance;
+        return EntityZombie.SPAWN_REINFORCEMENTS_CHANCE;
     }
 }

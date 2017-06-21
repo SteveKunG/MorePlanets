@@ -8,23 +8,24 @@ import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class BlockStemMP extends BlockBushMP implements IGrowable
 {
@@ -38,16 +39,21 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
         }
     });
     private Block crop;
+    protected static final AxisAlignedBB[] STEM_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.125D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.25D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.375D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.5D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.625D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.75D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.875D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D)};
 
     public BlockStemMP(String name, Block crop)
     {
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)).withProperty(FACING, EnumFacing.UP));
         this.crop = crop;
         this.setTickRandomly(true);
-        float f = 0.125F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
         this.setUnlocalizedName(name);
-        this.setStepSound(soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return STEM_AABB[state.getValue(AGE).intValue()];
     }
 
     @Override
@@ -171,42 +177,6 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public int getRenderColor(IBlockState state)
-    {
-        if (state.getBlock() != this)
-        {
-            return ColorHelper.rgbToDecimal(143, 55, 33);
-        }
-        else
-        {
-            return ColorHelper.rgbToDecimal(143, 55, 33);
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess world, BlockPos pos, int renderPass)
-    {
-        return this.getRenderColor(world.getBlockState(pos));
-    }
-
-    @Override
-    public void setBlockBoundsForItemRender()
-    {
-        float f = 0.125F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
-    }
-
-    @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
-    {
-        this.maxY = (world.getBlockState(pos).getValue(AGE).intValue() * 2 + 2) / 16.0F;
-        float f = 0.125F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, (float)this.maxY, 0.5F + f);
-    }
-
-    @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         List<ItemStack> ret = Lists.newArrayList();
@@ -253,7 +223,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(NibiruItems.INFECTED_MELON_SEEDS);
     }
@@ -277,8 +247,8 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {AGE, FACING});
+        return new BlockStateContainer(this, new IProperty[] {AGE, FACING});
     }
 }

@@ -49,7 +49,7 @@ public class BlockFluidCheeseOfMilk extends BlockFluidBaseMP implements IFishabl
                 world.spawnParticle(EnumParticleTypes.SUSPENDED, pos.getX() + (double)rand.nextFloat(), pos.getY() + (double)rand.nextFloat(), pos.getZ() + (double)rand.nextFloat(), 0.0D, 0.0D, 0.0D);
             }
         }
-        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isSideSolid(world, pos, EnumFacing.DOWN))
+        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP))
         {
             Material material = world.getBlockState(pos.down(2)).getMaterial();
 

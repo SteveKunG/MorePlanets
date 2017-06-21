@@ -14,14 +14,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraftforge.common.ChestGenHooks;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
@@ -30,7 +28,6 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
 import stevekung.mods.moreplanets.util.blocks.BlockChestMP;
-import stevekung.mods.moreplanets.util.helper.ItemLootHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
 import stevekung.mods.moreplanets.util.world.gen.structure.StructureComponentMP;
 
@@ -398,9 +395,9 @@ public class StructureNibiruStrongholdPieces
                     for (int j = 1; j <= 3; ++j)
                     {
                         this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.INFECTED_STONE_BRICKS), 0, j, i, structureBoundingBox);
-                        this.setBlockState(world, Blocks.air.getDefaultState(), 1, j, i, structureBoundingBox);
-                        this.setBlockState(world, Blocks.air.getDefaultState(), 2, j, i, structureBoundingBox);
-                        this.setBlockState(world, Blocks.air.getDefaultState(), 3, j, i, structureBoundingBox);
+                        this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, j, i, structureBoundingBox);
+                        this.setBlockState(world, Blocks.AIR.getDefaultState(), 2, j, i, structureBoundingBox);
+                        this.setBlockState(world, Blocks.AIR.getDefaultState(), 3, j, i, structureBoundingBox);
                         this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.INFECTED_STONE_BRICKS), 4, j, i, structureBoundingBox);
                     }
                     this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.INFECTED_STONE_BRICKS), 0, 4, i, structureBoundingBox);
@@ -510,21 +507,21 @@ public class StructureNibiruStrongholdPieces
 
                 if (this.field_74996_b)
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 0, 3, 1, 0, 5, 3, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 0, 3, 1, 0, 5, 3, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 if (this.field_74995_d)
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 9, 3, 1, 9, 5, 3, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 9, 3, 1, 9, 5, 3, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 if (this.field_74997_c)
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 0, 5, 7, 0, 7, 9, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 0, 5, 7, 0, 7, 9, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 if (this.field_74999_h)
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 9, 5, 7, 9, 7, 9, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 9, 5, 7, 9, 7, 9, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
-                this.fillWithBlocks(world, structureBoundingBox, 5, 1, 10, 7, 3, 10, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                this.fillWithBlocks(world, structureBoundingBox, 5, 1, 10, 7, 3, 10, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 this.fillWithRandomizedBlocks(world, structureBoundingBox, 1, 2, 1, 8, 2, 6, false, rand, StructureNibiruStrongholdPieces.strongholdStones);
                 this.fillWithRandomizedBlocks(world, structureBoundingBox, 4, 1, 5, 4, 4, 9, false, rand, StructureNibiruStrongholdPieces.strongholdStones);
                 this.fillWithRandomizedBlocks(world, structureBoundingBox, 8, 1, 5, 8, 4, 9, false, rand, StructureNibiruStrongholdPieces.strongholdStones);
@@ -589,11 +586,11 @@ public class StructureNibiruStrongholdPieces
 
                 if (this.coordBaseMode != EnumFacing.NORTH && this.coordBaseMode != EnumFacing.EAST)
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 4, 1, 1, 4, 3, 3, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 4, 1, 1, 4, 3, 3, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 else
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 0, 1, 1, 0, 3, 3, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 0, 1, 1, 0, 3, 3, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 return true;
             }
@@ -723,14 +720,14 @@ public class StructureNibiruStrongholdPieces
                     this.setBlockState(world, NibiruBlocks.NIBIRU_FENCE.getDefaultState(), 9, 6, 11, structureBoundingBox);
                     this.setBlockState(world, NibiruBlocks.NIBIRU_FENCE.getDefaultState(), 8, 6, 11, structureBoundingBox);
                     this.setBlockState(world, NibiruBlocks.NIBIRU_FENCE.getDefaultState(), 9, 6, 10, structureBoundingBox);
-                    int l1 = this.getMetadataWithOffset(Blocks.ladder, 3);
-                    this.setBlockState(world, Blocks.ladder.getStateFromMeta(l1), 10, 1, 13, structureBoundingBox);
-                    this.setBlockState(world, Blocks.ladder.getStateFromMeta(l1), 10, 2, 13, structureBoundingBox);
-                    this.setBlockState(world, Blocks.ladder.getStateFromMeta(l1), 10, 3, 13, structureBoundingBox);
-                    this.setBlockState(world, Blocks.ladder.getStateFromMeta(l1), 10, 4, 13, structureBoundingBox);
-                    this.setBlockState(world, Blocks.ladder.getStateFromMeta(l1), 10, 5, 13, structureBoundingBox);
-                    this.setBlockState(world, Blocks.ladder.getStateFromMeta(l1), 10, 6, 13, structureBoundingBox);
-                    this.setBlockState(world, Blocks.ladder.getStateFromMeta(l1), 10, 7, 13, structureBoundingBox);
+                    int l1 = this.getMetadataWithOffset(Blocks.LADDER, 3);
+                    this.setBlockState(world, Blocks.LADDER.getStateFromMeta(l1), 10, 1, 13, structureBoundingBox);
+                    this.setBlockState(world, Blocks.LADDER.getStateFromMeta(l1), 10, 2, 13, structureBoundingBox);
+                    this.setBlockState(world, Blocks.LADDER.getStateFromMeta(l1), 10, 3, 13, structureBoundingBox);
+                    this.setBlockState(world, Blocks.LADDER.getStateFromMeta(l1), 10, 4, 13, structureBoundingBox);
+                    this.setBlockState(world, Blocks.LADDER.getStateFromMeta(l1), 10, 5, 13, structureBoundingBox);
+                    this.setBlockState(world, Blocks.LADDER.getStateFromMeta(l1), 10, 6, 13, structureBoundingBox);
+                    this.setBlockState(world, Blocks.LADDER.getStateFromMeta(l1), 10, 7, 13, structureBoundingBox);
                     int i1 = 7;
                     int j1 = 7;
                     this.setBlockState(world, NibiruBlocks.NIBIRU_FENCE.getDefaultState(), i1 - 1, 9, j1, structureBoundingBox);
@@ -758,7 +755,7 @@ public class StructureNibiruStrongholdPieces
 
                 if (this.isLargeRoom)
                 {
-                    this.setBlockState(world, Blocks.air.getDefaultState(), 12, 9, 1, structureBoundingBox);
+                    this.setBlockState(world, Blocks.AIR.getDefaultState(), 12, 9, 1, structureBoundingBox);
                     this.generateChestContents(world, structureBoundingBox, rand, 12, 8, 1, info.getItems(rand), info.getCount(rand));
                 }
                 return true;
@@ -976,7 +973,7 @@ public class StructureNibiruStrongholdPieces
             {
                 this.fillWithRandomizedBlocks(world, structureBoundingBox, 0, 0, 0, 8, 4, 10, true, rand, StructureNibiruStrongholdPieces.strongholdStones);
                 this.placeDoor(world, rand, structureBoundingBox, this.field_143013_d, 1, 1, 0);
-                this.fillWithBlocks(world, structureBoundingBox, 1, 1, 10, 3, 3, 10, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                this.fillWithBlocks(world, structureBoundingBox, 1, 1, 10, 3, 3, 10, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 this.fillWithRandomizedBlocks(world, structureBoundingBox, 4, 1, 1, 4, 3, 1, false, rand, StructureNibiruStrongholdPieces.strongholdStones);
                 this.fillWithRandomizedBlocks(world, structureBoundingBox, 4, 1, 3, 4, 3, 3, false, rand, StructureNibiruStrongholdPieces.strongholdStones);
                 this.fillWithRandomizedBlocks(world, structureBoundingBox, 4, 1, 7, 4, 3, 7, false, rand, StructureNibiruStrongholdPieces.strongholdStones);
@@ -1023,11 +1020,11 @@ public class StructureNibiruStrongholdPieces
 
                 if (this.coordBaseMode != EnumFacing.NORTH && this.coordBaseMode != EnumFacing.EAST)
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 0, 1, 1, 0, 3, 3, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 0, 1, 1, 0, 3, 3, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 else
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 4, 1, 1, 4, 3, 3, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 4, 1, 1, 4, 3, 3, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 return true;
             }
@@ -1094,9 +1091,9 @@ public class StructureNibiruStrongholdPieces
             {
                 this.fillWithRandomizedBlocks(world, structureBoundingBox, 0, 0, 0, 10, 6, 10, true, rand, StructureNibiruStrongholdPieces.strongholdStones);
                 this.placeDoor(world, rand, structureBoundingBox, this.field_143013_d, 4, 1, 0);
-                this.fillWithBlocks(world, structureBoundingBox, 4, 1, 10, 6, 3, 10, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                this.fillWithBlocks(world, structureBoundingBox, 0, 1, 4, 0, 3, 6, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                this.fillWithBlocks(world, structureBoundingBox, 10, 1, 4, 10, 3, 6, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                this.fillWithBlocks(world, structureBoundingBox, 4, 1, 10, 6, 3, 10, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                this.fillWithBlocks(world, structureBoundingBox, 0, 1, 4, 0, 3, 6, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+                this.fillWithBlocks(world, structureBoundingBox, 10, 1, 4, 10, 3, 6, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
                 switch (this.roomType)
                 {
@@ -1382,7 +1379,7 @@ public class StructureNibiruStrongholdPieces
             }
             else
             {
-                this.blockstate = Blocks.air.getDefaultState();
+                this.blockstate = Blocks.AIR.getDefaultState();
             }
         }
     }
@@ -1460,11 +1457,11 @@ public class StructureNibiruStrongholdPieces
 
                 if (this.expandsX)
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 0, 1, 2, 0, 3, 4, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 0, 1, 2, 0, 3, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 if (this.expandsZ)
                 {
-                    this.fillWithBlocks(world, structureBoundingBox, 4, 1, 2, 4, 3, 4, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                    this.fillWithBlocks(world, structureBoundingBox, 4, 1, 2, 4, 3, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
                 return true;
             }
@@ -1523,7 +1520,7 @@ public class StructureNibiruStrongholdPieces
             {
             case OPENING:
             default:
-                this.fillWithBlocks(world, p_74990_3_, p_74990_5_, p_74990_6_, p_74990_7_, p_74990_5_ + 3 - 1, p_74990_6_ + 3 - 1, p_74990_7_, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
+                this.fillWithBlocks(world, p_74990_3_, p_74990_5_, p_74990_6_, p_74990_7_, p_74990_5_ + 3 - 1, p_74990_6_ + 3 - 1, p_74990_7_, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 break;
             case WOOD_DOOR:
                 this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.INFECTED_STONE_BRICKS), p_74990_5_, p_74990_6_, p_74990_7_, p_74990_3_);
@@ -1537,8 +1534,8 @@ public class StructureNibiruStrongholdPieces
                 this.setBlockState(world, NibiruBlocks.INFECTED_DOOR_BLOCK.getStateFromMeta(8), p_74990_5_ + 1, p_74990_6_ + 1, p_74990_7_, p_74990_3_);
                 break;
             case GRATES:
-                this.setBlockState(world, Blocks.air.getDefaultState(), p_74990_5_ + 1, p_74990_6_, p_74990_7_, p_74990_3_);
-                this.setBlockState(world, Blocks.air.getDefaultState(), p_74990_5_ + 1, p_74990_6_ + 1, p_74990_7_, p_74990_3_);
+                this.setBlockState(world, Blocks.AIR.getDefaultState(), p_74990_5_ + 1, p_74990_6_, p_74990_7_, p_74990_3_);
+                this.setBlockState(world, Blocks.AIR.getDefaultState(), p_74990_5_ + 1, p_74990_6_ + 1, p_74990_7_, p_74990_3_);
                 this.setBlockState(world, Blocks.iron_bars.getDefaultState(), p_74990_5_, p_74990_6_, p_74990_7_, p_74990_3_);
                 this.setBlockState(world, Blocks.iron_bars.getDefaultState(), p_74990_5_, p_74990_6_ + 1, p_74990_7_, p_74990_3_);
                 this.setBlockState(world, Blocks.iron_bars.getDefaultState(), p_74990_5_, p_74990_6_ + 2, p_74990_7_, p_74990_3_);

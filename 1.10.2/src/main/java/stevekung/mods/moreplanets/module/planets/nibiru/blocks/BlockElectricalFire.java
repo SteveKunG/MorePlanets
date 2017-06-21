@@ -7,9 +7,11 @@ import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -71,7 +73,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
                 {
                     if (!this.canNeighborCatchFire(world, pos))
                     {
-                        if (!World.doesBlockHaveSolidTopSurface(world, pos.down()) || i > 3)
+                        if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) || i > 3)
                         {
                             world.setBlockToAir(pos);
                         }
@@ -154,7 +156,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
         {
             IBlockState iblockstate = world.getBlockState(pos);
 
-            if (random.nextInt(age + 10) < 5 && !world.canLightningStrike(pos))
+            if (random.nextInt(age + 10) < 5 && !world.isRainingAt(pos))
             {
                 int j = age + random.nextInt(5) / 4;
 
@@ -169,9 +171,9 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
                 world.setBlockToAir(pos);
             }
 
-            if (iblockstate.getBlock() == Blocks.tnt)
+            if (iblockstate.getBlock() == Blocks.TNT)
             {
-                Blocks.tnt.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, Boolean.valueOf(true)));
+                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, Boolean.valueOf(true)));
             }
         }
     }
@@ -208,14 +210,14 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand)
     {
         if (rand.nextInt(24) == 0)
         {
-            world.playSound(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, "fire.fire", 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+            world.playSound(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
         }
 
-        if (!World.doesBlockHaveSolidTopSurface(world, pos.down()) && !NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.down(), EnumFacing.UP))
+        if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.down(), EnumFacing.UP))
         {
             if (NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.west(), EnumFacing.EAST))
             {
@@ -283,25 +285,10 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        int i = pos.getX();
-        int j = pos.getY();
-        int k = pos.getZ();
-
-        if (!World.doesBlockHaveSolidTopSurface(world, pos.down()) && !NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.down(), EnumFacing.UP))
+        if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !Blocks.FIRE.canCatchFire(world, pos.down(), EnumFacing.UP))
         {
-            boolean flag = (i + j + k & 1) == 1;
-            boolean flag1 = (i / 2 + j / 2 + k / 2 & 1) == 1;
-            int l = 0;
-
-            if (this.canCatchFire(world, pos.up(), EnumFacing.DOWN))
-            {
-                l = flag ? 1 : 2;
-            }
-            return state.withProperty(NORTH, Boolean.valueOf(this.canCatchFire(world, pos.north(), EnumFacing.SOUTH))).withProperty(EAST, Boolean.valueOf(this.canCatchFire(world, pos.east(),  EnumFacing.EAST ))).withProperty(SOUTH, Boolean.valueOf(this.canCatchFire(world, pos.south(), EnumFacing.NORTH))).withProperty(WEST, Boolean.valueOf(this.canCatchFire(world, pos.west(),  EnumFacing.EAST ))).withProperty(UPPER, Integer.valueOf(l)).withProperty(FLIP, Boolean.valueOf(flag1)).withProperty(ALT, Boolean.valueOf(flag));
+            return state.withProperty(NORTH, this.canCatchFire(world, pos.north(), EnumFacing.SOUTH)).withProperty(EAST,  this.canCatchFire(world, pos.east(), EnumFacing.WEST)).withProperty(SOUTH, this.canCatchFire(world, pos.south(), EnumFacing.NORTH)).withProperty(WEST,  this.canCatchFire(world, pos.west(), EnumFacing.EAST)).withProperty(UPPER, this.canCatchFire(world, pos.up(), EnumFacing.DOWN));
         }
-        else
-        {
-            return this.getDefaultState();
-        }
+        return this.getDefaultState();
     }
 }

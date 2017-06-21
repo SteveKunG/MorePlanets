@@ -7,13 +7,14 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -30,40 +31,39 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
 
     public BlockNibiruFlower(String name)
     {
-        super(Material.plants);
+        super(Material.PLANTS);
         this.setUnlocalizedName(name);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.PURE_HURB));
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        int meta = this.getMetaFromState(world.getBlockState(pos));
+        int meta = this.getMetaFromState(state);
 
         if (meta == 0)
         {
-            this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.6F, 0.7F);
+            return new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
         }
         else if (meta == 4)
         {
-            this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.6F, 0.75F);
+            return new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.6D, 0.75D);
         }
         else if (meta == 5)
         {
-            this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.9F, 0.75F);
+            return new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.9D, 0.75D);
         }
         else if (meta == 6)
         {
-            this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
+            return new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D);
         }
         else if (meta == 7)
         {
-            float f = 0.2F;
-            this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
+            return new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.3D * 2.0D, 0.7D);
         }
         else
         {
-            this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.8F, 0.7F);
+            return new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.8D, 0.7D);
         }
     }
 
@@ -105,9 +105,9 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
     }
 
     @Override
-    public int getLightValue(IBlockAccess world, BlockPos pos)
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        int meta = this.getMetaFromState(world.getBlockState(pos));
+        int meta = this.getMetaFromState(state);
 
         if (meta == 0)
         {
@@ -202,12 +202,6 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
     }
 
     @Override
-    public int getDamageValue(World world, BlockPos pos)
-    {
-        return this.getMetaFromState(world.getBlockState(pos));
-    }
-
-    @Override
     public int damageDropped(IBlockState state)
     {
         return this.getMetaFromState(state);
@@ -227,9 +221,9 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, new IProperty[] { VARIANT });
     }
 
     @Override

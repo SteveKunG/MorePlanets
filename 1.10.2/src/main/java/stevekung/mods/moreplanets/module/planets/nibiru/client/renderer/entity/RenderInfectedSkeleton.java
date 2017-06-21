@@ -23,8 +23,8 @@ public class RenderInfectedSkeleton extends RenderBiped<EntityInfectedSkeleton>
             @Override
             protected void initArmor()
             {
-                this.field_177189_c = new ModelInfectedSkeleton(0.5F, true);
-                this.field_177186_d = new ModelInfectedSkeleton(1.0F, true);
+                this.modelLeggings = new ModelInfectedSkeleton(0.5F, true);
+                this.modelArmor = new ModelInfectedSkeleton(1.0F, true);
             }
         });
     }

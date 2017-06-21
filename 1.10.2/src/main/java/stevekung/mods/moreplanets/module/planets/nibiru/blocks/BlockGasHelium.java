@@ -6,8 +6,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidFiniteMP;
@@ -18,7 +18,7 @@ public class BlockGasHelium extends BlockFluidFiniteMP
     public BlockGasHelium(String name)
     {
         super(NibiruBlocks.HELIUM_GAS, MaterialsBase.GAS);
-        this.setRenderLayer(EnumWorldBlockLayer.TRANSLUCENT);
+        this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
         this.setUnlocalizedName(name);
     }
