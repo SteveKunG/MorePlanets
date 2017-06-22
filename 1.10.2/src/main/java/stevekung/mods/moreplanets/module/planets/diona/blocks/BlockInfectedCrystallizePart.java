@@ -25,13 +25,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityInfectedCrystallizeEnderCore;
 import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
-import stevekung.mods.moreplanets.util.helper.BlockSoundHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityNull;
 
 public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockVariants, ITileEntityProvider
@@ -45,7 +45,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
         this.setResistance(50.0F);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.INFECTED_CRYSTALLIZE_BLOCK));
         this.setUnlocalizedName(name);
-        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
+        this.setSoundType(MPSounds.ALIEN_EGG);
         this.slipperiness = 0.8F;
     }
 

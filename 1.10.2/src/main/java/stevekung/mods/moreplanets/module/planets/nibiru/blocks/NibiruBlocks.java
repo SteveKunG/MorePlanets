@@ -46,7 +46,7 @@ public class NibiruBlocks
     public static Block NIBIRU_SILVERFISH_STONE;
     public static Block NIBIRU_BOOKSHELF;
     public static Block NIBIRU_FENCE;
-    public static BlockBushMP NIBIRU_DOUBLE_PLANT;
+    public static BlockNibiruDoublePlant NIBIRU_DOUBLE_PLANT;
     public static Block INFECTED_FENCE_GATE;
     public static Block INFECTED_DEAD_OAK_FENCE_GATE;
     public static BlockDoorMP INFECTED_DOOR_BLOCK;
@@ -67,7 +67,7 @@ public class NibiruBlocks
     public static Block INFECTED_CLAY;
     public static BlockFire ELECTRICAL_FIRE;
     public static Block NIBIRU_TREASURE_CHEST;
-    public static Block INFECTED_CHEST;
+    public static BlockChestMP INFECTED_CHEST;
     public static Block MULTALIC_CRYSTAL;
     public static BlockBushMP INFECTED_SUGAR_CANE_BLOCK;
     public static Block INFECTED_PRISMARINE;

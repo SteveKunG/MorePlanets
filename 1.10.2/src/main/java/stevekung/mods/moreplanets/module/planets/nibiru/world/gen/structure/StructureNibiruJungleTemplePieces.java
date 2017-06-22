@@ -1,71 +1,64 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
-import java.util.List;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
-import net.minecraft.block.BlockLever;
-import net.minecraft.block.BlockTripWire;
-import net.minecraft.block.BlockTripWireHook;
+import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.blocks.BlockChestMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
-import stevekung.mods.moreplanets.util.world.gen.structure.StructureComponentMP;
 
-public abstract class StructureNibiruJungleTemplePieces extends StructureComponentMP
+public abstract class StructureNibiruJungleTemplePieces extends StructureComponent
 {
     protected int scatteredFeatureSizeX;
     protected int scatteredFeatureSizeY;
     protected int scatteredFeatureSizeZ;
-    protected int height = -1;
+    protected int horizontalPos = -1;
 
     public StructureNibiruJungleTemplePieces() {}
 
-    protected StructureNibiruJungleTemplePieces(Random rand, int p_i2065_2_, int p_i2065_3_, int p_i2065_4_, int p_i2065_5_, int p_i2065_6_, int p_i2065_7_)
+    protected StructureNibiruJungleTemplePieces(Random rand, int x, int y, int z, int sizeX, int sizeY, int sizeZ)
     {
         super(0);
-        this.scatteredFeatureSizeX = p_i2065_5_;
-        this.scatteredFeatureSizeY = p_i2065_6_;
-        this.scatteredFeatureSizeZ = p_i2065_7_;
-        this.coordBaseMode = EnumFacing.Plane.HORIZONTAL.random(rand);
+        this.scatteredFeatureSizeX = sizeX;
+        this.scatteredFeatureSizeY = sizeY;
+        this.scatteredFeatureSizeZ = sizeZ;
+        this.setCoordBaseMode(EnumFacing.Plane.HORIZONTAL.random(rand));
 
-        switch (this.coordBaseMode)
+        if (this.getCoordBaseMode().getAxis() == EnumFacing.Axis.Z)
         {
-        case NORTH:
-        case SOUTH:
-            this.boundingBox = new StructureBoundingBox(p_i2065_2_, p_i2065_3_, p_i2065_4_, p_i2065_2_ + p_i2065_5_ - 1, p_i2065_3_ + p_i2065_6_ - 1, p_i2065_4_ + p_i2065_7_ - 1);
-            break;
-        default:
-            this.boundingBox = new StructureBoundingBox(p_i2065_2_, p_i2065_3_, p_i2065_4_, p_i2065_2_ + p_i2065_7_ - 1, p_i2065_3_ + p_i2065_6_ - 1, p_i2065_4_ + p_i2065_5_ - 1);
+            this.boundingBox = new StructureBoundingBox(x, y, z, x + sizeX - 1, y + sizeY - 1, z + sizeZ - 1);
+        }
+        else
+        {
+            this.boundingBox = new StructureBoundingBox(x, y, z, x + sizeZ - 1, y + sizeY - 1, z + sizeX - 1);
         }
     }
 
     @Override
-    protected boolean generateChestContents(World world, StructureBoundingBox box, Random rand, int x, int y, int z, List<WeightedRandomChestContent> list, int max)
+    protected boolean generateChest(World world, StructureBoundingBox box, Random rand, int x, int y, int z, ResourceLocation loot)
     {
         BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
         if (box.isVecInside(blockpos) && world.getBlockState(blockpos).getBlock() != NibiruBlocks.INFECTED_CHEST)
         {
             IBlockState iblockstate = NibiruBlocks.INFECTED_CHEST.getDefaultState();
-            world.setBlockState(blockpos, ((BlockChestMP) NibiruBlocks.INFECTED_CHEST).correctFacing(world, blockpos, iblockstate), 2);
+            world.setBlockState(blockpos, NibiruBlocks.INFECTED_CHEST.correctFacing(world, blockpos, iblockstate), 2);
             TileEntity tileentity = world.getTileEntity(blockpos);
 
             if (tileentity instanceof TileEntityChestMP)
             {
-                WeightedRandomChestContent.generateChestContents(rand, list, (TileEntityChestMP)tileentity, max);
+                ((TileEntityChestMP)tileentity).setLootTable(loot, rand.nextLong());
             }
             return true;
         }
@@ -76,26 +69,26 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
     }
 
     @Override
-    protected void writeStructureToNBT(NBTTagCompound tagCompound)
+    protected void writeStructureToNBT(NBTTagCompound nbt)
     {
-        tagCompound.setInteger("Width", this.scatteredFeatureSizeX);
-        tagCompound.setInteger("Height", this.scatteredFeatureSizeY);
-        tagCompound.setInteger("Depth", this.scatteredFeatureSizeZ);
-        tagCompound.setInteger("HPos", this.height);
+        nbt.setInteger("Width", this.scatteredFeatureSizeX);
+        nbt.setInteger("Height", this.scatteredFeatureSizeY);
+        nbt.setInteger("Depth", this.scatteredFeatureSizeZ);
+        nbt.setInteger("HPos", this.horizontalPos);
     }
 
     @Override
-    protected void readStructureFromNBT(NBTTagCompound tagCompound)
+    protected void readStructureFromNBT(NBTTagCompound nbt)
     {
-        this.scatteredFeatureSizeX = tagCompound.getInteger("Width");
-        this.scatteredFeatureSizeY = tagCompound.getInteger("Height");
-        this.scatteredFeatureSizeZ = tagCompound.getInteger("Depth");
-        this.height = tagCompound.getInteger("HPos");
+        this.scatteredFeatureSizeX = nbt.getInteger("Width");
+        this.scatteredFeatureSizeY = nbt.getInteger("Height");
+        this.scatteredFeatureSizeZ = nbt.getInteger("Depth");
+        this.horizontalPos = nbt.getInteger("HPos");
     }
 
-    protected boolean func_74935_a(World world, StructureBoundingBox p_74935_2_, int p_74935_3_)
+    protected boolean offsetToAverageGroundLevel(World world, StructureBoundingBox box, int yOffset)
     {
-        if (this.height >= 0)
+        if (this.horizontalPos >= 0)
         {
             return true;
         }
@@ -109,9 +102,9 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
             {
                 for (int l = this.boundingBox.minX; l <= this.boundingBox.maxX; ++l)
                 {
-                    blockpos$mutableblockpos.set(l, 64, k);
+                    blockpos$mutableblockpos.setPos(l, 64, k);
 
-                    if (p_74935_2_.isVecInside(blockpos$mutableblockpos))
+                    if (box.isVecInside(blockpos$mutableblockpos))
                     {
                         i += Math.max(world.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(), world.provider.getAverageGroundLevel());
                         ++j;
@@ -125,8 +118,8 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
             }
             else
             {
-                this.height = i / j;
-                this.boundingBox.offset(0, this.height - this.boundingBox.minY + p_74935_3_, 0);
+                this.horizontalPos = i / j;
+                this.boundingBox.offset(0, this.horizontalPos - this.boundingBox.minY + yOffset, 0);
                 return true;
             }
         }
@@ -134,65 +127,51 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
 
     public static class JungleTemple extends StructureNibiruJungleTemplePieces
     {
-        private boolean hasMainChest;
-        private boolean hasHiddenChest;
+        private boolean placedMainChest;
+        private boolean placedHiddenChest;
         private boolean hasRandomChest;
-        private boolean hasTrap1;
-        private boolean hasTrap2;
-        private static List<WeightedRandomChestContent> INFECTED_ARROW = Lists.newArrayList(new WeightedRandomChestContent[] {new WeightedRandomChestContent(NibiruItems.INFECTED_ARROW, 0, 2, 7, 30)});
+        private boolean placedTrap1;
+        private boolean placedTrap2;
         private Stones scatteredStones = new Stones();
-
-        static
-        {
-            ItemLootHelper.register(ChestGenHooks.PYRAMID_JUNGLE_DISPENSER, INFECTED_ARROW, 2, 2);
-            ItemLootHelper.register(ItemLootHelper.NIBIRU_JUNGLE_TEMPLE, ItemLootHelper.NIBIRU_JUNGLE_TEMPLE_LOOT, 2, 7);
-            ItemLootHelper.add(ItemLootHelper.NIBIRU_JUNGLE_TEMPLE, ItemLootHelper.ENCHANTED_BOOK);
-        }
 
         public JungleTemple() {}
 
-        public JungleTemple(Random rand, int p_i2064_2_, int p_i2064_3_)
+        public JungleTemple(Random rand, int x, int z)
         {
-            super(rand, p_i2064_2_, 64, p_i2064_3_, 12, 10, 15);
+            super(rand, x, 64, z, 12, 10, 15);
         }
 
         @Override
-        protected void writeStructureToNBT(NBTTagCompound tagCompound)
+        protected void writeStructureToNBT(NBTTagCompound nbt)
         {
-            super.writeStructureToNBT(tagCompound);
-            tagCompound.setBoolean("placedMainChest", this.hasMainChest);
-            tagCompound.setBoolean("placedHiddenChest", this.hasHiddenChest);
-            tagCompound.setBoolean("placedRandomChest", this.hasRandomChest);
-            tagCompound.setBoolean("placedTrap1", this.hasTrap1);
-            tagCompound.setBoolean("placedTrap2", this.hasTrap2);
+            super.writeStructureToNBT(nbt);
+            nbt.setBoolean("placedMainChest", this.placedMainChest);
+            nbt.setBoolean("placedHiddenChest", this.placedHiddenChest);
+            nbt.setBoolean("placedRandomChest", this.hasRandomChest);
+            nbt.setBoolean("placedTrap1", this.placedTrap1);
+            nbt.setBoolean("placedTrap2", this.placedTrap2);
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound tagCompound)
+        protected void readStructureFromNBT(NBTTagCompound nbt)
         {
-            super.readStructureFromNBT(tagCompound);
-            this.hasMainChest = tagCompound.getBoolean("placedMainChest");
-            this.hasHiddenChest = tagCompound.getBoolean("placedHiddenChest");
-            this.hasRandomChest = tagCompound.getBoolean("placedRandomChest");
-            this.hasTrap1 = tagCompound.getBoolean("placedTrap1");
-            this.hasTrap2 = tagCompound.getBoolean("placedTrap2");
+            super.readStructureFromNBT(nbt);
+            this.placedMainChest = nbt.getBoolean("placedMainChest");
+            this.placedHiddenChest = nbt.getBoolean("placedHiddenChest");
+            this.hasRandomChest = nbt.getBoolean("placedRandomChest");
+            this.placedTrap1 = nbt.getBoolean("placedTrap1");
+            this.placedTrap2 = nbt.getBoolean("placedTrap2");
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
-            if (!this.func_74935_a(world, box, 0))
+            if (!this.offsetToAverageGroundLevel(world, box, 0))
             {
                 return false;
             }
             else
             {
-                ChestGenHooks dispenser = ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_DISPENSER);
-                ChestGenHooks chest = ChestGenHooks.getInfo(ItemLootHelper.NIBIRU_JUNGLE_TEMPLE);
-                int i = this.getMetadataWithOffset(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS, 3);
-                int j = this.getMetadataWithOffset(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS, 2);
-                int k = this.getMetadataWithOffset(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS, 0);
-                int l = this.getMetadataWithOffset(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS, 1);
                 this.fillWithRandomizedBlocks(world, box, 0, -4, 0, this.scatteredFeatureSizeX - 1, 0, this.scatteredFeatureSizeZ - 1, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 2, 1, 2, 9, 2, 2, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 2, 1, 12, 9, 2, 12, false, rand, this.scatteredStones);
@@ -220,24 +199,25 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, 5, 9, box);
                 this.setBlockState(world, Blocks.AIR.getDefaultState(), 10, 5, 9, box);
 
-                for (int i1 = 0; i1 <= 14; i1 += 14)
+                for (int i = 0; i <= 14; i += 14)
                 {
-                    this.fillWithRandomizedBlocks(world, box, 2, 4, i1, 2, 5, i1, false, rand, this.scatteredStones);
-                    this.fillWithRandomizedBlocks(world, box, 4, 4, i1, 4, 5, i1, false, rand, this.scatteredStones);
-                    this.fillWithRandomizedBlocks(world, box, 7, 4, i1, 7, 5, i1, false, rand, this.scatteredStones);
-                    this.fillWithRandomizedBlocks(world, box, 9, 4, i1, 9, 5, i1, false, rand, this.scatteredStones);
+                    this.fillWithRandomizedBlocks(world, box, 2, 4, i, 2, 5, i, false, rand, this.scatteredStones);
+                    this.fillWithRandomizedBlocks(world, box, 4, 4, i, 4, 5, i, false, rand, this.scatteredStones);
+                    this.fillWithRandomizedBlocks(world, box, 7, 4, i, 7, 5, i, false, rand, this.scatteredStones);
+                    this.fillWithRandomizedBlocks(world, box, 9, 4, i, 9, 5, i, false, rand, this.scatteredStones);
                 }
 
                 this.fillWithRandomizedBlocks(world, box, 5, 6, 0, 6, 6, 0, false, rand, this.scatteredStones);
 
-                for (int k1 = 0; k1 <= 11; k1 += 11)
+                for (int l = 0; l <= 11; l += 11)
                 {
-                    for (int j1 = 2; j1 <= 12; j1 += 2)
+                    for (int j = 2; j <= 12; j += 2)
                     {
-                        this.fillWithRandomizedBlocks(world, box, k1, 4, j1, k1, 5, j1, false, rand, this.scatteredStones);
+                        this.fillWithRandomizedBlocks(world, box, l, 4, j, l, 5, j, false, rand, this.scatteredStones);
                     }
-                    this.fillWithRandomizedBlocks(world, box, k1, 6, 5, k1, 6, 5, false, rand, this.scatteredStones);
-                    this.fillWithRandomizedBlocks(world, box, k1, 6, 9, k1, 6, 9, false, rand, this.scatteredStones);
+
+                    this.fillWithRandomizedBlocks(world, box, l, 6, 5, l, 6, 5, false, rand, this.scatteredStones);
+                    this.fillWithRandomizedBlocks(world, box, l, 6, 9, l, 6, 9, false, rand, this.scatteredStones);
                 }
 
                 this.fillWithRandomizedBlocks(world, box, 2, 7, 2, 2, 9, 2, false, rand, this.scatteredStones);
@@ -249,33 +229,37 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.fillWithRandomizedBlocks(world, box, 4, 9, 10, 4, 9, 10, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 7, 9, 10, 7, 9, 10, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 5, 9, 7, 6, 9, 7, false, rand, this.scatteredStones);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 5, 9, 6, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 6, 9, 6, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(j), 5, 9, 8, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(j), 6, 9, 8, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 4, 0, 0, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 5, 0, 0, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 6, 0, 0, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 7, 0, 0, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 4, 1, 8, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 4, 2, 9, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 4, 3, 10, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 7, 1, 8, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 7, 2, 9, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(i), 7, 3, 10, box);
+                IBlockState iblockstate2 = NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST);
+                IBlockState iblockstate3 = NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST);
+                IBlockState iblockstate = NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
+                IBlockState iblockstate1 = NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
+                this.setBlockState(world, iblockstate1, 5, 9, 6, box);
+                this.setBlockState(world, iblockstate1, 6, 9, 6, box);
+                this.setBlockState(world, iblockstate, 5, 9, 8, box);
+                this.setBlockState(world, iblockstate, 6, 9, 8, box);
+                this.setBlockState(world, iblockstate1, 4, 0, 0, box);
+                this.setBlockState(world, iblockstate1, 5, 0, 0, box);
+                this.setBlockState(world, iblockstate1, 6, 0, 0, box);
+                this.setBlockState(world, iblockstate1, 7, 0, 0, box);
+                this.setBlockState(world, iblockstate1, 4, 1, 8, box);
+                this.setBlockState(world, iblockstate1, 4, 2, 9, box);
+                this.setBlockState(world, iblockstate1, 4, 3, 10, box);
+                this.setBlockState(world, iblockstate1, 7, 1, 8, box);
+                this.setBlockState(world, iblockstate1, 7, 2, 9, box);
+                this.setBlockState(world, iblockstate1, 7, 3, 10, box);
                 this.fillWithRandomizedBlocks(world, box, 4, 1, 9, 4, 1, 9, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 7, 1, 9, 7, 1, 9, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 4, 1, 10, 7, 2, 10, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 5, 4, 5, 6, 4, 5, false, rand, this.scatteredStones);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(k), 4, 4, 5, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(l), 7, 4, 5, box);
+                this.setBlockState(world, iblockstate2, 4, 4, 5, box);
+                this.setBlockState(world, iblockstate3, 7, 4, 5, box);
 
                 if (!this.hasRandomChest)
                 {
                     if (rand.nextBoolean())
                     {
-                        this.generateChestContents(world, box, rand, 6, 5, 5, chest.getItems(rand), chest.getCount(rand));
-                        this.generateChestContents(world, box, rand, 5, 5, 5, chest.getItems(rand), chest.getCount(rand));
+                        //this.generateChestContents(world, box, rand, 6, 5, 5, chest.getItems(rand), chest.getCount(rand));TODO Loot table
+                        //this.generateChestContents(world, box, rand, 5, 5, 5, chest.getItems(rand), chest.getCount(rand));
                         this.hasRandomChest = true;
                     }
                 }
@@ -283,72 +267,73 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.setBlockState(world, rand.nextBoolean() ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.AIR.getDefaultState(), 6, 10, 7, box);
                 this.setBlockState(world, rand.nextBoolean() ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.AIR.getDefaultState(), 5, 10, 7, box);
 
-                for (int l1 = 0; l1 < 4; ++l1)
+                for (int k = 0; k < 4; ++k)
                 {
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(j), 5, 0 - l1, 6 + l1, box);
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getStateFromMeta(j), 6, 0 - l1, 6 + l1, box);
-                    this.fillWithAir(world, box, 5, 0 - l1, 7 + l1, 6, 0 - l1, 9 + l1);
+                    this.setBlockState(world, iblockstate, 5, 0 - k, 6 + k, box);
+                    this.setBlockState(world, iblockstate, 6, 0 - k, 6 + k, box);
+                    this.fillWithAir(world, box, 5, 0 - k, 7 + k, 6, 0 - k, 9 + k);
                 }
 
                 this.fillWithAir(world, box, 1, -3, 12, 10, -1, 13);
                 this.fillWithAir(world, box, 1, -3, 1, 3, -1, 13);
                 this.fillWithAir(world, box, 1, -3, 1, 9, -1, 5);
 
-                for (int i2 = 1; i2 <= 13; i2 += 2)
+                for (int i1 = 1; i1 <= 13; i1 += 2)
                 {
-                    this.fillWithRandomizedBlocks(world, box, 1, -3, i2, 1, -2, i2, false, rand, this.scatteredStones);
+                    this.fillWithRandomizedBlocks(world, box, 1, -3, i1, 1, -2, i1, false, rand, this.scatteredStones);
                 }
-                for (int j2 = 2; j2 <= 12; j2 += 2)
+
+                for (int j1 = 2; j1 <= 12; j1 += 2)
                 {
-                    this.fillWithRandomizedBlocks(world, box, 1, -1, j2, 3, -1, j2, false, rand, this.scatteredStones);
+                    this.fillWithRandomizedBlocks(world, box, 1, -1, j1, 3, -1, j1, false, rand, this.scatteredStones);
                 }
 
                 this.fillWithRandomizedBlocks(world, box, 2, -2, 1, 5, -2, 1, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 7, -2, 1, 9, -2, 1, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 6, -3, 1, 6, -3, 1, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 6, -1, 1, 6, -1, 1, false, rand, this.scatteredStones);
-                this.setBlockState(world, Blocks.tripwire_hook.getStateFromMeta(this.getMetadataWithOffset(Blocks.tripwire_hook, EnumFacing.EAST.getHorizontalIndex())).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 1, -3, 8, box);
-                this.setBlockState(world, Blocks.tripwire_hook.getStateFromMeta(this.getMetadataWithOffset(Blocks.tripwire_hook, EnumFacing.WEST.getHorizontalIndex())).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 4, -3, 8, box);
-                this.setBlockState(world, Blocks.tripwire.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 2, -3, 8, box);
-                this.setBlockState(world, Blocks.tripwire.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 3, -3, 8, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 5, -3, 7, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 5, -3, 6, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 5, -3, 5, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 5, -3, 4, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 5, -3, 3, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 5, -3, 2, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 5, -3, 1, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 4, -3, 1, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 3, -3, 1, box);
+                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.EAST).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 1, -3, 8, box);
+                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.WEST).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 4, -3, 8, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 2, -3, 8, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 3, -3, 8, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 7, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 6, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 5, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 4, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 3, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 2, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 1, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 4, -3, 1, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 3, -3, 1, box);//XXX
 
-                if (!this.hasTrap1)
+                if (!this.placedTrap1)
                 {
-                    this.hasTrap1 = this.generateDispenserContents(world, box, rand, 3, -2, 1, EnumFacing.NORTH.getIndex(), dispenser.getItems(rand), dispenser.getCount(rand));
+                    this.placedTrap1 = this.createDispenser(world, box, rand, 3, -2, 1, EnumFacing.NORTH, LootTableList.CHESTS_JUNGLE_TEMPLE_DISPENSER);//TODO Loot table
                 }
 
-                this.setBlockState(world, NibiruBlocks.INFECTED_VINES.getStateFromMeta(15), 3, -2, 2, box);
-                this.setBlockState(world, Blocks.tripwire_hook.getStateFromMeta(this.getMetadataWithOffset(Blocks.tripwire_hook, EnumFacing.NORTH.getHorizontalIndex())).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 7, -3, 1, box);
-                this.setBlockState(world, Blocks.tripwire_hook.getStateFromMeta(this.getMetadataWithOffset(Blocks.tripwire_hook, EnumFacing.SOUTH.getHorizontalIndex())).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 7, -3, 5, box);
-                this.setBlockState(world, Blocks.tripwire.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 7, -3, 2, box);
-                this.setBlockState(world, Blocks.tripwire.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 7, -3, 3, box);
-                this.setBlockState(world, Blocks.tripwire.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 7, -3, 4, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 8, -3, 6, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 9, -3, 6, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 9, -3, 5, box);
+                this.setBlockState(world, NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.SOUTH, Boolean.valueOf(true)), 3, -2, 2, box);
+                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.NORTH).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 7, -3, 1, box);
+                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.SOUTH).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 7, -3, 5, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 7, -3, 2, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 7, -3, 3, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 7, -3, 4, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 8, -3, 6, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 9, -3, 6, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 9, -3, 5, box);
                 this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 9, -3, 4, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 9, -2, 4, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 9, -2, 4, box);
 
-                if (!this.hasTrap2)
+                if (!this.placedTrap2)
                 {
-                    this.hasTrap2 = this.generateDispenserContents(world, box, rand, 9, -2, 3, EnumFacing.WEST.getIndex(), dispenser.getItems(rand), dispenser.getCount(rand));
+                    this.placedTrap2 = this.createDispenser(world, box, rand, 9, -2, 3, EnumFacing.WEST, LootTableList.CHESTS_JUNGLE_TEMPLE_DISPENSER);//TODO
                 }
 
-                this.setBlockState(world, NibiruBlocks.INFECTED_VINES.getStateFromMeta(15), 8, -1, 3, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_VINES.getStateFromMeta(15), 8, -2, 3, box);
+                this.setBlockState(world, NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.EAST, Boolean.valueOf(true)), 8, -1, 3, box);
+                this.setBlockState(world, NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.EAST, Boolean.valueOf(true)), 8, -2, 3, box);
 
-                if (!this.hasMainChest)
+                if (!this.placedMainChest)
                 {
-                    this.hasMainChest = this.generateChestContents(world, box, rand, 8, -3, 3, chest.getItems(rand), chest.getCount(rand));
+                    this.placedMainChest = this.generateChest(world, box, rand, 8, -3, 3, LootTableList.CHESTS_JUNGLE_TEMPLE);//TODO
                 }
 
                 this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 9, -3, 2, box);
@@ -365,23 +350,24 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(BlockNibiru.BlockType.INFECTED_CHISELED_STONE_BRICKS.ordinal()), 8, -2, 11, box);
                 this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(BlockNibiru.BlockType.INFECTED_CHISELED_STONE_BRICKS.ordinal()), 9, -2, 11, box);
                 this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(BlockNibiru.BlockType.INFECTED_CHISELED_STONE_BRICKS.ordinal()), 10, -2, 11, box);
-                this.setBlockState(world, Blocks.lever.getStateFromMeta(BlockLever.getMetadataForFacing(EnumFacing.getFront(this.getMetadataWithOffset(Blocks.lever, EnumFacing.NORTH.getIndex())))), 8, -2, 12, box);
-                this.setBlockState(world, Blocks.lever.getStateFromMeta(BlockLever.getMetadataForFacing(EnumFacing.getFront(this.getMetadataWithOffset(Blocks.lever, EnumFacing.NORTH.getIndex())))), 9, -2, 12, box);
-                this.setBlockState(world, Blocks.lever.getStateFromMeta(BlockLever.getMetadataForFacing(EnumFacing.getFront(this.getMetadataWithOffset(Blocks.lever, EnumFacing.NORTH.getIndex())))), 10, -2, 12, box);
+                IBlockState iblockstate4 = Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.NORTH);
+                this.setBlockState(world, iblockstate4, 8, -2, 12, box);
+                this.setBlockState(world, iblockstate4, 9, -2, 12, box);
+                this.setBlockState(world, iblockstate4, 10, -2, 12, box);
                 this.fillWithRandomizedBlocks(world, box, 8, -3, 8, 8, -3, 10, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 10, -3, 8, 10, -3, 10, false, rand, this.scatteredStones);
                 this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 10, -2, 9, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 8, -2, 9, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 8, -2, 10, box);
-                this.setBlockState(world, Blocks.redstone_wire.getDefaultState(), 10, -1, 9, box);
-                this.setBlockState(world, Blocks.sticky_piston.getStateFromMeta(EnumFacing.UP.getIndex()), 9, -2, 8, box);
-                this.setBlockState(world, Blocks.sticky_piston.getStateFromMeta(this.getMetadataWithOffset(Blocks.sticky_piston, EnumFacing.WEST.getIndex())), 10, -2, 8, box);
-                this.setBlockState(world, Blocks.sticky_piston.getStateFromMeta(this.getMetadataWithOffset(Blocks.sticky_piston, EnumFacing.WEST.getIndex())), 10, -1, 8, box);
-                this.setBlockState(world, Blocks.unpowered_repeater.getStateFromMeta(this.getMetadataWithOffset(Blocks.unpowered_repeater, EnumFacing.NORTH.getHorizontalIndex())), 10, -2, 10, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 8, -2, 9, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 8, -2, 10, box);
+                this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 10, -1, 9, box);
+                this.setBlockState(world, Blocks.STICKY_PISTON.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.UP), 9, -2, 8, box);
+                this.setBlockState(world, Blocks.STICKY_PISTON.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.WEST), 10, -2, 8, box);
+                this.setBlockState(world, Blocks.STICKY_PISTON.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.WEST), 10, -1, 8, box);
+                this.setBlockState(world, Blocks.UNPOWERED_REPEATER.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH), 10, -2, 10, box);
 
-                if (!this.hasHiddenChest)
+                if (!this.placedHiddenChest)
                 {
-                    this.hasHiddenChest = this.generateChestContents(world, box, rand, 9, -3, 10, chest.getItems(rand), chest.getCount(rand));
+                    this.placedHiddenChest = this.generateChest(world, box, rand, 9, -3, 10, LootTableList.CHESTS_JUNGLE_TEMPLE);//TODO
                 }
                 return true;
             }
@@ -392,11 +378,11 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
             private Stones() {}
 
             @Override
-            public void selectBlocks(Random rand, int x, int y, int z, boolean p_75062_5_)
+            public void selectBlocks(Random rand, int x, int y, int z, boolean wall)
             {
                 if (rand.nextFloat() < 0.01F)
                 {
-                    this.blockstate = Blocks.web.getDefaultState();
+                    this.blockstate = Blocks.WEB.getDefaultState();
                 }
                 else if (rand.nextFloat() < 0.05F)
                 {

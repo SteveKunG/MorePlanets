@@ -9,9 +9,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.helper.BlockSoundHelper;
 
 public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
 {
@@ -20,7 +20,7 @@ public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
         super(Material.CLAY);
         this.setUnlocalizedName(name);
         this.slipperiness = 0.8F;
-        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
+        this.setSoundType(MPSounds.ALIEN_EGG);
     }
 
     @Override

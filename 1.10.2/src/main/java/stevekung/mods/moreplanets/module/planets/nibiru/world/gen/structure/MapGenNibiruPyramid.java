@@ -11,6 +11,7 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
@@ -58,7 +59,7 @@ public class MapGenNibiruPyramid extends MapGenStructure
 
     public boolean canMobSpawn(BlockPos pos)
     {
-        StructureStart structurestart = this.func_175797_c(pos);
+        StructureStart structurestart = this.getStructureAt(pos);
 
         if (structurestart != null && structurestart instanceof Start && !structurestart.getComponents().isEmpty())
         {
@@ -101,7 +102,7 @@ public class MapGenNibiruPyramid extends MapGenStructure
 
         if (i == k && j == l)
         {
-            BiomeGenBase biomegenbase = this.worldObj.getWorldChunkManager().getBiomeGenerator(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
+            Biome biomegenbase = this.worldObj.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
 
             if (biomegenbase == null)
             {

@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -45,7 +45,7 @@ public class WorldGenAlienBerryTree extends WorldGenAbstractTree
                     {
                         if (j >= 0 && j < 256)
                         {
-                            if (!this.isReplaceable(world,blockpos$mutableblockpos.set(l, j, i1)))
+                            if (!this.isReplaceable(world,blockpos$mutableblockpos.setPos(l, j, i1)))
                             {
                                 flag = false;
                             }
@@ -69,7 +69,7 @@ public class WorldGenAlienBerryTree extends WorldGenAbstractTree
 
                 if (block1 == NibiruBlocks.GREEN_VEIN_GRASS && pos.getY() < 256 - i - 1)
                 {
-                    block1.onPlantGrow(world, down, pos);
+                    block1.onPlantGrow(world.getBlockState(down), world, down, pos);
                     int k2 = 3;
                     int l2 = 0;
 
@@ -91,7 +91,7 @@ public class WorldGenAlienBerryTree extends WorldGenAbstractTree
                                     BlockPos blockpos = new BlockPos(k1, i3, i2);
                                     Block block = world.getBlockState(blockpos).getBlock();
 
-                                    if (block.isAir(world, blockpos) || block.isLeaves(world, blockpos) || block.getMaterial() == Material.vine)
+                                    if (block.isAir(world.getBlockState(blockpos), world, blockpos) || block.isLeaves(world.getBlockState(blockpos), world, blockpos) || world.getBlockState(blockpos).getMaterial() == Material.VINE)
                                     {
                                         this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(3));
                                     }
@@ -105,7 +105,7 @@ public class WorldGenAlienBerryTree extends WorldGenAbstractTree
                         BlockPos upN = pos.up(j3);
                         Block block2 = world.getBlockState(upN).getBlock();
 
-                        if (block2.isAir(world, upN) || block2.isLeaves(world, upN) || block2.getMaterial() == Material.vine)
+                        if (block2.isAir(world.getBlockState(upN), world, upN) || block2.isLeaves(world.getBlockState(upN), world, upN) || world.getBlockState(upN).getMaterial() == Material.VINE)
                         {
                             this.setBlockAndNotifyAdequately(world, pos.up(j3), NibiruBlocks.NIBIRU_LOG.getStateFromMeta(3));
                         }

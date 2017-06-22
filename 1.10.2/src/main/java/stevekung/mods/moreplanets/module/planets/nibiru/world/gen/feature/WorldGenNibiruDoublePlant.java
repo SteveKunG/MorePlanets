@@ -2,7 +2,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature;
 
 import java.util.Random;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
@@ -28,7 +28,7 @@ public class WorldGenNibiruDoublePlant extends WorldGenerator
 
             if (world.isAirBlock(blockpos) && (!world.provider.getHasNoSky() || blockpos.getY() < 254) && NibiruBlocks.NIBIRU_DOUBLE_PLANT.canBlockStay(world, blockpos, NibiruBlocks.NIBIRU_DOUBLE_PLANT.getDefaultState().withProperty(BlockNibiruDoublePlant.VARIANT, this.type)))
             {
-                ((BlockNibiruDoublePlant) NibiruBlocks.NIBIRU_DOUBLE_PLANT).placeAt(world, blockpos, this.type, 2);
+                NibiruBlocks.NIBIRU_DOUBLE_PLANT.placeAt(world, blockpos, this.type, 2);
                 flag = true;
             }
         }

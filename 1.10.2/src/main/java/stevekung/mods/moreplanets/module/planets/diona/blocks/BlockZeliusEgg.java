@@ -18,7 +18,6 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusZombie
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityZeliusEgg;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.helper.BlockSoundHelper;
 
 public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
 {
@@ -28,7 +27,7 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
         this.setResistance(0.0F);
         this.setHardness(0.5F);
         this.setUnlocalizedName(name);
-        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
+        this.setSoundType(MPSounds.ALIEN_EGG);
         this.slipperiness = 0.8F;
     }
 

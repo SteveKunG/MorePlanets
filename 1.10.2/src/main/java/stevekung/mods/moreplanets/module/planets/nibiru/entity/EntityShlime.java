@@ -16,6 +16,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.EnumDyeColor;
@@ -23,12 +24,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -36,6 +43,7 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruTallGrass;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.ai.EntityAIShlimeEatGrass;
@@ -46,6 +54,8 @@ import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
 
 public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob, IEntityBreathable
 {
+    private static DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(EntityShlime.class, DataSerializers.BYTE);
+
     private InventoryCrafting inventoryCrafting = new InventoryCrafting(new Container()
     {
         @Override
@@ -73,20 +83,18 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         this.setSize(0.675F, 0.75F);
         this.jumpHelper = new ShlimeJumpHelper(this);
         this.moveHelper = new ShlimeMoveHelper(this);
-        ((PathNavigateGroundMP)this.getNavigator()).setAvoidsWater(true);
-        this.navigator.setHeightRequirement(1.5F);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new AIPanic(this, 1.33D));
         this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
-        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, new ItemStack(NibiruItems.INFECTED_WHEAT), false));
-        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, new ItemStack(NibiruItems.NIBIRU_FRUITS, 1, 6), false));
+        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(NibiruItems.INFECTED_WHEAT)));
+        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(NibiruItems.NIBIRU_FRUITS, 1, 6)));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(5, this.entityAIEatGrass);
         this.tasks.addTask(6, new EntityAIWander(this, 0.6D));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.inventoryCrafting.setInventorySlotContents(0, new ItemStack(Items.dye, 1, 0));
-        this.inventoryCrafting.setInventorySlotContents(1, new ItemStack(Items.dye, 1, 0));
+        this.inventoryCrafting.setInventorySlotContents(0, new ItemStack(Items.DYE, 1, 0));
+        this.inventoryCrafting.setInventorySlotContents(1, new ItemStack(Items.DYE, 1, 0));
         this.setMovementSpeed(0.0D);
     }
 
@@ -134,8 +142,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(19, new Byte((byte)0));
+        this.dataManager.register(DYE_COLOR, Byte.valueOf((byte)0));
     }
 
     @Override
@@ -212,8 +219,8 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
             {
                 if (this.moveHelper.isUpdating() && this.currentMoveTypeDuration == 0)
                 {
-                    PathEntity pathentity = this.navigator.getPath();
-                    Vec3 vec3 = new Vec3(this.moveHelper.getX(), this.moveHelper.getY(), this.moveHelper.getZ());
+                    Path pathentity = this.navigator.getPath();
+                    Vec3d vec3 = new Vec3d(this.moveHelper.getX(), this.moveHelper.getY(), this.moveHelper.getZ());
 
                     if (pathentity != null && pathentity.getCurrentPathIndex() < pathentity.getCurrentPathLength())
                     {
@@ -259,20 +266,20 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.30000001192092896D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "moreplanets:mob.shlime.hurt";
+        return MPSounds.SHLIME_HURT;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "moreplanets:mob.shlime.death";
+        return MPSounds.SHLIME_DEATH;
     }
 
     @Override
@@ -286,7 +293,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     {
         if (!this.getSheared())
         {
-            this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.wool), 1, this.getFleeceColor().getMetadata()), 0.0F);
+            this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.WOOL), 1, this.getFleeceColor().getMetadata()), 0.0F);
         }
 
         int i = this.rand.nextInt(2) + 1 + this.rand.nextInt(1 + fortune);
@@ -302,9 +309,9 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
                 this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_FOOD, 1, 0), 0.0F);
             }
         }
+        this.addRandomDrop();//TODO rare drop
     }
 
-    @Override
     protected void addRandomDrop()
     {
         this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 3), 0.0F);
@@ -358,9 +365,9 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
 
         for (int j = 0; j < i; ++j)
         {
-            ret.add(new ItemStack(Item.getItemFromBlock(Blocks.wool), 1, this.getFleeceColor().getMetadata()));
+            ret.add(new ItemStack(Item.getItemFromBlock(Blocks.WOOL), 1, this.getFleeceColor().getMetadata()));
         }
-        this.playSound("mob.sheep.shear", 1.0F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);
         return ret;
     }
 
@@ -415,31 +422,31 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
 
     public EnumDyeColor getFleeceColor()
     {
-        return EnumDyeColor.byMetadata(this.dataWatcher.getWatchableObjectByte(19) & 15);
+        return EnumDyeColor.byMetadata(this.dataManager.get(DYE_COLOR).byteValue() & 15);
     }
 
     public void setFleeceColor(EnumDyeColor color)
     {
-        byte b0 = this.dataWatcher.getWatchableObjectByte(19);
-        this.dataWatcher.updateObject(19, Byte.valueOf((byte)(b0 & 240 | color.getMetadata() & 15)));
+        byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
+        this.dataManager.set(DYE_COLOR, Byte.valueOf((byte)(b0 & 240 | color.getMetadata() & 15)));
     }
 
     public boolean getSheared()
     {
-        return (this.dataWatcher.getWatchableObjectByte(19) & 16) != 0;
+        return (this.dataManager.get(DYE_COLOR).byteValue() & 16) != 0;
     }
 
     private void setSheared(boolean sheared)
     {
-        byte b0 = this.dataWatcher.getWatchableObjectByte(19);
+        byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
 
         if (sheared)
         {
-            this.dataWatcher.updateObject(19, Byte.valueOf((byte)(b0 | 16)));
+            this.dataManager.set(DYE_COLOR, Byte.valueOf((byte)(b0 | 16)));
         }
         else
         {
-            this.dataWatcher.updateObject(19, Byte.valueOf((byte)(b0 & -17)));
+            this.dataManager.set(DYE_COLOR, Byte.valueOf((byte)(b0 & -17)));
         }
     }
 
@@ -527,7 +534,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         ItemStack itemstack = CraftingManager.getInstance().findMatchingRecipe(this.inventoryCrafting, ((EntityShlime)father).worldObj);
         int k;
 
-        if (itemstack != null && itemstack.getItem() == Items.dye)
+        if (itemstack != null && itemstack.getItem() == Items.DYE)
         {
             k = itemstack.getMetadata();
         }

@@ -14,12 +14,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyCore;
 import stevekung.mods.moreplanets.util.ItemDescription;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.helper.BlockSoundHelper;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
 
 public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvider, IBlockDescription
@@ -30,7 +30,7 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
         this.setResistance(0.0F);
         this.setHardness(0.5F);
         this.setUnlocalizedName(name);
-        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
+        this.setSoundType(MPSounds.ALIEN_EGG);
         this.slipperiness = 0.8F;
     }
 

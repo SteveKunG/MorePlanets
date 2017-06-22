@@ -1,7 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -9,53 +10,34 @@ import com.google.common.collect.Sets;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.MapGenStructure;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraft.world.gen.structure.StructureOceanMonumentPieces;
 import net.minecraft.world.gen.structure.StructureStart;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
-import stevekung.mods.moreplanets.util.MPLog;
 
 public class MapGenNibiruOceanMonument extends MapGenStructure
 {
     private int spacing;
     private int separation;
-    public static List<BiomeGenBase> biomeListToGen = Arrays.<BiomeGenBase>asList(new BiomeGenBase[] {MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN});
-    private static List<SpawnListEntry> monsterSpawnList = Lists.<SpawnListEntry>newArrayList();
+    public List<Biome> waterBiomes = Lists.newArrayList(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER);
+    public Biome spawnBiome = MPBiomes.INFECTED_DEEP_OCEAN;
+    private static List<SpawnListEntry> MONUMENT_ENEMIES = Lists.newArrayList();
 
     static
     {
-        MapGenStructureIO.registerStructure(Start.class, "NibiruOceanMonument");
-        StructureNibiruOceanMonumentPieces.registerOceanMonumentPieces();
-        MapGenNibiruOceanMonument.monsterSpawnList.add(new SpawnListEntry(EntityInfectedGuardian.class, 1, 2, 4));
+        MONUMENT_ENEMIES.add(new SpawnListEntry(EntityInfectedGuardian.class, 1, 2, 4));
     }
 
     public MapGenNibiruOceanMonument()
     {
-        this.spacing = 8;
-        this.separation = 1;
-    }
-
-    public MapGenNibiruOceanMonument(Map<String, String> map)
-    {
-        this();
-
-        for (Entry<String, String> entry : map.entrySet())
-        {
-            if (entry.getKey().equals("spacing"))
-            {
-                this.spacing = MathHelper.parseIntWithDefaultAndMax(entry.getValue(), this.spacing, 1);
-            }
-            else if (entry.getKey().equals("separation"))
-            {
-                this.separation = MathHelper.parseIntWithDefaultAndMax(entry.getValue(), this.separation, 1);
-            }
-        }
+        this.spacing = 32;
+        this.separation = 5;
     }
 
     @Override
@@ -89,14 +71,12 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 
         if (i == k && j == l)
         {
-            BiomeGenBase getBiome = this.worldObj.getWorldChunkManager().getBiomeGenerator(new BlockPos(i * 16 + 8, 64, j * 16 + 8), (BiomeGenBase)null);
-
-            if (getBiome != MPBiomes.INFECTED_OCEAN && getBiome != MPBiomes.INFECTED_DEEP_OCEAN)
+            if (!this.worldObj.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 16, Lists.newArrayList(this.spawnBiome)))
             {
                 return false;
             }
 
-            boolean flag = this.worldObj.getWorldChunkManager().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, MapGenNibiruOceanMonument.biomeListToGen);
+            boolean flag = this.worldObj.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, this.waterBiomes);
 
             if (flag)
             {
@@ -109,66 +89,65 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new MapGenNibiruOceanMonument.Start(this.worldObj, this.rand, chunkX, chunkZ);
+        return new StartMonument(this.worldObj, this.rand, chunkX, chunkZ);
     }
 
     public List<SpawnListEntry> getSpawnList()
     {
-        return MapGenNibiruOceanMonument.monsterSpawnList;
+        return MONUMENT_ENEMIES;
     }
 
-    public static class Start extends StructureStart
+    public static class StartMonument extends StructureStart
     {
-        private Set<ChunkCoordIntPair> field_175791_c = Sets.<ChunkCoordIntPair>newHashSet();
-        private boolean field_175790_d;
+        private Set<ChunkPos> processed = Sets.newHashSet();
+        private boolean wasCreated;
 
-        public Start() {}
+        public StartMonument() {}
 
-        public Start(World world, Random rand, int chunkX, int chunkZ)
+        public StartMonument(World world, Random rand, int x, int z)
         {
-            super(chunkX, chunkZ);
-            MPLog.debug("Generate ocean monument at %s %s", chunkX * 16, chunkZ * 16);
-            this.func_175789_b(world, rand, chunkX, chunkZ);
+            super(x, z);
+            this.create(world, rand, x, z);
         }
 
-        private void func_175789_b(World world, Random p_175789_2_, int p_175789_3_, int p_175789_4_)
+        private void create(World world, Random rand, int x, int z)
         {
-            p_175789_2_.setSeed(world.getSeed());
-            long i = p_175789_2_.nextLong();
-            long j = p_175789_2_.nextLong();
-            long k = p_175789_3_ * i;
-            long l = p_175789_4_ * j;
-            p_175789_2_.setSeed(k ^ l ^ world.getSeed());
-            int i1 = p_175789_3_ * 16 + 8 - 29;
-            int j1 = p_175789_4_ * 16 + 8 - 29;
-            EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(p_175789_2_);
-            this.components.add(new StructureNibiruOceanMonumentPieces.MonumentBuilding(p_175789_2_, i1, j1, enumfacing));
+            rand.setSeed(world.getSeed());
+            long i = rand.nextLong();
+            long j = rand.nextLong();
+            long k = x * i;
+            long l = z * j;
+            rand.setSeed(k ^ l ^ world.getSeed());
+            int i1 = x * 16 + 8 - 29;
+            int j1 = z * 16 + 8 - 29;
+            EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
+            this.components.add(new StructureOceanMonumentPieces.MonumentBuilding(rand, i1, j1, enumfacing));
             this.updateBoundingBox();
-            this.field_175790_d = true;
+            this.wasCreated = true;
         }
 
         @Override
-        public void generateStructure(World world, Random rand, StructureBoundingBox structurebb)
+        public void generateStructure(World world, Random rand, StructureBoundingBox box)
         {
-            if (!this.field_175790_d)
+            if (!this.wasCreated)
             {
                 this.components.clear();
-                this.func_175789_b(world, rand, this.getChunkPosX(), this.getChunkPosZ());
+                this.create(world, rand, this.getChunkPosX(), this.getChunkPosZ());
             }
-            super.generateStructure(world, rand, structurebb);
+            super.generateStructure(world, rand, box);
         }
 
         @Override
-        public boolean func_175788_a(ChunkCoordIntPair pair)
+        public boolean isValidForPostProcess(ChunkPos pair)
         {
-            return this.field_175791_c.contains(pair) ? false : super.func_175788_a(pair);
+            return this.processed.contains(pair) ? false : super.isValidForPostProcess(pair);
         }
 
         @Override
-        public void func_175787_b(ChunkCoordIntPair pair)
+        public void notifyPostProcessAt(ChunkPos pair)
         {
-            super.func_175787_b(pair);
-            this.field_175791_c.add(pair);
+            super.notifyPostProcessAt(pair);
+            this.processed.add(pair);
         }
 
         @Override
@@ -177,11 +156,11 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
             super.writeToNBT(tagCompound);
             NBTTagList nbttaglist = new NBTTagList();
 
-            for (ChunkCoordIntPair chunkcoordintpair : this.field_175791_c)
+            for (ChunkPos chunkpos : this.processed)
             {
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
-                nbttagcompound.setInteger("X", chunkcoordintpair.chunkXPos);
-                nbttagcompound.setInteger("Z", chunkcoordintpair.chunkZPos);
+                nbttagcompound.setInteger("X", chunkpos.chunkXPos);
+                nbttagcompound.setInteger("Z", chunkpos.chunkZPos);
                 nbttaglist.appendTag(nbttagcompound);
             }
             tagCompound.setTag("Processed", nbttaglist);
@@ -199,7 +178,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
                 for (int i = 0; i < nbttaglist.tagCount(); ++i)
                 {
                     NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-                    this.field_175791_c.add(new ChunkCoordIntPair(nbttagcompound.getInteger("X"), nbttagcompound.getInteger("Z")));
+                    this.processed.add(new ChunkPos(nbttagcompound.getInteger("X"), nbttagcompound.getInteger("Z")));
                 }
             }
         }

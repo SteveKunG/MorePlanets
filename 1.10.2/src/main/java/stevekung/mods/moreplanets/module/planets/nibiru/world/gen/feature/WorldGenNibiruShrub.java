@@ -2,66 +2,57 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 
-public class WorldGenNibiruShrub extends WorldGenInfectedTree
+public class WorldGenNibiruShrub extends WorldGenInfectedTrees
 {
+    private IBlockState log;
     private IBlockState leaves;
-    private IBlockState wood;
 
-    public WorldGenNibiruShrub(IBlockState wood, IBlockState leaves)
+    public WorldGenNibiruShrub(IBlockState log, IBlockState leaves)
     {
-        super(true, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0);
-        this.wood = wood;
+        super(false, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
+        this.log = log;
         this.leaves = leaves;
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos position)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
-        Block block;
-
-        do
+        for (IBlockState state = world.getBlockState(pos); (state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos)) && pos.getY() > 0; state = world.getBlockState(pos))
         {
-            block = world.getBlockState(position).getBlock();
-
-            if (!block.isAir(world, position) && !block.isLeaves(world, position))
-            {
-                break;
-            }
-            position = position.down();
+            pos = pos.down();
         }
-        while (position.getY() > 0);
 
-        Block block1 = world.getBlockState(position).getBlock();
+        IBlockState state = world.getBlockState(pos);
 
-        if (block1 == NibiruBlocks.INFECTED_GRASS || block1 == NibiruBlocks.INFECTED_DIRT || block1 == NibiruBlocks.INFECTED_FARMLAND)
+        if (state.getBlock() == NibiruBlocks.INFECTED_GRASS || state.getBlock() == NibiruBlocks.INFECTED_DIRT || state.getBlock() == NibiruBlocks.INFECTED_FARMLAND)
         {
-            position = position.up();
-            this.setBlockAndNotifyAdequately(world, position, this.wood);
+            pos = pos.up();
+            this.setBlockAndNotifyAdequately(world, pos, this.log);
 
-            for (int i = position.getY(); i <= position.getY() + 2; ++i)
+            for (int i = pos.getY(); i <= pos.getY() + 2; ++i)
             {
-                int j = i - position.getY();
+                int j = i - pos.getY();
                 int k = 2 - j;
 
-                for (int l = position.getX() - k; l <= position.getX() + k; ++l)
+                for (int l = pos.getX() - k; l <= pos.getX() + k; ++l)
                 {
-                    int i1 = l - position.getX();
+                    int i1 = l - pos.getX();
 
-                    for (int j1 = position.getZ() - k; j1 <= position.getZ() + k; ++j1)
+                    for (int j1 = pos.getZ() - k; j1 <= pos.getZ() + k; ++j1)
                     {
-                        int k1 = j1 - position.getZ();
+                        int k1 = j1 - pos.getZ();
 
                         if (Math.abs(i1) != k || Math.abs(k1) != k || rand.nextInt(2) != 0)
                         {
                             BlockPos blockpos = new BlockPos(l, i, j1);
+                            state = world.getBlockState(blockpos);
 
-                            if (world.getBlockState(blockpos).getBlock().canBeReplacedByLeaves(world, blockpos))
+                            if (state.getBlock().canBeReplacedByLeaves(state, world, blockpos))
                             {
                                 this.setBlockAndNotifyAdequately(world, blockpos, this.leaves);
                             }

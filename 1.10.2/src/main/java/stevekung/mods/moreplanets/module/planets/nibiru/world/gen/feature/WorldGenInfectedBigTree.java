@@ -7,8 +7,8 @@ import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -112,7 +112,7 @@ public class WorldGenInfectedBigTree extends WorldGenAbstractTree
                     BlockPos blockpos = p_181631_1_.add(j, 0, k);
                     IBlockState state = this.world.getBlockState(blockpos);
 
-                    if (state.getBlock().isAir(this.world, blockpos) || state.getBlock().isLeaves(this.world, blockpos))
+                    if (state.getBlock().isAir(state, this.world, blockpos) || state.getBlock().isLeaves(state, this.world, blockpos))
                     {
                         this.setBlockAndNotifyAdequately(this.world, blockpos, p_181631_3_);
                     }
@@ -276,7 +276,7 @@ public class WorldGenInfectedBigTree extends WorldGenAbstractTree
     }
 
     @Override
-    public void func_175904_e()
+    public void setDecorationDefaults()
     {
         this.leafDistanceLimit = 5;
     }

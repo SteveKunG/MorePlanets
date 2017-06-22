@@ -72,7 +72,7 @@ public class GuiFullChangeLog extends GuiScreen
 
         if (this.stringList == null)
         {
-            this.stringList = Lists.<String>newArrayList();
+            this.stringList = Lists.newArrayList();
 
             try
             {

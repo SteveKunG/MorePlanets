@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockHugeTerrashroom;
@@ -20,8 +20,14 @@ public class WorldGenTerrashroom extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        Block mushroomType = NibiruBlocks.HUGE_TERRASHROOM_BLOCK;
+        Block block = NibiruBlocks.HUGE_TERRASHROOM_BLOCK;
         int i = rand.nextInt(3) + 6;
+
+        if (rand.nextInt(12) == 0)
+        {
+            i *= 2;
+        }
+
         boolean flag = true;
 
         if (pos.getY() >= 1 && pos.getY() + i + 1 < 256)
@@ -35,7 +41,7 @@ public class WorldGenTerrashroom extends WorldGenerator
                     k = 0;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
                 for (int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l)
                 {
@@ -43,9 +49,9 @@ public class WorldGenTerrashroom extends WorldGenerator
                     {
                         if (j >= 0 && j < 256)
                         {
-                            Block block = world.getBlockState(blockpos$mutableblockpos.set(l, j, i1)).getBlock();
+                            IBlockState state = world.getBlockState(mutablePos.setPos(l, j, i1));
 
-                            if (!block.isAir(world, blockpos$mutableblockpos) && !block.isLeaves(world, blockpos$mutableblockpos))
+                            if (!state.getBlock().isAir(state, world, mutablePos) && !state.getBlock().isLeaves(state, world, mutablePos))
                             {
                                 flag = false;
                             }
@@ -82,7 +88,7 @@ public class WorldGenTerrashroom extends WorldGenerator
                         {
                             ++j3;
                         }
-                        if (mushroomType == NibiruBlocks.HUGE_TERRASHROOM_BLOCK)
+                        if (block == NibiruBlocks.HUGE_TERRASHROOM_BLOCK)
                         {
                             j3 = 4;
                         }
@@ -116,9 +122,9 @@ public class WorldGenTerrashroom extends WorldGenerator
                                     j2 += 3;
                                 }
 
-                                BlockHugeTerrashroom.BlockType blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.valuesCached()[j2];
+                                BlockHugeTerrashroom.BlockType type = BlockHugeTerrashroom.BlockType.valuesCached()[j2];
 
-                                if (mushroomType == NibiruBlocks.HUGE_TERRASHROOM_BLOCK || l2 < pos.getY() + i)
+                                if (block == NibiruBlocks.HUGE_TERRASHROOM_BLOCK || l2 < pos.getY() + i)
                                 {
                                     if ((l1 == k3 || l1 == l3) && (i2 == j1 || i2 == k1))
                                     {
@@ -126,64 +132,61 @@ public class WorldGenTerrashroom extends WorldGenerator
                                     }
                                     if (l1 == pos.getX() - (j3 - 1) && i2 == j1)
                                     {
-                                        blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.NORTH_WEST;
+                                        type = BlockHugeTerrashroom.BlockType.NORTH_WEST;
                                     }
                                     if (l1 == k3 && i2 == pos.getZ() - (j3 - 1))
                                     {
-                                        blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.NORTH_WEST;
+                                        type = BlockHugeTerrashroom.BlockType.NORTH_WEST;
                                     }
                                     if (l1 == pos.getX() + j3 - 1 && i2 == j1)
                                     {
-                                        blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.NORTH_EAST;
+                                        type = BlockHugeTerrashroom.BlockType.NORTH_EAST;
                                     }
                                     if (l1 == l3 && i2 == pos.getZ() - (j3 - 1))
                                     {
-                                        blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.NORTH_EAST;
+                                        type = BlockHugeTerrashroom.BlockType.NORTH_EAST;
                                     }
                                     if (l1 == pos.getX() - (j3 - 1) && i2 == k1)
                                     {
-                                        blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.SOUTH_WEST;
+                                        type = BlockHugeTerrashroom.BlockType.SOUTH_WEST;
                                     }
                                     if (l1 == k3 && i2 == pos.getZ() + j3 - 1)
                                     {
-                                        blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.SOUTH_WEST;
+                                        type = BlockHugeTerrashroom.BlockType.SOUTH_WEST;
                                     }
                                     if (l1 == pos.getX() + j3 - 1 && i2 == k1)
                                     {
-                                        blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.SOUTH_EAST;
+                                        type = BlockHugeTerrashroom.BlockType.SOUTH_EAST;
                                     }
                                     if (l1 == l3 && i2 == pos.getZ() + j3 - 1)
                                     {
-                                        blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.SOUTH_EAST;
+                                        type = BlockHugeTerrashroom.BlockType.SOUTH_EAST;
                                     }
                                 }
-
-                                if (blockhugemushroom$enumtype == BlockHugeTerrashroom.BlockType.CENTER && l2 < pos.getY() + i)
+                                if (type == BlockHugeTerrashroom.BlockType.CENTER && l2 < pos.getY() + i)
                                 {
-                                    blockhugemushroom$enumtype = BlockHugeTerrashroom.BlockType.ALL_INSIDE;
+                                    type = BlockHugeTerrashroom.BlockType.ALL_INSIDE;
                                 }
-
-                                if (pos.getY() >= pos.getY() + i - 1 || blockhugemushroom$enumtype != BlockHugeTerrashroom.BlockType.ALL_INSIDE)
+                                if (pos.getY() >= pos.getY() + i - 1 || type != BlockHugeTerrashroom.BlockType.ALL_INSIDE)
                                 {
                                     BlockPos blockpos = new BlockPos(l1, l2, i2);
+                                    IBlockState state = world.getBlockState(blockpos);
 
-                                    if (world.getBlockState(blockpos).getBlock().canBeReplacedByLeaves(world, blockpos))
+                                    if (state.getBlock().canBeReplacedByLeaves(state, world, blockpos))
                                     {
-                                        this.setBlockAndNotifyAdequately(world, blockpos, mushroomType.getDefaultState().withProperty(BlockHugeTerrashroom.VARIANT, blockhugemushroom$enumtype));
+                                        this.setBlockAndNotifyAdequately(world, blockpos, block.getDefaultState().withProperty(BlockHugeTerrashroom.VARIANT, type));
                                     }
                                 }
                             }
                         }
                     }
-
                     for (int i3 = 0; i3 < i; ++i3)
                     {
-                        BlockPos upN = pos.up(i3);
-                        IBlockState state = world.getBlockState(upN);
+                        IBlockState state = world.getBlockState(pos.up(i3));
 
-                        if (state.getBlock().canBeReplacedByLeaves(world, upN))
+                        if (state.getBlock().canBeReplacedByLeaves(state, world, pos.up(i3)))
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(i3), mushroomType.getDefaultState().withProperty(BlockHugeTerrashroom.VARIANT, BlockHugeTerrashroom.BlockType.STEM));
+                            this.setBlockAndNotifyAdequately(world, pos.up(i3), block.getDefaultState().withProperty(BlockHugeTerrashroom.VARIANT, BlockHugeTerrashroom.BlockType.STEM));
                         }
                     }
                     return true;

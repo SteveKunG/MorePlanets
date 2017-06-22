@@ -126,13 +126,13 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
         {
             int j = rand.nextInt(16) + 8;
             int k = rand.nextInt(16) + 8;
-            new WorldGenNibiruSand(NibiruBlocks.INFECTED_SAND, 7).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
+            new WorldGenNibiruSand(NibiruBlocks.INFECTED_SAND.getDefaultState(), 7).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
         }
         for (i = 0; i < this.sandPerChunk; ++i)
         {
             int i2 = rand.nextInt(16) + 8;
             int j6 = rand.nextInt(16) + 8;
-            new WorldGenNibiruSand(NibiruBlocks.INFECTED_GRAVEL, 6).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
+            new WorldGenNibiruSand(NibiruBlocks.INFECTED_GRAVEL.getDefaultState(), 6).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
         }
 
         int treesPerChunk = this.infectedTreesPerChunk;

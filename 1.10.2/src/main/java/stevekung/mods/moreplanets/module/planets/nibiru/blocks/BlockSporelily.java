@@ -12,9 +12,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.helper.BlockSoundHelper;
 
 public class BlockSporelily extends BlockBushMP
 {
@@ -24,7 +24,7 @@ public class BlockSporelily extends BlockBushMP
     {
         super();
         this.setUnlocalizedName(name);
-        this.setSoundType(BlockSoundHelper.LILYPAD);
+        this.setSoundType(MPSounds.LILYPAD);
     }
 
     @Override

@@ -184,7 +184,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
         }
         if (NibiruBlocks.NIBIRU_DOUBLE_PLANT.canPlaceBlockAt(world, pos))
         {
-            ((BlockNibiruDoublePlant)NibiruBlocks.NIBIRU_DOUBLE_PLANT).placeAt(world, pos, type, 2);
+            NibiruBlocks.NIBIRU_DOUBLE_PLANT.placeAt(world, pos, type, 2);
         }
     }
 

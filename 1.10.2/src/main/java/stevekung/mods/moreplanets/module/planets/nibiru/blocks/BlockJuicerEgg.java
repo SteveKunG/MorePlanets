@@ -13,10 +13,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityJuicerEgg;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.helper.BlockSoundHelper;
 
 public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
 {
@@ -26,7 +26,7 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
         this.setResistance(0.0F);
         this.setHardness(0.5F);
         this.setUnlocalizedName(name);
-        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
+        this.setSoundType(MPSounds.ALIEN_EGG);
         this.slipperiness = 0.8F;
     }
 

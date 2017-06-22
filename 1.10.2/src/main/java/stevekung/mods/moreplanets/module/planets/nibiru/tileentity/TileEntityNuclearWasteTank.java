@@ -58,10 +58,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     }
 
     @Override
-    public void getPositions(BlockPos placedPosition, List<BlockPos> positions)
-    {
-        // TODO
-    }
+    public void getPositions(BlockPos placedPosition, List<BlockPos> positions) {}
 
     @Override
     public boolean canRenderBreaking()

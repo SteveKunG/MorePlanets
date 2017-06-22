@@ -13,26 +13,26 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 public class WorldGenNibiruIceSpike extends WorldGenerator
 {
     @Override
-    public boolean generate(World world, Random rand, BlockPos position)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
-        while (world.isAirBlock(position) && position.getY() > 2)
+        while (world.isAirBlock(pos) && pos.getY() > 2)
         {
-            position = position.down();
+            pos = pos.down();
         }
 
-        if (world.getBlockState(position).getBlock() != NibiruBlocks.INFECTED_GRASS)
+        if (world.getBlockState(pos).getBlock() != NibiruBlocks.INFECTED_GRASS)
         {
             return false;
         }
         else
         {
-            position = position.up(rand.nextInt(4));
+            pos = pos.up(rand.nextInt(4));
             int i = rand.nextInt(4) + 7;
             int j = i / 4 + rand.nextInt(2);
 
             if (j > 1 && rand.nextInt(60) == 0)
             {
-                position = position.up(10 + rand.nextInt(30));
+                pos = pos.up(10 + rand.nextInt(30));
             }
 
             for (int k = 0; k < i; ++k)
@@ -50,20 +50,20 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
 
                         if ((i1 == 0 && j1 == 0 || f1 * f1 + f2 * f2 <= f * f) && (i1 != -l && i1 != l && j1 != -l && j1 != l || rand.nextFloat() <= 0.75F))
                         {
-                            Block block = world.getBlockState(position.add(i1, k, j1)).getBlock();
+                            Block block = world.getBlockState(pos.add(i1, k, j1)).getBlock();
 
-                            if (block.getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                            if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
                             {
-                                this.setBlockAndNotifyAdequately(world, position.add(i1, k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
+                                this.setBlockAndNotifyAdequately(world, pos.add(i1, k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
                             }
 
                             if (k != 0 && l > 1)
                             {
-                                block = world.getBlockState(position.add(i1, -k, j1)).getBlock();
+                                block = world.getBlockState(pos.add(i1, -k, j1)).getBlock();
 
-                                if (block.getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                                if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
                                 {
-                                    this.setBlockAndNotifyAdequately(world, position.add(i1, -k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
+                                    this.setBlockAndNotifyAdequately(world, pos.add(i1, -k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
                                 }
                             }
                         }
@@ -86,7 +86,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
             {
                 for (int i2 = -k1; i2 <= k1; ++i2)
                 {
-                    BlockPos blockpos = position.add(l1, -1, i2);
+                    BlockPos blockpos = pos.add(l1, -1, i2);
                     int j2 = 50;
 
                     if (Math.abs(l1) == 1 && Math.abs(i2) == 1)
@@ -98,7 +98,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                     {
                         Block block1 = world.getBlockState(blockpos).getBlock();
 
-                        if (block1.getMaterial() != Material.AIR && block1 != NibiruBlocks.INFECTED_GRASS && block1 != NibiruBlocks.INFECTED_DIRT && block1 != NibiruBlocks.INFECTED_ICE && block1 != NibiruBlocks.INFECTED_PACKED_ICE)
+                        if (world.getBlockState(blockpos).getMaterial() != Material.AIR && block1 != NibiruBlocks.INFECTED_GRASS && block1 != NibiruBlocks.INFECTED_DIRT && block1 != NibiruBlocks.INFECTED_ICE && block1 != NibiruBlocks.INFECTED_PACKED_ICE)
                         {
                             break;
                         }

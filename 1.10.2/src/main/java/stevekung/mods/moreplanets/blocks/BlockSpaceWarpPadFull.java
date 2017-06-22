@@ -78,16 +78,9 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return new AxisAlignedBB(pos.getX() + Block.FULL_BLOCK_AABB.minX, pos.getY() + Block.FULL_BLOCK_AABB.minY, pos.getZ() + Block.FULL_BLOCK_AABB.minZ, pos.getX() + Block.FULL_BLOCK_AABB.maxX, pos.getY() + Block.FULL_BLOCK_AABB.maxY, pos.getZ() + Block.FULL_BLOCK_AABB.maxZ);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos)
-    {
-        return new AxisAlignedBB(pos.getX() + Block.FULL_BLOCK_AABB.minX, pos.getY() + Block.FULL_BLOCK_AABB.minY, pos.getZ() + Block.FULL_BLOCK_AABB.minZ, pos.getX() + Block.FULL_BLOCK_AABB.maxX, pos.getY() + Block.FULL_BLOCK_AABB.maxY, pos.getZ() + Block.FULL_BLOCK_AABB.maxZ);
+        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3D, 1.0D);
     }
 
     @Override

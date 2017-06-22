@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -50,7 +50,7 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
-                            if (!this.isReplaceable(world,blockpos$mutableblockpos.set(k1, i1, l1)))
+                            if (!this.isReplaceable(world,blockpos$mutableblockpos.setPos(k1, i1, l1)))
                             {
                                 flag = false;
                             }
@@ -74,7 +74,7 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
 
                 if (block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
                 {
-                    block.onPlantGrow(world, down, pos);
+                    block.onPlantGrow(world.getBlockState(down), world, down, pos);
                     int k2 = 0;
 
                     for (int l2 = pos.getY() + i; l2 >= pos.getY() + j; --l2)
@@ -91,7 +91,7 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
                                 {
                                     BlockPos blockpos = new BlockPos(j3, l2, i2);
 
-                                    if (world.getBlockState(blockpos).getBlock().canBeReplacedByLeaves(world, blockpos))
+                                    if (world.getBlockState(blockpos).getBlock().canBeReplacedByLeaves(world.getBlockState(blockpos), world, blockpos))
                                     {
                                         if (this.genLeaves)
                                         {
@@ -117,7 +117,7 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
                         BlockPos upN = pos.up(i3);
                         Block block1 = world.getBlockState(upN).getBlock();
 
-                        if (block1.isAir(world, upN) || block1.isLeaves(world, upN))
+                        if (block1.isAir(world.getBlockState(upN), world, upN) || block1.isLeaves(world.getBlockState(upN), world, upN))
                         {
                             this.setBlockAndNotifyAdequately(world, pos.up(i3), NibiruBlocks.NIBIRU_LOG.getStateFromMeta(1));
                         }

@@ -17,7 +17,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityLargeInfectedCrystallize;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import stevekung.mods.moreplanets.util.blocks.BlockContainerMP;
@@ -40,7 +39,7 @@ public class BlockMultalicCrystal extends BlockContainerMP implements ISingleBlo
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        TileEntityLargeInfectedCrystallize crystal = (TileEntityLargeInfectedCrystallize)world.getTileEntity(pos);
+        TileEntityMultalicCrystal crystal = (TileEntityMultalicCrystal)world.getTileEntity(pos);
 
         if (crystal != null)
         {

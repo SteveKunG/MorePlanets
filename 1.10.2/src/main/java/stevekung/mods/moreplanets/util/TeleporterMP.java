@@ -22,8 +22,8 @@ public class TeleporterMP extends Teleporter
 {
     private WorldServer worldServerInstance;
     private Random random;
-    private Long2ObjectMap<TeleporterMP.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
-    private List<Long> destinationCoordinateKeys = Lists.<Long>newArrayList();
+    private Long2ObjectMap<PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
+    private List<Long> destinationCoordinateKeys = Lists.newArrayList();
 
     public TeleporterMP(WorldServer world)
     {

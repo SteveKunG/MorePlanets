@@ -133,7 +133,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     {
         int j = this.rand.nextInt(3) + this.rand.nextInt(1 + fortune);
 
-        for (int i = 0; i < j; ++i) //TODO Leather?
+        for (int i = 0; i < j; ++i)
         {
             this.entityDropItem(new ItemStack(Items.LEATHER, 1), 1.0F);
         }

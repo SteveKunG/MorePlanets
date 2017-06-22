@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.init;
 
+import net.minecraft.block.SoundType;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
@@ -30,33 +32,44 @@ public class MPSounds
     public static SoundEvent LOUD_THUNDER;
     public static SoundEvent LILYPAD_PLACE;
     public static SoundEvent UNLOCK_TREASURE_CHEST;
+    public static SoundEvent SHLIME_HURT;
+    public static SoundEvent SHLIME_DEATH;
+    public static SoundType ALIEN_EGG;
+    public static SoundType SMALL_SLIME;
+    public static SoundType LILYPAD;
 
     public static void init()
     {
-        CommonRegisterHelper.registerSound(MPSounds.BLACK_HOLE_CREATED, "black_hole_created");
-        CommonRegisterHelper.registerSound(MPSounds.BLACK_HOLE_DESTROYED, "black_hole_destroyed");
-        CommonRegisterHelper.registerSound(MPSounds.BLACK_HOLE_AMBIENT, "black_hole_ambient");
-        CommonRegisterHelper.registerSound(MPSounds.MACHINE_ACTIVATE_AMBIENT, "machine_activate_ambient");
-        CommonRegisterHelper.registerSound(MPSounds.MACHINE_GENERATOR_AMBIENT, "machine_generator_ambient");
-        CommonRegisterHelper.registerSound(MPSounds.MACHINE_ALERT, "machine_alert");
-        CommonRegisterHelper.registerSound(MPSounds.MACHINE_DANGER, "machine_danger");
-        CommonRegisterHelper.registerSound(MPSounds.MACHINE_STOP, "machine_stop");
-        CommonRegisterHelper.registerSound(MPSounds.ALIEN_BEAM, "alien_beam");
-        CommonRegisterHelper.registerSound(MPSounds.LASER_SHOOTED, "laser_shooted");
-        CommonRegisterHelper.registerSound(MPSounds.ALIEN_EGG_DESTROYED, "alien_egg_destroyed");
-        CommonRegisterHelper.registerSound(MPSounds.ALIEN_MINER_AMBIENT, "alien_miner_ambient");
-        CommonRegisterHelper.registerSound(MPSounds.ALIEN_MINER_CHARGED, "alien_miner_charged");
-        CommonRegisterHelper.registerSound(MPSounds.ALIEN_MINER_ATTACK, "alien_miner_attack");
-        CommonRegisterHelper.registerSound(MPSounds.ALIEN_MINER_SHOCK, "alien_miner_shock");
-        CommonRegisterHelper.registerSound(MPSounds.INFECTED_MOB_ATTACK, "infected_mob_attack");
-        CommonRegisterHelper.registerSound(MPSounds.INFECTED_MOB_HURT, "infected_mob_hurt");
-        CommonRegisterHelper.registerSound(MPSounds.INFECTED_MOB_EXPLODE, "infected_mob_explode");
-        CommonRegisterHelper.registerSound(MPSounds.FRONOS_MOB_STEP, "fronos_mob_step");
-        CommonRegisterHelper.registerSound(MPSounds.FRONOS_MOB_AMBIENT, "fronos_mob_ambient");
-        CommonRegisterHelper.registerSound(MPSounds.FRONOS_MOB_HURT, "fronos_mob_hurt");
-        CommonRegisterHelper.registerSound(MPSounds.FRONOS_MOB_DEATH, "fronos_mob_death");
-        CommonRegisterHelper.registerSound(MPSounds.LOUD_THUNDER, "loud_thunder");
-        CommonRegisterHelper.registerSound(MPSounds.LILYPAD_PLACE, "lilypad_place");
-        CommonRegisterHelper.registerSound(MPSounds.UNLOCK_TREASURE_CHEST, "unlock_treasure_chest");
+        MPSounds.BLACK_HOLE_CREATED = CommonRegisterHelper.registerSound("black_hole_created");
+        MPSounds.BLACK_HOLE_DESTROYED = CommonRegisterHelper.registerSound("black_hole_destroyed");
+        MPSounds.BLACK_HOLE_AMBIENT = CommonRegisterHelper.registerSound("black_hole_ambient");
+        MPSounds.MACHINE_ACTIVATE_AMBIENT = CommonRegisterHelper.registerSound("machine_activate_ambient");
+        MPSounds.MACHINE_GENERATOR_AMBIENT = CommonRegisterHelper.registerSound("machine_generator_ambient");
+        MPSounds.MACHINE_ALERT = CommonRegisterHelper.registerSound("machine_alert");
+        MPSounds.MACHINE_DANGER = CommonRegisterHelper.registerSound("machine_danger");
+        MPSounds.MACHINE_STOP = CommonRegisterHelper.registerSound("machine_stop");
+        MPSounds.ALIEN_BEAM = CommonRegisterHelper.registerSound("alien_beam");
+        MPSounds.LASER_SHOOTED = CommonRegisterHelper.registerSound("laser_shooted");
+        MPSounds.ALIEN_EGG_DESTROYED = CommonRegisterHelper.registerSound("alien_egg_destroyed");
+        MPSounds.ALIEN_MINER_AMBIENT = CommonRegisterHelper.registerSound("alien_miner_ambient");
+        MPSounds.ALIEN_MINER_CHARGED = CommonRegisterHelper.registerSound("alien_miner_charged");
+        MPSounds.ALIEN_MINER_ATTACK = CommonRegisterHelper.registerSound("alien_miner_attack");
+        MPSounds.ALIEN_MINER_SHOCK = CommonRegisterHelper.registerSound("alien_miner_shock");
+        MPSounds.INFECTED_MOB_ATTACK = CommonRegisterHelper.registerSound("infected_mob_attack");
+        MPSounds.INFECTED_MOB_HURT = CommonRegisterHelper.registerSound("infected_mob_hurt");
+        MPSounds.INFECTED_MOB_EXPLODE = CommonRegisterHelper.registerSound("infected_mob_explode");
+        MPSounds.FRONOS_MOB_STEP = CommonRegisterHelper.registerSound("fronos_mob_step");
+        MPSounds.FRONOS_MOB_AMBIENT = CommonRegisterHelper.registerSound("fronos_mob_ambient");
+        MPSounds.FRONOS_MOB_HURT = CommonRegisterHelper.registerSound("fronos_mob_hurt");
+        MPSounds.FRONOS_MOB_DEATH = CommonRegisterHelper.registerSound("fronos_mob_death");
+        MPSounds.LOUD_THUNDER = CommonRegisterHelper.registerSound("loud_thunder");
+        MPSounds.LILYPAD_PLACE = CommonRegisterHelper.registerSound("lilypad_place");
+        MPSounds.UNLOCK_TREASURE_CHEST = CommonRegisterHelper.registerSound("unlock_treasure_chest");
+        MPSounds.SHLIME_HURT = CommonRegisterHelper.registerSound("shlime_hurt");
+        MPSounds.SHLIME_DEATH = CommonRegisterHelper.registerSound("shlime_death");
+
+        MPSounds.ALIEN_EGG = new SoundType(1.0F, 1.0F, MPSounds.ALIEN_EGG_DESTROYED, SoundEvents.BLOCK_SLIME_STEP, SoundEvents.BLOCK_SLIME_PLACE, SoundEvents.BLOCK_SLIME_HIT, SoundEvents.BLOCK_SLIME_FALL);
+        MPSounds.SMALL_SLIME = new SoundType(1.0F, 1.0F, SoundEvents.ENTITY_SMALL_SLIME_JUMP, SoundEvents.ENTITY_SMALL_SLIME_JUMP, SoundEvents.ENTITY_SMALL_SLIME_JUMP, SoundEvents.ENTITY_SMALL_SLIME_JUMP, SoundEvents.ENTITY_SMALL_SLIME_JUMP);
+        MPSounds.LILYPAD = new SoundType(1.0F, 1.0F, MPSounds.LILYPAD_PLACE, SoundEvents.BLOCK_GRASS_STEP, SoundEvents.BLOCK_GRASS_PLACE, SoundEvents.BLOCK_GRASS_HIT, SoundEvents.BLOCK_GRASS_FALL);
     }
 }

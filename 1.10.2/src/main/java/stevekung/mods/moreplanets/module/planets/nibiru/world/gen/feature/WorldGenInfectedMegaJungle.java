@@ -4,8 +4,8 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.blocks.BlockVinesMP;
@@ -20,15 +20,15 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        int i = this.func_150533_a(rand);
+        int i = this.getHeight(rand);
 
-        if (!this.func_175929_a(world, rand, pos, i))
+        if (!this.ensureGrowable(world, pos, i))
         {
             return false;
         }
         else
         {
-            this.func_175930_c(world, pos.up(i), 2);
+            this.createCrown(world, pos.up(i), 2);
 
             for (int j = pos.getY() + i - 2 - rand.nextInt(4); j > pos.getY() + i / 2; j -= 2 + rand.nextInt(4))
             {
@@ -49,7 +49,7 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
                 for (int k1 = j - j2; k1 <= j1; ++k1)
                 {
                     int l1 = k1 - j1;
-                    this.func_175928_b(world, new BlockPos(k, k1, l), 1 - l1);
+                    this.growLeavesLayer(world, new BlockPos(k, k1, l), 1 - l1);
                 }
             }
 
@@ -63,8 +63,8 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
 
                     if (i2 > 0)
                     {
-                        this.func_181632_a(world, rand, blockpos.west(), BlockVinesMP.EAST);
-                        this.func_181632_a(world, rand, blockpos.north(), BlockVinesMP.SOUTH);
+                        this.placeVine(world, rand, blockpos.west(), BlockVinesMP.EAST);
+                        this.placeVine(world, rand, blockpos.north(), BlockVinesMP.SOUTH);
                     }
                 }
 
@@ -78,8 +78,8 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
 
                         if (i2 > 0)
                         {
-                            this.func_181632_a(world, rand, blockpos1.east(), BlockVinesMP.WEST);
-                            this.func_181632_a(world, rand, blockpos1.north(), BlockVinesMP.SOUTH);
+                            this.placeVine(world, rand, blockpos1.east(), BlockVinesMP.WEST);
+                            this.placeVine(world, rand, blockpos1.north(), BlockVinesMP.SOUTH);
                         }
                     }
 
@@ -91,8 +91,8 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
 
                         if (i2 > 0)
                         {
-                            this.func_181632_a(world, rand, blockpos2.east(), BlockVinesMP.WEST);
-                            this.func_181632_a(world, rand, blockpos2.south(), BlockVinesMP.NORTH);
+                            this.placeVine(world, rand, blockpos2.east(), BlockVinesMP.WEST);
+                            this.placeVine(world, rand, blockpos2.south(), BlockVinesMP.NORTH);
                         }
                     }
 
@@ -104,8 +104,8 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
 
                         if (i2 > 0)
                         {
-                            this.func_181632_a(world, rand, blockpos3.west(), BlockVinesMP.EAST);
-                            this.func_181632_a(world, rand, blockpos3.south(), BlockVinesMP.NORTH);
+                            this.placeVine(world, rand, blockpos3.west(), BlockVinesMP.EAST);
+                            this.placeVine(world, rand, blockpos3.south(), BlockVinesMP.NORTH);
                         }
                     }
                 }
@@ -114,27 +114,27 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
         }
     }
 
-    private void func_181632_a(World p_181632_1_, Random p_181632_2_, BlockPos p_181632_3_, PropertyBool p_181632_4_)
+    private void placeVine(World world, Random rand, BlockPos pos, PropertyBool property)
     {
-        if (p_181632_2_.nextInt(3) > 0 && p_181632_1_.isAirBlock(p_181632_3_))
+        if (rand.nextInt(3) > 0 && world.isAirBlock(pos))
         {
-            this.setBlockAndNotifyAdequately(p_181632_1_, p_181632_3_, NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(p_181632_4_, Boolean.valueOf(true)));
+            this.setBlockAndNotifyAdequately(world, pos, NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(property, Boolean.valueOf(true)));
         }
     }
 
-    private void func_175930_c(World world, BlockPos p_175930_2_, int p_175930_3_)
+    private void createCrown(World world, BlockPos pos, int width)
     {
         int i = 2;
 
         for (int j = -i; j <= 0; ++j)
         {
-            this.func_175925_a(world, p_175930_2_.up(j), p_175930_3_ + 1 - j);
+            this.growLeavesLayerStrict(world, pos.up(j), width + 1 - j);
         }
     }
 
     private boolean isAirLeaves(World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos).getBlock();
-        return block.isAir(world, pos) || block.isLeaves(world, pos);
+        return block.isAir(world.getBlockState(pos), world, pos) || block.isLeaves(world.getBlockState(pos), world, pos);
     }
 }

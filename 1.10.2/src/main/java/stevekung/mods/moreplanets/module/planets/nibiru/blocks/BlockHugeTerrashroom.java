@@ -12,9 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -116,13 +114,141 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     @Override
     protected boolean renderSideOnOtherState()
     {
-        return false;
+        return true;
     }
 
     @Override
     public String getName()
     {
         return "huge_terrashroom_block";
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rotation)
+    {
+        switch (rotation)
+        {
+        case CLOCKWISE_180:
+            switch (state.getValue(VARIANT))
+            {
+            case NORTH_WEST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_EAST);
+            case NORTH:
+                return state.withProperty(VARIANT, BlockType.SOUTH);
+            case NORTH_EAST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_WEST);
+            case WEST:
+                return state.withProperty(VARIANT, BlockType.EAST);
+            case EAST:
+                return state.withProperty(VARIANT, BlockType.WEST);
+            case SOUTH_WEST:
+                return state.withProperty(VARIANT, BlockType.NORTH_EAST);
+            case SOUTH:
+                return state.withProperty(VARIANT, BlockType.NORTH);
+            case SOUTH_EAST:
+                return state.withProperty(VARIANT, BlockType.NORTH_WEST);
+            default:
+                return state;
+            }
+        case COUNTERCLOCKWISE_90:
+            switch (state.getValue(VARIANT))
+            {
+            case NORTH_WEST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_WEST);
+            case NORTH:
+                return state.withProperty(VARIANT, BlockType.WEST);
+            case NORTH_EAST:
+                return state.withProperty(VARIANT, BlockType.NORTH_WEST);
+            case WEST:
+                return state.withProperty(VARIANT, BlockType.SOUTH);
+            case EAST:
+                return state.withProperty(VARIANT, BlockType.NORTH);
+            case SOUTH_WEST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_EAST);
+            case SOUTH:
+                return state.withProperty(VARIANT, BlockType.EAST);
+            case SOUTH_EAST:
+                return state.withProperty(VARIANT, BlockType.NORTH_EAST);
+            default:
+                return state;
+            }
+        case CLOCKWISE_90:
+            switch (state.getValue(VARIANT))
+            {
+            case NORTH_WEST:
+                return state.withProperty(VARIANT, BlockType.NORTH_EAST);
+            case NORTH:
+                return state.withProperty(VARIANT, BlockType.EAST);
+            case NORTH_EAST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_EAST);
+            case WEST:
+                return state.withProperty(VARIANT, BlockType.NORTH);
+            case EAST:
+                return state.withProperty(VARIANT, BlockType.SOUTH);
+            case SOUTH_WEST:
+                return state.withProperty(VARIANT, BlockType.NORTH_WEST);
+            case SOUTH:
+                return state.withProperty(VARIANT, BlockType.WEST);
+            case SOUTH_EAST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_WEST);
+            default:
+                return state;
+            }
+        default:
+            return state;
+        }
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
+    {
+        BlockType type = state.getValue(VARIANT);
+
+        switch (mirror)
+        {
+        case LEFT_RIGHT:
+            switch (type)
+            {
+            case NORTH_WEST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_WEST);
+            case NORTH:
+                return state.withProperty(VARIANT, BlockType.SOUTH);
+            case NORTH_EAST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_EAST);
+            case WEST:
+            case EAST:
+            default:
+                return super.withMirror(state, mirror);
+            case SOUTH_WEST:
+                return state.withProperty(VARIANT, BlockType.NORTH_WEST);
+            case SOUTH:
+                return state.withProperty(VARIANT, BlockType.NORTH);
+            case SOUTH_EAST:
+                return state.withProperty(VARIANT, BlockType.NORTH_EAST);
+            }
+        case FRONT_BACK:
+            switch (type)
+            {
+            case NORTH_WEST:
+                return state.withProperty(VARIANT, BlockType.NORTH_EAST);
+            case NORTH:
+            case SOUTH:
+            default:
+                return super.withMirror(state, mirror);
+            case NORTH_EAST:
+                return state.withProperty(VARIANT, BlockType.NORTH_WEST);
+            case WEST:
+                return state.withProperty(VARIANT, BlockType.EAST);
+            case EAST:
+                return state.withProperty(VARIANT, BlockType.WEST);
+            case SOUTH_WEST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_EAST);
+            case SOUTH_EAST:
+                return state.withProperty(VARIANT, BlockType.SOUTH_WEST);
+            }
+        default:
+            return super.withMirror(state, mirror);
+        }
     }
 
     public static enum BlockType implements IStringSerializable

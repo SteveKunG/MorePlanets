@@ -17,7 +17,6 @@ import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent.MissingMappin
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
 import stevekung.mods.moreplanets.client.command.ClientCommandHandlerMP;
 import stevekung.mods.moreplanets.client.command.CommandChangeLog;
-import stevekung.mods.moreplanets.client.renderer.EntityRendererMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.EntityEventHandler;
@@ -49,7 +48,7 @@ public class MorePlanetsCore
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
     public static final String FORGE_VERSION = "after:forge@[12.18.3.2185,);";
     public static final String DEPENDENCIES = "required-after:galacticraftcore; required-after:galacticraftplanets; required-after:Micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
-    public static final String MC_VERSION = (String) FMLInjectionData.data()[4];
+    public static final String MC_VERSION = String.valueOf(FMLInjectionData.data()[4]);
     private static boolean DEOBFUSCATED;
 
     @SidedProxy(clientSide = MorePlanetsCore.CLIENT_CLASS, serverSide = MorePlanetsCore.SERVER_CLASS)
@@ -80,6 +79,7 @@ public class MorePlanetsCore
         MorePlanetsCore.initModInfo(event.getModMetadata());
         MorePlanetsCore.BLOCK_TAB = new CreativeTabsMP("MorePlanetsBlocks");
         MorePlanetsCore.ITEM_TAB = new CreativeTabsMP("MorePlanetsItems");
+        MorePlanetsCore.PROXY.registerPreRendering();
 
         MPBlocks.init();
         MPItems.init();
@@ -87,13 +87,7 @@ public class MorePlanetsCore
         MPPlanets.init();
         MPPotions.init();
         MPBiomes.init();
-        MPSounds.init();
         MPOthers.init();
-
-        if (CommonRegisterHelper.isClient())
-        {
-            EntityRendererMP.init();
-        }
     }
 
     @EventHandler
@@ -103,6 +97,7 @@ public class MorePlanetsCore
         GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.idNetworkHandler, PacketSimpleMP.class);
         MorePlanetsCore.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
         MorePlanetsCore.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
+        MorePlanetsCore.PROXY.registerInitRendering();
 
         if (CommonRegisterHelper.isClient())
         {
@@ -122,7 +117,7 @@ public class MorePlanetsCore
     public void postInit(FMLPostInitializationEvent event)
     {
         VersionChecker.startCheck();
-        MorePlanetsCore.PROXY.registerRendering();
+        MorePlanetsCore.PROXY.registerPostRendering();
         CommonRegisterHelper.registerGUIHandler(this, new GuiHandlerMP());
         CommonRegisterHelper.registerFuelHandler(new FuelHandlerMP());
         CraftingManagerMP.init();

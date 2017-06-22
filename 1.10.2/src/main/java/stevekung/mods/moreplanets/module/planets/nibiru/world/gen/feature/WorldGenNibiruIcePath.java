@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -18,14 +18,14 @@ public class WorldGenNibiruIcePath extends WorldGenerator
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos position)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
-        while (world.isAirBlock(position) && position.getY() > 2)
+        while (world.isAirBlock(pos) && pos.getY() > 2)
         {
-            position = position.down();
+            pos = pos.down();
         }
 
-        if (world.getBlockState(position).getBlock() != NibiruBlocks.INFECTED_GRASS)
+        if (world.getBlockState(pos).getBlock() != NibiruBlocks.INFECTED_GRASS)
         {
             return false;
         }
@@ -34,16 +34,16 @@ public class WorldGenNibiruIcePath extends WorldGenerator
             int i = rand.nextInt(this.basePathWidth - 2) + 2;
             int j = 1;
 
-            for (int k = position.getX() - i; k <= position.getX() + i; ++k)
+            for (int k = pos.getX() - i; k <= pos.getX() + i; ++k)
             {
-                for (int l = position.getZ() - i; l <= position.getZ() + i; ++l)
+                for (int l = pos.getZ() - i; l <= pos.getZ() + i; ++l)
                 {
-                    int i1 = k - position.getX();
-                    int j1 = l - position.getZ();
+                    int i1 = k - pos.getX();
+                    int j1 = l - pos.getZ();
 
                     if (i1 * i1 + j1 * j1 <= i * i)
                     {
-                        for (int k1 = position.getY() - j; k1 <= position.getY() + j; ++k1)
+                        for (int k1 = pos.getY() - j; k1 <= pos.getY() + j; ++k1)
                         {
                             BlockPos blockpos = new BlockPos(k, k1, l);
                             Block block = world.getBlockState(blockpos).getBlock();

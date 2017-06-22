@@ -57,7 +57,6 @@ import stevekung.mods.moreplanets.util.items.ISortableItem;
 public class CommonRegisterHelper
 {
     private static int ID = 0;
-    private static int SOUND_ID = 0;
     public static Map<EnumSortCategoryBlock, List<StackSorted>> SORT_MAP_BLOCKS = Maps.newHashMap();
     public static Map<EnumSortCategoryItem, List<StackSorted>> SORT_MAP_ITEMS = Maps.newHashMap();
     public static Map<Block, String> SINGLE_BLOCK_RENDER_LIST = Maps.newHashMap();
@@ -118,10 +117,10 @@ public class CommonRegisterHelper
         }
     }
 
-    public static void registerSound(SoundEvent sound, String name)
+    public static SoundEvent registerSound(String name)
     {
-        ResourceLocation res = new ResourceLocation("moreplanets:" + name);
-        SoundEvent.REGISTRY.register(CommonRegisterHelper.SOUND_ID++, res, new SoundEvent(res));
+        ResourceLocation resource = new ResourceLocation("moreplanets:" + name);
+        return GameRegistry.register(new SoundEvent(resource).setRegistryName(resource));
     }
 
     public static ResourceLocation registerLootTable(ResourceLocation resource)

@@ -17,11 +17,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
-import stevekung.mods.moreplanets.util.helper.BlockSoundHelper;
 
 public class BlockJelly extends BlockBreakableMP implements IBlockVariants
 {
@@ -30,7 +30,7 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
     public BlockJelly(String name)
     {
         super(Material.CLOTH);
-        this.setSoundType(BlockSoundHelper.SMALL_SLIME);
+        this.setSoundType(MPSounds.SMALL_SLIME);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.GRAPE_JELLY_BLOCK));
         this.setUnlocalizedName(name);
     }

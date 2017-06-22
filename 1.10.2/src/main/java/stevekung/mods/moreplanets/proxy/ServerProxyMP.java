@@ -8,7 +8,11 @@ import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 
 public class ServerProxyMP
 {
-    public void registerRendering() {}
+    public void registerPreRendering() {}
+
+    public void registerPostRendering() {}
+
+    public void registerInitRendering() {}
 
     public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z) {}
 

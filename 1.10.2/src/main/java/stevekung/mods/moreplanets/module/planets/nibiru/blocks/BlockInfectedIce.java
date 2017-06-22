@@ -125,7 +125,7 @@ public class BlockInfectedIce extends BlockBreakableMP
     @Override
     protected boolean renderSideOnOtherState()
     {
-        return false;
+        return true;
     }
 
     @Override

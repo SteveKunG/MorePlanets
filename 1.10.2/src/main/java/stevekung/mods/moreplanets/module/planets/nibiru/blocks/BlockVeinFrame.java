@@ -22,10 +22,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityVeinFrame;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.helper.BlockSoundHelper;
 
 public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
 {
@@ -41,7 +41,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
         this.setLightLevel(0.125F);
         this.setBlockUnbreakable();
         this.setResistance(6000000.0F);
-        this.setSoundType(BlockSoundHelper.ALIEN_EGG);
+        this.setSoundType(MPSounds.ALIEN_EGG);
         this.setUnlocalizedName(name);
     }
 

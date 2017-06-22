@@ -30,7 +30,7 @@ public abstract class BlockBreakableMP extends BlockBaseMP
 
         if (this.isTranslucentBlock())
         {
-            if (this.renderSideOnOtherState() && world.getBlockState(pos.offset(side.getOpposite())) != state)
+            if (world.getBlockState(pos.offset(side)) != state)
             {
                 return true;
             }

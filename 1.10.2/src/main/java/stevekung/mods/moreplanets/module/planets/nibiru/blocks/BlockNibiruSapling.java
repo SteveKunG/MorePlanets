@@ -132,10 +132,10 @@ public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, I
             switch (meta)
             {
             case 0:
-                obj = rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0) : new WorldGenInfectedTree(true, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0);
+                obj = rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0) : new WorldGenInfectedTrees(true, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
                 break;
             case 1:
-                obj = rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.NIBIRU_LOG, 1, NibiruBlocks.NIBIRU_LEAVES, 1) : new WorldGenInfectedTree(true, NibiruBlocks.NIBIRU_LOG, 1, NibiruBlocks.NIBIRU_LEAVES, 1);
+                obj = rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.NIBIRU_LOG, 1, NibiruBlocks.NIBIRU_LEAVES, 1) : new WorldGenInfectedTrees(true, NibiruBlocks.NIBIRU_LOG.getStateFromMeta(1), NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(1));
                 break;
             case 2:
                 label269:

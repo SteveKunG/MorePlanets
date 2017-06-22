@@ -102,7 +102,7 @@ public class WorldGenAlienBerryBigTree extends WorldGenAbstractTree
                     BlockPos blockpos = p_181631_1_.add(j, 0, k);
                     IBlockState state = this.world.getBlockState(blockpos);
 
-                    if (state.getBlock().isAir(this.world, blockpos) || state.getBlock().isLeaves(this.world, blockpos))
+                    if (state.getBlock().isAir(state, this.world, blockpos) || state.getBlock().isLeaves(state, this.world, blockpos))
                     {
                         this.setBlockAndNotifyAdequately(this.world, blockpos, p_181631_3_);
                     }
@@ -263,7 +263,7 @@ public class WorldGenAlienBerryBigTree extends WorldGenAbstractTree
     }
 
     @Override
-    public void func_175904_e()
+    public void setDecorationDefaults()
     {
         this.leafDistanceLimit = 5;
     }

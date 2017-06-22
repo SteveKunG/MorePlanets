@@ -4,8 +4,8 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -21,33 +21,33 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos position)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
         int i = rand.nextInt(3) + rand.nextInt(2) + 6;
-        int j = position.getX();
-        int k = position.getY();
-        int l = position.getZ();
+        int j = pos.getX();
+        int k = pos.getY();
+        int l = pos.getZ();
 
         if (k >= 1 && k + i + 1 < 256)
         {
-            BlockPos blockpos = position.down();
+            BlockPos blockpos = pos.down();
             IBlockState state = world.getBlockState(blockpos);
             Block block = state.getBlock();
 
-            if (!(block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND) && position.getY() < 256 - i - 1)
+            if (!(block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND) && pos.getY() < 256 - i - 1)
             {
                 return false;
             }
-            else if (!this.func_181638_a(world, position, i))
+            else if (!this.placeTreeOfHeight(world, pos, i))
             {
                 return false;
             }
             else
             {
-                this.onPlantGrow(world, blockpos, position);
-                this.onPlantGrow(world, blockpos.east(), position);
-                this.onPlantGrow(world, blockpos.south(), position);
-                this.onPlantGrow(world, blockpos.south().east(), position);
+                this.onPlantGrow(world, blockpos, pos);
+                this.onPlantGrow(world, blockpos.east(), pos);
+                this.onPlantGrow(world, blockpos.south(), pos);
+                this.onPlantGrow(world, blockpos.south().east(), pos);
                 EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
                 int i1 = i - rand.nextInt(4);
                 int j1 = 2 - rand.nextInt(3);
@@ -68,12 +68,12 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
                     BlockPos blockpos1 = new BlockPos(k1, k2, l1);
                     state = world.getBlockState(blockpos1);
 
-                    if (state.getBlock().isAir(world, blockpos1) || state.getBlock().isLeaves(world, blockpos1))
+                    if (state.getBlock().isAir(state, world, blockpos1) || state.getBlock().isLeaves(state, world, blockpos1))
                     {
-                        this.func_181639_b(world, blockpos1);
-                        this.func_181639_b(world, blockpos1.east());
-                        this.func_181639_b(world, blockpos1.south());
-                        this.func_181639_b(world, blockpos1.east().south());
+                        this.placeLogAt(world, blockpos1);
+                        this.placeLogAt(world, blockpos1.east());
+                        this.placeLogAt(world, blockpos1.south());
+                        this.placeLogAt(world, blockpos1.east().south());
                     }
                 }
 
@@ -82,28 +82,28 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
                     for (int l3 = -2; l3 <= 0; ++l3)
                     {
                         int k4 = -1;
-                        this.func_150526_a(world, k1 + i3, i2 + k4, l1 + l3);
-                        this.func_150526_a(world, 1 + k1 - i3, i2 + k4, l1 + l3);
-                        this.func_150526_a(world, k1 + i3, i2 + k4, 1 + l1 - l3);
-                        this.func_150526_a(world, 1 + k1 - i3, i2 + k4, 1 + l1 - l3);
+                        this.placeLeafAt(world, k1 + i3, i2 + k4, l1 + l3);
+                        this.placeLeafAt(world, 1 + k1 - i3, i2 + k4, l1 + l3);
+                        this.placeLeafAt(world, k1 + i3, i2 + k4, 1 + l1 - l3);
+                        this.placeLeafAt(world, 1 + k1 - i3, i2 + k4, 1 + l1 - l3);
 
                         if ((i3 > -2 || l3 > -1) && (i3 != -1 || l3 != -2))
                         {
                             k4 = 1;
-                            this.func_150526_a(world, k1 + i3, i2 + k4, l1 + l3);
-                            this.func_150526_a(world, 1 + k1 - i3, i2 + k4, l1 + l3);
-                            this.func_150526_a(world, k1 + i3, i2 + k4, 1 + l1 - l3);
-                            this.func_150526_a(world, 1 + k1 - i3, i2 + k4, 1 + l1 - l3);
+                            this.placeLeafAt(world, k1 + i3, i2 + k4, l1 + l3);
+                            this.placeLeafAt(world, 1 + k1 - i3, i2 + k4, l1 + l3);
+                            this.placeLeafAt(world, k1 + i3, i2 + k4, 1 + l1 - l3);
+                            this.placeLeafAt(world, 1 + k1 - i3, i2 + k4, 1 + l1 - l3);
                         }
                     }
                 }
 
                 if (rand.nextBoolean())
                 {
-                    this.func_150526_a(world, k1, i2 + 2, l1);
-                    this.func_150526_a(world, k1 + 1, i2 + 2, l1);
-                    this.func_150526_a(world, k1 + 1, i2 + 2, l1 + 1);
-                    this.func_150526_a(world, k1, i2 + 2, l1 + 1);
+                    this.placeLeafAt(world, k1, i2 + 2, l1);
+                    this.placeLeafAt(world, k1 + 1, i2 + 2, l1);
+                    this.placeLeafAt(world, k1 + 1, i2 + 2, l1 + 1);
+                    this.placeLeafAt(world, k1, i2 + 2, l1 + 1);
                 }
 
                 for (int j3 = -3; j3 <= 4; ++j3)
@@ -112,7 +112,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
                     {
                         if ((j3 != -3 || i4 != -3) && (j3 != -3 || i4 != 4) && (j3 != 4 || i4 != -3) && (j3 != 4 || i4 != 4) && (Math.abs(j3) < 3 || Math.abs(i4) < 3))
                         {
-                            this.func_150526_a(world, k1 + j3, i2, l1 + i4);
+                            this.placeLeafAt(world, k1 + j3, i2, l1 + i4);
                         }
                     }
                 }
@@ -126,13 +126,13 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
 
                             for (int i5 = 0; i5 < l4; ++i5)
                             {
-                                this.func_181639_b(world, new BlockPos(j + k3, i2 - i5 - 1, l + j4));
+                                this.placeLogAt(world, new BlockPos(j + k3, i2 - i5 - 1, l + j4));
                             }
                             for (int j5 = -1; j5 <= 1; ++j5)
                             {
                                 for (int l2 = -1; l2 <= 1; ++l2)
                                 {
-                                    this.func_150526_a(world, k1 + k3 + j5, i2, l1 + j4 + l2);
+                                    this.placeLeafAt(world, k1 + k3 + j5, i2, l1 + j4 + l2);
                                 }
                             }
                             for (int k5 = -2; k5 <= 2; ++k5)
@@ -141,7 +141,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
                                 {
                                     if (Math.abs(k5) != 2 || Math.abs(l5) != 2)
                                     {
-                                        this.func_150526_a(world, k1 + k3 + k5, i2 - 1, l1 + j4 + l5);
+                                        this.placeLeafAt(world, k1 + k3 + k5, i2 - 1, l1 + j4 + l5);
                                     }
                                 }
                             }
@@ -157,14 +157,14 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
         }
     }
 
-    private boolean func_181638_a(World p_181638_1_, BlockPos p_181638_2_, int p_181638_3_)
+    private boolean placeTreeOfHeight(World world, BlockPos pos, int height)
     {
-        int i = p_181638_2_.getX();
-        int j = p_181638_2_.getY();
-        int k = p_181638_2_.getZ();
+        int i = pos.getX();
+        int j = pos.getY();
+        int k = pos.getZ();
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int l = 0; l <= p_181638_3_ + 1; ++l)
+        for (int l = 0; l <= height + 1; ++l)
         {
             int i1 = 1;
 
@@ -172,7 +172,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
             {
                 i1 = 0;
             }
-            if (l >= p_181638_3_ - 1)
+            if (l >= height - 1)
             {
                 i1 = 2;
             }
@@ -181,7 +181,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
             {
                 for (int k1 = -i1; k1 <= i1; ++k1)
                 {
-                    if (!this.isReplaceable(p_181638_1_, blockpos$mutableblockpos.set(i + j1, j + l, k + k1)))
+                    if (!this.isReplaceable(world, blockpos$mutableblockpos.setPos(i + j1, j + l, k + k1)))
                     {
                         return false;
                     }
@@ -191,22 +191,22 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
         return true;
     }
 
-    private void func_181639_b(World p_181639_1_, BlockPos p_181639_2_)
+    private void placeLogAt(World world, BlockPos pos)
     {
-        if (this.func_150523_a(p_181639_1_.getBlockState(p_181639_2_).getBlock()))
+        if (this.canGrowInto(world.getBlockState(pos).getBlock()))
         {
-            this.setBlockAndNotifyAdequately(p_181639_1_, p_181639_2_, NibiruBlocks.NIBIRU_LOG.getStateFromMeta(1));
+            this.setBlockAndNotifyAdequately(world, pos, NibiruBlocks.NIBIRU_LOG.getStateFromMeta(1));
         }
     }
 
-    private void func_150526_a(World world, int p_150526_2_, int p_150526_3_, int p_150526_4_)
+    private void placeLeafAt(World world, int x, int y, int z)
     {
         if (this.genLeaves)
         {
-            BlockPos blockpos = new BlockPos(p_150526_2_, p_150526_3_, p_150526_4_);
+            BlockPos blockpos = new BlockPos(x, y, z);
             IBlockState state = world.getBlockState(blockpos);
 
-            if (state.getBlock().isAir(world, blockpos))
+            if (state.getBlock().isAir(state, world, blockpos))
             {
                 this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(1));
             }
@@ -215,6 +215,6 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
 
     private void onPlantGrow(World world, BlockPos pos, BlockPos source)
     {
-        world.getBlockState(pos).getBlock().onPlantGrow(world, pos, source);
+        world.getBlockState(pos).getBlock().onPlantGrow(world.getBlockState(pos), world, pos, source);
     }
 }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -23,7 +23,7 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
         this.extraRandomHeight = extraRandomHeight;
     }
 
-    protected int func_150533_a(Random rand)
+    protected int getHeight(Random rand)
     {
         int i = rand.nextInt(3) + this.baseHeight;
 
@@ -34,13 +34,13 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
         return i;
     }
 
-    private boolean func_175926_c(World world, BlockPos p_175926_2_, int p_175926_3_)
+    private boolean isSpaceAt(World world, BlockPos pos, int height)
     {
         boolean flag = true;
 
-        if (p_175926_2_.getY() >= 1 && p_175926_2_.getY() + p_175926_3_ + 1 <= 256)
+        if (pos.getY() >= 1 && pos.getY() + height + 1 <= 256)
         {
-            for (int i = 0; i <= 1 + p_175926_3_; ++i)
+            for (int i = 0; i <= 1 + height; ++i)
             {
                 int j = 2;
 
@@ -48,7 +48,7 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
                 {
                     j = 1;
                 }
-                else if (i >= 1 + p_175926_3_ - 2)
+                else if (i >= 1 + height - 2)
                 {
                     j = 2;
                 }
@@ -57,14 +57,13 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
                 {
                     for (int l = -j; l <= j && flag; ++l)
                     {
-                        if (p_175926_2_.getY() + i < 0 || p_175926_2_.getY() + i >= 256 || !this.isReplaceable(world,p_175926_2_.add(k, i, l)))
+                        if (pos.getY() + i < 0 || pos.getY() + i >= 256 || !this.isReplaceable(world, pos.add(k, i, l)))
                         {
                             flag = false;
                         }
                     }
                 }
             }
-
             return flag;
         }
         else
@@ -73,17 +72,17 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
         }
     }
 
-    private boolean func_175927_a(BlockPos p_175927_1_, World world)
+    private boolean ensureDirtsUnderneath(BlockPos pos, World world)
     {
-        BlockPos blockpos = p_175927_1_.down();
+        BlockPos blockpos = pos.down();
         Block block = world.getBlockState(blockpos).getBlock();
 
-        if (block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND && p_175927_1_.getY() >= 2)
+        if (block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND && pos.getY() >= 2)
         {
-            this.onPlantGrow(world, blockpos, p_175927_1_);
-            this.onPlantGrow(world, blockpos.east(), p_175927_1_);
-            this.onPlantGrow(world, blockpos.south(), p_175927_1_);
-            this.onPlantGrow(world, blockpos.south().east(), p_175927_1_);
+            this.onPlantGrow(world, blockpos, pos);
+            this.onPlantGrow(world, blockpos.east(), pos);
+            this.onPlantGrow(world, blockpos.south(), pos);
+            this.onPlantGrow(world, blockpos.south().east(), pos);
             return true;
         }
         else
@@ -92,28 +91,28 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
         }
     }
 
-    protected boolean func_175929_a(World world, Random p_175929_2_, BlockPos p_175929_3_, int p_175929_4_)
+    protected boolean ensureGrowable(World world, BlockPos pos, int height)
     {
-        return this.func_175926_c(world, p_175929_3_, p_175929_4_) && this.func_175927_a(p_175929_3_, world);
+        return this.isSpaceAt(world, pos, height) && this.ensureDirtsUnderneath(pos, world);
     }
 
-    protected void func_175925_a(World world, BlockPos p_175925_2_, int p_175925_3_)
+    protected void growLeavesLayerStrict(World world, BlockPos pos, int width)
     {
-        int i = p_175925_3_ * p_175925_3_;
+        int i = width * width;
 
-        for (int j = -p_175925_3_; j <= p_175925_3_ + 1; ++j)
+        for (int j = -width; j <= width + 1; ++j)
         {
-            for (int k = -p_175925_3_; k <= p_175925_3_ + 1; ++k)
+            for (int k = -width; k <= width + 1; ++k)
             {
                 int l = j - 1;
                 int i1 = k - 1;
 
                 if (j * j + k * k <= i || l * l + i1 * i1 <= i || j * j + i1 * i1 <= i || l * l + k * k <= i)
                 {
-                    BlockPos blockpos = p_175925_2_.add(j, 0, k);
+                    BlockPos blockpos = pos.add(j, 0, k);
                     IBlockState state = world.getBlockState(blockpos);
 
-                    if (state.getBlock().isAir(world, blockpos) || state.getBlock().isLeaves(world, blockpos))
+                    if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos))
                     {
                         this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(2));
                     }
@@ -122,20 +121,20 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
         }
     }
 
-    protected void func_175928_b(World world, BlockPos p_175928_2_, int p_175928_3_)
+    protected void growLeavesLayer(World world, BlockPos pos, int width)
     {
-        int i = p_175928_3_ * p_175928_3_;
+        int i = width * width;
 
-        for (int j = -p_175928_3_; j <= p_175928_3_; ++j)
+        for (int j = -width; j <= width; ++j)
         {
-            for (int k = -p_175928_3_; k <= p_175928_3_; ++k)
+            for (int k = -width; k <= width; ++k)
             {
                 if (j * j + k * k <= i)
                 {
-                    BlockPos blockpos = p_175928_2_.add(j, 0, k);
+                    BlockPos blockpos = pos.add(j, 0, k);
                     Block block = world.getBlockState(blockpos).getBlock();
 
-                    if (block.isAir(world, blockpos) || block.isLeaves(world, blockpos))
+                    if (block.isAir(world.getBlockState(blockpos), world, blockpos) || block.isLeaves(world.getBlockState(blockpos), world, blockpos))
                     {
                         if (this.genLeaves)
                         {
@@ -149,6 +148,6 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
 
     private void onPlantGrow(World world, BlockPos pos, BlockPos source)
     {
-        world.getBlockState(pos).getBlock().onPlantGrow(world, pos, source);
+        world.getBlockState(pos).getBlock().onPlantGrow(world.getBlockState(pos), world, pos, source);
     }
 }

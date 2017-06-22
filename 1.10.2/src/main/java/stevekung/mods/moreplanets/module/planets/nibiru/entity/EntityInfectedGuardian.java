@@ -22,6 +22,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -193,7 +194,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
             }
             else
             {
-                Entity entity = this.worldObj.getEntityByID(((Integer)this.dataManager.get(TARGET_ENTITY)).intValue());
+                Entity entity = this.worldObj.getEntityByID(this.dataManager.get(TARGET_ENTITY).intValue());
 
                 if (entity instanceof EntityLivingBase)
                 {
@@ -212,6 +213,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         }
     }
 
+    @Override
     public void notifyDataManagerChange(DataParameter key)
     {
         super.notifyDataManagerChange(key);
@@ -348,21 +350,24 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         super.onLivingUpdate();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public float getTailAnimation(float partialTicks)
     {
         return this.clientSideTailAnimationO + (this.clientSideTailAnimation - this.clientSideTailAnimationO) * partialTicks;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public float getSpikesAnimation(float partialTicks)
     {
         return this.clientSideSpikesAnimationO + (this.clientSideSpikesAnimation - this.clientSideSpikesAnimationO) * partialTicks;
     }
 
+    @Override
     public float getAttackAnimationScale(float partialTicks)
     {
-        return ((float)this.clientSideAttackTime + partialTicks) / (float)this.getAttackDuration();
+        return (this.clientSideAttackTime + partialTicks) / this.getAttackDuration();
     }
 
     @Override
@@ -379,7 +384,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                     if (!entityplayermp.isPotionActive(potion) || entityplayermp.getActivePotionEffect(potion).getAmplifier() < 2 || entityplayermp.getActivePotionEffect(potion).getDuration() < 1200)
                     {
                         MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ);
-                        //entityplayermp.worldObj.playSound(entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, "mob.guardian.curse", 1.0F, 1.0F, false);
+                        entityplayermp.worldObj.playSound(entityplayermp, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, SoundCategory.HOSTILE, 1.0F, 1.0F);
                         entityplayermp.addPotionEffect(new PotionEffect(potion, 6000, 2));
 
                         if (!entityplayermp.capabilities.isCreativeMode && !entityplayermp.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION))

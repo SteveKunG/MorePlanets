@@ -71,11 +71,13 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
         return SoundEvents.ENTITY_SQUID_AMBIENT;
     }
 
+    @Override
     protected SoundEvent getHurtSound()
     {
         return SoundEvents.ENTITY_SQUID_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
         return SoundEvents.ENTITY_SQUID_DEATH;
@@ -99,6 +101,7 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
         return false;
     }
 
+    @Override
     @Nullable
     protected ResourceLocation getLootTable()
     {

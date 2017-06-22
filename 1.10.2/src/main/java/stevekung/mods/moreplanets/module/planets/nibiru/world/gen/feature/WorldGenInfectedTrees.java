@@ -2,29 +2,25 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.BlockPos;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 
-public class WorldGenInfectedTree extends WorldGenAbstractTree
+public class WorldGenInfectedTrees extends WorldGenAbstractTree
 {
     private boolean genLeaves;
-    private Block log;
-    private Block leaves;
-    private int logMeta;
-    private int leavesMeta;
+    private IBlockState log;
+    private IBlockState leaves;
 
-    public WorldGenInfectedTree(boolean genLeaves, Block log, int logMeta, Block leaves, int leavesMeta)
+    public WorldGenInfectedTrees(boolean genLeaves, IBlockState log, IBlockState leaves)
     {
         super(false);
         this.genLeaves = genLeaves;
         this.log = log;
-        this.logMeta = logMeta;
         this.leaves = leaves;
-        this.leavesMeta = leavesMeta;
     }
 
     @Override
@@ -33,7 +29,7 @@ public class WorldGenInfectedTree extends WorldGenAbstractTree
         int i = rand.nextInt(3) + 5;
         boolean flag = true;
 
-        if (pos.getY() >= 1 && pos.getY() + i + 1 <= 256)
+        if (pos.getY() >= 1 && pos.getY() + i + 1 <= world.getHeight())
         {
             for (int j = pos.getY(); j <= pos.getY() + 1 + i; ++j)
             {
@@ -48,15 +44,15 @@ public class WorldGenInfectedTree extends WorldGenAbstractTree
                     k = 2;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
                 for (int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l)
                 {
                     for (int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1)
                     {
-                        if (j >= 0 && j < 256)
+                        if (j >= 0 && j < world.getHeight())
                         {
-                            if (!this.isReplaceable(world,blockpos$mutableblockpos.set(l, j, i1)))
+                            if (!this.isReplaceable(world, mutablePos.setPos(l, j, i1)))
                             {
                                 flag = false;
                             }
@@ -75,19 +71,16 @@ public class WorldGenInfectedTree extends WorldGenAbstractTree
             }
             else
             {
-                BlockPos down = pos.down();
-                Block block1 = world.getBlockState(down).getBlock();
+                IBlockState state = world.getBlockState(pos.down());
 
-                if (block1 == NibiruBlocks.INFECTED_GRASS || block1 == NibiruBlocks.INFECTED_DIRT || block1 == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
+                if (state.getBlock() == NibiruBlocks.INFECTED_GRASS || state.getBlock() == NibiruBlocks.INFECTED_DIRT || state.getBlock() == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
                 {
-                    block1.onPlantGrow(world, down, pos);
-                    int k2 = 3;
-                    int l2 = 0;
+                    state.getBlock().onPlantGrow(state, world, pos.down(), pos);
 
-                    for (int i3 = pos.getY() - k2 + i; i3 <= pos.getY() + i; ++i3)
+                    for (int i3 = pos.getY() - 3 + i; i3 <= pos.getY() + i; ++i3)
                     {
                         int i4 = i3 - (pos.getY() + i);
-                        int j1 = l2 + 1 - i4 / 2;
+                        int j1 = 1 - i4 / 2;
 
                         for (int k1 = pos.getX() - j1; k1 <= pos.getX() + j1; ++k1)
                         {
@@ -100,13 +93,13 @@ public class WorldGenInfectedTree extends WorldGenAbstractTree
                                 if (Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0)
                                 {
                                     BlockPos blockpos = new BlockPos(k1, i3, i2);
-                                    Block block = world.getBlockState(blockpos).getBlock();
+                                    state = world.getBlockState(blockpos);
 
-                                    if (block.isAir(world, blockpos) || block.isLeaves(world, blockpos) || block.getMaterial() == Material.vine)
+                                    if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) || state.getMaterial() == Material.VINE)
                                     {
                                         if (this.genLeaves)
                                         {
-                                            this.setBlockAndNotifyAdequately(world, blockpos, this.leaves.getStateFromMeta(this.leavesMeta));
+                                            this.setBlockAndNotifyAdequately(world, blockpos, this.leaves);
                                         }
                                     }
                                 }
@@ -117,11 +110,11 @@ public class WorldGenInfectedTree extends WorldGenAbstractTree
                     for (int j3 = 0; j3 < i; ++j3)
                     {
                         BlockPos upN = pos.up(j3);
-                        Block block2 = world.getBlockState(upN).getBlock();
+                        state = world.getBlockState(upN);
 
-                        if (block2.isAir(world, upN) || block2.isLeaves(world, upN) || block2.getMaterial() == Material.vine)
+                        if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN) || state.getMaterial() == Material.VINE)
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(j3), this.log.getStateFromMeta(this.logMeta));
+                            this.setBlockAndNotifyAdequately(world, pos.up(j3), this.log);
                         }
                     }
                     return true;

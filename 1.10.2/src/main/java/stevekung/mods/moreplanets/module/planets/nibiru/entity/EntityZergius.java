@@ -102,11 +102,13 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
         return SoundEvents.ENTITY_SILVERFISH_AMBIENT;
     }
 
+    @Override
     protected SoundEvent getHurtSound()
     {
         return SoundEvents.ENTITY_SILVERFISH_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
         return SoundEvents.ENTITY_SILVERFISH_DEATH;

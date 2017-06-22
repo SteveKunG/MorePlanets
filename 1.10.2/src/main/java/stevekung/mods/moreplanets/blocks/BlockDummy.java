@@ -52,7 +52,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        int meta = this.getMetaFromState(world.getBlockState(pos));
+        int meta = this.getMetaFromState(state);
 
         if (meta == 0)
         {

@@ -85,7 +85,7 @@ public class BlockInfectedGrass extends BlockGrassMP implements IGrowable
     {
         if (rand.nextInt(8) == 0)
         {
-            if (!state.getBlock().isSideSolid(state, world, pos.up(), EnumFacing.UP))
+            if (!world.getBlockState(pos.up()).isSideSolid(world, pos.up(), EnumFacing.UP))
             {
                 MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_SPORE, pos.getX() + rand.nextFloat(), pos.getY() + 1.1F, pos.getZ() + rand.nextFloat());
             }

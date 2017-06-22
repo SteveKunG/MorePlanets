@@ -49,6 +49,11 @@
 		"category": "block",
 		"sounds": ["moreplanets:block/egg_destroy"]
 	},
+	"lilypad_place":
+	{
+		"category": "block",
+		"sounds": ["moreplanets:block/lily_place1", "moreplanets:block/lily_place2", "moreplanets:block/lily_place3", "moreplanets:block/lily_place4"]
+	},
 	"fronos_mob_ambient":
 	{
 		"category": "neutral",
@@ -69,12 +74,12 @@
 		"category": "neutral",
 		"sounds": ["moreplanets:neutral/fronos/death"]
 	},
-	"mob.shlime.death":
+	"shlime_death":
 	{
 		"category": "neutral",
 		"sounds": ["moreplanets:neutral/shlime/death"]
 	},
-	"mob.shlime.hurt":
+	"shlime_hurt":
 	{
 		"category": "neutral",
 		"sounds": ["moreplanets:neutral/shlime/hurt1", "moreplanets:neutral/shlime/hurt2", "moreplanets:neutral/shlime/hurt3"]
