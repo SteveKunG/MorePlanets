@@ -18,6 +18,8 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -385,6 +387,21 @@ public class ClientRegisterHelper
                 event.getModelRegistry().putObject(modelResourceLocation, newModel);
             }
         }
+    }
+
+    public static void registerBlockColor(IBlockColor blockColor, Block block)
+    {
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(blockColor, block);
+    }
+
+    public static void registerItemColor(IItemColor blockColor, Block block)
+    {
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(blockColor, block);
+    }
+
+    public static void registerItemColor(IItemColor blockColor, Item item)
+    {
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(blockColor, item);
     }
 
     private static void registerVariantsName(Block block, String variant)

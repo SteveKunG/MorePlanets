@@ -88,7 +88,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                 blackHole.setTileEntityPos(pos);
                 blackHole.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, 0.0F, 0.0F);
                 world.spawnEntityInWorld(blackHole);
-                world.playSound(player, pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, MPSounds.BLACK_HOLE_CREATED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.playSound(null, pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, MPSounds.BLACK_HOLE_CREATED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
                 if (tile instanceof TileEntityBlackHoleStorage)
                 {

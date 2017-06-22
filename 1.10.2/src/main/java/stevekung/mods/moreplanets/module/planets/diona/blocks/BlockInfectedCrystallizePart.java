@@ -10,6 +10,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -72,11 +73,16 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
         else if (entity.motionY < 0.0D)
         {
             entity.motionY = -entity.motionY;
+
+            if (!(entity instanceof EntityLivingBase))
+            {
+                entity.motionY *= 0.8D;
+            }
         }
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityWalk(World world, BlockPos pos, Entity entity)
     {
         if (Math.abs(entity.motionY) < 0.1D && !entity.isSneaking())
         {

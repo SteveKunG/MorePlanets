@@ -32,3 +32,6 @@ ion cannon controller
 ion cannon gun
 satellite part for ion cannon
 xp collect to tile limit
+
+1.10.2
+fix crash shift click in rocket crusher

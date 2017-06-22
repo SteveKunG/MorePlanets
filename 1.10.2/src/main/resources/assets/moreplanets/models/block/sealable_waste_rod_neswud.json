@@ -1,4 +1,5 @@
 {
+"parent": "block/block",
 "textures": {
     "waste_rod": "moreplanets:blocks/waste_rod",
 	"particle": "moreplanets:blocks/sealable_waste_rod",

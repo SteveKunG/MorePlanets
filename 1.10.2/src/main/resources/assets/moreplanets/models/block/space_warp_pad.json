@@ -1,4 +1,5 @@
 {
+    "parent": "block/thin_block",
     "textures": {
         "particle": "moreplanets:blocks/space_warp_pad",
         "texture": "moreplanets:blocks/space_warp_pad"

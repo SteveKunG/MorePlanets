@@ -1,4 +1,5 @@
 {
+    "parent": "block/block",
     "textures": {
         "particle": "moreplanets:blocks/cheese_of_milk_cake_side",
         "bottom": "moreplanets:blocks/cheese_of_milk_cake",

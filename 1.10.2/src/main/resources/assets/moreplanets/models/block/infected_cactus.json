@@ -1,4 +1,5 @@
 {
+    "parent": "block/block",
     "ambientocclusion": false,
     "textures": {
         "particle": "moreplanets:blocks/infected_cactus_side",

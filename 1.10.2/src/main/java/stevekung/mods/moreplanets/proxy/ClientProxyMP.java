@@ -2,25 +2,36 @@ package stevekung.mods.moreplanets.proxy;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import stevekung.mods.moreplanets.client.renderer.*;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
+import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleAlienMinerSpark;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleCrystallizeFlame;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleDarkPortal;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
+import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleAlienBerry;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedSpore;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.util.blocks.BlockStemMP;
 import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLavaMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLiquidDrip;
+import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class ClientProxyMP extends ServerProxyMP
 {
@@ -34,10 +45,21 @@ public class ClientProxyMP extends ServerProxyMP
     @Override
     public void registerInitRendering()
     {
+        BlockColors color = Minecraft.getMinecraft().getBlockColors();
         TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
         TileEntityRenderer.init();
         ItemModelRenderer.init();
         VariantsRenderer.init();
+
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> world != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(world, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D), FronosBlocks.FRONOS_GRASS);
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(120, 85, 190), DionaBlocks.LARGE_INFECTED_CRYSTALLIZE);
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL);
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> state.getValue(BlockStemMP.AGE).intValue() * 32 << 16 | 255 - state.getValue(BlockStemMP.AGE).intValue() * 8 << 8 | state.getValue(BlockStemMP.AGE).intValue() * 4, NibiruBlocks.INFECTED_MELON_STEM);
+
+        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> color.colorMultiplier(((ItemBlock)itemStack.getItem()).getBlock().getStateFromMeta(itemStack.getMetadata()), null, null, tintIndex), FronosBlocks.FRONOS_GRASS);
+        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
+        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> itemStack.hasTagCompound() && tintIndex == 1 ? itemStack.getTagCompound().getInteger("Color") : -1, MPItems.CAPSULE);
     }
 
     @Override

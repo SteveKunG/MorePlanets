@@ -8,6 +8,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -101,11 +102,16 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
         else if (entity.motionY < 0.0D)
         {
             entity.motionY = -entity.motionY;
+
+            if (!(entity instanceof EntityLivingBase))
+            {
+                entity.motionY *= 0.8D;
+            }
         }
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityWalk(World world, BlockPos pos, Entity entity)
     {
         if (Math.abs(entity.motionY) < 0.1D && !entity.isSneaking())
         {

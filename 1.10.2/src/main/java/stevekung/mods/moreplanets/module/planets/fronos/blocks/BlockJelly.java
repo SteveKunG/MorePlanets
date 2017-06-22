@@ -9,6 +9,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -83,17 +84,22 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
         else if (entity.motionY < 0.0D)
         {
             entity.motionY = -entity.motionY;
+
+            if (!(entity instanceof EntityLivingBase))
+            {
+                entity.motionY *= 0.8D;
+            }
         }
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityWalk(World world, BlockPos pos, Entity entity)
     {
         if (Math.abs(entity.motionY) < 0.1D && !entity.isSneaking())
         {
-            double d = 0.4D + Math.abs(entity.motionY) * 0.2D;
-            entity.motionX *= d;
-            entity.motionZ *= d;
+            double d0 = 0.4D + Math.abs(entity.motionY) * 0.2D;
+            entity.motionX *= d0;
+            entity.motionZ *= d0;
         }
     }
 
