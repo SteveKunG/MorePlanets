@@ -1,52 +1,62 @@
 {
-    "variants": {
-        "east=false,north=false,south=false,variant=infected_fence,west=false": { "model": "moreplanets:infected_fence_post" },
-        "east=false,north=true,south=false,variant=infected_fence,west=false": { "model": "moreplanets:infected_fence_n", "uvlock": true },
-        "east=true,north=false,south=false,variant=infected_fence,west=false": { "model": "moreplanets:infected_fence_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,variant=infected_fence,west=false": { "model": "moreplanets:infected_fence_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,variant=infected_fence,west=true": { "model": "moreplanets:infected_fence_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,variant=infected_fence,west=false": { "model": "moreplanets:infected_fence_ne", "uvlock": true },
-        "east=true,north=false,south=true,variant=infected_fence,west=false": { "model": "moreplanets:infected_fence_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,variant=infected_fence,west=true": { "model": "moreplanets:infected_fence_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,variant=infected_fence,west=true": { "model": "moreplanets:infected_fence_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,variant=infected_fence,west=false": { "model": "moreplanets:infected_fence_ns", "uvlock": true },
-        "east=true,north=false,south=false,variant=infected_fence,west=true": { "model": "moreplanets:infected_fence_ns", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,variant=infected_fence,west=false": { "model": "moreplanets:infected_fence_nse", "uvlock": true },
-        "east=true,north=false,south=true,variant=infected_fence,west=true": { "model": "moreplanets:infected_fence_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,variant=infected_fence,west=true": { "model": "moreplanets:infected_fence_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,variant=infected_fence,west=true": { "model": "moreplanets:infected_fence_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,variant=infected_fence,west=true": { "model": "moreplanets:infected_fence_nsew", "uvlock": true },
-		"east=false,north=false,south=false,variant=infected_dead_oak_fence,west=false": { "model": "moreplanets:infected_dead_oak_fence_post" },
-        "east=false,north=true,south=false,variant=infected_dead_oak_fence,west=false": { "model": "moreplanets:infected_dead_oak_fence_n", "uvlock": true },
-        "east=true,north=false,south=false,variant=infected_dead_oak_fence,west=false": { "model": "moreplanets:infected_dead_oak_fence_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,variant=infected_dead_oak_fence,west=false": { "model": "moreplanets:infected_dead_oak_fence_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,variant=infected_dead_oak_fence,west=true": { "model": "moreplanets:infected_dead_oak_fence_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,variant=infected_dead_oak_fence,west=false": { "model": "moreplanets:infected_dead_oak_fence_ne", "uvlock": true },
-        "east=true,north=false,south=true,variant=infected_dead_oak_fence,west=false": { "model": "moreplanets:infected_dead_oak_fence_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,variant=infected_dead_oak_fence,west=true": { "model": "moreplanets:infected_dead_oak_fence_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,variant=infected_dead_oak_fence,west=true": { "model": "moreplanets:infected_dead_oak_fence_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,variant=infected_dead_oak_fence,west=false": { "model": "moreplanets:infected_dead_oak_fence_ns", "uvlock": true },
-        "east=true,north=false,south=false,variant=infected_dead_oak_fence,west=true": { "model": "moreplanets:infected_dead_oak_fence_ns", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,variant=infected_dead_oak_fence,west=false": { "model": "moreplanets:infected_dead_oak_fence_nse", "uvlock": true },
-        "east=true,north=false,south=true,variant=infected_dead_oak_fence,west=true": { "model": "moreplanets:infected_dead_oak_fence_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,variant=infected_dead_oak_fence,west=true": { "model": "moreplanets:infected_dead_oak_fence_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,variant=infected_dead_oak_fence,west=true": { "model": "moreplanets:infected_dead_oak_fence_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,variant=infected_dead_oak_fence,west=true": { "model": "moreplanets:infected_dead_oak_fence_nsew", "uvlock": true },
-		"east=false,north=false,south=false,variant=alien_berry_oak_fence,west=false": { "model": "moreplanets:alien_berry_oak_fence_post" },
-        "east=false,north=true,south=false,variant=alien_berry_oak_fence,west=false": { "model": "moreplanets:alien_berry_oak_fence_n", "uvlock": true },
-        "east=true,north=false,south=false,variant=alien_berry_oak_fence,west=false": { "model": "moreplanets:alien_berry_oak_fence_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,variant=alien_berry_oak_fence,west=false": { "model": "moreplanets:alien_berry_oak_fence_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,variant=alien_berry_oak_fence,west=true": { "model": "moreplanets:alien_berry_oak_fence_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,variant=alien_berry_oak_fence,west=false": { "model": "moreplanets:alien_berry_oak_fence_ne", "uvlock": true },
-        "east=true,north=false,south=true,variant=alien_berry_oak_fence,west=false": { "model": "moreplanets:alien_berry_oak_fence_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,variant=alien_berry_oak_fence,west=true": { "model": "moreplanets:alien_berry_oak_fence_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,variant=alien_berry_oak_fence,west=true": { "model": "moreplanets:alien_berry_oak_fence_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,variant=alien_berry_oak_fence,west=false": { "model": "moreplanets:alien_berry_oak_fence_ns", "uvlock": true },
-        "east=true,north=false,south=false,variant=alien_berry_oak_fence,west=true": { "model": "moreplanets:alien_berry_oak_fence_ns", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,variant=alien_berry_oak_fence,west=false": { "model": "moreplanets:alien_berry_oak_fence_nse", "uvlock": true },
-        "east=true,north=false,south=true,variant=alien_berry_oak_fence,west=true": { "model": "moreplanets:alien_berry_oak_fence_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,variant=alien_berry_oak_fence,west=true": { "model": "moreplanets:alien_berry_oak_fence_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,variant=alien_berry_oak_fence,west=true": { "model": "moreplanets:alien_berry_oak_fence_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,variant=alien_berry_oak_fence,west=true": { "model": "moreplanets:alien_berry_oak_fence_nsew", "uvlock": true }
-    }
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"texture": "moreplanets:blocks/infected_planks"
+		},
+		"model": "fence_post",
+		"uvlock": true
+	},
+	"variants": {
+	    "inventory": [{ }],
+		"north": {
+			"true": {
+				"submodel": {
+					"north": { "model": "fence_side" }
+				}
+			},
+			"false": { }
+		},
+		"east": {
+			"true": {
+				"submodel": {
+					"east": { "model": "fence_side", "y": 90, "uvlock": true }
+				}
+			},
+			"false": { }
+		},
+		"south": {
+			"true": {
+				"submodel": {
+					"south": { "model": "fence_side", "y": 180, "uvlock": true }
+				}
+			},
+			"false": { }
+		},
+		"west": {
+			"true": {
+				"submodel": {
+					"west": { "model": "fence_side", "y": 270, "uvlock": true }
+				}
+			},
+			"false": { }
+		},
+		"variant": {
+			"infected_fence": {
+				"textures": {
+					"texture": "moreplanets:blocks/infected_planks"
+				}
+			},
+			"infected_dead_oak_fence": {
+				"textures": {
+					"texture": "moreplanets:blocks/infected_dead_oak_planks"
+				}
+			},
+			"alien_berry_oak_fence": {
+				"textures": {
+					"texture": "moreplanets:blocks/alien_berry_oak_planks"
+				}
+			}
+		}
+	}
 }

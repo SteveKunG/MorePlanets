@@ -1,4 +1,5 @@
 {
+    "parent": "block/block",
     "textures": {
         "all": "moreplanets:blocks/waste_rod"
     },
@@ -15,12 +16,5 @@
                 "down": { "texture": "#all", "uv": [ 5.0, 5.0, 11.0, 11.0 ] }
             }
         }
-    ],
-	"display": {
-        "thirdperson": {
-            "rotation": [ 10, -45, 170 ],
-            "translation": [ 0, 1.5, -2.75 ],
-            "scale": [ 0.375, 0.375, 0.375 ]
-        }
-    }
+    ]
 }

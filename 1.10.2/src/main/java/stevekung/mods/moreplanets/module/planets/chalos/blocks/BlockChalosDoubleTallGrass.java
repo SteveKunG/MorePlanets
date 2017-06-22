@@ -53,16 +53,7 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
     @Override
     public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
-        IBlockState iblockstate = world.getBlockState(pos);
-
-        if (iblockstate.getBlock() != this)
-        {
-            return true;
-        }
-        else
-        {
-            return true;
-        }
+        return true;
     }
 
     @Override
@@ -87,16 +78,6 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
             if (block1 == this)
             {
                 world.setBlockState(blockpos1, Blocks.AIR.getDefaultState(), 3);
-            }
-        }
-        else
-        {
-            boolean flag = state.getValue(HALF) == EnumBlockHalf.UPPER;
-
-            if (!flag && world.getBlockState(pos.up()).getBlock() != this)
-            {
-                this.dropBlockAsItem(world, pos, state, 0);
-                world.destroyBlock(pos, true);
             }
         }
     }
@@ -153,57 +134,40 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
         {
             if (world.getBlockState(pos.down()).getBlock() == this)
             {
-                if (!player.capabilities.isCreativeMode)
-                {
-                    IBlockState iblockstate1 = world.getBlockState(pos.down());
-                    world.destroyBlock(pos.down(), true);
-
-                    if (!world.isRemote)
-                    {
-                        if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == Items.SHEARS)
-                        {
-                            this.onHarvest(world, pos, iblockstate1, player);
-                            world.setBlockToAir(pos.down());
-                        }
-                        else
-                        {
-                            world.destroyBlock(pos.down(), true);
-                        }
-                    }
-                    else
-                    {
-                        world.setBlockToAir(pos.down());
-                    }
-                }
-                else
+                if (player.capabilities.isCreativeMode)
                 {
                     world.setBlockToAir(pos.down());
                 }
+                else
+                {
+                    if (world.isRemote)
+                    {
+                        world.setBlockToAir(pos.down());
+                    }
+                    else if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == Items.SHEARS)
+                    {
+                        world.setBlockToAir(pos.down());
+                    }
+                    else
+                    {
+                        world.destroyBlock(pos.down(), true);
+                    }
+                }
             }
         }
-        else if (player.capabilities.isCreativeMode && world.getBlockState(pos.up()).getBlock() == this)
+        else if (world.getBlockState(pos.up()).getBlock() == this)
         {
             world.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);
         }
-        super.onBlockHarvested(world, pos, state, player);
-    }
-
-    private boolean onHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
-    {
-        return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
     {
-        BlockType[] aBlockType = BlockType.valuesCached();
-        int i = aBlockType.length;
-
-        for (int j = 0; j < i; ++j)
+        for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
-            BlockType BlockType = aBlockType[j];
-            list.add(new ItemStack(item, 1, BlockType.ordinal()));
+            list.add(new ItemStack(item, 1, i));
         }
     }
 
@@ -242,9 +206,9 @@ public class BlockChalosDoubleTallGrass extends BlockBushMP implements IShearabl
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Block.EnumOffsetType getOffsetType()
+    public EnumOffsetType getOffsetType()
     {
-        return Block.EnumOffsetType.XZ;
+        return EnumOffsetType.XZ;
     }
 
     @Override

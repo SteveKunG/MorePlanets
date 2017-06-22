@@ -84,13 +84,8 @@ public class PacketSimpleMP extends PacketBase
     @SideOnly(Side.CLIENT)
     public void handleClientSide(EntityPlayer player)
     {
-        /*if (player instanceof EntityPlayerSP)
-        {
-        }*/
-
         switch (this.type)
         {
-
         default:
             break;
         }
@@ -179,11 +174,10 @@ public class PacketSimpleMP extends PacketBase
         S_RESPAWN_PLAYER_NETHER(Side.SERVER),
         S_DISABLE_BLACK_HOLE(Side.SERVER, BlockPos.class),
         S_USE_HOPPER(Side.SERVER, BlockPos.class),
-        S_CHANGE_COLLECT_MODE(Side.SERVER, BlockPos.class),
+        S_CHANGE_COLLECT_MODE(Side.SERVER, BlockPos.class);
 
-        ;
         // CLIENT
-        //C_TELEPAD_SEND(Side.CLIENT);
+        //C_SWING_HAND(Side.CLIENT);
 
         private Side targetSide;
         private Class[] decodeAs;

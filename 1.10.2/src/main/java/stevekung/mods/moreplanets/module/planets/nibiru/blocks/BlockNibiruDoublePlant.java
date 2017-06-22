@@ -3,6 +3,8 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.google.common.collect.Lists;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -33,8 +35,8 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IShearable, IBlockVariants
 {
-    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.<BlockType>create("variant", BlockType.class);
-    public static PropertyEnum<EnumBlockHalf> HALF = PropertyEnum.<EnumBlockHalf>create("half", EnumBlockHalf.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<EnumBlockHalf> HALF = PropertyEnum.create("half", EnumBlockHalf.class);
 
     public BlockNibiruDoublePlant(String name)
     {
@@ -54,15 +56,15 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     @Override
     public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
-        IBlockState iblockstate = world.getBlockState(pos);
+        IBlockState state = world.getBlockState(pos);
 
-        if (iblockstate.getBlock() != this)
+        if (state.getBlock() != this)
         {
             return true;
         }
         else
         {
-            BlockType type = this.getActualState(iblockstate, world, pos).getValue(VARIANT);
+            BlockType type = this.getActualState(state, world, pos).getValue(VARIANT);
             return type == BlockType.DOUBLE_INFECTED_FERN || type == BlockType.DOUBLE_INFECTED_GRASS || type == BlockType.DOUBLE_GREEN_VEIN_GRASS;
         }
     }
@@ -89,16 +91,6 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
             if (block1 == this)
             {
                 world.setBlockState(blockpos1, Blocks.AIR.getDefaultState(), 3);
-            }
-        }
-        else
-        {
-            boolean flag = state.getValue(HALF) == EnumBlockHalf.UPPER;
-
-            if (!flag && world.getBlockState(pos.up()).getBlock() != this)
-            {
-                this.dropBlockAsItem(world, pos, state, 0);
-                world.destroyBlock(pos, false);
             }
         }
     }
@@ -184,7 +176,11 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
         {
             if (world.getBlockState(pos.down()).getBlock() == this)
             {
-                if (!player.capabilities.isCreativeMode)
+                if (player.capabilities.isCreativeMode)
+                {
+                    world.setBlockToAir(pos.down());
+                }
+                else
                 {
                     IBlockState iblockstate = world.getBlockState(pos.down());
                     BlockType type = iblockstate.getValue(VARIANT);
@@ -193,34 +189,26 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
                     {
                         world.destroyBlock(pos.down(), true);
                     }
-                    else if (!world.isRemote)
-                    {
-                        if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == Items.SHEARS)
-                        {
-                            this.onHarvest(world, pos, iblockstate, player);
-                            world.setBlockToAir(pos.down());
-                        }
-                        else
-                        {
-                            world.destroyBlock(pos.down(), true);
-                        }
-                    }
-                    else
+                    else if (world.isRemote)
                     {
                         world.setBlockToAir(pos.down());
                     }
-                }
-                else
-                {
-                    world.setBlockToAir(pos.down());
+                    else if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == Items.SHEARS)
+                    {
+                        this.onHarvest(world, pos, iblockstate, player);
+                        world.setBlockToAir(pos.down());
+                    }
+                    else
+                    {
+                        world.destroyBlock(pos.down(), true);
+                    }
                 }
             }
         }
-        else if (player.capabilities.isCreativeMode && world.getBlockState(pos.up()).getBlock() == this)
+        else if (world.getBlockState(pos.up()).getBlock() == this)
         {
             world.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);
         }
-        super.onBlockHarvested(world, pos, state, player);
     }
 
     @Override
@@ -303,7 +291,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
+        List<ItemStack> ret = Lists.newArrayList();
         BlockType type = world.getBlockState(pos).getValue(VARIANT);
 
         if (type == BlockType.DOUBLE_INFECTED_GRASS)
@@ -324,7 +312,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     @Override
     public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
     {
-        if (state.getBlock() ==  this && state.getValue(HALF) == EnumBlockHalf.LOWER && world.getBlockState(pos.up()).getBlock() == this)
+        if (state.getBlock() == this && state.getValue(HALF) == EnumBlockHalf.LOWER && world.getBlockState(pos.up()).getBlock() == this)
         {
             world.setBlockToAir(pos.up());
         }

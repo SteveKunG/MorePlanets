@@ -55,7 +55,7 @@ public class ItemBlockSporelily extends ItemBlock
                     {
                         --itemStack.stackSize;
                     }
-
+                    player.swingArm(hand);
                     player.addStat(StatList.getObjectUseStats(this));
                     world.playSound(player, blockpos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     return new ActionResult(EnumActionResult.SUCCESS, itemStack);

@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
@@ -155,7 +154,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
                 if (player instanceof EntityPlayerMP)
                 {
                     EntityPlayerMP playerMP = (EntityPlayerMP) player;
-                    playerMP.startRiding((Entity)null);
+                    playerMP.dismountRidingEntity();
                     playerMP.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 120, 10));
                     playerMP.connection.setPlayerLocation(playerMP.posX, playerMP.posY + 64, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
                 }

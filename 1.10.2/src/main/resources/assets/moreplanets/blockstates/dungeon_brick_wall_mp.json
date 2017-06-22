@@ -1,100 +1,72 @@
 {
-    "variants": {
-        "east=false,north=false,south=false,up=false,variant=diona_dungeon_brick_wall,west=false": { "model": "moreplanets:diona_dungeon_brick_wall_post" },
-        "east=false,north=true,south=false,up=false,variant=diona_dungeon_brick_wall,west=false":  { "model": "moreplanets:diona_dungeon_brick_wall_n" },
-        "east=true,north=false,south=false,up=false,variant=diona_dungeon_brick_wall,west=false":  { "model": "moreplanets:diona_dungeon_brick_wall_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=false,variant=diona_dungeon_brick_wall,west=false":  { "model": "moreplanets:diona_dungeon_brick_wall_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,up=false,variant=diona_dungeon_brick_wall,west=true":  { "model": "moreplanets:diona_dungeon_brick_wall_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,up=false,variant=diona_dungeon_brick_wall,west=false":   { "model": "moreplanets:diona_dungeon_brick_wall_ne" },
-        "east=true,north=false,south=true,up=false,variant=diona_dungeon_brick_wall,west=false":   { "model": "moreplanets:diona_dungeon_brick_wall_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=false,variant=diona_dungeon_brick_wall,west=true":   { "model": "moreplanets:diona_dungeon_brick_wall_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,up=false,variant=diona_dungeon_brick_wall,west=true":   { "model": "moreplanets:diona_dungeon_brick_wall_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,up=false,variant=diona_dungeon_brick_wall,west=false":   { "model": "moreplanets:diona_dungeon_brick_wall_ns" },
-        "east=true,north=false,south=false,up=false,variant=diona_dungeon_brick_wall,west=true":   { "model": "moreplanets:diona_dungeon_brick_wall_ns", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,up=false,variant=diona_dungeon_brick_wall,west=false":    { "model": "moreplanets:diona_dungeon_brick_wall_nse" },
-        "east=true,north=false,south=true,up=false,variant=diona_dungeon_brick_wall,west=true":    { "model": "moreplanets:diona_dungeon_brick_wall_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,up=false,variant=diona_dungeon_brick_wall,west=true":    { "model": "moreplanets:diona_dungeon_brick_wall_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,up=false,variant=diona_dungeon_brick_wall,west=true":    { "model": "moreplanets:diona_dungeon_brick_wall_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,up=false,variant=diona_dungeon_brick_wall,west=true":     { "model": "moreplanets:diona_dungeon_brick_wall_nsew" },
-        "east=false,north=false,south=false,up=true,variant=diona_dungeon_brick_wall,west=false":  { "model": "moreplanets:diona_dungeon_brick_wall_post" },
-        "east=false,north=true,south=false,up=true,variant=diona_dungeon_brick_wall,west=false":   { "model": "moreplanets:diona_dungeon_brick_wall_n" },
-        "east=true,north=false,south=false,up=true,variant=diona_dungeon_brick_wall,west=false":   { "model": "moreplanets:diona_dungeon_brick_wall_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=true,variant=diona_dungeon_brick_wall,west=false":   { "model": "moreplanets:diona_dungeon_brick_wall_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,up=true,variant=diona_dungeon_brick_wall,west=true":   { "model": "moreplanets:diona_dungeon_brick_wall_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,up=true,variant=diona_dungeon_brick_wall,west=false":    { "model": "moreplanets:diona_dungeon_brick_wall_ne" },
-        "east=true,north=false,south=true,up=true,variant=diona_dungeon_brick_wall,west=false":    { "model": "moreplanets:diona_dungeon_brick_wall_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=true,variant=diona_dungeon_brick_wall,west=true":    { "model": "moreplanets:diona_dungeon_brick_wall_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,up=true,variant=diona_dungeon_brick_wall,west=true":    { "model": "moreplanets:diona_dungeon_brick_wall_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,up=true,variant=diona_dungeon_brick_wall,west=false":    { "model": "moreplanets:diona_dungeon_brick_wall_ns_above" },
-        "east=true,north=false,south=false,up=true,variant=diona_dungeon_brick_wall,west=true":    { "model": "moreplanets:diona_dungeon_brick_wall_ns_above", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,up=true,variant=diona_dungeon_brick_wall,west=false":     { "model": "moreplanets:diona_dungeon_brick_wall_nse" },
-        "east=true,north=false,south=true,up=true,variant=diona_dungeon_brick_wall,west=true":     { "model": "moreplanets:diona_dungeon_brick_wall_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,up=true,variant=diona_dungeon_brick_wall,west=true":     { "model": "moreplanets:diona_dungeon_brick_wall_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,up=true,variant=diona_dungeon_brick_wall,west=true":     { "model": "moreplanets:diona_dungeon_brick_wall_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,up=true,variant=diona_dungeon_brick_wall,west=true":      { "model": "moreplanets:diona_dungeon_brick_wall_nsew" },
-		"east=false,north=false,south=false,up=false,variant=chalos_dungeon_brick_wall,west=false": { "model": "moreplanets:chalos_dungeon_brick_wall_post" },
-        "east=false,north=true,south=false,up=false,variant=chalos_dungeon_brick_wall,west=false":  { "model": "moreplanets:chalos_dungeon_brick_wall_n" },
-        "east=true,north=false,south=false,up=false,variant=chalos_dungeon_brick_wall,west=false":  { "model": "moreplanets:chalos_dungeon_brick_wall_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=false,variant=chalos_dungeon_brick_wall,west=false":  { "model": "moreplanets:chalos_dungeon_brick_wall_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,up=false,variant=chalos_dungeon_brick_wall,west=true":  { "model": "moreplanets:chalos_dungeon_brick_wall_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,up=false,variant=chalos_dungeon_brick_wall,west=false":   { "model": "moreplanets:chalos_dungeon_brick_wall_ne" },
-        "east=true,north=false,south=true,up=false,variant=chalos_dungeon_brick_wall,west=false":   { "model": "moreplanets:chalos_dungeon_brick_wall_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=false,variant=chalos_dungeon_brick_wall,west=true":   { "model": "moreplanets:chalos_dungeon_brick_wall_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,up=false,variant=chalos_dungeon_brick_wall,west=true":   { "model": "moreplanets:chalos_dungeon_brick_wall_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,up=false,variant=chalos_dungeon_brick_wall,west=false":   { "model": "moreplanets:chalos_dungeon_brick_wall_ns" },
-        "east=true,north=false,south=false,up=false,variant=chalos_dungeon_brick_wall,west=true":   { "model": "moreplanets:chalos_dungeon_brick_wall_ns", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,up=false,variant=chalos_dungeon_brick_wall,west=false":    { "model": "moreplanets:chalos_dungeon_brick_wall_nse" },
-        "east=true,north=false,south=true,up=false,variant=chalos_dungeon_brick_wall,west=true":    { "model": "moreplanets:chalos_dungeon_brick_wall_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,up=false,variant=chalos_dungeon_brick_wall,west=true":    { "model": "moreplanets:chalos_dungeon_brick_wall_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,up=false,variant=chalos_dungeon_brick_wall,west=true":    { "model": "moreplanets:chalos_dungeon_brick_wall_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,up=false,variant=chalos_dungeon_brick_wall,west=true":     { "model": "moreplanets:chalos_dungeon_brick_wall_nsew" },
-        "east=false,north=false,south=false,up=true,variant=chalos_dungeon_brick_wall,west=false":  { "model": "moreplanets:chalos_dungeon_brick_wall_post" },
-        "east=false,north=true,south=false,up=true,variant=chalos_dungeon_brick_wall,west=false":   { "model": "moreplanets:chalos_dungeon_brick_wall_n" },
-        "east=true,north=false,south=false,up=true,variant=chalos_dungeon_brick_wall,west=false":   { "model": "moreplanets:chalos_dungeon_brick_wall_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=true,variant=chalos_dungeon_brick_wall,west=false":   { "model": "moreplanets:chalos_dungeon_brick_wall_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,up=true,variant=chalos_dungeon_brick_wall,west=true":   { "model": "moreplanets:chalos_dungeon_brick_wall_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,up=true,variant=chalos_dungeon_brick_wall,west=false":    { "model": "moreplanets:chalos_dungeon_brick_wall_ne" },
-        "east=true,north=false,south=true,up=true,variant=chalos_dungeon_brick_wall,west=false":    { "model": "moreplanets:chalos_dungeon_brick_wall_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=true,variant=chalos_dungeon_brick_wall,west=true":    { "model": "moreplanets:chalos_dungeon_brick_wall_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,up=true,variant=chalos_dungeon_brick_wall,west=true":    { "model": "moreplanets:chalos_dungeon_brick_wall_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,up=true,variant=chalos_dungeon_brick_wall,west=false":    { "model": "moreplanets:chalos_dungeon_brick_wall_ns_above" },
-        "east=true,north=false,south=false,up=true,variant=chalos_dungeon_brick_wall,west=true":    { "model": "moreplanets:chalos_dungeon_brick_wall_ns_above", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,up=true,variant=chalos_dungeon_brick_wall,west=false":     { "model": "moreplanets:chalos_dungeon_brick_wall_nse" },
-        "east=true,north=false,south=true,up=true,variant=chalos_dungeon_brick_wall,west=true":     { "model": "moreplanets:chalos_dungeon_brick_wall_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,up=true,variant=chalos_dungeon_brick_wall,west=true":     { "model": "moreplanets:chalos_dungeon_brick_wall_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,up=true,variant=chalos_dungeon_brick_wall,west=true":     { "model": "moreplanets:chalos_dungeon_brick_wall_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,up=true,variant=chalos_dungeon_brick_wall,west=true":      { "model": "moreplanets:chalos_dungeon_brick_wall_nsew" },
-		"east=false,north=false,south=false,up=false,variant=nibiru_dungeon_brick_wall,west=false": { "model": "moreplanets:nibiru_dungeon_brick_wall_post" },
-        "east=false,north=true,south=false,up=false,variant=nibiru_dungeon_brick_wall,west=false":  { "model": "moreplanets:nibiru_dungeon_brick_wall_n" },
-        "east=true,north=false,south=false,up=false,variant=nibiru_dungeon_brick_wall,west=false":  { "model": "moreplanets:nibiru_dungeon_brick_wall_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=false,variant=nibiru_dungeon_brick_wall,west=false":  { "model": "moreplanets:nibiru_dungeon_brick_wall_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,up=false,variant=nibiru_dungeon_brick_wall,west=true":  { "model": "moreplanets:nibiru_dungeon_brick_wall_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,up=false,variant=nibiru_dungeon_brick_wall,west=false":   { "model": "moreplanets:nibiru_dungeon_brick_wall_ne" },
-        "east=true,north=false,south=true,up=false,variant=nibiru_dungeon_brick_wall,west=false":   { "model": "moreplanets:nibiru_dungeon_brick_wall_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=false,variant=nibiru_dungeon_brick_wall,west=true":   { "model": "moreplanets:nibiru_dungeon_brick_wall_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,up=false,variant=nibiru_dungeon_brick_wall,west=true":   { "model": "moreplanets:nibiru_dungeon_brick_wall_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,up=false,variant=nibiru_dungeon_brick_wall,west=false":   { "model": "moreplanets:nibiru_dungeon_brick_wall_ns" },
-        "east=true,north=false,south=false,up=false,variant=nibiru_dungeon_brick_wall,west=true":   { "model": "moreplanets:nibiru_dungeon_brick_wall_ns", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,up=false,variant=nibiru_dungeon_brick_wall,west=false":    { "model": "moreplanets:nibiru_dungeon_brick_wall_nse" },
-        "east=true,north=false,south=true,up=false,variant=nibiru_dungeon_brick_wall,west=true":    { "model": "moreplanets:nibiru_dungeon_brick_wall_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,up=false,variant=nibiru_dungeon_brick_wall,west=true":    { "model": "moreplanets:nibiru_dungeon_brick_wall_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,up=false,variant=nibiru_dungeon_brick_wall,west=true":    { "model": "moreplanets:nibiru_dungeon_brick_wall_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,up=false,variant=nibiru_dungeon_brick_wall,west=true":     { "model": "moreplanets:nibiru_dungeon_brick_wall_nsew" },
-        "east=false,north=false,south=false,up=true,variant=nibiru_dungeon_brick_wall,west=false":  { "model": "moreplanets:nibiru_dungeon_brick_wall_post" },
-        "east=false,north=true,south=false,up=true,variant=nibiru_dungeon_brick_wall,west=false":   { "model": "moreplanets:nibiru_dungeon_brick_wall_n" },
-        "east=true,north=false,south=false,up=true,variant=nibiru_dungeon_brick_wall,west=false":   { "model": "moreplanets:nibiru_dungeon_brick_wall_n", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=true,variant=nibiru_dungeon_brick_wall,west=false":   { "model": "moreplanets:nibiru_dungeon_brick_wall_n", "y": 180, "uvlock": true },
-        "east=false,north=false,south=false,up=true,variant=nibiru_dungeon_brick_wall,west=true":   { "model": "moreplanets:nibiru_dungeon_brick_wall_n", "y": 270, "uvlock": true },
-        "east=true,north=true,south=false,up=true,variant=nibiru_dungeon_brick_wall,west=false":    { "model": "moreplanets:nibiru_dungeon_brick_wall_ne" },
-        "east=true,north=false,south=true,up=true,variant=nibiru_dungeon_brick_wall,west=false":    { "model": "moreplanets:nibiru_dungeon_brick_wall_ne", "y": 90, "uvlock": true },
-        "east=false,north=false,south=true,up=true,variant=nibiru_dungeon_brick_wall,west=true":    { "model": "moreplanets:nibiru_dungeon_brick_wall_ne", "y": 180, "uvlock": true },
-        "east=false,north=true,south=false,up=true,variant=nibiru_dungeon_brick_wall,west=true":    { "model": "moreplanets:nibiru_dungeon_brick_wall_ne", "y": 270, "uvlock": true },
-        "east=false,north=true,south=true,up=true,variant=nibiru_dungeon_brick_wall,west=false":    { "model": "moreplanets:nibiru_dungeon_brick_wall_ns_above" },
-        "east=true,north=false,south=false,up=true,variant=nibiru_dungeon_brick_wall,west=true":    { "model": "moreplanets:nibiru_dungeon_brick_wall_ns_above", "y": 90, "uvlock": true },
-        "east=true,north=true,south=true,up=true,variant=nibiru_dungeon_brick_wall,west=false":     { "model": "moreplanets:nibiru_dungeon_brick_wall_nse" },
-        "east=true,north=false,south=true,up=true,variant=nibiru_dungeon_brick_wall,west=true":     { "model": "moreplanets:nibiru_dungeon_brick_wall_nse", "y": 90, "uvlock": true },
-        "east=false,north=true,south=true,up=true,variant=nibiru_dungeon_brick_wall,west=true":     { "model": "moreplanets:nibiru_dungeon_brick_wall_nse", "y": 180, "uvlock": true },
-        "east=true,north=true,south=false,up=true,variant=nibiru_dungeon_brick_wall,west=true":     { "model": "moreplanets:nibiru_dungeon_brick_wall_nse", "y": 270, "uvlock": true },
-        "east=true,north=true,south=true,up=true,variant=nibiru_dungeon_brick_wall,west=true":      { "model": "moreplanets:nibiru_dungeon_brick_wall_nsew" }
-    }
+	"forge_marker": 1,
+	"defaults": {
+		"model": "wall_post",
+		"uvlock": true
+	},
+	"variants": {
+	    "inventory": [{ }],
+		"north": {
+			"true": {
+				"submodel": {
+					"north": { "model": "wall_side" }
+				}
+			},
+			"false": { }
+		},
+		"east": {
+			"true": {
+				"submodel": {
+					"east": { "model": "wall_side", "y": 90, "uvlock": true }
+				}
+			},
+			"false": { }
+		},
+		"south": {
+			"true": {
+				"submodel": {
+					"south": { "model": "wall_side", "y": 180, "uvlock": true }
+				}
+			},
+			"false": { }
+		},
+		"west": {
+			"true": {
+				"submodel": {
+					"west": { "model": "wall_side", "y": 270, "uvlock": true }
+				}
+			},
+			"false": { }
+		},
+		"up": {
+			"true": {
+				"submodel": {
+					"up": { "model": "wall_post" }
+				}
+			},
+			"false": { }
+		},
+		"variant": {
+			"diona_dungeon_brick_wall": {
+				"textures": {
+					"wall": "moreplanets:blocks/diona_dungeon_brick"
+				}
+			},
+			"chalos_dungeon_brick_wall": {
+				"textures": {
+					"wall": "moreplanets:blocks/chalos_dungeon_brick"
+				}
+			},
+			"nibiru_dungeon_brick_wall": {
+				"textures": {
+					"wall": "moreplanets:blocks/nibiru_dungeon_brick"
+				}
+			},
+			"fronos_dungeon_brick_wall": {
+				"textures": {
+					"wall": "moreplanets:blocks/fronos_dungeon_brick"
+				}
+			}
+		}
+	}
 }

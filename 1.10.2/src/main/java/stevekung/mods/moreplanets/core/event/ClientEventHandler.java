@@ -589,10 +589,7 @@ public class ClientEventHandler
             {
                 if (event instanceof MouseEvent || event instanceof PlayerInteractEvent)
                 {
-                    for (EnumHand hand : EnumHand.values())
-                    {
-                        player.swingArm(hand);
-                    }
+                    player.swingArm(EnumHand.MAIN_HAND);
                     GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FIRE_EXTINGUISH, GCCoreUtil.getDimensionID(world), firePos));
                     event.setCanceled(true);
                 }

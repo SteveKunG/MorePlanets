@@ -1,5 +1,5 @@
 {
-    "parent": "block/tallgrass",
+    "parent": "block/cross",
     "textures": {
         "cross": "moreplanets:blocks/double_infected_fern_top"
     }
