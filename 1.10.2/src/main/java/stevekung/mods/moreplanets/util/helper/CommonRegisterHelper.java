@@ -27,7 +27,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
@@ -115,12 +114,6 @@ public class CommonRegisterHelper
         {
             CommonRegisterHelper.registerSorted(item);
         }
-    }
-
-    public static SoundEvent registerSound(String name)
-    {
-        ResourceLocation resource = new ResourceLocation("moreplanets:" + name);
-        return GameRegistry.register(new SoundEvent(resource).setRegistryName(resource));
     }
 
     public static ResourceLocation registerLootTable(ResourceLocation resource)

@@ -8,7 +8,6 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import stevekung.mods.moreplanets.client.renderer.*;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPSchematics;
-import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleAlienMinerSpark;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleCrystallizeFlame;
@@ -39,7 +38,6 @@ public class ClientProxyMP extends ServerProxyMP
         TileEntityRenderer.init();
         ItemModelRenderer.init();
         VariantsRenderer.init();
-        MPSounds.init();
     }
 
     @Override
