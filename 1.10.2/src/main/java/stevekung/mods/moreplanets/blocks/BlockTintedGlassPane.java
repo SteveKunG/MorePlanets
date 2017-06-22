@@ -4,7 +4,6 @@ import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -86,24 +85,6 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, new IProperty[] {NORTH, EAST, WEST, SOUTH, BlockStateHelper.COLOR});
-    }
-
-    @Override
-    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
-    {
-        if (!world.isRemote)
-        {
-            BlockBeacon.updateColorAsync(world, pos);
-        }
-    }
-
-    @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state)
-    {
-        if (!world.isRemote)
-        {
-            BlockBeacon.updateColorAsync(world, pos);
-        }
     }
 
     @Override
