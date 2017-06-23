@@ -22,7 +22,7 @@ public class Tier6RocketRecipeHandler implements IRecipeHandler<Tier6RocketRecip
     @Override
     public String getRecipeCategoryUid(Tier6RocketRecipeWrapper recipe)
     {
-        return MPJEIRecipes.TIER_6_ROCKET;
+        return this.getRecipeCategoryUid();
     }
 
     @Override
