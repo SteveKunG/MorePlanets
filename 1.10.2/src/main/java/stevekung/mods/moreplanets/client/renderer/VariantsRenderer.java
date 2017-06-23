@@ -12,7 +12,7 @@ import stevekung.mods.moreplanets.items.ItemLaserBullet;
 import stevekung.mods.moreplanets.items.ItemSpaceFish;
 import stevekung.mods.moreplanets.items.ItemSpecialSchematic;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalos;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalosDoubleTallGrass;
+import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalosDoublePlant;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockCheeseDirt;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
@@ -48,7 +48,7 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(DionaBlocks.INFECTED_CRYSTALLIZE_PART, BlockInfectedCrystallizePart.BlockType.class);
         ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHALOS_BLOCK, BlockChalos.BlockType.class);
         ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHEESE_DIRT, BlockCheeseDirt.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS, BlockChalosDoubleTallGrass.BlockType.class);
+        ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHALOS_DOUBLE_PLANT, BlockChalosDoublePlant.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.INFECTED_DIRT, BlockInfectedDirt.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_SANDSTONE, BlockNibiruSandstone.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_LOG, BlockNibiruLog.BlockType.class);

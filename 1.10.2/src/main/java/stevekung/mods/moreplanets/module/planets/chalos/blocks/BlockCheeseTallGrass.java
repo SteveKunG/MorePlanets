@@ -98,10 +98,9 @@ public class BlockCheeseTallGrass extends BlockBushMP implements IShearable, IGr
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state)
     {
-        if (ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS.canBlockStay(world, pos, ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS.getDefaultState()) && world.isAirBlock(pos.up()))
+        if (ChalosBlocks.CHALOS_DOUBLE_PLANT.canBlockStay(world, pos, ChalosBlocks.CHALOS_DOUBLE_PLANT.getDefaultState()) && world.isAirBlock(pos.up()))
         {
-            world.setBlockState(pos, ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS.getDefaultState().withProperty(BlockChalosDoubleTallGrass.HALF, BlockChalosDoubleTallGrass.EnumBlockHalf.LOWER).withProperty(BlockChalosDoubleTallGrass.VARIANT, BlockChalosDoubleTallGrass.BlockType.CHEESE_DOUBLE_TALL_GRASS), 2);
-            world.setBlockState(pos.up(), ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS.getDefaultState().withProperty(BlockChalosDoubleTallGrass.HALF, BlockChalosDoubleTallGrass.EnumBlockHalf.UPPER).withProperty(BlockChalosDoubleTallGrass.VARIANT, BlockChalosDoubleTallGrass.BlockType.CHEESE_DOUBLE_TALL_GRASS), 2);
+            ChalosBlocks.CHALOS_DOUBLE_PLANT.placeAt(world, pos, BlockChalosDoublePlant.BlockType.CHEESE_DOUBLE_TALL_GRASS, 2);
         }
     }
 

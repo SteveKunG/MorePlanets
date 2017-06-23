@@ -62,7 +62,7 @@ public class BlockBushMP extends BlockBaseMP
     @Override
     public boolean canReplace(World world, BlockPos pos, EnumFacing side, ItemStack itemStack)
     {
-        if (world == null || pos == null || side == null || itemStack == null)
+        if (world == null || pos == null || side == null)
         {
             return false;
         }

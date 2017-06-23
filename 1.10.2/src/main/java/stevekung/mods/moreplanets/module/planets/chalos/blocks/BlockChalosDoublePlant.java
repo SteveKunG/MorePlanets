@@ -1,7 +1,9 @@
-package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
+package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
 import java.util.List;
 import java.util.Random;
+
+import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
@@ -15,7 +17,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -32,39 +33,33 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.VariantsName;
+import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
-import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
-public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IShearable, IBlockVariants
+public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IShearable
 {
     public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
-    public BlockNibiruDoublePlant(String name)
+    public BlockChalosDoublePlant(String name)
     {
         super(Material.VINE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.INFECTED_ORANGE_ROSE_BUSH).withProperty(BlockDoublePlant.HALF, EnumBlockHalf.LOWER));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.CHEESE_DOUBLE_TALL_GRASS).withProperty(BlockDoublePlant.HALF, EnumBlockHalf.LOWER));
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);
         this.setUnlocalizedName(name);
     }
 
     @Override
-    public boolean canReplace(World world, BlockPos pos, EnumFacing side, ItemStack itemStack)
+    public boolean canReplace(World world, BlockPos pos, EnumFacing side, @Nullable ItemStack itemStack)
     {
-        BlockType type = this.getStateFromMeta(itemStack.getItemDamage()).getValue(VARIANT);
+        return this.canPlaceBlockAt(world, pos);
+    }
 
-        if (type != BlockType.DOUBLE_GREEN_VEIN_GRASS)
-        {
-            boolean canPlace = world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_DIRT || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_FARMLAND;
-            return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canPlace && world.isAirBlock(pos.up());
-        }
-        else
-        {
-            boolean canPlace = world.getBlockState(pos.down()).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_DIRT || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_FARMLAND;
-            return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canPlace && world.isAirBlock(pos.up());
-        }
+    @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
+    {
+        boolean canPlace = world.getBlockState(pos.down()).getBlock() == ChalosBlocks.CHEESE_GRASS || world.getBlockState(pos.down()).getBlock() == ChalosBlocks.CHEESE_DIRT || world.getBlockState(pos.down()).getBlock() == ChalosBlocks.CHEESE_FARMLAND;
+        return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canPlace && world.isAirBlock(pos.up());
     }
 
     @Override
@@ -79,7 +74,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
         else
         {
             BlockType type = iblockstate.getActualState(world, pos).getValue(VARIANT);
-            return type == BlockType.DOUBLE_INFECTED_GRASS || type == BlockType.DOUBLE_INFECTED_FERN || type == BlockType.DOUBLE_GREEN_VEIN_GRASS;
+            return type == BlockType.CHEESE_DOUBLE_TALL_GRASS;
         }
     }
 
@@ -112,30 +107,25 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     @Override
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
+        boolean canPlace = world.getBlockState(pos.down()).getBlock() == ChalosBlocks.CHEESE_GRASS || world.getBlockState(pos.down()).getBlock() == ChalosBlocks.CHEESE_DIRT || world.getBlockState(pos.down()).getBlock() == ChalosBlocks.CHEESE_FARMLAND;
+
+        if (state.getBlock() != this)
+        {
+            return canPlace;
+        }
         if (state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.UPPER)
         {
             return world.getBlockState(pos.down()).getBlock() == this;
         }
         else
         {
-            BlockType type = state.getValue(VARIANT);
-
-            if (type != BlockType.DOUBLE_GREEN_VEIN_GRASS)
-            {
-                boolean canPlace = world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_DIRT || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_FARMLAND;
-                IBlockState stateUp = world.getBlockState(pos.up());
-                return stateUp.getBlock() == this && canPlace;
-            }
-            else
-            {
-                boolean canPlace = world.getBlockState(pos.down()).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_DIRT || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_FARMLAND;
-                IBlockState stateUp = world.getBlockState(pos.up());
-                return stateUp.getBlock() == this && canPlace;
-            }
+            IBlockState iblockstate = world.getBlockState(pos.up());
+            return iblockstate.getBlock() == this && canPlace;
         }
     }
 
     @Override
+    @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         if (state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.UPPER)
@@ -145,24 +135,14 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
         else
         {
             BlockType type = state.getValue(VARIANT);
-
-            return type == BlockType.DOUBLE_INFECTED_FERN ? null : type == BlockType.DOUBLE_INFECTED_GRASS ? rand.nextInt(8) == 0 ? NibiruItems.INFECTED_WHEAT_SEEDS : null : type == BlockType.DOUBLE_GREEN_VEIN_GRASS ? rand.nextInt(8) == 0 ? NibiruItems.NIBIRU_FRUITS : null : Item.getItemFromBlock(this);
-
+            return type == BlockType.CHEESE_DOUBLE_TALL_GRASS ? rand.nextInt(8) == 0 ? ChalosItems.CHEESE_SPORE_SEED : null : Item.getItemFromBlock(this);
         }
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        if (state.getValue(BlockDoublePlant.HALF) != EnumBlockHalf.UPPER && state.getValue(VARIANT) != BlockType.DOUBLE_INFECTED_GRASS && state.getValue(VARIANT) != BlockType.DOUBLE_INFECTED_FERN && state.getValue(VARIANT) != BlockType.DOUBLE_GREEN_VEIN_GRASS)
-        {
-            return state.getValue(VARIANT).ordinal();
-        }
-        else if (state.getValue(VARIANT) == BlockType.DOUBLE_GREEN_VEIN_GRASS)
-        {
-            return 6;
-        }
-        return 0;
+        return state.getValue(BlockDoublePlant.HALF) != EnumBlockHalf.UPPER && state.getValue(VARIANT) != BlockType.CHEESE_DOUBLE_TALL_GRASS ? state.getValue(VARIANT).ordinal() : 0;
     }
 
     @Override
@@ -187,7 +167,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
                     IBlockState iblockstate = world.getBlockState(pos.down());
                     BlockType type = iblockstate.getValue(VARIANT);
 
-                    if (type != BlockType.DOUBLE_INFECTED_GRASS && type != BlockType.DOUBLE_INFECTED_FERN && type != BlockType.DOUBLE_GREEN_VEIN_GRASS)
+                    if (type != BlockType.CHEESE_DOUBLE_TALL_GRASS)
                     {
                         world.destroyBlock(pos.down(), true);
                     }
@@ -214,16 +194,6 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
-    {
-        for (BlockType type : BlockType.valuesCached())
-        {
-            list.add(new ItemStack(item, 1, type.ordinal()));
-        }
-    }
-
-    @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, this.getType(world, pos, state).ordinal());
@@ -233,7 +203,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
         BlockType type = this.getType(world, pos, state);
-        return type != BlockType.DOUBLE_INFECTED_GRASS && type != BlockType.DOUBLE_INFECTED_FERN && type != BlockType.DOUBLE_GREEN_VEIN_GRASS;
+        return type != BlockType.CHEESE_DOUBLE_TALL_GRASS;
     }
 
     @Override
@@ -293,7 +263,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     {
         IBlockState state = world.getBlockState(pos);
         BlockType type = state.getValue(VARIANT);
-        return state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.LOWER && (type == BlockType.DOUBLE_INFECTED_FERN || type == BlockType.DOUBLE_INFECTED_GRASS || type == BlockType.DOUBLE_GREEN_VEIN_GRASS);
+        return state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.LOWER && type == BlockType.CHEESE_DOUBLE_TALL_GRASS;
     }
 
     @Override
@@ -302,37 +272,23 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
         List<ItemStack> ret = Lists.newArrayList();
         BlockType type = world.getBlockState(pos).getValue(VARIANT);
 
-        if (type == BlockType.DOUBLE_INFECTED_GRASS)
+        if (type == BlockType.CHEESE_DOUBLE_TALL_GRASS)
         {
-            ret.add(new ItemStack(NibiruBlocks.NIBIRU_TALL_GRASS, 2, 0));
-        }
-        if (type == BlockType.DOUBLE_INFECTED_FERN)
-        {
-            ret.add(new ItemStack(NibiruBlocks.NIBIRU_TALL_GRASS, 2, 1));
-        }
-        if (type == BlockType.DOUBLE_GREEN_VEIN_GRASS)
-        {
-            ret.add(new ItemStack(NibiruBlocks.NIBIRU_TALL_GRASS, 2, 2));
+            ret.add(new ItemStack(ChalosBlocks.CHEESE_TALL_GRASS, 2));
         }
         return ret;
     }
 
-    @Override
-    public VariantsName getVariantsName()
-    {
-        return new VariantsName("orange_rose_bush", "infected_grass", "infected_fern", "green_vein_grass");
-    }
-
-    private BlockType getType(IBlockAccess blockAccess, BlockPos pos, IBlockState state)
+    private BlockType getType(IBlockAccess world, BlockPos pos, IBlockState state)
     {
         if (state.getBlock() == this)
         {
-            state = state.getActualState(blockAccess, pos);
+            state = state.getActualState(world, pos);
             return state.getValue(VARIANT);
         }
         else
         {
-            return BlockType.DOUBLE_INFECTED_FERN;
+            return BlockType.CHEESE_DOUBLE_TALL_GRASS;
         }
     }
 
@@ -346,7 +302,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     {
         BlockType type = state.getValue(VARIANT);
 
-        if (type != BlockType.DOUBLE_INFECTED_GRASS && type != BlockType.DOUBLE_INFECTED_FERN && type != BlockType.DOUBLE_GREEN_VEIN_GRASS)
+        if (type != BlockType.CHEESE_DOUBLE_TALL_GRASS)
         {
             return false;
         }
@@ -359,10 +315,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
 
     public static enum BlockType implements IStringSerializable
     {
-        INFECTED_ORANGE_ROSE_BUSH,
-        DOUBLE_INFECTED_GRASS,
-        DOUBLE_INFECTED_FERN,
-        DOUBLE_GREEN_VEIN_GRASS;
+        CHEESE_DOUBLE_TALL_GRASS;
 
         private static BlockType[] values = BlockType.values();
 

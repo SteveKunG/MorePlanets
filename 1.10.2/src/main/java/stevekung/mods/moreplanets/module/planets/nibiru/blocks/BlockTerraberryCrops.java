@@ -20,8 +20,6 @@ import stevekung.mods.moreplanets.util.blocks.BlockCropsMP;
 
 public class BlockTerraberryCrops extends BlockCropsMP
 {
-    private static AxisAlignedBB[] CARROT_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5625D, 1.0D)};
-
     public BlockTerraberryCrops(String name)
     {
         super();
@@ -31,7 +29,7 @@ public class BlockTerraberryCrops extends BlockCropsMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return CARROT_AABB[state.getValue(BlockCropsMP.AGE).intValue()];
+        return new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.95D, 0.9D);
     }
 
     @Override

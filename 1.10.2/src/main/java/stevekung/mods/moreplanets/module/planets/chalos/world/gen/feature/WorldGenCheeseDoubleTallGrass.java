@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalosDoubleTallGrass;
+import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalosDoublePlant;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 
 public class WorldGenCheeseDoubleTallGrass extends WorldGenerator
@@ -17,10 +17,9 @@ public class WorldGenCheeseDoubleTallGrass extends WorldGenerator
         {
             BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(blockpos) && (!world.provider.getHasNoSky() || blockpos.getY() < 254) && ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS.canBlockStay(world, blockpos, ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS.getDefaultState()))
+            if (world.isAirBlock(blockpos) && (!world.provider.getHasNoSky() || blockpos.getY() < 254) && ChalosBlocks.CHALOS_DOUBLE_PLANT.canBlockStay(world, blockpos, ChalosBlocks.CHALOS_DOUBLE_PLANT.getDefaultState()))
             {
-                world.setBlockState(blockpos, ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS.getDefaultState().withProperty(BlockChalosDoubleTallGrass.HALF, BlockChalosDoubleTallGrass.EnumBlockHalf.LOWER).withProperty(BlockChalosDoubleTallGrass.VARIANT, BlockChalosDoubleTallGrass.BlockType.CHEESE_DOUBLE_TALL_GRASS), 2);
-                world.setBlockState(blockpos.up(), ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS.getDefaultState().withProperty(BlockChalosDoubleTallGrass.HALF, BlockChalosDoubleTallGrass.EnumBlockHalf.UPPER).withProperty(BlockChalosDoubleTallGrass.VARIANT, BlockChalosDoubleTallGrass.BlockType.CHEESE_DOUBLE_TALL_GRASS), 2);
+                ChalosBlocks.CHALOS_DOUBLE_PLANT.placeAt(world, blockpos, BlockChalosDoublePlant.BlockType.CHEESE_DOUBLE_TALL_GRASS, 2);
             }
         }
         return true;

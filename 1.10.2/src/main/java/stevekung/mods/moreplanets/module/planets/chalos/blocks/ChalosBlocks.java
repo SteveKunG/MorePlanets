@@ -33,7 +33,7 @@ public class ChalosBlocks
     public static Block CHEESE_SPORE_PLANKS;
     public static BlockBushMP CHEESE_TALL_GRASS;
     public static Block CHEESE_SPORE_BERRY_CROPS;
-    public static BlockBushMP CHEESE_DOUBLE_TALL_GRASS;
+    public static BlockChalosDoublePlant CHALOS_DOUBLE_PLANT;
     public static Block CHALOS_CRAFTING_TABLE;
     public static Block CHEESE_SPORE_CHEST;
     public static Block CHALOS_COBBLESTONE_STAIRS;
@@ -66,7 +66,7 @@ public class ChalosBlocks
         ChalosBlocks.CHEESE_SPORE_PLANKS = new BlockBaseMP("cheese_spore_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         ChalosBlocks.CHEESE_TALL_GRASS = new BlockCheeseTallGrass("cheese_tall_grass");
         ChalosBlocks.CHEESE_SPORE_BERRY_CROPS = new BlockCheeseSporeBerryCrops("cheese_spore_berry_crops");
-        ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS = new BlockChalosDoubleTallGrass("cheese_double_tall_grass");
+        ChalosBlocks.CHALOS_DOUBLE_PLANT = new BlockChalosDoublePlant("chalos_double_plant");
         ChalosBlocks.CHALOS_CRAFTING_TABLE = new BlockChalosCraftingTable("chalos_crafting_table");
         ChalosBlocks.CHEESE_SPORE_CHEST = new BlockCheeseSporeChest("cheese_spore_chest");
         ChalosBlocks.CHALOS_COBBLESTONE_STAIRS = new BlockStairsMP("chalos_cobblestone_stairs", EnumStairsType.COBBLESTONE);
@@ -103,7 +103,7 @@ public class ChalosBlocks
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_BERRY_CROPS, null);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_DOUBLE_PLANT);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_CRAFTING_TABLE);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_CHEST);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_COBBLESTONE_STAIRS);
@@ -140,7 +140,7 @@ public class ChalosBlocks
         CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_SPORE_FLOWER, 60, 100);
         CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_SPORE, 60, 100);
         CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_TALL_GRASS, 60, 100);
-        CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS, 60, 100);
+        CommonRegisterHelper.setFireBurn(ChalosBlocks.CHALOS_DOUBLE_PLANT, 60, 100);
         CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_SPORE_STEM, 5, 20);
         CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_SPORE_PLANKS, 5, 20);
         CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_SPORE_STAIRS, 5, 20);

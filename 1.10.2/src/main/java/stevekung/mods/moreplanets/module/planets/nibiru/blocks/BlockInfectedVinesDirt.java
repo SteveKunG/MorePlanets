@@ -20,8 +20,6 @@ import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
 public class BlockInfectedVinesDirt extends BlockBaseMP
 {
-    protected static AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
-
     public BlockInfectedVinesDirt(String name)
     {
         super(Material.GROUND);
@@ -32,9 +30,9 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return FARMLAND_AABB;
+        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
     }
 
     @Override

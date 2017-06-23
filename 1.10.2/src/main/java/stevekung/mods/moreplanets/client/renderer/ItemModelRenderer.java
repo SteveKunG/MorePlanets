@@ -12,6 +12,7 @@ import stevekung.mods.moreplanets.items.ItemLaserBullet;
 import stevekung.mods.moreplanets.items.ItemSpaceFish;
 import stevekung.mods.moreplanets.items.ItemSpecialSchematic;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalos;
+import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalosDoublePlant;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockCheeseDirt;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
@@ -55,7 +56,6 @@ public class ItemModelRenderer
     {
         ClientRegisterHelper.registerModelRender(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, 0, "dark_energy_storage_module");
         ClientRegisterHelper.registerModelRender(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, 4, "nuclear_waste_storage_module");
-        ClientRegisterHelper.registerModelRender(ChalosBlocks.CHEESE_DOUBLE_TALL_GRASS, 0, "cheese_double_tall_grass");
         ClientRegisterHelper.registerModelRender(NibiruBlocks.INFECTED_SPONGE, 0, "infected_sponge");
         ClientRegisterHelper.registerModelRender(NibiruBlocks.INFECTED_SPONGE, 1, "infected_wet_sponge");
         ClientRegisterHelper.registerModelRenderWithDyeColor(MPBlocks.TINTED_GLASS);
@@ -71,6 +71,7 @@ public class ItemModelRenderer
         ClientRegisterHelper.registerModelRender(DionaBlocks.INFECTED_CRYSTALLIZE_PART, BlockInfectedCrystallizePart.BlockType.class);
         ClientRegisterHelper.registerModelRender(ChalosBlocks.CHALOS_BLOCK, BlockChalos.BlockType.class);
         ClientRegisterHelper.registerModelRender(ChalosBlocks.CHEESE_DIRT, BlockCheeseDirt.BlockType.class);
+        ClientRegisterHelper.registerModelRender(ChalosBlocks.CHALOS_DOUBLE_PLANT, BlockChalosDoublePlant.BlockType.class);
         ClientRegisterHelper.registerModelRender(NibiruBlocks.INFECTED_DIRT, BlockInfectedDirt.BlockType.class);
         ClientRegisterHelper.registerModelRender(NibiruBlocks.NIBIRU_SANDSTONE, BlockNibiruSandstone.BlockType.class);
         ClientRegisterHelper.registerModelRender(NibiruBlocks.NIBIRU_LOG, BlockNibiruLog.BlockType.class);

@@ -26,7 +26,6 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.Particle
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedSpore;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.blocks.BlockStemMP;
 import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLavaMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLiquidDrip;
@@ -55,7 +54,7 @@ public class ClientProxyMP extends ServerProxyMP
         ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(120, 85, 190), DionaBlocks.LARGE_INFECTED_CRYSTALLIZE);
         ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL);
         ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> state.getValue(BlockStemMP.AGE).intValue() * 32 << 16 | 255 - state.getValue(BlockStemMP.AGE).intValue() * 8 << 8 | state.getValue(BlockStemMP.AGE).intValue() * 4, NibiruBlocks.INFECTED_MELON_STEM);
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(143, 55, 33), NibiruBlocks.INFECTED_MELON_STEM);
 
         ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> color.colorMultiplier(((ItemBlock)itemStack.getItem()).getBlock().getStateFromMeta(itemStack.getMetadata()), null, null, tintIndex), FronosBlocks.FRONOS_GRASS);
         ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
