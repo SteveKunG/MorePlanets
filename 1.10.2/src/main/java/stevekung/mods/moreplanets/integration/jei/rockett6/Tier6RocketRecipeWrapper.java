@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.integration.jei.rockett6;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 import com.google.common.collect.Lists;
 
 import mezz.jei.api.ingredients.IIngredients;
@@ -15,15 +13,13 @@ import net.minecraft.item.ItemStack;
 
 public class Tier6RocketRecipeWrapper extends BlankRecipeWrapper implements ICraftingRecipeWrapper
 {
-    @Nonnull
     private INasaWorkbenchRecipe recipe;
 
-    public Tier6RocketRecipeWrapper(@Nonnull INasaWorkbenchRecipe recipe)
+    public Tier6RocketRecipeWrapper(INasaWorkbenchRecipe recipe)
     {
         this.recipe = recipe;
     }
 
-    @Nonnull
     @Override
     public List getInputs()
     {
@@ -32,7 +28,6 @@ public class Tier6RocketRecipeWrapper extends BlankRecipeWrapper implements ICra
         return list;
     }
 
-    @Nonnull
     @Override
     public List<ItemStack> getOutputs()
     {

@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.integration.jei.black_hole_storage;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 import com.google.common.collect.Lists;
 
 import mezz.jei.api.ingredients.IIngredients;
@@ -15,15 +13,13 @@ import net.minecraft.item.ItemStack;
 
 public class BlackHoleStorageRecipeWrapper extends BlankRecipeWrapper implements ICraftingRecipeWrapper
 {
-    @Nonnull
     private INasaWorkbenchRecipe recipe;
 
-    public BlackHoleStorageRecipeWrapper(@Nonnull INasaWorkbenchRecipe recipe)
+    public BlackHoleStorageRecipeWrapper(INasaWorkbenchRecipe recipe)
     {
         this.recipe = recipe;
     }
 
-    @Nonnull
     @Override
     public List getInputs()
     {
@@ -32,7 +28,6 @@ public class BlackHoleStorageRecipeWrapper extends BlankRecipeWrapper implements
         return list;
     }
 
-    @Nonnull
     @Override
     public List<ItemStack> getOutputs()
     {

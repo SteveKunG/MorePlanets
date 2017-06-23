@@ -1,8 +1,5 @@
 package stevekung.mods.moreplanets.integration.jei.dark_energy_transform;
 
-import javax.annotation.Nonnull;
-
-import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -12,52 +9,37 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
 public class DarkEnergyTransformRecipeCategory extends BlankRecipeCategory
 {
-    @Nonnull
-    private IDrawable background;
-    @Nonnull
-    private IDrawable overlay;
-
-    public DarkEnergyTransformRecipeCategory(IGuiHelper guiHelper)
-    {
-        this.background = guiHelper.createBlankDrawable(120, 45);
-        this.overlay = guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/dark_energy_transform.png"), 0, 0, 71, 46);
-    }
-
     @Override
-    @Nonnull
     public String getUid()
     {
         return MPJEIRecipes.DARK_ENERGY_TRANSFORM;
     }
 
     @Override
-    @Nonnull
     public String getTitle()
     {
         return GCCoreUtil.translate("gui.jei.dark_energy_transform");
     }
 
     @Override
-    @Nonnull
     public IDrawable getBackground()
     {
-        return this.background;
+        return JEIRegistryHelper.guiHelper.createBlankDrawable(120, 45);
     }
 
     @Override
-    @Nonnull
-    public void drawExtras(@Nonnull Minecraft mc)
+    public void drawExtras(Minecraft mc)
     {
-        this.overlay.draw(mc, 24, 0);
+        JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/dark_energy_transform.png"), 0, 0, 71, 46).draw(mc, 24, 0);
     }
 
     @Override
-    @Nonnull
-    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper, @Nonnull IIngredients ingredients)
+    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
     {
         if (!(recipeWrapper instanceof DarkEnergyTransformRecipeWrapper))
         {

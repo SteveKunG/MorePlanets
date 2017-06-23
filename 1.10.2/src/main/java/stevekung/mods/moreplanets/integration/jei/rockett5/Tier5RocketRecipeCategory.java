@@ -2,9 +2,6 @@ package stevekung.mods.moreplanets.integration.jei.rockett5;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
-import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -13,42 +10,30 @@ import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.util.ResourceLocation;
+import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 
 public class Tier5RocketRecipeCategory extends BlankRecipeCategory
 {
-    private ResourceLocation rocketGuiTexture = new ResourceLocation("moreplanets:textures/gui/jei/tier_5_rocket_schematic.png");
-
-    @Nonnull
-    private IDrawable background;
-
-    public Tier5RocketRecipeCategory(IGuiHelper guiHelper)
-    {
-        this.background = guiHelper.createDrawable(this.rocketGuiTexture, 0, 0, 168, 126);
-    }
-
-    @Nonnull
     @Override
     public String getUid()
     {
         return "moreplanets.rocketT5";
     }
 
-    @Nonnull
     @Override
     public String getTitle()
     {
         return GCCoreUtil.translate("gui.jei.rocket_t5");
     }
 
-    @Nonnull
     @Override
     public IDrawable getBackground()
     {
-        return this.background;
+        return JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/tier_5_rocket_schematic.png"), 0, 0, 168, 126);
     }
 
     @Override
-    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper, @Nonnull IIngredients ingredients)
+    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
     {
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
         itemStacks.init(0, true, 44, 0);
