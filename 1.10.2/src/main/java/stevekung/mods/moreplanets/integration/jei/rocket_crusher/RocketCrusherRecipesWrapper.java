@@ -10,7 +10,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import mezz.jei.api.recipe.wrapper.ICraftingRecipeWrapper;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.integration.jei.ShapedRecipesMP;
+import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
 
 public class RocketCrusherRecipesWrapper extends BlankRecipeWrapper implements ICraftingRecipeWrapper
 {

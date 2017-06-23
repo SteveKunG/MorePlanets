@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.integration.jei.black_hole_storage.BlackHoleStorageRecipeWrapper;
 import stevekung.mods.moreplanets.inventory.InventoryBlackHoleStorageSchematic;
 
 public class BlackHoleStorageRecipes
@@ -22,5 +23,17 @@ public class BlackHoleStorageRecipes
             }
         }
         return null;
+    }
+
+    public static List<BlackHoleStorageRecipeWrapper> getRecipesList()
+    {
+        List<BlackHoleStorageRecipeWrapper> recipes = Lists.newArrayList();
+
+        for (INasaWorkbenchRecipe recipe : BlackHoleStorageRecipes.recipes)
+        {
+            BlackHoleStorageRecipeWrapper wrapper = new BlackHoleStorageRecipeWrapper(recipe);
+            recipes.add(wrapper);
+        }
+        return recipes;
     }
 }

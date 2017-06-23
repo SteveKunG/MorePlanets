@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.integration.jei;
+package stevekung.mods.moreplanets.util.recipes;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;

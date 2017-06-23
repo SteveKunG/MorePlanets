@@ -6,8 +6,8 @@ import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
-import stevekung.mods.moreplanets.integration.jei.ShapedRecipesMP;
 import stevekung.mods.moreplanets.util.MPLog;
+import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
 
 public class RocketCrusherRecipesHandler implements IRecipeHandler<ShapedRecipesMP>
 {

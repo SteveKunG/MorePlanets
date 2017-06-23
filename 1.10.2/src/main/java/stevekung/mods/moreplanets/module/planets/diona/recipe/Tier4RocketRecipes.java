@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.recipe.NasaWorkbenchRecipe;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.integration.jei.rockett4.Tier4RocketRecipeWrapper;
 import stevekung.mods.moreplanets.inventory.InventorySchematicRocket;
 
 public class Tier4RocketRecipes
@@ -39,5 +40,17 @@ public class Tier4RocketRecipes
     public static List<INasaWorkbenchRecipe> getRocketRecipes()
     {
         return Tier4RocketRecipes.ROCKET_RECIPE;
+    }
+
+    public static List<Tier4RocketRecipeWrapper> getRecipesList()
+    {
+        List<Tier4RocketRecipeWrapper> recipes = Lists.newArrayList();
+
+        for (INasaWorkbenchRecipe recipe : Tier4RocketRecipes.getRocketRecipes())
+        {
+            Tier4RocketRecipeWrapper wrapper = new Tier4RocketRecipeWrapper(recipe);
+            recipes.add(wrapper);
+        }
+        return recipes;
     }
 }

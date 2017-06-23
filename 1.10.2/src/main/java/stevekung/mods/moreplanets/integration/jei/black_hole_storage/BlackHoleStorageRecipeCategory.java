@@ -2,9 +2,6 @@ package stevekung.mods.moreplanets.integration.jei.black_hole_storage;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
-import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -14,31 +11,17 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
 public class BlackHoleStorageRecipeCategory extends BlankRecipeCategory
 {
-    private ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/jei/black_hole_storage.png");
-
-    @Nonnull
-    private IDrawable background;
-    @Nonnull
-    private IDrawable overlay;
-
-    public BlackHoleStorageRecipeCategory(IGuiHelper helper)
-    {
-        this.background = helper.createBlankDrawable(200, 40);
-        this.overlay = helper.createDrawable(this.texture, 0, 0, 152, 119);
-    }
-
-    @Nonnull
     @Override
     public String getUid()
     {
         return MPJEIRecipes.BLACK_HOLE_STORAGE;
     }
 
-    @Nonnull
     @Override
     public String getTitle()
     {
@@ -46,21 +29,19 @@ public class BlackHoleStorageRecipeCategory extends BlankRecipeCategory
     }
 
     @Override
-    @Nonnull
     public IDrawable getBackground()
     {
-        return this.background;
+        return JEIRegistryHelper.guiHelper.createBlankDrawable(200, 40);
     }
 
     @Override
-    @Nonnull
-    public void drawExtras(@Nonnull Minecraft mc)
+    public void drawExtras(Minecraft mc)
     {
-        this.overlay.draw(mc, 24, 0);
+        JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/black_hole_storage.png"), 0, 0, 152, 119).draw(mc, 24, 0);
     }
 
     @Override
-    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper, @Nonnull IIngredients ingredients)
+    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
     {
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
         int x = 24;
