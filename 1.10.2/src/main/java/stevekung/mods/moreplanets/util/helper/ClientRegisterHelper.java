@@ -16,7 +16,6 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.IStateMapper;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -300,7 +299,7 @@ public class ClientRegisterHelper
 
     public static void registerStateMapper(Block block, EnumStateMapper mapper)
     {
-        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new StateMap.Builder().ignore(mapper.getProperty()).build());
+        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new Builder().ignore(mapper.getProperty()).build());
     }
 
     public static void registerStateMapper(Block block, IStateMapper mapper)
@@ -308,7 +307,12 @@ public class ClientRegisterHelper
         Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, mapper);
     }
 
-    public static void registerStateMapper(Block block, IProperty<?>... property)
+    public static void registerStateMapperSplitVariants(Block block, IProperty property)
+    {
+        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new Builder().withName(property).build());
+    }
+
+    public static void registerStateMapper(Block block, IProperty... property)
     {
         Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new Builder().ignore(property).build());
     }

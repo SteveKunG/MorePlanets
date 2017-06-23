@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.util.blocks;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.material.Material;
@@ -14,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class BlockWallMP extends BlockBaseMP
+public class BlockWallMP extends BlockBaseMP
 {
     public static PropertyBool UP = PropertyBool.create("up");
     public static PropertyBool NORTH = PropertyBool.create("north");
@@ -30,13 +32,28 @@ public abstract class BlockWallMP extends BlockBaseMP
     }
 
     @Override
-    public boolean isPassable(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        state = this.getActualState(state, world, pos);
+        return AABB_BY_INDEX[this.getAABBIndex(state)];
+    }
+
+    @Override
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
+    {
+        state = this.getActualState(state, world, pos);
+        return CLIP_AABB_BY_INDEX[this.getAABBIndex(state)];
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
     @Override
-    public boolean isFullCube(IBlockState state)
+    public boolean isPassable(IBlockAccess world, BlockPos pos)
     {
         return false;
     }
@@ -48,17 +65,10 @@ public abstract class BlockWallMP extends BlockBaseMP
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        state = this.getActualState(state, source, pos);
-        return AABB_BY_INDEX[this.getAABBIndex(state)];
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World worldIn, BlockPos pos)
-    {
-        state = this.getActualState(state, worldIn, pos);
-        return CLIP_AABB_BY_INDEX[this.getAABBIndex(state)];
+        return side == EnumFacing.DOWN ? super.shouldSideBeRendered(state, blockAccess, pos, side) : true;
     }
 
     @Override
@@ -68,13 +78,17 @@ public abstract class BlockWallMP extends BlockBaseMP
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return side == EnumFacing.DOWN ? super.shouldSideBeRendered(state, world, pos, side) : true;
+        boolean flag = this.canConnectTo(world, pos.north());
+        boolean flag1 = this.canConnectTo(world, pos.east());
+        boolean flag2 = this.canConnectTo(world, pos.south());
+        boolean flag3 = this.canConnectTo(world, pos.west());
+        boolean flag4 = flag && !flag1 && flag2 && !flag3 || !flag && flag1 && !flag2 && flag3;
+        return state.withProperty(UP, Boolean.valueOf(!flag4 || !world.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(flag)).withProperty(EAST, Boolean.valueOf(flag1)).withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST, Boolean.valueOf(flag3));
     }
 
-    protected boolean canConnectTo(IBlockAccess world, BlockPos pos)
+    private boolean canConnectTo(IBlockAccess world, BlockPos pos)
     {
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();

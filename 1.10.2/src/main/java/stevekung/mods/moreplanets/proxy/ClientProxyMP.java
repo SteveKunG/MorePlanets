@@ -45,7 +45,9 @@ public class ClientProxyMP extends ServerProxyMP
     public void registerInitRendering()
     {
         BlockColors color = Minecraft.getMinecraft().getBlockColors();
+
         TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
+        BlockStateMapper.init();
         TileEntityRenderer.init();
         ItemModelRenderer.init();
         VariantsRenderer.init();
@@ -64,7 +66,6 @@ public class ClientProxyMP extends ServerProxyMP
     @Override
     public void registerPostRendering()
     {
-        BlockStateMapper.init();
         MPSchematics.registerSchematicTexture();
     }
 

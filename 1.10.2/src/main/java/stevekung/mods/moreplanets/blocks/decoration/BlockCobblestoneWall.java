@@ -11,8 +11,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.VariantsName;
@@ -58,17 +56,6 @@ public class BlockCobblestoneWall extends BlockWallMP implements IBlockVariants
     public int getMetaFromState(IBlockState state)
     {
         return ((BlockType)state.getValue(VARIANT)).ordinal();
-    }
-
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        boolean flag = this.canConnectTo(world, pos.north());
-        boolean flag1 = this.canConnectTo(world, pos.east());
-        boolean flag2 = this.canConnectTo(world, pos.south());
-        boolean flag3 = this.canConnectTo(world, pos.west());
-        boolean flag4 = flag && !flag1 && flag2 && !flag3 || !flag && flag1 && !flag2 && flag3;
-        return state.withProperty(UP, Boolean.valueOf(!flag4 || !world.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(flag)).withProperty(EAST, Boolean.valueOf(flag1)).withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST, Boolean.valueOf(flag3));
     }
 
     @Override
