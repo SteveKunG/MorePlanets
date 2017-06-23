@@ -1,7 +1,8 @@
-package stevekung.mods.moreplanets.integration.jei.dark_energy;
+package stevekung.mods.moreplanets.integration.jei.dark_energy_transform;
 
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 import stevekung.mods.moreplanets.recipe.DarkEnergyRecipeData;
 
 public class DarkEnergyTransformRecipeHandler implements IRecipeHandler<DarkEnergyRecipeData>
@@ -15,7 +16,13 @@ public class DarkEnergyTransformRecipeHandler implements IRecipeHandler<DarkEner
     @Override
     public String getRecipeCategoryUid()
     {
-        return "moreplanets.darkEnergyTransform";
+        return MPJEIRecipes.DARK_ENERGY_TRANSFORM;
+    }
+
+    @Override
+    public String getRecipeCategoryUid(DarkEnergyRecipeData recipe)
+    {
+        return this.getRecipeCategoryUid();
     }
 
     @Override
@@ -28,11 +35,5 @@ public class DarkEnergyTransformRecipeHandler implements IRecipeHandler<DarkEner
     public boolean isRecipeValid(DarkEnergyRecipeData recipe)
     {
         return true;
-    }
-
-    @Override
-    public String getRecipeCategoryUid(DarkEnergyRecipeData recipe)
-    {
-        return "moreplanets.darkEnergyTransform";
     }
 }

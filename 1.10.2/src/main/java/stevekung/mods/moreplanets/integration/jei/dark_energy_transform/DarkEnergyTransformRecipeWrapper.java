@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.integration.jei.dark_energy;
+package stevekung.mods.moreplanets.integration.jei.dark_energy_transform;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,5 +46,11 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     }
 
     @Override
-    public void getIngredients(IIngredients ingredients) {}
+    public void getIngredients(IIngredients ingredients)
+    {
+        List<ItemStack> list = Lists.newArrayList();
+        list.addAll(this.input.values());
+        ingredients.setInputs(ItemStack.class, list);
+        ingredients.setOutput(ItemStack.class, this.output);
+    }
 }

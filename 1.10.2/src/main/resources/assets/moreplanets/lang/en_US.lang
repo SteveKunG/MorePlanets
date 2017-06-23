@@ -626,8 +626,10 @@ configbiomeguimp=Biome Config
 configotherguimp=Other Config
 
 # GUI JEI
-moreplanets.jei.darkEnergyTransform=Dark Energy Transform
-moreplanets.jei.rocketCrusher=Rocket Crusher
+gui.jei.dark_energy_transform=Dark Energy Transform
+gui.jei.rocket_t4=Tier 4 Rocket
+gui.jei.rocket_t5=Tier 5 Rocket
+gui.jei.rocket_t6=Tier 6 Rocket
 
 # DESCRIPTION
 tile.space_warp_pad.description=Warp Pad allows you to travel in the space dimension, setup by 3x3 area.

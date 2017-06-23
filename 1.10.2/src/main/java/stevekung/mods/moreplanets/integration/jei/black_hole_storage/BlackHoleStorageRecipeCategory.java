@@ -13,8 +13,8 @@ import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
+import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
 public class BlackHoleStorageRecipeCategory extends BlankRecipeCategory
 {
@@ -35,7 +35,7 @@ public class BlackHoleStorageRecipeCategory extends BlankRecipeCategory
     @Override
     public String getUid()
     {
-        return "moreplanets.blackHoleStorage";
+        return MPJEIRecipes.BLACK_HOLE_STORAGE;
     }
 
     @Nonnull
@@ -56,11 +56,7 @@ public class BlackHoleStorageRecipeCategory extends BlankRecipeCategory
     @Nonnull
     public void drawExtras(@Nonnull Minecraft mc)
     {
-        GlStateManager.enableAlpha();
-        GlStateManager.enableBlend();
         this.overlay.draw(mc, 24, 0);
-        GlStateManager.disableBlend();
-        GlStateManager.disableAlpha();
     }
 
     @Override

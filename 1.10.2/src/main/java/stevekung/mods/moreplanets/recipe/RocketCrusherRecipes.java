@@ -11,13 +11,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
+import stevekung.mods.moreplanets.integration.jei.ShapedRecipesMP;
 
 public class RocketCrusherRecipes
 {
     private static List<IRecipe> recipes = Lists.newArrayList();
 
-    public static ShapedRecipes addRecipe(ItemStack output, Object... inputList)
+    public static ShapedRecipesMP addRecipe(ItemStack output, Object... inputList)
     {
         String s = "";
         int i = 0;
@@ -83,28 +83,28 @@ public class RocketCrusherRecipes
                 aitemstack[i1] = null;
             }
         }
-        ShapedRecipes recipes = new ShapedRecipes(j, k, aitemstack, output);
+        ShapedRecipesMP recipes = new ShapedRecipesMP(j, k, aitemstack, output);
         RocketCrusherRecipes.recipes.add(recipes);
         return recipes;
     }
 
     public static ItemStack findMatchingRecipe(IInventory inventory)
     {
-        List<IRecipe> theRecipes = RocketCrusherRecipes.getRecipeList();
+        List<IRecipe> list = RocketCrusherRecipes.getRecipeList();
 
-        for (int i = 0; i < theRecipes.size(); ++i)
+        for (int i = 0; i < list.size(); ++i)
         {
-            IRecipe IRecipe = theRecipes.get(i);
+            IRecipe recipe = list.get(i);
 
-            if (IRecipe instanceof ShapedRecipes && RocketCrusherRecipes.matches((ShapedRecipes) IRecipe, inventory))
+            if (recipe instanceof ShapedRecipesMP && RocketCrusherRecipes.matches((ShapedRecipesMP) recipe, inventory))
             {
-                return IRecipe.getRecipeOutput();
+                return recipe.getRecipeOutput();
             }
         }
         return null;
     }
 
-    private static boolean matches(ShapedRecipes recipe, IInventory inventory)
+    private static boolean matches(ShapedRecipesMP recipe, IInventory inventory)
     {
         for (int i = 0; i <= 3 - recipe.recipeWidth; ++i)
         {
@@ -123,46 +123,46 @@ public class RocketCrusherRecipes
         return false;
     }
 
-    private static boolean checkMatch(ShapedRecipes recipe, IInventory inventory, int par2, int par3, boolean par4)
+    private static boolean checkMatch(ShapedRecipesMP recipe, IInventory inventory, int width, int height, boolean invert)
     {
         for (int k = 0; k < 3; ++k)
         {
             for (int l = 0; l < 3; ++l)
             {
-                int i1 = k - par2;
-                int j1 = l - par3;
-                ItemStack itemstack = null;
+                int i1 = k - width;
+                int j1 = l - height;
+                ItemStack itemStack = null;
 
                 if (i1 >= 0 && j1 >= 0 && i1 < recipe.recipeWidth && j1 < recipe.recipeHeight)
                 {
-                    if (par4)
+                    if (invert)
                     {
-                        itemstack = recipe.recipeItems[recipe.recipeWidth - i1 - 1 + j1 * recipe.recipeWidth];
+                        itemStack = recipe.recipeItems[recipe.recipeWidth - i1 - 1 + j1 * recipe.recipeWidth];
                     }
                     else
                     {
-                        itemstack = recipe.recipeItems[i1 + j1 * recipe.recipeWidth];
+                        itemStack = recipe.recipeItems[i1 + j1 * recipe.recipeWidth];
                     }
                 }
 
-                ItemStack itemstack1 = null;
+                ItemStack itemStack1 = null;
 
                 if (k >= 0 && l < 3)
                 {
                     int k2 = k + l * 3;
-                    itemstack1 = inventory.getStackInSlot(k2);
+                    itemStack1 = inventory.getStackInSlot(k2);
                 }
-                if (itemstack1 != null || itemstack != null)
+                if (itemStack1 != null || itemStack != null)
                 {
-                    if (itemstack1 == null && itemstack != null || itemstack1 != null && itemstack == null)
+                    if (itemStack1 == null && itemStack != null || itemStack1 != null && itemStack == null)
                     {
                         return false;
                     }
-                    if (itemstack.getItem() != itemstack1.getItem())
+                    if (itemStack.getItem() != itemStack1.getItem())
                     {
                         return false;
                     }
-                    if (itemstack.getItemDamage() != 32767 && itemstack.getItemDamage() != itemstack1.getItemDamage())
+                    if (itemStack.getItemDamage() != 32767 && itemStack.getItemDamage() != itemStack1.getItemDamage())
                     {
                         return false;
                     }

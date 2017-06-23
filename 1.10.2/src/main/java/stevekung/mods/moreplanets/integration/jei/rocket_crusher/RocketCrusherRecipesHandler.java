@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 import stevekung.mods.moreplanets.integration.jei.ShapedRecipesMP;
 import stevekung.mods.moreplanets.util.MPLog;
 
@@ -21,7 +22,14 @@ public class RocketCrusherRecipesHandler implements IRecipeHandler<ShapedRecipes
     @Override
     public String getRecipeCategoryUid()
     {
-        return "moreplanets.rocketCrusherRecipes";
+        return MPJEIRecipes.ROCKET_CRUSHER;
+    }
+
+    @Nonnull
+    @Override
+    public String getRecipeCategoryUid(ShapedRecipesMP recipe)
+    {
+        return this.getRecipeCategoryUid();
     }
 
     @Nonnull
@@ -60,12 +68,5 @@ public class RocketCrusherRecipesHandler implements IRecipeHandler<ShapedRecipes
             return false;
         }
         return inputCount > 0;
-    }
-
-    @Nonnull
-    @Override
-    public String getRecipeCategoryUid(ShapedRecipesMP recipe)
-    {
-        return "moreplanets.rocketCrusherRecipes";
     }
 }

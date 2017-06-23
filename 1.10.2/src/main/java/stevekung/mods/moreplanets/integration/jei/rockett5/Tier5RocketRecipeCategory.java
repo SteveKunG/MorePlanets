@@ -11,8 +11,8 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
 
 public class Tier5RocketRecipeCategory extends BlankRecipeCategory
 {
@@ -37,7 +37,7 @@ public class Tier5RocketRecipeCategory extends BlankRecipeCategory
     @Override
     public String getTitle()
     {
-        return I18n.translateToLocal("tile.rocket_workbench.name");
+        return GCCoreUtil.translate("gui.jei.rocket_t5");
     }
 
     @Nonnull

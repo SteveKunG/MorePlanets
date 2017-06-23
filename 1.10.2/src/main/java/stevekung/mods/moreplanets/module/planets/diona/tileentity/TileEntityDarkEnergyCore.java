@@ -28,7 +28,7 @@ public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
 
         for (EntityItem mainItem : entityItemMain)
         {
-            for (DarkEnergyRecipeData data : DarkEnergyRecipeData.darkEnergyTransformRecipes)
+            for (DarkEnergyRecipeData data : DarkEnergyRecipeData.getRecipeList())
             {
                 ItemStack mainItemStack = mainItem.getEntityItem();
 

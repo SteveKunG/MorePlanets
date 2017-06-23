@@ -77,7 +77,7 @@ public class ContainerRocketCrusher extends Container
 
             if (slot <= 11)
             {
-                if (!this.mergeItemStack(slotStack, 12, 48, true))
+                if (!this.mergeItemStack(slotStack, 12, 47, true))
                 {
                     return null;
                 }

@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 import stevekung.mods.moreplanets.util.MPLog;
 
 public class BlackHoleStorageRecipeHandler implements IRecipeHandler<BlackHoleStorageRecipeWrapper>
@@ -19,7 +20,14 @@ public class BlackHoleStorageRecipeHandler implements IRecipeHandler<BlackHoleSt
     @Override
     public String getRecipeCategoryUid()
     {
-        return "moreplanets.blackHoleStorage";
+        return MPJEIRecipes.BLACK_HOLE_STORAGE;
+    }
+
+    @Nonnull
+    @Override
+    public String getRecipeCategoryUid(BlackHoleStorageRecipeWrapper recipe)
+    {
+        return this.getRecipeCategoryUid();
     }
 
     @Nonnull
@@ -41,12 +49,5 @@ public class BlackHoleStorageRecipeHandler implements IRecipeHandler<BlackHoleSt
             MPLog.error(this.getClass().getSimpleName() + " JEI recipe has wrong number of outputs!");
         }
         return true;
-    }
-
-    @Nonnull
-    @Override
-    public String getRecipeCategoryUid(BlackHoleStorageRecipeWrapper recipe)
-    {
-        return "moreplanets.blackHoleStorage";
     }
 }

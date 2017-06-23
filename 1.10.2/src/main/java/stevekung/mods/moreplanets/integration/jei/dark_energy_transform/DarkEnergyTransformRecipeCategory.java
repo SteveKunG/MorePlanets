@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.integration.jei.dark_energy;
+package stevekung.mods.moreplanets.integration.jei.dark_energy_transform;
 
 import javax.annotation.Nonnull;
 
@@ -9,10 +9,10 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
+import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
 public class DarkEnergyTransformRecipeCategory extends BlankRecipeCategory
 {
@@ -31,14 +31,14 @@ public class DarkEnergyTransformRecipeCategory extends BlankRecipeCategory
     @Nonnull
     public String getUid()
     {
-        return "moreplanets.darkEnergyTransform";
+        return MPJEIRecipes.DARK_ENERGY_TRANSFORM;
     }
 
     @Override
     @Nonnull
     public String getTitle()
     {
-        return I18n.translateToLocal("moreplanets.jei.darkEnergyTransform");
+        return GCCoreUtil.translate("gui.jei.dark_energy_transform");
     }
 
     @Override
@@ -52,11 +52,7 @@ public class DarkEnergyTransformRecipeCategory extends BlankRecipeCategory
     @Nonnull
     public void drawExtras(@Nonnull Minecraft mc)
     {
-        GlStateManager.enableAlpha();
-        GlStateManager.enableBlend();
         this.overlay.draw(mc, 24, 0);
-        GlStateManager.disableBlend();
-        GlStateManager.disableAlpha();
     }
 
     @Override

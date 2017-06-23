@@ -9,9 +9,10 @@ import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
+import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
 public class RocketCrusherRecipeCategory extends BlankRecipeCategory
 {
@@ -24,7 +25,7 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
 
     public RocketCrusherRecipeCategory(IGuiHelper guiHelper)
     {
-        this.background = guiHelper.createDrawable(this.texture, 18, 17, 137, 78);
+        this.background = guiHelper.createDrawable(this.texture, 18, 17, 142, 54);
         IDrawableStatic progressBarDrawable = guiHelper.createDrawable(this.texture, 176, 13, 52, 17);
         this.progressBar = guiHelper.createAnimatedDrawable(progressBarDrawable, 70, IDrawableAnimated.StartDirection.LEFT, false);
     }
@@ -33,14 +34,14 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
     @Override
     public String getUid()
     {
-        return "moreplanets.rocketCrusherRecipes";
+        return MPJEIRecipes.ROCKET_CRUSHER;
     }
 
     @Nonnull
     @Override
     public String getTitle()
     {
-        return I18n.translateToLocal("moreplanets.jei.rocketCrusher");
+        return GCCoreUtil.translate("tile.rocket_crusher.name");
     }
 
     @Nonnull
@@ -53,7 +54,7 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
     @Override
     public void drawAnimations(@Nonnull Minecraft mc)
     {
-        this.progressBar.draw(mc, 77, 36);
+        this.progressBar.draw(mc, 59, 22);
     }
 
     @Override
@@ -63,10 +64,10 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
 
         for (int j = 0; j < 9; j++)
         {
-            itemStacks.init(j, true, 21 + j % 3 * 18, 26 + j / 3 * 18);
+            itemStacks.init(j, true, 0 + j % 3 * 18, 0 + j / 3 * 18);
         }
 
-        itemStacks.init(9, false, 140, 46);
+        itemStacks.init(9, false, 124, 20);
 
         if (recipeWrapper instanceof RocketCrusherRecipesWrapper)
         {
