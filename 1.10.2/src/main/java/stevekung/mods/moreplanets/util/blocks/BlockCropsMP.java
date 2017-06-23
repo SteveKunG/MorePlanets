@@ -221,6 +221,11 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
         return ret;
     }
 
+    public int getMaxAge()
+    {
+        return 7;
+    }
+
     protected abstract Item getSeed();
     protected abstract Item getCrop();
 }

@@ -83,6 +83,8 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
 
     private void translateFromDirection(float x, float y, float z, int facing)
     {
+        System.out.println(facing);
+
         if (facing == 0)
         {
             GlStateManager.translate(x + 0.425F, y + 1.3F, z + 0.5F);

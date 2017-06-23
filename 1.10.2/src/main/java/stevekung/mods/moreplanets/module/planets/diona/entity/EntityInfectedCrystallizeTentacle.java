@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.module.planets.diona.entity;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,6 +16,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -45,9 +48,11 @@ public class EntityInfectedCrystallizeTentacle extends Entity
     }
 
     @Override
-    public double getYOffset()
+    @Nullable
+    public AxisAlignedBB getCollisionBox(Entity entity)
     {
-        return 0.0F;
+        entity.applyEntityCollision(this);
+        return entity.getEntityBoundingBox();
     }
 
     @Override
@@ -143,7 +148,7 @@ public class EntityInfectedCrystallizeTentacle extends Entity
     @Override
     public boolean canBeCollidedWith()
     {
-        return true;
+        return false;
     }
 
     @Override

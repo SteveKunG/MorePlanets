@@ -54,10 +54,11 @@ public class TileEntityAlienDefenderBeacon extends TileEntityAdvanced
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setInteger("BossCountdown", this.bossCountdown);
         nbt.setBoolean("PrepareBossSpawn", this.prepareBossSpawn);
         nbt.setBoolean("CreativeSpawn", this.creativeSpawn);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

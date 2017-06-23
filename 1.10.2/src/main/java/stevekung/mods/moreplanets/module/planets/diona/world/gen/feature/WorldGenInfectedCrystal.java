@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.module.planets.diona.world.gen;
+package stevekung.mods.moreplanets.module.planets.diona.world.gen.feature;
 
 import java.util.Random;
 
@@ -17,7 +17,7 @@ public class WorldGenInfectedCrystal extends WorldGenerator
     {
         for (int i = 0; i < 2; ++i)
         {
-            for (EnumFacing facing : EnumFacing.VALUES)
+            for (EnumFacing facing : EnumFacing.values())
             {
                 Block block = DionaBlocks.LARGE_INFECTED_CRYSTALLIZE;
 

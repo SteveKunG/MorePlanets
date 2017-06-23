@@ -62,6 +62,8 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
+
         if (!this.checkLootAndWrite(nbt))
         {
             NBTTagList nbttaglist = new NBTTagList();
@@ -78,7 +80,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
             }
             nbt.setTag("Items", nbttaglist);
         }
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

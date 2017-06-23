@@ -41,11 +41,12 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setLong("Age", this.age);
         nbt.setBoolean("Middle", this.isMiddle);
         nbt.setBoolean("SpawnedBoss", this.spawnedBoss);
         nbt.setInteger("DelayToTeleport", this.delayToTeleport);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

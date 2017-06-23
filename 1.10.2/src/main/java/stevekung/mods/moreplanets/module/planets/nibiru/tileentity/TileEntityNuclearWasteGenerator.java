@@ -167,6 +167,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setFloat("GenerateTick", this.generateTick);
         nbt.setInteger("DisabledCooldown", this.disableCooldown);
         nbt.setBoolean("Disabled", this.getDisabled(0));
@@ -185,7 +186,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
             }
         }
         nbt.setTag("Items", list);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     private boolean getWaste(BlockPos pos)

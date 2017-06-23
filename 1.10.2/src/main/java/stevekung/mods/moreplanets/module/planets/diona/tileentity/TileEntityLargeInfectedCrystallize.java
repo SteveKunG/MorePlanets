@@ -18,14 +18,15 @@ public class TileEntityLargeInfectedCrystallize extends TileEntityRenderTickable
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        this.facing = nbt.getShort("Facing");
+        this.facing = nbt.getInteger("Facing");
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setInteger("Facing", this.facing);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

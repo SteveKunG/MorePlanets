@@ -25,7 +25,7 @@ public class EntitySpaceMinecartChest extends EntityMinecartContainer
     public void killMinecart(DamageSource source)
     {
         super.killMinecart(source);
-        this.dropItemWithOffset(Item.getItemFromBlock(this.getDefaultDisplayTile().getBlock()), 1, 0.0F);
+        this.dropItemWithOffset(Item.getItemFromBlock(this.getDisplayTile().getBlock()), 1, 0.0F);
     }
 
     @Override

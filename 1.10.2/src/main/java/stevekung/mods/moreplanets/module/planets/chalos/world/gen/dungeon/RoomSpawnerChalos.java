@@ -87,13 +87,13 @@ public class RoomSpawnerChalos extends RoomEmptyMP
         default:
             return "moreplanets.cheese_floater";
         case 2:
-            return "GalacticraftCore.evolved_spider";
+            return "galacticraftcore.evolved_spider";
         case 3:
-            return "GalacticraftCore.evolved_creeper";
+            return "galacticraftcore.evolved_creeper";
         case 4:
-            return "GalacticraftCore.evolved_skeleton";
+            return "galacticraftcore.evolved_skeleton";
         case 5:
-            return "GalacticraftCore.evolved_zombie";
+            return "galacticraftcore.evolved_zombie";
         }
     }
 }

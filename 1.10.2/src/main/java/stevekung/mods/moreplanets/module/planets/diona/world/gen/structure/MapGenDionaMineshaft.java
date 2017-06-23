@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenDionaMineshaft extends MapGenStructure
@@ -11,6 +12,12 @@ public class MapGenDionaMineshaft extends MapGenStructure
     private double chance = 0.004D;
 
     public MapGenDionaMineshaft() {}
+
+    static
+    {
+        MapGenStructureIO.registerStructure(StructureMineshaftStart.class, "DionaMineshaft");
+        StructureDionaMineshaftPieces.registerStructurePieces();
+    }
 
     @Override
     public String getStructureName()
@@ -30,7 +37,7 @@ public class MapGenDionaMineshaft extends MapGenStructure
         return new StructureMineshaftStart(this.worldObj, this.rand, chunkX, chunkZ);
     }
 
-    class StructureMineshaftStart extends StructureStart
+    public static class StructureMineshaftStart extends StructureStart
     {
         public StructureMineshaftStart() {}
 

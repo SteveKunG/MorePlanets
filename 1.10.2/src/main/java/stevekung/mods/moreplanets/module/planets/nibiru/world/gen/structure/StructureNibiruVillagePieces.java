@@ -31,6 +31,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockHalfInfected
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;
+import stevekung.mods.moreplanets.util.blocks.BlockCropsMP;
 
 public class StructureNibiruVillagePieces
 {
@@ -268,19 +269,19 @@ public class StructureNibiruVillagePieces
 
             for (int i = 1; i <= 7; ++i)
             {
-                int j = ((BlockCrops)this.cropTypeA).getMaxAge();
+                int j = ((BlockCropsMP)this.cropTypeA).getMaxAge();
                 int k = j / 3;
                 this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k, j)), 1, 1, i, box);
                 this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k, j)), 2, 1, i, box);
-                int l = ((BlockCrops)this.cropTypeB).getMaxAge();
+                int l = ((BlockCropsMP)this.cropTypeB).getMaxAge();
                 int i1 = l / 3;
                 this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i1, l)), 4, 1, i, box);
                 this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i1, l)), 5, 1, i, box);
-                int j1 = ((BlockCrops)this.cropTypeC).getMaxAge();
+                int j1 = ((BlockCropsMP)this.cropTypeC).getMaxAge();
                 int k1 = j1 / 3;
                 this.setBlockState(world, this.cropTypeC.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k1, j1)), 7, 1, i, box);
                 this.setBlockState(world, this.cropTypeC.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k1, j1)), 8, 1, i, box);
-                int l1 = ((BlockCrops)this.cropTypeD).getMaxAge();
+                int l1 = ((BlockCropsMP)this.cropTypeD).getMaxAge();
                 int i2 = l1 / 3;
                 this.setBlockState(world, this.cropTypeD.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i2, l1)), 10, 1, i, box);
                 this.setBlockState(world, this.cropTypeD.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i2, l1)), 11, 1, i, box);
@@ -359,11 +360,11 @@ public class StructureNibiruVillagePieces
 
             for (int i = 1; i <= 7; ++i)
             {
-                int j = ((BlockCrops)this.cropTypeA).getMaxAge();
+                int j = ((BlockCropsMP)this.cropTypeA).getMaxAge();
                 int k = j / 3;
                 this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k, j)), 1, 1, i, box);
                 this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k, j)), 2, 1, i, box);
-                int l = ((BlockCrops)this.cropTypeB).getMaxAge();
+                int l = ((BlockCropsMP)this.cropTypeB).getMaxAge();
                 int i1 = l / 3;
                 this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i1, l)), 4, 1, i, box);
                 this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i1, l)), 5, 1, i, box);
@@ -1232,8 +1233,8 @@ public class StructureNibiruVillagePieces
         public int terrainType;
         public PieceWeight structVillagePieceWeight;
         public List<PieceWeight> structureVillageWeightedPieceList;
-        public List<StructureComponent> pendingHouses = Lists.<StructureComponent>newArrayList();
-        public List<StructureComponent> pendingRoads = Lists.<StructureComponent>newArrayList();
+        public List<StructureComponent> pendingHouses = Lists.newArrayList();
+        public List<StructureComponent> pendingRoads = Lists.newArrayList();
         public Biome biome;
 
         public Start() {}
@@ -1342,11 +1343,6 @@ public class StructureNibiruVillagePieces
             this.averageGroundLvl = nbt.getInteger("HPos");
             this.villagersSpawned = nbt.getInteger("VCount");
             this.structureType = nbt.getByte("Type");
-
-            if (nbt.getBoolean("Desert"))
-            {
-                this.structureType = 1;
-            }
             this.isZombieInfested = nbt.getBoolean("Zombie");
         }
 
@@ -1638,7 +1634,7 @@ public class StructureNibiruVillagePieces
 
         private Village findAndCreateComponentFactory(Start start, PieceWeight weight, List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
         {
-            Class <?extends Village> oclass = weight.villagePieceClass;
+            Class <? extends Village> oclass = weight.villagePieceClass;
             Village village = null;
 
             if (oclass == House4Garden.class)

@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -19,6 +20,12 @@ public class MapGenNibiruVillage extends MapGenStructure
     public static List<Biome> VILLAGE_SPAWN_BIOMES = Lists.newArrayList(MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.GREEN_VEIN);
     private int size;
     private int distance;
+
+    static
+    {
+        MapGenStructureIO.registerStructure(Start.class, "NibiruVillage");
+        StructureNibiruVillagePieces.registerVillagePieces();
+    }
 
     public MapGenNibiruVillage()
     {

@@ -14,10 +14,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraft.world.gen.structure.MapGenStructure;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
-import net.minecraft.world.gen.structure.StructureOceanMonumentPieces;
-import net.minecraft.world.gen.structure.StructureStart;
+import net.minecraft.world.gen.structure.*;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
 
@@ -32,6 +29,8 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
     static
     {
         MONUMENT_ENEMIES.add(new SpawnListEntry(EntityInfectedGuardian.class, 1, 2, 4));
+        MapGenStructureIO.registerStructure(StartMonument.class, "NibiruOceanMonument");
+        StructureOceanMonumentPieces.registerOceanMonumentPieces();
     }
 
     public MapGenNibiruOceanMonument()

@@ -150,7 +150,10 @@ public class ClientEventHandler
 
         if (player != null)
         {
-            this.runAlienBeamTick(player);
+            if (this.mc.thePlayer == player)
+            {
+                this.runAlienBeamTick(player);
+            }
 
             // Credit to Jarbelar
             // 0 = OutOfDate, 1 = ShowDesc, 2 = NoConnection
@@ -657,7 +660,7 @@ public class ClientEventHandler
                 double posX = player.posX + dX;
                 double posY = 48;
                 double posZ = player.posZ + dZ;
-                player.worldObj.playSound(posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 10.0F, 1.0F + player.getRNG().nextFloat() * 0.8F, false);
+                this.mc.theWorld.playSound(player, posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 1.0F + player.getRNG().nextFloat() * 0.8F);
                 this.beam.put(new BlockPos(posX, posY, posZ), 40);
             }
         }

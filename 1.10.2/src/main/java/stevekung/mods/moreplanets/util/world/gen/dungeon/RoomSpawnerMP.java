@@ -77,14 +77,14 @@ public class RoomSpawnerMP extends RoomEmptyMP
         switch (rand.nextInt(4))
         {
         case 0:
-            return "GalacticraftCore.evolved_spider";
+            return "galacticraftcore.evolved_spider";
         case 1:
-            return "GalacticraftCore.evolved_creeper";
+            return "galacticraftcore.evolved_creeper";
         case 2:
-            return "GalacticraftCore.evolved_skeleton";
+            return "galacticraftcore.evolved_skeleton";
         case 3:
         default:
-            return "GalacticraftCore.evolved_zombie";
+            return "galacticraftcore.evolved_zombie";
         }
     }
 }

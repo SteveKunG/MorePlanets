@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.module.planets.diona.world.gen.feature.WorldGenInfectedCrystal;
 import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.moreplanets.util.world.gen.feature.EnumOreGen;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenCaveLiquids;

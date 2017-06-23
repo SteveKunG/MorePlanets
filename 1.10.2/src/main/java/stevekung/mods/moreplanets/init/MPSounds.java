@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @ParametersAreNonnullByDefault
 public class MPSounds
@@ -45,6 +46,7 @@ public class MPSounds
 
     private static SoundEvent registerSound(String name)
     {
+        GameRegistry.register(new SoundEvent(new ResourceLocation("moreplanets:" + name)).setRegistryName(new ResourceLocation("moreplanets:" + name)));
         return new SoundEvent(new ResourceLocation("moreplanets:" + name));
     }
 }

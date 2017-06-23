@@ -95,6 +95,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         NBTTagList list = new NBTTagList();
 
         for (int i = 0; i < this.inventory.length; ++i)
@@ -119,7 +120,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         nbt.setBoolean("UseHopper", this.useHopper);
         nbt.setInteger("XP", this.xp);
         nbt.setTag("Items", list);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

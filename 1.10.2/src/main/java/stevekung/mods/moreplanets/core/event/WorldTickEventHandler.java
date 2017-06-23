@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.data.WorldDataStartedDimension;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDiona;
@@ -30,12 +30,12 @@ public class WorldTickEventHandler
     public static WorldDataStartedDimension startedDimensionData = null;
 
     @SubscribeEvent
-    public void onWorldTick(WorldTickEvent event)
+    public void onWorldTick(ServerTickEvent event)
     {
-        World world = event.world;
-
-        if (event.phase == Phase.START)
+        if (event.phase == Phase.END)
         {
+            World world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(ConfigManagerMP.idDimensionDiona);
+
             if (world.provider instanceof WorldProviderDiona)
             {
                 if (world instanceof WorldServer)
@@ -48,7 +48,7 @@ public class WorldTickEventHandler
                         int j = chunk.xPosition * 16;
                         int k = chunk.zPosition * 16;
 
-                        if (worldServer.rand.nextInt(50000) == 0)
+                        if (worldServer.rand.nextInt(75000) == 0)
                         {
                             this.updateLCG = this.updateLCG * 3 + 1013904223;
                             int l = this.updateLCG >> 2;
@@ -56,12 +56,17 @@ public class WorldTickEventHandler
 
                             if (this.canBeamStrike(worldServer, blockpos))
                             {
-                                worldServer.spawnEntityInWorld(new EntityAlienBeam(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ()));
+                                EntityAlienBeam beam = new EntityAlienBeam(worldServer);
+                                beam.setLocationAndAngles(blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0.0F, 0.0F);
+                                worldServer.spawnEntityInWorld(beam);
                             }
                         }
                     }
                 }
             }
+
+            world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(ConfigManagerMP.idDimensionNibiru);
+
             if (world.provider instanceof WorldProviderNibiru)
             {
                 if (world instanceof WorldServer)
@@ -152,7 +157,7 @@ public class WorldTickEventHandler
     private BlockPos adjustPosToNearbyEntity(WorldServer world, BlockPos pos)
     {
         BlockPos blockpos = world.getPrecipitationHeight(pos);
-        AxisAlignedBB axisalignedbb = new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), world.getHeight(), blockpos.getZ())).expandXyz(3.0D);
+        AxisAlignedBB axisalignedbb = new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), world.getHeight(), blockpos.getZ()));
         List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, (EntityLivingBase living) -> living != null && living.isEntityAlive() && world.canSeeSky(living.getPosition()));
 
         if (!list.isEmpty())

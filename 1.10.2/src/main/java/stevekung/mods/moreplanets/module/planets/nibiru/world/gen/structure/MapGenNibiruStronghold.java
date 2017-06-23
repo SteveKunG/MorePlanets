@@ -10,6 +10,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 
@@ -20,6 +21,12 @@ public class MapGenNibiruStronghold extends MapGenStructure
     private ChunkPos[] structureCoords;
     private double distance;
     private int spread;
+
+    static
+    {
+        MapGenStructureIO.registerStructure(Start.class, "NibiruStronghold");
+        StructureNibiruStrongholdPieces.registerStrongholdPieces();
+    }
 
     public MapGenNibiruStronghold()
     {

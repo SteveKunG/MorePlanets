@@ -159,6 +159,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setBoolean("isLocked", this.locked);
         nbt.setInteger("tier", this.tier);
         NBTTagList nbttaglist = new NBTTagList();
@@ -174,7 +175,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
             }
         }
         nbt.setTag("Items", nbttaglist);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

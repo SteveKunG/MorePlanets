@@ -52,5 +52,5 @@ public class Tier5RocketRecipes
             recipes.add(wrapper);
         }
         return recipes;
-    }   
+    }
 }

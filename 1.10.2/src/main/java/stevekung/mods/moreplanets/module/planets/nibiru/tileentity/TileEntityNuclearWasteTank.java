@@ -90,8 +90,9 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setBoolean("HasRod", this.hasRod);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

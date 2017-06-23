@@ -380,6 +380,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setInteger("Facing", this.facing);
         nbt.setBoolean("Activated", this.activated);
         nbt.setBoolean("ActivatedMessage", this.activatedMessage);
@@ -402,7 +403,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
             }
         }
         nbt.setTag("Items", list);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

@@ -1,13 +1,18 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.tileentity;
 
+import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
+import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
+import net.minecraft.util.ITickable;
+import net.minecraftforge.fml.relauncher.Side;
 
-public class TileEntityMultalicCrystal extends TileEntityRenderTickable
+public class TileEntityMultalicCrystal extends TileEntityAdvanced implements ITickable
 {
+    @NetworkedField(targetSide = Side.CLIENT)
     public int facing;
+    public int renderTicks;
 
     public TileEntityMultalicCrystal()
     {
@@ -15,17 +20,25 @@ public class TileEntityMultalicCrystal extends TileEntityRenderTickable
     }
 
     @Override
+    public void update()
+    {
+        super.update();
+        this.renderTicks++;
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        this.facing = nbt.getShort("Facing");
+        this.facing = nbt.getInteger("Facing");
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setInteger("Facing", this.facing);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override
@@ -44,5 +57,23 @@ public class TileEntityMultalicCrystal extends TileEntityRenderTickable
             NBTTagCompound nbt = pkt.getNbtCompound();
             this.facing = nbt.getInteger("Facing");
         }
+    }
+
+    @Override
+    public double getPacketRange()
+    {
+        return 32;
+    }
+
+    @Override
+    public int getPacketCooldown()
+    {
+        return 1;
+    }
+
+    @Override
+    public boolean isNetworkedTile()
+    {
+        return true;
     }
 }

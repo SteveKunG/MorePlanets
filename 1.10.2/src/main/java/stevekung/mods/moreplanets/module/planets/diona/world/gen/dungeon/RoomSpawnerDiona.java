@@ -91,13 +91,13 @@ public class RoomSpawnerDiona extends RoomEmptyMP
         case 2:
             return "moreplanets.zelius_skeleton";
         case 3:
-            return "GalacticraftCore.evolved_spider";
+            return "galacticraftcore.evolved_spider";
         case 4:
-            return "GalacticraftCore.evolved_creeper";
+            return "galacticraftcore.evolved_creeper";
         case 5:
-            return "GalacticraftCore.evolved_skeleton";
+            return "galacticraftcore.evolved_skeleton";
         case 6:
-            return "GalacticraftCore.evolved_zombie";
+            return "galacticraftcore.evolved_zombie";
         }
     }
 }

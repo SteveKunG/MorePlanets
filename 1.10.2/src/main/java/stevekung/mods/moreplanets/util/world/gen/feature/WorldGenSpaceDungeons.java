@@ -195,16 +195,16 @@ public class WorldGenSpaceDungeons extends WorldGenerator
     {
         if (rand.nextInt(5) == 0)
         {
-            return "GalacticraftCore.evolved_spider";
+            return "galacticraftcore.evolved_spider";
         }
         else if (rand.nextInt(10) == 0)
         {
-            return "GalacticraftCore.evolved_skeleton";
+            return "galacticraftcore.evolved_skeleton";
         }
         else if (rand.nextInt(25) == 0)
         {
-            return "GalacticraftCore.evolved_creeper";
+            return "galacticraftcore.evolved_creeper";
         }
-        return "GalacticraftCore.evolved_zombie";
+        return "galacticraftcore.evolved_zombie";
     }
 }

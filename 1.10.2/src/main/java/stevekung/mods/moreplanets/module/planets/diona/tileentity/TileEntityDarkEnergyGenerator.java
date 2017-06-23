@@ -141,6 +141,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setFloat("MaxEnergy", this.getMaxEnergyStoredGC());
         nbt.setInteger("DisabledCooldown", this.disableCooldown);
         nbt.setBoolean("Disabled", this.getDisabled(0));
@@ -159,7 +160,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
             }
         }
         nbt.setTag("Items", list);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

@@ -167,6 +167,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         nbt.setInteger("DimensionID", this.dimensionID);
         nbt.setBoolean("ReceiveData", this.receiveData);
         nbt.setBoolean("CheckInvalid", this.checkInvalid);
@@ -193,7 +194,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             }
         }
         nbt.setTag("Items", list);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override

@@ -98,6 +98,7 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        super.writeToNBT(nbt);
         NBTTagList list = new NBTTagList();
         this.addMachineSidesToNBT(nbt);
 
@@ -112,7 +113,7 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
             }
         }
         nbt.setTag("Items", list);
-        return super.writeToNBT(nbt);
+        return nbt;
     }
 
     @Override
