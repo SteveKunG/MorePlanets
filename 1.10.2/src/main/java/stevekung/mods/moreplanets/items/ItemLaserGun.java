@@ -190,16 +190,27 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
 
     private ItemStack findBullet(EntityPlayer player)
     {
-        for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
+        if (this.isBullet(player.getHeldItem(EnumHand.OFF_HAND)))
         {
-            ItemStack itemStack = player.inventory.getStackInSlot(i);
-
-            if (this.isBullet(itemStack))
-            {
-                return itemStack;
-            }
+            return player.getHeldItem(EnumHand.OFF_HAND);
         }
-        return null;
+        else if (this.isBullet(player.getHeldItem(EnumHand.MAIN_HAND)))
+        {
+            return player.getHeldItem(EnumHand.MAIN_HAND);
+        }
+        else
+        {
+            for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
+            {
+                ItemStack itemStack = player.inventory.getStackInSlot(i);
+
+                if (this.isBullet(itemStack))
+                {
+                    return itemStack;
+                }
+            }
+            return null;
+        }
     }
 
     protected boolean isBullet(ItemStack itemStack)
