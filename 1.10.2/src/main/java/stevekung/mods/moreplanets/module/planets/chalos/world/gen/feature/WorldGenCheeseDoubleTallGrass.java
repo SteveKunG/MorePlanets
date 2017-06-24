@@ -19,7 +19,7 @@ public class WorldGenCheeseDoubleTallGrass extends WorldGenerator
 
             if (world.isAirBlock(blockpos) && (!world.provider.getHasNoSky() || blockpos.getY() < 254) && ChalosBlocks.CHALOS_DOUBLE_PLANT.canBlockStay(world, blockpos, ChalosBlocks.CHALOS_DOUBLE_PLANT.getDefaultState()))
             {
-                ChalosBlocks.CHALOS_DOUBLE_PLANT.placeAt(world, blockpos, BlockChalosDoublePlant.BlockType.CHEESE_DOUBLE_TALL_GRASS, 2);
+                ChalosBlocks.CHALOS_DOUBLE_PLANT.placeAt(world, blockpos, BlockChalosDoublePlant.BlockType.DOUBLE_CHEESE_TALL_GRASS, 2);
             }
         }
         return true;

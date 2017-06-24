@@ -43,7 +43,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     public BlockChalosDoublePlant(String name)
     {
         super(Material.VINE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.CHEESE_DOUBLE_TALL_GRASS).withProperty(BlockDoublePlant.HALF, EnumBlockHalf.LOWER));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.DOUBLE_CHEESE_TALL_GRASS).withProperty(BlockDoublePlant.HALF, EnumBlockHalf.LOWER));
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);
         this.setUnlocalizedName(name);
@@ -74,7 +74,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
         else
         {
             BlockType type = iblockstate.getActualState(world, pos).getValue(VARIANT);
-            return type == BlockType.CHEESE_DOUBLE_TALL_GRASS;
+            return type == BlockType.DOUBLE_CHEESE_TALL_GRASS;
         }
     }
 
@@ -135,14 +135,14 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
         else
         {
             BlockType type = state.getValue(VARIANT);
-            return type == BlockType.CHEESE_DOUBLE_TALL_GRASS ? rand.nextInt(8) == 0 ? ChalosItems.CHEESE_SPORE_SEED : null : Item.getItemFromBlock(this);
+            return type == BlockType.DOUBLE_CHEESE_TALL_GRASS ? rand.nextInt(8) == 0 ? ChalosItems.CHEESE_SPORE_SEED : null : Item.getItemFromBlock(this);
         }
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        return state.getValue(BlockDoublePlant.HALF) != EnumBlockHalf.UPPER && state.getValue(VARIANT) != BlockType.CHEESE_DOUBLE_TALL_GRASS ? state.getValue(VARIANT).ordinal() : 0;
+        return state.getValue(BlockDoublePlant.HALF) != EnumBlockHalf.UPPER && state.getValue(VARIANT) != BlockType.DOUBLE_CHEESE_TALL_GRASS ? state.getValue(VARIANT).ordinal() : 0;
     }
 
     @Override
@@ -167,7 +167,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
                     IBlockState iblockstate = world.getBlockState(pos.down());
                     BlockType type = iblockstate.getValue(VARIANT);
 
-                    if (type != BlockType.CHEESE_DOUBLE_TALL_GRASS)
+                    if (type != BlockType.DOUBLE_CHEESE_TALL_GRASS)
                     {
                         world.destroyBlock(pos.down(), true);
                     }
@@ -203,7 +203,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
         BlockType type = this.getType(world, pos, state);
-        return type != BlockType.CHEESE_DOUBLE_TALL_GRASS;
+        return type != BlockType.DOUBLE_CHEESE_TALL_GRASS;
     }
 
     @Override
@@ -263,7 +263,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     {
         IBlockState state = world.getBlockState(pos);
         BlockType type = state.getValue(VARIANT);
-        return state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.LOWER && type == BlockType.CHEESE_DOUBLE_TALL_GRASS;
+        return state.getValue(BlockDoublePlant.HALF) == EnumBlockHalf.LOWER && type == BlockType.DOUBLE_CHEESE_TALL_GRASS;
     }
 
     @Override
@@ -272,7 +272,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
         List<ItemStack> ret = Lists.newArrayList();
         BlockType type = world.getBlockState(pos).getValue(VARIANT);
 
-        if (type == BlockType.CHEESE_DOUBLE_TALL_GRASS)
+        if (type == BlockType.DOUBLE_CHEESE_TALL_GRASS)
         {
             ret.add(new ItemStack(ChalosBlocks.CHEESE_TALL_GRASS, 2));
         }
@@ -288,7 +288,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
         }
         else
         {
-            return BlockType.CHEESE_DOUBLE_TALL_GRASS;
+            return BlockType.DOUBLE_CHEESE_TALL_GRASS;
         }
     }
 
@@ -302,7 +302,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     {
         BlockType type = state.getValue(VARIANT);
 
-        if (type != BlockType.CHEESE_DOUBLE_TALL_GRASS)
+        if (type != BlockType.DOUBLE_CHEESE_TALL_GRASS)
         {
             return false;
         }
@@ -315,7 +315,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
 
     public static enum BlockType implements IStringSerializable
     {
-        CHEESE_DOUBLE_TALL_GRASS;
+        DOUBLE_CHEESE_TALL_GRASS;
 
         private static BlockType[] values = BlockType.values();
 
