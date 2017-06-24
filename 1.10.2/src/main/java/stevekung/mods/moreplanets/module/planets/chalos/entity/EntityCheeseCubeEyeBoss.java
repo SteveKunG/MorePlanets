@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.module.planets.chalos.entity;
 import java.util.List;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.IBoss;
@@ -32,14 +31,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
+import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.EntityFlyingBossMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
@@ -66,7 +66,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     {
         this.tasks.addTask(5, new AIRandomFly(this));
         this.tasks.addTask(7, new AILookAround(this));
-        this.tasks.addTask(7, new AIFireballAttack(this));
+        this.tasks.addTask(7, new AICheeseSporeAttack(this));
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
     }
 
@@ -174,22 +174,9 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
                     {
                         chest.locked = true;
                     }
-
-                    for (int k = 0; k < chest.getSizeInventory(); k++)
-                    {
-                        chest.setInventorySlotContents(k, null);
-                    }
-
-                    /*ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON);//TODO Loot Table
-
-                    // Generate twice, since it's an extra special chest
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));*/
-
-                    ItemStack schematic = this.getGuaranteedLoot(this.rand);
                     int slot = this.rand.nextInt(chest.getSizeInventory());
-                    chest.setInventorySlotContents(slot, schematic);
+                    chest.setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, this.rand.nextLong());
+                    chest.setInventorySlotContents(slot, MPLootTables.getTieredKey(this.rand, 5));
                 }
             }
 
@@ -230,11 +217,12 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> entitiesWithin2 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
+                List<EntityPlayer> playerWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
 
-                for (EntityPlayer p : entitiesWithin2)
+                for (EntityPlayer player2 : playerWithin)
                 {
-                    p.addChatMessage(new TextComponentString(GCCoreUtil.translate("gui.skeleton_boss.message")));
+                    JsonUtils json = new JsonUtils();
+                    player2.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;
@@ -407,18 +395,12 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         return this.getDisplayName();
     }
 
-    private ItemStack getGuaranteedLoot(Random rand)
-    {
-        List<ItemStack> stackList = GalacticraftRegistry.getDungeonLoot(5);
-        return stackList.get(rand.nextInt(stackList.size()));
-    }
-
-    private static class AIFireballAttack extends EntityAIBase
+    private static class AICheeseSporeAttack extends EntityAIBase
     {
         private EntityCheeseCubeEyeBoss parentEntity;
         public int attackTimer;
 
-        public AIFireballAttack(EntityCheeseCubeEyeBoss ghast)
+        public AICheeseSporeAttack(EntityCheeseCubeEyeBoss ghast)
         {
             this.parentEntity = ghast;
         }

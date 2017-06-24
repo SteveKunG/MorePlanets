@@ -27,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
@@ -116,11 +117,6 @@ public class CommonRegisterHelper
         }
     }
 
-    public static ResourceLocation registerLootTable(ResourceLocation resource)
-    {
-        return LootTableList.register(resource);
-    }
-
     public static void registerPotion(Potion potion, String name)
     {
         GameRegistry.register(potion.setRegistryName(name));
@@ -129,6 +125,27 @@ public class CommonRegisterHelper
     public static void registerBiome(int id, String name, Biome biome)
     {
         Biome.registerBiome(id, "moreplanets:" + name, biome);
+    }
+
+    public static SoundEvent registerSound(String name)
+    {
+        GameRegistry.register(new SoundEvent(new ResourceLocation("moreplanets:" + name)).setRegistryName(new ResourceLocation("moreplanets:" + name)));
+        return new SoundEvent(new ResourceLocation("moreplanets:" + name));
+    }
+
+    public static ResourceLocation registerEntityLoot(String name)
+    {
+        return LootTableList.register(new ResourceLocation("moreplanets:entities/" + name));
+    }
+
+    public static ResourceLocation registerChestLoot(String name)
+    {
+        return LootTableList.register(new ResourceLocation("moreplanets:chests/" + name));
+    }
+
+    public static ResourceLocation registerGameplayLoot(String name)
+    {
+        return LootTableList.register(new ResourceLocation("moreplanets:gameplay/" + name));
     }
 
     public static void registerTileEntity(Class<? extends TileEntity> tile, String name)

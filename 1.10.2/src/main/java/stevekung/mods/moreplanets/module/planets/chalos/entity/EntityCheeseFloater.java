@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.chalos.entity;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -9,7 +11,6 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -17,14 +18,15 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
-import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 
 public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
 {
@@ -207,22 +209,10 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     public void fall(float distance, float damageMultiplier) {}
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    public ResourceLocation getLootTable()
     {
-        int j = this.rand.nextInt(3) + this.rand.nextInt(1 + fortune);
-
-        for (int i = 0; i < j; ++i)
-        {
-            this.entityDropItem(new ItemStack(ChalosItems.CHEESE_SLIMEBALL, 1), 0.0F);
-        }
-        for (int i = 0; i < this.rand.nextInt(3); ++i)
-        {
-            this.entityDropItem(new ItemStack(ChalosItems.CHEESE_FOOD, 1), 0.0F);
-        }
-        if (this.rand.nextInt(10) == 0)
-        {
-            this.entityDropItem(new ItemStack(ChalosBlocks.CHEESE_SLIME_BLOCK, 1), 0.0F);
-        }
+        return MPLootTables.CHEESE_FLOATER;
     }
 
     @Override

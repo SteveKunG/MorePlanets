@@ -1,18 +1,20 @@
 package stevekung.mods.moreplanets.module.planets.diona.entity;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 
 public class EntityInfectedCrystallizeSpider extends EntitySpider implements IEntityBreathable
 {
@@ -61,20 +63,10 @@ public class EntityInfectedCrystallizeSpider extends EntitySpider implements IEn
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    protected ResourceLocation getLootTable()
     {
-        int j = 3 + this.rand.nextInt(4);
-
-        if (fortune > 0)
-        {
-            j += this.rand.nextInt(fortune + 1);
-        }
-
-        for (int k = 0; k < j; ++k)
-        {
-            this.entityDropItem(new ItemStack(DionaItems.DIONA_ITEM, 1, 4), 0.0F);
-        }
-        super.dropFewItems(drop, fortune);
+        return MPLootTables.INFECTED_CRYSTALLIZE_SPIDER;
     }
 
     @Override

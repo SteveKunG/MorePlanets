@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -19,9 +20,10 @@ import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet.EnumLaserT
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.util.items.ISingleItemRender;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
 
-public class ItemLaserGun extends ItemElectricBase implements ISortableItem
+public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISingleItemRender
 {
     public ItemLaserGun(String name)
     {
@@ -41,8 +43,27 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem
                 }
                 else
                 {
-                    ItemStack bulletStack = living.getActiveItemStack();
-                    return bulletStack != null && bulletStack.getItem() == MPItems.LASER_GUN ? (itemStack.getMaxItemUseDuration() - living.getItemInUseCount()) / 20.0F : 0.0F;
+                    ItemStack gun = living.getActiveItemStack();
+
+                    if (living instanceof EntityPlayer)
+                    {
+                        EntityPlayer player = (EntityPlayer) living;
+
+                        if (gun != null && gun.getItem() == MPItems.LASER_GUN)
+                        {
+                            int i = itemStack.getMaxItemUseDuration() - player.getItemInUseCount();
+
+                            if (i > 12)
+                            {
+                                return 0.9F;
+                            }
+                            if (i > 0)
+                            {
+                                return 0.65F;
+                            }
+                        }
+                    }
+                    return 0.0F;
                 }
             }
         });
@@ -77,11 +98,11 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityLivingBase living, int timeLeft)
+    public ItemStack onItemUseFinish(ItemStack itemStack, World world, EntityLivingBase living)
     {
         if (living instanceof EntityPlayer)
         {
-            EntityPlayer player = (EntityPlayer)living;
+            EntityPlayer player = (EntityPlayer) living;
             boolean flag = player.capabilities.isCreativeMode;
             ItemStack bulletStack = this.findBullet(player);
 
@@ -120,6 +141,7 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem
                 }
             }
         }
+        return itemStack;
     }
 
     @Override
@@ -127,15 +149,19 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem
     {
         boolean flag = this.findBullet(player) != null;
 
-        if (!player.capabilities.isCreativeMode && !flag && this.getElectricityStored(itemStack) > 0.0F)
+        if (this.getElectricityStored(itemStack) > 0.0F)
         {
-            return !flag ? new ActionResult(EnumActionResult.FAIL, itemStack) : new ActionResult(EnumActionResult.PASS, itemStack);
+            if (!player.capabilities.isCreativeMode && !flag)
+            {
+                return !flag ? new ActionResult(EnumActionResult.FAIL, itemStack) : new ActionResult(EnumActionResult.PASS, itemStack);
+            }
+            else
+            {
+                player.setActiveHand(hand);
+                return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+            }
         }
-        else
-        {
-            player.setActiveHand(hand);
-            return new ActionResult(EnumActionResult.SUCCESS, itemStack);
-        }
+        return new ActionResult(EnumActionResult.PASS, itemStack);
     }
 
     @Override
@@ -150,29 +176,30 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem
         return EnumSortCategoryItem.OTHER_TOOL;
     }
 
+    @Override
+    public String getName()
+    {
+        return "laser_gun";
+    }
+
+    @Override
+    public Item getItem()
+    {
+        return this;
+    }
+
     private ItemStack findBullet(EntityPlayer player)
     {
-        if (this.isBullet(player.getHeldItem(EnumHand.OFF_HAND)))
+        for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
         {
-            return player.getHeldItem(EnumHand.OFF_HAND);
-        }
-        else if (this.isBullet(player.getHeldItem(EnumHand.MAIN_HAND)))
-        {
-            return player.getHeldItem(EnumHand.MAIN_HAND);
-        }
-        else
-        {
-            for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
-            {
-                ItemStack itemStack = player.inventory.getStackInSlot(i);
+            ItemStack itemStack = player.inventory.getStackInSlot(i);
 
-                if (this.isBullet(itemStack))
-                {
-                    return itemStack;
-                }
+            if (this.isBullet(itemStack))
+            {
+                return itemStack;
             }
-            return null;
         }
+        return null;
     }
 
     protected boolean isBullet(ItemStack itemStack)

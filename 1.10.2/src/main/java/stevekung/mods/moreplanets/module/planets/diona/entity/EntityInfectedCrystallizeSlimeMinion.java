@@ -1,17 +1,19 @@
 package stevekung.mods.moreplanets.module.planets.diona.entity;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.entity.EntitySlimeBaseMP;
 
@@ -23,31 +25,16 @@ public class EntityInfectedCrystallizeSlimeMinion extends EntitySlimeBaseMP
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    public ResourceLocation getLootTable()
     {
-        int j = this.rand.nextInt(3);
-
-        if (fortune > 0)
-        {
-            j += this.rand.nextInt(fortune + 1);
-        }
-        for (int k = 0; k < j; ++k)
-        {
-            this.entityDropItem(new ItemStack(DionaItems.DIONA_ITEM, 1, 4), 0.0F);
-        }
-
-        j = this.rand.nextInt(2);
-
-        for (int k = 0; k < j; ++k)
-        {
-            this.entityDropItem(new ItemStack(DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL), 0.0F);
-        }
+        return this.getSlimeSize() == 1 ? MPLootTables.INFECTED_CRYSTALLIZE_SLIME : null;
     }
 
     @Override
     protected boolean canDamagePlayer()
     {
-        return true && !this.isAIDisabled();
+        return !this.isAIDisabled();
     }
 
     @Override

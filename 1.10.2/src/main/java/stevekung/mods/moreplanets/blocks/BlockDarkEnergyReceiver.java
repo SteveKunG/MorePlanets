@@ -50,7 +50,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack heldStack)
     {
         int angle = MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
@@ -77,6 +77,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
 
         if (tile instanceof TileEntityDarkEnergyReceiver)
         {
+            ItemStack itemStack = new ItemStack(this);
             TileEntityDarkEnergyReceiver energy = (TileEntityDarkEnergyReceiver) world.getTileEntity(pos);
             energy.onCreate(world, pos);
             energy.setFacing(direction);

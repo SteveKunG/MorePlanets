@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.diona.entity;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,9 +13,11 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
@@ -43,19 +47,10 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    public ResourceLocation getLootTable()
     {
-        int j = 1 + this.rand.nextInt(4);
-
-        if (fortune > 0)
-        {
-            j += this.rand.nextInt(fortune + 1);
-        }
-        for (int k = 0; k < j; ++k)
-        {
-            this.entityDropItem(new ItemStack(DionaItems.DIONA_ITEM, 1, 4), 0.0F);
-        }
-        super.dropFewItems(drop, fortune);
+        return MPLootTables.ZELIUS_ZOMBIE;
     }
 
     @Override

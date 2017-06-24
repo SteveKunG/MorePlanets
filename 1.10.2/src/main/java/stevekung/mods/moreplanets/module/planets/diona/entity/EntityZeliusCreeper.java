@@ -2,17 +2,18 @@ package stevekung.mods.moreplanets.module.planets.diona.entity;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 
 public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreathable
 {
@@ -86,24 +87,10 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    public ResourceLocation getLootTable()
     {
-        int j = 1 + this.rand.nextInt(4);
-        int j2 = this.rand.nextInt(3);
-
-        if (fortune > 0)
-        {
-            j += this.rand.nextInt(fortune + 1);
-            j2 += this.rand.nextInt(fortune + 1);
-        }
-        for (int k = 0; k < j; ++k)
-        {
-            this.entityDropItem(new ItemStack(DionaItems.DIONA_ITEM, 1, 4), 0.0F);
-        }
-        for (int k = 0; k < j2; ++k)
-        {
-            this.entityDropItem(new ItemStack(Items.GUNPOWDER, 1), 0.0F);
-        }
+        return MPLootTables.ZELIUS_CREEPER;
     }
 
     @Override

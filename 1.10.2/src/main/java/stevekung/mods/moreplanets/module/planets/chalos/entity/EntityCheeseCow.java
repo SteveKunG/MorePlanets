@@ -129,31 +129,6 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
-    {
-        int j = this.rand.nextInt(3) + this.rand.nextInt(1 + fortune);
-
-        for (int i = 0; i < j; ++i)
-        {
-            this.entityDropItem(new ItemStack(Items.LEATHER, 1), 1.0F);
-        }
-
-        j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + fortune);
-
-        for (int i = 0; i < j; ++i)
-        {
-            if (this.isBurning())
-            {
-                this.entityDropItem(new ItemStack(ChalosItems.CHEESE_FOOD, 1, 2), 1.0F);
-            }
-            else
-            {
-                this.entityDropItem(new ItemStack(ChalosItems.CHEESE_FOOD, 1, 1), 1.0F);
-            }
-        }
-    }
-
-    @Override
     @Nullable
     protected ResourceLocation getLootTable()
     {

@@ -156,11 +156,12 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack heldStack)
     {
         if (tile instanceof TileEntityRocketCrusher)
         {
             TileEntityRocketCrusher electric = (TileEntityRocketCrusher) tile;
+            ItemStack itemStack = new ItemStack(this);
 
             if (electric.getEnergyStoredGC() > 0)
             {

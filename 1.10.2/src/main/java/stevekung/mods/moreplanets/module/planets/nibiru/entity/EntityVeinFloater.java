@@ -27,7 +27,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
@@ -35,6 +34,7 @@ import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
+import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 
 public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisplayData, IBoss, IEntityBreathable, ISpaceMob, IEntityMultiPart
@@ -349,11 +349,12 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> entitiesWithin2 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
+                List<EntityPlayer> playerWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
 
-                for (EntityPlayer p : entitiesWithin2)
+                for (EntityPlayer player : playerWithin)
                 {
-                    p.addChatMessage(new TextComponentString(GCCoreUtil.translate("gui.skeleton_boss.message")));
+                    JsonUtils json = new JsonUtils();
+                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;

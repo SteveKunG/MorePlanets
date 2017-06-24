@@ -1,12 +1,14 @@
 package stevekung.mods.moreplanets.module.planets.chalos.entity;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.entity.EntitySlimeBaseMP;
 
@@ -18,21 +20,10 @@ public class EntityCheeseSlime extends EntitySlimeBaseMP
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    public ResourceLocation getLootTable()
     {
-        int j = this.rand.nextInt(3) + this.rand.nextInt(1 + fortune);
-
-        if (this.getSlimeSize() == 1)
-        {
-            for (int i = 0; i < j; ++i)
-            {
-                this.entityDropItem(new ItemStack(ChalosItems.CHEESE_SLIMEBALL, 1), 0.0F);
-            }
-            for (int i = 0; i < this.rand.nextInt(3); ++i)
-            {
-                this.entityDropItem(new ItemStack(ChalosItems.CHEESE_FOOD, 1), 0.0F);
-            }
-        }
+        return this.getSlimeSize() == 1 ? MPLootTables.CHEESE_SLIME : null;
     }
 
     @Override

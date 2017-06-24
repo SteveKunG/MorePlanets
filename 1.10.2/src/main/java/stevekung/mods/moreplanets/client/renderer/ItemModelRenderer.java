@@ -108,13 +108,6 @@ public class ItemModelRenderer
             String name = map.getValue();
             ClientRegisterHelper.registerModelRender(item, name);
         }
-
-        ClientRegisterHelper.registerModelRender(MPItems.SPACE_FISHING_ROD, "space_fishing_rod");
-        ClientRegisterHelper.registerModelRender(MPItems.SPACE_FISHING_ROD, 1, "space_fishing_rod_cast");
-        ClientRegisterHelper.registerModelRender(MPItems.LASER_GUN, "laser_gun");
-        ClientRegisterHelper.registerModelRender(MPItems.LASER_GUN, 1, "laser_gun_charged");
-        ClientRegisterHelper.registerModelRender(MPItems.LASER_GUN, 2, "laser_gun_shoot");
-        ClientRegisterHelper.registerBowModelRender(MPItems.SPACE_BOW, "space_bow");
         ClientRegisterHelper.registerToolsModelRender(DionaItems.ILLENIUM_SWORD, DionaItems.ILLENIUM_SHOVEL, DionaItems.ILLENIUM_PICKAXE, DionaItems.ILLENIUM_AXE, DionaItems.ILLENIUM_HOE, "illenium");
         ClientRegisterHelper.registerToolsModelRender(ChalosItems.DIREMSIUM_SWORD, ChalosItems.DIREMSIUM_SHOVEL, ChalosItems.DIREMSIUM_PICKAXE, ChalosItems.DIREMSIUM_AXE, ChalosItems.DIREMSIUM_HOE, "diremsium");
         ClientRegisterHelper.registerToolsModelRender(ChalosItems.CHEESE_SPORE_WOOD_SWORD, ChalosItems.CHEESE_SPORE_WOOD_SHOVEL, ChalosItems.CHEESE_SPORE_WOOD_PICKAXE, ChalosItems.CHEESE_SPORE_WOOD_AXE, ChalosItems.CHEESE_SPORE_WOOD_HOE, "cheese_spore_wood");

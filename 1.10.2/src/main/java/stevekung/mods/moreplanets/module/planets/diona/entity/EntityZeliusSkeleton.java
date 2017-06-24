@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.diona.entity;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -12,12 +14,11 @@ import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -25,10 +26,10 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 
 public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreathable
 {
@@ -94,41 +95,6 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
         else
         {
             return false;
-        }
-    }
-
-    @Override
-    protected Item getDropItem()
-    {
-        return null;
-    }
-
-    @Override
-    protected void dropFewItems(boolean drop, int fortune)
-    {
-        int j = 1 + this.rand.nextInt(4);
-
-        if (fortune > 0)
-        {
-            j += this.rand.nextInt(fortune + 1);
-        }
-        for (int k = 0; k < j; ++k)
-        {
-            this.entityDropItem(new ItemStack(DionaItems.DIONA_ITEM, 1, 4), 0.0F);
-        }
-
-        int k = this.rand.nextInt(3 + fortune);
-
-        for (int i1 = 0; i1 < k; ++i1)
-        {
-            this.dropItem(DionaItems.INFECTED_CRYSTALLIZE_ARROW, 1);
-        }
-
-        int l = this.rand.nextInt(3 + fortune);
-
-        for (int j1 = 0; j1 < l; ++j1)
-        {
-            this.dropItem(Items.BONE, 1);
         }
     }
 
@@ -203,6 +169,13 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
         {
             this.setCombatTask();
         }
+    }
+
+    @Override
+    @Nullable
+    public ResourceLocation getLootTable()
+    {
+        return MPLootTables.ZELIUS_SKELETON;
     }
 
     @Override

@@ -21,6 +21,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
 
 public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IEntityBreathable
@@ -308,7 +309,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
 
     protected SoundEvent getJumpSound()
     {
-        return this.isSmallSlime() ? SoundEvents.ENTITY_SMALL_SLIME_JUMP : SoundEvents.ENTITY_SLIME_JUMP;
+        return this.isSmallSlime() ? MPSounds.SMALL_SLIME_JUMP : SoundEvents.ENTITY_SLIME_JUMP;
     }
 
     protected abstract double getDetectRange();
@@ -411,7 +412,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
             {
                 this.slime.getJumpHelper().setJumping();
             }
-            ((SlimeMoveHelper)this.slime.getMoveHelper()).setSpeed(1.2D);
+            ((SlimeMoveHelper)this.slime.getMoveHelper()).setSpeed(this.slime.isAIDisabled() ? 0.0D : 1.2D);
         }
     }
 
@@ -434,7 +435,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         @Override
         public void updateTask()
         {
-            ((SlimeMoveHelper)this.slime.getMoveHelper()).setSpeed(1.0D);
+            ((SlimeMoveHelper)this.slime.getMoveHelper()).setSpeed(this.slime.isAIDisabled() ? 0.0D : 1.0D);
         }
     }
 
@@ -481,7 +482,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
 
                 if (this.entity.onGround)
                 {
-                    this.entity.setAIMoveSpeed((float)(this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
+                    this.entity.setAIMoveSpeed(this.entity.isAIDisabled() ? 0.0F : (float)(this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
 
                     if (this.jumpDelay-- <= 0)
                     {
@@ -506,7 +507,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
                 }
                 else
                 {
-                    this.entity.setAIMoveSpeed((float)(this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
+                    this.entity.setAIMoveSpeed(this.entity.isAIDisabled() ? 0.0F : (float)(this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
                 }
             }
         }

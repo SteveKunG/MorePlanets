@@ -143,7 +143,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         int drainExp = rand.nextInt(25) == 0 ? 24 + rand.nextInt(16) : rand.nextInt(10) == 0 ? 20 + rand.nextInt(5) : rand.nextInt(5) == 0 ? 10 + rand.nextInt(5) : 3 + rand.nextInt(5);
                         storage.xp -= storage.xp < drainExp ? storage.xp : drainExp;
                         player.addExperience(drainExp);
-                        player.worldObj.playSound(player, pos, SoundEvents.ENTITY_EXPERIENCE_ORB_TOUCH, SoundCategory.PLAYERS, 0.1F, 0.5F * ((player.worldObj.rand.nextFloat() - player.worldObj.rand.nextFloat()) * 0.7F + 1.8F));
+                        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_TOUCH, SoundCategory.PLAYERS, 0.1F, 0.5F * ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.8F));
                     }
                     else
                     {
@@ -169,12 +169,13 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack heldStack)
     {
         player.addExhaustion(0.025F);
 
         if (tile instanceof TileEntityBlackHoleStorage)
         {
+            ItemStack itemStack = new ItemStack(this);
             NBTTagCompound nbt = new NBTTagCompound();
             TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
             NBTTagList list = new NBTTagList();

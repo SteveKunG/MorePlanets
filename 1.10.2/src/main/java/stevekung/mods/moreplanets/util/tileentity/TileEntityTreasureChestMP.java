@@ -2,6 +2,9 @@ package stevekung.mods.moreplanets.util.tileentity;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.api.item.IKeyable;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
@@ -22,11 +25,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IInteractionObject;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.storage.loot.LootContext;
+import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
@@ -38,10 +45,13 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     public float prevLidAngle;
     public int numPlayersUsing;
     private int ticksSinceSync;
-    private int tier;
     private String name;
     private Block block;
+    private ResourceLocation lootTable;
+    private long lootTableSeed;
 
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int tier = 1;
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean locked = true;
 
@@ -61,12 +71,15 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     @Override
     public ItemStack getStackInSlot(int index)
     {
+        this.fillWithLoot((EntityPlayer)null);
         return this.chestContents[index];
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
+        this.fillWithLoot((EntityPlayer)null);
+
         if (this.chestContents[index] != null)
         {
             ItemStack itemstack;
@@ -99,6 +112,8 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
+        this.fillWithLoot((EntityPlayer)null);
+
         if (this.chestContents[index] != null)
         {
             ItemStack itemstack = this.chestContents[index];
@@ -114,6 +129,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     @Override
     public void setInventorySlotContents(int index, ItemStack stack)
     {
+        this.fillWithLoot((EntityPlayer)null);
         this.chestContents[index] = stack;
 
         if (stack != null && stack.stackSize > this.getInventoryStackLimit())
@@ -139,19 +155,23 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
+        this.chestContents = new ItemStack[this.getSizeInventory()];
         this.locked = nbt.getBoolean("isLocked");
         this.tier = nbt.getInteger("tier");
-        NBTTagList nbttaglist = nbt.getTagList("Items", 10);
-        this.chestContents = new ItemStack[this.getSizeInventory()];
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        if (!this.checkLootAndRead(nbt))
         {
-            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-            int j = nbttagcompound1.getByte("Slot") & 255;
+            NBTTagList nbttaglist = nbt.getTagList("Items", 10);
 
-            if (j >= 0 && j < this.chestContents.length)
+            for (int i = 0; i < nbttaglist.tagCount(); ++i)
             {
-                this.chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+                NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
+                int j = nbttagcompound.getByte("Slot") & 255;
+
+                if (j >= 0 && j < this.chestContents.length)
+                {
+                    this.chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound);
+                }
             }
         }
     }
@@ -162,19 +182,23 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
         super.writeToNBT(nbt);
         nbt.setBoolean("isLocked", this.locked);
         nbt.setInteger("tier", this.tier);
-        NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.chestContents.length; ++i)
+        if (!this.checkLootAndWrite(nbt))
         {
-            if (this.chestContents[i] != null)
+            NBTTagList nbttaglist = new NBTTagList();
+
+            for (int i = 0; i < this.chestContents.length; ++i)
             {
-                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte)i);
-                this.chestContents[i].writeToNBT(nbttagcompound1);
-                nbttaglist.appendTag(nbttagcompound1);
+                if (this.chestContents[i] != null)
+                {
+                    NBTTagCompound nbttagcompound = new NBTTagCompound();
+                    nbttagcompound.setByte("Slot", (byte)i);
+                    this.chestContents[i].writeToNBT(nbttagcompound);
+                    nbttaglist.appendTag(nbttagcompound);
+                }
             }
+            nbt.setTag("Items", nbttaglist);
         }
-        nbt.setTag("Items", nbttaglist);
         return nbt;
     }
 
@@ -465,6 +489,78 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     public boolean canExtractItem(int index, ItemStack itemStack, EnumFacing facing)
     {
         return false;
+    }
+
+    protected boolean checkLootAndRead(NBTTagCompound compound)
+    {
+        if (compound.hasKey("LootTable", 8))
+        {
+            this.lootTable = new ResourceLocation(compound.getString("LootTable"));
+            this.lootTableSeed = compound.getLong("LootTableSeed");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    protected boolean checkLootAndWrite(NBTTagCompound compound)
+    {
+        if (this.lootTable != null)
+        {
+            compound.setString("LootTable", this.lootTable.toString());
+
+            if (this.lootTableSeed != 0L)
+            {
+                compound.setLong("LootTableSeed", this.lootTableSeed);
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    protected void fillWithLoot(@Nullable EntityPlayer player)
+    {
+        if (this.lootTable != null)
+        {
+            LootTable loottable = this.worldObj.getLootTableManager().getLootTableFromLocation(this.lootTable);
+            this.lootTable = null;
+            Random random;
+
+            if (this.lootTableSeed == 0L)
+            {
+                random = new Random();
+            }
+            else
+            {
+                random = new Random(this.lootTableSeed);
+            }
+
+            LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer)this.worldObj);
+
+            if (player != null)
+            {
+                lootcontext$builder.withLuck(player.getLuck());
+            }
+
+            loottable.fillInventory(this, random, lootcontext$builder.build());
+        }
+    }
+
+    public ResourceLocation getLootTable()
+    {
+        return this.lootTable;
+    }
+
+    public void setLootTable(ResourceLocation lootTable, long seed)
+    {
+        this.lootTable = lootTable;
+        this.lootTableSeed = seed;
     }
 
     public static TileEntityTreasureChestMP findClosest(Entity entity, int tier)

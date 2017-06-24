@@ -6,6 +6,7 @@ import java.util.Arrays;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -28,10 +29,7 @@ import stevekung.mods.moreplanets.items.capsule.ItemCapsule;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
-import stevekung.mods.moreplanets.util.CreativeTabsMP;
-import stevekung.mods.moreplanets.util.FuelHandlerMP;
-import stevekung.mods.moreplanets.util.ReflectionUtils;
-import stevekung.mods.moreplanets.util.VersionChecker;
+import stevekung.mods.moreplanets.util.*;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 @Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = MorePlanetsCore.DEPENDENCIES, guiFactory = MorePlanetsCore.GUI_FACTORY)
@@ -98,6 +96,7 @@ public class MorePlanetsCore
         MorePlanetsCore.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
         MorePlanetsCore.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
         MorePlanetsCore.PROXY.registerInitRendering();
+        LootFunctionManager.registerFunction(new SmeltWithDataFunction.Serializer());
 
         if (CommonRegisterHelper.isClient())
         {

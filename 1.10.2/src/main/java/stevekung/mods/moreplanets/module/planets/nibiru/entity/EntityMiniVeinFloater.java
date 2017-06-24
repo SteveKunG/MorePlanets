@@ -1,9 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
 import java.util.List;
-import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.IBoss;
@@ -26,12 +24,13 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
+import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
@@ -252,16 +251,9 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
                     {
                         chest.setInventorySlotContents(k, null);
                     }
-
-                    /*ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON);TODO
-
-                    // Generate twice, since it's an extra special chest
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));*/
-                    ItemStack schematic = this.getGuaranteedLoot(this.rand);
                     int slot = this.rand.nextInt(chest.getSizeInventory());
-                    chest.setInventorySlotContents(slot, schematic);
+                    chest.setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, this.rand.nextLong());
+                    chest.setInventorySlotContents(slot, MPLootTables.getTieredKey(this.rand, 6));
                 }
             }
 
@@ -277,12 +269,6 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
         }
     }
 
-    private ItemStack getGuaranteedLoot(Random rand)
-    {
-        List<ItemStack> stackList = GalacticraftRegistry.getDungeonLoot(5);
-        return stackList.get(rand.nextInt(stackList.size())).copy();
-    }
-
     @Override
     public void onLivingUpdate()
     {
@@ -293,11 +279,12 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> entitiesWithin2 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
+                List<EntityPlayer> playerWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
 
-                for (EntityPlayer p : entitiesWithin2)
+                for (EntityPlayer player : playerWithin)
                 {
-                    p.addChatMessage(new TextComponentString(GCCoreUtil.translate("gui.skeleton_boss.message")));
+                    JsonUtils json = new JsonUtils();
+                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;

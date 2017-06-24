@@ -148,7 +148,7 @@ public class EntityInfectedCrystallizeTentacle extends Entity
     @Override
     public boolean canBeCollidedWith()
     {
-        return false;
+        return !this.isDead;
     }
 
     @Override

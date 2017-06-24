@@ -87,7 +87,7 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack heldStack)
     {
         player.addExhaustion(0.025F);
 

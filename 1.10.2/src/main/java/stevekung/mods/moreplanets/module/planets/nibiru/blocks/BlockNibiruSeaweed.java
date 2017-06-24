@@ -59,11 +59,11 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack heldStack)
     {
         player.addExhaustion(0.025F);
 
-        if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, itemStack) > 0)
+        if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, heldStack) > 0)
         {
             List<ItemStack> items = Lists.newArrayList();
             ItemStack itemstack = this.createStackedBlock(state);
@@ -88,7 +88,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
                 return;
             }
 
-            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemStack);
+            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, heldStack);
             this.harvesters.set(player);
             this.dropBlockAsItem(world, pos, state, i);
             this.harvesters.set(null);

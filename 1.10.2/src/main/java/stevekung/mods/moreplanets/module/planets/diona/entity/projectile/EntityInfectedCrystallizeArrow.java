@@ -24,6 +24,11 @@ public class EntityInfectedCrystallizeArrow extends EntityArrowMP
         super(world, x, y, z);
     }
 
+    public EntityInfectedCrystallizeArrow(World world, EntityLivingBase shooter)
+    {
+        super(world, shooter);
+    }
+
     @Override
     public void addEffect(EntityLivingBase living)
     {

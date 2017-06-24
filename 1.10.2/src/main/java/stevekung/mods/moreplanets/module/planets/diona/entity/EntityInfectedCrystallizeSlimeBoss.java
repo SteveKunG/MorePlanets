@@ -2,9 +2,9 @@ package stevekung.mods.moreplanets.module.planets.diona.entity;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.IBoss;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -24,18 +24,20 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
+import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.EntitySlimeBaseMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
@@ -164,8 +166,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             {
                 chest = TileEntityTreasureChestMP.findClosest(this, 4);
             }
-
-            if (chest != null)
+            else
             {
                 double dist = this.getDistanceSq(chest.getPos().getX() + 0.5, chest.getPos().getY() + 0.5, chest.getPos().getZ() + 0.5);
 
@@ -175,22 +176,9 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
                     {
                         chest.locked = true;
                     }
-
-                    for (int k = 0; k < chest.getSizeInventory(); k++)
-                    {
-                        chest.setInventorySlotContents(k, null);
-                    }
-
-                    /*ChestGenHooks info = ChestGenHooks.getInfo(ItemLootHelper.COMMON_SPACE_DUNGEON); TODO Loot table
-
-                    // Generate twice, since it's an extra special chest
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));
-                    WeightedRandomChestContent.generateChestContents(this.rand, info.getItems(this.rand), chest, info.getCount(this.rand));*/
-
-                    ItemStack schematic = this.getGuaranteedLoot(this.rand);
                     int slot = this.rand.nextInt(chest.getSizeInventory());
-                    chest.setInventorySlotContents(slot, schematic);
+                    chest.setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, this.rand.nextLong());
+                    chest.setInventorySlotContents(slot, MPLootTables.getTieredKey(this.rand, 4));
                 }
             }
 
@@ -204,12 +192,6 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
                 this.spawner.spawned = false;
             }
         }
-    }
-
-    private ItemStack getGuaranteedLoot(Random rand)
-    {
-        List<ItemStack> stackList = GalacticraftRegistry.getDungeonLoot(4);
-        return stackList.get(rand.nextInt(stackList.size())).copy();
     }
 
     @Override
@@ -233,18 +215,10 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    protected ResourceLocation getLootTable()
     {
-        int j = 3 + this.rand.nextInt(4);
-
-        if (fortune > 0)
-        {
-            j += this.rand.nextInt(fortune + 1);
-        }
-        for (int k = 0; k < j; ++k)
-        {
-            this.entityDropItem(new ItemStack(DionaItems.DIONA_ITEM, 1, 4), 0.0F);
-        }
+        return MPLootTables.INFECTED_CRYSTALLIZE_SLIME_BOSS;
     }
 
     @Override
@@ -257,11 +231,12 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> entitiesWithin2 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
+                List<EntityPlayer> playerWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
 
-                for (EntityPlayer p : entitiesWithin2)
+                for (EntityPlayer player : playerWithin)
                 {
-                    p.addChatMessage(new TextComponentString(GCCoreUtil.translate("gui.skeleton_boss.message")));
+                    JsonUtils json = new JsonUtils();
+                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;

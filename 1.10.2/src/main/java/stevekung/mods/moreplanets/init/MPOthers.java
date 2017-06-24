@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
@@ -65,7 +67,15 @@ public class MPOthers
                 boolean isDefaultGas = state.getValue(BlockFluidBase.LEVEL).intValue() == 7;
                 Item item;
 
-                if (block == DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK && isDefault)
+                if (Material.WATER.equals(state.getMaterial()) && block instanceof BlockLiquid && state.getValue(BlockLiquid.LEVEL).intValue() == 0)
+                {
+                    item = Items.WATER_BUCKET;
+                }
+                else if (Material.LAVA.equals(state.getMaterial()) || !(block instanceof BlockLiquid) || state.getValue(BlockLiquid.LEVEL).intValue() != 0)
+                {
+                    item = Items.LAVA_BUCKET;
+                }
+                else if (block == DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK && isDefault)
                 {
                     item = DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET;
                 }
@@ -88,6 +98,10 @@ public class MPOthers
                 else if (block == NibiruBlocks.HELIUM_GAS_BLOCK && isDefaultGas)
                 {
                     item = NibiruItems.HELIUM_GAS_BUCKET;
+                }
+                else if (block == NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK && isDefault)
+                {
+                    item = NibiruItems.NUCLEAR_WASTE_BUCKET;
                 }
                 else
                 {

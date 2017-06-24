@@ -24,6 +24,11 @@ public class EntityInfectedArrow extends EntityArrowMP
         super(world, x, y, z);
     }
 
+    public EntityInfectedArrow(World world, EntityLivingBase shooter)
+    {
+        super(world, shooter);
+    }
+
     @Override
     public void addEffect(EntityLivingBase living)
     {

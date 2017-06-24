@@ -35,6 +35,11 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
         super(world, x, y, z);
     }
 
+    public EntityArrowMP(World world, EntityLivingBase shooter)
+    {
+        super(world, shooter);
+    }
+
     @Override
     public void onUpdate()
     {

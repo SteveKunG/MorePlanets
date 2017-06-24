@@ -35,14 +35,12 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.EnumStateMapper;
-import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.client.model.ModelBipedTranslucent;
 
 @SideOnly(Side.CLIENT)
@@ -231,14 +229,6 @@ public class ClientRegisterHelper
         ClientRegisterHelper.registerModelRender(item, 0, variantName);
     }
 
-    public static void registerBowModelRender(Item item, String variantName)
-    {
-        ClientRegisterHelper.registerModelRender(item, 0, variantName);
-        ClientRegisterHelper.registerModelRender(item, 1, variantName + "_pulling_0");
-        ClientRegisterHelper.registerModelRender(item, 2, variantName + "_pulling_1");
-        ClientRegisterHelper.registerModelRender(item, 3, variantName + "_pulling_2");
-    }
-
     public static void registerToolsModelRender(Item sword, Item shovel, Item pickaxe, Item axe, Item hoe, String toolName)
     {
         ClientRegisterHelper.registerModelRender(sword, 0, toolName + "_sword");
@@ -342,55 +332,32 @@ public class ClientRegisterHelper
         return defaultModel;
     }
 
-    public static void registerOBJModel(ModelBakeEvent event, String name, String file, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState, String... variants)
+    public static void registerOBJModel(ModelBakeEvent event, String name, String file, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState)
     {
-        if (variants.length == 0)
+        ModelResourceLocation modelResourceLocation = new ModelResourceLocation("moreplanets:" + name, "inventory");
+        IBakedModel object = event.getModelRegistry().getObject(modelResourceLocation);
+
+        if (object != null)
         {
-            variants = new String[] { "inventory" };
-        }
+            IBakedModel newModel;
 
-        OBJModel model;
-
-        try
-        {
-            model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/" + file));
-            model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
-        }
-        catch (Exception e)
-        {
-            throw new RuntimeException(e);
-        }
-
-        Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-
-        for (String variant : variants)
-        {
-            ModelResourceLocation modelResourceLocation = new ModelResourceLocation("moreplanets:" + name, variant);
-            IBakedModel object = event.getModelRegistry().getObject(modelResourceLocation);
-
-            if (object != null)
+            try
             {
-                if (!variant.equals("inventory"))
-                {
-                    parentState = TRSRTransformation.identity();
-                }
-
-                IBakedModel newModel = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState), DefaultVertexFormats.ITEM, spriteFunction);
+                OBJModel model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/" + file + ".obj"));
+                model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
+                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = (ResourceLocation location) -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
+                newModel = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState), DefaultVertexFormats.ITEM, spriteFunction);
 
                 if (clazz != null)
                 {
-                    try
-                    {
-                        newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
-                    }
-                    catch (Exception e)
-                    {
-                        MPLog.error("ItemModel constructor problem for " + modelResourceLocation);
-                        e.printStackTrace();
-                    }
+                    newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
                 }
-                event.getModelRegistry().putObject(modelResourceLocation, newModel);
             }
+            catch (Exception e)
+            {
+                throw new RuntimeException(e);
+            }
+            event.getModelRegistry().putObject(modelResourceLocation, newModel);
         }
     }
 

@@ -109,9 +109,9 @@ public class BlockSnowLayerMP extends BlockBaseMP
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack heldStack)
     {
-        super.harvestBlock(world, player, pos, state, tile, itemStack);
+        super.harvestBlock(world, player, pos, state, tile, heldStack);
         world.setBlockToAir(pos);
     }
 
