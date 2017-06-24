@@ -202,7 +202,7 @@ public class StructureDionaMineshaftPieces
                 this.setBlockState(world, iblockstate, x, y, z, structurebb);
                 EntitySpaceMinecartChest entityminecartchest = new EntitySpaceMinecartChest(world, blockpos.getX() + 0.5F, blockpos.getY() + 0.5F, blockpos.getZ() + 0.5F);
                 entityminecartchest.setLootTable(loot, rand.nextLong());
-                entityminecartchest.setDisplayTile(DionaBlocks.DIONA_ANCIENT_CHEST.getDefaultState().withProperty(BlockStateHelper.FACING, EnumFacing.NORTH));
+                entityminecartchest.setDisplayTile(DionaBlocks.DIONA_ANCIENT_CHEST.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, EnumFacing.NORTH));
                 entityminecartchest.setDisplayTileOffset(8);
                 world.spawnEntityInWorld(entityminecartchest);
                 return true;

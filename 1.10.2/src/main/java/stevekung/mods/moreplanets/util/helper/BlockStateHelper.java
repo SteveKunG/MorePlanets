@@ -19,7 +19,8 @@ public class BlockStateHelper
     public static PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
 
     /** Used for Custom Block Facing */
-    public static PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static PropertyDirection FACING_HORIZON = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static PropertyDirection FACING_ALL = PropertyDirection.create("facing");
 
     /** Used for Custom Wood Log */
     public static PropertyEnum AXIS = PropertyEnum.create("axis", EnumAxis.class);

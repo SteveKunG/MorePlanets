@@ -37,7 +37,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
     protected BlockChestMP()
     {
         super(Material.WOOD);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING, EnumFacing.NORTH));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING_HORIZON, EnumFacing.NORTH));
         this.setResistance(5.0F);
         this.setHardness(2.5F);
         this.setSoundType(SoundType.WOOD);
@@ -87,14 +87,14 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
     @Override
     public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING, placer.getHorizontalFacing());
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing());
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3).getOpposite();
-        state = state.withProperty(BlockStateHelper.FACING, enumfacing);
+        state = state.withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
         BlockPos blockpos = pos.north();
         BlockPos blockpos1 = pos.south();
         BlockPos blockpos2 = pos.west();
@@ -159,7 +159,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
             IBlockState iblockstate1 = world.getBlockState(pos.south());
             IBlockState iblockstate2 = world.getBlockState(pos.west());
             IBlockState iblockstate3 = world.getBlockState(pos.east());
-            EnumFacing enumfacing = state.getValue(BlockStateHelper.FACING);
+            EnumFacing enumfacing = state.getValue(BlockStateHelper.FACING_HORIZON);
             Block block = iblockstate.getBlock();
             Block block1 = iblockstate1.getBlock();
             Block block2 = iblockstate2.getBlock();
@@ -180,11 +180,11 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
 
                     if (block2 == this)
                     {
-                        enumfacing2 = iblockstate2.getValue(BlockStateHelper.FACING);
+                        enumfacing2 = iblockstate2.getValue(BlockStateHelper.FACING_HORIZON);
                     }
                     else
                     {
-                        enumfacing2 = iblockstate3.getValue(BlockStateHelper.FACING);
+                        enumfacing2 = iblockstate3.getValue(BlockStateHelper.FACING_HORIZON);
                     }
 
                     if (enumfacing2 == EnumFacing.NORTH)
@@ -211,11 +211,11 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
 
                 if (block == this)
                 {
-                    enumfacing1 = iblockstate.getValue(BlockStateHelper.FACING);
+                    enumfacing1 = iblockstate.getValue(BlockStateHelper.FACING_HORIZON);
                 }
                 else
                 {
-                    enumfacing1 = iblockstate1.getValue(BlockStateHelper.FACING);
+                    enumfacing1 = iblockstate1.getValue(BlockStateHelper.FACING_HORIZON);
                 }
 
                 if (enumfacing1 == EnumFacing.WEST)
@@ -231,7 +231,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
                     enumfacing = EnumFacing.WEST;
                 }
             }
-            state = state.withProperty(BlockStateHelper.FACING, enumfacing);
+            state = state.withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
             world.setBlockState(pos, state, 3);
             return state;
         }
@@ -263,11 +263,11 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
 
         if (enumfacing != null)
         {
-            return state.withProperty(BlockStateHelper.FACING, enumfacing.getOpposite());
+            return state.withProperty(BlockStateHelper.FACING_HORIZON, enumfacing.getOpposite());
         }
         else
         {
-            EnumFacing enumfacing2 = state.getValue(BlockStateHelper.FACING);
+            EnumFacing enumfacing2 = state.getValue(BlockStateHelper.FACING_HORIZON);
 
             if (world.getBlockState(pos.offset(enumfacing2)).isFullBlock())
             {
@@ -281,7 +281,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
             {
                 enumfacing2 = enumfacing2.getOpposite();
             }
-            return state.withProperty(BlockStateHelper.FACING, enumfacing2);
+            return state.withProperty(BlockStateHelper.FACING_HORIZON, enumfacing2);
         }
     }
 
@@ -418,19 +418,19 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
         {
             enumfacing = EnumFacing.NORTH;
         }
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING, enumfacing);
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateHelper.FACING).getIndex();
+        return state.getValue(BlockStateHelper.FACING_HORIZON).getIndex();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING});
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING_HORIZON});
     }
 
     @Override

@@ -6,7 +6,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import stevekung.mods.moreplanets.module.planets.diona.itemblocks.ItemBlockDarkEnergyGenerator;
-import stevekung.mods.moreplanets.module.planets.diona.itemblocks.ItemBlockLargeInfectedCrystallize;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFenceMP;
@@ -92,7 +91,7 @@ public class DionaBlocks
         CommonRegisterHelper.registerBlock(DionaBlocks.ZELIUS_EGG);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_WEB);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_TORCH);
-        CommonRegisterHelper.registerBlock(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, ItemBlockLargeInfectedCrystallize::new);
+        CommonRegisterHelper.registerBlock(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE);
         CommonRegisterHelper.registerBlock(DionaBlocks.ALIEN_MINER_BLOOD);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK);
         CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_CORE, ItemBlockDescription::new);

@@ -34,33 +34,33 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
 
         if (block == DionaBlocks.DIONA_ANCIENT_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityDionaAncientChest.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDionaAncientChest());
         }
         else if (block == DionaBlocks.DIONA_TREASURE_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityDionaTreasureChest.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDionaTreasureChest());
         }
         else if (block == ChalosBlocks.CHALOS_ANCIENT_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityChalosAncientChest.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityChalosAncientChest());
         }
         else if (block == ChalosBlocks.CHALOS_TREASURE_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityChalosTreasureChest.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityChalosTreasureChest());
         }
         else if (block == DionaBlocks.ZELIUS_EGG)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityZeliusEgg.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityZeliusEgg());
             GlStateManager.enableBlend();
         }
         else if (block == DionaBlocks.LARGE_INFECTED_CRYSTALLIZE)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityLargeInfectedCrystallize.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityLargeInfectedCrystallize(), -0.35D);
             GlStateManager.enableBlend();
         }
         else if (block == MPBlocks.DARK_ENERGY_RECEIVER)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityDarkEnergyReceiver.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDarkEnergyReceiver());
         }
         else if (itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_BOMB)
         {
@@ -68,37 +68,37 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == NibiruBlocks.NIBIRU_ANCIENT_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityNibiruAncientChest.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityNibiruAncientChest());
         }
         else if (block == NibiruBlocks.NIBIRU_TREASURE_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityNibiruTreasureChest.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityNibiruTreasureChest());
         }
         else if (block == ChalosBlocks.CHEESE_SPORE_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityCheeseSporeChest.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityCheeseSporeChest());
         }
         else if (block == NibiruBlocks.INFECTED_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityInfectedChest.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityInfectedChest());
         }
         else if (block == NibiruBlocks.MULTALIC_CRYSTAL)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityMultalicCrystal.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityMultalicCrystal(), -0.35D);
             GlStateManager.enableBlend();
         }
         else if (block == DionaBlocks.DARK_ENERGY_CORE)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityDarkEnergyCore.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDarkEnergyCore());
             GlStateManager.enableBlend();
         }
         else if (block == NibiruBlocks.ALIEN_BERRY_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityAlienBerryChest.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityAlienBerryChest());
         }
         else if (block == NibiruBlocks.JUICER_EGG)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityJuicerEgg.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityJuicerEgg());
         }
         else if (block == NibiruBlocks.NUCLEAR_WASTE_TANK)
         {
@@ -106,7 +106,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == NibiruBlocks.VEIN_FRAME)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityVeinFrame.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityVeinFrame());
             GlStateManager.enableBlend();
         }
         else if (block == DionaBlocks.DARK_ENERGY_GENERATOR)
@@ -115,12 +115,12 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == MPBlocks.BLACK_HOLE_STORAGE)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityBlackHoleStorage.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityBlackHoleStorage());
             GlStateManager.enableBlend();
         }
         else if (block == MPBlocks.ALIEN_DEFENDER_BEACON)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(TileEntityAlienDefenderBeacon.class);
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityAlienDefenderBeacon());
             GlStateManager.enableBlend();
             GlStateManager.enableCull();
         }

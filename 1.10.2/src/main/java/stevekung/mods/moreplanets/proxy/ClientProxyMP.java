@@ -39,18 +39,17 @@ public class ClientProxyMP extends ServerProxyMP
     {
         OBJLoader.INSTANCE.addDomain(MorePlanetsCore.MOD_ID);
         EntityRendererMP.init();
+        TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
+        VariantsRenderer.init();
     }
 
     @Override
     public void registerInitRendering()
     {
         BlockColors color = Minecraft.getMinecraft().getBlockColors();
-
-        TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
         BlockStateMapper.init();
-        TileEntityRenderer.init();
         ItemModelRenderer.init();
-        VariantsRenderer.init();
+        TileEntityRenderer.init();
 
         ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> world != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(world, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D), FronosBlocks.FRONOS_GRASS);
         ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(120, 85, 190), DionaBlocks.LARGE_INFECTED_CRYSTALLIZE);

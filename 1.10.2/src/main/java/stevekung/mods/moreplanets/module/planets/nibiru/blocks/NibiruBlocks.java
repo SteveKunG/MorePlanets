@@ -9,7 +9,6 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.fluid.FluidHeliumGas;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockInfectedSnow;
-import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockMultalicCrystal;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockSporelily;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
@@ -275,7 +274,7 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_TREASURE_CHEST);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CHEST);
         CommonRegisterHelper.registerBlock(NibiruBlocks.ALIEN_BERRY_CHEST);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.MULTALIC_CRYSTAL, ItemBlockMultalicCrystal::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.MULTALIC_CRYSTAL);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK, null);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_PRISMARINE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SEA_LANTERN);

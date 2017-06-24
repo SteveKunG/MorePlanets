@@ -22,6 +22,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.EnumStateMapper;
 import stevekung.mods.moreplanets.util.blocks.BlockStemMP;
+import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
 public class BlockStateMapper
@@ -31,6 +32,7 @@ public class BlockStateMapper
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRASHED_ALIEN_PROBE, BlockCrashedAlienProbe.HAS_ALIEN);
+        ClientRegisterHelper.registerStateMapper(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, BlockStateHelper.FACING_ALL);
         ClientRegisterHelper.registerStateMapper(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(ChalosBlocks.CHEESE_SPORE_FENCE_GATE, EnumStateMapper.FENCE_GATE);
@@ -52,6 +54,7 @@ public class BlockStateMapper
         ClientRegisterHelper.registerStateMapper(NibiruBlocks.NUCLEAR_WASTE_TANK, BlockNuclearWasteTank.DEPLETE);
         ClientRegisterHelper.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegisterHelper.registerStateMapper(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
+        ClientRegisterHelper.registerStateMapper(NibiruBlocks.MULTALIC_CRYSTAL, BlockStateHelper.FACING_ALL);
 
         ClientRegisterHelper.registerStateMapperSplitVariants(MPBlocks.COBBLESTONE_WALL, BlockCobblestoneWall.VARIANT);
         ClientRegisterHelper.registerStateMapperSplitVariants(MPBlocks.DUNGEON_BRICK_WALL, BlockDungeonBrickWall.VARIANT);

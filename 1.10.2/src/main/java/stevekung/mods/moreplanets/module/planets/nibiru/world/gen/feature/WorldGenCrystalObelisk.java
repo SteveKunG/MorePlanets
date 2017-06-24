@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityMultalicCrystal;
+import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class WorldGenCrystalObelisk extends WorldGenerator
 {
@@ -69,9 +69,7 @@ public class WorldGenCrystalObelisk extends WorldGenerator
 
             if (world.isAirBlock(pos) && block.canPlaceBlockOnSide(world, pos, facing))
             {
-                world.setBlockState(pos, block.getDefaultState(), 2);
-                TileEntityMultalicCrystal ts = (TileEntityMultalicCrystal)world.getTileEntity(pos);
-                ts.facing = facing.getIndex();
+                world.setBlockState(pos, block.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, facing), 2);
             }
         }
     }

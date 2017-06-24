@@ -79,7 +79,6 @@ public class MorePlanetsCore
         MorePlanetsCore.initModInfo(event.getModMetadata());
         MorePlanetsCore.BLOCK_TAB = new CreativeTabsMP("MorePlanetsBlocks");
         MorePlanetsCore.ITEM_TAB = new CreativeTabsMP("MorePlanetsItems");
-        MorePlanetsCore.PROXY.registerPreRendering();
 
         MPBlocks.init();
         MPItems.init();
@@ -88,6 +87,7 @@ public class MorePlanetsCore
         MPPotions.init();
         MPBiomes.init();
         MPOthers.init();
+        MorePlanetsCore.PROXY.registerPreRendering();
     }
 
     @EventHandler

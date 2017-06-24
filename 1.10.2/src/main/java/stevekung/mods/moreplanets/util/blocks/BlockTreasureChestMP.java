@@ -29,7 +29,7 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     {
         super(Material.ROCK);
         this.setResistance(10000000.0F);
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.FACING, EnumFacing.NORTH));
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, EnumFacing.NORTH));
         this.setHardness(-1.0F);
     }
 
@@ -73,7 +73,7 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     @Override
     public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING, placer.getHorizontalFacing().getOpposite());
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite());
     }
 
     public boolean cannotOpenChest(World world, BlockPos pos)
@@ -101,19 +101,19 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
         {
             enumfacing = EnumFacing.NORTH;
         }
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING, enumfacing);
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateHelper.FACING).getIndex();
+        return state.getValue(BlockStateHelper.FACING_HORIZON).getIndex();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING});
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING_HORIZON});
     }
 
     @Override

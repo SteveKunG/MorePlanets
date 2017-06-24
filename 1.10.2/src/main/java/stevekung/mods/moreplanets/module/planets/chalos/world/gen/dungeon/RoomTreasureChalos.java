@@ -89,7 +89,7 @@ public class RoomTreasureChalos extends RoomTreasureMP
                     }
                     else if (i == this.sizeX / 2 && j == 1 && k == this.sizeZ / 2)
                     {
-                        this.setBlockState(world, ChalosBlocks.CHALOS_TREASURE_CHEST.getDefaultState().withProperty(BlockStateHelper.FACING, this.getDirection().getOpposite()), i, j, k, boundingBox);
+                        this.setBlockState(world, ChalosBlocks.CHALOS_TREASURE_CHEST.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, this.getDirection().getOpposite()), i, j, k, boundingBox);
                         BlockPos blockpos = new BlockPos(this.getXWithOffset(i, k), this.getYWithOffset(j), this.getZWithOffset(i, k));
 
                         if (world.getTileEntity(blockpos) == null)

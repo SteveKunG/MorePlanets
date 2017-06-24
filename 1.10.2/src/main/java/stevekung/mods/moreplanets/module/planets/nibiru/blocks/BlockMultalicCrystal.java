@@ -3,14 +3,20 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -19,11 +25,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityMultalicCrystal;
-import stevekung.mods.moreplanets.util.blocks.BlockContainerMP;
+import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
+import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
-public class BlockMultalicCrystal extends BlockContainerMP implements ISingleBlockRender
+public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProvider
 {
     public BlockMultalicCrystal(String name)
     {
@@ -33,36 +39,32 @@ public class BlockMultalicCrystal extends BlockContainerMP implements ISingleBlo
         this.setHardness(0.4F);
         this.setSoundType(SoundType.GLASS);
         this.setUnlocalizedName(name);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING_ALL, EnumFacing.UP));
         this.setLightOpacity(255);
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        TileEntityMultalicCrystal crystal = (TileEntityMultalicCrystal)world.getTileEntity(pos);
+        EnumFacing facing = state.getValue(BlockStateHelper.FACING_ALL);
+        double box = 0.0625D;
 
-        if (crystal != null)
+        switch (facing)
         {
-            int facing = crystal.facing;
-            double f = 0.0625D;
-
-            switch (facing)
-            {
-            case 0:
-                return new AxisAlignedBB(0.0D + f, 0.0D + f, 0.0D + f, 1.0D - f, 1.0D, 1.0D - f);
-            case 1:
-                return new AxisAlignedBB(0.0D + f, 0.0D, 0.0D + f, 1.0D - f, 1.0D - f, 1.0D - f);
-            case 2:
-                return new AxisAlignedBB(0.0D + f, 0.0D + f, 0.0D + f, 1.0D - f, 1.0D - f, 1.0D);
-            case 3:
-                return new AxisAlignedBB(0.0D + f, 0.0D + f, 0.0D, 1.0D - f, 1.0D - f, 1.0D - f);
-            case 4:
-                return new AxisAlignedBB(0.0D + f, 0.0D + f, 0.0D + f, 1.0D, 1.0D - f, 1.0D - f);
-            case 5:
-                return new AxisAlignedBB(0.0D, 0.0D + f, 0.0D + f, 1.0D - f, 1.0D - f, 1.0D - f);
-            }
+        case NORTH:
+        default:
+            return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D);
+        case EAST:
+            return new AxisAlignedBB(0.0D, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D - box);
+        case WEST:
+            return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D + box, 1.0D, 1.0D - box, 1.0D - box);
+        case SOUTH:
+            return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D, 1.0D - box, 1.0D - box, 1.0D - box);
+        case UP:
+            return new AxisAlignedBB(0.0D + box, 0.0D, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D - box);
+        case DOWN:
+            return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D, 1.0D - box);
         }
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     }
 
     @Override
@@ -141,106 +143,114 @@ public class BlockMultalicCrystal extends BlockContainerMP implements ISingleBlo
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing facing)
     {
-        if (this.checkIfAttachedToBlock(world, pos))
-        {
-            TileEntityMultalicCrystal crystal = (TileEntityMultalicCrystal)world.getTileEntity(pos);
-            int facing = crystal.facing;
-            boolean flag = false;
-
-            if (!world.isSideSolid(pos.west(), EnumFacing.EAST) && facing == 5)
-            {
-                flag = true;
-            }
-            if (!world.isSideSolid(pos.east(), EnumFacing.WEST) && facing == 4)
-            {
-                flag = true;
-            }
-            if (!world.isSideSolid(pos.north(), EnumFacing.SOUTH) && facing == 3)
-            {
-                flag = true;
-            }
-            if (!world.isSideSolid(pos.south(), EnumFacing.NORTH) && facing == 2)
-            {
-                flag = true;
-            }
-            if (!world.isSideSolid(pos.down(), EnumFacing.UP) && facing == 1)
-            {
-                flag = true;
-            }
-            if (!world.isSideSolid(pos.up(), EnumFacing.DOWN) && facing == 0)
-            {
-                flag = true;
-            }
-            if (flag)
-            {
-                world.destroyBlock(pos, false);
-            }
-            return;
-        }
-    }
-
-    private boolean checkIfAttachedToBlock(World world, BlockPos pos)
-    {
-        if (!this.canPlaceBlockAt(world, pos))
-        {
-            world.destroyBlock(pos, false);
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side)
-    {
-        if (side == EnumFacing.DOWN && world.isSideSolid(pos.up(), EnumFacing.DOWN))
-        {
-            return true;
-        }
-        if (side == EnumFacing.UP && world.isSideSolid(pos.down(), EnumFacing.UP))
-        {
-            return true;
-        }
-        if (side == EnumFacing.NORTH && world.isSideSolid(pos.south(), EnumFacing.NORTH))
-        {
-            return true;
-        }
-        if (side == EnumFacing.SOUTH && world.isSideSolid(pos.north(), EnumFacing.SOUTH))
-        {
-            return true;
-        }
-        if (side == EnumFacing.WEST && world.isSideSolid(pos.east(), EnumFacing.WEST))
-        {
-            return true;
-        }
-        return side == EnumFacing.EAST && world.isSideSolid(pos.west(), EnumFacing.EAST);
+        return this.canPlaceBlock(world, pos, facing.getOpposite());
     }
 
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        if (world.isSideSolid(pos.west(), EnumFacing.EAST))
+        for (EnumFacing facing : EnumFacing.values())
         {
-            return true;
+            if (this.canPlaceBlock(world, pos, facing))
+            {
+                return true;
+            }
         }
-        if (world.isSideSolid(pos.east(), EnumFacing.WEST))
+        return false;
+    }
+
+    @Override
+    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return this.canPlaceBlock(world, pos, facing.getOpposite()) ? this.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, facing) : this.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, EnumFacing.DOWN);
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    {
+        if (this.checkForDrop(world, pos, state) && !this.canPlaceBlock(world, pos, state.getValue(BlockStateHelper.FACING_ALL).getOpposite()))
         {
-            return true;
+            this.dropBlockAsItem(world, pos, state, 0);
+            world.setBlockToAir(pos);
         }
-        if (world.isSideSolid(pos.north(), EnumFacing.SOUTH))
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        EnumFacing facing;
+
+        switch (meta & 7)
         {
-            return true;
+        case 0:
+            facing = EnumFacing.DOWN;
+            break;
+        case 1:
+            facing = EnumFacing.EAST;
+            break;
+        case 2:
+            facing = EnumFacing.WEST;
+            break;
+        case 3:
+            facing = EnumFacing.SOUTH;
+            break;
+        case 4:
+            facing = EnumFacing.NORTH;
+            break;
+        case 5:
+        default:
+            facing = EnumFacing.UP;
         }
-        if (world.isSideSolid(pos.south(), EnumFacing.NORTH))
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, facing);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        int i;
+
+        switch (state.getValue(BlockStateHelper.FACING_ALL))
         {
-            return true;
+        case EAST:
+            i = 1;
+            break;
+        case WEST:
+            i = 2;
+            break;
+        case SOUTH:
+            i = 3;
+            break;
+        case NORTH:
+            i = 4;
+            break;
+        case UP:
+        default:
+            i = 5;
+            break;
+        case DOWN:
+            i = 0;
         }
-        if (world.isSideSolid(pos.down(), EnumFacing.UP))
-        {
-            return true;
-        }
-        return world.isSideSolid(pos.up(), EnumFacing.DOWN);
+        return i;
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rotation)
+    {
+        return state.withProperty(BlockStateHelper.FACING_ALL, rotation.rotate(state.getValue(BlockStateHelper.FACING_ALL)));
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
+    {
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING_ALL)));
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING_ALL});
     }
 
     @Override
@@ -255,9 +265,22 @@ public class BlockMultalicCrystal extends BlockContainerMP implements ISingleBlo
         return "multalic_crystal";
     }
 
-    @Override
-    public Block getBlock()
+    protected boolean canPlaceBlock(World world, BlockPos pos, EnumFacing facing)
     {
-        return this;
+        BlockPos blockpos = pos.offset(facing);
+        return world.getBlockState(blockpos).isSideSolid(world, blockpos, facing.getOpposite());
+    }
+
+    private boolean checkForDrop(World world, BlockPos pos, IBlockState state)
+    {
+        if (this.canPlaceBlockAt(world, pos))
+        {
+            return true;
+        }
+        else
+        {
+            world.destroyBlock(pos, false);
+            return false;
+        }
     }
 }

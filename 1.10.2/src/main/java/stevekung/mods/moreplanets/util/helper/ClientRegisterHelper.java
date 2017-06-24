@@ -77,13 +77,14 @@ public class ClientRegisterHelper
         ClientRegistry.bindTileEntitySpecialRenderer(tile, render);
     }
 
-    public static void registerTileEntityItemStackRendering(Class<? extends TileEntity> tile)
+    public static void registerTileEntityItemStackRendering(TileEntity tile)
     {
-        try
-        {
-            TileEntityRendererDispatcher.instance.renderTileEntityAt(tile.newInstance(), 0.0D, 0.0D, 0.0D, 0.0F);
-        }
-        catch (Exception e) {}
+        ClientRegisterHelper.registerTileEntityItemStackRendering(tile, 0.0D);
+    }
+
+    public static void registerTileEntityItemStackRendering(TileEntity tile, double yOffset)
+    {
+        TileEntityRendererDispatcher.instance.renderTileEntityAt(tile, 0.0D, yOffset, 0.0D, 0.0F);
     }
 
     public static void registerVariantsName(Item item, String... variant)

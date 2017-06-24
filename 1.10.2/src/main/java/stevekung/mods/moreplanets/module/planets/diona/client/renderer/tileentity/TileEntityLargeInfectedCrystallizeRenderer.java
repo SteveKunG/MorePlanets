@@ -7,10 +7,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityLargeInfectedCrystallize;
 import stevekung.mods.moreplanets.util.client.model.ModelCrystal;
+import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecialRenderer<TileEntityLargeInfectedCrystallize>
@@ -30,12 +32,12 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
             {
                 int angle1 = rand.nextInt(32) + 72 * spike;
                 int angle2 = 16 + rand.nextInt(16);
-                this.drawCrystal(tile, tile.facing, (float)x, (float)y, (float)z, angle1, angle2, rand, colorList[i], 1.15F);
+                this.drawCrystal(tile, (float)x, (float)y, (float)z, angle1, angle2, rand, colorList[i], 1.15F);
             }
         }
     }
 
-    private void drawCrystal(TileEntityLargeInfectedCrystallize tile, int facing, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size)
+    private void drawCrystal(TileEntityLargeInfectedCrystallize tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size)
     {
         float shade = MathHelper.sin((Minecraft.getMinecraft().thePlayer.ticksExisted + rand.nextInt(20)) / (16.0F + rand.nextFloat())) * 0.075F + 0.925F;
         Color c = new Color(color);
@@ -53,7 +55,8 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
         GlStateManager.enableBlend();
         GlStateManager.enableNormalize();
         GlStateManager.blendFunc(770, 771);
-        this.translateFromDirection(x, y, z, facing);
+        GlStateManager.translate(x + 0.5F, y, z + 0.5F);
+        this.translateFromDirection(tile);
         GlStateManager.rotate(angle1, 0.1F, 1.0F, 0.0F);
         GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
         GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
@@ -75,36 +78,40 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
     }
 
-    private void translateFromDirection(float x, float y, float z, int facing)
+    private void translateFromDirection(TileEntityLargeInfectedCrystallize tile)
     {
-        if (facing == 0)
+        if (tile.getWorld() != null)
         {
-            GlStateManager.translate(x + 0.425F, y + 1.3F, z + 0.5F);
-            GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
-        }
-        else if (facing == 1)
-        {
-            GlStateManager.translate(x + 0.425F, y - 0.3F, z + 0.5F);
-        }
-        else if (facing == 2)
-        {
-            GlStateManager.translate(x + 0.425F, y + 0.5F, z + 1.3F);
-            GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
-        }
-        else if (facing == 3)
-        {
-            GlStateManager.translate(x + 0.425F, y + 0.5F, z - 0.3F);
-            GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
-        }
-        else if (facing == 4)
-        {
-            GlStateManager.translate(x + 1.3F, y + 0.425F, z + 0.5F);
-            GlStateManager.rotate(90.0F, 0.0F, 0.0F, 1.0F);
-        }
-        else if (facing == 5)
-        {
-            GlStateManager.translate(x - 0.3F, y + 0.575F, z + 0.5F);
-            GlStateManager.rotate(-90.0F, 0.0F, 0.0F, 1.0F);
+            EnumFacing facing = tile.getWorld().getBlockState(tile.getPos()).getValue(BlockStateHelper.FACING_ALL);
+
+            switch (facing)
+            {
+            case NORTH:
+                GlStateManager.translate(0.0F, 0.5F, 0.7F);
+                GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
+                break;
+            case SOUTH:
+                GlStateManager.translate(0.0F, 0.5F, -0.7F);
+                GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
+                break;
+            case EAST:
+                GlStateManager.translate(-0.7F, 0.575F, 0.0F);
+                GlStateManager.rotate(-90.0F, 0.0F, 0.0F, 1.0F);
+                break;
+            case WEST:
+                GlStateManager.translate(0.7F, 0.5F, 0.0F);
+                GlStateManager.rotate(90.0F, 0.0F, 0.0F, 1.0F);
+                break;
+            case UP:
+                GlStateManager.translate(0.0F, -0.3F, 0.0F);
+                break;
+            case DOWN:
+                GlStateManager.translate(0.0F, 1.3F, 0.0F);
+                GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
+                break;
+            default:
+                break;
+            }
         }
     }
 }

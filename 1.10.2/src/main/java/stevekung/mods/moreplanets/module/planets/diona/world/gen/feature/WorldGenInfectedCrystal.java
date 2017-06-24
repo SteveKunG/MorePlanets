@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityLargeInfectedCrystallize;
+import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class WorldGenInfectedCrystal extends WorldGenerator
 {
@@ -17,15 +17,13 @@ public class WorldGenInfectedCrystal extends WorldGenerator
     {
         for (int i = 0; i < 2; ++i)
         {
-            for (EnumFacing facing : EnumFacing.values())
+            for (EnumFacing facing : EnumFacing.VALUES)
             {
                 Block block = DionaBlocks.LARGE_INFECTED_CRYSTALLIZE;
 
                 if (world.isAirBlock(pos) && block.canPlaceBlockOnSide(world, pos, facing))
                 {
-                    world.setBlockState(pos, block.getDefaultState(), 2);
-                    TileEntityLargeInfectedCrystallize ts = (TileEntityLargeInfectedCrystallize)world.getTileEntity(pos);
-                    ts.facing = facing.getIndex();
+                    world.setBlockState(pos, block.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, facing), 2);
                 }
             }
         }

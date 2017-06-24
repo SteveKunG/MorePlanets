@@ -36,7 +36,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     protected BlockNibiruFurnace(String name, boolean isBurning)
     {
         super(Material.ROCK);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING, EnumFacing.NORTH));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING_HORIZON, EnumFacing.NORTH));
         this.setUnlocalizedName(name);
         this.setHardness(3.5F);
         this.isBurning = isBurning;
@@ -80,7 +80,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
             IBlockState block1 = world.getBlockState(pos.south());
             IBlockState block2 = world.getBlockState(pos.west());
             IBlockState block3 = world.getBlockState(pos.east());
-            EnumFacing enumfacing = state.getValue(BlockStateHelper.FACING);
+            EnumFacing enumfacing = state.getValue(BlockStateHelper.FACING_HORIZON);
 
             if (enumfacing == EnumFacing.NORTH && block.isFullBlock() && !block1.isFullBlock())
             {
@@ -98,7 +98,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
             {
                 enumfacing = EnumFacing.WEST;
             }
-            world.setBlockState(pos, state.withProperty(BlockStateHelper.FACING, enumfacing), 2);
+            world.setBlockState(pos, state.withProperty(BlockStateHelper.FACING_HORIZON, enumfacing), 2);
         }
     }
 
@@ -109,7 +109,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     {
         if (this.isBurning)
         {
-            EnumFacing enumfacing = state.getValue(BlockStateHelper.FACING);
+            EnumFacing enumfacing = state.getValue(BlockStateHelper.FACING_HORIZON);
             double d0 = pos.getX() + 0.5D;
             double d1 = pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
             double d2 = pos.getZ() + 0.5D;
@@ -164,13 +164,13 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
 
         if (active)
         {
-            world.setBlockState(pos, NibiruBlocks.NIBIRU_LIT_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING, iblockstate.getValue(BlockStateHelper.FACING)), 3);
-            world.setBlockState(pos, NibiruBlocks.NIBIRU_LIT_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING, iblockstate.getValue(BlockStateHelper.FACING)), 3);
+            world.setBlockState(pos, NibiruBlocks.NIBIRU_LIT_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, iblockstate.getValue(BlockStateHelper.FACING_HORIZON)), 3);
+            world.setBlockState(pos, NibiruBlocks.NIBIRU_LIT_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, iblockstate.getValue(BlockStateHelper.FACING_HORIZON)), 3);
         }
         else
         {
-            world.setBlockState(pos, NibiruBlocks.NIBIRU_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING, iblockstate.getValue(BlockStateHelper.FACING)), 3);
-            world.setBlockState(pos, NibiruBlocks.NIBIRU_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING, iblockstate.getValue(BlockStateHelper.FACING)), 3);
+            world.setBlockState(pos, NibiruBlocks.NIBIRU_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, iblockstate.getValue(BlockStateHelper.FACING_HORIZON)), 3);
+            world.setBlockState(pos, NibiruBlocks.NIBIRU_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, iblockstate.getValue(BlockStateHelper.FACING_HORIZON)), 3);
         }
 
         keepInventory = false;
@@ -191,13 +191,13 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     @Override
     public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING, placer.getHorizontalFacing().getOpposite());
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite());
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        world.setBlockState(pos, state.withProperty(BlockStateHelper.FACING, placer.getHorizontalFacing().getOpposite()), 2);
+        world.setBlockState(pos, state.withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()), 2);
 
         if (stack.hasDisplayName())
         {
@@ -247,13 +247,13 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        return state.withProperty(BlockStateHelper.FACING, rot.rotate(state.getValue(BlockStateHelper.FACING)));
+        return state.withProperty(BlockStateHelper.FACING_HORIZON, rot.rotate(state.getValue(BlockStateHelper.FACING_HORIZON)));
     }
 
     @Override
     public IBlockState withMirror(IBlockState state, Mirror mirror)
     {
-        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING)));
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING_HORIZON)));
     }
 
     @Override
@@ -265,19 +265,19 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
         {
             enumfacing = EnumFacing.NORTH;
         }
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING, enumfacing);
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateHelper.FACING).getIndex();
+        return state.getValue(BlockStateHelper.FACING_HORIZON).getIndex();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING});
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING_HORIZON});
     }
 
     @Override
