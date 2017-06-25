@@ -293,30 +293,6 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
-    {
-        //        if (!this.getSheared())
-        //        {
-        //            this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.WOOL), 1, this.getFleeceColor().getMetadata()), 0.0F);
-        //        }
-        //
-        //        int i = this.rand.nextInt(2) + 1 + this.rand.nextInt(1 + fortune);
-        //
-        //        for (int j = 0; j < i; ++j)
-        //        {
-        //            if (this.isBurning())
-        //            {
-        //                this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_FOOD, 1, 1), 0.0F);
-        //            }
-        //            else
-        //            {
-        //                this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_FOOD, 1, 0), 0.0F);
-        //            }
-        //        }
-        //        this.addRandomDrop();//TODO rare drop
-    }
-
-    @Override
     @Nullable
     protected ResourceLocation getLootTable()
     {

@@ -7,7 +7,7 @@ import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,10 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -35,17 +32,17 @@ import stevekung.mods.moreplanets.util.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
+import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
 
 public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescription, ISingleBlockRender
 {
-    public static PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-
     public BlockDarkEnergyGenerator(String name)
     {
         super(Material.IRON);
         this.setHardness(2.0F);
         this.setSoundType(SoundType.METAL);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING_HORIZON, EnumFacing.NORTH));
         this.setUnlocalizedName(name);
     }
 
@@ -187,7 +184,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     @Override
     public boolean onUseWrench(World world, BlockPos pos, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        int change = world.getBlockState(pos).getValue(FACING).rotateY().getHorizontalIndex();
+        int change = world.getBlockState(pos).getValue(BlockStateHelper.FACING_HORIZON).rotateY().getHorizontalIndex();
         TileEntity tile = world.getTileEntity(pos);
 
         if (tile instanceof TileEntityDarkEnergyGenerator)
@@ -214,7 +211,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
             energy.setFacing(direction);
         }
         IBlockState state = world.getBlockState(pos);
-        TileBaseUniversalElectrical.onUseWrenchBlock(state, world, pos, state.getValue(FACING));
+        TileBaseUniversalElectrical.onUseWrenchBlock(state, world, pos, state.getValue(BlockStateHelper.FACING_HORIZON));
         return true;
     }
 
@@ -275,20 +272,37 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta % 4);
-        return this.getDefaultState().withProperty(FACING, enumfacing);
+        EnumFacing enumfacing = EnumFacing.getFront(meta);
+
+        if (enumfacing.getAxis() == EnumFacing.Axis.Y)
+        {
+            enumfacing = EnumFacing.NORTH;
+        }
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(FACING).getHorizontalIndex() * 4;
+        return state.getValue(BlockStateHelper.FACING_HORIZON).getIndex();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, FACING);
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING_HORIZON});
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rotation)
+    {
+        return state.withProperty(BlockStateHelper.FACING_HORIZON, rotation.rotate(state.getValue(BlockStateHelper.FACING_HORIZON)));
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
+    {
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING_HORIZON)));
     }
 
     @Override

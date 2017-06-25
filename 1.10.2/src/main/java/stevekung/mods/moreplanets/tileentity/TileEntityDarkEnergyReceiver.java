@@ -79,6 +79,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     {
         this.storage.setMaxExtract(1000);
         this.storage.setCapacity(250000.0F);
+        this.renderBlock = false;
     }
 
     @Override

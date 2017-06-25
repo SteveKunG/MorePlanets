@@ -15,6 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -400,6 +402,18 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING_HORIZON});
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rotation)
+    {
+        return state.withProperty(BlockStateHelper.FACING_HORIZON, rotation.rotate(state.getValue(BlockStateHelper.FACING_HORIZON)));
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
+    {
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING_HORIZON)));
     }
 
     @Override

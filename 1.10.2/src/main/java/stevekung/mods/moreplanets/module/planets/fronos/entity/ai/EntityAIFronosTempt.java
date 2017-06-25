@@ -114,7 +114,6 @@ public class EntityAIFronosTempt extends EntityAIBase
         if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 6.25D)
         {
             this.temptedEntity.getNavigator().clearPathEntity();
-            this.timer = 0;
         }
         else
         {
