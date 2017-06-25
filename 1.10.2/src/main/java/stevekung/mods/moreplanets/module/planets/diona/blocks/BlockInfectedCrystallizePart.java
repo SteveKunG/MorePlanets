@@ -141,26 +141,24 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (state == this.getStateFromMeta(0))
+        if (state.getValue(VARIANT) == BlockType.INFECTED_CRYSTALLIZE_BLOCK)
         {
-            ItemStack itemStack = player.inventory.getCurrentItem();
-
-            if (itemStack != null)
+            if (heldItem != null)
             {
-                if (itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL)
+                if (heldItem.getItem() == DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL)
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
-                        itemStack.stackSize--;
+                        heldItem.stackSize--;
                     }
                     world.setBlockState(pos, this.getStateFromMeta(1));
                     return true;
                 }
-                else if (itemStack.getItem() == Items.ENDER_EYE)
+                else if (heldItem.getItem() == Items.ENDER_EYE)
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
-                        itemStack.stackSize--;
+                        heldItem.stackSize--;
                     }
                     world.setBlockState(pos, this.getStateFromMeta(2));
                     return true;
