@@ -18,6 +18,7 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -27,7 +28,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
@@ -36,12 +38,11 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.EntitySlimeBaseMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
-public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implements IMorePlanetsBossDisplayData, IBoss
+public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implements IBoss
 {
     private TileEntityDungeonSpawner spawner;
     public int deathTicks = 0;
@@ -49,6 +50,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     public int entitiesWithinLast;
     public boolean barrier;
     public EntityInfectedCrystallizeTentacle tentacle;
+    private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
 
     public EntityInfectedCrystallizeSlimeBoss(World world)
     {
@@ -434,20 +436,26 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     }
 
     @Override
-    public float getBossMaxHealth()
+    public void updateAITasks()
     {
-        return this.getMaxHealth();
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
-    public float getBossHealth()
+    public void addTrackingPlayer(EntityPlayerMP player)
     {
-        return this.getHealth();
+        this.bossInfo.addPlayer(player);
     }
 
     @Override
-    public ITextComponent getBossDisplayName()
+    public void removeTrackingPlayer(EntityPlayerMP player)
     {
-        return this.getDisplayName();
+        this.bossInfo.removePlayer(player);
+    }
+
+    @Override
+    public boolean isNonBoss()
+    {
+        return false;
     }
 }

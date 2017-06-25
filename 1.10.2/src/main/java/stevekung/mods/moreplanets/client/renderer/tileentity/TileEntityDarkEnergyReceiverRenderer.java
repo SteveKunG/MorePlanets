@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.client.renderer.tileentity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -138,8 +136,8 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
             int height = tile.getWorld().getHeight();
             int k = i + height;
             this.bindTexture(new ResourceLocation("textures/entity/beacon_beam.png"));
-            GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
-            GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
+            GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
+            GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
             GlStateManager.disableLighting();
             GlStateManager.disableCull();
             GlStateManager.disableBlend();

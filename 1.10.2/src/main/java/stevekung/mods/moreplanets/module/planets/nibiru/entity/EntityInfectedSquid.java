@@ -8,7 +8,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -87,12 +86,6 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
     protected float getSoundVolume()
     {
         return 0.4F;
-    }
-
-    @Override
-    protected Item getDropItem()
-    {
-        return null;
     }
 
     @Override

@@ -3,14 +3,17 @@ package stevekung.mods.moreplanets.module.planets.fronos.entity;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigate;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -47,39 +50,19 @@ public abstract class EntityFronosPet extends EntityTameable
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void handleStatusUpdate(byte id)
-    {
-        if (id == 10)
-        {
-            this.closeEyeTimer = 20;
-        }
-        else if (id == 11)
-        {
-            this.panicTimer = 30;
-        }
-        else if (id == 12)
-        {
-            this.hungryTimer = 10;
-        }
-        else
-        {
-            super.handleStatusUpdate(id);
-        }
-    }
-
-    @Override
     protected void updateAITasks()
     {
-        this.closeEyeTimer = this.aiTexture.getEatingGrassTimer();
+        super.updateAITasks();
+        this.closeEyeTimer = this.aiTexture.getTimer();
         this.panicTimer = this.aiPanic.getTimer();
         this.hungryTimer = this.aiTempt.getTimer();
-        super.updateAITasks();
     }
 
     @Override
     public void onLivingUpdate()
     {
+        super.onLivingUpdate();
+
         if (this.worldObj.isRemote)
         {
             this.closeEyeTimer = Math.max(0, this.closeEyeTimer - 1);
@@ -90,7 +73,6 @@ public abstract class EntityFronosPet extends EntityTameable
                 this.hungryTimer = Math.max(0, this.hungryTimer - 1);
             }
         }
-        super.onLivingUpdate();
     }
 
     @Override
@@ -166,17 +148,52 @@ public abstract class EntityFronosPet extends EntityTameable
     @Override
     protected int getExperiencePoints(EntityPlayer player)
     {
-        return 1 + this.worldObj.rand.nextInt(6);
+        return 1 + this.worldObj.rand.nextInt(4);
     }
 
     @Override
-    public void setTamed(boolean tame)
+    public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        super.setTamed(tame);
-
-        if (tame)
+        if (this.isEntityInvulnerable(source))
         {
-            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
+            return false;
+        }
+        else
+        {
+            Entity entity = source.getEntity();
+
+            if (this.aiSit != null)
+            {
+                this.aiSit.setSitting(false);
+            }
+            if (entity != null && !(entity instanceof EntityPlayer) && !(entity instanceof EntityArrow))
+            {
+                amount = (amount + 1.0F) / 2.0F;
+            }
+            return super.attackEntityFrom(source, amount);
+        }
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entityIn)
+    {
+        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (int)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
+
+        if (flag)
+        {
+            this.applyEnchantments(this, entityIn);
+        }
+        return flag;
+    }
+
+    @Override
+    public void setTamed(boolean tamed)
+    {
+        super.setTamed(tamed);
+
+        if (tamed)
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         }
         else
         {
@@ -191,35 +208,6 @@ public abstract class EntityFronosPet extends EntityTameable
     }
 
     @Override
-    public boolean canMateWith(EntityAnimal entity)
-    {
-        if (entity == this)
-        {
-            return false;
-        }
-        if (!this.isTamed())
-        {
-            return false;
-        }
-        if (!(entity instanceof EntityFronosPet))
-        {
-            return false;
-        }
-
-        EntityFronosPet pet = (EntityFronosPet)entity;
-
-        if (!pet.isTamed())
-        {
-            return false;
-        }
-        if (pet.isSitting())
-        {
-            return false;
-        }
-        return this.isInLove() && pet.isInLove();
-    }
-
-    @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
         return itemStack != null && itemStack.getItem() == FronosItems.FRONOS_FOOD && itemStack.getItemDamage() == 0;
@@ -230,37 +218,38 @@ public abstract class EntityFronosPet extends EntityTameable
     {
         boolean isTamedItem = itemStack != null && itemStack.getItem() == FronosItems.FRONOS_FOOD && itemStack.getItemDamage() == 1;
 
-        if (super.processInteract(player, hand, itemStack))
-        {
-            return true;
-        }
         if (this.isTamed())
         {
             if (isTamedItem)
             {
                 this.heal(5.0F);
 
-                if (itemStack.stackSize <= 0)
+                if (!player.capabilities.isCreativeMode)
                 {
-                    player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+                    --itemStack.stackSize;
                 }
-                this.aiSit.setSitting(!this.isSitting());
+                if (this.aiSit != null)
+                {
+                    this.aiSit.setSitting(!this.isSitting());
+                }
                 return true;
             }
-            if (this.isOwner(player) && !this.worldObj.isRemote && !this.isBreedingItem(itemStack))
+
+            if (this.isOwner(player) && !this.worldObj.isRemote)
             {
-                this.aiSit.setSitting(!this.isSitting());
+                if (this.aiSit != null)
+                {
+                    this.aiSit.setSitting(!this.isSitting());
+                    this.isJumping = false;
+                    this.navigator.clearPathEntity();
+                }
             }
         }
         else if (isTamedItem)
         {
             if (!player.capabilities.isCreativeMode)
             {
-                itemStack.stackSize -= 1;
-            }
-            if (itemStack.stackSize <= 0)
-            {
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+                itemStack.stackSize--;
             }
             if (!this.worldObj.isRemote)
             {
@@ -268,6 +257,7 @@ public abstract class EntityFronosPet extends EntityTameable
                 {
                     this.setTamed(true);
                     this.setHealth(20.0F);
+                    this.navigator.clearPathEntity();
                     this.setOwnerId(player.getUniqueID());
                     this.playTameEffect(true);
                     this.worldObj.setEntityState(this, (byte)7);
@@ -280,6 +270,34 @@ public abstract class EntityFronosPet extends EntityTameable
             }
             return true;
         }
+        return super.processInteract(player, hand, itemStack);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void handleStatusUpdate(byte id)
+    {
+        if (id == 10)
+        {
+            this.closeEyeTimer = 20;
+        }
+        else if (id == 11)
+        {
+            this.panicTimer = 30;
+        }
+        else if (id == 12)
+        {
+            this.hungryTimer = 10;
+        }
+        else
+        {
+            super.handleStatusUpdate(id);
+        }
+    }
+
+    @Override
+    public boolean shouldAttackEntity(EntityLivingBase target, EntityLivingBase owner)
+    {
         return false;
     }
 

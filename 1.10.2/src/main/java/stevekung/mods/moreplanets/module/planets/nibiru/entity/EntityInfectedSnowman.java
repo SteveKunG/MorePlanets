@@ -1,32 +1,30 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
-import micdoodle8.mods.galacticraft.core.entities.EntityAIArrowAttack;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedSnowball;
-import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
 
@@ -36,7 +34,13 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     {
         super(world);
         this.setSize(0.7F, 1.9F);
-        this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.25D, 20, 10.0F));
+        this.experienceValue = 5;
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
+        this.tasks.addTask(1, new EntityAIAttackRanged(this, 1.25D, 20, 10.0F));
         this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(4, new EntityAILookIdle(this));
@@ -106,20 +110,10 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     }
 
     @Override
-    protected Item getDropItem()
+    @Nullable
+    public ResourceLocation getLootTable()
     {
-        return NibiruItems.INFECTED_SNOWBALL;
-    }
-
-    @Override
-    protected void dropFewItems(boolean drop, int fortune)
-    {
-        int i = this.rand.nextInt(16);
-
-        for (int j = 0; j < i; ++j)
-        {
-            this.dropItem(NibiruItems.INFECTED_SNOWBALL, 1);
-        }
+        return MPLootTables.INFECTED_SNOWMAN;
     }
 
     @Override

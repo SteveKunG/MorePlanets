@@ -1,26 +1,32 @@
 package stevekung.mods.moreplanets.core.event;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.AchievementList;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -43,6 +49,7 @@ import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockInfectedDirt;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.util.blocks.BlockFluidLavaBaseMP;
 
 public class GeneralEventHandler
 {
@@ -68,6 +75,7 @@ public class GeneralEventHandler
         GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.JUICER_EGG, -1));
         GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.OIL_ORE, -1));
         GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.SPORELILY, -1));
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_GRASS_PATH, 0));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS, -1));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZE_FENCE, -1));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, -1));
@@ -95,6 +103,7 @@ public class GeneralEventHandler
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, 3));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, 11));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB, 3));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_GRASS_PATH, 1));
     }
 
     @SubscribeEvent
@@ -103,6 +112,42 @@ public class GeneralEventHandler
         if (event.getModID().equals(MorePlanetsCore.MOD_ID))
         {
             ConfigManagerMP.syncConfig(false);
+        }
+    }
+
+    @SubscribeEvent
+    public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event)
+    {
+        EntityPlayer player = event.getEntityPlayer();
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+        ItemStack heldItem = event.getItemStack();
+
+        if (heldItem != null && (heldItem.getItem() instanceof ItemSpade || heldItem.getItem().getToolClasses(heldItem) == Collections.singleton("shovel")))
+        {
+            if (event.getFace() != EnumFacing.DOWN && world.getBlockState(pos.up()).getMaterial() == Material.AIR)
+            {
+                if (world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_GRASS)
+                {
+                    if (!world.isRemote)
+                    {
+                        world.playSound(null, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        world.setBlockState(pos, NibiruBlocks.NIBIRU_GRASS_PATH.getDefaultState(), 11);
+                        heldItem.damageItem(1, player);
+                    }
+                    player.swingArm(event.getHand());
+                }
+                else if (world.getBlockState(pos).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS)
+                {
+                    if (!world.isRemote)
+                    {
+                        world.playSound(null, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        world.setBlockState(pos, NibiruBlocks.NIBIRU_GRASS_PATH.getStateFromMeta(1), 11);
+                        heldItem.damageItem(1, player);
+                    }
+                    player.swingArm(event.getHand());
+                }
+            }
         }
     }
 
@@ -276,15 +321,19 @@ public class GeneralEventHandler
     public void onBucketFill(FillBucketEvent event)
     {
         World world = event.getWorld();
-        BlockPos pos = event.getTarget().getBlockPos();
-        this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET), false);
-        this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_GAS_BUCKET), false);
-        this.registerBucket(event, world, pos, NibiruBlocks.HELIUM_GAS_BLOCK, new ItemStack(NibiruItems.HELIUM_GAS_BUCKET), false);
-        this.registerBucket(event, world, pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.INFECTED_WATER_FLUID_BUCKET), false);
-        this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET), false);
-        this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET), false);
-        this.registerBucket(event, world, pos, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK, new ItemStack(NibiruItems.NUCLEAR_WASTE_BUCKET), false);
-        this.registerBucket(event, world, pos, NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.PURIFY_WATER_BUCKET), false);
+
+        if (event.getTarget() != null)
+        {
+            BlockPos pos = event.getTarget().getBlockPos();
+            this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET), false);
+            this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_GAS_BUCKET), false);
+            this.registerBucket(event, world, pos, NibiruBlocks.HELIUM_GAS_BLOCK, new ItemStack(NibiruItems.HELIUM_GAS_BUCKET), false);
+            this.registerBucket(event, world, pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.INFECTED_WATER_FLUID_BUCKET), false);
+            this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET), false);
+            this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET), false);
+            this.registerBucket(event, world, pos, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK, new ItemStack(NibiruItems.NUCLEAR_WASTE_BUCKET), false);
+            this.registerBucket(event, world, pos, NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.PURIFY_WATER_BUCKET), false);
+        }
     }
 
     private void registerBucket(FillBucketEvent event, World world, BlockPos pos, Block block, ItemStack itemStack, boolean cancelBucket)
@@ -300,6 +349,7 @@ public class GeneralEventHandler
             }
             else
             {
+                event.getEntityPlayer().playSound(block instanceof BlockFluidLavaBaseMP ? SoundEvents.ITEM_BUCKET_FILL_LAVA : SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
                 world.setBlockToAir(pos);
                 event.setFilledBucket(itemStack);
                 event.setResult(Result.ALLOW);

@@ -22,6 +22,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditionalSpawnData
 {
@@ -334,6 +336,23 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
     protected ItemStack getArrowStack()
     {
         return null;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getBrightnessForRender(float partialTicks)
+    {
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(MathHelper.floor_double(this.posX), 0, MathHelper.floor_double(this.posZ));
+
+        if (this.worldObj.isBlockLoaded(pos))
+        {
+            pos.setY(MathHelper.floor_double(this.posY + this.getEyeHeight()));
+            return this.worldObj.getCombinedLight(pos, 0);
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public abstract void addEffect(EntityLivingBase living);

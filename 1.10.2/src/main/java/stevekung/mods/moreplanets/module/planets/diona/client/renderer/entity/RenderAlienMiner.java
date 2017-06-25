@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -44,8 +42,8 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
             Tessellator tessellator = Tessellator.getInstance();
             VertexBuffer worldrenderer = tessellator.getBuffer();
             this.bindTexture(new ResourceLocation("moreplanets:textures/entity/alien_miner_beam.png"));
-            GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
-            GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
+            GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
+            GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
             GlStateManager.disableLighting();
             GlStateManager.disableCull();
             GlStateManager.disableBlend();

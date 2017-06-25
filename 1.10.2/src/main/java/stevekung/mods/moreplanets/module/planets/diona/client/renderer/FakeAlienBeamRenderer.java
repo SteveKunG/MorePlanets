@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -21,8 +19,8 @@ public class FakeAlienBeamRenderer
         VertexBuffer worldrenderer = tessellator.getBuffer();
         GlStateManager.disableFog();
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/entity/beacon_beam.png"));
-        GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
-        GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
+        GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
+        GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
         GlStateManager.disableBlend();
         GlStateManager.depthMask(true);
         GlStateManager.blendFunc(770, 1);

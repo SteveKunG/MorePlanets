@@ -20,24 +20,25 @@ import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 
-public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisplayData, IBoss, IEntityBreathable, ISpaceMob, IEntityMultiPart
+public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreathable, ISpaceMob, IEntityMultiPart
 {
     private TileEntityDungeonSpawner spawner;
     public int deathTicks = 0;
@@ -46,6 +47,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
     public boolean useVineAttacking;
     public EntityDragonPart[] partArray;
     public EntityDragonPart partHead;
+    private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
 
     public EntityVeinFloater(World world)
     {
@@ -268,6 +270,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
         {
             this.heal(10.0F);
         }
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
@@ -411,21 +414,15 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
     }
 
     @Override
-    public float getBossMaxHealth()
+    public void addTrackingPlayer(EntityPlayerMP player)
     {
-        return this.getMaxHealth();
+        this.bossInfo.addPlayer(player);
     }
 
     @Override
-    public float getBossHealth()
+    public void removeTrackingPlayer(EntityPlayerMP player)
     {
-        return this.getHealth();
-    }
-
-    @Override
-    public ITextComponent getBossDisplayName()
-    {
-        return this.getDisplayName();
+        this.bossInfo.removePlayer(player);
     }
 
     @Override
@@ -444,5 +441,11 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBossDisp
     public Entity[] getParts()
     {
         return this.partArray;
+    }
+
+    @Override
+    public boolean isNonBoss()
+    {
+        return false;
     }
 }

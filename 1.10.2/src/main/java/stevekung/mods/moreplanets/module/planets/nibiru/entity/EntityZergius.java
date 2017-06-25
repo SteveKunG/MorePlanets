@@ -39,6 +39,12 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     {
         super(world);
         this.setSize(0.7F, 0.7F);
+        this.experienceValue = 5;
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
         this.moveHelper = new ZergiusMoveHelper();
         this.tasks.addTask(3, new AIZergiusRandomFly());
         this.tasks.addTask(4, new AIZergiusAttackTarget());
@@ -129,6 +135,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     private class FlyingMoveTargetPosition
     {
         private EntityZergius entity = EntityZergius.this;
+
         public double posX;
         public double posY;
         public double posZ;
@@ -226,23 +233,21 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
         @Override
         public void onUpdateMoveHelper()
         {
-            if (this.action != EntityMoveHelper.Action.STRAFE)//TODO Check
+            if (this.action != Action.MOVE_TO)
             {
                 return;
             }
-
             if (this.courseChangeCooldown-- > 0)
             {
                 return;
             }
+
             this.courseChangeCooldown += this.entity.getRNG().nextInt(5) + 2;
             this.targetPos.refresh();
-
             double acceleration = 0.1D;
             this.entity.motionX += this.targetPos.aimX * acceleration;
             this.entity.motionY += this.targetPos.aimY * acceleration;
             this.entity.motionZ += this.targetPos.aimZ * acceleration;
-
             this.entity.renderYawOffset = this.entity.rotationYaw = -((float)Math.atan2(this.targetPos.distX, this.targetPos.distZ)) * 180.0F / (float)Math.PI;
 
             if (this.entity.getRNG().nextInt(2) == 0)
@@ -251,14 +256,13 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
                 this.entity.motionX += strafeAmount * MathHelper.cos(this.entity.rotationYaw * (float)Math.PI / 180.0F);
                 this.entity.motionZ += strafeAmount * MathHelper.sin(this.entity.rotationYaw * (float)Math.PI / 180.0F);
             }
-
             if (!this.targetPos.isPathClear(1.0D))
             {
-                this.action = EntityMoveHelper.Action.WAIT;//TODO Check
+                this.action = Action.WAIT;
             }
             else if (this.targetPos.dist < this.closeEnough)
             {
-                this.action = EntityMoveHelper.Action.WAIT;//TODO Check
+                this.action = Action.WAIT;
             }
         }
     }

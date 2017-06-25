@@ -304,7 +304,7 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 2, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 1, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 4, -3, 1, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 3, -3, 1, box);//XXX
+                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 3, -3, 1, box);//TODO
 
                 if (!this.placedTrap1)
                 {

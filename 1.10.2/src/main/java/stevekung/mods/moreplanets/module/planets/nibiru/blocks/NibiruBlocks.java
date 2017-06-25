@@ -114,6 +114,7 @@ public class NibiruBlocks
     public static Block TERRASTONE_FURNACE;
     public static Block TERRASTONE_LIT_FURNACE;
     public static Block SEALABLE_NUCLEAR_WASTE_ROD;
+    public static Block NIBIRU_GRASS_PATH;
 
     public static Fluid INFECTED_WATER_FLUID;
     public static Fluid HELIUM_GAS;
@@ -212,6 +213,7 @@ public class NibiruBlocks
         NibiruBlocks.TERRASTONE_FURNACE = new BlockTerrastoneFurnace("terrastone_furnace", false);
         NibiruBlocks.TERRASTONE_LIT_FURNACE = new BlockTerrastoneFurnace("terrastone_lit_furnace", true);
         NibiruBlocks.SEALABLE_NUCLEAR_WASTE_ROD = new BlockSealableNuclearWasteRod("sealable_nuclear_waste_rod");
+        NibiruBlocks.NIBIRU_GRASS_PATH = new BlockNibiruGrassPath("nibiru_grass_path");
 
         NibiruBlocks.INFECTED_WATER_FLUID = new FluidMP("infected_water_fluid").setBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK);
         NibiruBlocks.HELIUM_GAS = new FluidHeliumGas("helium_gas", "moreplanets:blocks/helium_gas", "moreplanets:blocks/helium_gas").setBlock(NibiruBlocks.HELIUM_GAS_BLOCK);
@@ -320,6 +322,7 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.TERRASTONE_FURNACE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.TERRASTONE_LIT_FURNACE, null);
         CommonRegisterHelper.registerBlock(NibiruBlocks.SEALABLE_NUCLEAR_WASTE_ROD);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_GRASS_PATH, ItemBlockMultiVariant::new);
 
         /**************************************************************/
         /**********************HARVEST LEVEL STUFF*********************/
@@ -336,6 +339,7 @@ public class NibiruBlocks
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_CLAY, EnumHarvestLevel.SHOVEL, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.PURIFY_GRAVEL, EnumHarvestLevel.SHOVEL, 0);
+        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_GRASS_PATH, EnumHarvestLevel.SHOVEL, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SANDSTONE, EnumHarvestLevel.PICKAXE, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BLOCK, EnumHarvestLevel.PICKAXE, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);

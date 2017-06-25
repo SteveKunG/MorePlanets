@@ -2,14 +2,19 @@ package stevekung.mods.moreplanets.module.planets.fronos.entity;
 
 import java.util.UUID;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFaceTexture;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFronosPanic;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFronosTempt;
@@ -21,25 +26,27 @@ public class EntityBearry extends EntityFronosPet
     {
         super(world);
         this.setSize(0.7F, 1.2F);
-        this.aiTexture = new EntityAIFaceTexture(this);
-        this.aiPanic = new EntityAIFronosPanic(this, 1.75D);
-        this.aiTempt = new EntityAIFronosTempt(this, 1.4D, new ItemStack(FronosItems.FRONOS_FOOD, 1, 0), false);
         this.timeUntilToDropItem = this.rand.nextInt(6000) + 2000;
         this.setTamed(false);
+        this.initEntityAI();
     }
 
     @Override
     protected void initEntityAI()
     {
+        this.aiSit = new EntityAISit(this);
+        this.aiTexture = new EntityAIFaceTexture(this);
+        this.aiPanic = new EntityAIFronosPanic(this, 1.75D);
+        this.aiTempt = new EntityAIFronosTempt(this, 1.4D, new ItemStack(FronosItems.FRONOS_FOOD, 1, 0), false);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(1, this.aiPanic);
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
         this.tasks.addTask(4, new EntityAIFollowOwner(this, 1.0D, 8.0F, 2.0F));
         this.tasks.addTask(5, this.aiTempt);
-        this.tasks.addTask(5, this.aiTexture);
-        this.tasks.addTask(6, new EntityAIMate(this, 1.0D));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(9, this.aiTexture);
+        this.tasks.addTask(7, new EntityAIMate(this, 1.0D));
+        this.tasks.addTask(8, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
     }
@@ -54,7 +61,11 @@ public class EntityBearry extends EntityFronosPet
     @Override
     public double getMountedYOffset()
     {
-        return this.isSitting() ? this.height * 0.75D : this.height * 1.0D;
+        if (this.isChild())
+        {
+            return this.isSitting() ? this.height * 0.3D : this.height * 0.5D;
+        }
+        return this.isSitting() ? this.height * 0.5D : this.height * 0.75D;
     }
 
     @Override
@@ -68,14 +79,10 @@ public class EntityBearry extends EntityFronosPet
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    public ResourceLocation getLootTable()
     {
-        int j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + fortune);
-
-        for (int i = 0; i < j; ++i)
-        {
-            this.entityDropItem(new ItemStack(FronosItems.FRONOS_FRUITS, 1, 0), 0.0F);
-        }
+        return MPLootTables.BEARRY;
     }
 
     @Override
@@ -88,7 +95,7 @@ public class EntityBearry extends EntityFronosPet
             marshmallow.onInitialSpawn(difficulty, (IEntityLivingData)null);
             marshmallow.setGrowingAge(-24000);
             this.worldObj.spawnEntityInWorld(marshmallow);
-            this.startRiding(marshmallow);
+            marshmallow.startRiding(this);
         }
         return super.onInitialSpawn(difficulty, data);
     }
@@ -105,6 +112,28 @@ public class EntityBearry extends EntityFronosPet
             pet.setTamed(true);
         }
         return pet;
+    }
+
+    @Override
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityBearry))
+        {
+            return false;
+        }
+        else
+        {
+            EntityBearry pet = (EntityBearry)otherAnimal;
+            return !pet.isTamed() ? false : pet.isSitting() ? false : this.isInLove() && pet.isInLove();
+        }
     }
 
     @Override

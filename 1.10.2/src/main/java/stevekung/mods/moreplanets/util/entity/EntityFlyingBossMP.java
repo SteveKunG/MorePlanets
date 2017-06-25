@@ -86,4 +86,10 @@ public abstract class EntityFlyingBossMP extends EntityLiving implements IMob
     {
         return false;
     }
+
+    @Override
+    public boolean isNonBoss()
+    {
+        return false;
+    }
 }

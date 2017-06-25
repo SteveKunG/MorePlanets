@@ -30,7 +30,6 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
 import stevekung.mods.moreplanets.util.blocks.BlockContainerMP;
@@ -149,14 +148,12 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntityDummy tileEntity = (TileEntityDummy) world.getTileEntity(pos);
-        TileEntity tile = world.getTileEntity(pos.down());
-        TileEntity tile1 = world.getTileEntity(pos.down(2));
 
         if (tileEntity == null)
         {
             return false;
         }
-        if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_MIDDLE) && world.getBlockState(pos.down()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.DEPLETE, false))
+        if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_MIDDLE) && world.getBlockState(pos.down()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
             if (heldItem != null)
             {
@@ -166,18 +163,13 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
                     {
                         heldItem.damageItem(1, player);
                     }
-                    if (tile instanceof TileEntityNuclearWasteTank)
-                    {
-                        TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) tile;
-                        tank.hasRod = false;
-                        Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
-                        world.setBlockState(pos.down(), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.DEPLETE, true));
-                    }
+                    Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
+                    world.setBlockState(pos.down(), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
                     return true;
                 }
             }
         }
-        if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_TOP) && world.getBlockState(pos.down(2)) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.DEPLETE, false))
+        if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_TOP) && world.getBlockState(pos.down(2)) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
             if (heldItem != null)
             {
@@ -187,13 +179,8 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
                     {
                         heldItem.damageItem(1, player);
                     }
-                    if (tile1 instanceof TileEntityNuclearWasteTank)
-                    {
-                        TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) tile1;
-                        tank.hasRod = false;
-                        Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
-                        world.setBlockState(pos.down(2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.DEPLETE, true));
-                    }
+                    Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
+                    world.setBlockState(pos.down(2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
                     return true;
                 }
             }

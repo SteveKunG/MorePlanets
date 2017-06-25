@@ -19,6 +19,32 @@ public class MPLootTables
     public static ResourceLocation CHEESE_COW = CommonRegisterHelper.registerEntityLoot("cheese_cow");
     public static ResourceLocation CHEESE_FLOATER = CommonRegisterHelper.registerEntityLoot("cheese_floater");
     public static ResourceLocation CHEESE_SLIME = CommonRegisterHelper.registerEntityLoot("cheese_slime");
+    public static ResourceLocation INFECTED_GUARDIAN = CommonRegisterHelper.registerEntityLoot("infected_guardian");
+    public static ResourceLocation INFECTED_ELDER_GUARDIAN = CommonRegisterHelper.registerEntityLoot("infected_elder_guardian");
+    public static ResourceLocation INFECTED_SKELETON = CommonRegisterHelper.registerEntityLoot("infected_skeleton");
+    public static ResourceLocation INFECTED_SNOWMAN = CommonRegisterHelper.registerEntityLoot("infected_snowman");
+    public static ResourceLocation SHLIME = CommonRegisterHelper.registerEntityLoot("shlime");
+    public static ResourceLocation BEARRY = CommonRegisterHelper.registerEntityLoot("bearry");
+    public static ResourceLocation GIANT_BLUEBERRY = CommonRegisterHelper.registerEntityLoot("giant_blueberry");
+    public static ResourceLocation MARSHMALLOW = CommonRegisterHelper.registerEntityLoot("marshmallow");
+
+    // Dyed
+    public static ResourceLocation SHLIME_WOOL_WHITE = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "white");
+    public static ResourceLocation SHLIME_WOOL_ORANGE = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "orange");
+    public static ResourceLocation SHLIME_WOOL_MAGENTA = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "magenta");
+    public static ResourceLocation SHLIME_WOOL_LIGHT_BLUE = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "light_blue");
+    public static ResourceLocation SHLIME_WOOL_YELLOW = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "yellow");
+    public static ResourceLocation SHLIME_WOOL_LIME = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "lime");
+    public static ResourceLocation SHLIME_WOOL_PINK = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "pink");
+    public static ResourceLocation SHLIME_WOOL_GRAY = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "gray");
+    public static ResourceLocation SHLIME_WOOL_SILVER = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "silver");
+    public static ResourceLocation SHLIME_WOOL_CYAN = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "cyan");
+    public static ResourceLocation SHLIME_WOOL_PURPLE = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "purple");
+    public static ResourceLocation SHLIME_WOOL_BLUE = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "blue");
+    public static ResourceLocation SHLIME_WOOL_BROWN = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "brown");
+    public static ResourceLocation SHLIME_WOOL_GREEN = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "green");
+    public static ResourceLocation SHLIME_WOOL_RED = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "red");
+    public static ResourceLocation SHLIME_WOOL_BLACK = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "black");
 
     // Chests
     public static ResourceLocation COMMON_SPACE_DUNGEON = CommonRegisterHelper.registerChestLoot("common_space_dungeon");

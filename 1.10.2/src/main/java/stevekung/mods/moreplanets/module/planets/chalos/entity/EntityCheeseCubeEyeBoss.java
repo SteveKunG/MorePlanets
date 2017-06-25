@@ -20,6 +20,7 @@ import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -30,7 +31,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
@@ -38,12 +40,11 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.EntityFlyingBossMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
-public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IMorePlanetsBossDisplayData, IBoss
+public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IBoss
 {
     private TileEntityDungeonSpawner spawner;
     private Entity targetedEntity;
@@ -53,6 +54,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public int entitiesWithin;
     public int entitiesWithinLast;
     private int spawnCount = 10;
+    private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
 
     public EntityCheeseCubeEyeBoss(World world)
     {
@@ -92,6 +94,24 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public boolean canBePushed()
     {
         return false;
+    }
+
+    @Override
+    public void updateAITasks()
+    {
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+    }
+
+    @Override
+    public void addTrackingPlayer(EntityPlayerMP player)
+    {
+        this.bossInfo.addPlayer(player);
+    }
+
+    @Override
+    public void removeTrackingPlayer(EntityPlayerMP player)
+    {
+        this.bossInfo.removePlayer(player);
     }
 
     @Override
@@ -375,24 +395,6 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {
         this.spawner = spawner;
-    }
-
-    @Override
-    public float getBossMaxHealth()
-    {
-        return this.getMaxHealth();
-    }
-
-    @Override
-    public float getBossHealth()
-    {
-        return this.getHealth();
-    }
-
-    @Override
-    public ITextComponent getBossDisplayName()
-    {
-        return this.getDisplayName();
     }
 
     private static class AICheeseSporeAttack extends EntityAIBase

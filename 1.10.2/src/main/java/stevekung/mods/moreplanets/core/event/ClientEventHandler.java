@@ -20,9 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGameOver;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -73,7 +71,6 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.MPLog;
-import stevekung.mods.moreplanets.util.MorePlanetsBossStatus;
 import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.blocks.IFireBlock;
 import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
@@ -316,18 +313,12 @@ public class ClientEventHandler
             GlStateManager.popMatrix();
             GlStateManager.enableLighting();
         }
-        else
-        {
-            return;
-        }
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onRenderGameOverlay(RenderGameOverlayEvent event)
     {
-        this.renderMorePlanetsBossHealth();
-
         if (event.getType().equals(RenderGameOverlayEvent.ElementType.ALL))
         {
             if (this.mc.gameSettings.thirdPersonView == 0)
@@ -599,36 +590,6 @@ public class ClientEventHandler
                     event.setCanceled(true);
                 }
             }
-        }
-    }
-
-    private void renderMorePlanetsBossHealth()
-    {
-        if (MorePlanetsBossStatus.BOSS_NAME != null && MorePlanetsBossStatus.STATUS_BAR_TIME > 0)
-        {
-            --MorePlanetsBossStatus.STATUS_BAR_TIME;
-            ScaledResolution scaledresolution = new ScaledResolution(this.mc);
-            int i = scaledresolution.getScaledWidth();
-            int bossBarWidth = 200;
-            int bossBarHeight = 16;
-            int barX = i / 2 - bossBarWidth / 2;
-            int barY = 16;
-            int healthScale = (int)(MorePlanetsBossStatus.HEALTH_SCALE * (bossBarWidth + 1));
-            GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-            this.mc.getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/gui/boss_bars.png"));
-            this.mc.ingameGUI.drawTexturedModalRect(barX, barY, 0, 0, bossBarWidth, bossBarHeight);
-
-            if (healthScale > 0)
-            {
-                this.mc.ingameGUI.drawTexturedModalRect(barX, barY, 0, 16, healthScale, bossBarHeight);
-            }
-            String bossType = MorePlanetsBossStatus.BOSS_TYPE;
-            this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(bossType, i / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(bossType) / 2, barY - 12, 16777215);
-            String s = MorePlanetsBossStatus.BOSS_NAME;
-            this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(TextFormatting.ITALIC + s, i / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(s) / 2, barY + 4, MorePlanetsBossStatus.BOSS_TEXT_COLOR);
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            this.mc.getTextureManager().bindTexture(Gui.ICONS);
         }
     }
 

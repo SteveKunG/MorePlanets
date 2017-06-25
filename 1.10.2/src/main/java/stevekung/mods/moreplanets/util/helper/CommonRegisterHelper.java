@@ -138,6 +138,11 @@ public class CommonRegisterHelper
         return LootTableList.register(new ResourceLocation("moreplanets:entities/" + name));
     }
 
+    public static ResourceLocation registerEntityDyeLoot(String folder, String name)
+    {
+        return LootTableList.register(new ResourceLocation("moreplanets:entities/" + folder + "/" + name));
+    }
+
     public static ResourceLocation registerChestLoot(String name)
     {
         return LootTableList.register(new ResourceLocation("moreplanets:chests/" + name));

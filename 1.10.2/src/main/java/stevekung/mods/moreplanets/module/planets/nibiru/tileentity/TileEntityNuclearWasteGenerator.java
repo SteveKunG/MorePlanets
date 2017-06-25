@@ -88,7 +88,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
                         {
                             if (this.getTank(this.getPos().add(x, 0, z)))
                             {
-                                this.worldObj.setBlockState(this.getPos().add(x, 0, z), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.DEPLETE, this.worldObj.rand.nextInt(5000000) == 0));
+                                this.worldObj.setBlockState(this.getPos().add(x, 0, z), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, this.worldObj.rand.nextInt(5000000) == 0 ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE));
                             }
                         }
                     }
@@ -203,7 +203,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
     private boolean getTank(BlockPos pos)
     {
-        if (this.worldObj.getBlockState(pos) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.DEPLETE, this.worldObj.rand.nextFloat() == 0.99F))
+        if (this.worldObj.getBlockState(pos) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, this.worldObj.rand.nextFloat() == 0.99F ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE))
         {
             return true;
         }

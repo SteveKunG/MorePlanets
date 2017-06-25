@@ -16,6 +16,7 @@ public class BlockGasCheeseOfMilk extends BlockFluidFiniteMP
     {
         super(ChalosBlocks.CHEESE_OF_MILK_GAS, MaterialsBase.GAS);
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockFluidBase.LEVEL, 7));
         this.setLightOpacity(3);
         this.setUnlocalizedName(name);
     }

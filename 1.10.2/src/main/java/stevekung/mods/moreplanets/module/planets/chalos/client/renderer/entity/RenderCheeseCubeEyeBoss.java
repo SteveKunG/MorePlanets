@@ -8,8 +8,6 @@ import stevekung.mods.moreplanets.module.planets.chalos.client.model.ModelCheese
 import stevekung.mods.moreplanets.module.planets.chalos.client.renderer.entity.layer.LayerCheeseCubeEyeBoss;
 import stevekung.mods.moreplanets.module.planets.chalos.client.renderer.entity.layer.LayerCheeseCubeEyeBossDeath;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCubeEyeBoss;
-import stevekung.mods.moreplanets.util.MorePlanetsBossStatus;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class RenderCheeseCubeEyeBoss extends RenderLiving<EntityCheeseCubeEyeBoss>
 {
@@ -24,13 +22,6 @@ public class RenderCheeseCubeEyeBoss extends RenderLiving<EntityCheeseCubeEyeBos
     protected ResourceLocation getEntityTexture(EntityCheeseCubeEyeBoss entity)
     {
         return new ResourceLocation("moreplanets:textures/entity/cheese_cube_eye_boss.png");
-    }
-
-    @Override
-    public void doRender(EntityCheeseCubeEyeBoss entity, double x, double y, double z, float entityYaw, float partialTicks)
-    {
-        MorePlanetsBossStatus.setBossStatus(entity, "Chalos Boss", ColorHelper.rgbToDecimal(246, 220, 160));
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
     @Override

@@ -32,23 +32,19 @@ ion cannon controller
 ion cannon gun
 satellite part for ion cannon
 xp collect to tile limit
+rewrite custom boss health bars
+uv texture treasure chest
+infected guardian random fish
 
 1.10.2
-farmland block lighting
+farmland/grass path block lighting
 villager profession rewrite
 nibiru biome gen
 village biome block
 laser gun shoot twice
 fix enchant render for multalic armor
 space fishing hook loot table
-lava bucket sound
-vanilla potion hud for custom potion
-all mob/creature loot table
-nuclear waste tank blockstate
-double cheese tall grass
-boss loot table
 diona mineshaft loot table
 nibiru structure loot table
-new grass path
-boss gui render
-uv texture treasure chest
+juicer ride player
+gui block overlay

@@ -92,6 +92,7 @@ public class ItemModelRenderer
         ClientRegisterHelper.registerModelRender(NibiruBlocks.HALF_NIBIRU_SANDSTONE_SLAB, BlockHalfNibiruSandstoneSlab.BlockType.class);
         ClientRegisterHelper.registerModelRender(NibiruBlocks.NIBIRU_DOUBLE_PLANT, BlockNibiruDoublePlant.BlockType.class);
         ClientRegisterHelper.registerModelRender(NibiruBlocks.NIBIRU_BOOKSHELF, BlockNibiruBookshelf.BlockType.class);
+        ClientRegisterHelper.registerModelRender(NibiruBlocks.NIBIRU_GRASS_PATH, BlockNibiruGrassPath.BlockType.class);
         ClientRegisterHelper.registerModelRender(FronosBlocks.FRONOS_DIRT, BlockFronosDirt.BlockType.class);
         ClientRegisterHelper.registerModelRender(FronosBlocks.FRONOS_BLOCK, BlockFronos.BlockType.class);
         ClientRegisterHelper.registerModelRender(FronosBlocks.FRONOS_ORE, BlockFronosOre.BlockType.class);

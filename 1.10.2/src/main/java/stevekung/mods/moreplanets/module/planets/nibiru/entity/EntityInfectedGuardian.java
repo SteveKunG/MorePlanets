@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
+import javax.annotation.Nullable;
+
 import com.google.common.base.Predicate;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
@@ -10,11 +12,8 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemFishFood;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -22,6 +21,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -31,10 +31,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 
@@ -403,28 +403,10 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    protected ResourceLocation getLootTable()
     {
-        int i = this.rand.nextInt(3) + this.rand.nextInt(fortune + 1);
-
-        if (i > 0)
-        {
-            this.entityDropItem(new ItemStack(NibiruItems.INFECTED_PRISMARINE, i, 0), 1.0F);
-        }
-
-        if (this.rand.nextInt(3 + fortune) > 1)
-        {
-            this.entityDropItem(new ItemStack(Items.FISH, 1, ItemFishFood.FishType.COD.getMetadata()), 1.0F);
-        }
-        else if (this.rand.nextInt(3 + fortune) > 1)
-        {
-            this.entityDropItem(new ItemStack(NibiruItems.INFECTED_PRISMARINE, 1, 1), 1.0F);
-        }
-
-        if (drop && this.isElder())
-        {
-            this.entityDropItem(new ItemStack(NibiruBlocks.INFECTED_SPONGE, 1, 1), 1.0F);
-        }
+        return this.isElder() ? MPLootTables.INFECTED_ELDER_GUARDIAN : MPLootTables.INFECTED_GUARDIAN;
     }
 
     @Override
@@ -447,7 +429,10 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                 entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 0));
             }
         }
-        this.wander.makeUpdate();
+        if (this.wander != null)
+        {
+            this.wander.makeUpdate();
+        }
         return super.attackEntityFrom(source, amount);
     }
 

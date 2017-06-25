@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
@@ -55,14 +53,14 @@ public class RenderInfectedArrow extends Render<EntityInfectedArrow>
         GlStateManager.rotate(45.0F, 1.0F, 0.0F, 0.0F);
         GlStateManager.scale(f8, f8, f8);
         GlStateManager.translate(-4.0F, 0.0F, 0.0F);
-        GL11.glNormal3f(f8, 0.0F, 0.0F);
+        GlStateManager.glNormal3f(f8, 0.0F, 0.0F);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-7.0D, -2.0D, -2.0D).tex(f4, f6).endVertex();
         worldrenderer.pos(-7.0D, -2.0D, 2.0D).tex(f5, f6).endVertex();
         worldrenderer.pos(-7.0D, 2.0D, 2.0D).tex(f5, f7).endVertex();
         worldrenderer.pos(-7.0D, 2.0D, -2.0D).tex(f4, f7).endVertex();
         tessellator.draw();
-        GL11.glNormal3f(-f8, 0.0F, 0.0F);
+        GlStateManager.glNormal3f(-f8, 0.0F, 0.0F);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-7.0D, 2.0D, -2.0D).tex(f4, f6).endVertex();
         worldrenderer.pos(-7.0D, 2.0D, 2.0D).tex(f5, f6).endVertex();
@@ -73,7 +71,7 @@ public class RenderInfectedArrow extends Render<EntityInfectedArrow>
         for (int j = 0; j < 4; ++j)
         {
             GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
-            GL11.glNormal3f(0.0F, 0.0F, f8);
+            GlStateManager.glNormal3f(0.0F, 0.0F, f8);
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
             worldrenderer.pos(-8.0D, -2.0D, 0.0D).tex(f, f2).endVertex();
             worldrenderer.pos(8.0D, -2.0D, 0.0D).tex(f1, f2).endVertex();

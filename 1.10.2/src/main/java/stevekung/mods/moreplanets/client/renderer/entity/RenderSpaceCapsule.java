@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -95,8 +93,8 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
             GlStateManager.disableLighting();
             GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-            GlStateManager.cullFace(GL11.GL_FRONT);
+            GlStateManager.blendFunc(770, 1);
+            GlStateManager.cullFace(1028);
 
             int color = ColorUtil.to32BitColor(entity.posY >= 790.0F ? 255 : (int) Math.max(Math.min(255, -(entity.motionY + 0.6F) * 100.0F), 0), 255, 255, 255);
 
@@ -111,9 +109,9 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
             GlStateManager.rotate(entity.ticksExisted * 5.0F, 0.0F, 1.0F, 0.0F);
             ClientUtil.drawBakedModelColored(this.modelFlame, color);
 
-            GlStateManager.cullFace(GL11.GL_BACK);
+            GlStateManager.cullFace(1029);
             GlStateManager.enableCull();
-            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GlStateManager.blendFunc(770, 771);
             RenderHelper.enableStandardItemLighting();
         }
 

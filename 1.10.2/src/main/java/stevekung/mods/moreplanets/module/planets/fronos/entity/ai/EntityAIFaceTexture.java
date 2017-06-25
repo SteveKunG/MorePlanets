@@ -8,7 +8,7 @@ public class EntityAIFaceTexture extends EntityAIBase
 {
     private EntityLiving entity;
     private World world;
-    int eatingGrassTimer;
+    int timer;
 
     public EntityAIFaceTexture(EntityLiving entity)
     {
@@ -33,7 +33,7 @@ public class EntityAIFaceTexture extends EntityAIBase
     @Override
     public void startExecuting()
     {
-        this.eatingGrassTimer = 20;
+        this.timer = 20;
         this.world.setEntityState(this.entity, (byte)10);
         this.entity.getNavigator().clearPathEntity();
     }
@@ -41,23 +41,23 @@ public class EntityAIFaceTexture extends EntityAIBase
     @Override
     public void resetTask()
     {
-        this.eatingGrassTimer = 0;
+        this.timer = 0;
     }
 
     @Override
     public boolean continueExecuting()
     {
-        return this.eatingGrassTimer > 0;
+        return this.timer > 0;
     }
 
-    public int getEatingGrassTimer()
+    public int getTimer()
     {
-        return this.eatingGrassTimer;
+        return this.timer;
     }
 
     @Override
     public void updateTask()
     {
-        this.eatingGrassTimer = Math.max(0, this.eatingGrassTimer - 1);
+        this.timer = Math.max(0, this.timer - 1);
     }
 }

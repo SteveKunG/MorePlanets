@@ -28,7 +28,7 @@ import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
 
 public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, ISpaceMob
 {
-    private AISummonSilverfish summonSilverfish;
+    private AISummonWorm summonSilverfish;
 
     public EntityInfectedWorm(World world)
     {
@@ -39,7 +39,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
     @Override
     protected void initEntityAI()
     {
-        this.summonSilverfish = new AISummonSilverfish(this);
+        this.summonSilverfish = new AISummonWorm(this);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(3, this.summonSilverfish);
         this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, false));
@@ -124,7 +124,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
         }
         else
         {
-            if (source instanceof EntityDamageSource || source == DamageSource.magic)
+            if ((source instanceof EntityDamageSource || source == DamageSource.magic) && this.summonSilverfish != null)
             {
                 this.summonSilverfish.notifyHurt();
             }
@@ -262,12 +262,12 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
         }
     }
 
-    static class AISummonSilverfish extends EntityAIBase
+    static class AISummonWorm extends EntityAIBase
     {
         private EntityInfectedWorm entity;
         private int lookForFriends;
 
-        public AISummonSilverfish(EntityInfectedWorm entity)
+        public AISummonWorm(EntityInfectedWorm entity)
         {
             this.entity = entity;
         }

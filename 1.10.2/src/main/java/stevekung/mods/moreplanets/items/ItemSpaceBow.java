@@ -8,9 +8,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -101,9 +103,53 @@ public class ItemSpaceBow extends ItemBaseMP
             {
                 if (arrowStack == null)
                 {
-                    arrowStack = new ItemStack(DionaItems.INFECTED_CRYSTALLIZE_ARROW);
+                    arrowStack = new ItemStack(Items.ARROW);
                 }
-                if (arrowStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW)
+                if (arrowStack.getItem() instanceof ItemArrow)
+                {
+                    ItemArrow itemarrow = (ItemArrow) arrowStack.getItem();
+                    EntityArrow entityarrow = itemarrow.createArrow(world, arrowStack, player);
+                    entityarrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, duration * 3.0F, 1.0F);
+
+                    if (duration == 1.0F)
+                    {
+                        entityarrow.setIsCritical(true);
+                    }
+                    if (power > 0)
+                    {
+                        entityarrow.setDamage(entityarrow.getDamage() + power * 0.5D + 0.5D);
+                    }
+                    if (punch > 0)
+                    {
+                        entityarrow.setKnockbackStrength(punch);
+                    }
+                    if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, itemStack) > 0)
+                    {
+                        entityarrow.setFire(100);
+                    }
+
+                    itemStack.damageItem(1, player);
+                    world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + duration * 0.5F);
+
+                    if (flag)
+                    {
+                        entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+                    }
+                    else
+                    {
+                        arrowStack.stackSize--;
+
+                        if (arrowStack.stackSize == 0)
+                        {
+                            player.inventory.deleteStack(arrowStack);
+                        }
+                    }
+                    if (!world.isRemote)
+                    {
+                        world.spawnEntityInWorld(entityarrow);
+                    }
+                }
+                else if (arrowStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW)
                 {
                     arrow = new EntityInfectedCrystallizeArrow(world, player);
                     arrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, duration * 3.0F, 1.0F);
@@ -283,6 +329,6 @@ public class ItemSpaceBow extends ItemBaseMP
 
     protected boolean isArrow(ItemStack itemStack)
     {
-        return itemStack != null && (itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW || itemStack.getItem() == NibiruItems.INFECTED_ARROW);
+        return itemStack != null && (itemStack.getItem() instanceof ItemArrow || itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW || itemStack.getItem() == NibiruItems.INFECTED_ARROW);
     }
 }

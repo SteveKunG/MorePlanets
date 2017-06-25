@@ -70,6 +70,7 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.HALF_INFECTED_PRISMARINE_SLAB, BlockHalfInfectedPrismarineSlab.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, BlockHalfInfectedStoneBricksSlab.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.HALF_NIBIRU_SANDSTONE_SLAB, BlockHalfNibiruSandstoneSlab.BlockType.class);
+        ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_GRASS_PATH, BlockNibiruGrassPath.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_DIRT, BlockFronosDirt.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_BLOCK, BlockFronos.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_ORE, BlockFronosOre.BlockType.class, Lists.newArrayList("fronos_redstone_ore_active"), Lists.newArrayList("fronos_redstone_ore"));

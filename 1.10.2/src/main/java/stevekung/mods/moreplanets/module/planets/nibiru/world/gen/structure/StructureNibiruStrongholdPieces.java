@@ -142,7 +142,7 @@ public class StructureNibiruStrongholdPieces
                 if (!this.hasMadeChest && box.isVecInside(new BlockPos(this.getXWithOffset(3, 3), this.getYWithOffset(2), this.getZWithOffset(3, 3))))
                 {
                     this.hasMadeChest = true;
-                    this.generateChest(world, box, rand, 3, 2, 3, LootTableList.CHESTS_STRONGHOLD_CORRIDOR);//XXX
+                    this.generateChest(world, box, rand, 3, 2, 3, LootTableList.CHESTS_STRONGHOLD_CORRIDOR);//TODO Loot table
                 }
                 return true;
             }
@@ -514,12 +514,12 @@ public class StructureNibiruStrongholdPieces
                     this.setBlockState(world, iblockstate, 7, 8, 8, box);
                 }
 
-                this.generateChest(world, box, rand, 3, 3, 5, LootTableList.CHESTS_STRONGHOLD_LIBRARY);//XXX
+                this.generateChest(world, box, rand, 3, 3, 5, LootTableList.CHESTS_STRONGHOLD_LIBRARY);//TODO
 
                 if (this.isLargeRoom)
                 {
                     this.setBlockState(world, Blocks.AIR.getDefaultState(), 12, 9, 1, box);
-                    this.generateChest(world, box, rand, 12, 8, 1, LootTableList.CHESTS_STRONGHOLD_LIBRARY);//XXX
+                    this.generateChest(world, box, rand, 12, 8, 1, LootTableList.CHESTS_STRONGHOLD_LIBRARY);//TODO
                 }
                 return true;
             }
@@ -917,7 +917,7 @@ public class StructureNibiruStrongholdPieces
                     this.setBlockState(world, iblockstate, 9, 1, 3, box);
                     this.setBlockState(world, iblockstate, 9, 2, 3, box);
                     this.setBlockState(world, iblockstate, 9, 3, 3, box);
-                    this.generateChest(world, box, rand, 3, 4, 8, LootTableList.CHESTS_STRONGHOLD_CROSSING);//XXX
+                    this.generateChest(world, box, rand, 3, 4, 8, LootTableList.CHESTS_STRONGHOLD_CROSSING);//TODO
                 }
                 return true;
             }
@@ -1613,7 +1613,7 @@ public class StructureNibiruStrongholdPieces
         {
             if (box.isVecInside(pos))
             {
-                world.setBlockState(pos, NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.DEPLETE, Boolean.valueOf(rand.nextFloat() > 0.9F)), 2);
+                world.setBlockState(pos, NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, Boolean.valueOf(rand.nextFloat() > 0.9F) ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE), 2);
                 world.setBlockState(pos.up(), MPBlocks.DUMMY_BLOCK.getStateFromMeta(5), 2);
                 world.setBlockState(pos.up(2), MPBlocks.DUMMY_BLOCK.getStateFromMeta(6), 2);
                 TileEntity tile = world.getTileEntity(pos);
@@ -1630,7 +1630,6 @@ public class StructureNibiruStrongholdPieces
                 if (tile instanceof TileEntityNuclearWasteTank)
                 {
                     TileEntityNuclearWasteTank waste = (TileEntityNuclearWasteTank) tile;
-                    waste.hasRod = true;
                     waste.onCreate(world, pos);
                 }
             }

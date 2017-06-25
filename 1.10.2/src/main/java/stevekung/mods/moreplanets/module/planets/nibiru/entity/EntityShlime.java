@@ -3,6 +3,8 @@ package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
@@ -32,6 +34,7 @@ import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -42,6 +45,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruTallGrass;
@@ -291,25 +295,74 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     @Override
     protected void dropFewItems(boolean drop, int fortune)
     {
-        if (!this.getSheared())
-        {
-            this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.WOOL), 1, this.getFleeceColor().getMetadata()), 0.0F);
-        }
+        //        if (!this.getSheared())
+        //        {
+        //            this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.WOOL), 1, this.getFleeceColor().getMetadata()), 0.0F);
+        //        }
+        //
+        //        int i = this.rand.nextInt(2) + 1 + this.rand.nextInt(1 + fortune);
+        //
+        //        for (int j = 0; j < i; ++j)
+        //        {
+        //            if (this.isBurning())
+        //            {
+        //                this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_FOOD, 1, 1), 0.0F);
+        //            }
+        //            else
+        //            {
+        //                this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_FOOD, 1, 0), 0.0F);
+        //            }
+        //        }
+        //        this.addRandomDrop();//TODO rare drop
+    }
 
-        int i = this.rand.nextInt(2) + 1 + this.rand.nextInt(1 + fortune);
-
-        for (int j = 0; j < i; ++j)
+    @Override
+    @Nullable
+    protected ResourceLocation getLootTable()
+    {
+        if (this.getSheared())
         {
-            if (this.isBurning())
+            return MPLootTables.SHLIME;
+        }
+        else
+        {
+            switch (this.getFleeceColor())
             {
-                this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_FOOD, 1, 1), 0.0F);
-            }
-            else
-            {
-                this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_FOOD, 1, 0), 0.0F);
+            case WHITE:
+            default:
+                return MPLootTables.SHLIME_WOOL_WHITE;
+            case ORANGE:
+                return MPLootTables.SHLIME_WOOL_ORANGE;
+            case MAGENTA:
+                return MPLootTables.SHLIME_WOOL_MAGENTA;
+            case LIGHT_BLUE:
+                return MPLootTables.SHLIME_WOOL_LIGHT_BLUE;
+            case YELLOW:
+                return MPLootTables.SHLIME_WOOL_YELLOW;
+            case LIME:
+                return MPLootTables.SHLIME_WOOL_LIME;
+            case PINK:
+                return MPLootTables.SHLIME_WOOL_PINK;
+            case GRAY:
+                return MPLootTables.SHLIME_WOOL_GRAY;
+            case SILVER:
+                return MPLootTables.SHLIME_WOOL_SILVER;
+            case CYAN:
+                return MPLootTables.SHLIME_WOOL_CYAN;
+            case PURPLE:
+                return MPLootTables.SHLIME_WOOL_PURPLE;
+            case BLUE:
+                return MPLootTables.SHLIME_WOOL_BLUE;
+            case BROWN:
+                return MPLootTables.SHLIME_WOOL_BROWN;
+            case GREEN:
+                return MPLootTables.SHLIME_WOOL_GREEN;
+            case RED:
+                return MPLootTables.SHLIME_WOOL_RED;
+            case BLACK:
+                return MPLootTables.SHLIME_WOOL_BLACK;
             }
         }
-        this.addRandomDrop();//TODO rare drop
     }
 
     protected void addRandomDrop()

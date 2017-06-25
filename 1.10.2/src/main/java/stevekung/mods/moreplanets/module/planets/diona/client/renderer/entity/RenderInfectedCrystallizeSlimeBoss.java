@@ -9,8 +9,6 @@ import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelInfecte
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.layer.LayerInfectedCrystallizeSlimeBossBarrier;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.layer.LayerInfectedCrystallizeSlimeBossDeath;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizeSlimeBoss;
-import stevekung.mods.moreplanets.util.MorePlanetsBossStatus;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class RenderInfectedCrystallizeSlimeBoss extends RenderLiving<EntityInfectedCrystallizeSlimeBoss>
 {
@@ -65,7 +63,6 @@ public class RenderInfectedCrystallizeSlimeBoss extends RenderLiving<EntityInfec
     public void doRender(EntityInfectedCrystallizeSlimeBoss entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         this.shadowSize = 0.25F * entity.getSlimeSize();
-        MorePlanetsBossStatus.setBossStatus(entity, "Diona Boss", ColorHelper.rgbToDecimal(157, 147, 183));
 
         if (entity.tentacle != null)
         {

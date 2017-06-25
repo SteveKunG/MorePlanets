@@ -2,8 +2,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.client.sky;
 
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -78,7 +76,7 @@ public class WeatherRendererNibiru extends IRenderHandler
             Tessellator tessellator = Tessellator.getInstance();
             VertexBuffer worldrenderer = tessellator.getBuffer();
             GlStateManager.disableCull();
-            GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+            GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             GlStateManager.alphaFunc(516, 0.1F);

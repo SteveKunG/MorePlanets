@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -18,8 +16,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.model.ModelVeinFloater;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.entity.layer.LayerVeinFloaterDeath;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityVeinFloater;
-import stevekung.mods.moreplanets.util.MorePlanetsBossStatus;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 @SideOnly(Side.CLIENT)
 public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
@@ -33,8 +29,6 @@ public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
     @Override
     public void doRender(EntityVeinFloater entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        MorePlanetsBossStatus.setBossStatus(entity, "Nibiru Boss", ColorHelper.rgbToDecimal(189, 95, 17));
-
         for (EntityPlayer player : entity.worldObj.playerEntities)
         {
             double d00 = -1.0D;
@@ -50,8 +44,8 @@ public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
                     Tessellator tessellator = Tessellator.getInstance();
                     VertexBuffer worldrenderer = tessellator.getBuffer();
                     this.bindTexture(new ResourceLocation("moreplanets:textures/blocks/infected_vines.png"));
-                    GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
-                    GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
+                    GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
+                    GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
                     GlStateManager.disableLighting();
                     GlStateManager.disableCull();
                     GlStateManager.disableBlend();

@@ -16,6 +16,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -23,24 +24,25 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.IMorePlanetsBossDisplayData;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
-public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBossDisplayData, IBoss, IEntityBreathable, ISpaceMob
+public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBreathable, ISpaceMob
 {
     private TileEntityDungeonSpawner spawner;
     public int deathTicks = 0;
     public int entitiesWithin;
     public int entitiesWithinLast;
     public boolean useVineAttacking;
+    private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
 
     public EntityMiniVeinFloater(World world)
     {
@@ -162,6 +164,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
         {
             this.heal(5.0F);
         }
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
@@ -339,20 +342,20 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     }
 
     @Override
-    public float getBossMaxHealth()
+    public void addTrackingPlayer(EntityPlayerMP player)
     {
-        return this.getMaxHealth();
+        this.bossInfo.addPlayer(player);
     }
 
     @Override
-    public float getBossHealth()
+    public void removeTrackingPlayer(EntityPlayerMP player)
     {
-        return this.getHealth();
+        this.bossInfo.removePlayer(player);
     }
 
     @Override
-    public ITextComponent getBossDisplayName()
+    public boolean isNonBoss()
     {
-        return this.getDisplayName();
+        return false;
     }
 }

@@ -144,6 +144,26 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing)
+    {
+        switch (facing)
+        {
+        case UP:
+            return true;
+        case NORTH:
+        case SOUTH:
+        case WEST:
+        case EAST:
+            IBlockState blockState = world.getBlockState(pos.offset(facing));
+            Block block = blockState.getBlock();
+            return !blockState.isOpaqueCube() && block != this;
+        default:
+            return super.shouldSideBeRendered(state, world, pos, facing);
+        }
+    }
+
+    @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
         if (world.getBlockState(pos.up()).getMaterial().isSolid())

@@ -2,8 +2,6 @@ package stevekung.mods.moreplanets.client.renderer.sky;
 
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -32,13 +30,13 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         this.glSkyList2 = displayLists + 2;
 
         GlStateManager.pushMatrix();
-        GL11.glNewList(this.starList, GL11.GL_COMPILE);
+        GlStateManager.glNewList(this.starList, 4864);
         this.renderStars();
-        GL11.glEndList();
+        GlStateManager.glEndList();
         GlStateManager.popMatrix();
 
         this.glSkyList = this.starList + 1;
-        GL11.glNewList(this.glSkyList, GL11.GL_COMPILE);
+        GlStateManager.glNewList(this.glSkyList, 4864);
         byte byte2 = 64;
         int i = 256 / byte2 + 2;
         float f = 16F;
@@ -55,10 +53,10 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
                 tessellator.draw();
             }
         }
-        GL11.glEndList();
+        GlStateManager.glEndList();
 
         this.glSkyList2 = this.starList + 2;
-        GL11.glNewList(this.glSkyList2, GL11.GL_COMPILE);
+        GlStateManager.glNewList(this.glSkyList2, 4864);
         f = -16F;
         worldrenderer.begin(7, DefaultVertexFormats.POSITION);
 
@@ -73,7 +71,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
             }
         }
         tessellator.draw();
-        GL11.glEndList();
+        GlStateManager.glEndList();
     }
 
     @Override

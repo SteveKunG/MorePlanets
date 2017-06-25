@@ -42,20 +42,6 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
         });
     }
 
-    //    @Override
-    //    @SideOnly(Side.CLIENT)
-    //    public ModelResourceLocation getModel(ItemStack itemStack, EntityPlayer player, int useRemaining)
-    //    {
-    //        if (itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast"))
-    //        {
-    //            return ClientRegisterHelper.getModelResourceLocation("moreplanets:space_fishing_rod_cast");
-    //        }
-    //        else
-    //        {
-    //            return null;
-    //        }
-    //    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTab()

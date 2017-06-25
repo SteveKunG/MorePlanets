@@ -272,6 +272,8 @@ tile.infected_water_fluid.name=Infected Water
 tile.helium_gas.name=Helium Gas
 tile.nuclear_waste_fluid.name=Nuclear Waste
 tile.purify_water_fluid.name=Purify Water
+tile.nibiru_grass_path.infected.name=Infected Grass Path
+tile.nibiru_grass_path.green_vein.name=Green Vein Grass Path
 
 # BLOCKS - FRONOS
 tile.fronos_grass.name=Fronos Grass

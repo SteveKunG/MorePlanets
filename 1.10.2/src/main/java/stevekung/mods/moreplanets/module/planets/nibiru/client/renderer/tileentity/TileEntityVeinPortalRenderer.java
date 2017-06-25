@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileent
 import java.nio.FloatBuffer;
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
@@ -41,8 +39,8 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             VertexBuffer worldrenderer = tessellator.getBuffer();
             int k = i + 66;
             this.bindTexture(END_GATEWAY_BEAM_TEXTURE);
-            GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
-            GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
+            GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
+            GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
             GlStateManager.disableLighting();
             GlStateManager.disableCull();
             GlStateManager.disableBlend();
