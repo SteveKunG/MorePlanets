@@ -72,8 +72,11 @@ public class MorePlanetsCore
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        if (CommonRegisterHelper.isClient())
+        {
+            ReflectionUtils.setFinal("instance", new ClientCommandHandlerMP(), ClientCommandHandler.class, ClientCommandHandler.instance);
+        }
         ConfigManagerMP.init(new File(event.getModConfigurationDirectory(), "MorePlanets.cfg"));
-        ReflectionUtils.setFinal("instance", new ClientCommandHandlerMP(), ClientCommandHandler.class, ClientCommandHandler.instance);
         MorePlanetsCore.initModInfo(event.getModMetadata());
         MorePlanetsCore.BLOCK_TAB = new CreativeTabsMP("MorePlanetsBlocks");
         MorePlanetsCore.ITEM_TAB = new CreativeTabsMP("MorePlanetsItems");
