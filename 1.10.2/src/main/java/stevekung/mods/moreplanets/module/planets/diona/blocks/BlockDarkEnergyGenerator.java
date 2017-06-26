@@ -89,7 +89,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
             {
                 for (int i = 0; i < 16; i++)
                 {
-                    if (tileEntity.getFacing() == 90 || tileEntity.getFacing() == -90)
+                    if (tileEntity.facing == 90 || tileEntity.facing == -90)
                     {
                         world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, particlePosX + particleSize0, particlePosY, particlePosZ + particleSize1, 0.0D, 0.0D, 0.0D);
                         world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, particlePosX - particleSize0, particlePosY, particlePosZ + particleSize1, 0.0D, 0.0D, 0.0D);
@@ -128,8 +128,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
             direction = -180;
         }
 
-        world.setBlockState(pos, this.getStateFromMeta((this.getMetaFromState(world.getBlockState(pos)) & 12) + change), 3);
-
+        world.setBlockState(pos, this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()));
         TileEntity tile = world.getTileEntity(pos);
 
         if (tile instanceof TileEntityDarkEnergyGenerator)

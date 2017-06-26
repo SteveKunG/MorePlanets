@@ -34,7 +34,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
 
         if (tile != null && tile.hasWorldObj() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == DionaBlocks.DARK_ENERGY_GENERATOR)
         {
-            facing = tile.getFacing();
+            facing = tile.facing;
         }
 
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;

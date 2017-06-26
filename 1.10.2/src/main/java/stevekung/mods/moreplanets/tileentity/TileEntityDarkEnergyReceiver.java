@@ -49,8 +49,9 @@ import stevekung.mods.moreplanets.util.JsonUtils;
 
 public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock, IInventory, ISidedInventory
 {
-    private int facing;
     private ItemStack[] containingItems = new ItemStack[1];
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int facing;
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean activated;
     @NetworkedField(targetSide = Side.CLIENT)

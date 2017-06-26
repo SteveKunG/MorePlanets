@@ -36,9 +36,10 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     public int generateWatts = 0;
     @NetworkedField(targetSide = Side.CLIENT)
     public int darkEnergyFuel = 0;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int facing;
     private ItemStack[] containingItems = new ItemStack[1];
     public int age = 0;
-    private int facing;
 
     public TileEntityDarkEnergyGenerator()
     {
@@ -50,11 +51,6 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     public void setFacing(int facing)
     {
         this.facing = facing;
-    }
-
-    public int getFacing()
-    {
-        return this.facing;
     }
 
     @Override
