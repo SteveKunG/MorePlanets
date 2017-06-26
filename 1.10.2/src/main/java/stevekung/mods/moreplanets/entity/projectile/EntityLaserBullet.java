@@ -240,10 +240,6 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
                     {
                         EntityLivingBase entitylivingbase = (EntityLivingBase)movingobjectposition.entityHit;
 
-                        if (!this.worldObj.isRemote)
-                        {
-                            entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
-                        }
                         if (this.shootingEntity instanceof EntityLivingBase)
                         {
                             EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
