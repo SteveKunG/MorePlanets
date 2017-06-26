@@ -107,15 +107,15 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
     {
         if (checkbox.equals(this.disableBlackHoleCheckbox))
         {
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_DISABLE_BLACK_HOLE, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos()));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_BLACK_HOLE_STORAGE_OPTION, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), "disable"));
         }
         else if (checkbox.equals(this.collectModeCheckbox))
         {
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_CHANGE_COLLECT_MODE, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos()));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_BLACK_HOLE_STORAGE_OPTION, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), "collect_mode"));
         }
         else
         {
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_USE_HOPPER, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos()));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_BLACK_HOLE_STORAGE_OPTION, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), "use_hopper"));
         }
     }
 

@@ -37,7 +37,6 @@ uv texture treasure chest
 infected guardian random fish
 
 1.10.2
-recreate blockstate for special tile entity/dark energy generator/dark energy receiver
 farmland/grass path block lighting
 villager profession rewrite
 nibiru biome gen

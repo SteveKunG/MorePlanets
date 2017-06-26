@@ -116,38 +116,25 @@ public class PacketSimpleMP extends PacketBase
                 player.closeScreen();
             }
             break;
-        case S_DISABLE_BLACK_HOLE:
+        case S_BLACK_HOLE_STORAGE_OPTION:
             tile = world.getTileEntity((BlockPos) this.data.get(0));
-
-            if (tile instanceof TileEntityBlackHoleStorage)
-            {
-                TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
-                storage.disableBlackHole = !storage.disableBlackHole;
-            }
-            break;
-        case S_USE_HOPPER:
-            tile = world.getTileEntity((BlockPos) this.data.get(0));
-
-            if (tile instanceof TileEntityBlackHoleStorage)
-            {
-                TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
-                storage.useHopper = !storage.useHopper;
-            }
-            break;
-        case S_CHANGE_COLLECT_MODE:
-            tile = world.getTileEntity((BlockPos) this.data.get(0));
+            String type = (String) this.data.get(1);
 
             if (tile instanceof TileEntityBlackHoleStorage)
             {
                 TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
 
-                if (storage.collectMode.equals("item"))
+                switch (type)
                 {
-                    storage.collectMode = "xp";
-                }
-                else
-                {
-                    storage.collectMode = "item";
+                case "disable":
+                    storage.disableBlackHole = !storage.disableBlackHole;
+                    break;
+                case "collect_mode":
+                    storage.collectMode = storage.collectMode.equals("item") ? "item" : "xp";
+                    break;
+                case "use_hopper":
+                    storage.useHopper = !storage.useHopper;
+                    break;
                 }
             }
             break;
@@ -161,9 +148,7 @@ public class PacketSimpleMP extends PacketBase
         // SERVER
         S_FIRE_EXTINGUISH(Side.SERVER, BlockPos.class),
         S_RESPAWN_PLAYER_NETHER(Side.SERVER),
-        S_DISABLE_BLACK_HOLE(Side.SERVER, BlockPos.class),
-        S_USE_HOPPER(Side.SERVER, BlockPos.class),
-        S_CHANGE_COLLECT_MODE(Side.SERVER, BlockPos.class);
+        S_BLACK_HOLE_STORAGE_OPTION(Side.SERVER, BlockPos.class, String.class);
 
         // CLIENT
         //C_SWING_HAND(Side.CLIENT);
