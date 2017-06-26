@@ -10,7 +10,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.client.model.ModelDarkEnergyReceiver;
-import stevekung.mods.moreplanets.client.renderer.DarkEnergyReceiverMultiblockRenderer;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
@@ -94,13 +93,6 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         if (tile.rendered)
         {
             this.renderBeam(tile, x, y, z, partialTicks);
-        }
-        if (tile.renderBlock)
-        {
-            GlStateManager.pushMatrix();
-            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-            DarkEnergyReceiverMultiblockRenderer.render(x, y, z);
-            GlStateManager.popMatrix();
         }
     }
 

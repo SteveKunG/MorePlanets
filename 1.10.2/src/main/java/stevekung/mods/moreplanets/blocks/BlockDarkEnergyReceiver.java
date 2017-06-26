@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
@@ -240,7 +241,9 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
 
         if (tile instanceof TileEntityDarkEnergyReceiver)
         {
-            ((TileEntityDarkEnergyReceiver) tile).onDestroy(tile);
+            TileEntityDarkEnergyReceiver receiver = (TileEntityDarkEnergyReceiver) tile;
+            receiver.onDestroy(tile);
+            ClientEventHandler.receiverRenderPos.remove(receiver.getPos());
         }
         super.breakBlock(world, pos, state);
     }

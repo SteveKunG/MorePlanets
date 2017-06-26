@@ -68,8 +68,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public boolean failed;
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean rendered;
-    @NetworkedField(targetSide = Side.CLIENT)
-    public boolean renderBlock;
     public float solarRotate0;
     public float solarRotate1;
     public float rodRotate;
@@ -80,7 +78,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     {
         this.storage.setMaxExtract(1000);
         this.storage.setCapacity(250000.0F);
-        this.renderBlock = false;
     }
 
     @Override

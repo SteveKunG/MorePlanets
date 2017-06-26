@@ -19,9 +19,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.inventory.ContainerDarkEnergyReceiver;
-import stevekung.mods.moreplanets.network.PacketSimpleMP;
-import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 
 public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCallback
@@ -109,13 +108,20 @@ public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCa
         electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
-        this.checkboxRender.isSelected = this.tile.renderBlock;
+        this.checkboxRender.isSelected = ClientEventHandler.receiverRenderPos.contains(this.tile.getPos());
     }
 
     @Override
     public void onSelectionChanged(GuiElementCheckbox checkbox, boolean newSelected)
     {
-        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_RECEIVER_BLOCK_GUIDE, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos()));
+        if (ClientEventHandler.receiverRenderPos.contains(this.tile.getPos()))
+        {
+            ClientEventHandler.receiverRenderPos.remove(this.tile.getPos());
+        }
+        else
+        {
+            ClientEventHandler.receiverRenderPos.add(this.tile.getPos());
+        }
     }
 
     @Override
@@ -127,7 +133,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCa
     @Override
     public boolean getInitiallySelected(GuiElementCheckbox checkbox)
     {
-        return this.tile.renderBlock;
+        return ClientEventHandler.receiverRenderPos.contains(this.tile.getPos());
     }
 
     @Override

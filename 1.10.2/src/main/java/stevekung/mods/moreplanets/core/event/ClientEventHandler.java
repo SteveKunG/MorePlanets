@@ -1,14 +1,11 @@
 package stevekung.mods.moreplanets.core.event;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.*;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Maps;
 
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -21,10 +18,12 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGameOver;
+import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -55,6 +54,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.client.renderer.DarkEnergyReceiverMultiblockRenderer;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -79,15 +79,34 @@ import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
 public class ClientEventHandler
 {
-    private Map<BlockPos, Integer> beam = Maps.newHashMap();
+    private Map<BlockPos, Integer> beam = new HashMap<>();
     private Minecraft mc;
     public static boolean loadRenderers;
     private int loadRendererTick = 30;
     private int partialTicks;
+    public static List<BlockPos> receiverRenderPos = new ArrayList<>();
 
     public ClientEventHandler()
     {
         this.mc = Minecraft.getMinecraft();
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onRenderWorldLast(RenderWorldLastEvent event)
+    {
+        RenderManager manager = this.mc.getRenderManager();
+
+        if (!ClientEventHandler.receiverRenderPos.isEmpty())
+        {
+            for (BlockPos renderPos : ClientEventHandler.receiverRenderPos)
+            {
+                GlStateManager.pushMatrix();
+                GlStateManager.blendFunc(770, 771);
+                DarkEnergyReceiverMultiblockRenderer.render(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ);
+                GlStateManager.popMatrix();
+            }
+        }
     }
 
     @SubscribeEvent
@@ -110,6 +129,10 @@ public class ClientEventHandler
             {
                 this.mc.displayGuiScreen(new GuiGameOverMP());
             }
+        }
+        if (this.mc.currentScreen instanceof GuiMainMenu)
+        {
+            ClientEventHandler.receiverRenderPos.clear();
         }
         if (event.phase == Phase.START)
         {
@@ -555,7 +578,7 @@ public class ClientEventHandler
 
     private void renderOverlay(String texture, float brightness, float alpha, float partialTicks, double zoom)
     {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/misc/" + texture + ".png"));
+        this.mc.getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/misc/" + texture + ".png"));
         Tessellator tessellator = Tessellator.getInstance();
         VertexBuffer worldrenderer = tessellator.getBuffer();
         GlStateManager.color(brightness, brightness, brightness, alpha);
@@ -595,11 +618,11 @@ public class ClientEventHandler
 
     private void runAlienBeamTick(EntityPlayer player)
     {
-        Iterator<Entry<BlockPos, Integer>> it = this.beam.entrySet().iterator();
+        Iterator<Map.Entry<BlockPos, Integer>> it = this.beam.entrySet().iterator();
 
         while (it.hasNext())
         {
-            Entry<BlockPos, Integer> entry = it.next();
+            Map.Entry<BlockPos, Integer> entry = it.next();
             int val = entry.getValue();
 
             if (val - 1 <= 0)

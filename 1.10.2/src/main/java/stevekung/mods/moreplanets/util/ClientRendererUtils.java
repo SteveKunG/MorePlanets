@@ -28,7 +28,6 @@ public class ClientRendererUtils
         mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
         int i = mc.getBlockColors().colorMultiplier(state, (IBlockAccess)null, (BlockPos)null, 0);
-        float brightness = 1.0F;
         IBakedModel model = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getModelForState(state);
 
         if (EntityRenderer.anaglyphEnable)
@@ -38,7 +37,7 @@ public class ClientRendererUtils
         float f = (i >> 16 & 255) / 255.0F;
         float f1 = (i >> 8 & 255) / 255.0F;
         float f2 = (i & 255) / 255.0F;
-        ClientRendererUtils.renderModelBrightnessColor(state, model, brightness, f, f1, f2);
+        ClientRendererUtils.renderModelBrightnessColor(state, model, 1.0F, f, f1, f2);
     }
 
     public static void renderModelBrightnessColor(IBlockState state, IBakedModel model, float brightness, float red, float green, float blue)

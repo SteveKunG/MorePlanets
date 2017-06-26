@@ -21,7 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.core.handler.TeleportHandler;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
-import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.helper.WorldDimensionHelper;
 
@@ -105,15 +104,6 @@ public class PacketSimpleMP extends PacketBase
             world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
             world.setBlockToAir(pos);
             break;
-        case S_RECEIVER_BLOCK_GUIDE:
-            tile = world.getTileEntity((BlockPos) this.data.get(0));
-
-            if (tile instanceof TileEntityDarkEnergyReceiver)
-            {
-                TileEntityDarkEnergyReceiver receiver = (TileEntityDarkEnergyReceiver) tile;
-                receiver.renderBlock = !receiver.renderBlock;
-            }
-            break;
         case S_RESPAWN_PLAYER_NETHER:
             if (world instanceof WorldServer && player instanceof EntityPlayerMP)
             {
@@ -170,7 +160,6 @@ public class PacketSimpleMP extends PacketBase
     {
         // SERVER
         S_FIRE_EXTINGUISH(Side.SERVER, BlockPos.class),
-        S_RECEIVER_BLOCK_GUIDE(Side.SERVER, BlockPos.class),
         S_RESPAWN_PLAYER_NETHER(Side.SERVER),
         S_DISABLE_BLACK_HOLE(Side.SERVER, BlockPos.class),
         S_USE_HOPPER(Side.SERVER, BlockPos.class),
