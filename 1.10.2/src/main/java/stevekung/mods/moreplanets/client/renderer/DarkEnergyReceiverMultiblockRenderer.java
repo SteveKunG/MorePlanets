@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.module.planets.diona.client.renderer;
+package stevekung.mods.moreplanets.client.renderer;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
