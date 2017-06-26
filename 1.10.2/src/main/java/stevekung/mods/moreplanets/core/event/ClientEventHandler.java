@@ -28,6 +28,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -64,6 +65,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.FakeAlienBeamRenderer;
 import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDiona;
+import stevekung.mods.moreplanets.module.planets.diona.potion.InfectedCrystallizeEffect;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
@@ -84,7 +86,8 @@ public class ClientEventHandler
     public static boolean loadRenderers;
     private int loadRendererTick = 30;
     private int partialTicks;
-    public static List<BlockPos> receiverRenderPos = new ArrayList<>();
+    public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
+    private static final AttributeModifier CRYSTALLIZE_POTION_MODIFIER = new AttributeModifier(UUID.fromString("0B0BC323-E263-4EF8-9108-4B6503129B16"), "generic.crystallize_effect", 0, 0);
 
     public ClientEventHandler()
     {
@@ -172,6 +175,7 @@ public class ClientEventHandler
 
         if (player != null)
         {
+            // prevent randomly NPE
             if (this.mc.thePlayer == player)
             {
                 this.runAlienBeamTick(player);
@@ -285,8 +289,10 @@ public class ClientEventHandler
     public void onRenderLiving(RenderLivingEvent.Post event)
     {
         EntityLivingBase living = event.getEntity();
+        // check if entity has crystallize potion modifier
+        boolean hasPotion = living.getEntityAttribute(InfectedCrystallizeEffect.CRYSTALLIZE_EFFECT) != null ? living.getEntityAttribute(InfectedCrystallizeEffect.CRYSTALLIZE_EFFECT).hasModifier(CRYSTALLIZE_POTION_MODIFIER) : false;
 
-        if (living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE))
+        if (hasPotion)
         {
             GlStateManager.disableLighting();
             TextureMap texturemap = this.mc.getTextureMapBlocks();

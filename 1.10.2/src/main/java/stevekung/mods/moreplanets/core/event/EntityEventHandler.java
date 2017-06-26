@@ -12,6 +12,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
@@ -24,6 +25,7 @@ import stevekung.mods.moreplanets.core.handler.TeleportHandler;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusZombie;
+import stevekung.mods.moreplanets.module.planets.diona.potion.InfectedCrystallizeEffect;
 import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedZombie;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
@@ -55,6 +57,22 @@ public class EntityEventHandler
                 event.setResult(Result.ALLOW);
             }
             event.setResult(Result.DENY);
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityJoinWorld(EntityJoinWorldEvent event)
+    {
+        if (event.getEntity() instanceof EntityLivingBase)
+        {
+            EntityLivingBase living = (EntityLivingBase) event.getEntity();
+
+            // check if generic.crystallize_effect is not registed to AttributeMap
+            // also prevent exception on server side
+            if (living.getAttributeMap().getAttributeInstanceByName("generic.crystallize_effect") == null)
+            {
+                living.getAttributeMap().registerAttribute(InfectedCrystallizeEffect.CRYSTALLIZE_EFFECT);
+            }
         }
     }
 
