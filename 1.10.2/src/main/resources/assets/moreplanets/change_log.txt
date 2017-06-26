@@ -1,5 +1,8 @@
+-Added- Added Nibiru Grass Path
 -Added- Added new bugs!
 -Update- Update to 1.10.2 with Galacticraft Build 109 or higher
 -Update- Space Bow now can use with Vanilla Arrow
+-Update- Improved Dark Energy Receiver multiblock rendering
 -Update- More optimized things
+-Fixed- Fixed server initialization crash
 -Fixed- Fixed bug from 1.8.9

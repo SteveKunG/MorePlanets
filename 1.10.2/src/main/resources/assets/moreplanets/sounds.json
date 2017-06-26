@@ -17,12 +17,14 @@
 	"alien_miner_ambient":
 	{
 		"category": "hostile",
-		"sounds": ["moreplanets:hostile/alienminer/ambient1", "moreplanets:hostile/alienminer/ambient2", "moreplanets:hostile/alienminer/ambient3"]
+		"sounds": ["moreplanets:hostile/alienminer/ambient1", "moreplanets:hostile/alienminer/ambient2", "moreplanets:hostile/alienminer/ambient3"],
+		"subtitle": "subtitles.hostile.alien_miner_ambient"
 	},
 	"alien_miner_charged":
 	{
 		"category": "hostile",
-		"sounds": ["moreplanets:hostile/alienminer/charged"]
+		"sounds": ["moreplanets:hostile/alienminer/charged"],
+		"subtitle": "subtitles.hostile.alien_miner_charged"
 	},
 	"alien_miner_attack":
 	{
@@ -43,12 +45,14 @@
 	"unlock_treasure_chest":
 	{
 		"category": "player",
-		"sounds": ["moreplanets:player/unlock_treasure_chest"]
+		"sounds": ["moreplanets:player/unlock_treasure_chest"],
+		"subtitle": "subtitles.player.unlock_treasure_chest"
 	},
 	"laser_shooted":
 	{
 		"category": "player",
-		"sounds": ["moreplanets:player/shoot_laser"]
+		"sounds": ["moreplanets:player/shoot_laser"],
+		"subtitle": "subtitles.player.laser_shooted"
 	},
 	"alien_egg_destroyed":
 	{
@@ -91,66 +95,79 @@
 	"shlime_death":
 	{
 		"category": "neutral",
-		"sounds": ["moreplanets:neutral/shlime/death"]
+		"sounds": ["moreplanets:neutral/shlime/death"],
+		"subtitle": "subtitles.neutral.shlime_death"
 	},
 	"shlime_hurt":
 	{
 		"category": "neutral",
-		"sounds": ["moreplanets:neutral/shlime/hurt1", "moreplanets:neutral/shlime/hurt2", "moreplanets:neutral/shlime/hurt3"]
+		"sounds": ["moreplanets:neutral/shlime/hurt1", "moreplanets:neutral/shlime/hurt2", "moreplanets:neutral/shlime/hurt3"],
+		"subtitle": "subtitles.neutral.shlime_hurt"
 	},
 	"alien_beam":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/alien_beam"]
+		"sounds": ["moreplanets:ambient/alien_beam"],
+		"subtitle": "subtitles.ambient.alien_beam"
 	},
 	"machine_danger":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/machine_danger"]
+		"sounds": ["moreplanets:ambient/machine_danger"],
+		"subtitle": "subtitles.ambient.machine_danger"
 	},
 	"machine_alert":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/machine_alert"]
+		"sounds": ["moreplanets:ambient/machine_alert"],
+		"subtitle": "subtitles.ambient.machine_alert"
 	},
-	"ambient.machine.start":
+	"machine_start":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/machine_start"]
+		"sounds": ["moreplanets:ambient/machine_start"],
+		"subtitle": "subtitles.ambient.machine_start"
 	},
 	"machine_stop":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/machine_stop"]
+		"sounds": ["moreplanets:ambient/machine_stop"],
+		"subtitle": "subtitles.ambient.machine_stop"
 	},
 	"machine_activate_ambient":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/machine_ambient1", "moreplanets:ambient/machine_ambient2", "moreplanets:ambient/machine_ambient3"]
+		"sounds": ["moreplanets:ambient/machine_ambient1", "moreplanets:ambient/machine_ambient2", "moreplanets:ambient/machine_ambient3"],
+		"subtitle": "subtitles.ambient.machine_ambient"
 	},
 	"machine_generator_ambient":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/generator1", "moreplanets:ambient/generator2", "moreplanets:ambient/generator3"]
+		"sounds": ["moreplanets:ambient/generator1", "moreplanets:ambient/generator2", "moreplanets:ambient/generator3"],
+		"subtitle": "subtitles.ambient.machine_generator_ambient"
 	},
 	"black_hole_ambient":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/black_hole_ambient"]
+		"sounds": ["moreplanets:ambient/black_hole_ambient"],
+		"subtitle": "subtitles.ambient.black_hole"
 	},
 	"black_hole_destroyed":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/black_hole_destroyed"]
+		"sounds": ["moreplanets:ambient/black_hole_destroyed"],
+		"subtitle": "subtitles.ambient.black_hole_destroyed"
 	},
 	"black_hole_created":
 	{
 		"category": "ambient",
-		"sounds": ["moreplanets:ambient/black_hole_created"]
+		"sounds": ["moreplanets:ambient/black_hole_created"],
+		"subtitle": "subtitles.ambient.black_hole_created"
 	},
 	"loud_thunder":
 	{
 		"category": "weather",
-		"sounds": ["moreplanets:weather/thunder1", "moreplanets:weather/thunder2", "moreplanets:weather/thunder3", "moreplanets:weather/thunder4"]
+		"sounds": ["moreplanets:weather/thunder1", "moreplanets:weather/thunder2", "moreplanets:weather/thunder3", "moreplanets:weather/thunder4"],
+		"subtitle": "subtitles.weather.loud_thunder"
 	}
 }

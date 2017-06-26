@@ -689,3 +689,22 @@ star.lazendus=Lazendus Star
 
 # GALAXY
 solarsystem.lazendus=Lazendus
+
+# SUBTITILES
+subtitles.ambient.machine_ambient=Machine Ambient
+subtitles.ambient.black_hole=Black Hole Ambient
+subtitles.ambient.black_hole_destroyed=Black Hole Destroyed
+subtitles.ambient.black_hole_created=Black Hole Created
+subtitles.ambient.machine_generator_ambient=Generator Ambient
+subtitles.ambient.machine_stop=Machine Stopped
+subtitles.ambient.machine_start=Machine Started
+subtitles.ambient.machine_alert=Machine Alert
+subtitles.ambient.machine_danger=Machine Danger Alert
+subtitles.ambient.alien_beam=Alien Beam Strikes
+subtitles.neutral.shlime_death=Shlime Death
+subtitles.neutral.shlime_hurt=Shlime Hurt
+subtitles.player.laser_shooted=Laser Shooted
+subtitles.player.unlock_treasure_chest=Unlocked Treasure Chest
+subtitles.hostile.alien_miner_ambient=Alien Miner Ambient
+subtitles.hostile.alien_miner_charged=Alien Miner Charged
+subtitles.weather.loud_thunder=Loud Thunder Strikes

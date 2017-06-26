@@ -17,6 +17,7 @@ public class MPSounds
     public static SoundEvent MACHINE_GENERATOR_AMBIENT = CommonRegisterHelper.registerSound("machine_generator_ambient");
     public static SoundEvent MACHINE_ALERT = CommonRegisterHelper.registerSound("machine_alert");
     public static SoundEvent MACHINE_DANGER = CommonRegisterHelper.registerSound("machine_danger");
+    public static SoundEvent MACHINE_START = CommonRegisterHelper.registerSound("machine_start");
     public static SoundEvent MACHINE_STOP = CommonRegisterHelper.registerSound("machine_stop");
     public static SoundEvent ALIEN_BEAM = CommonRegisterHelper.registerSound("alien_beam");
     public static SoundEvent LASER_SHOOTED = CommonRegisterHelper.registerSound("laser_shooted");

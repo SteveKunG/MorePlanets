@@ -36,6 +36,7 @@ rewrite custom boss health bars
 uv texture treasure chest
 infected guardian random fish
 add option other player can use bh storage
+more sounds subtitle
 
 1.10.2
 farmland/grass path block lighting
