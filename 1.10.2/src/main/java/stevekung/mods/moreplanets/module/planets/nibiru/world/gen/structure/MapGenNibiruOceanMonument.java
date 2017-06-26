@@ -17,6 +17,7 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.*;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
+import stevekung.mods.moreplanets.util.MPLog;
 
 public class MapGenNibiruOceanMonument extends MapGenStructure
 {
@@ -106,6 +107,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
         public StartMonument(World world, Random rand, int x, int z)
         {
             super(x, z);
+            MPLog.debug("Generate Nibiru Ocean Monument at %s %s", x * 16, z * 16);
             this.create(world, rand, x, z);
         }
 

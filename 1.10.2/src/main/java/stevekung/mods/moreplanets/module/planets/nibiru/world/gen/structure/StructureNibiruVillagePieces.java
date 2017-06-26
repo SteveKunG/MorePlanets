@@ -11,8 +11,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.monster.ZombieType;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -411,7 +409,7 @@ public class StructureNibiruVillagePieces
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
             IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_PLANKS.getDefaultState());
-            IBlockState iblockstate5 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_LOG.getDefaultState());//TODO
+            IBlockState iblockstate5 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_LOG.getDefaultState());
             IBlockState iblockstate6 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
             this.fillWithBlocks(world, box, 1, 1, 1, 7, 4, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithBlocks(world, box, 2, 1, 6, 8, 4, 10, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
@@ -881,9 +879,9 @@ public class StructureNibiruVillagePieces
             {
                 this.setBlockState(world, iblockstate7, 2, 0, -1, box);
 
-                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)//TODO
+                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
                 {
-                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS.getDefaultState(), 2, -1, -1, box);//TODO
+                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS.getDefaultState(), 2, -1, -1, box);
                 }
             }
             for (int i1 = 0; i1 < 5; ++i1)
@@ -1258,7 +1256,6 @@ public class StructureNibiruVillagePieces
                 this.structureType = 2;
             }
             this.setVillageType(this.structureType);
-            this.isZombieInfested = rand.nextInt(50) == 0;
         }
     }
 
@@ -1311,7 +1308,6 @@ public class StructureNibiruVillagePieces
         protected int averageGroundLvl = -1;
         private int villagersSpawned;
         protected int structureType;
-        protected boolean isZombieInfested;
         protected Start startPiece;
 
         public Village() {}
@@ -1323,7 +1319,6 @@ public class StructureNibiruVillagePieces
             if (start != null)
             {
                 this.structureType = start.structureType;
-                this.isZombieInfested = start.isZombieInfested;
                 this.startPiece = start;
             }
         }
@@ -1334,7 +1329,6 @@ public class StructureNibiruVillagePieces
             nbt.setInteger("HPos", this.averageGroundLvl);
             nbt.setInteger("VCount", this.villagersSpawned);
             nbt.setByte("Type", (byte)this.structureType);
-            nbt.setBoolean("Zombie", this.isZombieInfested);
         }
 
         @Override
@@ -1343,7 +1337,28 @@ public class StructureNibiruVillagePieces
             this.averageGroundLvl = nbt.getInteger("HPos");
             this.villagersSpawned = nbt.getInteger("VCount");
             this.structureType = nbt.getByte("Type");
-            this.isZombieInfested = nbt.getBoolean("Zombie");
+        }
+
+        @Override
+        protected void setBlockState(World world, IBlockState state, int x, int y, int z, StructureBoundingBox box)
+        {
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(state);
+            super.setBlockState(world, iblockstate, x, y, z, box);
+        }
+
+        @Override
+        protected void fillWithBlocks(World world, StructureBoundingBox box, int xMin, int yMin, int zMin, int xMax, int yMax, int zMax, IBlockState boundaryBlockState, IBlockState insideBlockState, boolean existingOnly)
+        {
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(boundaryBlockState);
+            IBlockState iblockstate1 = this.getBiomeSpecificBlockState(insideBlockState);
+            super.fillWithBlocks(world, box, xMin, yMin, zMin, xMax, yMax, zMax, iblockstate, iblockstate1, existingOnly);
+        }
+
+        @Override
+        protected void replaceAirAndLiquidDownwards(World world, IBlockState state, int x, int y, int z, StructureBoundingBox box)
+        {
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(state);
+            super.replaceAirAndLiquidDownwards(world, iblockstate, x, y, z, box);
         }
 
         protected StructureComponent getNextComponentNN(Start start, List<StructureComponent> component, Random rand, int x, int z)
@@ -1444,26 +1459,12 @@ public class StructureNibiruVillagePieces
                     {
                         break;
                     }
-
                     ++this.villagersSpawned;
-
-                    if (this.isZombieInfested)
-                    {
-                        EntityZombie entityzombie = new EntityZombie(world);
-                        entityzombie.setLocationAndAngles(j + 0.5D, k, l + 0.5D, 0.0F, 0.0F);
-                        entityzombie.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData)null);
-                        entityzombie.setZombieType(ZombieType.getVillagerByOrdinal(this.chooseProfession(i, entityzombie.getZombieType().getVillagerId())));
-                        entityzombie.enablePersistence();
-                        world.spawnEntityInWorld(entityzombie);
-                    }
-                    else
-                    {
-                        EntityNibiruVillager entityvillager = new EntityNibiruVillager(world);//TODO
-                        entityvillager.setLocationAndAngles(j + 0.5D, k, l + 0.5D, 0.0F, 0.0F);
-                        entityvillager.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
-                        entityvillager.setProfession(this.chooseProfession(i, entityvillager.getProfession()));
-                        world.spawnEntityInWorld(entityvillager);
-                    }
+                    EntityNibiruVillager villager = new EntityNibiruVillager(world);//TODO
+                    villager.setLocationAndAngles(j + 0.5D, k, l + 0.5D, 0.0F, 0.0F);
+                    villager.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(villager)), (IEntityLivingData)null);
+                    villager.setProfession(this.chooseProfession(i, villager.getProfession()));
+                    world.spawnEntityInWorld(villager);
                 }
             }
         }
@@ -1511,6 +1512,10 @@ public class StructureNibiruVillagePieces
                 if (state.getBlock() == NibiruBlocks.NIBIRU_BLOCK)
                 {
                     return NibiruBlocks.TERRASTONE.getDefaultState();
+                }
+                if (state.getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
+                {
+                    return NibiruBlocks.NIBIRU_GRASS_PATH.getStateFromMeta(1);
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_VINES)
                 {
@@ -1589,26 +1594,13 @@ public class StructureNibiruVillagePieces
 
         protected void createVillageDoor(World world, StructureBoundingBox box, Random rand, int x, int y, int z)
         {
-            if (!this.isZombieInfested)
-            {
-                this.func_189915_a(world, box, rand, x, y, z, EnumFacing.NORTH, this.getDoor());
-            }
+            this.func_189915_a(world, box, rand, x, y, z, EnumFacing.NORTH, this.getDoor());
         }
 
         protected void placeTorch(World world, EnumFacing facing, int x, int y, int z, StructureBoundingBox box)
         {
-            if (!this.isZombieInfested)
-            {
-                Block torch = this.structureType == 2 ? GCBlocks.glowstoneTorch : NibiruBlocks.INFECTED_TORCH;
-                this.setBlockState(world, torch.getDefaultState().withProperty(BlockTorch.FACING, facing), x, y, z, box);
-            }
-        }
-
-        @Override
-        protected void replaceAirAndLiquidDownwards(World world, IBlockState state, int x, int y, int z, StructureBoundingBox box)
-        {
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(state);
-            super.replaceAirAndLiquidDownwards(world, iblockstate, x, y, z, box);
+            Block torch = this.structureType == 2 ? GCBlocks.glowstoneTorch : NibiruBlocks.INFECTED_TORCH;
+            this.setBlockState(world, torch.getDefaultState().withProperty(BlockTorch.FACING, facing), x, y, z, box);
         }
 
         protected void setVillageType(int type)

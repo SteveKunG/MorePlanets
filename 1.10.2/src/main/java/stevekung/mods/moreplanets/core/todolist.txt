@@ -42,7 +42,6 @@ more sounds subtitle
 farmland/grass path block lighting
 villager profession rewrite
 nibiru biome gen
-village biome block
 laser gun shoot twice
 fix enchant render for multalic armor
 space fishing hook loot table

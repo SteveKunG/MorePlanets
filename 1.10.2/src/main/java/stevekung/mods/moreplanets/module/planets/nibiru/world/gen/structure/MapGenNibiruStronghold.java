@@ -13,6 +13,7 @@ import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
+import stevekung.mods.moreplanets.util.MPLog;
 
 public class MapGenNibiruStronghold extends MapGenStructure
 {
@@ -181,11 +182,12 @@ public class MapGenNibiruStronghold extends MapGenStructure
     {
         public Start() {}
 
-        public Start(World world, Random rand, int chunkX, int chunkZ)
+        public Start(World world, Random rand, int x, int z)
         {
-            super(chunkX, chunkZ);
+            super(x, z);
+            MPLog.debug("Generate Nibiru Stronghold at %s %s", x * 16, z * 16);
             StructureNibiruStrongholdPieces.prepareStructurePieces();
-            StructureNibiruStrongholdPieces.Stairs2 stairs2 = new StructureNibiruStrongholdPieces.Stairs2(rand, (chunkX << 4) + 2, (chunkZ << 4) + 2);
+            StructureNibiruStrongholdPieces.Stairs2 stairs2 = new StructureNibiruStrongholdPieces.Stairs2(rand, (x << 4) + 2, (z << 4) + 2);
             this.components.add(stairs2);
             stairs2.buildComponent(stairs2, this.components, rand);
             List<StructureComponent> list = stairs2.pendingChildren;
