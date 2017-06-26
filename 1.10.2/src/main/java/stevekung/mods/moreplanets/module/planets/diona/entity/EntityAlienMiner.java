@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.module.planets.diona.entity;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import com.google.common.base.Predicate;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
@@ -14,23 +16,22 @@ import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.module.planets.diona.items.ItemDiona;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 
@@ -192,12 +193,10 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     }
 
     @Override
-    protected void dropFewItems(boolean drop, int fortune)
+    @Nullable
+    public ResourceLocation getLootTable()
     {
-        for (int j = 0; j < this.rand.nextInt(3); ++j)
-        {
-            this.entityDropItem(new ItemStack(DionaItems.DIONA_ITEM, 1, ItemDiona.ItemType.ALIEN_MINER_PART.ordinal()), 0.0F);
-        }
+        return MPLootTables.ALIEN_MINER;
     }
 
     @Override
