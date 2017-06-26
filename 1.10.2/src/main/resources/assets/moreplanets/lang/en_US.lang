@@ -615,6 +615,7 @@ death.attack.infected_crystallize=%s was infected by poisoned crystal
 death.attack.infected_gas=%s was killed by infected gas
 death.attack.dark_energy=%s body was consumed by dark energy
 death.attack.black_hole=%s was sucked into black hole
+death.attack.laser=%s was shot by a laser bullet
 
 # GUI CONFIG
 gui.config.mp=More Planets Configuration GUI
