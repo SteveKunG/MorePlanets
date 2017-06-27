@@ -27,6 +27,8 @@ import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
 public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITerraformableBlock
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D - 0.125D, 1.0D);
+
     public BlockOilOre(String name)
     {
         super(Material.ROCK);
@@ -38,8 +40,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        float f = 0.125F;
-        return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1 - f, pos.getZ() + 1);
+        return AABB;
     }
 
     @Override
