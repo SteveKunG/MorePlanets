@@ -14,7 +14,9 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -29,7 +31,9 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockHalfInfected
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;
+import stevekung.mods.moreplanets.util.blocks.BlockChestMP;
 import stevekung.mods.moreplanets.util.blocks.BlockCropsMP;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
 
 public class StructureNibiruVillagePieces
 {
@@ -677,7 +681,7 @@ public class StructureNibiruVillagePieces
             this.fillWithBlocks(world, box, 0, 1, 0, 9, 4, 6, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 9, 0, 6, false, rand, villageStones);
             this.fillWithRandomizedBlocks(world, box, 0, 4, 0, 9, 4, 6, false, rand, villageStones);
-            this.fillWithBlocks(world, box, 0, 5, 0, 9, 5, 6, Blocks.STONE_SLAB.getDefaultState(), Blocks.STONE_SLAB.getDefaultState(), false);
+            this.fillWithBlocks(world, box, 0, 5, 0, 9, 5, 6, NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
             this.fillWithBlocks(world, box, 1, 5, 1, 8, 5, 5, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 1, 1, 0, 2, 3, 0, false, rand, villagePlanks);
             this.fillWithRandomizedBlocks(world, box, 0, 1, 0, 0, 4, 0, false, rand, villageLogs);
@@ -1359,6 +1363,30 @@ public class StructureNibiruVillagePieces
         {
             IBlockState iblockstate = this.getBiomeSpecificBlockState(state);
             super.replaceAirAndLiquidDownwards(world, iblockstate, x, y, z, box);
+        }
+
+        @Override
+        protected boolean generateChest(World world, StructureBoundingBox box, Random rand, int x, int y, int z, ResourceLocation loot)
+        {
+            BlockPos pos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
+            BlockChestMP chest = this.structureType == 2 ? NibiruBlocks.ALIEN_BERRY_CHEST : NibiruBlocks.INFECTED_CHEST;
+
+            if (box.isVecInside(pos) && world.getBlockState(pos).getBlock() != chest)
+            {
+                IBlockState iblockstate = chest.getDefaultState();
+                world.setBlockState(pos, chest.correctFacing(world, pos, iblockstate), 2);
+                TileEntity tileentity = world.getTileEntity(pos);
+
+                if (tileentity instanceof TileEntityChestMP)
+                {
+                    ((TileEntityChestMP)tileentity).setLootTable(loot, rand.nextLong());
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         protected StructureComponent getNextComponentNN(Start start, List<StructureComponent> component, Random rand, int x, int z)

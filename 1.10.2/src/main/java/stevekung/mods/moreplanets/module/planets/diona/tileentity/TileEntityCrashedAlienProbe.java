@@ -14,14 +14,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.storage.loot.ILootContainer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
 
-public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implements IInventoryDefaults, ILootContainer
+public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implements IInventoryDefaults
 {
     protected ResourceLocation lootTable;
     protected long lootTableSeed;
@@ -185,12 +184,6 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     public ITextComponent getDisplayName()
     {
         return new TextComponentTranslation(this.getName());
-    }
-
-    @Override
-    public ResourceLocation getLootTable()
-    {
-        return this.lootTable;
     }
 
     protected void fillWithLoot(@Nullable EntityPlayer player)

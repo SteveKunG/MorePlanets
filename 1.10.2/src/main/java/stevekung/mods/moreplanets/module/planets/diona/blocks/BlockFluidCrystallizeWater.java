@@ -2,13 +2,12 @@ package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -72,13 +71,10 @@ public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFis
         return "crystallize_water_fluid";
     }
 
-    /*@Override
-    public List<WeightedRandomFishable> getFishLoot()
+    @Override
+    @Nullable
+    public ResourceLocation getLootTable()
     {
-        List<WeightedRandomFishable> FISH = Arrays.asList(new WeightedRandomFishable[] {
-                new WeightedRandomFishable(new ItemStack(MPItems.SPACE_FISH, 1, 0), 20),
-                new WeightedRandomFishable(new ItemStack(MPItems.SPACE_FISH, 1, 1), 1),
-        });
-        return FISH;
-    }*/
+        return null;
+    }
 }

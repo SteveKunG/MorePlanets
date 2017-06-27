@@ -6,7 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraft.world.storage.loot.LootTableList;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
@@ -69,17 +69,13 @@ public class WorldGenCrashedAlienProbe extends WorldGenerator
 
         boolean alien = rand.nextInt(5) == 0;
         BlockPos tilepos = blockpos.down();
+        System.out.println(tilepos);
         world.setBlockState(tilepos, DionaBlocks.CRASHED_ALIEN_PROBE.getDefaultState().withProperty(BlockCrashedAlienProbe.HAS_ALIEN, alien), 3);
         TileEntityCrashedAlienProbe probe = (TileEntityCrashedAlienProbe) world.getTileEntity(tilepos);
 
         if (probe != null)
         {
-            for (int i = 0; i < probe.getSizeInventory(); ++i)
-            {
-                // Clear contents
-                probe.setInventorySlotContents(i, null);
-            }
-            probe.setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());
+            probe.setLootTable(MPLootTables.CRASHED_ALIEN_PROBE, rand.nextLong());
         }
         return true;
     }

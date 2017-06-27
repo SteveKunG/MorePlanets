@@ -12,7 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraft.world.storage.loot.LootTableList;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.blocks.BlockAncientChestMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAncientChestMP;
@@ -156,8 +156,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
 
                                 if (tileentity1 instanceof TileEntityAncientChestMP)
                                 {
-                                    ((TileEntityAncientChestMP)tileentity1).setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());//TODO
-                                    //WeightedRandomChestContent.generateChestContents(rand, ChestGenHooks.getItems(DUNGEON_CHEST, rand), (TileEntityAncientChestMP)tileentity1, ChestGenHooks.getCount(DUNGEON_CHEST, rand));
+                                    ((TileEntityAncientChestMP)tileentity1).setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, rand.nextLong());
                                 }
                                 break label100;
                             }

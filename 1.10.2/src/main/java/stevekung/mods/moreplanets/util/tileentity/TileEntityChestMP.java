@@ -53,12 +53,15 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     @Override
     public ItemStack getStackInSlot(int index)
     {
+        this.fillWithLoot((EntityPlayer)null);
         return this.chestContents[index];
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
+        this.fillWithLoot((EntityPlayer)null);
+
         if (this.chestContents[index] != null)
         {
             if (this.chestContents[index].stackSize <= count)
@@ -89,6 +92,8 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
+        this.fillWithLoot((EntityPlayer)null);
+
         if (this.chestContents[index] != null)
         {
             ItemStack itemstack = this.chestContents[index];
@@ -104,6 +109,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     @Override
     public void setInventorySlotContents(int index, ItemStack stack)
     {
+        this.fillWithLoot((EntityPlayer)null);
         this.chestContents[index] = stack;
 
         if (stack != null && stack.stackSize > this.getInventoryStackLimit())
@@ -131,52 +137,58 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
+    public void readFromNBT(NBTTagCompound nbt)
     {
-        super.readFromNBT(compound);
-        NBTTagList nbttaglist = compound.getTagList("Items", 10);
+        super.readFromNBT(nbt);
         this.chestContents = new ItemStack[this.getSizeInventory()];
 
-        if (compound.hasKey("CustomName", 8))
+        if (nbt.hasKey("CustomName", 8))
         {
-            this.customName = compound.getString("CustomName");
+            this.customName = nbt.getString("CustomName");
         }
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        if (!this.checkLootAndRead(nbt))
         {
-            NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-            int j = nbttagcompound.getByte("Slot") & 255;
+            NBTTagList nbttaglist = nbt.getTagList("Items", 10);
 
-            if (j >= 0 && j < this.chestContents.length)
+            for (int i = 0; i < nbttaglist.tagCount(); ++i)
             {
-                this.chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound);
+                NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
+                int j = nbttagcompound.getByte("Slot") & 255;
+
+                if (j >= 0 && j < this.chestContents.length)
+                {
+                    this.chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound);
+                }
             }
         }
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        NBTTagList nbttaglist = new NBTTagList();
+        super.writeToNBT(nbt);
 
-        for (int i = 0; i < this.chestContents.length; ++i)
+        if (!this.checkLootAndWrite(nbt))
         {
-            if (this.chestContents[i] != null)
+            NBTTagList nbttaglist = new NBTTagList();
+
+            for (int i = 0; i < this.chestContents.length; ++i)
             {
-                NBTTagCompound nbttagcompound = new NBTTagCompound();
-                nbttagcompound.setByte("Slot", (byte)i);
-                this.chestContents[i].writeToNBT(nbttagcompound);
-                nbttaglist.appendTag(nbttagcompound);
+                if (this.chestContents[i] != null)
+                {
+                    NBTTagCompound nbttagcompound = new NBTTagCompound();
+                    nbttagcompound.setByte("Slot", (byte)i);
+                    this.chestContents[i].writeToNBT(nbttagcompound);
+                    nbttaglist.appendTag(nbttagcompound);
+                }
             }
+            nbt.setTag("Items", nbttaglist);
         }
-
-        compound.setTag("Items", nbttaglist);
-
         if (this.hasCustomName())
         {
-            compound.setString("CustomName", this.customName);
+            nbt.setString("CustomName", this.customName);
         }
-        return super.writeToNBT(compound);
+        return nbt;
     }
 
     @Override
@@ -435,6 +447,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
+        this.fillWithLoot((EntityPlayer)null);
         return new ContainerChest(playerInventory, this, playerIn);
     }
 
@@ -456,6 +469,8 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     @Override
     public void clear()
     {
+        this.fillWithLoot((EntityPlayer)null);
+
         for (int i = 0; i < this.chestContents.length; ++i)
         {
             this.chestContents[i] = null;

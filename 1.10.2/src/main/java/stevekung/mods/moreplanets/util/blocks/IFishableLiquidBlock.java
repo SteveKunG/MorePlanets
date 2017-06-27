@@ -1,19 +1,15 @@
 package stevekung.mods.moreplanets.util.blocks;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.util.ResourceLocation;
+import stevekung.mods.moreplanets.init.MPLootTables;
+
 public interface IFishableLiquidBlock
 {
-    /*public default List<WeightedRandomFishable> getJunkLoot() TODO Loot table
+    @Nullable
+    public default ResourceLocation getLootTable()
     {
-        return ItemLootHelper.SPACE_JUNK_LOOT;
+        return MPLootTables.SPACE_FISHING;
     }
-
-    public default List<WeightedRandomFishable> getTreasureLoot()
-    {
-        return ItemLootHelper.SPACE_TREASURE_LOOT;
-    }
-
-    public default List<WeightedRandomFishable> getFishLoot()
-    {
-        return ItemLootHelper.SPACE_FISH_LOOT;
-    }*/
 }

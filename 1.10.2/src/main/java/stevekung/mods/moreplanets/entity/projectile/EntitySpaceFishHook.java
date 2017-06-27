@@ -29,6 +29,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
 
 public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditionalSpawnData
@@ -528,22 +529,50 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
             }
             else if (this.ticksCatchable > 0)
             {
+                float f9 = MathHelper.randomFloatClamp(this.rand, 0.0F, 360.0F) * 0.017453292F;
+                float f2 = MathHelper.randomFloatClamp(this.rand, 25.0F, 60.0F);
+                double x = this.posX + MathHelper.sin(f9) * f2 * 0.1F;
+                double y = MathHelper.floor_double(this.getEntityBoundingBox().minY) + 1.0F;
+                double z = this.posZ + MathHelper.cos(f9) * f2 * 0.1F;
+                Block block = ((WorldServer)this.worldObj).getBlockState(new BlockPos((int)x, (int)y - 1, (int)z)).getBlock();
                 LootContext.Builder context = new LootContext.Builder((WorldServer)this.worldObj);
                 context.withLuck(EnchantmentHelper.getLuckOfSeaModifier(this.angler) + this.angler.getLuck());
+                ItemStack lootStack = null;
 
-                for (ItemStack itemStack : this.worldObj.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, context.build()))//TODO Custom Fishing Loot Table
+                if (block instanceof IFishableLiquidBlock)
                 {
-                    EntityItem entityitem = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, itemStack);
-                    double d0 = this.angler.posX - this.posX;
-                    double d1 = this.angler.posY - this.posY;
-                    double d2 = this.angler.posZ - this.posZ;
-                    double d3 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-                    entityitem.motionX = d0 * 0.1D;
-                    entityitem.motionY = d1 * 0.1D + MathHelper.sqrt_double(d3) * 0.08D;
-                    entityitem.motionZ = d2 * 0.1D;
-                    this.worldObj.spawnEntityInWorld(entityitem);
-                    this.angler.worldObj.spawnEntityInWorld(new EntityXPOrb(this.angler.worldObj, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
+                    IFishableLiquidBlock liquid = (IFishableLiquidBlock) block;
+
+                    for (ItemStack itemStack : this.worldObj.getLootTableManager().getLootTableFromLocation(liquid.getLootTable()).generateLootForPools(this.rand, context.build()))//TODO Custom Fishing Loot Table
+                    {
+                        lootStack = itemStack;
+                    }
                 }
+                if (this.worldObj.provider instanceof IGalacticraftWorldProvider)
+                {
+                    for (ItemStack itemStack : this.worldObj.getLootTableManager().getLootTableFromLocation(MPLootTables.SPACE_FISHING).generateLootForPools(this.rand, context.build()))
+                    {
+                        lootStack = itemStack;
+                    }
+                }
+                else
+                {
+                    for (ItemStack itemStack : this.worldObj.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, context.build()))
+                    {
+                        lootStack = itemStack;
+                    }
+                }
+
+                EntityItem entityitem = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, lootStack);
+                double d0 = this.angler.posX - this.posX;
+                double d1 = this.angler.posY - this.posY;
+                double d2 = this.angler.posZ - this.posZ;
+                double d3 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+                entityitem.motionX = d0 * 0.1D;
+                entityitem.motionY = d1 * 0.1D + MathHelper.sqrt_double(d3) * 0.08D;
+                entityitem.motionZ = d2 * 0.1D;
+                this.worldObj.spawnEntityInWorld(entityitem);
+                this.angler.worldObj.spawnEntityInWorld(new EntityXPOrb(this.angler.worldObj, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
                 i = 1;
             }
             if (this.inGround)
@@ -555,97 +584,6 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
             return i;
         }
     }
-
-    /*private ItemStack getFishingResult() TODO
-    {
-        float chance = this.worldObj.rand.nextFloat();
-        int luck = EnchantmentHelper.getLuckOfSeaModifier(this.angler);
-        int lure = EnchantmentHelper.getLureModifier(this.angler);
-        float junkChance = 0.1F - luck * 0.025F - lure * 0.01F;
-        float treasureChance = 0.05F + luck * 0.01F - lure * 0.01F;
-        junkChance = MathHelper.clamp_float(junkChance, 0.0F, 1.0F);
-        treasureChance = MathHelper.clamp_float(treasureChance, 0.0F, 1.0F);
-
-        float f9 = MathHelper.randomFloatClamp(this.rand, 0.0F, 360.0F) * 0.017453292F;
-        float f6 = MathHelper.randomFloatClamp(this.rand, 25.0F, 60.0F);
-        double d12 = this.posX + MathHelper.sin(f9) * f6 * 0.1F;
-        double d14 = MathHelper.floor_double(this.getEntityBoundingBox().minY) + 1.0F;
-        double d6 = this.posZ + MathHelper.cos(f9) * f6 * 0.1F;
-        WorldServer worldserver = (WorldServer)this.worldObj;
-        Block block = worldserver.getBlockState(new BlockPos((int)d12, (int)d14 - 1, (int)d6)).getBlock();
-
-        if (block instanceof IFishableLiquidBlock)
-        {
-            IFishableLiquidBlock fishBlock = (IFishableLiquidBlock) block;
-
-            if (chance < junkChance)
-            {
-                this.angler.triggerAchievement(StatList.junkFishedStat);
-                return WeightedRandom.getRandomItem(this.rand, fishBlock.getJunkLoot()).getItemStack(this.rand);
-            }
-            else
-            {
-                chance = chance - junkChance;
-
-                if (chance < treasureChance)
-                {
-                    this.angler.triggerAchievement(StatList.treasureFishedStat);
-                    return WeightedRandom.getRandomItem(this.rand, fishBlock.getTreasureLoot()).getItemStack(this.rand);
-                }
-                else
-                {
-                    this.angler.triggerAchievement(StatList.fishCaughtStat);
-                    return WeightedRandom.getRandomItem(this.rand, fishBlock.getFishLoot()).getItemStack(this.rand);
-                }
-            }
-        }
-        if (this.worldObj.provider instanceof IGalacticraftWorldProvider)
-        {
-            if (chance < junkChance)
-            {
-                this.angler.triggerAchievement(StatList.junkFishedStat);
-                return WeightedRandom.getRandomItem(this.rand, ItemLootHelper.SPACE_JUNK_LOOT).getItemStack(this.rand);
-            }
-            else
-            {
-                chance = chance - junkChance;
-
-                if (chance < treasureChance)
-                {
-                    this.angler.triggerAchievement(StatList.treasureFishedStat);
-                    return WeightedRandom.getRandomItem(this.rand, ItemLootHelper.SPACE_TREASURE_LOOT).getItemStack(this.rand);
-                }
-                else
-                {
-                    this.angler.triggerAchievement(StatList.fishCaughtStat);
-                    return WeightedRandom.getRandomItem(this.rand, ItemLootHelper.SPACE_FISH_LOOT).getItemStack(this.rand);
-                }
-            }
-        }
-
-        this.angler.addStat(FishingHooks.getFishableCategory(chance, luck, lure).stat, 1);
-
-        if (chance < junkChance)
-        {
-            this.angler.triggerAchievement(StatList.junkFishedStat);
-            return WeightedRandom.getRandomItem(this.rand, EntityFishHook.JUNK).getItemStack(this.rand);
-        }
-        else
-        {
-            chance = chance - junkChance;
-
-            if (chance < treasureChance)
-            {
-                this.angler.triggerAchievement(StatList.treasureFishedStat);
-                return WeightedRandom.getRandomItem(this.rand, EntityFishHook.TREASURE).getItemStack(this.rand);
-            }
-            else
-            {
-                this.angler.triggerAchievement(StatList.fishCaughtStat);
-                return WeightedRandom.getRandomItem(this.rand, EntityFishHook.FISH).getItemStack(this.rand);
-            }
-        }
-    }*/
 
     @Override
     public void setDead()

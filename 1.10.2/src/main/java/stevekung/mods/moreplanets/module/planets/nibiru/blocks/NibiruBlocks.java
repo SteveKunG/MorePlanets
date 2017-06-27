@@ -72,7 +72,7 @@ public class NibiruBlocks
     public static Block INFECTED_PRISMARINE;
     public static Block INFECTED_SEA_LANTERN;
     public static Block INFECTED_SPONGE;
-    public static Block ALIEN_BERRY_CHEST;
+    public static BlockChestMP ALIEN_BERRY_CHEST;
     public static Block NIBIRU_SEAWEED;
     public static Block OIL_ORE;
     public static Block HELIUM_GAS_BLOCK;

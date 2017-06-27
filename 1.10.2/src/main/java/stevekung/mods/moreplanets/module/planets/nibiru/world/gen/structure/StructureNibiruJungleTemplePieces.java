@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraft.world.storage.loot.LootTableList;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
@@ -258,8 +258,8 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 {
                     if (rand.nextBoolean())
                     {
-                        //this.generateChestContents(world, box, rand, 6, 5, 5, chest.getItems(rand), chest.getCount(rand));TODO Loot table
-                        //this.generateChestContents(world, box, rand, 5, 5, 5, chest.getItems(rand), chest.getCount(rand));
+                        this.generateChest(world, box, rand, 6, 5, 5, MPLootTables.NIBIRU_JUNGLE_TEMPLE);
+                        this.generateChest(world, box, rand, 5, 5, 5, MPLootTables.NIBIRU_JUNGLE_TEMPLE);
                         this.hasRandomChest = true;
                     }
                 }
@@ -304,11 +304,11 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 2, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 1, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 4, -3, 1, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 3, -3, 1, box);//TODO
+                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 3, -3, 1, box);
 
                 if (!this.placedTrap1)
                 {
-                    this.placedTrap1 = this.createDispenser(world, box, rand, 3, -2, 1, EnumFacing.NORTH, LootTableList.CHESTS_JUNGLE_TEMPLE_DISPENSER);//TODO Loot table
+                    this.placedTrap1 = this.createDispenser(world, box, rand, 3, -2, 1, EnumFacing.NORTH, MPLootTables.NIBIRU_JUNGLE_TEMPLE_DISPENSER);
                 }
 
                 this.setBlockState(world, NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.SOUTH, Boolean.valueOf(true)), 3, -2, 2, box);
@@ -325,7 +325,7 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
 
                 if (!this.placedTrap2)
                 {
-                    this.placedTrap2 = this.createDispenser(world, box, rand, 9, -2, 3, EnumFacing.WEST, LootTableList.CHESTS_JUNGLE_TEMPLE_DISPENSER);//TODO
+                    this.placedTrap2 = this.createDispenser(world, box, rand, 9, -2, 3, EnumFacing.WEST, MPLootTables.NIBIRU_JUNGLE_TEMPLE_DISPENSER);
                 }
 
                 this.setBlockState(world, NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.EAST, Boolean.valueOf(true)), 8, -1, 3, box);
@@ -333,7 +333,7 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
 
                 if (!this.placedMainChest)
                 {
-                    this.placedMainChest = this.generateChest(world, box, rand, 8, -3, 3, LootTableList.CHESTS_JUNGLE_TEMPLE);//TODO
+                    this.placedMainChest = this.generateChest(world, box, rand, 8, -3, 3, MPLootTables.NIBIRU_JUNGLE_TEMPLE);
                 }
 
                 this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 9, -3, 2, box);
@@ -367,7 +367,7 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
 
                 if (!this.placedHiddenChest)
                 {
-                    this.placedHiddenChest = this.generateChest(world, box, rand, 9, -3, 10, LootTableList.CHESTS_JUNGLE_TEMPLE);//TODO
+                    this.placedHiddenChest = this.generateChest(world, box, rand, 9, -3, 10, MPLootTables.NIBIRU_JUNGLE_TEMPLE);
                 }
                 return true;
             }
