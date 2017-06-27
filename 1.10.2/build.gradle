@@ -28,7 +28,16 @@ minecraft {
 	makeObfSourceJar = false
 }
 
-dependencies {}
+repositories {
+	maven {
+		url "http://dvs1.progwml6.com/files/maven"
+	}
+}
+
+dependencies {
+	deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+	runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+}
 
 processResources {
     inputs.property "version", project.version
