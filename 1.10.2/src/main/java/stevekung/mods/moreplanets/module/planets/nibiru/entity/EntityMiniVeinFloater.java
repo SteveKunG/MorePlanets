@@ -256,7 +256,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
                     }
                     int slot = this.rand.nextInt(chest.getSizeInventory());
                     chest.setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, this.rand.nextLong());
-                    chest.setInventorySlotContents(slot, MPLootTables.getTieredKey(this.rand, 6));
+                    chest.setInventorySlotContents(slot, MPLootTables.getTieredKey(this.rand, 5));
                 }
             }
 
