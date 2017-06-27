@@ -103,7 +103,7 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
     @Override
     public EntityItem dropItem(Item item, int size)
     {
-        return this.dropItem(NibiruItems.INFECTED_EGG, 1);
+        return this.dropItemWithOffset(NibiruItems.INFECTED_EGG, 1, 0.0F);
     }
 
     @Override
