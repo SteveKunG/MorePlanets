@@ -49,6 +49,7 @@ public class MPLootTables
 
     // Chests
     public static ResourceLocation COMMON_SPACE_DUNGEON = CommonRegisterHelper.registerChestLoot("common_space_dungeon");
+    public static ResourceLocation COMMON_SPACE_MINESHAFT = CommonRegisterHelper.registerChestLoot("common_space_mineshaft");
 
     public static ItemStack getTieredKey(Random rand, int tier)
     {

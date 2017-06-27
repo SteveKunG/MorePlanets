@@ -24,8 +24,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.entity.EntitySpaceMinecartChest;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
@@ -247,9 +247,8 @@ public class StructureNibiruMineshaftPieces
 
                     if (rand.nextInt(100) == 0)
                     {
-                        this.generateChest(world, box, rand, 2, 0, k1 - 1, LootTableList.CHESTS_ABANDONED_MINESHAFT);//TODO Loot table
+                        this.generateChest(world, box, rand, 2, 0, k1 - 1, MPLootTables.COMMON_SPACE_MINESHAFT);
                     }
-
                     if (this.hasSpiders && !this.spawnerPlaced)
                     {
                         int l1 = this.getYWithOffset(0);
