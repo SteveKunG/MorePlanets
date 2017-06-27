@@ -1,3 +1,6 @@
 {
-    "parent": "moreplanets:block/infected_crystallize_slime_block"
+	"parent": "moreplanets:item/slime",
+	"textures": {
+        "texture": "moreplanets:blocks/infected_crystallize_slime_block"
+    }
 }

@@ -1,5 +1,5 @@
 {
-    "parent": "block/slime",
+    "parent": "moreplanets:block/slime",
     "textures": {
         "particle": "moreplanets:blocks/cheese_slime_block",
         "texture": "moreplanets:blocks/cheese_slime_block"

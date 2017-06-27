@@ -24,13 +24,14 @@ public abstract class BlockBreakableMP extends BlockBaseMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing)
     {
-        Block block = state.getBlock();
+        IBlockState iblockstate = world.getBlockState(pos.offset(facing));
+        Block block = iblockstate.getBlock();
 
-        if (this.isTranslucentBlock())
+        if (this.isTranslucent())
         {
-            if (world.getBlockState(pos.offset(side)) != state)
+            if (this.renderSideWithState() && world.getBlockState(pos.offset(facing)) != world.getBlockState(pos))
             {
                 return true;
             }
@@ -39,9 +40,9 @@ public abstract class BlockBreakableMP extends BlockBaseMP
                 return false;
             }
         }
-        return super.shouldSideBeRendered(state, world, pos, side);
+        return super.shouldSideBeRendered(state, world, pos, facing);
     }
 
-    protected abstract boolean isTranslucentBlock();
-    protected abstract boolean renderSideOnOtherState();
+    protected abstract boolean isTranslucent();
+    protected abstract boolean renderSideWithState();
 }

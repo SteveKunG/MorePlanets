@@ -123,13 +123,13 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
     }
 
     @Override
-    protected boolean isTranslucentBlock()
+    protected boolean isTranslucent()
     {
-        return false;
+        return true;
     }
 
     @Override
-    protected boolean renderSideOnOtherState()
+    protected boolean renderSideWithState()
     {
         return false;
     }

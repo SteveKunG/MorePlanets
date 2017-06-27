@@ -117,15 +117,15 @@ public class BlockInfectedIce extends BlockBreakableMP
     }
 
     @Override
-    protected boolean isTranslucentBlock()
+    protected boolean isTranslucent()
     {
         return true;
     }
 
     @Override
-    protected boolean renderSideOnOtherState()
+    protected boolean renderSideWithState()
     {
-        return true;
+        return false;
     }
 
     @Override

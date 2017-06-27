@@ -1,5 +1,5 @@
 {
-    "parent": "block/slime",
+    "parent": "moreplanets:block/slime",
     "textures": {
         "particle": "moreplanets:blocks/infected_crystallize_slime_block",
         "texture": "moreplanets:blocks/infected_crystallize_slime_block"

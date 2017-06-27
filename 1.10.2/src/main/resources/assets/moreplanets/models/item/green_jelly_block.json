@@ -1,3 +1,6 @@
 {
-    "parent": "moreplanets:block/green_jelly_block"
+	"parent": "moreplanets:item/slime",
+	"textures": {
+        "texture": "moreplanets:blocks/green_jelly_block"
+    }
 }

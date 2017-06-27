@@ -45,7 +45,7 @@ nibiru biome gen
 laser gun shoot twice
 fix enchant render for multalic armor
 space fishing hook loot table
-diona mineshaft loot table
 nibiru structure loot table
 juicer ride player
 gui block overlay
+oil ore fixes

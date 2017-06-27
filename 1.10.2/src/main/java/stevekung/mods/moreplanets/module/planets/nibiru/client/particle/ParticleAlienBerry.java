@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -17,17 +16,11 @@ public class ParticleAlienBerry extends Particle
     public ParticleAlienBerry(World world, double x, double y, double z)
     {
         super(world, x, y, z);
-        float f = this.rand.nextFloat() * 0.1F + 0.2F;
-        this.particleRed = f;
-        this.particleGreen = f;
-        this.particleBlue = f;
         this.particleScale *= this.rand.nextFloat() * 0.6F + 0.5F;
         this.motionX *= 0.01999999955296516D;
         this.motionY *= 0.01999999955296516D;
         this.motionZ *= 0.01999999955296516D;
         this.particleMaxAge = (int)(20.0D / (Math.random() * 0.8D + 0.2D));
-        this.setParticleTextureIndex(82);
-        this.setRBGColorF(1.0F, 1.0F, 1.0F);
         this.setSize(0.02F, 0.02F);
     }
 
@@ -35,12 +28,9 @@ public class ParticleAlienBerry extends Particle
     @SideOnly(Side.CLIENT)
     public int getBrightnessForRender(float partialTicks)
     {
-        float f = (this.particleAge + partialTicks) / this.particleMaxAge;
-        f = MathHelper.clamp_float(f, 0.0F, 1.0F);
         int i = super.getBrightnessForRender(partialTicks);
-        int j = 240;
         int k = i >> 16 & 255;
-        return j | k << 16;
+        return 240 | k << 16;
     }
 
     @Override

@@ -134,13 +134,13 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
     }
 
     @Override
-    protected boolean isTranslucentBlock()
+    protected boolean isTranslucent()
     {
         return true;
     }
 
     @Override
-    protected boolean renderSideOnOtherState()
+    protected boolean renderSideWithState()
     {
         return true;
     }

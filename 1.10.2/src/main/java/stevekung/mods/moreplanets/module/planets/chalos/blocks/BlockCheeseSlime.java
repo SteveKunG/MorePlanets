@@ -79,13 +79,13 @@ public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
     }
 
     @Override
-    protected boolean isTranslucentBlock()
+    protected boolean isTranslucent()
     {
-        return false;
+        return true;
     }
 
     @Override
-    protected boolean renderSideOnOtherState()
+    protected boolean renderSideWithState()
     {
         return false;
     }

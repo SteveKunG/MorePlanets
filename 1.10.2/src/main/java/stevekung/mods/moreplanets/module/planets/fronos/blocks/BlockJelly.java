@@ -144,13 +144,13 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
     }
 
     @Override
-    protected boolean isTranslucentBlock()
+    protected boolean isTranslucent()
     {
         return true;
     }
 
     @Override
-    protected boolean renderSideOnOtherState()
+    protected boolean renderSideWithState()
     {
         return true;
     }
