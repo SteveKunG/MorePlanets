@@ -153,6 +153,11 @@ public class CommonRegisterHelper
         return LootTableList.register(new ResourceLocation("moreplanets:gameplay/" + name));
     }
 
+    public static ResourceLocation registerFishingLoot(String name)
+    {
+        return LootTableList.register(new ResourceLocation("moreplanets:gameplay/fishing/" + name));
+    }
+
     public static void registerTileEntity(Class<? extends TileEntity> tile, String name)
     {
         GameRegistry.registerTileEntity(tile, name);

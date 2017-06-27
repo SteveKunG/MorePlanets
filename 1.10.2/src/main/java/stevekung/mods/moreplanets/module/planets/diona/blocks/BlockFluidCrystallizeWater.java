@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidBaseMP;
 import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
@@ -75,6 +76,6 @@ public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFis
     @Nullable
     public ResourceLocation getLootTable()
     {
-        return null;
+        return MPLootTables.CRYSTALLIZE_WATER_FISHING;
     }
 }

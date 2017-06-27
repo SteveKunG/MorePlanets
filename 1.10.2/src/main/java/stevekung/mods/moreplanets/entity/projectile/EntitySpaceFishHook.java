@@ -469,7 +469,11 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                 this.motionX *= f6;
                 this.motionY *= f6;
                 this.motionZ *= f6;
-                this.motionY += this.worldObj.provider instanceof IGalacticraftWorldProvider ? TransformerHooks.getGravityForEntity(this) : 0.0D;
+
+                if (!this.onGround)
+                {
+                    this.motionY -= this.worldObj.provider instanceof IGalacticraftWorldProvider ? TransformerHooks.getGravityForEntity(this) * -1.0D : 0.0D;
+                }
                 this.setPosition(this.posX, this.posY, this.posZ);
             }
         }
@@ -529,51 +533,28 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
             }
             else if (this.ticksCatchable > 0)
             {
-                float f9 = MathHelper.randomFloatClamp(this.rand, 0.0F, 360.0F) * 0.017453292F;
-                float f2 = MathHelper.randomFloatClamp(this.rand, 25.0F, 60.0F);
-                double x = this.posX + MathHelper.sin(f9) * f2 * 0.1F;
+                double x = MathHelper.floor_double(this.posX);
                 double y = MathHelper.floor_double(this.getEntityBoundingBox().minY) + 1.0F;
-                double z = this.posZ + MathHelper.cos(f9) * f2 * 0.1F;
-                Block block = ((WorldServer)this.worldObj).getBlockState(new BlockPos((int)x, (int)y - 1, (int)z)).getBlock();
-                LootContext.Builder context = new LootContext.Builder((WorldServer)this.worldObj);
+                double z = MathHelper.floor_double(this.posZ);
+                Block block = this.worldObj.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
+                LootContext.Builder context = new LootContext.Builder((WorldServer) this.worldObj);
                 context.withLuck(EnchantmentHelper.getLuckOfSeaModifier(this.angler) + this.angler.getLuck());
-                ItemStack lootStack = null;
+                ResourceLocation resource = block instanceof IFishableLiquidBlock ? ((IFishableLiquidBlock)block).getLootTable() : this.worldObj.provider instanceof IGalacticraftWorldProvider ? MPLootTables.SPACE_FISHING : LootTableList.GAMEPLAY_FISHING;
 
-                if (block instanceof IFishableLiquidBlock)
+                for (ItemStack itemStack : this.worldObj.getLootTableManager().getLootTableFromLocation(resource).generateLootForPools(this.rand, context.build()))
                 {
-                    IFishableLiquidBlock liquid = (IFishableLiquidBlock) block;
-
-                    for (ItemStack itemStack : this.worldObj.getLootTableManager().getLootTableFromLocation(liquid.getLootTable()).generateLootForPools(this.rand, context.build()))//TODO Custom Fishing Loot Table
-                    {
-                        lootStack = itemStack;
-                    }
+                    EntityItem entityitem = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, itemStack);
+                    double d0 = this.angler.posX - this.posX;
+                    double d1 = this.angler.posY - this.posY;
+                    double d2 = this.angler.posZ - this.posZ;
+                    double d3 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+                    entityitem.motionX = d0 * 0.1D;
+                    entityitem.motionY = d1 * 0.1D + MathHelper.sqrt_double(d3) * 0.08D;
+                    entityitem.motionZ = d2 * 0.1D;
+                    this.worldObj.spawnEntityInWorld(entityitem);
+                    this.angler.worldObj.spawnEntityInWorld(new EntityXPOrb(this.angler.worldObj, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
+                    i = 1;
                 }
-                if (this.worldObj.provider instanceof IGalacticraftWorldProvider)
-                {
-                    for (ItemStack itemStack : this.worldObj.getLootTableManager().getLootTableFromLocation(MPLootTables.SPACE_FISHING).generateLootForPools(this.rand, context.build()))
-                    {
-                        lootStack = itemStack;
-                    }
-                }
-                else
-                {
-                    for (ItemStack itemStack : this.worldObj.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, context.build()))
-                    {
-                        lootStack = itemStack;
-                    }
-                }
-
-                EntityItem entityitem = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, lootStack);
-                double d0 = this.angler.posX - this.posX;
-                double d1 = this.angler.posY - this.posY;
-                double d2 = this.angler.posZ - this.posZ;
-                double d3 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-                entityitem.motionX = d0 * 0.1D;
-                entityitem.motionY = d1 * 0.1D + MathHelper.sqrt_double(d3) * 0.08D;
-                entityitem.motionZ = d2 * 0.1D;
-                this.worldObj.spawnEntityInWorld(entityitem);
-                this.angler.worldObj.spawnEntityInWorld(new EntityXPOrb(this.angler.worldObj, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
-                i = 1;
             }
             if (this.inGround)
             {

@@ -54,11 +54,12 @@ public class MPLootTables
     public static final ResourceLocation NIBIRU_JUNGLE_TEMPLE = CommonRegisterHelper.registerChestLoot("nibiru_jungle_temple");
     public static final ResourceLocation NIBIRU_JUNGLE_TEMPLE_DISPENSER = CommonRegisterHelper.registerChestLoot("nibiru_jungle_temple_dispenser");
 
-    // Gameplays
+    // Gameplay
     public static final ResourceLocation SPACE_FISHING = CommonRegisterHelper.registerGameplayLoot("space_fishing");
-    public static final ResourceLocation SPACE_FISHING_JUNK = CommonRegisterHelper.registerGameplayLoot("fishing/junk");
-    public static final ResourceLocation SPACE_FISHING_TREASURE = CommonRegisterHelper.registerGameplayLoot("fishing/treasure");
-//    public static final ResourceLocation SPACE_FISHING_FISH = CommonRegisterHelper.registerGameplayLoot("fishing/fish");
+    public static final ResourceLocation SPACE_FISH_JUNK = CommonRegisterHelper.registerFishingLoot("junk_space");
+    public static final ResourceLocation SPACE_FISH_TREASURE = CommonRegisterHelper.registerFishingLoot("treasure_space");
+    public static final ResourceLocation CRYSTALLIZE_WATER_FISHING = CommonRegisterHelper.registerGameplayLoot("crystallize_water_fishing");
+    public static final ResourceLocation CRYSTALLIZE_WATER_FISH = CommonRegisterHelper.registerFishingLoot("crystallize_fish");
 
     public static ItemStack getTieredKey(Random rand, int tier)
     {

@@ -69,7 +69,6 @@ public class WorldGenCrashedAlienProbe extends WorldGenerator
 
         boolean alien = rand.nextInt(5) == 0;
         BlockPos tilepos = blockpos.down();
-        System.out.println(tilepos);
         world.setBlockState(tilepos, DionaBlocks.CRASHED_ALIEN_PROBE.getDefaultState().withProperty(BlockCrashedAlienProbe.HAS_ALIEN, alien), 3);
         TileEntityCrashedAlienProbe probe = (TileEntityCrashedAlienProbe) world.getTileEntity(tilepos);
 
