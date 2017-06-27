@@ -34,11 +34,11 @@ public class CorridorNibiru extends SizedPieceNibiru
                     {
                         if (i == 0 || i == this.boundingBox.getXSize() - 1)
                         {
-                            this.setBlockState(worldIn, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), i, j, k, this.boundingBox);
+                            this.setBlockState(worldIn, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), i, j, k + 1, this.boundingBox);
                         }
                         else if (i == 1 || i == this.boundingBox.getXSize() - 2)
                         {
-                            this.setBlockState(worldIn, Blocks.IRON_BARS.getDefaultState(), i, j, k, this.boundingBox);
+                            this.setBlockState(worldIn, Blocks.IRON_BARS.getDefaultState(), i, j, k + 1, this.boundingBox);
                         }
                         else
                         {
@@ -49,11 +49,11 @@ public class CorridorNibiru extends SizedPieceNibiru
                     {
                         if (k == 0 || k == this.boundingBox.getZSize() - 1)
                         {
-                            this.setBlockState(worldIn, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), i, j, k, this.boundingBox);
+                            this.setBlockState(worldIn, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), i + 1, j, k, this.boundingBox);
                         }
                         else if (k == 1 || k == this.boundingBox.getZSize() - 2)
                         {
-                            this.setBlockState(worldIn, Blocks.IRON_BARS.getDefaultState(), i, j, k, this.boundingBox);
+                            this.setBlockState(worldIn, Blocks.IRON_BARS.getDefaultState(), i + 1, j, k, this.boundingBox);
                         }
                         else
                         {
