@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.SoundType;
@@ -39,12 +41,13 @@ public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, IS
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if (!(world.provider instanceof WorldProviderNibiru))
+        if (OxygenUtil.noAtmosphericCombustion(world.provider) && !(world.provider instanceof WorldProviderNibiru))
         {
-            if (rand.nextInt(5) == 0)
-            {
-                world.setBlockState(pos, Blocks.TORCH.getStateFromMeta(this.getMetaFromState(state)));
-            }
+            world.setBlockState(pos, GCBlocks.unlitTorch.getStateFromMeta(this.getMetaFromState(state)));
+        }
+        else if (!(world.provider instanceof WorldProviderNibiru))
+        {
+            world.setBlockState(pos, Blocks.TORCH.getStateFromMeta(this.getMetaFromState(state)));
         }
     }
 
