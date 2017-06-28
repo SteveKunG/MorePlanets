@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraft.world.storage.loot.LootTableList;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
 
@@ -357,7 +357,7 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
                 {
                     int k1 = enumfacing.getFrontOffsetX() * 2;
                     int l1 = enumfacing.getFrontOffsetZ() * 2;
-                    this.hasPlacedChest[enumfacing.getHorizontalIndex()] = this.generateChest(world, box, rand, 10 + k1, -11, 10 + l1, LootTableList.CHESTS_DESERT_PYRAMID);
+                    this.hasPlacedChest[enumfacing.getHorizontalIndex()] = this.generateChest(world, box, rand, 10 + k1, -11, 10 + l1, MPLootTables.NIBIRU_DESERT_PYRAMID);
                 }
             }
             return true;

@@ -53,6 +53,7 @@ public class MPLootTables
     public static final ResourceLocation CRASHED_ALIEN_PROBE = CommonRegisterHelper.registerChestLoot("crashed_alien_probe");
     public static final ResourceLocation NIBIRU_JUNGLE_TEMPLE = CommonRegisterHelper.registerChestLoot("nibiru_jungle_temple");
     public static final ResourceLocation NIBIRU_JUNGLE_TEMPLE_DISPENSER = CommonRegisterHelper.registerChestLoot("nibiru_jungle_temple_dispenser");
+    public static final ResourceLocation NIBIRU_DESERT_PYRAMID = CommonRegisterHelper.registerChestLoot("nibiru_desert_pyramid");
 
     // Gameplay
     public static final ResourceLocation SPACE_FISHING = CommonRegisterHelper.registerGameplayLoot("space_fishing");
