@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.core.handler.TeleportHandler;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
@@ -138,6 +139,17 @@ public class PacketSimpleMP extends PacketBase
                 }
             }
             break;
+        case S_ADD_ENTITY_ID:
+            String entityIDAdd = (String) this.data.get(0);
+            if (!ClientEventHandler.entityId.contains(entityIDAdd))
+            {
+                ClientEventHandler.entityId.add(entityIDAdd);
+            }
+            break;
+        case S_REMOVE_ENTITY_ID:
+            String entityIDRemove = (String) this.data.get(0);
+            ClientEventHandler.entityId.remove(entityIDRemove);
+            break;
         default:
             break;
         }
@@ -148,7 +160,9 @@ public class PacketSimpleMP extends PacketBase
         // SERVER
         S_FIRE_EXTINGUISH(Side.SERVER, BlockPos.class),
         S_RESPAWN_PLAYER_NETHER(Side.SERVER),
-        S_BLACK_HOLE_STORAGE_OPTION(Side.SERVER, BlockPos.class, String.class);
+        S_BLACK_HOLE_STORAGE_OPTION(Side.SERVER, BlockPos.class, String.class),
+        S_ADD_ENTITY_ID(Side.SERVER, String.class),
+        S_REMOVE_ENTITY_ID(Side.SERVER, String.class);
 
         // CLIENT
         //C_SWING_HAND(Side.CLIENT);
