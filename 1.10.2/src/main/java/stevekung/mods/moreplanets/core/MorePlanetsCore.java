@@ -26,6 +26,7 @@ import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.core.handler.GuiHandlerMP;
 import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.items.capsule.ItemCapsule;
+import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
@@ -139,7 +140,7 @@ public class MorePlanetsCore
     {
         for (MissingMapping mapping : event.getAll())
         {
-            //BlockItemRemapper.remapBlock(mapping, "jelly_block_test", FronosBlocks.JELLY_BLOCK);
+            BlockItemRemapper.remapBlock(mapping, "cheese_double_tall_grass", ChalosBlocks.CHALOS_DOUBLE_PLANT);
         }
     }
 
