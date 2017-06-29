@@ -603,7 +603,7 @@ public class StructureNibiruStrongholdPieces
             this.fillWithBlocks(world, box, 9, 1, 1, 9, 1, 3, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 3, 1, 8, 7, 1, 12, false, rand, STRONGHOLD_STONES);
             this.fillWithBlocks(world, box, 4, 1, 9, 6, 1, 11, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
-            this.createWasteTank(new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(1), this.getZWithOffset(1, 1)), world, rand, box);//TODO Test
+            this.createWasteTank(new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(1), this.getZWithOffset(1, 1)), world, rand, box);
             this.createWasteTank(new BlockPos(this.getXWithOffset(1, 2), this.getYWithOffset(1), this.getZWithOffset(1, 2)), world, rand, box);
             this.createWasteTank(new BlockPos(this.getXWithOffset(9, 1), this.getYWithOffset(1), this.getZWithOffset(9, 1)), world, rand, box);
             this.createWasteTank(new BlockPos(this.getXWithOffset(9, 2), this.getYWithOffset(1), this.getZWithOffset(9, 2)), world, rand, box);
@@ -917,7 +917,7 @@ public class StructureNibiruStrongholdPieces
                     this.setBlockState(world, iblockstate, 9, 1, 3, box);
                     this.setBlockState(world, iblockstate, 9, 2, 3, box);
                     this.setBlockState(world, iblockstate, 9, 3, 3, box);
-                    this.generateChest(world, box, rand, 3, 4, 8, MPLootTables.NIBIRU_STRONGHOLD_CROSSING);//TODO
+                    this.generateChest(world, box, rand, 3, 4, 8, MPLootTables.NIBIRU_STRONGHOLD_CROSSING);
                 }
                 return true;
             }
