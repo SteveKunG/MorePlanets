@@ -65,7 +65,6 @@ import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.FakeAlienBeamRenderer;
 import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDiona;
-import stevekung.mods.moreplanets.module.planets.diona.potion.InfectedCrystallizeEffect;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
@@ -87,6 +86,7 @@ public class ClientEventHandler
     private int loadRendererTick = 30;
     private int partialTicks;
     public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
+    public static final List<String> entityId = new ArrayList<>();
     private static final AttributeModifier CRYSTALLIZE_POTION_MODIFIER = new AttributeModifier(UUID.fromString("0B0BC323-E263-4EF8-9108-4B6503129B16"), "generic.crystallize_effect", 0, 0);
 
     public ClientEventHandler()
@@ -136,6 +136,7 @@ public class ClientEventHandler
         if (this.mc.currentScreen instanceof GuiMainMenu)
         {
             ClientEventHandler.receiverRenderPos.clear();
+            ClientEventHandler.entityId.clear();
         }
         if (event.phase == Phase.START)
         {
@@ -289,10 +290,8 @@ public class ClientEventHandler
     public void onRenderLiving(RenderLivingEvent.Post event)
     {
         EntityLivingBase living = event.getEntity();
-        // check if entity has crystallize potion modifier
-        boolean hasPotion = living.getEntityAttribute(InfectedCrystallizeEffect.CRYSTALLIZE_EFFECT) != null ? living.getEntityAttribute(InfectedCrystallizeEffect.CRYSTALLIZE_EFFECT).hasModifier(CRYSTALLIZE_POTION_MODIFIER) : false;
 
-        if (hasPotion)
+        if (ClientEventHandler.entityId.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE))
         {
             GlStateManager.disableLighting();
             TextureMap texturemap = this.mc.getTextureMapBlocks();

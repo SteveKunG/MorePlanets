@@ -30,8 +30,29 @@ public class WorldTickEventHandler
     public static WorldDataStartedDimension startedDimensionData = null;
 
     @SubscribeEvent
-    public void onWorldTick(ServerTickEvent event)
+    public void onServerTick(ServerTickEvent event)
     {
+        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+
+        if (server == null)
+        {
+            return;
+        }
+
+        if (event.phase == Phase.START)
+        {
+            if (WorldTickEventHandler.startedDimensionData == null)
+            {
+                World world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
+                WorldTickEventHandler.startedDimensionData = (WorldDataStartedDimension) world.getMapStorage().getOrLoadData(WorldDataStartedDimension.class, WorldDataStartedDimension.saveDataID);
+
+                if (WorldTickEventHandler.startedDimensionData == null)
+                {
+                    WorldTickEventHandler.startedDimensionData = new WorldDataStartedDimension(WorldDataStartedDimension.saveDataID);
+                    world.getMapStorage().setData(WorldDataStartedDimension.saveDataID, WorldTickEventHandler.startedDimensionData);
+                }
+            }
+        }
         if (event.phase == Phase.END)
         {
             World world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(ConfigManagerMP.idDimensionDiona);
@@ -128,37 +149,11 @@ public class WorldTickEventHandler
         }
     }
 
-    @SubscribeEvent
-    public void onServerTick(ServerTickEvent event)
-    {
-        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-
-        if (server == null)
-        {
-            return;
-        }
-
-        if (event.phase == Phase.START)
-        {
-            if (WorldTickEventHandler.startedDimensionData == null)
-            {
-                World world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
-                WorldTickEventHandler.startedDimensionData = (WorldDataStartedDimension) world.getMapStorage().getOrLoadData(WorldDataStartedDimension.class, WorldDataStartedDimension.saveDataID);
-
-                if (WorldTickEventHandler.startedDimensionData == null)
-                {
-                    WorldTickEventHandler.startedDimensionData = new WorldDataStartedDimension(WorldDataStartedDimension.saveDataID);
-                    world.getMapStorage().setData(WorldDataStartedDimension.saveDataID, WorldTickEventHandler.startedDimensionData);
-                }
-            }
-        }
-    }
-
     private BlockPos adjustPosToNearbyEntity(WorldServer world, BlockPos pos)
     {
         BlockPos blockpos = world.getPrecipitationHeight(pos);
         AxisAlignedBB axisalignedbb = new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), world.getHeight(), blockpos.getZ()));
-        List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, (EntityLivingBase living) -> living != null && living.isEntityAlive() && world.canSeeSky(living.getPosition()));
+        List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, living -> living != null && living.isEntityAlive() && world.canSeeSky(living.getPosition()));
 
         if (!list.isEmpty())
         {

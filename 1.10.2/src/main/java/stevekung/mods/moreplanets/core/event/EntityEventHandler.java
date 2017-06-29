@@ -1,6 +1,8 @@
 package stevekung.mods.moreplanets.core.event;
 
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 import net.minecraft.entity.Entity;
@@ -12,7 +14,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
@@ -25,10 +27,11 @@ import stevekung.mods.moreplanets.core.handler.TeleportHandler;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusZombie;
-import stevekung.mods.moreplanets.module.planets.diona.potion.InfectedCrystallizeEffect;
 import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedZombie;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
 import stevekung.mods.moreplanets.world.IMeteorType;
@@ -61,18 +64,13 @@ public class EntityEventHandler
     }
 
     @SubscribeEvent
-    public void onEntityJoinWorld(EntityJoinWorldEvent event)
+    public void onLivingDeath(LivingDeathEvent event)
     {
-        if (event.getEntity() instanceof EntityLivingBase)
-        {
-            EntityLivingBase living = (EntityLivingBase) event.getEntity();
+        EntityLivingBase living = event.getEntityLiving();
 
-            // check if generic.crystallize_effect is not registed to AttributeMap
-            // also prevent exception on server side
-            if (living.getAttributeMap().getAttributeInstanceByName("generic.crystallize_effect") == null)
-            {
-                living.getAttributeMap().registerAttribute(InfectedCrystallizeEffect.CRYSTALLIZE_EFFECT);
-            }
+        if (!(living instanceof EntityPlayer))
+        {
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
         }
     }
 
@@ -82,6 +80,13 @@ public class EntityEventHandler
         EntityLivingBase living = event.getEntityLiving();
         World world = living.worldObj;
 
+        if (living.isDead)
+        {
+            if (!(living instanceof EntityPlayer))
+            {
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
+            }
+        }
         if (living instanceof EntityPlayerMP)
         {
             EntityPlayerMP player = (EntityPlayerMP)living;
