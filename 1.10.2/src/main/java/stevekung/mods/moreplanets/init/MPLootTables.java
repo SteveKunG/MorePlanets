@@ -54,6 +54,11 @@ public class MPLootTables
     public static final ResourceLocation NIBIRU_JUNGLE_TEMPLE = CommonRegisterHelper.registerChestLoot("nibiru_jungle_temple");
     public static final ResourceLocation NIBIRU_JUNGLE_TEMPLE_DISPENSER = CommonRegisterHelper.registerChestLoot("nibiru_jungle_temple_dispenser");
     public static final ResourceLocation NIBIRU_DESERT_PYRAMID = CommonRegisterHelper.registerChestLoot("nibiru_desert_pyramid");
+    public static final ResourceLocation NIBIRU_STRONGHOLD_CORRIDOR = CommonRegisterHelper.registerChestLoot("nibiru_stronghold_corridor");
+    public static final ResourceLocation NIBIRU_STRONGHOLD_LIBRARY = CommonRegisterHelper.registerChestLoot("nibiru_stronghold_library");
+    public static final ResourceLocation NIBIRU_STRONGHOLD_CROSSING = CommonRegisterHelper.registerChestLoot("nibiru_stronghold_crossing");
+    public static final ResourceLocation NIBIRU_VILLAGE_LIBRARY = CommonRegisterHelper.registerChestLoot("nibiru_village_library");
+    public static final ResourceLocation NIBIRU_VILLAGE_BLACKSMITH = CommonRegisterHelper.registerChestLoot("nibiru_village_blacksmith");
 
     // Gameplay
     public static final ResourceLocation SPACE_FISHING = CommonRegisterHelper.registerGameplayLoot("space_fishing");

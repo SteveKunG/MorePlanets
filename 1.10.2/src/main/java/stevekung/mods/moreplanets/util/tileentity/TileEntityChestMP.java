@@ -445,10 +445,10 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     }
 
     @Override
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer player)
     {
-        this.fillWithLoot((EntityPlayer)null);
-        return new ContainerChest(playerInventory, this, playerIn);
+        this.fillWithLoot(player);
+        return new ContainerChest(playerInventory, this, player);
     }
 
     @Override

@@ -378,7 +378,7 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
     @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer player)
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(player);
         return new ContainerChest(playerInventory, this, player);
     }
 

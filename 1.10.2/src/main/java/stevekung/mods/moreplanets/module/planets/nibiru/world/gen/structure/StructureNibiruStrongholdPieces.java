@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
@@ -142,7 +142,7 @@ public class StructureNibiruStrongholdPieces
                 if (!this.hasMadeChest && box.isVecInside(new BlockPos(this.getXWithOffset(3, 3), this.getYWithOffset(2), this.getZWithOffset(3, 3))))
                 {
                     this.hasMadeChest = true;
-                    this.generateChest(world, box, rand, 3, 2, 3, LootTableList.CHESTS_STRONGHOLD_CORRIDOR);//TODO Loot table
+                    this.generateChest(world, box, rand, 3, 2, 3, MPLootTables.NIBIRU_STRONGHOLD_CORRIDOR);
                 }
                 return true;
             }
@@ -514,12 +514,12 @@ public class StructureNibiruStrongholdPieces
                     this.setBlockState(world, iblockstate, 7, 8, 8, box);
                 }
 
-                this.generateChest(world, box, rand, 3, 3, 5, LootTableList.CHESTS_STRONGHOLD_LIBRARY);//TODO
+                this.generateChest(world, box, rand, 3, 3, 5, MPLootTables.NIBIRU_STRONGHOLD_LIBRARY);
 
                 if (this.isLargeRoom)
                 {
                     this.setBlockState(world, Blocks.AIR.getDefaultState(), 12, 9, 1, box);
-                    this.generateChest(world, box, rand, 12, 8, 1, LootTableList.CHESTS_STRONGHOLD_LIBRARY);//TODO
+                    this.generateChest(world, box, rand, 12, 8, 1, MPLootTables.NIBIRU_STRONGHOLD_LIBRARY);
                 }
                 return true;
             }
@@ -917,7 +917,7 @@ public class StructureNibiruStrongholdPieces
                     this.setBlockState(world, iblockstate, 9, 1, 3, box);
                     this.setBlockState(world, iblockstate, 9, 2, 3, box);
                     this.setBlockState(world, iblockstate, 9, 3, 3, box);
-                    this.generateChest(world, box, rand, 3, 4, 8, LootTableList.CHESTS_STRONGHOLD_CROSSING);//TODO
+                    this.generateChest(world, box, rand, 3, 4, 8, MPLootTables.NIBIRU_STRONGHOLD_CROSSING);//TODO
                 }
                 return true;
             }

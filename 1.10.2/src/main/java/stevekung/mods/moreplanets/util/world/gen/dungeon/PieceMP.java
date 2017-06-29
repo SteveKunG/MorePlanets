@@ -5,9 +5,9 @@ import java.util.Random;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import stevekung.mods.moreplanets.util.world.gen.structure.StructureComponentMP;
+import net.minecraft.world.gen.structure.StructureComponent;
 
-public abstract class PieceMP extends StructureComponentMP
+public abstract class PieceMP extends StructureComponent
 {
     protected DungeonConfigurationMP configuration;
 

@@ -5,10 +5,10 @@ import java.util.Random;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraft.world.gen.structure.StructureComponent;
 import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
-import stevekung.mods.moreplanets.util.world.gen.structure.StructureComponentMP;
 
-public abstract class PieceNibiru extends StructureComponentMP
+public abstract class PieceNibiru extends StructureComponent
 {
     protected DungeonConfigurationMP configuration;
 

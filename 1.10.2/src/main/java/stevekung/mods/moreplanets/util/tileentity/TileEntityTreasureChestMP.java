@@ -366,6 +366,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer player)
     {
+        this.fillWithLoot(player);
         return new ContainerChest(playerInventory, this, player);
     }
 

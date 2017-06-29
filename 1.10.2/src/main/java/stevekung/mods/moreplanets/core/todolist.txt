@@ -44,6 +44,6 @@ villager profession rewrite
 nibiru biome gen
 laser gun shoot twice
 fix enchant render for multalic armor
-nibiru structure loot table
 juicer ride player
 gui block overlay
+fix village gen underwater

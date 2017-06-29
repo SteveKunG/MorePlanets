@@ -3,8 +3,8 @@ package stevekung.mods.moreplanets.util.world.gen.dungeon;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.gen.structure.StructureComponent;
 import stevekung.mods.moreplanets.util.MPLog;
-import stevekung.mods.moreplanets.util.world.gen.structure.StructureComponentMP;
 
 public class DungeonConfigurationMP
 {
@@ -18,14 +18,14 @@ public class DungeonConfigurationMP
     private int hallwayLengthMax;
     private int hallwayHeight;
     private int roomHeight;
-    private Class<? extends StructureComponentMP> bossRoom;
-    private Class<? extends StructureComponentMP> treasureRoom;
-    private Class<? extends StructureComponentMP> spawnerRoom;
-    private Class<? extends StructureComponentMP> chestRoom;
+    private Class<? extends StructureComponent> bossRoom;
+    private Class<? extends StructureComponent> treasureRoom;
+    private Class<? extends StructureComponent> spawnerRoom;
+    private Class<? extends StructureComponent> chestRoom;
 
     public DungeonConfigurationMP() {}
 
-    public DungeonConfigurationMP(IBlockState brickBlock, IBlockState glowstoneBlock, IBlockState webBlock, IBlockState torchBlock, IBlockState ancientChestBlock, int yPosition, int hallwayLengthMin, int hallwayLengthMax, int hallwayHeight, int roomHeight, Class<? extends StructureComponentMP> bossRoom, Class<? extends StructureComponentMP> treasureRoom, Class<? extends StructureComponentMP> spawnerRoom, Class<? extends StructureComponentMP> chestRoom)
+    public DungeonConfigurationMP(IBlockState brickBlock, IBlockState glowstoneBlock, IBlockState webBlock, IBlockState torchBlock, IBlockState ancientChestBlock, int yPosition, int hallwayLengthMin, int hallwayLengthMax, int hallwayHeight, int roomHeight, Class<? extends StructureComponent> bossRoom, Class<? extends StructureComponent> treasureRoom, Class<? extends StructureComponent> spawnerRoom, Class<? extends StructureComponent> chestRoom)
     {
         this.brickBlock = brickBlock;
         this.glowstoneBlock = glowstoneBlock;
@@ -140,22 +140,22 @@ public class DungeonConfigurationMP
         return this.roomHeight;
     }
 
-    public Class<? extends StructureComponentMP> getBossRoom()
+    public Class<? extends StructureComponent> getBossRoom()
     {
         return this.bossRoom;
     }
 
-    public Class<? extends StructureComponentMP> getTreasureRoom()
+    public Class<? extends StructureComponent> getTreasureRoom()
     {
         return this.treasureRoom;
     }
 
-    public Class<? extends StructureComponentMP> getSpawnerRoom()
+    public Class<? extends StructureComponent> getSpawnerRoom()
     {
         return this.spawnerRoom;
     }
 
-    public Class<? extends StructureComponentMP> getChestRoom()
+    public Class<? extends StructureComponent> getChestRoom()
     {
         return this.chestRoom;
     }

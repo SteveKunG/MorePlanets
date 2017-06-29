@@ -25,8 +25,8 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockHalfInfectedStoneBricksSlab;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -598,7 +598,7 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, iblockstate6, 4, 1, 3, box);
             this.setBlockState(world, Blocks.WOODEN_PRESSURE_PLATE.getDefaultState(), 4, 2, 3, box);
             this.setBlockState(world, NibiruBlocks.NIBIRU_CRAFTING_TABLE.getDefaultState(), 7, 1, 1, box);
-            //this.generateChestContents(world, box, rand, 7, 2, 1, ChestGenHooks.getItems(ItemLootHelper.NIBIRU_VILLAGE_LIBRARY, rand), ChestGenHooks.getCount(ItemLootHelper.NIBIRU_VILLAGE_LIBRARY, rand));//TODO Chest
+            this.generateChest(world, box, rand, 7, 2, 1, MPLootTables.NIBIRU_VILLAGE_LIBRARY);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, 1, 0, box);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, 2, 0, box);
             this.createVillageDoor(world, box, rand, 1, 1, 0);
@@ -718,7 +718,7 @@ public class StructureNibiruVillagePieces
             if (!this.hasMadeChest && box.isVecInside(new BlockPos(this.getXWithOffset(5, 5), this.getYWithOffset(1), this.getZWithOffset(5, 5))))
             {
                 this.hasMadeChest = true;
-                this.generateChest(world, box, rand, 5, 1, 5, LootTableList.CHESTS_VILLAGE_BLACKSMITH);//TODO Loot table
+                this.generateChest(world, box, rand, 5, 1, 5, MPLootTables.NIBIRU_VILLAGE_BLACKSMITH);
             }
             for (int i = 6; i <= 8; ++i)
             {

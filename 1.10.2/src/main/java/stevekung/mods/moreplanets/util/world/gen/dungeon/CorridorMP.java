@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import stevekung.mods.moreplanets.util.world.gen.structure.StructureComponentMP;
+import net.minecraft.world.gen.structure.StructureComponent;
 
 public class CorridorMP extends SizedPieceMP
 {
@@ -57,7 +57,7 @@ public class CorridorMP extends SizedPieceMP
         return true;
     }
 
-    private <T extends SizedPieceMP> T getRoom(Class<? extends StructureComponentMP> clazz, DungeonStartMP startPiece, Random rand)
+    private <T extends SizedPieceMP> T getRoom(Class<? extends StructureComponent> clazz, DungeonStartMP startPiece, Random rand)
     {
         try
         {
