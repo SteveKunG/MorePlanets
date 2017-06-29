@@ -32,6 +32,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
@@ -216,7 +217,7 @@ public class ClientRegisterHelper
 
     public static void registerModelRender(Item item, ItemMeshDefinition itemMesh)
     {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, itemMesh);
+        ModelLoader.setCustomMeshDefinition(item, itemMesh);
     }
 
     public static void registerModelRender(Block block, ItemMeshDefinition itemMesh)
@@ -290,22 +291,22 @@ public class ClientRegisterHelper
 
     public static void registerStateMapper(Block block, EnumStateMapper mapper)
     {
-        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new Builder().ignore(mapper.getProperty()).build());
+        ClientRegisterHelper.registerStateMapper(block, new Builder().ignore(mapper.getProperty()).build());
     }
 
     public static void registerStateMapper(Block block, IStateMapper mapper)
     {
-        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, mapper);
+        ModelLoader.setCustomStateMapper(block, mapper);
     }
 
     public static void registerStateMapperSplitVariants(Block block, IProperty property)
     {
-        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new Builder().withName(property).build());
+        ClientRegisterHelper.registerStateMapper(block, new Builder().withName(property).build());
     }
 
     public static void registerStateMapper(Block block, IProperty... property)
     {
-        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new Builder().ignore(property).build());
+        ClientRegisterHelper.registerStateMapper(block, new Builder().ignore(property).build());
     }
 
     public static void registerSpriteTexture(TextureStitchEvent.Pre event, String texture)
@@ -345,7 +346,7 @@ public class ClientRegisterHelper
             {
                 OBJModel model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/" + file + ".obj"));
                 model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
-                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = (ResourceLocation location) -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
+                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
                 newModel = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState), DefaultVertexFormats.ITEM, spriteFunction);
 
                 if (clazz != null)

@@ -41,13 +41,14 @@ public class ClientProxyMP extends ServerProxyMP
         EntityRendererMP.init();
         TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
         VariantsRenderer.init();
+        BlockStateMapper.init();
     }
 
     @Override
     public void registerInitRendering()
     {
         BlockColors color = Minecraft.getMinecraft().getBlockColors();
-        BlockStateMapper.init();
+
         ItemModelRenderer.init();
         TileEntityRenderer.init();
 
