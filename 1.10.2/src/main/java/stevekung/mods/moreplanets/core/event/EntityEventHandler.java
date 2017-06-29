@@ -67,11 +67,7 @@ public class EntityEventHandler
     public void onLivingDeath(LivingDeathEvent event)
     {
         EntityLivingBase living = event.getEntityLiving();
-
-        if (!(living instanceof EntityPlayer))
-        {
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
-        }
+        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
     }
 
     @SubscribeEvent
@@ -82,10 +78,7 @@ public class EntityEventHandler
 
         if (living.isDead)
         {
-            if (!(living instanceof EntityPlayer))
-            {
-                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
-            }
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
         }
         if (living instanceof EntityPlayerMP)
         {

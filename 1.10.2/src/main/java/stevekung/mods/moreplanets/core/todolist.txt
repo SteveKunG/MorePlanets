@@ -37,6 +37,7 @@ uv texture treasure chest
 infected guardian random fish
 add option other player can use bh storage
 more sounds subtitle
+rewrite entity rendering with crystallize
 
 1.10.2
 farmland/grass path block lighting
