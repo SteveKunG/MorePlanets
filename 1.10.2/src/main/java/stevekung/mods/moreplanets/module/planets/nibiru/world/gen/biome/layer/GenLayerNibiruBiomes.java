@@ -7,6 +7,7 @@ import stevekung.mods.moreplanets.init.MPBiomes;
 
 public class GenLayerNibiruBiomes extends GenLayer
 {
+    private static final int RARE_BIOME_CHANCE = 15;
     private Biome commonBiomes[] = new Biome[] { MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.INFECTED_DEAD_ROOFED_FOREST, MPBiomes.INFECTED_EXTREME_HILLS, MPBiomes.INFECTED_DEAD_TAIGA, MPBiomes.INFECTED_SWAMPLAND, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_ICE_PLAINS };
 
     public GenLayerNibiruBiomes(long seed, GenLayer parent)
@@ -31,7 +32,7 @@ public class GenLayerNibiruBiomes extends GenLayer
             {
                 this.initChunkSeed(dx + areaX, dz + areaY);
 
-                if (this.nextInt(8) == 0)
+                if (this.nextInt(GenLayerNibiruBiomes.RARE_BIOME_CHANCE) == 0)
                 {
                     dest[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN);
                 }

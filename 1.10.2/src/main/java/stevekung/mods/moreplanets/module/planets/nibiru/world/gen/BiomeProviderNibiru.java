@@ -7,7 +7,6 @@ import java.util.Random;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
@@ -68,19 +67,26 @@ public class BiomeProviderNibiru extends BiomeProvider
             biomes = new Biome[width * height];
         }
 
-        int[] aint = this.unzoomedBiomes.getInts(x, z, width, height);
+        int arrayOfInts[] = this.unzoomedBiomes.getInts(x, z, width, height);
 
-        for (int i = 0; i < width * height; ++i)
+        for (int i = 0; i < width * height; i++)
         {
-            biomes[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
+            if (arrayOfInts[i] >= 0)
+            {
+                biomes[i] = Biome.getBiome(arrayOfInts[i]);
+            }
+            else
+            {
+                biomes[i] = MPBiomes.INFECTED_PLAINS;
+            }
         }
         return biomes;
     }
 
     @Override
-    public Biome[] getBiomes(Biome[] oldBiomeList, int x, int z, int width, int depth)
+    public Biome[] getBiomes(Biome[] oldBiomeList, int x, int z, int width, int height)
     {
-        return this.getBiomes(oldBiomeList, x, z, width, depth, true);
+        return this.getBiomes(oldBiomeList, x, z, width, height, true);
     }
 
     @Override
@@ -92,33 +98,37 @@ public class BiomeProviderNibiru extends BiomeProvider
         {
             listToReuse = new Biome[width * length];
         }
-
         if (cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (z & 15) == 0)
         {
             Biome[] abiomegenbase = this.biomeCache.getCachedBiomes(x, z);
             System.arraycopy(abiomegenbase, 0, listToReuse, 0, width * length);
             return listToReuse;
         }
-        else
-        {
-            int[] aint = this.zoomedBiomes.getInts(x, z, width, length);
 
-            for (int i = 0; i < width * length; ++i)
+        int ai[] = this.zoomedBiomes.getInts(x, z, width, length);
+
+        for (int i = 0; i < width * length; i++)
+        {
+            if (ai[i] >= 0)
             {
-                listToReuse[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
+                listToReuse[i] = Biome.getBiome(ai[i]);
             }
-            return listToReuse;
+            else
+            {
+                listToReuse[i] = MPBiomes.INFECTED_PLAINS;
+            }
         }
+        return listToReuse;
     }
 
     @Override
-    public boolean areBiomesViable(int p_76940_1_, int p_76940_2_, int p_76940_3_, List<Biome> biome)
+    public boolean areBiomesViable(int x, int z, int radius, List<Biome> allowed)
     {
         IntCache.resetIntCache();
-        int i = p_76940_1_ - p_76940_3_ >> 2;
-            int j = p_76940_2_ - p_76940_3_ >> 2;
-        int k = p_76940_1_ + p_76940_3_ >> 2;
-        int l = p_76940_2_ + p_76940_3_ >> 2;
+        int i = x - radius >> 2;
+        int j = z - radius >> 2;
+        int k = x + radius >> 2;
+        int l = z + radius >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
         int[] aint = this.unzoomedBiomes.getInts(i, j, i1, j1);
@@ -127,7 +137,7 @@ public class BiomeProviderNibiru extends BiomeProvider
         {
             Biome biomegenbase = Biome.getBiome(aint[k1]);
 
-            if (!biome.contains(biomegenbase))
+            if (!allowed.contains(biomegenbase))
             {
                 return false;
             }
@@ -136,7 +146,7 @@ public class BiomeProviderNibiru extends BiomeProvider
     }
 
     @Override
-    public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random random)
+    public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random rand)
     {
         IntCache.resetIntCache();
         int i = x - range >> 2;
@@ -155,7 +165,7 @@ public class BiomeProviderNibiru extends BiomeProvider
             int j2 = j + l1 / i1 << 2;
             Biome biomegenbase = Biome.getBiome(aint[l1]);
 
-            if (biomes.contains(biomegenbase) && (blockpos == null || random.nextInt(k1 + 1) == 0))
+            if (biomes.contains(biomegenbase) && (blockpos == null || rand.nextInt(k1 + 1) == 0))
             {
                 blockpos = new BlockPos(i2, 0, j2);
                 ++k1;

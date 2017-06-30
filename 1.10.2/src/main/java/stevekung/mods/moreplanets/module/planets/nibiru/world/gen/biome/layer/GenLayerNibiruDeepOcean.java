@@ -5,9 +5,9 @@ import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
 
-public class GenLayerInfectedDeepOcean extends GenLayer
+public class GenLayerNibiruDeepOcean extends GenLayer
 {
-    public GenLayerInfectedDeepOcean(long seed, GenLayer parent)
+    public GenLayerNibiruDeepOcean(long seed, GenLayer parent)
     {
         super(seed);
         this.parent = parent;
@@ -41,11 +41,11 @@ public class GenLayerInfectedDeepOcean extends GenLayer
                 {
                     output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_DEEP_OCEAN);
                 }
-                else if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE), center, right, left, up, down))
+                else if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_SWAMPLAND), center, ur, ul, dr, dl))
                 {
-                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_DEEP_OCEAN);
+                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
                 }
-                else if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE), center, ur, ul, dr, dl))
+                else if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE), center, right, left, up, down))
                 {
                     output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_DEEP_OCEAN);
                 }

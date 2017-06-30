@@ -20,7 +20,7 @@ public abstract class GenLayerNibiru extends GenLayer
         biomes = new GenLayerZoom(1000L, biomes);
         biomes = new GenLayerZoom(1001L, biomes);
         biomes = new GenLayerNibiruBiomeStabilize(700L, biomes);
-        biomes = new GenLayerInfectedDeepOcean(500L, biomes);
+        biomes = new GenLayerNibiruDeepOcean(500L, biomes);
         biomes = new GenLayerZoom(1002L, biomes);
         biomes = new GenLayerZoom(1003L, biomes);
         biomes = new GenLayerZoom(1004L, biomes);

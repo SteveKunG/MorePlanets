@@ -27,8 +27,8 @@ public class GenLayerNibiruBiomeStabilize extends GenLayer
         {
             for (int dx = 0; dx < areaWidth; dx++)
             {
-                int centerX = (dx + offX + 1 & -4) - offX;
-                int centerZ = (dz + offZ + 1 & -4) - offZ;
+                int centerX = (dx + offX + 1 & 0xFFFFFFFC) - offX;
+                int centerZ = (dz + offZ + 1 & 0xFFFFFFFC) - offZ;
 
                 if (dx <= centerX + 1 && dx >= centerX - 1 && dz <= centerZ + 1 && dz >= centerZ - 1)
                 {
