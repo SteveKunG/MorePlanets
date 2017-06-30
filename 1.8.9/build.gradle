@@ -25,13 +25,21 @@ compileJava {
 }
 
 minecraft {
-    version = "1.8.9-11.15.1.1902-1.8.9"
+    version = "1.8.9-11.15.1.2318-1.8.9"
     runDir = "run"
     mappings = "stable_20"
 	makeObfSourceJar = false
 }
 
-dependencies {}
+repositories {
+	maven {
+		url "http://dvs1.progwml6.com/files/maven"
+	}
+}
+
+dependencies {
+	runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+}
 
 processResources {
     inputs.property "version", project.version
