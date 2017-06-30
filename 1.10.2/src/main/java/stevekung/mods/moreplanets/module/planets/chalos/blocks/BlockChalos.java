@@ -52,37 +52,35 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     @Override
     public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon)
     {
-        return this.getMetaFromState(world.getBlockState(pos)) == 9 || this.getMetaFromState(world.getBlockState(pos)) == 10;
+        IBlockState state = world.getBlockState(pos);
+        return state.getValue(VARIANT) == BlockType.DIREMSIUM_BLOCK || state.getValue(VARIANT) == BlockType.ZYPTORIUM_BLOCK;
     }
 
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
-        int meta = this.getMetaFromState(state);
+        BlockType type = (BlockType) state.getValue(VARIANT);
 
-        if (meta == 0)
+        switch (type)
         {
+        case CHALOS_ROCK:
             return 1.5F;
-        }
-        if (meta == 1)
-        {
+        case CHALOS_COBBLESTONE:
             return 2.0F;
-        }
-        if (meta >= 4 && meta <= 8)
-        {
+        case DIREMSIUM_BLOCK:
+        case ZYPTORIUM_BLOCK:
+            return 5.0F;
+        case CHALOS_DUNGEON_BRICK:
+            return 4.0F;
+        default:
             return 3.0F;
         }
-        if (meta == 9 || meta == 10)
-        {
-            return 5.0F;
-        }
-        return 4.0F;
     }
 
     @Override
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion)
     {
-        if (this.getMetaFromState(world.getBlockState(pos)) == 11)
+        if (world.getBlockState(pos).getValue(VARIANT) == BlockType.CHALOS_DUNGEON_BRICK)
         {
             return 40.0F;
         }
@@ -92,7 +90,7 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        if (this.getMetaFromState(state) == 4)
+        if (state.getValue(VARIANT) == BlockType.CHEESE_OF_MILK_ORE)
         {
             return ChalosItems.CHEESE_FOOD;
         }
@@ -102,17 +100,15 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     @Override
     public int damageDropped(IBlockState state)
     {
-        int meta = this.getMetaFromState(state);
-
-        if (meta == 0)
+        if (state.getValue(VARIANT) == BlockType.CHALOS_ROCK)
         {
             return 1;
         }
-        else if (meta == 4)
+        else if (state.getValue(VARIANT) == BlockType.CHEESE_OF_MILK_ORE)
         {
             return 0;
         }
-        return meta;
+        return this.getMetaFromState(state);
     }
 
     @Override
@@ -128,7 +124,7 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     @Override
     public int quantityDropped(IBlockState state, int fortune, Random rand)
     {
-        if (this.getMetaFromState(state) == 4)
+        if (state.getValue(VARIANT) == BlockType.CHEESE_OF_MILK_ORE)
         {
             int j = rand.nextInt(fortune + 2) - 1;
 
@@ -144,7 +140,7 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return this.getMetaFromState(state) == 4 ? MathHelper.getRandomIntegerInRange(new Random(), 3, 7) : 0;
+        return state.getValue(VARIANT) == BlockType.CHEESE_OF_MILK_ORE ? MathHelper.getRandomIntegerInRange(new Random(), 3, 7) : 0;
     }
 
     @Override

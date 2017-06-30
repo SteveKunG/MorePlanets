@@ -62,10 +62,10 @@ public class BlockSnowLayerMP extends BlockBaseMP
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        int i = blockState.getValue(BlockStateHelper.LAYERS).intValue() - 1;
-        AxisAlignedBB axisalignedbb = blockState.getBoundingBox(worldIn, pos);
+        int i = state.getValue(BlockStateHelper.LAYERS).intValue() - 1;
+        AxisAlignedBB axisalignedbb = state.getBoundingBox(world, pos);
         return new AxisAlignedBB(axisalignedbb.minX, axisalignedbb.minY, axisalignedbb.minZ, axisalignedbb.maxX, i * 0.125F, axisalignedbb.maxZ);
     }
 

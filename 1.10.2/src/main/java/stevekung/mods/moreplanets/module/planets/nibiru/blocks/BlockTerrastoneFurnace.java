@@ -104,7 +104,6 @@ public class BlockTerrastoneFurnace extends BlockContainerMP implements ISingleB
 
     @Override
     @SideOnly(Side.CLIENT)
-    @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if (this.isBurning)
@@ -133,6 +132,8 @@ public class BlockTerrastoneFurnace extends BlockContainerMP implements ISingleB
             case SOUTH:
                 world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D, new int[0]);
                 world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D, new int[0]);
+            default:
+                break;
             }
         }
     }

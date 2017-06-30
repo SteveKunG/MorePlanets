@@ -5,7 +5,6 @@ import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -59,14 +58,7 @@ public class BlockDiona extends BlockBasicMP implements IDetectableResource, ITe
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos).getBlock();
-
-        if (block != this)
-        {
-            return 0;
-        }
-
-        int meta = this.getMetaFromState(world.getBlockState(pos));
+        int meta = this.getMetaFromState(state);
 
         if (meta == 0 || meta == 1)
         {

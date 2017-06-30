@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -40,7 +39,7 @@ public class BlockNibiru extends BlockBaseMP implements IBlockVariants
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, this.getMetaFromState(world.getBlockState(pos)));
+        return new ItemStack(this, 1, this.getMetaFromState(state));
     }
 
     @Override
@@ -62,14 +61,7 @@ public class BlockNibiru extends BlockBaseMP implements IBlockVariants
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos).getBlock();
-
-        if (block != this)
-        {
-            return 0;
-        }
-
-        int meta = this.getMetaFromState(world.getBlockState(pos));
+        int meta = this.getMetaFromState(state);
 
         if (meta == 0 || meta >= 3 && meta <= 6)
         {

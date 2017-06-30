@@ -98,11 +98,7 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
     private void activeRedstoneOre(World world, BlockPos pos)
     {
         this.spawnRedstoneParticles(world, pos);
-
-        if (this.getMetaFromState(world.getBlockState(pos)) == 4)
-        {
-            world.setBlockState(pos, this.getStateFromMeta(12), 2);
-        }
+        world.setBlockState(pos, this.getStateFromMeta(12), 2);
     }
 
     private void spawnRedstoneParticles(World world, BlockPos pos)

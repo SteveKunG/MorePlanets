@@ -51,25 +51,23 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        int meta = this.getMetaFromState(state);
-
-        if (meta == 0)
+        if (state.getValue(VARIANT) == BlockType.WARP_PAD)
         {
             return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D / 16.0D, 1.0D);
         }
-        else if (meta == 1)
+        else if (state.getValue(VARIANT) == BlockType.DARK_ENERGY_SOLAR1)
         {
             return new AxisAlignedBB(-0.25D, 0.3D, 0.3D, 0.5D, 0.6D, 0.7D);
         }
-        else if (meta == 2)
+        else if (state.getValue(VARIANT) == BlockType.DARK_ENERGY_SOLAR2)
         {
             return new AxisAlignedBB(0.5D, 0.3D, 0.3D, 1.25D, 0.6D, 0.7D);
         }
-        else if (meta == 3)
+        else if (state.getValue(VARIANT) == BlockType.DARK_ENERGY_SOLAR3)
         {
             return new AxisAlignedBB(0.3D, 0.3D, -0.25D, 0.7D, 0.6D, 0.5D);
         }
-        else if (meta == 4)
+        else if (state.getValue(VARIANT) == BlockType.DARK_ENERGY_SOLAR4)
         {
             return new AxisAlignedBB(0.3D, 0.3D, 0.5D, 0.7D, 0.6D, 1.25D);
         }
@@ -123,9 +121,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     @Override
     public boolean isSealed(World world, BlockPos pos, EnumFacing facing)
     {
-        int meta = this.getMetaFromState(world.getBlockState(pos));
-
-        if (meta == 0)
+        if (world.getBlockState(pos).getValue(VARIANT) == BlockType.WARP_PAD)
         {
             return facing == EnumFacing.DOWN;
         }

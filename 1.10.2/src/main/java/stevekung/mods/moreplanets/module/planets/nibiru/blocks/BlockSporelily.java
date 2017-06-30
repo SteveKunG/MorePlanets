@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityBoat;
@@ -32,7 +33,7 @@ public class BlockSporelily extends BlockBushMP
     {
         if (!(entity instanceof EntityBoat))
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, LILY_PAD_AABB);
+            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, LILY_PAD_AABB);
         }
     }
 

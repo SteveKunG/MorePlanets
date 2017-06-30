@@ -35,6 +35,6 @@ public class BlockDoubleDungeonBrickSlab1 extends BlockHalfDungeonBrickSlab1
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 1, this.getMetaFromState(world.getBlockState(pos)) & 7);
+        return new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 1, this.getMetaFromState(state) & 7);
     }
 }

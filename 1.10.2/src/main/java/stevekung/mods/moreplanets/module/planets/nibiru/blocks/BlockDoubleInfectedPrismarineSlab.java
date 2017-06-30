@@ -34,6 +34,6 @@ public class BlockDoubleInfectedPrismarineSlab extends BlockHalfInfectedPrismari
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(NibiruBlocks.HALF_INFECTED_PRISMARINE_SLAB, 1, this.getMetaFromState(world.getBlockState(pos)) & 7);
+        return new ItemStack(NibiruBlocks.HALF_INFECTED_PRISMARINE_SLAB, 1, this.getMetaFromState(state) & 7);
     }
 }

@@ -108,8 +108,6 @@ public class BlockNibiruGrassPath extends BlockBaseMP implements IBlockVariants
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
     {
-        super.neighborChanged(state, world, pos, block);
-
         if (world.getBlockState(pos.up()).getMaterial().isSolid())
         {
             world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState());

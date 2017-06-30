@@ -58,15 +58,15 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
-        int metadata = this.getMetaFromState(state);
+        int meta = this.getMetaFromState(state);
         int angle = MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
 
-        if (metadata >= 4)
+        if (meta >= 4)
         {
             world.setBlockState(pos, this.getStateFromMeta(4 + change), 3);
         }
-        else if (metadata >= 0)
+        else if (meta >= 0)
         {
             world.setBlockState(pos, this.getStateFromMeta(change), 3);
         }

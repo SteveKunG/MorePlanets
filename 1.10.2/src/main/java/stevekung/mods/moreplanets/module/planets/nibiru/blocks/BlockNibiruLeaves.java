@@ -117,7 +117,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, this.getMetaFromState(world.getBlockState(pos)) & 3);
+        return new ItemStack(this, 1, this.getMetaFromState(state) & 3);
     }
 
     @Override

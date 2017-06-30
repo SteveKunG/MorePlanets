@@ -71,10 +71,9 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
-        int metadata = this.getMetaFromState(state);
         int angle = MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
-        world.setBlockState(pos, this.getStateFromMeta((metadata & 12) + change), 3);
+        world.setBlockState(pos, this.getStateFromMeta((this.getMetaFromState(state) & 12) + change), 3);
 
         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
         {

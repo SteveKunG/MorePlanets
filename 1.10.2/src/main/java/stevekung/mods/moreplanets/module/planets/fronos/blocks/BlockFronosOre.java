@@ -5,7 +5,6 @@ import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -51,7 +50,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if (world.getBlockState(pos).getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE_ACTIVE)
+        if (state.getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE_ACTIVE)
         {
             return (int) (0.625F / 16);
         }
@@ -61,14 +60,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos).getBlock();
-
-        if (block != this)
-        {
-            return 0;
-        }
-
-        int meta = this.getMetaFromState(world.getBlockState(pos));
+        int meta = this.getMetaFromState(state);
 
         if (meta == BlockType.EXTRAILONITE_ORE.ordinal())
         {
@@ -80,11 +72,11 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        if (world.getBlockState(pos).getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE_ACTIVE)
+        if (state.getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE_ACTIVE)
         {
             return new ItemStack(this, 1, BlockType.FRONOS_REDSTONE_ORE.ordinal());
         }
-        return new ItemStack(this, 1, this.getMetaFromState(world.getBlockState(pos)));
+        return new ItemStack(this, 1, this.getMetaFromState(state));
     }
 
     @Override
@@ -234,7 +226,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        if (world.getBlockState(pos).getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE)
+        if (state.getValue(VARIANT) == BlockType.FRONOS_REDSTONE_ORE)
         {
             this.activate(world, pos);
         }

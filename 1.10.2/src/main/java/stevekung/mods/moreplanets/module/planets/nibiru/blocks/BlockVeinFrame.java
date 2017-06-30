@@ -64,11 +64,11 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn)
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity)
     {
         Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BLOCK);
 
-        if (world.getBlockState(pos).getValue(EYE).booleanValue())
+        if (state.getValue(EYE).booleanValue())
         {
             Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_EYE);
         }

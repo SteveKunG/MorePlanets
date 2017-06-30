@@ -39,6 +39,6 @@ public class BlockDoubleWoodenSlab1 extends BlockHalfWoodenSlab1
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 1, this.getMetaFromState(world.getBlockState(pos)) & 7);
+        return new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 1, this.getMetaFromState(state) & 7);
     }
 }

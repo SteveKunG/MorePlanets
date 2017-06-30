@@ -143,7 +143,7 @@ public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, I
                     {
                         for (j = 0; j >= -1; --j)
                         {
-                            if (this.func_181624_a(world, pos, i, j))
+                            if (this.isTwoByTwoOfType(world, pos, i, j))
                             {
                                 obj = new WorldGenInfectedMegaJungle(true, 10, 20);
                                 flag = true;
@@ -197,7 +197,7 @@ public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, I
         }
     }
 
-    private boolean func_181624_a(World world, BlockPos pos, int x, int z)
+    private boolean isTwoByTwoOfType(World world, BlockPos pos, int x, int z)
     {
         return this.isTypeAt(world, pos.add(x, 0, z)) && this.isTypeAt(world, pos.add(x + 1, 0, z)) && this.isTypeAt(world, pos.add(x, 0, z + 1)) && this.isTypeAt(world, pos.add(x + 1, 0, z + 1));
     }
