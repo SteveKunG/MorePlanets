@@ -19,10 +19,6 @@ public class BiomeInfectedSwampland extends BiomeNibiru
     public BiomeInfectedSwampland(BiomeProperties properties)
     {
         super(properties);
-        properties.setTemperature(0.8F);
-        properties.setRainfall(0.9F);
-        properties.setBaseHeight(-0.2F);
-        properties.setHeightVariation(0.1F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();

@@ -18,10 +18,6 @@ public class BiomeInfectedDeadTaiga extends BiomeNibiru
     public BiomeInfectedDeadTaiga(BiomeProperties properties)
     {
         super(properties);
-        properties.setBaseHeight(0.2F);
-        properties.setHeightVariation(0.2F);
-        properties.setTemperature(0.25F);
-        properties.setRainfall(0.8F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();

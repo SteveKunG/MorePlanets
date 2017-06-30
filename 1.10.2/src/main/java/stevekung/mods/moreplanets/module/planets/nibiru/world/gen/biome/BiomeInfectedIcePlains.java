@@ -17,11 +17,6 @@ public class BiomeInfectedIcePlains extends BiomeNibiru
     public BiomeInfectedIcePlains(BiomeProperties properties)
     {
         super(properties);
-        properties.setSnowEnabled();
-        properties.setTemperature(0.0F);
-        properties.setRainfall(0.5F);
-        properties.setBaseHeight(0.125F);
-        properties.setHeightVariation(0.05F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();

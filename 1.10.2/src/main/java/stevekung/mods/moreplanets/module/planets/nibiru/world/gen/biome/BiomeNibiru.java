@@ -55,7 +55,7 @@ public class BiomeNibiru extends BiomeBaseMP
         this.genPlanetTerrain(world, rand, chunkPrimer, chunkX, chunkZ, noise);
     }
 
-    protected void genPlanetTerrain(World world, Random rand, ChunkPrimer chunkPrimerIn, int chunkX, int chunkZ, double noise)
+    protected void genPlanetTerrain(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double noise)
     {
         int i = world.getSeaLevel();
         IBlockState iblockstate = this.topBlock;
@@ -70,11 +70,11 @@ public class BiomeNibiru extends BiomeBaseMP
         {
             if (j1 <= rand.nextInt(5))
             {
-                chunkPrimerIn.setBlockState(i1, j1, l, Blocks.BEDROCK.getDefaultState());
+                chunkPrimer.setBlockState(i1, j1, l, Blocks.BEDROCK.getDefaultState());
             }
             else
             {
-                IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
+                IBlockState iblockstate2 = chunkPrimer.getBlockState(i1, j1, l);
 
                 if (iblockstate2.getMaterial() == Material.AIR)
                 {
@@ -84,7 +84,7 @@ public class BiomeNibiru extends BiomeBaseMP
                 {
                     if (this.stoneBlock != null)
                     {
-                        chunkPrimerIn.setBlockState(i1, j1, l, this.stoneBlock);
+                        chunkPrimer.setBlockState(i1, j1, l, this.stoneBlock);
                     }
                     if (j == -1)
                     {
@@ -115,23 +115,23 @@ public class BiomeNibiru extends BiomeBaseMP
 
                         if (j1 >= i - 1)
                         {
-                            chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
+                            chunkPrimer.setBlockState(i1, j1, l, iblockstate);
                         }
                         else if (j1 < i - 7 - k)
                         {
                             iblockstate = null;
                             iblockstate1 = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
-                            chunkPrimerIn.setBlockState(i1, j1, l, NibiruBlocks.INFECTED_GRAVEL.getDefaultState());
+                            chunkPrimer.setBlockState(i1, j1, l, NibiruBlocks.INFECTED_GRAVEL.getDefaultState());
                         }
                         else
                         {
-                            chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+                            chunkPrimer.setBlockState(i1, j1, l, iblockstate1);
                         }
                     }
                     else if (j > 0)
                     {
                         --j;
-                        chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+                        chunkPrimer.setBlockState(i1, j1, l, iblockstate1);
 
                         if (j == 0 && iblockstate1.getBlock() == NibiruBlocks.INFECTED_SAND)
                         {

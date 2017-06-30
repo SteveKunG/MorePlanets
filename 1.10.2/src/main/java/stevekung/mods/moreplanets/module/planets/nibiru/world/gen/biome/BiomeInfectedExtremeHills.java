@@ -18,10 +18,6 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     public BiomeInfectedExtremeHills(BiomeProperties properties)
     {
         super(properties);
-        properties.setTemperature(0.2F);
-        properties.setRainfall(0.3F);
-        properties.setBaseHeight(1.0F);
-        properties.setHeightVariation(0.5F);
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
     }

@@ -16,7 +16,6 @@ public class BiomeBaseMP extends Biome implements IMobSpawnBiome
     public BiomeBaseMP(BiomeProperties properties)
     {
         super(properties);
-        properties.setRainfall(0.0F);
     }
 
     @Override

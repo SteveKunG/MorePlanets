@@ -17,8 +17,6 @@ public class BiomeInfectedJungle extends BiomeNibiru
     public BiomeInfectedJungle(BiomeProperties properties)
     {
         super(properties);
-        properties.setTemperature(0.95F);
-        properties.setRainfall(0.9F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();

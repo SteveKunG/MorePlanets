@@ -18,11 +18,6 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
     public BiomeInfectedDeadSavanna(BiomeProperties properties)
     {
         super(properties);
-        properties.setRainDisabled();
-        properties.setRainfall(0.0F);
-        properties.setTemperature(1.2F);
-        properties.setBaseHeight(0.125F);
-        properties.setHeightVariation(0.05F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();

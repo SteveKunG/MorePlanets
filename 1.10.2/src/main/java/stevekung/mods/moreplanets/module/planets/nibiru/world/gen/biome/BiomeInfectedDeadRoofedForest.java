@@ -16,8 +16,6 @@ public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
     public BiomeInfectedDeadRoofedForest(BiomeProperties properties)
     {
         super(properties);
-        properties.setTemperature(0.7F);
-        properties.setRainfall(0.8F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();

@@ -17,14 +17,10 @@ public class BiomeInfectedPlains extends BiomeNibiru
     public BiomeInfectedPlains(BiomeProperties properties)
     {
         super(properties);
-        properties.setTemperature(0.8F);
-        properties.setRainfall(0.4F);
-        properties.setBaseHeight(0.125F);
-        properties.setHeightVariation(0.05F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
-        this.getBiomeDecorator().infectedTallGrassPerChunk = 128;
+        this.getBiomeDecorator().infectedTallGrassPerChunk = 10;
         this.getBiomeDecorator().extraTreeChance = 0.05F;
         this.getBiomeDecorator().infectedTreesPerChunk = 0;
         this.getBiomeDecorator().reedsPerChunk = 10;

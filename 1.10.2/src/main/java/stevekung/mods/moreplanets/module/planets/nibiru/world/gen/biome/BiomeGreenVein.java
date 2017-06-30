@@ -20,10 +20,6 @@ public class BiomeGreenVein extends BiomeNibiru
     public BiomeGreenVein(BiomeProperties properties)
     {
         super(properties);
-        properties.setTemperature(0.9F);
-        properties.setRainfall(1.0F);
-        properties.setBaseHeight(0.125F);
-        properties.setHeightVariation(0.05F);
         this.topBlock = NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();

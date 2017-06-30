@@ -7,8 +7,6 @@ public class BiomeInfectedOcean extends BiomeNibiru
     public BiomeInfectedOcean(BiomeProperties properties)
     {
         super(properties);
-        properties.setBaseHeight(-1.0F);
-        properties.setHeightVariation(0.1F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();

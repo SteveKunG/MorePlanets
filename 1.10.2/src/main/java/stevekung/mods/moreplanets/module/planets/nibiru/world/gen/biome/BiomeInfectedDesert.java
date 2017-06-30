@@ -9,11 +9,6 @@ public class BiomeInfectedDesert extends BiomeNibiru
     public BiomeInfectedDesert(BiomeProperties properties)
     {
         super(properties);
-        properties.setRainDisabled();
-        properties.setRainfall(0.0F);
-        properties.setTemperature(2.0F);
-        properties.setBaseHeight(0.125F);
-        properties.setHeightVariation(0.05F);
         this.topBlock = NibiruBlocks.INFECTED_SAND.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_SAND.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
