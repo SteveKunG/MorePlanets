@@ -1,0 +1,85 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "http://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "2.0.6-GC110"
+group = "stevekung.mods.moreplanets"
+archivesBaseName = "More-Planets-All"
+
+sourceCompatibility = targetCompatibility = "1.8"
+
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+	options.encoding = 'UTF-8'
+}
+
+minecraft {
+    version = "1.11.2-13.20.1.2388"
+    runDir = "run"
+    mappings = "snapshot_20161220"
+	makeObfSourceJar = false
+}
+
+repositories {
+	maven {
+		url "http://dvs1.progwml6.com/files/maven"
+	}
+	maven {
+		url "http://chickenbones.net/maven/"
+	}
+}
+
+dependencies {
+	compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+	compile "codechicken:NotEnoughItems:1.11.2-2.3.0.227:deobf"
+	compile "codechicken:CodeChickenLib:1.11.2-3.0.0.274:deobf"
+	runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+	runtime "codechicken:NotEnoughItems:1.11.2-2.3.0.227:deobf"
+	runtime "codechicken:CodeChickenLib:1.11.2-3.0.0.274:deobf"
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
+ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'META-INF/moreplanets_at.cfg']
+
+task buildJar(type: Jar, dependsOn: "rePackAllJar") {
+	outputs.upToDateWhen { false }
+	baseName = "More-Planets-1.11.2"
+
+	from(zipTree(project.ext.coreJar)) {
+		includes.addAll(project.ext.coreFiles)
+	}
+	manifest {
+		attributes.put("FMLAT", "moreplanets_at.cfg")
+		attributes.put("FMLCorePluginContainsFMLMod", "true")
+	}
+}
+
+task rePackAllJar(type: Jar, dependsOn: "copyModFiles") {
+	from 'temporary'
+}
+
+task copyModFiles(type: Copy, dependsOn: "reobfJar") {
+	from(zipTree(project.ext.coreJar))
+	into 'temporary'
+}
