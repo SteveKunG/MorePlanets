@@ -10,6 +10,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
+import stevekung.mods.moreplanets.util.helper.DecorateHelper;
 
 public class BiomeInfectedPlains extends BiomeNibiru
 {
@@ -24,6 +25,7 @@ public class BiomeInfectedPlains extends BiomeNibiru
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 128;
+        this.getBiomeDecorator().extraTreeChance = 0.05F;
         this.getBiomeDecorator().infectedTreesPerChunk = 0;
         this.getBiomeDecorator().reedsPerChunk = 10;
         this.theBiomeDecorator.treesPerChunk = -999;
@@ -44,10 +46,7 @@ public class BiomeInfectedPlains extends BiomeNibiru
 
             for (int i = 0; i < 7; ++i)
             {
-                int j = rand.nextInt(16) + 8;
-                int k = rand.nextInt(16) + 8;
-                int l = rand.nextInt(world.getHeight(pos.add(j, 0, k)).getY() + 32);
-                new WorldGenNibiruDoublePlant(BlockNibiruDoublePlant.BlockType.DOUBLE_INFECTED_GRASS).generate(world, rand, pos.add(j, l, k));
+                new WorldGenNibiruDoublePlant(BlockNibiruDoublePlant.BlockType.DOUBLE_INFECTED_GRASS).generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));
             }
         }
         super.decorate(world, rand, pos);

@@ -9,6 +9,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
+import stevekung.mods.moreplanets.util.helper.DecorateHelper;
 
 public class BiomeInfectedForest extends BiomeNibiru
 {
@@ -20,7 +21,7 @@ public class BiomeInfectedForest extends BiomeNibiru
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
-        this.getBiomeDecorator().infectedTallGrassPerChunk = 24;
+        this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
         this.getBiomeDecorator().infectedTreesPerChunk = 10;
         this.getBiomeDecorator().orangeBushPerChunk = 3;
         this.getBiomeDecorator().reedsPerChunk = 10;
@@ -34,7 +35,7 @@ public class BiomeInfectedForest extends BiomeNibiru
 
         if (rand.nextInt(25) == 0)
         {
-            new WorldGenInfectedVinesDirt().generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(256), rand.nextInt(16) + 8));
+            new WorldGenInfectedVinesDirt().generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));
         }
     }
 

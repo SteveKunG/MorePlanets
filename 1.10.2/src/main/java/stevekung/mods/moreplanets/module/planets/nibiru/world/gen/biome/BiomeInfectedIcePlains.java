@@ -25,10 +25,16 @@ public class BiomeInfectedIcePlains extends BiomeNibiru
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
-        this.getBiomeDecorator().infectedTallGrassPerChunk = 16;
+        this.getBiomeDecorator().infectedTallGrassPerChunk = 1;
         this.getBiomeDecorator().philipyPerChunk = 2;
         this.getBiomeDecorator().pureHurbPerChunk = 2;
         this.getBiomeDecorator().infectedTreesPerChunk = 0;
+    }
+
+    @Override
+    public float getSpawningChance()
+    {
+        return 0.07F;
     }
 
     @Override

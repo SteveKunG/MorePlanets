@@ -13,13 +13,12 @@ public class DecorateHelper
     {
         int x = rand.nextInt(16) + 8;
         int z = rand.nextInt(16) + 8;
-        int y = world.getHeight(pos.add(x, 0, z)).getY() + 32;
+        int y = world.getHeight(pos.add(x, 0, z)).getY() * 2;
 
         if (y > 0)
         {
             int y1 = rand.nextInt(y);
-            BlockPos blockpos1 = pos.add(x, y1, z);
-            worldGen.generate(world, rand, blockpos1);
+            worldGen.generate(world, rand, pos.add(x, y1, z));
         }
     }
 
@@ -29,5 +28,13 @@ public class DecorateHelper
         int z = rand.nextInt(16) + 8;
         BlockPos blockpos = world.getHeight(pos.add(x, 0, z));
         worldGen.generate(world, rand, blockpos);
+    }
+
+    public static BlockPos getSimplePos(World world, BlockPos pos, Random rand)
+    {
+        int x = rand.nextInt(16) + 8;
+        int z = rand.nextInt(16) + 8;
+        int y = world.getHeight(pos.add(x, 0, z)).getY() * 2;
+        return pos.add(x, y, z);
     }
 }

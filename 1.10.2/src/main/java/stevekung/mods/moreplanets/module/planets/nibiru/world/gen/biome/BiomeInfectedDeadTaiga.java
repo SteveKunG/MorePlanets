@@ -5,21 +5,28 @@ import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga1;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
+import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
+import stevekung.mods.moreplanets.util.helper.DecorateHelper;
 
 public class BiomeInfectedDeadTaiga extends BiomeNibiru
 {
     public BiomeInfectedDeadTaiga(BiomeProperties properties)
     {
         super(properties);
+        properties.setBaseHeight(0.2F);
+        properties.setHeightVariation(0.2F);
+        properties.setTemperature(0.25F);
+        properties.setRainfall(0.8F);
         this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         this.getBiomeDecorator().infectedTreesPerChunk = 10;
-        this.getBiomeDecorator().infectedTallGrassPerChunk = 4;
+        this.getBiomeDecorator().infectedTallGrassPerChunk = 7;
     }
 
     @Override
@@ -27,7 +34,14 @@ public class BiomeInfectedDeadTaiga extends BiomeNibiru
     {
         if (rand.nextInt(25) == 0)
         {
-            new WorldGenInfectedVinesDirt().generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(256), rand.nextInt(16) + 8));
+            new WorldGenInfectedVinesDirt().generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));
+        }
+        for (int i = 0; i < 7; ++i)
+        {
+            int x = rand.nextInt(16) + 8;
+            int z = rand.nextInt(16) + 8;
+            int y = rand.nextInt(world.getHeight(pos.add(x, 0, z)).getY() + 32);
+            new WorldGenNibiruDoublePlant(BlockNibiruDoublePlant.BlockType.DOUBLE_INFECTED_FERN).generate(world, rand, pos.add(x, y, z));
         }
         super.decorate(world, rand, pos);
     }

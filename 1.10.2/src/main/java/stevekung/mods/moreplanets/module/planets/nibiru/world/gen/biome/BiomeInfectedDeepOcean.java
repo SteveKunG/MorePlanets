@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
+import java.util.LinkedList;
+
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 
 public class BiomeInfectedDeepOcean extends BiomeNibiru
@@ -20,5 +22,12 @@ public class BiomeInfectedDeepOcean extends BiomeNibiru
     public TempCategory getTempCategory()
     {
         return TempCategory.OCEAN;
+    }
+
+    @Override
+    public void initialiseMobLists(LinkedList<SpawnListEntry> mobInfo)
+    {
+        super.initialiseMobLists(mobInfo);
+        this.spawnableCreatureList.clear();
     }
 }

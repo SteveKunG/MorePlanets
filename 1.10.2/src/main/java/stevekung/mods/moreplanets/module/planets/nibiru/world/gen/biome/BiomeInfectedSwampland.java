@@ -8,9 +8,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenFossils;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedSwampTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
+import stevekung.mods.moreplanets.util.helper.DecorateHelper;
 
 public class BiomeInfectedSwampland extends BiomeNibiru
 {
@@ -25,11 +27,11 @@ public class BiomeInfectedSwampland extends BiomeNibiru
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         this.getBiomeDecorator().infectedTreesPerChunk = 2;
-        this.getBiomeDecorator().infectedTallGrassPerChunk = 12;
+        this.getBiomeDecorator().infectedTallGrassPerChunk = 5;
         this.getBiomeDecorator().waterlilyPerChunk = 4;
         this.getBiomeDecorator().whiteTailPerChunk = 4;
         this.getBiomeDecorator().clayPerChunk = 1;
-        this.getBiomeDecorator().reedsPerChunk = 16;
+        this.getBiomeDecorator().reedsPerChunk = 10;
         this.getBiomeDecorator().sandPerChunk2 = 0;
         this.getBiomeDecorator().sandPerChunk = 0;
     }
@@ -39,7 +41,11 @@ public class BiomeInfectedSwampland extends BiomeNibiru
     {
         if (rand.nextInt(25) == 0)
         {
-            new WorldGenInfectedVinesDirt().generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(256), rand.nextInt(16) + 8));
+            new WorldGenInfectedVinesDirt().generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));
+        }
+        if (rand.nextInt(64) == 0)
+        {
+            new WorldGenFossils().generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));//TODO Reformat structure files
         }
         super.decorate(world, rand, pos);
     }
@@ -51,7 +57,7 @@ public class BiomeInfectedSwampland extends BiomeNibiru
     }
 
     @Override
-    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double stoneNoise)
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double noise)
     {
         double d0 = Biome.GRASS_COLOR_NOISE.getValue(chunkX * 0.25D, chunkZ * 0.25D);
 
@@ -77,6 +83,6 @@ public class BiomeInfectedSwampland extends BiomeNibiru
                 }
             }
         }
-        this.genPlanetTerrain(world, rand, chunkPrimer, chunkX, chunkZ, stoneNoise);
+        this.genPlanetTerrain(world, rand, chunkPrimer, chunkX, chunkZ, noise);
     }
 }

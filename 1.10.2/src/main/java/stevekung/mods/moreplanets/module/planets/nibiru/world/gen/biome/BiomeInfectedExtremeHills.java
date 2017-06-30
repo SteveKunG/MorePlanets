@@ -18,7 +18,6 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     public BiomeInfectedExtremeHills(BiomeProperties properties)
     {
         super(properties);
-        properties.setSnowEnabled();
         properties.setTemperature(0.2F);
         properties.setRainfall(0.3F);
         properties.setBaseHeight(1.0F);
@@ -48,33 +47,28 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     public void decorate(World world, Random rand, BlockPos pos)
     {
         super.decorate(world, rand, pos);
-        int k = 3 + rand.nextInt(6);
-        int l;
-        int i1;
-        int j1;
+        int count = 3 + rand.nextInt(6);
 
-        for (l = 0; l < k; ++l)
+        for (int i = 0; i < count; i++)
         {
-            i1 = rand.nextInt(16);
-            j1 = rand.nextInt(28) + 4;
-            int k1 = rand.nextInt(16);
+            BlockPos blockpos = pos.add(rand.nextInt(16), rand.nextInt(28) + 4, rand.nextInt(16));
 
-            if (world.getBlockState(pos.add(i1, j1, k1)) == NibiruBlocks.NIBIRU_BLOCK.getDefaultState())
+            if (world.getBlockState(blockpos) == NibiruBlocks.NIBIRU_BLOCK.getDefaultState())
             {
-                world.setBlockState(pos.add(i1, j1, k1), NibiruBlocks.NIBIRU_ORE.getStateFromMeta(6), 2);
+                world.setBlockState(blockpos, NibiruBlocks.NIBIRU_ORE.getStateFromMeta(6), 2);
             }
         }
-        for (k = 0; k < 7; ++k)
+        for (int i = 0; i < 7; ++i)
         {
-            l = rand.nextInt(16);
-            i1 = rand.nextInt(64);
-            j1 = rand.nextInt(16);
-            new WorldGenMinableMP(NibiruBlocks.NIBIRU_SILVERFISH_STONE.getDefaultState(), NibiruBlocks.NIBIRU_BLOCK.getDefaultState(), 8).generate(world, rand, pos.add(l, i1, j1));
+            int j1 = rand.nextInt(16);
+            int k1 = rand.nextInt(64);
+            int l1 = rand.nextInt(16);
+            new WorldGenMinableMP(NibiruBlocks.NIBIRU_SILVERFISH_STONE.getDefaultState(), NibiruBlocks.NIBIRU_BLOCK.getDefaultState(), 8).generate(world, rand, pos.add(j1, k1, l1));
         }
-
         for (int i = 0; i < 24; i++)
         {
-            new WorldGenMultalicCrystal().generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(28), rand.nextInt(16)));
+            BlockPos blockpos = pos.add(rand.nextInt(16), rand.nextInt(28) + 4, rand.nextInt(16));
+            new WorldGenMultalicCrystal().generate(world, rand, blockpos);
         }
     }
 
@@ -89,6 +83,6 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
             this.topBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
             this.fillerBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         }
-        this.genPlanetTerrain(world, rand, chunkPrimer, chunkX, chunkZ, noise);
+        super.genTerrainBlocks(world, rand, chunkPrimer, chunkX, chunkZ, noise);
     }
 }
