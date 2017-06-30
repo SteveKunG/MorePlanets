@@ -8,7 +8,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.init.Enchantments;
@@ -27,11 +26,12 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
+import stevekung.mods.moreplanets.util.entity.ai.EntityAIAttackRangedBowMP;
 import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
 
 public class EntityInfectedSkeleton extends EntitySkeleton implements IEntityBreathable, ISpaceMob
 {
-    private EntityAIAttackRangedBow aiArrowAttack = new EntityAIAttackRangedBow(this, 1.0D, 20, 15.0F);
+    private EntityAIAttackRangedBowMP aiArrowAttack = new EntityAIAttackRangedBowMP(this, 1.0D, 20, 15.0F);
     private EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
     {
         @Override
@@ -126,7 +126,7 @@ public class EntityInfectedSkeleton extends EntitySkeleton implements IEntityBre
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distance)
     {
-        EntityInfectedArrow entityarrow = new EntityInfectedArrow(this.worldObj);
+        EntityInfectedArrow entityarrow = new EntityInfectedArrow(this.worldObj, this);
         double d0 = target.posX - this.posX;
         double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - entityarrow.posY;
         double d2 = target.posZ - this.posZ;

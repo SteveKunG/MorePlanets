@@ -6,13 +6,13 @@ import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
+import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,7 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.init.MPBlocks;
 
-public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMultiBlock, IInventory, ISidedInventory
+public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
 {
     public int dimensionID;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -330,12 +330,6 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     }
 
     @Override
-    public boolean hasCustomName()
-    {
-        return false;
-    }
-
-    @Override
     public ITextComponent getDisplayName()
     {
         return new TextComponentTranslation(this.getName());
@@ -366,34 +360,10 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {}
-
-    @Override
-    public void closeInventory(EntityPlayer player) {}
-
-    @Override
     public boolean isItemValidForSlot(int slotID, ItemStack itemStack)
     {
         return slotID == 0 && ItemElectricBase.isElectricItem(itemStack.getItem());
     }
-
-    @Override
-    public int getField(int id)
-    {
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {}
-
-    @Override
-    public int getFieldCount()
-    {
-        return 0;
-    }
-
-    @Override
-    public void clear() {}
 
     public String getGUIStatus()
     {

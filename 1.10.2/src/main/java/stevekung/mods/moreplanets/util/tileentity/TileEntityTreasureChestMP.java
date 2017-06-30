@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import micdoodle8.mods.galacticraft.api.item.IKeyable;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
@@ -38,7 +39,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
 
-public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKeyable, IInteractionObject, ISidedInventory
+public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKeyable, IInteractionObject, ISidedInventory, IInventoryDefaults
 {
     private ItemStack[] chestContents = new ItemStack[27];
     public float lidAngle;
@@ -143,12 +144,6 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     public String getName()
     {
         return GCCoreUtil.translate("container." + this.name + ".treasurechest.name");
-    }
-
-    @Override
-    public boolean hasCustomName()
-    {
-        return false;
     }
 
     @Override
@@ -371,23 +366,10 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     }
 
     @Override
-    public int getField(int id)
-    {
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {}
-
-    @Override
-    public int getFieldCount()
-    {
-        return 0;
-    }
-
-    @Override
     public void clear()
     {
+        this.fillWithLoot((EntityPlayer)null);
+
         for (int i = 0; i < this.chestContents.length; ++i)
         {
             this.chestContents[i] = null;

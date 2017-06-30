@@ -1,5 +1,5 @@
 {
-    "parent": "item/handheld_rod",
+    "parent": "moreplanets:item/handheld_rod",
     "textures": {
         "layer0": "moreplanets:items/space_fishing_rod"
     },

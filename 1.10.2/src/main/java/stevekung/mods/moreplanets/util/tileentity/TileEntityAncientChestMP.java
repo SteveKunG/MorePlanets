@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.util.tileentity;
 import java.util.Iterator;
 import java.util.List;
 
+import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +29,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import stevekung.mods.moreplanets.util.world.capability.DoubleAncientChestItemHandlerMP;
 
-public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot implements ITickable
+public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot implements ITickable, IInventoryDefaults
 {
     private ItemStack[] chestContents = new ItemStack[27];
     public boolean adjacentChestChecked;
@@ -131,12 +132,6 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
     public String getName()
     {
         return GCCoreUtil.translate("container." + this.name + ".ancientchest.name");
-    }
-
-    @Override
-    public boolean hasCustomName()
-    {
-        return false;
     }
 
     @Override
@@ -380,21 +375,6 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
     {
         this.fillWithLoot(player);
         return new ContainerChest(playerInventory, this, player);
-    }
-
-    @Override
-    public int getField(int id)
-    {
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {}
-
-    @Override
-    public int getFieldCount()
-    {
-        return 0;
     }
 
     @Override

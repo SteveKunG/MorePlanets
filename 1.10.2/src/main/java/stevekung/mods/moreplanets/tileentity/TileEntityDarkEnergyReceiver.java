@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
+import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -20,7 +21,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -47,7 +47,7 @@ import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityDarkLightningBolt;
 import stevekung.mods.moreplanets.util.JsonUtils;
 
-public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock, IInventory, ISidedInventory
+public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
 {
     private ItemStack[] containingItems = new ItemStack[1];
     @NetworkedField(targetSide = Side.CLIENT)
@@ -615,12 +615,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     }
 
     @Override
-    public boolean hasCustomName()
-    {
-        return false;
-    }
-
-    @Override
     public ITextComponent getDisplayName()
     {
         return new TextComponentTranslation(this.getName());
@@ -651,34 +645,10 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {}
-
-    @Override
-    public void closeInventory(EntityPlayer player) {}
-
-    @Override
     public boolean isItemValidForSlot(int slotID, ItemStack itemStack)
     {
         return slotID == 0 && ItemElectricBase.isElectricItem(itemStack.getItem());
     }
-
-    @Override
-    public int getField(int id)
-    {
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {}
-
-    @Override
-    public int getFieldCount()
-    {
-        return 0;
-    }
-
-    @Override
-    public void clear() {}
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)

@@ -8,7 +8,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,11 +28,12 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
+import stevekung.mods.moreplanets.util.entity.ai.EntityAIAttackRangedBowMP;
 
 public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreathable
 {
-    public EntityAIAttackRangedBow aiArrowAttack = new EntityAIAttackRangedBow(this, 1.0D, 20, 15.0F);
-    public EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
+    private EntityAIAttackRangedBowMP aiArrowAttack = new EntityAIAttackRangedBowMP(this, 1.0D, 20, 15.0F);
+    private EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
     {
         @Override
         public void resetTask()
@@ -113,7 +113,7 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distance)
     {
-        EntityInfectedCrystallizeArrow entityarrow = new EntityInfectedCrystallizeArrow(this.worldObj);
+        EntityInfectedCrystallizeArrow entityarrow = new EntityInfectedCrystallizeArrow(this.worldObj, this);
         double d0 = target.posX - this.posX;
         double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - entityarrow.posY;
         double d2 = target.posZ - this.posZ;

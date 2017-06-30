@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.util.tileentity;
 
+import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -23,7 +24,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import stevekung.mods.moreplanets.util.world.capability.SpaceDoubleChestItemHandlerMP;
 
-public class TileEntityChestMP extends TileEntityLockableLoot implements ITickable
+public class TileEntityChestMP extends TileEntityLockableLoot implements ITickable, IInventoryDefaults
 {
     private ItemStack[] chestContents = new ItemStack[27];
     public boolean adjacentChestChecked;
@@ -449,21 +450,6 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     {
         this.fillWithLoot(player);
         return new ContainerChest(playerInventory, this, player);
-    }
-
-    @Override
-    public int getField(int id)
-    {
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {}
-
-    @Override
-    public int getFieldCount()
-    {
-        return 0;
     }
 
     @Override
