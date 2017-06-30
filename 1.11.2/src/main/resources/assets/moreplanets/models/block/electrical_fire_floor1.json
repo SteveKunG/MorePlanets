@@ -1,0 +1,7 @@
+{
+    "parent": "block/fire_floor",
+    "textures": {
+        "particle": "moreplanets:blocks/electrical_fire_layer_1",
+        "fire": "moreplanets:blocks/electrical_fire_layer_1"
+    }
+}

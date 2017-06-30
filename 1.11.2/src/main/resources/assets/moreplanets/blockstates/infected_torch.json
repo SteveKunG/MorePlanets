@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "facing=up": { "model": "moreplanets:infected_torch" },
+        "facing=east": { "model": "moreplanets:infected_torch_wall" },
+        "facing=south": { "model": "moreplanets:infected_torch_wall", "y": 90 },
+        "facing=west": { "model": "moreplanets:infected_torch_wall", "y": 180 },
+        "facing=north": { "model": "moreplanets:infected_torch_wall", "y": 270 }
+    }
+}

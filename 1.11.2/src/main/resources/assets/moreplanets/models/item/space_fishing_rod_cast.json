@@ -1,0 +1,6 @@
+{
+    "parent": "moreplanets:item/space_fishing_rod",
+    "textures": {
+        "layer0": "moreplanets:items/space_fishing_rod_cast"
+    }
+}

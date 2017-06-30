@@ -1,0 +1,31 @@
+{
+    "variants": {
+		"variant=diona_surface_rock": [
+            { "model": "moreplanets:diona_surface_rock" },
+            { "model": "moreplanets:diona_surface_rock", "y": 90 },
+            { "model": "moreplanets:diona_surface_rock", "y": 180 },
+            { "model": "moreplanets:diona_surface_rock", "y": 270 }
+        ],
+		"variant=diona_sub_surface_rock": [
+            { "model": "moreplanets:diona_sub_surface_rock" },
+            { "model": "moreplanets:diona_sub_surface_rock", "y": 90 },
+            { "model": "moreplanets:diona_sub_surface_rock", "y": 180 },
+            { "model": "moreplanets:diona_sub_surface_rock", "y": 270 }
+        ],
+		"variant=diona_rock": [
+            { "model": "moreplanets:diona_rock" },
+            { "model": "moreplanets:diona_rock_mirrored" },
+            { "model": "moreplanets:diona_rock", "y": 180 },
+            { "model": "moreplanets:diona_rock_mirrored", "y": 180 }
+        ],
+        "variant=diona_cobblestone": { "model": "moreplanets:diona_cobblestone" },
+        "variant=setrorium_ore": { "model": "moreplanets:setrorium_ore" },
+        "variant=illenium_ore": { "model": "moreplanets:illenium_ore" },
+        "variant=diona_tin_ore": { "model": "moreplanets:diona_tin_ore" },
+        "variant=diona_copper_ore": { "model": "moreplanets:diona_copper_ore" },
+        "variant=diona_aluminum_ore": { "model": "moreplanets:diona_aluminum_ore" },
+        "variant=setrorium_block": { "model": "moreplanets:setrorium_block" },
+		"variant=illenium_block": { "model": "moreplanets:illenium_block" },
+        "variant=diona_dungeon_brick": { "model": "moreplanets:diona_dungeon_brick" }
+    }
+}

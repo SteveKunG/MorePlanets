@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "variant=infected_crystallize_block": { "model": "moreplanets:infected_crystallize_block" },
+        "variant=infected_crystallize_eye_core": { "model": "moreplanets:infected_crystallize_eye_core" },
+        "variant=infected_crystallize_ender_core": { "model": "moreplanets:infected_crystallize_ender_core" }
+    }
+}

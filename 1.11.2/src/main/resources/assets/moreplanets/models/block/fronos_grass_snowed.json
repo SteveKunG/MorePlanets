@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "particle": "moreplanets:blocks/fronos_dirt",
+        "bottom": "moreplanets:blocks/fronos_dirt",
+        "top": "moreplanets:blocks/fronos_grass_top",
+        "side": "moreplanets:blocks/fronos_grass_side_snowed"
+    }
+}

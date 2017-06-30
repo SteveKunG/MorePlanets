@@ -1,0 +1,10 @@
+{
+    "variants": {
+		"normal": [
+            { "model": "moreplanets:infected_sand" },
+            { "model": "moreplanets:infected_sand", "y": 90 },
+            { "model": "moreplanets:infected_sand", "y": 180 },
+            { "model": "moreplanets:infected_sand", "y": 270 }
+        ]
+    }
+}

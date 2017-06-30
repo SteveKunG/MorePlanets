@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "moreplanets:blocks/alien_berry_oak_leaves"
+    }
+}

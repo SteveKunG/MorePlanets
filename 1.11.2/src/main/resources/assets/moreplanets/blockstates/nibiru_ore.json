@@ -1,0 +1,17 @@
+{
+    "variants": {
+        "variant=nibiru_coal_ore": { "model": "moreplanets:nibiru_coal_ore" },
+        "variant=nibiru_iron_ore": { "model": "moreplanets:nibiru_iron_ore" },
+        "variant=nibiru_gold_ore": { "model": "moreplanets:nibiru_gold_ore" },
+        "variant=nibiru_diamond_ore": { "model": "moreplanets:nibiru_diamond_ore" },
+        "variant=nibiru_redstone_ore": { "model": "moreplanets:nibiru_redstone_ore" },
+        "variant=nibiru_lapis_ore": { "model": "moreplanets:nibiru_lapis_ore" },
+        "variant=nibiru_emerald_ore": { "model": "moreplanets:nibiru_emerald_ore" },
+        "variant=nibiru_aluminum_ore": { "model": "moreplanets:nibiru_aluminum_ore" },
+        "variant=nibiru_copper_ore": { "model": "moreplanets:nibiru_copper_ore" },
+        "variant=nibiru_tin_ore": { "model": "moreplanets:nibiru_tin_ore" },
+		"variant=nibiru_silicon_ore": { "model": "moreplanets:nibiru_silicon_ore" },
+        "variant=inferumite_crystal_ore": { "model": "moreplanets:inferumite_crystal_ore" },
+		"variant=nibiru_redstone_ore_active": { "model": "moreplanets:nibiru_redstone_ore" }
+    }
+}

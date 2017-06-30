@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "moreplanets:blocks/diona_sub_surface_rock"
+    }
+}

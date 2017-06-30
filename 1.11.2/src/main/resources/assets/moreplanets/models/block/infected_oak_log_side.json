@@ -1,0 +1,7 @@
+{
+    "parent": "block/column_side",
+    "textures": {
+        "end": "moreplanets:blocks/infected_oak_log_top",
+        "side": "moreplanets:blocks/infected_oak_log_side"
+    }
+}

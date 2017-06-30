@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "side": "moreplanets:blocks/terrashroom_stem",
+        "end": "moreplanets:blocks/terrashroom_inside"
+    }
+}

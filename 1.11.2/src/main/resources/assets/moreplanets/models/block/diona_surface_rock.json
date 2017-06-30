@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "moreplanets:blocks/diona_surface_rock",
+        "down": "moreplanets:blocks/diona_sub_surface_rock",
+        "up": "moreplanets:blocks/diona_surface_rock",
+        "north": "moreplanets:blocks/diona_surface_rock_side",
+        "east": "moreplanets:blocks/diona_surface_rock_side",
+        "south": "moreplanets:blocks/diona_surface_rock_side",
+        "west": "moreplanets:blocks/diona_surface_rock_side"
+    }
+}

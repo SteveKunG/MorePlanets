@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "moreplanets:items/capsule",
+        "layer1": "moreplanets:items/capsule_overlay"
+    }
+}

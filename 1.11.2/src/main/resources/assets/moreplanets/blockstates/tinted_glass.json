@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "color=black": { "model": "moreplanets:black_tinted_glass" },
+		"color=blue": { "model": "moreplanets:blue_tinted_glass" },
+		"color=brown": { "model": "moreplanets:brown_tinted_glass" },
+		"color=cyan": { "model": "moreplanets:cyan_tinted_glass" },
+		"color=gray": { "model": "moreplanets:gray_tinted_glass" },
+		"color=green": { "model": "moreplanets:green_tinted_glass" },
+	    "color=light_blue": { "model": "moreplanets:light_blue_tinted_glass" },
+		"color=lime": { "model": "moreplanets:lime_tinted_glass" },
+		"color=magenta": { "model": "moreplanets:magenta_tinted_glass" },
+		"color=orange": { "model": "moreplanets:orange_tinted_glass" },
+		"color=pink": { "model": "moreplanets:pink_tinted_glass" },
+		"color=purple": { "model": "moreplanets:purple_tinted_glass" },
+		"color=red": { "model": "moreplanets:red_tinted_glass" },
+		"color=silver": { "model": "moreplanets:silver_tinted_glass" },
+		"color=white": { "model": "moreplanets:white_tinted_glass" },
+		"color=yellow": { "model": "moreplanets:yellow_tinted_glass" }
+    }
+}

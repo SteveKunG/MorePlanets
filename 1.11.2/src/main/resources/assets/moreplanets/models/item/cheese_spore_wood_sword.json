@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "moreplanets:items/cheese_spore_wood_sword"
+    }
+}

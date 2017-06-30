@@ -1,0 +1,14 @@
+{
+    "parent": "moreplanets:item/handheld_rod",
+    "textures": {
+        "layer0": "moreplanets:items/space_fishing_rod"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "cast": 1
+            },
+            "model": "moreplanets:item/space_fishing_rod_cast"
+        }
+    ]
+}

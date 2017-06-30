@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":    { "model": "moreplanets:cheese_spore_stem" },
+        "axis=z":     { "model": "moreplanets:cheese_spore_stem_side" },
+        "axis=x":     { "model": "moreplanets:cheese_spore_stem_side", "y": 90 },
+        "axis=none":   { "model": "moreplanets:cheese_spore_stem_bark" }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "variants": {
+		"variant=cheese_dirt": [
+            { "model": "moreplanets:cheese_dirt" },
+            { "model": "moreplanets:cheese_dirt", "y": 90 },
+            { "model": "moreplanets:cheese_dirt", "y": 180 },
+            { "model": "moreplanets:cheese_dirt", "y": 270 }
+        ],
+        "variant=cheese_coarse_dirt": { "model": "moreplanets:cheese_coarse_dirt" }
+    }
+}

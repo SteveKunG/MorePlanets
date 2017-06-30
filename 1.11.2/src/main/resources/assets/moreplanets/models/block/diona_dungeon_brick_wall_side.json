@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_side",
+    "textures": {
+        "wall": "moreplanets:blocks/diona_dungeon_brick"
+    }
+}

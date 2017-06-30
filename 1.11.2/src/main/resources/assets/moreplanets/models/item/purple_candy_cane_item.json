@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "moreplanets:items/purple_candy_cane"
+    }
+}

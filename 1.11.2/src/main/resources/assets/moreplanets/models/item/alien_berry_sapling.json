@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "moreplanets:blocks/alien_berry_oak_sapling"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/farmland",
+    "textures": {
+        "particle": "moreplanets:blocks/fronos_dirt",
+        "dirt": "moreplanets:blocks/fronos_dirt",
+        "top": "moreplanets:blocks/fronos_farmland_wet"
+    }
+}

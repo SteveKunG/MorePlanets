@@ -1,0 +1,7 @@
+{
+    "parent": "moreplanets:block/fluid_block",
+    "textures": {
+        "top": "moreplanets:blocks/nuclear_waste_still",
+        "side": "moreplanets:blocks/nuclear_waste_flowing"
+    }
+}

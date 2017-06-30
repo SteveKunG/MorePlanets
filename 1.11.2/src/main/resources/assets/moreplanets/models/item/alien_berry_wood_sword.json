@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "moreplanets:items/alien_berry_wood_sword"
+    }
+}
