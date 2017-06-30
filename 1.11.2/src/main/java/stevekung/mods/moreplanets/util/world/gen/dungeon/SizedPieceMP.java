@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.util.world.gen.dungeon;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 
 public abstract class SizedPieceMP extends DirectionalPieceMP
 {
@@ -29,9 +30,9 @@ public abstract class SizedPieceMP extends DirectionalPieceMP
     }
 
     @Override
-    protected void readStructureFromNBT(NBTTagCompound tagCompound)
+    protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager manager)
     {
-        super.readStructureFromNBT(tagCompound);
+        super.readStructureFromNBT(tagCompound, manager);
         this.sizeX = tagCompound.getInteger("SizeX");
         this.sizeY = tagCompound.getInteger("SizeY");
         this.sizeZ = tagCompound.getInteger("SizeZ");

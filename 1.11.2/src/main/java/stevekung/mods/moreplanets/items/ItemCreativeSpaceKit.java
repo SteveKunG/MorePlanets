@@ -33,7 +33,7 @@ public class ItemCreativeSpaceKit extends ItemBaseMP
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         if (player instanceof EntityPlayerMP)
         {
@@ -50,7 +50,7 @@ public class ItemCreativeSpaceKit extends ItemBaseMP
             stats.getExtendedInventory().setInventorySlotContents(9, new ItemStack(VenusItems.thermalPaddingTier2, 1, 3)); //Thermal Armor Tier 2
             stats.getExtendedInventory().setInventorySlotContents(10, new ItemStack(VenusItems.basicItem, 1, 0)); //Shield Controller
         }
-        return new ActionResult(EnumActionResult.PASS, itemStack);
+        return new ActionResult(EnumActionResult.PASS, player.getHeldItem(hand));
     }
 
     @Override

@@ -164,7 +164,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
     public void growStem(World world, BlockPos pos, IBlockState state)
     {
-        int i = state.getValue(AGE).intValue() + MathHelper.getRandomIntegerInRange(world.rand, 2, 5);
+        int i = state.getValue(AGE).intValue() + MathHelper.getInt(world.rand, 2, 5);
         world.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(Math.min(7, i))), 2);
     }
 

@@ -32,12 +32,12 @@ public class TileEntityAlienDefenderBeacon extends TileEntityAdvanced
         }
         if (this.prepareBossSpawn && !this.creativeSpawn)
         {
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
-                EntityCreeper creeper = new EntityCreeper(this.worldObj);
+                EntityCreeper creeper = new EntityCreeper(this.world);
                 creeper.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D, 0.0F, 0.0F);
-                this.worldObj.spawnEntityInWorld(creeper);
-                this.worldObj.setBlockToAir(this.getPos());
+                this.world.spawnEntity(creeper);
+                this.world.setBlockToAir(this.getPos());
             }
         }
     }

@@ -31,7 +31,7 @@ public class RenderCheeseFloater extends RenderLiving<EntityCheeseFloater>
             float time = entity.ticksExisted + partialTicks;
             float f1 = MathHelper.sin(time / 12) / 50.0F + 0.5F;
             f1 = f1 * f1 + f1;
-            EntityItem item = new EntityItem(entity.worldObj, 0D, 0D, 0D, new ItemStack(ChalosBlocks.CHEESE_SLIME_BLOCK));
+            EntityItem item = new EntityItem(entity.world, 0D, 0D, 0D, new ItemStack(ChalosBlocks.CHEESE_SLIME_BLOCK));
             GlStateManager.pushMatrix();
             item.hoverStart = 0.0F;
             GlStateManager.translate((float)x, (float)y + 1.655F - f1, (float)z);

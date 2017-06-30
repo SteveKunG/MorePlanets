@@ -21,6 +21,7 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagFloat;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -197,7 +198,7 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, IS
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         list.add(ElectricItemHelper.getWithCharge(new ItemStack(item), this.getMaxElectricityStored(new ItemStack(item))));
     }

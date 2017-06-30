@@ -57,7 +57,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         double d0 = indirect.posX - shooter.posX;
         double d1 = indirect.getEntityBoundingBox().minY + indirect.height / 3.0F - this.posY;
         double d2 = indirect.posZ - shooter.posZ;
-        double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
+        double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
 
         if (d3 >= 1.0E-7D)
         {
@@ -96,7 +96,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     @Override
     public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy)
     {
-        float f = MathHelper.sqrt_double(x * x + y * y + z * z);
+        float f = MathHelper.sqrt(x * x + y * y + z * z);
         x = x / f;
         y = y / f;
         z = z / f;
@@ -109,7 +109,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         this.motionX = x;
         this.motionY = y;
         this.motionZ = z;
-        float f1 = MathHelper.sqrt_double(x * x + z * z);
+        float f1 = MathHelper.sqrt(x * x + z * z);
         this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(x, z) * 180.0D / Math.PI);
         this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(y, f1) * 180.0D / Math.PI);
     }
@@ -132,7 +132,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
-            float f = MathHelper.sqrt_double(x * x + z * z);
+            float f = MathHelper.sqrt(x * x + z * z);
             this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(x, z) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(y, f) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch;
@@ -148,7 +148,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
-            float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(this.motionY, f) * 180.0D / Math.PI);
         }
@@ -156,7 +156,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         ++this.ticksInAir;
         Vec3d vec31 = new Vec3d(this.posX, this.posY, this.posZ);
         Vec3d vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3, false, true, false);
+        RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec31, vec3, false, true, false);
         vec31 = new Vec3d(this.posX, this.posY, this.posZ);
         vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -166,7 +166,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         }
 
         Entity entity = null;
-        List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
         double d0 = 0.0D;
 
         for (int i = 0; i < list.size(); ++i)
@@ -216,8 +216,8 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         {
             if (movingobjectposition.entityHit != null)
             {
-                float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                int l = MathHelper.ceiling_double_int(f2 * this.damage);
+                float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                int l = MathHelper.ceil(f2 * this.damage);
 
                 DamageSource damagesource;
 
@@ -262,7 +262,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
                 this.motionX = (float)(movingobjectposition.hitVec.xCoord - this.posX);
                 this.motionY = (float)(movingobjectposition.hitVec.yCoord - this.posY);
                 this.motionZ = (float)(movingobjectposition.hitVec.zCoord - this.posZ);
-                float f5 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                float f5 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                 this.posX -= this.motionX / f5 * 0.05000000074505806D;
                 this.posY -= this.motionY / f5 * 0.05000000074505806D;
                 this.posZ -= this.motionZ / f5 * 0.05000000074505806D;
@@ -273,7 +273,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         this.posX += this.motionX;
         this.posY += this.motionY;
         this.posZ += this.motionZ;
-        float f3 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        float f3 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
         this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
         for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, f3) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {}
@@ -299,8 +299,8 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         {
             for (int i = 0; i < 4; ++i)
             {
-                this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
-                this.worldObj.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 0.25F, 0.9F);
+                this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
+                this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 0.25F, 0.9F);
             }
             this.setDead();
         }
@@ -357,7 +357,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     @Override
     public void readSpawnData(ByteBuf buffer)
     {
-        Entity shooter = this.worldObj.getEntityByID(buffer.readInt());
+        Entity shooter = this.world.getEntityByID(buffer.readInt());
 
         if (shooter instanceof EntityLivingBase)
         {

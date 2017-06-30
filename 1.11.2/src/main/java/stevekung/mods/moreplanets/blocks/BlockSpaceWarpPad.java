@@ -75,7 +75,7 @@ public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSeal
     {
         if (!(GCCoreUtil.getDimensionID(world) == 0 || world.provider instanceof IGalacticraftWorldProvider))
         {
-            FMLClientHandler.instance().getClientPlayerEntity().addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.place_only_space.message")).setStyle(new JsonUtils().red()));
+            FMLClientHandler.instance().getClientPlayerEntity().sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.place_only_space.message")).setStyle(new JsonUtils().red()));
             return false;
         }
         if (!this.checkAxis(world, pos, EnumFacing.EAST) || !this.checkAxis(world, pos, EnumFacing.WEST) || !this.checkAxis(world, pos, EnumFacing.NORTH) || !this.checkAxis(world, pos, EnumFacing.SOUTH))

@@ -45,7 +45,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
 
     private void drawCrystal(TileEntityMultalicCrystal tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size)
     {
-        float shade = MathHelper.sin((Minecraft.getMinecraft().thePlayer.ticksExisted + rand.nextInt(1)) / (8.0F + rand.nextFloat())) * 0.2F + 1.0F;
+        float shade = MathHelper.sin((Minecraft.getMinecraft().player.ticksExisted + rand.nextInt(1)) / (8.0F + rand.nextFloat())) * 0.2F + 1.0F;
         Color c = new Color(color);
         float r = c.getRed() / 200.0F;
         float g = c.getGreen() / 200.0F;

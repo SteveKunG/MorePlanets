@@ -25,8 +25,8 @@ public class FakeAlienBeamRenderer
         GlStateManager.depthMask(true);
         GlStateManager.blendFunc(770, 1);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
-        double d0 = (double)Minecraft.getMinecraft().theWorld.getTotalWorldTime() + (double)partialTicks;
-        double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor_double(-d0 * 0.1D));
+        double d0 = (double)Minecraft.getMinecraft().world.getTotalWorldTime() + (double)partialTicks;
+        double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor(-d0 * 0.1D));
         float red = 0.4F;
         float green = 0.6F;
         float blue = 1.0F;

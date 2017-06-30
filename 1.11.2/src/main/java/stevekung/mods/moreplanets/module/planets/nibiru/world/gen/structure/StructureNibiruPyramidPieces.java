@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
@@ -78,7 +79,7 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
     }
 
     @Override
-    protected void readStructureFromNBT(NBTTagCompound nbt)
+    protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
     {
         this.scatteredFeatureSizeX = nbt.getInteger("Width");
         this.scatteredFeatureSizeY = nbt.getInteger("Height");
@@ -147,9 +148,9 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.hasPlacedChest[0] = nbt.getBoolean("hasPlacedChest0");
             this.hasPlacedChest[1] = nbt.getBoolean("hasPlacedChest1");
             this.hasPlacedChest[2] = nbt.getBoolean("hasPlacedChest2");

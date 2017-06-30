@@ -134,7 +134,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         {
             this.motionY *= 0.6D;
         }
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             if (this.hasTargetedEntity())
             {
@@ -223,7 +223,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         {
             return null;
         }
-        else if (this.worldObj.isRemote)
+        else if (this.world.isRemote)
         {
             if (this.targetedEntity != null)
             {
@@ -231,7 +231,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
             }
             else
             {
-                Entity entity = this.worldObj.getEntityByID(this.dataManager.get(TARGET_ENTITY));
+                Entity entity = this.world.getEntityByID(this.dataManager.get(TARGET_ENTITY));
 
                 if (entity instanceof EntityLivingBase)
                 {
@@ -314,7 +314,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                 {
                     float f = 1.0F;
 
-                    if (this.entity.worldObj.getDifficulty() == EnumDifficulty.HARD)
+                    if (this.entity.world.getDifficulty() == EnumDifficulty.HARD)
                     {
                         f += 2.0F;
                     }
@@ -364,7 +364,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                 if (random.nextInt(1000) == 0)
                 {
                     BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
-                    IBlockState iblockstate = this.entity.worldObj.getBlockState(blockpos.down());
+                    IBlockState iblockstate = this.entity.world.getBlockState(blockpos.down());
 
                     if (iblockstate == DionaBlocks.DIONA_BLOCK.getStateFromMeta(0))
                     {
@@ -392,7 +392,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
             }
             else
             {
-                World world = this.entity.worldObj;
+                World world = this.entity.world;
                 BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
                 IBlockState iblockstate = world.getBlockState(blockpos.down());
 

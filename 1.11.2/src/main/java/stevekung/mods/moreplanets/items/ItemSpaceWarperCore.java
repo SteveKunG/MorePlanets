@@ -32,11 +32,12 @@ public class ItemSpaceWarperCore extends ItemBaseMP
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         JsonUtils json = new JsonUtils();
+        ItemStack itemStack = player.getHeldItem(hand);
 
-        if (!player.worldObj.isRemote)
+        if (!player.world.isRemote)
         {
             if (player.isSneaking())
             {
@@ -46,28 +47,28 @@ public class ItemSpaceWarperCore extends ItemBaseMP
                     {
                         itemStack.setTagCompound(new NBTTagCompound());
                     }
-                    if (world.getBlockState(new BlockPos(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ))) == MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState())
+                    if (world.getBlockState(new BlockPos(MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ))) == MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState())
                     {
                         itemStack.getTagCompound().setInteger("DimensionID", GCCoreUtil.getDimensionID(world));
-                        itemStack.getTagCompound().setInteger("X", MathHelper.floor_double(player.posX));
-                        itemStack.getTagCompound().setInteger("Y", MathHelper.floor_double(player.posY));
-                        itemStack.getTagCompound().setInteger("Z", MathHelper.floor_double(player.posZ));
+                        itemStack.getTagCompound().setInteger("X", MathHelper.floor(player.posX));
+                        itemStack.getTagCompound().setInteger("Y", MathHelper.floor(player.posY));
+                        itemStack.getTagCompound().setInteger("Z", MathHelper.floor(player.posZ));
                         itemStack.getTagCompound().setBoolean("Checked", true);
-                        player.addChatMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add.message")));
+                        player.sendMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add.message")));
                         return new ActionResult(EnumActionResult.SUCCESS, itemStack);
                     }
-                    else if (world.getBlockState(new BlockPos(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ))) == MPBlocks.DUMMY_BLOCK.getDefaultState())
+                    else if (world.getBlockState(new BlockPos(MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ))) == MPBlocks.DUMMY_BLOCK.getDefaultState())
                     {
-                        player.addChatMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add_fail1.message")).setStyle(json.red()));
+                        player.sendMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add_fail1.message")).setStyle(json.red()));
                     }
                     else
                     {
-                        player.addChatMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add_fail0.message")).setStyle(json.red()));
+                        player.sendMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add_fail0.message")).setStyle(json.red()));
                     }
                 }
                 else
                 {
-                    player.addChatMessage(json.text(GCCoreUtil.translate("gui.space_dimension_only.message")).setStyle(json.red()));
+                    player.sendMessage(json.text(GCCoreUtil.translate("gui.space_dimension_only.message")).setStyle(json.red()));
                 }
             }
         }
@@ -95,7 +96,7 @@ public class ItemSpaceWarperCore extends ItemBaseMP
     @Override
     public boolean onEntityItemUpdate(EntityItem item)
     {
-        if (item.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(item.posX), MathHelper.floor_double(item.posY), MathHelper.floor_double(item.posZ))).getMaterial() == Material.WATER)
+        if (item.world.getBlockState(new BlockPos(MathHelper.floor(item.posX), MathHelper.floor(item.posY), MathHelper.floor(item.posZ))).getMaterial() == Material.WATER)
         {
             if (item.ticksExisted % 20 == 0)
             {

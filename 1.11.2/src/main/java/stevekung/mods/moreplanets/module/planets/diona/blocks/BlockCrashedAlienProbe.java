@@ -45,7 +45,7 @@ public class BlockCrashedAlienProbe extends BlockTileMP implements ISingleBlockR
                 EntityAlienMiner miner = new EntityAlienMiner(world);
                 miner.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, world.rand.nextFloat() * 360.0F, 0.0F);
                 miner.setHealth(5.0F + world.rand.nextInt(5));
-                world.spawnEntityInWorld(miner);
+                world.spawnEntity(miner);
             }
         }
     }
@@ -57,7 +57,7 @@ public class BlockCrashedAlienProbe extends BlockTileMP implements ISingleBlockR
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
         return true;

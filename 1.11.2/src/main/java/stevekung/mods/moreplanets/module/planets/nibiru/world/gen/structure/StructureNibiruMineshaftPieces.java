@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.entity.EntitySpaceMinecartChest;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -76,7 +77,7 @@ public class StructureNibiruMineshaftPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
             this.hasRails = nbt.getBoolean("hr");
             this.hasSpiders = nbt.getBoolean("sc");
@@ -204,7 +205,7 @@ public class StructureNibiruMineshaftPieces
                 entityminecartchest.setLootTable(loot, rand.nextLong());
                 entityminecartchest.setDisplayTile(NibiruBlocks.INFECTED_CHEST.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, EnumFacing.NORTH));
                 entityminecartchest.setDisplayTileOffset(8);
-                world.spawnEntityInWorld(entityminecartchest);
+                world.spawnEntity(entityminecartchest);
                 return true;
             }
             else
@@ -225,11 +226,11 @@ public class StructureNibiruMineshaftPieces
                 int i1 = this.sectionCount * 5 - 1;
                 IBlockState iblockstate = this.getPlanks();
                 this.fillWithBlocks(world, box, 0, 0, 0, 2, 1, i1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-                this.func_189914_a(world, box, rand, 0.8F, 0, 2, 0, 2, 2, i1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false, 0);
+                this.generateMaybeBox(world, box, rand, 0.8F, 0, 2, 0, 2, 2, i1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false, 0);
 
                 if (this.hasSpiders)
                 {
-                    this.func_189914_a(world, box, rand, 0.6F, 0, 0, 0, 2, 1, i1, Blocks.WEB.getDefaultState(), Blocks.AIR.getDefaultState(), false, 8);
+                    this.generateMaybeBox(world, box, rand, 0.6F, 0, 0, 0, 2, 1, i1, Blocks.WEB.getDefaultState(), Blocks.AIR.getDefaultState(), false, 8);
                 }
 
                 for (int j1 = 0; j1 < this.sectionCount; ++j1)
@@ -257,7 +258,7 @@ public class StructureNibiruMineshaftPieces
                         int k2 = this.getZWithOffset(1, i2);
                         BlockPos blockpos = new BlockPos(j2, l1, k2);
 
-                        if (box.isVecInside(blockpos) && this.func_189916_b(world, 1, 0, i2, box) < 8)
+                        if (box.isVecInside(blockpos) && this.getSkyBrightness(world, 1, 0, i2, box) < 8)
                         {
                             this.spawnerPlaced = true;
                             world.setBlockState(blockpos, Blocks.MOB_SPAWNER.getDefaultState(), 2);
@@ -265,7 +266,7 @@ public class StructureNibiruMineshaftPieces
 
                             if (tileentity instanceof TileEntityMobSpawner)
                             {
-                                ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityName("moreplanets.infected_cave_spider");
+                                ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(new ResourceLocation("moreplanets:infected_cave_spider"));
                             }
                         }
                     }
@@ -277,7 +278,7 @@ public class StructureNibiruMineshaftPieces
                     {
                         IBlockState iblockstate3 = this.getBlockStateFromPos(world, l2, -1, i3, box);
 
-                        if (iblockstate3.getMaterial() == Material.AIR && this.func_189916_b(world, l2, -1, i3, box) < 8)
+                        if (iblockstate3.getMaterial() == Material.AIR && this.getSkyBrightness(world, l2, -1, i3, box) < 8)
                         {
                             this.setBlockState(world, iblockstate, l2, -1, i3, box);
                         }
@@ -294,7 +295,7 @@ public class StructureNibiruMineshaftPieces
 
                         if (iblockstate2.getMaterial() != Material.AIR && iblockstate2.isFullBlock())
                         {
-                            float f = this.func_189916_b(world, 1, 0, j3, box) > 8 ? 0.9F : 0.7F;
+                            float f = this.getSkyBrightness(world, 1, 0, j3, box) > 8 ? 0.9F : 0.7F;
                             this.randomlyPlaceBlock(world, box, rand, f, 1, 0, j3, iblockstate1);
                         }
                     }
@@ -329,7 +330,7 @@ public class StructureNibiruMineshaftPieces
 
         private void placeCobWeb(World world, StructureBoundingBox box, Random rand, float chance, int x, int y, int z)
         {
-            if (this.func_189916_b(world, x, y, z, box) < 8)
+            if (this.getSkyBrightness(world, x, y, z, box) < 8)
             {
                 this.randomlyPlaceBlock(world, box, rand, chance, x, y, z, Blocks.WEB.getDefaultState());
             }
@@ -351,7 +352,7 @@ public class StructureNibiruMineshaftPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
             this.isMultipleFloors = nbt.getBoolean("tf");
             this.corridorDirection = EnumFacing.getHorizontal(nbt.getInteger("D"));
@@ -449,7 +450,7 @@ public class StructureNibiruMineshaftPieces
                 {
                     for (int j = this.boundingBox.minZ; j <= this.boundingBox.maxZ; ++j)
                     {
-                        if (this.getBlockStateFromPos(world, i, this.boundingBox.minY - 1, j, box).getMaterial() == Material.AIR && this.func_189916_b(world, i, this.boundingBox.minY - 1, j, box) < 8)
+                        if (this.getBlockStateFromPos(world, i, this.boundingBox.minY - 1, j, box).getMaterial() == Material.AIR && this.getSkyBrightness(world, i, this.boundingBox.minY - 1, j, box) < 8)
                         {
                             this.setBlockState(world, iblockstate, i, this.boundingBox.minY - 1, j, box);
                         }
@@ -481,7 +482,7 @@ public class StructureNibiruMineshaftPieces
         protected void writeStructureToNBT(NBTTagCompound nbt) {}
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt) {}
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager) {}
 
         protected IBlockState getPlanks()
         {
@@ -802,7 +803,7 @@ public class StructureNibiruMineshaftPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
             NBTTagList nbttaglist = nbt.getTagList("Entrances", 11);
 

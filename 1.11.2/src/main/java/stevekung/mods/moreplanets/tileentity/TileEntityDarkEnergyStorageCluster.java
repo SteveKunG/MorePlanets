@@ -50,7 +50,7 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
     {
         float energy = this.storage.getEnergyStoredGC();
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.lastEnergy - energy > this.storage.getMaxExtract() - 1)
             {
@@ -64,9 +64,9 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
 
         if (this.scaledEnergyLevel != this.lastScaledEnergyLevel)
         {
-            this.worldObj.notifyLightSet(this.getPos());
+            this.world.notifyLightSet(this.getPos());
         }
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             this.recharge(this.containingItems[0]);
             this.discharge(this.containingItems[1]);
@@ -199,7 +199,7 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
+        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -279,7 +279,7 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
     @Override
     public EnumFacing getFront()
     {
-        return this.worldObj.getBlockState(this.getPos()).getValue(BlockTieredEnergyStorage.FACING);
+        return this.world.getBlockState(this.getPos()).getValue(BlockTieredEnergyStorage.FACING);
     }
 
     @Override

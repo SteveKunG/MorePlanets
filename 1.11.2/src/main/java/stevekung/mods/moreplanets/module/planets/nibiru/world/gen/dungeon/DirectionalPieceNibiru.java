@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
 
 public abstract class DirectionalPieceNibiru extends PieceNibiru
@@ -37,9 +38,9 @@ public abstract class DirectionalPieceNibiru extends PieceNibiru
     }
 
     @Override
-    protected void readStructureFromNBT(NBTTagCompound tagCompound)
+    protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager manager)
     {
-        super.readStructureFromNBT(tagCompound);
+        super.readStructureFromNBT(tagCompound, manager);
 
         if (tagCompound.hasKey("Direction"))
         {

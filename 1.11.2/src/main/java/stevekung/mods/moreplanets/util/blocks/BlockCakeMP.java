@@ -62,7 +62,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float x, float y, float z)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float x, float y, float z)
     {
         this.eatCake(world, pos, state, player);
         return true;
@@ -105,7 +105,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         if (!this.canBlockStay(world, pos))
         {

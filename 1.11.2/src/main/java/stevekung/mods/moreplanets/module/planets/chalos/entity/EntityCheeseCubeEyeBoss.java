@@ -14,6 +14,7 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
@@ -124,17 +125,17 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             float f = (this.rand.nextFloat() - 0.5F) * 1.5F;
             float f1 = (this.rand.nextFloat() - 0.5F) * 2.0F;
             float f2 = (this.rand.nextFloat() - 0.5F) * 1.5F;
-            this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + f, this.posY + 2.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D);
+            this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + f, this.posY + 2.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D);
         }
 
         int i;
         int j;
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.deathTicks >= 180 && this.deathTicks % 5 == 0)
             {
-                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_EXPLODE, GCCoreUtil.getDimensionID(this.worldObj), new Object[] { }), new TargetPoint(GCCoreUtil.getDimensionID(this.worldObj), this.posX, this.posY, this.posZ, 40.0D));
+                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_EXPLODE, GCCoreUtil.getDimensionID(this.world), new Object[] { }), new TargetPoint(GCCoreUtil.getDimensionID(this.world), this.posX, this.posY, this.posZ, 40.0D));
             }
             if (this.deathTicks > 150 && this.deathTicks % 5 == 0)
             {
@@ -144,19 +145,19 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
                 {
                     j = EntityXPOrb.getXPSplit(i);
                     i -= j;
-                    this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                    this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
                 }
             }
 
             if (this.deathTicks == 40)
             {
-                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_BOSS_DEATH, GCCoreUtil.getDimensionID(this.worldObj), new Object[] { this.getSoundPitch() - 0.1F }), new TargetPoint(GCCoreUtil.getDimensionID(this.worldObj), this.posX, this.posY, this.posZ, 40.0D));
+                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_BOSS_DEATH, GCCoreUtil.getDimensionID(this.world), new Object[] { this.getSoundPitch() - 0.1F }), new TargetPoint(GCCoreUtil.getDimensionID(this.world), this.posX, this.posY, this.posZ, 40.0D));
             }
         }
 
-        this.moveEntity(0.0D, -0.10000000149011612D, 0.0D);
+        this.move(MoverType.SELF, 0.0D, -0.10000000149011612D, 0.0D);
 
-        if (this.deathTicks == 200 && !this.worldObj.isRemote)
+        if (this.deathTicks == 200 && !this.world.isRemote)
         {
             i = 150;
 
@@ -164,14 +165,14 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             {
                 j = EntityXPOrb.getXPSplit(i);
                 i -= j;
-                this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
             }
 
             TileEntityTreasureChestMP chest = null;
 
             if (this.spawner != null && this.spawner.getChestPos() != null)
             {
-                TileEntity chestTest = this.worldObj.getTileEntity(this.spawner.getChestPos());
+                TileEntity chestTest = this.world.getTileEntity(this.spawner.getChestPos());
 
                 if (chestTest != null && chestTest instanceof TileEntityTreasureChestMP)
                 {
@@ -215,7 +216,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     @Override
     public void onLivingUpdate()
     {
-        EntityPlayer player = this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 256.0, false);
+        EntityPlayer player = this.world.getClosestPlayer(this.posX, this.posY, this.posZ, 256.0, false);
 
         if (player != null && !player.equals(this.targetedEntity) && !player.capabilities.isCreativeMode)
         {
@@ -232,17 +233,17 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
         if (this.spawner != null)
         {
-            List<EntityPlayer> playersWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
+            List<EntityPlayer> playersWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
             this.entitiesWithin = playersWithin.size();
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> playerWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
+                List<EntityPlayer> playerWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
 
                 for (EntityPlayer player2 : playerWithin)
                 {
                     JsonUtils json = new JsonUtils();
-                    player2.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    player2.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;
@@ -268,44 +269,44 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             {
                 if (this.ticksExisted % 100 == 0)
                 {
-                    EntityCheeseFloater tentacle1 = new EntityCheeseFloater(this.worldObj);
+                    EntityCheeseFloater tentacle1 = new EntityCheeseFloater(this.world);
                     tentacle1.setLocationAndAngles(this.posX + 2.0F, this.posY, this.posZ + 2.0F, 0.0F, 0.0F);
                     tentacle1.setAbsorptionAmount(25.0F);
                     tentacle1.setMinion(true);
 
                     if (tentacle1.getCanSpawnHere() && tentacle1.isNotColliding())
                     {
-                        this.worldObj.spawnEntityInWorld(tentacle1);
+                        this.world.spawnEntity(tentacle1);
                     }
 
-                    EntityCheeseFloater tentacle2 = new EntityCheeseFloater(this.worldObj);
+                    EntityCheeseFloater tentacle2 = new EntityCheeseFloater(this.world);
                     tentacle2.setLocationAndAngles(this.posX - 2.0F, this.posY, this.posZ - 2.0F, 0.0F, 0.0F);
                     tentacle2.setAbsorptionAmount(25.0F);
                     tentacle2.setMinion(true);
 
                     if (tentacle2.getCanSpawnHere() && tentacle2.isNotColliding())
                     {
-                        this.worldObj.spawnEntityInWorld(tentacle2);
+                        this.world.spawnEntity(tentacle2);
                     }
 
-                    EntityCheeseFloater tentacle3 = new EntityCheeseFloater(this.worldObj);
+                    EntityCheeseFloater tentacle3 = new EntityCheeseFloater(this.world);
                     tentacle3.setLocationAndAngles(this.posX + 2.0F, this.posY, this.posZ - 2.0F, 0.0F, 0.0F);
                     tentacle3.setAbsorptionAmount(25.0F);
                     tentacle3.setMinion(true);
 
                     if (tentacle3.getCanSpawnHere() && tentacle3.isNotColliding())
                     {
-                        this.worldObj.spawnEntityInWorld(tentacle3);
+                        this.world.spawnEntity(tentacle3);
                     }
 
-                    EntityCheeseFloater tentacle4 = new EntityCheeseFloater(this.worldObj);
+                    EntityCheeseFloater tentacle4 = new EntityCheeseFloater(this.world);
                     tentacle4.setLocationAndAngles(this.posX - 2.0F, this.posY, this.posZ + 2.0F, 0.0F, 0.0F);
                     tentacle4.setAbsorptionAmount(25.0F);
                     tentacle4.setMinion(true);
 
                     if (tentacle4.getCanSpawnHere() && tentacle4.isNotColliding())
                     {
-                        this.worldObj.spawnEntityInWorld(tentacle4);
+                        this.world.spawnEntity(tentacle4);
                     }
                     this.spawnCount--;
                 }
@@ -318,13 +319,13 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     {
         if (source.getDamageType().contains("arrow"))
         {
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
-                if (this.worldObj instanceof WorldServer)
+                if (this.world instanceof WorldServer)
                 {
                     for (int i = 0; i < 16; i++)
                     {
-                        ((WorldServer)this.worldObj).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.0D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
+                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.0D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
                     }
                 }
             }
@@ -428,7 +429,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
             if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
             {
-                World world = this.parentEntity.worldObj;
+                World world = this.parentEntity.world;
                 ++this.attackTimer;
 
                 if (this.attackTimer == 20)
@@ -442,7 +443,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
                     cheeseSpore.posX = this.parentEntity.posX + vec3d.xCoord * 4.0D;
                     cheeseSpore.posY = this.parentEntity.posY + this.parentEntity.height / 2.0F + 0.5D;
                     cheeseSpore.posZ = this.parentEntity.posZ + vec3d.zCoord * 4.0D;
-                    world.spawnEntityInWorld(cheeseSpore);
+                    world.spawnEntity(cheeseSpore);
                     this.attackTimer = -40;
                 }
             }
@@ -562,7 +563,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
                 if (this.courseChangeCooldown-- <= 0)
                 {
                     this.courseChangeCooldown += this.entity.getRNG().nextInt(5) + 2;
-                    d3 = MathHelper.sqrt_double(d3);
+                    d3 = MathHelper.sqrt(d3);
 
                     if (this.isNotColliding(this.posX, this.posY, this.posZ, d3))
                     {
@@ -589,7 +590,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             {
                 axisalignedbb = axisalignedbb.offset(d0, d1, d2);
 
-                if (!this.entity.worldObj.getCollisionBoxes(this.entity, axisalignedbb).isEmpty())
+                if (!this.entity.world.getCollisionBoxes(this.entity, axisalignedbb).isEmpty())
                 {
                     return false;
                 }

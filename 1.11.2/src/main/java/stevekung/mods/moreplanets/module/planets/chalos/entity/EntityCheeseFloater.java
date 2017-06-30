@@ -62,7 +62,7 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.getLightBrightness(this.getPosition()) >= 0.0F;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox()) && this.world.getLightBrightness(this.getPosition()) >= 0.0F;
     }
 
     @Override
@@ -162,15 +162,15 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     {
         if (!damageSource.getDamageType().equals("mob") && !damageSource.getDamageType().equals("fireball"))
         {
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
-                if (this.worldObj instanceof WorldServer)
+                if (this.world instanceof WorldServer)
                 {
                     for (int i = 0; i < 8; i++)
                     {
                         if (this.getHealth() > 0.0F)
                         {
-                            ((WorldServer)this.worldObj).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
+                            ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
                         }
                     }
                 }
@@ -297,13 +297,13 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
 
                     if (this.attackStep > 1)
                     {
-                        float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0)) * 0.5F;
+                        float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
 
                         for (int i = 0; i < 1; ++i)
                         {
-                            EntitySmallCheeseSpore cheeseSpore = new EntitySmallCheeseSpore(this.entity.worldObj, this.entity, d1 + this.entity.getRNG().nextGaussian() * f, d2, d3 + this.entity.getRNG().nextGaussian() * f);
+                            EntitySmallCheeseSpore cheeseSpore = new EntitySmallCheeseSpore(this.entity.world, this.entity, d1 + this.entity.getRNG().nextGaussian() * f, d2, d3 + this.entity.getRNG().nextGaussian() * f);
                             cheeseSpore.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
-                            this.entity.worldObj.spawnEntityInWorld(cheeseSpore);
+                            this.entity.world.spawnEntity(cheeseSpore);
                         }
                     }
                 }

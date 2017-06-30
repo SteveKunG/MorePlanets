@@ -30,9 +30,9 @@ public class ParticleCrystallizeFlame extends Particle
     }
 
     @Override
-    public void moveEntity(double x, double y, double z)
+    public void move(double x, double y, double z)
     {
-        this.setEntityBoundingBox(this.getEntityBoundingBox().offset(x, y, z));
+        this.setBoundingBox(this.getBoundingBox().offset(x, y, z));
         this.resetPositionToBB();
     }
 
@@ -63,7 +63,7 @@ public class ParticleCrystallizeFlame extends Particle
     public int getBrightnessForRender(float partialTicks)
     {
         float f = (this.particleAge + partialTicks) / this.particleMaxAge;
-        f = MathHelper.clamp_float(f, 0.0F, 1.0F);
+        f = MathHelper.clamp(f, 0.0F, 1.0F);
         int i = super.getBrightnessForRender(partialTicks);
         int j = i & 255;
         int k = i >> 16 & 255;
@@ -88,12 +88,12 @@ public class ParticleCrystallizeFlame extends Particle
             this.setExpired();
         }
 
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.9599999785423279D;
         this.motionY *= 0.9599999785423279D;
         this.motionZ *= 0.9599999785423279D;
 
-        if (this.isCollided)
+        if (this.canCollide)
         {
             this.motionX *= 0.699999988079071D;
             this.motionZ *= 0.699999988079071D;

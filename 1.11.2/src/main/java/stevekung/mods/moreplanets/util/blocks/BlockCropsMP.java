@@ -34,7 +34,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (state.getValue(AGE).intValue() == 7)
         {
@@ -80,7 +80,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 
     public void grow(World world, BlockPos pos, IBlockState state)
     {
-        int i = state.getValue(AGE).intValue() + MathHelper.getRandomIntegerInRange(world.rand, 2, 5);
+        int i = state.getValue(AGE).intValue() + MathHelper.getInt(world.rand, 2, 5);
 
         if (i > 7)
         {

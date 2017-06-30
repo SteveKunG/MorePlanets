@@ -32,7 +32,7 @@ public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRendere
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.popMatrix();
 
-        if (Minecraft.getMinecraft().thePlayer.ticksExisted / 10 % 2 < 1)
+        if (Minecraft.getMinecraft().player.ticksExisted / 10 % 2 < 1)
         {
             GlStateManager.color(0.15F, 0.15F, 0.15F);
         }
@@ -44,7 +44,7 @@ public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRendere
         this.bindTexture(TileEntitySpaceWarpPadFullRenderer.textureLight1);
         this.model.renderLight();
 
-        if (Minecraft.getMinecraft().thePlayer.ticksExisted / 9 % 2 < 1)
+        if (Minecraft.getMinecraft().player.ticksExisted / 9 % 2 < 1)
         {
             GlStateManager.color(0.0F, 0.25F, 1.0F);
         }

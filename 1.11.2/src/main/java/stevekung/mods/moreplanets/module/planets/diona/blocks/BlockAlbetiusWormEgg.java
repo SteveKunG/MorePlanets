@@ -34,7 +34,7 @@ public class BlockAlbetiusWormEgg extends BlockBaseMP
         {
             EntityAlbetiusWorm worm = new EntityAlbetiusWorm(world);
             worm.setLocationAndAngles(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0.0F, 0.0F);
-            world.spawnEntityInWorld(worm);
+            world.spawnEntity(worm);
             worm.spawnExplosionParticle();
         }
     }
@@ -46,7 +46,7 @@ public class BlockAlbetiusWormEgg extends BlockBaseMP
         {
             EntityAlbetiusWorm worm = new EntityAlbetiusWorm(world);
             worm.setLocationAndAngles(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0.0F, 0.0F);
-            world.spawnEntityInWorld(worm);
+            world.spawnEntity(worm);
             worm.spawnExplosionParticle();
         }
     }

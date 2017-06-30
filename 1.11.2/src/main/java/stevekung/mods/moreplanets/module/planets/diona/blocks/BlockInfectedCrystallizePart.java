@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -19,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -106,7 +105,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -139,8 +138,10 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack heldItem = player.getHeldItem(hand);
+        
         if (state.getValue(VARIANT) == BlockType.INFECTED_CRYSTALLIZE_BLOCK)
         {
             if (heldItem != null)
@@ -149,7 +150,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
-                        heldItem.stackSize--;
+                        heldItem.shrink(1);
                     }
                     world.setBlockState(pos, this.getStateFromMeta(1));
                     return true;
@@ -158,7 +159,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
-                        heldItem.stackSize--;
+                        heldItem.shrink(1);
                     }
                     world.setBlockState(pos, this.getStateFromMeta(2));
                     return true;

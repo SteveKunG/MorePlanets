@@ -30,7 +30,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         int facing = 0;
         float solarRotate = tile.solarRotate0;
 
-        if (tile != null && tile.hasWorldObj() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == MPBlocks.DARK_ENERGY_RECEIVER)
+        if (tile != null && tile.hasWorld() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == MPBlocks.DARK_ENERGY_RECEIVER)
         {
             facing = tile.getFacing();
         }
@@ -136,7 +136,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
             GlStateManager.depthMask(true);
             GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
             double d0 = (double)tile.getWorld().getTotalWorldTime() + (double)partialTicks;
-            double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor_double(-d0 * 0.1D));
+            double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor(-d0 * 0.1D));
             float f1 = tile.failedTick > 0 ? 0.1F : tile.successful ? 0.1F : 0.3F;
             float f2 = tile.failedTick > 0 ? 0.08F : tile.successful ? 0.1F : 0.2F;
             float f3 = tile.failedTick > 0 ? 0.12F : tile.successful ? 0.1F : 0.5F;

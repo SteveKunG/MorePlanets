@@ -51,7 +51,7 @@ public class EntityInfectedCrystallizeSlimeMinion extends EntitySlimeBaseMP
     {
         int i = this.getSlimeSize();
 
-        if (!this.worldObj.isRemote && i > 1 && this.getHealth() <= 0.0F)
+        if (!this.world.isRemote && i > 1 && this.getHealth() <= 0.0F)
         {
             int j = 8 + this.rand.nextInt(8);
 
@@ -71,7 +71,7 @@ public class EntityInfectedCrystallizeSlimeMinion extends EntitySlimeBaseMP
                 }
                 entityslime.setSlimeSize(i / 2);
                 entityslime.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
-                this.worldObj.spawnEntityInWorld(entityslime);
+                this.world.spawnEntity(entityslime);
             }
         }
         this.isDead = true;
@@ -110,7 +110,7 @@ public class EntityInfectedCrystallizeSlimeMinion extends EntitySlimeBaseMP
     @Override
     protected EntitySlimeBaseMP createInstance()
     {
-        return new EntityInfectedCrystallizeSlimeMinion(this.worldObj);
+        return new EntityInfectedCrystallizeSlimeMinion(this.world);
     }
 
     @Override

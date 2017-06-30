@@ -78,16 +78,16 @@ public class ParticleLavaMC extends Particle
 
         if (this.rand.nextFloat() > f)
         {
-            this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ);
+            this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ);
         }
 
         this.motionY -= 0.03D;
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.9990000128746033D;
         this.motionY *= 0.9990000128746033D;
         this.motionZ *= 0.9990000128746033D;
 
-        if (this.isCollided)
+        if (this.canCollide)
         {
             this.motionX *= 0.699999988079071D;
             this.motionZ *= 0.699999988079071D;

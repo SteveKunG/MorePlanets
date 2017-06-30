@@ -20,22 +20,19 @@ import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.IFuelHandler;
 import net.minecraftforge.fml.common.network.IGuiHandler;
@@ -163,16 +160,6 @@ public class CommonRegisterHelper
         GameRegistry.registerTileEntity(tile, name);
     }
 
-    public static void registerFluidContainer(Fluid fluid, ItemStack filledContainer)
-    {
-        CommonRegisterHelper.registerFluidContainer(fluid, filledContainer, new ItemStack(Items.BUCKET));
-    }
-
-    public static void registerFluidContainer(Fluid fluid, ItemStack filledContainer, ItemStack emptyContainer)
-    {
-        FluidContainerRegistry.registerFluidContainer(new FluidContainerData(new FluidStack(fluid, FluidContainerRegistry.BUCKET_VOLUME), filledContainer, emptyContainer));
-    }
-
     public static void registerGUIHandler(Object obj, IGuiHandler handler)
     {
         NetworkRegistry.INSTANCE.registerGuiHandler(obj, handler);
@@ -200,7 +187,7 @@ public class CommonRegisterHelper
 
     public static void registerEntity(Class<? extends Entity> entity, String name, int backgroundColor, int foregroundColor, int trackingRange, int updateFrequency)
     {
-        EntityRegistry.registerModEntity(entity, name, CommonRegisterHelper.ID++, MorePlanetsCore.MOD_ID, trackingRange, updateFrequency, true, backgroundColor, foregroundColor);
+        EntityRegistry.registerModEntity(new ResourceLocation("moreplanets:" + name), entity, name, CommonRegisterHelper.ID++, MorePlanetsCore.MOD_ID, trackingRange, updateFrequency, true, backgroundColor, foregroundColor);
     }
 
     public static void registerNonMobEntity(Class<? extends Entity> entity, String name)
@@ -215,7 +202,7 @@ public class CommonRegisterHelper
 
     public static void registerNonMobEntity(Class<? extends Entity> entity, String name, int trackingRange, int updateFrequency)
     {
-        EntityRegistry.registerModEntity(entity, name, CommonRegisterHelper.ID++, MorePlanetsCore.MOD_ID, trackingRange, updateFrequency, true);
+        EntityRegistry.registerModEntity(new ResourceLocation("moreplanets:" + name), entity, name, CommonRegisterHelper.ID++, MorePlanetsCore.MOD_ID, trackingRange, updateFrequency, true);
     }
 
     public static void registerEntityPlacement(Class<? extends Entity> entity, SpawnPlacementType type)
@@ -283,7 +270,7 @@ public class CommonRegisterHelper
         if (block instanceof ISortableBlock)
         {
             ISortableBlock sortableBlock = (ISortableBlock) block;
-            List<ItemStack> blocks = Lists.newArrayList();
+            NonNullList<ItemStack> blocks = NonNullList.create();
             block.getSubBlocks(Item.getItemFromBlock(block), null, blocks);
 
             for (ItemStack itemStack : blocks)
@@ -321,7 +308,7 @@ public class CommonRegisterHelper
         if (item instanceof ISortableItem)
         {
             ISortableItem sortableItem = (ISortableItem) item;
-            List<ItemStack> items = Lists.newArrayList();
+            NonNullList<ItemStack> items = NonNullList.create();
             item.getSubItems(item, null, items);
 
             for (ItemStack itemStack : items)

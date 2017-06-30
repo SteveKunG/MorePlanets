@@ -39,7 +39,7 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
 
     private void drawCrystal(TileEntityLargeInfectedCrystallize tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size)
     {
-        float shade = MathHelper.sin((Minecraft.getMinecraft().thePlayer.ticksExisted + rand.nextInt(20)) / (16.0F + rand.nextFloat())) * 0.075F + 0.925F;
+        float shade = MathHelper.sin((Minecraft.getMinecraft().player.ticksExisted + rand.nextInt(20)) / (16.0F + rand.nextFloat())) * 0.075F + 0.925F;
         Color c = new Color(color);
         float r = c.getRed() / 220.0F;
         float g = c.getGreen() / 200.0F;

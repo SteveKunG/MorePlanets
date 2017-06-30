@@ -10,10 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -40,7 +37,7 @@ public class ItemCapsule extends ItemFoodMP
 
             if (!player.capabilities.isCreativeMode)
             {
-                --itemStack.stackSize;
+                itemStack.shrink(1);
             }
             if (!world.isRemote)
             {
@@ -90,7 +87,7 @@ public class ItemCapsule extends ItemFoodMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         list.add(new ItemStack(item, 1, 0));
 
@@ -102,8 +99,10 @@ public class ItemCapsule extends ItemFoodMP
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
+        
         if (itemStack.hasTagCompound() && (player.canEat(true) || player.capabilities.isCreativeMode))
         {
             player.setActiveHand(hand);

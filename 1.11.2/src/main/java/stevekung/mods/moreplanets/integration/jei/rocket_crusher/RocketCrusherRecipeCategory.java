@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.integration.jei.rocket_crusher;
 
-import java.util.List;
-
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -12,6 +10,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
@@ -36,7 +35,7 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
     }
 
     @Override
-    public void drawAnimations(Minecraft mc)
+    public void drawExtras(Minecraft mc)
     {
         JEIRegistryHelper.guiHelper.createAnimatedDrawable(JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/rocket_crusher.png"), 176, 13, 52, 17), 70, IDrawableAnimated.StartDirection.LEFT, false).draw(mc, 59, 22);
     }
@@ -50,24 +49,13 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
         {
             itemStacks.init(j, true, 0 + j % 3 * 18, 0 + j / 3 * 18);
         }
-
         itemStacks.init(9, false, 124, 20);
+        itemStacks.set(ingredients);
+    }
 
-        if (recipeWrapper instanceof RocketCrusherRecipesWrapper)
-        {
-            RocketCrusherRecipesWrapper ingotCompressorRecipeWrapper = (RocketCrusherRecipesWrapper) recipeWrapper;
-            List inputs = ingotCompressorRecipeWrapper.getInputs();
-
-            for (int i = 0; i < inputs.size(); ++i)
-            {
-                Object o = inputs.get(i);
-
-                if (o != null)
-                {
-                    itemStacks.setFromRecipe(i, o);
-                }
-            }
-            itemStacks.setFromRecipe(9, ingotCompressorRecipeWrapper.getOutputs());
-        }
+    @Override
+    public String getModName()
+    {
+        return MorePlanetsCore.MOD_ID;
     }
 }

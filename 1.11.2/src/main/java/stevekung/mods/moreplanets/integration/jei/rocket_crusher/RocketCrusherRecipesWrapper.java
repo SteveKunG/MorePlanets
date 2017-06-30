@@ -1,18 +1,16 @@
 package stevekung.mods.moreplanets.integration.jei.rocket_crusher;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import javax.annotation.Nonnull;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
-import mezz.jei.api.recipe.wrapper.ICraftingRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
 
-public class RocketCrusherRecipesWrapper extends BlankRecipeWrapper implements ICraftingRecipeWrapper
+public class RocketCrusherRecipesWrapper extends BlankRecipeWrapper implements IRecipeWrapper
 {
     @Nonnull
     private ShapedRecipesMP recipe;
@@ -27,28 +25,18 @@ public class RocketCrusherRecipesWrapper extends BlankRecipeWrapper implements I
             {
                 ItemStack itemStack = (ItemStack) input;
 
-                if (itemStack.stackSize != 1)
+                if (itemStack.getCount() != 1)
                 {
-                    itemStack.stackSize = 1;
+                    itemStack.setCount(1);
                 }
             }
         }
     }
 
-    @Nonnull
     @Override
-    public List getInputs()
+    public void getIngredients(IIngredients ingredients)
     {
-        return Arrays.asList(this.recipe.recipeItems);
+        ingredients.setInput(ItemStack.class, Arrays.asList(this.recipe.recipeItems));
+        ingredients.setOutput(ItemStack.class, this.recipe.getRecipeOutput());
     }
-
-    @Nonnull
-    @Override
-    public List<ItemStack> getOutputs()
-    {
-        return Collections.singletonList(this.recipe.getRecipeOutput());
-    }
-
-    @Override
-    public void getIngredients(IIngredients ingredients) {}
 }

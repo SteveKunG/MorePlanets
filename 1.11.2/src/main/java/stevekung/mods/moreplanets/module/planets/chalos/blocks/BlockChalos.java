@@ -14,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Explosion;
@@ -41,7 +42,7 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -140,7 +141,7 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return state.getValue(VARIANT) == BlockType.CHEESE_OF_MILK_ORE ? MathHelper.getRandomIntegerInRange(new Random(), 3, 7) : 0;
+        return state.getValue(VARIANT) == BlockType.CHEESE_OF_MILK_ORE ? MathHelper.getInt(new Random(), 3, 7) : 0;
     }
 
     @Override

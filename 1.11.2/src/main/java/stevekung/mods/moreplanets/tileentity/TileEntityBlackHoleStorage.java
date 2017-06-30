@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
@@ -26,7 +27,7 @@ import stevekung.mods.moreplanets.init.MPSounds;
 
 public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements IInventoryDefaults, ISidedInventory
 {
-    public ItemStack[] inventory = new ItemStack[108];
+    public NonNullList<ItemStack> inventory = NonNullList.withSize(108, ItemStack.EMPTY);
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean disableBlackHole = false;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -46,16 +47,16 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         super.update();
 
         ++this.age;
-        this.age = this.age + this.worldObj.rand.nextInt(100);
+        this.age = this.age + this.world.rand.nextInt(100);
 
         if (this.ticks % 20 == 0)
         {
-            this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
-        if (this.worldObj != null && !this.worldObj.isRemote)
+        if (this.world != null && !this.world.isRemote)
         {
             this.updateStorage();
-            List<EntityBlackHoleStorage> blackHoleList = this.worldObj.getEntitiesWithinAABB(EntityBlackHoleStorage.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY() + 2, this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 3, this.pos.getZ() + 1.0D));
+            List<EntityBlackHoleStorage> blackHoleList = this.world.getEntitiesWithinAABB(EntityBlackHoleStorage.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY() + 2, this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 3, this.pos.getZ() + 1.0D));
 
             for (EntityBlackHoleStorage bh : blackHoleList)
             {
@@ -205,7 +206,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -279,7 +280,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
 
                 if (this.collectMode.equals("item") || collectAll)
                 {
-                    for (EntityItem item : this.worldObj.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.getPos().getX() - range, this.getPos().getY() + 2, this.getPos().getZ() - range, this.getPos().getX() + range, this.getPos().getY() + 4, this.getPos().getZ() + range)))
+                    for (EntityItem item : this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.getPos().getX() - range, this.getPos().getY() + 2, this.getPos().getZ() - range, this.getPos().getX() + range, this.getPos().getY() + 4, this.getPos().getZ() + range)))
                     {
                         if (this.putDropInInventoryAllSlots(this, item))
                         {
@@ -289,7 +290,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
                 }
                 if (this.collectMode.equals("xp") || collectAll)
                 {
-                    for (EntityXPOrb xp : this.worldObj.getEntitiesWithinAABB(EntityXPOrb.class, new AxisAlignedBB(this.getPos().getX() - range, this.getPos().getY() + 2, this.getPos().getZ() - range, this.getPos().getX() + range, this.getPos().getY() + 4, this.getPos().getZ() + range)))
+                    for (EntityXPOrb xp : this.world.getEntitiesWithinAABB(EntityXPOrb.class, new AxisAlignedBB(this.getPos().getX() - range, this.getPos().getY() + 2, this.getPos().getZ() - range, this.getPos().getX() + range, this.getPos().getY() + 4, this.getPos().getZ() + range)))
                     {
                         if (this.putXPValue(xp))
                         {

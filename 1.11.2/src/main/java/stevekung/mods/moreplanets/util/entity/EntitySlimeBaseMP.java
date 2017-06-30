@@ -50,7 +50,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
     }
 
     @Override
-    protected PathNavigate getNewNavigator(World world)
+    protected PathNavigate createNavigator(World world)
     {
         return new PathNavigateGroundMP(this, world);
     }
@@ -109,7 +109,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
     @Override
     public void onUpdate()
     {
-        if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL && this.getSlimeSize() > 0)
+        if (!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL && this.getSlimeSize() > 0)
         {
             this.isDead = true;
         }
@@ -164,7 +164,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
     {
         int i = this.getSlimeSize();
 
-        if (!this.worldObj.isRemote && i > 1 && this.getHealth() <= 0.0F)
+        if (!this.world.isRemote && i > 1 && this.getHealth() <= 0.0F)
         {
             int j = 2 + this.rand.nextInt(3);
 
@@ -184,7 +184,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
                 }
                 entityslime.setSlimeSize(i / 2);
                 entityslime.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
-                this.worldObj.spawnEntityInWorld(entityslime);
+                this.world.spawnEntity(entityslime);
             }
         }
         super.setDead();

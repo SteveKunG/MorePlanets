@@ -10,7 +10,7 @@ public class WorldDimensionHelper
     public static WorldServer getStartWorld(WorldServer worldOld)
     {
         WorldProvider wp = WorldUtil.getProviderForNameServer(ConfigManagerMP.startedPlanet);
-        WorldServer worldNew = wp == null ? null : (WorldServer) wp.worldObj;
+        WorldServer worldNew = wp == null ? null : (WorldServer) wp.world;
 
         if (worldNew != null)
         {

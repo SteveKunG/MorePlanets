@@ -100,8 +100,10 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
+        
         if (player.fishEntity != null)
         {
             int i = player.fishEntity.handleHookRetraction();
@@ -119,7 +121,7 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
 
             if (!world.isRemote)
             {
-                world.spawnEntityInWorld(new EntitySpaceFishHook(world, player));
+                world.spawnEntity(new EntitySpaceFishHook(world, player));
             }
             if (itemStack.hasTagCompound())
             {

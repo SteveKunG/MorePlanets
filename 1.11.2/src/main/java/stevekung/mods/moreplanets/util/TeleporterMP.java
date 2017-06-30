@@ -45,9 +45,9 @@ public class TeleporterMP extends Teleporter
         }
         else
         {
-            int x = MathHelper.floor_double(entity.posX);
-            int y = MathHelper.floor_double(entity.posY) - 1;
-            int z = MathHelper.floor_double(entity.posZ);
+            int x = MathHelper.floor(entity.posX);
+            int y = MathHelper.floor(entity.posY) - 1;
+            int z = MathHelper.floor(entity.posZ);
             this.worldServerInstance.setBlockState(new BlockPos(x, y, z), MPBlocks.SPACE_PORTAL.getDefaultState());
             entity.setLocationAndAngles(x, y + 0.75D, z, entity.rotationYaw, 0.0F);
             entity.motionX = entity.motionY = entity.motionZ = 0.0D;
@@ -58,8 +58,8 @@ public class TeleporterMP extends Teleporter
     public boolean placeInExistingPortal(Entity entity, float rotationYaw)
     {
         double d0 = -1.0D;
-        int j = MathHelper.floor_double(entity.posX);
-        int k = MathHelper.floor_double(entity.posZ);
+        int j = MathHelper.floor(entity.posX);
+        int k = MathHelper.floor(entity.posZ);
         boolean flag = true;
         BlockPos blockpos = BlockPos.ORIGIN;
         long l = ChunkPos.asLong(j, k);
@@ -134,9 +134,9 @@ public class TeleporterMP extends Teleporter
     {
         int i = 16;
         double d0 = -1.0D;
-        int j = MathHelper.floor_double(entity.posX);
-        int k = MathHelper.floor_double(entity.posY);
-        int l = MathHelper.floor_double(entity.posZ);
+        int j = MathHelper.floor(entity.posX);
+        int k = MathHelper.floor(entity.posY);
+        int l = MathHelper.floor(entity.posZ);
         int i1 = j;
         int j1 = k;
         int k1 = l;
@@ -282,7 +282,7 @@ public class TeleporterMP extends Teleporter
 
         if (d0 < 0.0D)
         {
-            j1 = MathHelper.clamp_int(j1, 70, this.worldServerInstance.getActualHeight() - 10);
+            j1 = MathHelper.clamp(j1, 70, this.worldServerInstance.getActualHeight() - 10);
             k2 = j1;
 
             for (int j7 = -1; j7 <= 1; ++j7)

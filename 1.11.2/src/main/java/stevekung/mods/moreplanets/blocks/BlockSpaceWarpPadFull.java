@@ -106,7 +106,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         world.notifyBlockUpdate(pos, state, state, 3);
     }
@@ -149,7 +149,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (world.isRemote)
         {
@@ -161,7 +161,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
 
             if (tile instanceof TileEntitySpaceWarpPadFull)
             {
-                ItemStack itemStack = player.inventory.getCurrentItem();
+                ItemStack itemStack = player.getHeldItem(hand);
                 TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull) tile;
 
                 if (itemStack != null && itemStack.getItem() == MPItems.SPACE_WARPER_CORE)
@@ -170,17 +170,17 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
 
                     if (!player.capabilities.isCreativeMode)
                     {
-                        itemStack.stackSize--;
+                        itemStack.shrink(1);
                     }
                     if (warpCoreData != null && warpCoreData.hasKey("DimensionID"))
                     {
                         warpPad.setTeleportData(new BlockPos(warpCoreData.getInteger("X"), warpCoreData.getInteger("Y"), warpCoreData.getInteger("Z")), warpCoreData.getInteger("DimensionID"), true);
-                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.warp_pad_data_add.message")).setStyle(new JsonUtils().colorFromConfig("green")));
+                        player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.warp_pad_data_add.message")).setStyle(new JsonUtils().colorFromConfig("green")));
                         return true;
                     }
                     else
                     {
-                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.warp_pad_data_add_fail.message")).setStyle(new JsonUtils().red()));
+                        player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.warp_pad_data_add_fail.message")).setStyle(new JsonUtils().red()));
 
                         if (warpCoreData == null)
                         {
@@ -196,7 +196,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                     {
                         if (warpPad.getCheckInvalid())
                         {
-                            player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.cannot_detect_pad.message")).setStyle(new JsonUtils().red()));
+                            player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.cannot_detect_pad.message")).setStyle(new JsonUtils().red()));
                             return false;
                         }
                         if (!warpPad.disabled)
@@ -205,7 +205,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                             {
                                 warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
                                 MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-                                WorldServer worldserver = server.worldServerForDimension(GCCoreUtil.getDimensionID(server.worldServers[0]));
+                                WorldServer worldserver = server.worldServerForDimension(GCCoreUtil.getDimensionID(server.worlds[0]));
 
                                 if (player instanceof EntityPlayerMP)
                                 {
@@ -219,13 +219,13 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                             }
                             else
                             {
-                                player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.status.missingpower.name")).setStyle(new JsonUtils().red()));
+                                player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.status.missingpower.name")).setStyle(new JsonUtils().red()));
                                 return true;
                             }
                         }
                         else
                         {
-                            player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtils().red()));
+                            player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtils().red()));
                         }
                     }
                     else
@@ -238,7 +238,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                 {
                     if (player.isSneaking())
                     {
-                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.no_warp_data.message")).setStyle(new JsonUtils().red()));
+                        player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.no_warp_data.message")).setStyle(new JsonUtils().red()));
                         return true;
                     }
                     else

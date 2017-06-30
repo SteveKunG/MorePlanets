@@ -32,7 +32,7 @@ public class TileEntityChalosAncientChest extends TileEntityAncientChestMP
 
         if (this.isChestAt(blockpos))
         {
-            TileEntity tileentity = this.worldObj.getTileEntity(blockpos);
+            TileEntity tileentity = this.world.getTileEntity(blockpos);
 
             if (tileentity instanceof TileEntityChalosAncientChest)
             {

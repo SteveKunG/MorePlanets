@@ -130,7 +130,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         GlStateManager.popMatrix();
         GlStateManager.disableTexture2D();
         GlStateManager.color(0.0F, 0.0F, 0.0F);
-        double playerEyes = mc.thePlayer.getPositionEyes(partialTicks).yCoord - world.getHorizon();
+        double playerEyes = mc.player.getPositionEyes(partialTicks).yCoord - world.getHorizon();
 
         if (playerEyes < 0.0D)
         {

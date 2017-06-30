@@ -40,11 +40,11 @@ public class EntityInfectedCrystallizeSpider extends EntitySpider implements IEn
             {
                 byte chance = 0;
 
-                if (this.worldObj.getDifficulty() == EnumDifficulty.NORMAL)
+                if (this.world.getDifficulty() == EnumDifficulty.NORMAL)
                 {
                     chance = 7;
                 }
-                else if (this.worldObj.getDifficulty() == EnumDifficulty.HARD)
+                else if (this.world.getDifficulty() == EnumDifficulty.HARD)
                 {
                     chance = 15;
                 }

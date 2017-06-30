@@ -149,7 +149,7 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
     protected abstract void renderCloud();
     protected abstract void renderWeather();
     @Override
-    public abstract void createBiomeProvider();
+    public abstract void init();
     @Override
     public abstract IChunkGenerator createChunkGenerator();
 }

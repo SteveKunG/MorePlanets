@@ -9,6 +9,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
@@ -41,14 +42,15 @@ public class DarkEnergyTransformRecipeCategory extends BlankRecipeCategory
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
     {
-        if (!(recipeWrapper instanceof DarkEnergyTransformRecipeWrapper))
-        {
-            return;
-        }
         IGuiItemStackGroup itemStack = recipeLayout.getItemStacks();
         itemStack.init(0, true, 26, 14);
         itemStack.init(1, false, 75, 14);
-        itemStack.set(0, recipeWrapper.getInputs());
-        itemStack.set(1, recipeWrapper.getOutputs());
+        itemStack.set(ingredients);
+    }
+
+    @Override
+    public String getModName()
+    {
+        return MorePlanetsCore.MOD_ID;
     }
 }

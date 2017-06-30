@@ -53,7 +53,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack heldStack)
     {
-        int angle = MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
         int direction = 0;
 
@@ -112,7 +112,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (world.isRemote)
         {
@@ -146,12 +146,12 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                                 {
                                     tile.setActivated(true);
                                     tile.getWorld().playSound(player, tile.getPos(), MPSounds.MACHINE_START, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_success.message")).setStyle(new JsonUtils().colorFromConfig("green")));
+                                    player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_success.message")).setStyle(new JsonUtils().colorFromConfig("green")));
                                     return true;
                                 }
                                 else
                                 {
-                                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_already_active.message")).setStyle(new JsonUtils().red()));
+                                    player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_already_active.message")).setStyle(new JsonUtils().red()));
                                     return false;
                                 }
                             }
@@ -159,14 +159,14 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                             {
                                 if (!tile.isActivated())
                                 {
-                                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_no_power.message")).setStyle(new JsonUtils().red()));
+                                    player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_no_power.message")).setStyle(new JsonUtils().red()));
                                     return false;
                                 }
                             }
                         }
                         else
                         {
-                            player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtils().red()));
+                            player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtils().red()));
                             return false;
                         }
                     }
@@ -187,7 +187,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                         {
                             s = "";
                         }
-                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translateWithFormat("gui.dark_energy_malfunction.message", this.ticksToElapsedTime(failedTick)) + " second" + s + "!").setStyle(new JsonUtils().red()));
+                        player.sendMessage(new JsonUtils().text(GCCoreUtil.translateWithFormat("gui.dark_energy_malfunction.message", this.ticksToElapsedTime(failedTick)) + " second" + s + "!").setStyle(new JsonUtils().red()));
                         return false;
                     }
                     else
@@ -222,7 +222,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
         {
             if (!flag)
             {
-                player.addChatMessage(new JsonUtils().text("Missing block " + state.getBlock().getLocalizedName() + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ()).setStyle(new JsonUtils().red()));
+                player.sendMessage(new JsonUtils().text("Missing block " + state.getBlock().getLocalizedName() + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ()).setStyle(new JsonUtils().red()));
             }
             return false;
         }

@@ -51,7 +51,7 @@ public class RoomSpawnerNibiru extends RoomEmptyNibiru
 
             if (spawner != null)
             {
-                spawner.getSpawnerBaseLogic().setEntityName(this.getRandomMob(rand));
+                spawner.getSpawnerBaseLogic().setEntityId(this.getRandomMob(rand));
             }
 
             blockpos = new BlockPos(this.getXWithOffset(this.sizeX - 1, this.sizeZ - 1), this.getYWithOffset(0), this.getZWithOffset(this.sizeX - 1, this.sizeZ - 1));
@@ -59,23 +59,11 @@ public class RoomSpawnerNibiru extends RoomEmptyNibiru
 
             if (spawner != null)
             {
-                spawner.getSpawnerBaseLogic().setEntityName(this.getRandomMob(rand));
+                spawner.getSpawnerBaseLogic().setEntityId(this.getRandomMob(rand));
             }
             return true;
         }
         return false;
-    }
-
-    @Override
-    protected void writeStructureToNBT(NBTTagCompound tagCompound)
-    {
-        super.writeStructureToNBT(tagCompound);
-    }
-
-    @Override
-    protected void readStructureFromNBT(NBTTagCompound tagCompound)
-    {
-        super.readStructureFromNBT(tagCompound);
     }
 
     protected String getRandomMob(Random rand)

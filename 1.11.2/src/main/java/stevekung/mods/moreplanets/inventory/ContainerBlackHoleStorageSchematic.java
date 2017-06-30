@@ -24,7 +24,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
 
     public ContainerBlackHoleStorageSchematic(InventoryPlayer inventory, BlockPos pos)
     {
-        this.worldObj = inventory.player.worldObj;
+        this.worldObj = inventory.player.world;
         this.addSlotToContainer(new SlotRocketBenchResult(inventory.player, this.craftMatrix, this.craftResult, 0, 142, 18 + 69 + 27));
         int i;
         int j;

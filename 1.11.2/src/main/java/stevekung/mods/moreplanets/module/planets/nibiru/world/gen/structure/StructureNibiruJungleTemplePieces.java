@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -78,7 +79,7 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
     }
 
     @Override
-    protected void readStructureFromNBT(NBTTagCompound nbt)
+    protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
     {
         this.scatteredFeatureSizeX = nbt.getInteger("Width");
         this.scatteredFeatureSizeY = nbt.getInteger("Height");
@@ -153,9 +154,9 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.placedMainChest = nbt.getBoolean("placedMainChest");
             this.placedHiddenChest = nbt.getBoolean("placedHiddenChest");
             this.hasRandomChest = nbt.getBoolean("placedRandomChest");

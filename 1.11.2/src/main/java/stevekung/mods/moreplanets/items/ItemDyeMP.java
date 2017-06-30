@@ -27,7 +27,7 @@ public class ItemDyeMP extends ItemBaseMP
             if (!entitysheep.getSheared() && entitysheep.getFleeceColor() != enumdyecolor)
             {
                 entitysheep.setFleeceColor(enumdyecolor);
-                --itemStack.stackSize;
+                itemStack.shrink(1);
             }
             return true;
         }
@@ -39,7 +39,7 @@ public class ItemDyeMP extends ItemBaseMP
             if (!entitysheep.getSheared() && entitysheep.getFleeceColor() != enumdyecolor)
             {
                 entitysheep.setFleeceColor(enumdyecolor);
-                --itemStack.stackSize;
+                itemStack.shrink(1);
             }
             return true;
         }

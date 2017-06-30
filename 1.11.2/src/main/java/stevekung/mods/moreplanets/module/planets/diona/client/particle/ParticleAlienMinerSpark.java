@@ -36,7 +36,7 @@ public class ParticleAlienMinerSpark extends Particle
     {
         GlStateManager.depthMask(false);
         float f = (this.particleAge + partialTicks) / this.particleMaxAge * 32.0F;
-        f = MathHelper.clamp_float(f, 0.0F, 1.0F);
+        f = MathHelper.clamp(f, 0.0F, 1.0F);
         this.particleScale = this.reddustParticleScale * f;
         GlStateManager.depthMask(true);
         super.renderParticle(worldrenderer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
@@ -47,7 +47,7 @@ public class ParticleAlienMinerSpark extends Particle
     public int getBrightnessForRender(float partialTicks)
     {
         float f = (this.particleAge + partialTicks) / this.particleMaxAge;
-        f = MathHelper.clamp_float(f, 0.0F, 1.0F);
+        f = MathHelper.clamp(f, 0.0F, 1.0F);
         int i = super.getBrightnessForRender(partialTicks);
         int j = 240;
         int k = i >> 16 & 255;
@@ -67,7 +67,7 @@ public class ParticleAlienMinerSpark extends Particle
         }
 
         this.setParticleTextureIndex(7 - this.particleAge * 8 / this.particleMaxAge);
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
 
         if (this.posY == this.prevPosY)
         {
@@ -79,7 +79,7 @@ public class ParticleAlienMinerSpark extends Particle
         this.motionY -= 0.0025D;
         this.motionZ *= 0.9599999785423279D;
 
-        if (this.isCollided)
+        if (this.canCollide)
         {
             this.motionX *= 0.699999988079071D;
             this.motionZ *= 0.699999988079071D;

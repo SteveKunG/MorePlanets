@@ -25,8 +25,7 @@ public class RenderZeliusZombie extends RenderBiped<EntityZeliusZombie>
 
     public RenderZeliusZombie(RenderManager manager)
     {
-        super(manager, new ModelZombie(), 0.5F, 1.0F);
-        this.mainZombieModel = this.modelBipedMain;
+        super(manager, new ModelZombie(), 0.5F);
         this.addLayer(new LayerGlowingTexture(this, "zelius_zombie_glow", true));
         this.addLayer(new LayerHeldItem(this));
         LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
@@ -46,24 +45,5 @@ public class RenderZeliusZombie extends RenderBiped<EntityZeliusZombie>
     protected ResourceLocation getEntityTexture(EntityZeliusZombie entity)
     {
         return new ResourceLocation("moreplanets:textures/entity/zelius_zombie.png");
-    }
-
-    @Override
-    public void doRender(EntityZeliusZombie entity, double x, double y, double z, float entityYaw, float partialTicks)
-    {
-        this.mainModel = this.mainZombieModel;
-        this.layerRenderers = this.layerRendererLists;
-        this.modelBipedMain = (ModelBiped)this.mainModel;
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
-    }
-
-    @Override
-    protected void rotateCorpse(EntityZeliusZombie entity, float rotation, float interpolateRot, float partialTicks)
-    {
-        if (entity.isConverting())
-        {
-            interpolateRot += (float)(Math.cos(entity.ticksExisted * 3.25D) * Math.PI * 0.25D);
-        }
-        super.rotateCorpse(entity, rotation, interpolateRot, partialTicks);
     }
 }

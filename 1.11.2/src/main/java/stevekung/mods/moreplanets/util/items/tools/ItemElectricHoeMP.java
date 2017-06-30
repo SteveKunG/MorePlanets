@@ -25,10 +25,7 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagFloat;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -71,8 +68,10 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
+        
         if (this.getElectricityStored(itemStack) > 0.0F)
         {
             if (!player.canPlayerEdit(pos.offset(facing), facing, itemStack))
@@ -245,7 +244,7 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         list.add(ElectricItemHelper.getWithCharge(new ItemStack(item), this.getMaxElectricityStored(new ItemStack(item))));
     }

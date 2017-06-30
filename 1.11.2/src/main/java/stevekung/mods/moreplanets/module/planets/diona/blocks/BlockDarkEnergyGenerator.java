@@ -107,7 +107,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
-        int angle = MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
         int direction = 0;
 
@@ -231,7 +231,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
 
                     if (!player.capabilities.isCreativeMode)
                     {
-                        heldItem.stackSize--;
+                        heldItem.shrink(1);
                     }
                     return true;
                 }

@@ -53,7 +53,7 @@ public class RenderInfectedCrystallizeBomb extends Render<EntityInfectedCrystall
 
     public void renderItem()
     {
-        EntityInfectedCrystallizeBomb entity = new EntityInfectedCrystallizeBomb(Minecraft.getMinecraft().theWorld);
+        EntityInfectedCrystallizeBomb entity = new EntityInfectedCrystallizeBomb(Minecraft.getMinecraft().world);
         GlStateManager.translate(0.5F, 0.5F, 0.5F);
         GlStateManager.rotate(0.0F, 0.0F, 0.0F, 0.0F);
         GlStateManager.scale(1.0F, 1.0F, 1.0F);

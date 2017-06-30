@@ -46,7 +46,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     }
 
     @Override
-    protected PathNavigate getNewNavigator(World world)
+    protected PathNavigate createNavigator(World world)
     {
         return new PathNavigateGroundMP(this, world);
     }
@@ -54,7 +54,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getBlockState(this.getPosition().down()).getBlock() == ChalosBlocks.CHEESE_GRASS;
+        return this.world.getBlockState(this.getPosition().down()).getBlock() == ChalosBlocks.CHEESE_GRASS;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     @Override
     protected int getExperiencePoints(EntityPlayer player)
     {
-        return 1 + this.worldObj.rand.nextInt(5);
+        return 1 + this.world.rand.nextInt(5);
     }
 
     @Override
@@ -104,15 +104,20 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     @Override
     public EntityCheeseCow createChild(EntityAgeable entity)
     {
-        return new EntityCheeseCow(this.worldObj);
+        return new EntityCheeseCow(this.world);
     }
 
     @Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack itemStack)
+    public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
-        if (itemStack != null && itemStack.getItem() == Items.BUCKET && !player.capabilities.isCreativeMode)
+        ItemStack itemStack = player.getHeldItem(hand);
+
+        if (itemStack.getItem() == Items.BUCKET && !player.capabilities.isCreativeMode && !this.isChild())
         {
-            if (itemStack.stackSize-- == 1)
+            player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+            itemStack.shrink(1);
+
+            if (itemStack.isEmpty())
             {
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET));
             }
@@ -124,7 +129,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
         }
         else
         {
-            return super.processInteract(player, hand, itemStack);
+            return super.processInteract(player, hand);
         }
     }
 

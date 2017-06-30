@@ -28,7 +28,7 @@ public class WorldProviderDiona extends WorldProviderMP
     @SideOnly(Side.CLIENT)
     public float getStarBrightness(float partialTicks)
     {
-        float angle = this.worldObj.getCelestialAngle(partialTicks);
+        float angle = this.world.getCelestialAngle(partialTicks);
         float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
 
         if (value < 0.0F)
@@ -46,7 +46,7 @@ public class WorldProviderDiona extends WorldProviderMP
     @SideOnly(Side.CLIENT)
     public float getSunBrightness(float partialTicks)
     {
-        float angle = this.worldObj.getCelestialAngle(partialTicks);
+        float angle = this.world.getCelestialAngle(partialTicks);
         float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.1F);
 
         if (value < 0.55F)//day
@@ -133,7 +133,7 @@ public class WorldProviderDiona extends WorldProviderMP
     protected void renderWeather() {}
 
     @Override
-    public void createBiomeProvider()
+    public void init()
     {
         this.biomeProvider = new BiomeProviderDiona();
     }
@@ -141,7 +141,7 @@ public class WorldProviderDiona extends WorldProviderMP
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderDiona(this.worldObj, this.worldObj.getSeed());
+        return new ChunkProviderDiona(this.world, this.world.getSeed());
     }
 
     @Override

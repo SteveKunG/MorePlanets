@@ -101,14 +101,14 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     {
         super.update();
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.activated && !this.disabled)
             {
                 if (!this.successful)
                 {
                     int radius = 32;
-                    List<Entity> entity = this.worldObj.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - radius, this.pos.getY() - radius, this.pos.getZ() - radius, this.pos.getX() + radius, this.pos.getY() + radius, this.pos.getZ() + radius));
+                    List<Entity> entity = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - radius, this.pos.getY() - radius, this.pos.getZ() - radius, this.pos.getX() + radius, this.pos.getY() + radius, this.pos.getZ() + radius));
 
                     for (Entity around : entity)
                     {
@@ -137,38 +137,38 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     if (this.activatedTick % 20 == 0)
                     {
-                        this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
+                        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
                     }
                     if (this.activatedTick >= this.getSuccessfulTick() - 5 && this.activatedTick <= this.getSuccessfulTick())
                     {
-                        this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_STOP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_STOP, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     }
 
                     if (!this.failed)
                     {
-                        if (this.worldObj.rand.nextInt(50) == 0)
+                        if (this.world.rand.nextInt(50) == 0)
                         {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
+                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                             bolt.setLocationAndAngles(this.pos.getX() + 3, this.pos.getY() + 2.5D, this.pos.getZ() + 3, 0.0F, 0.0F);
-                            this.worldObj.spawnEntityInWorld(bolt);
+                            this.world.spawnEntity(bolt);
                         }
-                        if (this.worldObj.rand.nextInt(50) == 0)
+                        if (this.world.rand.nextInt(50) == 0)
                         {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
+                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                             bolt.setLocationAndAngles(this.pos.getX() - 3, this.pos.getY() + 2.5D, this.pos.getZ() + 3, 0.0F, 0.0F);
-                            this.worldObj.spawnEntityInWorld(bolt);
+                            this.world.spawnEntity(bolt);
                         }
-                        if (this.worldObj.rand.nextInt(50) == 0)
+                        if (this.world.rand.nextInt(50) == 0)
                         {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
+                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                             bolt.setLocationAndAngles(this.pos.getX() + 3, this.pos.getY() + 2.5D, this.pos.getZ() - 3, 0.0F, 0.0F);
-                            this.worldObj.spawnEntityInWorld(bolt);
+                            this.world.spawnEntity(bolt);
                         }
-                        if (this.worldObj.rand.nextInt(50) == 0)
+                        if (this.world.rand.nextInt(50) == 0)
                         {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
+                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                             bolt.setLocationAndAngles(this.pos.getX() - 3, this.pos.getY() + 2.5D, this.pos.getZ() - 3, 0.0F, 0.0F);
-                            this.worldObj.spawnEntityInWorld(bolt);
+                            this.world.spawnEntity(bolt);
                         }
                         this.activatedTick++;
                     }
@@ -178,47 +178,47 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     this.failedTick++;
 
-                    if (this.worldObj.rand.nextInt(12) == 0)
+                    if (this.world.rand.nextInt(12) == 0)
                     {
-                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
+                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                         bolt.setLocationAndAngles(this.pos.getX() + 3, this.pos.getY() + 2.5D, this.pos.getZ() + 3, 0.0F, 0.0F);
-                        this.worldObj.spawnEntityInWorld(bolt);
+                        this.world.spawnEntity(bolt);
                     }
-                    if (this.worldObj.rand.nextInt(12) == 0)
+                    if (this.world.rand.nextInt(12) == 0)
                     {
-                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
+                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                         bolt.setLocationAndAngles(this.pos.getX() - 3, this.pos.getY() + 2.5D, this.pos.getZ() + 3, 0.0F, 0.0F);
-                        this.worldObj.spawnEntityInWorld(bolt);
+                        this.world.spawnEntity(bolt);
                     }
-                    if (this.worldObj.rand.nextInt(12) == 0)
+                    if (this.world.rand.nextInt(12) == 0)
                     {
-                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
+                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                         bolt.setLocationAndAngles(this.pos.getX() + 3, this.pos.getY() + 2.5D, this.pos.getZ() - 3, 0.0F, 0.0F);
-                        this.worldObj.spawnEntityInWorld(bolt);
+                        this.world.spawnEntity(bolt);
                     }
-                    if (this.worldObj.rand.nextInt(12) == 0)
+                    if (this.world.rand.nextInt(12) == 0)
                     {
-                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
+                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                         bolt.setLocationAndAngles(this.pos.getX() - 3, this.pos.getY() + 2.5D, this.pos.getZ() - 3, 0.0F, 0.0F);
-                        this.worldObj.spawnEntityInWorld(bolt);
+                        this.world.spawnEntity(bolt);
                     }
                     if (this.failedTick % 20 == 0)
                     {
-                        this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
-                        this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_DANGER, SoundCategory.BLOCKS, 5.0F, 1.0F);
+                        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
+                        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_DANGER, SoundCategory.BLOCKS, 5.0F, 1.0F);
                     }
                 }
 
-                if (!(this.checkBlock(this.worldObj, this.pos.down().north(), DionaBlocks.ZELIUS_EGG.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.down().south(), DionaBlocks.ZELIUS_EGG.getDefaultState())
-                        && this.checkBlock(this.worldObj, this.pos.down().east(), DionaBlocks.ZELIUS_EGG.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.down().west(), DionaBlocks.ZELIUS_EGG.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.down().down().north(), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState())
-                        && this.checkBlock(this.worldObj, this.pos.down().down().south(), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.down().down().east(), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.down().down().west(), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState())
-                        && this.checkBlock(this.worldObj, this.pos.down().down().north().east(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.down().down().south().east(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.down().down().north().west(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState())
-                        && this.checkBlock(this.worldObj, this.pos.down().down().south().west(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.add(3, -1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.add(3, -1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState())
-                        && this.checkBlock(this.worldObj, this.pos.add(-3, -1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.add(-3, -1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.add(3, 0, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1))
-                        && this.checkBlock(this.worldObj, this.pos.add(3, 0, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1)) && this.checkBlock(this.worldObj, this.pos.add(-3, 0, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1)) && this.checkBlock(this.worldObj, this.pos.add(-3, 0, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1))
-                        && this.checkBlock(this.worldObj, this.pos.add(3, 1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.add(3, 1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.add(-3, 1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState())
-                        && this.checkBlock(this.worldObj, this.pos.add(-3, 1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.worldObj, this.pos.add(3, 2, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2)) && this.checkBlock(this.worldObj, this.pos.add(3, 2, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2))
-                        && this.checkBlock(this.worldObj, this.pos.add(-3, 2, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2)) && this.checkBlock(this.worldObj, this.pos.add(-3, 2, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2))))
+                if (!(this.checkBlock(this.world, this.pos.down().north(), DionaBlocks.ZELIUS_EGG.getDefaultState()) && this.checkBlock(this.world, this.pos.down().south(), DionaBlocks.ZELIUS_EGG.getDefaultState())
+                        && this.checkBlock(this.world, this.pos.down().east(), DionaBlocks.ZELIUS_EGG.getDefaultState()) && this.checkBlock(this.world, this.pos.down().west(), DionaBlocks.ZELIUS_EGG.getDefaultState()) && this.checkBlock(this.world, this.pos.down().down().north(), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState())
+                        && this.checkBlock(this.world, this.pos.down().down().south(), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState()) && this.checkBlock(this.world, this.pos.down().down().east(), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState()) && this.checkBlock(this.world, this.pos.down().down().west(), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState())
+                        && this.checkBlock(this.world, this.pos.down().down().north().east(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState()) && this.checkBlock(this.world, this.pos.down().down().south().east(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState()) && this.checkBlock(this.world, this.pos.down().down().north().west(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState())
+                        && this.checkBlock(this.world, this.pos.down().down().south().west(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState()) && this.checkBlock(this.world, this.pos.add(3, -1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.world, this.pos.add(3, -1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState())
+                        && this.checkBlock(this.world, this.pos.add(-3, -1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.world, this.pos.add(-3, -1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.world, this.pos.add(3, 0, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1))
+                        && this.checkBlock(this.world, this.pos.add(3, 0, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1)) && this.checkBlock(this.world, this.pos.add(-3, 0, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1)) && this.checkBlock(this.world, this.pos.add(-3, 0, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1))
+                        && this.checkBlock(this.world, this.pos.add(3, 1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.world, this.pos.add(3, 1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.world, this.pos.add(-3, 1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState())
+                        && this.checkBlock(this.world, this.pos.add(-3, 1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState()) && this.checkBlock(this.world, this.pos.add(3, 2, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2)) && this.checkBlock(this.world, this.pos.add(3, 2, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2))
+                        && this.checkBlock(this.world, this.pos.add(-3, 2, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2)) && this.checkBlock(this.world, this.pos.add(-3, 2, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2))))
                 {
                     this.failed = true;
                 }
@@ -229,7 +229,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
                 for (int yRender = this.pos.getY(); yRender < 256; yRender++)
                 {
-                    IBlockState state = this.worldObj.getBlockState(new BlockPos(this.pos.getX(), yRender, this.pos.getZ()));
+                    IBlockState state = this.world.getBlockState(new BlockPos(this.pos.getX(), yRender, this.pos.getZ()));
                     Block block = state.getBlock();
 
                     if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
@@ -239,14 +239,14 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
                     if (this.facing == 0 || this.facing == 180)
                     {
-                        block = this.worldObj.getBlockState(new BlockPos(this.pos.getX() + 1, yRender + 1, this.pos.getZ())).getBlock();
+                        block = this.world.getBlockState(new BlockPos(this.pos.getX() + 1, yRender + 1, this.pos.getZ())).getBlock();
 
                         if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
 
-                        block = this.worldObj.getBlockState(new BlockPos(this.pos.getX() - 1, yRender + 1, this.pos.getZ())).getBlock();
+                        block = this.world.getBlockState(new BlockPos(this.pos.getX() - 1, yRender + 1, this.pos.getZ())).getBlock();
 
                         if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
                         {
@@ -255,14 +255,14 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     }
                     if (this.facing == -90 || this.facing == 90)
                     {
-                        block = this.worldObj.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() + 1)).getBlock();
+                        block = this.world.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() + 1)).getBlock();
 
                         if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
 
-                        block = this.worldObj.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() - 1)).getBlock();
+                        block = this.world.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() - 1)).getBlock();
 
                         if (state.isOpaqueCube() && block != DionaBlocks.DARK_ENERGY_CORE)
                         {
@@ -275,33 +275,33 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     if (!this.successful)
                     {
-                        if (this.worldObj.getBlockState(this.getPos().up()).getBlock() != DionaBlocks.DARK_ENERGY_CORE)
+                        if (this.world.getBlockState(this.getPos().up()).getBlock() != DionaBlocks.DARK_ENERGY_CORE)
                         {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.worldObj);
+                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                             bolt.setLocationAndAngles(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), 0.0F, 0.0F);
-                            this.worldObj.playSound((EntityPlayer)null, this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 0.7F);
-                            this.worldObj.spawnEntityInWorld(bolt);
-                            this.worldObj.setBlockState(this.getPos().up(), DionaBlocks.DARK_ENERGY_CORE.getDefaultState());
+                            this.world.playSound((EntityPlayer)null, this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
+                            this.world.spawnEntity(bolt);
+                            this.world.setBlockState(this.getPos().up(), DionaBlocks.DARK_ENERGY_CORE.getDefaultState());
                         }
 
                         if (!this.posList.isEmpty())
                         {
                             for (BlockPos pos : this.posList)
                             {
-                                this.worldObj.setBlockToAir(pos);
+                                this.world.setBlockToAir(pos);
                             }
                         }
                         if (!this.obsidianPosList.isEmpty())
                         {
                             for (BlockPos pos : this.obsidianPosList)
                             {
-                                this.worldObj.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
+                                this.world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
                             }
                         }
                         this.setDisabled(0, true);
                         this.activatedMessage = true;
                         this.successful = true;
-                        FMLClientHandler.instance().getClient().thePlayer.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.status.dark_energy_core_created.name")).setStyle(new JsonUtils().colorFromConfig("green")));
+                        FMLClientHandler.instance().getClient().player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.status.dark_energy_core_created.name")).setStyle(new JsonUtils().colorFromConfig("green")));
                     }
                 }
 
@@ -309,11 +309,11 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     if (!this.spawnedBlackHole)
                     {
-                        EntityBlackHole blackHole = new EntityBlackHole(this.worldObj);
+                        EntityBlackHole blackHole = new EntityBlackHole(this.world);
                         blackHole.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 2.0D, this.pos.getZ() + 0.5D, 0.0F, 0.0F);
-                        this.worldObj.spawnEntityInWorld(blackHole);
-                        this.worldObj.createExplosion(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), 5.0F, true);
-                        this.worldObj.destroyBlock(this.pos, false);
+                        this.world.spawnEntity(blackHole);
+                        this.world.createExplosion(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), 5.0F, true);
+                        this.world.destroyBlock(this.pos, false);
                         this.spawnedBlackHole = true;
                     }
                 }
@@ -442,7 +442,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     @Override
     public boolean onActivated(EntityPlayer player)
     {
-        return MPBlocks.DARK_ENERGY_RECEIVER.onBlockActivated(this.worldObj, this.mainBlockPosition, MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState(), player, player.getActiveHand(), player.getHeldItemMainhand(), player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
+        return MPBlocks.DARK_ENERGY_RECEIVER.onBlockActivated(this.world, this.mainBlockPosition, MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState(), player, player.getActiveHand(), player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
     }
 
     @Override
@@ -466,15 +466,15 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
             {
                 BlockPos pos = new BlockPos(thisBlock.getX() + i, thisBlock.getY(), thisBlock.getZ());
 
-                if (this.worldObj.isRemote && this.worldObj.rand.nextDouble() < 0.1D)
+                if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
                 {
                     Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(pos, MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState());
                 }
-                if (this.worldObj.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(1) || this.worldObj.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(2))
+                if (this.world.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(1) || this.world.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(2))
                 {
-                    this.worldObj.destroyBlock(pos, false);
+                    this.world.destroyBlock(pos, false);
                 }
-                this.worldObj.destroyBlock(this.getPos(), true);
+                this.world.destroyBlock(this.getPos(), true);
             }
         }
         if (this.getFacing() == 90 || this.getFacing() == -90)
@@ -483,15 +483,15 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
             {
                 BlockPos pos = new BlockPos(thisBlock.getX(), thisBlock.getY(), thisBlock.getZ() + i);
 
-                if (this.worldObj.isRemote && this.worldObj.rand.nextDouble() < 0.1D)
+                if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
                 {
                     Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(pos, MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState());
                 }
-                if (this.worldObj.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(3) || this.worldObj.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(4))
+                if (this.world.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(3) || this.world.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(4))
                 {
-                    this.worldObj.destroyBlock(pos, false);
+                    this.world.destroyBlock(pos, false);
                 }
-                this.worldObj.destroyBlock(this.getPos(), true);
+                this.world.destroyBlock(this.getPos(), true);
             }
         }
     }
@@ -653,7 +653,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
+        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
     }
 
     public boolean isActivated()
@@ -701,7 +701,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
     private boolean destroyBlock(BlockPos pos, boolean dropBlock)
     {
-        IBlockState iblockstate = this.worldObj.getBlockState(pos);
+        IBlockState iblockstate = this.world.getBlockState(pos);
 
         if (iblockstate.getMaterial() == Material.AIR)
         {
@@ -709,7 +709,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         }
         else
         {
-            this.worldObj.playEvent(2001, pos, Block.getStateId(iblockstate));
+            this.world.playEvent(2001, pos, Block.getStateId(iblockstate));
 
             if (dropBlock)
             {
@@ -723,10 +723,10 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 }
                 if (!electric.successful && !electric.failed)
                 {
-                    Block.spawnAsEntity(this.worldObj, pos, machine);
+                    Block.spawnAsEntity(this.world, pos, machine);
                 }
             }
-            return this.worldObj.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+            return this.world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
         }
     }
 

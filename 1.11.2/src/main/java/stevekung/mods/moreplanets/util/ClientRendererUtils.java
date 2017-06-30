@@ -86,9 +86,9 @@ public class ClientRendererUtils
     private static void putColorRGB_F(VertexBuffer vertexbuffer, float red, float green, float blue, int vertexIndex)
     {
         int i = vertexbuffer.getColorIndex(vertexIndex);
-        int j = MathHelper.clamp_int((int)(red * 255.0F), 0, 255);
-        int k = MathHelper.clamp_int((int)(green * 255.0F), 0, 255);
-        int l = MathHelper.clamp_int((int)(blue * 255.0F), 0, 255);
+        int j = MathHelper.clamp((int)(red * 255.0F), 0, 255);
+        int k = MathHelper.clamp((int)(green * 255.0F), 0, 255);
+        int l = MathHelper.clamp((int)(blue * 255.0F), 0, 255);
         vertexbuffer.putColorRGBA(i, j, k, l, 127);
     }
 

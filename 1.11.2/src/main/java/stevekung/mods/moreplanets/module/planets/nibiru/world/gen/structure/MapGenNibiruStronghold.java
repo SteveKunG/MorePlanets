@@ -52,38 +52,6 @@ public class MapGenNibiruStronghold extends MapGenStructure
     }
 
     @Override
-    public BlockPos getClosestStrongholdPos(World world, BlockPos pos)
-    {
-        if (!this.ranBiomeCheck)
-        {
-            this.generatePositions();
-            this.ranBiomeCheck = true;
-        }
-
-        BlockPos blockpos = null;
-        BlockPos.MutableBlockPos mutableblockpos = new BlockPos.MutableBlockPos(0, 0, 0);
-        double d0 = Double.MAX_VALUE;
-
-        for (ChunkPos chunkpos : this.structureCoords)
-        {
-            mutableblockpos.setPos((chunkpos.chunkXPos << 4) + 8, 32, (chunkpos.chunkZPos << 4) + 8);
-            double d1 = mutableblockpos.distanceSq(pos);
-
-            if (blockpos == null)
-            {
-                blockpos = new BlockPos(mutableblockpos);
-                d0 = d1;
-            }
-            else if (d1 < d0)
-            {
-                blockpos = new BlockPos(mutableblockpos);
-                d0 = d1;
-            }
-        }
-        return blockpos;
-    }
-
-    @Override
     protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
     {
         if (!this.ranBiomeCheck)
@@ -102,31 +70,48 @@ public class MapGenNibiruStronghold extends MapGenStructure
     }
 
     @Override
-    protected List<BlockPos> getCoordList()
-    {
-        List<BlockPos> list = Lists.newArrayList();
-
-        for (ChunkPos chunkpos : this.structureCoords)
-        {
-            if (chunkpos != null)
-            {
-                list.add(chunkpos.getCenterBlock(64));
-            }
-        }
-        return list;
-    }
-
-    @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
         MapGenNibiruStronghold.Start start;
-        for (start = new MapGenNibiruStronghold.Start(this.worldObj, this.rand, chunkX, chunkZ); start.getComponents().isEmpty() || ((StructureNibiruStrongholdPieces.Stairs2)start.getComponents().get(0)).strongholdPortalRoom == null; start = new MapGenNibiruStronghold.Start(this.worldObj, this.rand, chunkX, chunkZ)) {}
+        for (start = new MapGenNibiruStronghold.Start(this.world, this.rand, chunkX, chunkZ); start.getComponents().isEmpty() || ((StructureNibiruStrongholdPieces.Stairs2)start.getComponents().get(0)).strongholdPortalRoom == null; start = new MapGenNibiruStronghold.Start(this.world, this.rand, chunkX, chunkZ)) {}
         return start;
+    }
+
+    @Override
+    public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
+    {
+        if (!this.ranBiomeCheck)
+        {
+            this.generatePositions();
+            this.ranBiomeCheck = true;
+        }
+
+        BlockPos blockpos = null;
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(0, 0, 0);
+        double d0 = Double.MAX_VALUE;
+
+        for (ChunkPos chunkpos : this.structureCoords)
+        {
+            blockpos$mutableblockpos.setPos((chunkpos.chunkXPos << 4) + 8, 32, (chunkpos.chunkZPos << 4) + 8);
+            double d1 = blockpos$mutableblockpos.distanceSq(pos);
+
+            if (blockpos == null)
+            {
+                blockpos = new BlockPos(blockpos$mutableblockpos);
+                d0 = d1;
+            }
+            else if (d1 < d0)
+            {
+                blockpos = new BlockPos(blockpos$mutableblockpos);
+                d0 = d1;
+            }
+        }
+        return blockpos;
     }
 
     private void generatePositions()
     {
-        this.initializeStructureData(this.worldObj);
+        this.initializeStructureData(this.world);
         int i = 0;
 
         for (StructureStart structurestart : this.structureMap.values())
@@ -138,7 +123,7 @@ public class MapGenNibiruStronghold extends MapGenStructure
         }
 
         Random rand = new Random();
-        rand.setSeed(this.worldObj.getSeed());
+        rand.setSeed(this.world.getSeed());
         double d1 = rand.nextDouble() * Math.PI * 2.0D;
         int j = 0;
         int k = 0;
@@ -151,7 +136,7 @@ public class MapGenNibiruStronghold extends MapGenStructure
                 double d0 = 4.0D * this.distance + this.distance * j * 6.0D + (rand.nextDouble() - 0.5D) * this.distance * 2.5D;
                 int j1 = (int)Math.round(Math.cos(d1) * d0);
                 int k1 = (int)Math.round(Math.sin(d1) * d0);
-                BlockPos blockpos = this.worldObj.getBiomeProvider().findBiomePosition((j1 << 4) + 8, (k1 << 4) + 8, 112, this.allowedBiomes, rand);
+                BlockPos blockpos = this.world.getBiomeProvider().findBiomePosition((j1 << 4) + 8, (k1 << 4) + 8, 112, this.allowedBiomes, rand);
 
                 if (blockpos != null)
                 {

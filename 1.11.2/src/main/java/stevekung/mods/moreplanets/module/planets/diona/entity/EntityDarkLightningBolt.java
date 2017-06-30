@@ -48,7 +48,7 @@ public class EntityDarkLightningBolt extends Entity
 
         if (this.lightningState == 2)
         {
-            this.worldObj.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, MPSounds.LOUD_THUNDER, SoundCategory.WEATHER, 5000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+            this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, MPSounds.LOUD_THUNDER, SoundCategory.WEATHER, 5000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
         }
 
         --this.lightningState;
@@ -69,14 +69,14 @@ public class EntityDarkLightningBolt extends Entity
 
         if (this.lightningState >= 0)
         {
-            if (this.worldObj.isRemote)
+            if (this.world.isRemote)
             {
-                this.worldObj.setLastLightningBolt(2);
+                this.world.setLastLightningBolt(2);
             }
             else
             {
                 double d0 = 1.0D;
-                List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
+                List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
 
                 for (int i = 0; i < list.size(); ++i)
                 {
@@ -90,7 +90,7 @@ public class EntityDarkLightningBolt extends Entity
                     {
                         ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 60, 0, false, false));
                     }
-                    entity.attackEntityFrom(DamageSource.lightningBolt, 10.0F);
+                    entity.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 10.0F);
                 }
             }
         }

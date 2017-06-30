@@ -209,7 +209,7 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
     }
 
     @Override
-    public boolean isVisuallyOpaque()
+    public boolean causesSuffocation(IBlockState state)
     {
         return false;
     }

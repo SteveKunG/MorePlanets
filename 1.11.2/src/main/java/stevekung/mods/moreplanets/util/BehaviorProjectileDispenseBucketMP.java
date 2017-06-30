@@ -21,9 +21,7 @@ public class BehaviorProjectileDispenseBucketMP extends BehaviorDefaultDispenseI
 
         if (bucket.tryPlaceContainedLiquid((EntityPlayer)null, source.getWorld(), blockpos))
         {
-            itemStack.setItem(Items.BUCKET);
-            itemStack.stackSize = 1;
-            return itemStack;
+            return new ItemStack(Items.BUCKET);
         }
         else
         {

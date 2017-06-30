@@ -36,6 +36,6 @@ public class TileEntityChalosDungeonSpawner extends TileEntityDungeonSpawner
     @Override
     public void playSpawnSound(Entity entity)
     {
-        this.worldObj.playSound(null, entity.posX, entity.posY, entity.posZ, GCSounds.scaryScape, SoundCategory.AMBIENT, 9.0F, 1.4F);
+        this.world.playSound(null, entity.posX, entity.posY, entity.posZ, GCSounds.scaryScape, SoundCategory.AMBIENT, 9.0F, 1.4F);
     }
 }

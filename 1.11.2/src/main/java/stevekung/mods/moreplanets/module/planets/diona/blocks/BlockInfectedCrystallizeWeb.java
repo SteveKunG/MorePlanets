@@ -53,7 +53,7 @@ public class BlockInfectedCrystallizeWeb extends BlockBaseMP
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return null;
     }

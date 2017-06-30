@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
 
@@ -1474,7 +1475,7 @@ public class StructureNibiruOceanMonumentPieces
         protected void writeStructureToNBT(NBTTagCompound nbt) {}
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt) {}
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager) {}
 
         protected void generateWaterBox(World world, StructureBoundingBox box, int minX, int minY, int minZ, int maxX, int maxY, int maxZ, boolean isAir)
         {
@@ -1558,7 +1559,7 @@ public class StructureNibiruOceanMonumentPieces
                 entityguardian.heal(entityguardian.getMaxHealth());
                 entityguardian.setLocationAndAngles(i + 0.5D, j, k + 0.5D, 0.0F, 0.0F);
                 entityguardian.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entityguardian)), (IEntityLivingData)null);
-                world.spawnEntityInWorld(entityguardian);
+                world.spawnEntity(entityguardian);
                 return true;
             }
             else

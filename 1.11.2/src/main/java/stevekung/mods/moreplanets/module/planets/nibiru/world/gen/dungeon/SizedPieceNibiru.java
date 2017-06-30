@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.dungeon;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
 
 public abstract class SizedPieceNibiru extends DirectionalPieceNibiru
@@ -30,9 +31,9 @@ public abstract class SizedPieceNibiru extends DirectionalPieceNibiru
     }
 
     @Override
-    protected void readStructureFromNBT(NBTTagCompound tagCompound)
+    protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager manager)
     {
-        super.readStructureFromNBT(tagCompound);
+        super.readStructureFromNBT(tagCompound, manager);
         this.sizeX = tagCompound.getInteger("SizeX");
         this.sizeY = tagCompound.getInteger("SizeY");
         this.sizeZ = tagCompound.getInteger("SizeZ");

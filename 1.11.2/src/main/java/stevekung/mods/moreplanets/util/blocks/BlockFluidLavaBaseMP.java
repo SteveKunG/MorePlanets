@@ -110,9 +110,9 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos fromPos)
     {
-        super.neighborChanged(state, world, pos, neighborBlock);
+        super.neighborChanged(state, world, pos, neighborBlock, fromPos);
         this.checkForMixing(world, pos, state);
     }
 

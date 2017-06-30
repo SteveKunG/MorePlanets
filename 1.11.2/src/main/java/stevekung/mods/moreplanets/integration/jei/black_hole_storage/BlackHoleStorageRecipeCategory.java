@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.integration.jei.black_hole_storage;
 
-import java.util.List;
-
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -11,6 +9,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
@@ -76,21 +75,12 @@ public class BlackHoleStorageRecipeCategory extends BlankRecipeCategory
 
         itemStacks.init(22, false, 150, 93);
 
-        if (recipeWrapper instanceof BlackHoleStorageRecipeWrapper)
-        {
-            BlackHoleStorageRecipeWrapper wrapper = (BlackHoleStorageRecipeWrapper) recipeWrapper;
-            List inputs = wrapper.getInputs();
+        itemStacks.set(ingredients);
+    }
 
-            for (int i = 0; i < inputs.size(); ++i)
-            {
-                Object o = inputs.get(i);
-
-                if (o != null)
-                {
-                    itemStacks.setFromRecipe(i, o);
-                }
-            }
-            itemStacks.setFromRecipe(22, wrapper.getOutputs());
-        }
+    @Override
+    public String getModName()
+    {
+        return MorePlanetsCore.MOD_ID;
     }
 }

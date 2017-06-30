@@ -79,7 +79,7 @@ public class WorldTickEventHandler
                             {
                                 EntityAlienBeam beam = new EntityAlienBeam(worldServer);
                                 beam.setLocationAndAngles(blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0.0F, 0.0F);
-                                worldServer.spawnEntityInWorld(beam);
+                                worldServer.spawnEntity(beam);
                             }
                         }
                     }
@@ -110,7 +110,7 @@ public class WorldTickEventHandler
 
                             if (worldServer.isRainingAt(blockpos))
                             {
-                                worldServer.spawnEntityInWorld(new EntityNibiruLightningBolt(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ(), true));
+                                worldServer.spawnEntity(new EntityNibiruLightningBolt(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ(), true));
                             }
                         }
                         if (worldServer.rand.nextInt(16) == 0)
@@ -140,7 +140,7 @@ public class WorldTickEventHandler
                                 this.updateLCG = this.updateLCG * 3 + 1013904223;
                                 int l = this.updateLCG >> 2;
                                 BlockPos blockpos = this.adjustPosToNearbyEntity(worldServer, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
-                                worldServer.spawnEntityInWorld(new EntityNibiruLightningBolt(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ(), false));
+                                worldServer.spawnEntity(new EntityNibiruLightningBolt(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ(), false));
                             }
                         }
                     }

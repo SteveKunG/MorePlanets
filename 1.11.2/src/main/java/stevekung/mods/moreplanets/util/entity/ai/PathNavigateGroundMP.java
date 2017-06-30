@@ -33,8 +33,8 @@ public class PathNavigateGroundMP extends PathNavigateGround
     @Override
     protected boolean isDirectPathBetweenPoints(Vec3d posVec31, Vec3d posVec32, int sizeX, int sizeY, int sizeZ)
     {
-        int i = MathHelper.floor_double(posVec31.xCoord);
-        int j = MathHelper.floor_double(posVec31.zCoord);
+        int i = MathHelper.floor(posVec31.xCoord);
+        int j = MathHelper.floor(posVec31.zCoord);
         double d0 = posVec32.xCoord - posVec31.xCoord;
         double d1 = posVec32.zCoord - posVec31.zCoord;
         double d2 = d0 * d0 + d1 * d1;
@@ -77,8 +77,8 @@ public class PathNavigateGroundMP extends PathNavigateGround
                 d7 = d7 / d1;
                 int k = d0 < 0.0D ? -1 : 1;
                 int l = d1 < 0.0D ? -1 : 1;
-                int i1 = MathHelper.floor_double(posVec32.xCoord);
-                int j1 = MathHelper.floor_double(posVec32.zCoord);
+                int i1 = MathHelper.floor(posVec32.xCoord);
+                int j1 = MathHelper.floor(posVec32.zCoord);
                 int k1 = i1 - i;
                 int l1 = j1 - j;
 
@@ -147,13 +147,13 @@ public class PathNavigateGroundMP extends PathNavigateGround
         if (this.theEntity.isInWater() && this.getCanSwim())
         {
             int i = (int)this.theEntity.getEntityBoundingBox().minY;
-            Block block = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.theEntity.posX), i, MathHelper.floor_double(this.theEntity.posZ))).getBlock();
+            Block block = this.world.getBlockState(new BlockPos(MathHelper.floor(this.theEntity.posX), i, MathHelper.floor(this.theEntity.posZ))).getBlock();
             int j = 0;
 
-            while (block == Blocks.FLOWING_WATER || block == Blocks.WATER || block instanceof BlockFluidBase && this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.theEntity.posX), i, MathHelper.floor_double(this.theEntity.posZ))).getMaterial() == Material.WATER)
+            while (block == Blocks.FLOWING_WATER || block == Blocks.WATER || block instanceof BlockFluidBase && this.world.getBlockState(new BlockPos(MathHelper.floor(this.theEntity.posX), i, MathHelper.floor(this.theEntity.posZ))).getMaterial() == Material.WATER)
             {
                 ++i;
-                block = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.theEntity.posX), i, MathHelper.floor_double(this.theEntity.posZ))).getBlock();
+                block = this.world.getBlockState(new BlockPos(MathHelper.floor(this.theEntity.posX), i, MathHelper.floor(this.theEntity.posZ))).getBlock();
                 ++j;
 
                 if (j > 16)
@@ -189,7 +189,7 @@ public class PathNavigateGroundMP extends PathNavigateGround
 
                     if (d0 * xx + d1 * zz >= 0.0D)
                     {
-                        PathNodeType pathnodetype = this.nodeProcessor.getPathNodeType(this.worldObj, k, y - 1, l, this.theEntity, sizeX, sizeY, sizeZ, true, true);
+                        PathNodeType pathnodetype = this.nodeProcessor.getPathNodeType(this.world, k, y - 1, l, this.theEntity, sizeX, sizeY, sizeZ, true, true);
 
                         if (pathnodetype == PathNodeType.WATER)
                         {
@@ -204,7 +204,7 @@ public class PathNavigateGroundMP extends PathNavigateGround
                             return false;
                         }
 
-                        pathnodetype = this.nodeProcessor.getPathNodeType(this.worldObj, k, y, l, this.theEntity, sizeX, sizeY, sizeZ, true, true);
+                        pathnodetype = this.nodeProcessor.getPathNodeType(this.world, k, y, l, this.theEntity, sizeX, sizeY, sizeZ, true, true);
                         float f = this.theEntity.getPathPriority(pathnodetype);
 
                         if (f < 0.0F || f >= 8.0F)
@@ -231,9 +231,9 @@ public class PathNavigateGroundMP extends PathNavigateGround
 
             if (d0 * xx + d1 * zz >= 0.0D)
             {
-                Block block = this.worldObj.getBlockState(blockpos).getBlock();
+                Block block = this.world.getBlockState(blockpos).getBlock();
 
-                if (!block.isPassable(this.worldObj, blockpos))
+                if (!block.isPassable(this.world, blockpos))
                 {
                     return false;
                 }

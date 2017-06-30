@@ -22,8 +22,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditionalSpawnData
 {
@@ -49,18 +47,18 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
-            float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(this.motionY, f) * 180.0D / Math.PI);
         }
 
         BlockPos blockpos = new BlockPos(this.xTile, this.yTile, this.zTile);
-        IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
+        IBlockState iblockstate = this.world.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
 
         if (iblockstate.getMaterial() != Material.AIR)
         {
-            AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.worldObj, blockpos);
+            AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
 
             if (axisalignedbb != null && axisalignedbb.offset(blockpos).isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
             {
@@ -101,7 +99,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
             ++this.ticksInAir;
             Vec3d vec31 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            RayTraceResult movingobjectposition = this.worldObj.rayTraceBlocks(vec31, vec3, false, true, false);
+            RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec31, vec3, false, true, false);
             vec31 = new Vec3d(this.posX, this.posY, this.posZ);
             vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -111,7 +109,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
             }
 
             Entity entity = null;
-            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
 
             for (int i = 0; i < list.size(); ++i)
@@ -156,8 +154,8 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
             {
                 if (movingobjectposition.entityHit != null)
                 {
-                    float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                    int l = MathHelper.ceiling_double_int(f2 * this.damage);
+                    float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    int l = MathHelper.ceil(f2 * this.damage);
 
                     if (this.getIsCritical())
                     {
@@ -187,14 +185,14 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                             EntityLivingBase entitylivingbase = (EntityLivingBase)movingobjectposition.entityHit;
                             this.addEffect(entitylivingbase);
 
-                            if (!this.worldObj.isRemote)
+                            if (!this.world.isRemote)
                             {
                                 entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
                             }
 
                             if (this.knockbackStrength > 0)
                             {
-                                float f7 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+                                float f7 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
                                 if (f7 > 0.0F)
                                 {
@@ -236,13 +234,13 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                     this.xTile = blockpos1.getX();
                     this.yTile = blockpos1.getY();
                     this.zTile = blockpos1.getZ();
-                    IBlockState iblockstate1 = this.worldObj.getBlockState(blockpos1);
+                    IBlockState iblockstate1 = this.world.getBlockState(blockpos1);
                     this.inTile = iblockstate1.getBlock();
                     this.inData = this.inTile.getMetaFromState(iblockstate1);
                     this.motionX = (float)(movingobjectposition.hitVec.xCoord - this.posX);
                     this.motionY = (float)(movingobjectposition.hitVec.yCoord - this.posY);
                     this.motionZ = (float)(movingobjectposition.hitVec.zCoord - this.posZ);
-                    float f5 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    float f5 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     this.posX -= this.motionX / f5 * 0.05000000074505806D;
                     this.posY -= this.motionY / f5 * 0.05000000074505806D;
                     this.posZ -= this.motionZ / f5 * 0.05000000074505806D;
@@ -253,7 +251,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
 
                     if (iblockstate1.getMaterial() != Material.AIR)
                     {
-                        this.inTile.onEntityCollidedWithBlock(this.worldObj, blockpos1, iblockstate1, this);
+                        this.inTile.onEntityCollidedWithBlock(this.world, blockpos1, iblockstate1, this);
                     }
                 }
             }
@@ -262,14 +260,14 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
             {
                 for (int k = 0; k < 4; ++k)
                 {
-                    this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * k / 4.0D, this.posY + this.motionY * k / 4.0D, this.posZ + this.motionZ * k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+                    this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * k / 4.0D, this.posY + this.motionY * k / 4.0D, this.posZ + this.motionZ * k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
                 }
             }
 
             this.posX += this.motionX;
             this.posY += this.motionY;
             this.posZ += this.motionZ;
-            float f3 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float f3 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
             for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, f3) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {}
@@ -297,7 +295,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                 for (int i1 = 0; i1 < 4; ++i1)
                 {
                     float f8 = 0.25F;
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f8, this.posY - this.motionY * f8, this.posZ - this.motionZ * f8, this.motionX, this.motionY, this.motionZ, new int[0]);
+                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f8, this.posY - this.motionY * f8, this.posZ - this.motionZ * f8, this.motionX, this.motionY, this.motionZ, new int[0]);
                 }
                 f4 = 0.6F;
             }
@@ -324,7 +322,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
     @Override
     public void readSpawnData(ByteBuf buffer)
     {
-        Entity shooter = this.worldObj.getEntityByID(buffer.readInt());
+        Entity shooter = this.world.getEntityByID(buffer.readInt());
 
         if (shooter instanceof EntityLivingBase)
         {
@@ -336,23 +334,6 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
     protected ItemStack getArrowStack()
     {
         return null;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getBrightnessForRender(float partialTicks)
-    {
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(MathHelper.floor_double(this.posX), 0, MathHelper.floor_double(this.posZ));
-
-        if (this.worldObj.isBlockLoaded(pos))
-        {
-            pos.setY(MathHelper.floor_double(this.posY + this.getEyeHeight()));
-            return this.worldObj.getCombinedLight(pos, 0);
-        }
-        else
-        {
-            return 0;
-        }
     }
 
     public abstract void addEffect(EntityLivingBase living);

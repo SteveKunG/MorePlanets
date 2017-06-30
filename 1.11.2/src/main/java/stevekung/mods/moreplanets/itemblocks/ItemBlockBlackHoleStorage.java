@@ -58,7 +58,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                         {
                             if (world.isRemote)
                             {
-                                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                                FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                             }
                             return false;
                         }
@@ -67,7 +67,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                     {
                         if (world.isRemote)
                         {
-                            FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.bh_storage.too_close.message")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                            FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.bh_storage.too_close.message")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                         }
                         return false;
                     }

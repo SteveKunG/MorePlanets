@@ -3,9 +3,9 @@ package stevekung.mods.moreplanets.util.world.gen.dungeon;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -45,7 +45,7 @@ public class RoomSpawnerMP extends RoomEmptyMP
 
             if (spawner != null)
             {
-                spawner.getSpawnerBaseLogic().setEntityName(this.getRandomMob(rand));
+                spawner.getSpawnerBaseLogic().setEntityId(this.getRandomMob(rand));
             }
 
             blockpos = new BlockPos(this.getXWithOffset(this.sizeX - 1, this.sizeZ - 1), this.getYWithOffset(0), this.getZWithOffset(this.sizeX - 1, this.sizeZ - 1));
@@ -53,38 +53,26 @@ public class RoomSpawnerMP extends RoomEmptyMP
 
             if (spawner != null)
             {
-                spawner.getSpawnerBaseLogic().setEntityName(this.getRandomMob(rand));
+                spawner.getSpawnerBaseLogic().setEntityId(this.getRandomMob(rand));
             }
             return true;
         }
         return false;
     }
 
-    @Override
-    protected void writeStructureToNBT(NBTTagCompound tagCompound)
-    {
-        super.writeStructureToNBT(tagCompound);
-    }
-
-    @Override
-    protected void readStructureFromNBT(NBTTagCompound tagCompound)
-    {
-        super.readStructureFromNBT(tagCompound);
-    }
-
-    protected String getRandomMob(Random rand)
+    protected ResourceLocation getRandomMob(Random rand)
     {
         switch (rand.nextInt(4))
         {
         case 0:
-            return "galacticraftcore.evolved_spider";
+            return new ResourceLocation("galacticraftcore:evolved_spider");
         case 1:
-            return "galacticraftcore.evolved_creeper";
+            return new ResourceLocation("galacticraftcore:evolved_creeper");
         case 2:
-            return "galacticraftcore.evolved_skeleton";
+            return new ResourceLocation("galacticraftcore:evolved_skeleton");
         case 3:
         default:
-            return "galacticraftcore.evolved_zombie";
+            return new ResourceLocation("galacticraftcore:evolved_zombie");
         }
     }
 }

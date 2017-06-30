@@ -10,6 +10,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -63,7 +64,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 
         int k = chunkX / this.spacing;
         int l = chunkZ / this.spacing;
-        Random random = this.worldObj.setRandomSeed(k, l, 10387313);
+        Random random = this.world.setRandomSeed(k, l, 10387313);
         k = k * this.spacing;
         l = l * this.spacing;
         k = k + (random.nextInt(this.spacing - this.separation) + random.nextInt(this.spacing - this.separation)) / 2;
@@ -71,12 +72,12 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 
         if (i == k && j == l)
         {
-            if (!this.worldObj.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 16, Lists.newArrayList(this.spawnBiome)))
+            if (!this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 16, Lists.newArrayList(this.spawnBiome)))
             {
                 return false;
             }
 
-            boolean flag = this.worldObj.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, this.waterBiomes);
+            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, this.waterBiomes);
 
             if (flag)
             {
@@ -89,7 +90,14 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new StartMonument(this.worldObj, this.rand, chunkX, chunkZ);
+        return new StartMonument(this.world, this.rand, chunkX, chunkZ);
+    }
+
+    @Override
+    public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
+    {
+        this.world = world;
+        return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.spacing, this.separation, 10387313, true, 100, findUnexplored);
     }
 
     public List<SpawnListEntry> getSpawnList()

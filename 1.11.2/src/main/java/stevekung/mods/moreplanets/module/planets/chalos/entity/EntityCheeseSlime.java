@@ -29,7 +29,7 @@ public class EntityCheeseSlime extends EntitySlimeBaseMP
     @Override
     protected EntitySlimeBaseMP createInstance()
     {
-        return new EntityCheeseSlime(this.worldObj);
+        return new EntityCheeseSlime(this.world);
     }
 
     @Override
@@ -70,6 +70,6 @@ public class EntityCheeseSlime extends EntitySlimeBaseMP
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.getLightBrightness(this.getPosition()) >= 0.0F;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox()) && this.world.getLightBrightness(this.getPosition()) >= 0.0F;
     }
 }

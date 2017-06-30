@@ -48,7 +48,7 @@ public class MapGenNibiruDungeon extends MapGenDungeonMP
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new Start(this.worldObj, this.rand, chunkX, chunkZ, this.configuration);
+        return new Start(this.world, this.rand, chunkX, chunkZ, this.configuration);
     }
 
     public static class Start extends StructureStart

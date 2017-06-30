@@ -76,21 +76,21 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data)
     {
-        EntityInfectedCrystallizeTentacle tentacle1 = new EntityInfectedCrystallizeTentacle(this.worldObj);
+        EntityInfectedCrystallizeTentacle tentacle1 = new EntityInfectedCrystallizeTentacle(this.world);
         tentacle1.setLocationAndAngles(this.posX + 5.0F, this.posY + 2.5F, this.posZ + 5.0F, 0.0F, 0.0F);
-        this.worldObj.spawnEntityInWorld(tentacle1);
+        this.world.spawnEntity(tentacle1);
 
-        EntityInfectedCrystallizeTentacle tentacle2 = new EntityInfectedCrystallizeTentacle(this.worldObj);
+        EntityInfectedCrystallizeTentacle tentacle2 = new EntityInfectedCrystallizeTentacle(this.world);
         tentacle2.setLocationAndAngles(this.posX - 5.0F, this.posY + 2.5F, this.posZ - 5.0F, 0.0F, 0.0F);
-        this.worldObj.spawnEntityInWorld(tentacle2);
+        this.world.spawnEntity(tentacle2);
 
-        EntityInfectedCrystallizeTentacle tentacle3 = new EntityInfectedCrystallizeTentacle(this.worldObj);
+        EntityInfectedCrystallizeTentacle tentacle3 = new EntityInfectedCrystallizeTentacle(this.world);
         tentacle3.setLocationAndAngles(this.posX + 5.0F, this.posY + 2.5F, this.posZ - 5.0F, 0.0F, 0.0F);
-        this.worldObj.spawnEntityInWorld(tentacle3);
+        this.world.spawnEntity(tentacle3);
 
-        EntityInfectedCrystallizeTentacle tentacle4 = new EntityInfectedCrystallizeTentacle(this.worldObj);
+        EntityInfectedCrystallizeTentacle tentacle4 = new EntityInfectedCrystallizeTentacle(this.world);
         tentacle4.setLocationAndAngles(this.posX - 5.0F, this.posY + 2.5F, this.posZ + 5.0F, 0.0F, 0.0F);
-        this.worldObj.spawnEntityInWorld(tentacle4);
+        this.world.spawnEntity(tentacle4);
         this.setSlimeSize(5);
         return data;
     }
@@ -111,17 +111,17 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             float f = (this.rand.nextFloat() - 0.5F) * 1.5F;
             float f1 = (this.rand.nextFloat() - 0.5F) * 2.0F;
             float f2 = (this.rand.nextFloat() - 0.5F) * 1.5F;
-            this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + f, this.posY + 2.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D);
+            this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + f, this.posY + 2.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D);
         }
 
         int i;
         int j;
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.deathTicks >= 180 && this.deathTicks % 5 == 0)
             {
-                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_EXPLODE, GCCoreUtil.getDimensionID(this.worldObj), new Object[] { }), new TargetPoint(GCCoreUtil.getDimensionID(this.worldObj), this.posX, this.posY, this.posZ, 40.0D));
+                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_EXPLODE, GCCoreUtil.getDimensionID(this.world), new Object[] { }), new TargetPoint(GCCoreUtil.getDimensionID(this.world), this.posX, this.posY, this.posZ, 40.0D));
             }
             if (this.deathTicks > 150 && this.deathTicks % 5 == 0)
             {
@@ -131,17 +131,17 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
                 {
                     j = EntityXPOrb.getXPSplit(i);
                     i -= j;
-                    this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                    this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
                 }
             }
 
             if (this.deathTicks == 40)
             {
-                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_BOSS_DEATH, GCCoreUtil.getDimensionID(this.worldObj), new Object[] { this.getSoundPitch() - 0.1F }), new TargetPoint(GCCoreUtil.getDimensionID(this.worldObj), this.posX, this.posY, this.posZ, 40.0D));
+                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_BOSS_DEATH, GCCoreUtil.getDimensionID(this.world), new Object[] { this.getSoundPitch() - 0.1F }), new TargetPoint(GCCoreUtil.getDimensionID(this.world), this.posX, this.posY, this.posZ, 40.0D));
             }
         }
 
-        if (this.deathTicks == 200 && !this.worldObj.isRemote)
+        if (this.deathTicks == 200 && !this.world.isRemote)
         {
             i = 120;
 
@@ -149,14 +149,14 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             {
                 j = EntityXPOrb.getXPSplit(i);
                 i -= j;
-                this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
             }
 
             TileEntityTreasureChestMP chest = null;
 
             if (this.spawner != null && this.spawner.getChestPos() != null)
             {
-                TileEntity chestTest = this.worldObj.getTileEntity(this.spawner.getChestPos());
+                TileEntity chestTest = this.world.getTileEntity(this.spawner.getChestPos());
 
                 if (chestTest != null && chestTest instanceof TileEntityTreasureChestMP)
                 {
@@ -203,7 +203,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     public void onUpdate()
     {
         super.onUpdate();
-        List<EntityInfectedCrystallizeTentacle> list = this.worldObj.getEntitiesWithinAABB(EntityInfectedCrystallizeTentacle.class, this.getEntityBoundingBox().expand(32.0F, 32.0F, 32.0F));
+        List<EntityInfectedCrystallizeTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeTentacle.class, this.getEntityBoundingBox().expand(32.0F, 32.0F, 32.0F));
         this.updateTentacle();
 
         if (list.size() > 0)
@@ -228,17 +228,17 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     {
         if (this.spawner != null)
         {
-            List<EntityPlayer> playersWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
+            List<EntityPlayer> playersWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
             this.entitiesWithin = playersWithin.size();
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> playerWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
+                List<EntityPlayer> playerWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
 
                 for (EntityPlayer player : playerWithin)
                 {
                     JsonUtils json = new JsonUtils();
-                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;
@@ -258,7 +258,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             }
         }
 
-        List<EntityInfectedCrystallizeTentacle> list = this.worldObj.getEntitiesWithinAABB(EntityInfectedCrystallizeTentacle.class, this.getEntityBoundingBox().expand(32.0F, 32.0F, 32.0F));
+        List<EntityInfectedCrystallizeTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeTentacle.class, this.getEntityBoundingBox().expand(32.0F, 32.0F, 32.0F));
         EntityInfectedCrystallizeTentacle tentacle = null;
         double distance1 = Double.MAX_VALUE;
         Iterator iterator = list.iterator();
@@ -288,7 +288,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             this.spawner.boss = null;
             this.spawner.spawned = false;
         }
-        if (!this.worldObj.isRemote && i > 1 && this.getHealth() <= 0.0F)
+        if (!this.world.isRemote && i > 1 && this.getHealth() <= 0.0F)
         {
             int j = 8 + this.rand.nextInt(8);
 
@@ -296,7 +296,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             {
                 float f = (k % 2 - 0.5F) * i / 4.0F;
                 float f1 = (k / 2 - 0.5F) * i / 4.0F;
-                EntityInfectedCrystallizeSlimeMinion entityslime = new EntityInfectedCrystallizeSlimeMinion(this.worldObj);
+                EntityInfectedCrystallizeSlimeMinion entityslime = new EntityInfectedCrystallizeSlimeMinion(this.world);
 
                 if (this.hasCustomName())
                 {
@@ -308,7 +308,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
                 }
                 entityslime.setSlimeSize(i / 2);
                 entityslime.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
-                this.worldObj.spawnEntityInWorld(entityslime);
+                this.world.spawnEntity(entityslime);
             }
         }
         this.isDead = true;
@@ -409,7 +409,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     @Override
     protected EntitySlimeBaseMP createInstance()
     {
-        return new EntityInfectedCrystallizeSlimeBoss(this.worldObj);
+        return new EntityInfectedCrystallizeSlimeBoss(this.world);
     }
 
     @Override

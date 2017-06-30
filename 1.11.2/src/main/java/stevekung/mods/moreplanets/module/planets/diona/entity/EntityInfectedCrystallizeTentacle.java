@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -82,23 +83,23 @@ public class EntityInfectedCrystallizeTentacle extends Entity
         this.prevPosZ = this.posZ;
         ++this.innerRotation;
         this.motionY -= 0.03999999910593033D;
-        this.moveEntity(0.0D, this.motionY, 0.0D);
+        this.move(MoverType.SELF, 0.0D, this.motionY, 0.0D);
 
         if (this.getDamage() > 0.0F)
         {
             this.setDamage(this.getDamage() - 1.0F);
         }
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            List<EntityInfectedCrystallizeSlimeBoss> boss = this.worldObj.getEntitiesWithinAABB(EntityInfectedCrystallizeSlimeBoss.class, this.getEntityBoundingBox().expand(32.0F, 32.0F, 32.0F));
+            List<EntityInfectedCrystallizeSlimeBoss> boss = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeSlimeBoss.class, this.getEntityBoundingBox().expand(32.0F, 32.0F, 32.0F));
 
             if (boss.isEmpty())
             {
                 this.setDead();
             }
 
-            int size = this.worldObj.getEntitiesWithinAABB(EntityInfectedCrystallizeWorm.class, this.getEntityBoundingBox().expand(5.0F, 5.0F, 5.0F)).size();
+            int size = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeWorm.class, this.getEntityBoundingBox().expand(5.0F, 5.0F, 5.0F)).size();
 
             if (size > 16)
             {
@@ -109,7 +110,7 @@ public class EntityInfectedCrystallizeTentacle extends Entity
             {
                 for (int i = 0; i < 1 + this.rand.nextInt(2); i++)
                 {
-                    EntityInfectedCrystallizeWorm worm = new EntityInfectedCrystallizeWorm(this.worldObj);
+                    EntityInfectedCrystallizeWorm worm = new EntityInfectedCrystallizeWorm(this.world);
                     double x = this.posX + (this.rand.nextDouble() - this.rand.nextDouble());
                     double y = this.posY + this.rand.nextInt(3);
                     double z = this.posZ + (this.rand.nextDouble() - this.rand.nextDouble());
@@ -117,7 +118,7 @@ public class EntityInfectedCrystallizeTentacle extends Entity
 
                     if (worm.getCanSpawnHere() && worm.isNotColliding())
                     {
-                        this.worldObj.spawnEntityInWorld(worm);
+                        this.world.spawnEntity(worm);
                     }
 
                     if (worm != null)
@@ -160,25 +161,25 @@ public class EntityInfectedCrystallizeTentacle extends Entity
         }
         else
         {
-            if (!this.isDead && !this.worldObj.isRemote)
+            if (!this.isDead && !this.world.isRemote)
             {
                 this.setBeenAttacked();
                 this.setDamage(this.getDamage() + amount * 10.0F);
-                this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
-                if (this.worldObj instanceof WorldServer)
+                if (this.world instanceof WorldServer)
                 {
                     for (int i = 0; i < 8; i++)
                     {
-                        ((WorldServer)this.worldObj).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + this.height / 1.5D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState())});
+                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + this.height / 1.5D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState())});
                     }
                 }
                 if (source.isCreativePlayer() || this.getDamage() > 2048.0F)
                 {
                     this.setDead();
-                    List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(4.0D, 4.0D, 4.0D));
-                    this.worldObj.createExplosion(null, this.posX, this.posY, this.posZ, 1.0F + this.rand.nextFloat(), true);
-                    this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                    List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(4.0D, 4.0D, 4.0D));
+                    this.world.createExplosion(null, this.posX, this.posY, this.posZ, 1.0F + this.rand.nextFloat(), true);
+                    this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.HOSTILE, 1.0F, 1.0F);
                     int j = 1 + this.rand.nextInt(4);
 
                     for (int k = 0; k < j; ++k)

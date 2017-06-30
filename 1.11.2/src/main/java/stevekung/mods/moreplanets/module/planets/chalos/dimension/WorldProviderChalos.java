@@ -49,7 +49,7 @@ public class WorldProviderChalos extends WorldProviderMP
     @SideOnly(Side.CLIENT)
     public float getStarBrightness(float partialTicks)
     {
-        float angle = this.worldObj.getCelestialAngle(partialTicks);
+        float angle = this.world.getCelestialAngle(partialTicks);
         float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
 
         if (value < 0.0F)
@@ -67,7 +67,7 @@ public class WorldProviderChalos extends WorldProviderMP
     @SideOnly(Side.CLIENT)
     public float getSunBrightness(float partialTicks)
     {
-        float angle = this.worldObj.getCelestialAngle(partialTicks);
+        float angle = this.world.getCelestialAngle(partialTicks);
         float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
 
         if (value < 0.0F)//day
@@ -115,7 +115,7 @@ public class WorldProviderChalos extends WorldProviderMP
     @Override
     public float getThermalLevelModifier()
     {
-        float angle = this.worldObj.getCelestialAngle(this.getDayLength());
+        float angle = this.world.getCelestialAngle(this.getDayLength());
         float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
         value = 1.0F - value;
         return value * 1.0F;
@@ -149,15 +149,15 @@ public class WorldProviderChalos extends WorldProviderMP
     protected void renderWeather() {}
 
     @Override
-    public void createBiomeProvider()
+    public void init()
     {
-        this.biomeProvider = new BiomeProviderChalos(this.worldObj.getSeed());
+        this.biomeProvider = new BiomeProviderChalos(this.world.getSeed());
     }
 
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkGeneratorChalos(this.worldObj, this.worldObj.getSeed());
+        return new ChunkGeneratorChalos(this.world, this.world.getSeed());
     }
 
     @Override

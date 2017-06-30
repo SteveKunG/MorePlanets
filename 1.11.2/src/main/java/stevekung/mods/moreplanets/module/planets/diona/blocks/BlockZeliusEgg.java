@@ -102,13 +102,13 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
                 EntityZeliusCreeper creeper = new EntityZeliusCreeper(world);
                 creeper.setPosition(pos.getX() + 0.5D, pos.getY() + 1, pos.getZ() + 0.5D);
                 creeper.getDataManager().set(EntityCreeper.POWERED, true);
-                world.spawnEntityInWorld(creeper);
+                world.spawnEntity(creeper);
             }
             else
             {
                 EntityZeliusZombie zombie = new EntityZeliusZombie(world);
                 zombie.setPosition(pos.getX() + 0.5D, pos.getY() + 1, pos.getZ() + 0.5D);
-                world.spawnEntityInWorld(zombie);
+                world.spawnEntity(zombie);
             }
             world.setBlockToAir(pos);
         }

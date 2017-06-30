@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.entity;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.nbt.NBTTagCompound;
@@ -52,11 +53,11 @@ public class EntityBlackHoleStorage extends Entity
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
-        this.moveEntity(0.0D, 0.0D, 0.0D);
+        this.move(MoverType.SELF, 0.0D, 0.0D, 0.0D);
 
         if (this.mainTilePos != null)
         {
-            TileEntity tile = this.worldObj.getTileEntity(this.mainTilePos);
+            TileEntity tile = this.world.getTileEntity(this.mainTilePos);
 
             if (tile == null || !(tile instanceof TileEntityBlackHoleStorage))
             {
@@ -71,7 +72,7 @@ public class EntityBlackHoleStorage extends Entity
             if (this.getCollectMode().equals("item") || collectAll)
             {
                 int range = 12;
-                List<EntityItem> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+                List<EntityItem> entitiesAroundBH = this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
                 for (EntityItem entity : entitiesAroundBH)
                 {
@@ -86,7 +87,7 @@ public class EntityBlackHoleStorage extends Entity
             if (this.getCollectMode().equals("xp") || collectAll)
             {
                 int range = 12;
-                List<EntityXPOrb> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityXPOrb.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+                List<EntityXPOrb> entitiesAroundBH = this.world.getEntitiesWithinAABB(EntityXPOrb.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
                 for (EntityXPOrb entity : entitiesAroundBH)
                 {
@@ -99,7 +100,7 @@ public class EntityBlackHoleStorage extends Entity
                     entity.delayBeforeCanPickup = 5;
                 }
             }
-            if (this.worldObj.isRemote)
+            if (this.world.isRemote)
             {
                 for (int i = 0; i < 16; ++i)
                 {

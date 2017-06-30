@@ -23,7 +23,7 @@ public class ContainerBlackHoleStorage extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.inventory.isUseableByPlayer(player);
+        return this.inventory.isUsableByPlayer(player);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ContainerBlackHoleStorage extends Container
             {
                 return null;
             }
-            if (itemstack1.stackSize == 0)
+            if (itemstack1.isEmpty())
             {
                 slot.putStack(null);
             }

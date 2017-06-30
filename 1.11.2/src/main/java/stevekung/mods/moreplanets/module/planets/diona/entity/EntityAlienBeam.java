@@ -44,7 +44,7 @@ public class EntityAlienBeam extends Entity
 
         if (this.lightningState == 2)
         {
-            this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+            this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 0.8F + this.rand.nextFloat() * 0.2F);
         }
 
         --this.lightningState;
@@ -65,15 +65,15 @@ public class EntityAlienBeam extends Entity
 
         if (this.lightningState >= 0)
         {
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
                 double d0 = 1.0D;
-                List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
+                List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
 
                 for (int i = 0; i < list.size(); ++i)
                 {
                     Entity entity = list.get(i);
-                    entity.attackEntityFrom(DamageSource.lightningBolt, 10.0F);
+                    entity.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 10.0F);
                 }
             }
         }

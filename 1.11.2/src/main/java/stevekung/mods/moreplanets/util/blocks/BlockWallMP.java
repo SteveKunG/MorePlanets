@@ -40,7 +40,7 @@ public class BlockWallMP extends BlockBaseMP
 
     @Override
     @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         state = this.getActualState(state, world, pos);
         return CLIP_AABB_BY_INDEX[this.getAABBIndex(state)];

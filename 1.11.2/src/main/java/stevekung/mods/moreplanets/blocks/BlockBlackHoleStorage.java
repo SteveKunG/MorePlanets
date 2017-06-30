@@ -13,14 +13,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -87,7 +84,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                 EntityBlackHoleStorage blackHole = new EntityBlackHoleStorage(world);
                 blackHole.setTileEntityPos(pos);
                 blackHole.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, 0.0F, 0.0F);
-                world.spawnEntityInWorld(blackHole);
+                world.spawnEntity(blackHole);
                 world.playSound(null, pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, MPSounds.BLACK_HOLE_CREATED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
                 if (tile instanceof TileEntityBlackHoleStorage)
@@ -97,23 +94,12 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
 
                     if (itemStack.hasTagCompound())
                     {
-                        NBTTagList list = itemStack.getTagCompound().getTagList("Items", 10);
-                        storage.inventory = new ItemStack[storage.getSizeInventory()];
+                        storage.inventory = NonNullList.withSize(storage.getSizeInventory(), ItemStack.EMPTY);
                         storage.disableBlackHole = itemStack.getTagCompound().getBoolean("Disable");
                         storage.useHopper = itemStack.getTagCompound().getBoolean("Hopper");
                         storage.xp = itemStack.getTagCompound().getInteger("XP");
                         storage.collectMode = itemStack.getTagCompound().getString("Mode");
-
-                        for (int i = 0; i <  list.tagCount(); ++i)
-                        {
-                            NBTTagCompound nbt =  list.getCompoundTagAt(i);
-                            int slot = nbt.getByte("Slot");
-
-                            if (slot >= 0 && slot < storage.inventory.length)
-                            {
-                                storage.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
-                            }
-                        }
+                        ItemStackHelper.loadAllItems(itemStack.getTagCompound(), storage.inventory);//TODO Check
                     }
                 }
             }
@@ -121,7 +107,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (world.isRemote)
         {
@@ -143,7 +129,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         int drainExp = rand.nextInt(25) == 0 ? 24 + rand.nextInt(16) : rand.nextInt(10) == 0 ? 20 + rand.nextInt(5) : rand.nextInt(5) == 0 ? 10 + rand.nextInt(5) : 3 + rand.nextInt(5);
                         storage.xp -= storage.xp < drainExp ? storage.xp : drainExp;
                         player.addExperience(drainExp);
-                        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_TOUCH, SoundCategory.PLAYERS, 0.1F, 0.5F * ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.8F));
+                        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.1F, 0.5F * ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.8F));
                     }
                     else
                     {
@@ -153,7 +139,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                 else
                 {
                     JsonUtils json = new JsonUtils();
-                    player.addChatMessage(json.text(GCCoreUtil.translate("gui.bh_storage_not_owner.message")).setStyle(json.red()));
+                    player.sendMessage(json.text(GCCoreUtil.translate("gui.bh_storage_not_owner.message")).setStyle(json.red()));
                 }
             }
             return true;
@@ -178,19 +164,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
             ItemStack itemStack = new ItemStack(this);
             NBTTagCompound nbt = new NBTTagCompound();
             TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
-            NBTTagList list = new NBTTagList();
-
-            for (int i = 0; i < storage.inventory.length; ++i)
-            {
-                if (storage.inventory[i] != null)
-                {
-                    NBTTagCompound compound = new NBTTagCompound();
-                    compound.setByte("Slot", (byte)i);
-                    storage.inventory[i].writeToNBT(compound);
-                    list.appendTag(compound);
-                }
-            }
-            nbt.setTag("Items", list);
+            ItemStackHelper.saveAllItems(nbt, storage.inventory);
             nbt.setBoolean("Disable", storage.disableBlackHole);
             nbt.setBoolean("Hopper", storage.useHopper);
             nbt.setString("Mode", storage.collectMode);

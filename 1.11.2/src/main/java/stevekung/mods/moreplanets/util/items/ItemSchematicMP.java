@@ -31,7 +31,7 @@ public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
             {
                 if (!world.isRemote)
                 {
-                    world.spawnEntityInWorld(entityhanging);
+                    world.spawnEntity(entityhanging);
                     entityhanging.sendToClient(world, blockpos);
                 }
                 --itemStack.stackSize;

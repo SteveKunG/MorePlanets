@@ -86,7 +86,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     public void makeFakeBlock(World world, BlockPos pos, BlockPos mainBlock, BlockDummy.BlockType type)
     {
         world.setBlockState(pos, MPBlocks.DUMMY_BLOCK.getStateFromMeta(type.ordinal()), 3);
-        world.getTileEntity(pos).setWorldObj(world);
+        world.getTileEntity(pos).setWorld(world);
         ((TileEntityDummy) world.getTileEntity(pos)).setMainBlock(mainBlock);
     }
 
@@ -141,9 +141,10 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntityDummy tileEntity = (TileEntityDummy) world.getTileEntity(pos);
+        ItemStack heldStack = player.getHeldItem(hand);
 
         if (tileEntity == null)
         {
@@ -151,13 +152,13 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         }
         if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_MIDDLE) && world.getBlockState(pos.down()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
-            if (heldItem != null)
+            if (player.getHeldItem(hand) != null)
             {
-                if (heldItem.getItem() == NibiruItems.WASTE_ROD_PICKER)
+                if (heldStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
-                        heldItem.damageItem(1, player);
+                        heldStack.damageItem(1, player);
                     }
                     Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
                     world.setBlockState(pos.down(), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
@@ -167,13 +168,13 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         }
         if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_TOP) && world.getBlockState(pos.down(2)) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
-            if (heldItem != null)
+            if (heldStack != null)
             {
-                if (heldItem.getItem() == NibiruItems.WASTE_ROD_PICKER)
+                if (heldStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
-                        heldItem.damageItem(1, player);
+                        heldStack.damageItem(1, player);
                     }
                     Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
                     world.setBlockState(pos.down(2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));

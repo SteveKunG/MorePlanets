@@ -123,7 +123,7 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
 
         if (this.getItemDropped(state, world.rand, fortune) != Item.getItemFromBlock(this))
         {
-            this.dropXpOnBlockBreak(world, pos, MathHelper.getRandomIntegerInRange(world.rand, 3, 5));
+            this.dropXpOnBlockBreak(world, pos, MathHelper.getInt(world.rand, 3, 5));
         }
     }
 
@@ -205,13 +205,13 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     }
 
     @Override
-    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.canPlaceBlock(world, pos, facing.getOpposite()) ? this.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, facing) : this.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, EnumFacing.DOWN);
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         if (this.checkForDrop(world, pos, state) && !this.canPlaceBlock(world, pos, state.getValue(BlockStateHelper.FACING_ALL).getOpposite()))
         {

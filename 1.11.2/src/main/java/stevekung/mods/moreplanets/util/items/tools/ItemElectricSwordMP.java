@@ -25,6 +25,7 @@ import net.minecraft.nbt.NBTTagFloat;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -105,8 +106,10 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
+        
         if (this.getElectricityStored(itemStack) > 0.0F)
         {
             player.setActiveHand(hand);
@@ -235,7 +238,7 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         list.add(ElectricItemHelper.getWithCharge(new ItemStack(item), this.getMaxElectricityStored(new ItemStack(item))));
     }

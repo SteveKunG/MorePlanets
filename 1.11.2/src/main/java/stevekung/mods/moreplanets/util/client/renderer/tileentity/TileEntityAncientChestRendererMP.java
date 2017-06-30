@@ -40,7 +40,7 @@ public class TileEntityAncientChestRendererMP extends TileEntitySpecialRenderer<
     {
         int meta;
 
-        if (!tile.hasWorldObj())
+        if (!tile.hasWorld())
         {
             meta = 0;
         }

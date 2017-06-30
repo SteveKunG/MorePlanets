@@ -47,7 +47,7 @@ public class MapGenNibiruPyramid extends MapGenStructure
         {
             if (entry.getKey().equals("distance"))
             {
-                this.maxDistanceBetweenScatteredFeatures = MathHelper.parseIntWithDefaultAndMax(entry.getValue(), this.maxDistanceBetweenScatteredFeatures, this.minDistanceBetweenScatteredFeatures + 1);
+                this.maxDistanceBetweenScatteredFeatures = MathHelper.getInt(entry.getValue(), this.maxDistanceBetweenScatteredFeatures, this.minDistanceBetweenScatteredFeatures + 1);
             }
         }
     }
@@ -94,7 +94,7 @@ public class MapGenNibiruPyramid extends MapGenStructure
 
         int k = chunkX / this.maxDistanceBetweenScatteredFeatures;
         int l = chunkZ / this.maxDistanceBetweenScatteredFeatures;
-        Random random = this.worldObj.setRandomSeed(k, l, 14357617);
+        Random random = this.world.setRandomSeed(k, l, 14357617);
         k = k * this.maxDistanceBetweenScatteredFeatures;
         l = l * this.maxDistanceBetweenScatteredFeatures;
         k = k + random.nextInt(this.maxDistanceBetweenScatteredFeatures - this.minDistanceBetweenScatteredFeatures);
@@ -102,7 +102,7 @@ public class MapGenNibiruPyramid extends MapGenStructure
 
         if (i == k && j == l)
         {
-            Biome biomegenbase = this.worldObj.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
+            Biome biomegenbase = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
 
             if (biomegenbase == null)
             {
@@ -119,7 +119,14 @@ public class MapGenNibiruPyramid extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new Start(this.worldObj, this.rand, chunkX, chunkZ);
+        return new Start(this.world, this.rand, chunkX, chunkZ);
+    }
+
+    @Override
+    public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
+    {
+        this.world = world;
+        return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 14357617, false, 100, findUnexplored);
     }
 
     public static class Start extends StructureStart

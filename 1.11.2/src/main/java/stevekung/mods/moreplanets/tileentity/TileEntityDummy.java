@@ -23,9 +23,9 @@ public class TileEntityDummy extends TileBaseElectricBlock
     {
         this.mainBlockPosition = mainBlock;
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            this.worldObj.notifyBlockUpdate(this.getPos(), this.worldObj.getBlockState(this.getPos()), this.worldObj.getBlockState(this.mainBlockPosition), 3);
+            this.world.notifyBlockUpdate(this.getPos(), this.world.getBlockState(this.getPos()), this.world.getBlockState(this.mainBlockPosition), 3);
         }
     }
 
@@ -33,7 +33,7 @@ public class TileEntityDummy extends TileBaseElectricBlock
     {
         if (this.mainBlockPosition != null)
         {
-            TileEntity tileEntity = this.worldObj.getTileEntity(this.mainBlockPosition);
+            TileEntity tileEntity = this.world.getTileEntity(this.mainBlockPosition);
 
             if (tileEntity instanceof IMultiBlock)
             {
@@ -47,7 +47,7 @@ public class TileEntityDummy extends TileBaseElectricBlock
     {
         if (this.mainBlockPosition != null)
         {
-            TileEntity tileEntity = this.worldObj.getTileEntity(this.mainBlockPosition);
+            TileEntity tileEntity = this.world.getTileEntity(this.mainBlockPosition);
 
             if (tileEntity instanceof IMultiBlock)
             {
@@ -61,7 +61,7 @@ public class TileEntityDummy extends TileBaseElectricBlock
     {
         if (this.mainBlockPosition != null)
         {
-            return this.worldObj.getTileEntity(this.mainBlockPosition);
+            return this.world.getTileEntity(this.mainBlockPosition);
         }
         return null;
     }

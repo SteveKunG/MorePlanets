@@ -22,8 +22,10 @@ public class ItemCheeseSpore extends ItemBaseMP
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
+        
         if (!player.canPlayerEdit(pos.offset(facing), facing, itemStack))
         {
             return EnumActionResult.FAIL;
@@ -33,7 +35,7 @@ public class ItemCheeseSpore extends ItemBaseMP
             if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS && !world.getBlockState(pos).isSideSolid(world, pos.up(), EnumFacing.UP) || world.getBlockState(pos.up()).getBlock() == ChalosBlocks.CHEESE_SPORE_FLOWER)
             {
                 this.growCheeseSporeFlower(itemStack, world, pos, world.rand);
-                --itemStack.stackSize;
+                itemStack.shrink(1);
                 return EnumActionResult.SUCCESS;
             }
         }

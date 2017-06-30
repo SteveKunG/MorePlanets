@@ -19,7 +19,7 @@ public class GuiCrashedAlienProbe extends GuiContainer
 
     public GuiCrashedAlienProbe(InventoryPlayer playerInv, IInventory hopperInv)
     {
-        super(new ContainerHopper(playerInv, hopperInv, Minecraft.getMinecraft().thePlayer));
+        super(new ContainerHopper(playerInv, hopperInv, Minecraft.getMinecraft().player));
         this.playerInventory = playerInv;
         this.hopperInventory = hopperInv;
         this.allowUserInput = false;

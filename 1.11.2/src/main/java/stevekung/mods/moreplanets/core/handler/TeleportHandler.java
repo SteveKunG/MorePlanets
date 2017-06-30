@@ -56,15 +56,15 @@ public class TeleportHandler
     {
         BlockPos blockpos = player.getBedLocation(dimID);
         boolean flag = player.isSpawnForced(dimID);
-        boolean dimChange = player.worldObj != worldNew;
-        player.worldObj.updateEntityWithOptionalForce(player, false);
-        int oldDimID = GCCoreUtil.getDimensionID(player.worldObj);
-        ChunkPos pair = worldNew.getChunkFromChunkCoords(x, z).getChunkCoordIntPair();
+        boolean dimChange = player.world != worldNew;
+        player.world.updateEntityWithOptionalForce(player, false);
+        int oldDimID = GCCoreUtil.getDimensionID(player.world);
+        ChunkPos pair = worldNew.getChunkFromChunkCoords(x, z).getPos();
         y = (int) (y + 1.5F);
 
         if (dimChange)
         {
-            World worldOld = player.worldObj;
+            World worldOld = player.world;
 
             try
             {
@@ -77,7 +77,7 @@ public class TeleportHandler
 
             player.closeScreen();
             player.dimension = dimID;
-            player.connection.sendPacket(new SPacketRespawn(dimID, player.worldObj.getDifficulty(), player.worldObj.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
+            player.connection.sendPacket(new SPacketRespawn(dimID, player.world.getDifficulty(), player.world.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
             worldOld.playerEntities.remove(player);
             worldOld.updateAllPlayersSleepingFlag();
             int i = player.chunkCoordX;
@@ -92,7 +92,7 @@ public class TeleportHandler
 
             worldOld.loadedEntityList.remove(player);
             worldOld.onEntityRemoved(player);
-            worldNew.spawnEntityInWorld(player);
+            worldNew.spawnEntity(player);
             player.setWorld(worldNew);
             ((WorldServer) worldNew).getChunkProvider().loadChunk(pair.chunkXPos, pair.chunkZPos);
             worldNew.updateEntityWithOptionalForce(player, false);
@@ -144,13 +144,13 @@ public class TeleportHandler
 
     public static void startNewDimension(EntityPlayerMP player)
     {
-        WorldServer worldOld = (WorldServer) player.worldObj;
+        WorldServer worldOld = (WorldServer) player.world;
         WorldServer worldNew = WorldDimensionHelper.getStartWorld(worldOld);
         BlockPos blockpos = worldNew.getTopSolidOrLiquidBlock(worldNew.getSpawnPoint());
-        boolean dimChange = player.worldObj != worldNew;
-        player.worldObj.updateEntityWithOptionalForce(player, false);
-        int oldDimID = GCCoreUtil.getDimensionID(player.worldObj);
-        ChunkPos pair = worldNew.getChunkFromChunkCoords(blockpos.getX(), blockpos.getZ()).getChunkCoordIntPair();
+        boolean dimChange = player.world != worldNew;
+        player.world.updateEntityWithOptionalForce(player, false);
+        int oldDimID = GCCoreUtil.getDimensionID(player.world);
+        ChunkPos pair = worldNew.getChunkFromChunkCoords(blockpos.getX(), blockpos.getZ()).getPos();
 
         if (dimChange)
         {
@@ -165,7 +165,7 @@ public class TeleportHandler
 
             player.closeScreen();
             player.dimension = GCCoreUtil.getDimensionID(worldNew);
-            player.connection.sendPacket(new SPacketRespawn(GCCoreUtil.getDimensionID(worldNew), player.worldObj.getDifficulty(), player.worldObj.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
+            player.connection.sendPacket(new SPacketRespawn(GCCoreUtil.getDimensionID(worldNew), player.world.getDifficulty(), player.world.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
             worldOld.playerEntities.remove(player);
             worldOld.updateAllPlayersSleepingFlag();
 
@@ -178,7 +178,7 @@ public class TeleportHandler
 
             worldOld.loadedEntityList.remove(player);
             worldOld.onEntityRemoved(player);
-            worldNew.spawnEntityInWorld(player);
+            worldNew.spawnEntity(player);
             player.setWorld(worldNew);
             MorePlanetsCore.PROXY.resetFloatingTick(player);
 
@@ -243,14 +243,14 @@ public class TeleportHandler
 
         FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, oldDimID, GCCoreUtil.getDimensionID(worldNew));
 
-        if (player.onGround && player.getBedLocation(GCCoreUtil.getDimensionID(player.worldObj)) == null)
+        if (player.onGround && player.getBedLocation(GCCoreUtil.getDimensionID(player.world)) == null)
         {
             int i = 30000000;
-            int j = Math.min(i, Math.max(-i, MathHelper.floor_double(player.posX + 0.5D)));
-            int k = Math.min(256, Math.max(0, MathHelper.floor_double(player.posY + 1.5D)));
-            int l = Math.min(i, Math.max(-i, MathHelper.floor_double(player.posZ + 0.5D)));
+            int j = Math.min(i, Math.max(-i, MathHelper.floor(player.posX + 0.5D)));
+            int k = Math.min(256, Math.max(0, MathHelper.floor(player.posY + 1.5D)));
+            int l = Math.min(i, Math.max(-i, MathHelper.floor(player.posZ + 0.5D)));
             BlockPos coords = new BlockPos(j, k, l);
-            player.setSpawnChunk(coords, true, GCCoreUtil.getDimensionID(player.worldObj));
+            player.setSpawnChunk(coords, true, GCCoreUtil.getDimensionID(player.world));
         }
     }
 }

@@ -85,7 +85,7 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
     {
         if (this.enabled && this.visible && mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height)
         {
-            if (this.parentGui.canPlayerEdit(this, mc.thePlayer))
+            if (this.parentGui.canPlayerEdit(this, mc.player))
             {
                 this.isSelected = !this.isSelected;
                 this.parentGui.onSelectionChanged(this, this.isSelected);

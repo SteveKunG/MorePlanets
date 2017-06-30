@@ -31,7 +31,7 @@ public abstract class ItemSchematicVariantsMP extends ItemBaseVariantsMP impleme
             {
                 if (!world.isRemote)
                 {
-                    world.spawnEntityInWorld(entityhanging);
+                    world.spawnEntity(entityhanging);
                     entityhanging.sendToClient(world, blockpos);
                 }
                 --itemStack.stackSize;

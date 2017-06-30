@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.module.planets.chalos.entity;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.util.entity.EntityTieredRocketMP;
@@ -18,13 +19,13 @@ public class EntityTier5Rocket extends EntityTieredRocketMP
     {
         super(world, x, y, z);
         this.rocketType = type;
-        this.cargoItems = new ItemStack[this.getSizeInventory()];
+        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
     }
 
-    public EntityTier5Rocket(World world, double x, double y, double z, EnumRocketType type, ItemStack[] inv)
+    public EntityTier5Rocket(World world, double x, double y, double z, EnumRocketType type, NonNullList<ItemStack> inv)
     {
         this(world, x, y, z, type);
-        this.cargoItems = inv;
+        this.stacks = inv;
     }
 
     @Override

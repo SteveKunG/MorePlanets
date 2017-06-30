@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.util.world.gen.dungeon;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
@@ -65,7 +66,7 @@ public class MapGenDungeonMP extends MapGenStructure
         }
         int k = chunkX / numChunks;
         int l = chunkZ / numChunks;
-        Random random = this.worldObj.setRandomSeed(k, l, 10387312);
+        Random random = this.world.setRandomSeed(k, l, 10387312);
         k = k * numChunks;
         l = l * numChunks;
         k = k + random.nextInt(numChunks);
@@ -76,7 +77,7 @@ public class MapGenDungeonMP extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new Start(this.worldObj, this.rand, chunkX, chunkZ, this.configuration);
+        return new Start(this.world, this.rand, chunkX, chunkZ, this.configuration);
     }
 
     public static class Start extends StructureStart
@@ -98,5 +99,12 @@ public class MapGenDungeonMP extends MapGenStructure
             }
             this.updateBoundingBox();
         }
+    }
+
+    @Override
+    public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
+    {
+        return null;
+        //return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.spacing, this.separation, 10387313, true, 100, p_180706_3_);TODO
     }
 }

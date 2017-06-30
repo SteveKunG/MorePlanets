@@ -49,7 +49,7 @@ public class EntityFishBasic extends EntityWaterMob
     @Override
     public boolean isInWater()
     {
-        return this.worldObj.handleMaterialAcceleration(this.getEntityBoundingBox(), Material.WATER, this);
+        return this.world.handleMaterialAcceleration(this.getEntityBoundingBox(), Material.WATER, this);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class EntityFishBasic extends EntityWaterMob
             double dx = this.swimTargetX - this.posX;
             double dy = this.swimTargetY - this.posY;
             double dz = this.swimTargetZ - this.posZ;
-            double dist = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+            double dist = MathHelper.sqrt(dx * dx + dy * dy + dz * dz);
 
             if (dist < 1.0D || dist > 1000.0D)
             {
@@ -83,7 +83,7 @@ public class EntityFishBasic extends EntityWaterMob
                 this.isAttacking = false;
             }
 
-            IBlockState blockState = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.swimTargetX), MathHelper.floor_double(this.swimTargetY + this.height), MathHelper.floor_double(this.swimTargetZ)));
+            IBlockState blockState = this.world.getBlockState(new BlockPos(MathHelper.floor(this.swimTargetX), MathHelper.floor(this.swimTargetY + this.height), MathHelper.floor(this.swimTargetZ)));
 
             if (blockState.getMaterial() == Material.WATER)
             {
@@ -117,7 +117,7 @@ public class EntityFishBasic extends EntityWaterMob
             }
             this.renderYawOffset += (-(float)Math.atan2(this.motionX, this.motionZ) * 180.0F / 3.1415927F - this.renderYawOffset) * 0.5F;
             this.rotationYaw = this.renderYawOffset;
-            float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationPitch += ((float)Math.atan2(this.motionY, f) * 180.0F / 3.1415927F - this.rotationPitch) * 0.5F;
         }
         else if (this.jumpOnLand && this.onGround && this.rand.nextInt(30) == 0)
@@ -136,7 +136,7 @@ public class EntityFishBasic extends EntityWaterMob
 
     protected Entity findEntityToAttack()
     {
-        EntityPlayer player = this.worldObj.getClosestPlayerToEntity(this, 16.0D);
+        EntityPlayer player = this.world.getClosestPlayerToEntity(this, 16.0D);
         return player != null && this.canEntityBeSeen(player) ? player : null;
     }
 

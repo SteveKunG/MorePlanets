@@ -27,7 +27,7 @@ public class SmeltWithDataFunction extends LootFunction
     @Override
     public ItemStack apply(ItemStack itemStack, Random rand, LootContext context)
     {
-        ItemStack dropStack = new ItemStack(itemStack.getItem(), itemStack.stackSize, this.metaRange.generateInt(rand));
+        ItemStack dropStack = new ItemStack(itemStack.getItem(), itemStack.getCount(), this.metaRange.generateInt(rand));
         return dropStack;
     }
 

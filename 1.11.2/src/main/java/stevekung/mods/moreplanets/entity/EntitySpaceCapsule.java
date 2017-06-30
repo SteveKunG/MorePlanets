@@ -13,7 +13,6 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -76,7 +75,7 @@ public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFu
     {
         super.tickInAir();
 
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             if (!this.onGround)
             {
@@ -90,7 +89,7 @@ public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFu
                 {
                     if (this.groundPosY == null)
                     {
-                        this.groundPosY = this.worldObj.getTopSolidOrLiquidBlock(new BlockPos(this.posX, this.posY, this.posZ)).getY();
+                        this.groundPosY = this.world.getTopSolidOrLiquidBlock(new BlockPos(this.posX, this.posY, this.posZ)).getY();
                     }
                     if (this.posY - this.groundPosY > 5.0F)
                     {
@@ -183,9 +182,9 @@ public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFu
     }
 
     @Override
-    public boolean processInitialInteract(EntityPlayer player, ItemStack stack, EnumHand hand)
+    public boolean processInitialInteract(EntityPlayer player, EnumHand hand)
     {
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             if (!this.onGround)
             {

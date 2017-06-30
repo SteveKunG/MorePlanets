@@ -25,7 +25,7 @@ public class TileEntityTreasureChestRendererMP extends TileEntitySpecialRenderer
     {
         int meta;
 
-        if (!tile.hasWorldObj())
+        if (!tile.hasWorld())
         {
             meta = 0;
         }

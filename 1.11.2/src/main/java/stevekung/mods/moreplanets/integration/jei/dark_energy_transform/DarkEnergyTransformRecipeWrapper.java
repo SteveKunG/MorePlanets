@@ -1,10 +1,7 @@
 package stevekung.mods.moreplanets.integration.jei.dark_energy_transform;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
@@ -26,20 +23,6 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     }
 
     @Override
-    public List getInputs()
-    {
-        List<ItemStack> list = Lists.newArrayList();
-        list.addAll(this.input.values());
-        return list;
-    }
-
-    @Override
-    public List getOutputs()
-    {
-        return ImmutableList.of(this.output);
-    }
-
-    @Override
     public void drawInfo(Minecraft mc, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
     {
         mc.currentScreen.drawCenteredString(mc.fontRendererObj, "Time : " + this.time, 50, 38, 16777215);
@@ -48,9 +31,7 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        List<ItemStack> list = Lists.newArrayList();
-        list.addAll(this.input.values());
-        ingredients.setInputs(ItemStack.class, list);
+        ingredients.setInputs(ItemStack.class, new ArrayList<>(this.input.values()));
         ingredients.setOutput(ItemStack.class, this.output);
     }
 }

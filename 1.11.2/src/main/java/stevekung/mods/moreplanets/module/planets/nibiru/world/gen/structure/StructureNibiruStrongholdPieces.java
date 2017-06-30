@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
@@ -105,9 +106,9 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.hasMadeChest = nbt.getBoolean("Chest");
         }
 
@@ -171,9 +172,9 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.steps = nbt.getInteger("Steps");
         }
 
@@ -245,9 +246,9 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.leftLow = nbt.getBoolean("leftLow");
             this.leftHigh = nbt.getBoolean("leftHigh");
             this.rightLow = nbt.getBoolean("rightLow");
@@ -409,9 +410,9 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.isLargeRoom = nbt.getBoolean("Tall");
         }
 
@@ -433,7 +434,7 @@ public class StructureNibiruStrongholdPieces
 
                 this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 13, i - 1, 14, true, rand, STRONGHOLD_STONES);
                 this.placeDoor(world, box, this.entryDoor, 4, 1, 0);
-                this.func_189914_a(world, box, rand, 0.07F, 2, 1, 1, 11, 4, 13, Blocks.WEB.getDefaultState(), Blocks.WEB.getDefaultState(), false, 0);
+                this.generateMaybeBox(world, box, rand, 0.07F, 2, 1, 1, 11, 4, 13, Blocks.WEB.getDefaultState(), Blocks.WEB.getDefaultState(), false, 0);
 
                 for (int l = 1; l <= 13; ++l)
                 {
@@ -572,9 +573,9 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.hasSpawner = nbt.getBoolean("Mob");
         }
 
@@ -693,7 +694,7 @@ public class StructureNibiruStrongholdPieces
 
                 if (tileentity instanceof TileEntityMobSpawner)
                 {
-                    ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityName("moreplanets." + name);
+                    ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(new ResourceLocation("moreplanets:" + name));
                 }
             }
         }
@@ -814,9 +815,9 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.roomType = nbt.getInteger("Type");
         }
 
@@ -964,9 +965,9 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.source = nbt.getBoolean("Source");
         }
 
@@ -1025,12 +1026,6 @@ public class StructureNibiruStrongholdPieces
         public Stairs2(Random rand, int x, int z)
         {
             super(0, rand, x, z);
-        }
-
-        @Override
-        public BlockPos getBoundingBoxCenter()
-        {
-            return this.strongholdPortalRoom != null ? this.strongholdPortalRoom.getBoundingBoxCenter() : super.getBoundingBoxCenter();
         }
     }
 
@@ -1145,9 +1140,9 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.expandsX = nbt.getBoolean("Left");
             this.expandsZ = nbt.getBoolean("Right");
         }
@@ -1217,7 +1212,7 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
             this.entryDoor = Door.valueOf(nbt.getString("EntryDoor"));
         }

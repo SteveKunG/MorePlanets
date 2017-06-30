@@ -26,8 +26,9 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         int range = 16;
         Vec3d playerEye = player.getPositionEyes(1.0F);
         Vec3d playerLook = player.getLook(1.0F);
@@ -43,7 +44,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.alien_defender_beacon.message")).setStyle(new JsonUtils().colorFromConfig("yellow")).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.alien_defender_beacon.message")).setStyle(new JsonUtils().colorFromConfig("yellow")).getFormattedText(), false);
                     player.swingArm(hand);
                 }
                 else
@@ -54,7 +55,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
 
                     if (!player.capabilities.isCreativeMode)
                     {
-                        itemStack.stackSize--;
+                        itemStack.shrink(1);
                     }
                 }
             }
@@ -62,7 +63,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.not_air_block.message")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.not_air_block.message")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                     player.swingArm(hand);
                 }
             }
@@ -71,7 +72,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
         {
             if (world.isRemote && disable)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.target_too_far.message", range)).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.target_too_far.message", range)).setStyle(new JsonUtils().red()).getFormattedText(), false);
                 player.swingArm(hand);
             }
         }

@@ -6,6 +6,7 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
@@ -55,7 +56,7 @@ public class MapGenNibiruVillage extends MapGenStructure
 
         int k = chunkX / this.distance;
         int l = chunkZ / this.distance;
-        Random random = this.worldObj.setRandomSeed(k, l, 10387312);
+        Random random = this.world.setRandomSeed(k, l, 10387312);
         k = k * this.distance;
         l = l * this.distance;
         k = k + random.nextInt(this.distance - 8);
@@ -63,7 +64,7 @@ public class MapGenNibiruVillage extends MapGenStructure
 
         if (i == k && j == l)
         {
-            boolean flag = this.worldObj.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, VILLAGE_SPAWN_BIOMES);
+            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, VILLAGE_SPAWN_BIOMES);
 
             if (flag)
             {
@@ -76,7 +77,14 @@ public class MapGenNibiruVillage extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new Start(this.worldObj, this.rand, chunkX, chunkZ, this.size);
+        return new Start(this.world, this.rand, chunkX, chunkZ, this.size);
+    }
+
+    @Override
+    public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
+    {
+        this.world = world;
+        return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.distance, 8, 10387312, false, 100, findUnexplored);
     }
 
     public static class Start extends StructureStart

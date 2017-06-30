@@ -27,14 +27,14 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
     @Override
     public boolean placeBlockAt(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, IBlockState state)
     {
-        int angle = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        int angle = MathHelper.floor(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
 
         if (BlockEventHelper.isLiquidBlock(world, pos))
         {
             if (world.isRemote)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.place_in_liquid.message")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.place_in_liquid.message")).setStyle(new JsonUtils().red()).getFormattedText(), false);
             }
             return false;
         }
@@ -50,7 +50,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                 }
                 return false;
             }
@@ -58,7 +58,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                 }
                 return false;
             }
@@ -86,7 +86,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                 }
                 return false;
             }
@@ -94,7 +94,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
                 }
                 return false;
             }

@@ -67,18 +67,18 @@ public class EntityEventHandler
     public void onLivingDeath(LivingDeathEvent event)
     {
         EntityLivingBase living = event.getEntityLiving();
-        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
+        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.world), String.valueOf(living.getEntityId())));
     }
 
     @SubscribeEvent
     public void onLivingUpdate(LivingUpdateEvent event)
     {
         EntityLivingBase living = event.getEntityLiving();
-        World world = living.worldObj;
+        World world = living.world;
 
         if (living.isDead)
         {
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.world), String.valueOf(living.getEntityId())));
         }
         if (living instanceof EntityPlayerMP)
         {
@@ -154,7 +154,7 @@ public class EntityEventHandler
 
                         if (!event.getEntityPlayer().capabilities.isCreativeMode)
                         {
-                            --itemStack.stackSize;
+                            itemStack.shrink(1);
                         }
                     }
                     event.setResult(Result.ALLOW);
@@ -196,7 +196,7 @@ public class EntityEventHandler
 
                         if (!world.isRemote)
                         {
-                            world.spawnEntityInWorld(meteorEntity);
+                            world.spawnEntity(meteorEntity);
                             MPLog.debug("Spawn %s at %s %s %s", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
                         }
                     }
@@ -224,7 +224,7 @@ public class EntityEventHandler
 
                         if (!world.isRemote)
                         {
-                            world.spawnEntityInWorld(meteorEntity);
+                            world.spawnEntity(meteorEntity);
                             MPLog.debug("Spawn %s at %s %s %s", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
                         }
                     }

@@ -39,4 +39,16 @@ public class ConfigGuiFactoryMP implements IModGuiFactory
             super(gui, ConfigManagerMP.getConfigElements(), MorePlanetsCore.MOD_ID, false, false, GCCoreUtil.translate("gui.config.mp"));
         }
     }
+
+    @Override
+    public boolean hasConfigGui()
+    {
+        return true;
+    }
+
+    @Override
+    public GuiScreen createConfigGui(GuiScreen parentScreen)
+    {
+        return new ConfigGUI(parentScreen);
+    }
 }

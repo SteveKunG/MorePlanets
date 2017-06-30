@@ -27,7 +27,7 @@ public class RenderAlienBeam extends Render<EntityAlienBeam>
         GlStateManager.alphaFunc(516, 0.1F);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         this.bindEntityTexture(entity);
-        TileEntityBeaconRenderer.renderBeamSegment(x - 0.5D, y - 0.5D, z - 0.5D, partialTicks, 0, entity.worldObj.getTotalWorldTime(), 0, 512, EntitySheep.getDyeRgb(EnumDyeColor.LIGHT_BLUE), 0.25D, 0.275D);
+        TileEntityBeaconRenderer.renderBeamSegment(x - 0.5D, y - 0.5D, z - 0.5D, partialTicks, 0, entity.world.getTotalWorldTime(), 0, 512, EntitySheep.getDyeRgb(EnumDyeColor.LIGHT_BLUE), 0.25D, 0.275D);
         GlStateManager.enableFog();
     }
 

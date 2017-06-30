@@ -29,7 +29,7 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
     @Override
     public void doRender(EntitySpaceFishHook entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        EntityPlayer entityplayer = entity.angler;
+        EntityPlayer entityplayer = entity.getAngler();
 
         if (entityplayer != null && !this.renderOutlines)
         {
@@ -67,17 +67,13 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
             int k = entityplayer.getPrimaryHand() == EnumHandSide.RIGHT ? 1 : -1;
             ItemStack itemstack = entityplayer.getHeldItemMainhand();
 
-            if (itemstack == null)
-            {
-                return;
-            }
             if (itemstack.getItem() != MPItems.SPACE_FISHING_ROD)
             {
                 k = -k;
             }
 
             float f7 = entityplayer.getSwingProgress(partialTicks);
-            float f8 = MathHelper.sin(MathHelper.sqrt_float(f7) * (float)Math.PI);
+            float f8 = MathHelper.sin(MathHelper.sqrt(f7) * (float)Math.PI);
             float f9 = (entityplayer.prevRenderYawOffset + (entityplayer.renderYawOffset - entityplayer.prevRenderYawOffset) * partialTicks) * 0.017453292F;
             double d0 = MathHelper.sin(f9);
             double d1 = MathHelper.cos(f9);
@@ -88,7 +84,7 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
             double d7;
             double dz = 0.0D;
 
-            if ((this.renderManager.options == null || this.renderManager.options.thirdPersonView <= 0) && entityplayer == Minecraft.getMinecraft().thePlayer)
+            if ((this.renderManager.options == null || this.renderManager.options.thirdPersonView <= 0) && entityplayer == Minecraft.getMinecraft().player)
             {
                 float f10 = this.renderManager.options.fovSetting;
                 f10 = f10 / 100.0F;

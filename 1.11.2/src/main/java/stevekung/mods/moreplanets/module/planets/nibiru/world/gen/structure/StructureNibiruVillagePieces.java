@@ -25,6 +25,7 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockHalfInfectedStoneBricksSlab;
@@ -62,15 +63,15 @@ public class StructureNibiruVillagePieces
     public static List<PieceWeight> getStructureVillageWeightedPieceList(Random rand, int size)
     {
         List<PieceWeight> list = Lists.newArrayList();
-        list.add(new PieceWeight(House4Garden.class, 4, MathHelper.getRandomIntegerInRange(rand, 2 + size, 4 + size * 2)));
-        list.add(new PieceWeight(Church.class, 20, MathHelper.getRandomIntegerInRange(rand, 0 + size, 1 + size)));
-        list.add(new PieceWeight(House1.class, 20, MathHelper.getRandomIntegerInRange(rand, 0 + size, 2 + size)));
-        list.add(new PieceWeight(WoodHut.class, 3, MathHelper.getRandomIntegerInRange(rand, 2 + size, 5 + size * 3)));
-        list.add(new PieceWeight(Hall.class, 15, MathHelper.getRandomIntegerInRange(rand, 0 + size, 2 + size)));
-        list.add(new PieceWeight(Field1.class, 3, MathHelper.getRandomIntegerInRange(rand, 1 + size, 4 + size)));
-        list.add(new PieceWeight(Field2.class, 3, MathHelper.getRandomIntegerInRange(rand, 2 + size, 4 + size * 2)));
-        list.add(new PieceWeight(House2.class, 15, MathHelper.getRandomIntegerInRange(rand, 0, 1 + size)));
-        list.add(new PieceWeight(House3.class, 8, MathHelper.getRandomIntegerInRange(rand, 0 + size, 3 + size * 2)));
+        list.add(new PieceWeight(House4Garden.class, 4, MathHelper.getInt(rand, 2 + size, 4 + size * 2)));
+        list.add(new PieceWeight(Church.class, 20, MathHelper.getInt(rand, 0 + size, 1 + size)));
+        list.add(new PieceWeight(House1.class, 20, MathHelper.getInt(rand, 0 + size, 2 + size)));
+        list.add(new PieceWeight(WoodHut.class, 3, MathHelper.getInt(rand, 2 + size, 5 + size * 3)));
+        list.add(new PieceWeight(Hall.class, 15, MathHelper.getInt(rand, 0 + size, 2 + size)));
+        list.add(new PieceWeight(Field1.class, 3, MathHelper.getInt(rand, 1 + size, 4 + size)));
+        list.add(new PieceWeight(Field2.class, 3, MathHelper.getInt(rand, 2 + size, 4 + size * 2)));
+        list.add(new PieceWeight(House2.class, 15, MathHelper.getInt(rand, 0, 1 + size)));
+        list.add(new PieceWeight(House3.class, 8, MathHelper.getInt(rand, 0 + size, 3 + size * 2)));
         Iterator<PieceWeight> iterator = list.iterator();
 
         while (iterator.hasNext())
@@ -228,9 +229,9 @@ public class StructureNibiruVillagePieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.cropTypeA = Block.getBlockById(nbt.getInteger("CA"));
             this.cropTypeB = Block.getBlockById(nbt.getInteger("CB"));
             this.cropTypeC = Block.getBlockById(nbt.getInteger("CC"));
@@ -273,20 +274,20 @@ public class StructureNibiruVillagePieces
             {
                 int j = ((BlockCropsMP)this.cropTypeA).getMaxAge();
                 int k = j / 3;
-                this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k, j)), 1, 1, i, box);
-                this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k, j)), 2, 1, i, box);
+                this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getInt(rand, k, j)), 1, 1, i, box);
+                this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getInt(rand, k, j)), 2, 1, i, box);
                 int l = ((BlockCropsMP)this.cropTypeB).getMaxAge();
                 int i1 = l / 3;
-                this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i1, l)), 4, 1, i, box);
-                this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i1, l)), 5, 1, i, box);
+                this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getInt(rand, i1, l)), 4, 1, i, box);
+                this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getInt(rand, i1, l)), 5, 1, i, box);
                 int j1 = ((BlockCropsMP)this.cropTypeC).getMaxAge();
                 int k1 = j1 / 3;
-                this.setBlockState(world, this.cropTypeC.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k1, j1)), 7, 1, i, box);
-                this.setBlockState(world, this.cropTypeC.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k1, j1)), 8, 1, i, box);
+                this.setBlockState(world, this.cropTypeC.getStateFromMeta(MathHelper.getInt(rand, k1, j1)), 7, 1, i, box);
+                this.setBlockState(world, this.cropTypeC.getStateFromMeta(MathHelper.getInt(rand, k1, j1)), 8, 1, i, box);
                 int l1 = ((BlockCropsMP)this.cropTypeD).getMaxAge();
                 int i2 = l1 / 3;
-                this.setBlockState(world, this.cropTypeD.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i2, l1)), 10, 1, i, box);
-                this.setBlockState(world, this.cropTypeD.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i2, l1)), 11, 1, i, box);
+                this.setBlockState(world, this.cropTypeD.getStateFromMeta(MathHelper.getInt(rand, i2, l1)), 10, 1, i, box);
+                this.setBlockState(world, this.cropTypeD.getStateFromMeta(MathHelper.getInt(rand, i2, l1)), 11, 1, i, box);
             }
             for (int j2 = 0; j2 < 9; ++j2)
             {
@@ -325,9 +326,9 @@ public class StructureNibiruVillagePieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.cropTypeA = Block.getBlockById(nbt.getInteger("CA"));
             this.cropTypeB = Block.getBlockById(nbt.getInteger("CB"));
         }
@@ -364,12 +365,12 @@ public class StructureNibiruVillagePieces
             {
                 int j = ((BlockCropsMP)this.cropTypeA).getMaxAge();
                 int k = j / 3;
-                this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k, j)), 1, 1, i, box);
-                this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, k, j)), 2, 1, i, box);
+                this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getInt(rand, k, j)), 1, 1, i, box);
+                this.setBlockState(world, this.cropTypeA.getStateFromMeta(MathHelper.getInt(rand, k, j)), 2, 1, i, box);
                 int l = ((BlockCropsMP)this.cropTypeB).getMaxAge();
                 int i1 = l / 3;
-                this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i1, l)), 4, 1, i, box);
-                this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(rand, i1, l)), 5, 1, i, box);
+                this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getInt(rand, i1, l)), 4, 1, i, box);
+                this.setBlockState(world, this.cropTypeB.getStateFromMeta(MathHelper.getInt(rand, i1, l)), 5, 1, i, box);
             }
             for (int j1 = 0; j1 < 9; ++j1)
             {
@@ -652,9 +653,9 @@ public class StructureNibiruVillagePieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.hasMadeChest = nbt.getBoolean("Chest");
         }
 
@@ -931,9 +932,9 @@ public class StructureNibiruVillagePieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.isRoofAccessible = nbt.getBoolean("Terrace");
         }
 
@@ -1062,9 +1063,9 @@ public class StructureNibiruVillagePieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.length = nbt.getInteger("Length");
         }
 
@@ -1138,7 +1139,7 @@ public class StructureNibiruVillagePieces
 
         public static StructureBoundingBox findPieceBox(Start start, List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing)
         {
-            for (int i = 7 * MathHelper.getRandomIntegerInRange(rand, 3, 5); i >= 7; i -= 7)
+            for (int i = 7 * MathHelper.getInt(rand, 3, 5); i >= 7; i -= 7)
             {
                 StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, 0, 0, 0, 3, 3, i, facing);
 
@@ -1336,7 +1337,7 @@ public class StructureNibiruVillagePieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
             this.averageGroundLvl = nbt.getInteger("HPos");
             this.villagersSpawned = nbt.getInteger("VCount");
@@ -1492,7 +1493,7 @@ public class StructureNibiruVillagePieces
                     villager.setLocationAndAngles(j + 0.5D, k, l + 0.5D, 0.0F, 0.0F);
                     villager.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(villager)), (IEntityLivingData)null);
                     villager.setProfession(this.chooseProfession(i, villager.getProfession()));
-                    world.spawnEntityInWorld(villager);
+                    world.spawnEntity(villager);
                 }
             }
         }
@@ -1622,7 +1623,7 @@ public class StructureNibiruVillagePieces
 
         protected void createVillageDoor(World world, StructureBoundingBox box, Random rand, int x, int y, int z)
         {
-            this.func_189915_a(world, box, rand, x, y, z, EnumFacing.NORTH, this.getDoor());
+            this.generateDoor(world, box, rand, x, y, z, EnumFacing.NORTH, this.getDoor());
         }
 
         protected void placeTorch(World world, EnumFacing facing, int x, int y, int z, StructureBoundingBox box)
@@ -1963,9 +1964,9 @@ public class StructureNibiruVillagePieces
         }
 
         @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt)
+        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
         {
-            super.readStructureFromNBT(nbt);
+            super.readStructureFromNBT(nbt, manager);
             this.tablePosition = nbt.getInteger("T");
             this.isTallHouse = nbt.getBoolean("C");
         }

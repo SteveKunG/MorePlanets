@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,7 +53,7 @@ public class EntityBlackHole extends Entity
         this.prevPosZ = this.posZ;
 
         int range = 64;
-        List<Entity> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - range - this.radius, this.posY - range - this.radius, this.posZ - range - this.radius, this.posX + range + this.radius, this.posY + range + this.radius, this.posZ + range + this.radius));
+        List<Entity> entitiesAroundBH = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - range - this.radius, this.posY - range - this.radius, this.posZ - range - this.radius, this.posX + range + this.radius, this.posY + range + this.radius, this.posZ + range + this.radius));
 
         for (Entity entity : entitiesAroundBH)
         {
@@ -70,7 +71,7 @@ public class EntityBlackHole extends Entity
                 entity.motionX = motionX * 0.2F;
                 entity.motionY = motionY * 0.2F;
                 entity.motionZ = motionZ * 0.2F;
-                List<Entity> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 0.25D, this.posY - 0.25D, this.posZ - 0.25D, this.posX + 0.25D, this.posY + 0.5D, this.posZ + 0.25D));
+                List<Entity> entityNearBH = this.world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 0.25D, this.posY - 0.25D, this.posZ - 0.25D, this.posX + 0.25D, this.posY + 0.5D, this.posZ + 0.25D));
 
                 for (Entity near : entityNearBH)
                 {
@@ -92,7 +93,7 @@ public class EntityBlackHole extends Entity
 
         if (this.mass == 0)
         {
-            this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_CREATED, SoundCategory.AMBIENT, 2.0F, 1.0F);
+            this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_CREATED, SoundCategory.AMBIENT, 2.0F, 1.0F);
         }
         if (this.mass < 6000)
         {
@@ -104,10 +105,10 @@ public class EntityBlackHole extends Entity
         }
         if (this.mass % 20 == 0)
         {
-            this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.AMBIENT, 2.0F, 1.0F);
+            this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.AMBIENT, 2.0F, 1.0F);
         }
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.mass == 6000)
             {
@@ -115,7 +116,7 @@ public class EntityBlackHole extends Entity
 
                 if (ConfigManagerMP.enableBlackHoleExplosion)
                 {
-                    this.worldObj.createExplosion(null, this.posX, this.posY, this.posZ, 128.0F, true);
+                    this.world.createExplosion(null, this.posX, this.posY, this.posZ, 128.0F, true);
                 }
             }
             this.spawnFallingBlock();
@@ -138,14 +139,14 @@ public class EntityBlackHole extends Entity
                 MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, d0, d1, d2, d3, d4, d5);
             }
         }
-        this.moveEntity(0.0D, 0.0D, 0.0D);
+        this.move(MoverType.SELF, 0.0D, 0.0D, 0.0D);
         super.onUpdate();
     }
 
     protected void explodeBlock()
     {
         int radius = 30;
-        List<Entity> entityList = this.worldObj.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - radius, this.posY - radius, this.posZ - radius, this.posX + radius, this.posY + radius, this.posZ + radius));
+        List<Entity> entityList = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - radius, this.posY - radius, this.posZ - radius, this.posX + radius, this.posY + radius, this.posZ + radius));
 
         for (Entity entity : entityList)
         {
@@ -155,7 +156,7 @@ public class EntityBlackHole extends Entity
                 double d6 = entity.posX - this.posX;
                 double d8 = entity.posY - this.posY;
                 double d10 = entity.posZ - this.posZ;
-                double d11 = MathHelper.sqrt_double(d6 * d6 + d8 * d8 + d10 * d10);
+                double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
                 d6 /= d11;
                 d8 /= d11;
                 d10 /= d11;
@@ -171,9 +172,9 @@ public class EntityBlackHole extends Entity
 
     private void spawnFallingBlock()
     {
-        int blockPosX = MathHelper.floor_double(this.posX);
-        int blockPosY = MathHelper.floor_double(this.posY);
-        int blockPosZ = MathHelper.floor_double(this.posZ);
+        int blockPosX = MathHelper.floor(this.posX);
+        int blockPosY = MathHelper.floor(this.posY);
+        int blockPosZ = MathHelper.floor(this.posZ);
         int radius = 1 + this.spawnFallingBlockRadius;
 
         for (int x = -radius; x < radius; x++)
@@ -182,27 +183,27 @@ public class EntityBlackHole extends Entity
             {
                 for (int z = -radius; z < radius; z++)
                 {
-                    double dist = MathHelper.sqrt_double(x * x + y * y + z * z);
+                    double dist = MathHelper.sqrt(x * x + y * y + z * z);
 
                     if (dist <= radius)
                     {
                         BlockPos pos = new BlockPos(blockPosX + x, blockPosY + y, blockPosZ + z);
-                        IBlockState state = this.worldObj.getBlockState(pos);
+                        IBlockState state = this.world.getBlockState(pos);
                         Block block = state.getBlock();
 
-                        if (block.getExtendedState(state, this.worldObj, pos) != null && radius <= 15)
+                        if (block.getExtendedState(state, this.world, pos) != null && radius <= 15)
                         {
-                            this.worldObj.setBlockToAir(pos);
+                            this.world.setBlockToAir(pos);
                         }
-                        if (!block.isAir(state, this.worldObj, pos) && block.getExtendedState(state, this.worldObj, pos) == state)
+                        if (!block.isAir(state, this.world, pos) && block.getExtendedState(state, this.world, pos) == state)
                         {
-                            this.worldObj.setBlockToAir(pos);
-                            EntityFallingBlock fallingBlock = new EntityFallingBlock(this.worldObj, blockPosX + x, blockPosY + y, blockPosZ + z, state);
+                            this.world.setBlockToAir(pos);
+                            EntityFallingBlock fallingBlock = new EntityFallingBlock(this.world, blockPosX + x, blockPosY + y, blockPosZ + z, state);
                             fallingBlock.fallTime = 1;
                             fallingBlock.shouldDropItem = false;
                             fallingBlock.motionY += 0.5D;
                             fallingBlock.setLocationAndAngles(blockPosX + x + 0.5D, blockPosY + y, blockPosZ + z + 0.5D, 0.0F, 0.0F);
-                            this.worldObj.spawnEntityInWorld(fallingBlock);
+                            this.world.spawnEntity(fallingBlock);
                         }
                     }
                 }
@@ -213,7 +214,7 @@ public class EntityBlackHole extends Entity
     @Override
     public void setDead()
     {
-        this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_DESTROYED, SoundCategory.AMBIENT, 2.0F, 1.0F);
+        this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_DESTROYED, SoundCategory.AMBIENT, 2.0F, 1.0F);
         super.setDead();
     }
 

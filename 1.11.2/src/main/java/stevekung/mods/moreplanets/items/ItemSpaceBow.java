@@ -137,16 +137,16 @@ public class ItemSpaceBow extends ItemBaseMP
                     }
                     else
                     {
-                        arrowStack.stackSize--;
+                        arrowStack.shrink(1);
 
-                        if (arrowStack.stackSize == 0)
+                        if (arrowStack.isEmpty())
                         {
                             player.inventory.deleteStack(arrowStack);
                         }
                     }
                     if (!world.isRemote)
                     {
-                        world.spawnEntityInWorld(entityarrow);
+                        world.spawnEntity(entityarrow);
                     }
                 }
                 else if (arrowStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW)
@@ -182,9 +182,9 @@ public class ItemSpaceBow extends ItemBaseMP
                     {
                         if (arrowStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW)
                         {
-                            arrowStack.stackSize--;
+                            arrowStack.shrink(1);
 
-                            if (arrowStack.stackSize == 0)
+                            if (arrowStack.isEmpty())
                             {
                                 player.inventory.deleteStack(arrowStack);
                             }
@@ -192,7 +192,7 @@ public class ItemSpaceBow extends ItemBaseMP
                     }
                     if (!world.isRemote)
                     {
-                        world.spawnEntityInWorld(arrow);
+                        world.spawnEntity(arrow);
                     }
                 }
                 else if (arrowStack.getItem() == NibiruItems.INFECTED_ARROW)
@@ -228,9 +228,9 @@ public class ItemSpaceBow extends ItemBaseMP
                     {
                         if (arrowStack.getItem() == NibiruItems.INFECTED_ARROW)
                         {
-                            arrowStack.stackSize--;
+                            arrowStack.shrink(1);
 
-                            if (arrowStack.stackSize == 0)
+                            if (arrowStack.isEmpty())
                             {
                                 player.inventory.deleteStack(arrowStack);
                             }
@@ -238,7 +238,7 @@ public class ItemSpaceBow extends ItemBaseMP
                     }
                     if (!world.isRemote)
                     {
-                        world.spawnEntityInWorld(arrow);
+                        world.spawnEntity(arrow);
                     }
                 }
             }
@@ -258,9 +258,10 @@ public class ItemSpaceBow extends ItemBaseMP
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        boolean flag = this.findAmmo(player) != null;
+        boolean flag = !this.findAmmo(player).isEmpty();
+        ItemStack itemStack = player.getHeldItem(hand);
         ActionResult<ItemStack> ret = ForgeEventFactory.onArrowNock(itemStack, world, player, hand, flag);
 
         if (ret != null)

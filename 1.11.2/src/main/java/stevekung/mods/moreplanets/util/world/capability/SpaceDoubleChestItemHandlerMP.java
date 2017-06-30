@@ -158,4 +158,11 @@ public class SpaceDoubleChestItemHandlerMP extends WeakReference<TileEntityChest
         TileEntityChestMP tileEntityChest = this.get();
         return tileEntityChest == null || tileEntityChest.isInvalid();
     }
+
+    @Override
+    public int getSlotLimit(int slot)
+    {
+        boolean accessingUpperChest = slot < 27;
+        return getChest(accessingUpperChest).getInventoryStackLimit();
+    }
 }

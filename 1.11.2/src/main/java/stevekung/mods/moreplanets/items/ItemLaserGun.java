@@ -116,7 +116,7 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
                 {
                     bulletStack = new ItemStack(MPItems.LASER_BULLET);
                 }
-                for (int i = 0; i < player.inventory.mainInventory.length; ++i)
+                for (int i = 0; i < player.inventory.mainInventory.size(); ++i)
                 {
                     if (player.inventory.mainInventory[i] != null && player.inventory.mainInventory[i].getItem() == bulletStack.getItem())
                     {
@@ -132,7 +132,7 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
                 }
                 if (!world.isRemote)
                 {
-                    world.spawnEntityInWorld(laser);
+                    world.spawnEntity(laser);
                 }
                 if (!flag && slot >= 0)
                 {
@@ -145,9 +145,10 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        boolean flag = this.findBullet(player) != null;
+        boolean flag = !this.findBullet(player).isEmpty();
+        ItemStack itemStack = player.getHeldItem(hand);
 
         if (this.getElectricityStored(itemStack) > 0.0F)
         {

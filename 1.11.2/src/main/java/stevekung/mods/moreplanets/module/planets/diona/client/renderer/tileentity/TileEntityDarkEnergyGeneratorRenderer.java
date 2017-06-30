@@ -32,7 +32,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
 
         int facing = 0;
 
-        if (tile != null && tile.hasWorldObj() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == DionaBlocks.DARK_ENERGY_GENERATOR)
+        if (tile != null && tile.hasWorld() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == DionaBlocks.DARK_ENERGY_GENERATOR)
         {
             facing = tile.facing;
         }

@@ -16,7 +16,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
-import stevekung.mods.moreplanets.client.command.ClientCommandHandlerMP;
 import stevekung.mods.moreplanets.client.command.CommandChangeLog;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
@@ -40,12 +39,12 @@ public class MorePlanetsCore
     public static final String MOD_ID = "moreplanets";
     public static final int MAJOR_VERSION = 2;
     public static final int MINOR_VERSION = 0;
-    public static final int BUILD_VERSION = 5;
+    public static final int BUILD_VERSION = 6;
     public static final String VERSION = MorePlanetsCore.MAJOR_VERSION + "." + MorePlanetsCore.MINOR_VERSION + "." + MorePlanetsCore.BUILD_VERSION;
     public static final String GUI_FACTORY = "stevekung.mods.moreplanets.core.config.ConfigGuiFactoryMP";
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
-    public static final String FORGE_VERSION = "after:forge@[12.18.3.2185,);";
+    public static final String FORGE_VERSION = "after:forge@[13.20.1.2388,);";
     public static final String DEPENDENCIES = "required-after:galacticraftcore; required-after:galacticraftplanets; required-after:Micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
     public static final String MC_VERSION = String.valueOf(FMLInjectionData.data()[4]);
     private static boolean DEOBFUSCATED;
@@ -73,10 +72,6 @@ public class MorePlanetsCore
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        if (CommonRegisterHelper.isClient())
-        {
-            ReflectionUtils.setFinal("instance", new ClientCommandHandlerMP(), ClientCommandHandler.class, ClientCommandHandler.instance);
-        }
         ConfigManagerMP.init(new File(event.getModConfigurationDirectory(), "MorePlanets.cfg"));
         MorePlanetsCore.initModInfo(event.getModMetadata());
         MorePlanetsCore.BLOCK_TAB = new CreativeTabsMP("MorePlanetsBlocks");

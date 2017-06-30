@@ -94,7 +94,7 @@ public class PacketSimpleMP extends PacketBase
     @Override
     public void handleServerSide(EntityPlayer player)
     {
-        World world = player.worldObj;
+        World world = player.world;
         TileEntity tile;
         BlockPos pos;
 

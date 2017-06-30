@@ -101,7 +101,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
         }
         else
         {
-            if ((source instanceof EntityDamageSource || source == DamageSource.magic) && this.summonReinforcement != null)
+            if ((source instanceof EntityDamageSource || source == DamageSource.MAGIC) && this.summonReinforcement != null)
             {
                 this.summonReinforcement.notifyHurt();
             }
@@ -119,7 +119,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     @Override
     public float getBlockPathWeight(BlockPos pos)
     {
-        return this.worldObj.getBlockState(pos.down()) == DionaBlocks.DIONA_BLOCK.getStateFromMeta(2) ? 10.0F : super.getBlockPathWeight(pos);
+        return this.world.getBlockState(pos.down()) == DionaBlocks.DIONA_BLOCK.getStateFromMeta(2) ? 10.0F : super.getBlockPathWeight(pos);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     {
         if (super.getCanSpawnHere())
         {
-            EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity(this, 5.0D);
+            EntityPlayer entityplayer = this.world.getClosestPlayerToEntity(this, 5.0D);
             return entityplayer == null;
         }
         else
@@ -186,7 +186,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
                 {
                     this.facing = EnumFacing.random(random);
                     BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
-                    IBlockState iblockstate = this.entity.worldObj.getBlockState(blockpos);
+                    IBlockState iblockstate = this.entity.world.getBlockState(blockpos);
 
                     if (iblockstate == DionaBlocks.DIONA_BLOCK.getStateFromMeta(2))
                     {
@@ -214,7 +214,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
             }
             else
             {
-                World world = this.entity.worldObj;
+                World world = this.entity.world;
                 BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
                 IBlockState iblockstate = world.getBlockState(blockpos);
 
@@ -259,7 +259,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
 
             if (this.lookForFriends <= 0)
             {
-                World world = this.entity.worldObj;
+                World world = this.entity.world;
                 Random random = this.entity.getRNG();
                 BlockPos blockpos = new BlockPos(this.entity);
 

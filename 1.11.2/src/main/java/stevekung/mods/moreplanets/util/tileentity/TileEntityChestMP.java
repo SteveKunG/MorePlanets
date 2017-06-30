@@ -5,17 +5,14 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ContainerChest;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryLargeChest;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +23,7 @@ import stevekung.mods.moreplanets.util.world.capability.SpaceDoubleChestItemHand
 
 public class TileEntityChestMP extends TileEntityLockableLoot implements ITickable, IInventoryDefaults
 {
-    private ItemStack[] chestContents = new ItemStack[27];
+    private NonNullList<ItemStack> chestContents = NonNullList.withSize(27, ItemStack.EMPTY);
     public boolean adjacentChestChecked;
     public TileEntityChestMP adjacentChestZNeg;
     public TileEntityChestMP adjacentChestXPos;
@@ -52,72 +49,22 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     }
 
     @Override
-    public ItemStack getStackInSlot(int index)
+    public boolean isEmpty()
     {
-        this.fillWithLoot((EntityPlayer)null);
-        return this.chestContents[index];
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        this.fillWithLoot((EntityPlayer)null);
-
-        if (this.chestContents[index] != null)
+        for (ItemStack itemStack : this.chestContents)
         {
-            if (this.chestContents[index].stackSize <= count)
+            if (!itemStack.isEmpty())
             {
-                ItemStack itemstack1 = this.chestContents[index];
-                this.chestContents[index] = null;
-                this.markDirty();
-                return itemstack1;
-            }
-            else
-            {
-                ItemStack itemstack = this.chestContents[index].splitStack(count);
-
-                if (this.chestContents[index].stackSize == 0)
-                {
-                    this.chestContents[index] = null;
-                }
-                this.markDirty();
-                return itemstack;
+                return false;
             }
         }
-        else
-        {
-            return null;
-        }
+        return true;
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index)
+    protected NonNullList<ItemStack> getItems()
     {
-        this.fillWithLoot((EntityPlayer)null);
-
-        if (this.chestContents[index] != null)
-        {
-            ItemStack itemstack = this.chestContents[index];
-            this.chestContents[index] = null;
-            return itemstack;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        this.fillWithLoot((EntityPlayer)null);
-        this.chestContents[index] = stack;
-
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-        {
-            stack.stackSize = this.getInventoryStackLimit();
-        }
-        this.markDirty();
+        return this.chestContents;
     }
 
     @Override
@@ -141,7 +88,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        this.chestContents = new ItemStack[this.getSizeInventory()];
+        this.chestContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 
         if (nbt.hasKey("CustomName", 8))
         {
@@ -149,18 +96,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
         }
         if (!this.checkLootAndRead(nbt))
         {
-            NBTTagList nbttaglist = nbt.getTagList("Items", 10);
-
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
-            {
-                NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-                int j = nbttagcompound.getByte("Slot") & 255;
-
-                if (j >= 0 && j < this.chestContents.length)
-                {
-                    this.chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound);
-                }
-            }
+            ItemStackHelper.loadAllItems(nbt, this.chestContents);
         }
     }
 
@@ -171,19 +107,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
 
         if (!this.checkLootAndWrite(nbt))
         {
-            NBTTagList nbttaglist = new NBTTagList();
-
-            for (int i = 0; i < this.chestContents.length; ++i)
-            {
-                if (this.chestContents[i] != null)
-                {
-                    NBTTagCompound nbttagcompound = new NBTTagCompound();
-                    nbttagcompound.setByte("Slot", (byte)i);
-                    this.chestContents[i].writeToNBT(nbttagcompound);
-                    nbttaglist.appendTag(nbttagcompound);
-                }
-            }
-            nbt.setTag("Items", nbttaglist);
+            ItemStackHelper.saveAllItems(nbt, this.chestContents);
         }
         if (this.hasCustomName())
         {
@@ -199,12 +123,6 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
-    {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-
-    @Override
     public void updateContainingBlockInfo()
     {
         super.updateContainingBlockInfo();
@@ -213,7 +131,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     }
 
     @SuppressWarnings("incomplete-switch")
-    private void func_174910_a(TileEntityChestMP chestTe, EnumFacing side)
+    private void setNeighbor(TileEntityChestMP chestTe, EnumFacing side)
     {
         if (chestTe.isInvalid())
         {
@@ -268,27 +186,27 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
 
         if (this.isChestAt(blockpos))
         {
-            TileEntity tileentity = this.worldObj.getTileEntity(blockpos);
+            TileEntity tileentity = this.world.getTileEntity(blockpos);
 
             if (tileentity instanceof TileEntityChestMP)
             {
                 TileEntityChestMP tileentitychest = (TileEntityChestMP)tileentity;
-                tileentitychest.func_174910_a(this, side.getOpposite());
+                tileentitychest.setNeighbor(this, side.getOpposite());
                 return tileentitychest;
             }
         }
         return null;
     }
 
-    protected boolean isChestAt(BlockPos posIn)
+    protected boolean isChestAt(BlockPos pos)
     {
-        if (this.worldObj == null)
+        if (this.world == null)
         {
             return false;
         }
         else
         {
-            Block block = this.worldObj.getBlockState(posIn).getBlock();
+            Block block = this.world.getBlockState(pos).getBlock();
             return block == this.block;
         }
     }
@@ -302,12 +220,12 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
         int k = this.pos.getZ();
         ++this.ticksSinceSync;
 
-        if (!this.worldObj.isRemote && this.numPlayersUsing != 0 && (this.ticksSinceSync + i + j + k) % 200 == 0)
+        if (!this.world.isRemote && this.numPlayersUsing != 0 && (this.ticksSinceSync + i + j + k) % 200 == 0)
         {
             this.numPlayersUsing = 0;
             float f = 5.0F;
 
-            for (EntityPlayer entityplayer : this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f)))
+            for (EntityPlayer entityplayer : this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f)))
             {
                 if (entityplayer.openContainer instanceof ContainerChest)
                 {
@@ -337,7 +255,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
             {
                 d1 += 0.5D;
             }
-            this.worldObj.playSound((EntityPlayer)null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            this.world.playSound((EntityPlayer)null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
         }
 
         if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F)
@@ -373,7 +291,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
                 {
                     d3 += 0.5D;
                 }
-                this.worldObj.playSound((EntityPlayer)null, d3, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                this.world.playSound((EntityPlayer)null, d3, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
             }
 
             if (this.lidAngle < 0.0F)
@@ -407,9 +325,8 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
                 this.numPlayersUsing = 0;
             }
             ++this.numPlayersUsing;
-            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
-            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
-            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+            this.world.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.world.notifyNeighborsOfStateChange(this.pos, this.getBlockType(), false);
         }
     }
 
@@ -419,9 +336,8 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
         if (!player.isSpectator() && this.getBlockType() == this.block)
         {
             --this.numPlayersUsing;
-            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
-            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
-            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+            this.world.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.world.notifyNeighborsOfStateChange(this.pos, this.getBlockType(), false);
         }
     }
 
@@ -450,17 +366,6 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     {
         this.fillWithLoot(player);
         return new ContainerChest(playerInventory, this, player);
-    }
-
-    @Override
-    public void clear()
-    {
-        this.fillWithLoot((EntityPlayer)null);
-
-        for (int i = 0; i < this.chestContents.length; ++i)
-        {
-            this.chestContents[i] = null;
-        }
     }
 
     @Override

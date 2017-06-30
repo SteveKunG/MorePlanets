@@ -4,12 +4,13 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.client.IClientCommand;
 import stevekung.mods.moreplanets.client.gui.GuiFullChangeLog;
 
-public class CommandChangeLog extends CommandBase
+public class CommandChangeLog extends CommandBase implements IClientCommand
 {
     @Override
-    public String getCommandName()
+    public String getName()
     {
         return "mpchangelog";
     }
@@ -21,14 +22,20 @@ public class CommandChangeLog extends CommandBase
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender)
+    public String getUsage(ICommandSender sender)
     {
-        return "/" + this.getCommandName();
+        return "/" + this.getName();
     }
 
     @Override
     public int getRequiredPermissionLevel()
     {
         return 0;
+    }
+
+    @Override
+    public boolean allowUsageWithoutPrefix(ICommandSender sender, String message)
+    {
+        return false;
     }
 }

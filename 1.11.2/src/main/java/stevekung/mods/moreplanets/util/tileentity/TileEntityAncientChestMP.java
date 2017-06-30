@@ -9,16 +9,13 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ContainerChest;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryLargeChest;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +28,7 @@ import stevekung.mods.moreplanets.util.world.capability.DoubleAncientChestItemHa
 
 public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot implements ITickable, IInventoryDefaults
 {
-    private ItemStack[] chestContents = new ItemStack[27];
+    private NonNullList<ItemStack> chestContents = NonNullList.withSize(27, ItemStack.EMPTY);
     public boolean adjacentChestChecked;
     public TileEntityAncientChestMP adjacentChestZNeg;
     public TileEntityAncientChestMP adjacentChestXPos;
@@ -58,74 +55,22 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
     }
 
     @Override
-    public ItemStack getStackInSlot(int index)
+    public boolean isEmpty()
     {
-        this.fillWithLoot((EntityPlayer)null);
-        return this.chestContents[index];
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        this.fillWithLoot((EntityPlayer)null);
-
-        if (this.chestContents[index] != null)
+        for (ItemStack itemStack : this.chestContents)
         {
-            ItemStack itemstack;
-
-            if (this.chestContents[index].stackSize <= count)
+            if (!itemStack.isEmpty())
             {
-                itemstack = this.chestContents[index];
-                this.chestContents[index] = null;
-                this.markDirty();
-                return itemstack;
-            }
-            else
-            {
-                itemstack = this.chestContents[index].splitStack(count);
-
-                if (this.chestContents[index].stackSize == 0)
-                {
-                    this.chestContents[index] = null;
-                }
-                this.markDirty();
-                return itemstack;
+                return false;
             }
         }
-        else
-        {
-            return null;
-        }
+        return true;
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index)
+    protected NonNullList<ItemStack> getItems()
     {
-        this.fillWithLoot((EntityPlayer)null);
-
-        if (this.chestContents[index] != null)
-        {
-            ItemStack itemstack = this.chestContents[index];
-            this.chestContents[index] = null;
-            return itemstack;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        this.fillWithLoot((EntityPlayer)null);
-        this.chestContents[index] = stack;
-
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-        {
-            stack.stackSize = this.getInventoryStackLimit();
-        }
-        this.markDirty();
+        return this.chestContents;
     }
 
     @Override
@@ -135,25 +80,14 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
+    public void readFromNBT(NBTTagCompound nbt)
     {
-        super.readFromNBT(compound);
-        this.chestContents = new ItemStack[this.getSizeInventory()];
+        super.readFromNBT(nbt);
+        this.chestContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 
-        if (!this.checkLootAndRead(compound))
+        if (!this.checkLootAndRead(nbt))
         {
-            NBTTagList nbttaglist = compound.getTagList("Items", 10);
-
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
-            {
-                NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-                int j = nbttagcompound.getByte("Slot") & 255;
-
-                if (j >= 0 && j < this.chestContents.length)
-                {
-                    this.chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound);
-                }
-            }
+            ItemStackHelper.loadAllItems(nbt, this.chestContents);
         }
     }
 
@@ -164,19 +98,7 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
 
         if (!this.checkLootAndWrite(nbt))
         {
-            NBTTagList nbttaglist = new NBTTagList();
-
-            for (int i = 0; i < this.chestContents.length; ++i)
-            {
-                if (this.chestContents[i] != null)
-                {
-                    NBTTagCompound nbttagcompound = new NBTTagCompound();
-                    nbttagcompound.setByte("Slot", (byte)i);
-                    this.chestContents[i].writeToNBT(nbttagcompound);
-                    nbttaglist.appendTag(nbttagcompound);
-                }
-            }
-            nbt.setTag("Items", nbttaglist);
+            ItemStackHelper.saveAllItems(nbt, this.chestContents);
         }
         return nbt;
     }
@@ -188,12 +110,6 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
-    {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-
-    @Override
     public void updateContainingBlockInfo()
     {
         super.updateContainingBlockInfo();
@@ -202,13 +118,13 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
 
     protected boolean isChestAt(BlockPos pos)
     {
-        if (this.worldObj == null)
+        if (this.world == null)
         {
             return false;
         }
         else
         {
-            Block block = this.worldObj.getBlockState(pos).getBlock();
+            Block block = this.world.getBlockState(pos).getBlock();
             return block == this.block;
         }
     }
@@ -223,11 +139,11 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
         ++this.ticksSinceSync;
         float f;
 
-        if (!this.worldObj.isRemote && this.numPlayersUsing != 0 && (this.ticksSinceSync + i + j + k) % 200 == 0)
+        if (!this.world.isRemote && this.numPlayersUsing != 0 && (this.ticksSinceSync + i + j + k) % 200 == 0)
         {
             this.numPlayersUsing = 0;
             f = 5.0F;
-            List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f));
+            List list = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f));
             Iterator iterator = list.iterator();
 
             while (iterator.hasNext())
@@ -263,7 +179,7 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
             {
                 d1 += 0.5D;
             }
-            this.worldObj.playSound((EntityPlayer)null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            this.world.playSound((EntityPlayer)null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
         }
 
         if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F)
@@ -298,7 +214,7 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
                 {
                     d2 += 0.5D;
                 }
-                this.worldObj.playSound((EntityPlayer)null, d2, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                this.world.playSound((EntityPlayer)null, d2, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
             }
 
             if (this.lidAngle < 0.0F)
@@ -332,9 +248,8 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
                 this.numPlayersUsing = 0;
             }
             ++this.numPlayersUsing;
-            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
-            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
-            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+            this.world.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.world.notifyNeighborsOfStateChange(this.pos, this.getBlockType(), false);
         }
     }
 
@@ -344,9 +259,8 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
         if (!player.isSpectator() && this.getBlockType() == this.block)
         {
             --this.numPlayersUsing;
-            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
-            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
-            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+            this.world.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.world.notifyNeighborsOfStateChange(this.pos, this.getBlockType(), false);
         }
     }
 
@@ -375,17 +289,6 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
     {
         this.fillWithLoot(player);
         return new ContainerChest(playerInventory, this, player);
-    }
-
-    @Override
-    public void clear()
-    {
-        this.fillWithLoot((EntityPlayer)null);
-
-        for (int i = 0; i < this.chestContents.length; ++i)
-        {
-            this.chestContents[i] = null;
-        }
     }
 
     @Override

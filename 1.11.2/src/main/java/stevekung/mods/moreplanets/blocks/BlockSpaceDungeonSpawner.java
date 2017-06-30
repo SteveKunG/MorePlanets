@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.ITileEntityProvider;
@@ -16,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -43,7 +43,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return null;
     }
@@ -56,7 +56,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < DungeonType.valuesCached().length; ++i)
         {

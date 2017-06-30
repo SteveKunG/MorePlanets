@@ -126,9 +126,9 @@ public class ClientEventHandler
                 ClientEventHandler.loadRenderers = false;
             }
         }
-        if (this.mc.thePlayer != null)
+        if (this.mc.player != null)
         {
-            if (ConfigManagerMP.enableStartedPlanet && this.mc.thePlayer.dimension == -1 && this.mc.currentScreen instanceof GuiGameOver && !(this.mc.currentScreen instanceof GuiGameOverMP))
+            if (ConfigManagerMP.enableStartedPlanet && this.mc.player.dimension == -1 && this.mc.currentScreen instanceof GuiGameOver && !(this.mc.currentScreen instanceof GuiGameOverMP))
             {
                 this.mc.displayGuiScreen(new GuiGameOverMP());
             }
@@ -177,28 +177,28 @@ public class ClientEventHandler
         if (player != null)
         {
             // prevent randomly NPE
-            if (this.mc.thePlayer == player)
+            if (this.mc.player == player)
             {
                 this.runAlienBeamTick(player);
             }
 
             // Credit to Jarbelar
             // 0 = OutOfDate, 1 = ShowDesc, 2 = NoConnection
-            if (player.worldObj.isRemote)
+            if (player.world.isRemote)
             {
                 if (ConfigManagerMP.enableVersionChecker)
                 {
                     if (!MorePlanetsCore.STATUS_CHECK[2] && VersionChecker.INSTANCE.noConnection())
                     {
-                        player.addChatMessage(json.text("Unable to check latest version, Please check your internet connection").setStyle(json.red()));
-                        player.addChatMessage(json.text(VersionChecker.INSTANCE.getExceptionMessage()).setStyle(json.red()));
+                        player.sendMessage(json.text("Unable to check latest version, Please check your internet connection").setStyle(json.red()));
+                        player.sendMessage(json.text(VersionChecker.INSTANCE.getExceptionMessage()).setStyle(json.red()));
                         MorePlanetsCore.STATUS_CHECK[2] = true;
                         return;
                     }
                     if (!MorePlanetsCore.STATUS_CHECK[0] && !MorePlanetsCore.STATUS_CHECK[2] && VersionChecker.INSTANCE.isLatestVersion())
                     {
-                        player.addChatMessage(json.text("New version of ").appendSibling(json.text("More Planets").setStyle(json.style().setColor(TextFormatting.AQUA)).appendSibling(json.text(" is available ").setStyle(json.white()).appendSibling(json.text("v" + VersionChecker.INSTANCE.getLatestVersion().replace("[" + MorePlanetsCore.MC_VERSION + "]=", "")).setStyle(json.style().setColor(TextFormatting.GREEN)).appendSibling(json.text(" for ").setStyle(json.white()).appendSibling(json.text("MC-" + MorePlanetsCore.MC_VERSION).setStyle(json.style().setColor(TextFormatting.GOLD))))))));
-                        player.addChatMessage(json.text("Download Link ").setStyle(json.style().setColor(TextFormatting.YELLOW)).appendSibling(json.text("[CLICK HERE]").setStyle(json.style().setColor(TextFormatting.BLUE).setHoverEvent(json.hover(HoverEvent.Action.SHOW_TEXT, json.text("Click Here!").setStyle(json.style().setColor(TextFormatting.DARK_GREEN)))).setClickEvent(json.click(ClickEvent.Action.OPEN_URL, URL)))));
+                        player.sendMessage(json.text("New version of ").appendSibling(json.text("More Planets").setStyle(json.style().setColor(TextFormatting.AQUA)).appendSibling(json.text(" is available ").setStyle(json.white()).appendSibling(json.text("v" + VersionChecker.INSTANCE.getLatestVersion().replace("[" + MorePlanetsCore.MC_VERSION + "]=", "")).setStyle(json.style().setColor(TextFormatting.GREEN)).appendSibling(json.text(" for ").setStyle(json.white()).appendSibling(json.text("MC-" + MorePlanetsCore.MC_VERSION).setStyle(json.style().setColor(TextFormatting.GOLD))))))));
+                        player.sendMessage(json.text("Download Link ").setStyle(json.style().setColor(TextFormatting.YELLOW)).appendSibling(json.text("[CLICK HERE]").setStyle(json.style().setColor(TextFormatting.BLUE).setHoverEvent(json.hover(HoverEvent.Action.SHOW_TEXT, json.text("Click Here!").setStyle(json.style().setColor(TextFormatting.DARK_GREEN)))).setClickEvent(json.click(ClickEvent.Action.OPEN_URL, URL)))));
                         MorePlanetsCore.STATUS_CHECK[0] = true;
                     }
                 }
@@ -208,9 +208,9 @@ public class ClientEventHandler
                     {
                         for (String log : VersionChecker.INSTANCE.getChangeLog())
                         {
-                            player.addChatMessage(json.text(log).setStyle(json.colorFromConfig("gray")));
+                            player.sendMessage(json.text(log).setStyle(json.colorFromConfig("gray")));
                         }
-                        player.addChatMessage(json.text("To read More Planets full change log. Use /mpchangelog command!").setStyle(json.colorFromConfig("gray").setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
+                        player.sendMessage(json.text("To read More Planets full change log. Use /mpchangelog command!").setStyle(json.colorFromConfig("gray").setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
                     }
                     MorePlanetsCore.STATUS_CHECK[1] = true;
                 }
@@ -222,7 +222,7 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onRenderSpecial(EventSpecialRender event)
     {
-        if (this.mc.thePlayer != null)
+        if (this.mc.player != null)
         {
             Iterator<Map.Entry<BlockPos, Integer>> it = this.beam.entrySet().iterator();
 
@@ -238,8 +238,8 @@ public class ClientEventHandler
     public void onMouseEvent(MouseEvent event)
     {
         int button = event.getButton() - 100;
-        EntityPlayer player = this.mc.thePlayer;
-        World world = this.mc.theWorld;
+        EntityPlayer player = this.mc.player;
+        World world = this.mc.world;
         int key = this.mc.gameSettings.keyBindAttack.getKeyCode();
 
         if (this.mc.objectMouseOver != null)
@@ -264,8 +264,8 @@ public class ClientEventHandler
     public void onInputEvent(KeyInputEvent event)
     {
         int key = Keyboard.getEventKey();
-        EntityPlayer player = this.mc.thePlayer;
-        World world = this.mc.theWorld;
+        EntityPlayer player = this.mc.player;
+        World world = this.mc.world;
         int bind = this.mc.gameSettings.keyBindAttack.getKeyCode();
 
         if (this.mc.objectMouseOver != null)
@@ -351,7 +351,7 @@ public class ClientEventHandler
         {
             if (this.mc.gameSettings.thirdPersonView == 0)
             {
-                if (this.mc.thePlayer.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE))
+                if (this.mc.player.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE))
                 {
                     Tessellator tessellator = Tessellator.getInstance();
                     VertexBuffer worldrenderer = tessellator.getBuffer();
@@ -393,11 +393,11 @@ public class ClientEventHandler
                 }
                 if (this.isEntityInsideBlock(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK))
                 {
-                    this.renderOverlay("cheese_of_milk_gas", this.mc.thePlayer.getBrightness(event.getPartialTicks()), 0.75F, event.getPartialTicks(), -0.25D);
+                    this.renderOverlay("cheese_of_milk_gas", this.mc.player.getBrightness(event.getPartialTicks()), 0.75F, event.getPartialTicks(), -0.25D);
                 }
                 if (this.isEntityInsideBlock(NibiruBlocks.HELIUM_GAS_BLOCK))
                 {
-                    this.renderOverlay("helium_gas", this.mc.thePlayer.getBrightness(event.getPartialTicks()), 0.75F, event.getPartialTicks(), -0.25D);
+                    this.renderOverlay("helium_gas", this.mc.player.getBrightness(event.getPartialTicks()), 0.75F, event.getPartialTicks(), -0.25D);
                 }
             }
         }
@@ -414,17 +414,17 @@ public class ClientEventHandler
             if (this.checkInsideBlock(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
-                this.renderOverlay("crystallize_water", this.mc.thePlayer.getBrightness(partialTicks), 0.75F, partialTicks, -0.5D);
+                this.renderOverlay("crystallize_water", this.mc.player.getBrightness(partialTicks), 0.75F, partialTicks, -0.5D);
             }
             if (this.checkInsideBlock(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK))
             {
                 event.setCanceled(true);
-                this.renderOverlay("cheese_of_milk", this.mc.thePlayer.getBrightness(partialTicks), 0.75F, partialTicks, -0.5D);
+                this.renderOverlay("cheese_of_milk", this.mc.player.getBrightness(partialTicks), 0.75F, partialTicks, -0.5D);
             }
             if (this.checkInsideBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
-                this.renderOverlay("infected_water", this.mc.thePlayer.getBrightness(partialTicks), 0.5F, partialTicks, -0.5D);
+                this.renderOverlay("infected_water", this.mc.player.getBrightness(partialTicks), 0.5F, partialTicks, -0.5D);
             }
         }
     }
@@ -433,7 +433,7 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onRenderFog(FogColors event)
     {
-        Block block = ActiveRenderInfo.getBlockStateAtEntityViewpoint(this.mc.theWorld, event.getEntity(), (float) event.getRenderPartialTicks()).getBlock();
+        Block block = ActiveRenderInfo.getBlockStateAtEntityViewpoint(this.mc.world, event.getEntity(), (float) event.getRenderPartialTicks()).getBlock();
 
         if (block == DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK)
         {
@@ -509,9 +509,9 @@ public class ClientEventHandler
 
     private boolean checkInsideBlock(Block blockInside)
     {
-        double eyeHeight = this.mc.thePlayer.posY + this.mc.thePlayer.getEyeHeight();
-        BlockPos blockpos = new BlockPos(this.mc.thePlayer.posX, eyeHeight, this.mc.thePlayer.posZ);
-        IBlockState iblockstate = this.mc.thePlayer.worldObj.getBlockState(blockpos);
+        double eyeHeight = this.mc.player.posY + this.mc.player.getEyeHeight();
+        BlockPos blockpos = new BlockPos(this.mc.player.posX, eyeHeight, this.mc.player.posZ);
+        IBlockState iblockstate = this.mc.player.world.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
 
         if (block == blockInside)
@@ -526,14 +526,14 @@ public class ClientEventHandler
 
     private boolean isInsideLiquid(BlockPos pos)
     {
-        IBlockState state = this.mc.thePlayer.worldObj.getBlockState(pos);
+        IBlockState state = this.mc.player.world.getBlockState(pos);
         Block block = state.getBlock();
-        double eyes = this.mc.thePlayer.posY + this.mc.thePlayer.getEyeHeight();
+        double eyes = this.mc.player.posY + this.mc.player.getEyeHeight();
         double filled = 1.0f;
 
         if (block instanceof IFluidBlock)
         {
-            filled = ((IFluidBlock)block).getFilledPercentage(this.mc.thePlayer.worldObj, pos);
+            filled = ((IFluidBlock)block).getFilledPercentage(this.mc.player.world, pos);
         }
         else if (block instanceof BlockLiquid)
         {
@@ -553,7 +553,7 @@ public class ClientEventHandler
 
     private boolean isEntityInsideBlock(Block block)
     {
-        if (this.mc.thePlayer.noClip)
+        if (this.mc.player.noClip)
         {
             return false;
         }
@@ -563,15 +563,15 @@ public class ClientEventHandler
 
             for (int i = 0; i < 8; ++i)
             {
-                int j = MathHelper.floor_double(this.mc.thePlayer.posY + ((i >> 0) % 2 - 0.5F) * 0.1F + this.mc.thePlayer.getEyeHeight());
-                int k = MathHelper.floor_double(this.mc.thePlayer.posX + ((i >> 1) % 2 - 0.5F) * this.mc.thePlayer.width * 0.8F);
-                int l = MathHelper.floor_double(this.mc.thePlayer.posZ + ((i >> 2) % 2 - 0.5F) * this.mc.thePlayer.width * 0.8F);
+                int j = MathHelper.floor(this.mc.player.posY + ((i >> 0) % 2 - 0.5F) * 0.1F + this.mc.player.getEyeHeight());
+                int k = MathHelper.floor(this.mc.player.posX + ((i >> 1) % 2 - 0.5F) * this.mc.player.width * 0.8F);
+                int l = MathHelper.floor(this.mc.player.posZ + ((i >> 2) % 2 - 0.5F) * this.mc.player.width * 0.8F);
 
                 if (mutableblockpos.getX() != k || mutableblockpos.getY() != j || mutableblockpos.getZ() != l)
                 {
                     mutableblockpos.setPos(k, j, l);
 
-                    if (this.mc.thePlayer.worldObj.getBlockState(mutableblockpos).getBlock() == block)
+                    if (this.mc.player.world.getBlockState(mutableblockpos).getBlock() == block)
                     {
                         return true;
                     }
@@ -590,8 +590,8 @@ public class ClientEventHandler
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.pushMatrix();
-        float f7 = -this.mc.thePlayer.rotationYaw / 64.0F;
-        float f8 = this.mc.thePlayer.rotationPitch / 64.0F;
+        float f7 = -this.mc.player.rotationYaw / 64.0F;
+        float f8 = this.mc.player.rotationPitch / 64.0F;
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-1.0D, -1.0D, zoom).tex(4.0F + f7, 4.0F + f8).endVertex();
         worldrenderer.pos(1.0D, -1.0D, zoom).tex(0.0F + f7, 4.0F + f8).endVertex();
@@ -640,9 +640,9 @@ public class ClientEventHandler
             }
         }
 
-        if (player.getRNG().nextInt(512) == 0 && player.worldObj.provider instanceof WorldProviderDiona)
+        if (player.getRNG().nextInt(512) == 0 && player.world.provider instanceof WorldProviderDiona)
         {
-            if (player.worldObj.getSunBrightness(1.0F) < 0.25F)
+            if (player.world.getSunBrightness(1.0F) < 0.25F)
             {
                 double freq = player.getRNG().nextDouble() * Math.PI * 2.0F;
                 double dist = 64.0F;
@@ -651,7 +651,7 @@ public class ClientEventHandler
                 double posX = player.posX + dX;
                 double posY = 48;
                 double posZ = player.posZ + dZ;
-                this.mc.theWorld.playSound(player, posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 1.0F + player.getRNG().nextFloat() * 0.8F);
+                this.mc.world.playSound(player, posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 1.0F + player.getRNG().nextFloat() * 0.8F);
                 this.beam.put(new BlockPos(posX, posY, posZ), 40);
             }
         }

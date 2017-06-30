@@ -1,17 +1,14 @@
 package stevekung.mods.moreplanets.integration.jei.black_hole_storage;
 
-import java.util.Collections;
-import java.util.List;
-
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
-import mezz.jei.api.recipe.wrapper.ICraftingRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import net.minecraft.item.ItemStack;
 
-public class BlackHoleStorageRecipeWrapper extends BlankRecipeWrapper implements ICraftingRecipeWrapper
+public class BlackHoleStorageRecipeWrapper extends BlankRecipeWrapper implements IRecipeWrapper
 {
     private INasaWorkbenchRecipe recipe;
 
@@ -21,23 +18,9 @@ public class BlackHoleStorageRecipeWrapper extends BlankRecipeWrapper implements
     }
 
     @Override
-    public List getInputs()
-    {
-        List<ItemStack> list = Lists.newArrayList();
-        list.addAll(this.recipe.getRecipeInput().values());
-        return list;
-    }
-
-    @Override
-    public List<ItemStack> getOutputs()
-    {
-        return Collections.singletonList(this.recipe.getRecipeOutput());
-    }
-
-    @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInputs(ItemStack.class, this.getInputs());
+        ingredients.setInputs(ItemStack.class, new ArrayList<>(this.recipe.getRecipeInput().values()));
         ingredients.setOutput(ItemStack.class, this.recipe.getRecipeOutput());
     }
 }
