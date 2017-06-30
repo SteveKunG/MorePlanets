@@ -1,6 +1,7 @@
 -Added- Added Nibiru Grass Path
+-Added- Added "item_and_xp" Mode for Black Hole Storage
 -Added- Added new bugs!
--Update- Update to 1.10.2 with Galacticraft Build 109 or higher
+-Update- Update to 1.10.2 with Galacticraft Build 110 or higher
 -Update- Space Bow now can use with Vanilla Arrow
 -Update- Improved Dark Energy Receiver multiblock rendering
 -Update- More optimized things

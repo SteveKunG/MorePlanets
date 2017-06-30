@@ -22,6 +22,7 @@ import stevekung.mods.moreplanets.inventory.ContainerBlackHoleStorage;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
+import stevekung.mods.moreplanets.util.client.gui.GuiElementCheckboxMP;
 
 @SideOnly(Side.CLIENT)
 public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCallback
@@ -30,7 +31,7 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
     private ResourceLocation textureXP = new ResourceLocation("moreplanets:textures/gui/black_hole_storage_xp.png");
     private GuiElementCheckbox disableBlackHoleCheckbox;
     private GuiElementCheckbox useHopperCheckbox;
-    private GuiElementCheckbox collectModeCheckbox;
+    private GuiElementCheckboxMP collectModeCheckbox;
     private GuiElementInfoRegion xpValueInfo;
     private TileEntityBlackHoleStorage tile;
 
@@ -61,7 +62,7 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
         this.infoRegions.add(this.xpValueInfo = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 238, (this.height - this.ySize) / 2 + 170, 5, 37, null, this.width, this.height, this));
         this.disableBlackHoleCheckbox = new GuiElementCheckbox(0, this, width + 180, height + 192, "");
         this.useHopperCheckbox = new GuiElementCheckbox(1, this, width + 200, height + 192, "");
-        this.collectModeCheckbox = new GuiElementCheckbox(2, this, width + 220, height + 192, "");
+        this.collectModeCheckbox = new GuiElementCheckboxMP(2, this, width + 220, height + 192, "");
         this.buttonList.add(this.disableBlackHoleCheckbox);
         this.buttonList.add(this.useHopperCheckbox);
         this.buttonList.add(this.collectModeCheckbox);
@@ -79,7 +80,7 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
         String hopperStatus = !this.tile.useHopper ? TextFormatting.RED + GCCoreUtil.translate("gui.button.disable.name") : TextFormatting.GREEN + GCCoreUtil.translate("gui.button.enable.name");
         this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.use_hopper.name") + ": " + hopperStatus, this.xSize - 91 + 8, this.ySize - 86 + 52, 2536735);
 
-        String collectMode = this.tile.collectMode.equals("item") ? TextFormatting.GOLD + GCCoreUtil.translate("gui.status.collect_item.name") : TextFormatting.YELLOW + GCCoreUtil.translate("gui.status.collect_xp.name");
+        String collectMode = this.tile.collectMode.equals("item") ? TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_item.name") : this.tile.collectMode.equals("item_and_xp") ? TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_item_and_xp.name") : TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_xp.name");
         this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.collect_mode.name") + ": " + collectMode, this.xSize - 91 + 8, this.ySize - 86 + 62, 2536735);
 
         List<String> renderDesc = Lists.newArrayList(GCCoreUtil.translate("gui.xp_value.desc") + ": " + this.tile.xp + "/" + this.tile.getMaxXP());
@@ -99,7 +100,6 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
         this.drawTexturedModalRect(i + 238, j + 170 + 37 - level, 238, 170 - level + 37, 5, level);
         this.disableBlackHoleCheckbox.isSelected = this.tile.disableBlackHole;
         this.useHopperCheckbox.isSelected = this.tile.useHopper;
-        this.collectModeCheckbox.isSelected = this.tile.collectMode.equals("item");
     }
 
     @Override
@@ -131,10 +131,6 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
         if (checkbox.equals(this.disableBlackHoleCheckbox))
         {
             return this.tile.disableBlackHole;
-        }
-        else if (checkbox.equals(this.collectModeCheckbox))
-        {
-            return this.tile.collectMode.equals("item");
         }
         else
         {

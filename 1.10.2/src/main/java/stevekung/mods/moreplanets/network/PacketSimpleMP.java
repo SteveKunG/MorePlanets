@@ -131,7 +131,21 @@ public class PacketSimpleMP extends PacketBase
                     storage.disableBlackHole = !storage.disableBlackHole;
                     break;
                 case "collect_mode":
-                    storage.collectMode = storage.collectMode.equals("item") ? "item" : "xp";
+                    storage.modeInt++;
+                    storage.modeInt %= 3;
+
+                    switch (storage.modeInt)
+                    {
+                    case 0:
+                        storage.collectMode = "item";
+                        break;
+                    case 1:
+                        storage.collectMode = "xp";
+                        break;
+                    case 2:
+                        storage.collectMode = "item_and_xp";
+                        break;
+                    }
                     break;
                 case "use_hopper":
                     storage.useHopper = !storage.useHopper;

@@ -38,6 +38,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     @NetworkedField(targetSide = Side.CLIENT)
     public String collectMode = "item";
     public int age = 0;
+    public int modeInt;
 
     @Override
     public void update()

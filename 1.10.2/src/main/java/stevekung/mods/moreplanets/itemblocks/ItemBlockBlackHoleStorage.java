@@ -103,13 +103,13 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
 
                             if (nbt.hasKey("Disable") && nbt.hasKey("Mode") && nbt.hasKey("XP") && nbt.hasKey("Hopper") && nbt.hasKey("Items"))
                             {
-                                String mode = nbt.getString("Mode").equals("item") ? "Item" : "EXP";
+                                String mode = nbt.getString("Mode").equals("item") ? "Item" : nbt.getString("Mode").equals("item_and_xp") ? "Item/EXP" : "EXP";
                                 TextFormatting disable = nbt.getBoolean("Disable") ? TextFormatting.GREEN : TextFormatting.RED;
                                 TextFormatting hopper = nbt.getBoolean("Hopper") ? TextFormatting.GREEN : TextFormatting.RED;
                                 list.add(GCCoreUtil.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
                                 list.add(GCCoreUtil.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
-                                list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + mode);
-                                list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + nbt.getInteger("XP") + "/" + storage.getMaxXP());
+                                list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + TextFormatting.AQUA + mode);
+                                list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getInteger("XP") + "/" + storage.getMaxXP());
 
                                 NBTTagList nbtlist = nbt.getTagList("Items", 10);
                                 int slot = 0;
@@ -124,7 +124,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                                         slot = slot + 1;
                                     }
                                 }
-                                list.add(GCCoreUtil.translate("desc.bhs_slot_used.name") + ": " + slot + "/" + storage.getSizeInventory());
+                                list.add(GCCoreUtil.translate("desc.bhs_slot_used.name") + ": " + TextFormatting.GOLD + slot + "/" + storage.getSizeInventory());
                             }
                         }
                     }

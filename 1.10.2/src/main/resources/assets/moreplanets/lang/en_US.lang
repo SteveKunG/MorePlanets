@@ -579,6 +579,7 @@ gui.status.use_hopper.name=Hopper
 gui.status.collect_mode.name=Collect
 gui.status.collect_item.name=Item
 gui.status.collect_xp.name=XP
+gui.status.collect_item_and_xp.name=Item/XP
 
 # GUI MESSAGE
 gui.no_warp_data.message=No Space Warp Pad data stored
