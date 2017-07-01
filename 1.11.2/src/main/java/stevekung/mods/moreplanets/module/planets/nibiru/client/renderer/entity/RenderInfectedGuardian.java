@@ -136,7 +136,7 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
                 d24 = 0.5D;
             }
 
-            if (entity.isElder())
+            if (true)//TODO
             {
                 if (f7 > 0.7F)
                 {
@@ -191,7 +191,7 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
     @Override
     protected void preRenderCallback(EntityInfectedGuardian entity, float partialTicks)
     {
-        if (entity.isElder())
+        if (true)//TODO
         {
             GlStateManager.scale(2.35F, 2.35F, 2.35F);
         }
@@ -200,6 +200,7 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedGuardian entity)
     {
-        return entity.isElder() ? new ResourceLocation("moreplanets:textures/entity/infected_elder_guardian.png") : new ResourceLocation("moreplanets:textures/entity/infected_guardian.png");
+        //TODO
+        return true ? new ResourceLocation("moreplanets:textures/entity/infected_elder_guardian.png") : new ResourceLocation("moreplanets:textures/entity/infected_guardian.png");
     }
 }

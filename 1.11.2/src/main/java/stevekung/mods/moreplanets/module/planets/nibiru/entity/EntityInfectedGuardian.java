@@ -135,37 +135,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     public int getAttackDuration()
     {
-        return this.isElder() ? 60 : 80;
-    }
-
-    @Override
-    public boolean isElder()
-    {
-        return this.isSyncedFlagSet(4);
-    }
-
-    @Override
-    public void setElder(boolean elder)
-    {
-        this.setSyncedFlag(4, elder);
-
-        if (elder)
-        {
-            this.setSize(1.9975F, 1.9975F);
-            this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
-            this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
-            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80.0D);
-            this.enablePersistence();
-            this.wander.setExecutionChance(400);
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void setElder()
-    {
-        this.setElder(true);
-        this.clientSideSpikesAnimationO = this.clientSideSpikesAnimation = 1.0F;
+        return 80;
     }
 
     private void setTargetedEntity(int entityId)
@@ -218,14 +188,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     {
         super.notifyDataManagerChange(key);
 
-        if (STATUS.equals(key))
-        {
-            if (this.isElder() && this.width < 1.0F)
-            {
-                this.setSize(1.9975F, 1.9975F);
-            }
-        }
-        else if (TARGET_ENTITY.equals(key))
+        if (TARGET_ENTITY.equals(key))
         {
             this.clientSideAttackTime = 0;
             this.targetedEntity = null;
@@ -373,7 +336,6 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     protected void updateAITasks()
     {
-        if (this.isElder())
         {
             if ((this.ticksExisted + this.getEntityId()) % 1200 == 0)
             {
@@ -406,7 +368,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return this.isElder() ? MPLootTables.INFECTED_ELDER_GUARDIAN : MPLootTables.INFECTED_GUARDIAN;
+        return true ? MPLootTables.INFECTED_ELDER_GUARDIAN : MPLootTables.INFECTED_GUARDIAN;//XXX
     }
 
     @Override
@@ -469,7 +431,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         @Override
         public boolean continueExecuting()
         {
-            return super.continueExecuting() && (this.entity.isElder() || this.entity.getDistanceSqToEntity(this.entity.getAttackTarget()) > 9.0D);
+            return super.continueExecuting() && this.entity.getDistanceSqToEntity(this.entity.getAttackTarget()) > 9.0D;
         }
 
         @Override
@@ -518,10 +480,6 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                         f += 2.0F;
                     }
 
-                    if (this.entity.isElder())
-                    {
-                        f += 2.0F;
-                    }
                     entitylivingbase.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.entity, this.entity), f);
                     entitylivingbase.attackEntityFrom(DamageSource.causeMobDamage(this.entity), (float)this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
                     entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 0));

@@ -159,15 +159,20 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing)
     {
-        Block block = world.getBlockState(pos).getBlock();
+        IBlockState iblockstate = world.getBlockState(pos.offset(facing));
+        Block block = iblockstate.getBlock();
 
-        if ((block instanceof BlockFluidLavaBaseMP || block instanceof BlockFluidBaseMP) && block != this)
+        if (block == this)
+        {
+            return false;
+        }
+        if (block != this)
         {
             return true;
         }
-        return super.shouldSideBeRendered(state, world, pos, side);
+        return super.shouldSideBeRendered(state, world, pos, facing);
     }
 
     @Override

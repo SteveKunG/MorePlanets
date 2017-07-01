@@ -47,7 +47,7 @@ public class ContainerDarkEnergyStorage extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileEntity.isUseableByPlayer(player);
+        return this.tileEntity.isUsableByPlayer(player);
     }
 
     @Override

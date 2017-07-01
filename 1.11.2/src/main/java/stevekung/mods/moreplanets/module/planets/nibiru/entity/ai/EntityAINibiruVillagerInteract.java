@@ -57,23 +57,23 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
                     {
                         Item item = itemstack.getItem();
 
-                        if ((item == Items.BREAD || item == Items.POTATO || item == Items.CARROT) && itemstack.stackSize > 3)
+                        if ((item == Items.BREAD || item == Items.POTATO || item == Items.CARROT) && itemstack.getCount() > 3)
                         {
-                            int l = itemstack.stackSize / 2;
-                            itemstack.stackSize -= l;
+                            int l = itemstack.getCount() / 2;
+                            itemstack.shrink(l);
                             itemstack1 = new ItemStack(item, l, itemstack.getMetadata());
                         }
-                        else if (item == Items.WHEAT && itemstack.stackSize > 5)
+                        else if (item == Items.WHEAT && itemstack.getCount() > 5)
                         {
-                            int j = itemstack.stackSize / 2 / 3 * 3;
+                            int j = itemstack.getCount() / 2 / 3 * 3;
                             int k = j / 3;
-                            itemstack.stackSize -= j;
+                            itemstack.shrink(j);
                             itemstack1 = new ItemStack(Items.BREAD, k, 0);
                         }
 
-                        if (itemstack.stackSize <= 0)
+                        if (itemstack.getCount() <= 0)
                         {
-                            inventorybasic.setInventorySlotContents(i, (ItemStack)null);
+                            inventorybasic.setInventorySlotContents(i, ItemStack.EMPTY);
                         }
                     }
 

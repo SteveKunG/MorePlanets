@@ -1555,7 +1555,7 @@ public class StructureNibiruOceanMonumentPieces
             if (box.isVecInside(new BlockPos(i, j, k)))
             {
                 EntityInfectedGuardian entityguardian = new EntityInfectedGuardian(world);
-                entityguardian.setElder(true);
+                //entityguardian.setElder(true);TODO Elder
                 entityguardian.heal(entityguardian.getMaxHealth());
                 entityguardian.setLocationAndAngles(i + 0.5D, j, k + 0.5D, 0.0F, 0.0F);
                 entityguardian.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entityguardian)), (IEntityLivingData)null);

@@ -301,9 +301,9 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
-            ItemStack itemStack = ItemStack.loadItemStackFromNBT(nbttaglist.getCompoundTagAt(i));
+            ItemStack itemStack = new ItemStack(nbttaglist.getCompoundTagAt(i));
 
-            if (itemStack != null)
+            if (!itemStack.isEmpty())
             {
                 this.villagerInventory.addItem(itemStack);
             }

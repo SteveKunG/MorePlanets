@@ -42,7 +42,7 @@ public class ParticleInfectedGuardianAppearance extends Particle
         if (this.entity == null)
         {
             EntityInfectedGuardian entityguardian = new EntityInfectedGuardian(this.world);
-            entityguardian.setElder();
+            //entityguardian.setElder();//TODO
             this.entity = entityguardian;
         }
     }

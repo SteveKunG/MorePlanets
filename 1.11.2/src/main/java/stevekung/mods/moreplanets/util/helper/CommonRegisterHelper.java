@@ -160,6 +160,11 @@ public class CommonRegisterHelper
         GameRegistry.registerTileEntity(tile, name);
     }
 
+    public static void registerForgeBucket(Fluid fluid)
+    {
+        FluidRegistry.addBucketForFluid(fluid);
+    }
+
     public static void registerGUIHandler(Object obj, IGuiHandler handler)
     {
         NetworkRegistry.INSTANCE.registerGuiHandler(obj, handler);

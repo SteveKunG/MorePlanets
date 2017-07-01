@@ -14,10 +14,11 @@ import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
@@ -25,7 +26,7 @@ import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
 public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectricalSource implements ISidedInventory, IInventoryDefaults, IConnector, IMachineSides
 {
     private float darkEnergyCapacity = 12500000;
-    private ItemStack[] containingItems = new ItemStack[2];
+    private NonNullList<ItemStack> containingItems = NonNullList.withSize(2, ItemStack.EMPTY);
     public Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
     public int scaledEnergyLevel;
     public int lastScaledEnergyLevel;
@@ -68,8 +69,8 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
         }
         if (!this.world.isRemote)
         {
-            this.recharge(this.containingItems[0]);
-            this.discharge(this.containingItems[1]);
+            this.recharge(this.containingItems.get(0));
+            this.discharge(this.containingItems.get(1));
             this.produce();
         }
         this.lastScaledEnergyLevel = this.scaledEnergyLevel;
@@ -79,109 +80,60 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        NBTTagList list = nbt.getTagList("Items", 10);
-        this.containingItems = new ItemStack[this.getSizeInventory()];
         this.readMachineSidesFromNBT(nbt);
-
-        for (int i = 0; i < list.tagCount(); ++i)
-        {
-            NBTTagCompound compound = list.getCompoundTagAt(i);
-            int slot = compound.getByte("Slot") & 255;
-
-            if (slot < this.containingItems.length)
-            {
-                this.containingItems[slot] = ItemStack.loadItemStackFromNBT(compound);
-            }
-        }
+        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.containingItems);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        NBTTagList list = new NBTTagList();
         this.addMachineSidesToNBT(nbt);
-
-        for (int i = 0; i < this.containingItems.length; ++i)
-        {
-            if (this.containingItems[i] != null)
-            {
-                NBTTagCompound compound = new NBTTagCompound();
-                compound.setByte("Slot", (byte) i);
-                this.containingItems[i].writeToNBT(compound);
-                list.appendTag(compound);
-            }
-        }
-        nbt.setTag("Items", list);
+        ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
     }
 
     @Override
     public int getSizeInventory()
     {
-        return this.containingItems.length;
+        return this.containingItems.size();
     }
 
     @Override
-    public ItemStack getStackInSlot(int slot)
+    public ItemStack getStackInSlot(int index)
     {
-        return this.containingItems[slot];
+        return this.getItems().get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int slot, int count)
+    public ItemStack decrStackSize(int index, int count)
     {
-        if (this.containingItems[slot] != null)
-        {
-            ItemStack itemStack;
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
 
-            if (this.containingItems[slot].stackSize <= count)
-            {
-                itemStack = this.containingItems[slot];
-                this.containingItems[slot] = null;
-                return itemStack;
-            }
-            else
-            {
-                itemStack = this.containingItems[slot].splitStack(count);
-
-                if (this.containingItems[slot].stackSize == 0)
-                {
-                    this.containingItems[slot] = null;
-                }
-                return itemStack;
-            }
-        }
-        else
+        if (!itemStack.isEmpty())
         {
-            return null;
+            this.markDirty();
         }
+        return itemStack;
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int slot)
+    public ItemStack removeStackFromSlot(int index)
     {
-        if (this.containingItems[slot] != null)
-        {
-            ItemStack itemStack = this.containingItems[slot];
-            this.containingItems[slot] = null;
-            return itemStack;
-        }
-        else
-        {
-            return null;
-        }
+        return ItemStackHelper.getAndRemove(this.getItems(), index);
     }
 
     @Override
-    public void setInventorySlotContents(int slot, ItemStack itemStack)
+    public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.containingItems[slot] = itemStack;
+        this.getItems().set(index, itemStack);
 
-        if (itemStack != null && itemStack.stackSize > this.getInventoryStackLimit())
+        if (itemStack.getCount() > this.getInventoryStackLimit())
         {
-            itemStack.stackSize = this.getInventoryStackLimit();
+            itemStack.setCount(this.getInventoryStackLimit());
         }
+        this.markDirty();
     }
 
     @Override
@@ -197,7 +149,7 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUsableByPlayer(EntityPlayer player)
     {
         return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
     }
@@ -363,4 +315,22 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
         return BlockTieredEnergyStorage.MACHINESIDES_RENDERTYPE;
     }
     //------------------END OF IMachineSides implementation
+
+    @Override
+    public boolean isEmpty()
+    {
+        for (ItemStack itemStack : this.containingItems)
+        {
+            if (!itemStack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected NonNullList<ItemStack> getItems()
+    {
+        return this.containingItems;
+    }
 }

@@ -10,10 +10,10 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
@@ -74,19 +74,8 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        NBTTagList list = nbt.getTagList("Items", 10);
-        this.inventory = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < list.tagCount(); ++i)
-        {
-            NBTTagCompound compound = list.getCompoundTagAt(i);
-            int slot = compound.getByte("Slot");
-
-            if (slot >= 0 && slot < this.inventory.length)
-            {
-                this.inventory[slot] = ItemStack.loadItemStackFromNBT(compound);
-            }
-        }
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.inventory);
         this.disableBlackHole = nbt.getBoolean("DisableBlackHole");
         this.useHopper = nbt.getBoolean("UseHopper");
         this.collectMode = nbt.getString("CollectMode");
@@ -98,18 +87,8 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        NBTTagList list = new NBTTagList();
+        ItemStackHelper.saveAllItems(nbt, this.inventory);
 
-        for (int i = 0; i < this.inventory.length; ++i)
-        {
-            if (this.inventory[i] != null)
-            {
-                NBTTagCompound compound = new NBTTagCompound();
-                compound.setByte("Slot", (byte)i);
-                this.inventory[i].writeToNBT(compound);
-                list.appendTag(compound);
-            }
-        }
         if (this.ownerUUID != null)
         {
             nbt.setString("OwnerUUID", this.ownerUUID);
@@ -121,74 +100,49 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         nbt.setBoolean("DisableBlackHole", this.disableBlackHole);
         nbt.setBoolean("UseHopper", this.useHopper);
         nbt.setInteger("XP", this.xp);
-        nbt.setTag("Items", list);
         return nbt;
     }
 
     @Override
     public int getSizeInventory()
     {
-        return this.inventory.length;
+        return this.inventory.size();
     }
 
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        return this.inventory[index];
+        return this.getItems().get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        if (this.inventory[index] != null)
-        {
-            if (this.inventory[index].stackSize <= count)
-            {
-                ItemStack itemstack1 = this.inventory[index];
-                this.inventory[index] = null;
-                return itemstack1;
-            }
-            else
-            {
-                ItemStack itemstack = this.inventory[index].splitStack(count);
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
 
-                if (this.inventory[index].stackSize == 0)
-                {
-                    this.inventory[index] = null;
-                }
-                return itemstack;
-            }
-        }
-        else
+        if (!itemStack.isEmpty())
         {
-            return null;
+            this.markDirty();
         }
+        return itemStack;
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        if (this.inventory[index] != null)
-        {
-            ItemStack itemstack = this.inventory[index];
-            this.inventory[index] = null;
-            return itemstack;
-        }
-        else
-        {
-            return null;
-        }
+        return ItemStackHelper.getAndRemove(this.getItems(), index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack)
+    public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.inventory[index] = stack;
+        this.getItems().set(index, itemStack);
 
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        if (itemStack.getCount() > this.getInventoryStackLimit())
         {
-            stack.stackSize = this.getInventoryStackLimit();
+            itemStack.setCount(this.getInventoryStackLimit());
         }
+        this.markDirty();
     }
 
     @Override
@@ -263,6 +217,24 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         return true;
     }
 
+    @Override
+    public boolean isEmpty()
+    {
+        for (ItemStack itemStack : this.inventory)
+        {
+            if (!itemStack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected NonNullList<ItemStack> getItems()
+    {
+        return this.inventory;
+    }
+
     public int getMaxXP()
     {
         return 1000000;
@@ -307,7 +279,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     {
         for (ItemStack itemStack : this.inventory)
         {
-            if (itemStack == null || itemStack.stackSize != itemStack.getMaxStackSize())
+            if (itemStack == null || itemStack.getCount() != itemStack.getMaxStackSize())
             {
                 return false;
             }
@@ -346,7 +318,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
             ItemStack itemstack = entityItem.getEntityItem().copy();
             ItemStack itemstack1 = this.putStackInInventoryAllSlots(inventory, itemstack);
 
-            if (itemstack1 != null && itemstack1.stackSize != 0)
+            if (itemstack1 != null && itemstack1.getCount() != 0)
             {
                 entityItem.setEntityItemStack(itemstack1);
             }
@@ -363,13 +335,13 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     {
         int i = inventory.getSizeInventory();
 
-        for (int index = 0; index < i && itemStack != null && itemStack.stackSize > 0; ++index)
+        for (int index = 0; index < i && !itemStack.isEmpty() && itemStack.getCount() > 0; ++index)
         {
             itemStack = this.insertStack(inventory, itemStack, index);
         }
-        if (itemStack != null && itemStack.stackSize == 0)
+        if (!itemStack.isEmpty() && itemStack.getCount() == 0)
         {
-            itemStack = null;
+            itemStack = ItemStack.EMPTY;
         }
         return itemStack;
     }
@@ -386,7 +358,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
             {
                 int max = Math.min(itemStack.getMaxStackSize(), inventory.getInventoryStackLimit());
 
-                if (max >= itemStack.stackSize)
+                if (max >= itemStack.getCount())
                 {
                     inventory.setInventorySlotContents(index, itemStack);
                     itemStack = null;
@@ -401,12 +373,12 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
             {
                 int max = Math.min(itemStack.getMaxStackSize(), inventory.getInventoryStackLimit());
 
-                if (max > itemstack.stackSize)
+                if (max > itemstack.getCount())
                 {
-                    int i = max - itemstack.stackSize;
-                    int j = Math.min(itemStack.stackSize, i);
-                    itemStack.stackSize -= j;
-                    itemstack.stackSize += j;
+                    int i = max - itemstack.getCount();
+                    int j = Math.min(itemStack.getCount(), i);
+                    itemStack.shrink(j);
+                    itemstack.grow(j);
                     flag = j > 0;
                 }
             }
@@ -425,6 +397,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
 
     private boolean canCombine(ItemStack itemStack1, ItemStack itemStack2)
     {
-        return itemStack1.getItem() != itemStack2.getItem() ? false : itemStack1.getMetadata() != itemStack2.getMetadata() ? false : itemStack1.stackSize > itemStack1.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(itemStack1, itemStack2);
+        return itemStack1.getItem() != itemStack2.getItem() ? false : itemStack1.getMetadata() != itemStack2.getMetadata() ? false : itemStack1.getCount() > itemStack1.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(itemStack1, itemStack2);
     }
 }

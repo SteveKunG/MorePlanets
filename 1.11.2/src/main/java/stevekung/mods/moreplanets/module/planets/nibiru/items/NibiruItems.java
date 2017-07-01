@@ -231,13 +231,13 @@ public class NibiruItems
         CommonRegisterHelper.registerOreDictionary("egg", NibiruItems.INFECTED_EGG);
 
         /**************************************************************/
-        /********************FLUID CONTAINER STUFF*********************/
+        /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerFluidContainer(NibiruBlocks.INFECTED_WATER_FLUID, new ItemStack(NibiruItems.INFECTED_WATER_FLUID_BUCKET));
-        CommonRegisterHelper.registerFluidContainer(NibiruBlocks.HELIUM_GAS, new ItemStack(NibiruItems.HELIUM_GAS_BUCKET));
-        CommonRegisterHelper.registerFluidContainer(NibiruBlocks.NUCLEAR_WASTE_FLUID, new ItemStack(NibiruItems.NUCLEAR_WASTE_BUCKET));
-        CommonRegisterHelper.registerFluidContainer(NibiruBlocks.PURIFY_WATER_FLUID, new ItemStack(NibiruItems.PURIFY_WATER_BUCKET));
+        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.INFECTED_WATER_FLUID);
+        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.HELIUM_GAS);
+        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.NUCLEAR_WASTE_FLUID);
+        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.PURIFY_WATER_FLUID);
 
         /**************************************************************/
         /************************OTHER STUFF***************************/

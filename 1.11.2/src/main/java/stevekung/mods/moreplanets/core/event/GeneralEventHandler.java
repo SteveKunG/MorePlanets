@@ -29,6 +29,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -324,15 +325,18 @@ public class GeneralEventHandler
 
         if (event.getTarget() != null)
         {
-            BlockPos pos = event.getTarget().getBlockPos();
-            this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET), false);
-            this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_GAS_BUCKET), false);
-            this.registerBucket(event, world, pos, NibiruBlocks.HELIUM_GAS_BLOCK, new ItemStack(NibiruItems.HELIUM_GAS_BUCKET), false);
-            this.registerBucket(event, world, pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.INFECTED_WATER_FLUID_BUCKET), false);
-            this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET), false);
-            this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET), false);
-            this.registerBucket(event, world, pos, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK, new ItemStack(NibiruItems.NUCLEAR_WASTE_BUCKET), false);
-            this.registerBucket(event, world, pos, NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.PURIFY_WATER_BUCKET), false);
+            if (!FluidRegistry.isUniversalBucketEnabled())
+            {
+                BlockPos pos = event.getTarget().getBlockPos();
+                this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET), false);
+                this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_GAS_BUCKET), false);
+                this.registerBucket(event, world, pos, NibiruBlocks.HELIUM_GAS_BLOCK, new ItemStack(NibiruItems.HELIUM_GAS_BUCKET), false);
+                this.registerBucket(event, world, pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.INFECTED_WATER_FLUID_BUCKET), false);
+                this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET), false);
+                this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET), false);
+                this.registerBucket(event, world, pos, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK, new ItemStack(NibiruItems.NUCLEAR_WASTE_BUCKET), false);
+                this.registerBucket(event, world, pos, NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.PURIFY_WATER_BUCKET), false);
+            }
         }
     }
 

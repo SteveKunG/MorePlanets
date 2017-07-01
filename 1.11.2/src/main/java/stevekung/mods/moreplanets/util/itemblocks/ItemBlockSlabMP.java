@@ -32,7 +32,7 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack itemStack = player.getHeldItem(hand);
-        
+
         if (this.block instanceof ISlabBlock)
         {
             ISlabBlock singleSlab = (ISlabBlock) this.block;

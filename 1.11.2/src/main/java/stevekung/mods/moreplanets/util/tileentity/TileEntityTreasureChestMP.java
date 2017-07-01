@@ -23,9 +23,9 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -41,7 +41,7 @@ import stevekung.mods.moreplanets.init.MPSounds;
 
 public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKeyable, IInteractionObject, ISidedInventory, IInventoryDefaults
 {
-    private ItemStack[] chestContents = new ItemStack[27];
+    private NonNullList<ItemStack> chestContents = NonNullList.withSize(27, ItemStack.EMPTY);
     public float lidAngle;
     public float prevLidAngle;
     public int numPlayersUsing;
@@ -73,71 +73,59 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     public ItemStack getStackInSlot(int index)
     {
         this.fillWithLoot((EntityPlayer)null);
-        return this.chestContents[index];
+        return this.getItems().get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
         this.fillWithLoot((EntityPlayer)null);
+        ItemStack itemstack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
 
-        if (this.chestContents[index] != null)
+        if (!itemstack.isEmpty())
         {
-            ItemStack itemstack;
-
-            if (this.chestContents[index].stackSize <= count)
-            {
-                itemstack = this.chestContents[index];
-                this.chestContents[index] = null;
-                this.markDirty();
-                return itemstack;
-            }
-            else
-            {
-                itemstack = this.chestContents[index].splitStack(count);
-
-                if (this.chestContents[index].stackSize == 0)
-                {
-                    this.chestContents[index] = null;
-                }
-                this.markDirty();
-                return itemstack;
-            }
+            this.markDirty();
         }
-        else
-        {
-            return null;
-        }
+
+        return itemstack;
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
         this.fillWithLoot((EntityPlayer)null);
-
-        if (this.chestContents[index] != null)
-        {
-            ItemStack itemstack = this.chestContents[index];
-            this.chestContents[index] = null;
-            return itemstack;
-        }
-        else
-        {
-            return null;
-        }
+        return ItemStackHelper.getAndRemove(this.getItems(), index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack)
+    public void setInventorySlotContents(int index, @Nullable ItemStack stack)
     {
         this.fillWithLoot((EntityPlayer)null);
-        this.chestContents[index] = stack;
+        this.getItems().set(index, stack);
 
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        if (stack.getCount() > this.getInventoryStackLimit())
         {
-            stack.stackSize = this.getInventoryStackLimit();
+            stack.setCount(this.getInventoryStackLimit());
         }
         this.markDirty();
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        for (ItemStack itemStack : this.chestContents)
+        {
+            if (!itemStack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected NonNullList<ItemStack> getItems()
+    {
+        return this.chestContents;
     }
 
     @Override
@@ -150,24 +138,13 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        this.chestContents = new ItemStack[this.getSizeInventory()];
+        this.chestContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         this.locked = nbt.getBoolean("isLocked");
         this.tier = nbt.getInteger("tier");
 
         if (!this.checkLootAndRead(nbt))
         {
-            NBTTagList nbttaglist = nbt.getTagList("Items", 10);
-
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
-            {
-                NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-                int j = nbttagcompound.getByte("Slot") & 255;
-
-                if (j >= 0 && j < this.chestContents.length)
-                {
-                    this.chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound);
-                }
-            }
+            ItemStackHelper.loadAllItems(nbt, this.chestContents);
         }
     }
 
@@ -180,19 +157,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
 
         if (!this.checkLootAndWrite(nbt))
         {
-            NBTTagList nbttaglist = new NBTTagList();
-
-            for (int i = 0; i < this.chestContents.length; ++i)
-            {
-                if (this.chestContents[i] != null)
-                {
-                    NBTTagCompound nbttagcompound = new NBTTagCompound();
-                    nbttagcompound.setByte("Slot", (byte)i);
-                    this.chestContents[i].writeToNBT(nbttagcompound);
-                    nbttaglist.appendTag(nbttagcompound);
-                }
-            }
-            nbt.setTag("Items", nbttaglist);
+            ItemStackHelper.saveAllItems(nbt, this.chestContents);
         }
         return nbt;
     }
@@ -204,9 +169,9 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -223,11 +188,11 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
             this.numPlayersUsing = 0;
         }
 
-        if (!this.worldObj.isRemote && this.numPlayersUsing != 0 && (this.ticksSinceSync + i + j + k) % 200 == 0)
+        if (!this.world.isRemote && this.numPlayersUsing != 0 && (this.ticksSinceSync + i + j + k) % 200 == 0)
         {
             this.numPlayersUsing = 0;
             f = 5.0F;
-            List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f));
+            List list = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f));
             Iterator iterator = list.iterator();
 
             while (iterator.hasNext())
@@ -247,14 +212,14 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
         }
 
         this.prevLidAngle = this.lidAngle;
-        f = this.worldObj.provider instanceof IGalacticraftWorldProvider ? 0.05F : 0.1F;
+        f = this.world.provider instanceof IGalacticraftWorldProvider ? 0.05F : 0.1F;
         double d2;
 
         if (this.numPlayersUsing > 0 && this.lidAngle == 0.0F)
         {
             double d1 = i + 0.5D;
             d2 = k + 0.5D;
-            this.worldObj.playSound((EntityPlayer)null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.worldObj.provider instanceof IGalacticraftWorldProvider ? this.worldObj.rand.nextFloat() * 0.1F + 0.6F : this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            this.world.playSound((EntityPlayer)null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.provider instanceof IGalacticraftWorldProvider ? this.world.rand.nextFloat() * 0.1F + 0.6F : this.world.rand.nextFloat() * 0.1F + 0.9F);
         }
 
         if ((this.numPlayersUsing == 0 || this.locked) && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F)
@@ -281,7 +246,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
             {
                 d2 = i + 0.5D;
                 double d0 = k + 0.5D;
-                this.worldObj.playSound((EntityPlayer)null, d2, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.worldObj.provider instanceof IGalacticraftWorldProvider ? this.worldObj.rand.nextFloat() * 0.1F + 0.6F : this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                this.world.playSound((EntityPlayer)null, d2, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.provider instanceof IGalacticraftWorldProvider ? this.world.rand.nextFloat() * 0.1F + 0.6F : this.world.rand.nextFloat() * 0.1F + 0.9F);
             }
             if (this.lidAngle < 0.0F)
             {
@@ -315,9 +280,8 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
                 this.numPlayersUsing = 0;
             }
             ++this.numPlayersUsing;
-            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
-            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
-            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+            this.world.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.world.notifyNeighborsOfStateChange(this.pos, this.getBlockType(), false);
         }
     }
 
@@ -327,9 +291,8 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
         if (!player.isSpectator() && this.getBlockType() == this.block)
         {
             --this.numPlayersUsing;
-            this.worldObj.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
-            this.worldObj.notifyNeighborsOfStateChange(this.pos, this.getBlockType());
-            this.worldObj.notifyNeighborsOfStateChange(this.pos.down(), this.getBlockType());
+            this.world.addBlockEvent(this.pos, this.getBlockType(), 1, this.numPlayersUsing);
+            this.world.notifyNeighborsOfStateChange(this.pos, this.getBlockType(), false);
         }
     }
 
@@ -369,11 +332,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     public void clear()
     {
         this.fillWithLoot((EntityPlayer)null);
-
-        for (int i = 0; i < this.chestContents.length; ++i)
-        {
-            this.chestContents[i] = null;
-        }
+        this.getItems().clear();
     }
 
     @Override
@@ -389,14 +348,15 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
         {
             this.locked = false;
 
-            if (this.worldObj.isRemote)
+            if (this.world.isRemote)
             {
                 player.playSound(MPSounds.UNLOCK_TREASURE_CHEST, 1.0F, 1.0F);
             }
             else
             {
-                if (!player.capabilities.isCreativeMode && --player.inventory.getCurrentItem().stackSize == 0)
+                if (!player.capabilities.isCreativeMode && player.inventory.getCurrentItem().getCount() == 0)
                 {
+                    player.inventory.getCurrentItem().shrink(1);
                     player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
                 }
                 return true;
@@ -410,9 +370,9 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     {
         if (this.locked)
         {
-            if (player.worldObj.isRemote)
+            if (player.world.isRemote)
             {
-                GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_ON_FAILED_CHEST_UNLOCK, GCCoreUtil.getDimensionID(this.worldObj), new Object[] { this.getTierOfKeyRequired() }));
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_ON_FAILED_CHEST_UNLOCK, GCCoreUtil.getDimensionID(this.world), new Object[] { this.getTierOfKeyRequired() }));
             }
             return true;
         }
@@ -511,7 +471,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     {
         if (this.lootTable != null)
         {
-            LootTable loottable = this.worldObj.getLootTableManager().getLootTableFromLocation(this.lootTable);
+            LootTable loottable = this.world.getLootTableManager().getLootTableFromLocation(this.lootTable);
             this.lootTable = null;
             Random random;
 
@@ -524,7 +484,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
                 random = new Random(this.lootTableSeed);
             }
 
-            LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer)this.worldObj);
+            LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer)this.world);
 
             if (player != null)
             {
@@ -551,7 +511,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
         double distance = Double.MAX_VALUE;
         TileEntityTreasureChestMP chest = null;
 
-        for (TileEntity tile : entity.worldObj.loadedTileEntityList)
+        for (TileEntity tile : entity.world.loadedTileEntityList)
         {
             if (tile instanceof TileEntityTreasureChestMP && ((TileEntityTreasureChestMP) tile).getTierOfKeyRequired() == tier)
             {

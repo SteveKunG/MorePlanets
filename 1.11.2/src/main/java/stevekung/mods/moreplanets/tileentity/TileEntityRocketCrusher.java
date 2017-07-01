@@ -24,6 +24,7 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -42,7 +43,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     public int processTicks = 0;
     private ItemStack producingStack = null;
     private long ticks;
-    private ItemStack[] containingItems = new ItemStack[2];
+    private NonNullList<ItemStack> containingItems = NonNullList.withSize(2, ItemStack.EMPTY);
     public PersistantInventoryCrafting compressingCraftMatrix = new PersistantInventoryCrafting();
 
     public TileEntityRocketCrusher()
@@ -109,19 +110,19 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     {
         ItemStack itemstack = this.producingStack;
 
-        if (itemstack == null)
+        if (itemstack.isEmpty())
         {
             return false;
         }
-        if (this.containingItems[1] == null)
+        if (this.containingItems.get(1).isEmpty())
         {
             return true;
         }
-        if (this.containingItems[1] != null && !this.containingItems[1].isItemEqual(itemstack))
+        if (!this.containingItems.get(1).isEmpty() && !this.containingItems.get(1).isItemEqual(itemstack))
         {
             return false;
         }
-        int result = this.containingItems[1] == null ? 0 : this.containingItems[1].stackSize + itemstack.stackSize;
+        int result = this.containingItems.get(1) == ItemStack.EMPTY ? 0 : this.containingItems.get(1).getCount() + itemstack.getCount();
         return result <= this.getInventoryStackLimit() && result <= itemstack.getMaxStackSize();
     }
 
@@ -141,15 +142,15 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
         {
             ItemStack resultItemStack = this.producingStack.copy();
 
-            if (this.containingItems[slot] == null)
+            if (this.containingItems.get(slot) == null)
             {
-                this.containingItems[slot] = resultItemStack;
+                this.containingItems.set(slot, resultItemStack);
             }
-            else if (this.containingItems[slot].isItemEqual(resultItemStack))
+            else if (this.containingItems.get(slot).isItemEqual(resultItemStack))
             {
-                if (this.containingItems[slot].stackSize + resultItemStack.stackSize > 64)
+                if (this.containingItems.get(slot).getCount() + resultItemStack.getCount() > 64)
                 {
-                    for (int i = 0; i < this.containingItems[slot].stackSize + resultItemStack.stackSize - 64; i++)
+                    for (int i = 0; i < this.containingItems.get(slot).getCount() + resultItemStack.getCount() - 64; i++)
                     {
                         float var = 0.7F;
                         double dx = this.world.rand.nextFloat() * var + (1.0F - var) * 0.5D;
@@ -159,11 +160,11 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
                         entityitem.setPickupDelay(10);
                         this.world.spawnEntity(entityitem);
                     }
-                    this.containingItems[slot].stackSize = 64;
+                    this.containingItems.get(slot).setCount(64);
                 }
                 else
                 {
-                    this.containingItems[slot].stackSize += resultItemStack.stackSize;
+                    this.containingItems.get(slot).grow(resultItemStack.getCount());
                 }
             }
 
@@ -180,21 +181,21 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     {
         super.readFromNBT(nbt);
         this.processTicks = nbt.getInteger("ProcessTicks");
-        NBTTagList list = nbt.getTagList("Items", 10);
-        this.containingItems = new ItemStack[this.getSizeInventory() - this.compressingCraftMatrix.getSizeInventory()];
+        this.containingItems = NonNullList.withSize(this.getSizeInventory() - this.compressingCraftMatrix.getSizeInventory(), ItemStack.EMPTY);
+        NBTTagList nbttaglist = nbt.getTagList("Items", 10);
 
-        for (int i = 0; i < list.tagCount(); ++i)
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
-            NBTTagCompound compound = list.getCompoundTagAt(i);
-            int slot = compound.getByte("Slot") & 255;
+            NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
+            int j = nbttagcompound.getByte("Slot") & 255;
 
-            if (slot < this.containingItems.length)
+            if (j >= 0 && j < this.containingItems.size())
             {
-                this.containingItems[slot] = ItemStack.loadItemStackFromNBT(compound);
+                this.containingItems.set(j, new ItemStack(nbttagcompound));
             }
-            else if (slot < this.containingItems.length + this.compressingCraftMatrix.getSizeInventory())
+            else if (j < this.containingItems.size() + this.compressingCraftMatrix.getSizeInventory())
             {
-                this.compressingCraftMatrix.setInventorySlotContents(slot - this.containingItems.length, ItemStack.loadItemStackFromNBT(compound));
+                this.compressingCraftMatrix.setInventorySlotContents(j - this.containingItems.size(), new ItemStack(nbttagcompound));
             }
         }
         this.updateInput();
@@ -208,13 +209,13 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
         NBTTagList list = new NBTTagList();
         int i;
 
-        for (i = 0; i < this.containingItems.length; ++i)
+        for (i = 0; i < this.containingItems.size(); ++i)
         {
-            if (this.containingItems[i] != null)
+            if (this.containingItems.get(i) != null)
             {
                 NBTTagCompound compound = new NBTTagCompound();
                 compound.setByte("Slot", (byte) i);
-                this.containingItems[i].writeToNBT(compound);
+                this.containingItems.get(i).writeToNBT(compound);
                 list.appendTag(compound);
             }
         }
@@ -223,7 +224,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
             if (this.compressingCraftMatrix.getStackInSlot(i) != null)
             {
                 NBTTagCompound compound = new NBTTagCompound();
-                compound.setByte("Slot", (byte) (i + this.containingItems.length));
+                compound.setByte("Slot", (byte) (i + this.containingItems.size()));
                 this.compressingCraftMatrix.getStackInSlot(i).writeToNBT(compound);
                 list.appendTag(compound);
             }
@@ -235,95 +236,102 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     @Override
     public int getSizeInventory()
     {
-        return this.containingItems.length + this.compressingCraftMatrix.getSizeInventory();
+        return this.containingItems.size() + this.compressingCraftMatrix.getSizeInventory();
     }
 
     @Override
     public ItemStack getStackInSlot(int slot)
     {
-        if (slot >= this.containingItems.length)
+        if (slot >= this.containingItems.size())
         {
-            return this.compressingCraftMatrix.getStackInSlot(slot - this.containingItems.length);
+            return this.compressingCraftMatrix.getStackInSlot(slot - this.containingItems.size());
         }
-        return this.containingItems[slot];
+        return this.containingItems.get(slot);
     }
 
     @Override
     public ItemStack decrStackSize(int slot, int size)
     {
-        if (slot >= this.containingItems.length)
+        if (slot >= this.containingItems.size())
         {
-            ItemStack result = this.compressingCraftMatrix.decrStackSize(slot - this.containingItems.length, size);
+            ItemStack result = this.compressingCraftMatrix.decrStackSize(slot - this.containingItems.size(), size);
 
-            if (result != null)
+            if (!result.isEmpty())
             {
                 this.updateInput();
             }
+            this.markDirty();
             return result;
         }
-        if (this.containingItems[slot] != null)
+
+        if (!this.containingItems.get(slot).isEmpty())
         {
             ItemStack itemStack;
 
-            if (this.containingItems[slot].stackSize <= size)
+            if (this.containingItems.get(slot).getCount() <= size)
             {
-                itemStack = this.containingItems[slot];
-                this.containingItems[slot] = null;
+                itemStack = this.containingItems.get(slot);
+                this.containingItems.set(slot, ItemStack.EMPTY);
+                this.markDirty();
                 return itemStack;
             }
             else
             {
-                itemStack = this.containingItems[slot].splitStack(size);
+                itemStack = this.containingItems.get(slot).splitStack(size);
 
-                if (this.containingItems[slot].stackSize == 0)
+                if (this.containingItems.get(slot).isEmpty())
                 {
-                    this.containingItems[slot] = null;
+                    this.containingItems.set(slot, ItemStack.EMPTY);
                 }
+                this.markDirty();
                 return itemStack;
             }
         }
         else
         {
-            return null;
+            return ItemStack.EMPTY;
         }
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int slot)
+    public ItemStack removeStackFromSlot(int index)
     {
-        if (slot >= this.containingItems.length)
+        if (index >= this.containingItems.size())
         {
-            return this.compressingCraftMatrix.removeStackFromSlot(slot - this.containingItems.length);
+            this.markDirty();
+            return this.compressingCraftMatrix.removeStackFromSlot(index - this.containingItems.size());
         }
-        if (this.containingItems[slot] != null)
+        if (!this.containingItems.get(index).isEmpty())
         {
-            ItemStack itemStack = this.containingItems[slot];
-            this.containingItems[slot] = null;
-            return itemStack;
+            ItemStack var2 = this.containingItems.get(index);
+            this.containingItems.set(index, ItemStack.EMPTY);
+            this.markDirty();
+            return var2;
         }
         else
         {
-            return null;
+            return ItemStack.EMPTY;
         }
     }
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack itemStack)
     {
-        if (slot >= this.containingItems.length)
+        if (slot >= this.containingItems.size())
         {
-            this.compressingCraftMatrix.setInventorySlotContents(slot - this.containingItems.length, itemStack);
+            this.compressingCraftMatrix.setInventorySlotContents(slot - this.containingItems.size(), itemStack);
             this.updateInput();
         }
         else
         {
-            this.containingItems[slot] = itemStack;
+            this.containingItems.set(slot, itemStack);
 
-            if (itemStack != null && itemStack.stackSize > this.getInventoryStackLimit())
+            if (!itemStack.isEmpty() && itemStack.getCount() > this.getInventoryStackLimit())
             {
-                itemStack.stackSize = this.getInventoryStackLimit();
+                itemStack.setCount(this.getInventoryStackLimit());
             }
         }
+        this.markDirty();
     }
 
     @Override
@@ -339,7 +347,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUsableByPlayer(EntityPlayer player)
     {
         return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
     }
@@ -383,7 +391,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
 
             ItemStack stack1 = this.getStackInSlot(i);
 
-            if (stack1 == null || stack1.stackSize <= 0)
+            if (stack1 == null || stack1.getCount() <= 0)
             {
                 continue;
             }
@@ -402,7 +410,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
                 }
                 if (stack1.isItemEqual(stack2))
                 {
-                    if (stack2.stackSize >= stack1.stackSize)
+                    if (stack2.getCount() >= stack1.getCount())
                     {
                         removeSlots.add(j);
                     }
@@ -507,7 +515,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
                         {
                             ItemStack is3 = this.getStackInSlot(id + 3);
                             ItemStack is4 = this.getStackInSlot(i + 3);
-                            return is3 == null || is4 != null && is3.stackSize < is4.stackSize;
+                            return is3 == ItemStack.EMPTY || is4 != ItemStack.EMPTY && is3.getCount() < is4.getCount();
                         }
                     }
                     return true;
@@ -575,5 +583,18 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        for (ItemStack itemStack : this.containingItems)
+        {
+            if (!itemStack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

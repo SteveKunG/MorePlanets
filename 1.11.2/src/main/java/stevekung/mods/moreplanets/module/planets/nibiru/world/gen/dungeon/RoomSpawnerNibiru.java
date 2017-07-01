@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -65,25 +66,25 @@ public class RoomSpawnerNibiru extends RoomEmptyNibiru
         return false;
     }
 
-    protected String getRandomMob(Random rand)
+    protected ResourceLocation getRandomMob(Random rand)
     {
         switch (rand.nextInt(6))
         {
         case 0:
         default:
-            return "moreplanets.infected_zombie";
+            return new ResourceLocation("moreplanets:infected_zombie");
         case 1:
-            return "moreplanets.infected_creeper";
+            return new ResourceLocation("moreplanets:infected_creeper");
         case 2:
-            return "moreplanets.infected_skeleton";
+            return new ResourceLocation("moreplanets:infected_skeleton");
         case 3:
-            return "galacticraftcore.evolved_spider";
+            return new ResourceLocation("galacticraftcore:evolved_spider");
         case 4:
-            return "galacticraftcore.evolved_creeper";
+            return new ResourceLocation("galacticraftcore:evolved_creeper");
         case 5:
-            return "galacticraftcore.evolved_skeleton";
+            return new ResourceLocation("galacticraftcore:evolved_skeleton");
         case 6:
-            return "galacticraftcore.evolved_zombie";
+            return new ResourceLocation("galacticraftcore:evolved_zombie");
         }
     }
 }

@@ -5,7 +5,6 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemArmorIllenium;
@@ -133,10 +132,10 @@ public class DionaItems
         CommonRegisterHelper.registerOreDictionary("slimeball", DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
 
         /**************************************************************/
-        /********************FLUID CONTAINER STUFF*********************/
+        /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerFluidContainer(DionaBlocks.CRYSTALLIZE_WATER_FLUID, new ItemStack(DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET));
-        CommonRegisterHelper.registerFluidContainer(DionaBlocks.CRYSTALLIZE_LAVA_FLUID, new ItemStack(DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET));
+        CommonRegisterHelper.registerForgeBucket(DionaBlocks.CRYSTALLIZE_WATER_FLUID);
+        CommonRegisterHelper.registerForgeBucket(DionaBlocks.CRYSTALLIZE_LAVA_FLUID);
     }
 }

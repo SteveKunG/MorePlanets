@@ -14,11 +14,12 @@ import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -38,7 +39,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean checkInvalid;
     public BlockPos pos;
-    private ItemStack[] containingItems = new ItemStack[1];
+    private NonNullList<ItemStack> containingItems = NonNullList.withSize(1, ItemStack.EMPTY);
     private boolean initialised;
 
     public TileEntitySpaceWarpPadFull()
@@ -148,20 +149,8 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
         this.dimensionID = nbt.getInteger("DimensionID");
         this.receiveData = nbt.getBoolean("ReceiveData");
         this.checkInvalid = nbt.getBoolean("CheckInvalid");
-
-        NBTTagList list = nbt.getTagList("Items", 10);
-        this.containingItems = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < list.tagCount(); ++i)
-        {
-            NBTTagCompound compound = list.getCompoundTagAt(i);
-            int slot = compound.getByte("Slot") & 255;
-
-            if (slot < this.containingItems.length)
-            {
-                this.containingItems[slot] = ItemStack.loadItemStackFromNBT(compound);
-            }
-        }
+        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.containingItems);
     }
 
     @Override
@@ -180,20 +169,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             tag.setInteger("Z", this.pos.getZ());
             nbt.setTag("TeleportPos", tag);
         }
-
-        NBTTagList list = new NBTTagList();
-
-        for (int i = 0; i < this.containingItems.length; ++i)
-        {
-            if (this.containingItems[i] != null)
-            {
-                NBTTagCompound compound = new NBTTagCompound();
-                compound.setByte("Slot", (byte) i);
-                this.containingItems[i].writeToNBT(compound);
-                list.appendTag(compound);
-            }
-        }
-        nbt.setTag("Items", list);
+        ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
     }
 
@@ -258,69 +234,43 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public int getSizeInventory()
     {
-        return this.containingItems.length;
+        return this.containingItems.size();
     }
 
     @Override
-    public ItemStack getStackInSlot(int slot)
+    public ItemStack getStackInSlot(int index)
     {
-        return this.containingItems[slot];
+        return this.getItems().get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int slot, int amount)
+    public ItemStack decrStackSize(int index, int count)
     {
-        if (this.containingItems[slot] != null)
-        {
-            ItemStack itemStack;
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
 
-            if (this.containingItems[slot].stackSize <= amount)
-            {
-                itemStack = this.containingItems[slot];
-                this.containingItems[slot] = null;
-                return itemStack;
-            }
-            else
-            {
-                itemStack = this.containingItems[slot].splitStack(amount);
-
-                if (this.containingItems[slot].stackSize == 0)
-                {
-                    this.containingItems[slot] = null;
-                }
-                return itemStack;
-            }
-        }
-        else
+        if (!itemStack.isEmpty())
         {
-            return null;
+            this.markDirty();
         }
+        return itemStack;
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int slot)
+    public ItemStack removeStackFromSlot(int index)
     {
-        if (this.containingItems[slot] != null)
-        {
-            ItemStack itemStack = this.containingItems[slot];
-            this.containingItems[slot] = null;
-            return itemStack;
-        }
-        else
-        {
-            return null;
-        }
+        return ItemStackHelper.getAndRemove(this.getItems(), index);
     }
 
     @Override
-    public void setInventorySlotContents(int slot, ItemStack itemStack)
+    public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.containingItems[slot] = itemStack;
+        this.getItems().set(index, itemStack);
 
-        if (itemStack != null && itemStack.stackSize > this.getInventoryStackLimit())
+        if (itemStack.getCount() > this.getInventoryStackLimit())
         {
-            itemStack.stackSize = this.getInventoryStackLimit();
+            itemStack.setCount(this.getInventoryStackLimit());
         }
+        this.markDirty();
     }
 
     @Override
@@ -424,5 +374,23 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     public EnumBlockMultiType getMultiType()
     {
         return null;
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        for (ItemStack itemStack : this.containingItems)
+        {
+            if (!itemStack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected NonNullList<ItemStack> getItems()
+    {
+        return this.containingItems;
     }
 }
