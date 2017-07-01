@@ -5,7 +5,6 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemArmorDiremsium;
@@ -148,11 +147,11 @@ public class ChalosItems
         CommonRegisterHelper.registerOreDictionary("slimeball", ChalosItems.CHEESE_SLIMEBALL);
 
         /**************************************************************/
-        /*********************FLUID CONTAINER STUFF********************/
+        /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerFluidContainer(ChalosBlocks.CHEESE_OF_MILK_FLUID, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET));
-        CommonRegisterHelper.registerFluidContainer(ChalosBlocks.CHEESE_OF_MILK_GAS, new ItemStack(ChalosItems.CHEESE_OF_MILK_GAS_BUCKET));
+        CommonRegisterHelper.registerForgeBucket(ChalosBlocks.CHEESE_OF_MILK_FLUID);
+        CommonRegisterHelper.registerForgeBucket(ChalosBlocks.CHEESE_OF_MILK_GAS);
 
         /**************************************************************/
         /************************OTHER STUFF***************************/

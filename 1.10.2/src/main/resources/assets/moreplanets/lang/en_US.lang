@@ -489,6 +489,16 @@ item.candy_cane.yellow.name=Yellow Candy Cane
 item.candy_cane.purple.name=Purple Candy Cane
 item.candy_cane.rainbow.name=Rainbow Candy Cane
 
+# FLUID
+fluid.crystallize_water_fluid=Crystallize Water
+fluid.crystallize_lava_fluid=Crystallize Lava
+fluid.cheese_of_milk_fluid=Cheese of Milk
+fluid.cheese_of_milk_gas=Cheese of Milk Gas
+fluid.helium_gas=Helium Gas
+fluid.nuclear_waste_fluid=Nuclear Waste
+fluid.purify_water_fluid=Purify Water
+fluid.infected_water_fluid=Infected Water
+
 # ENTITY
 entity.moreplanets.albetius_worm.name=Albetius Worm
 entity.moreplanets.infected_crystallize_spider.name=Infected Crystallize Spider
