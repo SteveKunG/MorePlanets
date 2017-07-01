@@ -85,12 +85,12 @@ public class MapGenNibiruRavine extends MapGenBase
 
                 if (p_180707_6_ >= d0 - 16.0D - d9 * 2.0D && p_180707_10_ >= d1 - 16.0D - d9 * 2.0D && p_180707_6_ <= d0 + 16.0D + d9 * 2.0D && p_180707_10_ <= d1 + 16.0D + d9 * 2.0D)
                 {
-                    int k2 = MathHelper.floor_double(p_180707_6_ - d9) - p_180707_3_ * 16 - 1;
-                    int k = MathHelper.floor_double(p_180707_6_ + d9) - p_180707_3_ * 16 + 1;
-                    int l2 = MathHelper.floor_double(p_180707_8_ - d2) - 1;
-                    int l = MathHelper.floor_double(p_180707_8_ + d2) + 1;
-                    int i3 = MathHelper.floor_double(p_180707_10_ - d9) - p_180707_4_ * 16 - 1;
-                    int i1 = MathHelper.floor_double(p_180707_10_ + d9) - p_180707_4_ * 16 + 1;
+                    int k2 = MathHelper.floor(p_180707_6_ - d9) - p_180707_3_ * 16 - 1;
+                    int k = MathHelper.floor(p_180707_6_ + d9) - p_180707_3_ * 16 + 1;
+                    int l2 = MathHelper.floor(p_180707_8_ - d2) - 1;
+                    int l = MathHelper.floor(p_180707_8_ + d2) + 1;
+                    int i3 = MathHelper.floor(p_180707_10_ - d9) - p_180707_4_ * 16 - 1;
+                    int i1 = MathHelper.floor(p_180707_10_ + d9) - p_180707_4_ * 16 + 1;
 
                     if (k2 < 0)
                     {
@@ -225,14 +225,14 @@ public class MapGenNibiruRavine extends MapGenBase
 
     private boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
-        Biome biome = this.worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
+        Biome biome = this.world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
         return this.isExceptionBiome(biome) ? state.getBlock() == NibiruBlocks.INFECTED_GRASS : state.getBlock() == biome.topBlock;
     }
 
     protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop)
     {
-        Biome biome = this.worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
+        Biome biome = this.world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
         IBlockState top = this.isExceptionBiome(biome) ? NibiruBlocks.INFECTED_GRASS.getDefaultState() : biome.topBlock;
         IBlockState filler = this.isExceptionBiome(biome) ? NibiruBlocks.INFECTED_DIRT.getDefaultState() : biome.fillerBlock;

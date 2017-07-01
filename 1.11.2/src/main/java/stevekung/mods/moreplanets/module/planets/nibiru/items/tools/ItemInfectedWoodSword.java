@@ -42,7 +42,7 @@ public class ItemInfectedWoodSword extends ItemSwordMP
                 int i = itemStack.getItemDamage();
                 itemStack.setItemDamage(--i);
                 item.lifespan = 6000;
-                item.worldObj.playEvent(2005, new BlockPos(item.posX, item.posY, item.posZ), 0);
+                item.world.playEvent(2005, new BlockPos(item.posX, item.posY, item.posZ), 0);
             }
         }
         return false;

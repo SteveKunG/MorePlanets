@@ -118,9 +118,9 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
                 }
                 for (int i = 0; i < player.inventory.mainInventory.size(); ++i)
                 {
-                    if (player.inventory.mainInventory[i] != null && player.inventory.mainInventory[i].getItem() == bulletStack.getItem())
+                    if (!player.inventory.mainInventory.get(i).isEmpty() && player.inventory.mainInventory.get(i).getItem() == bulletStack.getItem())
                     {
-                        int meta = player.inventory.mainInventory[i].getItemDamage();
+                        int meta = player.inventory.mainInventory.get(i).getItemDamage();
 
                         if (meta == 0)
                         {

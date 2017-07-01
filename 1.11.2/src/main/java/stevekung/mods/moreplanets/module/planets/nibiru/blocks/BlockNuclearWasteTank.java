@@ -40,9 +40,9 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        ItemStack itemStack = player.inventory.getCurrentItem();
+        ItemStack itemStack = player.getHeldItem(hand);
 
         if (itemStack != null && state.getValue(STATE) == BlockType.NONE)
         {

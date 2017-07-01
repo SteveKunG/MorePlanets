@@ -58,14 +58,14 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
     @Override
     public void explode()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            boolean flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
+            boolean flag = this.world.getGameRules().getBoolean("mobGriefing");
 
             if (this.getPowered())
             {
-                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * 2, flag);
-                List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius * 2, this.posY - this.explosionRadius * 2, this.posZ - this.explosionRadius * 2, this.posX + this.explosionRadius * 2, this.posY + this.explosionRadius * 2, this.posZ + this.explosionRadius * 2));
+                this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * 2, flag);
+                List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius * 2, this.posY - this.explosionRadius * 2, this.posZ - this.explosionRadius * 2, this.posX + this.explosionRadius * 2, this.posY + this.explosionRadius * 2, this.posZ + this.explosionRadius * 2));
 
                 for (EntityLivingBase living : list)
                 {
@@ -74,13 +74,13 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
             }
             else
             {
-                List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius, this.posY - this.explosionRadius, this.posZ - this.explosionRadius, this.posX + this.explosionRadius, this.posY + this.explosionRadius, this.posZ + this.explosionRadius));
+                List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius, this.posY - this.explosionRadius, this.posZ - this.explosionRadius, this.posX + this.explosionRadius, this.posY + this.explosionRadius, this.posZ + this.explosionRadius));
 
                 for (EntityLivingBase living : list)
                 {
                     living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 120, 1));
                 }
-                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, flag);
+                this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, flag);
             }
             this.setDead();
         }

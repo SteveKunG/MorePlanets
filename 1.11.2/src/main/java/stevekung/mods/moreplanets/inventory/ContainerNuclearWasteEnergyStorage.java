@@ -104,7 +104,7 @@ public class ContainerNuclearWasteEnergyStorage extends Container
                 return null;
             }
 
-            if (itemStack.stackSize == 0)
+            if (itemStack.getCount() == 0)
             {
                 slot.putStack((ItemStack) null);
             }
@@ -113,11 +113,11 @@ public class ContainerNuclearWasteEnergyStorage extends Container
                 slot.onSlotChanged();
             }
 
-            if (itemStack.stackSize == returnStack.stackSize)
+            if (itemStack.getCount() == returnStack.getCount())
             {
                 return null;
             }
-            slot.onPickupFromSlot(player, itemStack);
+            slot.onTake(player, itemStack);
         }
         return returnStack;
     }

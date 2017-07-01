@@ -425,9 +425,9 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
     }
 
     @Override
-    public BlockPos getStrongholdGen(World world, String structureName, BlockPos position)
+    public BlockPos getStrongholdGen(World world, String structureName, BlockPos position, boolean findUnexplored)
     {
-        return "NibiruStronghold".equals(structureName) && this.strongholdGenerator != null ? this.strongholdGenerator.getClosestStrongholdPos(world, position) : null;
+        return "NibiruStronghold".equals(structureName) && this.strongholdGenerator != null ? this.strongholdGenerator.getClosestStrongholdPos(world, position, false) : null;
     }
 
     @Override

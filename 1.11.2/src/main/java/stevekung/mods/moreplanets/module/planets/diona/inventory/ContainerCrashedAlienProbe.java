@@ -37,19 +37,19 @@ public class ContainerCrashedAlienProbe extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.hopperInventory.isUseableByPlayer(player);
+        return this.hopperInventory.isUsableByPlayer(player);
     }
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
-        ItemStack itemstack = null;
+        ItemStack itemStack = null;
         Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack())
         {
             ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+            itemStack = itemstack1.copy();
 
             if (index < this.hopperInventory.getSizeInventory())
             {
@@ -63,16 +63,16 @@ public class ContainerCrashedAlienProbe extends Container
                 return null;
             }
 
-            if (itemstack1.stackSize == 0)
+            if (itemstack1.getCount() == 0)
             {
-                slot.putStack((ItemStack)null);
+                slot.putStack(ItemStack.EMPTY);
             }
             else
             {
                 slot.onSlotChanged();
             }
         }
-        return itemstack;
+        return itemStack;
     }
 
     @Override

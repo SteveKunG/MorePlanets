@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -14,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -105,7 +104,7 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {

@@ -18,7 +18,7 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
     public EntityAINibiruVillagerMate(EntityNibiruVillager villager)
     {
         this.villagerObj = villager;
-        this.worldObj = villager.worldObj;
+        this.worldObj = villager.world;
         this.setMutexBits(3);
     }
 
@@ -125,7 +125,7 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
         this.villagerObj.setIsWillingToMate(false);
         entityvillager.setGrowingAge(-24000);
         entityvillager.setLocationAndAngles(this.villagerObj.posX, this.villagerObj.posY, this.villagerObj.posZ, 0.0F, 0.0F);
-        this.worldObj.spawnEntityInWorld(entityvillager);
+        this.worldObj.spawnEntity(entityvillager);
         this.worldObj.setEntityState(entityvillager, (byte)12);
     }
 }

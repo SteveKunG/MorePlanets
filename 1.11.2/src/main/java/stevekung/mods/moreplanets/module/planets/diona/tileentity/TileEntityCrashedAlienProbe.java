@@ -7,9 +7,10 @@ import javax.annotation.Nullable;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -24,12 +25,12 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
 {
     protected ResourceLocation lootTable;
     protected long lootTableSeed;
-    private ItemStack[] containingItems = new ItemStack[5];
+    private NonNullList<ItemStack> containingItems = NonNullList.withSize(5, ItemStack.EMPTY);
 
     @Override
     public void update()
     {
-        if (this.worldObj.getBlockState(this.getPos()) == DionaBlocks.CRASHED_ALIEN_PROBE.getDefaultState().withProperty(BlockCrashedAlienProbe.HAS_ALIEN, true))
+        if (this.world.getBlockState(this.getPos()) == DionaBlocks.CRASHED_ALIEN_PROBE.getDefaultState().withProperty(BlockCrashedAlienProbe.HAS_ALIEN, true))
         {
             super.update();
         }
@@ -39,22 +40,11 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        this.containingItems = new ItemStack[this.getSizeInventory()];
 
         if (!this.checkLootAndRead(nbt))
         {
-            NBTTagList nbttaglist = nbt.getTagList("Items", 10);
-
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
-            {
-                NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-                int j = nbttagcompound.getByte("Slot") & 255;
-
-                if (j >= 0 && j < this.containingItems.length)
-                {
-                    this.containingItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound);
-                }
-            }
+            this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+            ItemStackHelper.loadAllItems(nbt, this.containingItems);
         }
     }
 
@@ -65,19 +55,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
 
         if (!this.checkLootAndWrite(nbt))
         {
-            NBTTagList nbttaglist = new NBTTagList();
-
-            for (int i = 0; i < this.containingItems.length; ++i)
-            {
-                if (this.containingItems[i] != null)
-                {
-                    NBTTagCompound nbttagcompound = new NBTTagCompound();
-                    nbttagcompound.setByte("Slot", (byte)i);
-                    this.containingItems[i].writeToNBT(nbttagcompound);
-                    nbttaglist.appendTag(nbttagcompound);
-                }
-            }
-            nbt.setTag("Items", nbttaglist);
+            ItemStackHelper.saveAllItems(nbt, this.containingItems);
         }
         return nbt;
     }
@@ -91,75 +69,68 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     @Override
     public int getSizeInventory()
     {
-        return this.containingItems.length;
+        return this.containingItems.size();
     }
 
     @Override
     public ItemStack getStackInSlot(int slot)
     {
         this.fillWithLoot((EntityPlayer)null);
-        return this.containingItems[slot];
+        return this.containingItems.get(slot);
     }
 
     @Override
-    public ItemStack decrStackSize(int slot, int amount)
+    public ItemStack decrStackSize(int index, int count)
+    {
+        this.fillWithLoot((EntityPlayer)null);
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
+
+        if (!itemStack.isEmpty())
+        {
+            this.markDirty();
+        }
+        return itemStack;
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index)
+    {
+        this.fillWithLoot((EntityPlayer)null);
+        ItemStack oldstack = ItemStackHelper.getAndRemove(this.containingItems, index);
+
+        if (!oldstack.isEmpty())
+        {
+            this.markDirty();
+        }
+        return oldstack;
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack itemStack)
+    {
+        this.fillWithLoot((EntityPlayer)null);
+        this.containingItems.set(index, itemStack);
+
+        if (itemStack.getCount() > this.getInventoryStackLimit())
+        {
+            itemStack.setCount(this.getInventoryStackLimit());
+        }
+        this.markDirty();
+    }
+
+    @Override
+    public boolean isEmpty()
     {
         this.fillWithLoot((EntityPlayer)null);
 
-        if (this.containingItems[slot] != null)
+        for (ItemStack itemStack : this.containingItems)
         {
-            ItemStack itemStack;
-
-            if (this.containingItems[slot].stackSize <= amount)
+            if (!itemStack.isEmpty())
             {
-                itemStack = this.containingItems[slot];
-                this.containingItems[slot] = null;
-                return itemStack;
-            }
-            else
-            {
-                itemStack = this.containingItems[slot].splitStack(amount);
-
-                if (this.containingItems[slot].stackSize == 0)
-                {
-                    this.containingItems[slot] = null;
-                }
-                return itemStack;
+                return false;
             }
         }
-        else
-        {
-            return null;
-        }
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int slot)
-    {
-        this.fillWithLoot((EntityPlayer)null);
-
-        if (this.containingItems[slot] != null)
-        {
-            ItemStack itemStack = this.containingItems[slot];
-            this.containingItems[slot] = null;
-            return itemStack;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    @Override
-    public void setInventorySlotContents(int slot, ItemStack itemStack)
-    {
-        this.fillWithLoot((EntityPlayer)null);
-        this.containingItems[slot] = itemStack;
-
-        if (itemStack != null && itemStack.stackSize > this.getInventoryStackLimit())
-        {
-            itemStack.stackSize = this.getInventoryStackLimit();
-        }
+        return true;
     }
 
     @Override
@@ -169,9 +140,9 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
+        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -190,7 +161,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     {
         if (this.lootTable != null)
         {
-            LootTable loottable = this.worldObj.getLootTableManager().getLootTableFromLocation(this.lootTable);
+            LootTable loottable = this.world.getLootTableManager().getLootTableFromLocation(this.lootTable);
             this.lootTable = null;
             Random random;
 
@@ -203,7 +174,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
                 random = new Random(this.lootTableSeed);
             }
 
-            LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer)this.worldObj);
+            LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer)this.world);
 
             if (player != null)
             {

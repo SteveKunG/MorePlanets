@@ -49,7 +49,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     }
 
     @Override
-    protected PathNavigate getNewNavigator(World world)
+    protected PathNavigate createNavigator(World world)
     {
         return new PathNavigateGroundMP(this, world);
     }
@@ -73,31 +73,31 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     {
         super.onLivingUpdate();
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            int i = MathHelper.floor_double(this.posX);
-            int j = MathHelper.floor_double(this.posY);
-            int k = MathHelper.floor_double(this.posZ);
+            int i = MathHelper.floor(this.posX);
+            int j = MathHelper.floor(this.posY);
+            int k = MathHelper.floor(this.posZ);
 
             if (this.isWet())
             {
-                this.attackEntityFrom(DamageSource.drown, 1.0F);
+                this.attackEntityFrom(DamageSource.DROWN, 1.0F);
             }
-            if (this.worldObj.getBiome(new BlockPos(i, 0, k)).getFloatTemperature(new BlockPos(i, j, k)) > 1.0F)
+            if (this.world.getBiome(new BlockPos(i, 0, k)).getFloatTemperature(new BlockPos(i, j, k)) > 1.0F)
             {
-                this.attackEntityFrom(DamageSource.onFire, 1.0F);
+                this.attackEntityFrom(DamageSource.ON_FIRE, 1.0F);
             }
 
             for (int l = 0; l < 4; ++l)
             {
-                i = MathHelper.floor_double(this.posX + (l % 2 * 2 - 1) * 0.25F);
-                j = MathHelper.floor_double(this.posY);
-                k = MathHelper.floor_double(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
+                i = MathHelper.floor(this.posX + (l % 2 * 2 - 1) * 0.25F);
+                j = MathHelper.floor(this.posY);
+                k = MathHelper.floor(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
                 BlockPos blockpos = new BlockPos(i, j, k);
 
-                if (this.worldObj.getBlockState(blockpos).getMaterial() == Material.AIR && this.worldObj.getBiome(new BlockPos(i, 0, k)).getFloatTemperature(blockpos) < 0.8F && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.worldObj, blockpos))
+                if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(new BlockPos(i, 0, k)).getFloatTemperature(blockpos) < 0.8F && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, blockpos))
                 {
-                    this.worldObj.setBlockState(blockpos, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                    this.world.setBlockState(blockpos, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                 }
             }
         }
@@ -106,7 +106,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.canSeeSky(this.getPosition()) && this.worldObj.getLightBrightness(this.getPosition()) >= 0.0F;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox()) && this.world.canSeeSky(this.getPosition()) && this.world.getLightBrightness(this.getPosition()) >= 0.0F;
     }
 
     @Override
@@ -119,15 +119,15 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distance)
     {
-        EntityInfectedSnowball entitysnowball = new EntityInfectedSnowball(this.worldObj, this);
+        EntityInfectedSnowball entitysnowball = new EntityInfectedSnowball(this.world, this);
         double d0 = target.posY + target.getEyeHeight() - 1.100000023841858D;
         double d1 = target.posX - this.posX;
         double d2 = d0 - entitysnowball.posY;
         double d3 = target.posZ - this.posZ;
-        float f = MathHelper.sqrt_double(d1 * d1 + d3 * d3) * 0.2F;
+        float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
         entitysnowball.setThrowableHeading(d1, d2 + f, d3, 1.6F, 12.0F);
         this.playSound(SoundEvents.ENTITY_SNOWMAN_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-        this.worldObj.spawnEntityInWorld(entitysnowball);
+        this.world.spawnEntity(entitysnowball);
     }
 
     @Override

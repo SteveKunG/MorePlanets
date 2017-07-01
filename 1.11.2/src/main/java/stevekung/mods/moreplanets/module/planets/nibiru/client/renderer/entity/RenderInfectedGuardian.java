@@ -91,7 +91,7 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
             float f1 = 240.0F;
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, f1, f1);
             GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
-            float f2 = entity.worldObj.getTotalWorldTime() + partialTicks;
+            float f2 = entity.world.getTotalWorldTime() + partialTicks;
             float f3 = f2 * 0.5F % 1.0F;
             float f4 = entity.getEyeHeight();
             GlStateManager.pushMatrix();

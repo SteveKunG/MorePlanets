@@ -30,15 +30,15 @@ public class EntityInfectedCreeper extends EntityCreeper implements IEntityBreat
     @Override
     public void setDead()
     {
-        if (!this.worldObj.isRemote && !this.isChild())
+        if (!this.world.isRemote && !this.isChild())
         {
             if (this.rand.nextInt(2) == 0)
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    EntityInfectedWorm worm = new EntityInfectedWorm(this.worldObj);
+                    EntityInfectedWorm worm = new EntityInfectedWorm(this.world);
                     worm.setLocationAndAngles(this.posX, this.posY + this.rand.nextInt(2), this.posZ, 360.0F, 0.0F);
-                    this.worldObj.spawnEntityInWorld(worm);
+                    this.world.spawnEntity(worm);
                 }
             }
         }
@@ -62,14 +62,14 @@ public class EntityInfectedCreeper extends EntityCreeper implements IEntityBreat
     @Override
     public void explode()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            boolean flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
+            boolean flag = this.world.getGameRules().getBoolean("mobGriefing");
 
             if (this.getPowered())
             {
-                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * 2, flag);
-                List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius * 2, this.posY - this.explosionRadius * 2, this.posZ - this.explosionRadius * 2, this.posX + this.explosionRadius * 2, this.posY + this.explosionRadius * 2, this.posZ + this.explosionRadius * 2));
+                this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * 2, flag);
+                List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius * 2, this.posY - this.explosionRadius * 2, this.posZ - this.explosionRadius * 2, this.posX + this.explosionRadius * 2, this.posY + this.explosionRadius * 2, this.posZ + this.explosionRadius * 2));
 
                 for (EntityLivingBase living : list)
                 {
@@ -78,13 +78,13 @@ public class EntityInfectedCreeper extends EntityCreeper implements IEntityBreat
             }
             else
             {
-                List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius, this.posY - this.explosionRadius, this.posZ - this.explosionRadius, this.posX + this.explosionRadius, this.posY + this.explosionRadius, this.posZ + this.explosionRadius));
+                List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius, this.posY - this.explosionRadius, this.posZ - this.explosionRadius, this.posX + this.explosionRadius, this.posY + this.explosionRadius, this.posZ + this.explosionRadius));
 
                 for (EntityLivingBase living : list)
                 {
                     living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 120, 1));
                 }
-                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, flag);
+                this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, flag);
             }
             this.setDead();
         }

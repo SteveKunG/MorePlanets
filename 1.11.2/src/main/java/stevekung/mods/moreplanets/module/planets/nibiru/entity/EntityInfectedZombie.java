@@ -62,13 +62,13 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
     @Override
     public void setDead()
     {
-        if (!this.worldObj.isRemote && !this.isChild())
+        if (!this.world.isRemote && !this.isChild())
         {
             if (this.rand.nextInt(4) == 0)
             {
-                EntityGiantWorm worm = new EntityGiantWorm(this.worldObj);
+                EntityGiantWorm worm = new EntityGiantWorm(this.world);
                 worm.setLocationAndAngles(this.posX, this.posY + this.rand.nextInt(2), this.posZ, 360.0F, 0.0F);
-                this.worldObj.spawnEntityInWorld(worm);
+                this.world.spawnEntity(worm);
             }
         }
         super.setDead();
@@ -90,7 +90,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
 
         if (data == null)
         {
-            data = new GroupData(this.worldObj.rand.nextFloat() < net.minecraftforge.common.ForgeModContainer.zombieBabyChance);
+            data = new GroupData(this.world.rand.nextFloat() < net.minecraftforge.common.ForgeModContainer.zombieBabyChance);
         }
 
         if (data instanceof GroupData)
@@ -101,9 +101,9 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
             {
                 this.setChild(true);
 
-                if (this.worldObj.rand.nextFloat() < 0.05D)
+                if (this.world.rand.nextFloat() < 0.05D)
                 {
-                    List<EntityInfectedChicken> list = this.worldObj.<EntityInfectedChicken>getEntitiesWithinAABB(EntityInfectedChicken.class, this.getEntityBoundingBox().expand(5.0D, 3.0D, 5.0D), EntitySelectors.IS_STANDALONE);
+                    List<EntityInfectedChicken> list = this.world.<EntityInfectedChicken>getEntitiesWithinAABB(EntityInfectedChicken.class, this.getEntityBoundingBox().expand(5.0D, 3.0D, 5.0D), EntitySelectors.IS_STANDALONE);
 
                     if (!list.isEmpty())
                     {
@@ -112,13 +112,13 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
                         this.startRiding(entitychicken);
                     }
                 }
-                else if (this.worldObj.rand.nextFloat() < 0.05D)
+                else if (this.world.rand.nextFloat() < 0.05D)
                 {
-                    EntityInfectedChicken entitychicken1 = new EntityInfectedChicken(this.worldObj);
+                    EntityInfectedChicken entitychicken1 = new EntityInfectedChicken(this.world);
                     entitychicken1.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
                     entitychicken1.onInitialSpawn(difficulty, (IEntityLivingData)null);
                     entitychicken1.setChickenJockey(true);
-                    this.worldObj.spawnEntityInWorld(entitychicken1);
+                    this.world.spawnEntity(entitychicken1);
                     this.startRiding(entitychicken1);
                 }
             }
@@ -130,7 +130,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
 
         if (this.getItemStackFromSlot(EntityEquipmentSlot.HEAD) == null)
         {
-            Calendar calendar = this.worldObj.getCurrentDate();
+            Calendar calendar = this.world.getCurrentDate();
 
             if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31 && this.rand.nextFloat() < 0.25F)
             {

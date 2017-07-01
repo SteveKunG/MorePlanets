@@ -40,7 +40,7 @@ public class ContainerSpaceWarpPad extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileEntity.isUseableByPlayer(player);
+        return this.tileEntity.isUsableByPlayer(player);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class ContainerSpaceWarpPad extends Container
                 }
             }
 
-            if (stack.stackSize == 0)
+            if (stack.getCount() == 0)
             {
                 invSlot.putStack((ItemStack) null);
             }
@@ -96,11 +96,11 @@ public class ContainerSpaceWarpPad extends Container
                 invSlot.onSlotChanged();
             }
 
-            if (stack.stackSize == itemStack.stackSize)
+            if (stack.getCount() == itemStack.getCount())
             {
                 return null;
             }
-            invSlot.onPickupFromSlot(player, stack);
+            invSlot.onTake(player, stack);
         }
         return itemStack;
     }

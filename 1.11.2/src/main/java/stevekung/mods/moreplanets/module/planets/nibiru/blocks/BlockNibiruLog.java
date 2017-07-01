@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -11,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.VariantsName;
@@ -33,7 +32,7 @@ public class BlockNibiruLog extends BlockLogMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -90,7 +89,7 @@ public class BlockNibiruLog extends BlockLogMP implements IBlockVariants
     }
 
     @Override
-    protected ItemStack createStackedBlock(IBlockState state)
+    protected ItemStack getSilkTouchDrop(IBlockState state)
     {
         return new ItemStack(this, 1, ((BlockType)state.getValue(VARIANT)).ordinal());
     }

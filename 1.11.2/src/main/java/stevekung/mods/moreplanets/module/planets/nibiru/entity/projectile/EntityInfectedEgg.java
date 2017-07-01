@@ -34,7 +34,7 @@ public class EntityInfectedEgg extends EntityThrowable
             moving.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0.0F);
         }
 
-        if (!this.worldObj.isRemote && this.rand.nextInt(8) == 0)
+        if (!this.world.isRemote && this.rand.nextInt(8) == 0)
         {
             int i = 1;
 
@@ -45,10 +45,10 @@ public class EntityInfectedEgg extends EntityThrowable
 
             for (int j = 0; j < i; ++j)
             {
-                EntityInfectedChicken entitychicken = new EntityInfectedChicken(this.worldObj);
+                EntityInfectedChicken entitychicken = new EntityInfectedChicken(this.world);
                 entitychicken.setGrowingAge(-24000);
                 entitychicken.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                this.worldObj.spawnEntityInWorld(entitychicken);
+                this.world.spawnEntity(entitychicken);
             }
         }
 
@@ -56,7 +56,7 @@ public class EntityInfectedEgg extends EntityThrowable
         {
             MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_EGG, this.posX, this.posY, this.posZ, (this.rand.nextFloat() - 0.5D) * 0.08D, (this.rand.nextFloat() - 0.5D) * 0.08D, (this.rand.nextFloat() - 0.5D) * 0.08D);
         }
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             this.setDead();
         }

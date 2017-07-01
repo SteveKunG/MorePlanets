@@ -29,13 +29,15 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
+        
         if (this.block instanceof ISlabBlock)
         {
             ISlabBlock singleSlab = (ISlabBlock) this.block;
 
-            if (itemStack.stackSize != 0 && player.canPlayerEdit(pos.offset(facing), facing, itemStack))
+            if (itemStack.getCount() != 0 && player.canPlayerEdit(pos.offset(facing), facing, itemStack))
             {
                 Object object = singleSlab.getHalf().getTypeForItem(itemStack);
                 IBlockState state = world.getBlockState(pos);
@@ -55,12 +57,12 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
                         {
                             SoundType sound = singleSlab.getDouble().getSoundType(state1, world, pos, player);
                             world.playSound(player, pos, sound.getPlaceSound(), SoundCategory.BLOCKS, (sound.getVolume() + 1.0F) / 2.0F, sound.getPitch() * 0.8F);
-                            --itemStack.stackSize;
+                            itemStack.shrink(1);
                         }
                         return EnumActionResult.SUCCESS;
                     }
                 }
-                return this.tryPlace(player, itemStack, world, pos.offset(facing), object, singleSlab.getHalf(), singleSlab.getDouble()) ? EnumActionResult.SUCCESS : super.onItemUse(itemStack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+                return this.tryPlace(player, itemStack, world, pos.offset(facing), object, singleSlab.getHalf(), singleSlab.getDouble()) ? EnumActionResult.SUCCESS : super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
             }
         }
         else
@@ -126,7 +128,7 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
                 {
                     SoundType soundtype = doubleSlab.getSoundType(state1, world, pos, player);
                     world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                    --itemStack.stackSize;
+                    itemStack.shrink(1);
                 }
                 return true;
             }

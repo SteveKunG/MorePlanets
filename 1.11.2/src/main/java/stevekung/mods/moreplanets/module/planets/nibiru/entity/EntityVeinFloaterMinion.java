@@ -44,7 +44,7 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.getLightBrightness(this.getPosition()) >= 0.0F;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox()) && this.world.getLightBrightness(this.getPosition()) >= 0.0F;
     }
 
     @Override
@@ -213,13 +213,13 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
 
                     if (this.field_179467_b > 1)
                     {
-                        float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0)) * 0.5F;
+                        float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
 
                         for (int i = 0; i < 1; ++i)
                         {
-                            EntityVeinBall entitysmallfireball = new EntityVeinBall(this.blaze.worldObj, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * f, d2, d3 + this.blaze.getRNG().nextGaussian() * f);
+                            EntityVeinBall entitysmallfireball = new EntityVeinBall(this.blaze.world, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * f, d2, d3 + this.blaze.getRNG().nextGaussian() * f);
                             entitysmallfireball.posY = this.blaze.posY + this.blaze.height / 2.0F + 0.5D;
-                            this.blaze.worldObj.spawnEntityInWorld(entitysmallfireball);
+                            this.blaze.world.spawnEntity(entitysmallfireball);
                         }
                     }
                 }

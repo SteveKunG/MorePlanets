@@ -34,8 +34,9 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         boolean padFound = false;
         TileEntity tile = null;
 

@@ -88,13 +88,13 @@ public class EntityBearry extends EntityFronosPet
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data)
     {
-        if (this.worldObj.rand.nextInt(10) == 0)
+        if (this.world.rand.nextInt(10) == 0)
         {
-            EntityMarshmallow marshmallow = new EntityMarshmallow(this.worldObj);
+            EntityMarshmallow marshmallow = new EntityMarshmallow(this.world);
             marshmallow.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
             marshmallow.onInitialSpawn(difficulty, (IEntityLivingData)null);
             marshmallow.setGrowingAge(-24000);
-            this.worldObj.spawnEntityInWorld(marshmallow);
+            this.world.spawnEntity(marshmallow);
             marshmallow.startRiding(this);
         }
         return super.onInitialSpawn(difficulty, data);
@@ -103,7 +103,7 @@ public class EntityBearry extends EntityFronosPet
     @Override
     public EntityBearry createChild(EntityAgeable ageable)
     {
-        EntityBearry pet = new EntityBearry(this.worldObj);
+        EntityBearry pet = new EntityBearry(this.world);
         UUID uuid = this.getOwnerId();
 
         if (uuid != null)

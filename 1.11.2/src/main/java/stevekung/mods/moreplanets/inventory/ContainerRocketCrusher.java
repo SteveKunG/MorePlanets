@@ -107,7 +107,7 @@ public class ContainerRocketCrusher extends Container
                     return null;
                 }
             }
-            if (slotStack.stackSize == 0)
+            if (slotStack.getCount() == 0)
             {
                 invSlot.putStack((ItemStack) null);
             }
@@ -116,11 +116,11 @@ public class ContainerRocketCrusher extends Container
                 invSlot.onSlotChanged();
             }
 
-            if (slotStack.stackSize == itemStack.stackSize)
+            if (slotStack.getCount() == itemStack.getCount())
             {
                 return null;
             }
-            invSlot.onPickupFromSlot(player, slotStack);
+            invSlot.onTake(player, slotStack);
         }
         return itemStack;
     }

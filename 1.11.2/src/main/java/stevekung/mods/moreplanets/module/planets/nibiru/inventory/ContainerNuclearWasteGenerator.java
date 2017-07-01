@@ -35,7 +35,7 @@ public class ContainerNuclearWasteGenerator extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileEntity.isUseableByPlayer(player);
+        return this.tileEntity.isUsableByPlayer(player);
     }
 
     @Override
@@ -82,20 +82,20 @@ public class ContainerNuclearWasteGenerator extends Container
                 }
             }
 
-            if (stack.stackSize == 0)
+            if (stack.getCount() == 0)
             {
-                invSlot.putStack((ItemStack) null);
+                invSlot.putStack(ItemStack.EMPTY);
             }
             else
             {
                 invSlot.onSlotChanged();
             }
 
-            if (stack.stackSize == itemStack.stackSize)
+            if (stack.getCount() == itemStack.getCount())
             {
-                return null;
+                return ItemStack.EMPTY;
             }
-            invSlot.onPickupFromSlot(player, stack);
+            invSlot.onTake(player, stack);
         }
         return itemStack;
     }

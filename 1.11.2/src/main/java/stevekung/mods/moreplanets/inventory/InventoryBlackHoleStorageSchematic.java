@@ -3,29 +3,31 @@ package stevekung.mods.moreplanets.inventory;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
 {
-    private ItemStack[] stackList;
+    private NonNullList<ItemStack> stackList;
     private Container eventHandler;
 
     public InventoryBlackHoleStorageSchematic(Container container)
     {
-        this.stackList = new ItemStack[23];
+        this.stackList = NonNullList.withSize(23, ItemStack.EMPTY);
         this.eventHandler = container;
     }
 
     @Override
     public int getSizeInventory()
     {
-        return this.stackList.length;
+        return this.stackList.size();
     }
 
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        return index >= this.getSizeInventory() ? null : this.stackList[index];
+        return index >= this.getSizeInventory() ? null : this.stackList.get(index);
     }
 
     @Override
@@ -37,54 +39,38 @@ public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        if (this.stackList[index] != null)
+        ItemStack oldstack = ItemStackHelper.getAndRemove(this.stackList, index);
+
+        if (!oldstack.isEmpty())
         {
-            ItemStack itemStack = this.stackList[index];
-            this.stackList[index] = null;
-            return itemStack;
+            this.markDirty();
+            this.eventHandler.onCraftMatrixChanged(this);
         }
-        else
-        {
-            return null;
-        }
+        return oldstack;
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        if (this.stackList[index] != null)
-        {
-            ItemStack itemStack;
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.stackList, index, count);
 
-            if (this.stackList[index].stackSize <= count)
-            {
-                itemStack = this.stackList[index];
-                this.stackList[index] = null;
-                this.eventHandler.onCraftMatrixChanged(this);
-                return itemStack;
-            }
-            else
-            {
-                itemStack = this.stackList[index].splitStack(count);
-
-                if (this.stackList[index].stackSize == 0)
-                {
-                    this.stackList[index] = null;
-                }
-                this.eventHandler.onCraftMatrixChanged(this);
-                return itemStack;
-            }
-        }
-        else
+        if (!itemStack.isEmpty())
         {
-            return null;
+            this.markDirty();
+            this.eventHandler.onCraftMatrixChanged(this);
         }
+        return itemStack;
     }
 
     @Override
-    public void setInventorySlotContents(int slot, ItemStack itemStack)
+    public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.stackList[slot] = itemStack;
+        if (itemStack.getCount() > this.getInventoryStackLimit())
+        {
+            itemStack.setCount(this.getInventoryStackLimit());
+        }
+        this.stackList.set(index, itemStack);
+        this.markDirty();
         this.eventHandler.onCraftMatrixChanged(this);
     }
 
@@ -98,7 +84,7 @@ public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
     public void markDirty() {}
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUsableByPlayer(EntityPlayer player)
     {
         return true;
     }
@@ -107,5 +93,18 @@ public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
     public boolean isItemValidForSlot(int slot, ItemStack itemStack)
     {
         return false;
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        for (ItemStack itemStack : this.stackList)
+        {
+            if (!itemStack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

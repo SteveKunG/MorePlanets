@@ -31,7 +31,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
     {
         if (this.runDelay <= 0)
         {
-            if (!this.theVillager.worldObj.getGameRules().getBoolean("mobGriefing"))
+            if (!this.theVillager.world.getGameRules().getBoolean("mobGriefing"))
             {
                 return false;
             }
@@ -56,7 +56,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
 
         if (this.getIsAboveDestination())
         {
-            World world = this.theVillager.worldObj;
+            World world = this.theVillager.world;
             BlockPos blockpos = this.destinationBlock.up();
             IBlockState iblockstate = world.getBlockState(blockpos);
             Block block = iblockstate.getBlock();
@@ -90,11 +90,11 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
 
                     if (flag)
                     {
-                        --itemStack.stackSize;
+                        itemStack.shrink(1);
 
-                        if (itemStack.stackSize <= 0)
+                        if (itemStack.getCount() <= 0)
                         {
-                            inventorybasic.setInventorySlotContents(i, (ItemStack)null);
+                            inventorybasic.setInventorySlotContents(i, ItemStack.EMPTY);
                         }
                         break;
                     }

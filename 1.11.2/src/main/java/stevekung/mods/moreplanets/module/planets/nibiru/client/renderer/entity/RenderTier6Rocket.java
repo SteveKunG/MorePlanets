@@ -48,7 +48,7 @@ public class RenderTier6Rocket extends Render<EntityTier6Rocket>
 
         if (rollAmplitude > 0.0F)
         {
-            float i = entity.getLaunched() ? (5 - MathHelper.floor_double(entity.timeUntilLaunch / 85)) / 10F : 0.3F;
+            float i = entity.getLaunched() ? (5 - MathHelper.floor(entity.timeUntilLaunch / 85)) / 10F : 0.3F;
             GlStateManager.rotate(MathHelper.sin(rollAmplitude) * rollAmplitude * i * partialTicks, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(MathHelper.sin(rollAmplitude) * rollAmplitude * i * partialTicks, 1.0F, 0.0F, 1.0F);
         }
@@ -69,13 +69,13 @@ public class RenderTier6Rocket extends Render<EntityTier6Rocket>
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.scale(0.8F, 0.8F, 0.8F);
         ClientUtil.drawBakedModel(this.rocketModel);
-        Vector3 teamColor = ClientUtil.updateTeamColor(Minecraft.getMinecraft().thePlayer.getName(), true);
+        Vector3 teamColor = ClientUtil.updateTeamColor(Minecraft.getMinecraft().player.getName(), true);
 
         if (teamColor != null)
         {
             GlStateManager.color(teamColor.floatX(), teamColor.floatY(), teamColor.floatZ());
         }
-        if (Minecraft.getMinecraft().thePlayer.ticksExisted / 10 % 2 < 1)
+        if (Minecraft.getMinecraft().player.ticksExisted / 10 % 2 < 1)
         {
             GlStateManager.color(1, 0, 0);
         }

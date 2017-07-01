@@ -72,7 +72,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
         if (this.getHealth() <= 0.0F)
         {
             int i = (300 + new Random().nextInt(600)) * 20;
-            WorldInfo worldinfo = this.worldObj.getWorldInfo();
+            WorldInfo worldinfo = this.world.getWorldInfo();
             worldinfo.setCleanWeatherTime(0);
             worldinfo.setRainTime(i);
             worldinfo.setThunderTime(i);
@@ -103,41 +103,41 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
         {
             this.useVineAttacking = false;
 
-            if (!this.worldObj.isRemote && this.ticksExisted % 200 == 0)
+            if (!this.world.isRemote && this.ticksExisted % 200 == 0)
             {
-                List<EntityVeinFloaterMinion> minionList = this.worldObj.getEntitiesWithinAABB(EntityVeinFloaterMinion.class, new AxisAlignedBB(this.posX - 32, this.posY - 32, this.posZ - 32, this.posX + 32, this.posY + 32, this.posZ + 32));
+                List<EntityVeinFloaterMinion> minionList = this.world.getEntitiesWithinAABB(EntityVeinFloaterMinion.class, new AxisAlignedBB(this.posX - 32, this.posY - 32, this.posZ - 32, this.posX + 32, this.posY + 32, this.posZ + 32));
 
                 if (minionList.size() > 32)
                 {
                     return;
                 }
 
-                EntityVeinFloaterMinion tentacle1 = new EntityVeinFloaterMinion(this.worldObj);
+                EntityVeinFloaterMinion tentacle1 = new EntityVeinFloaterMinion(this.world);
                 tentacle1.setLocationAndAngles(this.posX + 2.0F, this.posY + 12.0F, this.posZ + 2.0F, 0.0F, 0.0F);
                 tentacle1.setAbsorptionAmount(20.0F);
-                this.worldObj.spawnEntityInWorld(tentacle1);
+                this.world.spawnEntity(tentacle1);
 
-                EntityVeinFloaterMinion tentacle2 = new EntityVeinFloaterMinion(this.worldObj);
+                EntityVeinFloaterMinion tentacle2 = new EntityVeinFloaterMinion(this.world);
                 tentacle2.setLocationAndAngles(this.posX - 2.0F, this.posY + 12.0F, this.posZ - 2.0F, 0.0F, 0.0F);
                 tentacle2.setAbsorptionAmount(20.0F);
-                this.worldObj.spawnEntityInWorld(tentacle2);
+                this.world.spawnEntity(tentacle2);
 
-                EntityVeinFloaterMinion tentacle3 = new EntityVeinFloaterMinion(this.worldObj);
+                EntityVeinFloaterMinion tentacle3 = new EntityVeinFloaterMinion(this.world);
                 tentacle3.setLocationAndAngles(this.posX + 2.0F, this.posY + 12.0F, this.posZ - 2.0F, 0.0F, 0.0F);
                 tentacle3.setAbsorptionAmount(20.0F);
-                this.worldObj.spawnEntityInWorld(tentacle3);
+                this.world.spawnEntity(tentacle3);
 
-                EntityVeinFloaterMinion tentacle4 = new EntityVeinFloaterMinion(this.worldObj);
+                EntityVeinFloaterMinion tentacle4 = new EntityVeinFloaterMinion(this.world);
                 tentacle4.setLocationAndAngles(this.posX - 2.0F, this.posY + 12.0F, this.posZ + 2.0F, 0.0F, 0.0F);
                 tentacle4.setAbsorptionAmount(20.0F);
-                this.worldObj.spawnEntityInWorld(tentacle4);
+                this.world.spawnEntity(tentacle4);
             }
         }
 
         if (this.useVineAttacking)
         {
             int range = 16;
-            List<EntityPlayer> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+            List<EntityPlayer> entitiesAroundBH = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
             for (EntityPlayer entity : entitiesAroundBH)
             {
@@ -149,7 +149,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
                     entity.motionX = motionX * 0.025F;
                     entity.motionY = motionY * 0.025F;
                     entity.motionZ = motionZ * 0.025F;
-                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D));
+                    List<EntityPlayer> entityNearBH = this.world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D));
 
                     for (EntityPlayer near : entityNearBH)
                     {
@@ -161,7 +161,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
         if (this.getHealth() <= this.getMaxHealth() / 3)
         {
             int i = (300 + new Random().nextInt(600)) * 20;
-            WorldInfo worldinfo = this.worldObj.getWorldInfo();
+            WorldInfo worldinfo = this.world.getWorldInfo();
             worldinfo.setCleanWeatherTime(0);
             worldinfo.setRainTime(i);
             worldinfo.setThunderTime(i);
@@ -170,13 +170,13 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
 
             if (this.rand.nextFloat() > 0.975F && !this.isDead)
             {
-                EntityPlayer player = this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 32, false);
+                EntityPlayer player = this.world.getClosestPlayer(this.posX, this.posY, this.posZ, 32, false);
 
                 if (player != null && !player.capabilities.isCreativeMode)
                 {
-                    EntityNibiruLightningBolt bolt = new EntityNibiruLightningBolt(this.worldObj);
+                    EntityNibiruLightningBolt bolt = new EntityNibiruLightningBolt(this.world);
                     bolt.setLocationAndAngles(player.posX, player.posY, player.posZ, 0.0F, 0.0F);
-                    this.worldObj.spawnEntityInWorld(bolt);
+                    this.world.spawnEntity(bolt);
                 }
             }
         }
@@ -289,17 +289,17 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
             float f = (this.rand.nextFloat() - 0.5F) * 5.5F;
             float f1 = (this.rand.nextFloat() - 0.5F) * 28.0F;
             float f2 = (this.rand.nextFloat() - 0.5F) * 5.5F;
-            this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + f, this.posY + 2.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D);
+            this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + f, this.posY + 2.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D);
         }
 
         int i;
         int j;
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.deathTicks >= 180 && this.deathTicks % 5 == 0)
             {
-                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_EXPLODE, GCCoreUtil.getDimensionID(this.worldObj), new Object[] { }), new TargetPoint(GCCoreUtil.getDimensionID(this.worldObj), this.posX, this.posY, this.posZ, 40.0D));
+                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_EXPLODE, GCCoreUtil.getDimensionID(this.world), new Object[] { }), new TargetPoint(GCCoreUtil.getDimensionID(this.world), this.posX, this.posY, this.posZ, 40.0D));
             }
             if (this.deathTicks > 150 && this.deathTicks % 5 == 0)
             {
@@ -309,17 +309,17 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
                 {
                     j = EntityXPOrb.getXPSplit(i);
                     i -= j;
-                    this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                    this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
                 }
             }
 
             if (this.deathTicks == 40)
             {
-                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_BOSS_DEATH, GCCoreUtil.getDimensionID(this.worldObj), new Object[] { this.getSoundPitch() - 0.1F }), new TargetPoint(GCCoreUtil.getDimensionID(this.worldObj), this.posX, this.posY, this.posZ, 40.0D));
+                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_BOSS_DEATH, GCCoreUtil.getDimensionID(this.world), new Object[] { this.getSoundPitch() - 0.1F }), new TargetPoint(GCCoreUtil.getDimensionID(this.world), this.posX, this.posY, this.posZ, 40.0D));
             }
         }
 
-        if (this.deathTicks == 200 && !this.worldObj.isRemote)
+        if (this.deathTicks == 200 && !this.world.isRemote)
         {
             i = 200;
 
@@ -327,7 +327,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
             {
                 j = EntityXPOrb.getXPSplit(i);
                 i -= j;
-                this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
             }
 
             this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_DUNGEON_KEY, 1, this.rand.nextBoolean() ? 1 : 2), 0.5F);
@@ -347,17 +347,17 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
     {
         if (this.spawner != null)
         {
-            List<EntityPlayer> playersWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
+            List<EntityPlayer> playersWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
             this.entitiesWithin = playersWithin.size();
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> playerWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
+                List<EntityPlayer> playerWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
 
                 for (EntityPlayer player : playerWithin)
                 {
                     JsonUtils json = new JsonUtils();
-                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;
@@ -428,7 +428,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
     @Override
     public World getWorld()
     {
-        return this.worldObj;
+        return this.world;
     }
 
     @Override

@@ -58,7 +58,7 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
             {
                 EntityJuicer juicer = new EntityJuicer(world);
                 juicer.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0F, 0.0F);
-                world.spawnEntityInWorld(juicer);
+                world.spawnEntity(juicer);
             }
             if (world.rand.nextInt(10) == 0)
             {
@@ -71,7 +71,7 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
                     {
                         EntityJuicer juicer = new EntityJuicer(world);
                         juicer.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0F, 0.0F);
-                        world.spawnEntityInWorld(juicer);
+                        world.spawnEntity(juicer);
                         juicer.startRiding(player);
                     }
                 }

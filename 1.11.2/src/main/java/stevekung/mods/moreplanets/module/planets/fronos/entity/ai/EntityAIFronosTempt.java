@@ -45,7 +45,7 @@ public class EntityAIFronosTempt extends EntityAIBase
         }
         else
         {
-            this.temptingPlayer = this.temptedEntity.worldObj.getClosestPlayerToEntity(this.temptedEntity, 10.0D);
+            this.temptingPlayer = this.temptedEntity.world.getClosestPlayerToEntity(this.temptedEntity, 10.0D);
 
             if (this.temptingPlayer == null)
             {
@@ -94,7 +94,7 @@ public class EntityAIFronosTempt extends EntityAIBase
         this.targetY = this.temptingPlayer.posY;
         this.targetZ = this.temptingPlayer.posZ;
         this.timer = 1;
-        this.temptedEntity.worldObj.setEntityState(this.temptedEntity, (byte)12);
+        this.temptedEntity.world.setEntityState(this.temptedEntity, (byte)12);
     }
 
     @Override

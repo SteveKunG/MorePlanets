@@ -43,14 +43,14 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     {
         BlockPos thisBlock = this.getPos();
 
-        if (this.worldObj.isRemote && this.worldObj.rand.nextDouble() < 0.1D)
+        if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
         {
             FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(), MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState());
             FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(2), MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState());
         }
-        this.worldObj.destroyBlock(this.getPos(), true);
-        this.worldObj.destroyBlock(thisBlock.up(), false);
-        this.worldObj.destroyBlock(thisBlock.up(2), false);
+        this.world.destroyBlock(this.getPos(), true);
+        this.world.destroyBlock(thisBlock.up(), false);
+        this.world.destroyBlock(thisBlock.up(2), false);
     }
 
     @Override

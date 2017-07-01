@@ -17,12 +17,12 @@ public class TileEntityJuicerEgg extends TileEntityRenderTickable
     {
         super.update();
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             double radius = 1.05D;
             double radiusPlayer = 5.0D;
-            List<Entity> list = this.worldObj.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - radius, this.pos.getY() - radius, this.pos.getZ() - radius, this.pos.getX() + radius, this.pos.getY() + radius, this.pos.getZ() + radius));
-            List<EntityPlayer> playerList = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.pos.getX() - radiusPlayer, this.pos.getY() - radiusPlayer, this.pos.getZ() - radiusPlayer, this.pos.getX() + radiusPlayer, this.pos.getY() + radiusPlayer, this.pos.getZ() + radiusPlayer));
+            List<Entity> list = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - radius, this.pos.getY() - radius, this.pos.getZ() - radius, this.pos.getX() + radius, this.pos.getY() + radius, this.pos.getZ() + radius));
+            List<EntityPlayer> playerList = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.pos.getX() - radiusPlayer, this.pos.getY() - radiusPlayer, this.pos.getZ() - radiusPlayer, this.pos.getX() + radiusPlayer, this.pos.getY() + radiusPlayer, this.pos.getZ() + radiusPlayer));
 
             if (!list.isEmpty())
             {
@@ -35,24 +35,24 @@ public class TileEntityJuicerEgg extends TileEntityRenderTickable
                         if (arrow.inTile == NibiruBlocks.JUICER_EGG)
                         {
                             arrow.setDead();
-                            this.worldObj.destroyBlock(this.pos, false);
+                            this.world.destroyBlock(this.pos, false);
 
-                            if (this.worldObj.rand.nextInt(5) == 0)
+                            if (this.world.rand.nextInt(5) == 0)
                             {
-                                EntityJuicer juicer = new EntityJuicer(this.worldObj);
+                                EntityJuicer juicer = new EntityJuicer(this.world);
                                 juicer.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, 0.0F, 0.0F);
-                                this.worldObj.spawnEntityInWorld(juicer);
+                                this.world.spawnEntity(juicer);
                             }
 
-                            if (this.worldObj.rand.nextInt(10) == 0)
+                            if (this.world.rand.nextInt(10) == 0)
                             {
                                 if (!playerList.isEmpty())
                                 {
                                     for (EntityPlayer player : playerList)
                                     {
-                                        EntityJuicer juicer = new EntityJuicer(this.worldObj);
+                                        EntityJuicer juicer = new EntityJuicer(this.world);
                                         juicer.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, 0.0F, 0.0F);
-                                        this.worldObj.spawnEntityInWorld(juicer);
+                                        this.world.spawnEntity(juicer);
                                         juicer.startRiding(player);
                                     }
                                 }

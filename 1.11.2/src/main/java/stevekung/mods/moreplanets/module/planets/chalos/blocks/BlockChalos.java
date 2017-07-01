@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;

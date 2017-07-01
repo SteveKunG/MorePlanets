@@ -87,7 +87,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
         if (this.useVineAttacking)
         {
             int range = 32;
-            List<EntityPlayer> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+            List<EntityPlayer> entitiesAroundBH = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
             for (EntityPlayer entity : entitiesAroundBH)
             {
@@ -99,7 +99,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
                     entity.motionX = motionX * 0.025F;
                     entity.motionY = motionY * 0.025F;
                     entity.motionZ = motionZ * 0.025F;
-                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 6.5D, this.posZ + 5.0D));
+                    List<EntityPlayer> entityNearBH = this.world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 6.5D, this.posZ + 5.0D));
 
                     for (EntityPlayer near : entityNearBH)
                     {
@@ -183,17 +183,17 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
             float f = (this.rand.nextFloat() - 0.5F) * 5.5F;
             float f1 = (this.rand.nextFloat() - 0.5F) * 28.0F;
             float f2 = (this.rand.nextFloat() - 0.5F) * 5.5F;
-            this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + f, this.posY + 2.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D);
+            this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + f, this.posY + 2.0D + f1, this.posZ + f2, 0.0D, 0.0D, 0.0D);
         }
 
         int i;
         int j;
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.deathTicks >= 180 && this.deathTicks % 5 == 0)
             {
-                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_EXPLODE, GCCoreUtil.getDimensionID(this.worldObj), new Object[] { }), new TargetPoint(GCCoreUtil.getDimensionID(this.worldObj), this.posX, this.posY, this.posZ, 40.0D));
+                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_EXPLODE, GCCoreUtil.getDimensionID(this.world), new Object[] { }), new TargetPoint(GCCoreUtil.getDimensionID(this.world), this.posX, this.posY, this.posZ, 40.0D));
             }
             if (this.deathTicks > 150 && this.deathTicks % 5 == 0)
             {
@@ -203,17 +203,17 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
                 {
                     j = EntityXPOrb.getXPSplit(i);
                     i -= j;
-                    this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                    this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
                 }
             }
 
             if (this.deathTicks == 40)
             {
-                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_BOSS_DEATH, GCCoreUtil.getDimensionID(this.worldObj), new Object[] { this.getSoundPitch() - 0.1F }), new TargetPoint(GCCoreUtil.getDimensionID(this.worldObj), this.posX, this.posY, this.posZ, 40.0D));
+                GalacticraftCore.packetPipeline.sendToAllAround(new PacketSimple(EnumSimplePacket.C_PLAY_SOUND_BOSS_DEATH, GCCoreUtil.getDimensionID(this.world), new Object[] { this.getSoundPitch() - 0.1F }), new TargetPoint(GCCoreUtil.getDimensionID(this.world), this.posX, this.posY, this.posZ, 40.0D));
             }
         }
 
-        if (this.deathTicks == 200 && !this.worldObj.isRemote)
+        if (this.deathTicks == 200 && !this.world.isRemote)
         {
             i = 200;
 
@@ -221,14 +221,14 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
             {
                 j = EntityXPOrb.getXPSplit(i);
                 i -= j;
-                this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
             }
 
             TileEntityTreasureChestMP chest = null;
 
             if (this.spawner != null && this.spawner.getChestPos() != null)
             {
-                TileEntity chestTest = this.worldObj.getTileEntity(this.spawner.getChestPos());
+                TileEntity chestTest = this.world.getTileEntity(this.spawner.getChestPos());
 
                 if (chestTest != null && chestTest instanceof TileEntityTreasureChestMP)
                 {
@@ -273,17 +273,17 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
     {
         if (this.spawner != null)
         {
-            List<EntityPlayer> playersWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
+            List<EntityPlayer> playersWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBounds());
             this.entitiesWithin = playersWithin.size();
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> playerWithin = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
+                List<EntityPlayer> playerWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
 
                 for (EntityPlayer player : playerWithin)
                 {
                     JsonUtils json = new JsonUtils();
-                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;

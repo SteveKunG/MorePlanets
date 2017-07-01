@@ -71,7 +71,7 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack itemStack = player.getHeldItem(hand);
-        
+
         if (this.getElectricityStored(itemStack) > 0.0F)
         {
             if (!player.canPlayerEdit(pos.offset(facing), facing, itemStack))

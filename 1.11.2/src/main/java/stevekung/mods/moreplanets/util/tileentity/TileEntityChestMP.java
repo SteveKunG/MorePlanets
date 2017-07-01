@@ -79,6 +79,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
         return this.customName != null && this.customName.length() > 0;
     }
 
+    @Override
     public void setCustomName(String name)
     {
         this.customName = name;

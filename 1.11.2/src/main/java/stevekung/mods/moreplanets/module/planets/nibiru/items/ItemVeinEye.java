@@ -29,8 +29,9 @@ public class ItemVeinEye extends ItemBaseMP
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         IBlockState iblockstate = world.getBlockState(pos);
 
         if (player.canPlayerEdit(pos.offset(facing), facing, itemStack) && iblockstate.getBlock() == NibiruBlocks.VEIN_FRAME && !iblockstate.getValue(BlockVeinFrame.EYE).booleanValue())
@@ -50,7 +51,7 @@ public class ItemVeinEye extends ItemBaseMP
             {
                 world.setBlockState(pos, iblockstate.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(true)), 2);
                 world.updateComparatorOutputLevel(pos, NibiruBlocks.VEIN_FRAME);
-                --itemStack.stackSize;
+                itemStack.shrink(1);
                 BlockPattern.PatternHelper blockpattern$patternhelper = this.getOrCreatePortalShape().match(world, pos);
 
                 if (blockpattern$patternhelper != null)
@@ -75,8 +76,9 @@ public class ItemVeinEye extends ItemBaseMP
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         RayTraceResult raytraceresult = this.rayTrace(world, player, false);
 
         if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(raytraceresult.getBlockPos()).getBlock() == NibiruBlocks.VEIN_FRAME && !world.getBlockState(raytraceresult.getBlockPos()).getValue(BlockVeinFrame.EYE).booleanValue())
@@ -87,19 +89,19 @@ public class ItemVeinEye extends ItemBaseMP
         {
             if (!world.isRemote)
             {
-                BlockPos blockpos = ((WorldServer)world).getChunkProvider().getStrongholdGen(world, "NibiruStronghold", new BlockPos(player));
+                BlockPos blockpos = ((WorldServer)world).getChunkProvider().getStrongholdGen(world, "NibiruStronghold", new BlockPos(player), false);
 
                 if (blockpos != null)
                 {
                     EntityVeinEye entityendereye = new EntityVeinEye(world, player.posX, player.posY + player.height / 2.0F, player.posZ);
                     entityendereye.moveTowards(blockpos);
-                    world.spawnEntityInWorld(entityendereye);
+                    world.spawnEntity(entityendereye);
                     world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDEREYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                     world.playEvent((EntityPlayer)null, 1003, new BlockPos(player), 0);
 
                     if (!player.capabilities.isCreativeMode)
                     {
-                        --itemStack.stackSize;
+                        itemStack.shrink(1);
                     }
                     player.addStat(StatList.getObjectUseStats(this));
                     return new ActionResult(EnumActionResult.SUCCESS, itemStack);

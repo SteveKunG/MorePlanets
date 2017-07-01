@@ -83,7 +83,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
             this.age++;
         }
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.age < 5L)
             {
@@ -93,7 +93,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
                 {
                     for (int z = this.getPos().getZ() - 1; z < this.getPos().getZ() + 2; z++)
                     {
-                        TileEntity tile = this.worldObj.getTileEntity(new BlockPos(x, this.getPos().getY(), z));
+                        TileEntity tile = this.world.getTileEntity(new BlockPos(x, this.getPos().getY(), z));
 
                         if (tile instanceof TileEntityVeinPortal)
                         {
@@ -104,10 +104,10 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
 
                 if (attachedList.size() == 9)
                 {
-                    this.worldObj.setBlockState(this.getPos(), NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
+                    this.world.setBlockState(this.getPos(), NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
                     TileEntityVeinPortal portal = this;
                     this.isMiddle = true;
-                    this.worldObj.setTileEntity(this.getPos(), portal);
+                    this.world.setTileEntity(this.getPos(), portal);
 
                     for (int x = -1; x < 2; x++)
                     {
@@ -117,7 +117,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
 
                             if (!vecToAdd.equals(this.getPos()))
                             {
-                                this.worldObj.setBlockState(vecToAdd, NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
+                                this.world.setBlockState(vecToAdd, NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
                                 this.delayToTeleport = 120;
                             }
                         }
@@ -127,15 +127,15 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
                 {
                     if (!this.spawnedBoss)
                     {
-                        EntityVeinFloater vein = new EntityVeinFloater(this.worldObj);
+                        EntityVeinFloater vein = new EntityVeinFloater(this.world);
                         vein.setLocationAndAngles(this.getPos().getX() + 0.5D, this.getPos().getY() + 64, this.getPos().getZ() + 0.5D, 0.0F, 0.0F);
-                        this.worldObj.spawnEntityInWorld(vein);
+                        this.world.spawnEntity(vein);
                         this.spawnedBoss = true;
                     }
                     for (int yRender = this.pos.getY(); yRender < 99; yRender++)
                     {
-                        this.worldObj.setBlockToAir(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ()));
-                        this.worldObj.notifyBlockUpdate(this.pos, this.worldObj.getBlockState(this.pos), NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
+                        this.world.setBlockToAir(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ()));
+                        this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
                     }
                 }
             }
@@ -143,8 +143,8 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
 
         if (this.isMiddle)
         {
-            EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 64, false);
-            List<EntityVeinFloater> vein = this.worldObj.getEntitiesWithinAABB(EntityVeinFloater.class, new AxisAlignedBB(this.getPos().getX() - 256, this.getPos().getY() - 256, this.getPos().getZ() - 256, this.getPos().getX() + 256, this.getPos().getY() + 256, this.getPos().getZ() + 256));
+            EntityPlayer player = this.world.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 64, false);
+            List<EntityVeinFloater> vein = this.world.getEntitiesWithinAABB(EntityVeinFloater.class, new AxisAlignedBB(this.getPos().getX() - 256, this.getPos().getY() - 256, this.getPos().getZ() - 256, this.getPos().getX() + 256, this.getPos().getY() + 256, this.getPos().getZ() + 256));
 
             if (this.delayToTeleport > 0)
             {

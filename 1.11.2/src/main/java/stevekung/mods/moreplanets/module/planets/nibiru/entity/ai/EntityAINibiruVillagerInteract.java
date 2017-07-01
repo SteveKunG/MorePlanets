@@ -80,7 +80,7 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
                     if (itemstack1 != null)
                     {
                         double d0 = this.villager.posY - 0.30000001192092896D + this.villager.getEyeHeight();
-                        EntityItem entityitem = new EntityItem(this.villager.worldObj, this.villager.posX, d0, this.villager.posZ, itemstack1);
+                        EntityItem entityitem = new EntityItem(this.villager.world, this.villager.posX, d0, this.villager.posZ, itemstack1);
                         float f = 0.3F;
                         float f1 = this.villager.rotationYawHead;
                         float f2 = this.villager.rotationPitch;
@@ -88,7 +88,7 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
                         entityitem.motionZ = MathHelper.cos(f1 / 180.0F * (float)Math.PI) * MathHelper.cos(f2 / 180.0F * (float)Math.PI) * f;
                         entityitem.motionY = -MathHelper.sin(f2 / 180.0F * (float)Math.PI) * f + 0.1F;
                         entityitem.setDefaultPickupDelay();
-                        this.villager.worldObj.spawnEntityInWorld(entityitem);
+                        this.villager.world.spawnEntity(entityitem);
                         break;
                     }
                 }

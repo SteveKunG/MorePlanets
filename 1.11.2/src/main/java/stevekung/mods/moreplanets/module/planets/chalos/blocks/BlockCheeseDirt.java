@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
-import java.util.List;
-
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

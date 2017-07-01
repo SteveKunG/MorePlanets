@@ -25,8 +25,9 @@ public class ItemBlockSporelily extends ItemBlock
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         RayTraceResult raytraceresult = this.rayTrace(world, player, true);
 
         if (raytraceresult == null)
@@ -53,7 +54,7 @@ public class ItemBlockSporelily extends ItemBlock
 
                     if (!player.capabilities.isCreativeMode)
                     {
-                        --itemStack.stackSize;
+                        itemStack.shrink(1);
                     }
                     player.swingArm(hand);
                     player.addStat(StatList.getObjectUseStats(this));

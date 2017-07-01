@@ -59,7 +59,7 @@ public class ParticleAlienBerry extends Particle
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.99D;
         this.motionY *= 0.99D;
         this.motionZ *= 0.99D;

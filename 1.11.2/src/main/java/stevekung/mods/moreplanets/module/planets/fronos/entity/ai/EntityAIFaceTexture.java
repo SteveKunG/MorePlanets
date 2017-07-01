@@ -13,7 +13,7 @@ public class EntityAIFaceTexture extends EntityAIBase
     public EntityAIFaceTexture(EntityLiving entity)
     {
         this.entity = entity;
-        this.world = entity.worldObj;
+        this.world = entity.world;
         this.setMutexBits(7);
     }
 

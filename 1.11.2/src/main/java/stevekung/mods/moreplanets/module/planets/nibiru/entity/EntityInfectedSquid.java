@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityWaterMob;
@@ -104,7 +105,7 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
     @Override
     public boolean isInWater()
     {
-        return this.worldObj.handleMaterialAcceleration(this.getEntityBoundingBox().expand(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, this);
+        return this.world.handleMaterialAcceleration(this.getEntityBoundingBox().expand(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, this);
     }
 
     @Override
@@ -119,7 +120,7 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
 
         if (this.squidRotation > Math.PI * 2D)
         {
-            if (this.worldObj.isRemote)
+            if (this.world.isRemote)
             {
                 this.squidRotation = (float)Math.PI * 2F;
             }
@@ -131,7 +132,7 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
                 {
                     this.rotationVelocity = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
                 }
-                this.worldObj.setEntityState(this, (byte)19);
+                this.world.setEntityState(this, (byte)19);
             }
         }
 
@@ -159,13 +160,13 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
                 this.rotateSpeed *= 0.99F;
             }
 
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
                 this.motionX = this.randomMotionVecX * this.randomMotionSpeed;
                 this.motionY = this.randomMotionVecY * this.randomMotionSpeed;
                 this.motionZ = this.randomMotionVecZ * this.randomMotionSpeed;
             }
-            float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.renderYawOffset += (-((float)MathHelper.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI - this.renderYawOffset) * 0.1F;
             this.rotationYaw = this.renderYawOffset;
             this.squidYaw = (float)(this.squidYaw + Math.PI * this.rotateSpeed * 1.5D);
@@ -175,7 +176,7 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
         {
             this.tentacleAngle = MathHelper.abs(MathHelper.sin(this.squidRotation)) * (float)Math.PI * 0.25F;
 
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
                 this.motionX = 0.0D;
                 this.motionY -= 0.08D;
@@ -189,13 +190,13 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
     @Override
     public void moveEntityWithHeading(float strafe, float forward)
     {
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
     }
 
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.posY > 45.0D && this.posY < this.worldObj.getSeaLevel() && super.getCanSpawnHere();
+        return this.posY > 45.0D && this.posY < this.world.getSeaLevel() && super.getCanSpawnHere();
     }
 
     @Override

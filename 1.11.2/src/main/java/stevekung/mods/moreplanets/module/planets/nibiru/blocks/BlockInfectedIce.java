@@ -52,7 +52,7 @@ public class BlockInfectedIce extends BlockBreakableMP
         if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, heldStack) > 0)
         {
             List<ItemStack> items = Lists.newArrayList();
-            ItemStack itemstack = this.createStackedBlock(state);
+            ItemStack itemstack = this.getSilkTouchDrop(state);
 
             if (itemstack != null)
             {

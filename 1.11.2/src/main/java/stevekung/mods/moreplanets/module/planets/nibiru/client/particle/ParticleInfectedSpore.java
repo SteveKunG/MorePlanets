@@ -29,7 +29,7 @@ public class ParticleInfectedSpore extends Particle
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
         this.motionY += 0.001D;
 
         if (this.particleMaxAge-- <= 0)

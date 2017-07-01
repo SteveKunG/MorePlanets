@@ -350,7 +350,7 @@ public class ChunkGeneratorChalos implements IChunkGenerator
     }
 
     @Override
-    public BlockPos getStrongholdGen(World world, String structureName, BlockPos position)
+    public BlockPos getStrongholdGen(World world, String structureName, BlockPos position, boolean findUnexplored)
     {
         return null;
     }

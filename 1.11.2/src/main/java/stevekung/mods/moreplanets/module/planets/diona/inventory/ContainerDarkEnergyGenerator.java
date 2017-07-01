@@ -36,7 +36,7 @@ public class ContainerDarkEnergyGenerator extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileEntity.isUseableByPlayer(player);
+        return this.tileEntity.isUsableByPlayer(player);
     }
 
     @Override
@@ -83,20 +83,20 @@ public class ContainerDarkEnergyGenerator extends Container
                 }
             }
 
-            if (stack.stackSize == 0)
+            if (stack.getCount() == 0)
             {
-                slot.putStack((ItemStack) null);
+                slot.putStack(ItemStack.EMPTY);
             }
             else
             {
                 slot.onSlotChanged();
             }
 
-            if (stack.stackSize == itemStack.stackSize)
+            if (stack.getCount() == itemStack.getCount())
             {
-                return null;
+                return ItemStack.EMPTY;
             }
-            slot.onPickupFromSlot(player, stack);
+            slot.onTake(player, stack);
         }
         return itemStack;
     }

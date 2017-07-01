@@ -24,7 +24,7 @@ public class RenderInfectedSquid extends RenderLiving<EntityInfectedSquid>
     }
 
     @Override
-    protected void rotateCorpse(EntityInfectedSquid entity, float rotation, float interpolateRot, float partialTicks)
+    protected void applyRotations(EntityInfectedSquid entity, float rotation, float interpolateRot, float partialTicks)
     {
         float f = entity.prevSquidPitch + (entity.squidPitch - entity.prevSquidPitch) * partialTicks;
         float f1 = entity.prevSquidYaw + (entity.squidYaw - entity.prevSquidYaw) * partialTicks;

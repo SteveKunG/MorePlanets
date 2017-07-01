@@ -36,7 +36,7 @@ public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileE
 
     private void renderJuicer(float partialTicks)
     {
-        EntityJuicer juicer = new EntityJuicer(Minecraft.getMinecraft().theWorld);
+        EntityJuicer juicer = new EntityJuicer(Minecraft.getMinecraft().world);
         Minecraft.getMinecraft().getRenderManager().doRenderEntity(juicer, 0.0F, 0.1F, 0.0F, 0.0F, partialTicks, false);
     }
 }

@@ -38,7 +38,7 @@ public class BlockInfectedVines extends BlockVinesMP
 
                 for (int i = 0; i < 4; i++)
                 {
-                    if (!(inventory.armorInventory[i] != null && inventory.armorInventory[i].getItem() instanceof ItemArmor))
+                    if (!(inventory.armorInventory.get(i) != null && inventory.armorInventory.get(i).getItem() instanceof ItemArmor))
                     {
                         if (!player.capabilities.isCreativeMode)
                         {

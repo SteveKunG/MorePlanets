@@ -21,14 +21,15 @@ public class ItemInfectedWheatSeeds extends ItemBaseMP
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         IBlockState state = world.getBlockState(pos);
 
         if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == NibiruBlocks.INFECTED_FARMLAND && world.isAirBlock(pos.up()))
         {
             world.setBlockState(pos.up(), NibiruBlocks.INFECTED_WHEAT_BLOCK.getDefaultState(), 11);
-            --itemStack.stackSize;
+            itemStack.shrink(1);
             return EnumActionResult.SUCCESS;
         }
         else

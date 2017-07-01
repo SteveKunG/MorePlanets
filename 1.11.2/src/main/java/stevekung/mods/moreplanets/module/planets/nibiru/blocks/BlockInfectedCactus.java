@@ -14,6 +14,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -57,7 +58,7 @@ public class BlockInfectedCactus extends BlockBushMP
                     world.setBlockState(blockpos, this.getDefaultState());
                     IBlockState iblockstate = state.withProperty(BlockStateHelper.AGE, Integer.valueOf(0));
                     world.setBlockState(pos, iblockstate, 4);
-                    this.neighborChanged(iblockstate, world, blockpos, this);
+                    iblockstate.neighborChanged(world, blockpos, this, pos);
                 }
                 else
                 {
@@ -68,7 +69,7 @@ public class BlockInfectedCactus extends BlockBushMP
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return CACTUS_AABB;
     }
@@ -100,7 +101,7 @@ public class BlockInfectedCactus extends BlockBushMP
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         if (!this.canBlockStay(world, pos, state))
         {
@@ -129,7 +130,7 @@ public class BlockInfectedCactus extends BlockBushMP
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         entity.attackEntityFrom(DamageSourceMP.INFECTED_GAS, (int) (4.0D * 0.1D + 1.0D));
-        entity.attackEntityFrom(DamageSource.cactus, 1.0F);
+        entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
     }
 
     @Override

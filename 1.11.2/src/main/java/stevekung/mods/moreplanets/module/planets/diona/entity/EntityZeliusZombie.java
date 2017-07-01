@@ -31,7 +31,7 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     }
 
     @Override
-    protected PathNavigate getNewNavigator(World world)
+    protected PathNavigate createNavigator(World world)
     {
         return new PathNavigateGroundMP(this, world);
     }
@@ -58,7 +58,7 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
         if (entity instanceof EntityLivingBase)
         {
             ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 120, 1));
-            this.worldObj.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
         return super.attackEntityAsMob(entity);
     }

@@ -40,8 +40,9 @@ public class ItemGasBucketMP extends ItemBucketMP
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         boolean flag = this.isFull == Blocks.AIR;
         RayTraceResult raytraceresult = this.rayTrace(world, player, flag);
 

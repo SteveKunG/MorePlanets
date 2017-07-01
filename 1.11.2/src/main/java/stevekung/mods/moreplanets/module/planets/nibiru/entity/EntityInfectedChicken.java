@@ -48,11 +48,11 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
     @Override
     public boolean getCanSpawnHere()
     {
-        int i = MathHelper.floor_double(this.posX);
-        int j = MathHelper.floor_double(this.getEntityBoundingBox().minY);
-        int k = MathHelper.floor_double(this.posZ);
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
         BlockPos blockpos = new BlockPos(i, j, k);
-        return this.worldObj.getBlockState(blockpos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS && this.worldObj.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
+        return this.world.getBlockState(blockpos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS && this.world.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
     @Override
     public EntityInfectedChicken createChild(EntityAgeable ageable)
     {
-        return new EntityInfectedChicken(this.worldObj);
+        return new EntityInfectedChicken(this.world);
     }
 
     @Override

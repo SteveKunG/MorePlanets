@@ -22,6 +22,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
@@ -49,7 +50,7 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
     }
 
     @Override
-    protected PathNavigate getNewNavigator(World world)
+    protected PathNavigate createNavigator(World world)
     {
         return new PathNavigateGroundMP(this, world);
     }
@@ -57,11 +58,11 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
     @Override
     public boolean getCanSpawnHere()
     {
-        int i = MathHelper.floor_double(this.posX);
-        int j = MathHelper.floor_double(this.getEntityBoundingBox().minY);
-        int k = MathHelper.floor_double(this.posZ);
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
         BlockPos blockpos = new BlockPos(i, j, k);
-        return this.worldObj.getBlockState(blockpos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS && this.worldObj.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
+        return this.world.getBlockState(blockpos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS && this.world.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
     }
 
     @Override
@@ -128,15 +129,18 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
     }
 
     @Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack itemStack)
+    public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
-        ItemStack itemstack = player.inventory.getCurrentItem();
+        ItemStack itemStack = player.getHeldItem(hand);
 
-        if (itemstack != null && itemstack.getItem() == Items.BUCKET && !player.capabilities.isCreativeMode && !this.isChild())
+        if (itemStack.getItem() == Items.BUCKET && !player.capabilities.isCreativeMode && !this.isChild())
         {
-            if (itemstack.stackSize-- == 1)
+            player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+            itemStack.shrink(1);
+
+            if (itemStack.isEmpty())
             {
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.MILK_BUCKET));
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET));
             }
             else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.MILK_BUCKET)))
             {
@@ -146,14 +150,14 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
         }
         else
         {
-            return super.processInteract(player, hand, itemStack);
+            return super.processInteract(player, hand);
         }
     }
 
     @Override
     public EntityInfectedCow createChild(EntityAgeable ageable)
     {
-        return new EntityInfectedCow(this.worldObj);
+        return new EntityInfectedCow(this.world);
     }
 
     @Override

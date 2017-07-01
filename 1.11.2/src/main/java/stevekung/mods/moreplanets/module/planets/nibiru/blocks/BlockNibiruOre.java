@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
@@ -16,10 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -67,7 +63,7 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (this.getMetaFromState(state) == 4)
         {
@@ -145,7 +141,7 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
     }
 
     @Override
-    protected ItemStack createStackedBlock(IBlockState state)
+    protected ItemStack getSilkTouchDrop(IBlockState state)
     {
         if (this.getMetaFromState(state) == 12)
         {
@@ -153,7 +149,7 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
         }
         else
         {
-            return super.createStackedBlock(state);
+            return super.getSilkTouchDrop(state);
         }
     }
 
@@ -165,7 +161,7 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length - 1; ++i)
         {
@@ -272,19 +268,19 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
         }
         if (meta == 0)
         {
-            return MathHelper.getRandomIntegerInRange(this.rand, 0, 2);
+            return MathHelper.getInt(this.rand, 0, 2);
         }
         if (meta == 3)
         {
-            return MathHelper.getRandomIntegerInRange(this.rand, 3, 7);
+            return MathHelper.getInt(this.rand, 3, 7);
         }
         if (meta == 5)
         {
-            return MathHelper.getRandomIntegerInRange(this.rand, 2, 5);
+            return MathHelper.getInt(this.rand, 2, 5);
         }
         if (meta == 6)
         {
-            return MathHelper.getRandomIntegerInRange(this.rand, 3, 7);
+            return MathHelper.getInt(this.rand, 3, 7);
         }
         return 0;
     }

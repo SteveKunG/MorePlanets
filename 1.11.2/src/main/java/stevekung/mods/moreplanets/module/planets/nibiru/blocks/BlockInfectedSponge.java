@@ -1,6 +1,9 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Random;
 
 import com.google.common.collect.Lists;
 
@@ -16,6 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -53,7 +57,7 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         this.tryAbsorb(world, pos, state);
     }
@@ -111,14 +115,14 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
         while (iterator.hasNext())
         {
             blockpos1 = (BlockPos)iterator.next();
-            world.notifyNeighborsOfStateChange(blockpos1, Blocks.AIR);
+            world.notifyNeighborsOfStateChange(blockpos1, Blocks.AIR, false);
         }
         return i > 0;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < 2; i++)
         {

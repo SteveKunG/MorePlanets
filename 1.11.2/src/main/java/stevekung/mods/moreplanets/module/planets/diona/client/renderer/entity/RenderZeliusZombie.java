@@ -1,16 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity;
 
-import java.util.List;
-
-import com.google.common.collect.Lists;
-
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,9 +14,6 @@ import stevekung.mods.moreplanets.util.client.renderer.entity.layer.LayerGlowing
 @SideOnly(Side.CLIENT)
 public class RenderZeliusZombie extends RenderBiped<EntityZeliusZombie>
 {
-    private List<LayerRenderer<EntityZeliusZombie>> layerRendererLists;
-    private ModelBiped mainZombieModel;
-
     public RenderZeliusZombie(RenderManager manager)
     {
         super(manager, new ModelZombie(), 0.5F);
@@ -38,7 +29,6 @@ public class RenderZeliusZombie extends RenderBiped<EntityZeliusZombie>
             }
         };
         this.addLayer(layerbipedarmor);
-        this.layerRendererLists = Lists.newArrayList(this.layerRenderers);
     }
 
     @Override

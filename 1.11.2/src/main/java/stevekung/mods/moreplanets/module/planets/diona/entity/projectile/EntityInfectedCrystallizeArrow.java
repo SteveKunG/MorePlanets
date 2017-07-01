@@ -32,7 +32,7 @@ public class EntityInfectedCrystallizeArrow extends EntityArrowMP
     @Override
     public void addEffect(EntityLivingBase living)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 100, 0));
         }
@@ -41,7 +41,7 @@ public class EntityInfectedCrystallizeArrow extends EntityArrowMP
     @Override
     public void onCollideWithPlayer(EntityPlayer player)
     {
-        if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0)
+        if (!this.world.isRemote && this.inGround && this.arrowShake <= 0)
         {
             boolean flag = this.pickupStatus == PickupStatus.ALLOWED || this.pickupStatus == PickupStatus.CREATIVE_ONLY && player.capabilities.isCreativeMode;
 

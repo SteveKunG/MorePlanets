@@ -11,6 +11,6 @@ public class TileEntityInfectedCrystallizeEnderCore extends TileEntity implement
     public void update()
     {
         ++this.age;
-        this.age = this.age + this.worldObj.rand.nextInt(100);
+        this.age = this.age + this.world.rand.nextInt(100);
     }
 }

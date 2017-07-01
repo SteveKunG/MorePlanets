@@ -186,7 +186,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         {
             return null;
         }
-        else if (this.worldObj.isRemote)
+        else if (this.world.isRemote)
         {
             if (this.targetedEntity != null)
             {
@@ -194,7 +194,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
             }
             else
             {
-                Entity entity = this.worldObj.getEntityByID(this.dataManager.get(TARGET_ENTITY).intValue());
+                Entity entity = this.world.getEntityByID(this.dataManager.get(TARGET_ENTITY).intValue());
 
                 if (entity instanceof EntityLivingBase)
                 {
@@ -235,13 +235,13 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     public float getBlockPathWeight(BlockPos pos)
     {
-        return this.worldObj.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK ? 10.0F + this.worldObj.getLightBrightness(pos) - 0.5F : 0.5F - this.worldObj.getLightBrightness(pos);
+        return this.world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK ? 10.0F + this.world.getLightBrightness(pos) - 0.5F : 0.5F - this.world.getLightBrightness(pos);
     }
 
     @Override
     public void onLivingUpdate()
     {
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             this.clientSideTailAnimationO = this.clientSideTailAnimation;
 
@@ -251,9 +251,9 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
 
                 if (this.motionY > 0.0D && this.clientSideTouchedGround && !this.isSilent())
                 {
-                    this.worldObj.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GUARDIAN_FLOP, this.getSoundCategory(), 1.0F, 1.0F, false);
+                    this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GUARDIAN_FLOP, this.getSoundCategory(), 1.0F, 1.0F, false);
                 }
-                this.clientSideTouchedGround = this.motionY < 0.0D && this.worldObj.isBlockNormalCube(new BlockPos(this).down(), false);
+                this.clientSideTouchedGround = this.motionY < 0.0D && this.world.isBlockNormalCube(new BlockPos(this).down(), false);
             }
             else if (this.isMoving())
             {
@@ -293,7 +293,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
 
                 for (int i = 0; i < 2; ++i)
                 {
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width - vec3.xCoord * 1.5D, this.posY + this.rand.nextDouble() * this.height - vec3.yCoord * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width - vec3.zCoord * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
+                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width - vec3.xCoord * 1.5D, this.posY + this.rand.nextDouble() * this.height - vec3.yCoord * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width - vec3.zCoord * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
             }
 
@@ -323,7 +323,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                     while (d4 < d3)
                     {
                         d4 += 1.8D - d5 + this.rand.nextDouble() * (1.7D - d5);
-                        this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + d0 * d4, this.posY + d1 * d4 + this.getEyeHeight(), this.posZ + d2 * d4, 0.0D, 0.0D, 0.0D, new int[0]);
+                        this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + d0 * d4, this.posY + d1 * d4 + this.getEyeHeight(), this.posZ + d2 * d4, 0.0D, 0.0D, 0.0D, new int[0]);
                     }
                 }
             }
@@ -379,12 +379,12 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
             {
                 Potion potion = MobEffects.MINING_FATIGUE;
 
-                for (EntityPlayerMP entityplayermp : this.worldObj.getPlayers(EntityPlayerMP.class, entity -> EntityInfectedGuardian.this.getDistanceSqToEntity(entity) < 2500.0D && entity.interactionManager.survivalOrAdventure()))
+                for (EntityPlayerMP entityplayermp : this.world.getPlayers(EntityPlayerMP.class, entity -> EntityInfectedGuardian.this.getDistanceSqToEntity(entity) < 2500.0D && entity.interactionManager.survivalOrAdventure()))
                 {
                     if (!entityplayermp.isPotionActive(potion) || entityplayermp.getActivePotionEffect(potion).getAmplifier() < 2 || entityplayermp.getActivePotionEffect(potion).getDuration() < 1200)
                     {
                         MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ);
-                        entityplayermp.worldObj.playSound(entityplayermp, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                        entityplayermp.world.playSound(entityplayermp, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, SoundCategory.HOSTILE, 1.0F, 1.0F);
                         entityplayermp.addPotionEffect(new PotionEffect(potion, 6000, 2));
 
                         if (!entityplayermp.capabilities.isCreativeMode && !entityplayermp.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION))
@@ -412,8 +412,8 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     public boolean getCanSpawnHere()
     {
-        boolean defaults = this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
-        return (this.rand.nextInt(20) == 0 || !this.worldObj.canBlockSeeSky(new BlockPos(this))) && defaults;
+        boolean defaults = this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
+        return (this.rand.nextInt(20) == 0 || !this.world.canBlockSeeSky(new BlockPos(this))) && defaults;
     }
 
     @Override
@@ -507,13 +507,13 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                 if (this.tickCounter == 0)
                 {
                     this.entity.setTargetedEntity(this.entity.getAttackTarget().getEntityId());
-                    this.entity.worldObj.setEntityState(this.entity, (byte)21);
+                    this.entity.world.setEntityState(this.entity, (byte)21);
                 }
                 else if (this.tickCounter >= this.entity.getAttackDuration())
                 {
                     float f = 1.0F;
 
-                    if (this.entity.worldObj.getDifficulty() == EnumDifficulty.HARD)
+                    if (this.entity.world.getDifficulty() == EnumDifficulty.HARD)
                     {
                         f += 2.0F;
                     }
@@ -551,7 +551,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                 double d1 = this.posY - this.entity.posY;
                 double d2 = this.posZ - this.entity.posZ;
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-                d3 = MathHelper.sqrt_double(d3);
+                d3 = MathHelper.sqrt(d3);
                 d1 = d1 / d3;
                 float f = (float)(MathHelper.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
                 this.entity.rotationYaw = this.limitAngle(this.entity.rotationYaw, f, 30.0F);

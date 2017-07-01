@@ -68,11 +68,11 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     {
         if (!this.initialised)
         {
-            if (!this.worldObj.isRemote && this.worldObj.getWorldType() != WorldType.DEBUG_WORLD)
+            if (!this.world.isRemote && this.world.getWorldType() != WorldType.DEBUG_WORLD)
             {
-                this.onCreate(this.worldObj, this.getPos());
+                this.onCreate(this.world, this.getPos());
             }
-            this.initialiseMultiTiles(this.getPos(), this.worldObj);
+            this.initialiseMultiTiles(this.getPos(), this.world);
             this.initialised = true;
         }
 
@@ -93,7 +93,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public boolean onActivated(EntityPlayer player)
     {
-        return MPBlocks.SPACE_WARP_PAD_FULL.onBlockActivated(this.worldObj, this.mainBlockPosition, MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState(), player, player.getActiveHand(), player.getHeldItemMainhand(), player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
+        return MPBlocks.SPACE_WARP_PAD_FULL.onBlockActivated(this.world, this.mainBlockPosition, MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState(), player, player.getActiveHand(), player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     public void onDestroy(TileEntity callingBlock)
     {
         BlockPos thisBlock = this.getPos();
-        this.worldObj.destroyBlock(thisBlock, true);
+        this.world.destroyBlock(thisBlock, true);
 
         for (int x = -1; x < 2; x++)
         {
@@ -130,11 +130,11 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             {
                 BlockPos pos = new BlockPos(thisBlock.getX() + x, thisBlock.getY(), thisBlock.getZ() + z);
 
-                if (this.worldObj.isRemote && this.worldObj.rand.nextDouble() < 0.1D)
+                if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
                 {
                     Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(pos, MPBlocks.SPACE_WARP_PAD.getDefaultState());
                 }
-                this.worldObj.destroyBlock(pos, false);
+                this.world.destroyBlock(pos, false);
             }
         }
     }

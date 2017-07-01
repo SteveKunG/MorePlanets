@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.fronos.entity;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -44,7 +42,7 @@ public abstract class EntityFronosPet extends EntityTameable
     }
 
     @Override
-    protected PathNavigate getNewNavigator(World world)
+    protected PathNavigate createNavigator(World world)
     {
         return new PathNavigateGroundMP(this, world);
     }
@@ -63,7 +61,7 @@ public abstract class EntityFronosPet extends EntityTameable
     {
         super.onLivingUpdate();
 
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             this.closeEyeTimer = Math.max(0, this.closeEyeTimer - 1);
             this.panicTimer = Math.max(0, this.panicTimer - 1);
@@ -80,7 +78,7 @@ public abstract class EntityFronosPet extends EntityTameable
     {
         super.onUpdate();
 
-        if (this.getLayItem() != null && !this.isChild() && !this.worldObj.isRemote && --this.timeUntilToDropItem <= 0)
+        if (this.getLayItem() != null && !this.isChild() && !this.world.isRemote && --this.timeUntilToDropItem <= 0)
         {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.entityDropItem(this.getLayItem(), 1.0F);
@@ -148,7 +146,7 @@ public abstract class EntityFronosPet extends EntityTameable
     @Override
     protected int getExperiencePoints(EntityPlayer player)
     {
-        return 1 + this.worldObj.rand.nextInt(4);
+        return 1 + this.world.rand.nextInt(4);
     }
 
     @Override
@@ -204,7 +202,7 @@ public abstract class EntityFronosPet extends EntityTameable
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getBlockState(this.getPosition().down()).getBlock() == FronosBlocks.FRONOS_GRASS;
+        return this.world.getBlockState(this.getPosition().down()).getBlock() == FronosBlocks.FRONOS_GRASS;
     }
 
     @Override
@@ -214,8 +212,9 @@ public abstract class EntityFronosPet extends EntityTameable
     }
 
     @Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack itemStack)
+    public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         boolean isTamedItem = itemStack != null && itemStack.getItem() == FronosItems.FRONOS_FOOD && itemStack.getItemDamage() == 1;
 
         if (this.isTamed())
@@ -226,7 +225,7 @@ public abstract class EntityFronosPet extends EntityTameable
 
                 if (!player.capabilities.isCreativeMode)
                 {
-                    --itemStack.stackSize;
+                    itemStack.shrink(1);
                 }
                 if (this.aiSit != null)
                 {
@@ -235,7 +234,7 @@ public abstract class EntityFronosPet extends EntityTameable
                 return true;
             }
 
-            if (this.isOwner(player) && !this.worldObj.isRemote)
+            if (this.isOwner(player) && !this.world.isRemote)
             {
                 if (this.aiSit != null)
                 {
@@ -249,9 +248,9 @@ public abstract class EntityFronosPet extends EntityTameable
         {
             if (!player.capabilities.isCreativeMode)
             {
-                itemStack.stackSize--;
+                itemStack.shrink(1);
             }
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
                 if (this.rand.nextInt(3) == 0)
                 {
@@ -260,17 +259,17 @@ public abstract class EntityFronosPet extends EntityTameable
                     this.navigator.clearPathEntity();
                     this.setOwnerId(player.getUniqueID());
                     this.playTameEffect(true);
-                    this.worldObj.setEntityState(this, (byte)7);
+                    this.world.setEntityState(this, (byte)7);
                 }
                 else
                 {
                     this.playTameEffect(false);
-                    this.worldObj.setEntityState(this, (byte)6);
+                    this.world.setEntityState(this, (byte)6);
                 }
             }
             return true;
         }
-        return super.processInteract(player, hand, itemStack);
+        return super.processInteract(player, hand);
     }
 
     @Override

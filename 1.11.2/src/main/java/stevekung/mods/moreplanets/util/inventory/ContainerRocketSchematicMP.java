@@ -20,7 +20,7 @@ public class ContainerRocketSchematicMP extends Container
 
     public ContainerRocketSchematicMP(InventoryPlayer inv)
     {
-        this.worldObj = inv.player.worldObj;
+        this.worldObj = inv.player.world;
     }
 
     @Override
@@ -131,20 +131,20 @@ public class ContainerRocketSchematicMP extends Container
                     }
                 }
             }
-            if (slotStack.stackSize == 0)
+            if (slotStack.getCount() == 0)
             {
-                invSlot.putStack((ItemStack) null);
+                invSlot.putStack(ItemStack.EMPTY);
             }
             else
             {
                 invSlot.onSlotChanged();
             }
 
-            if (slotStack.stackSize == itemStack.stackSize)
+            if (slotStack.getCount() == itemStack.getCount())
             {
-                return null;
+                return ItemStack.EMPTY;
             }
-            invSlot.onPickupFromSlot(player, slotStack);
+            invSlot.onTake(player, slotStack);
         }
         return itemStack;
     }
@@ -153,7 +153,7 @@ public class ContainerRocketSchematicMP extends Container
     {
         boolean flag1 = false;
 
-        if (itemStack.stackSize > 0)
+        if (itemStack.getCount() > 0)
         {
             Slot slot;
             ItemStack slotStack;
@@ -166,8 +166,8 @@ public class ContainerRocketSchematicMP extends Container
                 if (slotStack == null)
                 {
                     ItemStack stackOneItem = itemStack.copy();
-                    stackOneItem.stackSize = 1;
-                    itemStack.stackSize--;
+                    stackOneItem.setCount(1);
+                    itemStack.shrink(1);
                     slot.putStack(stackOneItem);
                     slot.onSlotChanged();
                     flag1 = true;

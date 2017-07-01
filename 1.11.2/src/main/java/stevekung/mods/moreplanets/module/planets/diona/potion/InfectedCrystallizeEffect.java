@@ -26,14 +26,14 @@ public class InfectedCrystallizeEffect extends PotionMP
     @Override
     public void applyAttributesModifiersToEntity(EntityLivingBase living, AbstractAttributeMap attributeMap, int amplifier)
     {
-        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_ADD_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
+        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_ADD_ENTITY_ID, GCCoreUtil.getDimensionID(living.world), String.valueOf(living.getEntityId())));
         super.applyAttributesModifiersToEntity(living, attributeMap, amplifier);
     }
 
     @Override
     public void removeAttributesModifiersFromEntity(EntityLivingBase living, AbstractAttributeMap attributeMap, int amplifier)
     {
-        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
+        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.world), String.valueOf(living.getEntityId())));
         super.removeAttributesModifiersFromEntity(living, attributeMap, amplifier);
     }
 

@@ -8,6 +8,6 @@ public class TileEntityNibiruFurnace extends TileEntityFurnaceMP
     @Override
     protected void setState()
     {
-        BlockNibiruFurnace.setState(this.isBurning(), this.worldObj, this.pos);
+        BlockNibiruFurnace.setState(this.isBurning(), this.world, this.pos);
     }
 }

@@ -75,7 +75,7 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
                 }
                 else if (this.getBlock() instanceof BlockAdvancedTile)
                 {
-                    TileEntity te = ((BlockAdvancedTile) this.getBlock()).createTileEntity(player.worldObj, this.getBlock().getStateFromMeta(itemStack.getItemDamage() & 12));
+                    TileEntity te = ((BlockAdvancedTile) this.getBlock()).createTileEntity(player.world, this.getBlock().getStateFromMeta(itemStack.getItemDamage() & 12));
 
                     if (te instanceof TileBaseElectricBlock)
                     {

@@ -11,6 +11,6 @@ public class TileEntityZeliusEgg extends TileEntity implements ITickable
     public void update()
     {
         ++this.age;
-        this.age = this.age + this.worldObj.rand.nextInt(100);
+        this.age = this.age + this.world.rand.nextInt(100);
     }
 }

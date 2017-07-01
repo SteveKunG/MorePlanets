@@ -141,7 +141,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack heldItem = player.getHeldItem(hand);
-        
+
         if (state.getValue(VARIANT) == BlockType.INFECTED_CRYSTALLIZE_BLOCK)
         {
             if (heldItem != null)

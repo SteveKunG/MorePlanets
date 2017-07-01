@@ -114,20 +114,20 @@ public class ContainerWorkbenchMP extends Container
                 return null;
             }
 
-            if (itemstack1.stackSize == 0)
+            if (itemstack1.getCount() == 0)
             {
-                slot.putStack((ItemStack)null);
+                slot.putStack(ItemStack.EMPTY);
             }
             else
             {
                 slot.onSlotChanged();
             }
 
-            if (itemstack1.stackSize == itemstack.stackSize)
+            if (itemstack1.getCount() == itemstack.getCount())
             {
-                return null;
+                return ItemStack.EMPTY;
             }
-            slot.onPickupFromSlot(player, itemstack1);
+            slot.onTake(player, itemstack1);
         }
         return itemstack;
     }

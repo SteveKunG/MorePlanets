@@ -88,12 +88,12 @@ public class MapGenChalosCave extends MapGenBase
 
                 if (par5 >= d4 - 16.0D - d6 * 2.0D && par7 >= d5 - 16.0D - d6 * 2.0D && par5 <= d4 + 16.0D + d6 * 2.0D && par7 <= d5 + 16.0D + d6 * 2.0D)
                 {
-                    int k3 = MathHelper.floor_double(par5 - d6) - chunkX * 16 - 1;
-                    int l1 = MathHelper.floor_double(par5 + d6) - chunkX * 16 + 1;
-                    int l3 = MathHelper.floor_double(par6 - d7) - 1;
-                    int i2 = MathHelper.floor_double(par6 + d7) + 1;
-                    int i4 = MathHelper.floor_double(par7 - d6) - chunkZ * 16 - 1;
-                    int j2 = MathHelper.floor_double(par7 + d6) - chunkZ * 16 + 1;
+                    int k3 = MathHelper.floor(par5 - d6) - chunkX * 16 - 1;
+                    int l1 = MathHelper.floor(par5 + d6) - chunkX * 16 + 1;
+                    int l3 = MathHelper.floor(par6 - d7) - 1;
+                    int i2 = MathHelper.floor(par6 + d7) + 1;
+                    int i4 = MathHelper.floor(par7 - d6) - chunkZ * 16 - 1;
+                    int j2 = MathHelper.floor(par7 + d6) - chunkZ * 16 + 1;
 
                     if (k3 < 0)
                     {

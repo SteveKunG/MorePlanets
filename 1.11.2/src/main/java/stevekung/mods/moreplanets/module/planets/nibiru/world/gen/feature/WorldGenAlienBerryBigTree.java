@@ -121,7 +121,7 @@ public class WorldGenAlienBerryBigTree extends WorldGenAbstractTree
         {
             float f = this.heightLimit / 2.0F;
             float f1 = f - p_76490_1_;
-            float f2 = MathHelper.sqrt_float(f * f - f1 * f1);
+            float f2 = MathHelper.sqrt(f * f - f1 * f1);
 
             if (f1 == 0.0F)
             {
@@ -166,9 +166,9 @@ public class WorldGenAlienBerryBigTree extends WorldGenAbstractTree
 
     private int getGreatestDistance(BlockPos posIn)
     {
-        int i = MathHelper.abs_int(posIn.getX());
-        int j = MathHelper.abs_int(posIn.getY());
-        int k = MathHelper.abs_int(posIn.getZ());
+        int i = MathHelper.abs(posIn.getX());
+        int j = MathHelper.abs(posIn.getY());
+        int k = MathHelper.abs(posIn.getZ());
         return k > i && k > j ? k : j > i ? j : i;
     }
 

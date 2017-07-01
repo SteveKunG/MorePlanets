@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -12,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,7 +35,7 @@ public class BlockNibiruFence extends BlockFenceMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {

@@ -58,7 +58,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
         this.oFlap = this.wingRotation;
         this.oFlapSpeed = this.destPos;
         this.destPos = (float)(this.destPos + (this.onGround ? -1 : 4) * 0.3D);
-        this.destPos = MathHelper.clamp_float(this.destPos, 0.0F, 1.0F);
+        this.destPos = MathHelper.clamp(this.destPos, 0.0F, 1.0F);
 
         if (!this.onGround && this.wingRotDelta < 1.0F)
         {
@@ -83,7 +83,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox()) && this.worldObj.getLightBrightness(this.getPosition()) <= 1.0F;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox()) && this.world.getLightBrightness(this.getPosition()) <= 1.0F;
     }
 
     @Override
@@ -170,7 +170,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
             this.distX = this.posX - this.entity.posX;
             this.distY = this.posY - this.entity.posY;
             this.distZ = this.posZ - this.entity.posZ;
-            this.dist = MathHelper.sqrt_double(this.distX * this.distX + this.distY * this.distY + this.distZ * this.distZ);
+            this.dist = MathHelper.sqrt(this.distX * this.distX + this.distY * this.distY + this.distZ * this.distZ);
 
             if (this.dist == 0.0D)
             {
@@ -188,7 +188,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
 
         public boolean isBoxBlocked(AxisAlignedBB box)
         {
-            return !this.entity.worldObj.getCollisionBoxes(this.entity, box).isEmpty();
+            return !this.entity.world.getCollisionBoxes(this.entity, box).isEmpty();
         }
 
         public boolean isPathClear(double howFar)

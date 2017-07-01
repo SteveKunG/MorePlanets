@@ -102,7 +102,7 @@ public class ItemCapsule extends ItemFoodMP
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         ItemStack itemStack = player.getHeldItem(hand);
-        
+
         if (itemStack.hasTagCompound() && (player.canEat(true) || player.capabilities.isCreativeMode))
         {
             player.setActiveHand(hand);

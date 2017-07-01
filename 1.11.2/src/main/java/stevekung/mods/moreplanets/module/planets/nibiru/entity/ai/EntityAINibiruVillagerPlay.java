@@ -35,7 +35,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
         }
         else
         {
-            List<EntityNibiruVillager> list = this.villagerObj.worldObj.getEntitiesWithinAABB(EntityNibiruVillager.class, this.villagerObj.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
+            List<EntityNibiruVillager> list = this.villagerObj.world.getEntitiesWithinAABB(EntityNibiruVillager.class, this.villagerObj.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
             double d0 = Double.MAX_VALUE;
 
             for (EntityNibiruVillager entityvillager : list)

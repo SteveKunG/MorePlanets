@@ -24,9 +24,11 @@ public class ItemBlockInfectedSnow extends ItemBlock
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (itemStack.stackSize != 0 && player.canPlayerEdit(pos, facing, itemStack))
+        ItemStack itemStack = player.getHeldItem(hand);
+
+        if (itemStack.getCount() != 0 && player.canPlayerEdit(pos, facing, itemStack))
         {
             IBlockState iblockstate = world.getBlockState(pos);
             Block block = iblockstate.getBlock();
@@ -52,12 +54,12 @@ public class ItemBlockInfectedSnow extends ItemBlock
                     {
                         SoundType soundtype = this.block.getSoundType(iblockstate1, world, blockpos, player);
                         world.playSound(player, blockpos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                        --itemStack.stackSize;
+                        itemStack.shrink(1);
                         return EnumActionResult.SUCCESS;
                     }
                 }
             }
-            return super.onItemUse(itemStack, player, world, blockpos, hand, facing, hitX, hitY, hitZ);
+            return super.onItemUse(player, world, blockpos, hand, facing, hitX, hitY, hitZ);
         }
         else
         {

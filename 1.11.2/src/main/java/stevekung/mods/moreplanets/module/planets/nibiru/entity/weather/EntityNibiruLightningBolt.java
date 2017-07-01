@@ -52,8 +52,8 @@ public class EntityNibiruLightningBolt extends Entity
 
         if (this.lightningState == 2)
         {
-            this.worldObj.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, this.worldObj.rand.nextInt(5) == 0 ? SoundEvents.ENTITY_LIGHTNING_THUNDER : MPSounds.LOUD_THUNDER, SoundCategory.WEATHER, 20.0F, 0.8F + this.rand.nextFloat() * 0.2F);
-            this.worldObj.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LIGHTNING_IMPACT, SoundCategory.WEATHER, 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
+            this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, this.world.rand.nextInt(5) == 0 ? SoundEvents.ENTITY_LIGHTNING_THUNDER : MPSounds.LOUD_THUNDER, SoundCategory.WEATHER, 20.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+            this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LIGHTNING_IMPACT, SoundCategory.WEATHER, 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
         }
 
         --this.lightningState;
@@ -71,21 +71,21 @@ public class EntityNibiruLightningBolt extends Entity
                 this.boltVertex = this.rand.nextLong();
                 BlockPos blockpos = new BlockPos(this);
 
-                if (!this.worldObj.isRemote && this.fire && this.worldObj.getGameRules().getBoolean("doFireTick"))
+                if (!this.world.isRemote && this.fire && this.world.getGameRules().getBoolean("doFireTick"))
                 {
-                    if (this.worldObj.isAreaLoaded(blockpos, 10) && this.worldObj.getBlockState(blockpos).getMaterial() == Material.AIR && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.worldObj, blockpos))
+                    if (this.world.isAreaLoaded(blockpos, 10) && this.world.getBlockState(blockpos).getMaterial() == Material.AIR && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.world, blockpos))
                     {
-                        this.worldObj.setBlockState(blockpos, NibiruBlocks.ELECTRICAL_FIRE.getDefaultState());
+                        this.world.setBlockState(blockpos, NibiruBlocks.ELECTRICAL_FIRE.getDefaultState());
                     }
-                    if (this.worldObj.rand.nextInt(4) == 0)
+                    if (this.world.rand.nextInt(4) == 0)
                     {
                         for (int i = 0; i < 4; ++i)
                         {
                             BlockPos blockpos1 = blockpos.add(this.rand.nextInt(3) - 1, this.rand.nextInt(3) - 1, this.rand.nextInt(3) - 1);
 
-                            if (this.worldObj.getBlockState(blockpos1).getMaterial() == Material.AIR && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.worldObj, blockpos1))
+                            if (this.world.getBlockState(blockpos1).getMaterial() == Material.AIR && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.world, blockpos1))
                             {
-                                this.worldObj.setBlockState(blockpos1, NibiruBlocks.ELECTRICAL_FIRE.getDefaultState());
+                                this.world.setBlockState(blockpos1, NibiruBlocks.ELECTRICAL_FIRE.getDefaultState());
                             }
                         }
                     }
@@ -95,19 +95,19 @@ public class EntityNibiruLightningBolt extends Entity
 
         if (this.lightningState >= 0)
         {
-            if (this.worldObj.isRemote)
+            if (this.world.isRemote)
             {
-                this.worldObj.setLastLightningBolt(2);
+                this.world.setLastLightningBolt(2);
             }
             else
             {
                 double d0 = 3.0D;
-                List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
+                List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
 
                 for (int i = 0; i < list.size(); ++i)
                 {
                     Entity entity = list.get(i);
-                    entity.attackEntityFrom(DamageSource.lightningBolt, 8.0F);
+                    entity.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 8.0F);
                     entity.setFire(8);
                 }
             }

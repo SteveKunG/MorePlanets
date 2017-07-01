@@ -19,8 +19,9 @@ public abstract class ItemSchematicVariantsMP extends ItemBaseVariantsMP impleme
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         BlockPos blockpos = pos.offset(facing);
 
         if (facing != EnumFacing.DOWN && facing != EnumFacing.UP && player.canPlayerEdit(blockpos, facing, itemStack))
@@ -34,7 +35,7 @@ public abstract class ItemSchematicVariantsMP extends ItemBaseVariantsMP impleme
                     world.spawnEntity(entityhanging);
                     entityhanging.sendToClient(world, blockpos);
                 }
-                --itemStack.stackSize;
+                itemStack.shrink(1);
             }
             return EnumActionResult.SUCCESS;
         }

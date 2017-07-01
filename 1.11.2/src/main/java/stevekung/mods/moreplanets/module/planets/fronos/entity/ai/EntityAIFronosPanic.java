@@ -51,7 +51,7 @@ public class EntityAIFronosPanic extends EntityAIBase
     {
         this.entity.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
         this.timer = 30;
-        this.entity.worldObj.setEntityState(this.entity, (byte)11);
+        this.entity.world.setEntityState(this.entity, (byte)11);
     }
 
     @Override

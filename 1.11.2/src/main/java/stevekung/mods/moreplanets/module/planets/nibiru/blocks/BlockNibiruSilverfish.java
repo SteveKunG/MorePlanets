@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
@@ -12,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -41,7 +41,7 @@ public class BlockNibiruSilverfish extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    protected ItemStack createStackedBlock(IBlockState state)
+    protected ItemStack getSilkTouchDrop(IBlockState state)
     {
         if (state == state.withProperty(VARIANT, BlockType.NIBIRU_COBBLESTONE))
         {
@@ -76,14 +76,14 @@ public class BlockNibiruSilverfish extends BlockBaseMP implements IBlockVariants
         {
             EntityInfectedWorm entitysilverfish = new EntityInfectedWorm(world);
             entitysilverfish.setLocationAndAngles(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0.0F, 0.0F);
-            world.spawnEntityInWorld(entitysilverfish);
+            world.spawnEntity(entitysilverfish);
             entitysilverfish.spawnExplosionParticle();
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {

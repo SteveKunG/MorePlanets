@@ -66,7 +66,7 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         TileEntity tile = world.getTileEntity(pos);
 

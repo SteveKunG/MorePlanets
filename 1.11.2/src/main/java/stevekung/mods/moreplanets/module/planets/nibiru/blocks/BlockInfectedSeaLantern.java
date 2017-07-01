@@ -35,7 +35,7 @@ public class BlockInfectedSeaLantern extends BlockBaseMP
     @Override
     public int quantityDroppedWithBonus(int fortune, Random rand)
     {
-        return MathHelper.clamp_int(this.quantityDropped(rand) + rand.nextInt(fortune + 1), 1, 5);
+        return MathHelper.clamp(this.quantityDropped(rand) + rand.nextInt(fortune + 1), 1, 5);
     }
 
     @Override

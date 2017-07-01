@@ -17,7 +17,7 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
     public EntityAIShlimeEatGrass(EntityLiving grassEaterEntity)
     {
         this.grassEaterEntity = grassEaterEntity;
-        this.entityWorld = grassEaterEntity.worldObj;
+        this.entityWorld = grassEaterEntity.world;
         this.setMutexBits(7);
     }
 

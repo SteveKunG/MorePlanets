@@ -56,7 +56,7 @@ public class WorldGenCrashedAlienProbe extends WorldGenerator
             miner.setLocationAndAngles(blockpos.getX() + 0.5D + rand.nextDouble(), blockpos.getY() + 0.5D, blockpos.getZ() + 0.5D, rand.nextFloat() * 360.0F, 0.0F);
             miner.setHealth(5.0F + rand.nextInt(5));
             miner.enablePersistence();
-            world.spawnEntityInWorld(miner);
+            world.spawnEntity(miner);
         }
         if (rand.nextInt(5) == 0)
         {
@@ -64,7 +64,7 @@ public class WorldGenCrashedAlienProbe extends WorldGenerator
             miner.setLocationAndAngles(blockpos.getX() + 0.5D, blockpos.getY() + 0.5D, blockpos.getZ() + 0.5D + rand.nextDouble(), rand.nextFloat() * 360.0F, 0.0F);
             miner.setHealth(5.0F + rand.nextInt(5));
             miner.enablePersistence();
-            world.spawnEntityInWorld(miner);
+            world.spawnEntity(miner);
         }
 
         boolean alien = rand.nextInt(5) == 0;

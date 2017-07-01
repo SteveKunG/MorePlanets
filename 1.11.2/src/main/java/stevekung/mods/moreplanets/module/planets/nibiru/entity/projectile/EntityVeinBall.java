@@ -41,13 +41,13 @@ public class EntityVeinBall extends EntityFireball
     @Override
     public void onUpdate()
     {
-        if (this.worldObj.isRemote || (this.shootingEntity == null || !this.shootingEntity.isDead) && this.worldObj.isBlockLoaded(new BlockPos(this)))
+        if (this.world.isRemote || (this.shootingEntity == null || !this.shootingEntity.isDead) && this.world.isBlockLoaded(new BlockPos(this)))
         {
             super.onUpdate();
 
             if (this.inGround)
             {
-                if (this.worldObj.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock() == this.inTile)
+                if (this.world.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock() == this.inTile)
                 {
                     ++this.ticksAlive;
 
@@ -71,7 +71,7 @@ public class EntityVeinBall extends EntityFireball
 
             Vec3d vec3 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            RayTraceResult movingobjectposition = this.worldObj.rayTraceBlocks(vec3, vec31);
+            RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec3, vec31);
             vec3 = new Vec3d(this.posX, this.posY, this.posZ);
             vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -81,7 +81,7 @@ public class EntityVeinBall extends EntityFireball
             }
 
             Entity entity = null;
-            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
 
             for (int i = 0; i < list.size(); ++i)
@@ -119,7 +119,7 @@ public class EntityVeinBall extends EntityFireball
             this.posX += this.motionX;
             this.posY += this.motionY;
             this.posZ += this.motionZ;
-            float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationYaw = (float)(MathHelper.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) + 90.0F;
 
             for (this.rotationPitch = (float)(MathHelper.atan2(f1, this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {}
@@ -146,7 +146,7 @@ public class EntityVeinBall extends EntityFireball
                 for (int j = 0; j < 4; ++j)
                 {
                     float f3 = 0.25F;
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ, new int[0]);
+                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ, new int[0]);
                 }
                 f2 = 0.8F;
             }
@@ -167,7 +167,7 @@ public class EntityVeinBall extends EntityFireball
     @Override
     protected void onImpact(RayTraceResult moving)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (moving.entityHit != null)
             {
@@ -225,7 +225,7 @@ public class EntityVeinBall extends EntityFireball
     public float getBrightness(float partialTicks)
     {
         BlockPos blockpos = new BlockPos(this.posX, this.posY + this.getEyeHeight(), this.posZ);
-        return this.worldObj.isBlockLoaded(blockpos) ? this.worldObj.getLightBrightness(blockpos) : 0.0F;
+        return this.world.isBlockLoaded(blockpos) ? this.world.getLightBrightness(blockpos) : 0.0F;
     }
 
     @Override
@@ -233,7 +233,7 @@ public class EntityVeinBall extends EntityFireball
     public int getBrightnessForRender(float partialTicks)
     {
         BlockPos blockpos = new BlockPos(this.posX, this.posY + this.getEyeHeight(), this.posZ);
-        return this.worldObj.isBlockLoaded(blockpos) ? this.worldObj.getCombinedLight(blockpos, 0) : 0;
+        return this.world.isBlockLoaded(blockpos) ? this.world.getCombinedLight(blockpos, 0) : 0;
     }
 
     @Override

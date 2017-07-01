@@ -19,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -50,7 +51,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -66,7 +67,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
         if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, heldStack) > 0)
         {
             List<ItemStack> items = Lists.newArrayList();
-            ItemStack itemstack = this.createStackedBlock(state);
+            ItemStack itemstack = this.getSilkTouchDrop(state);
 
             if (itemstack != null)
             {

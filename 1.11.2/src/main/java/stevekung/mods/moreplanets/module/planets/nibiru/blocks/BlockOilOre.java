@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
@@ -38,7 +39,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return AABB;
     }
@@ -75,7 +76,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
         if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, heldStack) > 0)
         {
             List<ItemStack> items = Lists.newArrayList();
-            ItemStack itemstack = this.createStackedBlock(state);
+            ItemStack itemstack = this.getSilkTouchDrop(state);
 
             if (itemstack != null)
             {

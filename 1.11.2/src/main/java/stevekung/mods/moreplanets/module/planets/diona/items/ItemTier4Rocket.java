@@ -30,7 +30,7 @@ public class ItemTier4Rocket extends ItemRocketBaseMP
 
         rocket.rotationYaw += 45;
         rocket.setPosition(rocket.posX, rocket.posY + rocket.getOnPadYOffset(), rocket.posZ);
-        world.spawnEntityInWorld(rocket);
+        world.spawnEntity(rocket);
 
         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("RocketFuel"))
         {
@@ -39,11 +39,11 @@ public class ItemTier4Rocket extends ItemRocketBaseMP
 
         if (!player.capabilities.isCreativeMode)
         {
-            itemStack.stackSize--;
+            itemStack.shrink(1);
 
-            if (itemStack.stackSize <= 0)
+            if (itemStack.isEmpty())
             {
-                itemStack = null;
+                itemStack = ItemStack.EMPTY;
             }
         }
         if (rocket.getType().getPreFueled())
@@ -56,7 +56,7 @@ public class ItemTier4Rocket extends ItemRocketBaseMP
     @SideOnly(Side.CLIENT)
     protected void addDescription(ItemStack itemStack, List list)
     {
-        EntityTier4Rocket rocket = new EntityTier4Rocket(Minecraft.getMinecraft().theWorld, 0, 0, 0, EnumRocketType.values()[itemStack.getItemDamage()]);
+        EntityTier4Rocket rocket = new EntityTier4Rocket(Minecraft.getMinecraft().world, 0, 0, 0, EnumRocketType.values()[itemStack.getItemDamage()]);
         list.add(GCCoreUtil.translate("gui.message.fuel.name") + ": " + itemStack.getTagCompound().getInteger("RocketFuel") + " / " + rocket.fuelTank.getCapacity());
     }
 }

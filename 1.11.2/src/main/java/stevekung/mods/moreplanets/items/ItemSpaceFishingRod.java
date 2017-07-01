@@ -103,7 +103,7 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         ItemStack itemStack = player.getHeldItem(hand);
-        
+
         if (player.fishEntity != null)
         {
             int i = player.fishEntity.handleHookRetraction();

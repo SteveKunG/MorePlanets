@@ -30,8 +30,9 @@ public class ItemInfectedSugarCane extends ItemBaseMP
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         IBlockState iblockstate = world.getBlockState(pos);
         Block block = iblockstate.getBlock();
         BlockBushMP cane = NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK;
@@ -45,9 +46,9 @@ public class ItemInfectedSugarCane extends ItemBaseMP
             pos = pos.offset(facing);
         }
 
-        if (player.canPlayerEdit(pos, facing, stack) && stack.stackSize != 0 && world.canBlockBePlaced(cane, pos, false, facing, (Entity)null, stack))
+        if (player.canPlayerEdit(pos, facing, itemStack) && itemStack.getCount() != 0 && world.mayPlace(cane, pos, false, facing, (Entity)null))
         {
-            IBlockState iblockstate1 = cane.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, 0, player, stack);
+            IBlockState iblockstate1 = cane.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, 0, player, hand);
 
             if (!world.setBlockState(pos, iblockstate1, 11))
             {
@@ -59,12 +60,12 @@ public class ItemInfectedSugarCane extends ItemBaseMP
 
                 if (iblockstate1.getBlock() == cane)
                 {
-                    ItemBlock.setTileEntityNBT(world, player, pos, stack);
-                    iblockstate1.getBlock().onBlockPlacedBy(world, pos, iblockstate1, player, stack);
+                    ItemBlock.setTileEntityNBT(world, player, pos, itemStack);
+                    iblockstate1.getBlock().onBlockPlacedBy(world, pos, iblockstate1, player, itemStack);
                 }
                 SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, world, pos, player);
                 world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                --stack.stackSize;
+                itemStack.shrink(1);
                 return EnumActionResult.SUCCESS;
             }
         }

@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -18,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -52,7 +52,7 @@ public class BlockNibiruGrassPath extends BlockBaseMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -106,7 +106,7 @@ public class BlockNibiruGrassPath extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         if (world.getBlockState(pos.up()).getMaterial().isSolid())
         {

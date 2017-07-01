@@ -47,7 +47,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             GlStateManager.depthMask(true);
             GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
             double d0 = tile.getWorld().getTotalWorldTime() + (double)partialTicks;
-            double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor_double(-d0 * 0.1D));
+            double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor(-d0 * 0.1D));
             float f1 = 0.85F;
             float f2 = 0.35F;
             float f3 = 0.2F;

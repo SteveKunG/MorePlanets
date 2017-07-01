@@ -14,7 +14,7 @@ public class TileEntitySpaceWarpPad extends TileEntity implements ITickable
     @Override
     public void update()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             ArrayList<TileEntity> attachedLaunchPads = Lists.newArrayList();
 
@@ -22,7 +22,7 @@ public class TileEntitySpaceWarpPad extends TileEntity implements ITickable
             {
                 for (int z = this.getPos().getZ() - 1; z < this.getPos().getZ() + 2; z++)
                 {
-                    TileEntity tile = this.worldObj.getTileEntity(new BlockPos(x, this.getPos().getY(), z));
+                    TileEntity tile = this.world.getTileEntity(new BlockPos(x, this.getPos().getY(), z));
 
                     if (tile instanceof TileEntitySpaceWarpPad)
                     {
@@ -35,15 +35,15 @@ public class TileEntitySpaceWarpPad extends TileEntity implements ITickable
             {
                 for (TileEntity tile : attachedLaunchPads)
                 {
-                    this.worldObj.markTileEntityForRemoval(tile);
+                    this.world.markTileEntityForRemoval(tile);
                 }
 
-                this.worldObj.setBlockState(this.getPos(), MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState(), 2);
-                TileEntitySpaceWarpPadFull tilePadFull = (TileEntitySpaceWarpPadFull) this.worldObj.getTileEntity(this.getPos());
+                this.world.setBlockState(this.getPos(), MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState(), 2);
+                TileEntitySpaceWarpPadFull tilePadFull = (TileEntitySpaceWarpPadFull) this.world.getTileEntity(this.getPos());
 
                 if (tilePadFull != null)
                 {
-                    tilePadFull.onCreate(this.worldObj, this.getPos());
+                    tilePadFull.onCreate(this.world, this.getPos());
                 }
             }
         }

@@ -68,12 +68,12 @@ public class CloudRendererNibiru extends IRenderHandler
                 double d0 = this.cloudTickCounter * (1.0F - count / 3.0F) + count / 5.0F * partialTicks + count * 300000;
                 double d1 = (mc.getRenderViewEntity().prevPosX + (mc.getRenderViewEntity().posX - mc.getRenderViewEntity().prevPosX) * partialTicks + d0 * 0.029999999329447746D) / f2;
                 double d2 = (mc.getRenderViewEntity().prevPosZ + (mc.getRenderViewEntity().posZ - mc.getRenderViewEntity().prevPosZ) * partialTicks) / f2 + 0.33000001311302185D;
-                float f4 = mc.theWorld.provider.getCloudHeight() - f1 + 0.33F + count * 20.0F;
-                int i = MathHelper.floor_double(d1 / 2048.0D);
-                int j = MathHelper.floor_double(d2 / 2048.0D);
+                float f4 = mc.world.provider.getCloudHeight() - f1 + 0.33F + count * 20.0F;
+                int i = MathHelper.floor(d1 / 2048.0D);
+                int j = MathHelper.floor(d2 / 2048.0D);
                 d1 -= i * 2048;
                 d2 -= j * 2048;
-                float celes = 1.0F - mc.theWorld.provider.getStarBrightness(partialTicks);
+                float celes = 1.0F - mc.world.provider.getStarBrightness(partialTicks);
                 float f5 = 216.0F / (400.0F + count * 200.0F) * celes;
                 float f6 = 105.0F / (400.0F + count * 200.0F) * celes;
                 float f7 = 39.0F / (400.0F + count * 200.0F) * celes;
@@ -94,10 +94,10 @@ public class CloudRendererNibiru extends IRenderHandler
                 f8 = (float)(d1 * 0.0D);
                 f9 = (float)(d2 * 0.0D);
                 f10 = 0.00390625F;
-                f8 = MathHelper.floor_double(d1) * f10;
-                f9 = MathHelper.floor_double(d2) * f10;
-                float f11 = (float)(d1 - MathHelper.floor_double(d1));
-                float f12 = (float)(d2 - MathHelper.floor_double(d2));
+                f8 = MathHelper.floor(d1) * f10;
+                f9 = MathHelper.floor(d2) * f10;
+                float f11 = (float)(d1 - MathHelper.floor(d1));
+                float f12 = (float)(d2 - MathHelper.floor(d2));
 
                 for (int l = -b1 + 1; l <= b1; ++l)
                 {
@@ -187,9 +187,9 @@ public class CloudRendererNibiru extends IRenderHandler
 
         if (!mc.isGamePaused())
         {
-            if (mc.theWorld != null)
+            if (mc.world != null)
             {
-                if (mc.theWorld.isThundering())
+                if (mc.world.isThundering())
                 {
                     this.cloudTickCounter += 6;
                 }

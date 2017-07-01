@@ -70,9 +70,9 @@ public class WorldProviderNibiru extends WorldProviderMP
         }
         else
         {
-            if (pos.getY() >= 0 && pos.getY() < 256 && this.worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10)
+            if (pos.getY() >= 0 && pos.getY() < 256 && this.world.getLightFor(EnumSkyBlock.BLOCK, pos) < 10)
             {
-                IBlockState iblockstate = this.worldObj.getBlockState(pos);
+                IBlockState iblockstate = this.world.getBlockState(pos);
 
                 if (iblockstate == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState())
                 {
@@ -95,7 +95,7 @@ public class WorldProviderNibiru extends WorldProviderMP
 
     private boolean isWater(BlockPos pos)
     {
-        return this.worldObj.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK;
+        return this.world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK;
     }
 
     @Override
@@ -114,11 +114,11 @@ public class WorldProviderNibiru extends WorldProviderMP
         }
         else
         {
-            if (pos.getY() >= 0 && pos.getY() < 256 && this.worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10)
+            if (pos.getY() >= 0 && pos.getY() < 256 && this.world.getLightFor(EnumSkyBlock.BLOCK, pos) < 10)
             {
-                Block block = this.worldObj.getBlockState(pos).getBlock();
+                Block block = this.world.getBlockState(pos).getBlock();
 
-                if (block.isAir(this.worldObj.getBlockState(pos), this.worldObj, pos) && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.worldObj, pos))
+                if (block.isAir(this.world.getBlockState(pos), this.world, pos) && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, pos))
                 {
                     return true;
                 }
@@ -149,7 +149,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     @SideOnly(Side.CLIENT)
     public float getStarBrightness(float partialTicks)
     {
-        float angle = this.worldObj.getCelestialAngle(partialTicks);
+        float angle = this.world.getCelestialAngle(partialTicks);
         float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
 
         if (value < 0.0F)
@@ -167,7 +167,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     @SideOnly(Side.CLIENT)
     public float getSunBrightness(float partialTicks)
     {
-        float angle = this.worldObj.getCelestialAngle(partialTicks);
+        float angle = this.world.getCelestialAngle(partialTicks);
         float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
 
         if (value < 0.0F)//day
@@ -179,8 +179,8 @@ public class WorldProviderNibiru extends WorldProviderMP
             value = 1.0F;
         }
         value = 1.0F - value;
-        value = (float)(value * (1.0D - this.worldObj.getRainStrength(partialTicks) * 6.0F / 16.0D));
-        value = (float)(value * (1.0D - this.worldObj.getThunderStrength(partialTicks) * 8.0F / 16.0D));
+        value = (float)(value * (1.0D - this.world.getRainStrength(partialTicks) * 6.0F / 16.0D));
+        value = (float)(value * (1.0D - this.world.getThunderStrength(partialTicks) * 8.0F / 16.0D));
         return value * 1.0F;
     }
 
@@ -288,15 +288,15 @@ public class WorldProviderNibiru extends WorldProviderMP
     }
 
     @Override
-    public void createBiomeProvider()
+    public void init()
     {
-        this.biomeProvider = new BiomeProviderNibiru(this.worldObj.getSeed());
+        this.biomeProvider = new BiomeProviderNibiru(this.world.getSeed());
     }
 
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkGeneratorNibiru(this.worldObj, this.worldObj.getSeed());
+        return new ChunkGeneratorNibiru(this.world, this.world.getSeed());
     }
 
     @Override

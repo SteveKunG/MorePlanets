@@ -3,31 +3,33 @@ package stevekung.mods.moreplanets.inventory;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
 public class InventorySchematicRocket implements IInventoryDefaults
 {
-    private ItemStack[] stackList;
+    private NonNullList<ItemStack> stackList;
     private Container eventHandler;
 
     public InventorySchematicRocket(Container container)
     {
-        this.stackList = new ItemStack[22];
+        this.stackList = NonNullList.withSize(22, ItemStack.EMPTY);
         this.eventHandler = container;
     }
 
     @Override
     public int getSizeInventory()
     {
-        return this.stackList.length;
+        return this.stackList.size();
     }
 
     @Override
-    public ItemStack getStackInSlot(int slot)
+    public ItemStack getStackInSlot(int index)
     {
-        return slot >= this.getSizeInventory() ? null : this.stackList[slot];
+        return index >= this.getSizeInventory() ? null : this.stackList.get(index);
     }
 
     @Override
@@ -37,56 +39,40 @@ public class InventorySchematicRocket implements IInventoryDefaults
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int slot)
+    public ItemStack removeStackFromSlot(int index)
     {
-        if (this.stackList[slot] != null)
+        ItemStack oldstack = ItemStackHelper.getAndRemove(this.stackList, index);
+
+        if (!oldstack.isEmpty())
         {
-            ItemStack itemStack = this.stackList[slot];
-            this.stackList[slot] = null;
-            return itemStack;
+            this.markDirty();
+            this.eventHandler.onCraftMatrixChanged(this);
         }
-        else
-        {
-            return null;
-        }
+        return oldstack;
     }
 
     @Override
-    public ItemStack decrStackSize(int slot, int size)
+    public ItemStack decrStackSize(int index, int count)
     {
-        if (this.stackList[slot] != null)
-        {
-            ItemStack itemStack;
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.stackList, index, count);
 
-            if (this.stackList[slot].stackSize <= size)
-            {
-                itemStack = this.stackList[slot];
-                this.stackList[slot] = null;
-                this.eventHandler.onCraftMatrixChanged(this);
-                return itemStack;
-            }
-            else
-            {
-                itemStack = this.stackList[slot].splitStack(size);
-
-                if (this.stackList[slot].stackSize == 0)
-                {
-                    this.stackList[slot] = null;
-                }
-                this.eventHandler.onCraftMatrixChanged(this);
-                return itemStack;
-            }
-        }
-        else
+        if (!itemStack.isEmpty())
         {
-            return null;
+            this.markDirty();
+            this.eventHandler.onCraftMatrixChanged(this);
         }
+        return itemStack;
     }
 
     @Override
-    public void setInventorySlotContents(int slot, ItemStack itemStack)
+    public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.stackList[slot] = itemStack;
+        if (itemStack.getCount() > this.getInventoryStackLimit())
+        {
+            itemStack.setCount(this.getInventoryStackLimit());
+        }
+        this.stackList.set(index, itemStack);
+        this.markDirty();
         this.eventHandler.onCraftMatrixChanged(this);
     }
 
@@ -100,7 +86,7 @@ public class InventorySchematicRocket implements IInventoryDefaults
     public void markDirty() {}
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUsableByPlayer(EntityPlayer player)
     {
         return true;
     }
@@ -115,5 +101,18 @@ public class InventorySchematicRocket implements IInventoryDefaults
     public ITextComponent getDisplayName()
     {
         return new TextComponentString(this.getName());
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        for (ItemStack itemStack : this.stackList)
+        {
+            if (!itemStack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

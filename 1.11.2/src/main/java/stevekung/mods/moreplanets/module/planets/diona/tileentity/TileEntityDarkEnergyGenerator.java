@@ -65,9 +65,9 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         super.update();
 
         ++this.age;
-        this.age = this.age + this.worldObj.rand.nextInt(100);
+        this.age = this.age + this.world.rand.nextInt(100);
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             this.receiveEnergyGC(null, this.generateWatts, false);
             this.recharge(this.containingItems[0]);
@@ -85,11 +85,11 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
             }
             if (this.getGenerate() > 0.0F)
             {
-                this.ticks = this.ticks + this.worldObj.rand.nextInt(2);
+                this.ticks = this.ticks + this.world.rand.nextInt(2);
 
                 if (this.ticks % 33 == 0)
                 {
-                    this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_GENERATOR_AMBIENT, SoundCategory.BLOCKS, 0.05F, 1.0F);
+                    this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_GENERATOR_AMBIENT, SoundCategory.BLOCKS, 0.05F, 1.0F);
                 }
                 this.generateWatts = Math.min(Math.max(this.getGenerate(), 0), 1500);
             }
@@ -107,7 +107,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         {
             return 0;
         }
-        return this.worldObj.provider instanceof IDarkEnergyProvider ? ((IDarkEnergyProvider) this.worldObj.provider).getDarkEnergyMultiplier(this.worldObj, this.pos) + this.darkEnergyFuel : 100 + this.darkEnergyFuel;
+        return this.world.provider instanceof IDarkEnergyProvider ? ((IDarkEnergyProvider) this.world.provider).getDarkEnergyMultiplier(this.world, this.pos) + this.darkEnergyFuel : 100 + this.darkEnergyFuel;
     }
 
     @Override
@@ -321,9 +321,9 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
+        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
     }
 
     @Override

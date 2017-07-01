@@ -157,16 +157,16 @@ public class ContainerBlackHoleStorageSchematic extends Container
                     }
                 }
             }
-            if (slotStack.stackSize == 0)
+            if (slotStack.getCount() == 0)
             {
-                invSlot.putStack((ItemStack) null);
+                invSlot.putStack(ItemStack.EMPTY);
             }
-            if (slotStack.stackSize == itemStack.stackSize)
+            if (slotStack.getCount() == itemStack.getCount())
             {
-                return null;
+                return ItemStack.EMPTY;
             }
             invSlot.onSlotChanged();
-            invSlot.onPickupFromSlot(player, slotStack);
+            invSlot.onTake(player, slotStack);
         }
         return itemStack;
     }
@@ -175,7 +175,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
     {
         boolean flag = false;
 
-        if (itemStack.stackSize > 0)
+        if (itemStack.getCount() > 0)
         {
             Slot slot;
             ItemStack slotStack;
@@ -185,11 +185,11 @@ public class ContainerBlackHoleStorageSchematic extends Container
                 slot = this.inventorySlots.get(i);
                 slotStack = slot.getStack();
 
-                if (slotStack == null && slot.isItemValid(itemStack))
+                if (slotStack == ItemStack.EMPTY && slot.isItemValid(itemStack))
                 {
                     ItemStack stackOneItem = itemStack.copy();
-                    stackOneItem.stackSize = 1;
-                    itemStack.stackSize--;
+                    stackOneItem.setCount(1);
+                    itemStack.shrink(1);
                     slot.putStack(stackOneItem);
                     slot.onSlotChanged();
                     flag = true;

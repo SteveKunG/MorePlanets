@@ -62,7 +62,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     {
         super.update();
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             boolean updateInv = false;
 
@@ -75,7 +75,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
 
                     if (this.processTicks == 40 || this.processTicks == 80 || this.processTicks == 130)
                     {
-                        this.worldObj.playSound(null, this.getPos(), SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.BLOCKS, 0.3F, 0.5F);
+                        this.world.playSound(null, this.getPos(), SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.BLOCKS, 0.3F, 0.5F);
                     }
                     if (this.processTicks >= this.processTimeRequired)
                     {
@@ -152,12 +152,12 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
                     for (int i = 0; i < this.containingItems[slot].stackSize + resultItemStack.stackSize - 64; i++)
                     {
                         float var = 0.7F;
-                        double dx = this.worldObj.rand.nextFloat() * var + (1.0F - var) * 0.5D;
-                        double dy = this.worldObj.rand.nextFloat() * var + (1.0F - var) * 0.5D;
-                        double dz = this.worldObj.rand.nextFloat() * var + (1.0F - var) * 0.5D;
-                        EntityItem entityitem = new EntityItem(this.worldObj, this.getPos().getX() + dx, this.getPos().getY() + dy, this.getPos().getZ() + dz, new ItemStack(resultItemStack.getItem(), 1, resultItemStack.getItemDamage()));
+                        double dx = this.world.rand.nextFloat() * var + (1.0F - var) * 0.5D;
+                        double dy = this.world.rand.nextFloat() * var + (1.0F - var) * 0.5D;
+                        double dz = this.world.rand.nextFloat() * var + (1.0F - var) * 0.5D;
+                        EntityItem entityitem = new EntityItem(this.world, this.getPos().getX() + dx, this.getPos().getY() + dy, this.getPos().getZ() + dz, new ItemStack(resultItemStack.getItem(), 1, resultItemStack.getItemDamage()));
                         entityitem.setPickupDelay(10);
-                        this.worldObj.spawnEntityInWorld(entityitem);
+                        this.world.spawnEntity(entityitem);
                     }
                     this.containingItems[slot].stackSize = 64;
                 }
@@ -341,7 +341,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
+        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -458,7 +458,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     @Override
     public EnumFacing getFront()
     {
-        return this.worldObj.getBlockState(this.getPos()).getValue(BlockRocketCrusher.FACING);
+        return this.world.getBlockState(this.getPos()).getValue(BlockRocketCrusher.FACING);
     }
 
     @Override

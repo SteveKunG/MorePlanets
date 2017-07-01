@@ -50,7 +50,7 @@ public class EntityInfectedSnowball extends EntityThrowable
         {
             MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_SNOWBALL, this.posX, this.posY, this.posZ);
         }
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             this.setDead();
         }

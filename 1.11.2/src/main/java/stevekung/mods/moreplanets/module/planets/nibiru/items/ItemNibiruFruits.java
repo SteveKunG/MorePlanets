@@ -74,8 +74,9 @@ public class ItemNibiruFruits extends ItemFoodVariantsMP
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         int meta = itemStack.getItemDamage();
 
         if (meta == ItemType.INFECTED_GOLDEN_APPLE.ordinal() || meta == ItemType.ENCHANTED_INFECTED_GOLDEN_APPLE.ordinal() || meta == ItemType.GOLDEN_ALIEN_BERRY.ordinal())
@@ -90,7 +91,7 @@ public class ItemNibiruFruits extends ItemFoodVariantsMP
                 return new ActionResult(EnumActionResult.FAIL, itemStack);
             }
         }
-        return super.onItemRightClick(itemStack, world, player, hand);
+        return super.onItemRightClick(world, player, hand);
     }
 
     @Override
@@ -100,14 +101,15 @@ public class ItemNibiruFruits extends ItemFoodVariantsMP
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         IBlockState state = world.getBlockState(pos);
 
         if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == NibiruBlocks.INFECTED_FARMLAND && world.isAirBlock(pos.up()))
         {
             world.setBlockState(pos.up(), NibiruBlocks.TERRABERRY_BLOCK.getDefaultState(), 11);
-            --itemStack.stackSize;
+            itemStack.shrink(1);
             return EnumActionResult.SUCCESS;
         }
         else

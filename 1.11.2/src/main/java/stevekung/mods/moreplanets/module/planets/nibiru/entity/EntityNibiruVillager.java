@@ -2,8 +2,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
@@ -132,7 +130,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     }
 
     @Override
-    protected PathNavigate getNewNavigator(World world)
+    protected PathNavigate createNavigator(World world)
     {
         return new PathNavigateGroundMP(this, world);
     }
@@ -177,9 +175,9 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         if (--this.randomTickDivider <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
-            this.worldObj.getVillageCollection().addToVillagerPositionList(blockpos);
+            this.world.getVillageCollection().addToVillagerPositionList(blockpos);
             this.randomTickDivider = 70 + this.rand.nextInt(50);
-            this.villageObj = this.worldObj.getVillageCollection().getNearestVillage(blockpos, 32);
+            this.villageObj = this.world.getVillageCollection().getNearestVillage(blockpos, 32);
 
             if (this.villageObj == null)
             {
@@ -219,7 +217,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
                     if (this.villageObj != null && this.lastBuyingPlayer != null)
                     {
-                        this.worldObj.setEntityState(this, (byte)14);
+                        this.world.setEntityState(this, (byte)14);
                         this.villageObj.modifyPlayerReputation(this.lastBuyingPlayer, 1);
                     }
                 }
@@ -230,13 +228,14 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     }
 
     @Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack itemStack)
+    public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
         boolean flag = itemStack != null && itemStack.getItem() == Items.SPAWN_EGG;
 
         if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !player.isSneaking())
         {
-            if (!this.worldObj.isRemote && (this.buyingList == null || this.buyingList.size() > 0))
+            if (!this.world.isRemote && (this.buyingList == null || this.buyingList.size() > 0))
             {
                 this.setCustomer(player);
                 player.displayVillagerTradeGui(this);
@@ -246,7 +245,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         }
         else
         {
-            return super.processInteract(player, hand, itemStack);
+            return super.processInteract(player, hand);
         }
     }
 
@@ -359,7 +358,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
                 if (this.isEntityAlive())
                 {
-                    this.worldObj.setEntityState(this, (byte)13);
+                    this.world.setEntityState(this, (byte)13);
                 }
             }
         }
@@ -385,7 +384,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             }
             else
             {
-                EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity(this, 16.0D);
+                EntityPlayer entityplayer = this.world.getClosestPlayerToEntity(this, 16.0D);
 
                 if (entityplayer != null)
                 {
@@ -435,18 +434,18 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
         if (recipe.getItemToBuy().getItem() == Items.EMERALD)
         {
-            this.wealth += recipe.getItemToBuy().stackSize;
+            this.wealth += recipe.getItemToBuy().getCount();
         }
         if (recipe.getRewardsExp())
         {
-            this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY + 0.5D, this.posZ, i));
+            this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY + 0.5D, this.posZ, i));
         }
     }
 
     @Override
     public void verifySellingItem(ItemStack itemStack)
     {
-        if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
+        if (!this.world.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
         {
             this.livingSoundTime = -this.getTalkInterval();
 
@@ -563,7 +562,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data)
     {
-        if (this.worldObj.getBiome(this.getPosition()) == MPBiomes.GREEN_VEIN)
+        if (this.world.getBiome(this.getPosition()) == MPBiomes.GREEN_VEIN)
         {
             this.setProfession(3 + this.rand.nextInt(3));
         }
@@ -583,8 +582,8 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     @Override
     public EntityNibiruVillager createChild(EntityAgeable ageable)
     {
-        EntityNibiruVillager entityvillager = new EntityNibiruVillager(this.worldObj);
-        entityvillager.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
+        EntityNibiruVillager entityvillager = new EntityNibiruVillager(this.world);
+        entityvillager.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
         return entityvillager;
     }
 
@@ -609,11 +608,11 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     @Override
     public void onStruckByLightning(EntityLightningBolt lightningBolt)
     {
-        if (!this.worldObj.isRemote && !this.isDead)
+        if (!this.world.isRemote && !this.isDead)
         {
-            EntityEvolvedWitch entitywitch = new EntityEvolvedWitch(this.worldObj);
+            EntityEvolvedWitch entitywitch = new EntityEvolvedWitch(this.world);
             entitywitch.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-            entitywitch.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entitywitch)), (IEntityLivingData)null);
+            entitywitch.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entitywitch)), (IEntityLivingData)null);
             entitywitch.setNoAI(this.isAIDisabled());
 
             if (this.hasCustomName())
@@ -621,7 +620,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
                 entitywitch.setCustomNameTag(this.getCustomNameTag());
                 entitywitch.setAlwaysRenderNameTag(this.getAlwaysRenderNameTag());
             }
-            this.worldObj.spawnEntityInWorld(entitywitch);
+            this.world.spawnEntity(entitywitch);
             this.setDead();
         }
     }
@@ -641,7 +640,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             }
             else
             {
-                itemStack.stackSize = itemstack1.stackSize;
+                itemStack.setCount(itemstack1.getCount());
             }
         }
     }
@@ -667,6 +666,18 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
                 return false;
             }
         }
+    }
+
+    @Override
+    public World getWorld()
+    {
+        return this.world;
+    }
+
+    @Override
+    public BlockPos getPos()
+    {
+        return this.getPosition();
     }
 
     public void setProfession(int professionId)
@@ -716,12 +727,12 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
                 if (itemStack != null)
                 {
-                    if (itemStack.getItem() == Items.BREAD && itemStack.stackSize >= 3)
+                    if (itemStack.getItem() == Items.BREAD && itemStack.getCount() >= 3)
                     {
                         flag = true;
                         this.villagerInventory.decrStackSize(i, 3);
                     }
-                    else if (itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6 && itemStack.stackSize >= 12)
+                    else if (itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6 && itemStack.getCount() >= 12)
                     {
                         flag = true;
                         this.villagerInventory.decrStackSize(i, 12);
@@ -730,7 +741,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
                 if (flag)
                 {
-                    this.worldObj.setEntityState(this, (byte)18);
+                    this.world.setEntityState(this, (byte)18);
                     this.isWillingToMate = true;
                     break;
                 }
@@ -752,7 +763,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             double d0 = this.rand.nextGaussian() * 0.02D;
             double d1 = this.rand.nextGaussian() * 0.02D;
             double d2 = this.rand.nextGaussian() * 0.02D;
-            this.worldObj.spawnParticle(particleType, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 1.0D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2, new int[0]);
+            this.world.spawnParticle(particleType, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 1.0D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2, new int[0]);
         }
     }
 
@@ -822,11 +833,11 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
             if (itemStack != null)
             {
-                if (itemStack.getItem() == Items.BREAD && itemStack.stackSize >= 3 * multiplier || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6 && itemStack.stackSize >= 12 * multiplier)
+                if (itemStack.getItem() == Items.BREAD && itemStack.getCount() >= 3 * multiplier || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6 && itemStack.getCount() >= 12 * multiplier)
                 {
                     return true;
                 }
-                if (flag && itemStack.getItem() == NibiruItems.INFECTED_WHEAT && itemStack.stackSize >= 9 * multiplier)
+                if (flag && itemStack.getItem() == NibiruItems.INFECTED_WHEAT && itemStack.getCount() >= 9 * multiplier)
                 {
                     return true;
                 }
@@ -884,7 +895,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         public void modifyMerchantRecipeList(MerchantRecipeList recipeList, Random rand)
         {
             Enchantment enchantment = Enchantment.REGISTRY.getRandomObject(rand);
-            int i = MathHelper.getRandomIntegerInRange(rand, enchantment.getMinLevel(), enchantment.getMaxLevel());
+            int i = MathHelper.getInt(rand, enchantment.getMinLevel(), enchantment.getMaxLevel());
             ItemStack itemstack = Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(enchantment, i));
             int j = 2 + rand.nextInt(5 + i * 10) + 3 * i;
 
@@ -935,13 +946,13 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
                 if (i < 0)
                 {
                     buyItem = new ItemStack(Items.EMERALD, 1, 0);
-                    capsule.stackSize = 1 + rand.nextInt(4);
+                    capsule.setCount(1 + rand.nextInt(4));
                     sellItem = capsule;
                 }
                 else
                 {
                     buyItem = new ItemStack(Items.EMERALD, i, 0);
-                    capsule.stackSize = 1 + rand.nextInt(4);
+                    capsule.setCount(1 + rand.nextInt(4));
                     sellItem = capsule;
                 }
             }

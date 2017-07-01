@@ -41,14 +41,14 @@ public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawner
     @Override
     public void playSpawnSound(Entity entity)
     {
-        this.worldObj.playSound(null, entity.posX, entity.posY, entity.posZ, GCSounds.scaryScape, SoundCategory.AMBIENT, 9.0F, 1.4F);
+        this.world.playSound(null, entity.posX, entity.posY, entity.posZ, GCSounds.scaryScape, SoundCategory.AMBIENT, 9.0F, 1.4F);
     }
 
     @Override
     public void update()
     {
         super.update();
-        List<EntityPlayer> playerList = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.getPos().getX() - 16.0D, this.getPos().getY() - 16.0D, this.getPos().getZ() - 16.0D, this.getPos().getX() + 16.0D, this.getPos().getY() + 16.0D, this.getPos().getZ() + 16.0D));
+        List<EntityPlayer> playerList = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.getPos().getX() - 16.0D, this.getPos().getY() - 16.0D, this.getPos().getZ() - 16.0D, this.getPos().getX() + 16.0D, this.getPos().getY() + 16.0D, this.getPos().getZ() + 16.0D));
 
         if (this.spawned && ConfigManagerMP.enableNightVisionEffect)
         {

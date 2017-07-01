@@ -55,7 +55,7 @@ public class EntityMarshmallow extends EntityFronosPet
     {
         super.onLivingUpdate();
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.getRidingEntity() instanceof EntityBearry || this.getRidingEntity() instanceof EntityGiantBlueberry || this.getRidingEntity() instanceof EntityMarshmallow)
             {
@@ -104,12 +104,12 @@ public class EntityMarshmallow extends EntityFronosPet
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data)
     {
-        if (this.worldObj.rand.nextInt(10) == 0)
+        if (this.world.rand.nextInt(10) == 0)
         {
-            EntityMarshmallow marshmallow = new EntityMarshmallow(this.worldObj);
+            EntityMarshmallow marshmallow = new EntityMarshmallow(this.world);
             marshmallow.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
             marshmallow.setGrowingAge(-24000);
-            this.worldObj.spawnEntityInWorld(marshmallow);
+            this.world.spawnEntity(marshmallow);
             marshmallow.startRiding(this);
         }
         return super.onInitialSpawn(difficulty, data);
@@ -118,7 +118,7 @@ public class EntityMarshmallow extends EntityFronosPet
     @Override
     public EntityMarshmallow createChild(EntityAgeable entity)
     {
-        EntityMarshmallow pet = new EntityMarshmallow(this.worldObj);
+        EntityMarshmallow pet = new EntityMarshmallow(this.world);
         UUID owner = this.getOwnerId();
 
         if (owner != null)

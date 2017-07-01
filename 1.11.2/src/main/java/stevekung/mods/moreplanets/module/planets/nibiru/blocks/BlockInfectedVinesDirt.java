@@ -36,7 +36,7 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         if (world.getBlockState(pos.up()).getMaterial().isSolid())
         {

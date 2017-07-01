@@ -109,7 +109,7 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         ItemStack itemStack = player.getHeldItem(hand);
-        
+
         if (this.getElectricityStored(itemStack) > 0.0F)
         {
             player.setActiveHand(hand);
