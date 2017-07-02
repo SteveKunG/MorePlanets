@@ -32,7 +32,7 @@ public class ItemCheeseSpore extends ItemBaseMP
         {
             if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS && !world.getBlockState(pos).isSideSolid(world, pos.up(), EnumFacing.UP) || world.getBlockState(pos.up()).getBlock() == ChalosBlocks.CHEESE_SPORE_FLOWER)
             {
-                this.growCheeseSporeFlower(itemStack, world, pos, world.rand);
+                this.growCheeseSporeFlower(world, pos, world.rand);
                 --itemStack.stackSize;
                 return EnumActionResult.SUCCESS;
             }
@@ -40,7 +40,7 @@ public class ItemCheeseSpore extends ItemBaseMP
         return EnumActionResult.PASS;
     }
 
-    private void growCheeseSporeFlower(ItemStack itemStack, World world, BlockPos pos, Random rand)
+    private void growCheeseSporeFlower(World world, BlockPos pos, Random rand)
     {
         if (!world.isRemote)
         {

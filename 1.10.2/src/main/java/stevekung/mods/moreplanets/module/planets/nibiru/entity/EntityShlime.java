@@ -341,11 +341,6 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         }
     }
 
-    protected void addRandomDrop()
-    {
-        this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 3), 0.0F);
-    }
-
     @Override
     public EntityShlime createChild(EntityAgeable ageable)
     {

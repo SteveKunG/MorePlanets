@@ -109,7 +109,7 @@ public class CraftingManagerMP
         {
             RecipeHelper.addRocketCrusherRecipe(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 21, 0), "DDD", "DRD", "DDD", 'D', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'R', new ItemStack(AsteroidsItems.tier3Rocket, 1, i));
             RecipeHelper.addRocketCrusherRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 21, 0), "III", "DRD", "SSS", 'D', new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0), 'I', new ItemStack(DionaItems.DIONA_ITEM, 1, 2), 'S', new ItemStack(DionaItems.DIONA_ITEM, 1, 3), 'R', new ItemStack(DionaItems.TIER_4_ROCKET, 1, i));
-            RecipeHelper.addRocketCrusherRecipe(new ItemStack(NibiruItems.NIBIRU_ITEM, 21, 4), "III", "DRD", "SSS", 'D', new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 21, 0), 'I', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'S', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 3), 'R', new ItemStack(ChalosItems.TIER_5_ROCKET, 1, i));
+            RecipeHelper.addRocketCrusherRecipe(new ItemStack(NibiruItems.NIBIRU_ITEM, 21, 4), "III", "DRD", "SSS", 'D', new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0), 'I', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'S', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 3), 'R', new ItemStack(ChalosItems.TIER_5_ROCKET, 1, i));
         }
 
         input.put(0, new ItemStack(Items.ENDER_PEARL));
