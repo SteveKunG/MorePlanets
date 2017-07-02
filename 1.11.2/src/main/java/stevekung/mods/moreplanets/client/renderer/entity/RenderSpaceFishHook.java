@@ -29,9 +29,9 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
     @Override
     public void doRender(EntitySpaceFishHook entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        EntityPlayer entityplayer = entity.getAngler();
+        EntityPlayer player = entity.getAngler();
 
-        if (entityplayer != null && !this.renderOutlines)
+        if (player != null && !this.renderOutlines)
         {
             GlStateManager.pushMatrix();
             GlStateManager.translate((float)x, (float)y, (float)z);
@@ -64,17 +64,17 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
 
             GlStateManager.disableRescaleNormal();
             GlStateManager.popMatrix();
-            int k = entityplayer.getPrimaryHand() == EnumHandSide.RIGHT ? 1 : -1;
-            ItemStack itemstack = entityplayer.getHeldItemMainhand();
+            int k = player.getPrimaryHand() == EnumHandSide.RIGHT ? 1 : -1;
+            ItemStack itemStack = player.getHeldItemMainhand();
 
-            if (itemstack.getItem() != MPItems.SPACE_FISHING_ROD)
+            if (itemStack.getItem() != MPItems.SPACE_FISHING_ROD)
             {
                 k = -k;
             }
 
-            float f7 = entityplayer.getSwingProgress(partialTicks);
+            float f7 = player.getSwingProgress(partialTicks);
             float f8 = MathHelper.sin(MathHelper.sqrt(f7) * (float)Math.PI);
-            float f9 = (entityplayer.prevRenderYawOffset + (entityplayer.renderYawOffset - entityplayer.prevRenderYawOffset) * partialTicks) * 0.017453292F;
+            float f9 = (player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * partialTicks) * 0.017453292F;
             double d0 = MathHelper.sin(f9);
             double d1 = MathHelper.cos(f9);
             double d2 = k * 0.35D;
@@ -84,27 +84,27 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
             double d7;
             double dz = 0.0D;
 
-            if ((this.renderManager.options == null || this.renderManager.options.thirdPersonView <= 0) && entityplayer == Minecraft.getMinecraft().player)
+            if ((this.renderManager.options == null || this.renderManager.options.thirdPersonView <= 0) && player == Minecraft.getMinecraft().player)
             {
                 float f10 = this.renderManager.options.fovSetting;
                 f10 = f10 / 100.0F;
                 Vec3d vec3d = new Vec3d(k * -0.5D * f10, -0.03D * f10, 0.65D);
-                vec3d = vec3d.rotatePitch(-(entityplayer.prevRotationPitch + (entityplayer.rotationPitch - entityplayer.prevRotationPitch) * partialTicks) * 0.017453292F);
-                vec3d = vec3d.rotateYaw(-(entityplayer.prevRotationYaw + (entityplayer.rotationYaw - entityplayer.prevRotationYaw) * partialTicks) * 0.017453292F);
+                vec3d = vec3d.rotatePitch(-(player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * partialTicks) * 0.017453292F);
+                vec3d = vec3d.rotateYaw(-(player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks) * 0.017453292F);
                 vec3d = vec3d.rotateYaw(f8 * 0.5F);
                 vec3d = vec3d.rotatePitch(-f8 * 0.7F);
-                d4 = entityplayer.prevPosX + (entityplayer.posX - entityplayer.prevPosX) * partialTicks + vec3d.xCoord;
-                d5 = entityplayer.prevPosY + (entityplayer.posY - entityplayer.prevPosY) * partialTicks + vec3d.yCoord;
-                d6 = entityplayer.prevPosZ + (entityplayer.posZ - entityplayer.prevPosZ) * partialTicks + vec3d.zCoord;
-                d7 = entityplayer.getEyeHeight();
+                d4 = player.prevPosX + (player.posX - player.prevPosX) * partialTicks + vec3d.xCoord;
+                d5 = player.prevPosY + (player.posY - player.prevPosY) * partialTicks + vec3d.yCoord;
+                d6 = player.prevPosZ + (player.posZ - player.prevPosZ) * partialTicks + vec3d.zCoord;
+                d7 = player.getEyeHeight();
             }
             else
             {
-                d4 = entityplayer.prevPosX + (entityplayer.posX - entityplayer.prevPosX) * partialTicks - d1 * d2 - d0 * 0.8D;
-                d5 = entityplayer.prevPosY + entityplayer.getEyeHeight() + (entityplayer.posY - entityplayer.prevPosY) * partialTicks - 0.45D;
-                d6 = entityplayer.prevPosZ + (entityplayer.posZ - entityplayer.prevPosZ) * partialTicks - d0 * d2 + d1 * 0.8D;
-                d7 = entityplayer.isSneaking() ? -0.45D : 0.0D;
-                dz = entityplayer.isSneaking() ? -0.03D : 0.0D;
+                d4 = player.prevPosX + (player.posX - player.prevPosX) * partialTicks - d1 * d2 - d0 * 0.8D;
+                d5 = player.prevPosY + player.getEyeHeight() + (player.posY - player.prevPosY) * partialTicks - 0.45D;
+                d6 = player.prevPosZ + (player.posZ - player.prevPosZ) * partialTicks - d0 * d2 + d1 * 0.8D;
+                d7 = player.isSneaking() ? -0.45D : 0.0D;
+                dz = player.isSneaking() ? -0.03D : 0.0D;
             }
 
             double d13 = entity.prevPosX + (entity.posX - entity.prevPosX) * partialTicks;
