@@ -124,7 +124,7 @@ public class GeneralEventHandler
         BlockPos pos = event.getPos();
         ItemStack heldItem = event.getItemStack();
 
-        if (heldItem != null && (heldItem.getItem() instanceof ItemSpade || heldItem.getItem().getToolClasses(heldItem) == Collections.singleton("shovel")))
+        if (!heldItem.isEmpty() && (heldItem.getItem() instanceof ItemSpade || heldItem.getItem().getToolClasses(heldItem) == Collections.singleton("shovel")))
         {
             if (event.getFace() != EnumFacing.DOWN && world.getBlockState(pos.up()).getMaterial() == Material.AIR)
             {

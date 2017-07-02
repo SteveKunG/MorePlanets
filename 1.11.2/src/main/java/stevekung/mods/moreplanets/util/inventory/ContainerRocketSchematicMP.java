@@ -34,7 +34,7 @@ public class ContainerRocketSchematicMP extends Container
             {
                 ItemStack itemStack = this.craftMatrix.removeStackFromSlot(i);
 
-                if (itemStack != null)
+                if (!itemStack.isEmpty())
                 {
                     player.entityDropItem(itemStack, 0.0F);
                 }
@@ -51,7 +51,7 @@ public class ContainerRocketSchematicMP extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slot)
     {
-        ItemStack itemStack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot invSlot = this.inventorySlots.get(slot);
 
         if (invSlot != null && invSlot.getHasStack())
@@ -64,7 +64,7 @@ public class ContainerRocketSchematicMP extends Container
             {
                 if (!this.mergeItemStack(slotStack, 22, 58, false))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
                 if (slot == 0)
                 {
@@ -81,7 +81,7 @@ public class ContainerRocketSchematicMP extends Container
                     {
                         if (!this.mergeOneItem(slotStack, i, i + 1))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                         done = true;
                         break;
@@ -94,40 +94,40 @@ public class ContainerRocketSchematicMP extends Container
                     {
                         if (!this.mergeOneItem(slotStack, 19, 20))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                     else if (itemStack.getItem() == Item.getItemFromBlock(Blocks.CHEST) && !this.inventorySlots.get(20).getHasStack())
                     {
                         if (!this.mergeOneItem(slotStack, 20, 21))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                     else if (itemStack.getItem() == Item.getItemFromBlock(Blocks.CHEST) && !this.inventorySlots.get(21).getHasStack())
                     {
                         if (!this.mergeOneItem(slotStack, 21, 22))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                     else if (slot >= 22 && slot < 49)
                     {
                         if (!this.mergeItemStack(slotStack, 49, 58, false))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                     else if (slot >= 49 && slot < 58)
                     {
                         if (!this.mergeItemStack(slotStack, 22, 49, false))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                     else if (!this.mergeItemStack(slotStack, 22, 58, false))
                     {
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
             }
@@ -163,7 +163,7 @@ public class ContainerRocketSchematicMP extends Container
                 slot = this.inventorySlots.get(k);
                 slotStack = slot.getStack();
 
-                if (slotStack == null)
+                if (slotStack.isEmpty())
                 {
                     ItemStack stackOneItem = itemStack.copy();
                     stackOneItem.setCount(1);

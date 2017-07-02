@@ -41,7 +41,7 @@ public class ContainerNuclearWasteGenerator extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slot)
     {
-        ItemStack itemStack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot invSlot = this.inventorySlots.get(slot);
         int slotSize = this.inventorySlots.size();
 
@@ -54,7 +54,7 @@ public class ContainerNuclearWasteGenerator extends Container
             {
                 if (!this.mergeItemStack(stack, slotSize - 36, slotSize, true))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             }
             else
@@ -63,7 +63,7 @@ public class ContainerNuclearWasteGenerator extends Container
                 {
                     if (!this.mergeItemStack(stack, 0, 1, false))
                     {
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
                 else
@@ -72,12 +72,12 @@ public class ContainerNuclearWasteGenerator extends Container
                     {
                         if (!this.mergeItemStack(stack, slotSize - 9, slotSize, false))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                     else if (!this.mergeItemStack(stack, slotSize - 36, slotSize - 9, false))
                     {
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
             }

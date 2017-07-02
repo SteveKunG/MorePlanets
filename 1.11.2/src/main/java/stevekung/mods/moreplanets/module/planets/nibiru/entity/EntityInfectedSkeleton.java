@@ -105,7 +105,7 @@ public class EntityInfectedSkeleton extends EntitySkeleton implements IEntityBre
         {
             ItemStack itemStack = this.getHeldItemMainhand();
 
-            if (itemStack != null && itemStack.getItem() == MPItems.SPACE_BOW)
+            if (itemStack.getItem() == MPItems.SPACE_BOW)
             {
                 int i = 20;
 

@@ -24,6 +24,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
@@ -52,20 +53,29 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    public boolean canReplace(World world, BlockPos pos, EnumFacing side, ItemStack itemStack)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
-        BlockType type = this.getStateFromMeta(itemStack.getItemDamage()).getValue(VARIANT);
+        BlockType type = this.getStateFromMeta(meta).getValue(VARIANT);
 
         if (type != BlockType.DOUBLE_GREEN_VEIN_GRASS)
         {
             boolean canPlace = world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_DIRT || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_FARMLAND;
-            return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canPlace && world.isAirBlock(pos.up());
+
+            if (world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canPlace && world.isAirBlock(pos.up()))
+            {
+                return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
+            }
         }
         else
         {
             boolean canPlace = world.getBlockState(pos.down()).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_DIRT || world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_FARMLAND;
-            return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canPlace && world.isAirBlock(pos.up());
+
+            if (world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canPlace && world.isAirBlock(pos.up()))
+            {
+                return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
+            }
         }
+        return world.getBlockState(pos);
     }
 
     @Override
@@ -167,7 +177,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
         world.setBlockState(pos.up(), this.getDefaultState().withProperty(BlockDoublePlant.HALF, EnumBlockHalf.UPPER), 2);
     }
@@ -290,7 +300,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos)
+    public boolean isShearable(ItemStack itemStack, IBlockAccess world, BlockPos pos)
     {
         IBlockState state = world.getBlockState(pos);
         BlockType type = state.getValue(VARIANT);
@@ -298,7 +308,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
+    public List<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
     {
         List<ItemStack> ret = Lists.newArrayList();
         BlockType type = world.getBlockState(pos).getValue(VARIANT);

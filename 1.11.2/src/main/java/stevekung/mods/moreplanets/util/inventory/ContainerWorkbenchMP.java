@@ -60,11 +60,11 @@ public class ContainerWorkbenchMP extends Container
         {
             for (int i = 0; i < 9; ++i)
             {
-                ItemStack itemstack = this.craftMatrix.removeStackFromSlot(i);
+                ItemStack itemStack = this.craftMatrix.removeStackFromSlot(i);
 
-                if (itemstack != null)
+                if (!itemStack.isEmpty())
                 {
-                    player.entityDropItem(itemstack, 0.0F);
+                    player.entityDropItem(itemStack, 0.0F);
                 }
             }
         }
@@ -79,7 +79,7 @@ public class ContainerWorkbenchMP extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
-        ItemStack itemstack = null;
+        ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack())
@@ -91,7 +91,7 @@ public class ContainerWorkbenchMP extends Container
             {
                 if (!this.mergeItemStack(itemstack1, 10, 46, true))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(itemstack1, itemstack);
             }
@@ -99,19 +99,19 @@ public class ContainerWorkbenchMP extends Container
             {
                 if (!this.mergeItemStack(itemstack1, 37, 46, false))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             }
             else if (index >= 37 && index < 46)
             {
                 if (!this.mergeItemStack(itemstack1, 10, 37, false))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             }
             else if (!this.mergeItemStack(itemstack1, 10, 46, false))
             {
-                return null;
+                return ItemStack.EMPTY;
             }
 
             if (itemstack1.getCount() == 0)
@@ -133,8 +133,8 @@ public class ContainerWorkbenchMP extends Container
     }
 
     @Override
-    public boolean canMergeSlot(ItemStack stack, Slot slot)
+    public boolean canMergeSlot(ItemStack itemStack, Slot slot)
     {
-        return slot.inventory != this.craftResult && super.canMergeSlot(stack, slot);
+        return slot.inventory != this.craftResult && super.canMergeSlot(itemStack, slot);
     }
 }

@@ -38,7 +38,7 @@ public class ModelBipedTranslucent extends ModelBipedGC
             {
                 ItemStack stack = ((EntityLivingBase)entity).getItemStackFromSlot(EntityEquipmentSlot.OFFHAND);//TODO
 
-                if (stack != null && stack.getItem() instanceof ItemArmor && stack.hasTagCompound())
+                if (!stack.isEmpty() && stack.getItem() instanceof ItemArmor && stack.hasTagCompound())
                 {
                     if (stack.getTagCompound().getTagList("ench", 10) != null)
                     {

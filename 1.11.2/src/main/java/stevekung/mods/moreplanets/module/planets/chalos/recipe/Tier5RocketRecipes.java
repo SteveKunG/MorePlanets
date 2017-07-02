@@ -24,7 +24,7 @@ public class Tier5RocketRecipes
                 return recipe.getRecipeOutput();
             }
         }
-        return null;
+        return ItemStack.EMPTY;
     }
 
     public static void addRocketRecipe(ItemStack result, HashMap<Integer, ItemStack> input)

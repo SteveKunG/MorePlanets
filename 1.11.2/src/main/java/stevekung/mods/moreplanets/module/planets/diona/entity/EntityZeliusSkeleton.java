@@ -92,7 +92,7 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
         {
             ItemStack itemStack = this.getHeldItemMainhand();
 
-            if (itemStack != null && itemStack.getItem() == MPItems.SPACE_BOW)
+            if (itemStack.getItem() == MPItems.SPACE_BOW)
             {
                 int i = 20;
 

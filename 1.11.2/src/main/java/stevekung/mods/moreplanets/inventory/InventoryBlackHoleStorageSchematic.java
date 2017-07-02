@@ -27,7 +27,7 @@ public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        return index >= this.getSizeInventory() ? null : this.stackList.get(index);
+        return index >= this.getSizeInventory() ? ItemStack.EMPTY : this.stackList.get(index);
     }
 
     @Override

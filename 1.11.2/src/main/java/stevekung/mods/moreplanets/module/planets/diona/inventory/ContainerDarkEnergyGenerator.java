@@ -42,7 +42,7 @@ public class ContainerDarkEnergyGenerator extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
-        ItemStack itemStack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
         int invSize = this.inventorySlots.size();
 
@@ -55,7 +55,7 @@ public class ContainerDarkEnergyGenerator extends Container
             {
                 if (!this.mergeItemStack(stack, invSize - 36, invSize, true))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             }
             else
@@ -64,7 +64,7 @@ public class ContainerDarkEnergyGenerator extends Container
                 {
                     if (!this.mergeItemStack(stack, 0, 1, false))
                     {
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
                 else
@@ -73,12 +73,12 @@ public class ContainerDarkEnergyGenerator extends Container
                     {
                         if (!this.mergeItemStack(stack, invSize - 9, invSize, false))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                     else if (!this.mergeItemStack(stack, invSize - 36, invSize - 9, false))
                     {
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
             }

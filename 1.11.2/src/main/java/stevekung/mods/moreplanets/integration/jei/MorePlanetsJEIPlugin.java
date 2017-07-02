@@ -39,7 +39,7 @@ public class MorePlanetsJEIPlugin extends BlankModPlugin
         JEIRegistryHelper.guiHelper = registry.getJeiHelpers().getGuiHelper();
 
         JEIRegistryHelper.registerRecipeHandlers(DarkEnergyRecipeData.class, recipe -> new DarkEnergyTransformRecipeWrapper(recipe), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
-        JEIRegistryHelper.registerRecipeHandlers(ShapedRecipesMP.class, recipe -> new RocketCrusherRecipesWrapper(recipe), MPJEIRecipes.ROCKET_CRUSHER);
+        JEIRegistryHelper.registerRecipeHandlers(ShapedRecipesMP.class, RocketCrusherRecipesWrapper::new, MPJEIRecipes.ROCKET_CRUSHER);
         JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, recipe -> new Tier4RocketRecipeWrapper(recipe), MPJEIRecipes.TIER_4_ROCKET);
         JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, recipe -> new Tier5RocketRecipeWrapper(recipe), MPJEIRecipes.TIER_5_ROCKET);
         JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, recipe -> new Tier6RocketRecipeWrapper(recipe), MPJEIRecipes.TIER_6_ROCKET);

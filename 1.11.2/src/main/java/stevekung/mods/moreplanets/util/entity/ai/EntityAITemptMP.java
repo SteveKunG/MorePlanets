@@ -111,6 +111,6 @@ public class EntityAITemptMP extends EntityAIBase
 
     private boolean isTempting(@Nullable ItemStack itemStack)
     {
-        return itemStack == null ? false : itemStack.getItem() == this.temptStack.getItem() && itemStack.getItemDamage() == this.temptStack.getItemDamage();
+        return itemStack.isEmpty() ? false : itemStack.getItem() == this.temptStack.getItem() && itemStack.getItemDamage() == this.temptStack.getItemDamage();
     }
 }

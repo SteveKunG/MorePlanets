@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.items;
 import javax.annotation.Nullable;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +38,21 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack itemStack, @Nullable World world, @Nullable EntityLivingBase entity)
             {
-                return entity == null ? 0.0F : entity.getHeldItemMainhand() == itemStack && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast") ? 1.0F : 0.0F;
+                if (entity == null)
+                {
+                    return 0.0F;
+                }
+                else
+                {
+                    boolean flag = entity.getHeldItemMainhand() == itemStack;
+                    boolean flag1 = entity.getHeldItemOffhand() == itemStack;
+
+                    if (entity.getHeldItemMainhand().getItem() instanceof ItemSpaceFishingRod)
+                    {
+                        flag1 = false;
+                    }
+                    return (flag || flag1) && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast") ? 1.0F : 0.0F;
+                }
             }
         });
     }
@@ -121,7 +136,19 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
 
             if (!world.isRemote)
             {
-                world.spawnEntity(new EntitySpaceFishHook(world, player));
+                EntitySpaceFishHook entityfishhook = new EntitySpaceFishHook(world, player);
+                int lure = EnchantmentHelper.func_191528_c(itemStack);
+                int luck = EnchantmentHelper.func_191529_b(itemStack);
+
+                if (lure > 0)
+                {
+                    entityfishhook.func_191516_a(lure);
+                }
+                if (luck > 0)
+                {
+                    entityfishhook.func_191517_b(luck);
+                }
+                world.spawnEntity(entityfishhook);
             }
             if (itemStack.hasTagCompound())
             {

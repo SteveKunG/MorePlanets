@@ -81,7 +81,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
             {
                 ItemStack itemStack = this.craftMatrix.removeStackFromSlot(i);
 
-                if (itemStack != null)
+                if (!itemStack.isEmpty())
                 {
                     player.entityDropItem(itemStack, 0.0F);
                 }
@@ -104,7 +104,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slot)
     {
-        ItemStack itemStack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot invSlot = this.inventorySlots.get(slot);
         int slotSize = this.inventorySlots.size();
 
@@ -117,7 +117,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
             {
                 if (!this.mergeItemStack(slotStack, slotSize - 36, slotSize, true))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
                 if (slot == 0)
                 {
@@ -145,14 +145,14 @@ public class ContainerBlackHoleStorageSchematic extends Container
                     {
                         if (!this.mergeItemStack(slotStack, slotSize - 9, slotSize, false))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                     else
                     {
                         if (!this.mergeItemStack(slotStack, slotSize - 36, slotSize - 9, false))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                 }

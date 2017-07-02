@@ -67,7 +67,7 @@ public class ContainerRocketCrusher extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slot)
     {
-        ItemStack itemStack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot invSlot = this.inventorySlots.get(slot);
 
         if (invSlot != null && invSlot.getHasStack())
@@ -79,7 +79,7 @@ public class ContainerRocketCrusher extends Container
             {
                 if (!this.mergeItemStack(slotStack, 12, 47, true))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
                 if (slot == 1 || slot == 2)
                 {
@@ -92,24 +92,24 @@ public class ContainerRocketCrusher extends Container
                 {
                     if (!this.mergeItemStack(slotStack, 9, 10, false))
                     {
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
                 else if (slot < 39)
                 {
                     if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 39, 48, false))
                     {
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
                 else if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 12, 39, false))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             }
             if (slotStack.getCount() == 0)
             {
-                invSlot.putStack((ItemStack) null);
+                invSlot.putStack(ItemStack.EMPTY);
             }
             else
             {
@@ -118,7 +118,7 @@ public class ContainerRocketCrusher extends Container
 
             if (slotStack.getCount() == itemStack.getCount())
             {
-                return null;
+                return ItemStack.EMPTY;
             }
             invSlot.onTake(player, slotStack);
         }

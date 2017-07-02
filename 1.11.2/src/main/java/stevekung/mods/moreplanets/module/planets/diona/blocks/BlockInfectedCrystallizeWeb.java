@@ -80,21 +80,21 @@ public class BlockInfectedCrystallizeWeb extends BlockBaseMP
     @Override
     public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
     {
-        ItemStack stack = player.inventory.getCurrentItem();
+        ItemStack itemStack = player.getHeldItemMainhand();
 
-        if (stack == null)
+        if (itemStack.isEmpty())
         {
             return player.canHarvestBlock(world.getBlockState(pos));
         }
-        return stack != null && (stack.getItem() instanceof ItemShears || stack.getItem() instanceof ItemSword);
+        return !itemStack.isEmpty() && (itemStack.getItem() instanceof ItemShears || itemStack.getItem() instanceof ItemSword);
     }
 
     @Override
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos)
     {
-        ItemStack stack = player.inventory.getCurrentItem();
+        ItemStack itemStack = player.getHeldItemMainhand();
 
-        if (stack != null && (stack.getItem() instanceof ItemShears || stack.getItem() instanceof ItemSword))
+        if (!itemStack.isEmpty() && (itemStack.getItem() instanceof ItemShears || itemStack.getItem() instanceof ItemSword))
         {
             return 0.2F;
         }

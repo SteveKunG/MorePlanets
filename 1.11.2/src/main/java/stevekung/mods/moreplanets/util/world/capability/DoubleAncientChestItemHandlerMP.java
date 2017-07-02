@@ -91,7 +91,7 @@ public class DoubleAncientChestItemHandlerMP extends WeakReference<TileEntityAnc
         boolean accessingUpperChest = slot < 27;
         int targetSlot = accessingUpperChest ? slot : slot - 27;
         TileEntityAncientChestMP chest = this.getChest(accessingUpperChest);
-        return chest != null ? chest.getStackInSlot(targetSlot) : null;
+        return chest != null ? chest.getStackInSlot(targetSlot) : ItemStack.EMPTY;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class DoubleAncientChestItemHandlerMP extends WeakReference<TileEntityAnc
         boolean accessingUpperChest = slot < 27;
         int targetSlot = accessingUpperChest ? slot : slot - 27;
         TileEntityAncientChestMP chest = this.getChest(accessingUpperChest);
-        return chest != null ? chest.getSingleChestHandler().extractItem(targetSlot, amount, simulate) : null;
+        return chest != null ? chest.getSingleChestHandler().extractItem(targetSlot, amount, simulate) : ItemStack.EMPTY;
     }
 
     @Override

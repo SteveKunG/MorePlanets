@@ -115,6 +115,6 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return itemStack != null && itemStack.getItem() == NibiruItems.INFECTED_WHEAT_SEEDS;
+        return !itemStack.isEmpty() && itemStack.getItem() == NibiruItems.INFECTED_WHEAT_SEEDS;
     }
 }

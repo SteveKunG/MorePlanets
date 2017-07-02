@@ -53,7 +53,7 @@ public class ContainerDarkEnergyStorage extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID)
     {
-        ItemStack returnStack = null;
+        ItemStack returnStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(slotID);
         int invSize = this.inventorySlots.size();
 
@@ -72,7 +72,7 @@ public class ContainerDarkEnergyStorage extends Container
                         {
                             if (EnergyUtil.isFillableElectricItem(itemStack) && !this.mergeItemStack(itemStack, 0, 1, false))
                             {
-                                return null;
+                                return ItemStack.EMPTY;
                             }
                         }
                     }
@@ -80,7 +80,7 @@ public class ContainerDarkEnergyStorage extends Container
                     {
                         if (!this.mergeItemStack(itemStack, 0, 1, false))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                 }
@@ -90,23 +90,23 @@ public class ContainerDarkEnergyStorage extends Container
                     {
                         if (!this.mergeItemStack(itemStack, invSize - 9, invSize, false))
                         {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                     else if (!this.mergeItemStack(itemStack, invSize - 36, invSize - 9, false))
                     {
-                        return null;
+                        return ItemStack.EMPTY;
                     }
                 }
             }
             else if (!this.mergeItemStack(itemStack, 2, 38, false))
             {
-                return null;
+                return ItemStack.EMPTY;
             }
 
             if (itemStack.getCount() == 0)
             {
-                slot.putStack((ItemStack) null);
+                slot.putStack(ItemStack.EMPTY);
             }
             else
             {
@@ -115,7 +115,7 @@ public class ContainerDarkEnergyStorage extends Container
 
             if (itemStack.getCount() == returnStack.getCount())
             {
-                return null;
+                return ItemStack.EMPTY;
             }
             slot.onTake(player, itemStack);
         }

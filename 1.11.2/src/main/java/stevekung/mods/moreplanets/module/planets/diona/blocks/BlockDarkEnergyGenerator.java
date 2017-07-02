@@ -217,7 +217,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     @Override
     public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (heldItem != null && heldItem.getItem() == DionaItems.DARK_ENERGY_PEARL)
+        if (!heldItem.isEmpty() && heldItem.getItem() == DionaItems.DARK_ENERGY_PEARL)
         {
             TileEntity tile = world.getTileEntity(pos);
 

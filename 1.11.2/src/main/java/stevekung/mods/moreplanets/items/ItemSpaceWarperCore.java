@@ -43,7 +43,7 @@ public class ItemSpaceWarperCore extends ItemBaseMP
             {
                 if (GCCoreUtil.getDimensionID(world) == 0 || world.provider instanceof IGalacticraftWorldProvider)
                 {
-                    if (itemStack.getTagCompound() == null)
+                    if (!itemStack.hasTagCompound())
                     {
                         itemStack.setTagCompound(new NBTTagCompound());
                     }

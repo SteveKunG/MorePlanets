@@ -341,11 +341,6 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         }
     }
 
-    protected void addRandomDrop()
-    {
-        this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 3), 0.0F);
-    }
-
     @Override
     public EntityShlime createChild(EntityAgeable ageable)
     {
@@ -376,7 +371,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return itemStack != null && (itemStack.getItem() == NibiruItems.INFECTED_WHEAT || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6);
+        return !itemStack.isEmpty() && (itemStack.getItem() == NibiruItems.INFECTED_WHEAT || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6);
     }
 
     @Override
@@ -560,12 +555,12 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         int j = ((EntityShlime)mother).getFleeceColor().getDyeDamage();
         this.inventoryCrafting.getStackInSlot(0).setItemDamage(i);
         this.inventoryCrafting.getStackInSlot(1).setItemDamage(j);
-        ItemStack itemstack = CraftingManager.getInstance().findMatchingRecipe(this.inventoryCrafting, ((EntityShlime)father).world);
+        ItemStack itemStack = CraftingManager.getInstance().findMatchingRecipe(this.inventoryCrafting, ((EntityShlime)father).world);
         int k;
 
-        if (itemstack != null && itemstack.getItem() == Items.DYE)
+        if (!itemStack.isEmpty() && itemStack.getItem() == Items.DYE)
         {
-            k = itemstack.getMetadata();
+            k = itemStack.getMetadata();
         }
         else
         {

@@ -48,3 +48,8 @@ fix enchant render for multalic armor
 juicer ride player
 gui block overlay
 fix village gen underwater
+
+1.11.2
+split entity to one type
+biome dictionary
+jei rocket crusher recipe anim

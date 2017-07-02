@@ -69,7 +69,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
             List<ItemStack> items = Lists.newArrayList();
             ItemStack itemstack = this.getSilkTouchDrop(state);
 
-            if (itemstack != null)
+            if (!itemstack.isEmpty())
             {
                 items.add(itemstack);
             }

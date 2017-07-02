@@ -1,7 +1,0 @@
-{
-    "parent": "block/column_side",
-    "textures": {
-        "end": "moreplanets:blocks/rainbow_candy_cane_top",
-        "side": "moreplanets:blocks/rainbow_candy_cane_side"
-    }
-}

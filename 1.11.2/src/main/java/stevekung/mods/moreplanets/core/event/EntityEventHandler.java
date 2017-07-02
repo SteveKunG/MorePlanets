@@ -135,10 +135,10 @@ public class EntityEventHandler
     @SubscribeEvent
     public void onInteractEntity(EntityInteract event)
     {
-        ItemStack itemStack = event.getEntityPlayer().getActiveItemStack();
+        ItemStack itemStack = event.getItemStack();
         Entity entity = event.getTarget();
 
-        if (itemStack != null)
+        if (!itemStack.isEmpty())
         {
             if (itemStack.getItem() == Items.DYE)
             {

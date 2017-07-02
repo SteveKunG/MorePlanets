@@ -78,7 +78,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
             List<ItemStack> items = Lists.newArrayList();
             ItemStack itemstack = this.getSilkTouchDrop(state);
 
-            if (itemstack != null)
+            if (!itemstack.isEmpty())
             {
                 items.add(itemstack);
             }

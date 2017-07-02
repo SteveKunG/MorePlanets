@@ -74,7 +74,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
                     ItemStack itemStack = inventorybasic.getStackInSlot(i);
                     boolean flag = false;
 
-                    if (itemStack != null)
+                    if (!itemStack.isEmpty())
                     {
                         if (itemStack.getItem() == NibiruItems.INFECTED_WHEAT_SEEDS)
                         {

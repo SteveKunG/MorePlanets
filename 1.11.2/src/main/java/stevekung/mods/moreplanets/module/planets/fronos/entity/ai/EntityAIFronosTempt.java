@@ -54,7 +54,7 @@ public class EntityAIFronosTempt extends EntityAIBase
             else
             {
                 ItemStack itemStack = this.temptingPlayer.getHeldItemMainhand();
-                return itemStack == null ? false : itemStack.getItem() == this.itemStack.getItem() && itemStack.getItemDamage() == this.itemStack.getItemDamage();
+                return itemStack.isEmpty() ? false : itemStack.getItem() == this.itemStack.getItem() && itemStack.getItemDamage() == this.itemStack.getItemDamage();
             }
         }
     }

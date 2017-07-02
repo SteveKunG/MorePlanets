@@ -54,7 +54,7 @@ public class BlockInfectedIce extends BlockBreakableMP
             List<ItemStack> items = Lists.newArrayList();
             ItemStack itemstack = this.getSilkTouchDrop(state);
 
-            if (itemstack != null)
+            if (!itemstack.isEmpty())
             {
                 items.add(itemstack);
             }

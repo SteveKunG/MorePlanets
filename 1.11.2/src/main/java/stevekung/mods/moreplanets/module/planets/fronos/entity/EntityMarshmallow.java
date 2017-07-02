@@ -154,6 +154,6 @@ public class EntityMarshmallow extends EntityFronosPet
     @Override
     protected ItemStack getLayItem()
     {
-        return null;
+        return ItemStack.EMPTY;
     }
 }

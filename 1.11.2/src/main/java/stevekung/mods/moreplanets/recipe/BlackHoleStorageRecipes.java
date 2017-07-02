@@ -22,7 +22,7 @@ public class BlackHoleStorageRecipes
                 return recipe.getRecipeOutput();
             }
         }
-        return null;
+        return ItemStack.EMPTY;
     }
 
     public static List<BlackHoleStorageRecipeWrapper> getRecipesList()

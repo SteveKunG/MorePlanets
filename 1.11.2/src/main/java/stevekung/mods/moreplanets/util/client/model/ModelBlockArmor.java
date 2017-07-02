@@ -205,7 +205,7 @@ public class ModelBlockArmor extends ModelBiped
         {
             ItemStack stack = ((EntityLivingBase)entityIn).getItemStackFromSlot(this.slot);
 
-            if (stack != null && stack.getItem() instanceof ItemArmor && stack.hasTagCompound())
+            if (!stack.isEmpty() && stack.getItem() instanceof ItemArmor && stack.hasTagCompound())
             {
                 if (stack.getTagCompound().getTagList("ench", 10) != null)
                 {
@@ -349,7 +349,7 @@ public class ModelBlockArmor extends ModelBiped
             ItemStack itemstack = ((EntityLivingBase)entityIn).getHeldItemMainhand();
             EntitySkeleton entityskeleton = (EntitySkeleton)entityIn;
 
-            if (entityskeleton.isSwingingArms() && (itemstack == null || itemstack.getItem() != Items.BOW))
+            if (entityskeleton.isSwingingArms() && (itemstack.isEmpty() || itemstack.getItem() != Items.BOW))
             {
                 float f = MathHelper.sin(this.swingProgress * (float)Math.PI);
                 float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * (float)Math.PI);

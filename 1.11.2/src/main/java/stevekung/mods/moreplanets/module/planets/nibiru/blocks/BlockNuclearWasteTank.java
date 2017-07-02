@@ -44,7 +44,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     {
         ItemStack itemStack = player.getHeldItem(hand);
 
-        if (itemStack != null && state.getValue(STATE) == BlockType.NONE)
+        if (!itemStack.isEmpty() && state.getValue(STATE) == BlockType.NONE)
         {
             if (itemStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
             {

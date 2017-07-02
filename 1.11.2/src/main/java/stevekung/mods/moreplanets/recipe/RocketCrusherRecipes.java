@@ -51,7 +51,7 @@ public class RocketCrusherRecipes
         for (hashmap = Maps.newHashMap(); i < inputList.length; i += 2)
         {
             Character character = (Character) inputList[i];
-            ItemStack itemstack1 = null;
+            ItemStack itemstack1 = ItemStack.EMPTY;
 
             if (inputList[i + 1] instanceof Item)
             {
@@ -80,7 +80,7 @@ public class RocketCrusherRecipes
             }
             else
             {
-                aitemstack[i1] = null;
+                aitemstack[i1] = ItemStack.EMPTY;
             }
         }
         ShapedRecipesMP recipes = new ShapedRecipesMP(j, k, aitemstack, output);
@@ -101,7 +101,7 @@ public class RocketCrusherRecipes
                 return recipe.getRecipeOutput();
             }
         }
-        return null;
+        return ItemStack.EMPTY;
     }
 
     private static boolean matches(ShapedRecipesMP recipe, IInventory inventory)
@@ -131,7 +131,7 @@ public class RocketCrusherRecipes
             {
                 int i1 = k - width;
                 int j1 = l - height;
-                ItemStack itemStack = null;
+                ItemStack itemStack = ItemStack.EMPTY;
 
                 if (i1 >= 0 && j1 >= 0 && i1 < recipe.recipeWidth && j1 < recipe.recipeHeight)
                 {
@@ -145,16 +145,16 @@ public class RocketCrusherRecipes
                     }
                 }
 
-                ItemStack itemStack1 = null;
+                ItemStack itemStack1 = ItemStack.EMPTY;
 
                 if (k >= 0 && l < 3)
                 {
                     int k2 = k + l * 3;
                     itemStack1 = inventory.getStackInSlot(k2);
                 }
-                if (itemStack1 != null || itemStack != null)
+                if (!itemStack1.isEmpty() || !itemStack.isEmpty())
                 {
-                    if (itemStack1 == null && itemStack != null || itemStack1 != null && itemStack == null)
+                    if (itemStack1.isEmpty() && !itemStack.isEmpty() || !itemStack1.isEmpty() && itemStack.isEmpty())
                     {
                         return false;
                     }

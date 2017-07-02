@@ -27,6 +27,7 @@ import stevekung.mods.moreplanets.init.MPSounds;
 
 public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements IInventoryDefaults, ISidedInventory
 {
+    private static final int[] SLOTS = new int[108];
     public NonNullList<ItemStack> inventory = NonNullList.withSize(108, ItemStack.EMPTY);
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean disableBlackHole = false;
@@ -40,6 +41,11 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     public String collectMode = "item";
     public int age = 0;
     public int modeInt;
+
+    static
+    {
+        for (int i = 0; i < TileEntityBlackHoleStorage.SLOTS.length; TileEntityBlackHoleStorage.SLOTS[i] = i++) {}
+    }
 
     @Override
     public void update()
@@ -196,7 +202,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     @Override
     public int[] getSlotsForFace(EnumFacing facing)
     {
-        return new int[] { 0, 1 };
+        return TileEntityBlackHoleStorage.SLOTS;
     }
 
     @Override
@@ -279,7 +285,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     {
         for (ItemStack itemStack : this.inventory)
         {
-            if (itemStack == null || itemStack.getCount() != itemStack.getMaxStackSize())
+            if (itemStack.isEmpty() || itemStack.getCount() != itemStack.getMaxStackSize())
             {
                 return false;
             }
@@ -318,7 +324,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
             ItemStack itemstack = entityItem.getEntityItem().copy();
             ItemStack itemstack1 = this.putStackInInventoryAllSlots(inventory, itemstack);
 
-            if (itemstack1 != null && itemstack1.getCount() != 0)
+            if (!itemstack1.isEmpty() && itemstack1.getCount() != 0)
             {
                 entityItem.setEntityItemStack(itemstack1);
             }
@@ -354,14 +360,14 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         {
             boolean flag = false;
 
-            if (itemstack == null)
+            if (itemstack.isEmpty())
             {
                 int max = Math.min(itemStack.getMaxStackSize(), inventory.getInventoryStackLimit());
 
                 if (max >= itemStack.getCount())
                 {
                     inventory.setInventorySlotContents(index, itemStack);
-                    itemStack = null;
+                    itemStack = ItemStack.EMPTY;
                 }
                 else
                 {

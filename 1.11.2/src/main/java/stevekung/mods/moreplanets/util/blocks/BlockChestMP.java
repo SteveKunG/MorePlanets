@@ -89,7 +89,7 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
         EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3).getOpposite();
         state = state.withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
@@ -134,13 +134,13 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
             world.setBlockState(pos, state, 3);
         }
 
-        if (stack.hasDisplayName())
+        if (itemStack.hasDisplayName())
         {
             TileEntity tileentity = world.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityChestMP)
             {
-                ((TileEntityChestMP)tileentity).setCustomName(stack.getDisplayName());
+                ((TileEntityChestMP)tileentity).setCustomName(itemStack.getDisplayName());
             }
         }
     }

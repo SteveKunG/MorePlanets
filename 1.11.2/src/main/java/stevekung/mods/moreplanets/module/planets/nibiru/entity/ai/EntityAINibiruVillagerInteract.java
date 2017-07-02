@@ -51,9 +51,9 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
                 for (int i = 0; i < inventorybasic.getSizeInventory(); ++i)
                 {
                     ItemStack itemstack = inventorybasic.getStackInSlot(i);
-                    ItemStack itemstack1 = null;
+                    ItemStack itemstack1 = ItemStack.EMPTY;
 
-                    if (itemstack != null)
+                    if (!itemstack.isEmpty())
                     {
                         Item item = itemstack.getItem();
 

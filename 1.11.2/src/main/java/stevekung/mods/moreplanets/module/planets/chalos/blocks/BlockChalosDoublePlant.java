@@ -25,6 +25,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -50,9 +51,13 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    public boolean canReplace(World world, BlockPos pos, EnumFacing side, @Nullable ItemStack itemStack)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
-        return this.canPlaceBlockAt(world, pos);
+        if (this.canPlaceBlockAt(world, pos))
+        {
+            return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
+        }
+        return world.getBlockState(pos);
     }
 
     @Override
@@ -146,7 +151,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
         world.setBlockState(pos.up(), this.getDefaultState().withProperty(BlockDoublePlant.HALF, EnumBlockHalf.UPPER), 2);
     }
@@ -259,7 +264,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos)
+    public boolean isShearable(ItemStack itemStack, IBlockAccess world, BlockPos pos)
     {
         IBlockState state = world.getBlockState(pos);
         BlockType type = state.getValue(VARIANT);
@@ -267,7 +272,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     }
 
     @Override
-    public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
+    public List<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
     {
         List<ItemStack> ret = Lists.newArrayList();
         BlockType type = world.getBlockState(pos).getValue(VARIANT);

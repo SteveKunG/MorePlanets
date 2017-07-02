@@ -29,35 +29,35 @@ public class ContainerBlackHoleStorage extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
-        ItemStack itemstack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack())
         {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+            ItemStack itemStack1 = slot.getStack();
+            itemStack = itemStack1.copy();
 
             if (index < 108)
             {
-                if (!this.mergeItemStack(itemstack1, 108, this.inventorySlots.size(), true))
+                if (!this.mergeItemStack(itemStack1, 108, this.inventorySlots.size(), true))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             }
-            else if (!this.mergeItemStack(itemstack1, 0, 108, false))
+            else if (!this.mergeItemStack(itemStack1, 0, 108, false))
             {
-                return null;
+                return ItemStack.EMPTY;
             }
-            if (itemstack1.isEmpty())
+            if (itemStack1.isEmpty())
             {
-                slot.putStack(null);
+                slot.putStack(ItemStack.EMPTY);
             }
             else
             {
                 slot.onSlotChanged();
             }
         }
-        return itemstack;
+        return itemStack;
     }
 
     @Override

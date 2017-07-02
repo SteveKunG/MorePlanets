@@ -196,17 +196,17 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
         world.setBlockState(pos, state.withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()), 2);
 
-        if (stack.hasDisplayName())
+        if (itemStack.hasDisplayName())
         {
             TileEntity tileentity = world.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityNibiruFurnace)
             {
-                ((TileEntityNibiruFurnace)tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileEntityNibiruFurnace)tileentity).setCustomInventoryName(itemStack.getDisplayName());
             }
         }
     }

@@ -83,6 +83,7 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
                 this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, flag);
             }
             this.setDead();
+            this.spawnLingeringCloud();
         }
     }
 

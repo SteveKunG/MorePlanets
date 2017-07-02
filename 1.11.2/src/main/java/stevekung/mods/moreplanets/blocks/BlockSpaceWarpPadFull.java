@@ -164,7 +164,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                 ItemStack itemStack = player.getHeldItem(hand);
                 TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull) tile;
 
-                if (itemStack != null && itemStack.getItem() == MPItems.SPACE_WARPER_CORE)
+                if (!itemStack.isEmpty() && itemStack.getItem() == MPItems.SPACE_WARPER_CORE)
                 {
                     NBTTagCompound warpCoreData = itemStack.getTagCompound();
 

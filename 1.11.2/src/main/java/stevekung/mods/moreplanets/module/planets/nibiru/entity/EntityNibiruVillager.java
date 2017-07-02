@@ -231,7 +231,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
         ItemStack itemStack = player.getHeldItem(hand);
-        boolean flag = itemStack != null && itemStack.getItem() == Items.SPAWN_EGG;
+        boolean flag = !itemStack.isEmpty() && itemStack.getItem() == Items.SPAWN_EGG;
 
         if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !player.isSneaking())
         {
@@ -275,7 +275,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         {
             ItemStack itemstack = this.villagerInventory.getStackInSlot(i);
 
-            if (itemstack != null)
+            if (!itemstack.isEmpty())
             {
                 nbttaglist.appendTag(itemstack.writeToNBT(new NBTTagCompound()));
             }
@@ -449,7 +449,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         {
             this.livingSoundTime = -this.getTalkInterval();
 
-            if (itemStack != null)
+            if (!itemStack.isEmpty())
             {
                 this.playSound(SoundEvents.ENTITY_VILLAGER_YES, this.getSoundVolume(), this.getSoundPitch());
             }
@@ -634,7 +634,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         {
             ItemStack itemstack1 = this.villagerInventory.addItem(itemStack);
 
-            if (itemstack1 == null)
+            if (itemstack1.isEmpty())
             {
                 itemEntity.setDead();
             }
@@ -725,7 +725,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             {
                 ItemStack itemStack = this.villagerInventory.getStackInSlot(i);
 
-                if (itemStack != null)
+                if (!itemStack.isEmpty())
                 {
                     if (itemStack.getItem() == Items.BREAD && itemStack.getCount() >= 3)
                     {
@@ -831,7 +831,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         {
             ItemStack itemStack = this.villagerInventory.getStackInSlot(i);
 
-            if (itemStack != null)
+            if (!itemStack.isEmpty())
             {
                 if (itemStack.getItem() == Items.BREAD && itemStack.getCount() >= 3 * multiplier || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6 && itemStack.getCount() >= 12 * multiplier)
                 {
@@ -852,7 +852,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         {
             ItemStack itemStack = this.villagerInventory.getStackInSlot(i);
 
-            if (itemStack != null && (itemStack.getItem() == NibiruItems.INFECTED_WHEAT || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6))
+            if (!itemStack.isEmpty() && (itemStack.getItem() == NibiruItems.INFECTED_WHEAT || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6))
             {
                 return true;
             }

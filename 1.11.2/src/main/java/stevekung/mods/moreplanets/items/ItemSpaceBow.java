@@ -51,8 +51,7 @@ public class ItemSpaceBow extends ItemBaseMP
                 }
                 else
                 {
-                    ItemStack bow = entity.getActiveItemStack();
-                    return bow != null && bow.getItem() == MPItems.SPACE_BOW ? (itemStack.getMaxItemUseDuration() - entity.getItemInUseCount()) / 20.0F : 0.0F;
+                    return entity.getActiveItemStack().getItem() == MPItems.SPACE_BOW ? (itemStack.getMaxItemUseDuration() - entity.getItemInUseCount()) / 20.0F : 0.0F;
                 }
             }
         });
@@ -99,9 +98,9 @@ public class ItemSpaceBow extends ItemBaseMP
             {
                 duration = 1.0F;
             }
-            if (flag || arrowStack != null)
+            if (flag || !arrowStack.isEmpty())
             {
-                if (arrowStack == null)
+                if (arrowStack.isEmpty())
                 {
                     arrowStack = new ItemStack(Items.ARROW);
                 }
@@ -324,12 +323,12 @@ public class ItemSpaceBow extends ItemBaseMP
                     return itemStack;
                 }
             }
-            return null;
+            return ItemStack.EMPTY;
         }
     }
 
     protected boolean isArrow(ItemStack itemStack)
     {
-        return itemStack != null && (itemStack.getItem() instanceof ItemArrow || itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW || itemStack.getItem() == NibiruItems.INFECTED_ARROW);
+        return !itemStack.isEmpty() && (itemStack.getItem() instanceof ItemArrow || itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW || itemStack.getItem() == NibiruItems.INFECTED_ARROW);
     }
 }

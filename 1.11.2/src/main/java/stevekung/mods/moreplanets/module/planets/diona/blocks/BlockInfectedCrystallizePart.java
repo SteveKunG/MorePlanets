@@ -144,7 +144,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
 
         if (state.getValue(VARIANT) == BlockType.INFECTED_CRYSTALLIZE_BLOCK)
         {
-            if (heldItem != null)
+            if (!heldItem.isEmpty())
             {
                 if (heldItem.getItem() == DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL)
                 {

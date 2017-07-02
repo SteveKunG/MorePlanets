@@ -49,7 +49,7 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
                     {
                         EntityPlayer player = (EntityPlayer) living;
 
-                        if (gun != null && gun.getItem() == MPItems.LASER_GUN)
+                        if (!gun.isEmpty() && gun.getItem() == MPItems.LASER_GUN)
                         {
                             int i = itemStack.getMaxItemUseDuration() - player.getItemInUseCount();
 
@@ -79,7 +79,7 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
     }
 
     @Override
-    public EnumAction getItemUseAction(ItemStack stack)
+    public EnumAction getItemUseAction(ItemStack itemStack)
     {
         return EnumAction.BOW;
     }
@@ -106,13 +106,13 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
             boolean flag = player.capabilities.isCreativeMode;
             ItemStack bulletStack = this.findBullet(player);
 
-            if (this.getElectricityStored(itemStack) > 0.0F && (flag || bulletStack != null))
+            if (this.getElectricityStored(itemStack) > 0.0F && (flag || !bulletStack.isEmpty()))
             {
                 EntityLaserBullet laser = new EntityLaserBullet(world, player, 1.0F);
                 world.playSound(player, player.getPosition(), MPSounds.LASER_SHOOTED, SoundCategory.PLAYERS, 1.0F, 2.0F / (1.0F * 0.4F + 1.2F) + 1.0F * 0.5F);
                 int slot = -1;
 
-                if (bulletStack == null)
+                if (bulletStack.isEmpty())
                 {
                     bulletStack = new ItemStack(MPItems.LASER_BULLET);
                 }
@@ -210,12 +210,12 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
                     return itemStack;
                 }
             }
-            return null;
+            return ItemStack.EMPTY;
         }
     }
 
     protected boolean isBullet(ItemStack itemStack)
     {
-        return itemStack != null && itemStack.getItem() == MPItems.LASER_BULLET;
+        return !itemStack.isEmpty() && itemStack.getItem() == MPItems.LASER_BULLET;
     }
 }

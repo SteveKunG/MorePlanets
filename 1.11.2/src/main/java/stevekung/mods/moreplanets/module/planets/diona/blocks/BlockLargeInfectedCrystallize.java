@@ -78,11 +78,11 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     @Override
     public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack heldStack)
     {
-        if (heldStack == null || !(player.getHeldItemMainhand().getItem() instanceof ItemPickaxe))
+        if (heldStack.isEmpty() || !(player.getHeldItemMainhand().getItem() instanceof ItemPickaxe))
         {
             player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 60));
         }
-        if (heldStack != null && player.getHeldItemMainhand().getItem() instanceof ItemPickaxe)
+        if (!heldStack.isEmpty() && player.getHeldItemMainhand().getItem() instanceof ItemPickaxe)
         {
             super.harvestBlock(world, player, pos, state, tile, heldStack);
         }

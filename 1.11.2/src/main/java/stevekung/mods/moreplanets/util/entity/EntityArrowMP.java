@@ -333,7 +333,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
     @Override
     protected ItemStack getArrowStack()
     {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     public abstract void addEffect(EntityLivingBase living);

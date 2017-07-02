@@ -20,7 +20,7 @@ public class Tier4RocketRecipeWrapper extends BlankRecipeWrapper implements IRec
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInput(ItemStack.class, new ArrayList<>(this.recipe.getRecipeInput().values()));
+        ingredients.setInputs(ItemStack.class, new ArrayList<>(this.recipe.getRecipeInput().values()));
         ingredients.setOutput(ItemStack.class, this.recipe.getRecipeOutput());
     }
 }

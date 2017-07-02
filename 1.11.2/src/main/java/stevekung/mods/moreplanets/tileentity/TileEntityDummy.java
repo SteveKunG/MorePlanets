@@ -124,7 +124,7 @@ public class TileEntityDummy extends TileBaseElectricBlock
     @Override
     public ItemStack getBatteryInSlot()
     {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override

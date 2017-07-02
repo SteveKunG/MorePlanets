@@ -31,11 +31,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
+import stevekung.mods.moreplanets.items.ItemSpaceFishingRod;
 import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
 
 public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditionalSpawnData
@@ -52,6 +54,11 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
     private State currentState = State.FLYING;
     private int luck;
     private int lureSpeed;
+
+    public EntitySpaceFishHook(World world)
+    {
+        this(world, world.getPlayerEntityByName(FMLClientHandler.instance().getClient().getSession().getUsername()));
+    }
 
     @SideOnly(Side.CLIENT)
     public EntitySpaceFishHook(World world, EntityPlayer player, double x, double y, double z)
@@ -267,8 +274,8 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
     {
         ItemStack itemStack = this.angler.getHeldItemMainhand();
         ItemStack itemStack1 = this.angler.getHeldItemOffhand();
-        boolean flag = itemStack.getItem() == MPItems.SPACE_FISHING_ROD && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
-        boolean flag1 = itemStack1.getItem() == MPItems.SPACE_FISHING_ROD && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
+        boolean flag = itemStack.getItem() instanceof ItemSpaceFishingRod && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
+        boolean flag1 = itemStack1.getItem() instanceof ItemSpaceFishingRod && itemStack1.hasTagCompound() && itemStack1.getTagCompound().getBoolean("Cast");
 
         if (!this.angler.isDead && this.angler.isEntityAlive() && (flag || flag1) && this.getDistanceSqToEntity(this.angler) <= 1024.0D)
         {

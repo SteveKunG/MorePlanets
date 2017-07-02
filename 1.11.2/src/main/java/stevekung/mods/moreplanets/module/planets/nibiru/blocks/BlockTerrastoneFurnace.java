@@ -196,17 +196,17 @@ public class BlockTerrastoneFurnace extends BlockContainerMP implements ISingleB
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
         world.setBlockState(pos, state.withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()), 2);
 
-        if (stack.hasDisplayName())
+        if (itemStack.hasDisplayName())
         {
             TileEntity tileentity = world.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityTerrastoneFurnace)
             {
-                ((TileEntityTerrastoneFurnace)tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileEntityTerrastoneFurnace)tileentity).setCustomInventoryName(itemStack.getDisplayName());
             }
         }
     }
