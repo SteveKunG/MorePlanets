@@ -1,10 +1,6 @@
--Added- Added Nibiru Grass Path
--Added- Added "item_and_xp" Mode for Black Hole Storage
--Added- Added new bugs!
--Update- Update to 1.10.2 with Galacticraft Build 110 or higher
--Update- Space Bow now can use with Vanilla Arrow
--Update- Improved Dark Energy Receiver multiblock rendering
--Update- More optimized things
--Fixed- Fixed server initialization crash
--Fixed- Fixed Nuclear Waste flow out of wall in Nibiru Boss Dungeon
--Fixed- Fixed bug from 1.8.9
+-Added- Added Forge Universal Bucket (Use MinecraftForge replace bucket config)
+-Update- Update to use Galacticraft Build 111 or higher
+-Update- Boss Data Manager improved
+-Fixed- Fixed entity damage sources
+-Fixed- Fixed memory leak and TPS drop while fighting Vein Floater
+-Fixed- Some minor bug fixes
