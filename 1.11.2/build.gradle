@@ -10,7 +10,7 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "2.0.6-GC110"
+version = "2.0.6-GC111"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
 
