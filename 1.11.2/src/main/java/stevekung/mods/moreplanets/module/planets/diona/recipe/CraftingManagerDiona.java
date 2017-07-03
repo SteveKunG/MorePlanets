@@ -12,6 +12,7 @@ import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
@@ -48,7 +49,7 @@ public class CraftingManagerDiona
         RecipeHelper.addShapelessRecipe(new ItemStack(DionaItems.DIONA_ITEM, 9, 1), new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 9));
         RecipeHelper.addShapelessRecipe(new ItemStack(DionaItems.DIONA_ITEM, 9, 6), DionaBlocks.GLOWING_IRON_BLOCK);
         RecipeHelper.addShapelessRecipe(new ItemStack(DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL, 9), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK);
-        RecipeHelper.addRecipe(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 1), new Object[] { "VY ", "XWX", "XZX", 'V', Blocks.STONE_BUTTON, 'W', new ItemStack(GCItems.canister, 1, 0), 'X', new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0), 'Y', Items.FLINT_AND_STEEL, 'Z', GCItems.oxygenVent });
+        RecipeHelper.addRecipe(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 1), new Object[] { "VY ", "XWX", "XZX", 'V', Blocks.STONE_BUTTON, 'W', new ItemStack(GCItems.canister, 1, OreDictionary.WILDCARD_VALUE), 'X', new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0), 'Y', Items.FLINT_AND_STEEL, 'Z', GCItems.oxygenVent });
         RecipeHelper.addRecipe(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 2), new Object[] { " Y ", " X ", "X X", 'X', new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0), 'Y', Blocks.REDSTONE_TORCH });
         RecipeHelper.addRecipe(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3), new Object[] { "ZYZ", "ZWZ", "XVX", 'V', GCItems.oxygenVent, 'W', new ItemStack(GCItems.fuelCanister, 1, 1), 'X', new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0), 'Y', new ItemStack(MarsBlocks.marsBlock, 1, 8), 'Z', new ItemStack(MarsItems.marsItemBasic, 1, 5) });
         RecipeHelper.addRecipe(new ItemStack(DionaItems.INFECTED_CRYSTALLIZE_BOMB, 4), new Object[] { "III", "IGI", "III", 'I', new ItemStack(DionaItems.DIONA_ITEM, 1, 4), 'G', Items.GUNPOWDER });
