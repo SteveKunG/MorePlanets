@@ -74,7 +74,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && itemStack.getItem() == ChalosItems.CHEESE_FOOD && itemStack.getItemDamage() == 0;
+        return itemStack.getItem() == ChalosItems.CHEESE_FOOD && itemStack.getItemDamage() == 0;
     }
 
     @Override

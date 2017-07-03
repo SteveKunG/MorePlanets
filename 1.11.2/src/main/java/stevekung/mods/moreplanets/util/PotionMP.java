@@ -39,7 +39,7 @@ public class PotionMP extends Potion
     @SideOnly(Side.CLIENT)
     private void render(int x, int y, float alpha)
     {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/potion/PotionFX.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/potion/icon.png"));
         Tessellator tessellator = Tessellator.getInstance();
         VertexBuffer buf = tessellator.getBuffer();
         buf.begin(7, DefaultVertexFormats.POSITION_TEX);

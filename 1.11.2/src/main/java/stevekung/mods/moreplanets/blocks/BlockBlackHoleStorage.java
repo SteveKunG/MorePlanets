@@ -99,7 +99,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         storage.useHopper = itemStack.getTagCompound().getBoolean("Hopper");
                         storage.xp = itemStack.getTagCompound().getInteger("XP");
                         storage.collectMode = itemStack.getTagCompound().getString("Mode");
-                        ItemStackHelper.loadAllItems(itemStack.getTagCompound(), storage.inventory);//TODO Check
+                        ItemStackHelper.loadAllItems(itemStack.getTagCompound(), storage.inventory);
                     }
                 }
             }

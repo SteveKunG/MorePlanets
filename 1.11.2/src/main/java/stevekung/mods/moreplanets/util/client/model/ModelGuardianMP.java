@@ -124,9 +124,4 @@ public class ModelGuardianMP extends ModelBase
             this.guardianTail[2].rotationPointZ = 6.0F;
         }
     }
-
-    public int getModelVersion()
-    {
-        return 54;
-    }
 }

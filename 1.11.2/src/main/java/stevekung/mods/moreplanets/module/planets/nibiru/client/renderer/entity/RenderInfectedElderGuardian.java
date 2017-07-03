@@ -14,19 +14,19 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
+import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedElderGuardian;
 import stevekung.mods.moreplanets.util.client.model.ModelGuardianMP;
 
 @SideOnly(Side.CLIENT)
-public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
+public class RenderInfectedElderGuardian extends RenderLiving<EntityInfectedElderGuardian>
 {
-    public RenderInfectedGuardian(RenderManager manager)
+    public RenderInfectedElderGuardian(RenderManager manager)
     {
         super(manager, new ModelGuardianMP(), 0.5F);
     }
 
     @Override
-    public boolean shouldRender(EntityInfectedGuardian entity, ICamera camera, double camX, double camY, double camZ)
+    public boolean shouldRender(EntityInfectedElderGuardian entity, ICamera camera, double camX, double camY, double camZ)
     {
         if (super.shouldRender(entity, camera, camX, camY, camZ))
         {
@@ -62,7 +62,7 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
     }
 
     @Override
-    public void doRender(EntityInfectedGuardian entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityInfectedElderGuardian entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
         EntityLivingBase entitylivingbase = entity.getTargetedEntity();
@@ -126,13 +126,13 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
             {
                 d24 = 0.5D;
             }
-            if (f7 > 0.9F)
+            if (f7 > 0.7F)
             {
-                f7 = 0.9F;
+                f7 = 0.7F;
             }
-            int red = 144 + (int)(f7 * 60.0F);
-            int green = 56 + (int)(f7 * 50.0F);
-            int blue = 34 + (int)(f7 * 50.0F);
+            int red = 144 + (int)(f7 * 27);
+            int green = 56 + (int)(f7 * 173);
+            int blue = 34 + (int)(f7 * 228);
             worldrenderer.pos(d12, d0, d13).tex(0.4999D, d23).color(red, green, blue, 255).endVertex();
             worldrenderer.pos(d12, 0.0D, d13).tex(0.4999D, d22).color(red, green, blue, 255).endVertex();
             worldrenderer.pos(d14, 0.0D, d15).tex(0.0D, d22).color(red, green, blue, 255).endVertex();
@@ -154,8 +154,14 @@ public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityInfectedGuardian entity)
+    protected void preRenderCallback(EntityInfectedElderGuardian entity, float partialTicks)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_guardian.png");
+        GlStateManager.scale(2.35F, 2.35F, 2.35F);
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(EntityInfectedElderGuardian entity)
+    {
+        return new ResourceLocation("moreplanets:textures/entity/infected_elder_guardian.png");
     }
 }

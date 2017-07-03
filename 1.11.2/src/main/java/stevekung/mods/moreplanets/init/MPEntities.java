@@ -44,6 +44,7 @@ public class MPEntities
         CommonRegisterHelper.registerEntity(EntityInfectedSnowman.class, "infected_snowman", ColorHelper.rgbToDecimal(164, 101, 84), ColorHelper.rgbToDecimal(145, 145, 145));
         CommonRegisterHelper.registerEntity(EntityZeliusSkeleton.class, "zelius_skeleton", ColorHelper.rgbToDecimal(100, 85, 106), ColorHelper.rgbToDecimal(120, 86, 188));
         CommonRegisterHelper.registerEntity(EntityInfectedGuardian.class, "infected_guardian", ColorHelper.rgbToDecimal(133, 79, 64), ColorHelper.rgbToDecimal(112, 97, 197));
+        CommonRegisterHelper.registerEntity(EntityInfectedElderGuardian.class, "infected_elder_guardian", ColorHelper.rgbToDecimal(114, 118, 151), ColorHelper.rgbToDecimal(41, 42, 46));
         CommonRegisterHelper.registerEntity(EntityInfectedSquid.class, "infected_squid", ColorHelper.rgbToDecimal(70, 29, 20), ColorHelper.rgbToDecimal(143, 77, 54), 64, 3);
         CommonRegisterHelper.registerEntity(EntityInfectedChicken.class, "infected_chicken", ColorHelper.rgbToDecimal(148, 119, 108), ColorHelper.rgbToDecimal(88, 35, 19));
         CommonRegisterHelper.registerEntity(EntityInfectedCow.class, "infected_cow", ColorHelper.rgbToDecimal(95, 59, 36), ColorHelper.rgbToDecimal(66, 66, 66));

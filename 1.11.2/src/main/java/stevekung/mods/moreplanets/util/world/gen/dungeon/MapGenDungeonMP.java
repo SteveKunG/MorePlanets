@@ -105,6 +105,5 @@ public class MapGenDungeonMP extends MapGenStructure
     public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
     {
         return null;
-        //return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.spacing, this.separation, 10387313, true, 100, p_180706_3_);TODO
     }
 }

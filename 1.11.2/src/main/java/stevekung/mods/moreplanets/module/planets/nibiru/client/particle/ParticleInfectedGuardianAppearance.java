@@ -12,7 +12,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
+import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedElderGuardian;
 
 @SideOnly(Side.CLIENT)
 public class ParticleInfectedGuardianAppearance extends Particle
@@ -41,9 +41,9 @@ public class ParticleInfectedGuardianAppearance extends Particle
 
         if (this.entity == null)
         {
-            EntityInfectedGuardian entityguardian = new EntityInfectedGuardian(this.world);
-            //entityguardian.setElder();//TODO
-            this.entity = entityguardian;
+            EntityInfectedElderGuardian entityelderguardian = new EntityInfectedElderGuardian(this.world);
+            entityelderguardian.setGhost();
+            this.entity = entityelderguardian;
         }
     }
 

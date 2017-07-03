@@ -51,3 +51,4 @@ jei rocket crusher recipe anim
 1.11.2
 split entity to one type
 biome dictionary
+rewrite block desc

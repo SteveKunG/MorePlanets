@@ -77,7 +77,7 @@ public class EntityInfectedCrystallizeWorm extends EntityMob implements IEntityB
                 {
                     player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 24, 0));
                 }
-                this.world.playSound((EntityPlayer) source.getEntity(), this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_EXPLODE, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_EXPLODE, SoundCategory.HOSTILE, 1.0F, 1.0F);
                 this.world.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F + this.rand.nextInt(2), this.world.getGameRules().getBoolean("mobGriefing"));
                 worm.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rand.nextFloat() * 360.0F, 0.0F);
                 this.world.spawnEntity(worm);
@@ -164,7 +164,7 @@ public class EntityInfectedCrystallizeWorm extends EntityMob implements IEntityB
             if (entity instanceof EntityLivingBase)
             {
                 ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 40, 0));
-                this.world.playSound((EntityPlayer) entity, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
             return true;
         }

@@ -11,18 +11,14 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -30,27 +26,19 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 
 public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob, IEntityBreathable
 {
     private static DataParameter<Byte> STATUS = EntityDataManager.createKey(EntityInfectedGuardian.class, DataSerializers.BYTE);
     private static DataParameter<Integer> TARGET_ENTITY = EntityDataManager.createKey(EntityInfectedGuardian.class, DataSerializers.VARINT);
-    private float clientSideTailAnimation;
-    private float clientSideTailAnimationO;
-    private float clientSideTailAnimationSpeed;
-    private float clientSideSpikesAnimation;
-    private float clientSideSpikesAnimationO;
     private EntityLivingBase targetedEntity;
     private int clientSideAttackTime;
     private boolean clientSideTouchedGround;
-    private EntityAIWander wander;
 
     public EntityInfectedGuardian(World world)
     {
@@ -334,41 +322,10 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     }
 
     @Override
-    protected void updateAITasks()
-    {
-        {
-            if ((this.ticksExisted + this.getEntityId()) % 1200 == 0)
-            {
-                Potion potion = MobEffects.MINING_FATIGUE;
-
-                for (EntityPlayerMP entityplayermp : this.world.getPlayers(EntityPlayerMP.class, entity -> EntityInfectedGuardian.this.getDistanceSqToEntity(entity) < 2500.0D && entity.interactionManager.survivalOrAdventure()))
-                {
-                    if (!entityplayermp.isPotionActive(potion) || entityplayermp.getActivePotionEffect(potion).getAmplifier() < 2 || entityplayermp.getActivePotionEffect(potion).getDuration() < 1200)
-                    {
-                        MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ);
-                        entityplayermp.world.playSound(entityplayermp, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                        entityplayermp.addPotionEffect(new PotionEffect(potion, 6000, 2));
-
-                        if (!entityplayermp.capabilities.isCreativeMode && !entityplayermp.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION))
-                        {
-                            entityplayermp.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 2));
-                        }
-                    }
-                }
-            }
-
-            if (!this.hasHome())
-            {
-                this.setHomePosAndDistance(new BlockPos(this), 16);
-            }
-        }
-    }
-
-    @Override
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return true ? MPLootTables.INFECTED_ELDER_GUARDIAN : MPLootTables.INFECTED_GUARDIAN;//XXX
+        return MPLootTables.INFECTED_GUARDIAN;
     }
 
     @Override

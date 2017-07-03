@@ -192,7 +192,7 @@ public class CommonRegisterHelper
 
     public static void registerEntity(Class<? extends Entity> entity, String name, int backgroundColor, int foregroundColor, int trackingRange, int updateFrequency)
     {
-        EntityRegistry.registerModEntity(new ResourceLocation("moreplanets:" + name), entity, name, CommonRegisterHelper.ID++, MorePlanetsCore.MOD_ID, trackingRange, updateFrequency, true, backgroundColor, foregroundColor);
+        EntityRegistry.registerModEntity(new ResourceLocation("moreplanets:" + name), entity, "moreplanets." + name, CommonRegisterHelper.ID++, MorePlanetsCore.MOD_ID, trackingRange, updateFrequency, true, backgroundColor, foregroundColor);
     }
 
     public static void registerNonMobEntity(Class<? extends Entity> entity, String name)
