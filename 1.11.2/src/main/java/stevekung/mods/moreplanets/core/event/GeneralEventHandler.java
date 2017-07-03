@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -50,7 +52,10 @@ import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockInfectedDirt;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidLavaBaseMP;
+import stevekung.mods.moreplanets.util.blocks.IFireBlock;
 
 public class GeneralEventHandler
 {
@@ -113,6 +118,18 @@ public class GeneralEventHandler
         if (event.getModID().equals(MorePlanetsCore.MOD_ID))
         {
             ConfigManagerMP.syncConfig(false);
+        }
+    }
+
+    @SubscribeEvent
+    public void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event)
+    {
+        BlockPos firePos = event.getPos().offset(event.getFace());
+
+        if (event.getWorld().getBlockState(firePos).getBlock() instanceof IFireBlock)
+        {
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FIRE_EXTINGUISH, GCCoreUtil.getDimensionID(event.getWorld()), firePos));
+            event.setCanceled(true);
         }
     }
 

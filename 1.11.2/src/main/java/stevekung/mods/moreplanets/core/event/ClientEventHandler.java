@@ -2,9 +2,6 @@ package stevekung.mods.moreplanets.core.event;
 
 import java.util.*;
 
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
 import com.google.common.collect.ImmutableList;
 
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
@@ -12,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRender;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
@@ -30,8 +26,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -40,16 +34,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
 import net.minecraftforge.common.model.TRSRTransformation;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.IFluidBlock;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
@@ -68,12 +58,9 @@ import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDi
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
-import stevekung.mods.moreplanets.network.PacketSimpleMP;
-import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.VersionChecker;
-import stevekung.mods.moreplanets.util.blocks.IFireBlock;
 import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
 import stevekung.mods.moreplanets.util.client.renderer.item.ItemRendererTieredRocket;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
@@ -230,58 +217,6 @@ public class ClientEventHandler
             {
                 Map.Entry<BlockPos, Integer> entry = it.next();
                 FakeAlienBeamRenderer.renderBeam(entry.getKey().getX() - ClientProxyCore.playerPosX, entry.getKey().getY() - ClientProxyCore.playerPosY, entry.getKey().getZ() - ClientProxyCore.playerPosZ, event.partialTicks);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onMouseEvent(MouseEvent event)
-    {
-        int button = event.getButton() - 100;
-        EntityPlayer player = this.mc.player;
-        World world = this.mc.world;
-        int key = this.mc.gameSettings.keyBindAttack.getKeyCode();
-
-        if (this.mc.objectMouseOver != null)
-        {
-            BlockPos pos = this.mc.objectMouseOver.getBlockPos();
-            EnumFacing face = this.mc.objectMouseOver.sideHit;
-
-            if (pos != null)
-            {
-                if (button == key && Mouse.isButtonDown(button + 100))
-                {
-                    if (world.getBlockState(pos).getBlock() != null)
-                    {
-                        this.extinguishCustomFire(player, pos, face, world, event);
-                    }
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onInputEvent(KeyInputEvent event)
-    {
-        int key = Keyboard.getEventKey();
-        EntityPlayer player = this.mc.player;
-        World world = this.mc.world;
-        int bind = this.mc.gameSettings.keyBindAttack.getKeyCode();
-
-        if (this.mc.objectMouseOver != null)
-        {
-            BlockPos pos = this.mc.objectMouseOver.getBlockPos();
-            EnumFacing face = this.mc.objectMouseOver.sideHit;
-
-            if (pos != null)
-            {
-                if (key == bind && Keyboard.isKeyDown(key))
-                {
-                    if (world.getBlockState(pos).getBlock() != null)
-                    {
-                        this.extinguishCustomFire(player, pos, face, world, event);
-                    }
-                }
             }
         }
     }
@@ -601,24 +536,6 @@ public class ClientEventHandler
         GlStateManager.popMatrix();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();
-    }
-
-    private void extinguishCustomFire(EntityPlayer player, BlockPos pos, EnumFacing face, World world, Event event)
-    {
-        if (face != null)
-        {
-            BlockPos firePos = pos.offset(face);
-
-            if (world.getBlockState(firePos).getBlock() instanceof IFireBlock)
-            {
-                if (event instanceof MouseEvent || event instanceof PlayerInteractEvent)
-                {
-                    player.swingArm(EnumHand.MAIN_HAND);
-                    GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FIRE_EXTINGUISH, GCCoreUtil.getDimensionID(world), firePos));
-                    event.setCanceled(true);
-                }
-            }
-        }
     }
 
     private void runAlienBeamTick(EntityPlayer player)

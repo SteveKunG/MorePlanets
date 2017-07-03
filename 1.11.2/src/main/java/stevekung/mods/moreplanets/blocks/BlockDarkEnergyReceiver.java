@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.google.common.collect.Lists;
 
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -27,10 +28,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.ItemDescription;
@@ -243,7 +245,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
         {
             TileEntityDarkEnergyReceiver receiver = (TileEntityDarkEnergyReceiver) tile;
             receiver.onDestroy(tile);
-            ClientEventHandler.receiverRenderPos.remove(receiver.getPos());
+            GalacticraftCore.packetPipeline.sendToDimension(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_GUIDE_POS, world.provider.getDimension(), receiver.getPos()), world.provider.getDimension());
         }
         super.breakBlock(world, pos, state);
     }
