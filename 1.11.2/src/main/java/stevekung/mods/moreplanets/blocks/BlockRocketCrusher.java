@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
@@ -119,14 +118,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     @Override
     public ItemDescription getDescription()
     {
-        return new ItemDescription()
-        {
-            @Override
-            public void addDescription(ItemStack itemStack, List list)
-            {
-                list.addAll(ItemDescriptionHelper.getDescription(BlockRocketCrusher.this.getUnlocalizedName() + ".description"));
-            }
-        };
+        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockRocketCrusher.this.getUnlocalizedName() + ".description"));
     }
 
     @Override
