@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -21,8 +22,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
-import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.TeleporterMP;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
@@ -51,13 +53,13 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
                 if (playerMP.dimension != -1)
                 {
                     playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, -1, new TeleporterMP(playerMP.mcServer.worldServerForDimension(-1)));
-                    ClientEventHandler.loadRenderers = true;
+                    GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, playerMP.dimension), playerMP);
                 }
                 else
                 {
                     int dimID = WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimension();
                     playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterMP(playerMP.mcServer.worldServerForDimension(dimID)));
-                    ClientEventHandler.loadRenderers = true;
+                    GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, playerMP.dimension), playerMP);
                 }
             }
         }

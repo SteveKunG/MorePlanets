@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import io.netty.buffer.ByteBuf;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.network.NetworkUtil;
 import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
@@ -84,8 +85,28 @@ public class PacketSimpleMP extends PacketBase
     @SideOnly(Side.CLIENT)
     public void handleClientSide(EntityPlayer player)
     {
+        BlockPos pos;
+
         switch (this.type)
         {
+        case C_ADD_ENTITY_ID:
+            String entityIDAdd = (String) this.data.get(0);
+            if (!ClientEventHandler.entityId.contains(entityIDAdd))
+            {
+                ClientEventHandler.entityId.add(entityIDAdd);
+            }
+            break;
+        case C_REMOVE_ENTITY_ID:
+            String entityIDRemove = (String) this.data.get(0);
+            ClientEventHandler.entityId.remove(entityIDRemove);
+            break;
+        case C_REMOVE_GUIDE_POS:
+            pos = (BlockPos) this.data.get(0);
+            ClientEventHandler.receiverRenderPos.remove(pos);
+            break;
+        case C_RELOAD_RENDERER:
+            ClientEventHandler.loadRenderers = true;
+            break;
         default:
             break;
         }
@@ -153,17 +174,6 @@ public class PacketSimpleMP extends PacketBase
                 }
             }
             break;
-        case S_ADD_ENTITY_ID:
-            String entityIDAdd = (String) this.data.get(0);
-            if (!ClientEventHandler.entityId.contains(entityIDAdd))
-            {
-                ClientEventHandler.entityId.add(entityIDAdd);
-            }
-            break;
-        case S_REMOVE_ENTITY_ID:
-            String entityIDRemove = (String) this.data.get(0);
-            ClientEventHandler.entityId.remove(entityIDRemove);
-            break;
         default:
             break;
         }
@@ -175,11 +185,12 @@ public class PacketSimpleMP extends PacketBase
         S_FIRE_EXTINGUISH(Side.SERVER, BlockPos.class),
         S_RESPAWN_PLAYER_NETHER(Side.SERVER),
         S_BLACK_HOLE_STORAGE_OPTION(Side.SERVER, BlockPos.class, String.class),
-        S_ADD_ENTITY_ID(Side.SERVER, String.class),
-        S_REMOVE_ENTITY_ID(Side.SERVER, String.class);
 
         // CLIENT
-        //C_SWING_HAND(Side.CLIENT);
+        C_ADD_ENTITY_ID(Side.CLIENT, String.class),
+        C_REMOVE_ENTITY_ID(Side.CLIENT, String.class),
+        C_REMOVE_GUIDE_POS(Side.CLIENT, BlockPos.class),
+        C_RELOAD_RENDERER(Side.CLIENT);
 
         private Side targetSide;
         private Class[] decodeAs;
@@ -204,6 +215,34 @@ public class PacketSimpleMP extends PacketBase
         public static EnumSimplePacketMP[] valuesCached()
         {
             return EnumSimplePacketMP.values;
+        }
+    }
+
+    public static void sendToAllAround(PacketSimpleMP packet, World world, int dimID, BlockPos pos, double radius)
+    {
+        double x = pos.getX() + 0.5D;
+        double y = pos.getY() + 0.5D;
+        double z = pos.getZ() + 0.5D;
+        double r2 = radius * radius;
+
+        for (EntityPlayer player : world.playerEntities)
+        {
+            if (player instanceof EntityPlayerMP)
+            {
+                EntityPlayerMP playerMP = (EntityPlayerMP) player;
+
+                if (playerMP.dimension == dimID)
+                {
+                    double dx = x - playerMP.posX;
+                    double dy = y - playerMP.posY;
+                    double dz = z - playerMP.posZ;
+
+                    if (dx * dx + dy * dy + dz * dz < r2)
+                    {
+                        GalacticraftCore.packetPipeline.sendTo(packet, playerMP);
+                    }
+                }
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.potion;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
@@ -26,14 +25,16 @@ public class InfectedCrystallizeEffect extends PotionMP
     @Override
     public void applyAttributesModifiersToEntity(EntityLivingBase living, AbstractAttributeMap attributeMap, int amplifier)
     {
-        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_ADD_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
+        int id = GCCoreUtil.getDimensionID(living.worldObj);
+        PacketSimpleMP.sendToAllAround(new PacketSimpleMP(EnumSimplePacketMP.C_ADD_ENTITY_ID, id, String.valueOf(living.getEntityId())), living.worldObj, id, living.getPosition(), 64);
         super.applyAttributesModifiersToEntity(living, attributeMap, amplifier);
     }
 
     @Override
     public void removeAttributesModifiersFromEntity(EntityLivingBase living, AbstractAttributeMap attributeMap, int amplifier)
     {
-        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_REMOVE_ENTITY_ID, GCCoreUtil.getDimensionID(living.worldObj), String.valueOf(living.getEntityId())));
+        int id = GCCoreUtil.getDimensionID(living.worldObj);
+        PacketSimpleMP.sendToAllAround(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_ENTITY_ID, id, String.valueOf(living.getEntityId())), living.worldObj, id, living.getPosition(), 64);
         super.removeAttributesModifiersFromEntity(living, attributeMap, amplifier);
     }
 
