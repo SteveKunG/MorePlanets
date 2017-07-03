@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.integration.jei.dark_energy_transform;
 
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import com.google.common.collect.Lists;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.recipe.DarkEnergyRecipeData;
 
@@ -42,7 +44,11 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     @Override
     public void drawInfo(Minecraft mc, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
     {
-        mc.currentScreen.drawCenteredString(mc.fontRendererObj, "Time : " + this.time, 50, 38, 16777215);
+        int time = this.time / 20;
+        String text = "Time : " + time + "s * Count";
+        FontRenderer fontRendererObj = mc.fontRendererObj;
+        int width = fontRendererObj.getStringWidth(text);
+        mc.fontRendererObj.drawString(text, recipeWidth - 18 - width, 38, Color.gray.getRGB());
     }
 
     @Override
