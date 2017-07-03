@@ -40,16 +40,14 @@ more sounds subtitle
 rewrite entity rendering with crystallize
 
 1.10.2
-farmland/grass path block lighting
 villager profession rewrite
-nibiru biome gen
+nibiru biome gen fix
 laser gun shoot twice
 fix enchant render for multalic armor
 juicer ride player
 gui block overlay
-fix village gen underwater
+jei rocket crusher recipe anim
 
 1.11.2
 split entity to one type
 biome dictionary
-jei rocket crusher recipe anim

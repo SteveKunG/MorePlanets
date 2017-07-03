@@ -38,13 +38,12 @@ infected guardian random fish
 add option other player can use bh storage
 more sounds subtitle
 rewrite entity rendering with crystallize
+jei rocket crusher recipe anim
 
 1.10.2
-farmland/grass path block lighting
 villager profession rewrite
-nibiru biome gen
+nibiru biome gen fix
 laser gun shoot twice
 fix enchant render for multalic armor
 juicer ride player
 gui block overlay
-fix village gen underwater
