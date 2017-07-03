@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.fronos.items;
 
+import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ItemBaseVariantsMP;
 
@@ -9,6 +10,12 @@ public class ItemFronos extends ItemBaseVariantsMP
     {
         super();
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public float getSmeltingExperience(ItemStack itemStack)
+    {
+        return itemStack.getItemDamage() == 1 ? 1.0F : -1.0F;
     }
 
     @Override

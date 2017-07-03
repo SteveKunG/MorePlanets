@@ -13,6 +13,12 @@ public class ItemNibiru extends ItemBaseVariantsMP
     }
 
     @Override
+    public float getSmeltingExperience(ItemStack itemStack)
+    {
+        return itemStack.getItemDamage() == 4 ? 2.0F : -1.0F;
+    }
+
+    @Override
     public EnumSortCategoryItem getItemCategory(int meta)
     {
         return meta == 4 ? EnumSortCategoryItem.HEAVY_PLATE : EnumSortCategoryItem.GENERAL;
