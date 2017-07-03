@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
@@ -313,14 +312,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     @Override
     public ItemDescription getDescription()
     {
-        return new ItemDescription()
-        {
-            @Override
-            public void addDescription(ItemStack itemStack, List list)
-            {
-                list.addAll(ItemDescriptionHelper.getDescription(BlockDarkEnergyGenerator.this.getUnlocalizedName() + ".description"));
-            }
-        };
+        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockDarkEnergyGenerator.this.getUnlocalizedName() + ".description"));
     }
 
     @Override

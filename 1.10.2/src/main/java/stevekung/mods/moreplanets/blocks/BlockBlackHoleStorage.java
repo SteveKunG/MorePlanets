@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -262,14 +261,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     @Override
     public ItemDescription getDescription()
     {
-        return new ItemDescription()
-        {
-            @Override
-            public void addDescription(ItemStack itemStack, List list)
-            {
-                list.addAll(ItemDescriptionHelper.getDescription(BlockBlackHoleStorage.this.getUnlocalizedName() + ".description"));
-            }
-        };
+        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockBlackHoleStorage.this.getUnlocalizedName() + ".description"));
     }
 
     @Override
