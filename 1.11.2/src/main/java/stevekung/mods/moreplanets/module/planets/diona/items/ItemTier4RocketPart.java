@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.diona.items;
 
+import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ItemBaseVariantsMP;
 
@@ -9,6 +10,12 @@ public class ItemTier4RocketPart extends ItemBaseVariantsMP
     {
         super();
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public float getSmeltingExperience(ItemStack itemStack)
+    {
+        return itemStack.getItemDamage() == 0 ? 2.0F : -1.0F;
     }
 
     @Override

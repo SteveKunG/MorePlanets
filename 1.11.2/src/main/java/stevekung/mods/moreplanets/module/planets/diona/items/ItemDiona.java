@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.diona.items;
 
+import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ItemBaseVariantsMP;
 
@@ -9,6 +10,18 @@ public class ItemDiona extends ItemBaseVariantsMP
     {
         super();
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public float getSmeltingExperience(ItemStack itemStack)
+    {
+        switch (itemStack.getItemDamage())
+        {
+        case 2:
+        case 3:
+            return 1.0F;
+        }
+        return -1.0F;
     }
 
     @Override
