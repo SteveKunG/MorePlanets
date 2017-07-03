@@ -19,8 +19,6 @@ import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -47,25 +45,6 @@ import stevekung.mods.moreplanets.util.client.model.ModelBipedTranslucent;
 @SideOnly(Side.CLIENT)
 public class ClientRegisterHelper
 {
-    public static void registerEntityRendering(Class<? extends Entity> entity, final Class<? extends Render> render)
-    {
-        RenderingRegistry.registerEntityRenderingHandler(entity, new IRenderFactory()
-        {
-            @Override
-            public Render createRenderFor(RenderManager manager)
-            {
-                try
-                {
-                    return render.getConstructor(RenderManager.class).newInstance(manager);
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }
-            }
-        });
-    }
-
     public static void registerEntityRendering(Class<? extends Entity> entity, IRenderFactory render)
     {
         RenderingRegistry.registerEntityRenderingHandler(entity, render);
