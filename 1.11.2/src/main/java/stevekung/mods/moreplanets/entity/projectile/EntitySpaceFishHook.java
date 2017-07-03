@@ -35,7 +35,6 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.items.ItemSpaceFishingRod;
 import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
