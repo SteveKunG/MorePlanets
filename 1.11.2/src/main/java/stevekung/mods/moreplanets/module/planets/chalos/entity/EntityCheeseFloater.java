@@ -15,7 +15,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -38,12 +37,6 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     {
         super(world);
         this.setSize(0.8F, 2.0F);
-        this.experienceValue = 10;
-        this.setPathPriority(PathNodeType.WATER, -1.0F);
-        this.setPathPriority(PathNodeType.LAVA, 8.0F);
-        this.setPathPriority(PathNodeType.DANGER_FIRE, 0.0F);
-        this.setPathPriority(PathNodeType.DAMAGE_FIRE, 0.0F);
-        this.isImmuneToFire = true;
         this.experienceValue = 10;
     }
 
@@ -160,7 +153,7 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
-        if (!damageSource.getDamageType().equals("mob") && !damageSource.getDamageType().equals("fireball"))
+        if (!(damageSource.getSourceOfDamage() instanceof EntitySmallCheeseSpore))
         {
             if (!this.world.isRemote)
             {

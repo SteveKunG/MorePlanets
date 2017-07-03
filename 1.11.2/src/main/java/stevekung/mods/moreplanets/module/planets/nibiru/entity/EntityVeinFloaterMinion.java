@@ -26,7 +26,12 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
         super(world);
         this.setSize(0.8F, 2.0F);
         this.experienceValue = 10;
-        this.tasks.addTask(4, new AIFireballAttack(this));
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
+        this.tasks.addTask(4, new AIVeinballAttack(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
@@ -91,7 +96,7 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
-        if (!damageSource.getDamageType().equals("mob") && !damageSource.getDamageType().equals("fireball"))
+        if (!(damageSource.getSourceOfDamage() instanceof EntityVeinBall))
         {
             if (this.isEntityInvulnerable(damageSource))
             {
@@ -143,29 +148,29 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
         return EnumMobType.NIBIRU;
     }
 
-    class AIFireballAttack extends EntityAIBase
+    class AIVeinballAttack extends EntityAIBase
     {
-        private EntityVeinFloaterMinion blaze;
-        private int field_179467_b;
-        private int field_179468_c;
+        private EntityVeinFloaterMinion entity;
+        private int attackStep;
+        private int attackTime;
 
-        public AIFireballAttack(EntityVeinFloaterMinion p_i45846_1_)
+        public AIVeinballAttack(EntityVeinFloaterMinion entity)
         {
-            this.blaze = p_i45846_1_;
+            this.entity = entity;
             this.setMutexBits(3);
         }
 
         @Override
         public boolean shouldExecute()
         {
-            EntityLivingBase entitylivingbase = this.blaze.getAttackTarget();
+            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
             return entitylivingbase != null && entitylivingbase.isEntityAlive();
         }
 
         @Override
         public void startExecuting()
         {
-            this.field_179467_b = 0;
+            this.attackStep = 0;
         }
 
         @Override
@@ -174,61 +179,61 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
         @Override
         public void updateTask()
         {
-            --this.field_179468_c;
-            EntityLivingBase entitylivingbase = this.blaze.getAttackTarget();
-            double d0 = this.blaze.getDistanceSqToEntity(entitylivingbase);
+            --this.attackTime;
+            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
+            double d0 = this.entity.getDistanceSqToEntity(entitylivingbase);
 
             if (d0 < 1.5D)
             {
-                if (this.field_179468_c <= 0)
+                if (this.attackTime <= 0)
                 {
-                    this.field_179468_c = 20;
-                    this.blaze.attackEntityAsMob(entitylivingbase);
+                    this.attackTime = 20;
+                    this.entity.attackEntityAsMob(entitylivingbase);
                 }
-                this.blaze.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+                this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
             }
             else if (d0 < 30.0D)
             {
-                double d1 = entitylivingbase.posX - this.blaze.posX;
-                double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.blaze.posY + this.blaze.height / 2.0F);
-                double d3 = entitylivingbase.posZ - this.blaze.posZ;
+                double d1 = entitylivingbase.posX - this.entity.posX;
+                double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.entity.posY + this.entity.height / 2.0F);
+                double d3 = entitylivingbase.posZ - this.entity.posZ;
 
-                if (this.field_179468_c <= 0)
+                if (this.attackTime <= 0)
                 {
-                    ++this.field_179467_b;
+                    ++this.attackStep;
 
-                    if (this.field_179467_b == 1)
+                    if (this.attackStep == 1)
                     {
-                        this.field_179468_c = 35;
+                        this.attackTime = 35;
                     }
-                    else if (this.field_179467_b <= 6)
+                    else if (this.attackStep <= 6)
                     {
-                        this.field_179468_c = 5;
+                        this.attackTime = 5;
                     }
                     else
                     {
-                        this.field_179468_c = 50;
-                        this.field_179467_b = 0;
+                        this.attackTime = 50;
+                        this.attackStep = 0;
                     }
 
-                    if (this.field_179467_b > 1)
+                    if (this.attackStep > 1)
                     {
                         float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
 
                         for (int i = 0; i < 1; ++i)
                         {
-                            EntityVeinBall entitysmallfireball = new EntityVeinBall(this.blaze.world, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * f, d2, d3 + this.blaze.getRNG().nextGaussian() * f);
-                            entitysmallfireball.posY = this.blaze.posY + this.blaze.height / 2.0F + 0.5D;
-                            this.blaze.world.spawnEntity(entitysmallfireball);
+                            EntityVeinBall entitysmallfireball = new EntityVeinBall(this.entity.world, this.entity, d1 + this.entity.getRNG().nextGaussian() * f, d2, d3 + this.entity.getRNG().nextGaussian() * f);
+                            entitysmallfireball.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
+                            this.entity.world.spawnEntity(entitysmallfireball);
                         }
                     }
                 }
-                this.blaze.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
+                this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
             }
             else
             {
-                this.blaze.getNavigator().clearPathEntity();
-                this.blaze.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+                this.entity.getNavigator().clearPathEntity();
+                this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
             }
             super.updateTask();
         }
