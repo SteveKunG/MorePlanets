@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
 import java.util.List;
-import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -15,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityMultiPart;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
@@ -33,6 +31,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityVeinBall;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.JsonUtils;
@@ -54,12 +53,6 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
         super(world);
         this.partArray = new EntityDragonPart[] { this.partHead = new EntityDragonPart(this, "head", 6.0F, 4.0F) };
         this.isImmuneToFire = true;
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(3, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false, true));
         this.setSize(6.0F, 16.0F);
     }
 
@@ -71,7 +64,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
 
         if (this.getHealth() <= 0.0F)
         {
-            int i = (300 + new Random().nextInt(600)) * 20;
+            int i = (300 + this.rand.nextInt(600)) * 20;
             WorldInfo worldinfo = this.worldObj.getWorldInfo();
             worldinfo.setCleanWeatherTime(0);
             worldinfo.setRainTime(i);
@@ -107,33 +100,30 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
             {
                 List<EntityVeinFloaterMinion> minionList = this.worldObj.getEntitiesWithinAABB(EntityVeinFloaterMinion.class, new AxisAlignedBB(this.posX - 32, this.posY - 32, this.posZ - 32, this.posX + 32, this.posY + 32, this.posZ + 32));
 
-                if (minionList.size() > 32)
+                if (minionList.size() <= 32)
                 {
-                    return;
+                    EntityVeinFloaterMinion tentacle1 = new EntityVeinFloaterMinion(this.worldObj);
+                    tentacle1.setLocationAndAngles(this.posX + 2.0F, this.posY + 12.0F, this.posZ + 2.0F, 0.0F, 0.0F);
+                    tentacle1.setAbsorptionAmount(20.0F);
+                    this.worldObj.spawnEntityInWorld(tentacle1);
+
+                    EntityVeinFloaterMinion tentacle2 = new EntityVeinFloaterMinion(this.worldObj);
+                    tentacle2.setLocationAndAngles(this.posX - 2.0F, this.posY + 12.0F, this.posZ - 2.0F, 0.0F, 0.0F);
+                    tentacle2.setAbsorptionAmount(20.0F);
+                    this.worldObj.spawnEntityInWorld(tentacle2);
+
+                    EntityVeinFloaterMinion tentacle3 = new EntityVeinFloaterMinion(this.worldObj);
+                    tentacle3.setLocationAndAngles(this.posX + 2.0F, this.posY + 12.0F, this.posZ - 2.0F, 0.0F, 0.0F);
+                    tentacle3.setAbsorptionAmount(20.0F);
+                    this.worldObj.spawnEntityInWorld(tentacle3);
+
+                    EntityVeinFloaterMinion tentacle4 = new EntityVeinFloaterMinion(this.worldObj);
+                    tentacle4.setLocationAndAngles(this.posX - 2.0F, this.posY + 12.0F, this.posZ + 2.0F, 0.0F, 0.0F);
+                    tentacle4.setAbsorptionAmount(20.0F);
+                    this.worldObj.spawnEntityInWorld(tentacle4);
                 }
-
-                EntityVeinFloaterMinion tentacle1 = new EntityVeinFloaterMinion(this.worldObj);
-                tentacle1.setLocationAndAngles(this.posX + 2.0F, this.posY + 12.0F, this.posZ + 2.0F, 0.0F, 0.0F);
-                tentacle1.setAbsorptionAmount(20.0F);
-                this.worldObj.spawnEntityInWorld(tentacle1);
-
-                EntityVeinFloaterMinion tentacle2 = new EntityVeinFloaterMinion(this.worldObj);
-                tentacle2.setLocationAndAngles(this.posX - 2.0F, this.posY + 12.0F, this.posZ - 2.0F, 0.0F, 0.0F);
-                tentacle2.setAbsorptionAmount(20.0F);
-                this.worldObj.spawnEntityInWorld(tentacle2);
-
-                EntityVeinFloaterMinion tentacle3 = new EntityVeinFloaterMinion(this.worldObj);
-                tentacle3.setLocationAndAngles(this.posX + 2.0F, this.posY + 12.0F, this.posZ - 2.0F, 0.0F, 0.0F);
-                tentacle3.setAbsorptionAmount(20.0F);
-                this.worldObj.spawnEntityInWorld(tentacle3);
-
-                EntityVeinFloaterMinion tentacle4 = new EntityVeinFloaterMinion(this.worldObj);
-                tentacle4.setLocationAndAngles(this.posX - 2.0F, this.posY + 12.0F, this.posZ + 2.0F, 0.0F, 0.0F);
-                tentacle4.setAbsorptionAmount(20.0F);
-                this.worldObj.spawnEntityInWorld(tentacle4);
             }
         }
-
         if (this.useVineAttacking)
         {
             int range = 16;
@@ -149,7 +139,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
                     entity.motionX = motionX * 0.025F;
                     entity.motionY = motionY * 0.025F;
                     entity.motionZ = motionZ * 0.025F;
-                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D));
+                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D));
 
                     for (EntityPlayer near : entityNearBH)
                     {
@@ -160,7 +150,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
         }
         if (this.getHealth() <= this.getMaxHealth() / 3)
         {
-            int i = (300 + new Random().nextInt(600)) * 20;
+            int i = (300 + this.rand.nextInt(600)) * 20;
             WorldInfo worldinfo = this.worldObj.getWorldInfo();
             worldinfo.setCleanWeatherTime(0);
             worldinfo.setRainTime(i);
@@ -172,7 +162,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
             {
                 EntityPlayer player = this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 32, false);
 
-                if (player != null && !player.capabilities.isCreativeMode)
+                if (player != null && !player.capabilities.isCreativeMode && !player.isDead)
                 {
                     EntityNibiruLightningBolt bolt = new EntityNibiruLightningBolt(this.worldObj);
                     bolt.setLocationAndAngles(player.posX, player.posY, player.posZ, 0.0F, 0.0F);
@@ -185,7 +175,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
-        if (!damageSource.getDamageType().contains("lightningBolt") && !damageSource.getDamageType().contains("fireball"))
+        if (!(damageSource.getSourceOfDamage() instanceof EntityVeinBall) && damageSource != DamageSource.lightningBolt)
         {
             if (this.isEntityInvulnerable(damageSource))
             {

@@ -56,7 +56,7 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
     }
 
     @Override
-    public void explode()
+    protected void explode()
     {
         if (!this.worldObj.isRemote)
         {

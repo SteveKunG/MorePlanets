@@ -40,27 +40,6 @@ public class EntityCheeseSpore extends EntityFireball
     }
 
     @Override
-    public float getBrightness(float partialTicks)
-    {
-        BlockPos blockpos = new BlockPos(this.posX, this.posY + this.getEyeHeight(), this.posZ);
-        return this.worldObj.isBlockLoaded(blockpos) ? this.worldObj.getLightBrightness(blockpos) : 0.0F;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getBrightnessForRender(float partialTicks)
-    {
-        BlockPos blockpos = new BlockPos(this.posX, this.posY + this.getEyeHeight(), this.posZ);
-        return this.worldObj.isBlockLoaded(blockpos) ? this.worldObj.getCombinedLight(blockpos, 0) : 0;
-    }
-
-    @Override
-    public boolean isBurning()
-    {
-        return false;
-    }
-
-    @Override
     public void onUpdate()
     {
         if (this.worldObj.isRemote || (this.shootingEntity == null || !this.shootingEntity.isDead) && this.worldObj.isBlockLoaded(new BlockPos(this)))
@@ -267,8 +246,47 @@ public class EntityCheeseSpore extends EntityFireball
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public int getBrightnessForRender(float partialTicks)
+    {
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(MathHelper.floor_double(this.posX), 0, MathHelper.floor_double(this.posZ));
+
+        if (this.worldObj.isBlockLoaded(blockpos$mutableblockpos))
+        {
+            blockpos$mutableblockpos.setY(MathHelper.floor_double(this.posY + this.getEyeHeight()));
+            return this.worldObj.getCombinedLight(blockpos$mutableblockpos, 0);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    @Override
+    public float getBrightness(float partialTicks)
+    {
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(MathHelper.floor_double(this.posX), 0, MathHelper.floor_double(this.posZ));
+
+        if (this.worldObj.isBlockLoaded(blockpos$mutableblockpos))
+        {
+            blockpos$mutableblockpos.setY(MathHelper.floor_double(this.posY + this.getEyeHeight()));
+            return this.worldObj.getLightBrightness(blockpos$mutableblockpos);
+        }
+        else
+        {
+            return 0.0F;
+        }
+    }
+
+    @Override
     public boolean canBeCollidedWith()
     {
         return true;
+    }
+
+    @Override
+    protected boolean isFireballFiery()
+    {
+        return false;
     }
 }

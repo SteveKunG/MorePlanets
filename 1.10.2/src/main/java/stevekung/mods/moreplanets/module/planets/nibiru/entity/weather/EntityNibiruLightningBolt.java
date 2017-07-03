@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityVeinFloater;
 
 public class EntityNibiruLightningBolt extends Entity
 {
@@ -107,8 +108,12 @@ public class EntityNibiruLightningBolt extends Entity
                 for (int i = 0; i < list.size(); ++i)
                 {
                     Entity entity = list.get(i);
-                    entity.attackEntityFrom(DamageSource.lightningBolt, 8.0F);
-                    entity.setFire(8);
+
+                    if (!(entity instanceof EntityVeinFloater))
+                    {
+                        entity.attackEntityFrom(DamageSource.lightningBolt, 8.0F);
+                        entity.setFire(8);
+                    }
                 }
             }
         }

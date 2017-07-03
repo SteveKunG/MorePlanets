@@ -222,18 +222,36 @@ public class EntityVeinBall extends EntityFireball
     }
 
     @Override
-    public float getBrightness(float partialTicks)
-    {
-        BlockPos blockpos = new BlockPos(this.posX, this.posY + this.getEyeHeight(), this.posZ);
-        return this.worldObj.isBlockLoaded(blockpos) ? this.worldObj.getLightBrightness(blockpos) : 0.0F;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public int getBrightnessForRender(float partialTicks)
     {
-        BlockPos blockpos = new BlockPos(this.posX, this.posY + this.getEyeHeight(), this.posZ);
-        return this.worldObj.isBlockLoaded(blockpos) ? this.worldObj.getCombinedLight(blockpos, 0) : 0;
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(MathHelper.floor_double(this.posX), 0, MathHelper.floor_double(this.posZ));
+
+        if (this.worldObj.isBlockLoaded(blockpos$mutableblockpos))
+        {
+            blockpos$mutableblockpos.setY(MathHelper.floor_double(this.posY + this.getEyeHeight()));
+            return this.worldObj.getCombinedLight(blockpos$mutableblockpos, 0);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    @Override
+    public float getBrightness(float partialTicks)
+    {
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(MathHelper.floor_double(this.posX), 0, MathHelper.floor_double(this.posZ));
+
+        if (this.worldObj.isBlockLoaded(blockpos$mutableblockpos))
+        {
+            blockpos$mutableblockpos.setY(MathHelper.floor_double(this.posY + this.getEyeHeight()));
+            return this.worldObj.getLightBrightness(blockpos$mutableblockpos);
+        }
+        else
+        {
+            return 0.0F;
+        }
     }
 
     @Override
@@ -249,7 +267,7 @@ public class EntityVeinBall extends EntityFireball
     }
 
     @Override
-    public boolean isBurning()
+    protected boolean isFireballFiery()
     {
         return false;
     }
