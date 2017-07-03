@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.layer;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
@@ -25,7 +26,7 @@ public class LayerInfectedCrystallizeSlimeBossBarrier implements LayerRenderer<E
     @Override
     public void doRenderLayer(EntityInfectedCrystallizeSlimeBoss entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        if (entity.barrier)
+        if (entity.getBarrier())
         {
             GlStateManager.pushMatrix();
             this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/infected_crystallize_slime_boss_glow.png"));
@@ -59,7 +60,9 @@ public class LayerInfectedCrystallizeSlimeBossBarrier implements LayerRenderer<E
             GlStateManager.disableLighting();
             GlStateManager.blendFunc(1, 1);
             this.model.setModelAttributes(this.render.getMainModel());
+            Minecraft.getMinecraft().entityRenderer.func_191514_d(true);
             this.model.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+            Minecraft.getMinecraft().entityRenderer.func_191514_d(false);
             GlStateManager.matrixMode(5890);
             GlStateManager.loadIdentity();
             GlStateManager.matrixMode(5888);

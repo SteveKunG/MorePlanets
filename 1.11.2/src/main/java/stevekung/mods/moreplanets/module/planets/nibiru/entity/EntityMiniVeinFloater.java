@@ -12,13 +12,15 @@ import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -41,20 +43,39 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
     public int deathTicks = 0;
     public int entitiesWithin;
     public int entitiesWithinLast;
-    public boolean useVineAttacking;
+    private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityMiniVeinFloater.class, DataSerializers.BOOLEAN);
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
 
     public EntityMiniVeinFloater(World world)
     {
         super(world);
         this.isImmuneToFire = true;
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(3, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false, true));
         this.setSize(3.0F, 8.0F);
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataManager.register(VINE_PULL, false);
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbt)
+    {
+        super.writeEntityToNBT(nbt);
+
+        if (this.dataManager.get(VINE_PULL).booleanValue())
+        {
+            nbt.setBoolean("VinePull", true);
+        }
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbt)
+    {
+        super.readEntityFromNBT(nbt);
+        this.dataManager.set(VINE_PULL, nbt.getBoolean("VinePull"));
     }
 
     @Override
@@ -65,7 +86,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
 
         if (this.getHealth() <= 0.0F)
         {
-            this.useVineAttacking = false;
+            this.dataManager.set(VINE_PULL, false);
             return;
         }
 
@@ -76,15 +97,15 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
         {
             if (tick > 150)
             {
-                this.useVineAttacking = true;
+                this.dataManager.set(VINE_PULL, true);
             }
             else
             {
-                this.useVineAttacking = false;
+                this.dataManager.set(VINE_PULL, false);
             }
         }
 
-        if (this.useVineAttacking)
+        if (this.getVinePull())
         {
             int range = 32;
             List<EntityPlayer> entitiesAroundBH = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
@@ -306,20 +327,6 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound nbt)
-    {
-        super.writeEntityToNBT(nbt);
-        nbt.setBoolean("UseVineAttacking", this.useVineAttacking);
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound nbt)
-    {
-        super.readEntityFromNBT(nbt);
-        this.useVineAttacking = nbt.getBoolean("UseVineAttacking");
-    }
-
-    @Override
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {
         this.spawner = spawner;
@@ -353,5 +360,10 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
     public boolean isNonBoss()
     {
         return false;
+    }
+
+    public boolean getVinePull()
+    {
+        return this.dataManager.get(VINE_PULL);
     }
 }

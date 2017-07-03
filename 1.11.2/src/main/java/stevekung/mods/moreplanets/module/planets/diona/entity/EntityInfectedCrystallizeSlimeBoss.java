@@ -21,6 +21,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -48,13 +52,38 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     public int deathTicks = 0;
     public int entitiesWithin;
     public int entitiesWithinLast;
-    public boolean barrier;
+    private static final DataParameter<Boolean> BARRIER = EntityDataManager.createKey(EntityInfectedCrystallizeSlimeBoss.class, DataSerializers.BOOLEAN);
     public EntityInfectedCrystallizeTentacle tentacle;
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
 
     public EntityInfectedCrystallizeSlimeBoss(World world)
     {
         super(world);
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataManager.register(BARRIER, false);
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbt)
+    {
+        super.writeEntityToNBT(nbt);
+
+        if (this.dataManager.get(BARRIER).booleanValue())
+        {
+            nbt.setBoolean("Barrier", true);
+        }
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbt)
+    {
+        super.readEntityFromNBT(nbt);
+        this.dataManager.set(BARRIER, nbt.getBoolean("Barrier"));
     }
 
     @Override
@@ -208,11 +237,11 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
 
         if (list.size() > 0)
         {
-            this.barrier = true;
+            this.dataManager.set(BARRIER, true);
         }
         else
         {
-            this.barrier = false;
+            this.dataManager.set(BARRIER, false);
         }
     }
 
@@ -355,7 +384,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
         {
             return false;
         }
-        else if (this.barrier && !damageSource.isCreativePlayer())
+        else if (this.getBarrier() && !damageSource.isCreativePlayer())
         {
             return false;
         }
@@ -457,5 +486,10 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     public boolean isNonBoss()
     {
         return false;
+    }
+
+    public boolean getBarrier()
+    {
+        return this.dataManager.get(BARRIER);
     }
 }
