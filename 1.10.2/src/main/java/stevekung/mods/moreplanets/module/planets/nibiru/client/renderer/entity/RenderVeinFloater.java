@@ -37,7 +37,7 @@ public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
 
         for (EntityPlayer player : entitiesAroundBH)
         {
-            if (player != null && !player.capabilities.isCreativeMode && entity.useVineAttacking)
+            if (player != null && !player.capabilities.isCreativeMode && entity.getVinePull())
             {
                 Tessellator tessellator = Tessellator.getInstance();
                 VertexBuffer worldrenderer = tessellator.getBuffer();

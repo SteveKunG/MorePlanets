@@ -21,6 +21,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -43,7 +46,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
     public int deathTicks = 0;
     public int entitiesWithin;
     public int entitiesWithinLast;
-    public boolean useVineAttacking;
+    private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityVeinFloater.class, DataSerializers.BOOLEAN);
     public EntityDragonPart[] partArray;
     public EntityDragonPart partHead;
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
@@ -54,6 +57,31 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
         this.partArray = new EntityDragonPart[] { this.partHead = new EntityDragonPart(this, "head", 6.0F, 4.0F) };
         this.isImmuneToFire = true;
         this.setSize(6.0F, 16.0F);
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataManager.register(VINE_PULL, false);
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbt)
+    {
+        super.writeEntityToNBT(nbt);
+
+        if (this.dataManager.get(VINE_PULL).booleanValue())
+        {
+            nbt.setBoolean("VinePull", true);
+        }
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbt)
+    {
+        super.readEntityFromNBT(nbt);
+        this.dataManager.set(VINE_PULL, nbt.getBoolean("VinePull"));
     }
 
     @Override
@@ -71,7 +99,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
             worldinfo.setThunderTime(i);
             worldinfo.setRaining(true);
             worldinfo.setThundering(false);
-            this.useVineAttacking = false;
+            this.dataManager.set(VINE_PULL, false);
             return;
         }
 
@@ -84,17 +112,17 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
             {
                 if (tick > 300)
                 {
-                    this.useVineAttacking = true;
+                    this.dataManager.set(VINE_PULL, true);
                 }
                 else
                 {
-                    this.useVineAttacking = false;
+                    this.dataManager.set(VINE_PULL, false);
                 }
             }
         }
         else
         {
-            this.useVineAttacking = false;
+            this.dataManager.set(VINE_PULL, false);
 
             if (!this.worldObj.isRemote && this.ticksExisted % 200 == 0)
             {
@@ -124,7 +152,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
                 }
             }
         }
-        if (this.useVineAttacking)
+        if (this.getVinePull())
         {
             int range = 16;
             List<EntityPlayer> entitiesAroundBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
@@ -139,7 +167,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
                     entity.motionX = motionX * 0.025F;
                     entity.motionY = motionY * 0.025F;
                     entity.motionZ = motionZ * 0.025F;
-                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D));
+                    List<EntityPlayer> entityNearBH = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 13.5D, this.posZ + 5.0D));
 
                     for (EntityPlayer near : entityNearBH)
                     {
@@ -158,7 +186,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
             worldinfo.setRaining(true);
             worldinfo.setThundering(true);
 
-            if (this.rand.nextFloat() > 0.975F && !this.isDead)
+            if (this.rand.nextFloat() > 0.975F && !this.isDead && !this.getVinePull())
             {
                 EntityPlayer player = this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 32, false);
 
@@ -372,20 +400,6 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound nbt)
-    {
-        super.writeEntityToNBT(nbt);
-        nbt.setBoolean("UseVineAttacking", this.useVineAttacking);
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound nbt)
-    {
-        super.readEntityFromNBT(nbt);
-        this.useVineAttacking = nbt.getBoolean("UseVineAttacking");
-    }
-
-    @Override
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {
         this.spawner = spawner;
@@ -437,5 +451,10 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
     public boolean isNonBoss()
     {
         return false;
+    }
+
+    public boolean getVinePull()
+    {
+        return this.dataManager.get(VINE_PULL);
     }
 }

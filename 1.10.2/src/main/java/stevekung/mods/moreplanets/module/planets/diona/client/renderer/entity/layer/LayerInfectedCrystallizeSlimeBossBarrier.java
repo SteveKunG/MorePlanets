@@ -25,7 +25,7 @@ public class LayerInfectedCrystallizeSlimeBossBarrier implements LayerRenderer<E
     @Override
     public void doRenderLayer(EntityInfectedCrystallizeSlimeBoss entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        if (entity.barrier)
+        if (entity.getBarrier())
         {
             GlStateManager.pushMatrix();
             this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/infected_crystallize_slime_boss_glow.png"));
