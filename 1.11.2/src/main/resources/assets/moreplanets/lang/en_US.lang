@@ -326,6 +326,7 @@ item.space_fishing_rod.name=Space Fishing Rod
 item.dye_mp.name=Blue Dye
 item.laser_gun.name=Laser Gun
 item.laser_bullet.normal.name=Laser Bullet
+item.laser_bullet.infected_crystallize.name=Infected Crystallize Laser Bullet
 item.space_fish.zelius.name=Zelius Fish
 item.space_fish.glowing_alien.name=Glowing Alien Fish
 item.alien_defender_reinforcement.name=Alien Defender Reinforcement

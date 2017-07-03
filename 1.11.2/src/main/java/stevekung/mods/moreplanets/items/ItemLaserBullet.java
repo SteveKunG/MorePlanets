@@ -21,12 +21,13 @@ public class ItemLaserBullet extends ItemBaseVariantsMP
     @Override
     public String[] getItemVariantsName()
     {
-        return new String[] { "normal" };
+        return new String[] { "normal", "infected_crystallize" };
     }
 
     public static enum ItemType implements IStringSerializable
     {
-        NORMAL_LASER_BULLET;
+        NORMAL_LASER_BULLET,
+        INFECTED_CRYSTALLIZE_LASER_BULLET;
 
         @Override
         public String getName()

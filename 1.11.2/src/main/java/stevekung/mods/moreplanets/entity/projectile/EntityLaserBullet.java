@@ -16,6 +16,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SPacketChangeGameState;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
@@ -27,6 +28,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.util.DamageSourceMP;
 
 public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdditionalSpawnData
@@ -207,9 +209,14 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             }
         }
 
-        if (this.getLaserType() == 0)
+        switch (this.getLaserType())
         {
+        case 0:
             this.damage = 2.0D;
+            break;
+        case 1:
+            this.damage = 4.5D;
+            break;
         }
 
         if (movingobjectposition != null)
@@ -230,10 +237,6 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
                     damagesource = DamageSourceMP.causeLaserDamage(this, this.shootingEntity);
                 }
 
-                if (this.isBurning() && !(movingobjectposition.entityHit instanceof EntityEnderman))
-                {
-                    movingobjectposition.entityHit.setFire(5);
-                }
                 if (movingobjectposition.entityHit.attackEntityFrom(damagesource, l))
                 {
                     if (movingobjectposition.entityHit instanceof EntityLivingBase)
@@ -249,8 +252,11 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
                         {
                             ((EntityPlayerMP)this.shootingEntity).connection.sendPacket(new SPacketChangeGameState(6, 0.0F));
                         }
+                        if (this.getLaserType() == 1)
+                        {
+                            entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 100));
+                        }
                     }
-
                     if (!(movingobjectposition.entityHit instanceof EntityEnderman))
                     {
                         this.setDead();
@@ -400,6 +406,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
 
     public static enum EnumLaserType
     {
-        NORMAL;
+        NORMAL,
+        INFECTED_CRYSTALLIZE;
     }
 }

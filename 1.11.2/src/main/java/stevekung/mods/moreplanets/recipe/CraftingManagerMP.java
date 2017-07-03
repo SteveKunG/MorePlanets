@@ -90,7 +90,8 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_WARPER_CORE), new Object[] { "PDP", "DED", "PDP", 'P', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'D', Items.DIAMOND, 'E', Items.ENDER_EYE });
         RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_BOW), new Object[] { " XS", "X S", " XS", 'S', Items.STRING, 'X', new ItemStack(MarsItems.marsItemBasic, 1, 5) });
         RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_FISHING_ROD), new Object[] {"  S", " SX", "S X", 'S', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'X', Items.STRING});
-        RecipeHelper.addRecipe(new ItemStack(MPItems.LASER_BULLET, 8, 0), new Object[] { " R", "I ", 'I', new ItemStack(Items.IRON_INGOT), 'R', new ItemStack(Items.REDSTONE) });
+        RecipeHelper.addRecipe(new ItemStack(MPItems.LASER_BULLET, 8, 0), new Object[] { " R", "I ", 'I', new ItemStack(Items.IRON_INGOT), 'R', Items.REDSTONE });
+        RecipeHelper.addRecipe(new ItemStack(MPItems.LASER_BULLET, 8, 1), new Object[] { " R", "I ", 'I', new ItemStack(Items.IRON_INGOT), 'R', new ItemStack(DionaItems.DIONA_ITEM, 1, 4) });
         RecipeHelper.addRecipe(new ItemStack(MPItems.LASER_GUN), new Object[] { "C  ", " DT", "  D", 'C', new ItemStack(AsteroidsItems.basicItem, 1, 8), 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'T', new ItemStack(AsteroidsItems.basicItem, 1, 6) });
         RecipeHelper.addRecipe(new ItemStack(MPItems.ALIEN_DEFENDER_REINFORCEMENT), new Object[] { "C", "I", "I", 'I', new ItemStack(DionaItems.DIONA_ITEM, 1, 6), 'C', new ItemStack(MPItems.SPACE_WARPER_CORE) });
     }
