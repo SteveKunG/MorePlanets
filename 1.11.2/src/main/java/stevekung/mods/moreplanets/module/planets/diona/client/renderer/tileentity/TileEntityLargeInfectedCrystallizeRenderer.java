@@ -84,6 +84,11 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
         {
             EnumFacing facing = tile.getWorld().getBlockState(tile.getPos()).getValue(BlockStateHelper.FACING_ALL);
 
+            if (facing == null)
+            {
+                return;
+            }
+
             switch (facing)
             {
             case NORTH:
