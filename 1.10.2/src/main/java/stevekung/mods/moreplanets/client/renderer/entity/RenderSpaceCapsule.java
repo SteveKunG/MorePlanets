@@ -55,7 +55,7 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
                 OBJModel model2 = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/space_capsule.obj"));
                 model2 = (OBJModel) model2.process(ImmutableMap.of("flip-v", "true"));
                 Function<ResourceLocation, TextureAtlasSprite> spriteFunction1 = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-                this.modelEntryPod = (OBJModel.OBJBakedModel) model2.bake(new OBJModel.OBJState(ImmutableList.of("SpaceCapsule"), false), DefaultVertexFormats.ITEM, spriteFunction1);
+                this.modelEntryPod = (OBJModel.OBJBakedModel) model2.bake(new OBJModel.OBJState(ImmutableList.of("Cone", "Tube0", "Tube1", "Tube2", "Tube3"), false), DefaultVertexFormats.ITEM, spriteFunction1);
             }
             catch (Exception e)
             {

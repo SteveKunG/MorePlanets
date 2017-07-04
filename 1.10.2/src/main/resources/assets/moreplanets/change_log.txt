@@ -1,11 +1,4 @@
--Added- Added Forge Universal Bucket (Use MinecraftForge replace bucket config)
--Added- Added New Laser Type - Infected Crystallize
 -Update- Update to use Galacticraft Build 111 or higher
--Update- Boss Data Manager improved
--Update- Rewrite Laser rendering
--Update- Packet Handler improved
--Fixed- Fixed entity damage sources
--Fixed- Fixed memory leak and TPS drop while fighting Vein Floater
--Fixed- Fixed 1 broken item model
--Fixed- Fixed crashes on server side
--Fixed- Some minor bug fixes
+-Update- Minor improvement for Dark Energy Core
+-Fixed- Fixed crash with access transformer
+-Fixed- Fixed crystals rendering crash with Optifine
