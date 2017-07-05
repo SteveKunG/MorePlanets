@@ -1,3 +1,4 @@
+-Added- Added Shield Generator
 -Update- Update to use Galacticraft Build 111 or higher
 -Update- Minor improvement for Dark Energy Core
 -Fixed- Fixed crash with access transformer
