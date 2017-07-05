@@ -6,6 +6,7 @@
 		"variant=dark_energy_solar3": { "model": "moreplanets:dark_energy_receiver_solar" },
 		"variant=dark_energy_solar4": { "model": "moreplanets:dark_energy_receiver_solar" },
 		"variant=nuclear_waste_tank_middle": { "model": "moreplanets:nuclear_waste_tank_middle" },
-		"variant=nuclear_waste_tank_top": { "model": "moreplanets:nuclear_waste_tank" }
+		"variant=nuclear_waste_tank_top": { "model": "moreplanets:nuclear_waste_tank" },
+		"variant=shield_generator_top": { "model": "moreplanets:dark_machine_blank" }
     }
 }

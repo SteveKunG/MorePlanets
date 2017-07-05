@@ -30,7 +30,7 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
         this(id, parentGui, x, y, 13, 13, 20, 24, text, textColor);
     }
 
-    private GuiElementCheckboxMP(int id, ICheckBoxCallback parentGui, int x, int y, int width, int height, int texX, int texY, String text, int textColor)
+    public GuiElementCheckboxMP(int id, ICheckBoxCallback parentGui, int x, int y, int width, int height, int texX, int texY, String text, int textColor)
     {
         this(id, parentGui, x, y, width, height, width, height, texX, texY, text, textColor, true);
     }
@@ -59,7 +59,7 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
             mc.getTextureManager().bindTexture(GuiElementCheckboxMP.texture);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
-            this.drawTexturedModalRect(this.xPosition, this.yPosition, this.isSelected ? this.texX + this.texWidth : this.texX, this.hovered ? this.shiftOnHover ? this.texY + this.texHeight : this.texY : this.texY, this.width, this.height);
+            this.drawTexturedModalRect(this.xPosition, this.yPosition, this.hovered ? this.texX + this.texWidth : this.texX, this.hovered ? this.shiftOnHover ? this.texY + this.texHeight : this.texY : this.texY, this.width, this.height);
             this.mouseDragged(mc, mouseX, mouseY);
             mc.fontRendererObj.drawString(this.displayString, this.xPosition + this.width + 3, this.yPosition + (this.height - 6) / 2, this.textColor, false);
         }

@@ -150,7 +150,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         {
             return false;
         }
-        if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_MIDDLE) && world.getBlockState(pos.down()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
+        if (state.getValue(VARIANT) == BlockType.NUCLEAR_WASTE_TANK_MIDDLE && world.getBlockState(pos.down()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
             if (!heldStack.isEmpty())
             {
@@ -166,7 +166,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
                 }
             }
         }
-        if (state == state.withProperty(VARIANT, BlockType.NUCLEAR_WASTE_TANK_TOP) && world.getBlockState(pos.down(2)) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
+        if (state.getValue(VARIANT) == BlockType.NUCLEAR_WASTE_TANK_TOP && world.getBlockState(pos.down(2)) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
             if (!heldStack.isEmpty())
             {
@@ -275,7 +275,8 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         DARK_ENERGY_SOLAR3,
         DARK_ENERGY_SOLAR4,
         NUCLEAR_WASTE_TANK_MIDDLE,
-        NUCLEAR_WASTE_TANK_TOP;
+        NUCLEAR_WASTE_TANK_TOP,
+        SHIELD_GENERATOR_TOP;
 
         private static BlockType[] values = BlockType.values();
 

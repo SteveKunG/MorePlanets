@@ -7,10 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.blocks.*;
 import stevekung.mods.moreplanets.blocks.decoration.*;
-import stevekung.mods.moreplanets.itemblocks.ItemBlockBlackHoleStorage;
-import stevekung.mods.moreplanets.itemblocks.ItemBlockDarkEnergyReceiver;
-import stevekung.mods.moreplanets.itemblocks.ItemBlockSpaceWarpPad;
-import stevekung.mods.moreplanets.itemblocks.ItemBlockTieredEnergyStorage;
+import stevekung.mods.moreplanets.itemblocks.*;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
@@ -41,6 +38,7 @@ public class MPBlocks
     public static Block SPACE_PORTAL;
     public static Block BLACK_HOLE_STORAGE;
     public static Block ALIEN_DEFENDER_BEACON;
+    public static Block SHIELD_GENERATOR;
 
     // Slab
     public static BlockSlabMP HALF_DUNGEON_BRICK_SLAB_1;
@@ -82,6 +80,7 @@ public class MPBlocks
         MPBlocks.SPACE_PORTAL = new BlockSpacePortal("space_portal");
         MPBlocks.BLACK_HOLE_STORAGE = new BlockBlackHoleStorage("black_hole_storage");
         MPBlocks.ALIEN_DEFENDER_BEACON = new BlockAlienDefenderBeacon("alien_defender_beacon");
+        MPBlocks.SHIELD_GENERATOR = new BlockShieldGenerator("shield_generator");
 
         /**************************************************************/
         /************************REGISTER STUFF************************/
@@ -109,6 +108,7 @@ public class MPBlocks
         CommonRegisterHelper.registerBlock(MPBlocks.SPACE_PORTAL);
         CommonRegisterHelper.registerBlock(MPBlocks.BLACK_HOLE_STORAGE, ItemBlockBlackHoleStorage::new);
         CommonRegisterHelper.registerBlock(MPBlocks.ALIEN_DEFENDER_BEACON);
+        CommonRegisterHelper.registerBlock(MPBlocks.SHIELD_GENERATOR, ItemBlockShieldGenerator::new);
 
         DionaBlocks.init();
         ChalosBlocks.init();
@@ -134,6 +134,7 @@ public class MPBlocks
         CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.ROCKET_CRUSHER, EnumHarvestLevel.PICKAXE, 2);
         CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_RECEIVER, EnumHarvestLevel.PICKAXE, 2);
         CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, EnumHarvestLevel.PICKAXE, 2);
+        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.SHIELD_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
 
         /**************************************************************/
         /********************ORE DICTIONARY STUFF**********************/

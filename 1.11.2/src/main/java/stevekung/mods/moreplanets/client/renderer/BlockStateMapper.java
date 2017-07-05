@@ -29,6 +29,7 @@ public class BlockStateMapper
 {
     public static void init()
     {
+        ClientRegisterHelper.registerStateMapper(MPBlocks.SHIELD_GENERATOR, BlockStateHelper.FACING_HORIZON);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRASHED_ALIEN_PROBE, BlockCrashedAlienProbe.HAS_ALIEN);
