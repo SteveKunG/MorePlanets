@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
 
@@ -45,8 +46,8 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
 
         if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
         {
-            FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(), MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState());
-            FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(2), MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState());
+            FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(), MPBlocks.DUMMY_BLOCK.getDefaultState().withProperty(BlockDummy.VARIANT, BlockDummy.BlockType.NUCLEAR_WASTE_TANK_MIDDLE));
+            FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(2), MPBlocks.DUMMY_BLOCK.getDefaultState().withProperty(BlockDummy.VARIANT, BlockDummy.BlockType.NUCLEAR_WASTE_TANK_TOP));
         }
         this.world.destroyBlock(this.getPos(), true);
         this.world.destroyBlock(thisBlock.up(), false);

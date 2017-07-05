@@ -28,9 +28,8 @@ import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 
 public class EntityBlackHole extends Entity
 {
-    private int mass;
-    private double radius = this.mass / 888.8888888888889;
-    private int spawnFallingBlockRadius;
+    private int lifeTick;
+    private int spawnBlockRadiusTick;
 
     public EntityBlackHole(World world)
     {
@@ -48,12 +47,14 @@ public class EntityBlackHole extends Entity
     @Override
     public void onUpdate()
     {
+        super.onUpdate();
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
+        this.move(MoverType.SELF, 0.0D, 0.0D, 0.0D);
 
-        int range = 64;
-        List<Entity> entitiesAroundBH = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - range - this.radius, this.posY - range - this.radius, this.posZ - range - this.radius, this.posX + range + this.radius, this.posY + range + this.radius, this.posZ + range + this.radius));
+        int range = this.getRange();
+        List<Entity> entitiesAroundBH = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
         for (Entity entity : entitiesAroundBH)
         {
@@ -68,9 +69,9 @@ public class EntityBlackHole extends Entity
                     motionY = this.posY - entity.posY + 0.5D;
                 }
 
-                entity.motionX = motionX * 0.2F;
-                entity.motionY = motionY * 0.2F;
-                entity.motionZ = motionZ * 0.2F;
+                entity.motionX = motionX * this.getPullSpeed();
+                entity.motionY = motionY * this.getPullSpeed();
+                entity.motionZ = motionZ * this.getPullSpeed();
                 List<Entity> entityNearBH = this.world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 0.25D, this.posY - 0.25D, this.posZ - 0.25D, this.posX + 0.25D, this.posY + 0.5D, this.posZ + 0.25D));
 
                 for (Entity near : entityNearBH)
@@ -91,26 +92,26 @@ public class EntityBlackHole extends Entity
             }
         }
 
-        if (this.mass == 0)
+        if (this.lifeTick == 0)
         {
             this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_CREATED, SoundCategory.AMBIENT, 2.0F, 1.0F);
         }
-        if (this.mass < 6000)
+        if (this.lifeTick < this.getMaxLife())
         {
-            this.mass++;
+            this.lifeTick++;
         }
-        if (this.mass % 80 == 0 && this.spawnFallingBlockRadius < 15)
+        if (this.lifeTick % 80 == 0 && this.spawnBlockRadiusTick < 15)
         {
-            this.spawnFallingBlockRadius++;
+            this.spawnBlockRadiusTick++;
         }
-        if (this.mass % 20 == 0)
+        if (this.lifeTick % 20 == 0)
         {
             this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.AMBIENT, 2.0F, 1.0F);
         }
 
         if (!this.world.isRemote)
         {
-            if (this.mass == 6000)
+            if (this.lifeTick == this.getMaxLife())
             {
                 this.setDead();
 
@@ -139,35 +140,6 @@ public class EntityBlackHole extends Entity
                 MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, d0, d1, d2, d3, d4, d5);
             }
         }
-        this.move(MoverType.SELF, 0.0D, 0.0D, 0.0D);
-        super.onUpdate();
-    }
-
-    protected void explodeBlock()
-    {
-        int radius = 30;
-        List<Entity> entityList = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - radius, this.posY - radius, this.posZ - radius, this.posX + radius, this.posY + radius, this.posZ + radius));
-
-        for (Entity entity : entityList)
-        {
-            if (entity instanceof EntityFallingBlock)
-            {
-                double d4 = entity.getDistance(this.posX, this.posY, this.posZ);
-                double d6 = entity.posX - this.posX;
-                double d8 = entity.posY - this.posY;
-                double d10 = entity.posZ - this.posZ;
-                double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
-                d6 /= d11;
-                d8 /= d11;
-                d10 /= d11;
-                double d12 = 1.0D;
-                double d13 = (0.7D - d4) * d12;
-                double d14 = d13;
-                entity.motionX -= d6 * d14 / 2.0D;
-                entity.motionY -= d8 * d14 / 2.0D;
-                entity.motionZ -= d10 * d14 / 2.0D;
-            }
-        }
     }
 
     private void spawnFallingBlock()
@@ -175,7 +147,7 @@ public class EntityBlackHole extends Entity
         int blockPosX = MathHelper.floor(this.posX);
         int blockPosY = MathHelper.floor(this.posY);
         int blockPosZ = MathHelper.floor(this.posZ);
-        int radius = 1 + this.spawnFallingBlockRadius;
+        int radius = 1 + this.spawnBlockRadiusTick;
 
         for (int x = -radius; x < radius; x++)
         {
@@ -224,14 +196,29 @@ public class EntityBlackHole extends Entity
     @Override
     protected void readEntityFromNBT(NBTTagCompound nbt)
     {
-        this.mass = nbt.getInteger("Mass");
-        this.spawnFallingBlockRadius = nbt.getInteger("SpawnBlockRadius");
+        this.lifeTick = nbt.getInteger("LifeTick");
+        this.spawnBlockRadiusTick = nbt.getInteger("SpawnBlockRadiusTick");
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound nbt)
     {
-        nbt.setInteger("Mass", this.mass);
-        nbt.setInteger("SpawnBlockRadius", this.spawnFallingBlockRadius);
+        nbt.setInteger("LifeTick", this.lifeTick);
+        nbt.setInteger("SpawnBlockRadiusTick", this.spawnBlockRadiusTick);
+    }
+
+    protected int getMaxLife()
+    {
+        return 6000;
+    }
+
+    protected int getRange()
+    {
+        return 64;
+    }
+
+    protected double getPullSpeed()
+    {
+        return 0.2D;
     }
 }
