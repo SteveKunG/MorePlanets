@@ -23,6 +23,7 @@ import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.core.handler.TeleportHandler;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
+import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.helper.WorldDimensionHelper;
 
@@ -118,6 +119,7 @@ public class PacketSimpleMP extends PacketBase
         World world = player.worldObj;
         TileEntity tile;
         BlockPos pos;
+        String type;
 
         switch (this.type)
         {
@@ -140,7 +142,7 @@ public class PacketSimpleMP extends PacketBase
             break;
         case S_BLACK_HOLE_STORAGE_OPTION:
             tile = world.getTileEntity((BlockPos) this.data.get(0));
-            String type = (String) this.data.get(1);
+            type = (String) this.data.get(1);
 
             if (tile instanceof TileEntityBlackHoleStorage)
             {
@@ -174,6 +176,38 @@ public class PacketSimpleMP extends PacketBase
                 }
             }
             break;
+        case S_SHIELD_VISIBLE:
+            tile = world.getTileEntity((BlockPos) this.data.get(0));
+
+            if (tile instanceof TileEntityShieldGenerator)
+            {
+                TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
+                shield.setBubbleVisible((boolean) this.data.get(1));
+            }
+            break;
+        case S_SHIELD_GENERATOR_OPTION:
+            tile = world.getTileEntity((BlockPos) this.data.get(0));
+            int value = (int) this.data.get(1);
+            type = (String) this.data.get(2);
+
+            if (tile instanceof TileEntityShieldGenerator)
+            {
+                TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
+
+                switch (type)
+                {
+                case "knock":
+                    shield.knockAmount += value;
+                    break;
+                case "damage":
+                    shield.shieldDamage = value;
+                    break;
+                case "size":
+                    shield.maxShieldSize = value;
+                    break;
+                }
+            }
+            break;
         default:
             break;
         }
@@ -185,6 +219,8 @@ public class PacketSimpleMP extends PacketBase
         S_FIRE_EXTINGUISH(Side.SERVER, BlockPos.class),
         S_RESPAWN_PLAYER_NETHER(Side.SERVER),
         S_BLACK_HOLE_STORAGE_OPTION(Side.SERVER, BlockPos.class, String.class),
+        S_SHIELD_VISIBLE(Side.SERVER, BlockPos.class, Boolean.class),
+        S_SHIELD_GENERATOR_OPTION(Side.SERVER, BlockPos.class, Integer.class, String.class),
 
         // CLIENT
         C_ADD_ENTITY_ID(Side.CLIENT, String.class),

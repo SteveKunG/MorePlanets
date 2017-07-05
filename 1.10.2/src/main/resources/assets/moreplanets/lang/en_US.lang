@@ -58,6 +58,7 @@ tile.dungeon_brick_wall_mp.nibiru.name=Nibiru Dungeon Brick Wall
 tile.space_portal.name=Space Portal
 tile.black_hole_storage.name=Black Hole Storage
 tile.alien_defender_beacon.name=Alien Defender Beacon
+tile.shield_generator.name=Shield Generator
 
 # BLOCKS - DIONA
 tile.diona_block.surface_rock.name=Diona Surface Rock
@@ -591,6 +592,11 @@ gui.status.collect_mode.name=Collect
 gui.status.collect_item.name=Item
 gui.status.collect_xp.name=XP
 gui.status.collect_item_and_xp.name=Item/XP
+gui.status.knock_amount.name=Knock Amount
+gui.status.shield_damage.name=Shield Damage
+gui.status.shield_size.name=Shield Size
+gui.status.set_shield_damage.name=Damage
+gui.status.set_max_shield_size.name=Size
 
 # GUI MESSAGE
 gui.no_warp_data.message=No Space Warp Pad data stored
@@ -621,6 +627,9 @@ gui.disable_black_hole.desc=Disable Black Hole
 gui.use_hopper.desc=Use Hopper
 gui.collect_mode.desc=Collect Mode
 gui.xp_value.desc=XP
+gui.shield_visible.desc=Shield Visible
+gui.increase_knock.desc=Increase Knock
+gui.decrease_knock.desc=Decrease Knock
 
 # GUI DEATH MESSAGE
 death.attack.infected_crystallize=%s was infected by poisoned crystal
@@ -657,6 +666,7 @@ tile.tiered_energy_storage_cluster_0.description=Dark Energy Storage Cluster is 
 tile.tiered_energy_storage_cluster_1.description=Nuclear Waste Energy Storage Cluster is used to store large amounts of energy for later use. Stores and outputs more energy than its predecessor. Nuclear Waste can be stored more energy!
 tile.dark_energy_generator.description=Dark Energy Generator will collect dark energy from unknown distant planet or Dark Energy Pearl, storing it for further use.
 tile.black_hole_storage.description=Black Hole Storage is a large item storage that using Black Hole to pull Item/EXP into it container. Items and EXP in a storage will stored with its config.
+tile.shield_generator.description=Shield Generator will protect players from dangerous things (monster, projectile) and it still WIP.
 item.infected_arrow.description=Can be obtained by thrown normal arrow into infected water
 desc.tier_4.name=Tier 4
 desc.tier_5.name=Tier 5
@@ -678,7 +688,8 @@ container.nuclear_waste_generator.name=Nuclear Waste Generator
 container.tiered_energy_storage_cluster_0.name=Dark Energy Storage Cluster
 container.tiered_energy_storage_cluster_1.name=Nuclear Waste Storage Cluster
 container.dark_energy_generator.name=Dark Energy Generator
-container.black_hole_storage=Black Hole Storage
+container.black_hole_storage.name=Black Hole Storage
+container.shield_generator.name=Shield Generator
 container.black_hole_storage_short.name=BH. Storage
 container.diona.ancientchest.name=Diona Ancient Chest
 container.diona.treasurechest.name=Diona Treasure Chest

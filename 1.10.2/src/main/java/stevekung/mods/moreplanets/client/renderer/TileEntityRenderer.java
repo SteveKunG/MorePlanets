@@ -1,9 +1,6 @@
 package stevekung.mods.moreplanets.client.renderer;
 
-import stevekung.mods.moreplanets.client.renderer.tileentity.TileEntityAlienDefenderBeaconRenderer;
-import stevekung.mods.moreplanets.client.renderer.tileentity.TileEntityBlackHoleStorageRenderer;
-import stevekung.mods.moreplanets.client.renderer.tileentity.TileEntityDarkEnergyReceiverRenderer;
-import stevekung.mods.moreplanets.client.renderer.tileentity.TileEntitySpaceWarpPadFullRenderer;
+import stevekung.mods.moreplanets.client.renderer.tileentity.*;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosAncientChest;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosTreasureChest;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityCheeseSporeChest;
@@ -11,10 +8,7 @@ import stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileentit
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
-import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
-import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
-import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
+import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.util.EnumChestTexture;
 import stevekung.mods.moreplanets.util.client.renderer.tileentity.TileEntityAncientChestRendererMP;
 import stevekung.mods.moreplanets.util.client.renderer.tileentity.TileEntityChestRendererMP;
@@ -49,5 +43,6 @@ public class TileEntityRenderer
         ClientRegisterHelper.registerTileEntityRendering(TileEntityCrashedAlienProbe.class, new TileEntityCrashedAlienProbeRenderer());
         ClientRegisterHelper.registerTileEntityRendering(TileEntityBlackHoleStorage.class, new TileEntityBlackHoleStorageRenderer());
         ClientRegisterHelper.registerTileEntityRendering(TileEntityAlienDefenderBeacon.class, new TileEntityAlienDefenderBeaconRenderer());
+        ClientRegisterHelper.registerTileEntityRendering(TileEntityShieldGenerator.class, new TileEntityShieldGeneratorRenderer());
     }
 }

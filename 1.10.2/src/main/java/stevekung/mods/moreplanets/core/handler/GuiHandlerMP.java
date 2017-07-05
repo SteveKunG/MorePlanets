@@ -73,6 +73,10 @@ public class GuiHandlerMP implements IGuiHandler
             {
                 return new ContainerBlackHoleStorage(player.inventory, (TileEntityBlackHoleStorage)tile);
             }
+            else if (tile instanceof TileEntityShieldGenerator)
+            {
+                return new ContainerShieldGenerator(player.inventory, (TileEntityShieldGenerator)tile);
+            }
             return tile;
         }
         return null;
@@ -123,6 +127,10 @@ public class GuiHandlerMP implements IGuiHandler
                 else if (tile instanceof TileEntityBlackHoleStorage)
                 {
                     return new GuiBlackHoleStorage(player.inventory, (TileEntityBlackHoleStorage)tile);
+                }
+                else if (tile instanceof TileEntityShieldGenerator)
+                {
+                    return new GuiShieldGenerator(player.inventory, (TileEntityShieldGenerator)tile);
                 }
                 return tile;
             }

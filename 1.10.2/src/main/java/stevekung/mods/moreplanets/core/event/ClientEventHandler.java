@@ -138,6 +138,7 @@ public class ClientEventHandler
     public void onTexturesStitch(TextureStitchEvent.Pre event)
     {
         ClientRegisterHelper.registerSpriteTexture(event, "blocks/infected_crystallize");
+        ClientRegisterHelper.registerSpriteTexture(event, "model/shield");
         ClientRegisterHelper.registerSpriteTexture(event, "entity/space_capsule");
         ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_4_rocket");
         ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_5_rocket");

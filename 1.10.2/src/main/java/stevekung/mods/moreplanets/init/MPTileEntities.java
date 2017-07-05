@@ -25,6 +25,7 @@ public class MPTileEntities
         CommonRegisterHelper.registerTileEntity(TileEntityNuclearWasteStorageCluster.class, "nuclear_waste_storage_cluster");
         CommonRegisterHelper.registerTileEntity(TileEntityBlackHoleStorage.class, "black_hole_storage");
         CommonRegisterHelper.registerTileEntity(TileEntityAlienDefenderBeacon.class, "alien_defender_beacon");
+        CommonRegisterHelper.registerTileEntity(TileEntityShieldGenerator.class, "shield_generator");
 
         // Diona
         CommonRegisterHelper.registerTileEntity(TileEntityDionaAncientChest.class, "diona_ancient_chest");

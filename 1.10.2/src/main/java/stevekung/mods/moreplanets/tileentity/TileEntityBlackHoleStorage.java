@@ -193,7 +193,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     @Override
     public String getName()
     {
-        return "container.black_hole_storage";
+        return "container.black_hole_storage.name";
     }
 
     @Override
