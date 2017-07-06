@@ -1,8 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.util.ItemDescription;
 import stevekung.mods.moreplanets.util.blocks.BlockCakeMP;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
@@ -31,14 +28,7 @@ public class BlockCheeseOfMilkCake extends BlockCakeMP implements IBlockDescript
     @Override
     public ItemDescription getDescription()
     {
-        return new ItemDescription()
-        {
-            @Override
-            public void addDescription(ItemStack itemStack, List list)
-            {
-                list.addAll(ItemDescriptionHelper.getDescription(BlockCheeseOfMilkCake.this.getUnlocalizedName() + ".description"));
-            }
-        };
+        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockCheeseOfMilkCake.this.getUnlocalizedName() + ".description"));
     }
 
     @Override

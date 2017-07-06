@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.util.blocks;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
@@ -31,14 +30,7 @@ import stevekung.mods.moreplanets.util.helper.ColorHelper;
 public class BlockStemMP extends BlockBushMP implements IGrowable
 {
     public static PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
-    public static PropertyDirection FACING = PropertyDirection.create("facing", new Predicate<EnumFacing>()
-    {
-        @Override
-        public boolean apply(EnumFacing facing)
-        {
-            return facing != EnumFacing.DOWN;
-        }
-    });
+    public static PropertyDirection FACING = PropertyDirection.create("facing", facing -> facing != EnumFacing.DOWN);
     private Block crop;
 
     public BlockStemMP(String name, Block crop)

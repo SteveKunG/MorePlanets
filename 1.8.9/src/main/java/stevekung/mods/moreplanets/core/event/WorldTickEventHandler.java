@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.core.event;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.base.Predicate;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
@@ -141,14 +139,7 @@ public class WorldTickEventHandler
     {
         BlockPos blockpos = world.getPrecipitationHeight(pos);
         AxisAlignedBB axisalignedbb = new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), world.getHeight(), blockpos.getZ())).expand(1.0D, 1.0D, 1.0D);
-        List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, new Predicate<EntityLivingBase>()
-        {
-            @Override
-            public boolean apply(EntityLivingBase entity)
-            {
-                return entity != null && entity.isEntityAlive() && world.canSeeSky(entity.getPosition());
-            }
-        });
+        List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, entity -> entity != null && entity.isEntityAlive() && world.canSeeSky(entity.getPosition()));
         return !list.isEmpty() ? list.get(world.rand.nextInt(list.size())).getPosition() : blockpos;
     }
 

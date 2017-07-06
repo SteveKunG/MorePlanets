@@ -354,14 +354,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
             {
                 Potion potion = Potion.digSlowdown;
 
-                for (EntityPlayerMP entityplayermp : this.worldObj.getPlayers(EntityPlayerMP.class, new Predicate<EntityPlayerMP>()
-                {
-                    @Override
-                    public boolean apply(EntityPlayerMP p_apply_1_)
-                    {
-                        return EntityInfectedGuardian.this.getDistanceSqToEntity(p_apply_1_) < 2500.0D && p_apply_1_.theItemInWorldManager.survivalOrAdventure();
-                    }
-                }))
+                for (EntityPlayerMP entityplayermp : this.worldObj.getPlayers(EntityPlayerMP.class, p_apply_1_ -> EntityInfectedGuardian.this.getDistanceSqToEntity(p_apply_1_) < 2500.0D && p_apply_1_.theItemInWorldManager.survivalOrAdventure()))
                 {
                     if (!entityplayermp.isPotionActive(potion) || entityplayermp.getActivePotionEffect(potion).getAmplifier() < 2 || entityplayermp.getActivePotionEffect(potion).getDuration() < 1200)
                     {

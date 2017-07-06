@@ -1,14 +1,11 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -109,14 +106,7 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
     @Override
     public ItemDescription getDescription()
     {
-        return new ItemDescription()
-        {
-            @Override
-            public void addDescription(ItemStack itemStack, List list)
-            {
-                list.addAll(ItemDescriptionHelper.getDescription(BlockDarkEnergyCore.this.getUnlocalizedName() + ".description"));
-            }
-        };
+        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockDarkEnergyCore.this.getUnlocalizedName() + ".description"));
     }
 
     @Override

@@ -46,19 +46,14 @@ public class ClientRegisterHelper
 {
     public static void registerEntityRendering(Class<? extends Entity> entity, final Class<? extends Render> render)
     {
-        RenderingRegistry.registerEntityRenderingHandler(entity, new IRenderFactory()
-        {
-            @Override
-            public Render createRenderFor(RenderManager manager)
+        RenderingRegistry.registerEntityRenderingHandler(entity, manager -> {
+            try
             {
-                try
-                {
-                    return render.getConstructor(RenderManager.class).newInstance(manager);
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }
+                return render.getConstructor(RenderManager.class).newInstance(manager);
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         });
     }
@@ -354,14 +349,7 @@ public class ClientRegisterHelper
                 OBJModel model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/" + file + ".obj"));
                 model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
 
-                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = new Function<ResourceLocation, TextureAtlasSprite>()
-                {
-                    @Override
-                    public TextureAtlasSprite apply(ResourceLocation location)
-                    {
-                        return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-                    }
-                };
+                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
 
                 newModel = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState), DefaultVertexFormats.ITEM, spriteFunction);
 

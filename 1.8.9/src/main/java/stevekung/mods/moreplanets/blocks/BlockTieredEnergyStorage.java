@@ -226,19 +226,14 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     @Override
     public ItemDescription getDescription()
     {
-        return new ItemDescription()
-        {
-            @Override
-            public void addDescription(ItemStack itemStack, List list)
+        return (itemStack, list) -> {
+            if (itemStack.getItemDamage() == 0)
             {
-                if (itemStack.getItemDamage() == 0)
-                {
-                    list.addAll(ItemDescriptionHelper.getDescription(BlockTieredEnergyStorage.this.getUnlocalizedName() + "_0.description"));
-                }
-                else
-                {
-                    list.addAll(ItemDescriptionHelper.getDescription(BlockTieredEnergyStorage.this.getUnlocalizedName() + "_1.description"));
-                }
+                list.addAll(ItemDescriptionHelper.getDescription(BlockTieredEnergyStorage.this.getUnlocalizedName() + "_0.description"));
+            }
+            else
+            {
+                list.addAll(ItemDescriptionHelper.getDescription(BlockTieredEnergyStorage.this.getUnlocalizedName() + "_1.description"));
             }
         };
     }

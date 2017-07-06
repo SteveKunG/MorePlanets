@@ -151,6 +151,12 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
         return null;
     }
 
+    @Override
+    public String getDungeonChestType()
+    {
+        return null;
+    }
+
     protected abstract void renderSky();
     protected abstract void renderCloud();
     protected abstract void renderWeather();
