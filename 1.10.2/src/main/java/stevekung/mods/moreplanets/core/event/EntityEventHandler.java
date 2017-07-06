@@ -136,30 +136,27 @@ public class EntityEventHandler
     @SubscribeEvent
     public void onInteractEntity(EntityInteract event)
     {
-        ItemStack itemStack = event.getEntityPlayer().getActiveItemStack();
+        ItemStack itemStack = event.getItemStack();
         Entity entity = event.getTarget();
 
-        if (itemStack != null)
+        if (itemStack != null && itemStack.getItem() == Items.DYE)
         {
-            if (itemStack.getItem() == Items.DYE)
+            EnumDyeColor color = EnumDyeColor.byDyeDamage(itemStack.getItemDamage() & 15);
+
+            if (entity instanceof EntityShlime)
             {
-                EnumDyeColor color = EnumDyeColor.byDyeDamage(itemStack.getItemDamage() & 15);
+                EntityShlime shlime = (EntityShlime)entity;
 
-                if (entity instanceof EntityShlime)
+                if (!shlime.getSheared() && shlime.getFleeceColor() != color)
                 {
-                    EntityShlime grappy = (EntityShlime)entity;
+                    shlime.setFleeceColor(color);
 
-                    if (!grappy.getSheared() && grappy.getFleeceColor() != color)
+                    if (!event.getEntityPlayer().capabilities.isCreativeMode)
                     {
-                        grappy.setFleeceColor(color);
-
-                        if (!event.getEntityPlayer().capabilities.isCreativeMode)
-                        {
-                            --itemStack.stackSize;
-                        }
+                        --itemStack.stackSize;
                     }
-                    event.setResult(Result.ALLOW);
                 }
+                event.setResult(Result.ALLOW);
             }
         }
     }
