@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.io.Charsets;
 
@@ -21,12 +22,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
 
 @SideOnly(Side.CLIENT)
 public class GuiFullChangeLog extends GuiScreen
 {
     private List<String> stringList;
+    private GuiChangeLogSlot changeLogSlot;
+    private Random rand;
 
     public void display()
     {
@@ -38,6 +40,50 @@ public class GuiFullChangeLog extends GuiScreen
     {
         Minecraft.getMinecraft().displayGuiScreen(this);
         MinecraftForge.EVENT_BUS.unregister(this);
+    }
+
+    @Override
+    public void initGui()
+    {
+        this.buttonList.clear();
+        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 2 + 120, I18n.format("gui.done")));
+
+        if (this.stringList == null)
+        {
+            this.stringList = Lists.newArrayList();
+
+            try
+            {
+                String s = "";
+                InputStream inputstream = this.mc.getResourceManager().getResource(new ResourceLocation("moreplanets:change_log.txt")).getInputStream();
+                BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(inputstream, Charsets.UTF_8));
+
+                while ((s = bufferedreader.readLine()) != null)
+                {
+                    s = s.replaceAll("-Added-", TextFormatting.GREEN + "+" + TextFormatting.RESET);
+                    s = s.replaceAll("-Remove-", TextFormatting.RED + "-" + TextFormatting.RESET);
+                    s = s.replaceAll("-Fixed-", TextFormatting.GOLD + "*" + TextFormatting.RESET);
+                    s = s.replaceAll("-Update-", TextFormatting.YELLOW + "*" + TextFormatting.RESET);
+                    this.stringList.addAll(this.mc.fontRendererObj.listFormattedStringToWidth(s, 264));
+                    this.rand = new Random();
+                }
+                inputstream.close();
+            }
+            catch (Exception e) {}
+        }
+        this.changeLogSlot = new GuiChangeLogSlot(this.mc, this, this.stringList, this.width, this.height, this.rand.nextBoolean());
+        this.changeLogSlot.registerScrollButtons(1, 1);
+    }
+
+    @Override
+    public void handleMouseInput() throws IOException
+    {
+        super.handleMouseInput();
+
+        if (this.changeLogSlot != null)
+        {
+            this.changeLogSlot.handleMouseInput();
+        }
     }
 
     @Override
@@ -65,51 +111,11 @@ public class GuiFullChangeLog extends GuiScreen
     }
 
     @Override
-    public void initGui()
-    {
-        this.buttonList.clear();
-        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 2 + 120, I18n.format("gui.done")));
-
-        if (this.stringList == null)
-        {
-            this.stringList = Lists.newArrayList();
-
-            try
-            {
-                String s = "";
-                InputStream inputstream = this.mc.getResourceManager().getResource(new ResourceLocation("moreplanets:change_log.txt")).getInputStream();
-                BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(inputstream, Charsets.UTF_8));
-
-                while ((s = bufferedreader.readLine()) != null)
-                {
-                    s = s.replaceAll("-Added-", TextFormatting.GREEN + "+" + TextFormatting.RESET);
-                    s = s.replaceAll("-Remove-", TextFormatting.RED + "-" + TextFormatting.RESET);
-                    s = s.replaceAll("-Fixed-", TextFormatting.GOLD + "*" + TextFormatting.RESET);
-                    s = s.replaceAll("-Update-", TextFormatting.YELLOW + "*" + TextFormatting.RESET);
-                    this.stringList.addAll(this.mc.fontRendererObj.listFormattedStringToWidth(s, 360));
-                    this.stringList.add("");
-                }
-                inputstream.close();
-            }
-            catch (Exception e) {}
-        }
-    }
-
-    @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRendererObj, "More Planets " + MorePlanetsCore.VERSION + " Change Log", this.width / 2, 16, 16777215);
-        int i = 274;
-        int j = this.width / 2 - i / 2;
-        int k = 90;
-        int l = k - 50;
-
-        for (int i1 = 0; i1 < this.stringList.size(); ++i1)
+        if (this.changeLogSlot != null)
         {
-            String s = this.stringList.get(i1);
-            this.fontRendererObj.drawStringWithShadow(s, j, l, 16777215);
-            l += 6;
+            this.changeLogSlot.drawScreen(mouseX, mouseY, partialTicks);
         }
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
