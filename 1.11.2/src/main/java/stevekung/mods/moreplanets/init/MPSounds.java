@@ -1,13 +1,10 @@
 package stevekung.mods.moreplanets.init;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import net.minecraft.block.SoundType;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
-@ParametersAreNonnullByDefault
 public class MPSounds
 {
     public static SoundEvent BLACK_HOLE_CREATED = CommonRegisterHelper.registerSound("black_hole_created");
