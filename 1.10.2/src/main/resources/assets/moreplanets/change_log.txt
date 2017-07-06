@@ -1,5 +1,6 @@
 -Added- Added Shield Generator
--Update- Update to use Galacticraft Build 111 or higher
+-Update- Update to use Galacticraft Build 112 or higher
 -Update- Minor improvement for Dark Energy Core
+-Update- Rewrite Change Log GUI
 -Fixed- Fixed crash with access transformer
 -Fixed- Fixed crystals rendering crash with Optifine
