@@ -66,13 +66,13 @@ public class GuiFullChangeLog extends GuiScreen
                     s = s.replaceAll("-Update-", TextFormatting.YELLOW + "*" + TextFormatting.RESET);
                     this.stringList.addAll(this.mc.fontRendererObj.listFormattedStringToWidth(s, 264));
                     this.rand = new Random();
-                    this.changeLogSlot = new GuiChangeLogSlot(this.mc, this, this.stringList, this.width, this.height, this.rand.nextBoolean());
-                    this.changeLogSlot.registerScrollButtons(1, 1);
                 }
                 inputstream.close();
             }
             catch (Exception e) {}
         }
+        this.changeLogSlot = new GuiChangeLogSlot(this.mc, this, this.stringList, this.width, this.height, this.rand.nextBoolean());
+        this.changeLogSlot.registerScrollButtons(1, 1);
     }
 
     @Override
