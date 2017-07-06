@@ -13,7 +13,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
@@ -99,11 +98,11 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     {
         if (entity instanceof EntityLivingBase)
         {
-            if (entity instanceof EntityPlayerMP)
+            if (entity instanceof EntityPlayer)
             {
-                EntityPlayerMP playerMP = (EntityPlayerMP) entity;
+                EntityPlayer player = (EntityPlayer) entity;
 
-                if (playerMP.capabilities.isCreativeMode)
+                if (player.capabilities.isCreativeMode)
                 {
                     return;
                 }
@@ -194,7 +193,7 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        for (EnumFacing facing : EnumFacing.values())
+        for (EnumFacing facing : EnumFacing.VALUES)
         {
             if (this.canPlaceBlock(world, pos, facing))
             {
@@ -215,7 +214,7 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     {
         if (this.checkForDrop(world, pos, state) && !this.canPlaceBlock(world, pos, state.getValue(BlockStateHelper.FACING_ALL).getOpposite()))
         {
-            this.dropBlockAsItem(world, pos, state, 0);
+            world.destroyBlock(pos, false);
             world.setBlockToAir(pos);
         }
     }

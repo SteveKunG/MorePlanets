@@ -151,7 +151,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        for (EnumFacing facing : EnumFacing.values())
+        for (EnumFacing facing : EnumFacing.VALUES)
         {
             if (this.canPlaceBlock(world, pos, facing))
             {
@@ -172,7 +172,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     {
         if (this.checkForDrop(world, pos, state) && !this.canPlaceBlock(world, pos, state.getValue(BlockStateHelper.FACING_ALL).getOpposite()))
         {
-            this.dropBlockAsItem(world, pos, state, 0);
+            world.destroyBlock(pos, false);
             world.setBlockToAir(pos);
         }
     }
