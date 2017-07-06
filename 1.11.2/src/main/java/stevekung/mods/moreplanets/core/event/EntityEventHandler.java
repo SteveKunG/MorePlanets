@@ -87,7 +87,7 @@ public class EntityEventHandler
 
             if (ConfigManagerMP.enableStartedPlanet && !WorldTickEventHandler.startedDimensionData.startedDimension && !(ConfigManagerMP.startedPlanet.equals("planet.") || ConfigManagerMP.startedPlanet.equals("moon.") || ConfigManagerMP.startedPlanet.equals("satellite.")))
             {
-                MPLog.debug("Start teleporting player to dimension %s", ConfigManagerMP.startedPlanet);
+                MPLog.debug("Start teleporting player to dimension {}", ConfigManagerMP.startedPlanet);
                 TeleportHandler.startNewDimension(player);
                 WorldTickEventHandler.startedDimensionData.startedDimension = true;
                 WorldTickEventHandler.startedDimensionData.planetToBack = ConfigManagerMP.startedPlanet;
@@ -195,7 +195,7 @@ public class EntityEventHandler
                         if (!world.isRemote)
                         {
                             world.spawnEntity(meteorEntity);
-                            MPLog.debug("Spawn %s at %s %s %s", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
+                            MPLog.debug("Spawn {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
                         }
                     }
                 }
@@ -223,7 +223,7 @@ public class EntityEventHandler
                         if (!world.isRemote)
                         {
                             world.spawnEntity(meteorEntity);
-                            MPLog.debug("Spawn %s at %s %s %s", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
+                            MPLog.debug("Spawn {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
                         }
                     }
                 }

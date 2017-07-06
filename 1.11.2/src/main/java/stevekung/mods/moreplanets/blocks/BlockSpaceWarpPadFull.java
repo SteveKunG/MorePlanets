@@ -214,7 +214,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
 
                                 world.playSound(player, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
                                 player.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
-                                MPLog.debug("Teleport player to %s, %s, %s, %s, %s", warpPad.getBlockPos().getX(), warpPad.getBlockPos().getY(), warpPad.getBlockPos().getZ(), warpPad.getDimensionID(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionID()).getDimensionType().getName());
+                                MPLog.debug("Teleport player to {}, {}, {}, {}, {}", warpPad.getBlockPos().getX(), warpPad.getBlockPos().getY(), warpPad.getBlockPos().getZ(), warpPad.getDimensionID(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionID()).getDimensionType().getName());
                                 return true;
                             }
                             else

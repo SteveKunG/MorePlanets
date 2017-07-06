@@ -96,7 +96,7 @@ public class MapGenNibiruVillage extends MapGenStructure
         public Start(World world, Random rand, int x, int z, int size)
         {
             super(x, z);
-            MPLog.debug("Generate village at %s %s", x * 16, z * 16);
+            MPLog.debug("Generate village at x:{} z:{}", x * 16, z * 16);
             List<StructureNibiruVillagePieces.PieceWeight> list = StructureNibiruVillagePieces.getStructureVillageWeightedPieceList(rand, size);
             StructureNibiruVillagePieces.Start start = new StructureNibiruVillagePieces.Start(world.getBiomeProvider(), rand, (x << 4) + 2, (z << 4) + 2, list, size);
             this.components.add(start);

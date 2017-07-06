@@ -48,7 +48,7 @@ public class PacketSimpleMP extends PacketBase
 
         if (packetType.getDecodeClasses().length != data.size())
         {
-            MPLog.warning("More Planets Simple Packet found data length different than packet type: %s", packetType.name());
+            MPLog.warning("More Planets Simple Packet found data length different than packet type: {}", packetType.name());
         }
         this.type = packetType;
         this.data = data;

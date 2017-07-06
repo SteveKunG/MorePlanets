@@ -1,56 +1,65 @@
 package stevekung.mods.moreplanets.util;
 
-import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import net.minecraftforge.fml.relauncher.FMLRelaunchLog;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 
 public class MPLog
 {
+    private static final Logger LOG;
+    private static final Logger LOG_DEBUG;
+
+    static
+    {
+        LOG = LogManager.getLogger("More Planets");
+        LOG_DEBUG = LogManager.getLogger("More Planets Debug");
+    }
+
     public static void info(String message)
     {
-        FMLRelaunchLog.log("More Planets", Level.INFO, message);
+        MPLog.LOG.info(message);
     }
 
     public static void error(String message)
     {
-        FMLRelaunchLog.log("More Planets", Level.ERROR, message);
+        MPLog.LOG.error(message);
     }
 
     public static void warning(String message)
     {
-        FMLRelaunchLog.log("More Planets", Level.WARN, message);
+        MPLog.LOG.warn(message);
     }
 
     public static void debug(String message)
     {
         if (ConfigManagerMP.enableDebug || MorePlanetsCore.isObfuscatedEnvironment())
         {
-            FMLRelaunchLog.log("More Planets Debug", Level.INFO, message);
+            MPLog.LOG_DEBUG.info(message);
         }
     }
 
     public static void info(String message, Object... obj)
     {
-        FMLRelaunchLog.log("More Planets", Level.INFO, message, obj);
+        MPLog.LOG.info(message, obj);
     }
 
     public static void error(String message, Object... obj)
     {
-        FMLRelaunchLog.log("More Planets", Level.ERROR, message, obj);
+        MPLog.LOG.error(message, obj);
     }
 
     public static void warning(String message, Object... obj)
     {
-        FMLRelaunchLog.log("More Planets", Level.WARN, message, obj);
+        MPLog.LOG.warn(message, obj);
     }
 
     public static void debug(String message, Object... obj)
     {
         if (ConfigManagerMP.enableDebug || MorePlanetsCore.isObfuscatedEnvironment())
         {
-            FMLRelaunchLog.log("More Planets Debug", Level.INFO, message, obj);
+            MPLog.LOG_DEBUG.info(message, obj);
         }
     }
 }

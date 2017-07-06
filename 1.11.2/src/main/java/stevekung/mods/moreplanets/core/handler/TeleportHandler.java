@@ -43,7 +43,7 @@ public class TeleportHandler
 
                 if (worldServer == null)
                 {
-                    MPLog.error("Cannot Transfer Entity to Dimension: Could not get World for Dimension " + dimID);
+                    MPLog.error("Cannot Transfer Entity to Dimension: Could not get World for Dimension {}", dimID);
                     return null;
                 }
                 return TeleportHandler.teleportEntity(worldServer, player, x, y, z, dimID, nether);
@@ -184,7 +184,7 @@ public class TeleportHandler
 
             if (!(worldNew.provider instanceof IGalacticraftWorldProvider))
             {
-                MPLog.error("%s is not space world!", ConfigManagerMP.startedPlanet);
+                MPLog.error("{} is not space world!", ConfigManagerMP.startedPlanet);
                 throw new RuntimeException(ConfigManagerMP.startedPlanet + " is not space world!");
             }
 

@@ -14,13 +14,13 @@ public class BlockItemRemapper
             if (mapping.type == GameRegistry.Type.BLOCK)
             {
                 mapping.remap(block);
-                MPLog.info("Remapping Block Complete (From %s to %s)", mapping.name, block.getRegistryName());
+                MPLog.info("Remapping Block Complete (From {} to {})", mapping.name, block.getRegistryName());
             }
             else
             {
                 Item item = Item.getItemFromBlock(block);
                 mapping.remap(item);
-                MPLog.info("Remapping ItemBlock Complete (From %s to %s)", mapping.name, item.getRegistryName());
+                MPLog.info("Remapping ItemBlock Complete (From {} to {})", mapping.name, item.getRegistryName());
             }
         }
     }

@@ -53,13 +53,13 @@ public class DungeonStartNibiru extends RoomEntranceNibiru
             attempts++;
         }
 
-        MPLog.debug("Dungeon generation took " + attempts + " attempt(s)");
+        MPLog.debug("Dungeon generation took {} attempt(s)", attempts);
 
         if (!validAttempt)
         {
             int xPos = this.boundingBox.minX + (this.boundingBox.maxX - this.boundingBox.minX) / 2;
             int zPos = this.boundingBox.minZ + (this.boundingBox.maxZ - this.boundingBox.minZ) / 2;
-            MPLog.error("Could not find valid dungeon layout! This is a bug, please report it, including your world seed (/seed) and dungeon location (" + xPos + ", " + zPos + ")");
+            MPLog.error("Could not find valid dungeon layout! This is a bug, please report it, including your world seed (/seed) and dungeon location x:{} z:{}", xPos, zPos);
         }
         super.buildComponent(component, listIn, rand);
     }
