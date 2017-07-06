@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.model.ModelShlimeFur;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.entity.RenderShlime;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 
 @SideOnly(Side.CLIENT)
 public class LayerShlimeWool implements LayerRenderer<EntityShlime>
@@ -32,7 +33,7 @@ public class LayerShlimeWool implements LayerRenderer<EntityShlime>
             if (entity.hasCustomName() && "jeb_".equals(entity.getCustomNameTag()))
             {
                 int i = entity.ticksExisted / 25 + entity.getEntityId();
-                int j = EnumDyeColor.values().length;
+                int j = CachedEnumUtil.valuesDyeCached().length;
                 int k = i % j;
                 int l = (i + 1) % j;
                 float f = (entity.ticksExisted % 25 + partialTicks) / 25.0F;

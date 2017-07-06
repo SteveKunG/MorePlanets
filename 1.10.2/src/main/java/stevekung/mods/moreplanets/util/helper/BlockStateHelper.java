@@ -8,6 +8,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.IStringSerializable;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 
 public class BlockStateHelper
 {
@@ -84,7 +85,7 @@ public class BlockStateHelper
 
     public static class SwitchAxis
     {
-        static int[] AXIS_LOOKUP = new int[Axis.values().length];
+        static int[] AXIS_LOOKUP = new int[CachedEnumUtil.valuesAxisCached().length];
 
         static
         {
