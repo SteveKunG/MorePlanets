@@ -23,6 +23,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 
 public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableItem, ISortableItem
 {
@@ -102,7 +103,7 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        for (int i = 0; i < EnumRocketType.values().length; i++)
+        for (int i = 0; i < CachedEnumUtil.valuesRocketCached().length; i++)
         {
             list.add(new ItemStack(item, 1, i));
         }
@@ -116,11 +117,11 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
 
         if (itemStack.getItemDamage() < 10)
         {
-            type = EnumRocketType.values()[itemStack.getItemDamage()];
+            type = CachedEnumUtil.valuesRocketCached()[itemStack.getItemDamage()];
         }
         else
         {
-            type = EnumRocketType.values()[itemStack.getItemDamage() - 10];
+            type = CachedEnumUtil.valuesRocketCached()[itemStack.getItemDamage() - 10];
         }
 
         if (!type.getTooltip().isEmpty())

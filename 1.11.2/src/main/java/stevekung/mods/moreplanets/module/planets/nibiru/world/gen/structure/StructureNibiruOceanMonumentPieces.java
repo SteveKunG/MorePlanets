@@ -744,7 +744,7 @@ public class StructureNibiruOceanMonumentPieces
 
                         if (aroomdefinition[l4] != null)
                         {
-                            for (EnumFacing enumfacing : EnumFacing.values())
+                            for (EnumFacing enumfacing : EnumFacing.VALUES)
                             {
                                 int i1 = k2 + enumfacing.getFrontOffsetX();
                                 int j1 = i4 + enumfacing.getFrontOffsetY();

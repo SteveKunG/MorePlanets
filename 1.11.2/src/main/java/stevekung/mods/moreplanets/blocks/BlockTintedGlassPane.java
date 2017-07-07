@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
@@ -55,7 +56,7 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        for (int i = 0; i < EnumDyeColor.values().length; ++i)
+        for (int i = 0; i < CachedEnumUtil.valuesDyeCached().length; ++i)
         {
             list.add(new ItemStack(item, 1, i));
         }

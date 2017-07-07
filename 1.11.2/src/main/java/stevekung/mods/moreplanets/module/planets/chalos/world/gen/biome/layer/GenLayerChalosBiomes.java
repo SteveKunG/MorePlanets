@@ -13,18 +13,19 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 
 public class GenLayerChalosBiomes extends GenLayerChalos
 {
     @SuppressWarnings("unchecked")
-    private List<BiomeEntry>[] biomes = new ArrayList[BiomeType.values().length];
+    private List<BiomeEntry>[] biomes = new ArrayList[CachedEnumUtil.valuesBiomeCached().length];
     private ArrayList<BiomeEntry>[] biomesList = this.setupBiomes();
 
     public GenLayerChalosBiomes(long seed)
     {
         super(seed);
 
-        for (BiomeType type : BiomeType.values())
+        for (BiomeType type : CachedEnumUtil.valuesBiomeCached())
         {
             ImmutableList<BiomeEntry> biomesToAdd = this.getBiomes(type);
             int idx = type.ordinal();
@@ -43,7 +44,7 @@ public class GenLayerChalosBiomes extends GenLayerChalos
     private ArrayList<BiomeEntry>[] setupBiomes()
     {
         @SuppressWarnings("unchecked")
-        ArrayList<BiomeEntry>[] currentBiomes = new ArrayList[BiomeType.values().length];
+        ArrayList<BiomeEntry>[] currentBiomes = new ArrayList[CachedEnumUtil.valuesBiomeCached().length];
         List<BiomeEntry> list = Lists.newArrayList();
         list.add(new BiomeEntry(MPBiomes.CHALOS_PLAINS, 30));
         list.add(new BiomeEntry(MPBiomes.CHALOS_HILLS, 20));
