@@ -27,7 +27,6 @@ enable custom meteor
 more fish item
 new lander
 fix lightning spawn outside unloaded chunk
-fix enchant for translucent armor model render
 ion cannon controller
 ion cannon gun
 satellite part for ion cannon
