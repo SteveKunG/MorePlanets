@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.items.armor;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -37,13 +36,9 @@ public class ItemArmorMultalicCrystal extends ItemArmorMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
+    public ModelBiped getArmorModel(EntityLivingBase entity, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
     {
-        if (entityLiving instanceof EntityPlayer)
-        {
-            return ClientRegisterHelper.getTranclucentArmorModel(armorSlot, defaultModel);
-        }
-        return defaultModel;
+        return ClientRegisterHelper.getTranclucentArmorModel(armorSlot, defaultModel);
     }
 
     @Override

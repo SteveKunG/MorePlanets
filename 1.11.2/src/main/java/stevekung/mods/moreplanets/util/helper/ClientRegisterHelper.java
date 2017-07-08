@@ -295,21 +295,20 @@ public class ClientRegisterHelper
 
     public static ModelBiped getTranclucentArmorModel(EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
     {
-        if (armorSlot == EntityEquipmentSlot.LEGS)
-        {
-            ModelBipedTranslucent model = new ModelBipedTranslucent(0.5F);
-            model.isChild = false;
-            model.setModelAttributes(defaultModel);
-            return model;
-        }
-        if (armorSlot == EntityEquipmentSlot.HEAD || armorSlot == EntityEquipmentSlot.CHEST || armorSlot == EntityEquipmentSlot.FEET)
+        if (armorSlot != EntityEquipmentSlot.LEGS)
         {
             ModelBipedTranslucent model = new ModelBipedTranslucent(1.0F);
             model.isChild = false;
             model.setModelAttributes(defaultModel);
             return model;
         }
-        return defaultModel;
+        else
+        {
+            ModelBipedTranslucent model = new ModelBipedTranslucent(0.5F);
+            model.isChild = false;
+            model.setModelAttributes(defaultModel);
+            return model;
+        }
     }
 
     public static void registerOBJModel(ModelBakeEvent event, String name, String file, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState)
