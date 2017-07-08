@@ -1,16 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.diona.items.armor;
 
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 import stevekung.mods.moreplanets.util.items.armor.ItemBreathableArmor;
 
 public class ItemBreathableIllenium extends ItemBreathableArmor
@@ -25,17 +19,6 @@ public class ItemBreathableIllenium extends ItemBreathableArmor
     public String getArmorTexture(ItemStack itemStack, Entity entity, EntityEquipmentSlot slot, String type)
     {
         return "moreplanets:textures/model/armor/breathable_illenium.png";
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
-    {
-        if (entityLiving instanceof EntityPlayer)
-        {
-            return ClientRegisterHelper.getTranclucentArmorModel(armorSlot, defaultModel);
-        }
-        return defaultModel;
     }
 
     @Override

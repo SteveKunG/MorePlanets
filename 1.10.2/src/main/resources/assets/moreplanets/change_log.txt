@@ -4,3 +4,4 @@
 -Update- Rewrite Change Log GUI
 -Fixed- Fixed crash with access transformer
 -Fixed- Fixed crystals rendering crash with Optifine
+-Fixed- Fixed transparent armor model rendering

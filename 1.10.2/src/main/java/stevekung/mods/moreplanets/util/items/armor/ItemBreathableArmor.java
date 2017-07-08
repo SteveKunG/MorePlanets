@@ -1,7 +1,9 @@
 package stevekung.mods.moreplanets.util.items.armor;
 
 import micdoodle8.mods.galacticraft.api.item.IBreathableArmor;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -10,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISingleItemRender;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
@@ -19,6 +22,13 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     public ItemBreathableArmor(ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, -1, type);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ModelBiped getArmorModel(EntityLivingBase entity, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
+    {
+        return ClientRegisterHelper.getTranclucentArmorModel(armorSlot, defaultModel);
     }
 
     @Override
