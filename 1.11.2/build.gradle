@@ -9,17 +9,10 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
-
 version = "2.0.6-GC111"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
-
 sourceCompatibility = targetCompatibility = "1.8"
-
-compileJava {
-    sourceCompatibility = targetCompatibility = "1.8"
-	options.encoding = 'UTF-8'
-}
 
 minecraft {
     version = "1.11.2-13.20.1.2393"
@@ -46,18 +39,7 @@ dependencies {
 	runtime "codechicken:CodeChickenLib:1.11.2-3.0.0.274:deobf"
 }
 
-processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
+processResources {}
 
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
 ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'META-INF/moreplanets_at.cfg']

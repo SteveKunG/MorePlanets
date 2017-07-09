@@ -16,14 +16,9 @@ buildscript {
 }
 
 apply plugin: 'forge'
-
 version = "1.4.1-GC501"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
-
-compileJava {
-	options.encoding = 'UTF-8'
-}
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
@@ -31,20 +26,7 @@ minecraft {
 }
 
 dependencies {}
-
-processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
+processResources {}
 
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
 ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/deimos/**', 'assets/diona/**', 'assets/europa/**', 'assets/fronos/**', 'assets/io/**',
