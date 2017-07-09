@@ -2,11 +2,13 @@ package stevekung.mods.moreplanets.module.planets.diona.entity;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.google.common.base.Optional;
+
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.entities.IBoss;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
@@ -42,23 +44,28 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.EntitySlimeBaseMP;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
-public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implements IBoss
+public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implements IMorePlanetsBoss
 {
     private TileEntityDungeonSpawner spawner;
     public int deathTicks = 0;
     public int entitiesWithin;
     public int entitiesWithinLast;
     private static final DataParameter<Boolean> BARRIER = EntityDataManager.createKey(EntityInfectedCrystallizeSlimeBoss.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Optional<UUID>> BOSSINFO_ID = EntityDataManager.createKey(EntityInfectedCrystallizeSlimeBoss.class, DataSerializers.OPTIONAL_UNIQUE_ID);
     public EntityInfectedCrystallizeTentacle tentacle;
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private boolean tentacleSpawning = true;
 
     public EntityInfectedCrystallizeSlimeBoss(World world)
     {
         super(world);
+        MorePlanetsCore.PROXY.addBoss(this);
     }
 
     @Override
@@ -66,6 +73,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     {
         super.entityInit();
         this.dataManager.register(BARRIER, false);
+        this.dataManager.register(BOSSINFO_ID, Optional.absent());
     }
 
     @Override
@@ -77,6 +85,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
         {
             nbt.setBoolean("Barrier", true);
         }
+        nbt.setBoolean("TentacleSpawning", this.tentacleSpawning);
     }
 
     @Override
@@ -84,6 +93,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     {
         super.readEntityFromNBT(nbt);
         this.dataManager.set(BARRIER, nbt.getBoolean("Barrier"));
+        this.tentacleSpawning = nbt.getBoolean("TentacleSpawning");
     }
 
     @Override
@@ -105,21 +115,25 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data)
     {
-        EntityInfectedCrystallizeTentacle tentacle1 = new EntityInfectedCrystallizeTentacle(this.world);
-        tentacle1.setLocationAndAngles(this.posX + 5.0F, this.posY + 2.5F, this.posZ + 5.0F, 0.0F, 0.0F);
-        this.world.spawnEntity(tentacle1);
+        if (this.tentacleSpawning)
+        {
+            EntityInfectedCrystallizeTentacle tentacle1 = new EntityInfectedCrystallizeTentacle(this.world);
+            tentacle1.setLocationAndAngles(this.posX + 5.0F, this.posY + 2.5F, this.posZ + 5.0F, 0.0F, 0.0F);
+            this.world.spawnEntity(tentacle1);
 
-        EntityInfectedCrystallizeTentacle tentacle2 = new EntityInfectedCrystallizeTentacle(this.world);
-        tentacle2.setLocationAndAngles(this.posX - 5.0F, this.posY + 2.5F, this.posZ - 5.0F, 0.0F, 0.0F);
-        this.world.spawnEntity(tentacle2);
+            EntityInfectedCrystallizeTentacle tentacle2 = new EntityInfectedCrystallizeTentacle(this.world);
+            tentacle2.setLocationAndAngles(this.posX - 5.0F, this.posY + 2.5F, this.posZ - 5.0F, 0.0F, 0.0F);
+            this.world.spawnEntity(tentacle2);
 
-        EntityInfectedCrystallizeTentacle tentacle3 = new EntityInfectedCrystallizeTentacle(this.world);
-        tentacle3.setLocationAndAngles(this.posX + 5.0F, this.posY + 2.5F, this.posZ - 5.0F, 0.0F, 0.0F);
-        this.world.spawnEntity(tentacle3);
+            EntityInfectedCrystallizeTentacle tentacle3 = new EntityInfectedCrystallizeTentacle(this.world);
+            tentacle3.setLocationAndAngles(this.posX + 5.0F, this.posY + 2.5F, this.posZ - 5.0F, 0.0F, 0.0F);
+            this.world.spawnEntity(tentacle3);
 
-        EntityInfectedCrystallizeTentacle tentacle4 = new EntityInfectedCrystallizeTentacle(this.world);
-        tentacle4.setLocationAndAngles(this.posX - 5.0F, this.posY + 2.5F, this.posZ + 5.0F, 0.0F, 0.0F);
-        this.world.spawnEntity(tentacle4);
+            EntityInfectedCrystallizeTentacle tentacle4 = new EntityInfectedCrystallizeTentacle(this.world);
+            tentacle4.setLocationAndAngles(this.posX - 5.0F, this.posY + 2.5F, this.posZ + 5.0F, 0.0F, 0.0F);
+            this.world.spawnEntity(tentacle4);
+            this.tentacleSpawning = false;
+        }
         this.setSlimeSize(5);
         return data;
     }
@@ -274,6 +288,8 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             }
             this.entitiesWithinLast = this.entitiesWithin;
         }
+        this.dataManager.set(BOSSINFO_ID, Optional.of(this.bossInfo.getUniqueId()));
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
     }
 
@@ -465,12 +481,6 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     }
 
     @Override
-    public void updateAITasks()
-    {
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-    }
-
-    @Override
     public void addTrackingPlayer(EntityPlayerMP player)
     {
         this.bossInfo.addPlayer(player);
@@ -486,6 +496,30 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     public boolean isNonBoss()
     {
         return false;
+    }
+
+    @Override
+    public UUID getBossUUID()
+    {
+        return this.dataManager.get(BOSSINFO_ID).or(new UUID(0, 0));
+    }
+
+    @Override
+    public String getBossName()
+    {
+        return this.getName();
+    }
+
+    @Override
+    public String getBossType()
+    {
+        return "Zelius Boss";
+    }
+
+    @Override
+    public int getBossTextColor()
+    {
+        return ColorHelper.rgbToDecimal(157, 147, 183);
     }
 
     public boolean getBarrier()

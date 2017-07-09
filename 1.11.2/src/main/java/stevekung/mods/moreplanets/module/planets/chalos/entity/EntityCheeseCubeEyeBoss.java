@@ -2,10 +2,12 @@ package stevekung.mods.moreplanets.module.planets.chalos.entity;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
+
+import com.google.common.base.Optional;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.entities.IBoss;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
@@ -25,6 +27,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -38,15 +43,18 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
+import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.EntityFlyingBossMP;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
-public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IBoss
+public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IMorePlanetsBoss
 {
     private TileEntityDungeonSpawner spawner;
     private Entity targetedEntity;
@@ -57,12 +65,21 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public int entitiesWithinLast;
     private int spawnCount = 10;
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private static final DataParameter<Optional<UUID>> BOSSINFO_ID = EntityDataManager.createKey(EntityCheeseCubeEyeBoss.class, DataSerializers.OPTIONAL_UNIQUE_ID);
 
     public EntityCheeseCubeEyeBoss(World world)
     {
         super(world);
         this.setSize(1.8F, 2.0F);
         this.moveHelper = new GhastMoveHelper(this);
+        MorePlanetsCore.PROXY.addBoss(this);
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataManager.register(BOSSINFO_ID, Optional.absent());
     }
 
     @Override
@@ -114,12 +131,6 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public boolean canBePushed()
     {
         return false;
-    }
-
-    @Override
-    public void updateAITasks()
-    {
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
@@ -231,6 +242,13 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             }
         }
     }
+    
+    @Override
+    public void setDead()
+    {
+        MorePlanetsCore.PROXY.removeBoss(this);
+        super.setDead();
+    }
 
     @Override
     public void onLivingUpdate()
@@ -269,6 +287,8 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             }
             this.entitiesWithinLast = this.entitiesWithin;
         }
+        this.dataManager.set(BOSSINFO_ID, Optional.of(this.bossInfo.getUniqueId()));
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
     }
 
@@ -415,6 +435,30 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public void onBossSpawned(TileEntityDungeonSpawner spawner)
     {
         this.spawner = spawner;
+    }
+    
+    @Override
+    public UUID getBossUUID()
+    {
+        return this.dataManager.get(BOSSINFO_ID).or(new UUID(0, 0));
+    }
+
+    @Override
+    public String getBossName()
+    {
+        return this.getName();
+    }
+
+    @Override
+    public String getBossType()
+    {
+        return "Chalos Boss";
+    }
+
+    @Override
+    public int getBossTextColor()
+    {
+        return ColorHelper.rgbToDecimal(246, 220, 160);
     }
 
     private static class AICheeseSporeAttack extends EntityAIBase

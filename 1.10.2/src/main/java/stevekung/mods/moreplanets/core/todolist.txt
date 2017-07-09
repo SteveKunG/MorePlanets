@@ -35,7 +35,6 @@ ion cannon controller
 ion cannon gun
 satellite part for ion cannon
 xp collect to tile limit
-rewrite custom boss health bars
 uv texture treasure chest
 infected guardian random fish
 add option other player can use bh storage

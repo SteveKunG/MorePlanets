@@ -7,6 +7,10 @@ more flower?
 cheese spore exploder flower
 cheese spore mushroom + monster
 cheese spore mushroom tree
+cheese lava
+change cheese of milk cake recipe
+cheese bread
+cheese of milk block eatable
 
 ****nibiru stuff****
 worm hole monster in nibiru desert
@@ -31,7 +35,6 @@ ion cannon controller
 ion cannon gun
 satellite part for ion cannon
 xp collect to tile limit
-rewrite custom boss health bars
 uv texture treasure chest
 infected guardian random fish
 add option other player can use bh storage

@@ -2,9 +2,8 @@ package stevekung.mods.moreplanets.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 
 public class ServerProxyMP
 {
@@ -26,7 +25,11 @@ public class ServerProxyMP
     {
         if (player instanceof EntityPlayerMP)
         {
-            ObfuscationReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, ((EntityPlayerMP)player).connection, Integer.valueOf(0), new String[] { "field_147365_f", "floatingTickCount" });
+            ((EntityPlayerMP)player).connection.floatingTickCount = 0;
         }
     }
+
+    public void addBoss(IMorePlanetsBoss boss) {}
+
+    public void removeBoss(IMorePlanetsBoss boss) {}
 }

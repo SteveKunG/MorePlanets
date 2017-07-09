@@ -58,6 +58,7 @@ import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDi
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
+import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.VersionChecker;
@@ -75,6 +76,8 @@ public class ClientEventHandler
     public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
     public static final List<String> entityId = new ArrayList<>();
     private static final AttributeModifier CRYSTALLIZE_POTION_MODIFIER = new AttributeModifier(UUID.fromString("0B0BC323-E263-4EF8-9108-4B6503129B16"), "generic.crystallize_effect", 0, 0);
+    public static final Set<IMorePlanetsBoss> bossList = Collections.newSetFromMap(new WeakHashMap());
+    private static final ResourceLocation BOSS_BAR = new ResourceLocation("moreplanets:textures/gui/boss_bars.png");
 
     public ClientEventHandler()
     {
@@ -335,6 +338,38 @@ public class ClientEventHandler
                 {
                     this.renderOverlay("helium_gas", this.mc.player.getBrightness(event.getPartialTicks()), 0.75F, event.getPartialTicks(), -0.25D);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onBossBarRender(RenderGameOverlayEvent.BossInfo event)
+    {
+        int y = event.getY();
+        int width = event.getResolution().getScaledWidth();
+        UUID uuid = event.getBossInfo().getUniqueId();
+        int bossBarWidth = 200;
+        int bossBarHeight = 16;
+        int barX = width / 2 - bossBarWidth / 2;
+        int barY = y + 4;
+        int percent = (int) (bossBarWidth * event.getBossInfo().getPercent());
+
+        for (IMorePlanetsBoss boss : ClientEventHandler.bossList)
+        {
+            if (boss.getBossUUID().equals(uuid))
+            {
+                String bossType = boss.getBossType();
+                String name = boss.getBossName();
+
+                event.setCanceled(true);
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                this.mc.getTextureManager().bindTexture(BOSS_BAR);
+                this.mc.ingameGUI.drawTexturedModalRect(barX, barY, 0, 0, bossBarWidth, bossBarHeight);
+                this.mc.ingameGUI.drawTexturedModalRect(barX, barY, 0, 16, percent, bossBarHeight);
+                this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(bossType, width / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(bossType) / 2, y - 8, 16777215);
+                this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(TextFormatting.ITALIC + name, width / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(name) / 2, y + 8, boss.getBossTextColor());
+                event.setIncrement(bossBarHeight * 2);
             }
         }
     }
