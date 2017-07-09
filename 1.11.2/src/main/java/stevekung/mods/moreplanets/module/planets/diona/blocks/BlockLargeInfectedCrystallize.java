@@ -7,7 +7,6 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -36,8 +35,6 @@ import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileEntityProvider
 {
-    public static PropertyDirection FACING = PropertyDirection.create("facing");
-
     public BlockLargeInfectedCrystallize(String name)
     {
         super(Material.GLASS);
@@ -46,7 +43,7 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
         this.setHardness(0.4F);
         this.setSoundType(SoundType.GLASS);
         this.setUnlocalizedName(name);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING_ALL, EnumFacing.UP));
         this.setLightOpacity(255);
     }
 
