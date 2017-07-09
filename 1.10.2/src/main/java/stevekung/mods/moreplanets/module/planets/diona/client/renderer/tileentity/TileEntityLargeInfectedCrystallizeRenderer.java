@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileenti
 import java.awt.Color;
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -39,7 +38,7 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
 
     private void drawCrystal(TileEntityLargeInfectedCrystallize tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size)
     {
-        float shade = MathHelper.sin((Minecraft.getMinecraft().thePlayer.ticksExisted + rand.nextInt(20)) / (16.0F + rand.nextFloat())) * 0.075F + 0.925F;
+        float shade = MathHelper.sin((tile.renderTicks + rand.nextInt(20)) / (16.0F + rand.nextFloat())) * 0.075F + 0.925F;
         Color c = new Color(color);
         float r = c.getRed() / 220.0F;
         float g = c.getGreen() / 200.0F;
@@ -80,14 +79,9 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
 
     private void translateFromDirection(TileEntityLargeInfectedCrystallize tile)
     {
-        if (tile.getWorld() != null)
+        if (tile.hasWorldObj())
         {
             EnumFacing facing = tile.getWorld().getBlockState(tile.getPos()).getValue(BlockStateHelper.FACING_ALL);
-
-            if (facing == null)
-            {
-                return;
-            }
 
             switch (facing)
             {
@@ -111,10 +105,9 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
                 GlStateManager.translate(0.0F, -0.3F, 0.0F);
                 break;
             case DOWN:
+            default:
                 GlStateManager.translate(0.0F, 1.3F, 0.0F);
                 GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
-                break;
-            default:
                 break;
             }
         }

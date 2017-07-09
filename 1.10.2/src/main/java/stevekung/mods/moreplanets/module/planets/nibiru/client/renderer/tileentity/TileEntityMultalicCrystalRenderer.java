@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileent
 import java.awt.Color;
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -45,7 +44,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
 
     private void drawCrystal(TileEntityMultalicCrystal tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size)
     {
-        float shade = MathHelper.sin((Minecraft.getMinecraft().thePlayer.ticksExisted + rand.nextInt(1)) / (8.0F + rand.nextFloat())) * 0.2F + 1.0F;
+        float shade = MathHelper.sin((tile.renderTicks + rand.nextInt(1)) / (8.0F + rand.nextFloat())) * 0.2F + 1.0F;
         Color c = new Color(color);
         float r = c.getRed() / 200.0F;
         float g = c.getGreen() / 200.0F;
@@ -86,14 +85,9 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
 
     private void translateFromDirection(TileEntityMultalicCrystal tile)
     {
-        if (tile.getWorld() != null)
+        if (tile.hasWorldObj())
         {
             EnumFacing facing = tile.getWorld().getBlockState(tile.getPos()).getValue(BlockStateHelper.FACING_ALL);
-
-            if (facing == null)
-            {
-                return;
-            }
 
             switch (facing)
             {
@@ -117,10 +111,9 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
                 GlStateManager.translate(0.0F, -0.3F, 0.0F);
                 break;
             case DOWN:
+            default:
                 GlStateManager.translate(0.0F, 1.3F, 0.0F);
                 GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
-                break;
-            default:
                 break;
             }
         }
