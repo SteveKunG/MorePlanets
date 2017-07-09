@@ -1,2 +1,3 @@
 -Update- Update to use Galacticraft Build 112 or higher
 -Update- Some optimization
+-Fixed- Fixed block states mapper

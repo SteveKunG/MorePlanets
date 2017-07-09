@@ -31,6 +31,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.IModelState;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -295,17 +296,17 @@ public class ClientRegisterHelper
 
     public static void registerStateMapper(Block block, EnumStateMapper mapper)
     {
-        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new StateMap.Builder().ignore(mapper.getProperty()).build());
+        ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(mapper.getProperty()).build());
     }
 
     public static void registerStateMapper(Block block, IStateMapper mapper)
     {
-        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, mapper);
+        ModelLoader.setCustomStateMapper(block, mapper);
     }
 
     public static void registerStateMapper(Block block, IProperty<?>... property)
     {
-        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().registerBlockWithStateMapper(block, new Builder().ignore(property).build());
+        ModelLoader.setCustomStateMapper(block, new Builder().ignore(property).build());
     }
 
     public static void registerSpriteTexture(TextureStitchEvent.Pre event, String texture)

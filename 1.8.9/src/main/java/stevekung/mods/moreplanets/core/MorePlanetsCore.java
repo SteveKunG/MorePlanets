@@ -17,7 +17,6 @@ import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent.MissingMappin
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
 import stevekung.mods.moreplanets.client.command.ClientCommandHandlerMP;
 import stevekung.mods.moreplanets.client.command.CommandChangeLog;
-import stevekung.mods.moreplanets.client.renderer.EntityRendererMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.EntityEventHandler;
@@ -87,17 +86,14 @@ public class MorePlanetsCore
         MPPlanets.init();
         MPPotions.init();
         MPOthers.init();
-
-        if (CommonRegisterHelper.isClient())
-        {
-            EntityRendererMP.init();
-        }
+        MorePlanetsCore.PROXY.registerPreRendering();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
         MPTileEntities.init();
+        MorePlanetsCore.PROXY.registerInitRendering();
         GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.idNetworkHandler, PacketSimpleMP.class);
         MorePlanetsCore.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
         MorePlanetsCore.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));

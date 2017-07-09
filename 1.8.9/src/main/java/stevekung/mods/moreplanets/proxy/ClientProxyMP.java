@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import stevekung.mods.moreplanets.client.renderer.*;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPSchematics;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.EntityAlienMinerSparkFX;
@@ -24,14 +25,25 @@ import stevekung.mods.moreplanets.util.client.particle.EntityLiquidDripFX;
 public class ClientProxyMP extends ServerProxyMP
 {
     @Override
-    public void registerRendering()
+    public void registerPreRendering()
     {
-        OBJLoader.instance.addDomain("moreplanets");
+        OBJLoader.instance.addDomain(MorePlanetsCore.MOD_ID);
+        EntityRendererMP.init();
         TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
-        TileEntityRenderer.init();
-        ItemModelRenderer.init();
         VariantsRenderer.init();
         BlockStateMapper.init();
+    }
+
+    @Override
+    public void registerInitRendering()
+    {
+        TileEntityRenderer.init();
+        ItemModelRenderer.init();
+    }
+
+    @Override
+    public void registerRendering()
+    {
         MPSchematics.registerSchematicTexture();
     }
 
