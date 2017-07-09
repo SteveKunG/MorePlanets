@@ -7,6 +7,10 @@ more flower?
 cheese spore exploder flower
 cheese spore mushroom + monster
 cheese spore mushroom tree
+cheese lava
+change cheese of milk cake recipe
+cheese bread
+cheese of milk block eatable
 
 ****nibiru stuff****
 worm hole monster in nibiru desert

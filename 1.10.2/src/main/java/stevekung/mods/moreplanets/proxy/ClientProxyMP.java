@@ -11,6 +11,7 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import stevekung.mods.moreplanets.client.renderer.*;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
@@ -26,6 +27,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.Particle
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedSpore;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLavaMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLiquidDrip;
@@ -192,5 +194,17 @@ public class ClientProxyMP extends ServerProxyMP
                 mc.effectRenderer.addEffect(entityfx);
             }
         }
+    }
+
+    @Override
+    public void addBoss(IMorePlanetsBoss boss)
+    {
+        ClientEventHandler.bossList.add(boss);
+    }
+
+    @Override
+    public void removeBoss(IMorePlanetsBoss boss)
+    {
+        ClientEventHandler.bossList.remove(boss);
     }
 }

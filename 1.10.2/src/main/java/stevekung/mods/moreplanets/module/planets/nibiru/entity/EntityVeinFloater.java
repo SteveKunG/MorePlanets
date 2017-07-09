@@ -1,10 +1,12 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
 import java.util.List;
+import java.util.UUID;
+
+import com.google.common.base.Optional;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.entities.IBoss;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
@@ -33,14 +35,17 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityVeinBall;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
-public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreathable, ISpaceMob, IEntityMultiPart
+public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IEntityBreathable, ISpaceMob, IEntityMultiPart
 {
     private TileEntityDungeonSpawner spawner;
     public int deathTicks = 0;
@@ -50,6 +55,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
     public EntityDragonPart[] partArray;
     public EntityDragonPart partHead;
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private static final DataParameter<Optional<UUID>> BOSSINFO_ID = EntityDataManager.createKey(EntityVeinFloater.class, DataSerializers.OPTIONAL_UNIQUE_ID);
 
     public EntityVeinFloater(World world)
     {
@@ -57,6 +63,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
         this.partArray = new EntityDragonPart[] { this.partHead = new EntityDragonPart(this, "head", 6.0F, 4.0F) };
         this.isImmuneToFire = true;
         this.setSize(6.0F, 16.0F);
+        MorePlanetsCore.PROXY.addBoss(this);
     }
 
     @Override
@@ -64,6 +71,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
     {
         super.entityInit();
         this.dataManager.register(VINE_PULL, false);
+        this.dataManager.register(BOSSINFO_ID, Optional.absent());
     }
 
     @Override
@@ -288,7 +296,6 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
         {
             this.heal(10.0F);
         }
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
@@ -384,6 +391,8 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
         }
         this.partHead.onUpdate();
         this.partHead.setLocationAndAngles(this.posX, this.posY + 13.0D, this.posZ, 0.0F, 0.0F);
+        this.dataManager.set(BOSSINFO_ID, Optional.of(this.bossInfo.getUniqueId()));
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
     }
 
@@ -396,6 +405,7 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
             this.spawner.boss = null;
             this.spawner.spawned = false;
         }
+        MorePlanetsCore.PROXY.removeBoss(this);
         super.setDead();
     }
 
@@ -451,6 +461,30 @@ public class EntityVeinFloater extends EntityMob implements IBoss, IEntityBreath
     public boolean isNonBoss()
     {
         return false;
+    }
+
+    @Override
+    public UUID getBossUUID()
+    {
+        return this.dataManager.get(BOSSINFO_ID).or(new UUID(0, 0));
+    }
+
+    @Override
+    public String getBossName()
+    {
+        return this.getName();
+    }
+
+    @Override
+    public String getBossType()
+    {
+        return "Nibiru Boss";
+    }
+
+    @Override
+    public int getBossTextColor()
+    {
+        return ColorHelper.rgbToDecimal(189, 95, 17);
     }
 
     public boolean getVinePull()

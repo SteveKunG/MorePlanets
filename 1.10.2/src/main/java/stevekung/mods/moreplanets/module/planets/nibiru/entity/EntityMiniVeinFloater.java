@@ -1,10 +1,12 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
 import java.util.List;
+import java.util.UUID;
+
+import com.google.common.base.Optional;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.entities.IBoss;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
@@ -30,14 +32,17 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.JsonUtils;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
-public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBreathable, ISpaceMob
+public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss, IEntityBreathable, ISpaceMob
 {
     private TileEntityDungeonSpawner spawner;
     public int deathTicks = 0;
@@ -45,12 +50,14 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
     public int entitiesWithinLast;
     private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityMiniVeinFloater.class, DataSerializers.BOOLEAN);
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private static final DataParameter<Optional<UUID>> BOSSINFO_ID = EntityDataManager.createKey(EntityMiniVeinFloater.class, DataSerializers.OPTIONAL_UNIQUE_ID);
 
     public EntityMiniVeinFloater(World world)
     {
         super(world);
         this.isImmuneToFire = true;
         this.setSize(3.0F, 8.0F);
+        MorePlanetsCore.PROXY.addBoss(this);
     }
 
     @Override
@@ -58,6 +65,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
     {
         super.entityInit();
         this.dataManager.register(VINE_PULL, false);
+        this.dataManager.register(BOSSINFO_ID, Optional.absent());
     }
 
     @Override
@@ -185,7 +193,6 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
         {
             this.heal(5.0F);
         }
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
@@ -311,6 +318,8 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
             }
             this.entitiesWithinLast = this.entitiesWithin;
         }
+        this.dataManager.set(BOSSINFO_ID, Optional.of(this.bossInfo.getUniqueId()));
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
     }
 
@@ -323,6 +332,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
             this.spawner.boss = null;
             this.spawner.spawned = false;
         }
+        MorePlanetsCore.PROXY.removeBoss(this);
         super.setDead();
     }
 
@@ -360,6 +370,30 @@ public class EntityMiniVeinFloater extends EntityMob implements IBoss, IEntityBr
     public boolean isNonBoss()
     {
         return false;
+    }
+
+    @Override
+    public UUID getBossUUID()
+    {
+        return this.dataManager.get(BOSSINFO_ID).or(new UUID(0, 0));
+    }
+
+    @Override
+    public String getBossName()
+    {
+        return this.getName();
+    }
+
+    @Override
+    public String getBossType()
+    {
+        return "Nibiru Mini Boss";
+    }
+
+    @Override
+    public int getBossTextColor()
+    {
+        return ColorHelper.rgbToDecimal(189, 95, 17);
     }
 
     public boolean getVinePull()

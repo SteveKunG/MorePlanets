@@ -2,6 +2,8 @@
 -Update- Update to use Galacticraft Build 112 or higher
 -Update- Minor improvement for Dark Energy Core
 -Update- Rewrite Change Log GUI
+-Update- Custom Boss Health Bar is now working
 -Fixed- Fixed crash with access transformer
 -Fixed- Fixed crystals rendering crash with Optifine
 -Fixed- Fixed transparent armor model rendering
+-Fixed- Fixed tentacle spawning when restart world
