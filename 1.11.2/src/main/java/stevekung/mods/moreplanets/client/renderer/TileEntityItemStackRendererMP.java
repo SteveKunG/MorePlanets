@@ -22,6 +22,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
+import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
 @SideOnly(Side.CLIENT)
@@ -123,6 +124,11 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
             ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityAlienDefenderBeacon());
             GlStateManager.enableBlend();
             GlStateManager.enableCull();
+        }
+        else if (block == MPBlocks.SHIELD_GENERATOR)
+        {
+            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityShieldGenerator());
+            GlStateManager.enableBlend();
         }
         else
         {
