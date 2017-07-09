@@ -11,6 +11,7 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
@@ -141,6 +142,12 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
 
     @Override
     public Class<? extends BiomeProvider> getBiomeProviderClass()
+    {
+        return null;
+    }
+
+    @Override
+    public ResourceLocation getDungeonChestType()
     {
         return null;
     }
