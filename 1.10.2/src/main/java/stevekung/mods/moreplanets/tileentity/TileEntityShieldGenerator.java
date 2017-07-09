@@ -1,11 +1,9 @@
 package stevekung.mods.moreplanets.tileentity;
 
-import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 
 import io.netty.buffer.ByteBuf;
-import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
@@ -29,6 +27,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -39,12 +38,17 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.blocks.BlockDummy;
+import stevekung.mods.moreplanets.blocks.BlockShieldGenerator;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPSounds;
+import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider, IInventoryDefaults, ISidedInventory
 {
     public int renderTicks;
+    public int solarRotate;
     private ItemStack[] containingItems = new ItemStack[1];
     @NetworkedField(targetSide = Side.CLIENT)
     public float shieldSize;
@@ -57,12 +61,19 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @NetworkedField(targetSide = Side.CLIENT)
     public int shieldDamage = 10;
     private static HashSet<BlockVec3Dim> loadedTiles = new HashSet();
+    private boolean initialize = true;
     //private static BlockPos shieldPos;
 
     public TileEntityShieldGenerator()
     {
         this.storage.setMaxExtract(250);
         this.storage.setCapacity(100000.0F);
+
+        if (this.initialize && this.hasWorldObj())
+        {
+            this.solarRotate = this.solarRotate + this.worldObj.rand.nextInt(90);
+            this.initialize = false;
+        }
     }
 
     @Override
@@ -159,6 +170,17 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         super.update();
         this.renderTicks++;
 
+        if (this.hasEnoughEnergyToRun && !this.disabled)
+        {
+            this.solarRotate++;
+            this.solarRotate %= 180;
+            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.pos.getX() + 0.5D, this.pos.getY() + 1.75D, this.pos.getZ() + 0.5D, new Object[] { -0.5F });
+
+            if (this.ticks % 33 == 0)
+            {
+                this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_GENERATOR_AMBIENT, SoundCategory.BLOCKS, 0.075F, 1.0F);
+            }
+        }
         if (!this.worldObj.isRemote)
         {
             if (this.getEnergyStoredGC() > 0.0F && this.hasEnoughEnergyToRun)
@@ -459,32 +481,21 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     }
 
     @Override
-    public EnumSet<EnumFacing> getElectricalInputDirections()
+    public EnumFacing getFront()
     {
-        return EnumSet.noneOf(EnumFacing.class);
+        IBlockState state = this.worldObj.getBlockState(this.getPos());
+
+        if (state.getBlock() instanceof BlockShieldGenerator)
+        {
+            return state.getValue(BlockStateHelper.FACING_HORIZON);
+        }
+        return EnumFacing.NORTH;
     }
 
     @Override
     public EnumFacing getElectricInputDirection()
     {
         return this.getFront();
-    }
-
-    @Override
-    public EnumFacing getFront()
-    {
-        IBlockState state = this.worldObj.getBlockState(this.getPos());
-        return state.getValue(BlockStateHelper.FACING_HORIZON);
-    }
-
-    @Override
-    public boolean canConnect(EnumFacing direction, NetworkType type)
-    {
-        if (direction == null || type != NetworkType.POWER)
-        {
-            return false;
-        }
-        return direction == this.getElectricInputDirection();
     }
 
     @Override
