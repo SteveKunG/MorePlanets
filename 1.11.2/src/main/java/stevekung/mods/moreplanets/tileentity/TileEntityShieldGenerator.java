@@ -48,6 +48,8 @@ import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider, IInventoryDefaults, ISidedInventory
 {
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int facing;
     public int renderTicks;
     public int solarRotate;
     private NonNullList<ItemStack> containingItems = NonNullList.withSize(1, ItemStack.EMPTY);
@@ -237,7 +239,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @Override
     public boolean onActivated(EntityPlayer player)
     {
-        return MPBlocks.SHIELD_GENERATOR.onBlockActivated(this.world, this.mainBlockPosition, MPBlocks.SHIELD_GENERATOR.getDefaultState(), player, player.getActiveHand(), player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
+        return ((BlockShieldGenerator) MPBlocks.SHIELD_GENERATOR).onMachineActivated(this.world, this.mainBlockPosition, MPBlocks.SHIELD_GENERATOR.getDefaultState(), player, player.getActiveHand(), player.getHeldItemMainhand(), player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
     }
 
     @Override
@@ -318,6 +320,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             this.shieldDamage = nbt.getInteger("ShieldDamage");
         }
+        this.facing = nbt.getInteger("Facing");
         this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, this.containingItems);
     }
@@ -331,6 +334,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         nbt.setInteger("MaxShieldSize", this.maxShieldSize);
         nbt.setInteger("KnockAmount", this.knockAmount);
         nbt.setInteger("ShieldDamage", this.shieldDamage);
+        nbt.setInteger("Facing", this.facing);
         ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
     }
@@ -518,6 +522,11 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public EnumBlockMultiType getMultiType()
     {
         return null;
+    }
+
+    public void setFacing(int facing)
+    {
+        this.facing = facing;
     }
 
     /*public static boolean isInShield(EntityLivingBase entity)TODO Circle bounding box

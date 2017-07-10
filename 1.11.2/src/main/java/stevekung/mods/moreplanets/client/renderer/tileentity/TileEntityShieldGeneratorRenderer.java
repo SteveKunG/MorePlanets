@@ -20,13 +20,18 @@ import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.client.model.obj.OBJModel.OBJBakedModel;
 import stevekung.mods.moreplanets.client.model.ModelShieldGenerator;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityShieldGenerator>
 {
     private OBJBakedModel sphere;
     private ModelShieldGenerator model = new ModelShieldGenerator();
     private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/shield_generator.png");
+    public static TileEntityShieldGeneratorRenderer INSTANCE;
+
+    public TileEntityShieldGeneratorRenderer()
+    {
+        TileEntityShieldGeneratorRenderer.INSTANCE = this;
+    }
 
     private void updateModels()
     {
@@ -61,26 +66,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         GlStateManager.enableRescaleNormal();
         GlStateManager.translate((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
-
-        if (tile.hasWorld())
-        {
-            switch (tile.getWorld().getBlockState(tile.getPos()).getValue(BlockStateHelper.FACING_HORIZON))
-            {
-            case NORTH:
-            default:
-                GlStateManager.rotate(0.0F, 0.0F, 1.0F, 0.0F);
-                break;
-            case SOUTH:
-                GlStateManager.rotate(-180.0F, 0.0F, 1.0F, 0.0F);
-                break;
-            case EAST:
-                GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
-                break;
-            case WEST:
-                GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
-                break;
-            }
-        }
+        GlStateManager.rotate(tile.facing, 0.0F, 1.0F, 0.0F);
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.color(lightTime, lightTime, lightTime);
@@ -140,5 +126,46 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
+    public void renderItem()
+    {
+        float lightMapSaveX = OpenGlHelper.lastBrightnessX;
+        float lightMapSaveY = OpenGlHelper.lastBrightnessY;
+
+        GlStateManager.pushMatrix();
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.translate(0.5F, 1.5F, 0.5F);
+        GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
+        GlStateManager.color(1.0F, 1.0F, 1.0F);
+        this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow1.png"));
+        this.model.renderBase();
+        GlStateManager.pushMatrix();
+        this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow1.png"));
+        this.model.renderRod();
+        GlStateManager.popMatrix();
+
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow2.png"));
+        this.model.renderBase();
+        GlStateManager.pushMatrix();
+        this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow2.png"));
+        this.model.renderRod();
+        GlStateManager.popMatrix();
+
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
+        this.bindTexture(TileEntityShieldGeneratorRenderer.texture);
+        this.model.renderBase();
+        this.model.renderRod();
+
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.popMatrix();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.enableBlend();
     }
 }

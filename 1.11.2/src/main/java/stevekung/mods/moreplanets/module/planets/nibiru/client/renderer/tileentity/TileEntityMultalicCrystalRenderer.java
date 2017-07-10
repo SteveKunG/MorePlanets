@@ -6,21 +6,30 @@ import java.util.Random;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import stevekung.mods.moreplanets.util.client.model.ModelCrystal;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer<TileEntityMultalicCrystal>
 {
     private ModelCrystal model = new ModelCrystal();
+    public static TileEntityMultalicCrystalRenderer INSTANCE;
+
+    public TileEntityMultalicCrystalRenderer()
+    {
+        TileEntityMultalicCrystalRenderer.INSTANCE = this;
+    }
 
     @Override
     public void renderTileEntityAt(TileEntityMultalicCrystal tile, double x, double y, double z, float partialTicks, int destroyStage)
     {
+        if (tile.facing == null)
+        {
+            return;
+        }
+
         Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
 
         for (int i = 0; i < 4; i++)
@@ -85,37 +94,84 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
 
     private void translateFromDirection(TileEntityMultalicCrystal tile)
     {
-        if (tile.hasWorld())
+        switch (tile.facing)
         {
-            EnumFacing facing = tile.getWorld().getBlockState(tile.getPos()).getValue(BlockStateHelper.FACING_ALL);
+        case WEST:
+            GlStateManager.translate(0.0F, 0.5F, 0.7F);
+            GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
+            break;
+        case SOUTH:
+            GlStateManager.translate(0.0F, 0.5F, -0.7F);
+            GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
+            break;
+        case UP:
+            GlStateManager.translate(-0.7F, 0.575F, 0.0F);
+            GlStateManager.rotate(-90.0F, 0.0F, 0.0F, 1.0F);
+            break;
+        case NORTH:
+            GlStateManager.translate(0.7F, 0.5F, 0.0F);
+            GlStateManager.rotate(90.0F, 0.0F, 0.0F, 1.0F);
+            break;
+        case EAST:
+            GlStateManager.translate(0.0F, -0.3F, 0.0F);
+            break;
+        case DOWN:
+        default:
+            GlStateManager.translate(0.0F, 1.3F, 0.0F);
+            GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
+            break;
+        }
+    }
 
-            switch (facing)
+    public void renderItem()
+    {
+        Random rand = new Random(4);
+
+        for (int i = 0; i < 4; i++)
+        {
+            int[] colorList = new int[] { ColorHelper.rgbToDecimal(76, 132, 255), ColorHelper.rgbToDecimal(50, 101, 236), ColorHelper.rgbToDecimal(75, 131, 255), ColorHelper.rgbToDecimal(28, 60, 146) };
+
+            for (int spike = 0; spike < 2; spike++)
             {
-            case NORTH:
-                GlStateManager.translate(0.0F, 0.5F, 0.7F);
-                GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
-                break;
-            case SOUTH:
-                GlStateManager.translate(0.0F, 0.5F, -0.7F);
-                GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
-                break;
-            case EAST:
-                GlStateManager.translate(-0.7F, 0.575F, 0.0F);
-                GlStateManager.rotate(-90.0F, 0.0F, 0.0F, 1.0F);
-                break;
-            case WEST:
-                GlStateManager.translate(0.7F, 0.5F, 0.0F);
-                GlStateManager.rotate(90.0F, 0.0F, 0.0F, 1.0F);
-                break;
-            case UP:
-                GlStateManager.translate(0.0F, -0.3F, 0.0F);
-                break;
-            case DOWN:
-            default:
-                GlStateManager.translate(0.0F, 1.3F, 0.0F);
-                GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
-                break;
+                int angle1 = rand.nextInt(16) + 160 * spike;
+                int angle2 = 8 + rand.nextInt(16);
+                this.drawCrystal(angle1, angle2, rand, colorList[i], 1.15F);
+            }
+            for (int spike = 0; spike < 2; spike++)
+            {
+                int angle1 = rand.nextInt(74) + 232 * spike;
+                int angle2 = 3 + rand.nextInt(24);
+                this.drawCrystal(angle1, angle2, rand, colorList[i], 1.15F);
             }
         }
+    }
+
+    private void drawCrystal(float angle1, float angle2, Random rand, int color, float size)
+    {
+        Color c = new Color(color);
+        float r = c.getRed() / 200.0F;
+        float g = c.getGreen() / 200.0F;
+        float b = c.getBlue() / 200.0F;
+        GlStateManager.pushMatrix();
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableBlend();
+        GlStateManager.enableNormalize();
+        GlStateManager.blendFunc(770, 771);
+        GlStateManager.translate(0.475F, -0.3F, 0.5F);
+        GlStateManager.rotate(angle1, 0.1F, 1.0F, 0.0F);
+        GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
+        GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
+        GlStateManager.color(r, g, b, 0.75F);
+        this.bindTexture(new ResourceLocation("moreplanets:textures/model/crystal.png"));
+        this.model.render();
+        GlStateManager.scale(1.0F, 1.0F, 1.0F);
+        GlStateManager.disableBlend();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.popMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.disableBlend();
+        GlStateManager.enableLighting();
+        GlStateManager.enableBlend();
     }
 }

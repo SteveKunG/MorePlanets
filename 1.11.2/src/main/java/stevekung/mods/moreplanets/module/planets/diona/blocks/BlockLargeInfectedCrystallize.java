@@ -209,10 +209,19 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
-        if (this.checkForDrop(world, pos, state) && !this.canPlaceBlock(world, pos, state.getValue(BlockStateHelper.FACING_ALL).getOpposite()))
+        if (this.checkForDrop(world, pos) && !this.canPlaceBlock(world, pos, state.getValue(BlockStateHelper.FACING_ALL).getOpposite()))
         {
             world.destroyBlock(pos, false);
             world.setBlockToAir(pos);
+        }
+    }
+
+    @Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+        if (world.getTileEntity(pos) instanceof TileEntityLargeInfectedCrystallize)
+        {
+            ((TileEntityLargeInfectedCrystallize)world.getTileEntity(pos)).setFacing(EnumFacing.getFront(this.getMetaFromState(state)));
         }
     }
 
@@ -310,7 +319,7 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
         return world.getBlockState(blockpos).isSideSolid(world, blockpos, facing.getOpposite());
     }
 
-    private boolean checkForDrop(World world, BlockPos pos, IBlockState state)
+    private boolean checkForDrop(World world, BlockPos pos)
     {
         if (this.canPlaceBlockAt(world, pos))
         {

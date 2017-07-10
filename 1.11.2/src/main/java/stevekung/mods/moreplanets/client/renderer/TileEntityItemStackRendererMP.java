@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.client.renderer.tileentity.TileEntityShieldGeneratorRenderer;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosAncientChest;
@@ -14,15 +15,19 @@ import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChe
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.RenderInfectedCrystallizeBomb;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileentity.TileEntityDarkEnergyGeneratorRenderer;
+import stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileentity.TileEntityLargeInfectedCrystallizeRenderer;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.module.planets.diona.tileentity.*;
+import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyCore;
+import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaAncientChest;
+import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaTreasureChest;
+import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityZeliusEgg;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.TileEntityMultalicCrystalRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.TileEntityNuclearWasteTankRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
 @SideOnly(Side.CLIENT)
@@ -56,8 +61,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == DionaBlocks.LARGE_INFECTED_CRYSTALLIZE)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityLargeInfectedCrystallize(), -0.35D);
-            GlStateManager.enableBlend();
+            TileEntityLargeInfectedCrystallizeRenderer.INSTANCE.renderItem();
         }
         else if (block == MPBlocks.DARK_ENERGY_RECEIVER)
         {
@@ -85,8 +89,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == NibiruBlocks.MULTALIC_CRYSTAL)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityMultalicCrystal(), -0.35D);
-            GlStateManager.enableBlend();
+            TileEntityMultalicCrystalRenderer.INSTANCE.renderItem();
         }
         else if (block == DionaBlocks.DARK_ENERGY_CORE)
         {
@@ -127,8 +130,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == MPBlocks.SHIELD_GENERATOR)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityShieldGenerator());
-            GlStateManager.enableBlend();
+            TileEntityShieldGeneratorRenderer.INSTANCE.renderItem();
         }
         else
         {
