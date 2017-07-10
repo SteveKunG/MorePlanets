@@ -31,6 +31,7 @@ repositories {
 }
 
 dependencies {
+	compile "mezz.jei:jei_${mc_version}:${jei_version}"
 	runtime "mezz.jei:jei_${mc_version}:${jei_version}"
 }
 
