@@ -242,7 +242,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             }
         }
     }
-    
+
     @Override
     public void setDead()
     {
@@ -436,7 +436,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     {
         this.spawner = spawner;
     }
-    
+
     @Override
     public UUID getBossUUID()
     {

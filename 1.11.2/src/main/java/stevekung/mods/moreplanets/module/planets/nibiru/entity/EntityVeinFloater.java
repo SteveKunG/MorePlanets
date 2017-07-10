@@ -463,7 +463,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     {
         return false;
     }
-    
+
     @Override
     public UUID getBossUUID()
     {
