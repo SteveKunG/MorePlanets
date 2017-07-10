@@ -4,7 +4,6 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraftforge.common.BiomeDictionary;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosHills;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosPlains;
@@ -36,42 +35,23 @@ public class MPBiomes
 
     public static void init()
     {
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeDiona, "diona", MPBiomes.DIONA);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeChalosPlains, "chalos_plains", MPBiomes.CHALOS_PLAINS);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeChalosHills, "chalos_hills", MPBiomes.CHALOS_HILLS);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeSlimelyWasteland, "slimely_wasteland", MPBiomes.SLIMELY_WASTELAND);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedPlains, "infected_plains", MPBiomes.INFECTED_PLAINS);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDeadSavanna, "infected_dead_savanna", MPBiomes.INFECTED_DEAD_SAVANNA);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDesert, "infected_desert", MPBiomes.INFECTED_DESERT);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedRiver, "infected_river", MPBiomes.INFECTED_RIVER);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedOcean, "infected_ocean", MPBiomes.INFECTED_OCEAN);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedForest, "infected_forest", MPBiomes.INFECTED_FOREST);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDeepOcean, "infected_deep_ocean", MPBiomes.INFECTED_DEEP_OCEAN);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDeadRoofedForest, "infected_dead_roofed_forest", MPBiomes.INFECTED_DEAD_ROOFED_FOREST);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedExtremeHills, "infected_extreme_hills", MPBiomes.INFECTED_EXTREME_HILLS);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedSwampland, "infected_swampland", MPBiomes.INFECTED_SWAMPLAND);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDeadTaiga, "infected_dead_taiga", MPBiomes.INFECTED_DEAD_TAIGA);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedJungle, "infected_jungle", MPBiomes.INFECTED_JUNGLE);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedIcePlains, "infected_ice_plains", MPBiomes.INFECTED_ICE_PLAINS);
-        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeGreenVein, "green_vein", MPBiomes.GREEN_VEIN);
-
-        BiomeDictionary.addTypes(MPBiomes.DIONA, COLD, DEAD, DRY);
-        BiomeDictionary.addTypes(MPBiomes.CHALOS_PLAINS, PLAINS);
-        BiomeDictionary.addTypes(MPBiomes.CHALOS_HILLS, MOUNTAIN, HILLS);
-        BiomeDictionary.addTypes(MPBiomes.SLIMELY_WASTELAND, WASTELAND, DRY);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_PLAINS, PLAINS, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_DEAD_SAVANNA, HOT, SAVANNA, PLAINS, SPARSE, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_DESERT, HOT, DRY, SANDY, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_RIVER, RIVER, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_OCEAN, OCEAN, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_FOREST, FOREST, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_DEEP_OCEAN, OCEAN, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_DEAD_ROOFED_FOREST, SPOOKY, DENSE, FOREST, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_EXTREME_HILLS, MOUNTAIN, HILLS, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_SWAMPLAND, WET, SWAMP, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_DEAD_TAIGA, COLD, CONIFEROUS, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_JUNGLE, HOT, WET, DENSE, JUNGLE, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.INFECTED_ICE_PLAINS, COLD, SNOWY, WASTELAND, DEAD);
-        BiomeDictionary.addTypes(MPBiomes.GREEN_VEIN, FOREST, RARE, MAGICAL);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeDiona, "diona", MPBiomes.DIONA, COLD, DEAD, DRY);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeChalosPlains, "chalos_plains", MPBiomes.CHALOS_PLAINS, PLAINS);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeChalosHills, "chalos_hills", MPBiomes.CHALOS_HILLS, MOUNTAIN, HILLS);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeSlimelyWasteland, "slimely_wasteland", MPBiomes.SLIMELY_WASTELAND, WASTELAND, DRY);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedPlains, "infected_plains", MPBiomes.INFECTED_PLAINS, PLAINS, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDeadSavanna, "infected_dead_savanna", MPBiomes.INFECTED_DEAD_SAVANNA, HOT, SAVANNA, PLAINS, SPARSE, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDesert, "infected_desert", MPBiomes.INFECTED_DESERT, HOT, DRY, SANDY, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedRiver, "infected_river", MPBiomes.INFECTED_RIVER, RIVER, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedOcean, "infected_ocean", MPBiomes.INFECTED_OCEAN, OCEAN, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedForest, "infected_forest", MPBiomes.INFECTED_FOREST, FOREST, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDeepOcean, "infected_deep_ocean", MPBiomes.INFECTED_DEEP_OCEAN, OCEAN, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDeadRoofedForest, "infected_dead_roofed_forest", MPBiomes.INFECTED_DEAD_ROOFED_FOREST, SPOOKY, DENSE, FOREST, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedExtremeHills, "infected_extreme_hills", MPBiomes.INFECTED_EXTREME_HILLS, MOUNTAIN, HILLS, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedSwampland, "infected_swampland", MPBiomes.INFECTED_SWAMPLAND, WET, SWAMP, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedDeadTaiga, "infected_dead_taiga", MPBiomes.INFECTED_DEAD_TAIGA, COLD, CONIFEROUS, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedJungle, "infected_jungle", MPBiomes.INFECTED_JUNGLE, HOT, WET, DENSE, JUNGLE, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedIcePlains, "infected_ice_plains", MPBiomes.INFECTED_ICE_PLAINS, COLD, SNOWY, WASTELAND, DEAD);
+        CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeGreenVein, "green_vein", MPBiomes.GREEN_VEIN, FOREST, RARE, MAGICAL);
     }
 }
