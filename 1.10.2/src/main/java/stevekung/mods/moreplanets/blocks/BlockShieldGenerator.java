@@ -1,10 +1,10 @@
 package stevekung.mods.moreplanets.blocks;
 
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
-import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,6 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -48,17 +50,42 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 
     @Override
-    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        IBlockState state = world.getBlockState(pos);
-        TileBaseUniversalElectrical.onUseWrenchBlock(state, world, pos, state.getValue(BlockStateHelper.FACING_HORIZON));
+        int change = world.getBlockState(pos).getValue(BlockStateHelper.FACING_HORIZON).rotateY().getHorizontalIndex();
+        TileEntity tile = world.getTileEntity(pos);
+
+        if (tile instanceof TileEntityShieldGenerator)
+        {
+            int direction = 0;
+
+            if (change == 0)
+            {
+                direction = 180;
+            }
+            if (change == 1)
+            {
+                direction = -90;
+            }
+            if (change == 2)
+            {
+                direction = 0;
+            }
+            if (change == 3)
+            {
+                direction = 90;
+            }
+            TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
+            shield.setFacing(direction);
+        }
+        world.setBlockState(pos, this.getStateFromMeta(change), 3);
         return true;
     }
 
@@ -66,13 +93,33 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
         int angle = MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        world.setBlockState(pos, this.getStateFromMeta(EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex()), 3);
+        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
+        int direction = 0;
 
+        if (change == 0)
+        {
+            direction = 180;
+        }
+        if (change == 1)
+        {
+            direction = -90;
+        }
+        if (change == 2)
+        {
+            direction = 0;
+        }
+        if (change == 3)
+        {
+            direction = 90;
+        }
+
+        world.setBlockState(pos, this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()));
         TileEntity tile = world.getTileEntity(pos);
 
         if (tile instanceof TileEntityShieldGenerator)
         {
             TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
+            shield.setFacing(direction);
             shield.onCreate(world, pos);
         }
     }
@@ -110,8 +157,8 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
+        EnumFacing facing = EnumFacing.getHorizontal(meta % 4);
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, facing);
     }
 
     @Override
@@ -123,7 +170,19 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockStateHelper.FACING_HORIZON);
+        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING_HORIZON});
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rotation)
+    {
+        return state.withProperty(BlockStateHelper.FACING_HORIZON, rotation.rotate(state.getValue(BlockStateHelper.FACING_HORIZON)));
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
+    {
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING_HORIZON)));
     }
 
     @Override

@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -208,8 +207,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
             TileEntityDarkEnergyGenerator energy = (TileEntityDarkEnergyGenerator) tile;
             energy.setFacing(direction);
         }
-        IBlockState state = world.getBlockState(pos);
-        TileBaseUniversalElectrical.onUseWrenchBlock(state, world, pos, state.getValue(BlockStateHelper.FACING_HORIZON));
+        world.setBlockState(pos, this.getStateFromMeta(change), 3);
         return true;
     }
 
@@ -270,19 +268,14 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
-
-        if (enumfacing.getAxis() == EnumFacing.Axis.Y)
-        {
-            enumfacing = EnumFacing.NORTH;
-        }
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
+        EnumFacing facing = EnumFacing.getHorizontal(meta % 4);
+        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, facing);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateHelper.FACING_HORIZON).getIndex();
+        return state.getValue(BlockStateHelper.FACING_HORIZON).getHorizontalIndex();
     }
 
     @Override

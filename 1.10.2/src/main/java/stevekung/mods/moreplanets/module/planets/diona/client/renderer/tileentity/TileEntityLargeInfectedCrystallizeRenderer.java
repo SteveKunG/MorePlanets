@@ -6,21 +6,30 @@ import java.util.Random;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityLargeInfectedCrystallize;
 import stevekung.mods.moreplanets.util.client.model.ModelCrystal;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecialRenderer<TileEntityLargeInfectedCrystallize>
 {
     private ModelCrystal model = new ModelCrystal();
+    public static TileEntityLargeInfectedCrystallizeRenderer INSTANCE;
+
+    public TileEntityLargeInfectedCrystallizeRenderer()
+    {
+        TileEntityLargeInfectedCrystallizeRenderer.INSTANCE = this;
+    }
 
     @Override
     public void renderTileEntityAt(TileEntityLargeInfectedCrystallize tile, double x, double y, double z, float partialTicks, int destroyStage)
     {
+        if (tile.facing == null)
+        {
+            return;
+        }
+
         Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
 
         for (int i = 0; i < 6; i++)
@@ -79,36 +88,73 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
 
     private void translateFromDirection(TileEntityLargeInfectedCrystallize tile)
     {
-        if (tile.hasWorldObj())
+        switch (tile.facing)
         {
-            EnumFacing facing = tile.getWorld().getBlockState(tile.getPos()).getValue(BlockStateHelper.FACING_ALL);
+        case WEST:
+            GlStateManager.translate(0.0F, 0.5F, 0.7F);
+            GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
+            break;
+        case SOUTH:
+            GlStateManager.translate(0.0F, 0.5F, -0.7F);
+            GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
+            break;
+        case UP:
+            GlStateManager.translate(-0.7F, 0.575F, 0.0F);
+            GlStateManager.rotate(-90.0F, 0.0F, 0.0F, 1.0F);
+            break;
+        case NORTH:
+            GlStateManager.translate(0.7F, 0.5F, 0.0F);
+            GlStateManager.rotate(90.0F, 0.0F, 0.0F, 1.0F);
+            break;
+        case EAST:
+            GlStateManager.translate(0.0F, -0.3F, 0.0F);
+            break;
+        case DOWN:
+        default:
+            GlStateManager.translate(0.0F, 1.3F, 0.0F);
+            GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
+            break;
+        }
+    }
 
-            switch (facing)
+    public void renderItem()
+    {
+        Random rand = new Random(5);
+
+        for (int i = 0; i < 6; i++)
+        {
+            int[] colorList = new int[] { ColorHelper.rgbToDecimal(148, 114, 214), ColorHelper.rgbToDecimal(106, 75, 165), ColorHelper.rgbToDecimal(120, 86, 188), ColorHelper.rgbToDecimal(111, 78, 172), ColorHelper.rgbToDecimal(112, 80, 174), ColorHelper.rgbToDecimal(82, 58, 128) };
+
+            for (int spike = 0; spike < 6; spike++)
             {
-            case NORTH:
-                GlStateManager.translate(0.0F, 0.5F, 0.7F);
-                GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
-                break;
-            case SOUTH:
-                GlStateManager.translate(0.0F, 0.5F, -0.7F);
-                GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
-                break;
-            case EAST:
-                GlStateManager.translate(-0.7F, 0.575F, 0.0F);
-                GlStateManager.rotate(-90.0F, 0.0F, 0.0F, 1.0F);
-                break;
-            case WEST:
-                GlStateManager.translate(0.7F, 0.5F, 0.0F);
-                GlStateManager.rotate(90.0F, 0.0F, 0.0F, 1.0F);
-                break;
-            case UP:
-                GlStateManager.translate(0.0F, -0.3F, 0.0F);
-                break;
-            case DOWN:
-            default:
-                GlStateManager.translate(0.0F, 1.3F, 0.0F);
-                GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
-                break;
+                int angle1 = rand.nextInt(32) + 72 * spike;
+                int angle2 = 16 + rand.nextInt(16);
+                float size = 1.15F;
+                Color c = new Color(colorList[i]);
+                float r = c.getRed() / 220.0F;
+                float g = c.getGreen() / 200.0F;
+                float b = c.getBlue() / 200.0F;
+                GlStateManager.pushMatrix();
+                GlStateManager.enableRescaleNormal();
+                GlStateManager.enableBlend();
+                GlStateManager.enableNormalize();
+                GlStateManager.blendFunc(770, 771);
+                GlStateManager.translate(0.45F, -0.3F, 0.5F);
+                GlStateManager.rotate(angle1, 0.1F, 1.0F, 0.0F);
+                GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
+                GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
+                GlStateManager.color(r, g, b, 1.0F);
+                this.bindTexture(new ResourceLocation("moreplanets:textures/model/infected_crystallize_crystal.png"));
+                this.model.render();
+                GlStateManager.scale(1.0F, 1.0F, 1.0F);
+                GlStateManager.disableBlend();
+                GlStateManager.disableRescaleNormal();
+                GlStateManager.popMatrix();
+                GlStateManager.enableBlend();
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                GlStateManager.disableBlend();
+                GlStateManager.enableLighting();
+                GlStateManager.enableBlend();
             }
         }
     }
