@@ -39,7 +39,8 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     @NetworkedField(targetSide = Side.CLIENT)
     public int facing;
     private ItemStack[] containingItems = new ItemStack[1];
-    public int age = 0;
+    public int renderTicks;
+    private boolean initialize = true;
 
     public TileEntityDarkEnergyGenerator()
     {
@@ -63,10 +64,13 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     public void update()
     {
         super.update();
+        this.renderTicks++;
 
-        ++this.age;
-        this.age = this.age + this.worldObj.rand.nextInt(100);
-
+        if (this.initialize)
+        {
+            this.renderTicks = this.renderTicks + this.worldObj.rand.nextInt(100);
+            this.initialize = false;
+        }
         if (!this.worldObj.isRemote)
         {
             this.receiveEnergyGC(null, this.generateWatts, false);

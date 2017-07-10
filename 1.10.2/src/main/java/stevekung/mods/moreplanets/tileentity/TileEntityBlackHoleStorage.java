@@ -37,17 +37,21 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     public int xp = 0;
     @NetworkedField(targetSide = Side.CLIENT)
     public String collectMode = "item";
-    public int age = 0;
+    public int renderTicks;
     public int modeInt;
+    private boolean initialize = true;
 
     @Override
     public void update()
     {
         super.update();
+        this.renderTicks++;
 
-        ++this.age;
-        this.age = this.age + this.worldObj.rand.nextInt(100);
-
+        if (this.initialize)
+        {
+            this.renderTicks = this.renderTicks + this.worldObj.rand.nextInt(100);
+            this.initialize = false;
+        }
         if (this.ticks % 20 == 0)
         {
             this.worldObj.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);

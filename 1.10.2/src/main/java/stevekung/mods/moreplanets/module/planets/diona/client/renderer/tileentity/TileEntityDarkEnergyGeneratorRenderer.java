@@ -25,11 +25,10 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
     @Override
     public void renderTileEntityAt(TileEntityDarkEnergyGenerator tile, double x, double y, double z, float partialTicks, int destroyStage)
     {
-        float time = tile.age + 100 + partialTicks;
-        float f1 = MathHelper.sin(time / 512) / 10.0F + 0.75F;
-        f1 = f1 * f1 + f1;
-        float sinOfTheTime = (MathHelper.sin(time / 128) + 1F) / 2F + 0.15F;
-
+        float renderPartialTicks = tile.renderTicks + partialTicks;
+        float ticks = MathHelper.sin(renderPartialTicks / 12) / 10.0F + 0.75F;
+        ticks = ticks * ticks + ticks;
+        float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 0.5F) / 2F + 0.1F;
         int facing = 0;
 
         if (tile != null && tile.hasWorldObj() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == DionaBlocks.DARK_ENERGY_GENERATOR)
@@ -51,7 +50,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.textureGlow1);
         this.model.renderBaseSide();
 
-        GlStateManager.color(sinOfTheTime, sinOfTheTime, sinOfTheTime, sinOfTheTime);
+        GlStateManager.color(lightTime, lightTime, lightTime);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.textureGlow2);
         this.model.renderRod();
@@ -83,7 +82,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
 
         if (tile.darkEnergyFuel > 0)
         {
-            this.model.renderBall(f1 * 0.2F);
+            this.model.renderBall(ticks * 0.2F);
         }
 
         GlStateManager.popMatrix();

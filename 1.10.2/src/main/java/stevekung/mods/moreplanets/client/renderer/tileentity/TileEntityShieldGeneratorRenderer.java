@@ -53,8 +53,8 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
         float test = 1.75F;
         int color = ColorUtil.to32BitColor(1, (int)(144 / test * 255), (int)(249 / test * 255), (int)(210 / test * 255));
-        float time = tile.renderTicks + 100 + partialTicks;
-        float sinOfTheTime = (MathHelper.sin(time / 16) + 1F) / 2F + 0.15F;
+        float renderPartialTicks = tile.renderTicks + partialTicks;
+        float lightTime = (MathHelper.sin(renderPartialTicks / 16) + 1F) / 2F + 0.15F;
 
         this.updateModels();
         GlStateManager.pushMatrix();
@@ -83,7 +83,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         }
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
-        GlStateManager.color(sinOfTheTime, sinOfTheTime, sinOfTheTime);
+        GlStateManager.color(lightTime, lightTime, lightTime);
         this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow1.png"));
         this.model.renderBase();
         GlStateManager.pushMatrix();

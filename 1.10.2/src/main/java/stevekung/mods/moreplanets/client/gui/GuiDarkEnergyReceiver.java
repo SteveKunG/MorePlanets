@@ -70,7 +70,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCa
         int width = (this.width - this.xSize) / 2;
         int height = (this.height - this.ySize) / 2;
         this.checkboxRender = new GuiElementCheckbox(1, this, width + 155, height + 87, "");
-        this.checkboxRender.enabled = !this.tile.successful;
+        this.checkboxRender.enabled = !this.tile.successful && !this.tile.activated;
         this.buttonList.add(this.checkboxRender);
     }
 

@@ -17,8 +17,8 @@ public class TileEntityZeliusEggRenderer extends TileEntitySpecialRenderer<TileE
     @Override
     public void renderTileEntityAt(TileEntityZeliusEgg tile, double x, double y, double z, float partialTicks, int destroyStage)
     {
-        float time = tile.age + 100 + partialTicks;
-        float sinOfTheTime = (MathHelper.sin(time / 128) + 1F) / 2F + 0.15F;
+        float renderPartialTicks = tile.renderTicks + partialTicks;
+        float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 1F) / 2F + 0.15F;
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
         GlStateManager.pushMatrix();
@@ -27,7 +27,7 @@ public class TileEntityZeliusEggRenderer extends TileEntitySpecialRenderer<TileE
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         this.bindTexture(TileEntityZeliusEggRenderer.texture);
         this.model.renderAll();
-        GlStateManager.color(sinOfTheTime, sinOfTheTime, sinOfTheTime, sinOfTheTime);
+        GlStateManager.color(lightTime, lightTime, lightTime);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
         this.bindTexture(TileEntityZeliusEggRenderer.textureLight1);
