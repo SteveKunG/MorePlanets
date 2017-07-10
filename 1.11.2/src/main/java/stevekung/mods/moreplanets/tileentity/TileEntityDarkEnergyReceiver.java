@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
@@ -46,6 +47,8 @@ import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityDarkLightningBolt;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.JsonUtils;
 
 public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
@@ -69,9 +72,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public boolean failed;
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean rendered;
-    public float solarRotate0;
-    public float solarRotate1;
-    public float rodRotate;
+    public float solarRotate;
+    public float rodUp;
     private ArrayList<BlockPos> posList = Lists.newArrayList();
     private ArrayList<BlockPos> obsidianPosList = Lists.newArrayList();
 
@@ -324,27 +326,27 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         {
             if (this.activated && !this.successful)
             {
-                this.solarRotate0++;
-                this.solarRotate0 %= 180;
+                this.solarRotate++;
+                this.solarRotate %= 180;
 
                 if (this.getEnergyStoredGC() > 0.0F && !this.failed)
                 {
-                    if (this.rodRotate < 57)
+                    if (this.rodUp < 58)
                     {
-                        this.rodRotate += 2.0F;
+                        this.rodUp++;
                     }
                 }
                 else
                 {
-                    if (this.rodRotate > 0)
+                    if (this.rodUp > 0)
                     {
-                        this.rodRotate -= 0.25F;
+                        this.rodUp -= 0.25F;
                     }
                 }
             }
-            if (this.successful && this.solarRotate0 < 180)
+            if (this.successful && this.solarRotate < 180)
             {
-                this.solarRotate0++;
+                this.solarRotate++;
             }
         }
     }
@@ -635,6 +637,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     {
         this.activated = activated;
         this.rendered = true;
+        GalacticraftCore.packetPipeline.sendToDimension(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_GUIDE_POS, this.world.provider.getDimension(), this.getPos()), this.world.provider.getDimension());
     }
 
     public void setFacing(int facing)

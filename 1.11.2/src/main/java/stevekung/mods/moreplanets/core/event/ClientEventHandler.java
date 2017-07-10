@@ -409,8 +409,8 @@ public class ClientEventHandler
         if (block == DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK)
         {
             event.setRed(0.5F);
-            event.setGreen(0.25F);
-            event.setBlue(0.6F);
+            event.setGreen(0.375F);
+            event.setBlue(0.8F);
         }
         if (block == DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK)
         {
@@ -420,21 +420,27 @@ public class ClientEventHandler
         }
         if (block == ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK)
         {
-            event.setRed(0.65F);
-            event.setGreen(0.65F);
-            event.setBlue(0.3F);
+            event.setRed(0.85F);
+            event.setGreen(0.8F);
+            event.setBlue(0.6F);
         }
         if (block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
         {
-            event.setRed(0.1F);
-            event.setGreen(0.0F);
-            event.setBlue(0.0F);
+            event.setRed(0.4F);
+            event.setGreen(0.15F);
+            event.setBlue(0.1F);
         }
         if (block == NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK)
         {
-            event.setRed(0.3F);
+            event.setRed(0.25F);
             event.setGreen(0.7F);
             event.setBlue(0.05F);
+        }
+        if (block == NibiruBlocks.PURIFY_WATER_FLUID_BLOCK)
+        {
+            event.setRed(0.4F);
+            event.setGreen(0.625F);
+            event.setBlue(0.75F);
         }
     }
 

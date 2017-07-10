@@ -69,12 +69,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     {
         this.storage.setMaxExtract(250);
         this.storage.setCapacity(100000.0F);
-
-        if (this.initialize && this.hasWorld())
-        {
-            this.solarRotate = this.solarRotate + this.world.rand.nextInt(90);
-            this.initialize = false;
-        }
     }
 
     @Override
@@ -171,10 +165,16 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         super.update();
         this.renderTicks++;
 
+        if (this.initialize)
+        {
+            this.renderTicks = this.renderTicks + this.world.rand.nextInt(100);
+            this.solarRotate = this.solarRotate + this.world.rand.nextInt(360);
+            this.initialize = false;
+        }
         if (this.hasEnoughEnergyToRun && !this.disabled)
         {
             this.solarRotate++;
-            this.solarRotate %= 180;
+            this.solarRotate %= 360;
             MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.pos.getX() + 0.5D, this.pos.getY() + 1.75D, this.pos.getZ() + 0.5D, new Object[] { -0.5F });
 
             if (this.ticks % 33 == 0)
@@ -190,7 +190,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             }
             else
             {
-                this.shieldSize -= 0.5F;
+                this.shieldSize -= 1.0F;
             }
             this.shieldSize = Math.min(Math.max(this.shieldSize, 0.0F), this.maxShieldSize);
             //TileEntityShieldGenerator.shieldPos = this.pos;

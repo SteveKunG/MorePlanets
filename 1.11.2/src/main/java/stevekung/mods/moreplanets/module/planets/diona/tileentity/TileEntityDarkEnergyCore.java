@@ -15,9 +15,9 @@ import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
 
 public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
 {
-    public int age = 0;
     private int produceTime;
     private boolean checkProduce = true;
+    private boolean initialize = true;
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
@@ -38,12 +38,14 @@ public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
     public void update()
     {
         super.update();
-        ++this.age;
-        this.age = this.age + this.world.rand.nextInt(100);
-
         List<EntityItem> entityItemMain = this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 1.5D, this.pos.getZ() + 1.0D));
         List<EntityItem> entityItemRequired = this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 1.5D, this.pos.getZ() + 1.0D));
 
+        if (this.initialize)
+        {
+            this.renderTicks = this.renderTicks + this.world.rand.nextInt(100);
+            this.initialize = false;
+        }
         for (EntityItem mainItem : entityItemMain)
         {
             for (DarkEnergyRecipeData data : DarkEnergyRecipeData.getRecipeList())

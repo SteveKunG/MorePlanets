@@ -1,16 +1,20 @@
 package stevekung.mods.moreplanets.module.planets.diona.tileentity;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
 
-public class TileEntityZeliusEgg extends TileEntity implements ITickable
+public class TileEntityZeliusEgg extends TileEntityRenderTickable
 {
-    public int age = 0;
+    private boolean initialize = true;
 
     @Override
     public void update()
     {
-        ++this.age;
-        this.age = this.age + this.world.rand.nextInt(100);
+        super.update();
+
+        if (this.initialize)
+        {
+            this.renderTicks = this.renderTicks + this.world.rand.nextInt(100);
+            this.initialize = false;
+        }
     }
 }

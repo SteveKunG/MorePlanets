@@ -28,7 +28,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         }
 
         int facing = 0;
-        float solarRotate = tile.solarRotate0;
+        float solarRotate = tile.solarRotate;
 
         if (tile != null && tile.hasWorld() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == MPBlocks.DARK_ENERGY_RECEIVER)
         {
@@ -74,9 +74,16 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         this.model.renderSolar();
         GlStateManager.popMatrix();
 
+        float rodUp = tile.rodUp;
+
+        if (tile.rodUp < 58 && tile.activated && !tile.failed)
+        {
+            rodUp = tile.rodUp + partialTicks;
+        }
+
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.0F, 0.65F, 0.0F);
-        GlStateManager.translate(0.0F, -tile.rodRotate / 90.0F, 0.0F);
+        GlStateManager.translate(0.0F, -rodUp / 90, 0.0F);
         this.model.renderRod();
         GlStateManager.popMatrix();
 

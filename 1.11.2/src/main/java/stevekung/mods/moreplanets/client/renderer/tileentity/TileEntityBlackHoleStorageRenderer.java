@@ -18,11 +18,8 @@ public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRendere
     @Override
     public void renderTileEntityAt(TileEntityBlackHoleStorage tile, double x, double y, double z, float partialTicks, int destroyStage)
     {
-        float time = tile.age + 100 + partialTicks;
-        float f1 = MathHelper.sin(time / 512) / 10.0F + 0.75F;
-        f1 = f1 * f1 + f1;
-        float sinOfTheTime = (MathHelper.sin(time / 128) + 1F) / 2F + 0.15F;
-
+        float renderPartialTicks = tile.renderTicks + partialTicks;
+        float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 1F) / 2F + 0.15F;
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
         GlStateManager.pushMatrix();
@@ -50,7 +47,7 @@ public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRendere
         this.model.renderTop();
         GlStateManager.popMatrix();
 
-        GlStateManager.color(sinOfTheTime, sinOfTheTime, sinOfTheTime, sinOfTheTime);
+        GlStateManager.color(lightTime, lightTime, lightTime);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         this.bindTexture(TileEntityBlackHoleStorageRenderer.textureGlow2);
         this.model.renderRod();
