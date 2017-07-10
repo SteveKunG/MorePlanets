@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.google.common.base.Function;
@@ -29,6 +30,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -118,9 +120,10 @@ public class CommonRegisterHelper
         GameRegistry.register(potion.setRegistryName(name));
     }
 
-    public static void registerBiome(int id, String name, Biome biome)
+    public static void registerBiome(int id, String name, Biome biome, @Nonnull BiomeDictionary.Type... biomeType)
     {
         Biome.registerBiome(id, "moreplanets:" + name, biome);
+        BiomeDictionary.registerBiomeType(biome, biomeType);
     }
 
     public static SoundEvent registerSound(String name)
