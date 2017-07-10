@@ -1,7 +1,10 @@
 package stevekung.mods.moreplanets.init;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.*;
+
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
+import net.minecraftforge.common.BiomeDictionary;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosHills;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosPlains;
@@ -51,5 +54,24 @@ public class MPBiomes
         CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedJungle, "infected_jungle", MPBiomes.INFECTED_JUNGLE);
         CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeInfectedIcePlains, "infected_ice_plains", MPBiomes.INFECTED_ICE_PLAINS);
         CommonRegisterHelper.registerBiome(ConfigManagerMP.idBiomeGreenVein, "green_vein", MPBiomes.GREEN_VEIN);
+
+        BiomeDictionary.addTypes(MPBiomes.DIONA, COLD, DEAD, DRY);
+        BiomeDictionary.addTypes(MPBiomes.CHALOS_PLAINS, PLAINS);
+        BiomeDictionary.addTypes(MPBiomes.CHALOS_HILLS, MOUNTAIN, HILLS);
+        BiomeDictionary.addTypes(MPBiomes.SLIMELY_WASTELAND, WASTELAND, DRY);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_PLAINS, PLAINS, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_DEAD_SAVANNA, HOT, SAVANNA, PLAINS, SPARSE, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_DESERT, HOT, DRY, SANDY, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_RIVER, RIVER, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_OCEAN, OCEAN, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_FOREST, FOREST, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_DEEP_OCEAN, OCEAN, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_DEAD_ROOFED_FOREST, SPOOKY, DENSE, FOREST, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_EXTREME_HILLS, MOUNTAIN, HILLS, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_SWAMPLAND, WET, SWAMP, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_DEAD_TAIGA, COLD, CONIFEROUS, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_JUNGLE, HOT, WET, DENSE, JUNGLE, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.INFECTED_ICE_PLAINS, COLD, SNOWY, WASTELAND, DEAD);
+        BiomeDictionary.addTypes(MPBiomes.GREEN_VEIN, FOREST, RARE, MAGICAL);
     }
 }
