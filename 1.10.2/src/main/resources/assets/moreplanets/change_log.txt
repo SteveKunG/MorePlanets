@@ -3,6 +3,8 @@
 -Update- Minor improvement for Dark Energy Core
 -Update- Rewrite Change Log GUI
 -Update- Custom Boss Health Bar is now working
+-Update- Smooth tile entities model rendering
 -Fixed- Fixed crash with access transformer
 -Fixed- Fixed transparent armor model rendering
 -Fixed- Fixed tentacle spawning when restart world
+-Fixed- Fixed z-fighting texture for some tile entities
