@@ -277,7 +277,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     protected boolean canPlaceBlock(World world, BlockPos pos, EnumFacing facing)
     {
         BlockPos blockpos = pos.offset(facing);
-        return world.getBlockState(blockpos).isSideSolid(world, blockpos, facing.getOpposite());
+        return world.getBlockState(blockpos).isSideSolid(world, blockpos, facing.getOpposite()) || world.getBlockState(blockpos).getBlock() == NibiruBlocks.MULTALIC_CRYSTAL_BLOCK;
     }
 
     private boolean checkForDrop(World world, BlockPos pos)
