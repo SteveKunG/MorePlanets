@@ -11,7 +11,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -21,11 +20,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
@@ -34,11 +30,10 @@ import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 
 public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob, IEntityBreathable
 {
-    private static DataParameter<Byte> STATUS = EntityDataManager.createKey(EntityInfectedGuardian.class, DataSerializers.BYTE);
-    private static DataParameter<Integer> TARGET_ENTITY = EntityDataManager.createKey(EntityInfectedGuardian.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> MOVING = EntityDataManager.<Boolean>createKey(EntityInfectedGuardian.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> TARGET_ENTITY = EntityDataManager.createKey(EntityInfectedGuardian.class, DataSerializers.VARINT);
     private EntityLivingBase targetedEntity;
     private int clientSideAttackTime;
-    private boolean clientSideTouchedGround;
 
     public EntityInfectedGuardian(World world)
     {
@@ -86,44 +81,19 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     protected void entityInit()
     {
         super.entityInit();
-        this.dataManager.register(STATUS, Byte.valueOf((byte)0));
-        this.dataManager.register(TARGET_ENTITY, Integer.valueOf(0));
-    }
-
-    private boolean isSyncedFlagSet(int flagId)
-    {
-        return (this.dataManager.get(STATUS).byteValue() & flagId) != 0;
-    }
-
-    private void setSyncedFlag(int flagId, boolean state)
-    {
-        byte b0 = this.dataManager.get(STATUS).byteValue();
-
-        if (state)
-        {
-            this.dataManager.set(STATUS, Byte.valueOf((byte)(b0 | flagId)));
-        }
-        else
-        {
-            this.dataManager.set(STATUS, Byte.valueOf((byte)(b0 & ~flagId)));
-        }
+        this.dataManager.register(MOVING, false);
+        this.dataManager.register(TARGET_ENTITY, 0);
     }
 
     @Override
     public boolean isMoving()
     {
-        return this.isSyncedFlagSet(2);
+        return this.dataManager.get(MOVING).booleanValue();
     }
 
     private void setMoving(boolean moving)
     {
-        this.setSyncedFlag(2, moving);
-    }
-
-    @Override
-    public int getAttackDuration()
-    {
-        return 80;
+        this.dataManager.set(MOVING, Boolean.valueOf(moving));
     }
 
     private void setTargetedEntity(int entityId)
@@ -194,60 +164,6 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     {
         if (this.world.isRemote)
         {
-            this.clientSideTailAnimationO = this.clientSideTailAnimation;
-
-            if (!this.isInWater())
-            {
-                this.clientSideTailAnimationSpeed = 2.0F;
-
-                if (this.motionY > 0.0D && this.clientSideTouchedGround && !this.isSilent())
-                {
-                    this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GUARDIAN_FLOP, this.getSoundCategory(), 1.0F, 1.0F, false);
-                }
-                this.clientSideTouchedGround = this.motionY < 0.0D && this.world.isBlockNormalCube(new BlockPos(this).down(), false);
-            }
-            else if (this.isMoving())
-            {
-                if (this.clientSideTailAnimationSpeed < 0.5F)
-                {
-                    this.clientSideTailAnimationSpeed = 4.0F;
-                }
-                else
-                {
-                    this.clientSideTailAnimationSpeed += (0.5F - this.clientSideTailAnimationSpeed) * 0.1F;
-                }
-            }
-            else
-            {
-                this.clientSideTailAnimationSpeed += (0.125F - this.clientSideTailAnimationSpeed) * 0.2F;
-            }
-
-            this.clientSideTailAnimation += this.clientSideTailAnimationSpeed;
-            this.clientSideSpikesAnimationO = this.clientSideSpikesAnimation;
-
-            if (!this.isInWater())
-            {
-                this.clientSideSpikesAnimation = this.rand.nextFloat();
-            }
-            else if (this.isMoving())
-            {
-                this.clientSideSpikesAnimation += (0.0F - this.clientSideSpikesAnimation) * 0.25F;
-            }
-            else
-            {
-                this.clientSideSpikesAnimation += (1.0F - this.clientSideSpikesAnimation) * 0.06F;
-            }
-
-            if (this.isMoving() && this.isInWater())
-            {
-                Vec3d vec3 = this.getLook(0.0F);
-
-                for (int i = 0; i < 2; ++i)
-                {
-                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width - vec3.xCoord * 1.5D, this.posY + this.rand.nextDouble() * this.height - vec3.yCoord * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width - vec3.zCoord * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
-                }
-            }
-
             if (this.hasTargetedEntity())
             {
                 if (this.clientSideAttackTime < this.getAttackDuration())
@@ -279,40 +195,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                 }
             }
         }
-
-        if (this.inWater)
-        {
-            this.setAir(300);
-        }
-        else if (this.onGround)
-        {
-            this.motionY += 0.5D;
-            this.motionX += (this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F;
-            this.motionZ += (this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F;
-            this.rotationYaw = this.rand.nextFloat() * 360.0F;
-            this.onGround = false;
-            this.isAirBorne = true;
-        }
-
-        if (this.hasTargetedEntity())
-        {
-            this.rotationYaw = this.rotationYawHead;
-        }
         super.onLivingUpdate();
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getTailAnimation(float partialTicks)
-    {
-        return this.clientSideTailAnimationO + (this.clientSideTailAnimation - this.clientSideTailAnimationO) * partialTicks;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getSpikesAnimation(float partialTicks)
-    {
-        return this.clientSideSpikesAnimationO + (this.clientSideSpikesAnimation - this.clientSideSpikesAnimationO) * partialTicks;
     }
 
     @Override
