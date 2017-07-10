@@ -363,8 +363,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         this.rendered = nbt.getBoolean("Rendered");
         this.activatedTick = nbt.getInteger("ActivatedTick");
         this.failedTick = nbt.getInteger("FailedTick");
-        this.solarRotate = nbt.getFloat("SolarRotate");
-        this.rodUp = nbt.getFloat("RodUp");
         NBTTagList list = nbt.getTagList("Items", 10);
         this.containingItems = new ItemStack[this.getSizeInventory()];
 
@@ -393,8 +391,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         nbt.setBoolean("Rendered", this.rendered);
         nbt.setInteger("ActivatedTick", this.activatedTick);
         nbt.setInteger("FailedTick", this.failedTick);
-        nbt.setFloat("SolarRotate", this.solarRotate);
-        nbt.setFloat("RodUp", this.rodUp);
         NBTTagList list = new NBTTagList();
 
         for (int i = 0; i < this.containingItems.length; ++i)
@@ -424,8 +420,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         nbt.setBoolean("Rendered", this.rendered);
         nbt.setInteger("ActivatedTick", this.activatedTick);
         nbt.setInteger("FailedTick", this.failedTick);
-        nbt.setFloat("SolarRotate", this.solarRotate);
-        nbt.setFloat("RodUp", this.rodUp);
         return new SPacketUpdateTileEntity(this.pos, -1, nbt);
     }
 
@@ -444,8 +438,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
             this.rendered = nbt.getBoolean("Rendered");
             this.activatedTick = nbt.getInteger("ActivatedTick");
             this.failedTick = nbt.getInteger("FailedTick");
-            this.solarRotate = nbt.getFloat("SolarRotate");
-            this.rodUp = nbt.getFloat("RodUp");
         }
     }
 
