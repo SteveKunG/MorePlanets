@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
 import java.util.Random;
+import java.util.UUID;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GCItems;
@@ -64,7 +65,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     private boolean needsInitilization;
     private boolean isWillingToMate;
     private int wealth;
-    private String lastBuyingPlayer;
+    private UUID lastBuyingPlayer;
     private boolean isLookingForHome;
     private boolean areAdditionalTasksSet;
     private InventoryBasic villagerInventory;
@@ -354,7 +355,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
                     i = -3;
                 }
 
-                this.villageObj.modifyPlayerReputation(livingBase.getName(), i);
+                this.villageObj.modifyPlayerReputation(livingBase.getUniqueID(), i);
 
                 if (this.isEntityAlive())
                 {
@@ -375,7 +376,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             {
                 if (entity instanceof EntityPlayer)
                 {
-                    this.villageObj.modifyPlayerReputation(entity.getName(), -2);
+                    this.villageObj.modifyPlayerReputation(entity.getUniqueID(), -2);
                 }
                 else if (entity instanceof IMob)
                 {
@@ -423,7 +424,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
             if (this.buyingPlayer != null)
             {
-                this.lastBuyingPlayer = this.buyingPlayer.getName();
+                this.lastBuyingPlayer = this.buyingPlayer.getUniqueID();
             }
             else
             {
