@@ -15,10 +15,8 @@ public class BiomeChalosPlains extends BiomeChalos
         this.topBlock = ChalosBlocks.CHEESE_GRASS.getDefaultState();
         this.fillerBlock = ChalosBlocks.CHEESE_DIRT.getDefaultState();
         this.stoneBlock = ChalosBlocks.CHALOS_BLOCK.getDefaultState();
-        this.getBiomeDecorator().cheeseSporeFlowerPerChunk = 2;
-        this.getBiomeDecorator().cheeseTallGrassPerChunk = 10;
-        this.getBiomeDecorator().cheeseSporeTreePerChunk = 1;
-        this.getBiomeDecorator().cheeseSporeStemPerChunk = 1;
+        this.decorator.cheeseSporeTreePerChunk = 1;
+        this.decorator.cheeseSporeStemPerChunk = 1;
     }
 
     @Override
