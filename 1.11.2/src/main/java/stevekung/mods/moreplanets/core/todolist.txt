@@ -49,5 +49,4 @@ gui block overlay
 jei rocket crusher recipe anim
 
 1.11.2
-biome dictionary
 laser gun shoot twice
