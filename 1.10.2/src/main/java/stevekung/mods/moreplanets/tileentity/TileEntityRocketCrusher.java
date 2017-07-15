@@ -20,7 +20,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
@@ -32,6 +31,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import stevekung.mods.moreplanets.blocks.BlockRocketCrusher;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
+import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
 
 public class TileEntityRocketCrusher extends TileBaseElectricBlock implements IInventoryDefaults, ISidedInventory
 {
@@ -483,25 +483,25 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     {
         for (IRecipe recipe : RocketCrusherRecipes.getRecipeList())
         {
-            if (recipe instanceof ShapedRecipes)
+            if (recipe instanceof ShapedRecipesMP)
             {
-                if (id >= ((ShapedRecipes) recipe).recipeItems.length)
+                if (id >= ((ShapedRecipesMP) recipe).recipeItems.length)
                 {
                     continue;
                 }
 
-                ItemStack itemstack1 = ((ShapedRecipes) recipe).recipeItems[id];
+                ItemStack itemstack1 = ((ShapedRecipesMP) recipe).recipeItems[id];
 
                 if (itemStack.getItem() == itemstack1.getItem() && (itemstack1.getItemDamage() == 32767 || itemStack.getItemDamage() == itemstack1.getItemDamage()))
                 {
-                    for (int i = 0; i < ((ShapedRecipes) recipe).recipeItems.length; i++)
+                    for (int i = 0; i < ((ShapedRecipesMP) recipe).recipeItems.length; i++)
                     {
                         if (i == id)
                         {
                             continue;
                         }
 
-                        ItemStack itemstack2 = ((ShapedRecipes) recipe).recipeItems[i];
+                        ItemStack itemstack2 = ((ShapedRecipesMP) recipe).recipeItems[i];
 
                         if (itemStack.getItem() == itemstack2.getItem() && (itemstack2.getItemDamage() == 32767 || itemStack.getItemDamage() == itemstack2.getItemDamage()))
                         {
