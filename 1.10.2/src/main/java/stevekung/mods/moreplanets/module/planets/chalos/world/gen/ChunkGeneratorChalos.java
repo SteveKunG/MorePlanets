@@ -323,7 +323,9 @@ public class ChunkGeneratorChalos implements IChunkGenerator
         biomeGen.decorate(this.worldObj, this.rand, pos);
         this.biomedecoratorplanet.decorate(this.worldObj, this.rand, biomeGen, pos);
         WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biomeGen, x + 8, z + 8, 16, 16, this.rand);
-        this.generateGas(this.worldObj, this.rand, chunkX << 4, chunkZ << 4);
+        int worldX = chunkX << 4;
+        int worldZ = chunkZ << 4;
+        this.generateGas(this.worldObj, this.rand, worldX + 15, worldZ + 15);
         this.dungeonGenerator.generateStructure(this.worldObj, this.rand, new ChunkPos(chunkX, chunkZ));
 
         for (int i = 0; i < 8; ++i)
@@ -424,8 +426,8 @@ public class ChunkGeneratorChalos implements IChunkGenerator
         if (flag1 || flag2)
         {
             pos.y = 17 + rand.nextInt(10) + rand.nextInt(5);
-            pos.x = x + rand.nextInt(16);
-            pos.z = z + rand.nextInt(16);
+            pos.x = x + 8 - rand.nextInt(16);
+            pos.z = z + 8 - rand.nextInt(16);
             return true;
         }
         return false;

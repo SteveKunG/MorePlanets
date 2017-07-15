@@ -12,7 +12,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
@@ -169,7 +171,15 @@ public class EntityEventHandler
         {
             if (((IMeteorType)world.provider).getMeteorSpawnFrequency() > 0.0D && meteor.getMeteorType() != null)
             {
-                int f = (int) (((IMeteorType)world.provider).getMeteorSpawnFrequency() * 1000D);
+                int f = (int) (((IMeteorType)world.provider).getMeteorSpawnFrequency() * 750D);
+                int r = ((WorldServer)world).getMinecraftServer().getPlayerList().getViewDistance();
+                int x, z;
+                double motX, motZ;
+                x = world.rand.nextInt(20) + 160;
+                z = world.rand.nextInt(20) - 10;
+                motX = world.rand.nextDouble() * 2 - 2.5D;
+                motZ = world.rand.nextDouble() * 5 - 2.5D;
+                int px = MathHelper.floor_double(player.posX);
 
                 if (world.rand.nextInt(f) == 0)
                 {
@@ -177,18 +187,15 @@ public class EntityEventHandler
 
                     if (closestPlayer == null || closestPlayer.getEntityId() <= player.getEntityId())
                     {
-                        int x, y, z;
-                        double motX, motZ;
-                        x = world.rand.nextInt(20) - 10;
-                        y = world.rand.nextInt(20) + 200;
-                        z = world.rand.nextInt(20) - 10;
-                        motX = world.rand.nextDouble() * 5;
-                        motZ = world.rand.nextDouble() * 5;
+                        if ((x + px >> 4) - (px >> 4) >= r)
+                        {
+                            x = ((px >> 4) + r << 4) - 1 - px;
+                        }
 
                         switch (meteor.getMeteorType())
                         {
                         case ANTAROS:
-                            meteorEntity = new EntityMeteor(world, player.posX + x, player.posY + y, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, 1);//TODO
+                            meteorEntity = new EntityMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, 1);//TODO
                             break;
                         }
 
@@ -205,18 +212,10 @@ public class EntityEventHandler
 
                     if (closestPlayer == null || closestPlayer.getEntityId() <= player.getEntityId())
                     {
-                        int x, y, z;
-                        double motX, motZ;
-                        x = world.rand.nextInt(20) - 10;
-                        y = world.rand.nextInt(20) + 200;
-                        z = world.rand.nextInt(20) - 10;
-                        motX = world.rand.nextDouble() * 5;
-                        motZ = world.rand.nextDouble() * 5;
-
                         switch (meteor.getMeteorType())
                         {
                         case ANTAROS:
-                            meteorEntity = new EntityMeteor(world, player.posX + x, player.posY + y, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, 1);//TODO
+                            meteorEntity = new EntityMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, 1);//TODO
                             break;
                         }
 

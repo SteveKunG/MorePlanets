@@ -340,8 +340,10 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
 
         if (biomegenbase != MPBiomes.INFECTED_OCEAN && biomegenbase != MPBiomes.INFECTED_DEEP_OCEAN && biomegenbase != MPBiomes.INFECTED_RIVER)
         {
-            this.generateGas(this.worldObj, this.rand, chunkX << 4, chunkZ << 4);
-            this.generateOil(this.worldObj, this.rand, chunkX << 4, chunkZ << 4);
+            int worldX = chunkX << 4;
+            int worldZ = chunkZ << 4;
+            this.generateGas(this.worldObj, this.rand, worldX + 15, worldZ + 15);
+            this.generateOil(this.worldObj, this.rand, worldX + 15, worldZ + 15);
         }
         if (biomegenbase != MPBiomes.INFECTED_DESERT && biomegenbase != MPBiomes.GREEN_VEIN && this.rand.nextInt(4) == 0)
         {
@@ -505,8 +507,8 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
         if (flag1 || flag2)
         {
             pos.y = 32 + rand.nextInt(10) + rand.nextInt(5);
-            pos.x = x + rand.nextInt(16);
-            pos.z = z + rand.nextInt(16);
+            pos.x = x + 8 - rand.nextInt(16);
+            pos.z = z + 8 - rand.nextInt(16);
             return true;
         }
         return false;
@@ -586,8 +588,8 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
         if (flag1 || flag2)
         {
             pos.y = 17 + rand.nextInt(10) + rand.nextInt(5);
-            pos.x = x + rand.nextInt(16);
-            pos.z = z + rand.nextInt(16);
+            pos.x = x + 8 - rand.nextInt(16);
+            pos.z = z + 8 - rand.nextInt(16);
             return true;
         }
         return false;
