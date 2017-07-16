@@ -38,12 +38,12 @@ public class MorePlanetsJEIPlugin extends BlankModPlugin
         JEIRegistryHelper.registry = registry;
         JEIRegistryHelper.guiHelper = registry.getJeiHelpers().getGuiHelper();
 
-        JEIRegistryHelper.registerRecipeHandlers(DarkEnergyRecipeData.class, recipe -> new DarkEnergyTransformRecipeWrapper(recipe), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
+        JEIRegistryHelper.registerRecipeHandlers(DarkEnergyRecipeData.class, DarkEnergyTransformRecipeWrapper::new, MPJEIRecipes.DARK_ENERGY_TRANSFORM);
         JEIRegistryHelper.registerRecipeHandlers(ShapedRecipesMP.class, RocketCrusherRecipesWrapper::new, MPJEIRecipes.ROCKET_CRUSHER);
-        JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, recipe -> new Tier4RocketRecipeWrapper(recipe), MPJEIRecipes.TIER_4_ROCKET);
-        JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, recipe -> new Tier5RocketRecipeWrapper(recipe), MPJEIRecipes.TIER_5_ROCKET);
-        JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, recipe -> new Tier6RocketRecipeWrapper(recipe), MPJEIRecipes.TIER_6_ROCKET);
-        JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, recipe -> new BlackHoleStorageRecipeWrapper(recipe), MPJEIRecipes.BLACK_HOLE_STORAGE);
+        JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, Tier4RocketRecipeWrapper::new, MPJEIRecipes.TIER_4_ROCKET);
+        JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, Tier5RocketRecipeWrapper::new, MPJEIRecipes.TIER_5_ROCKET);
+        JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, Tier6RocketRecipeWrapper::new, MPJEIRecipes.TIER_6_ROCKET);
+        JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, BlackHoleStorageRecipeWrapper::new, MPJEIRecipes.BLACK_HOLE_STORAGE);
         JEIRegistryHelper.registerRecipe(DarkEnergyRecipeData.getRecipeList(), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
         JEIRegistryHelper.registerRecipe(RocketCrusherRecipes.getRecipeList(), MPJEIRecipes.ROCKET_CRUSHER);
         JEIRegistryHelper.registerRecipe(Tier4RocketRecipes.getRecipesList(), MPJEIRecipes.TIER_4_ROCKET);

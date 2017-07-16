@@ -64,6 +64,6 @@ public class Tier4RocketRecipeCategory extends BlankRecipeCategory
     @Override
     public String getModName()
     {
-        return MorePlanetsCore.MOD_ID;
+        return MorePlanetsCore.NAME;
     }
 }
