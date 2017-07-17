@@ -9,13 +9,13 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
-version = "2.0.7-GC112"
+version = "2.0.8-GC114"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = "1.8"
 
 minecraft {
-    version = "1.11.2-13.20.1.2393"
+    version = "1.11.2-13.20.1.2414"
     runDir = "run"
     mappings = "snapshot_20161220"
 	makeObfSourceJar = false
