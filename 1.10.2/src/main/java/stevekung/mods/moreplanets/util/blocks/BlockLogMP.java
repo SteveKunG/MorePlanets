@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -31,9 +32,9 @@ public abstract class BlockLogMP extends BlockBaseMP
     }
 
     @Override
-    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, ItemStack heldStack)
     {
-        return super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockStateHelper.AXIS, BlockStateHelper.EnumAxis.fromFacingAxis(facing.getAxis()));
+        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, heldStack).withProperty(BlockStateHelper.AXIS, BlockStateHelper.EnumAxis.fromFacingAxis(facing.getAxis()));
     }
 
     @Override

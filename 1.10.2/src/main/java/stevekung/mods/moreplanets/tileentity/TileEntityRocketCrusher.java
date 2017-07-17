@@ -1,9 +1,6 @@
 package stevekung.mods.moreplanets.tileentity;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 import com.google.common.collect.Lists;
 
@@ -27,8 +24,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import stevekung.mods.moreplanets.blocks.BlockRocketCrusher;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
 import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
@@ -512,66 +507,6 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
                     }
                     return true;
                 }
-            }
-            else if (recipe instanceof ShapelessOreRecipe)
-            {
-                @SuppressWarnings("unchecked")
-                ArrayList<Object> required = Lists.newArrayList(((ShapelessOreRecipe) recipe).getInput());
-                Iterator<Object> req = required.iterator();
-                int match = 0;
-
-                while (req.hasNext())
-                {
-                    Object next = req.next();
-
-                    if (next instanceof ItemStack)
-                    {
-                        if (OreDictionary.itemMatches((ItemStack)next, itemStack, false))
-                        {
-                            match++;
-                        }
-                    }
-                    else if (next instanceof List)
-                    {
-                        Iterator<ItemStack> itr = ((List<ItemStack>)next).iterator();
-
-                        while (itr.hasNext())
-                        {
-                            if (OreDictionary.itemMatches(itr.next(), itemStack, false))
-                            {
-                                match++;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                if (match == 0)
-                {
-                    continue;
-                }
-                if (match == 1)
-                {
-                    return true;
-                }
-
-                int slotsFilled = 0;
-
-                for (int i = 3; i < 12; i++)
-                {
-                    ItemStack inMatrix = this.getStackInSlot(i);
-
-                    if (inMatrix != null && inMatrix.isItemEqual(itemStack))
-                    {
-                        slotsFilled++;
-                    }
-                }
-                if (slotsFilled < match)
-                {
-                    return this.getStackInSlot(id + 3) == null;
-                }
-                Random rand = new Random();
-                return rand.nextInt(match) == 0;
             }
         }
         return false;
