@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.util.blocks;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,12 +17,6 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements ISi
     public BlockFluidFiniteMP(Fluid fluid, Material material)
     {
         super(fluid, material);
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 
     //TODO: Remove in 1.11+

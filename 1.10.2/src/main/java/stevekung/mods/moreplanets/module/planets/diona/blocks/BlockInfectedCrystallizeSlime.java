@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -94,11 +93,5 @@ public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
     public String getName()
     {
         return "infected_crystallize_slime_block";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

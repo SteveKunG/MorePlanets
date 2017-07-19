@@ -74,9 +74,9 @@ public class CommonRegisterHelper
         {
             ISingleBlockRender blockRender = (ISingleBlockRender) block;
 
-            if (blockRender.getBlock() != null && blockRender.getName() != null)
+            if (blockRender.getName() != null)
             {
-                CommonRegisterHelper.SINGLE_BLOCK_RENDER_LIST.put(blockRender.getBlock(), blockRender.getName());
+                CommonRegisterHelper.SINGLE_BLOCK_RENDER_LIST.put(block, blockRender.getName());
             }
         }
         if (itemBlock != null)
@@ -104,9 +104,9 @@ public class CommonRegisterHelper
         {
             ISingleItemRender itemRender = (ISingleItemRender) item;
 
-            if (itemRender.getItem() != null && itemRender.getName() != null)
+            if (itemRender.getName() != null)
             {
-                CommonRegisterHelper.SINGLE_ITEM_RENDER_LIST.put(itemRender.getItem(), itemRender.getName());
+                CommonRegisterHelper.SINGLE_ITEM_RENDER_LIST.put(item, itemRender.getName());
             }
         }
         if (CommonRegisterHelper.isClient())

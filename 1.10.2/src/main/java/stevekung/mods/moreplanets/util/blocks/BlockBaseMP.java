@@ -56,10 +56,4 @@ public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRe
     {
         return this.name;
     }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
 }

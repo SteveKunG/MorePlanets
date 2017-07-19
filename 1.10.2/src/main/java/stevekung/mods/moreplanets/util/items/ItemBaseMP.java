@@ -55,10 +55,4 @@ public class ItemBaseMP extends Item implements ISortableItem, ISingleItemRender
     {
         return this.name;
     }
-
-    @Override
-    public Item getItem()
-    {
-        return this;
-    }
 }

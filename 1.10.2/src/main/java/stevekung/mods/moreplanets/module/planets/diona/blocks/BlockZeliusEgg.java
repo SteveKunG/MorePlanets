@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -131,11 +130,5 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
     public String getName()
     {
         return "zelius_egg";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

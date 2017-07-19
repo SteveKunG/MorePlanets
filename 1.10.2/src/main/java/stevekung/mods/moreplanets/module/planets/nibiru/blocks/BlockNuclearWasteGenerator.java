@@ -98,10 +98,4 @@ public class BlockNuclearWasteGenerator extends BlockTileMP implements IBlockDes
     {
         return "nuclear_waste_generator";
     }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
 }

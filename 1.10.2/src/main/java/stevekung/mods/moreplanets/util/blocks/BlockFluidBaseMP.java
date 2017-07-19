@@ -180,12 +180,6 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
         return super.shouldSideBeRendered(state, world, pos, facing);
     }
 
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
-
     //TODO: Remove in 1.11+
     @Override
     @Deprecated

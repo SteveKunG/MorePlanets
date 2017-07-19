@@ -168,10 +168,4 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     {
         return "rocket_crusher";
     }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
 }

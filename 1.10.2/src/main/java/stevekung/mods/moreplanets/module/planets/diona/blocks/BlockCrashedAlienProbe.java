@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -91,11 +90,5 @@ public class BlockCrashedAlienProbe extends BlockTileMP implements ISingleBlockR
     public String getName()
     {
         return "crashed_alien_probe";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

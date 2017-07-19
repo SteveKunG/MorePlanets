@@ -313,10 +313,4 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     {
         return "dark_energy_generator";
     }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
 }

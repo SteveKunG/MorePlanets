@@ -141,10 +141,4 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
     {
         return "space_portal";
     }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
 }

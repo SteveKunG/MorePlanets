@@ -4,7 +4,6 @@ import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -129,11 +128,5 @@ public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSeal
     public String getName()
     {
         return "space_warp_pad";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

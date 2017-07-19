@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.blocks;
 
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -195,12 +194,6 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
     public String getName()
     {
         return "shield_generator";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 
     @Override

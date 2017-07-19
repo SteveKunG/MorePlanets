@@ -78,12 +78,6 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
         return EnumSortCategoryItem.HELMET_BREATHABLE;
     }
 
-    @Override
-    public Item getItem()
-    {
-        return this;
-    }
-
     protected abstract Item getRepairItems();
     protected abstract int getRepairItemsMetadata();
     protected abstract EnumGearType getGearType();

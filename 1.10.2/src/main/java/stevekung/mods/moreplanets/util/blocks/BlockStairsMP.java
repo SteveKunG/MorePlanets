@@ -57,12 +57,6 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, ISingl
         return this.name;
     }
 
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
-
     public enum EnumStairsType
     {
         COBBLESTONE(Blocks.STONE, 2.0F),

@@ -43,13 +43,6 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos)
-    {
-        return state.getCollisionBoundingBox(world, pos);
-    }
-
-    @Override
     public boolean isFullCube(IBlockState state)
     {
         return false;

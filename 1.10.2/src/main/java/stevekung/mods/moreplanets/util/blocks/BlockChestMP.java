@@ -449,12 +449,6 @@ public abstract class BlockChestMP extends BlockContainerMP implements ISingleBl
         return EnumSortCategoryBlock.CHEST;
     }
 
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
-
     protected abstract ILockableContainer getLockableContainer(World world, BlockPos pos);
     protected abstract TileEntity getChestTile();
 }

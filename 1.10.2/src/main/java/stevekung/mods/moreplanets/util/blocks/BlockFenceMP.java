@@ -57,10 +57,4 @@ public class BlockFenceMP extends BlockFence implements ISortableBlock, ISingleB
     {
         return this.name;
     }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
 }
