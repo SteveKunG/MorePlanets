@@ -18,7 +18,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
-import stevekung.mods.moreplanets.client.command.ClientCommandHandlerMP;
 import stevekung.mods.moreplanets.client.command.CommandChangeLog;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
@@ -80,10 +79,6 @@ public class MorePlanetsCore
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        if (CommonRegisterHelper.isClient())
-        {
-            ReflectionUtils.setFinal("instance", new ClientCommandHandlerMP(), ClientCommandHandler.class, ClientCommandHandler.instance);
-        }
         ConfigManagerMP.init(new File(event.getModConfigurationDirectory(), "MorePlanets.cfg"));
         MorePlanetsCore.initModInfo(event.getModMetadata());
         MorePlanetsCore.BLOCK_TAB = new CreativeTabsMP("MorePlanetsBlocks");
