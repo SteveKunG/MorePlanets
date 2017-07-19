@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -9,15 +11,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidBaseMP;
 import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
@@ -82,5 +82,12 @@ public class BlockFluidCheeseOfMilk extends BlockFluidBaseMP implements IFishabl
     public String getName()
     {
         return "cheese_of_milk_fluid";
+    }
+
+    @Override
+    @Nullable
+    public ResourceLocation getLootTable()
+    {
+        return MPLootTables.CHEESE_OF_MILK_FISHING;
     }
 }
