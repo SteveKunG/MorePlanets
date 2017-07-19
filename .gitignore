@@ -21,7 +21,7 @@ ccc_at.cfg
 ccl_at.cfg
 nei_at.cfg
 jei_at.cfg
-indicatorutils_at.cfg
+indicatia_at.cfg
 MANIFEST.MF
 LICENSE-new.txt
 
@@ -40,26 +40,17 @@ temporary
 */src/main/java/cofh
 */src/main/java/com
 */src/main/java/ic2
-*/src/main/java/info
 */src/main/java/mekanism
 */src/main/java/micdoodle8
 */src/main/java/mezz
 */src/main/java/powercrystals
 */src/main/java/net
-*/src/main/java/stevekung/mods/indicatorutils
 */src/main/java/tconstruct
 */src/main/java/uristqwerty
-*/src/main/resources/assets/mineshot
-*/src/main/resources/assets/minecraft
-*/src/main/resources/assets/ccl
-*/src/main/resources/assets/codechickencore
-*/src/main/resources/assets/jei
-*/src/main/resources/assets/nei
 */src/main/resources/assets/galacticraftcore
 */src/main/resources/assets/galacticraftmoon
 */src/main/resources/assets/galacticraftmars
 */src/main/resources/assets/galacticraftasteroids
-*/src/main/resources/assets/indicatorutils
 */src/main/resources/assets/nbtedit
 */src/main/resources/micdoodlecore_at.cfg
 */src/main/resources/micdoodlecore_at.deobf
