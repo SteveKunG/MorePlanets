@@ -419,11 +419,5 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
         return EnumSortCategoryBlock.ANCIENT_CHEST;
     }
 
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
-
     protected abstract TileEntity getChestTile();
 }

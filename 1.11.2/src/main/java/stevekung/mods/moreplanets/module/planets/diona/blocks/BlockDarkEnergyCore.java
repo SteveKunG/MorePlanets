@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -120,11 +119,5 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
     public String getName()
     {
         return "dark_energy_core";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

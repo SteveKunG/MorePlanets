@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.util.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -131,11 +130,5 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     public EnumSortCategoryBlock getBlockCategory(int meta)
     {
         return EnumSortCategoryBlock.TREASURE_CHEST;
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

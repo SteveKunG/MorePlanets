@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -35,11 +34,5 @@ public class BlockGlowingIronBlock extends BlockBaseMP implements IDetectableRes
     public String getName()
     {
         return "glowing_iron_block";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

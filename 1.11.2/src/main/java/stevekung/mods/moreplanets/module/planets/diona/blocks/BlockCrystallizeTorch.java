@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -72,11 +71,5 @@ public class BlockCrystallizeTorch extends BlockTorch implements ISortableBlock,
     public String getName()
     {
         return ConfigManagerMP.use3DTorchItemModel ? "infected_crystallize_torch" : "infected_crystallize_torch_vanilla";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.util.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
@@ -40,11 +39,5 @@ public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, 
     public String getName()
     {
         return this.name;
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

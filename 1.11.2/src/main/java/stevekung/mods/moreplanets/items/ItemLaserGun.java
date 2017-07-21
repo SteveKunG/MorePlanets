@@ -8,7 +8,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -185,12 +184,6 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
     public String getName()
     {
         return "laser_gun";
-    }
-
-    @Override
-    public Item getItem()
-    {
-        return this;
     }
 
     private ItemStack findBullet(EntityPlayer player)

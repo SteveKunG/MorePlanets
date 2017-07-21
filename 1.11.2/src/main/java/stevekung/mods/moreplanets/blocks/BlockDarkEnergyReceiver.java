@@ -407,10 +407,4 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
     {
         return "dark_energy_receiver";
     }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
 }

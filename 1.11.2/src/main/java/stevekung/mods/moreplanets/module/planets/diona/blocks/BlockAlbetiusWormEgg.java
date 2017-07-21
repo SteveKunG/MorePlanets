@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -61,11 +60,5 @@ public class BlockAlbetiusWormEgg extends BlockBaseMP
     public String getName()
     {
         return "albetius_worm_egg_rock";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

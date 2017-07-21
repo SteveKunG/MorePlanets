@@ -4,7 +4,6 @@ import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -61,11 +60,5 @@ public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, IS
     public String getName()
     {
         return ConfigManagerMP.use3DTorchItemModel ? "infected_torch" : "infected_torch_vanilla";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

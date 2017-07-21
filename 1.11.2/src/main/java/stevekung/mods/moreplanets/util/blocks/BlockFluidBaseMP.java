@@ -175,12 +175,6 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
         return super.shouldSideBeRendered(state, world, pos, facing);
     }
 
-    @Override
-    public Block getBlock()
-    {
-        return this;
-    }
-
     private void placeStaticBlock(World world, BlockPos pos, IBlockState state)
     {
         world.setBlockState(pos, this.getDefaultState().withProperty(LEVEL, state.getValue(LEVEL)), 2);

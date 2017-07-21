@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -285,11 +284,5 @@ public class BlockTerrastoneFurnace extends BlockContainerMP implements ISingleB
     public String getName()
     {
         return "terrastone_furnace";
-    }
-
-    @Override
-    public Block getBlock()
-    {
-        return this;
     }
 }

@@ -9,7 +9,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -175,11 +174,5 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     public String getName()
     {
         return "space_fishing_rod";
-    }
-
-    @Override
-    public Item getItem()
-    {
-        return this;
     }
 }

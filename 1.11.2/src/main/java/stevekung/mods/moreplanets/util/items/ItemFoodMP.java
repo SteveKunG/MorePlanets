@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.util.items;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -25,11 +24,5 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, ISin
     public EnumSortCategoryItem getItemCategory(int meta)
     {
         return EnumSortCategoryItem.FOOD;
-    }
-
-    @Override
-    public Item getItem()
-    {
-        return this;
     }
 }

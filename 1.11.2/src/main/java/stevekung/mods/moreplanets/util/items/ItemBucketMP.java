@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
@@ -105,11 +104,5 @@ public class ItemBucketMP extends ItemBucket implements ISortableItem, ISingleIt
     public String getName()
     {
         return this.name;
-    }
-
-    @Override
-    public Item getItem()
-    {
-        return this;
     }
 }
