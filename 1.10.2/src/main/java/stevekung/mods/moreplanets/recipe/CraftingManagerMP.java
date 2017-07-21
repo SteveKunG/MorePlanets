@@ -100,12 +100,14 @@ public class CraftingManagerMP
     {
         HashMap<Integer, ItemStack> input = Maps.newHashMap();
 
+        // compressor
         RecipeHelper.addCompressorRecipe(new ItemStack(DionaItems.DIONA_ITEM, 1, 3), "XXX", "XXX", "XXX", 'X', new ItemStack(DionaItems.DIONA_ITEM, 1, 1));
         RecipeHelper.addShapelessCompressorRecipe(new ItemStack(DionaItems.DIONA_ITEM, 1, 2), new ItemStack(DionaItems.DIONA_ITEM, 1, 0), new ItemStack(DionaItems.DIONA_ITEM, 1, 0));
         RecipeHelper.addShapelessCompressorRecipe(new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 0), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 0));
         RecipeHelper.addShapelessCompressorRecipe(new ItemStack(ChalosItems.CHALOS_ITEM, 1, 3), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 1), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 1));
         RecipeHelper.addShapelessCompressorRecipe(new ItemStack(FronosItems.FRONOS_ITEM, 1, 1), new ItemStack(FronosItems.FRONOS_ITEM, 1, 0), new ItemStack(FronosItems.FRONOS_ITEM, 1, 0));
 
+        // rocket crusher
         for (int i = 0; i < 4; i++)
         {
             RecipeHelper.addRocketCrusherRecipe(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 21, 0), "DDD", "DRD", "DDD", 'D', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'R', new ItemStack(AsteroidsItems.tier3Rocket, 1, i));
@@ -113,6 +115,19 @@ public class CraftingManagerMP
             RecipeHelper.addRocketCrusherRecipe(new ItemStack(NibiruItems.NIBIRU_ITEM, 21, 4), "III", "DRD", "SSS", 'D', new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0), 'I', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'S', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 3), 'R', new ItemStack(ChalosItems.TIER_5_ROCKET, 1, i));
         }
 
+        /*// deconstructor
+        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0)); //tier 3 plate
+        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 2));
+        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3));
+        TileEntityDeconstructor.addSalvage(new ItemStack(ChalosItems.TIER_5_ROCKET_PART)); //tier 4 plate
+        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4)); //tier 5 plate
+        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 2));
+        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 3));
+        TileEntityDeconstructor.knownRecipes.addAll(Tier4RocketRecipes.getRocketRecipes());
+        TileEntityDeconstructor.knownRecipes.addAll(Tier5RocketRecipes.getRocketRecipes());
+        TileEntityDeconstructor.knownRecipes.addAll(Tier6RocketRecipes.getRocketRecipes());*/
+
+        // dark energy transform
         input.put(0, new ItemStack(Items.ENDER_PEARL));
         input.put(1, new ItemStack(DionaItems.DIONA_ITEM, 4, 5));
         DarkEnergyRecipeData.registerRecipe(input, new ItemStack(DionaItems.DARK_ENERGY_PEARL), 120);
@@ -122,6 +137,7 @@ public class CraftingManagerMP
         input.put(1, new ItemStack(DionaItems.DIONA_ITEM, 2, 5));
         DarkEnergyRecipeData.registerRecipe(input, new ItemStack(DionaItems.DIONA_ITEM, 1, 6), 80);
 
+        // black hole storage
         input = Maps.newHashMap();
         input.put(1, new ItemStack(DionaItems.DIONA_ITEM, 1, 7));
         input.put(2, new ItemStack(DionaItems.DIONA_ITEM, 1, 7));
