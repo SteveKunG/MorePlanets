@@ -65,7 +65,9 @@ public class MPLootTables
     public static final ResourceLocation SPACE_FISH_JUNK = CommonRegisterHelper.registerFishingLoot("junk_space");
     public static final ResourceLocation SPACE_FISH_TREASURE = CommonRegisterHelper.registerFishingLoot("treasure_space");
     public static final ResourceLocation CRYSTALLIZE_WATER_FISHING = CommonRegisterHelper.registerGameplayLoot("crystallize_water_fishing");
+    public static final ResourceLocation CHEESE_OF_MILK_FISHING = CommonRegisterHelper.registerGameplayLoot("cheese_of_milk_fishing");
     public static final ResourceLocation CRYSTALLIZE_WATER_FISH = CommonRegisterHelper.registerFishingLoot("crystallize_fish");
+    public static final ResourceLocation CHEESE_FISH = CommonRegisterHelper.registerFishingLoot("cheese_fish");
 
     public static ItemStack getTieredKey(Random rand, int tier)
     {

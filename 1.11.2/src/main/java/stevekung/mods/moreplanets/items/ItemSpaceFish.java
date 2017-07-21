@@ -21,7 +21,7 @@ public class ItemSpaceFish extends ItemFoodVariantsMP
     @Override
     public String[] getItemVariantsName()
     {
-        return new String[] { "zelius", "glowing_alien" };
+        return new String[] { "zelius", "glowing_alien", "cheese" };
     }
 
     @Override
@@ -39,7 +39,8 @@ public class ItemSpaceFish extends ItemFoodVariantsMP
     public static enum ItemType
     {
         ZELIUS_FISH(2, 0.1F),
-        GLOWING_ALIEN_FISH(2, 0.1F);
+        GLOWING_ALIEN_FISH(2, 0.1F),
+        CHEESE_FISH(2, 0.1F);
 
         int hunger;
         float saturation;
