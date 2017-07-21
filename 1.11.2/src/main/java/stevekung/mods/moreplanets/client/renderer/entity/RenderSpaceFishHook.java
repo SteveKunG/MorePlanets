@@ -65,9 +65,9 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
             GlStateManager.disableRescaleNormal();
             GlStateManager.popMatrix();
             int k = player.getPrimaryHand() == EnumHandSide.RIGHT ? 1 : -1;
-            ItemStack itemStack = player.getHeldItemMainhand();
+            ItemStack offStack = player.getHeldItemOffhand();
 
-            if (itemStack.getItem() != MPItems.SPACE_FISHING_ROD)
+            if (offStack.getItem() == MPItems.SPACE_FISHING_ROD && offStack.hasTagCompound() && offStack.getTagCompound().getBoolean("Cast"))
             {
                 k = -k;
             }

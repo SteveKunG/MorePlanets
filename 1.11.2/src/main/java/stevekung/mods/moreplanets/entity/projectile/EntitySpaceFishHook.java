@@ -31,15 +31,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.common.registry.IThrowableEntity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.items.ItemSpaceFishingRod;
 import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
 
-public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditionalSpawnData
+public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditionalSpawnData, IThrowableEntity
 {
     private static final DataParameter<Integer> DATA_HOOKED_ENTITY = EntityDataManager.createKey(EntitySpaceFishHook.class, DataSerializers.VARINT);
     private boolean inGround;
@@ -56,7 +56,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
 
     public EntitySpaceFishHook(World world)
     {
-        this(world, world.getPlayerEntityByName(FMLClientHandler.instance().getClient().getSession().getUsername()));
+        this(world, null);
     }
 
     @SideOnly(Side.CLIENT)
@@ -583,6 +583,21 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
         if (angler instanceof EntityPlayer)
         {
             this.angler = (EntityPlayer) angler;
+        }
+    }
+
+    @Override
+    public Entity getThrower()
+    {
+        return this.angler;
+    }
+
+    @Override
+    public void setThrower(Entity entity)
+    {
+        if (entity instanceof EntityPlayer)
+        {
+            this.angler = (EntityPlayer) entity;
         }
     }
 

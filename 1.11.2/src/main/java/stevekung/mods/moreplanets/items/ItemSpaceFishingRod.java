@@ -43,14 +43,15 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
                 }
                 else
                 {
-                    boolean flag = entity.getHeldItemMainhand() == itemStack;
-                    boolean flag1 = entity.getHeldItemOffhand() == itemStack;
+                    ItemStack mainStack = entity.getHeldItemMainhand();
+                    boolean flag = mainStack.getItem() == itemStack.getItem() && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
+                    boolean flag1 = entity.getHeldItemOffhand().getItem() == itemStack.getItem() && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
 
-                    if (entity.getHeldItemMainhand().getItem() instanceof ItemSpaceFishingRod)
+                    if (mainStack.getItem() instanceof ItemSpaceFishingRod && mainStack.hasTagCompound() && mainStack.getTagCompound().getBoolean("Cast"))
                     {
                         flag1 = false;
                     }
-                    return (flag || flag1) && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast") ? 1.0F : 0.0F;
+                    return flag || flag1 ? 1.0F : 0.0F;
                 }
             }
         });
@@ -86,21 +87,22 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     @Override
     public void onUpdate(ItemStack itemStack, World world, Entity entity, int slot, boolean isSelected)
     {
-        if (!isSelected)
+        if (entity instanceof EntityPlayer)
         {
-            if (itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast"))
+            EntityPlayer player = (EntityPlayer) entity;
+            isSelected = player.getHeldItemMainhand().getItem() == this && player.getHeldItemMainhand().hasTagCompound() && player.getHeldItemMainhand().getTagCompound().getBoolean("Cast") || player.getHeldItemOffhand().getItem() == this && player.getHeldItemOffhand().hasTagCompound() && player.getHeldItemOffhand().getTagCompound().getBoolean("Cast");
+
+            if (!isSelected)
             {
-                itemStack.getTagCompound().setBoolean("Cast", false);
+                if (itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast"))
+                {
+                    itemStack.getTagCompound().setBoolean("Cast", false);
+                }
             }
-        }
-        else
-        {
-            if (entity instanceof EntityPlayer)
+            else
             {
                 if (!world.isRemote)
                 {
-                    EntityPlayer player = (EntityPlayer) entity;
-
                     if (player.fishEntity == null)
                     {
                         if (itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast"))
@@ -124,7 +126,7 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
             itemStack.damageItem(i, player);
             player.swingArm(hand);
 
-            if (itemStack.getTagCompound().getBoolean("Cast"))
+            if (itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast"))
             {
                 itemStack.getTagCompound().setBoolean("Cast", false);
             }

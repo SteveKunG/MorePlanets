@@ -1,17 +1,28 @@
 package stevekung.mods.moreplanets.proxy;
 
+import com.google.common.base.Function;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.network.internal.FMLMessage.EntitySpawnMessage;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import stevekung.mods.moreplanets.client.renderer.*;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
+import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
@@ -44,6 +55,7 @@ public class ClientProxyMP extends ServerProxyMP
         TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
         VariantsRenderer.init();
         BlockStateMapper.init();
+        ClientProxyMP.handleSpaceFishHookSpawning();
     }
 
     @Override
@@ -206,5 +218,41 @@ public class ClientProxyMP extends ServerProxyMP
     public void removeBoss(IMorePlanetsBoss boss)
     {
         ClientEventHandler.bossList.remove(boss);
+    }
+
+    private static void handleSpaceFishHookSpawning()
+    {
+        EntityRegistration entityRegistration = EntityRegistry.instance().lookupModSpawn(EntitySpaceFishHook.class, false);
+
+        Function<EntitySpawnMessage, Entity> handler = input ->
+        {
+            int entityID = 0;
+            double posX = 0;
+            double posY = 0;
+            double posZ = 0;
+            WorldClient world = FMLClientHandler.instance().getWorldClient();
+
+            try
+            {
+                entityID = ReflectionHelper.findField(EntitySpawnMessage.class, "throwerId").getInt(input);
+                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
+                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
+                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            Entity angler = world.getEntityByID(entityID);
+
+            if (angler instanceof EntityPlayer)
+            {
+                Entity entity = new EntitySpaceFishHook(world, (EntityPlayer) angler, posX, posY, posZ);
+                return entity;
+            }
+            return null;
+        };
+        entityRegistration.setCustomSpawning(handler, false);
     }
 }
