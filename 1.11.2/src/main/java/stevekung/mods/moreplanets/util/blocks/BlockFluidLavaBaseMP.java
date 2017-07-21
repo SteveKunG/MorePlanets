@@ -36,7 +36,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
         {
             return block.getLightValue(state, world, pos);
         }
-        return this.getLightValue(state, world, pos);
+        return super.getLightValue(state, world, pos);
     }
 
     @Override
