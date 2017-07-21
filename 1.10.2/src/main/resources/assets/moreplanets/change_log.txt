@@ -3,6 +3,7 @@
 -Update- Update to use Galacticraft Build 114 or higher
 -Update- Multalic Crystal now can be placed at Multalic Crystal Block
 -Update- Changed Cheese of Milk Cake recipe
+-Update- Change Log GUI can use Enter key to exit
 -Fixed- Fixed some world gen code in Chalos and Nibiru
 -Fixed- Fixed Biome Decorator
 -Fixed- Fixed block states crashes with Optifine

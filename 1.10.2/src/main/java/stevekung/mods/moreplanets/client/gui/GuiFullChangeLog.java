@@ -98,7 +98,7 @@ public class GuiFullChangeLog extends GuiScreen
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
-        if (keyCode == 1)
+        if (keyCode == 1 || keyCode == 28)
         {
             this.mc.displayGuiScreen((GuiScreen)null);
         }
