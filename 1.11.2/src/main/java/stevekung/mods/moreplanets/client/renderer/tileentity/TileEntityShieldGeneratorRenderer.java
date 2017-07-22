@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
-import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -23,7 +22,7 @@ import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 
 public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityShieldGenerator>
 {
-    private OBJBakedModel sphere;
+    private OBJBakedModel shield;
     private ModelShieldGenerator model = new ModelShieldGenerator();
     private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/shield_generator.png");
     public static TileEntityShieldGeneratorRenderer INSTANCE;
@@ -35,14 +34,14 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
 
     private void updateModels()
     {
-        if (this.sphere == null)
+        if (this.shield == null)
         {
             try
             {
-                OBJModel model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/sphere.obj"));
+                OBJModel model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/shield.obj"));
                 model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
                 Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-                this.sphere = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("Sphere"), false), DefaultVertexFormats.ITEM, spriteFunction);
+                this.shield = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("Shield"), false), DefaultVertexFormats.ITEM, spriteFunction);
             }
             catch (Exception e)
             {
@@ -56,8 +55,6 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
-        float test = 1.75F;
-        int color = ColorUtil.to32BitColor(1, (int)(144 / test * 255), (int)(249 / test * 255), (int)(210 / test * 255));
         float renderPartialTicks = tile.renderTicks + partialTicks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 16) + 1F) / 2F + 0.15F;
 
@@ -67,6 +64,33 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         GlStateManager.translate((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.rotate(tile.facing, 0.0F, 1.0F, 0.0F);
+
+        if (tile.getBubbleVisible())
+        {
+            this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+            GlStateManager.enableBlend();
+            GlStateManager.disableLighting();
+            GlStateManager.disableCull();
+            GlStateManager.alphaFunc(516, 0.1F);
+            GlStateManager.blendFunc(770, 771);
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            GlStateManager.matrixMode(5890);
+            GlStateManager.loadIdentity();
+            GlStateManager.matrixMode(5888);
+            GlStateManager.depthMask(false);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
+            GlStateManager.scale(tile.getBubbleSize(), tile.getBubbleSize(), tile.getBubbleSize());
+            ClientUtil.drawBakedModel(this.shield);
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            GlStateManager.matrixMode(5890);
+            GlStateManager.depthMask(true);
+            GlStateManager.loadIdentity();
+            GlStateManager.matrixMode(5888);
+            GlStateManager.enableLighting();
+            GlStateManager.disableBlend();
+            GlStateManager.depthFunc(515);
+            GlStateManager.enableCull();
+        }
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.color(lightTime, lightTime, lightTime);
@@ -94,33 +118,6 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         this.model.renderBase();
         GlStateManager.rotate(tile.hasEnoughEnergyToRun ? partialTicks + tile.solarRotate : tile.solarRotate, 0.0F, 1.0F, 0.0F);
         this.model.renderRod();
-
-        if (tile.getBubbleVisible())
-        {
-            this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-            GlStateManager.enableBlend();
-            GlStateManager.disableLighting();
-            GlStateManager.disableCull();
-            GlStateManager.alphaFunc(516, 0.1F);
-            GlStateManager.blendFunc(770, 771);
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            GlStateManager.matrixMode(5890);
-            GlStateManager.loadIdentity();
-            GlStateManager.matrixMode(5888);
-            GlStateManager.depthMask(false);
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
-            GlStateManager.scale(tile.getBubbleSize(), tile.getBubbleSize(), tile.getBubbleSize());
-            ClientUtil.drawBakedModelColored(this.sphere, color);
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            GlStateManager.matrixMode(5890);
-            GlStateManager.depthMask(true);
-            GlStateManager.loadIdentity();
-            GlStateManager.matrixMode(5888);
-            GlStateManager.enableLighting();
-            GlStateManager.disableBlend();
-            GlStateManager.depthFunc(515);
-            GlStateManager.enableCull();
-        }
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
         GlStateManager.disableRescaleNormal();
