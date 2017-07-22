@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.client.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.lwjgl.input.Keyboard;
 
@@ -96,7 +97,7 @@ public class GuiShieldGenerator extends GuiContainerGC implements ICheckBoxCallb
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 80, this.height / 2 - 8, 72, 20, !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name")));
         this.buttonList.add(new GuiButton(5, this.width / 2 + 52, this.height / 2 - 8, 25, 20, "WIP"));
 
-        this.shieldDamageText = new GuiTextField(1, this.fontRendererObj, this.width / 2 + 60, this.height / 4 + 2, 20, 16);
+        this.shieldDamageText = new GuiTextField(1, this.fontRendererObj, this.width / 2 + 60, this.height / 4 + 7, 20, 16);
         this.shieldDamageText.setMaxStringLength(2);
         this.shieldDamageText.setFocused(false);
         this.shieldDamageText.setCanLoseFocus(true);
@@ -104,7 +105,7 @@ public class GuiShieldGenerator extends GuiContainerGC implements ICheckBoxCallb
         this.shieldDamageText.setTextColor(16777215);
         this.shieldDamageText.setText(String.valueOf(this.tile.shieldDamage));
 
-        this.shieldMaxSizeText = new GuiTextField(2, this.fontRendererObj, this.width / 2 + 60, this.height / 4 + 22, 20, 16);
+        this.shieldMaxSizeText = new GuiTextField(2, this.fontRendererObj, this.width / 2 + 60, this.height / 4 + 27, 20, 16);
         this.shieldMaxSizeText.setMaxStringLength(2);
         this.shieldMaxSizeText.setFocused(false);
         this.shieldMaxSizeText.setCanLoseFocus(true);
@@ -119,18 +120,30 @@ public class GuiShieldGenerator extends GuiContainerGC implements ICheckBoxCallb
         this.buttonEnable.enabled = this.tile.disableCooldown == 0;
         this.buttonEnable.displayString = !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name");
 
-        this.fontRendererObj.drawString(this.tile.getName(), 8, 10, 4210752);
+        // backward compatibility
+        String owner = null;
+
+        try
+        {
+            owner = this.tile.getWorld().getPlayerEntityByUUID(UUID.fromString(this.tile.ownerUUID)).getName() + "'s ";
+        }
+        catch (Exception e)
+        {
+            owner = "";
+        }
+
+        this.fontRendererObj.drawString(owner + this.tile.getName(), 8, 10, 4210752);
         String status = GCCoreUtil.translate("gui.message.status.name") + ": " + this.getStatus();
-        this.fontRendererObj.drawString(status, this.xSize / 2 - 80, 50, 4210752);
+        this.fontRendererObj.drawString(status, this.xSize / 2 - 80, 80, 4210752);
 
         int width = this.fontRendererObj.getStringWidth(GCCoreUtil.translate("gui.status.set_shield_damage.name") + ":");
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.set_shield_damage.name") + ":", this.xSize / 2 - width + 58, 19, 4210752);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.set_shield_damage.name") + ":", this.xSize / 2 - width + 58, 24, 4210752);
         width = this.fontRendererObj.getStringWidth(GCCoreUtil.translate("gui.status.set_max_shield_size.name") + ":");
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.set_max_shield_size.name") + ":", this.xSize / 2 - width + 58, 39, 4210752);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.set_max_shield_size.name") + ":", this.xSize / 2 - width + 58, 44, 4210752);
 
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.knock_amount.name") + ": " + this.tile.knockAmount / 10.0D, this.xSize / 2 - 80, 60, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.shield_damage.name") + ": " + this.tile.shieldDamage, this.xSize / 2 - 80, 70, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.shield_size.name") + ": " + this.tile.maxShieldSize, this.xSize / 2 - 80, 80, 4210752);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.knock_amount.name") + ": " + this.tile.knockAmount / 10.0D, this.xSize / 2 - 80, 50, 4210752);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.shield_damage.name") + ": " + this.tile.shieldDamage, this.xSize / 2 - 80, 60, 4210752);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.shield_size.name") + ": " + this.tile.maxShieldSize, this.xSize / 2 - 80, 70, 4210752);
         this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
     }
 

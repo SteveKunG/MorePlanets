@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.tileentity;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
@@ -62,6 +63,8 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public int knockAmount = 5;
     @NetworkedField(targetSide = Side.CLIENT)
     public int shieldDamage = 10;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public String ownerUUID = "";
     private static HashSet<BlockVec3Dim> loadedTiles = new HashSet();
     private boolean initialize = true;
     //private static BlockPos shieldPos;
@@ -229,7 +232,15 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                     entity.motionX -= d6 * d14 / knockSpeed;
                     entity.motionY -= d8 * d14 / knockSpeed;
                     entity.motionZ -= d10 * d14 / knockSpeed;
-                    entity.attackEntityFrom(DamageSource.generic, this.shieldDamage);
+
+                    if (this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID)) != null)
+                    {
+                        entity.attackEntityFrom(DamageSource.causePlayerDamage(this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID))), this.shieldDamage);
+                    }
+                    else
+                    {
+                        entity.attackEntityFrom(DamageSource.generic, this.shieldDamage);
+                    }
                 }
             }
         }
@@ -320,6 +331,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             this.shieldDamage = nbt.getInteger("ShieldDamage");
         }
         this.facing = nbt.getInteger("Facing");
+        this.ownerUUID = nbt.getString("OwnerUUID");
 
         NBTTagList list = nbt.getTagList("Items", 10);
         this.containingItems = new ItemStack[this.getSizeInventory()];
@@ -357,6 +369,10 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                 this.containingItems[i].writeToNBT(compound);
                 list.appendTag(compound);
             }
+        }
+        if (this.ownerUUID != null)
+        {
+            nbt.setString("OwnerUUID", this.ownerUUID);
         }
         nbt.setTag("Items", list);
         return nbt;

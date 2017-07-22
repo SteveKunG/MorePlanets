@@ -120,6 +120,12 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
             TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
             shield.setFacing(direction);
             shield.onCreate(world, pos);
+
+            if (placer instanceof EntityPlayer)
+            {
+                EntityPlayer player = (EntityPlayer) placer;
+                shield.ownerUUID = player.getGameProfile().getId().toString();
+            }
         }
     }
 
