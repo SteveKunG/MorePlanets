@@ -3,11 +3,8 @@ package stevekung.mods.moreplanets.integration.jei.rocket_crusher;
 import java.awt.Color;
 import java.util.Arrays;
 
-import javax.annotation.Nonnull;
-
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
-import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -15,12 +12,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
 
-public class RocketCrusherRecipesWrapper extends BlankRecipeWrapper implements IRecipeWrapper
+public class RocketCrusherRecipesWrapper extends BlankRecipeWrapper
 {
-    @Nonnull
     private ShapedRecipesMP recipe;
 
-    public RocketCrusherRecipesWrapper(@Nonnull ShapedRecipesMP recipe)
+    public RocketCrusherRecipesWrapper(ShapedRecipesMP recipe)
     {
         this.recipe = recipe;
     }

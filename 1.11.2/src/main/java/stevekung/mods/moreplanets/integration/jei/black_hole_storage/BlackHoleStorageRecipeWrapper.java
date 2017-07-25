@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
-import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import net.minecraft.item.ItemStack;
 
-public class BlackHoleStorageRecipeWrapper extends BlankRecipeWrapper implements IRecipeWrapper
+public class BlackHoleStorageRecipeWrapper extends BlankRecipeWrapper
 {
     private INasaWorkbenchRecipe recipe;
 
