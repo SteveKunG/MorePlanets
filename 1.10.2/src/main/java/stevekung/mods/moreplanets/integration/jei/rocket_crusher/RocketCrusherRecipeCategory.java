@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.integration.jei.rocket_crusher;
 
-import java.util.List;
-
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -50,24 +48,7 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
         {
             itemStacks.init(j, true, 0 + j % 3 * 18, 0 + j / 3 * 18);
         }
-
         itemStacks.init(9, false, 124, 20);
-
-        if (recipeWrapper instanceof RocketCrusherRecipesWrapper)
-        {
-            RocketCrusherRecipesWrapper ingotCompressorRecipeWrapper = (RocketCrusherRecipesWrapper) recipeWrapper;
-            List inputs = ingotCompressorRecipeWrapper.getInputs();
-
-            for (int i = 0; i < inputs.size(); ++i)
-            {
-                Object o = inputs.get(i);
-
-                if (o != null)
-                {
-                    itemStacks.setFromRecipe(i, o);
-                }
-            }
-            itemStacks.setFromRecipe(9, ingotCompressorRecipeWrapper.getOutputs());
-        }
+        itemStacks.set(ingredients);
     }
 }

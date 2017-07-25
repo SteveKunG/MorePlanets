@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.integration.jei.rockett5;
 
-import java.util.List;
-
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -59,22 +57,6 @@ public class Tier5RocketRecipeCategory extends BlankRecipeCategory
         itemStacks.init(19, true, 115, 7);
         itemStacks.init(20, true, 141, 7);
         itemStacks.init(21, false, 138, 95);
-
-        if (recipeWrapper instanceof Tier5RocketRecipeWrapper)
-        {
-            Tier5RocketRecipeWrapper rocketRecipeWrapper = (Tier5RocketRecipeWrapper) recipeWrapper;
-            List inputs = rocketRecipeWrapper.getInputs();
-
-            for (int i = 0; i < inputs.size(); ++i)
-            {
-                Object o = inputs.get(i);
-
-                if (o != null)
-                {
-                    itemStacks.setFromRecipe(i, o);
-                }
-            }
-            itemStacks.setFromRecipe(21, rocketRecipeWrapper.getOutputs());
-        }
+        itemStacks.set(ingredients);
     }
 }

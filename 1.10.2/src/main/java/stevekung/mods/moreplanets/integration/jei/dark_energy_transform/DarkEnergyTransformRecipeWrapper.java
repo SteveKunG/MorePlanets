@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import mezz.jei.api.ingredients.IIngredients;
@@ -36,12 +35,6 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     }
 
     @Override
-    public List getOutputs()
-    {
-        return ImmutableList.of(this.output);
-    }
-
-    @Override
     public void drawInfo(Minecraft mc, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
     {
         int time = this.time / 20;
@@ -54,9 +47,6 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        List<ItemStack> list = Lists.newArrayList();
-        list.addAll(this.input.values());
-        ingredients.setInputs(ItemStack.class, list);
         ingredients.setOutput(ItemStack.class, this.output);
     }
 }

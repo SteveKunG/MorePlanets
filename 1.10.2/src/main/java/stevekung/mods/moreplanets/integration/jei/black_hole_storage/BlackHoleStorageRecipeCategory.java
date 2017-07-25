@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.integration.jei.black_hole_storage;
 
-import java.util.List;
-
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -76,21 +74,6 @@ public class BlackHoleStorageRecipeCategory extends BlankRecipeCategory
 
         itemStacks.init(22, false, 150, 93);
 
-        if (recipeWrapper instanceof BlackHoleStorageRecipeWrapper)
-        {
-            BlackHoleStorageRecipeWrapper wrapper = (BlackHoleStorageRecipeWrapper) recipeWrapper;
-            List inputs = wrapper.getInputs();
-
-            for (int i = 0; i < inputs.size(); ++i)
-            {
-                Object o = inputs.get(i);
-
-                if (o != null)
-                {
-                    itemStacks.setFromRecipe(i, o);
-                }
-            }
-            itemStacks.setFromRecipe(22, wrapper.getOutputs());
-        }
+        itemStacks.set(ingredients);
     }
 }

@@ -41,14 +41,10 @@ public class DarkEnergyTransformRecipeCategory extends BlankRecipeCategory
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
     {
-        if (!(recipeWrapper instanceof DarkEnergyTransformRecipeWrapper))
-        {
-            return;
-        }
         IGuiItemStackGroup itemStack = recipeLayout.getItemStacks();
         itemStack.init(0, true, 26, 14);
         itemStack.init(1, false, 75, 14);
         itemStack.set(0, recipeWrapper.getInputs());
-        itemStack.set(1, recipeWrapper.getOutputs());
+        itemStack.set(ingredients);
     }
 }
