@@ -63,23 +63,23 @@ public class WorldTickEventHandler
                 {
                     WorldServer worldServer = (WorldServer) world;
 
-                    for (Iterator<Chunk> iterator = worldServer.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); worldServer.theProfiler.endSection())
+                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.theProfiler.endSection())
                     {
                         Chunk chunk = iterator.next();
                         int j = chunk.xPosition * 16;
                         int k = chunk.zPosition * 16;
 
-                        if (worldServer.rand.nextInt(75000) == 0)
+                        if (world.rand.nextInt(75000) == 0)
                         {
                             this.updateLCG = this.updateLCG * 3 + 1013904223;
                             int l = this.updateLCG >> 2;
-                            BlockPos blockpos = this.adjustPosToNearbyEntity(worldServer, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
+                            BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
 
-                            if (this.canBeamStrike(worldServer, blockpos))
+                            if (this.canBeamStrike(world, blockpos))
                             {
-                                EntityAlienBeam beam = new EntityAlienBeam(worldServer);
+                                EntityAlienBeam beam = new EntityAlienBeam(world);
                                 beam.setLocationAndAngles(blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0.0F, 0.0F);
-                                worldServer.spawnEntityInWorld(beam);
+                                world.spawnEntityInWorld(beam);
                             }
                         }
                     }
@@ -94,53 +94,53 @@ public class WorldTickEventHandler
                 {
                     WorldServer worldServer = (WorldServer) world;
 
-                    for (Iterator<Chunk> iterator = worldServer.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); worldServer.theProfiler.endSection())
+                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.theProfiler.endSection())
                     {
                         Chunk chunk = iterator.next();
                         int j = chunk.xPosition * 16;
                         int k = chunk.zPosition * 16;
-                        boolean flag = worldServer.isRaining();
-                        boolean flag1 = worldServer.isThundering();
+                        boolean flag = world.isRaining();
+                        boolean flag1 = world.isThundering();
 
-                        if (worldServer.provider.canDoLightning(chunk) && flag && flag1 && worldServer.rand.nextInt(1000) == 0)
+                        if (world.provider.canDoLightning(chunk) && flag && flag1 && world.rand.nextInt(1000) == 0)
                         {
                             this.updateLCG = this.updateLCG * 3 + 1013904223;
                             int l = this.updateLCG >> 2;
-                            BlockPos blockpos = this.adjustPosToNearbyEntity(worldServer, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
+                            BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
 
-                            if (worldServer.isRainingAt(blockpos))
+                            if (world.isRainingAt(blockpos))
                             {
-                                worldServer.spawnEntityInWorld(new EntityNibiruLightningBolt(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ(), true));
+                                world.spawnEntityInWorld(new EntityNibiruLightningBolt(world, blockpos.getX(), blockpos.getY(), blockpos.getZ(), true));
                             }
                         }
-                        if (worldServer.rand.nextInt(16) == 0)
+                        if (world.rand.nextInt(16) == 0)
                         {
                             this.updateLCG = this.updateLCG * 3 + 1013904223;
                             int j2 = this.updateLCG >> 2;
-                            BlockPos blockpos1 = worldServer.getPrecipitationHeight(new BlockPos(j + (j2 & 15), 0, k + (j2 >> 8 & 15)));
+                            BlockPos blockpos1 = world.getPrecipitationHeight(new BlockPos(j + (j2 & 15), 0, k + (j2 >> 8 & 15)));
                             BlockPos blockpos2 = blockpos1.down();
 
-                            if (worldServer.canBlockFreezeNoWater(blockpos2))
+                            if (world.canBlockFreezeNoWater(blockpos2))
                             {
-                                worldServer.setBlockState(blockpos2, NibiruBlocks.INFECTED_ICE.getDefaultState());
+                                world.setBlockState(blockpos2, NibiruBlocks.INFECTED_ICE.getDefaultState());
                             }
-                            if (flag && worldServer.canSnowAt(blockpos1, true))
+                            if (flag && world.canSnowAt(blockpos1, true))
                             {
-                                worldServer.setBlockState(blockpos1, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                                world.setBlockState(blockpos1, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                             }
-                            if (flag && worldServer.getBiome(blockpos2).canRain())
+                            if (flag && world.getBiome(blockpos2).canRain())
                             {
-                                worldServer.getBlockState(blockpos2).getBlock().fillWithRain(worldServer, blockpos2);
+                                world.getBlockState(blockpos2).getBlock().fillWithRain(world, blockpos2);
                             }
                         }
-                        if (worldServer.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_DESERT || worldServer.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_EXTREME_HILLS)
+                        if (world.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_DESERT || world.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_EXTREME_HILLS)
                         {
-                            if (worldServer.rand.nextInt(250000) == 0)
+                            if (world.rand.nextInt(250000) == 0)
                             {
                                 this.updateLCG = this.updateLCG * 3 + 1013904223;
                                 int l = this.updateLCG >> 2;
-                                BlockPos blockpos = this.adjustPosToNearbyEntity(worldServer, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
-                                worldServer.spawnEntityInWorld(new EntityNibiruLightningBolt(worldServer, blockpos.getX(), blockpos.getY(), blockpos.getZ(), false));
+                                BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
+                                world.spawnEntityInWorld(new EntityNibiruLightningBolt(world, blockpos.getX(), blockpos.getY(), blockpos.getZ(), false));
                             }
                         }
                     }
@@ -149,7 +149,7 @@ public class WorldTickEventHandler
         }
     }
 
-    private BlockPos adjustPosToNearbyEntity(WorldServer world, BlockPos pos)
+    private BlockPos adjustPosToNearbyEntity(World world, BlockPos pos)
     {
         BlockPos blockpos = world.getPrecipitationHeight(pos);
         AxisAlignedBB axisalignedbb = new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), world.getHeight(), blockpos.getZ()));
@@ -169,7 +169,7 @@ public class WorldTickEventHandler
         }
     }
 
-    private boolean canBeamStrike(WorldServer world, BlockPos strikePosition)
+    private boolean canBeamStrike(World world, BlockPos strikePosition)
     {
         if (!world.canSeeSky(strikePosition))
         {
