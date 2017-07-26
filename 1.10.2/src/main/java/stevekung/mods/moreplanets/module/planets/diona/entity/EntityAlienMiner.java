@@ -25,8 +25,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -143,7 +147,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                     ++this.chargedTime;
                 }
 
-                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.posX, this.posY + 1.4D, this.posZ, new Object[] { -this.getChargedTime(0.0F) });
+                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.posX, this.posY + 0.85D + this.getHoverTick(FMLClientHandler.instance().getClient().getRenderPartialTicks()), this.posZ, new Object[] { -this.getChargedTime(0.0F) });
                 EntityLivingBase entitylivingbase = this.getTargetedEntity();
 
                 if (entitylivingbase != null)
@@ -248,6 +252,14 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         {
             return this.getAttackTarget();
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public float getHoverTick(float partialTicks)
+    {
+        float partialTicksTime = this.ticksExisted + partialTicks;
+        float hoverTime = MathHelper.sin(partialTicksTime / 12) / 30.0F + 0.5F;
+        return hoverTime = hoverTime * hoverTime + hoverTime;
     }
 
     static class AILaserBeamAttack extends EntityAIBase

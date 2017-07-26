@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,10 +34,7 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
     @Override
     protected void preRenderCallback(EntityAlienMiner entity, float partialTicks)
     {
-        float partialTicksTime = entity.ticksExisted + partialTicks;
-        float hoverTime = MathHelper.sin(partialTicksTime / 12) / 30.0F + 0.5F;
-        hoverTime = hoverTime * hoverTime + hoverTime;
-        GlStateManager.translate(0.0F, 0.5F - hoverTime, 0.0F);
+        GlStateManager.translate(0.0F, 0.5F - entity.getHoverTick(partialTicks), 0.0F);
     }
 
     @Override
@@ -64,7 +60,7 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
             GlStateManager.blendFunc(770, 771);
             float f2 = entity.worldObj.getTotalWorldTime() + partialTicks;
             float f3 = f2 * 0.5F % 1.0F;
-            float f4 = entity.getEyeHeight() + 0.25F;
+            float f4 = entity.getEyeHeight() + 0.25F - 0.5F + entity.getHoverTick(partialTicks);
             GlStateManager.pushMatrix();
             GlStateManager.translate((float)x, (float)y + f4, (float)z);
             Vec3d vec3 = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, partialTicks);
