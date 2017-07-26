@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -29,6 +30,15 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
     protected ResourceLocation getEntityTexture(EntityAlienMiner entity)
     {
         return new ResourceLocation("moreplanets:textures/entity/alien_miner.png");
+    }
+
+    @Override
+    protected void preRenderCallback(EntityAlienMiner entity, float partialTicks)
+    {
+        float partialTicksTime = entity.ticksExisted + partialTicks;
+        float hoverTime = MathHelper.sin(partialTicksTime / 12) / 30.0F + 0.5F;
+        hoverTime = hoverTime * hoverTime + hoverTime;
+        GlStateManager.translate(0.0F, 0.5F - hoverTime, 0.0F);
     }
 
     @Override
