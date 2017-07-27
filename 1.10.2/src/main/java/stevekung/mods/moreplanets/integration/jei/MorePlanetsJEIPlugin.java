@@ -35,6 +35,8 @@ public class MorePlanetsJEIPlugin extends BlankModPlugin
         JEIRegistryHelper.registry = registry;
         JEIRegistryHelper.guiHelper = registry.getJeiHelpers().getGuiHelper();
 
+        ItemDescription.init();
+
         JEIRegistryHelper.registerRecipeCategories(new DarkEnergyTransformRecipeCategory());
         JEIRegistryHelper.registerRecipeCategories(new RocketCrusherRecipeCategory());
         JEIRegistryHelper.registerRecipeCategories(new Tier4RocketRecipeCategory());

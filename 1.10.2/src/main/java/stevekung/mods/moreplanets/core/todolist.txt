@@ -38,8 +38,8 @@ uv texture treasure chest
 infected guardian random fish
 add option other player can use bh storage
 more sounds subtitle
-rewrite entity rendering with crystallize
 jei rocket crusher recipe anim
+anti-grav arrow/laser
 
 1.10.2
 villager profession rewrite
