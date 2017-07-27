@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
@@ -181,7 +182,19 @@ public class WorldTickEventHandler
         }
         else
         {
-            return world.getSunBrightness(1.0F) < 0.25F;
+            return this.getSunBrightness(world) < 0.25F;
         }
+    }
+
+    private float getSunBrightness(World world)
+    {
+        float partialTicks = 1.0F;
+        float angle = world.getCelestialAngle(partialTicks);
+        float celestialAngle = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2F)) * 2.0F + 0.2F);
+        celestialAngle = MathHelper.clamp_float(celestialAngle, 0.0F, 1.0F);
+        celestialAngle = 1.0F - celestialAngle;
+        celestialAngle = (float)(celestialAngle * (1.0D - world.getRainStrength(partialTicks) * 5.0F / 16.0D));
+        celestialAngle = (float)(celestialAngle * (1.0D - world.getThunderStrength(partialTicks) * 5.0F / 16.0D));
+        return celestialAngle * 0.8F + 0.2F;
     }
 }
