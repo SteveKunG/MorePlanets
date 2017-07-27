@@ -8,6 +8,7 @@ import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.util.items.ItemRecordMP;
 
 public class MPItems
 {
@@ -22,6 +23,7 @@ public class MPItems
     public static Item SPECIAL_SCHEMATIC;
     public static Item ALIEN_DEFENDER_REINFORCEMENT;
     public static Item CREATIVE_SPACE_KIT;
+    public static Item VEIN_FLOATER_DISC;
 
     public static void init()
     {
@@ -40,6 +42,7 @@ public class MPItems
         MPItems.SPECIAL_SCHEMATIC = new ItemSpecialSchematic("special_schematic");
         MPItems.ALIEN_DEFENDER_REINFORCEMENT = new ItemAlienDefenderReinforcement("alien_defender_reinforcement");
         MPItems.CREATIVE_SPACE_KIT = new ItemCreativeSpaceKit("creative_space_kit");
+        MPItems.VEIN_FLOATER_DISC = new ItemRecordMP("vein_floater_disc", "a_planet_to_conquer", MPSounds.A_PLANET_TO_CONQUER);
 
         /**************************************************************/
         /**********************REGISTER STUFF**************************/
@@ -56,6 +59,7 @@ public class MPItems
         CommonRegisterHelper.registerItem(MPItems.SPECIAL_SCHEMATIC);
         CommonRegisterHelper.registerItem(MPItems.ALIEN_DEFENDER_REINFORCEMENT);
         CommonRegisterHelper.registerItem(MPItems.CREATIVE_SPACE_KIT);
+        CommonRegisterHelper.registerItem(MPItems.VEIN_FLOATER_DISC);
 
         /**************************************************************/
         /********************ORE DICTIONARY STUFF**********************/

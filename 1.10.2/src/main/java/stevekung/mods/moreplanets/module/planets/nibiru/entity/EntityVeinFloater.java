@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 import java.util.List;
 import java.util.UUID;
 
-import com.google.common.base.Optional;
-
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -21,6 +19,7 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -36,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityVeinBall;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
@@ -55,7 +55,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     public EntityDragonPart[] partArray;
     public EntityDragonPart partHead;
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
-    private static final DataParameter<Optional<UUID>> BOSSINFO_ID = EntityDataManager.createKey(EntityVeinFloater.class, DataSerializers.OPTIONAL_UNIQUE_ID);
+    private boolean playMusic;
 
     public EntityVeinFloater(World world)
     {
@@ -63,7 +63,6 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
         this.partArray = new EntityDragonPart[] { this.partHead = new EntityDragonPart(this, "head", 6.0F, 4.0F) };
         this.isImmuneToFire = true;
         this.setSize(6.0F, 16.0F);
-        MorePlanetsCore.PROXY.addBoss(this);
     }
 
     @Override
@@ -71,7 +70,6 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     {
         super.entityInit();
         this.dataManager.register(VINE_PULL, false);
-        this.dataManager.register(BOSSINFO_ID, Optional.absent());
     }
 
     @Override
@@ -96,6 +94,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     public void onUpdate()
     {
         super.onUpdate();
+        MorePlanetsCore.PROXY.addBoss(this);
         this.motionY *= 0.5D;
 
         if (this.getHealth() <= 0.0F)
@@ -307,6 +306,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     @Override
     protected void onDeathUpdate()
     {
+        this.worldObj.playEvent(1010, this.getPosition(), 0);
         ++this.deathTicks;
 
         if (this.deathTicks >= 180 && this.deathTicks <= 200)
@@ -382,16 +382,20 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
                 for (EntityPlayer player : playerWithin)
                 {
                     JsonUtils json = new JsonUtils();
-                    player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    player.addChatMessage(json.text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;
             }
             this.entitiesWithinLast = this.entitiesWithin;
         }
+        if (!this.playMusic)
+        {
+            this.worldObj.playEvent(1010, this.getPosition(), Item.getIdFromItem(MPItems.VEIN_FLOATER_DISC));
+            this.playMusic = true;
+        }
         this.partHead.onUpdate();
         this.partHead.setLocationAndAngles(this.posX, this.posY + 13.0D, this.posZ, 0.0F, 0.0F);
-        this.dataManager.set(BOSSINFO_ID, Optional.of(this.bossInfo.getUniqueId()));
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
     }
@@ -466,7 +470,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     @Override
     public UUID getBossUUID()
     {
-        return this.dataManager.get(BOSSINFO_ID).or(new UUID(0, 0));
+        return this.bossInfo.getUniqueId();
     }
 
     @Override

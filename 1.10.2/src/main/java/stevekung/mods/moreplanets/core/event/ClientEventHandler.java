@@ -127,6 +127,7 @@ public class ClientEventHandler
         {
             ClientEventHandler.receiverRenderPos.clear();
             ClientEventHandler.entityId.clear();
+            ClientEventHandler.bossList.clear();
         }
         if (event.phase == Phase.START)
         {
