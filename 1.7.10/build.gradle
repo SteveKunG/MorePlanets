@@ -9,33 +9,58 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+		maven {
+            name = "cursegradle"
+            url = "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+		classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.0.9'
     }
 }
+
+plugins {
+    id 'com.matthewprenger.cursegradle' version '1.0.9'
+}
+
+def apiJson = file('D:/.M/Minecraft Modding Workspace/MorePlanets/apiToken.json')
+def parsedApi = new groovy.json.JsonSlurper().parseText(apiJson.text)
+def mcVersion = '1.7.10'
 
 apply plugin: 'forge'
 version = "1.4.1-GC501"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_7
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
-    runDir = "eclipse"
+    runDir = "run"
 }
 
-dependencies {}
-processResources {}
+curseforge {
+	apiKey = parsedApi.apiKey
+	project {
+		id = '261990'
+		releaseType = 'release'
+		addGameVersion mcVersion
+
+		mainArtifact(file('build/libs/More-Planets-' + mcVersion + '-' + version + '.jar')) {
+			displayName = "More-Planets-" + mcVersion + "-" + version
+		}
+	}
+}
 
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
 ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/deimos/**', 'assets/diona/**', 'assets/europa/**', 'assets/fronos/**', 'assets/io/**',
 'assets/kapteynb/**', 'assets/koentus/**', 'assets/mercury/**', 'assets/mpcore/**', 'assets/nibiru/**', 'assets/phobos/**', 'assets/pluto/**',
 'assets/polongnius/**', 'assets/siriusb/**', 'assets/venus/**']
 
+// build normal jar
 task buildCore(type: Jar, dependsOn: "rePackAllJar") {
 	outputs.upToDateWhen { false }
-	baseName = "More-Planets-1.7.10"
+	baseName = "More-Planets-" + mcVersion
 
 	from(zipTree(project.ext.coreJar)) {
 		includes.addAll(project.ext.coreFiles)
@@ -50,3 +75,31 @@ task copyModFiles(type: Copy, dependsOn: "reobf") {
 	from(zipTree(project.ext.coreJar))
 	into 'temporary'
 }
+
+// build deobf jar
+task buildDeobfJar(type: Jar, dependsOn: "rePackAllDeobfJar") {
+	outputs.upToDateWhen { false }
+	baseName = "More-Planets-" + mcVersion
+	classifier = 'deobf'
+
+	from(zipTree(project.ext.coreJar)) {
+		includes.addAll(project.ext.coreFiles)
+	}
+}
+
+task rePackAllDeobfJar(type: Jar, dependsOn: "copyDeobfModFiles") {
+	from 'temporary_deobf'
+}
+
+task copyDeobfModFiles(type: Copy, dependsOn: "reobf") {
+	from sourceSets.main.output
+	into 'temporary_deobf'
+}
+
+// delete temp folders
+task deleteTemporary(type: Delete) {
+	delete 'temporary'
+	delete 'temporary_deobf'
+}
+
+buildDeobfJar.finalizedBy(deleteTemporary)

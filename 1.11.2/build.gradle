@@ -21,10 +21,10 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 version = "2.0.8-GC114"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
-sourceCompatibility = targetCompatibility = "1.8"
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.11.2-13.20.1.2414"
+    version = "1.11.2-13.20.1.2425"
     runDir = "run"
     mappings = "snapshot_20161220"
 	makeObfSourceJar = false
@@ -65,11 +65,10 @@ curseforge {
 	}
 }
 
-processResources {}
-
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
 ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'META-INF/moreplanets_at.cfg']
 
+// build normal jar
 task buildJar(type: Jar, dependsOn: "rePackAllJar") {
 	outputs.upToDateWhen { false }
 	baseName = "More-Planets-" + mcVersion
@@ -91,3 +90,35 @@ task copyModFiles(type: Copy, dependsOn: "reobfJar") {
 	from(zipTree(project.ext.coreJar))
 	into 'temporary'
 }
+
+// build deobf jar
+task buildDeobfJar(type: Jar, dependsOn: "rePackAllDeobfJar") {
+	outputs.upToDateWhen { false }
+	baseName = "More-Planets-" + mcVersion
+	classifier = 'deobf'
+
+	from(zipTree(project.ext.coreJar)) {
+		includes.addAll(project.ext.coreFiles)
+	}
+	manifest {
+		attributes.put("FMLAT", "moreplanets_at.cfg")
+		attributes.put("FMLCorePluginContainsFMLMod", "true")
+	}
+}
+
+task rePackAllDeobfJar(type: Jar, dependsOn: "copyDeobfModFiles") {
+	from 'temporary_deobf'
+}
+
+task copyDeobfModFiles(type: Copy, dependsOn: "reobfJar") {
+	from sourceSets.main.output
+	into 'temporary_deobf'
+}
+
+// delete temp folders
+task deleteTemporary(type: Delete) {
+	delete 'temporary'
+	delete 'temporary_deobf'
+}
+
+buildDeobfJar.finalizedBy(deleteTemporary)

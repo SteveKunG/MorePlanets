@@ -21,11 +21,10 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 version = "2.0.9-GC114"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.10.2-12.18.3.2316"
+    version = "1.10.2-12.18.3.2422"
     runDir = "run"
     mappings = "snapshot_20161111"
 	makeObfSourceJar = false
