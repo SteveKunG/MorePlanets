@@ -218,7 +218,7 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
     @Override
     public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
     {
-        return layer == BlockRenderLayer.TRANSLUCENT;
+        return state.getValue(VARIANT) == BlockType.TERRAPUFF_HURB ? layer == BlockRenderLayer.CUTOUT : state.getValue(VARIANT) == BlockType.TERRASHROOM ? layer == BlockRenderLayer.TRANSLUCENT : super.canRenderInLayer(state, layer);
     }
 
     @Override

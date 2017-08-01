@@ -1,5 +1,5 @@
 {
-    "parent": "moreplanets:block/cube_all_glow",
+    "parent": "moreplanets:block/cube_glow",
     "textures": {
         "particle": "moreplanets:blocks/alien_probe",
         "down": "moreplanets:blocks/alien_probe",

@@ -1,3 +1,4 @@
+crystallize planks : hue 140 sat -15 / 108 94 142
 green vein : 103 220 16
 terrapuff hurb : 43 140 213
 green vein leaves : 28 192 227
