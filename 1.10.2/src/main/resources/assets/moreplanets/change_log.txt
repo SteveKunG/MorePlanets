@@ -1,9 +1,11 @@
 -Added- Added Owner UUID to Shield Generator
 -Added- Added Hover Animation to Alien Miner
--Update- Update to use Galacticraft Build 114 or higher
+-Added- Added GC-Addon Compatibility Configuration (Suggested by ExtraPlanets)
+-Update- Update to use Galacticraft Build 115 or higher
 -Update- Update Shield model and render with animated texture
 -Update- Update JEI API
 -Update- Tweaked Cheese Floater rendering
 -Fixed- Attempt to fix server crash with Alien Beam
 -Fixed- Fixed z-fighting on Chests texture
 -Fixed- Fixed Chests bounding box
+-Removed- Removed unnecessary config
