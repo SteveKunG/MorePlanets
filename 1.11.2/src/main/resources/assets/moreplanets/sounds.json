@@ -169,5 +169,12 @@
 		"category": "weather",
 		"sounds": ["moreplanets:weather/thunder1", "moreplanets:weather/thunder2", "moreplanets:weather/thunder3", "moreplanets:weather/thunder4"],
 		"subtitle": "subtitles.weather.loud_thunder"
-	}
+	},
+	"record.a_planet_to_conquer": {
+    "sounds": [
+		{
+			"name": "moreplanets:record/a_planet_to_conquer",
+			"stream": true
+		}
+    ]}
 }

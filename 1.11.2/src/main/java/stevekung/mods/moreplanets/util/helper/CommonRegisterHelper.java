@@ -133,6 +133,11 @@ public class CommonRegisterHelper
         return new SoundEvent(new ResourceLocation("moreplanets:" + name));
     }
 
+    public static SoundEvent registerRecord(String name)
+    {
+        return CommonRegisterHelper.registerSound("record." + name);
+    }
+
     public static ResourceLocation registerEntityLoot(String name)
     {
         return LootTableList.register(new ResourceLocation("moreplanets:entities/" + name));

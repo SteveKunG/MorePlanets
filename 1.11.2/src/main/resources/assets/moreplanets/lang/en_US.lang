@@ -632,6 +632,7 @@ gui.xp_value.desc=XP
 gui.shield_visible.desc=Shield Visible
 gui.increase_knock.desc=Increase Knock
 gui.decrease_knock.desc=Decrease Knock
+item.record.a_planet_to_conquer.desc=Phil Rey - A planet to conquer
 
 # GUI DEATH MESSAGE
 death.attack.infected_crystallize=%s was infected by poisoned crystal

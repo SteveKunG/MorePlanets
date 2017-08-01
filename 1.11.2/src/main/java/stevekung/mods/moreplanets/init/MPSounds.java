@@ -38,6 +38,8 @@ public class MPSounds
     public static SoundEvent SLIME_SMALL = CommonRegisterHelper.registerSound("slime_small");
     public static SoundEvent SMALL_SLIME_JUMP = CommonRegisterHelper.registerSound("slime_small_jump");
 
+    public static SoundEvent A_PLANET_TO_CONQUER = CommonRegisterHelper.registerRecord("a_planet_to_conquer");
+
     public static SoundType ALIEN_EGG = new SoundType(1.0F, 1.0F, MPSounds.ALIEN_EGG_DESTROYED, SoundEvents.BLOCK_SLIME_STEP, SoundEvents.BLOCK_SLIME_PLACE, SoundEvents.BLOCK_SLIME_HIT, SoundEvents.BLOCK_SLIME_FALL);
     public static SoundType SMALL_SLIME = new SoundType(1.0F, 1.0F, MPSounds.SLIME_SMALL, SoundEvents.BLOCK_SLIME_STEP, MPSounds.SLIME_SMALL, SoundEvents.BLOCK_SLIME_HIT, SoundEvents.BLOCK_SLIME_FALL);
     public static SoundType LILYPAD = new SoundType(1.0F, 1.0F, SoundEvents.BLOCK_GRASS_BREAK, SoundEvents.BLOCK_GRASS_STEP, MPSounds.LILYPAD_PLACE, SoundEvents.BLOCK_GRASS_HIT, SoundEvents.BLOCK_GRASS_FALL);

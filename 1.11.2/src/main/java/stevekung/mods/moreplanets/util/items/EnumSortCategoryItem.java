@@ -17,6 +17,7 @@ public enum EnumSortCategoryItem
     SCHEMATIC,
     DUNGEON_KEY,
     DOOR,
+    RECORD,
     SWORD,
     PICKAXE,
     AXE,
