@@ -8,4 +8,5 @@
 -Fixed- Attempt to fix server crash with Alien Beam
 -Fixed- Fixed z-fighting on Chests texture
 -Fixed- Fixed Chests bounding box
+-Fixed- Fixed Space Fishing Hook line/model rendering
 -Removed- Removed unnecessary config

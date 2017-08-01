@@ -88,7 +88,7 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
             {
                 float f10 = this.renderManager.options.fovSetting;
                 f10 = f10 / 100.0F;
-                Vec3d vec3d = new Vec3d(k * -0.5D * f10, -0.03D * f10, 0.65D);
+                Vec3d vec3d = new Vec3d(k * -0.5D * f10, 0.025D * f10, 0.65D);
                 vec3d = vec3d.rotatePitch(-(player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * partialTicks) * 0.017453292F);
                 vec3d = vec3d.rotateYaw(-(player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks) * 0.017453292F);
                 vec3d = vec3d.rotateYaw(f8 * 0.5F);
@@ -100,11 +100,12 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
             }
             else
             {
-                d4 = player.prevPosX + (player.posX - player.prevPosX) * partialTicks - d1 * d2 - d0 * 0.8D;
+                double xz = player.isSneaking() ? 0.775D : 0.9D;
+                d4 = player.prevPosX + (player.posX - player.prevPosX) * partialTicks - d1 * d2 - d0 * xz;
                 d5 = player.prevPosY + player.getEyeHeight() + (player.posY - player.prevPosY) * partialTicks - 0.45D;
-                d6 = player.prevPosZ + (player.posZ - player.prevPosZ) * partialTicks - d0 * d2 + d1 * 0.8D;
+                d6 = player.prevPosZ + (player.posZ - player.prevPosZ) * partialTicks - d0 * d2 + d1 * xz;
                 d7 = player.isSneaking() ? -0.45D : 0.0D;
-                dz = player.isSneaking() ? -0.03D : 0.0D;
+                dz = player.isSneaking() ? 0.01D : 0.0D;
             }
 
             double d13 = entity.prevPosX + (entity.posX - entity.prevPosX) * partialTicks;
