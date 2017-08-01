@@ -13,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
@@ -26,7 +27,11 @@ public class CraftingManagerDiona
         CraftingManagerDiona.addItemRecipe();
         CraftingManagerDiona.addBlockSmelting();
         CraftingManagerDiona.addItemSmelting();
-        CraftingManagerDiona.addRocketRecipe();
+
+        if (ConfigManagerMP.enableTier4RocketRecipe)
+        {
+            CraftingManagerDiona.addRocketRecipe();
+        }
     }
 
     private static void addBlockRecipe()

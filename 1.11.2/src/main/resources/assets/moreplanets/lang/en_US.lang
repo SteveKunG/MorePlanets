@@ -646,11 +646,13 @@ gui.config.mp=More Planets Configuration GUI
 gui.config.mp.general=Based More Planets Configuration. Version Checker, Debug, Mod Option. etc.
 gui.config.mp.dimension=Planet or Moon Dimension IDs Configuration.
 gui.config.mp.biome=World Biome IDs Configuration.
+gui.config.mp.gcaddon=GC-Addon Compatibility Configuration.
 gui.config.mp.other=Others Configuration.
-configgeneralguimp=General Config
-configdimensionguimp=Dimension Config
-configbiomeguimp=Biome Config
-configotherguimp=Other Config
+config_moreplanets_general=General Config
+config_moreplanets_dimensions=Dimensions Config
+config_moreplanets_biomes=Biomes Config
+config_moreplanets_gc_addon_compat=GC-Addon Config
+config_moreplanets_others=Others Config
 
 # GUI JEI
 gui.jei.dark_energy_transform=Dark Energy Transform

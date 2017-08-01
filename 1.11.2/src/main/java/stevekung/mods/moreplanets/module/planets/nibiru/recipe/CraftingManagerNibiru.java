@@ -11,6 +11,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
@@ -26,7 +27,11 @@ public class CraftingManagerNibiru
         CraftingManagerNibiru.addItemRecipe();
         CraftingManagerNibiru.addBlockSmelting();
         CraftingManagerNibiru.addItemSmelting();
-        CraftingManagerNibiru.addRocketRecipe();
+
+        if (ConfigManagerMP.enableTier6RocketRecipe)
+        {
+            CraftingManagerNibiru.addRocketRecipe();
+        }
     }
 
     private static void addBlockRecipe()
