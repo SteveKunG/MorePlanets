@@ -18,7 +18,7 @@ def parsedApi = new groovy.json.JsonSlurper().parseText(apiJson.text)
 def mcVersion = '1.10.2'
 
 apply plugin: 'net.minecraftforge.gradle.forge'
-version = "2.0.9-GC114"
+version = "2.0.9-GC115"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
