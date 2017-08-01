@@ -32,6 +32,12 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
     }
 
     @Override
+    protected void preRenderCallback(EntityAlienMiner entity, float partialTicks)
+    {
+        GlStateManager.translate(0.0F, 0.5F - entity.getHoverTick(partialTicks), 0.0F);
+    }
+
+    @Override
     public void doRender(EntityAlienMiner entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -54,7 +60,7 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
             GlStateManager.blendFunc(770, 771);
             float f2 = entity.world.getTotalWorldTime() + partialTicks;
             float f3 = f2 * 0.5F % 1.0F;
-            float f4 = entity.getEyeHeight() + 0.25F;
+            float f4 = entity.getEyeHeight() + 0.25F - 0.5F + entity.getHoverTick(partialTicks);
             GlStateManager.pushMatrix();
             GlStateManager.translate((float)x, (float)y + f4, (float)z);
             Vec3d vec3 = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, partialTicks);
