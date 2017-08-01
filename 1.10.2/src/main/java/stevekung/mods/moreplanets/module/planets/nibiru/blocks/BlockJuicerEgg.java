@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
@@ -11,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPSounds;
@@ -54,6 +52,8 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
     {
         if (!world.isRemote)
         {
+            EntityPlayer player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 5.0D, false);
+
             if (world.rand.nextInt(5) == 0)
             {
                 EntityJuicer juicer = new EntityJuicer(world);
@@ -62,19 +62,10 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
             }
             if (world.rand.nextInt(10) == 0)
             {
-                double radiusPlayer = 5.0D;
-                List<EntityPlayer> playerList = world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX() - radiusPlayer, pos.getY() - radiusPlayer, pos.getZ() - radiusPlayer, pos.getX() + radiusPlayer, pos.getY() + radiusPlayer, pos.getZ() + radiusPlayer));
-
-                if (!playerList.isEmpty())
-                {
-                    for (EntityPlayer player : playerList)
-                    {
-                        EntityJuicer juicer = new EntityJuicer(world);
-                        juicer.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0F, 0.0F);
-                        world.spawnEntityInWorld(juicer);
-                        juicer.startRiding(player);
-                    }
-                }
+                EntityJuicer juicer = new EntityJuicer(world);
+                juicer.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0F, 0.0F);
+                world.spawnEntityInWorld(juicer);
+                juicer.startRiding(player);
             }
         }
     }
