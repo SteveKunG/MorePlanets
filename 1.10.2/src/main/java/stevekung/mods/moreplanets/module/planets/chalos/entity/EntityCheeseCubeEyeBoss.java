@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import com.google.common.base.Optional;
-
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -26,9 +24,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -64,21 +59,12 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public int entitiesWithinLast;
     private int spawnCount = 10;
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
-    private static final DataParameter<Optional<UUID>> BOSSINFO_ID = EntityDataManager.createKey(EntityCheeseCubeEyeBoss.class, DataSerializers.OPTIONAL_UNIQUE_ID);
 
     public EntityCheeseCubeEyeBoss(World world)
     {
         super(world);
         this.setSize(1.8F, 2.0F);
         this.moveHelper = new GhastMoveHelper(this);
-        MorePlanetsCore.PROXY.addBoss(this);
-    }
-
-    @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-        this.dataManager.register(BOSSINFO_ID, Optional.absent());
     }
 
     @Override
@@ -286,7 +272,6 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             }
             this.entitiesWithinLast = this.entitiesWithin;
         }
-        this.dataManager.set(BOSSINFO_ID, Optional.of(this.bossInfo.getUniqueId()));
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
     }
@@ -295,6 +280,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public void onUpdate()
     {
         super.onUpdate();
+        MorePlanetsCore.PROXY.addBoss(this);
 
         if (this.getHealth() <= 0.0F)
         {
@@ -439,7 +425,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     @Override
     public UUID getBossUUID()
     {
-        return this.dataManager.get(BOSSINFO_ID).or(new UUID(0, 0));
+        return this.bossInfo.getUniqueId();
     }
 
     @Override

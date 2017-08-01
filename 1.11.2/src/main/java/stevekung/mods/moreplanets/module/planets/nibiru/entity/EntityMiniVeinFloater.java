@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 import java.util.List;
 import java.util.UUID;
 
-import com.google.common.base.Optional;
-
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -50,14 +48,12 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     public int entitiesWithinLast;
     private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityMiniVeinFloater.class, DataSerializers.BOOLEAN);
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
-    private static final DataParameter<Optional<UUID>> BOSSINFO_ID = EntityDataManager.createKey(EntityMiniVeinFloater.class, DataSerializers.OPTIONAL_UNIQUE_ID);
 
     public EntityMiniVeinFloater(World world)
     {
         super(world);
         this.isImmuneToFire = true;
         this.setSize(3.0F, 8.0F);
-        MorePlanetsCore.PROXY.addBoss(this);
     }
 
     @Override
@@ -65,7 +61,6 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     {
         super.entityInit();
         this.dataManager.register(VINE_PULL, false);
-        this.dataManager.register(BOSSINFO_ID, Optional.absent());
     }
 
     @Override
@@ -90,6 +85,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     public void onUpdate()
     {
         super.onUpdate();
+        MorePlanetsCore.PROXY.addBoss(this);
         this.motionY *= 0.5D;
 
         if (this.getHealth() <= 0.0F)
@@ -318,7 +314,6 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
             }
             this.entitiesWithinLast = this.entitiesWithin;
         }
-        this.dataManager.set(BOSSINFO_ID, Optional.of(this.bossInfo.getUniqueId()));
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
     }
@@ -375,7 +370,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     @Override
     public UUID getBossUUID()
     {
-        return this.dataManager.get(BOSSINFO_ID).or(new UUID(0, 0));
+        return this.bossInfo.getUniqueId();
     }
 
     @Override

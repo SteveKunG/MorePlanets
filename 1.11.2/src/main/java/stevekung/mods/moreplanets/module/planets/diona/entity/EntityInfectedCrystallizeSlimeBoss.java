@@ -6,8 +6,6 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.google.common.base.Optional;
-
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
@@ -57,7 +55,6 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     public int entitiesWithin;
     public int entitiesWithinLast;
     private static final DataParameter<Boolean> BARRIER = EntityDataManager.createKey(EntityInfectedCrystallizeSlimeBoss.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Optional<UUID>> BOSSINFO_ID = EntityDataManager.createKey(EntityInfectedCrystallizeSlimeBoss.class, DataSerializers.OPTIONAL_UNIQUE_ID);
     public EntityInfectedCrystallizeTentacle tentacle;
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
     private boolean tentacleSpawning = true;
@@ -65,7 +62,6 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     public EntityInfectedCrystallizeSlimeBoss(World world)
     {
         super(world);
-        MorePlanetsCore.PROXY.addBoss(this);
     }
 
     @Override
@@ -73,7 +69,6 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     {
         super.entityInit();
         this.dataManager.register(BARRIER, false);
-        this.dataManager.register(BOSSINFO_ID, Optional.absent());
     }
 
     @Override
@@ -246,6 +241,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     public void onUpdate()
     {
         super.onUpdate();
+        MorePlanetsCore.PROXY.addBoss(this);
         List<EntityInfectedCrystallizeTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeTentacle.class, this.getEntityBoundingBox().expand(32.0F, 32.0F, 32.0F));
         this.updateTentacle();
 
@@ -288,7 +284,6 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             }
             this.entitiesWithinLast = this.entitiesWithin;
         }
-        this.dataManager.set(BOSSINFO_ID, Optional.of(this.bossInfo.getUniqueId()));
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
     }
@@ -501,7 +496,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     @Override
     public UUID getBossUUID()
     {
-        return this.dataManager.get(BOSSINFO_ID).or(new UUID(0, 0));
+        return this.bossInfo.getUniqueId();
     }
 
     @Override

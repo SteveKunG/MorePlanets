@@ -40,6 +40,7 @@ add option other player can use bh storage
 more sounds subtitle
 jei rocket crusher recipe anim
 anti-grav arrow/laser
+fix boss bar sometime not work
 
 1.10.2
 villager profession rewrite
