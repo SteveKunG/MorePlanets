@@ -17,10 +17,11 @@ import stevekung.mods.moreplanets.util.MPLog;
 public class ConfigManagerMP
 {
     private static Configuration config;
-    public static String GENERAL = "configgeneralguimp";
-    public static String DIMENSIONS = "configdimensionguimp";
-    public static String BIOMES = "configbiomeguimp";
-    public static String OTHERS = "configotherguimp";
+    public static String GENERAL = "config_moreplanets_general";
+    public static String DIMENSIONS = "config_moreplanets_dimensions";
+    public static String BIOMES = "config_moreplanets_biomes";
+    public static String GC_ADDON_COMPAT = "config_moreplanets_gc_addon_compat";
+    public static String OTHERS = "config_moreplanets_others";
 
     // General
     public static String startedPlanet;
@@ -65,6 +66,14 @@ public class ConfigManagerMP
     public static int idBaseRocketSchematicGui;
     public static int idBaseSchematicGui;
 
+    // GC-Addon Compatibility stuffs
+    public static boolean enableTier4RocketSchematic;
+    public static boolean enableTier5RocketSchematic;
+    public static boolean enableTier6RocketSchematic;
+    public static boolean enableTier4RocketRecipe;
+    public static boolean enableTier5RocketRecipe;
+    public static boolean enableTier6RocketRecipe;
+
     public static void init(File file)
     {
         ConfigManagerMP.config = new Configuration(file);
@@ -86,6 +95,7 @@ public class ConfigManagerMP
             ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.GENERAL, ConfigManagerMP.addGeneralConfig());
             ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.DIMENSIONS, ConfigManagerMP.addDimensionIDConfig());
             ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.BIOMES, ConfigManagerMP.addBiomeIDConfig());
+            ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.GC_ADDON_COMPAT, ConfigManagerMP.addGCAddonCompatConfig());
             ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.OTHERS, ConfigManagerMP.addOtherConfig());
 
             if (ConfigManagerMP.config.hasChanged())
@@ -267,6 +277,42 @@ public class ConfigManagerMP
         return propOrder;
     }
 
+    private static ArrayList<String> addGCAddonCompatConfig()
+    {
+        ArrayList<String> propOrder = Lists.newArrayList();
+        Property prop;
+        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 4 Rocket Schematic", true);
+        ConfigManagerMP.enableTier4RocketSchematic = prop.getBoolean();
+        prop.setRequiresMcRestart(true);
+        propOrder.add(prop.getName());
+
+        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 5 Rocket Schematic", true);
+        ConfigManagerMP.enableTier5RocketSchematic = prop.getBoolean();
+        prop.setRequiresMcRestart(true);
+        propOrder.add(prop.getName());
+
+        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 6 Rocket Schematic", true);
+        ConfigManagerMP.enableTier6RocketSchematic = prop.getBoolean();
+        prop.setRequiresMcRestart(true);
+        propOrder.add(prop.getName());
+
+        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 4 Rocket Recipe", true);
+        ConfigManagerMP.enableTier4RocketRecipe = prop.getBoolean();
+        prop.setRequiresMcRestart(true);
+        propOrder.add(prop.getName());
+
+        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 5 Rocket Recipe", true);
+        ConfigManagerMP.enableTier5RocketRecipe = prop.getBoolean();
+        prop.setRequiresMcRestart(true);
+        propOrder.add(prop.getName());
+
+        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 6 Rocket Recipe", true);
+        ConfigManagerMP.enableTier6RocketRecipe = prop.getBoolean();
+        prop.setRequiresMcRestart(true);
+        propOrder.add(prop.getName());
+        return propOrder;
+    }
+
     private static ArrayList<String> addOtherConfig()
     {
         ArrayList<String> propOrder = Lists.newArrayList();
@@ -304,9 +350,9 @@ public class ConfigManagerMP
         configBiome.setComment(GCCoreUtil.translate("gui.config.mp.biome"));
         list.add(new ConfigElement(configBiome));
 
-        ConfigCategory configSchematic = ConfigManagerMP.config.getCategory(ConfigManagerMP.OTHERS);
-        configSchematic.setComment(GCCoreUtil.translate("gui.config.mp.schematic"));
-        list.add(new ConfigElement(configSchematic));
+        ConfigCategory configGCAddon = ConfigManagerMP.config.getCategory(ConfigManagerMP.GC_ADDON_COMPAT);
+        configGCAddon.setComment(GCCoreUtil.translate("gui.config.mp.gcaddon"));
+        list.add(new ConfigElement(configGCAddon));
 
         ConfigCategory configGUIs = ConfigManagerMP.config.getCategory(ConfigManagerMP.OTHERS);
         configGUIs.setComment(GCCoreUtil.translate("gui.config.mp.other"));
