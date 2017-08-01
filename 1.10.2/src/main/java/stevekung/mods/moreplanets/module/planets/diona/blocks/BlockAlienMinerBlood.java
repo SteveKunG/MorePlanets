@@ -6,8 +6,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
@@ -19,6 +22,13 @@ public class BlockAlienMinerBlood extends BlockBaseMP
         this.setTickRandomly(true);
         this.setHardness(1.25F);
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override

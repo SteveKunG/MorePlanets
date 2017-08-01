@@ -1,5 +1,5 @@
 {
-    "parent": "block/cube",
+    "parent": "moreplanets:block/cube_upper_glow",
     "textures": {
         "particle": "moreplanets:blocks/diona_surface_rock",
         "down": "moreplanets:blocks/diona_sub_surface_rock",
@@ -7,6 +7,7 @@
         "north": "moreplanets:blocks/diona_surface_rock_side",
         "east": "moreplanets:blocks/diona_surface_rock_side",
         "south": "moreplanets:blocks/diona_surface_rock_side",
-        "west": "moreplanets:blocks/diona_surface_rock_side"
+        "west": "moreplanets:blocks/diona_surface_rock_side",
+        "up_glow": "moreplanets:blocks/alien_miner_blood_glow"
     }
 }

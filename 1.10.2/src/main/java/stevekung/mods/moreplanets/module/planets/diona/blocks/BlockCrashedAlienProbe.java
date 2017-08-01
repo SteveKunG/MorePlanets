@@ -9,10 +9,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityCrashedAlienProbe;
@@ -32,6 +35,13 @@ public class BlockCrashedAlienProbe extends BlockTileMP implements ISingleBlockR
         this.setHardness(5.0F);
         this.setResistance(12.0F);
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
