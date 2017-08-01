@@ -1,5 +1,4 @@
 ****diona stuff****
-alien miner blood/alien probe glowing texture rendering
 alien defender reinforcement
 
 ****chalos stuff****
