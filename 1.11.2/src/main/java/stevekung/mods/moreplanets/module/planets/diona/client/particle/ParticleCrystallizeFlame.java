@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.ClientRendererUtils;
+import stevekung.mods.moreplanets.util.ClientRendererUtil;
 
 @SideOnly(Side.CLIENT)
 public class ParticleCrystallizeFlame extends Particle
@@ -44,7 +44,7 @@ public class ParticleCrystallizeFlame extends Particle
         this.particleScale = this.flameScale * (1.0F - f * f * 1.0F);
         super.renderParticle(worldrenderer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
         tessellator.draw();
-        ClientRendererUtils.bindTexture("moreplanets:textures/particle/crystallize_flame.png");
+        ClientRendererUtil.bindTexture("moreplanets:textures/particle/crystallize_flame.png");
         float sizeFactor = 0.1F * this.particleScale;
         float var13 = (float)(this.prevPosX + (this.posX - this.prevPosX) * partialTicks - Particle.interpPosX);
         float var14 = (float)(this.prevPosY + (this.posY - this.prevPosY) * partialTicks - Particle.interpPosY);
@@ -55,7 +55,7 @@ public class ParticleCrystallizeFlame extends Particle
         worldrenderer.pos(var13 + rotationX * sizeFactor + rotationXY * sizeFactor, var14 + rotationZ * sizeFactor, var15 + rotationYZ * sizeFactor + rotationXZ * sizeFactor).tex(1.0D, 0.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
         worldrenderer.pos(var13 + rotationX * sizeFactor - rotationXY * sizeFactor, var14 - rotationZ * sizeFactor, var15 + rotationYZ * sizeFactor - rotationXZ * sizeFactor).tex(0.0D, 0.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
         tessellator.draw();
-        ClientRendererUtils.drawDefaultParticlesTexture(worldrenderer);
+        ClientRendererUtil.drawDefaultParticlesTexture(worldrenderer);
     }
 
     @Override

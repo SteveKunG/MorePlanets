@@ -20,7 +20,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
 
-public class ClientRendererUtils
+public class ClientRendererUtil
 {
     public static void renderModel(IBlockState state)
     {
@@ -37,16 +37,16 @@ public class ClientRendererUtils
         float f = (i >> 16 & 255) / 255.0F;
         float f1 = (i >> 8 & 255) / 255.0F;
         float f2 = (i & 255) / 255.0F;
-        ClientRendererUtils.renderModelBrightnessColor(state, model, 1.0F, f, f1, f2);
+        ClientRendererUtil.renderModelBrightnessColor(state, model, 1.0F, f, f1, f2);
     }
 
     public static void renderModelBrightnessColor(IBlockState state, IBakedModel model, float brightness, float red, float green, float blue)
     {
         for (EnumFacing facing : EnumFacing.VALUES)
         {
-            ClientRendererUtils.renderModelBrightnessColorQuads(brightness, red, green, blue, model.getQuads(state, facing, 0L));
+            ClientRendererUtil.renderModelBrightnessColorQuads(brightness, red, green, blue, model.getQuads(state, facing, 0L));
         }
-        ClientRendererUtils.renderModelBrightnessColorQuads(brightness, red, green, blue, model.getQuads(state, (EnumFacing)null, 0L));
+        ClientRendererUtil.renderModelBrightnessColorQuads(brightness, red, green, blue, model.getQuads(state, (EnumFacing)null, 0L));
     }
 
     private static void renderModelBrightnessColorQuads(float brightness, float red, float green, float blue, List<BakedQuad> listQuads)
@@ -63,11 +63,11 @@ public class ClientRendererUtils
 
             if (bakedquad.hasTintIndex())
             {
-                ClientRendererUtils.putColorRGB_F4(vertexbuffer, red * brightness, green * brightness, blue * brightness);
+                ClientRendererUtil.putColorRGB_F4(vertexbuffer, red * brightness, green * brightness, blue * brightness);
             }
             else
             {
-                ClientRendererUtils.putColorRGB_F4(vertexbuffer, brightness, brightness, brightness);
+                ClientRendererUtil.putColorRGB_F4(vertexbuffer, brightness, brightness, brightness);
             }
             Vec3i vec3i = bakedquad.getFace().getDirectionVec();
             vertexbuffer.putNormal(vec3i.getX(), vec3i.getY(), vec3i.getZ());
@@ -79,7 +79,7 @@ public class ClientRendererUtils
     {
         for (int i = 0; i < 4; ++i)
         {
-            ClientRendererUtils.putColorRGB_F(vertexbuffer, red, green, blue, i + 1);
+            ClientRendererUtil.putColorRGB_F(vertexbuffer, red, green, blue, i + 1);
         }
     }
 

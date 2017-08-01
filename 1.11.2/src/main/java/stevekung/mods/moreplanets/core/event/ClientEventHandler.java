@@ -59,7 +59,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
@@ -163,7 +163,7 @@ public class ClientEventHandler
     public void onPlayerTick(PlayerTickEvent event)
     {
         String URL = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
-        JsonUtils json = new JsonUtils();
+        JsonUtil json = new JsonUtil();
         EntityPlayer player = event.player;
 
         if (player != null)

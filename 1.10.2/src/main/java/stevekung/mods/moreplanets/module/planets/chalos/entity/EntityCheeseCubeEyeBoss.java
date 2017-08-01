@@ -43,7 +43,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.entity.EntityFlyingBossMP;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
@@ -264,8 +264,8 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
                 for (EntityPlayer player2 : playerWithin)
                 {
-                    JsonUtils json = new JsonUtils();
-                    player2.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    JsonUtil json = new JsonUtil();
+                    player2.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();
                 return;

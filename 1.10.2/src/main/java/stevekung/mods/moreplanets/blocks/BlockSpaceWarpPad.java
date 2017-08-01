@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPad;
 import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
@@ -71,7 +71,7 @@ public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSeal
     {
         if (!(GCCoreUtil.getDimensionID(world) == 0 || world.provider instanceof IGalacticraftWorldProvider))
         {
-            FMLClientHandler.instance().getClientPlayerEntity().addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.place_only_space.message")).setStyle(new JsonUtils().red()));
+            FMLClientHandler.instance().getClientPlayerEntity().addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.place_only_space.message")).setStyle(new JsonUtil().red()));
             return false;
         }
         if (!this.checkAxis(world, pos, EnumFacing.EAST) || !this.checkAxis(world, pos, EnumFacing.WEST) || !this.checkAxis(world, pos, EnumFacing.NORTH) || !this.checkAxis(world, pos, EnumFacing.SOUTH))

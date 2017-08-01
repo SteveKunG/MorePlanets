@@ -39,7 +39,7 @@ import stevekung.mods.moreplanets.core.handler.TeleportHandler;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.MPLog;
 
 public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartialSealableBlock
@@ -175,12 +175,12 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                     if (warpCoreData != null && warpCoreData.hasKey("DimensionID"))
                     {
                         warpPad.setTeleportData(new BlockPos(warpCoreData.getInteger("X"), warpCoreData.getInteger("Y"), warpCoreData.getInteger("Z")), warpCoreData.getInteger("DimensionID"), true);
-                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.warp_pad_data_add.message")).setStyle(new JsonUtils().colorFromConfig("green")));
+                        player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.warp_pad_data_add.message")).setStyle(new JsonUtil().colorFromConfig("green")));
                         return true;
                     }
                     else
                     {
-                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.warp_pad_data_add_fail.message")).setStyle(new JsonUtils().red()));
+                        player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.warp_pad_data_add_fail.message")).setStyle(new JsonUtil().red()));
 
                         if (warpCoreData == null)
                         {
@@ -196,7 +196,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                     {
                         if (warpPad.getCheckInvalid())
                         {
-                            player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.cannot_detect_pad.message")).setStyle(new JsonUtils().red()));
+                            player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.cannot_detect_pad.message")).setStyle(new JsonUtil().red()));
                             return false;
                         }
                         if (!warpPad.disabled)
@@ -219,13 +219,13 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                             }
                             else
                             {
-                                player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.status.missingpower.name")).setStyle(new JsonUtils().red()));
+                                player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.status.missingpower.name")).setStyle(new JsonUtil().red()));
                                 return true;
                             }
                         }
                         else
                         {
-                            player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtils().red()));
+                            player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtil().red()));
                         }
                     }
                     else
@@ -238,7 +238,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                 {
                     if (player.isSneaking())
                     {
-                        player.addChatMessage(new JsonUtils().text(GCCoreUtil.translate("gui.no_warp_data.message")).setStyle(new JsonUtils().red()));
+                        player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.no_warp_data.message")).setStyle(new JsonUtil().red()));
                         return true;
                     }
                     else

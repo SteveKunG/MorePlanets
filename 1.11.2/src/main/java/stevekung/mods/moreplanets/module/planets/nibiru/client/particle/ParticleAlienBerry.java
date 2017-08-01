@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.ClientRendererUtils;
+import stevekung.mods.moreplanets.util.ClientRendererUtil;
 
 @SideOnly(Side.CLIENT)
 public class ParticleAlienBerry extends Particle
@@ -39,7 +39,7 @@ public class ParticleAlienBerry extends Particle
         Tessellator tessellator = Tessellator.getInstance();
         super.renderParticle(worldrenderer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
         tessellator.draw();
-        ClientRendererUtils.bindTexture("moreplanets:textures/particle/alien_berry.png");
+        ClientRendererUtil.bindTexture("moreplanets:textures/particle/alien_berry.png");
         float sizeFactor = 0.1F * this.particleScale;
         float var13 = (float)(this.prevPosX + (this.posX - this.prevPosX) * partialTicks - Particle.interpPosX);
         float var14 = (float)(this.prevPosY + (this.posY - this.prevPosY) * partialTicks - Particle.interpPosY);
@@ -50,7 +50,7 @@ public class ParticleAlienBerry extends Particle
         worldrenderer.pos(var13 + rotationX * sizeFactor + rotationXY * sizeFactor, var14 + rotationZ * sizeFactor, var15 + rotationYZ * sizeFactor + rotationXZ * sizeFactor).tex(1.0D, 0.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
         worldrenderer.pos(var13 + rotationX * sizeFactor - rotationXY * sizeFactor, var14 - rotationZ * sizeFactor, var15 + rotationYZ * sizeFactor - rotationXZ * sizeFactor).tex(0.0D, 0.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
         tessellator.draw();
-        ClientRendererUtils.drawDefaultParticlesTexture(worldrenderer);
+        ClientRendererUtil.drawDefaultParticlesTexture(worldrenderer);
     }
 
     @Override

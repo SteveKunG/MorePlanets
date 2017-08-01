@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 
 public class ItemSpaceWarperCore extends ItemBaseMP
@@ -34,7 +34,7 @@ public class ItemSpaceWarperCore extends ItemBaseMP
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        JsonUtils json = new JsonUtils();
+        JsonUtil json = new JsonUtil();
         ItemStack itemStack = player.getHeldItem(hand);
 
         if (!player.world.isRemote)

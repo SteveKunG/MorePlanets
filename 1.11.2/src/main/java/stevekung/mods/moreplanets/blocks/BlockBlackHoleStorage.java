@@ -27,7 +27,7 @@ import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
@@ -137,7 +137,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                 }
                 else
                 {
-                    JsonUtils json = new JsonUtils();
+                    JsonUtil json = new JsonUtil();
                     player.sendMessage(json.text(GCCoreUtil.translate("gui.bh_storage_not_owner.message")).setStyle(json.red()));
                 }
             }

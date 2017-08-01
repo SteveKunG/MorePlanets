@@ -41,7 +41,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.Entity
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
@@ -382,7 +382,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
 
                 for (EntityPlayer player : playerWithin)
                 {
-                    JsonUtils json = new JsonUtils();
+                    JsonUtil json = new JsonUtil();
                     player.sendMessage(json.text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
                 }
                 this.setDead();

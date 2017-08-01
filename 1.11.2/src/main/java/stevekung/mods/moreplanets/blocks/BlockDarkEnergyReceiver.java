@@ -36,7 +36,7 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
@@ -148,12 +148,12 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                                 {
                                     tile.setActivated(true);
                                     tile.getWorld().playSound(player, tile.getPos(), MPSounds.MACHINE_START, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                                    player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_success.message")).setStyle(new JsonUtils().colorFromConfig("green")));
+                                    player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_success.message")).setStyle(new JsonUtil().colorFromConfig("green")));
                                     return true;
                                 }
                                 else
                                 {
-                                    player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_already_active.message")).setStyle(new JsonUtils().red()));
+                                    player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_already_active.message")).setStyle(new JsonUtil().red()));
                                     return false;
                                 }
                             }
@@ -161,14 +161,14 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                             {
                                 if (!tile.isActivated())
                                 {
-                                    player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_no_power.message")).setStyle(new JsonUtils().red()));
+                                    player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_no_power.message")).setStyle(new JsonUtil().red()));
                                     return false;
                                 }
                             }
                         }
                         else
                         {
-                            player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtils().red()));
+                            player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtil().red()));
                             return false;
                         }
                     }
@@ -189,7 +189,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                         {
                             s = "";
                         }
-                        player.sendMessage(new JsonUtils().text(GCCoreUtil.translateWithFormat("gui.dark_energy_malfunction.message", this.ticksToElapsedTime(failedTick)) + " second" + s + "!").setStyle(new JsonUtils().red()));
+                        player.sendMessage(new JsonUtil().text(GCCoreUtil.translateWithFormat("gui.dark_energy_malfunction.message", this.ticksToElapsedTime(failedTick)) + " second" + s + "!").setStyle(new JsonUtil().red()));
                         return false;
                     }
                     else
@@ -224,7 +224,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
         {
             if (!flag)
             {
-                player.sendMessage(new JsonUtils().text("Missing block " + state.getBlock().getLocalizedName() + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ()).setStyle(new JsonUtils().red()));
+                player.sendMessage(new JsonUtil().text("Missing block " + state.getBlock().getLocalizedName() + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ()).setStyle(new JsonUtil().red()));
             }
             return false;
         }

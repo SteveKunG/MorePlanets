@@ -11,11 +11,11 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
 
-public class JsonUtils
+public class JsonUtil
 {
     public static ITextComponent rawTextToJson(String json)
     {
-        ITextComponent text = new JsonUtils().text("null ").setStyle(new JsonUtils().red());
+        ITextComponent text = new JsonUtil().text("null ").setStyle(new JsonUtil().red());
 
         try
         {
@@ -23,9 +23,9 @@ public class JsonUtils
         }
         catch (JsonParseException jsonparseexception)
         {
-            if (Minecraft.getMinecraft().thePlayer.ticksExisted % 300 == 0)
+            if (Minecraft.getMinecraft().player.ticksExisted % 300 == 0)
             {
-                Minecraft.getMinecraft().thePlayer.addChatMessage(new JsonUtils().text(jsonparseexception.getMessage()).setStyle(new JsonUtils().red()));
+                Minecraft.getMinecraft().player.sendMessage(new JsonUtil().text(jsonparseexception.getMessage()).setStyle(new JsonUtil().red()));
             }
         }
         return text;

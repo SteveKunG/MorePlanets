@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 
 public class ItemBlockNuclearWasteTank extends ItemBlock
 {
@@ -34,7 +34,7 @@ public class ItemBlockNuclearWasteTank extends ItemBlock
         {
             if (world.isRemote)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
             }
             return false;
         }
@@ -42,7 +42,7 @@ public class ItemBlockNuclearWasteTank extends ItemBlock
         {
             if (world.isRemote)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtils().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtils().red()).getFormattedText(), false);
+                FMLClientHandler.instance().getClient().ingameGUI.setRecordPlaying(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
             }
             return false;
         }

@@ -49,7 +49,7 @@ import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityDarkLightningBolt;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.util.JsonUtils;
+import stevekung.mods.moreplanets.util.JsonUtil;
 
 public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
 {
@@ -304,7 +304,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         this.setDisabled(0, true);
                         this.activatedMessage = true;
                         this.successful = true;
-                        FMLClientHandler.instance().getClient().player.sendMessage(new JsonUtils().text(GCCoreUtil.translate("gui.status.dark_energy_core_created.name")).setStyle(new JsonUtils().colorFromConfig("green")));
+                        FMLClientHandler.instance().getClient().player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.status.dark_energy_core_created.name")).setStyle(new JsonUtil().colorFromConfig("green")));
                     }
                 }
 
