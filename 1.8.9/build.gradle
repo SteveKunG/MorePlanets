@@ -29,35 +29,35 @@ minecraft {
     version = "1.8.9-11.15.1.2318-1.8.9"
     runDir = "run"
     mappings = "stable_20"
-	makeObfSourceJar = false
+    makeObfSourceJar = false
 }
 
 repositories {
-	maven {
-		url "http://dvs1.progwml6.com/files/maven"
-	}
-	maven {
-		url "https://plugins.gradle.org/m2/"
-	}
+    maven {
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
 }
 
 dependencies {
-	compile "mezz.jei:jei_${mc_version}:${jei_version}"
-	runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    compile "mezz.jei:jei_${mc_version}:${jei_version}"
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
 }
 
 curseforge {
-	apiKey = parsedApi.apiKey
-	project {
-		id = '261990'
-		changelog = 'To read full change log use command /mpchangelog in-game.'
-		releaseType = 'release'
-		addGameVersion mcVersion
+    apiKey = parsedApi.apiKey
+    project {
+        id = '261990'
+        changelog = 'To read full change log use command /mpchangelog in-game.'
+        releaseType = 'release'
+        addGameVersion mcVersion
 
-		mainArtifact(file('build/libs/More-Planets-' + mcVersion + '-' + version + '.jar')) {
-			displayName = "More-Planets-" + mcVersion + "-" + version
-		}
-	}
+        mainArtifact(file('build/libs/More-Planets-' + mcVersion + '-' + version + '.jar')) {
+            displayName = "More-Planets-" + mcVersion + "-" + version
+        }
+    }
 }
 
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
@@ -65,55 +65,56 @@ ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'lice
 
 // build normal jar
 task buildJar(type: Jar, dependsOn: "rePackAllJar") {
-	outputs.upToDateWhen { false }
-	baseName = "More-Planets-" + mcVersion
+    outputs.upToDateWhen { false }
+    baseName = "More-Planets-" + mcVersion
 
-	from(zipTree(project.ext.coreJar)) {
-		includes.addAll(project.ext.coreFiles)
-	}
-	manifest {
-		attributes.put("FMLAT", "moreplanets_at.cfg")
-		attributes.put("FMLCorePluginContainsFMLMod", "true")
-	}
+    from(zipTree(project.ext.coreJar)) {
+        includes.addAll(project.ext.coreFiles)
+    }
+    manifest {
+        attributes.put("FMLAT", "moreplanets_at.cfg")
+        attributes.put("FMLCorePluginContainsFMLMod", "true")
+    }
 }
 
 task rePackAllJar(type: Jar, dependsOn: "copyModFiles") {
-	from 'temporary'
+    from 'temporary'
 }
 
 task copyModFiles(type: Copy, dependsOn: "reobfJar") {
-	from(zipTree(project.ext.coreJar))
-	into 'temporary'
+    from(zipTree(project.ext.coreJar))
+    into 'temporary'
 }
 
 // build deobf jar
 task buildDeobfJar(type: Jar, dependsOn: "rePackAllDeobfJar") {
-	outputs.upToDateWhen { false }
-	baseName = "More-Planets-" + mcVersion
-	classifier = 'deobf'
+    outputs.upToDateWhen { false }
+    baseName = "More-Planets-" + mcVersion
+    classifier = 'deobf'
 
-	from(zipTree(project.ext.coreJar)) {
-		includes.addAll(project.ext.coreFiles)
-	}
-	manifest {
-		attributes.put("FMLAT", "moreplanets_at.cfg")
-		attributes.put("FMLCorePluginContainsFMLMod", "true")
-	}
+    from(zipTree(project.ext.coreJar)) {
+        includes.addAll(project.ext.coreFiles)
+    }
+    manifest {
+        attributes.put("FMLAT", "moreplanets_at.cfg")
+        attributes.put("FMLCorePluginContainsFMLMod", "true")
+    }
 }
 
 task rePackAllDeobfJar(type: Jar, dependsOn: "copyDeobfModFiles") {
-	from 'temporary_deobf'
+    from 'temporary_deobf'
 }
 
 task copyDeobfModFiles(type: Copy, dependsOn: "reobfJar") {
-	from sourceSets.main.output
-	into 'temporary_deobf'
+    from sourceSets.main.output
+    into 'temporary_deobf'
 }
 
 // delete temp folders
 task deleteTemporary(type: Delete) {
-	delete 'temporary'
-	delete 'temporary_deobf'
+    delete 'temporary'
+    delete 'temporary_deobf'
 }
 
+buildJar.finalizedBy(deleteTemporary)
 buildDeobfJar.finalizedBy(deleteTemporary)

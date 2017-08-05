@@ -30,7 +30,6 @@ LICENSE-new.txt
 build
 eclipse
 run
-temporary
 
 */src/main/java/api
 */src/main/java/appeng
@@ -45,6 +44,7 @@ temporary
 */src/main/java/mezz
 */src/main/java/powercrystals
 */src/main/java/net
+*/src/main/java/stevekung/mods/indicatia
 */src/main/java/tconstruct
 */src/main/java/uristqwerty
 */src/main/resources/assets/galacticraftcore
