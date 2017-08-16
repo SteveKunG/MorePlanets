@@ -49,8 +49,8 @@ public class SiriusBItems
         RegisterHelper.registerItem(SiriusBItems.sirius_lava_bucket);
         RegisterHelper.registerItem(SiriusBItems.sirius_b_dungeon_key);
 
-        OreDictionary.registerOre("ingotSulfur", new ItemStack(SiriusBItems.sirius_b_item, 1, 0));
-        OreDictionary.registerOre("compressedSulfur", new ItemStack(SiriusBItems.sirius_b_item, 1, 1));
+        OreDictionary.registerOre("ingotSulfur", new ItemStack(SiriusBItems.sirius_b_item, 1, 3));
+        OreDictionary.registerOre("compressedSulfur", new ItemStack(SiriusBItems.sirius_b_item, 1, 4));
     }
 
     private static void registerFluidContainer()
