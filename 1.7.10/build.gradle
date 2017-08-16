@@ -29,7 +29,7 @@ def parsedApi = new groovy.json.JsonSlurper().parseText(apiJson.text)
 def mcVersion = '1.7.10'
 
 apply plugin: 'forge'
-version = "1.4.1-GC501"
+version = "1.4.2-GC502"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_7
@@ -45,6 +45,7 @@ curseforge {
         id = '261990'
         releaseType = 'release'
         addGameVersion mcVersion
+        addGameVersion 'Java 7'
 
         mainArtifact(file('build/libs/More-Planets-' + mcVersion + '-' + version + '.jar')) {
             displayName = "More-Planets-" + mcVersion + "-" + version
