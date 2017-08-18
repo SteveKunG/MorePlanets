@@ -24,7 +24,7 @@ plugins {
     id 'com.matthewprenger.cursegradle' version '1.0.9'
 }
 
-def apiJson = file('D:/.M/Minecraft Modding Workspace/MorePlanets/apiToken.json')
+def apiJson = file('M:/Minecraft Modding Workspace/more_planets_api_token.json')
 def parsedApi = new groovy.json.JsonSlurper().parseText(apiJson.text)
 def mcVersion = '1.7.10'
 
@@ -59,7 +59,7 @@ ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/deimos/**', 'assets/di
 'assets/polongnius/**', 'assets/siriusb/**', 'assets/venus/**']
 
 // build normal jar
-task buildCore(type: Jar, dependsOn: "rePackAllJar") {
+task buildJar(type: Jar, dependsOn: "rePackAllJar") {
     outputs.upToDateWhen { false }
     baseName = "More-Planets-" + mcVersion
 
@@ -103,5 +103,5 @@ task deleteTemporary(type: Delete) {
     delete 'temporary_deobf'
 }
 
-buildCore.finalizedBy(deleteTemporary)
+buildJar.finalizedBy(deleteTemporary)
 buildDeobfJar.finalizedBy(deleteTemporary)
