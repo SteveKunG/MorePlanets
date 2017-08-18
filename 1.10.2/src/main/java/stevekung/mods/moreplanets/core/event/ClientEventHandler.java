@@ -2,8 +2,11 @@ package stevekung.mods.moreplanets.core.event;
 
 import java.util.*;
 
+import org.lwjgl.input.Keyboard;
+
 import com.google.common.collect.ImmutableList;
 
+import mezz.jei.JustEnoughItems;
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
@@ -106,6 +109,10 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onClientTick(ClientTickEvent event)
     {
+        if (MorePlanetsCore.isObfuscatedEnvironment() && Keyboard.isKeyDown(Keyboard.KEY_F7))
+        {
+            JustEnoughItems.getProxy().restartJEI();
+        }
         if (ClientEventHandler.loadRenderers)
         {
             if (--this.loadRendererTick == 0)
