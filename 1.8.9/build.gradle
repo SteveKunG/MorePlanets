@@ -15,7 +15,7 @@ plugins {
     id 'com.matthewprenger.cursegradle' version '1.0.9'
 }
 
-def apiJson = file('M:/Minecraft Modding Workspace/more_planets_api_token.json')
+def apiJson = file('M:/Modding/more_planets_api_token.json')
 def parsedApi = new groovy.json.JsonSlurper().parseText(apiJson.text)
 def mcVersion = '1.8.9'
 
