@@ -45,6 +45,7 @@ curseforge {
         id = '261990'
         releaseType = 'release'
         addGameVersion mcVersion
+        addGameVersion 'Java 8'
 
         mainArtifact(file('build/libs/More-Planets-' + mcVersion + '-' + version + '.jar')) {
             displayName = "More-Planets-" + mcVersion + "-" + version
