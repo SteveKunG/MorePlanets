@@ -117,7 +117,22 @@ public class ChalosBlocks
         /**********************HARVEST LEVEL STUFF*********************/
         /**************************************************************/
 
-        CommonRegisterHelper.setBlockHarvestLevel(ChalosBlocks.CHALOS_BLOCK, EnumHarvestLevel.PICKAXE, 0);
+        for (int i = 0; i < BlockChalos.BlockType.valuesCached().length; i++)
+        {
+            if (i == 2 || i == 3)
+            {
+                CommonRegisterHelper.setBlockHarvestLevel(ChalosBlocks.CHALOS_BLOCK, EnumHarvestLevel.PICKAXE, 2, i);
+            }
+            else if (i >= 5 && i <= 11)
+            {
+                CommonRegisterHelper.setBlockHarvestLevel(ChalosBlocks.CHALOS_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
+            }
+            else
+            {
+                CommonRegisterHelper.setBlockHarvestLevel(ChalosBlocks.CHALOS_BLOCK, EnumHarvestLevel.PICKAXE, 0, i);
+            }
+        }
+
         CommonRegisterHelper.setBlockHarvestLevel(ChalosBlocks.CHALOS_COBBLESTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         CommonRegisterHelper.setBlockHarvestLevel(ChalosBlocks.CHALOS_DUNGEON_BRICK_STAIRS, EnumHarvestLevel.PICKAXE, 1);
         CommonRegisterHelper.setBlockHarvestLevel(ChalosBlocks.CHEESE_GRASS, EnumHarvestLevel.SHOVEL, 0);

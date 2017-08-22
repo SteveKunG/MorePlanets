@@ -48,6 +48,34 @@ public class FronosBlocks
         /**********************HARVEST LEVEL STUFF*********************/
         /**************************************************************/
 
+        for (int i = 0; i < BlockFronosOre.BlockType.valuesCached().length; i++)
+        {
+            if (i == 6 || i == 12)
+            {
+                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 0, i);
+            }
+            else if (i == 0 || i >= 2 && i <= 5 || i == 7)
+            {
+                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 1, i);
+            }
+            else
+            {
+                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 2, i);
+            }
+        }
+
+        for (int i = 0; i < BlockFronos.BlockType.valuesCached().length; i++)
+        {
+            if (i == 6)
+            {
+                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
+            }
+            else
+            {
+                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_BLOCK, EnumHarvestLevel.PICKAXE, 0, i);
+            }
+        }
+
         CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_GRASS, EnumHarvestLevel.SHOVEL, 0);
         CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_DIRT, EnumHarvestLevel.SHOVEL, 0);
         CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_FARMLAND, EnumHarvestLevel.SHOVEL, 0);

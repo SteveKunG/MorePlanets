@@ -106,11 +106,11 @@ public class DionaBlocks
 
         for (int i = 0; i < BlockDiona.BlockType.valuesCached().length; i++)
         {
-            if (i == 4 || i == 5 || i == 8 || i == 9 || i == 10)
+            if (i == 4 || i == 5)
             {
                 CommonRegisterHelper.setBlockHarvestLevel(DionaBlocks.DIONA_BLOCK, EnumHarvestLevel.PICKAXE, 2, i);
             }
-            else if (i == 6 || i == 7 || i == 11)
+            else if (i >= 6 && i <= 10 || i == 11)
             {
                 CommonRegisterHelper.setBlockHarvestLevel(DionaBlocks.DIONA_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
             }
