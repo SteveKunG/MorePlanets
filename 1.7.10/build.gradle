@@ -32,7 +32,7 @@ apply plugin: 'forge'
 version = "1.4.2-GC502"
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_7
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
@@ -45,7 +45,6 @@ curseforge {
         id = '261990'
         releaseType = 'release'
         addGameVersion mcVersion
-        addGameVersion 'Java 7'
 
         mainArtifact(file('build/libs/More-Planets-' + mcVersion + '-' + version + '.jar')) {
             displayName = "More-Planets-" + mcVersion + "-" + version
