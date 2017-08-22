@@ -8,4 +8,5 @@
 -Fixed- Fixed z-fighting on Chests texture
 -Fixed- Fixed Chests bounding box
 -Fixed- Fixed Space Fishing Rod spawning/model rendering
+-Fixed- Fixed block harvest level
 -Removed- Removed unnecessary config
