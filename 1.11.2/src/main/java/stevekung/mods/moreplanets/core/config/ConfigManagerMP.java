@@ -276,7 +276,7 @@ public class ConfigManagerMP
         propOrder.add(prop.getName());
         return propOrder;
     }
-    
+
     private static ArrayList<String> addGCAddonCompatConfig()
     {
         ArrayList<String> propOrder = Lists.newArrayList();
