@@ -79,8 +79,6 @@ public class FronosBlocks
         CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_GRASS, EnumHarvestLevel.SHOVEL, 0);
         CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_DIRT, EnumHarvestLevel.SHOVEL, 0);
         CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_FARMLAND, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_BLOCK, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 0);
 
         /**************************************************************/
         /************************FIRE BURN STUFF***********************/

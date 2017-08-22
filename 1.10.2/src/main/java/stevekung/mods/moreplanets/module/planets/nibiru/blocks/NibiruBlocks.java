@@ -341,7 +341,6 @@ public class NibiruBlocks
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.PURIFY_GRAVEL, EnumHarvestLevel.SHOVEL, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_GRASS_PATH, EnumHarvestLevel.SHOVEL, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SANDSTONE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BLOCK, EnumHarvestLevel.PICKAXE, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SANDSTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
