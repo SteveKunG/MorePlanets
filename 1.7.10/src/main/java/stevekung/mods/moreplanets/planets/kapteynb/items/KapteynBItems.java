@@ -56,7 +56,7 @@ public class KapteynBItems
         RegisterHelper.registerItem(KapteynBItems.tier8_rocket_schematic);
 
         OreDictionary.registerOre("ingotFrozenIron", new ItemStack(KapteynBItems.kapteyn_b_item, 1, 0));
-        OreDictionary.registerOre("uranium", new ItemStack(KapteynBItems.kapteyn_b_item, 1, 1));
+        OreDictionary.registerOre("ingotUranium", new ItemStack(KapteynBItems.kapteyn_b_item, 1, 1));
         OreDictionary.registerOre("compressedFrozenIron", new ItemStack(KapteynBItems.kapteyn_b_item, 1, 2));
     }
 

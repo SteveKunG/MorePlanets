@@ -7,7 +7,6 @@
 
 package stevekung.mods.moreplanets.planets.kapteynb.items.tools;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.potion.Potion;
@@ -48,46 +47,11 @@ public class KapteynBToolsItems
 
     private static void initItems()
     {
-        KapteynBToolsItems.frozen_iron_pickaxe = new ItemElectricPickaxeMP("frozen_iron_pickaxe", KapteynBToolsItems.frozen_iron, 22500.0F, new IToolEffect()
-        {
-            @Override
-            public void addEffect(EntityLivingBase living)
-            {
-                living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60));
-            }
-        }).setTextureName("kapteynb:frozen_iron_pickaxe");
-        KapteynBToolsItems.frozen_iron_axe = new ItemElectricAxeMP("frozen_iron_axe", KapteynBToolsItems.frozen_iron, 22500.0F, new IToolEffect()
-        {
-            @Override
-            public void addEffect(EntityLivingBase living)
-            {
-                living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60));
-            }
-        }).setTextureName("kapteynb:frozen_iron_axe");
-        KapteynBToolsItems.frozen_iron_hoe = new ItemElectricHoeMP("frozen_iron_hoe", KapteynBToolsItems.frozen_iron, 22500.0F, new IToolEffect()
-        {
-            @Override
-            public void addEffect(EntityLivingBase living)
-            {
-                living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60));
-            }
-        }).setTextureName("kapteynb:frozen_iron_hoe");
-        KapteynBToolsItems.frozen_iron_shovel = new ItemElectricShovelMP("frozen_iron_spade", KapteynBToolsItems.frozen_iron, 22500.0F, new IToolEffect()
-        {
-            @Override
-            public void addEffect(EntityLivingBase living)
-            {
-                living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60));
-            }
-        }).setTextureName("kapteynb:frozen_iron_shovel");
-        KapteynBToolsItems.frozen_iron_sword = new ItemElectricSwordMP("frozen_iron_sword", KapteynBToolsItems.frozen_iron, 22500.0F, new IToolEffect()
-        {
-            @Override
-            public void addEffect(EntityLivingBase living)
-            {
-                living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60));
-            }
-        }).setTextureName("kapteynb:frozen_iron_sword");
+        KapteynBToolsItems.frozen_iron_pickaxe = new ItemElectricPickaxeMP("frozen_iron_pickaxe", KapteynBToolsItems.frozen_iron, 22500.0F, living -> living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60))).setTextureName("kapteynb:frozen_iron_pickaxe");
+        KapteynBToolsItems.frozen_iron_axe = new ItemElectricAxeMP("frozen_iron_axe", KapteynBToolsItems.frozen_iron, 22500.0F, living -> living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60))).setTextureName("kapteynb:frozen_iron_axe");
+        KapteynBToolsItems.frozen_iron_hoe = new ItemElectricHoeMP("frozen_iron_hoe", KapteynBToolsItems.frozen_iron, 22500.0F, living -> living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60))).setTextureName("kapteynb:frozen_iron_hoe");
+        KapteynBToolsItems.frozen_iron_shovel = new ItemElectricShovelMP("frozen_iron_spade", KapteynBToolsItems.frozen_iron, 22500.0F, living -> living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60))).setTextureName("kapteynb:frozen_iron_shovel");
+        KapteynBToolsItems.frozen_iron_sword = new ItemElectricSwordMP("frozen_iron_sword", KapteynBToolsItems.frozen_iron, 22500.0F, living -> living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60))).setTextureName("kapteynb:frozen_iron_sword");
         KapteynBToolsItems.uranium_pickaxe = new ItemUraniumPickaxe("uranium_pickaxe", KapteynBToolsItems.uranium).setTextureName("kapteynb:uranium_pickaxe");
         KapteynBToolsItems.uranium_axe = new ItemUraniumAxe("uranium_axe", KapteynBToolsItems.uranium).setTextureName("kapteynb:uranium_axe");
         KapteynBToolsItems.uranium_hoe = new ItemUraniumHoe("uranium_hoe", KapteynBToolsItems.uranium).setTextureName("kapteynb:uranium_hoe");
