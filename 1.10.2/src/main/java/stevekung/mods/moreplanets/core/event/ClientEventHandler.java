@@ -1,12 +1,12 @@
 package stevekung.mods.moreplanets.core.event;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.ImmutableList;
 
-import mezz.jei.JustEnoughItems;
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
@@ -111,7 +111,17 @@ public class ClientEventHandler
     {
         if (MorePlanetsCore.isObfuscatedEnvironment() && Keyboard.isKeyDown(Keyboard.KEY_F7))
         {
-            JustEnoughItems.getProxy().restartJEI();
+            try
+            {
+                Class<?> clazz = Class.forName("mezz.jei.JustEnoughItems");
+                Method method = clazz.getDeclaredMethod("getProxy");
+                Object obj = method.invoke(Class.forName("mezz.jei.ProxyCommonClient"));
+                obj.getClass().getDeclaredMethod("restartJEI").invoke(obj);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
         if (ClientEventHandler.loadRenderers)
         {
