@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.core.event;
 
-import java.lang.reflect.Method;
 import java.util.*;
 
 import org.lwjgl.input.Keyboard;
@@ -113,9 +112,9 @@ public class ClientEventHandler
         {
             try
             {
+                // used for real time debugging item description
                 Class<?> clazz = Class.forName("mezz.jei.JustEnoughItems");
-                Method method = clazz.getDeclaredMethod("getProxy");
-                Object obj = method.invoke(Class.forName("mezz.jei.ProxyCommonClient"));
+                Object obj = clazz.getDeclaredMethod("getProxy").invoke(Class.forName("mezz.jei.ProxyCommonClient"));
                 obj.getClass().getDeclaredMethod("restartJEI").invoke(obj);
             }
             catch (Exception e)

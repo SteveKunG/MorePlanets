@@ -1,6 +1,10 @@
 package stevekung.mods.moreplanets.core.event;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.*;
+
+import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.ImmutableList;
 
@@ -106,6 +110,24 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onClientTick(ClientTickEvent event)
     {
+        if (MorePlanetsCore.isObfuscatedEnvironment() && Keyboard.isKeyDown(Keyboard.KEY_F7))
+        {
+            try
+            {
+                // used for real time debugging item description
+                Object proxy = Class.forName("mezz.jei.JustEnoughItems").getDeclaredMethod("getProxy").invoke(Class.forName("mezz.jei.startup.ProxyCommonClient"));
+                Field pluginsField = proxy.getClass().getDeclaredField("plugins");
+                pluginsField.setAccessible(true);
+                Class<?> starter = Class.forName("mezz.jei.startup.JeiStarter");
+                Object obj = starter.newInstance();
+                Method method = obj.getClass().getDeclaredMethod("start", List.class);
+                method.invoke(obj, (ArrayList<Object>) pluginsField.get(proxy));
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
         if (ClientEventHandler.loadRenderers)
         {
             if (--this.loadRendererTick == 0)
