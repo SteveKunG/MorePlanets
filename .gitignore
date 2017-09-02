@@ -1,37 +1,11 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
-.classpath
-.project
-
-# file
-gradle-wrapper.jar
-gradle-wrapper.properties
-gradlew.bat
-gradlew
-README.txt
-CREDITS-fml.txt
-LICENSE-fml.txt
-forge-*.txt
-MinecraftForge*.txt
-Paulscode*.txt
-ccc_at.cfg
-ccl_at.cfg
-nei_at.cfg
-jei_at.cfg
-indicatia_at.cfg
-MANIFEST.MF
-LICENSE-new.txt
-
 # folder
+bin
+.settings
 .gradle
 .gradle_data
 build
 eclipse
 run
-
 */src/main/java/api
 */src/main/java/appeng
 */src/main/java/buildcraft
@@ -58,3 +32,15 @@ run
 */src/main/resources/micdoodlecore_at.deobf
 */src/main/resources/assets/galacticraftplanets
 */src/main/resources/*.info
+
+# file
+*.launch
+*.txt
+.metadata
+.classpath
+.project
+gradle-wrapper.jar
+gradle-wrapper.properties
+gradlew.bat
+gradlew
+*_at.cfg
