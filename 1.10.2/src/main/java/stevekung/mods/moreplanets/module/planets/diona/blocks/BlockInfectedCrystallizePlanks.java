@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 
 public class BlockInfectedCrystallizePlanks extends BlockBaseMP
@@ -22,7 +23,7 @@ public class BlockInfectedCrystallizePlanks extends BlockBaseMP
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer()
     {
-        return BlockRenderLayer.CUTOUT;
+        return CompatibilityManagerMP.isCTMLoaded() ? BlockRenderLayer.CUTOUT : BlockRenderLayer.SOLID;
     }
 
     @Override

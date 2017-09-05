@@ -1,27 +1,15 @@
 package stevekung.mods.moreplanets.client.renderer;
 
-import java.util.Map;
-
-import com.google.common.collect.Maps;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.util.EnumFacing;
 import stevekung.mods.moreplanets.blocks.decoration.BlockCobblestoneWall;
 import stevekung.mods.moreplanets.blocks.decoration.BlockDungeonBrickWall;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockInfectedSugarCane;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.EnumStateMapper;
-import stevekung.mods.moreplanets.util.blocks.BlockStemMP;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
@@ -32,7 +20,6 @@ public class BlockStateMapper
         ClientRegisterHelper.registerStateMapper(MPBlocks.SHIELD_GENERATOR, BlockStateHelper.FACING_HORIZON);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegisterHelper.registerStateMapper(DionaBlocks.CRASHED_ALIEN_PROBE, BlockCrashedAlienProbe.HAS_ALIEN);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, BlockStateHelper.FACING_ALL);
         ClientRegisterHelper.registerStateMapper(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, EnumStateMapper.FORGE_LEVEL);
@@ -60,19 +47,15 @@ public class BlockStateMapper
         ClientRegisterHelper.registerStateMapperSplitVariants(MPBlocks.COBBLESTONE_WALL, BlockCobblestoneWall.VARIANT);
         ClientRegisterHelper.registerStateMapperSplitVariants(MPBlocks.DUNGEON_BRICK_WALL, BlockDungeonBrickWall.VARIANT);
 
-        ClientRegisterHelper.registerStateMapper(NibiruBlocks.INFECTED_MELON_STEM, new StateMapperBase()
-        {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-            {
-                Map<IProperty<?>, Comparable<?>> map = Maps.newLinkedHashMap(state.getProperties());
+        ClientRegisterHelper.registerStateMapper(NibiruBlocks.INFECTED_MELON_STEM, new StateMapperUtil("stem"));
 
-                if (state.getValue(BlockStemMP.FACING) != EnumFacing.UP)
-                {
-                    map.remove(BlockStemMP.AGE);
-                }
-                return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), this.getPropertyString(map));
-            }
-        });
+        // CTM Integration
+        ClientRegisterHelper.registerStateMapper(DionaBlocks.ALIEN_MINER_BLOOD, new StateMapperCTM());
+        ClientRegisterHelper.registerStateMapper(DionaBlocks.CRASHED_ALIEN_PROBE, new StateMapperCTM());
+        ClientRegisterHelper.registerStateMapper(DionaBlocks.GLOWING_IRON_BLOCK, new StateMapperCTM());
+        ClientRegisterHelper.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS, new StateMapperCTM());
+        ClientRegisterHelper.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZE_WEB, new StateMapperCTM());
+        ClientRegisterHelper.registerStateMapper(NibiruBlocks.SPORELILY, new StateMapperCTM());
+        ClientRegisterHelper.registerStateMapper(NibiruBlocks.NIBIRU_FLOWER, new StateMapperCTM());
     }
 }

@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "variant=pure_hurb": { "model": "moreplanets:pure_hurb" },
+		"variant=terrapuff_hurb": { "model": "moreplanets:terrapuff_hurb_glow" },
+		"variant=batasia_dandelion": { "model": "moreplanets:batasia_dandelion" },
+		"variant=pyolonia_flower": { "model": "moreplanets:pyolonia_flower" },
+		"variant=philipy_flower": { "model": "moreplanets:philipy_flower" },
+		"variant=white_tail": { "model": "moreplanets:white_tail" },
+		"variant=vealium_vine_flower": { "model": "moreplanets:vealium_vine_flower" },
+		"variant=terrashroom": { "model": "moreplanets:terrashroom" }
+    }
+}

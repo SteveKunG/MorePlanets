@@ -22,6 +22,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
+import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
@@ -218,7 +219,7 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
     @Override
     public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
     {
-        return state.getValue(VARIANT) == BlockType.TERRAPUFF_HURB ? layer == BlockRenderLayer.CUTOUT : state.getValue(VARIANT) == BlockType.TERRASHROOM ? layer == BlockRenderLayer.TRANSLUCENT : super.canRenderInLayer(state, layer);
+        return state.getValue(VARIANT) == BlockType.TERRAPUFF_HURB && CompatibilityManagerMP.isCTMLoaded() ? layer == BlockRenderLayer.CUTOUT : state.getValue(VARIANT) == BlockType.TERRASHROOM ? layer == BlockRenderLayer.TRANSLUCENT : super.canRenderInLayer(state, layer);
     }
 
     @Override

@@ -1,7 +1,6 @@
 {
-    "parent": "moreplanets:block/cross_glow",
+    "parent": "block/cross",
     "textures": {
-        "cross": "moreplanets:blocks/terrapuff_hurb",
-        "glow": "moreplanets:blocks/terrapuff_hurb_glow"
+        "cross": "moreplanets:blocks/terrapuff_hurb"
     }
 }

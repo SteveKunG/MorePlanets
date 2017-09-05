@@ -1,18 +1,12 @@
 {
-    "parent": "moreplanets:block/cube_glow",
+    "parent": "block/cube",
     "textures": {
-        "particle": "moreplanets:blocks/alien_probe",
-        "down": "moreplanets:blocks/alien_probe",
-        "up": "moreplanets:blocks/alien_probe",
-        "north": "moreplanets:blocks/alien_probe_side",
-        "east": "moreplanets:blocks/alien_probe_side",
-        "south": "moreplanets:blocks/alien_probe_side",
-        "west": "moreplanets:blocks/alien_probe_side",
-        "down_glow": "moreplanets:blocks/alien_probe",
-        "up_glow": "moreplanets:blocks/alien_probe_top_glow",
-        "north_glow": "moreplanets:blocks/alien_probe_side_1_glow",
-        "east_glow": "moreplanets:blocks/alien_probe_side_2_glow",
-        "south_glow": "moreplanets:blocks/alien_probe_side_1_glow",
-        "west_glow": "moreplanets:blocks/alien_probe_side_2_glow"
+        "particle": "moreplanets:blocks/alien_probe_top",
+        "down": "moreplanets:blocks/alien_probe_bottom",
+        "up": "moreplanets:blocks/alien_probe_top",
+        "north": "moreplanets:blocks/alien_probe_side_1",
+        "east": "moreplanets:blocks/alien_probe_side_2",
+        "south": "moreplanets:blocks/alien_probe_side_1",
+        "west": "moreplanets:blocks/alien_probe_side_2"
     }
 }
