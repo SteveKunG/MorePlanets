@@ -42,7 +42,7 @@ repositories {
         url "https://plugins.gradle.org/m2/"
     }
     maven {
-		url "http://maven.tterrag.com/"
+        url "http://maven.tterrag.com/"
 	}
 }
 
