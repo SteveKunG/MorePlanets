@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-		    "name": "string",
+            "name": "string",
             "rolls": 1,
             "entries": [
                 {
@@ -28,7 +28,7 @@
             ]
         },
         {
-		    "name": "shard",
+            "name": "shard",
             "rolls": 1,
             "entries": [
                 {
@@ -50,7 +50,7 @@
                                 "max": 3
                             }
                         },
-						{
+                        {
                             "function": "set_data",
                             "data": 4
                         }
@@ -59,7 +59,7 @@
             ]
         },
         {
-		    "name": "spider_eye",
+            "name": "spider_eye",
             "rolls": 1,
             "entries": [
                 {

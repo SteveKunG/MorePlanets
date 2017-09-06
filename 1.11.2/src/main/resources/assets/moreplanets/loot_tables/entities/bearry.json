@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "fruit",
+            "name": "fruit",
             "rolls": 1,
             "entries": [
                 {
@@ -16,7 +16,7 @@
                                 "max": 3
                             }
                         },
-						{
+                        {
                             "function": "set_data",
                             "data": 0
                         },

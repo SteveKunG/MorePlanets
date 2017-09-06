@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "meat",
+            "name": "meat",
             "rolls": 1,
             "entries": [
                 {
@@ -22,7 +22,7 @@
                         },
                         {
                             "function": "moreplanets:furnace_smelt_with_data",
-							"data": 1,
+                            "data": 1,
                             "conditions": [
                                 {
                                     "condition": "entity_properties",
@@ -55,15 +55,15 @@
                     "looting_multiplier": 0.01
                 }
             ],
-			"name": "tail",
+            "name": "tail",
             "rolls": 1,
             "entries": [
                 {
-					"entryName": "shlime_tail",
+                    "entryName": "shlime_tail",
                     "type": "item",
                     "name": "moreplanets:nibiru_item",
                     "weight": 1,
-					"functions": [
+                    "functions": [
                         {
                             "function": "set_data",
                             "data": 3

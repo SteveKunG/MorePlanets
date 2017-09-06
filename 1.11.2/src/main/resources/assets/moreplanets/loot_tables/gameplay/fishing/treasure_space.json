@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "treasure",
+            "name": "treasure",
             "rolls": 1,
             "entries": [
                 {
@@ -9,12 +9,12 @@
                     "name": "minecraft:name_tag",
                     "weight": 1
                 },
-				{
+                {
                     "type": "item",
                     "name": "galacticraftcore:oxygen_mask",
                     "weight": 1
                 },
-				{
+                {
                     "type": "item",
                     "name": "galacticraftcore:item_basic_moon",
                     "weight": 1,
@@ -25,7 +25,7 @@
                         }
                     ]
                 },
-				{
+                {
                     "type": "item",
                     "name": "galacticraftcore:oxygen_tank_med_full",
                     "weight": 1,
@@ -39,7 +39,7 @@
                         }
                     ]
                 },
-				{
+                {
                     "type": "item",
                     "name": "galacticraftcore:oxygen_tank_heavy_full",
                     "weight": 1,

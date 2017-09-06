@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "dispenser",
+            "name": "dispenser",
             "rolls": {
                 "min": 1,
                 "max": 2
@@ -21,7 +21,7 @@
                     ],
                     "weight": 30
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:infected_arrow",
                     "functions": [

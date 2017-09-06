@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-		    "name": "shard",
+            "name": "shard",
             "rolls": 1,
             "entries": [
                 {
@@ -23,7 +23,7 @@
                                 "max": 1
                             }
                         },
-						{
+                        {
                             "function": "set_data",
                             "data": 4
                         }

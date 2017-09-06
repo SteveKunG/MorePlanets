@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "corridor",
+            "name": "corridor",
             "rolls": {
                 "min": 2,
                 "max": 3
@@ -79,7 +79,7 @@
                                 "max": 3
                             }
                         },
-						{
+                        {
                             "function": "set_data",
                             "data": 15
                         }
@@ -87,7 +87,7 @@
                     "weight": 15
                 },
                 {
-					"entryName": "apple",
+                    "entryName": "apple",
                     "type": "item",
                     "name": "moreplanets:nibiru_fruits",
                     "functions": [
@@ -174,11 +174,11 @@
                     ]
                 },
                 {
-					"entryName": "golden_apple",
+                    "entryName": "golden_apple",
                     "type": "item",
                     "name": "moreplanets:nibiru_fruits",
                     "weight": 1,
-					"functions": [
+                    "functions": [
                         {
                             "function": "set_data",
                             "data": 1

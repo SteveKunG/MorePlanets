@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "arrow",
+            "name": "arrow",
             "rolls": 1,
             "entries": [
                 {
@@ -28,7 +28,7 @@
             ]
         },
         {
-			"name": "bone",
+            "name": "bone",
             "rolls": 1,
             "entries": [
                 {

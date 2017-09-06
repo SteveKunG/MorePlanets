@@ -1,17 +1,17 @@
 {
     "pools": [
         {
-			"name": "rare",
+            "name": "rare",
             "rolls": 1,
             "entries": [
                 {
-					"entryName": "normal_gap",
+                    "entryName": "normal_gap",
                     "type": "item",
                     "name": "minecraft:golden_apple",
                     "weight": 20
                 },
                 {
-					"entryName": "enchanted_gap",
+                    "entryName": "enchanted_gap",
                     "type": "item",
                     "name": "minecraft:golden_apple",
                     "weight": 1,
@@ -41,7 +41,7 @@
                     "type": "item",
                     "name": "galacticraftplanets:desh_pick_slime",
                     "weight": 2
-				},
+                },
                 {
                     "type": "item",
                     "name": "galacticraftplanets:titanium_pickaxe",
@@ -51,7 +51,7 @@
                     "type": "item",
                     "name": "moreplanets:dark_energy_pearl",
                     "weight": 2,
-					"functions": [
+                    "functions": [
                         {
                             "function": "set_count",
                             "count": {
@@ -68,7 +68,7 @@
             ]
         },
         {
-			"name": "uncommon",
+            "name": "uncommon",
             "rolls": {
                 "min": 2,
                 "max": 4
@@ -173,7 +173,7 @@
                                 "max": 3
                             }
                         },
-						{
+                        {
                             "function": "set_data",
                             "data": 15
                         }
@@ -183,7 +183,7 @@
                 {
                     "type": "item",
                     "name": "galacticraftplanets:strange_seed",
-					"weight": 10,
+                    "weight": 10,
                     "functions": [
                         {
                             "function": "set_count",
@@ -192,9 +192,9 @@
                                 "max": 3
                             }
                         },
-						{
+                        {
                             "function": "set_data",
-							"data": {
+                            "data": {
                                 "min": 0,
                                 "max": 1
                             }
@@ -204,7 +204,7 @@
             ]
         },
         {
-			"name": "common",
+            "name": "common",
             "rolls": 3,
             "entries": [
                 {
