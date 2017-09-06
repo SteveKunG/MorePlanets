@@ -6,6 +6,14 @@ public class CompatibilityManagerMP
 {
     private static boolean isCTMLoaded = Loader.isModLoaded("ctm");
 
+    public static void init()
+    {
+        if (CompatibilityManagerMP.isCTMLoaded)
+        {
+            MPLog.info("Enabled CTM integrations");
+        }
+    }
+
     public static boolean isCTMLoaded()
     {
         return CompatibilityManagerMP.isCTMLoaded;

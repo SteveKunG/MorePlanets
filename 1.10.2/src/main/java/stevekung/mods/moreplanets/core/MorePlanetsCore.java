@@ -125,6 +125,7 @@ public class MorePlanetsCore
         MorePlanetsCore.PROXY.registerPostRendering();
         CommonRegisterHelper.registerGUIHandler(this, new GuiHandlerMP());
         CommonRegisterHelper.registerFuelHandler(new FuelHandlerMP());
+        CompatibilityManagerMP.init();
         CraftingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
