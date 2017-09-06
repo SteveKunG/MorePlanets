@@ -1,13 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import stevekung.mods.moreplanets.module.planets.diona.itemblocks.ItemBlockDarkEnergyGenerator;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFenceMP;
 import stevekung.mods.moreplanets.util.blocks.BlockStairsMP;
 import stevekung.mods.moreplanets.util.blocks.BlockStairsMP.EnumStairsType;
@@ -54,7 +51,7 @@ public class DionaBlocks
         DionaBlocks.ALBETIUS_WORM_EGG_ROCK = new BlockAlbetiusWormEgg("albetius_worm_egg_rock");
         DionaBlocks.DIONA_ANCIENT_CHEST = new BlockDionaAncientChest("diona_ancient_chest");
         DionaBlocks.DIONA_TREASURE_CHEST = new BlockDionaTreasureChest("diona_treasure_chest");
-        DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS = new BlockBaseMP("infected_crystallize_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
+        DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS = new BlockInfectedCrystallizePlanks("infected_crystallize_planks");
         DionaBlocks.INFECTED_CRYSTALLIZE_FENCE = new BlockFenceMP("infected_crystallize_fence");
         DionaBlocks.INFECTED_CRYSTALLIZE_WEB = new BlockInfectedCrystallizeWeb("infected_crystallize_web");
         DionaBlocks.INFECTED_CRYSTALLIZE_TORCH = new BlockCrystallizeTorch("infected_crystallize_torch");
