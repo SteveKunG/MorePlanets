@@ -43,7 +43,7 @@ repositories {
     }
     maven {
         url "http://maven.tterrag.com/"
-	}
+    }
 }
 
 dependencies {
