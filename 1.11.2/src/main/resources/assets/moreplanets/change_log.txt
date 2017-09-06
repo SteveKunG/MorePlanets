@@ -10,4 +10,5 @@
 -Fixed- Fixed Chests bounding box
 -Fixed- Fixed Space Fishing Rod spawning/model rendering
 -Fixed- Fixed block harvest level
+-Fixed- Fixed hand animation when placing flowers
 -Removed- Removed unnecessary config
