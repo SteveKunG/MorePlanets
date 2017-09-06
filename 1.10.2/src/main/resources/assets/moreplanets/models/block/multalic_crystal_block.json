@@ -2,6 +2,6 @@
     "parent": "moreplanets:block/colored_cube",
     "textures": {
         "particle": "moreplanets:blocks/crystal",
-		"all": "moreplanets:blocks/crystal"
+        "all": "moreplanets:blocks/crystal"
     }
 }
