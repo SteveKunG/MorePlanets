@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.client.renderer;
+package stevekung.mods.moreplanets.util.client.renderer;
 
 import java.util.Map;
 

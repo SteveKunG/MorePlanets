@@ -10,6 +10,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWaste
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.EnumStateMapper;
+import stevekung.mods.moreplanets.util.client.renderer.StateMapperCTM;
+import stevekung.mods.moreplanets.util.client.renderer.StateMapperUtil;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
