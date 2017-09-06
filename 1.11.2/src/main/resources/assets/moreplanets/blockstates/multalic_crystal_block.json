@@ -1,5 +1,5 @@
 {
     "variants": {
-		"normal": { "model": "moreplanets:multalic_crystal_block" }
+        "normal": { "model": "moreplanets:multalic_crystal_block" }
     }
 }

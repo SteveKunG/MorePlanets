@@ -7,6 +7,6 @@
             { "model": "moreplanets:fronos_grass", "y": 270 }
         ],
         "layer=snow":  { "model": "moreplanets:fronos_grass_snowed" },
-		"layer=cream":  { "model": "moreplanets:fronos_grass_snowed" }
+        "layer=cream":  { "model": "moreplanets:fronos_grass_snowed" }
     }
 }

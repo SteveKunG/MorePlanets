@@ -10,8 +10,8 @@
         "variant=nibiru_aluminum_ore": { "model": "moreplanets:nibiru_aluminum_ore" },
         "variant=nibiru_copper_ore": { "model": "moreplanets:nibiru_copper_ore" },
         "variant=nibiru_tin_ore": { "model": "moreplanets:nibiru_tin_ore" },
-		"variant=nibiru_silicon_ore": { "model": "moreplanets:nibiru_silicon_ore" },
+        "variant=nibiru_silicon_ore": { "model": "moreplanets:nibiru_silicon_ore" },
         "variant=inferumite_crystal_ore": { "model": "moreplanets:inferumite_crystal_ore" },
-		"variant=nibiru_redstone_ore_active": { "model": "moreplanets:nibiru_redstone_ore" }
+        "variant=nibiru_redstone_ore_active": { "model": "moreplanets:nibiru_redstone_ore" }
     }
 }

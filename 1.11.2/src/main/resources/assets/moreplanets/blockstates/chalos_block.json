@@ -1,6 +1,6 @@
 {
     "variants": {
-		"variant=chalos_rock": [
+        "variant=chalos_rock": [
             { "model": "moreplanets:chalos_rock" },
             { "model": "moreplanets:chalos_rock_mirrored" },
             { "model": "moreplanets:chalos_rock", "y": 180 },
@@ -15,7 +15,7 @@
         "variant=chalos_copper_ore": { "model": "moreplanets:chalos_copper_ore" },
         "variant=chalos_aluminum_ore": { "model": "moreplanets:chalos_aluminum_ore" },
         "variant=diremsium_block": { "model": "moreplanets:diremsium_block" },
-		"variant=zyptorium_block": { "model": "moreplanets:zyptorium_block" },
+        "variant=zyptorium_block": { "model": "moreplanets:zyptorium_block" },
         "variant=chalos_dungeon_brick": { "model": "moreplanets:chalos_dungeon_brick" }
     }
 }

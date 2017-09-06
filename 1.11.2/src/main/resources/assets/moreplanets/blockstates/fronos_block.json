@@ -1,6 +1,6 @@
 {
     "variants": {
-		"variant=fronos_stone": [
+        "variant=fronos_stone": [
             { "model": "moreplanets:fronos_stone" },
             { "model": "moreplanets:fronos_stone_mirrored" },
             { "model": "moreplanets:fronos_stone", "y": 180 },
@@ -8,7 +8,7 @@
         ],
         "variant=fronos_cobblestone": { "model": "moreplanets:fronos_cobblestone" },
         "variant=fronos_stone_brick": { "model": "moreplanets:fronos_stone_brick" },
-		"variant=fronos_mossy_stone_brick": { "model": "moreplanets:fronos_mossy_stone_brick" },
+        "variant=fronos_mossy_stone_brick": { "model": "moreplanets:fronos_mossy_stone_brick" },
         "variant=fronos_cracked_stone_brick": { "model": "moreplanets:fronos_cracked_stone_brick" },
         "variant=fronos_chiseled_stone_brick": { "model": "moreplanets:fronos_chiseled_stone_brick" },
         "variant=fronos_dungeon_brick": { "model": "moreplanets:fronos_dungeon_brick" }
