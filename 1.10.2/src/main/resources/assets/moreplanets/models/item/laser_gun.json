@@ -3,7 +3,7 @@
     "textures": {
         "layer0": "moreplanets:items/laser_gun"
     },
-	"display": {
+    "display": {
         "thirdperson_righthand": {
             "rotation": [ 0, -90, 55 ],
             "translation": [ 0, 2.0, 0.5 ],

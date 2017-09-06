@@ -1,5 +1,5 @@
 {
-	"parent": "moreplanets:item/dungeon_key",
+    "parent": "moreplanets:item/dungeon_key",
     "textures": {
         "key": "moreplanets:items/chalos_dungeon_key"
     }

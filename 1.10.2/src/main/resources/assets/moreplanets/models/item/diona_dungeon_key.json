@@ -1,5 +1,5 @@
 {
-	"parent": "moreplanets:item/dungeon_key",
+    "parent": "moreplanets:item/dungeon_key",
     "textures": {
         "key": "moreplanets:items/diona_dungeon_key"
     }
