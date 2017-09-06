@@ -131,4 +131,5 @@ task deleteTemporary(type: Delete) {
     delete 'temporary_deobf'
 }
 
+buildJar.finalizedBy(deleteTemporary)
 buildDeobfJar.finalizedBy(deleteTemporary)
