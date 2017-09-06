@@ -1,6 +1,6 @@
 {
     "variants": {
-		"variant=cheese_dirt": [
+        "variant=cheese_dirt": [
             { "model": "moreplanets:cheese_dirt" },
             { "model": "moreplanets:cheese_dirt", "y": 90 },
             { "model": "moreplanets:cheese_dirt", "y": 180 },

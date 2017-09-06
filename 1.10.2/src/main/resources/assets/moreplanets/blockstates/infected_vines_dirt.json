@@ -1,5 +1,5 @@
 {
     "variants": {
-		"normal": { "model": "moreplanets:infected_vines_dirt" }
+        "normal": { "model": "moreplanets:infected_vines_dirt" }
     }
 }

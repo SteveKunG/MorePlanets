@@ -1,6 +1,6 @@
 {
     "variants": {
-		"normal": [
+        "normal": [
             { "model": "moreplanets:cheese_grass" },
             { "model": "moreplanets:cheese_grass", "y": 90 },
             { "model": "moreplanets:cheese_grass", "y": 180 },

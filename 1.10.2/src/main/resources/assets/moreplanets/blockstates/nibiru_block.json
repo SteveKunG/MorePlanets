@@ -1,6 +1,6 @@
 {
     "variants": {
-		"variant=nibiru_rock": [
+        "variant=nibiru_rock": [
             { "model": "moreplanets:nibiru_rock" },
             { "model": "moreplanets:nibiru_rock_mirrored" },
             { "model": "moreplanets:nibiru_rock", "y": 180 },
@@ -14,6 +14,6 @@
         "variant=infected_chiseled_stone_bricks": { "model": "moreplanets:infected_chiseled_stone_bricks" },
         "variant=inferumite_block": { "model": "moreplanets:inferumite_block" },
         "variant=nibiru_dungeon_brick": { "model": "moreplanets:nibiru_dungeon_brick" },
-		"variant=mossy_nibiru_dungeon_brick": { "model": "moreplanets:mossy_nibiru_dungeon_brick" }
+        "variant=mossy_nibiru_dungeon_brick": { "model": "moreplanets:mossy_nibiru_dungeon_brick" }
     }
 }

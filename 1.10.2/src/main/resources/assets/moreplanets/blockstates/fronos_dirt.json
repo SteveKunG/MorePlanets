@@ -1,6 +1,6 @@
 {
     "variants": {
-		"variant=fronos_dirt": [
+        "variant=fronos_dirt": [
             { "model": "moreplanets:fronos_dirt" },
             { "model": "moreplanets:fronos_dirt", "y": 90 },
             { "model": "moreplanets:fronos_dirt", "y": 180 },

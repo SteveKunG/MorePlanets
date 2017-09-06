@@ -56,7 +56,7 @@
                 "submodel": {
                     "south": {
                         "model": "glass_pane_noside_alt",
-						"y": 90
+                        "y": 90
                     }
                 }
             }
@@ -74,7 +74,7 @@
                 "submodel": {
                     "west": {
                         "model": "glass_pane_noside",
-						"y": 270
+                        "y": 270
                     }
                 }
             }

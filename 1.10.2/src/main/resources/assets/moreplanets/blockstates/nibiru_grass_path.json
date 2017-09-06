@@ -1,6 +1,6 @@
 {
     "variants": {
         "variant=infected_grass_path": { "model": "moreplanets:infected_grass_path" },
-		"variant=green_vein_grass_path": { "model": "moreplanets:green_vein_grass_path" }
+        "variant=green_vein_grass_path": { "model": "moreplanets:green_vein_grass_path" }
     }
 }

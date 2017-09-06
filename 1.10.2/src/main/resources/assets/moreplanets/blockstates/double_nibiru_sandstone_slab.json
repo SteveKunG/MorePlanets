@@ -1,6 +1,6 @@
 {
     "variants": {
-		"variant=nibiru_sandstone_slab": { "model": "moreplanets:nibiru_sandstone" },
-		"variant=nibiru_smooth_sandstone_slab": { "model": "moreplanets:nibiru_smooth_sandstone" }
+        "variant=nibiru_sandstone_slab": { "model": "moreplanets:nibiru_sandstone" },
+        "variant=nibiru_smooth_sandstone_slab": { "model": "moreplanets:nibiru_smooth_sandstone" }
     }
 }

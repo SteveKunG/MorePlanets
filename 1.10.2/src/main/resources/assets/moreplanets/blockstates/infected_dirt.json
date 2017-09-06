@@ -1,6 +1,6 @@
 {
     "variants": {
-		"variant=infected_dirt": [
+        "variant=infected_dirt": [
             { "model": "moreplanets:infected_dirt" },
             { "model": "moreplanets:infected_dirt", "y": 90 },
             { "model": "moreplanets:infected_dirt", "y": 180 },

@@ -1,7 +1,7 @@
 {
     "variants": {
-		"variant=infected_tall_grass": { "model": "moreplanets:infected_tall_grass" },
-		"variant=infected_fern": { "model": "moreplanets:infected_fern" },
-		"variant=green_vein_tall_grass": { "model": "moreplanets:green_vein_tall_grass" }
+        "variant=infected_tall_grass": { "model": "moreplanets:infected_tall_grass" },
+        "variant=infected_fern": { "model": "moreplanets:infected_fern" },
+        "variant=green_vein_tall_grass": { "model": "moreplanets:green_vein_tall_grass" }
     }
 }
