@@ -1,15 +1,15 @@
 {
-  "animation": {
-      "frametime": 20,
-	  "interpolate": true,
-	  "frames": [
-      0,
-      1,
-      1,
-      0
-    ]
-  },
-  "ctm": {
+    "animation": {
+        "frametime": 20,
+        "interpolate": true,
+        "frames": [
+            0,
+            1,
+            1,
+            0
+        ]
+    },
+    "ctm": {
         "ctm_version": 1,
         "layer": "CUTOUT",
         "extra": {
