@@ -1,5 +1,5 @@
 {
-	"parent": "block/block",
+    "parent": "block/block",
     "elements": [
         {   "from": [ 3, 3, 3 ],
             "to": [ 13, 13, 13 ],

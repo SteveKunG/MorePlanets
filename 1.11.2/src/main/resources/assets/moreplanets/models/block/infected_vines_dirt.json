@@ -1,9 +1,9 @@
 {
-	"parent": "block/block",
+    "parent": "block/block",
     "textures": {
         "top": "moreplanets:blocks/infected_vines",
         "side": "moreplanets:blocks/infected_dirt",
-		"particle": "moreplanets:blocks/infected_dirt"
+        "particle": "moreplanets:blocks/infected_dirt"
     },
     "elements": [
         {
