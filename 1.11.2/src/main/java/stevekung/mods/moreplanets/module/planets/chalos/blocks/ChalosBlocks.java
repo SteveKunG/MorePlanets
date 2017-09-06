@@ -13,6 +13,7 @@ import stevekung.mods.moreplanets.util.blocks.BlockStairsMP.EnumStairsType;
 import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
+import stevekung.mods.moreplanets.util.itemblocks.ItemBlockFlower;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
 
 public class ChalosBlocks
@@ -97,13 +98,13 @@ public class ChalosBlocks
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_ANCIENT_CHEST);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_TREASURE_CHEST);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_CAKE, ItemBlockDescription::new);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_FLOWER);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_TALL_GRASS);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_FLOWER, ItemBlockFlower::new);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_TALL_GRASS, ItemBlockFlower::new);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_FARMLAND);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_BERRY_CROPS, null);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_DOUBLE_PLANT);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_DOUBLE_PLANT, ItemBlockFlower::new);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_CRAFTING_TABLE);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_CHEST);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_COBBLESTONE_STAIRS);

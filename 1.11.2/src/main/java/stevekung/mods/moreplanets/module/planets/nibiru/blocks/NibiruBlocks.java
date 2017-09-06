@@ -17,10 +17,7 @@ import stevekung.mods.moreplanets.util.blocks.*;
 import stevekung.mods.moreplanets.util.blocks.BlockStairsMP.EnumStairsType;
 import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
-import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
-import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariantLeaves;
-import stevekung.mods.moreplanets.util.itemblocks.ItemBlockSlabMP;
+import stevekung.mods.moreplanets.util.itemblocks.*;
 
 public class NibiruBlocks
 {
@@ -235,20 +232,20 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_GRASS);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DIRT, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_FARMLAND);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_TALL_GRASS, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_TALL_GRASS, ItemBlockMultiFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SAND);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CACTUS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CACTUS, ItemBlockFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_BLOCK, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_ORE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SANDSTONE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_LOG, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_PLANKS, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_LEAVES, ItemBlockMultiVariantLeaves::new);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SAPLING, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SAPLING, ItemBlockMultiFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_VINES);
         CommonRegisterHelper.registerBlock(NibiruBlocks.SPORELILY, ItemBlockSporelily::new);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_FLOWER, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_FLOWER, ItemBlockMultiFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_CRAFTING_TABLE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SILVERFISH_STONE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_BOOKSHELF, ItemBlockMultiVariant::new);
@@ -281,7 +278,7 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_PRISMARINE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SEA_LANTERN);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SPONGE, ItemBlockMultiVariant::new);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SEAWEED, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SEAWEED, ItemBlockMultiFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.OIL_ORE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.HELIUM_GAS_BLOCK);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_VINES_DIRT);
