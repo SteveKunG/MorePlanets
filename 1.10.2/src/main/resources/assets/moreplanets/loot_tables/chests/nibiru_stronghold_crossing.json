@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "crossing",
+            "name": "crossing",
             "rolls": {
                 "min": 1,
                 "max": 4
@@ -60,7 +60,7 @@
                                 "max": 8
                             }
                         },
-						{
+                        {
                             "function": "set_data",
                             "data": 2
                         }
@@ -78,7 +78,7 @@
                                 "max": 3
                             }
                         },
-						{
+                        {
                             "function": "set_data",
                             "data": 15
                         }

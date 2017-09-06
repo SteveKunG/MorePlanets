@@ -1,14 +1,14 @@
 {
     "pools": [
         {
-			"name": "library",
+            "name": "library",
             "rolls": {
                 "min": 2,
                 "max": 10
             },
             "entries": [
                 {
-					"entryName": "normal_book",
+                    "entryName": "normal_book",
                     "type": "item",
                     "name": "minecraft:book",
                     "functions": [
@@ -46,11 +46,11 @@
                     "name": "minecraft:compass",
                     "weight": 1
                 },
-				{
+                {
                     "type": "item",
                     "name": "minecraft:emerald",
                     "weight": 4,
-					"functions": [
+                    "functions": [
                         {
                             "function": "set_count",
                             "count": {
@@ -61,7 +61,7 @@
                     ]
                 },
                 {
-					"entryName": "enchanted_book",
+                    "entryName": "enchanted_book",
                     "type": "item",
                     "name": "minecraft:book",
                     "weight": 10,

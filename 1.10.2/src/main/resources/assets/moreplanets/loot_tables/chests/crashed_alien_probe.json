@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "crashed_probe",
+            "name": "crashed_probe",
             "rolls": {
                 "min": 5,
                 "max": 6

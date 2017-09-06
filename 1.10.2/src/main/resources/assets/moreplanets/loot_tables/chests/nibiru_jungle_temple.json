@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "temple",
+            "name": "temple",
             "rolls": {
                 "min": 2,
                 "max": 6
@@ -21,7 +21,7 @@
                     ],
                     "weight": 3
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:nibiru_item",
                     "functions": [
@@ -32,14 +32,14 @@
                                 "max": 3
                             }
                         },
-						{
+                        {
                             "function": "set_data",
                             "data": 1
                         }
                     ],
                     "weight": 4
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:nuclear_waste_bucket",
                     "weight": 3
@@ -118,7 +118,7 @@
                     "type": "item",
                     "name": "moreplanets:infected_vines",
                     "weight": 16,
-					"functions": [
+                    "functions": [
                         {
                             "function": "set_count",
                             "count": {
@@ -164,7 +164,7 @@
                         }
                     ]
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:multalic_crystal_chestplate",
                     "weight": 1,
@@ -176,7 +176,7 @@
                         }
                     ]
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:multalic_crystal_leggings",
                     "weight": 1,
@@ -188,7 +188,7 @@
                         }
                     ]
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:multalic_crystal_boots",
                     "weight": 1,

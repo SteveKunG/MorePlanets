@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "rare",
+            "name": "rare",
             "rolls": {
                 "min": 2,
                 "max": 4
@@ -102,13 +102,13 @@
                     ]
                 },
                 {
-					"entryName": "normal_gap",
+                    "entryName": "normal_gap",
                     "type": "item",
                     "name": "minecraft:golden_apple",
                     "weight": 20
                 },
                 {
-					"entryName": "enchanted_gap",
+                    "entryName": "enchanted_gap",
                     "type": "item",
                     "name": "minecraft:golden_apple",
                     "weight": 2,
@@ -119,7 +119,7 @@
                         }
                     ]
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:multalic_crystal_pickaxe",
                     "functions": [
@@ -131,7 +131,7 @@
                     ],
                     "weight": 3
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:multalic_crystal_helmet",
                     "functions": [
@@ -143,7 +143,7 @@
                     ],
                     "weight": 1
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:multalic_crystal_chestplate",
                     "functions": [
@@ -155,7 +155,7 @@
                     ],
                     "weight": 1
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:multalic_crystal_leggings",
                     "functions": [
@@ -167,7 +167,7 @@
                     ],
                     "weight": 1
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:multalic_crystal_boots",
                     "functions": [
@@ -186,7 +186,7 @@
             ]
         },
         {
-			"name": "common",
+            "name": "common",
             "rolls": 4,
             "entries": [
                 {

@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "junk",
+            "name": "junk",
             "rolls": 1,
             "entries": [
                 {
@@ -18,12 +18,12 @@
                             "function": "set_damage",
                             "damage": {
                                 "min": 0,
-                                "max": 0.90
+                                "max": 0.9
                             }
                         }
                     ]
                 },
-				{
+                {
                     "type": "item",
                     "name": "minecraft:iron_helmet",
                     "weight": 2,
@@ -42,7 +42,7 @@
                     "name": "minecraft:redstone",
                     "weight": 10
                 },
-				{
+                {
                     "type": "item",
                     "name": "galacticraftcore:meteor_chunk",
                     "weight": 4
@@ -52,12 +52,12 @@
                     "name": "galacticraftcore:cheese_curd",
                     "weight": 10
                 },
-				{
+                {
                     "type": "item",
                     "name": "moreplanets:capsule",
                     "weight": 3
                 },
-				{
+                {
                     "type": "item",
                     "name": "galacticraftplanets:basic_item_venus",
                     "weight": 1,

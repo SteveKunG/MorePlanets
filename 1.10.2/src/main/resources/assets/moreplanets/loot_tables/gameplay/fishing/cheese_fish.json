@@ -1,11 +1,11 @@
 {
     "pools": [
         {
-			"name": "fish",
+            "name": "fish",
             "rolls": 1,
             "entries": [
                 {
-					"entryName": "normal_fish",
+                    "entryName": "normal_fish",
                     "type": "item",
                     "name": "minecraft:fish",
                     "functions": [
@@ -17,7 +17,7 @@
                     "weight": 8
                 },
                 {
-					"entryName": "salmon",
+                    "entryName": "salmon",
                     "type": "item",
                     "name": "minecraft:fish",
                     "functions": [
@@ -29,7 +29,7 @@
                     "weight": 4
                 },
                 {
-					"entryName": "cheese_fish",
+                    "entryName": "cheese_fish",
                     "type": "item",
                     "name": "moreplanets:space_fish",
                     "functions": [

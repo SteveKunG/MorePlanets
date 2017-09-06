@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-		    "name": "slime",
+            "name": "slime",
             "rolls": 1,
             "entries": [
                 {
@@ -28,7 +28,7 @@
             ]
         },
         {
-		    "name": "curd",
+            "name": "curd",
             "rolls": 1,
             "entries": [
                 {

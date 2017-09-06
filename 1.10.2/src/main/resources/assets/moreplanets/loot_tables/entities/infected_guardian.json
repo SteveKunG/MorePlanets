@@ -1,12 +1,12 @@
 {
     "pools": [
         {
-			"name": "shard",
+            "name": "shard",
             "rolls": 1,
             "entries": [
                 {
                     "type": "item",
-					"entryName": "infected_shard",
+                    "entryName": "infected_shard",
                     "name": "moreplanets:infected_prismarine_item",
                     "weight": 1,
                     "functions": [
@@ -33,7 +33,7 @@
             ]
         },
         {
-			"name": "fish_and_crystals",
+            "name": "fish_and_crystals",
             "rolls": 1,
             "entries": [
                 {
@@ -53,7 +53,7 @@
                 {
                     "type": "item",
                     "name": "moreplanets:infected_prismarine_item",
-					"entryName": "infected_crystals",
+                    "entryName": "infected_crystals",
                     "weight": 2,
                     "functions": [
                         {
@@ -86,7 +86,7 @@
                     "looting_multiplier": 0.01
                 }
             ],
-			"name": "random_fish",
+            "name": "random_fish",
             "rolls": 1,
             "entries": [
                 {

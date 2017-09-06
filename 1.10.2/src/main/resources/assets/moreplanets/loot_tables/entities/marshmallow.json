@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "fruit",
+            "name": "fruit",
             "rolls": 1,
             "entries": [
                 {
@@ -22,7 +22,7 @@
                         },
                         {
                             "function": "moreplanets:furnace_smelt_with_data",
-							"data": 3,
+                            "data": 3,
                             "conditions": [
                                 {
                                     "condition": "entity_properties",

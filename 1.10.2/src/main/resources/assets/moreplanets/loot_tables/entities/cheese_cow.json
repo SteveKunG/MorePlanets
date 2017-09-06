@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "leather",
+            "name": "leather",
             "rolls": 1,
             "entries": [
                 {
@@ -28,7 +28,7 @@
             ]
         },
         {
-			"name": "beef",
+            "name": "beef",
             "rolls": 1,
             "entries": [
                 {
@@ -43,13 +43,13 @@
                                 "max": 3
                             }
                         },
-						{
+                        {
                             "function": "set_data",
                             "data": 1
                         },
                         {
                             "function": "moreplanets:furnace_smelt_with_data",
-							"data": 2,
+                            "data": 2,
                             "conditions": [
                                 {
                                     "condition": "entity_properties",

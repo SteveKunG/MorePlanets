@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "rare",
+            "name": "rare",
             "rolls": {
                 "min": 1,
                 "max": 3
@@ -9,23 +9,23 @@
             "entries": [
                 {
                     "type": "item",
-					"entryName": "normal_golden_apple",
+                    "entryName": "normal_golden_apple",
                     "name": "minecraft:golden_apple",
                     "weight": 15
                 },
-				{
+                {
                     "type": "item",
                     "name": "galacticraftplanets:volcanic_pickaxe",
                     "weight": 5
                 },
-				{
+                {
                     "type": "item",
                     "name": "galacticraftplanets:desh_pick_slime",
                     "weight": 8
                 },
                 {
                     "type": "item",
-					"entryName": "enchanted_golden_apple",
+                    "entryName": "enchanted_golden_apple",
                     "name": "minecraft:golden_apple",
                     "weight": 2,
                     "functions": [
@@ -63,7 +63,7 @@
             ]
         },
         {
-			"name": "uncommon",
+            "name": "uncommon",
             "rolls": {
                 "min": 1,
                 "max": 4
@@ -99,26 +99,7 @@
                 },
                 {
                     "type": "item",
-					"entryName": "can_of_apple",
-                    "name": "galacticraftcore:basic_item",
-                    "weight": 20,
-					"functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 4
-                            }
-                        },
-						{
-                            "function": "set_data",
-                            "data": 15
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-					"entryName": "can_of_carrot",
+                    "entryName": "can_of_apple",
                     "name": "galacticraftcore:basic_item",
                     "weight": 20,
                     "functions": [
@@ -129,7 +110,26 @@
                                 "max": 4
                             }
                         },
-						{
+                        {
+                            "function": "set_data",
+                            "data": 15
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "entryName": "can_of_carrot",
+                    "name": "galacticraftcore:basic_item",
+                    "weight": 20,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 4
+                            }
+                        },
+                        {
                             "function": "set_data",
                             "data": 16
                         }
@@ -157,7 +157,7 @@
                 {
                     "type": "item",
                     "name": "galacticraftplanets:strange_seed",
-					"weight": 10,
+                    "weight": 10,
                     "functions": [
                         {
                             "function": "set_count",
@@ -166,9 +166,9 @@
                                 "max": 3
                             }
                         },
-						{
+                        {
                             "function": "set_data",
-							"data": {
+                            "data": {
                                 "min": 0,
                                 "max": 1
                             }
@@ -178,7 +178,7 @@
             ]
         },
         {
-			"name": "common",
+            "name": "common",
             "rolls": 3,
             "entries": [
                 {
@@ -237,7 +237,7 @@
                         }
                     ]
                 },
-				{
+                {
                     "type": "item",
                     "name": "galacticraftcore:meteor_chunk",
                     "weight": 9,
