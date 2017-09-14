@@ -162,6 +162,19 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         vec31 = new Vec3d(this.posX, this.posY, this.posZ);
         vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
+        if (this.ticksInAir > 8)
+        {
+            this.setDead();
+        }
+        if (this.isInWater())
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX - this.motionX, this.posY - this.motionY, this.posZ - this.motionZ, this.motionX, this.motionY, this.motionZ);
+                this.worldObj.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 0.25F, 0.9F);
+            }
+            this.setDead();
+        }
         if (movingobjectposition != null)
         {
             vec3 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
@@ -219,6 +232,10 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             break;
         }
 
+        if (this.isInWater())
+        {
+            this.damage = 0.0D;
+        }
         if (movingobjectposition != null)
         {
             if (movingobjectposition.entityHit != null)
@@ -300,26 +317,11 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
         this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
         float speed = 1.5F;
-
-        if (this.isInWater())
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
-                this.worldObj.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 0.25F, 0.9F);
-            }
-            this.setDead();
-        }
         this.motionX *= speed;
         this.motionY *= speed;
         this.motionZ *= speed;
         this.setPosition(this.posX, this.posY, this.posZ);
         this.doBlockCollisions();
-
-        if (this.ticksExisted > 30)
-        {
-            this.setDead();
-        }
     }
 
     @Override
