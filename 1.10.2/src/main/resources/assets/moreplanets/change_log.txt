@@ -1,14 +1,5 @@
--Added- Added Owner UUID to Shield Generator
--Added- Added Hover Animation to Alien Miner
--Added- Added GC-Addon Compatibility Configuration (Suggested by ExtraPlanets)
--Added- Added CTM Compatibility
--Update- Update to use Galacticraft Build 115 or higher
--Update- Update Shield model and render with animated texture
--Update- Update JEI API
--Update- Tweaked Cheese Floater rendering
--Fixed- Attempt to fix server crash with Alien Beam
--Fixed- Fixed z-fighting on Chests texture
--Fixed- Fixed Chests bounding box
--Fixed- Fixed Space Fishing Hook line/model rendering
--Fixed- Fixed block harvest level
--Removed- Removed unnecessary config
+-Added- Added Anti Gravity Arrow/Fragment
+-Update- Update to use Galacticraft Build 117 or higher
+-Update- Improved sound subtitles
+-Update- Improved Laser Bullet damage/motion
+-Update- Reduced file size for .json and .mcmeta

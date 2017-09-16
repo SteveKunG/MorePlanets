@@ -36,9 +36,7 @@ xp collect to tile limit
 uv texture treasure chest
 infected guardian random fish
 add option other player can use bh storage
-more sounds subtitle
 jei rocket crusher recipe anim
-anti-grav arrow/laser
 fix boss bar sometime not work
 
 1.10.2
