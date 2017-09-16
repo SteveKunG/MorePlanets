@@ -67,6 +67,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
 
         if (tile.getBubbleVisible())
         {
+            GlStateManager.pushMatrix();
             this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             GlStateManager.enableBlend();
             GlStateManager.disableLighting();
@@ -90,6 +91,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
             GlStateManager.disableBlend();
             GlStateManager.depthFunc(515);
             GlStateManager.enableCull();
+            GlStateManager.popMatrix();
         }
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
