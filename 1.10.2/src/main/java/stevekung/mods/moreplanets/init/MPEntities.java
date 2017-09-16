@@ -11,6 +11,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.*;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.diona.entity.*;
+import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityAntiGravityArrow;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityBearry;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityGiantBlueberry;
@@ -82,6 +83,7 @@ public class MPEntities
         CommonRegisterHelper.registerNonMobEntity(EntityVeinBall.class, "vein_ball", EnumEntityTrackerType.THROWABLE);
         CommonRegisterHelper.registerNonMobEntity(EntityTier6Rocket.class, "tier_6_rocket", EnumEntityTrackerType.TIERED_ROCKET);
         CommonRegisterHelper.registerNonMobEntity(EntityBlackHoleStorage.class, "black_hole_storage");
+        CommonRegisterHelper.registerNonMobEntity(EntityAntiGravityArrow.class, "anti_gravity_arrow", EnumEntityTrackerType.ARROW);
 
         CommonRegisterHelper.registerEntityPlacement(EntityAlienMiner.class, SpawnPlacementType.ON_GROUND);
         CommonRegisterHelper.registerEntityPlacement(EntityZeliusZombie.class, SpawnPlacementType.ON_GROUND);

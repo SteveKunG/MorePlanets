@@ -13,6 +13,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.Entity
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.*;
 import stevekung.mods.moreplanets.module.planets.diona.entity.*;
+import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityAntiGravityArrow;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
 import stevekung.mods.moreplanets.module.planets.fronos.client.render.entity.RenderBearry;
 import stevekung.mods.moreplanets.module.planets.fronos.client.render.entity.RenderGiantBlueberry;
@@ -86,5 +87,6 @@ public class EntityRendererMP
         ClientRegisterHelper.registerEntityRendering(EntityMarshmallow.class, RenderMarshmallow::new);
         ClientRegisterHelper.registerEntityRendering(EntityBearry.class, RenderBearry::new);
         ClientRegisterHelper.registerEntityRendering(EntityBlackHoleStorage.class, RenderBlackHoleStorage::new);
+        ClientRegisterHelper.registerEntityRendering(EntityAntiGravityArrow.class, RenderAntiGravityArrow::new);
     }
 }

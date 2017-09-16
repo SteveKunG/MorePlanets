@@ -10,10 +10,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.ItemArrow;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,6 +19,7 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityAntiGravityArrow;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedArrow;
@@ -152,94 +150,17 @@ public class ItemSpaceBow extends ItemBaseMP
                 else if (arrowStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW)
                 {
                     arrow = new EntityInfectedCrystallizeArrow(world, player);
-                    arrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, duration * 3.0F, 1.0F);
-
-                    if (duration == 1.0F)
-                    {
-                        arrow.setIsCritical(true);
-                    }
-                    if (power > 0)
-                    {
-                        arrow.setDamage(arrow.getDamage() + power * 0.5D + 0.5D);
-                    }
-                    if (punch > 0)
-                    {
-                        arrow.setKnockbackStrength(punch);
-                    }
-                    if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, itemStack) > 0)
-                    {
-                        arrow.setFire(100);
-                    }
-
-                    itemStack.damageItem(1, player);
-                    world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + duration * 0.5F);
-
-                    if (flag)
-                    {
-                        arrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
-                    }
-                    else
-                    {
-                        if (arrowStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW)
-                        {
-                            arrowStack.stackSize--;
-
-                            if (arrowStack.stackSize == 0)
-                            {
-                                player.inventory.deleteStack(arrowStack);
-                            }
-                        }
-                    }
-                    if (!world.isRemote)
-                    {
-                        world.spawnEntityInWorld(arrow);
-                    }
+                    ItemSpaceBow.spawnArrow(itemStack, arrowStack, world, player, arrow, DionaItems.INFECTED_CRYSTALLIZE_ARROW, power, punch, duration, flag);
                 }
                 else if (arrowStack.getItem() == NibiruItems.INFECTED_ARROW)
                 {
                     arrow = new EntityInfectedArrow(world, player);
-                    arrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, duration * 3.0F, 1.0F);
-
-                    if (duration == 1.0F)
-                    {
-                        arrow.setIsCritical(true);
-                    }
-                    if (power > 0)
-                    {
-                        arrow.setDamage(arrow.getDamage() + power * 0.5D + 0.5D);
-                    }
-                    if (punch > 0)
-                    {
-                        arrow.setKnockbackStrength(punch);
-                    }
-                    if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, itemStack) > 0)
-                    {
-                        arrow.setFire(100);
-                    }
-
-                    itemStack.damageItem(1, player);
-                    world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + duration * 0.5F);
-
-                    if (flag)
-                    {
-                        arrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
-                    }
-                    else
-                    {
-                        if (arrowStack.getItem() == NibiruItems.INFECTED_ARROW)
-                        {
-                            arrowStack.stackSize--;
-
-                            if (arrowStack.stackSize == 0)
-                            {
-                                player.inventory.deleteStack(arrowStack);
-                            }
-                        }
-                    }
-                    if (!world.isRemote)
-                    {
-                        world.spawnEntityInWorld(arrow);
-                    }
+                    ItemSpaceBow.spawnArrow(itemStack, arrowStack, world, player, arrow, NibiruItems.INFECTED_ARROW, power, punch, duration, flag);
+                }
+                else if (arrowStack.getItem() == DionaItems.ANTI_GRAVITY_ARROW)
+                {
+                    arrow = new EntityAntiGravityArrow(world, player);
+                    ItemSpaceBow.spawnArrow(itemStack, arrowStack, world, player, arrow, DionaItems.ANTI_GRAVITY_ARROW, power, punch, duration, flag);
                 }
             }
         }
@@ -329,6 +250,52 @@ public class ItemSpaceBow extends ItemBaseMP
 
     protected boolean isArrow(ItemStack itemStack)
     {
-        return itemStack != null && (itemStack.getItem() instanceof ItemArrow || itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW || itemStack.getItem() == NibiruItems.INFECTED_ARROW);
+        return itemStack != null && (itemStack.getItem() instanceof ItemArrow || itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW || itemStack.getItem() == NibiruItems.INFECTED_ARROW || itemStack.getItem() == DionaItems.ANTI_GRAVITY_ARROW);
+    }
+
+    private static void spawnArrow(ItemStack itemStack, ItemStack arrowStack, World world, EntityPlayer player, EntityArrowMP arrow, Item arrowItem, int power, int punch, float duration, boolean flag)
+    {
+        arrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, duration * 3.0F, 1.0F);
+
+        if (duration == 1.0F)
+        {
+            arrow.setIsCritical(true);
+        }
+        if (power > 0)
+        {
+            arrow.setDamage(arrow.getDamage() + power * 0.5D + 0.5D);
+        }
+        if (punch > 0)
+        {
+            arrow.setKnockbackStrength(punch);
+        }
+        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, itemStack) > 0)
+        {
+            arrow.setFire(100);
+        }
+
+        itemStack.damageItem(1, player);
+        world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + duration * 0.5F);
+
+        if (flag)
+        {
+            arrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+        }
+        else
+        {
+            if (arrowStack.getItem() == arrowItem)
+            {
+                arrowStack.stackSize--;
+
+                if (arrowStack.stackSize == 0)
+                {
+                    player.inventory.deleteStack(arrowStack);
+                }
+            }
+        }
+        if (!world.isRemote)
+        {
+            world.spawnEntityInWorld(arrow);
+        }
     }
 }

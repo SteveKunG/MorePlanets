@@ -366,6 +366,8 @@ item.crystallize_lava_bucket.name=Crystallize Lava Bucket
 item.dark_energy_pearl.name=Dark Energy Pearl
 item.diona_item.glowing_iron_ingot.name=Glowing Iron Ingot
 item.diona_item.black_hole_fragment.name=Black Hole Fragment
+item.diona_item.anti_gravity_fragment.name=Anti Gravity Fragment
+item.anti_gravity_arrow.name=Anti Gravity Arrow
 
 # ITEMS - CHALOS
 item.cheese_food.cheese_of_milk_curd.name=Cheese of Milk Curd
