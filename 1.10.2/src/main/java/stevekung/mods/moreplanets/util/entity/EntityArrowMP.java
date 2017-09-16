@@ -306,10 +306,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
             {
                 this.extinguish();
             }
-            this.motionX *= f4;
-            this.motionY *= f4;
-            this.motionZ *= f4;
-            this.motionY -= motionGravity;
+            this.doMotion(f4, f3, motionGravity);
             this.setPosition(this.posX, this.posY, this.posZ);
             this.doBlockCollisions();
         }
@@ -355,6 +352,14 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
         }
     }
 
-    public abstract void addEffect(EntityLivingBase living);
-    public abstract DamageSource[] getDamageSource();
+    protected void doMotion(float speed, float motion, float motionGravity)
+    {
+        this.motionX *= speed;
+        this.motionY *= speed;
+        this.motionZ *= speed;
+        this.motionY -= motionGravity;
+    }
+
+    protected void addEffect(EntityLivingBase living) {}
+    protected abstract DamageSource[] getDamageSource();
 }

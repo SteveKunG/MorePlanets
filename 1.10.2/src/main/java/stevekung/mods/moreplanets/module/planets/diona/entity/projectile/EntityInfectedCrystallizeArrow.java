@@ -30,7 +30,7 @@ public class EntityInfectedCrystallizeArrow extends EntityArrowMP
     }
 
     @Override
-    public void addEffect(EntityLivingBase living)
+    protected void addEffect(EntityLivingBase living)
     {
         if (!this.worldObj.isRemote)
         {
@@ -60,7 +60,7 @@ public class EntityInfectedCrystallizeArrow extends EntityArrowMP
     }
 
     @Override
-    public DamageSource[] getDamageSource()
+    protected DamageSource[] getDamageSource()
     {
         return new DamageSource[] {DamageSourceMP.causeInfectedCrystallizeArrowDamage(this, this), DamageSourceMP.causeInfectedCrystallizeArrowDamage(this, this.shootingEntity)};
     }
