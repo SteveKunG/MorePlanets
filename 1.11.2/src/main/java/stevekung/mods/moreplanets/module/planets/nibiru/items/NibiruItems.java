@@ -14,10 +14,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.items.tools.*;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
-import stevekung.mods.moreplanets.util.items.ItemBucketMP;
-import stevekung.mods.moreplanets.util.items.ItemDoorMP;
-import stevekung.mods.moreplanets.util.items.ItemGasBucketMP;
+import stevekung.mods.moreplanets.util.items.*;
 import stevekung.mods.moreplanets.util.items.tools.*;
 
 public class NibiruItems
@@ -102,7 +99,7 @@ public class NibiruItems
         NibiruItems.INFECTED_PRISMARINE = new ItemInfectedPrismarine("infected_prismarine_item");
         NibiruItems.INFECTED_EGG = new ItemInfectedEgg("infected_egg");
         NibiruItems.HELIUM_GAS_BUCKET = new ItemGasBucketMP("helium_gas_bucket", NibiruBlocks.HELIUM_GAS_BLOCK);
-        NibiruItems.INFECTED_ARROW = new ItemInfectedArrow("infected_arrow");
+        NibiruItems.INFECTED_ARROW = new ItemArrowMP("infected_arrow", ItemArrowMP.ArrowType.INFECTED);
         NibiruItems.INFECTED_MELON_SEEDS = new ItemInfectedMelonSeeds("infected_melon_seeds");
         NibiruItems.NUCLEAR_WASTE_BUCKET = new ItemBucketMP("nuclear_waste_bucket", NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK);
         NibiruItems.VEIN_EYE = new ItemVeinEye("vein_eye");

@@ -12,10 +12,7 @@ import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemBreathabl
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
-import stevekung.mods.moreplanets.util.items.ItemBucketMP;
-import stevekung.mods.moreplanets.util.items.ItemDungeonKeyMP;
+import stevekung.mods.moreplanets.util.items.*;
 import stevekung.mods.moreplanets.util.items.tools.*;
 
 public class DionaItems
@@ -65,11 +62,11 @@ public class DionaItems
         DionaItems.DIONA_DUNGEON_KEY = new ItemDungeonKeyMP("diona_dungeon_key", 4);
         DionaItems.INFECTED_CRYSTALLIZE_BOMB = new ItemInfectedCrystallizeBomb("infected_crystallize_bomb");
         DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL = new ItemBaseMP("infected_crystallize_slimeball");
-        DionaItems.INFECTED_CRYSTALLIZE_ARROW = new ItemBaseMP("infected_crystallize_arrow").setSortCategory(EnumSortCategoryItem.ARROW);
+        DionaItems.INFECTED_CRYSTALLIZE_ARROW = new ItemArrowMP("infected_crystallize_arrow", ItemArrowMP.ArrowType.INFECTED_CRYSTALLIZE);
         DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET = new ItemBucketMP("crystallize_water_bucket", DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK);
         DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET = new ItemBucketMP("crystallize_lava_bucket", DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK);
         DionaItems.DARK_ENERGY_PEARL = new ItemBaseMP("dark_energy_pearl").setSortCategory(EnumSortCategoryItem.GENERAL);
-        DionaItems.ANTI_GRAVITY_ARROW = new ItemBaseMP("anti_gravity_arrow").setSortCategory(EnumSortCategoryItem.ARROW);
+        DionaItems.ANTI_GRAVITY_ARROW = new ItemArrowMP("anti_gravity_arrow", ItemArrowMP.ArrowType.ANTI_GRAVITY);
 
         /**************************************************************/
         /**********************INITIAL TOOL STUFF**********************/
