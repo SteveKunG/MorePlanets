@@ -122,13 +122,13 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     @Override
     protected SoundEvent getHurtSound()
     {
-        return MPSounds.ALIEN_MINER_AMBIENT;
+        return MPSounds.ALIEN_MINER_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return MPSounds.ALIEN_MINER_AMBIENT;
+        return MPSounds.ALIEN_MINER_DEATH;
     }
 
     @Override
