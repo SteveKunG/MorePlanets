@@ -1,9 +1,6 @@
 package stevekung.mods.moreplanets.integration.jei.rocket_crusher;
 
-import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IDrawableAnimated;
-import mezz.jei.api.gui.IGuiItemStackGroup;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -16,6 +13,21 @@ import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
 public class RocketCrusherRecipeCategory extends BlankRecipeCategory
 {
+    private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/rocket_crusher.png");
+    private IDrawableAnimated progressBar;
+    private IDrawableStatic[] progressHammerDrawable = new IDrawableStatic[3];
+
+    public RocketCrusherRecipeCategory()
+    {
+        IDrawableStatic progressBarDrawable = JEIRegistryHelper.guiHelper.createDrawable(texture, 176, 13, 52, 17);
+        this.progressBar = JEIRegistryHelper.guiHelper.createAnimatedDrawable(progressBarDrawable, 80, IDrawableAnimated.StartDirection.LEFT, false);
+
+        for (int i = 0; i < 3; i++)
+        {
+            this.progressHammerDrawable[i] = JEIRegistryHelper.guiHelper.createDrawable(texture, 176, 0, 12, 13);
+        }
+    }
+
     @Override
     public String getUid()
     {
@@ -31,13 +43,20 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
     @Override
     public IDrawable getBackground()
     {
-        return JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/rocket_crusher.png"), 18, 17, 142, 54);
+        return JEIRegistryHelper.guiHelper.createDrawable(texture, 18, 17, 142, 54);
     }
 
     @Override
     public void drawExtras(Minecraft mc)
     {
-        JEIRegistryHelper.guiHelper.createAnimatedDrawable(JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/rocket_crusher.png"), 176, 13, 52, 17), 70, IDrawableAnimated.StartDirection.LEFT, false).draw(mc, 59, 22);
+        int x = 62;
+
+        for (int i = 0; i < 3; i++)
+        {
+            this.progressHammerDrawable[i].draw(mc, x, 13);
+            x += 13;
+        }
+        this.progressBar.draw(mc, 59, 22);
     }
 
     @Override
