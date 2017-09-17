@@ -5,3 +5,4 @@
 -Update- Improved Laser Bullet damage/motion
 -Update- Reduced file size for .json and .mcmeta
 -Fixed- Fixed Shield Generator render conflict with BetterFPS
+-Fixed- Fixed Rocket Crusher JEI recipe animation
