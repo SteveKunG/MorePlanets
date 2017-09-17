@@ -32,6 +32,7 @@ public class DionaItems
     public static Item CRYSTALLIZE_WATER_FLUID_BUCKET;
     public static Item CRYSTALLIZE_LAVA_FLUID_BUCKET;
     public static Item DARK_ENERGY_PEARL;
+    public static Item ANTI_GRAVITY_ARROW;
 
     // Tools
     public static Item ILLENIUM_SWORD;
@@ -68,6 +69,7 @@ public class DionaItems
         DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET = new ItemBucketMP("crystallize_water_bucket", DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK);
         DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET = new ItemBucketMP("crystallize_lava_bucket", DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK);
         DionaItems.DARK_ENERGY_PEARL = new ItemBaseMP("dark_energy_pearl").setSortCategory(EnumSortCategoryItem.GENERAL);
+        DionaItems.ANTI_GRAVITY_ARROW = new ItemBaseMP("anti_gravity_arrow").setSortCategory(EnumSortCategoryItem.ARROW);
 
         /**************************************************************/
         /**********************INITIAL TOOL STUFF**********************/
@@ -104,6 +106,7 @@ public class DionaItems
         CommonRegisterHelper.registerItem(DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET);
         CommonRegisterHelper.registerItem(DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET);
         CommonRegisterHelper.registerItem(DionaItems.DARK_ENERGY_PEARL);
+        CommonRegisterHelper.registerItem(DionaItems.ANTI_GRAVITY_ARROW);
 
         CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_SWORD);
         CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_SHOVEL);
