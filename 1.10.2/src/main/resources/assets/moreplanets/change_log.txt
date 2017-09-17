@@ -1,4 +1,5 @@
 -Added- Added Anti Gravity Arrow/Fragment
+-Added- Added Vanilla Bow support with More Planets Arrow
 -Update- Update to use Galacticraft Build 117 or higher
 -Update- Improved sound subtitles
 -Update- Improved Laser Bullet damage/motion
