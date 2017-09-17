@@ -19,10 +19,7 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
-import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityAntiGravityArrow;
-import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.entity.EntityArrowMP;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
@@ -105,62 +102,9 @@ public class ItemSpaceBow extends ItemBaseMP
                 }
                 if (arrowStack.getItem() instanceof ItemArrow)
                 {
-                    ItemArrow itemarrow = (ItemArrow) arrowStack.getItem();
-                    EntityArrow entityarrow = itemarrow.createArrow(world, arrowStack, player);
-                    entityarrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, duration * 3.0F, 1.0F);
-
-                    if (duration == 1.0F)
-                    {
-                        entityarrow.setIsCritical(true);
-                    }
-                    if (power > 0)
-                    {
-                        entityarrow.setDamage(entityarrow.getDamage() + power * 0.5D + 0.5D);
-                    }
-                    if (punch > 0)
-                    {
-                        entityarrow.setKnockbackStrength(punch);
-                    }
-                    if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, itemStack) > 0)
-                    {
-                        entityarrow.setFire(100);
-                    }
-
-                    itemStack.damageItem(1, player);
-                    world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + duration * 0.5F);
-
-                    if (flag)
-                    {
-                        entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
-                    }
-                    else
-                    {
-                        arrowStack.stackSize--;
-
-                        if (arrowStack.stackSize == 0)
-                        {
-                            player.inventory.deleteStack(arrowStack);
-                        }
-                    }
-                    if (!world.isRemote)
-                    {
-                        world.spawnEntityInWorld(entityarrow);
-                    }
-                }
-                else if (arrowStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW)
-                {
-                    arrow = new EntityInfectedCrystallizeArrow(world, player);
-                    ItemSpaceBow.spawnArrow(itemStack, arrowStack, world, player, arrow, DionaItems.INFECTED_CRYSTALLIZE_ARROW, power, punch, duration, flag);
-                }
-                else if (arrowStack.getItem() == NibiruItems.INFECTED_ARROW)
-                {
-                    arrow = new EntityInfectedArrow(world, player);
-                    ItemSpaceBow.spawnArrow(itemStack, arrowStack, world, player, arrow, NibiruItems.INFECTED_ARROW, power, punch, duration, flag);
-                }
-                else if (arrowStack.getItem() == DionaItems.ANTI_GRAVITY_ARROW)
-                {
-                    arrow = new EntityAntiGravityArrow(world, player);
-                    ItemSpaceBow.spawnArrow(itemStack, arrowStack, world, player, arrow, DionaItems.ANTI_GRAVITY_ARROW, power, punch, duration, flag);
+                    ItemArrow itemArrow = (ItemArrow) arrowStack.getItem();
+                    EntityArrow vanillaArrow = itemArrow.createArrow(world, arrowStack, player);
+                    ItemSpaceBow.spawnArrow(itemStack, arrowStack, world, player, vanillaArrow, itemArrow, power, punch, duration, flag);
                 }
             }
         }
@@ -253,7 +197,7 @@ public class ItemSpaceBow extends ItemBaseMP
         return itemStack != null && (itemStack.getItem() instanceof ItemArrow || itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW || itemStack.getItem() == NibiruItems.INFECTED_ARROW || itemStack.getItem() == DionaItems.ANTI_GRAVITY_ARROW);
     }
 
-    private static void spawnArrow(ItemStack itemStack, ItemStack arrowStack, World world, EntityPlayer player, EntityArrowMP arrow, Item arrowItem, int power, int punch, float duration, boolean flag)
+    private static void spawnArrow(ItemStack itemStack, ItemStack arrowStack, World world, EntityPlayer player, EntityArrow arrow, Item arrowItem, int power, int punch, float duration, boolean flag)
     {
         arrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, duration * 3.0F, 1.0F);
 
