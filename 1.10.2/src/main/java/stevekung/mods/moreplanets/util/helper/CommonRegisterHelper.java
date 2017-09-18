@@ -21,6 +21,7 @@ import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,9 @@ import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.IFuelHandler;
 import net.minecraftforge.fml.common.network.IGuiHandler;
@@ -167,9 +170,10 @@ public class CommonRegisterHelper
         GameRegistry.registerTileEntity(tile, name);
     }
 
-    public static void registerForgeBucket(Fluid fluid)
+    public static void registerForgeBucket(Fluid fluid, Item bucket)
     {
         FluidRegistry.addBucketForFluid(fluid);
+        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucket), new ItemStack(Items.BUCKET));
     }
 
     public static void registerGUIHandler(Object obj, IGuiHandler handler)

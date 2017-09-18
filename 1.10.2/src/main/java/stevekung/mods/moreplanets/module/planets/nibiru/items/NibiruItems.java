@@ -231,10 +231,10 @@ public class NibiruItems
         /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.INFECTED_WATER_FLUID);
-        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.HELIUM_GAS);
-        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.NUCLEAR_WASTE_FLUID);
-        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.PURIFY_WATER_FLUID);
+        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.INFECTED_WATER_FLUID, NibiruItems.INFECTED_WATER_FLUID_BUCKET);
+        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.HELIUM_GAS, NibiruItems.HELIUM_GAS_BUCKET);
+        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.NUCLEAR_WASTE_FLUID, NibiruItems.NUCLEAR_WASTE_BUCKET);
+        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.PURIFY_WATER_FLUID, NibiruItems.PURIFY_WATER_BUCKET);
 
         /**************************************************************/
         /************************OTHER STUFF***************************/

@@ -150,9 +150,9 @@ public class ChalosItems
         /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerForgeBucket(ChalosBlocks.CHEESE_OF_MILK_FLUID);
-        CommonRegisterHelper.registerForgeBucket(ChalosBlocks.CHEESE_OF_MILK_GAS);
-
+        CommonRegisterHelper.registerForgeBucket(ChalosBlocks.CHEESE_OF_MILK_FLUID, ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET);
+        CommonRegisterHelper.registerForgeBucket(ChalosBlocks.CHEESE_OF_MILK_GAS, ChalosItems.CHEESE_OF_MILK_GAS_BUCKET);
+        
         /**************************************************************/
         /************************OTHER STUFF***************************/
         /**************************************************************/

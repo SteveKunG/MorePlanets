@@ -135,7 +135,7 @@ public class DionaItems
         /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerForgeBucket(DionaBlocks.CRYSTALLIZE_WATER_FLUID);
-        CommonRegisterHelper.registerForgeBucket(DionaBlocks.CRYSTALLIZE_LAVA_FLUID);
+        CommonRegisterHelper.registerForgeBucket(DionaBlocks.CRYSTALLIZE_WATER_FLUID, DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET);
+        CommonRegisterHelper.registerForgeBucket(DionaBlocks.CRYSTALLIZE_LAVA_FLUID, DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET);
     }
 }
