@@ -28,6 +28,7 @@ public class EntityMarshmallow extends EntityFronosPet
         this.setSize(0.5F, 0.4F);
         this.setTamed(false);
         this.initEntityAI();
+        this.timeUntilToDropItem = this.rand.nextInt(6000) + 6000;
     }
 
     @Override
