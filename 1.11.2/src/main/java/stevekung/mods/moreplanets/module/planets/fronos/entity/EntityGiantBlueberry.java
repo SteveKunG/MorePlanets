@@ -73,9 +73,9 @@ public class EntityGiantBlueberry extends EntityFronosPet
     {
         if (this.isChild())
         {
-            return this.isSitting() ? this.height * 0.1D : this.height * 0.4D;
+            return this.isSitting() ? this.height * 0.415D : this.height * 0.7D;
         }
-        return this.isSitting() ? this.height * 0.45D : this.height * 0.65D;
+        return this.isSitting() ? this.height * 0.605D : this.height * 0.85D;
     }
 
     @Override

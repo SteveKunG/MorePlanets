@@ -83,9 +83,9 @@ public class EntityMarshmallow extends EntityFronosPet
     {
         if (this.isChild())
         {
-            return this.isSitting() ? this.height - 0.35D : this.height - 0.305D;
+            return this.isSitting() ? this.height - 0.195D : this.height - 0.155D;
         }
-        return this.isSitting() ? 0.0D : this.height * 0.225D;
+        return this.isSitting() ? 0.15D : this.height * 0.575D;
     }
 
     @Override

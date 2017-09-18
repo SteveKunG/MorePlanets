@@ -63,9 +63,9 @@ public class EntityBearry extends EntityFronosPet
     {
         if (this.isChild())
         {
-            return this.isSitting() ? this.height * 0.3D : this.height * 0.5D;
+            return this.isSitting() ? this.height * 0.6D : this.height * 0.8D;
         }
-        return this.isSitting() ? this.height * 0.5D : this.height * 0.75D;
+        return this.isSitting() ? this.height * 0.715D : this.height * 0.925D;
     }
 
     @Override
