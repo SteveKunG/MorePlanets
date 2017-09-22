@@ -465,7 +465,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             float f3 = MathHelper.cos(f) * i * 0.65F * f1;
             double d0 = this.posX + f2;
             double d1 = this.posZ + f3;
-            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_CRYSTALLIZE_SLIME, d0, this.getEntityBoundingBox().minY, d1);
+            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, d0, this.getEntityBoundingBox().minY, d1, new Object[] { DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL });
         }
     }
 
