@@ -44,21 +44,21 @@ public class RenderJellySlime extends RenderLiving<EntityJellySlime>
         {
         case 0:
         default:
-            return this.grapeSlimeTexture;
+            return RenderJellySlime.grapeSlimeTexture;
         case 1:
-            return this.raspberrySlimeTexture;
+            return RenderJellySlime.raspberrySlimeTexture;
         case 2:
-            return this.strawberrySlimeTexture;
+            return RenderJellySlime.strawberrySlimeTexture;
         case 3:
-            return this.berrySlimeTexture;
+            return RenderJellySlime.berrySlimeTexture;
         case 4:
-            return this.limeSlimeTexture;
+            return RenderJellySlime.limeSlimeTexture;
         case 5:
-            return this.orangeSlimeTexture;
+            return RenderJellySlime.orangeSlimeTexture;
         case 6:
-            return this.greenSlimeTexture;
+            return RenderJellySlime.greenSlimeTexture;
         case 7:
-            return this.lemonSlimeTexture;
+            return RenderJellySlime.lemonSlimeTexture;
         }
     }
 

@@ -21,7 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.entity.EntityArrowMP;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 
@@ -73,7 +72,6 @@ public class ItemSpaceBow extends ItemBaseMP
             ItemStack arrowStack = this.findAmmo(player);
             ArrowLooseEvent event = new ArrowLooseEvent(player, itemStack, world, useDuration, arrowStack != null);
             boolean flag = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, itemStack) > 0;
-            EntityArrowMP arrow = null;
             MinecraftForge.EVENT_BUS.post(event);
 
             if (event.isCanceled())
