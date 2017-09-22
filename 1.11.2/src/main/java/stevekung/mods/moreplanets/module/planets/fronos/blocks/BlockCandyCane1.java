@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -91,7 +90,7 @@ public class BlockCandyCane1 extends BlockLogMP implements IBlockVariants
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] { VARIANT, BlockStateHelper.AXIS });
+        return new BlockStateContainer(this, VARIANT, BlockStateHelper.AXIS);
     }
 
     @Override

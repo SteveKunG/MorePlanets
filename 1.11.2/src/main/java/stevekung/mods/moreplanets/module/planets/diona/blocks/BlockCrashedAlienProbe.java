@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -93,7 +92,7 @@ public class BlockCrashedAlienProbe extends BlockTileMP implements ISingleBlockR
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {HAS_ALIEN});
+        return new BlockStateContainer(this, HAS_ALIEN);
     }
 
     @Override

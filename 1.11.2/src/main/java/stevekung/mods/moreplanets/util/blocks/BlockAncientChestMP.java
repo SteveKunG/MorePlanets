@@ -5,7 +5,6 @@ import java.util.Iterator;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -398,7 +397,7 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements IS
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING_HORIZON});
+        return new BlockStateContainer(this, BlockStateHelper.FACING_HORIZON);
     }
 
     @Override

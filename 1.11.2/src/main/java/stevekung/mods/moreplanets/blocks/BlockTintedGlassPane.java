@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -84,7 +83,7 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {NORTH, EAST, WEST, SOUTH, BlockStateHelper.COLOR});
+        return new BlockStateContainer(this, NORTH, EAST, WEST, SOUTH, BlockStateHelper.COLOR);
     }
 
     @Override
