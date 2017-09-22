@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.ColorizerGrass;
@@ -14,18 +15,15 @@ import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
-import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleAlienMinerSpark;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleCrystallizeFlame;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleDarkPortal;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleAlienBerry;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedSpore;
-import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
@@ -144,21 +142,13 @@ public class ClientProxyMP extends ServerProxyMP
             {
                 entityfx = new ParticleAlienBerry(mc.theWorld, x, y, z);
             }
-            else if (type == EnumParticleTypesMP.CHEESE_SLIME)
+            else if (type == EnumParticleTypesMP.CUSTOM_BREAKING)
             {
-                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, ChalosItems.CHEESE_SLIMEBALL);
+                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, (Item) data[0]);
             }
-            else if (type == EnumParticleTypesMP.INFECTED_CRYSTALLIZE_SLIME)
+            else if (type == EnumParticleTypesMP.CUSTOM_BREAKING_MOTION)
             {
-                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
-            }
-            else if (type == EnumParticleTypesMP.INFECTED_EGG)
-            {
-                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, motionX, motionY, motionZ, NibiruItems.INFECTED_EGG, 0);
-            }
-            else if (type == EnumParticleTypesMP.INFECTED_SNOWBALL)
-            {
-                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, NibiruItems.INFECTED_SNOWBALL);
+                entityfx = new ParticleBreakingMC(mc.theWorld, x, y, z, motionX, motionY, motionZ, (Item) data[0]);
             }
             else if (type == EnumParticleTypesMP.INFECTED_WATER_DRIP)
             {

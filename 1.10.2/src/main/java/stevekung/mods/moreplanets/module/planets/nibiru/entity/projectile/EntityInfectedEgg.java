@@ -7,6 +7,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedChicken;
+import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 
 public class EntityInfectedEgg extends EntityThrowable
@@ -54,7 +55,7 @@ public class EntityInfectedEgg extends EntityThrowable
 
         for (int k = 0; k < 8; ++k)
         {
-            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_EGG, this.posX, this.posY, this.posZ, (this.rand.nextFloat() - 0.5D) * 0.08D, (this.rand.nextFloat() - 0.5D) * 0.08D, (this.rand.nextFloat() - 0.5D) * 0.08D);
+            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING_MOTION, this.posX, this.posY, this.posZ, (this.rand.nextFloat() - 0.5D) * 0.08D, (this.rand.nextFloat() - 0.5D) * 0.08D, (this.rand.nextFloat() - 0.5D) * 0.08D, new Object[] { NibiruItems.INFECTED_EGG });
         }
         if (!this.worldObj.isRemote)
         {
