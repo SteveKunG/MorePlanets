@@ -17,9 +17,11 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityA
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
 import stevekung.mods.moreplanets.module.planets.fronos.client.render.entity.RenderBearry;
 import stevekung.mods.moreplanets.module.planets.fronos.client.render.entity.RenderGiantBlueberry;
+import stevekung.mods.moreplanets.module.planets.fronos.client.render.entity.RenderJellySlime;
 import stevekung.mods.moreplanets.module.planets.fronos.client.render.entity.RenderMarshmallow;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityBearry;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityGiantBlueberry;
+import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityJellySlime;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityMarshmallow;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.entity.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.*;
@@ -89,5 +91,6 @@ public class EntityRendererMP
         ClientRegisterHelper.registerEntityRendering(EntityBearry.class, RenderBearry::new);
         ClientRegisterHelper.registerEntityRendering(EntityBlackHoleStorage.class, RenderBlackHoleStorage::new);
         ClientRegisterHelper.registerEntityRendering(EntityAntiGravityArrow.class, RenderAntiGravityArrow::new);
+        ClientRegisterHelper.registerEntityRendering(EntityJellySlime.class, RenderJellySlime::new);
     }
 }

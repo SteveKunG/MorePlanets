@@ -29,6 +29,16 @@ public class MPLootTables
     public static final ResourceLocation GIANT_BLUEBERRY = CommonRegisterHelper.registerEntityLoot("giant_blueberry");
     public static final ResourceLocation MARSHMALLOW = CommonRegisterHelper.registerEntityLoot("marshmallow");
 
+    // Jelly Slime
+    public static final ResourceLocation JELLY_SLIME_GRAPE = CommonRegisterHelper.registerEntityDyeLoot("jelly_slime", "grape");
+    public static final ResourceLocation JELLY_SLIME_RASPBERRY = CommonRegisterHelper.registerEntityDyeLoot("jelly_slime", "raspberry");
+    public static final ResourceLocation JELLY_SLIME_STRAWBERRY = CommonRegisterHelper.registerEntityDyeLoot("jelly_slime", "strawberry");
+    public static final ResourceLocation JELLY_SLIME_BERRY = CommonRegisterHelper.registerEntityDyeLoot("jelly_slime", "berry");
+    public static final ResourceLocation JELLY_SLIME_LIME = CommonRegisterHelper.registerEntityDyeLoot("jelly_slime", "lime");
+    public static final ResourceLocation JELLY_SLIME_ORANGE = CommonRegisterHelper.registerEntityDyeLoot("jelly_slime", "orange");
+    public static final ResourceLocation JELLY_SLIME_GREEN = CommonRegisterHelper.registerEntityDyeLoot("jelly_slime", "green");
+    public static final ResourceLocation JELLY_SLIME_LEMON = CommonRegisterHelper.registerEntityDyeLoot("jelly_slime", "lemon");
+
     // Dyed
     public static final ResourceLocation SHLIME_WOOL_WHITE = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "white");
     public static final ResourceLocation SHLIME_WOOL_ORANGE = CommonRegisterHelper.registerEntityDyeLoot("shlime_wool", "orange");
