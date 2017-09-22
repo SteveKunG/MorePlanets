@@ -7,7 +7,6 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -88,7 +87,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] { VARIANT, BlockStateHelper.DECAYABLE, BlockStateHelper.CHECK_DECAY });
+        return new BlockStateContainer(this, VARIANT, BlockStateHelper.DECAYABLE, BlockStateHelper.CHECK_DECAY);
     }
 
     @Override

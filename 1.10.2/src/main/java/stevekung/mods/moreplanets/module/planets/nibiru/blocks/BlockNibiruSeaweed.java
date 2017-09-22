@@ -7,7 +7,6 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -138,7 +137,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] { VARIANT, BlockLiquid.LEVEL });
+        return new BlockStateContainer(this, VARIANT, BlockLiquid.LEVEL);
     }
 
     @Override

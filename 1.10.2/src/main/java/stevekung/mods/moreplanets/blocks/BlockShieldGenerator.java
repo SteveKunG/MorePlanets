@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.blocks;
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -175,7 +174,7 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {BlockStateHelper.FACING_HORIZON});
+        return new BlockStateContainer(this, BlockStateHelper.FACING_HORIZON);
     }
 
     @Override

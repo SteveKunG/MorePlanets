@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import stevekung.mods.moreplanets.util.blocks.BlockLogMP;
@@ -62,7 +61,7 @@ public class BlockCheeseSporeStem extends BlockLogMP
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] { BlockStateHelper.AXIS });
+        return new BlockStateContainer(this, BlockStateHelper.AXIS);
     }
 
     @Override

@@ -5,7 +5,6 @@ import java.util.List;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -65,7 +64,7 @@ public class BlockFronosDirt extends BlockBaseMP implements ITerraformableBlock,
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] { VARIANT });
+        return new BlockStateContainer(this, VARIANT);
     }
 
     @Override
