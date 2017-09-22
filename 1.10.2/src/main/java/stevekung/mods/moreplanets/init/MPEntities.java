@@ -15,6 +15,7 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityA
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityBearry;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityGiantBlueberry;
+import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityJellySlime;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityMarshmallow;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.*;
@@ -60,6 +61,7 @@ public class MPEntities
         CommonRegisterHelper.registerEntity(EntityGiantBlueberry.class, "giant_blueberry", ColorHelper.rgbToDecimal(69, 88, 156), ColorHelper.rgbToDecimal(79, 100, 177));
         CommonRegisterHelper.registerEntity(EntityMarshmallow.class, "marshmallow", ColorHelper.rgbToDecimal(225, 215, 206), ColorHelper.rgbToDecimal(128, 128, 128));
         CommonRegisterHelper.registerEntity(EntityBearry.class, "bearry", ColorHelper.rgbToDecimal(179, 47, 47), ColorHelper.rgbToDecimal(0, 143, 0));
+        CommonRegisterHelper.registerEntity(EntityJellySlime.class, "jelly_slime", ColorHelper.rgbToDecimal(244, 69, 109), ColorHelper.rgbToDecimal(199, 56, 89));
 
         CommonRegisterHelper.registerNonMobEntity(EntitySpaceMinecartChest.class, "space_minecart_chest");
         CommonRegisterHelper.registerNonMobEntity(EntityTier4Rocket.class, "tier_4_rocket", EnumEntityTrackerType.TIERED_ROCKET);
@@ -106,5 +108,6 @@ public class MPEntities
         CommonRegisterHelper.registerEntityPlacement(EntityGiantBlueberry.class, SpawnPlacementType.ON_GROUND);
         CommonRegisterHelper.registerEntityPlacement(EntityMarshmallow.class, SpawnPlacementType.ON_GROUND);
         CommonRegisterHelper.registerEntityPlacement(EntityBearry.class, SpawnPlacementType.ON_GROUND);
+        CommonRegisterHelper.registerEntityPlacement(EntityJellySlime.class, SpawnPlacementType.ON_GROUND);
     }
 }

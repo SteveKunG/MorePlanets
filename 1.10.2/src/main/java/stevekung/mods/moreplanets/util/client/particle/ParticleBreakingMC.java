@@ -34,7 +34,7 @@ public class ParticleBreakingMC extends Particle
         this.motionZ += zSpeedIn;
     }
 
-    protected ParticleBreakingMC(World world, double posXIn, double posYIn, double posZIn, Item itemIn, int meta)
+    public ParticleBreakingMC(World world, double posXIn, double posYIn, double posZIn, Item itemIn, int meta)
     {
         super(world, posXIn, posYIn, posZIn, 0.0D, 0.0D, 0.0D);
         this.setParticleTexture(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(itemIn, meta));
