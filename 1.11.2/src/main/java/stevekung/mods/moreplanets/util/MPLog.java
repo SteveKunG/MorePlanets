@@ -8,14 +8,8 @@ import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 
 public class MPLog
 {
-    private static final Logger LOG;
-    private static final Logger LOG_DEBUG;
-
-    static
-    {
-        LOG = LogManager.getLogger("More Planets");
-        LOG_DEBUG = LogManager.getLogger("More Planets Debug");
-    }
+    private static final Logger LOG = LogManager.getLogger("More Planets");
+    private static final Logger LOG_DEBUG = LogManager.getLogger("More Planets Debug");
 
     public static void info(String message)
     {
