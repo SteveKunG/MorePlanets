@@ -6,7 +6,6 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityDeconstructor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -32,7 +31,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -47,20 +45,16 @@ import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockCheeseDirt;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.module.planets.chalos.recipe.Tier5RocketRecipes;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.module.planets.diona.recipe.Tier4RocketRecipes;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.BlockFronosDirt;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockInfectedDirt;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.module.planets.nibiru.recipe.Tier6RocketRecipes;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.CachedEnumUtil;
-import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidLavaBaseMP;
 import stevekung.mods.moreplanets.util.blocks.IFireBlock;
 
@@ -126,22 +120,6 @@ public class GeneralEventHandler
         {
             ConfigManagerMP.syncConfig(false);
         }
-    }
-
-    @SubscribeEvent
-    public void onWorldLoad(WorldEvent.Load event)
-    {
-        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0)); //tier 3 plate
-        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 2));
-        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3));
-        TileEntityDeconstructor.addSalvage(new ItemStack(ChalosItems.TIER_5_ROCKET_PART)); //tier 4 plate
-        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4)); //tier 5 plate
-        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 2));
-        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 3));
-        TileEntityDeconstructor.knownRecipes.addAll(Tier4RocketRecipes.getRocketRecipes());
-        TileEntityDeconstructor.knownRecipes.addAll(Tier5RocketRecipes.getRocketRecipes());
-        TileEntityDeconstructor.knownRecipes.addAll(Tier6RocketRecipes.getRocketRecipes());
-        MPLog.info("Added Deconstructor recipes on world load");
     }
 
     @SubscribeEvent

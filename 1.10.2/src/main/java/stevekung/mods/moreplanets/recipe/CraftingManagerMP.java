@@ -7,6 +7,7 @@ import com.google.common.collect.Maps;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.recipe.NasaWorkbenchRecipe;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityDeconstructor;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.init.Blocks;
@@ -17,14 +18,17 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.chalos.recipe.CraftingManagerChalos;
+import stevekung.mods.moreplanets.module.planets.chalos.recipe.Tier5RocketRecipes;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.recipe.CraftingManagerDiona;
+import stevekung.mods.moreplanets.module.planets.diona.recipe.Tier4RocketRecipes;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.module.planets.fronos.recipe.CraftingManagerFronos;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.recipe.CraftingManagerNibiru;
+import stevekung.mods.moreplanets.module.planets.nibiru.recipe.Tier6RocketRecipes;
 import stevekung.mods.moreplanets.util.helper.RecipeHelper;
 
 public class CraftingManagerMP
@@ -114,6 +118,18 @@ public class CraftingManagerMP
             RecipeHelper.addRocketCrusherRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 21, 0), "III", "DRD", "SSS", 'D', new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0), 'I', new ItemStack(DionaItems.DIONA_ITEM, 1, 2), 'S', new ItemStack(DionaItems.DIONA_ITEM, 1, 3), 'R', new ItemStack(DionaItems.TIER_4_ROCKET, 1, i));
             RecipeHelper.addRocketCrusherRecipe(new ItemStack(NibiruItems.NIBIRU_ITEM, 21, 4), "III", "DRD", "SSS", 'D', new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0), 'I', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'S', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 3), 'R', new ItemStack(ChalosItems.TIER_5_ROCKET, 1, i));
         }
+
+        // deconstructor
+        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0)); //tier 3 plate
+        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 2));
+        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3));
+        TileEntityDeconstructor.addSalvage(new ItemStack(ChalosItems.TIER_5_ROCKET_PART)); //tier 4 plate
+        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4)); //tier 5 plate
+        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 2));
+        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 3));
+        TileEntityDeconstructor.knownRecipes.addAll(Tier4RocketRecipes.getRocketRecipes());
+        TileEntityDeconstructor.knownRecipes.addAll(Tier5RocketRecipes.getRocketRecipes());
+        TileEntityDeconstructor.knownRecipes.addAll(Tier6RocketRecipes.getRocketRecipes());
 
         // dark energy transform
         input.put(0, new ItemStack(Items.ENDER_PEARL));
