@@ -115,18 +115,6 @@ public class CraftingManagerMP
             RecipeHelper.addRocketCrusherRecipe(new ItemStack(NibiruItems.NIBIRU_ITEM, 21, 4), "III", "DRD", "SSS", 'D', new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0), 'I', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'S', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 3), 'R', new ItemStack(ChalosItems.TIER_5_ROCKET, 1, i));
         }
 
-        /*// deconstructor
-        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0)); //tier 3 plate
-        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 2));
-        TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3));
-        TileEntityDeconstructor.addSalvage(new ItemStack(ChalosItems.TIER_5_ROCKET_PART)); //tier 4 plate
-        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4)); //tier 5 plate
-        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 2));
-        TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 3));
-        TileEntityDeconstructor.knownRecipes.addAll(Tier4RocketRecipes.getRocketRecipes());
-        TileEntityDeconstructor.knownRecipes.addAll(Tier5RocketRecipes.getRocketRecipes());
-        TileEntityDeconstructor.knownRecipes.addAll(Tier6RocketRecipes.getRocketRecipes());*/
-
         // dark energy transform
         input.put(0, new ItemStack(Items.ENDER_PEARL));
         input.put(1, new ItemStack(DionaItems.DIONA_ITEM, 4, 5));
