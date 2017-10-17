@@ -16,20 +16,19 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.0.9'
+        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.0.6'
     }
 }
 
 plugins {
-    id 'com.matthewprenger.cursegradle' version '1.0.9'
+    id 'com.matthewprenger.cursegradle' version '1.0.6'
 }
 
-def apiJson = file('M:/Modding/more_planets_api_token.json')
-def parsedApi = new groovy.json.JsonSlurper().parseText(apiJson.text)
-def mcVersion = '1.7.10'
+def api = new groovy.json.JsonSlurper().parseText(file("${api_token_path}").text)
+def mcVersion = project.mc_version
 
 apply plugin: 'forge'
-version = "1.4.3-GC502"
+version = project.version
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
@@ -40,7 +39,7 @@ minecraft {
 }
 
 curseforge {
-    apiKey = parsedApi.apiKey
+    apiKey = api.more_planets
     project {
         id = '261990'
         releaseType = 'release'

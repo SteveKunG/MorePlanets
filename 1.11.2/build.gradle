@@ -14,12 +14,11 @@ plugins {
     id 'net.franz-becker.gradle-lombok' version '1.5'
 }
 
-def apiJson = file('M:/Modding/more_planets_api_token.json')
-def parsedApi = new groovy.json.JsonSlurper().parseText(apiJson.text)
-def mcVersion = '1.11.2'
+def api = new groovy.json.JsonSlurper().parseText(file("${api_token_path}").text)
+def mcVersion = project.mc_version
 
 apply plugin: 'net.minecraftforge.gradle.forge'
-version = "2.0.9-GC117"
+version = project.version
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
@@ -57,7 +56,7 @@ dependencies {
 }
 
 curseforge {
-    apiKey = parsedApi.apiKey
+    apiKey = api.more_planets
     project {
         id = '261990'
         changelog = 'To read full change log use command /mpchangelog in-game.'
