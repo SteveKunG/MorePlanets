@@ -2,13 +2,11 @@ package stevekung.mods.moreplanets.util.items;
 
 import java.util.List;
 
-import org.lwjgl.input.Keyboard;
-
+import micdoodle8.mods.galacticraft.core.TransformerHooks;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemArrow;
@@ -19,7 +17,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityAntiGravityArrow;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
+import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedArrow;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
 
 public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItemRender
@@ -65,19 +65,29 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
         if (this.type == ArrowType.INFECTED)
         {
-            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+            if (CommonRegisterHelper.isShiftKeyDown())
             {
                 list.addAll(ItemDescriptionHelper.getDescription(this.getUnlocalizedName() + ".description"));
             }
             else
             {
-                list.add(GCCoreUtil.translateWithFormat("item_desc.shift.name", GameSettings.getKeyDisplayString(Minecraft.getMinecraft().gameSettings.keyBindSneak.getKeyCode())));
+                list.add(GCCoreUtil.translate("desc.shift_info.name"));
             }
         }
+    }
+
+    @Override
+    public boolean onEntityItemUpdate(EntityItem entityItem)
+    {
+        if (entityItem.getEntityItem().getItem() == DionaItems.ANTI_GRAVITY_ARROW)
+        {
+            entityItem.motionY += TransformerHooks.getItemGravity(entityItem);
+        }
+        return false;
     }
 
     @Override

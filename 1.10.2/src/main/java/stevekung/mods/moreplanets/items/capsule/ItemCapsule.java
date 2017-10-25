@@ -90,7 +90,7 @@ public class ItemCapsule extends ItemFoodMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubItems(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         list.add(new ItemStack(item, 1, 0));
 
@@ -107,11 +107,11 @@ public class ItemCapsule extends ItemFoodMP
         if (itemStack.hasTagCompound() && (player.canEat(true) || player.capabilities.isCreativeMode))
         {
             player.setActiveHand(hand);
-            return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
         }
         else
         {
-            return new ActionResult(EnumActionResult.FAIL, itemStack);
+            return new ActionResult<>(EnumActionResult.FAIL, itemStack);
         }
     }
 

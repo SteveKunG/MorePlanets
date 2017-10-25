@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.util.blocks.BlockGrassMP;
 
 public class BlockFronosGrass extends BlockGrassMP
 {
-    public static PropertyEnum HAS_LAYER = PropertyEnum.create("layer", BlockType.class);
+    public static PropertyEnum<BlockType> HAS_LAYER = PropertyEnum.create("layer", BlockType.class);
 
     public BlockFronosGrass(String name)
     {

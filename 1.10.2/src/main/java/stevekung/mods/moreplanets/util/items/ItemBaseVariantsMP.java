@@ -32,7 +32,7 @@ public abstract class ItemBaseVariantsMP extends Item implements ISortableItem
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubItems(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < this.getItemVariantsName().length; i++)
         {

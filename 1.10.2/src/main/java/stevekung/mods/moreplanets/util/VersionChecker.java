@@ -5,11 +5,10 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-
-import com.google.common.collect.Lists;
 
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 
@@ -20,7 +19,7 @@ public class VersionChecker implements Runnable
     private static boolean noConnection = false;
     private static String latestVersion = "";
     private static String exceptionMessage = "";
-    private static List<String> changeLog = Lists.newArrayList();
+    private static List<String> changeLog = new ArrayList<>();
     public static VersionChecker INSTANCE = new VersionChecker();
 
     public static void startCheck()

@@ -1,11 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
@@ -73,7 +72,7 @@ public class StructureNibiruStrongholdPieces
 
     public static void prepareStructurePieces()
     {
-        StructureNibiruStrongholdPieces.structurePieceList = Lists.newArrayList();
+        StructureNibiruStrongholdPieces.structurePieceList = new ArrayList<>();
 
         for (PieceWeight piece : StructureNibiruStrongholdPieces.PIECE_WEIGHTS)
         {
@@ -1018,7 +1017,7 @@ public class StructureNibiruStrongholdPieces
     {
         public PieceWeight strongholdPieceWeight;
         public PortalRoom strongholdPortalRoom;
-        public List<StructureComponent> pendingChildren = Lists.newArrayList();
+        public List<StructureComponent> pendingChildren = new ArrayList<>();
 
         public Stairs2() {}
 

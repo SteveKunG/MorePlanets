@@ -50,7 +50,7 @@ import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
 public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implements IMorePlanetsBoss
 {
-    private TileEntityDungeonSpawner spawner;
+    private TileEntityDungeonSpawner<?> spawner;
     public int deathTicks = 0;
     public int entitiesWithin;
     public int entitiesWithinLast;

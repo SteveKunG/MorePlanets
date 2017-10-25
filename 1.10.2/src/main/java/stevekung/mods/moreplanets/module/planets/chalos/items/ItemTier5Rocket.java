@@ -56,7 +56,7 @@ public class ItemTier5Rocket extends ItemRocketBaseMP implements IHoldableItem, 
 
     @Override
     @SideOnly(Side.CLIENT)
-    protected void addDescription(ItemStack itemStack, List list)
+    protected void addDescription(ItemStack itemStack, List<String> list)
     {
         EntityTier5Rocket rocket = new EntityTier5Rocket(Minecraft.getMinecraft().theWorld, 0, 0, 0, CachedEnumUtil.valuesRocketCached()[itemStack.getItemDamage()]);
         list.add(GCCoreUtil.translate("gui.message.fuel.name") + ": " + itemStack.getTagCompound().getInteger("RocketFuel") + " / " + rocket.fuelTank.getCapacity());

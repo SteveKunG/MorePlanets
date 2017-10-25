@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.diona.items;
 
+import micdoodle8.mods.galacticraft.core.TransformerHooks;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ItemBaseVariantsMP;
@@ -37,6 +39,13 @@ public class ItemDiona extends ItemBaseVariantsMP
             return EnumSortCategoryItem.PLATE;
         }
         return EnumSortCategoryItem.GENERAL;
+    }
+
+    @Override
+    public boolean onEntityItemUpdate(EntityItem entityItem)
+    {
+        entityItem.motionY += TransformerHooks.getItemGravity(entityItem);
+        return false;
     }
 
     @Override

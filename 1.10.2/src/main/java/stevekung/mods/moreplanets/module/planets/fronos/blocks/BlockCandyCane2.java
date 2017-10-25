@@ -24,7 +24,7 @@ import stevekung.mods.moreplanets.util.helper.BlockStateHelper.SwitchEnumAxis;
 
 public class BlockCandyCane2 extends BlockLogMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockCandyCane2(String name)
     {
@@ -38,7 +38,7 @@ public class BlockCandyCane2 extends BlockLogMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -72,9 +72,9 @@ public class BlockCandyCane2 extends BlockLogMP implements IBlockVariants
     public int getMetaFromState(IBlockState state)
     {
         byte b = 0;
-        int i = b | ((BlockType)state.getValue(VARIANT)).ordinal();
+        int i = b | state.getValue(VARIANT).ordinal();
 
-        switch (SwitchEnumAxis.AXIS_LOOKUP[((EnumAxis)state.getValue(BlockStateHelper.AXIS)).ordinal()])
+        switch (SwitchEnumAxis.AXIS_LOOKUP[state.getValue(BlockStateHelper.AXIS).ordinal()])
         {
         case 1:
             i |= 4;
@@ -97,13 +97,13 @@ public class BlockCandyCane2 extends BlockLogMP implements IBlockVariants
     @Override
     protected ItemStack createStackedBlock(IBlockState state)
     {
-        return new ItemStack(this, 1, ((BlockType)state.getValue(VARIANT)).ordinal());
+        return new ItemStack(this, 1, state.getValue(VARIANT).ordinal());
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     @Override

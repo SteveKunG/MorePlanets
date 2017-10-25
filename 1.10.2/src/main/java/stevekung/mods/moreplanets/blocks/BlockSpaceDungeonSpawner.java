@@ -29,7 +29,7 @@ import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 
 public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntityProvider
 {
-    public static PropertyEnum PLANET = PropertyEnum.create("planet", DungeonType.class);
+    public static PropertyEnum<DungeonType> PLANET = PropertyEnum.create("planet", DungeonType.class);
 
     public BlockSpaceDungeonSpawner(String name)
     {
@@ -55,7 +55,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < DungeonType.valuesCached().length; ++i)
         {
@@ -141,7 +141,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((DungeonType)state.getValue(PLANET)).ordinal();
+        return state.getValue(PLANET).ordinal();
     }
 
     public static enum DungeonType implements IStringSerializable

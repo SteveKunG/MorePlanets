@@ -81,7 +81,7 @@ public class ItemVeinEye extends ItemBaseMP
 
         if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(raytraceresult.getBlockPos()).getBlock() == NibiruBlocks.VEIN_FRAME && !world.getBlockState(raytraceresult.getBlockPos()).getValue(BlockVeinFrame.EYE).booleanValue())
         {
-            return new ActionResult(EnumActionResult.PASS, itemStack);
+            return new ActionResult<>(EnumActionResult.PASS, itemStack);
         }
         else
         {
@@ -102,11 +102,10 @@ public class ItemVeinEye extends ItemBaseMP
                         --itemStack.stackSize;
                     }
                     player.addStat(StatList.getObjectUseStats(this));
-                    return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+                    return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
                 }
             }
-
-            return new ActionResult(EnumActionResult.FAIL, itemStack);
+            return new ActionResult<>(EnumActionResult.FAIL, itemStack);
         }
     }
 

@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.tileentity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
@@ -73,8 +71,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public boolean rendered;
     public float solarRotate;
     public float rodUp;
-    private ArrayList<BlockPos> posList = Lists.newArrayList();
-    private ArrayList<BlockPos> obsidianPosList = Lists.newArrayList();
+    private ArrayList<BlockPos> posList = new ArrayList<>();
+    private ArrayList<BlockPos> obsidianPosList = new ArrayList<>();
 
     public TileEntityDarkEnergyReceiver()
     {

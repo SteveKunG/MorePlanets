@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
 public class BlockHalfDungeonBrickSlab1 extends BlockSlabMP
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockHalfDungeonBrickSlab1(String name)
     {
@@ -56,7 +56,7 @@ public class BlockHalfDungeonBrickSlab1 extends BlockSlabMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -65,13 +65,13 @@ public class BlockHalfDungeonBrickSlab1 extends BlockSlabMP
     }
 
     @Override
-    public IProperty getVariantProperty()
+    public IProperty<?> getVariantProperty()
     {
         return VARIANT;
     }
 
     @Override
-    public Comparable getTypeForItem(ItemStack itemStack)
+    public Comparable<?> getTypeForItem(ItemStack itemStack)
     {
         return BlockType.valuesCached()[itemStack.getMetadata() & 7];
     }
@@ -92,7 +92,7 @@ public class BlockHalfDungeonBrickSlab1 extends BlockSlabMP
     public int getMetaFromState(IBlockState state)
     {
         byte b0 = 0;
-        int i = b0 | ((BlockType)state.getValue(VARIANT)).ordinal();
+        int i = b0 | state.getValue(VARIANT).ordinal();
 
         if (!this.isDouble() && state.getValue(HALF) == EnumBlockHalf.TOP)
         {

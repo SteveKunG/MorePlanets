@@ -47,7 +47,7 @@ import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IEntityBreathable, ISpaceMob, IEntityMultiPart
 {
-    private TileEntityDungeonSpawner spawner;
+    private TileEntityDungeonSpawner<?> spawner;
     public int deathTicks = 0;
     public int entitiesWithin;
     public int entitiesWithinLast;

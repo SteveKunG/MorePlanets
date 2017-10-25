@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -63,7 +62,7 @@ public class WorldGenInfectedBigTree extends WorldGenAbstractTree
 
         int j = this.basePos.getY() + this.height;
         int k = this.heightLimit - this.leafDistanceLimit;
-        this.field_175948_j = Lists.<WorldGenInfectedBigTree.FoliageCoordinates>newArrayList();
+        this.field_175948_j = new ArrayList<>();
         this.field_175948_j.add(new WorldGenInfectedBigTree.FoliageCoordinates(this.basePos.up(k), j));
 
         for (; k >= 0; --k)

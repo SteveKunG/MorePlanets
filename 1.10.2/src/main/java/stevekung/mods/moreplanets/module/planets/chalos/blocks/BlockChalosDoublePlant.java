@@ -1,11 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoublePlant;
@@ -268,7 +267,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
         BlockType type = world.getBlockState(pos).getValue(VARIANT);
 
         if (type == BlockType.DOUBLE_CHEESE_TALL_GRASS)

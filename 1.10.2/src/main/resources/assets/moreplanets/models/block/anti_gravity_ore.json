@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "particle": "moreplanets:blocks/anti_gravity_ore",
+        "all": "moreplanets:blocks/anti_gravity_ore"
+    }
+}

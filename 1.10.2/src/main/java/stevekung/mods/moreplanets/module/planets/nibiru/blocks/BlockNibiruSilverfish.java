@@ -23,7 +23,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockNibiruSilverfish extends BlockBaseMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockNibiruSilverfish(String name)
     {
@@ -82,7 +82,7 @@ public class BlockNibiruSilverfish extends BlockBaseMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -105,7 +105,7 @@ public class BlockNibiruSilverfish extends BlockBaseMP implements IBlockVariants
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     @Override

@@ -44,7 +44,7 @@ public class BlockCheeseSporeStem extends BlockLogMP
     {
         int i = 0;
 
-        switch (SwitchEnumAxis.AXIS_LOOKUP[((EnumAxis)state.getValue(BlockStateHelper.AXIS)).ordinal()])
+        switch (SwitchEnumAxis.AXIS_LOOKUP[state.getValue(BlockStateHelper.AXIS).ordinal()])
         {
         case 1:
             i |= 4;

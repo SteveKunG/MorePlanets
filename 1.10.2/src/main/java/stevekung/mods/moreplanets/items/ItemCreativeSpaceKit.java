@@ -50,7 +50,7 @@ public class ItemCreativeSpaceKit extends ItemBaseMP
             stats.getExtendedInventory().setInventorySlotContents(9, new ItemStack(VenusItems.thermalPaddingTier2, 1, 3)); //Thermal Armor Tier 2
             stats.getExtendedInventory().setInventorySlotContents(10, new ItemStack(VenusItems.basicItem, 1, 0)); //Shield Controller
         }
-        return new ActionResult(EnumActionResult.PASS, itemStack);
+        return new ActionResult<>(EnumActionResult.PASS, itemStack);
     }
 
     @Override

@@ -132,12 +132,12 @@ public class ItemSpaceBow extends ItemBaseMP
         }
         if (!player.capabilities.isCreativeMode && !flag)
         {
-            return !flag ? new ActionResult(EnumActionResult.FAIL, itemStack) : new ActionResult(EnumActionResult.PASS, itemStack);
+            return !flag ? new ActionResult<>(EnumActionResult.FAIL, itemStack) : new ActionResult<>(EnumActionResult.PASS, itemStack);
         }
         else
         {
             player.setActiveHand(hand);
-            return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
         }
     }
 

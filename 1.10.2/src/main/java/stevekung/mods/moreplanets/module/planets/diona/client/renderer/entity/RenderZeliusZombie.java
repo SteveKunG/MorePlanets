@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelZombie;
@@ -39,7 +38,7 @@ public class RenderZeliusZombie extends RenderBiped<EntityZeliusZombie>
             }
         };
         this.addLayer(layerbipedarmor);
-        this.layerRendererLists = Lists.newArrayList(this.layerRenderers);
+        this.layerRendererLists = new ArrayList<>(this.layerRenderers);
     }
 
     @Override

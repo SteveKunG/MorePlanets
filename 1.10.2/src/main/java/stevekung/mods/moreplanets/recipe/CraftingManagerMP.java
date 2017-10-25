@@ -2,8 +2,6 @@ package stevekung.mods.moreplanets.recipe;
 
 import java.util.HashMap;
 
-import com.google.common.collect.Maps;
-
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.recipe.NasaWorkbenchRecipe;
@@ -102,7 +100,7 @@ public class CraftingManagerMP
 
     private static void addOtherRecipe()
     {
-        HashMap<Integer, ItemStack> input = Maps.newHashMap();
+        HashMap<Integer, ItemStack> input = new HashMap<>();
 
         // compressor
         RecipeHelper.addCompressorRecipe(new ItemStack(DionaItems.DIONA_ITEM, 1, 3), "XXX", "XXX", "XXX", 'X', new ItemStack(DionaItems.DIONA_ITEM, 1, 1));
@@ -136,13 +134,13 @@ public class CraftingManagerMP
         input.put(1, new ItemStack(DionaItems.DIONA_ITEM, 4, 5));
         DarkEnergyRecipeData.registerRecipe(input, new ItemStack(DionaItems.DARK_ENERGY_PEARL), 120);
 
-        input = Maps.newHashMap();
+        input = new HashMap<>();
         input.put(0, new ItemStack(Items.IRON_INGOT));
         input.put(1, new ItemStack(DionaItems.DIONA_ITEM, 2, 5));
         DarkEnergyRecipeData.registerRecipe(input, new ItemStack(DionaItems.DIONA_ITEM, 1, 6), 80);
 
         // black hole storage
-        input = Maps.newHashMap();
+        input = new HashMap<>();
         input.put(1, new ItemStack(DionaItems.DIONA_ITEM, 1, 7));
         input.put(2, new ItemStack(DionaItems.DIONA_ITEM, 1, 7));
         input.put(3, new ItemStack(DionaItems.DIONA_ITEM, 1, 7));

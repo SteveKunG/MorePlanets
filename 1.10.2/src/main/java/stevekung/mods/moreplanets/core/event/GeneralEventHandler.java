@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.core.event;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -60,8 +59,8 @@ import stevekung.mods.moreplanets.util.blocks.IFireBlock;
 
 public class GeneralEventHandler
 {
-    private static List<BreakBlockData> INFECTED_BLOCK_LIST = Lists.newArrayList();
-    private static List<BreakBlockData> NON_INFECTED_BLOCK_LIST = Lists.newArrayList();
+    private static List<BreakBlockData> INFECTED_BLOCK_LIST = new ArrayList<>();
+    private static List<BreakBlockData> NON_INFECTED_BLOCK_LIST = new ArrayList<>();
 
     static
     {
@@ -380,7 +379,7 @@ public class GeneralEventHandler
         }
     }
 
-    private void setFarmland(UseHoeEvent event, World world, BlockPos pos, IBlockState state, IProperty property, Object value, Block dirt, Block farmland)
+    private void setFarmland(UseHoeEvent event, World world, BlockPos pos, IBlockState state, IProperty<?> property, Object value, Block dirt, Block farmland)
     {
         if (state.getValue(property) == value)
         {

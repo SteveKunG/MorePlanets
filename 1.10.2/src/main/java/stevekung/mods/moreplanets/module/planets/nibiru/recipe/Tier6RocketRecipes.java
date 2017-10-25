@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.recipe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.recipe.NasaWorkbenchRecipe;
@@ -13,7 +12,7 @@ import stevekung.mods.moreplanets.inventory.InventorySchematicRocket;
 
 public class Tier6RocketRecipes
 {
-    private static List<INasaWorkbenchRecipe> ROCKET_RECIPE = Lists.newArrayList();
+    private static List<INasaWorkbenchRecipe> ROCKET_RECIPE = new ArrayList<>();
 
     public static ItemStack findMatchingRocketRecipe(InventorySchematicRocket inv)
     {
@@ -44,7 +43,7 @@ public class Tier6RocketRecipes
 
     public static List<Tier6RocketRecipeWrapper> getRecipesList()
     {
-        List<Tier6RocketRecipeWrapper> recipes = Lists.newArrayList();
+        List<Tier6RocketRecipeWrapper> recipes = new ArrayList<>();
 
         for (INasaWorkbenchRecipe recipe : Tier6RocketRecipes.getRocketRecipes())
         {

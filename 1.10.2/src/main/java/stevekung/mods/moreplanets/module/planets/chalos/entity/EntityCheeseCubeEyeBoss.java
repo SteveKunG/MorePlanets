@@ -50,7 +50,7 @@ import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
 public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IMorePlanetsBoss
 {
-    private TileEntityDungeonSpawner spawner;
+    private TileEntityDungeonSpawner<?> spawner;
     private Entity targetedEntity;
     public int deathTicks = 0;
     public int attackCounter;

@@ -1,12 +1,10 @@
 package stevekung.mods.moreplanets.init;
 
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
-import stevekung.mods.moreplanets.entity.EntityBlackHole;
-import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
-import stevekung.mods.moreplanets.entity.EntitySpaceCapsule;
-import stevekung.mods.moreplanets.entity.EntitySpaceMinecartChest;
+import stevekung.mods.moreplanets.entity.*;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
+import stevekung.mods.moreplanets.module.moons.koentus.entity.EntityFallingKoentusMeteor;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.*;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
@@ -86,6 +84,8 @@ public class MPEntities
         CommonRegisterHelper.registerNonMobEntity(EntityTier6Rocket.class, "tier_6_rocket", EnumEntityTrackerType.TIERED_ROCKET);
         CommonRegisterHelper.registerNonMobEntity(EntityBlackHoleStorage.class, "black_hole_storage");
         CommonRegisterHelper.registerNonMobEntity(EntityAntiGravityArrow.class, "anti_gravity_arrow", EnumEntityTrackerType.ARROW);
+        CommonRegisterHelper.registerNonMobEntity(EntityFallingKoentusMeteor.class, "falling_koentus_meteor", 160, 20);
+        CommonRegisterHelper.registerNonMobEntity(EntityAntiGravFallingBlock.class, "anti_gravity_falling_block", 160, 20);
 
         CommonRegisterHelper.registerEntityPlacement(EntityAlienMiner.class, SpawnPlacementType.ON_GROUND);
         CommonRegisterHelper.registerEntityPlacement(EntityZeliusZombie.class, SpawnPlacementType.ON_GROUND);

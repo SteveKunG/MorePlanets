@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -253,7 +252,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
         TileEntity tile = world.getTileEntity(pos);
         boolean flag = true;
 

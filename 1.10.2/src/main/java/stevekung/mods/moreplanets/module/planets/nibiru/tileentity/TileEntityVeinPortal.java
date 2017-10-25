@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.tileentity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
@@ -87,7 +85,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
         {
             if (this.age < 5L)
             {
-                ArrayList<TileEntity> attachedList = Lists.newArrayList();
+                ArrayList<TileEntity> attachedList = new ArrayList<>();
 
                 for (int x = this.getPos().getX() - 1; x < this.getPos().getX() + 2; x++)
                 {

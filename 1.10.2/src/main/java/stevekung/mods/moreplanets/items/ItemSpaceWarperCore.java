@@ -54,7 +54,7 @@ public class ItemSpaceWarperCore extends ItemBaseMP
                         itemStack.getTagCompound().setInteger("Z", MathHelper.floor_double(player.posZ));
                         itemStack.getTagCompound().setBoolean("Checked", true);
                         player.addChatMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add.message")));
-                        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+                        return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
                     }
                     else if (world.getBlockState(new BlockPos(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ))) == MPBlocks.DUMMY_BLOCK.getDefaultState())
                     {
@@ -71,12 +71,12 @@ public class ItemSpaceWarperCore extends ItemBaseMP
                 }
             }
         }
-        return new ActionResult(EnumActionResult.PASS, itemStack);
+        return new ActionResult<>(EnumActionResult.PASS, itemStack);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
         if (!itemStack.hasTagCompound())
         {

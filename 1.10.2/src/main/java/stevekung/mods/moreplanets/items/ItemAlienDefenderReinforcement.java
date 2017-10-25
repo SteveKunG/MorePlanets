@@ -75,7 +75,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
                 player.swingArm(hand);
             }
         }
-        return new ActionResult(EnumActionResult.PASS, itemStack);
+        return new ActionResult<>(EnumActionResult.PASS, itemStack);
     }
 
     @Override

@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.tileentity;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
@@ -400,7 +399,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             thisTile.onCreate(world, pos);
         }
 
-        List<BlockPos> positions = Lists.newArrayList();
+        List<BlockPos> positions = new ArrayList<>();
         thisTile.getPositions(pos, positions);
         boolean result = true;
 

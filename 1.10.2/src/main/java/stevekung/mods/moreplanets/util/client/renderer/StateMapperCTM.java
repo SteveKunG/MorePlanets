@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.util.client.renderer;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
-
-import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
@@ -21,7 +20,7 @@ public class StateMapperCTM extends StateMapperBase
     @Override
     protected ModelResourceLocation getModelResourceLocation(IBlockState state)
     {
-        Map<IProperty<?>, Comparable<?>> map = Maps.newLinkedHashMap(state.getProperties());
+        Map<IProperty<?>, Comparable<?>> map = new LinkedHashMap<>(state.getProperties());
         boolean ignoreState = state.getBlock() == DionaBlocks.CRASHED_ALIEN_PROBE;
 
         if (ignoreState)

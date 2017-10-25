@@ -1,10 +1,10 @@
 package stevekung.mods.moreplanets.integration.jei.rocket_crusher;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.annotation.Nonnull;
-
-import com.google.common.collect.Lists;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
@@ -41,7 +41,7 @@ public class RocketCrusherRecipesWrapper extends BlankRecipeWrapper
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInputs(ItemStack.class, Lists.newArrayList(this.recipe.recipeItems));
+        ingredients.setInputs(ItemStack.class, new ArrayList<>(Arrays.asList(this.recipe.recipeItems)));
         ingredients.setOutput(ItemStack.class, this.recipe.getRecipeOutput());
     }
 

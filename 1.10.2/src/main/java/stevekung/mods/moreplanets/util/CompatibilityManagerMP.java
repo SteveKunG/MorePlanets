@@ -43,7 +43,7 @@ public class CompatibilityManagerMP
 
     public static void registerExtremeReactorFluid(String name, float absorption, float heatEfficiency, float moderation, float heatConductivity)
     {
-        MPLog.info("Registering {} to reactor interior", name);
+        MPLog.info("Registering %s into reactor interior", name);
 
         try
         {

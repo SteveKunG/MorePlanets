@@ -8,6 +8,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.blocks.*;
 import stevekung.mods.moreplanets.blocks.decoration.*;
 import stevekung.mods.moreplanets.itemblocks.*;
+import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
@@ -111,6 +112,7 @@ public class MPBlocks
         CommonRegisterHelper.registerBlock(MPBlocks.SHIELD_GENERATOR, ItemBlockShieldGenerator::new);
 
         DionaBlocks.init();
+        KoentusBlocks.init();
         ChalosBlocks.init();
         NibiruBlocks.init();
         FronosBlocks.init();

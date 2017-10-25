@@ -49,12 +49,12 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     @Override
     public int damageDropped(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(BlockStateHelper.COLOR)).getMetadata();
+        return state.getValue(BlockStateHelper.COLOR).getMetadata();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < CachedEnumUtil.valuesDyeCached().length; ++i)
         {
@@ -78,7 +78,7 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(BlockStateHelper.COLOR)).getMetadata();
+        return state.getValue(BlockStateHelper.COLOR).getMetadata();
     }
 
     @Override

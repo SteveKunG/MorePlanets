@@ -31,7 +31,7 @@ public class ItemBlockSporelily extends ItemBlock
 
         if (raytraceresult == null)
         {
-            return new ActionResult(EnumActionResult.PASS, itemStack);
+            return new ActionResult<>(EnumActionResult.PASS, itemStack);
         }
         else
         {
@@ -41,7 +41,7 @@ public class ItemBlockSporelily extends ItemBlock
 
                 if (!world.isBlockModifiable(player, blockpos) || !player.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStack))
                 {
-                    return new ActionResult(EnumActionResult.FAIL, itemStack);
+                    return new ActionResult<>(EnumActionResult.FAIL, itemStack);
                 }
 
                 BlockPos blockpos1 = blockpos.up();
@@ -58,11 +58,11 @@ public class ItemBlockSporelily extends ItemBlock
                     player.swingArm(hand);
                     player.addStat(StatList.getObjectUseStats(this));
                     world.playSound(player, blockpos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+                    return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
                 }
             }
 
-            return new ActionResult(EnumActionResult.FAIL, itemStack);
+            return new ActionResult<>(EnumActionResult.FAIL, itemStack);
         }
     }
 }

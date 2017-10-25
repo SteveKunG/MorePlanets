@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -35,7 +33,7 @@ public class BlockCheeseSpore extends BlockBaseMP
     public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         Random rand = world instanceof World ? ((World)world).rand : RANDOM;
-        ArrayList<ItemStack> ret = Lists.newArrayList();
+        ArrayList<ItemStack> ret = new ArrayList<>();
         int chance = 20;
 
         if (fortune > 0)

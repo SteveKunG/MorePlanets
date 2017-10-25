@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.entity;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
@@ -37,7 +36,7 @@ public class RenderInfectedZombie extends RenderBiped<EntityInfectedZombie>
             }
         };
         this.addLayer(layerbipedarmor);
-        this.layerRendererLists = Lists.newArrayList(this.layerRenderers);
+        this.layerRendererLists = new ArrayList<>(this.layerRenderers);
     }
 
     @Override

@@ -20,3 +20,5 @@ orange candy cane : 255 111 40
 yellow candy cane : 232 232 0
 purple candy cane : 197 128 238
 pink + purple candy cane : 255 94 255
+koentus base : 14 88 150
+goldenite crystal : 237 164 53

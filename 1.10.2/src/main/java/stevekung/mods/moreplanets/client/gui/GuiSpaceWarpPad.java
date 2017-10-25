@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.client.gui;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
@@ -22,7 +21,7 @@ public class GuiSpaceWarpPad extends GuiContainerGC
 {
     private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/space_warp_pad.png");
     private TileEntitySpaceWarpPadFull warpPad;
-    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 112, (this.height - this.ySize) / 2 + 37, 56, 9, Lists.newArrayList(), this.width, this.height, this);
+    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 112, (this.height - this.ySize) / 2 + 37, 56, 9, new ArrayList<>(), this.width, this.height, this);
     private GuiButton buttonEnable;
 
     public GuiSpaceWarpPad(InventoryPlayer inv, TileEntitySpaceWarpPadFull tile)
@@ -47,7 +46,7 @@ public class GuiSpaceWarpPad extends GuiContainerGC
     public void initGui()
     {
         super.initGui();
-        List<String> batterySlotDesc = Lists.newArrayList();
+        List<String> batterySlotDesc = new ArrayList<>();
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 31, (this.height - this.ySize) / 2 + 26, 18, 18, batterySlotDesc, this.width, this.height, this));
@@ -91,7 +90,7 @@ public class GuiSpaceWarpPad extends GuiContainerGC
             {
                 this.drawTexturedModalRect(width + 57, height + 19, 176, 10, 32, 32);
             }
-            List<String> electricityDesc = Lists.newArrayList();
+            List<String> electricityDesc = new ArrayList<>();
             electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
             EnergyDisplayHelper.getEnergyDisplayTooltip(this.warpPad.getEnergyStoredGC(), this.warpPad.getMaxEnergyStoredGC(), electricityDesc);
             this.electricInfoRegion.tooltipStrings = electricityDesc;

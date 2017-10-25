@@ -107,9 +107,9 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         this.setSize(0.6F, 1.8F);
         ((PathNavigateGroundMP)this.getNavigator()).setBreakDoors(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityEvolvedZombie.class, 8.0F, 0.6D, 0.6D));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityInfectedZombie.class, 8.0F, 0.6D, 0.6D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityEvolvedZombie.class, 8.0F, 0.6D, 0.6D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityInfectedZombie.class, 8.0F, 0.6D, 0.6D));
         this.tasks.addTask(1, new EntityAINibiruVillagerTradePlayer(this));
         this.tasks.addTask(1, new EntityAINibiruVillagerLookAtTradePlayer(this));
         this.tasks.addTask(2, new EntityAIMoveIndoors(this));

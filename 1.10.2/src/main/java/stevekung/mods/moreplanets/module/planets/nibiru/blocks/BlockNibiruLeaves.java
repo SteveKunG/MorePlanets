@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -34,7 +32,7 @@ import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
     int[] adjacentTreeBlocks;
 
     public BlockNibiruLeaves(String name)
@@ -46,7 +44,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -100,7 +98,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     public int getMetaFromState(IBlockState state)
     {
         byte b0 = 0;
-        int i = b0 | ((BlockType)state.getValue(VARIANT)).ordinal();
+        int i = b0 | state.getValue(VARIANT).ordinal();
 
         if (!state.getValue(BlockStateHelper.DECAYABLE).booleanValue())
         {
@@ -122,8 +120,8 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     @Override
     public ArrayList<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
     {
-        ArrayList<ItemStack> ret = Lists.newArrayList();
-        ret.add(new ItemStack(this, 1, ((BlockType)world.getBlockState(pos).getValue(VARIANT)).ordinal()));
+        ArrayList<ItemStack> ret = new ArrayList<>();
+        ret.add(new ItemStack(this, 1, world.getBlockState(pos).getValue(VARIANT).ordinal()));
         return ret;
     }
 

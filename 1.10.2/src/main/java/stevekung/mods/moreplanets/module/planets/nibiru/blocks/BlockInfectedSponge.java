@@ -2,8 +2,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.*;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -68,15 +66,15 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 
     private boolean absorb(World world, BlockPos pos)
     {
-        LinkedList linkedlist = Lists.newLinkedList();
-        ArrayList arraylist = Lists.newArrayList();
-        linkedlist.add(new Tuple(pos, Integer.valueOf(0)));
+        LinkedList<Tuple> linkedlist = new LinkedList<>();
+        ArrayList<BlockPos> arraylist = new ArrayList<>();
+        linkedlist.add(new Tuple<>(pos, Integer.valueOf(0)));
         int i = 0;
         BlockPos blockpos1;
 
         while (!linkedlist.isEmpty())
         {
-            Tuple tuple = (Tuple)linkedlist.poll();
+            Tuple tuple = linkedlist.poll();
             blockpos1 = (BlockPos)tuple.getFirst();
             int j = ((Integer)tuple.getSecond()).intValue();
             EnumFacing[] aenumfacing = EnumFacing.VALUES;
@@ -95,7 +93,7 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 
                     if (j < 6)
                     {
-                        linkedlist.add(new Tuple(blockpos2, Integer.valueOf(j + 1)));
+                        linkedlist.add(new Tuple<>(blockpos2, Integer.valueOf(j + 1)));
                     }
                 }
             }
@@ -117,7 +115,7 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
         for (int i = 0; i < 2; i++)
         {

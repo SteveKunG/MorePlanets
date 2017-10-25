@@ -103,9 +103,9 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         storage.xp = itemStack.getTagCompound().getInteger("XP");
                         storage.collectMode = itemStack.getTagCompound().getString("Mode");
 
-                        for (int i = 0; i <  list.tagCount(); ++i)
+                        for (int i = 0; i < list.tagCount(); ++i)
                         {
-                            NBTTagCompound nbt =  list.getCompoundTagAt(i);
+                            NBTTagCompound nbt = list.getCompoundTagAt(i);
                             int slot = nbt.getByte("Slot");
 
                             if (slot >= 0 && slot < storage.inventory.length)

@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
@@ -111,7 +109,7 @@ public class ConfigManagerMP
 
     private static ArrayList<String> addGeneralConfig()
     {
-        ArrayList<String> propOrder = Lists.newArrayList();
+        ArrayList<String> propOrder = new ArrayList<>();
         Property prop;
         prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Planet to Start", "planet.");
         prop.setComment("Put planet name that you would like to spawn (Also you need to enable started planet in the config). For example \"planet.nibiru\", \"moon.moon\", \"satellite.spacestation.overworld\" ");
@@ -157,7 +155,7 @@ public class ConfigManagerMP
 
     private static ArrayList<String> addDimensionIDConfig()
     {
-        ArrayList<String> propOrder = Lists.newArrayList();
+        ArrayList<String> propOrder = new ArrayList<>();
         Property prop;
         prop = ConfigManagerMP.config.get(ConfigManagerMP.DIMENSIONS, "Diona Dimension ID", -2542);
         prop.setRequiresMcRestart(true);
@@ -183,7 +181,7 @@ public class ConfigManagerMP
 
     private static ArrayList<String> addBiomeIDConfig()
     {
-        ArrayList<String> propOrder = Lists.newArrayList();
+        ArrayList<String> propOrder = new ArrayList<>();
         Property prop;
         prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Diona Biome ID", 180);
         prop.setRequiresMcRestart(true);
@@ -279,7 +277,7 @@ public class ConfigManagerMP
 
     private static ArrayList<String> addGCAddonCompatConfig()
     {
-        ArrayList<String> propOrder = Lists.newArrayList();
+        ArrayList<String> propOrder = new ArrayList<>();
         Property prop;
         prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 4 Rocket Schematic", true);
         ConfigManagerMP.enableTier4RocketSchematic = prop.getBoolean();
@@ -315,7 +313,7 @@ public class ConfigManagerMP
 
     private static ArrayList<String> addOtherConfig()
     {
-        ArrayList<String> propOrder = Lists.newArrayList();
+        ArrayList<String> propOrder = new ArrayList<>();
         Property prop;
         prop = ConfigManagerMP.config.get(ConfigManagerMP.OTHERS, "Tier 4 Rocket Schematic ID", 800);
         ConfigManagerMP.idBaseRocketSchematic = prop.getInt();
@@ -337,7 +335,7 @@ public class ConfigManagerMP
 
     public static List<IConfigElement> getConfigElements()
     {
-        List<IConfigElement> list = Lists.newArrayList();
+        List<IConfigElement> list = new ArrayList<>();
         ConfigCategory configGeneral = ConfigManagerMP.config.getCategory(ConfigManagerMP.GENERAL);
         configGeneral.setComment(GCCoreUtil.translate("gui.config.mp.general"));
         list.add(new ConfigElement(configGeneral));

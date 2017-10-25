@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -27,7 +26,7 @@ import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
 public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityProvider
 {
-    public static PropertyEnum STATE = PropertyEnum.create("state", BlockType.class);
+    public static PropertyEnum<BlockType> STATE = PropertyEnum.create("state", BlockType.class);
 
     public BlockNuclearWasteTank(String name)
     {
@@ -99,7 +98,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
         boolean flag = false;
 
         if (state.getValue(STATE) == BlockType.DEPLETE || state.getValue(STATE) == BlockType.NO_ROD)
@@ -140,7 +139,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(STATE)).ordinal();
+        return state.getValue(STATE).ordinal();
     }
 
     @Override

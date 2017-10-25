@@ -83,11 +83,11 @@ public class ItemNibiruFruits extends ItemFoodVariantsMP
             if (player.canEat(true))
             {
                 player.setActiveHand(hand);
-                return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+                return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
             }
             else
             {
-                return new ActionResult(EnumActionResult.FAIL, itemStack);
+                return new ActionResult<>(EnumActionResult.FAIL, itemStack);
             }
         }
         return super.onItemRightClick(itemStack, world, player, hand);

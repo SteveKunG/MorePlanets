@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
@@ -22,8 +21,8 @@ public class TeleporterMP extends Teleporter
 {
     private WorldServer worldServerInstance;
     private Random random;
-    private Long2ObjectMap<PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
-    private List<Long> destinationCoordinateKeys = Lists.newArrayList();
+    private Long2ObjectMap<PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<>(4096);
+    private List<Long> destinationCoordinateKeys = new ArrayList<>();
 
     public TeleporterMP(WorldServer world)
     {

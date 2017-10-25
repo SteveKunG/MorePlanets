@@ -1,10 +1,9 @@
 package stevekung.mods.moreplanets.integration.jei.dark_energy_transform;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
@@ -29,7 +28,7 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     @Override
     public List getInputs()
     {
-        List<ItemStack> list = Lists.newArrayList();
+        List<ItemStack> list = new ArrayList<>();
         list.addAll(this.input.values());
         return list;
     }

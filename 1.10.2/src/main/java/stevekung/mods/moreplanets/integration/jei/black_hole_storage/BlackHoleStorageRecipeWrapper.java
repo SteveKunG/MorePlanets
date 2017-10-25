@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.integration.jei.black_hole_storage;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
@@ -19,7 +19,7 @@ public class BlackHoleStorageRecipeWrapper extends BlankRecipeWrapper
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInputs(ItemStack.class, Lists.newArrayList(this.recipe.getRecipeInput().values()));
+        ingredients.setInputs(ItemStack.class, new ArrayList<>(this.recipe.getRecipeInput().values()));
         ingredients.setOutput(ItemStack.class, this.recipe.getRecipeOutput());
     }
 }

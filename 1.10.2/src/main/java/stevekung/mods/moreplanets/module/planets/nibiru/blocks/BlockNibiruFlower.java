@@ -28,7 +28,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IGrowable
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockNibiruFlower(String name)
     {
@@ -130,7 +130,7 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -242,7 +242,7 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     public static enum BlockType implements IStringSerializable

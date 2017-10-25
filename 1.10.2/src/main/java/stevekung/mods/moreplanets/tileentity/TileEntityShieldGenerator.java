@@ -1,11 +1,8 @@
 package stevekung.mods.moreplanets.tileentity;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
-import io.netty.buffer.ByteBuf;
-import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
@@ -21,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityPotion;
+import net.minecraft.entity.projectile.EntityShulkerBullet;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -35,7 +33,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.EnderTeleportEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.blocks.BlockDummy;
@@ -65,9 +69,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public int shieldDamage = 10;
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
-    private static HashSet<BlockVec3Dim> loadedTiles = new HashSet();
     private boolean initialize = true;
-    //private static BlockPos shieldPos;
 
     public TileEntityShieldGenerator()
     {
@@ -76,88 +78,92 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     }
 
     @Override
-    public void onLoad()
+    public void invalidate()
     {
+        super.invalidate();
+
         if (!this.worldObj.isRemote)
         {
-            TileEntityShieldGenerator.loadedTiles.add(new BlockVec3Dim(this));
+            MinecraftForge.EVENT_BUS.unregister(this);
         }
     }
 
     @Override
     public void onChunkUnload()
     {
-        TileEntityShieldGenerator.loadedTiles.remove(new BlockVec3Dim(this));
         super.onChunkUnload();
+
+        if (!this.worldObj.isRemote)
+        {
+            MinecraftForge.EVENT_BUS.unregister(this);
+        }
     }
 
     @Override
-    public void invalidate()
+    public void onLoad()
     {
         if (!this.worldObj.isRemote)
         {
-            TileEntityShieldGenerator.loadedTiles.remove(new BlockVec3Dim(this));
+            MinecraftForge.EVENT_BUS.register(this);
         }
-        super.invalidate();
     }
 
-    @Override
-    public void addExtraNetworkedData(List<Object> networkedList)
+    @SubscribeEvent
+    public void onLivingSpawn(LivingSpawnEvent.CheckSpawn event)
     {
-        if (!this.worldObj.isRemote && !this.isInvalid())
+        if (event.getResult() == Result.ALLOW) //TODO Check spawner
         {
-            if (this.worldObj.getMinecraftServer().isDedicatedServer())
+            return;
+        }
+        if (this.worldObj != null && !this.worldObj.isRemote)
+        {
+            if (!this.disabled && this.isInRangeOfShield(event.getEntity().getPosition()))
             {
-                networkedList.add(TileEntityShieldGenerator.loadedTiles.size());
+                event.setResult(Result.DENY);
+            }
+        }
+    }
 
-                for (BlockVec3Dim tile : TileEntityShieldGenerator.loadedTiles)
+    @SubscribeEvent
+    public void onEnderTeleport(EnderTeleportEvent event)
+    {
+        if (!this.disabled && this.isInRangeOfShield(event.getEntity().getPosition()))
+        {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingUpdate(LivingUpdateEvent event)
+    {
+        Entity entity = event.getEntity();
+
+        if (entity instanceof IMob)
+        {
+            if (!this.disabled && this.isInRangeOfShield(event.getEntity().getPosition()))
+            {
+                double d4 = entity.getDistance(this.pos.getX(), this.pos.getY(), this.pos.getZ());
+                double d6 = entity.posX - this.pos.getX();
+                double d8 = entity.posY - this.pos.getY();
+                double d10 = entity.posZ - this.pos.getZ();
+                double d11 = MathHelper.sqrt_double(d6 * d6 + d8 * d8 + d10 * d10);
+                d6 /= d11;
+                d8 /= d11;
+                d10 /= d11;
+                double d13 = (0.0D - d4) * this.knockAmount / 10.0D;
+                double d14 = d13;
+                double knockSpeed = 10.0D;
+                entity.motionX -= d6 * d14 / knockSpeed;
+                entity.motionY -= d8 * d14 / knockSpeed;
+                entity.motionZ -= d10 * d14 / knockSpeed;
+
+                if (this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID)) != null)
                 {
-                    if (tile == null)
-                    {
-                        networkedList.add(-1);
-                        networkedList.add(-1);
-                        networkedList.add(-1);
-                        networkedList.add(-1);
-                    }
-                    else
-                    {
-                        networkedList.add(tile.x);
-                        networkedList.add(tile.y);
-                        networkedList.add(tile.z);
-                        networkedList.add(tile.dim);
-                    }
+                    entity.attackEntityFrom(DamageSource.causePlayerDamage(this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID))), this.shieldDamage);
                 }
-            }
-            else
-            {
-                networkedList.add(-1);
-            }
-        }
-    }
-
-    @Override
-    public void readExtraNetworkedData(ByteBuf dataStream)
-    {
-        if (this.worldObj.isRemote)
-        {
-            int size = dataStream.readInt();
-
-            if (size >= 0)
-            {
-                TileEntityShieldGenerator.loadedTiles.clear();
-
-                for (int i = 0; i < size; ++i)
+                else
                 {
-                    int i1 = dataStream.readInt();
-                    int i2 = dataStream.readInt();
-                    int i3 = dataStream.readInt();
-                    int i4 = dataStream.readInt();
-
-                    if (i1 == -1 && i2 == -1 && i3 == -1 && i4 == -1)
-                    {
-                        continue;
-                    }
-                    TileEntityShieldGenerator.loadedTiles.add(new BlockVec3Dim(i1, i2, i3, i4));
+                    entity.attackEntityFrom(DamageSource.generic, this.shieldDamage);
                 }
             }
         }
@@ -197,7 +203,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                 this.shieldSize -= 1.0F;
             }
             this.shieldSize = Math.min(Math.max(this.shieldSize, 0.0F), this.maxShieldSize);
-            //TileEntityShieldGenerator.shieldPos = this.pos;
         }
 
         if (this.knockAmount > 10)
@@ -216,7 +221,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             if (!this.disabled)
             {
-                if (entity instanceof IMob || entity instanceof EntityArrow && !(((EntityArrow)entity).shootingEntity instanceof EntityPlayer) || entity instanceof EntityPotion && !(((EntityPotion)entity).getThrower() instanceof EntityPlayer) || entity instanceof EntityFireball)
+                if (entity instanceof EntityArrow && !(((EntityArrow)entity).shootingEntity instanceof EntityPlayer) && !((EntityArrow)entity).inGround || entity instanceof EntityPotion && !(((EntityPotion)entity).getThrower() instanceof EntityPlayer) || entity instanceof EntityFireball || entity instanceof EntityShulkerBullet)
                 {
                     double d4 = entity.getDistance(this.pos.getX(), this.pos.getY(), this.pos.getZ());
                     double d6 = entity.posX - this.pos.getX();
@@ -232,15 +237,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                     entity.motionX -= d6 * d14 / knockSpeed;
                     entity.motionY -= d8 * d14 / knockSpeed;
                     entity.motionZ -= d10 * d14 / knockSpeed;
-
-                    if (this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID)) != null)
-                    {
-                        entity.attackEntityFrom(DamageSource.causePlayerDamage(this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID))), this.shieldDamage);
-                    }
-                    else
-                    {
-                        entity.attackEntityFrom(DamageSource.generic, this.shieldDamage);
-                    }
                 }
             }
         }
@@ -576,80 +572,16 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         this.facing = facing;
     }
 
-    /*public static boolean isInShield(EntityLivingBase entity)TODO Circle bounding box
+    private boolean isInRangeOfShield(BlockPos pos)
     {
-        double x = entity.posX;
-        double y = entity.posY + entity.getEyeHeight();
-        double z = entity.posZ;
-        double sx = entity.getEntityBoundingBox().maxX - entity.getEntityBoundingBox().minX;
-        double sy = entity.getEntityBoundingBox().maxY - entity.getEntityBoundingBox().minY;
-        double sz = entity.getEntityBoundingBox().maxZ - entity.getEntityBoundingBox().minZ;
-        double smin = Math.min(sx, Math.min(sy, sz)) / 2;
-        AxisAlignedBB bb = new AxisAlignedBB(x - smin, y - smin, z - smin, x + smin, y + smin, z + smin);
-        double avgX = (bb.minX + bb.maxX) / 2.0D;
-        double avgY = (bb.minY + bb.maxY) / 2.0D;
-        double avgZ = (bb.minZ + bb.maxZ) / 2.0D;
-        int dimID = GCCoreUtil.getDimensionID(entity.worldObj);
+        double dx = this.pos.getX() + 0.5D - pos.getX();
+        double dy = Math.abs(this.pos.getY() + 0.5D - pos.getY());
+        double dz = this.pos.getZ() + 0.5D - pos.getZ();
 
-        for (BlockVec3Dim blockVec : TileEntityShieldGenerator.loadedTiles)
+        if (dx * dx + dz * dz <= this.shieldSize * this.shieldSize && dy <= this.shieldSize)
         {
-            if (blockVec != null && blockVec.dim == dimID)
-            {
-                TileEntity tile = blockVec.getTileEntity();
-
-                if (tile instanceof TileEntityShieldGenerator)
-                {
-                    if (((TileEntityShieldGenerator) tile).inShield(avgX, avgY, avgZ))
-                    {
-                        return true;
-                    }
-                }
-            }
+            return true;
         }
         return false;
     }
-
-    public static void pushEntity(EntityLivingBase entity)
-    {
-        if (TileEntityShieldGenerator.shieldPos != null)
-        {
-            double d4 = entity.getDistance(TileEntityShieldGenerator.shieldPos.getX(), TileEntityShieldGenerator.shieldPos.getY(), TileEntityShieldGenerator.shieldPos.getZ());
-            double d6 = entity.posX - TileEntityShieldGenerator.shieldPos.getX();
-            double d8 = entity.posY - TileEntityShieldGenerator.shieldPos.getY();
-            double d10 = entity.posZ - TileEntityShieldGenerator.shieldPos.getZ();
-            double d11 = MathHelper.sqrt_double(d6 * d6 + d8 * d8 + d10 * d10);
-            d6 /= d11;
-            d8 /= d11;
-            d10 /= d11;
-            double knockAmount = 1.0D;
-            double d13 = (0.0D - d4) * knockAmount;
-            double d14 = d13;
-            double knockSpeed = 10.0D;
-            entity.motionX -= d6 * d14 / knockSpeed;
-            entity.motionY -= d8 * d14 / knockSpeed;
-            entity.motionZ -= d10 * d14 / knockSpeed;
-            entity.attackEntityFrom(DamageSource.generic, 5.0F);
-        }
-    }
-
-    private boolean inShield(double pX, double pY, double pZ)
-    {
-        double radius = this.shieldSize;
-        double rX = this.getPos().getX() + 0.5D - pX;
-        double rY = this.getPos().getZ() + 0.5D - pZ;
-        double rZ = this.getPos().getY() + 0.5D - pY;
-        radius *= radius;
-        rX *= rX;
-        pY *= pY;
-
-        if (rX > radius)
-        {
-            return false;
-        }
-        if (rX + pY > radius)
-        {
-            return false;
-        }
-        return rX + pY + rZ * rZ < radius;
-    }*/
 }

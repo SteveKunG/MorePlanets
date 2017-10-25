@@ -11,6 +11,8 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.items.ItemLaserBullet;
 import stevekung.mods.moreplanets.items.ItemSpaceFish;
 import stevekung.mods.moreplanets.items.ItemSpecialSchematic;
+import stevekung.mods.moreplanets.module.moons.koentus.blocks.BlockKoentus;
+import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalosDoublePlant;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockCheeseDirt;
@@ -60,6 +62,7 @@ public class ItemModelRenderer
         ClientRegisterHelper.registerModelRender(NibiruBlocks.INFECTED_SPONGE, 1, "infected_wet_sponge");
         ClientRegisterHelper.registerModelRenderWithDyeColor(MPBlocks.TINTED_GLASS);
         ClientRegisterHelper.registerModelRenderWithDyeColor(MPBlocks.TINTED_GLASS_PANE);
+        ClientRegisterHelper.registerModelRenderWithDyeColor(KoentusBlocks.GLOWING_HARDENED_ICE);
 
         ClientRegisterHelper.registerModelRender(MPBlocks.POLISHED_SPACE_DECORATION, BlockPolishedSpaceDecoration.BlockType.class);
         ClientRegisterHelper.registerModelRender(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, BlockHalfDungeonBrickSlab1.BlockType.class);
@@ -69,6 +72,7 @@ public class ItemModelRenderer
         ClientRegisterHelper.registerModelRender(MPBlocks.DUNGEON_BRICK_WALL, BlockDungeonBrickWall.BlockType.class);
         ClientRegisterHelper.registerModelRender(DionaBlocks.DIONA_BLOCK, BlockDiona.BlockType.class);
         ClientRegisterHelper.registerModelRender(DionaBlocks.INFECTED_CRYSTALLIZE_PART, BlockInfectedCrystallizePart.BlockType.class);
+        ClientRegisterHelper.registerModelRender(KoentusBlocks.KOENTUS_BLOCK, BlockKoentus.BlockType.class);
         ClientRegisterHelper.registerModelRender(ChalosBlocks.CHALOS_BLOCK, BlockChalos.BlockType.class);
         ClientRegisterHelper.registerModelRender(ChalosBlocks.CHEESE_DIRT, BlockCheeseDirt.BlockType.class);
         ClientRegisterHelper.registerModelRender(ChalosBlocks.CHALOS_DOUBLE_PLANT, BlockChalosDoublePlant.BlockType.class);

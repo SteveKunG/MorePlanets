@@ -10,6 +10,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -107,7 +108,7 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
     }
 
     @Override
-    public List getPossibleCreatures(EnumCreatureType type, BlockPos pos)
+    public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType type, BlockPos pos)
     {
         return this.worldObj.getBiome(pos).getSpawnableList(type);
     }

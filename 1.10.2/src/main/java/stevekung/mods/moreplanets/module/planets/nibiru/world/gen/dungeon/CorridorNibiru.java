@@ -78,6 +78,7 @@ public class CorridorNibiru extends SizedPieceNibiru
         return true;
     }
 
+    @SuppressWarnings("unchecked")
     private <T extends SizedPieceNibiru> T getRoom(Class<?> clazz, DungeonStartNibiru startPiece, Random rand)
     {
         try

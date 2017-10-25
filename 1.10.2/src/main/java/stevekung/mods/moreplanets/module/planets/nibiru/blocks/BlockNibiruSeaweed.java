@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
@@ -32,7 +31,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockNibiruSeaweed(String name)
     {
@@ -49,7 +48,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -64,7 +63,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
 
         if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, heldStack) > 0)
         {
-            List<ItemStack> items = Lists.newArrayList();
+            List<ItemStack> items = new ArrayList<>();
             ItemStack itemstack = this.createStackedBlock(state);
 
             if (itemstack != null)
@@ -149,7 +148,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     public static enum BlockType implements IStringSerializable

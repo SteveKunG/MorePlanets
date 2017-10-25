@@ -47,7 +47,7 @@ public class ItemGasBucketMP extends ItemBucketMP
 
         if (raytraceresult == null)
         {
-            return new ActionResult(EnumActionResult.PASS, itemStack);
+            return new ActionResult<>(EnumActionResult.PASS, itemStack);
         }
         else
         {
@@ -57,13 +57,13 @@ public class ItemGasBucketMP extends ItemBucketMP
 
                 if (!world.isBlockModifiable(player, blockpos))
                 {
-                    return new ActionResult(EnumActionResult.FAIL, itemStack);
+                    return new ActionResult<>(EnumActionResult.FAIL, itemStack);
                 }
                 if (flag)
                 {
                     if (!player.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStack))
                     {
-                        return new ActionResult(EnumActionResult.FAIL, itemStack);
+                        return new ActionResult<>(EnumActionResult.FAIL, itemStack);
                     }
                 }
                 else
@@ -72,15 +72,15 @@ public class ItemGasBucketMP extends ItemBucketMP
 
                     if (!player.canPlayerEdit(blockpos1, raytraceresult.sideHit, itemStack))
                     {
-                        return new ActionResult(EnumActionResult.FAIL, itemStack);
+                        return new ActionResult<>(EnumActionResult.FAIL, itemStack);
                     }
                     if (this.tryPlaceContainedLiquid(player, world, blockpos1) && !player.capabilities.isCreativeMode)
                     {
-                        return !player.capabilities.isCreativeMode ? new ActionResult(EnumActionResult.SUCCESS, new ItemStack(Items.BUCKET)) : new ActionResult(EnumActionResult.SUCCESS, itemStack);
+                        return !player.capabilities.isCreativeMode ? new ActionResult<>(EnumActionResult.SUCCESS, new ItemStack(Items.BUCKET)) : new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
                     }
                 }
             }
-            return new ActionResult(EnumActionResult.FAIL, itemStack);
+            return new ActionResult<>(EnumActionResult.FAIL, itemStack);
         }
     }
 

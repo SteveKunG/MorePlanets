@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.diona.tileentity;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.client.sounds.GCSounds;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
@@ -20,7 +19,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizeSlimeBoss;
 
-public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawner
+public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawner<EntityInfectedCrystallizeSlimeBoss>
 {
     public TileEntityDionaDungeonSpawner()
     {
@@ -30,7 +29,7 @@ public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawner
     @Override
     public List<Class<? extends EntityLiving>> getDisabledCreatures()
     {
-        List<Class<? extends EntityLiving>> list = Lists.newArrayList();
+        List<Class<? extends EntityLiving>> list = new ArrayList<>();
         list.add(EntityEvolvedSkeleton.class);
         list.add(EntityEvolvedZombie.class);
         list.add(EntityEvolvedSpider.class);

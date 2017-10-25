@@ -34,7 +34,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockFronosOre(String name)
     {
@@ -80,7 +80,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length - 1; ++i)
         {
@@ -341,7 +341,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     @Override

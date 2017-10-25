@@ -1,11 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.diona.world.gen.structure;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
@@ -663,7 +662,7 @@ public class StructureDionaMineshaftPieces
 
     public static class Room extends Piece
     {
-        private List<StructureBoundingBox> roomsLinkedToTheRoom = Lists.newLinkedList();
+        private List<StructureBoundingBox> roomsLinkedToTheRoom = new LinkedList<>();
 
         public Room() {}
 

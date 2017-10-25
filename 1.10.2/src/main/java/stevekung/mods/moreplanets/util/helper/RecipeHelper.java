@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.util.helper;
 
 import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
@@ -14,10 +13,9 @@ public class RecipeHelper
         GameRegistry.addRecipe(output, obj);
     }
 
-    @SuppressWarnings("unchecked")
     public static void addOreRecipe(ItemStack output, Object... obj)
     {
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(output, obj));
+        GameRegistry.addRecipe(new ShapedOreRecipe(output, obj));
     }
 
     public static void addShapelessRecipe(ItemStack output, Object... obj)

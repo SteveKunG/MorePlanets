@@ -2,8 +2,6 @@ package stevekung.mods.moreplanets.tileentity;
 
 import java.util.ArrayList;
 
-import com.google.common.collect.Lists;
-
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
@@ -367,7 +365,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
         }
 
         int[] slots = new int[] { 0, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-        ArrayList<Integer> removeSlots = Lists.newArrayList();
+        ArrayList<Integer> removeSlots = new ArrayList<>();
 
         for (int i = 3; i < 12; i++)
         {

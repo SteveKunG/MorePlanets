@@ -92,20 +92,17 @@ public class RenderAntiGravityArrow extends Render<EntityAntiGravityArrow>
     {
         float motion = MathHelper.sqrt_double(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
 
-        if (!entity.inGround)
+        if (motion < 0.05F || entity.inGround)
         {
-            if (motion < 0.25F)
-            {
-                return RenderAntiGravityArrow.texture2;
-            }
-            else
-            {
-                return RenderAntiGravityArrow.texture1;
-            }
+            return RenderAntiGravityArrow.texture0;
+        }
+        else if (motion < 0.25F)
+        {
+            return RenderAntiGravityArrow.texture2;
         }
         else
         {
-            return RenderAntiGravityArrow.texture0;
+            return RenderAntiGravityArrow.texture1;
         }
     }
 }

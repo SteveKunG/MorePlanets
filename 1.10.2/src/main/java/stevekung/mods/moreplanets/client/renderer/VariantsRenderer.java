@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.client.renderer;
 
-import com.google.common.collect.Lists;
+import java.util.Arrays;
 
 import stevekung.mods.moreplanets.blocks.BlockPolishedSpaceDecoration;
 import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
@@ -11,6 +11,8 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.items.ItemLaserBullet;
 import stevekung.mods.moreplanets.items.ItemSpaceFish;
 import stevekung.mods.moreplanets.items.ItemSpecialSchematic;
+import stevekung.mods.moreplanets.module.moons.koentus.blocks.BlockKoentus;
+import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalosDoublePlant;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockCheeseDirt;
@@ -46,6 +48,7 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(MPBlocks.DUNGEON_BRICK_WALL, BlockDungeonBrickWall.BlockType.class);
         ClientRegisterHelper.registerVariantsName(DionaBlocks.DIONA_BLOCK, BlockDiona.BlockType.class);
         ClientRegisterHelper.registerVariantsName(DionaBlocks.INFECTED_CRYSTALLIZE_PART, BlockInfectedCrystallizePart.BlockType.class);
+        ClientRegisterHelper.registerVariantsName(KoentusBlocks.KOENTUS_BLOCK, BlockKoentus.BlockType.class);
         ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHALOS_BLOCK, BlockChalos.BlockType.class);
         ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHEESE_DIRT, BlockCheeseDirt.BlockType.class);
         ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHALOS_DOUBLE_PLANT, BlockChalosDoublePlant.BlockType.class);
@@ -53,7 +56,7 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_SANDSTONE, BlockNibiruSandstone.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_LOG, BlockNibiruLog.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_PLANKS, BlockNibiruPlanks.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_ORE, BlockNibiruOre.BlockType.class, Lists.newArrayList("nibiru_redstone_ore_active"), Lists.newArrayList("nibiru_redstone_ore"));
+        ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_ORE, BlockNibiruOre.BlockType.class, Arrays.asList("nibiru_redstone_ore_active"), Arrays.asList("nibiru_redstone_ore"));
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_LEAVES, BlockNibiruLeaves.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_SAPLING, BlockNibiruSapling.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_FLOWER, BlockNibiruFlower.BlockType.class);
@@ -73,12 +76,13 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_GRASS_PATH, BlockNibiruGrassPath.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_DIRT, BlockFronosDirt.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_BLOCK, BlockFronos.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_ORE, BlockFronosOre.BlockType.class, Lists.newArrayList("fronos_redstone_ore_active"), Lists.newArrayList("fronos_redstone_ore"));
+        ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_ORE, BlockFronosOre.BlockType.class, Arrays.asList("fronos_redstone_ore_active"), Arrays.asList("fronos_redstone_ore"));
         ClientRegisterHelper.registerVariantsName(FronosBlocks.CANDY_CANE_1, BlockCandyCane1.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.CANDY_CANE_2, BlockCandyCane2.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.JELLY_BLOCK, BlockJelly.BlockType.class);
         ClientRegisterHelper.registerVariantNameWithDyeColor(MPBlocks.TINTED_GLASS);
         ClientRegisterHelper.registerVariantNameWithDyeColor(MPBlocks.TINTED_GLASS_PANE);
+        ClientRegisterHelper.registerVariantNameWithDyeColor(KoentusBlocks.GLOWING_HARDENED_ICE);
 
         ClientRegisterHelper.registerVariantsName(MPItems.SPACE_BOW, "space_bow", "space_bow_pulling_0", "space_bow_pulling_1", "space_bow_pulling_2");
         ClientRegisterHelper.registerVariantsName(MPItems.SPACE_FISHING_ROD, "space_fishing_rod", "space_fishing_rod_cast");

@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.tileentity;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.client.sounds.GCSounds;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
@@ -20,7 +19,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityMiniVeinFloater;
 
-public class TileEntityNibiruDungeonSpawner extends TileEntityDungeonSpawner
+public class TileEntityNibiruDungeonSpawner extends TileEntityDungeonSpawner<EntityMiniVeinFloater>
 {
     public TileEntityNibiruDungeonSpawner()
     {
@@ -30,7 +29,7 @@ public class TileEntityNibiruDungeonSpawner extends TileEntityDungeonSpawner
     @Override
     public List<Class<? extends EntityLiving>> getDisabledCreatures()
     {
-        List<Class<? extends EntityLiving>> list = Lists.newArrayList();
+        List<Class<? extends EntityLiving>> list = new ArrayList<>();
         list.add(EntityEvolvedSkeleton.class);
         list.add(EntityEvolvedZombie.class);
         list.add(EntityEvolvedSpider.class);

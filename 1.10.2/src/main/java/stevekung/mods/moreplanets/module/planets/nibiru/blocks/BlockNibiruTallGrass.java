@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -30,8 +29,8 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBlockVariants, IGrowable
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
-    protected static AxisAlignedBB TALL_GRASS_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
+    private static AxisAlignedBB TALL_GRASS_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
     public BlockNibiruTallGrass(String name)
     {
@@ -57,7 +56,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
     {
         if (state.getValue(VARIANT) != BlockType.GREEN_VEIN_TALL_GRASS)
         {
-            List<ItemStack> ret = Lists.newArrayList();
+            List<ItemStack> ret = new ArrayList<>();
 
             if (RANDOM.nextInt(8) != 0)
             {
@@ -68,7 +67,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
         }
         else
         {
-            List<ItemStack> ret = Lists.newArrayList();
+            List<ItemStack> ret = new ArrayList<>();
 
             if (RANDOM.nextInt(24) != 0)
             {
@@ -103,7 +102,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
@@ -127,7 +126,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
     @Override
     public List<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
         ret.add(new ItemStack(this, 1, 0));
         return ret;
     }
@@ -147,7 +146,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     @Override

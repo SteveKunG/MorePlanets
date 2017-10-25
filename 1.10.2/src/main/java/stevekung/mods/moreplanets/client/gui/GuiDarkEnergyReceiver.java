@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.client.gui;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
@@ -27,7 +26,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCa
 {
     private ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/dark_energy_receiver.png");
     private TileEntityDarkEnergyReceiver tile;
-    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 112, (this.height - this.ySize) / 2 + 37, 56, 9, Lists.newArrayList(), this.width, this.height, this);
+    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 112, (this.height - this.ySize) / 2 + 37, 56, 9, new ArrayList<>(), this.width, this.height, this);
     private GuiButton buttonEnable;
     private GuiElementCheckbox checkboxRender;
 
@@ -53,10 +52,10 @@ public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCa
     public void initGui()
     {
         super.initGui();
-        List<String> batterySlotDesc = Lists.newArrayList();
+        List<String> batterySlotDesc = new ArrayList<>();
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        List<String> renderDesc = Lists.newArrayList();
+        List<String> renderDesc = new ArrayList<>();
         renderDesc.add(GCCoreUtil.translate("gui.receiver_render_guide.desc"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 31, (this.height - this.ySize) / 2 + 26, 18, 18, batterySlotDesc, this.width, this.height, this));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 155, (this.height - this.ySize) / 2 + 87, 13, 13, renderDesc, this.width, this.height, this));
@@ -104,7 +103,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCa
         {
             this.drawTexturedModalRect(width + 64, height + 16, 176, 10, 16, 16);
         }
-        List<String> electricityDesc = Lists.newArrayList();
+        List<String> electricityDesc = new ArrayList<>();
         electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;

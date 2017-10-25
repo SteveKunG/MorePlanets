@@ -1,9 +1,9 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -17,7 +17,7 @@ import stevekung.mods.moreplanets.util.MPLog;
 
 public class MapGenNibiruVillage extends MapGenStructure
 {
-    public static List<Biome> VILLAGE_SPAWN_BIOMES = Lists.newArrayList(MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.GREEN_VEIN);
+    public static List<Biome> VILLAGE_SPAWN_BIOMES = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.GREEN_VEIN));
     private int size;
     private int distance;
 

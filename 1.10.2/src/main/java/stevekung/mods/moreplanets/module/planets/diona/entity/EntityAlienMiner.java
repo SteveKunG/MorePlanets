@@ -63,7 +63,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityGuardian.class, 12.0F, 0.01F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 10, true, false, new AlienMinerTargetSelector(this)));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 10, true, false, new AlienMinerTargetSelector(this)));
     }
 
     @Override
