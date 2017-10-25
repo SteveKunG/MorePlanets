@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "moreplanets:fallen_koentus_meteor" },
+            { "model": "moreplanets:fallen_koentus_meteor", "y": 90 },
+            { "model": "moreplanets:fallen_koentus_meteor", "y": 180 },
+            { "model": "moreplanets:fallen_koentus_meteor", "y": 270 }
+        ]
+    }
+}

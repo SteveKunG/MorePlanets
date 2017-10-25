@@ -1,3 +1,4 @@
+crystallize planks : hue 140 sat -15 / 108 94 142
 green vein : 103 220 16
 terrapuff hurb : 43 140 213
 green vein leaves : 28 192 227
@@ -19,3 +20,5 @@ orange candy cane : 255 111 40
 yellow candy cane : 232 232 0
 purple candy cane : 197 128 238
 pink + purple candy cane : 255 94 255
+koentus base : 14 88 150
+goldenite crystal : 237 164 53

@@ -5,6 +5,8 @@ import java.util.*;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.lwjgl.input.Keyboard;
+
 import com.google.common.base.Function;
 import com.google.common.collect.Ordering;
 
@@ -347,5 +349,15 @@ public class CommonRegisterHelper
         }
         Comparator<ItemStack> tabSorterItems = Ordering.explicit(itemOrderListItems).onResultOf(input -> new StackSorted(input.getItem(), input.getItemDamage()));
         MorePlanetsCore.ITEM_TAB.setTabSorter(tabSorterItems);
+    }
+
+    public static boolean isShiftKeyDown()
+    {
+        return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
+    }
+
+    public static boolean isControlKeyDown()
+    {
+        return Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL);
     }
 }

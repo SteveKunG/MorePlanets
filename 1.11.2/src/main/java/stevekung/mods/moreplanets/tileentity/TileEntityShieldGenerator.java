@@ -33,7 +33,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.EnderTeleportEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.blocks.BlockDummy;
@@ -72,6 +78,98 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     }
 
     @Override
+    public void invalidate()
+    {
+        super.invalidate();
+
+        if (!this.world.isRemote)
+        {
+            MinecraftForge.EVENT_BUS.unregister(this);
+        }
+    }
+
+    @Override
+    public void onChunkUnload()
+    {
+        super.onChunkUnload();
+
+        if (!this.world.isRemote)
+        {
+            MinecraftForge.EVENT_BUS.unregister(this);
+        }
+    }
+
+    @Override
+    public void onLoad()
+    {
+        if (!this.world.isRemote)
+        {
+            MinecraftForge.EVENT_BUS.register(this);
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingSpawn(LivingSpawnEvent.CheckSpawn event)
+    {
+        if (event.getResult() == Result.ALLOW) //TODO Check spawner
+        {
+            return;
+        }
+        if (this.world != null && !this.world.isRemote)
+        {
+            if (!this.disabled && this.isInRangeOfShield(event.getEntity().getPosition()))
+            {
+                event.setResult(Result.DENY);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEnderTeleport(EnderTeleportEvent event)
+    {
+        if (!this.disabled && this.isInRangeOfShield(event.getEntity().getPosition()))
+        {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingUpdate(LivingUpdateEvent event)
+    {
+        Entity entity = event.getEntity();
+
+        if (entity instanceof IMob)
+        {
+            if (!this.disabled && this.isInRangeOfShield(event.getEntity().getPosition()))
+            {
+                double d4 = entity.getDistance(this.pos.getX(), this.pos.getY(), this.pos.getZ());
+                double d6 = entity.posX - this.pos.getX();
+                double d8 = entity.posY - this.pos.getY();
+                double d10 = entity.posZ - this.pos.getZ();
+                double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
+                d6 /= d11;
+                d8 /= d11;
+                d10 /= d11;
+                double d13 = (0.0D - d4) * this.knockAmount / 10.0D;
+                double d14 = d13;
+                double knockSpeed = 10.0D;
+                entity.motionX -= d6 * d14 / knockSpeed;
+                entity.motionY -= d8 * d14 / knockSpeed;
+                entity.motionZ -= d10 * d14 / knockSpeed;
+
+                if (this.world.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID)) != null)
+                {
+                    entity.attackEntityFrom(DamageSource.causePlayerDamage(this.world.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID))), this.shieldDamage);
+                }
+                else
+                {
+                    entity.attackEntityFrom(DamageSource.GENERIC, this.shieldDamage);
+                }
+            }
+        }
+    }
+
+    @Override
     public void update()
     {
         super.update();
@@ -105,7 +203,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                 this.shieldSize -= 1.0F;
             }
             this.shieldSize = Math.min(Math.max(this.shieldSize, 0.0F), this.maxShieldSize);
-            //TileEntityShieldGenerator.shieldPos = this.pos;
         }
 
         if (this.knockAmount > 10)
@@ -124,7 +221,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             if (!this.disabled)
             {
-                if (entity instanceof IMob || entity instanceof EntityArrow && !(((EntityArrow)entity).shootingEntity instanceof EntityPlayer) || entity instanceof EntityPotion && !(((EntityPotion)entity).getThrower() instanceof EntityPlayer) || entity instanceof EntityFireball)
+                if (entity instanceof EntityArrow && !(((EntityArrow)entity).shootingEntity instanceof EntityPlayer) || entity instanceof EntityPotion && !(((EntityPotion)entity).getThrower() instanceof EntityPlayer) || entity instanceof EntityFireball)
                 {
                     double d4 = entity.getDistance(this.pos.getX(), this.pos.getY(), this.pos.getZ());
                     double d6 = entity.posX - this.pos.getX();
@@ -451,5 +548,18 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public void setFacing(int facing)
     {
         this.facing = facing;
+    }
+
+    private boolean isInRangeOfShield(BlockPos pos)
+    {
+        double dx = this.pos.getX() + 0.5D - pos.getX();
+        double dy = Math.abs(this.pos.getY() + 0.5D - pos.getY());
+        double dz = this.pos.getZ() + 0.5D - pos.getZ();
+
+        if (dx * dx + dz * dz <= this.shieldSize * this.shieldSize && dy <= this.shieldSize)
+        {
+            return true;
+        }
+        return false;
     }
 }

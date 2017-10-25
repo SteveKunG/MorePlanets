@@ -26,6 +26,7 @@ import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
+import stevekung.mods.moreplanets.module.moons.koentus.client.particle.ParticleKoentusMeteor;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleAlienMinerSpark;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleCrystallizeFlame;
@@ -38,6 +39,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.Particle
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
+import stevekung.mods.moreplanets.util.client.particle.ParticleFallingDustMP;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLavaMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLiquidDrip;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
@@ -193,6 +195,14 @@ public class ClientProxyMP extends ServerProxyMP
             else if (type == EnumParticleTypesMP.PURIFY_WATER_DRIP)
             {
                 entityfx = new ParticleLiquidDrip(mc.world, x, y, z, 0.45F, 0.8F, 1.0F, 0.6F, false);
+            }
+            else if (type == EnumParticleTypesMP.KOENTUS_METEOR_SMOKE)
+            {
+                entityfx = new ParticleKoentusMeteor(mc.world, x, y, z, motionX, motionY, motionZ);
+            }
+            else if (type == EnumParticleTypesMP.CUSTOM_FALLING_DUST)
+            {
+                entityfx = new ParticleFallingDustMP(mc.world, x, y, z, (int) data[0]);
             }
 
             if (entityfx != null)

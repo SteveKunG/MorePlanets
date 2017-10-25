@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.util.entity.ai;
 
+import java.util.HashSet;
 import java.util.Set;
-
-import com.google.common.collect.Sets;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -49,7 +48,7 @@ public class WalkNodeProcessorMP extends WalkNodeProcessor
 
         if (this.entity.getPathPriority(pathnodetype1) < 0.0F)
         {
-            Set<BlockPos> set = Sets.newHashSet();
+            Set<BlockPos> set = new HashSet<>();
             set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, i, this.entity.getEntityBoundingBox().minZ));
             set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, i, this.entity.getEntityBoundingBox().maxZ));
             set.add(new BlockPos(this.entity.getEntityBoundingBox().maxX, i, this.entity.getEntityBoundingBox().minZ));

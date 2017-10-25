@@ -2,20 +2,19 @@ package stevekung.mods.moreplanets.itemblocks;
 
 import java.util.List;
 
-import org.lwjgl.input.Keyboard;
-
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -27,6 +26,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
 
 public class ItemBlockBlackHoleStorage extends ItemBlockDescription
@@ -83,9 +83,43 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
     {
         if (this.getBlock() instanceof IBlockDescription)
         {
-            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+            if (CommonRegisterHelper.isShiftKeyDown())
             {
                 ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
+            }
+            else if (CommonRegisterHelper.isControlKeyDown())
+            {
+                if (this.getBlock() instanceof BlockBlackHoleStorage)
+                {
+                    TileEntity tile = ((BlockBlackHoleStorage) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
+
+                    if (tile instanceof TileEntityBlackHoleStorage)
+                    {
+                        TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
+                        NonNullList<ItemStack> nonNullList = storage.inventory;
+                        ItemStackHelper.loadAllItems(itemStack.getTagCompound(), nonNullList);
+                        int i = 0;
+                        int j = 0;
+
+                        for (ItemStack invStack : nonNullList)
+                        {
+                            if (!invStack.isEmpty())
+                            {
+                                ++j;
+
+                                if (i < 8)
+                                {
+                                    ++i;
+                                    list.add(invStack.getDisplayName() + " x" + invStack.getCount());
+                                }
+                            }
+                        }
+                        if (j - i > 0)
+                        {
+                            list.add(TextFormatting.ITALIC + GCCoreUtil.translateWithFormat("desc.bhs_more.name", Integer.valueOf(j - i)));
+                        }
+                    }
+                }
             }
             else
             {
@@ -129,7 +163,8 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                         }
                     }
                 }
-                list.add(GCCoreUtil.translateWithFormat("item_desc.shift.name", GameSettings.getKeyDisplayString(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.getKeyCode())));
+                list.add(GCCoreUtil.translate("desc.shift_info.name"));
+                list.add(GCCoreUtil.translate("desc.control_info.name"));
             }
         }
     }

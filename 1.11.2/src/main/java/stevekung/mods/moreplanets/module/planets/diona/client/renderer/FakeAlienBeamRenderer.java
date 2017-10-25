@@ -11,8 +11,36 @@ import net.minecraft.util.math.MathHelper;
 
 public class FakeAlienBeamRenderer
 {
-    public static void renderBeam(double x, double y, double z, float partialTicks)
+    public static final FakeAlienBeamRenderer INSTANCE = new FakeAlienBeamRenderer();
+    private float prevTime;
+    private float time;
+
+    public void renderBeam(double x, double y, double z, float partialTicks)
     {
+        this.prevTime = this.time;
+        this.time += 0.0125F;
+
+        if (this.time >= 1.0F)
+        {
+            this.time = 0.0F;
+        }
+        if (this.time < 0.0F)
+        {
+            this.time = 0.0F;
+        }
+
+        float beamTime = this.prevTime + (this.time - this.prevTime) * partialTicks;
+
+        if (beamTime > 0.0F)
+        {
+            if (beamTime < 1.0F)
+            {
+                beamTime = beamTime * beamTime;
+                beamTime = beamTime * beamTime;
+                beamTime = beamTime * 0.8F + 0.2F;
+            }
+        }
+
         int k = 256;
         GlStateManager.alphaFunc(516, 0.1F);
         Tessellator tessellator = Tessellator.getInstance();
@@ -30,6 +58,7 @@ public class FakeAlienBeamRenderer
         float red = 0.4F;
         float green = 0.6F;
         float blue = 1.0F;
+        float alpha = beamTime;
         double d2 = d0 * 0.025D * -1.5D;
         double d4 = 0.5D + Math.cos(d2 + 2.356194490192345D) * 0.2D;
         double d5 = 0.5D + Math.sin(d2 + 2.356194490192345D) * 0.2D;
@@ -43,23 +72,24 @@ public class FakeAlienBeamRenderer
         double d13 = 1.0D;
         double d14 = -1.0D + d1;
         double d15 = (float)512 * 512 * 2.5D + d14;
+        GlStateManager.enableBlend();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        worldrenderer.pos(x + d4, y + k, z + d5).tex(1.0D, d15).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d4, y, z + d5).tex(1.0D, d14).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d6, y, z + d7).tex(0.0D, d14).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d6, y + k, z + d7).tex(0.0D, d15).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d10, y + k, z + d11).tex(1.0D, d15).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d10, y, z + d11).tex(1.0D, d14).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d8, y, z + d9).tex(0.0D, d14).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d8, y + k, z + d9).tex(0.0D, d15).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d6, y + k, z + d7).tex(1.0D, d15).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d6, y, z + d7).tex(1.0D, d14).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d10, y, z + d11).tex(0.0D, d14).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d10, y + k, z + d11).tex(0.0D, d15).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d8, y + k, z + d9).tex(1.0D, d15).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d8, y, z + d9).tex(1.0D, d14).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d4, y, z + d5).tex(0.0D, d14).color(red, green, blue, 1.0F).endVertex();
-        worldrenderer.pos(x + d4, y + k, z + d5).tex(0.0D, d15).color(red, green, blue, 1.0F).endVertex();
+        worldrenderer.pos(x + d4, y + k, z + d5).tex(1.0D, d15).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d4, y, z + d5).tex(1.0D, d14).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d6, y, z + d7).tex(0.0D, d14).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d6, y + k, z + d7).tex(0.0D, d15).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d10, y + k, z + d11).tex(1.0D, d15).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d10, y, z + d11).tex(1.0D, d14).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d8, y, z + d9).tex(0.0D, d14).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d8, y + k, z + d9).tex(0.0D, d15).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d6, y + k, z + d7).tex(1.0D, d15).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d6, y, z + d7).tex(1.0D, d14).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d10, y, z + d11).tex(0.0D, d14).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d10, y + k, z + d11).tex(0.0D, d15).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d8, y + k, z + d9).tex(1.0D, d15).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d8, y, z + d9).tex(1.0D, d14).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d4, y, z + d5).tex(0.0D, d14).color(red, green, blue, alpha).endVertex();
+        worldrenderer.pos(x + d4, y + k, z + d5).tex(0.0D, d15).color(red, green, blue, alpha).endVertex();
         tessellator.draw();
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);

@@ -2,18 +2,15 @@ package stevekung.mods.moreplanets.util.itemblocks;
 
 import java.util.List;
 
-import org.lwjgl.input.Keyboard;
-
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class ItemBlockMultiVariantInfo extends ItemBlockBaseMP
 {
@@ -28,13 +25,13 @@ public class ItemBlockMultiVariantInfo extends ItemBlockBaseMP
     {
         if (this.block instanceof IBlockDescription)
         {
-            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+            if (CommonRegisterHelper.isShiftKeyDown())
             {
                 ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
             }
             else
             {
-                list.add(GCCoreUtil.translateWithFormat("item_desc.shift.name", GameSettings.getKeyDisplayString(Minecraft.getMinecraft().gameSettings.keyBindSneak.getKeyCode())));
+                list.add(GCCoreUtil.translate("desc.shift_info.name"));
             }
         }
     }

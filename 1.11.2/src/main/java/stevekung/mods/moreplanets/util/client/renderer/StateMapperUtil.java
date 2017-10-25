@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.util.client.renderer;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
-
-import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
@@ -29,7 +28,7 @@ public class StateMapperUtil extends StateMapperBase
     {
         if (this.type.equals("stem"))
         {
-            Map<IProperty<?>, Comparable<?>> map = Maps.newLinkedHashMap(state.getProperties());
+            Map<IProperty<?>, Comparable<?>> map = new LinkedHashMap<>(state.getProperties());
 
             if (state.getValue(BlockStemMP.FACING) != EnumFacing.UP)
             {

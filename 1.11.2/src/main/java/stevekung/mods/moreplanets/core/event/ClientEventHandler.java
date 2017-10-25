@@ -243,7 +243,7 @@ public class ClientEventHandler
             while (it.hasNext())
             {
                 Map.Entry<BlockPos, Integer> entry = it.next();
-                FakeAlienBeamRenderer.renderBeam(entry.getKey().getX() - ClientProxyCore.playerPosX, entry.getKey().getY() - ClientProxyCore.playerPosY, entry.getKey().getZ() - ClientProxyCore.playerPosZ, event.partialTicks);
+                FakeAlienBeamRenderer.INSTANCE.renderBeam(entry.getKey().getX() - ClientProxyCore.playerPosX, entry.getKey().getY() - ClientProxyCore.playerPosY, entry.getKey().getZ() - ClientProxyCore.playerPosZ, event.partialTicks);
             }
         }
     }

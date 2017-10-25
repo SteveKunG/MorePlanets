@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.entity.EntityArrowMP;
@@ -29,7 +30,9 @@ public class EntityAntiGravityArrow extends EntityArrowMP
     @Override
     public void onCollideWithPlayer(EntityPlayer player)
     {
-        if (!this.world.isRemote && this.inGround && this.arrowShake <= 0)
+        float motion = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+        if (!this.world.isRemote && (motion < 0.1F || this.inGround) && this.arrowShake <= 0)
         {
             boolean flag = this.pickupStatus == PickupStatus.ALLOWED || this.pickupStatus == PickupStatus.CREATIVE_ONLY && player.capabilities.isCreativeMode;
 
@@ -56,13 +59,20 @@ public class EntityAntiGravityArrow extends EntityArrowMP
     @Override
     protected void doMotion(float speed, float motion, float motionGravity)
     {
+        if (this.ticksInAir >= 1200)
+        {
+            this.setDead();
+        }
+
         this.motionX *= speed;
         this.motionY *= speed;
         this.motionZ *= speed;
 
-        if (motion < 0.25F)
+        if (motion < 0.05F)
         {
-            this.motionY -= motionGravity;
+            this.motionX *= 0.0D;
+            this.motionY *= 0.0D;
+            this.motionZ *= 0.0D;
         }
         else
         {

@@ -2,11 +2,14 @@ package stevekung.mods.moreplanets.client.renderer;
 
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.client.renderer.entity.*;
+import stevekung.mods.moreplanets.entity.EntityAntiGravFallingBlock;
 import stevekung.mods.moreplanets.entity.EntityBlackHole;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.entity.EntitySpaceCapsule;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
+import stevekung.mods.moreplanets.module.moons.koentus.client.renderer.entity.RenderFallingKoentusMeteor;
+import stevekung.mods.moreplanets.module.moons.koentus.entity.EntityFallingKoentusMeteor;
 import stevekung.mods.moreplanets.module.planets.chalos.client.renderer.entity.*;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.*;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
@@ -92,5 +95,7 @@ public class EntityRendererMP
         ClientRegisterHelper.registerEntityRendering(EntityBlackHoleStorage.class, RenderBlackHoleStorage::new);
         ClientRegisterHelper.registerEntityRendering(EntityAntiGravityArrow.class, RenderAntiGravityArrow::new);
         ClientRegisterHelper.registerEntityRendering(EntityJellySlime.class, RenderJellySlime::new);
+        ClientRegisterHelper.registerEntityRendering(EntityFallingKoentusMeteor.class, RenderFallingKoentusMeteor::new);
+        ClientRegisterHelper.registerEntityRendering(EntityAntiGravFallingBlock.class, RenderAntiGravFallingBlock::new);
     }
 }
