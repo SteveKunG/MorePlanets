@@ -24,7 +24,7 @@ public class ItemBlockMultiVariantInfo extends ItemBlockBaseMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
         if (this.block instanceof IBlockDescription)
         {

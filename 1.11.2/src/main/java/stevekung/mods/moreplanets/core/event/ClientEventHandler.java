@@ -80,7 +80,7 @@ public class ClientEventHandler
     public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
     public static final List<String> entityId = new ArrayList<>();
     private static final AttributeModifier CRYSTALLIZE_POTION_MODIFIER = new AttributeModifier(UUID.fromString("0B0BC323-E263-4EF8-9108-4B6503129B16"), "generic.crystallize_effect", 0, 0);
-    public static final Set<IMorePlanetsBoss> bossList = Collections.newSetFromMap(new WeakHashMap());
+    public static final Set<IMorePlanetsBoss> bossList = Collections.newSetFromMap(new WeakHashMap<>());
     private static final ResourceLocation BOSS_BAR = new ResourceLocation("moreplanets:textures/gui/boss_bars.png");
 
     public ClientEventHandler()

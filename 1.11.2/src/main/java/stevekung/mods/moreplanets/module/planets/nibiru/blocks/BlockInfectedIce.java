@@ -29,7 +29,7 @@ public class BlockInfectedIce extends BlockBreakableMP
     public BlockInfectedIce(String name)
     {
         super(Material.ICE);
-        this.slipperiness = 0.98F;
+        this.setDefaultSlipperiness(0.98F);
         this.setTickRandomly(true);
         this.setHardness(0.5F);
         this.setLightOpacity(3);

@@ -37,7 +37,7 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInput(ItemStack.class, new ArrayList(this.input.values()));
+        ingredients.setInput(ItemStack.class, new ArrayList<>(this.input.values()));
         ingredients.setOutput(ItemStack.class, this.output);
     }
 }

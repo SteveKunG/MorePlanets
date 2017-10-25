@@ -20,7 +20,7 @@ public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
         super(Material.GLASS);
         this.setSoundType(SoundType.SLIME);
         this.setUnlocalizedName(name);
-        this.slipperiness = 0.8F;
+        this.setDefaultSlipperiness(0.8F);
     }
 
     @Override

@@ -72,15 +72,15 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 
     private boolean absorb(World world, BlockPos pos)
     {
-        LinkedList linkedlist = Lists.newLinkedList();
-        ArrayList arraylist = Lists.newArrayList();
-        linkedlist.add(new Tuple(pos, Integer.valueOf(0)));
+        LinkedList<Tuple> linkedlist = Lists.newLinkedList();
+        ArrayList<BlockPos> arraylist = Lists.newArrayList();
+        linkedlist.add(new Tuple<>(pos, Integer.valueOf(0)));
         int i = 0;
         BlockPos blockpos1;
 
         while (!linkedlist.isEmpty())
         {
-            Tuple tuple = (Tuple)linkedlist.poll();
+            Tuple tuple = linkedlist.poll();
             blockpos1 = (BlockPos)tuple.getFirst();
             int j = ((Integer)tuple.getSecond()).intValue();
             EnumFacing[] aenumfacing = EnumFacing.VALUES;
@@ -99,7 +99,7 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 
                     if (j < 6)
                     {
-                        linkedlist.add(new Tuple(blockpos2, Integer.valueOf(j + 1)));
+                        linkedlist.add(new Tuple<>(blockpos2, Integer.valueOf(j + 1)));
                     }
                 }
             }

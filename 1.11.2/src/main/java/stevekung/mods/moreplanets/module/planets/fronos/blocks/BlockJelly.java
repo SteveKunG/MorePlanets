@@ -24,7 +24,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockJelly extends BlockBreakableMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockJelly(String name)
     {
@@ -132,7 +132,7 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     @Override

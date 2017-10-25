@@ -106,11 +106,11 @@ public class ItemCapsule extends ItemFoodMP
         if (itemStack.hasTagCompound() && (player.canEat(true) || player.capabilities.isCreativeMode))
         {
             player.setActiveHand(hand);
-            return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
         }
         else
         {
-            return new ActionResult(EnumActionResult.FAIL, itemStack);
+            return new ActionResult<>(EnumActionResult.FAIL, itemStack);
         }
     }
 

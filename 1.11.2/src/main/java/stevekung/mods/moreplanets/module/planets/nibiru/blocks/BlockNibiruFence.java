@@ -20,7 +20,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockNibiruFence extends BlockFenceMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockNibiruFence(String name)
     {
@@ -63,7 +63,7 @@ public class BlockNibiruFence extends BlockFenceMP implements IBlockVariants
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     @Override

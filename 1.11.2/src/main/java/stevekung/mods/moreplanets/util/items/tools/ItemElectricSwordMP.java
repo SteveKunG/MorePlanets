@@ -113,11 +113,11 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
         if (this.getElectricityStored(itemStack) > 0.0F)
         {
             player.setActiveHand(hand);
-            return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
         }
         else
         {
-            return new ActionResult(EnumActionResult.PASS, itemStack);
+            return new ActionResult<>(EnumActionResult.PASS, itemStack);
         }
     }
 
@@ -129,7 +129,7 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
         TextFormatting color = null;
         float joules = this.getElectricityStored(itemStack);

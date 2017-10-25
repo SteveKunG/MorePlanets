@@ -34,7 +34,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
     protected void applyEntityAI()
     {
         super.applyEntityAI();
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityNibiruVillager.class, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityNibiruVillager.class, false));
     }
 
     @Override

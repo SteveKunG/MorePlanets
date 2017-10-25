@@ -29,7 +29,7 @@ import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
 
 public class BlockChalos extends BlockBasicMP implements IDetectableResource, ISortableBlock, IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockChalos(String name)
     {
@@ -58,7 +58,7 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
-        BlockType type = (BlockType) state.getValue(VARIANT);
+        BlockType type = state.getValue(VARIANT);
 
         switch (type)
         {
@@ -188,7 +188,7 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     public static enum BlockType implements IStringSerializable

@@ -45,7 +45,6 @@ public class GuiDarkEnergyGenerator extends GuiContainerGC
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void initGui()
     {

@@ -20,7 +20,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizeSlimeBoss;
 
-public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawner
+public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawner<EntityInfectedCrystallizeSlimeBoss>
 {
     public TileEntityDionaDungeonSpawner()
     {

@@ -22,7 +22,7 @@ public class ItemTier6RocketSchematic extends ItemSchematicMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
         list.add(TextFormatting.GRAY + GCCoreUtil.translate("desc.tier_6.name"));
     }

@@ -22,7 +22,7 @@ public class ItemTier5RocketSchematic extends ItemSchematicVariantsMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
         if (itemStack.getItemDamage() == 0)
         {

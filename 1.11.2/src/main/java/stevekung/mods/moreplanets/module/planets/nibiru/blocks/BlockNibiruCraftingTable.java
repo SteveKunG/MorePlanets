@@ -29,7 +29,7 @@ import stevekung.mods.moreplanets.util.inventory.ContainerWorkbenchMP;
 
 public class BlockNibiruCraftingTable extends BlockBaseMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     protected BlockNibiruCraftingTable(String name)
     {
@@ -94,7 +94,7 @@ public class BlockNibiruCraftingTable extends BlockBaseMP implements IBlockVaria
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     public static class InterfaceCraftingTable implements IInteractionObject

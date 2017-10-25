@@ -89,7 +89,7 @@ public class ItemElectricAxeMP extends ItemAxe implements IItemElectric, ISortab
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
         TextFormatting color = null;
         float joules = this.getElectricityStored(itemStack);

@@ -25,7 +25,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockNibiruBookshelf extends BlockBaseMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockNibiruBookshelf(String name)
     {
@@ -91,7 +91,7 @@ public class BlockNibiruBookshelf extends BlockBaseMP implements IBlockVariants
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     public static enum BlockType implements IStringSerializable

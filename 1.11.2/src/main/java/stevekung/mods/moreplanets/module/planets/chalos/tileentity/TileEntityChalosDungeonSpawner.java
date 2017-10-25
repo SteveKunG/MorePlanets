@@ -15,7 +15,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.SoundCategory;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCubeEyeBoss;
 
-public class TileEntityChalosDungeonSpawner extends TileEntityDungeonSpawner
+public class TileEntityChalosDungeonSpawner extends TileEntityDungeonSpawner<EntityCheeseCubeEyeBoss>
 {
     public TileEntityChalosDungeonSpawner()
     {

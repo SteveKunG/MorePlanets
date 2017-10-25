@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.client.renderer.tileentity;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
@@ -113,9 +113,9 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
     {
         for (int yRender = tile.getPos().getY(); yRender < 256; yRender++)
         {
-            Block block = tile.getWorld().getBlockState(new BlockPos(tile.getPos().getX(), yRender, tile.getPos().getZ())).getBlock();
+            IBlockState state = tile.getWorld().getBlockState(new BlockPos(tile.getPos().getX(), yRender, tile.getPos().getZ()));
 
-            if (block.isOpaqueCube(tile.getWorld().getBlockState(new BlockPos(tile.getPos().getX(), yRender, tile.getPos().getZ()))) && block != DionaBlocks.DARK_ENERGY_CORE || !tile.isActivated())
+            if (state.isOpaqueCube() && state.getBlock() != DionaBlocks.DARK_ENERGY_CORE || !tile.isActivated())
             {
                 return;
             }

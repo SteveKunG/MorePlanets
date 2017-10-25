@@ -17,7 +17,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockInfectedPrismarine extends BlockBaseMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockInfectedPrismarine(String name)
     {
@@ -65,7 +65,7 @@ public class BlockInfectedPrismarine extends BlockBaseMP implements IBlockVarian
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     public static enum BlockType implements IStringSerializable

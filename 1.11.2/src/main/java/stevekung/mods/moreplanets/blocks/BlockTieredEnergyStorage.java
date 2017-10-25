@@ -40,7 +40,7 @@ import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
 public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescription, ISortableBlock, IBlockVariants
 {
     public static PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    public static PropertyEnum VARIANT = PropertyEnum.create("variants", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variants", BlockType.class);
     public static PropertyInteger VALUE = PropertyInteger.create("value", 0, 33);
     public static IMachineSidesProperties MACHINESIDES_RENDERTYPE = IMachineSidesProperties.TWOFACES_HORIZ;
     public static PropertyEnum SIDES = MACHINESIDES_RENDERTYPE.asProperty;
@@ -178,7 +178,7 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(FACING).getHorizontalIndex() + ((BlockType)state.getValue(VARIANT)).ordinal() * 4;
+        return state.getValue(FACING).getHorizontalIndex() + state.getValue(VARIANT).ordinal() * 4;
     }
 
     @Override

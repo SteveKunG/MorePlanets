@@ -54,7 +54,7 @@ public class ItemTier4Rocket extends ItemRocketBaseMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    protected void addDescription(ItemStack itemStack, List list)
+    protected void addDescription(ItemStack itemStack, List<String> list)
     {
         EntityTier4Rocket rocket = new EntityTier4Rocket(Minecraft.getMinecraft().world, 0, 0, 0, CachedEnumUtil.valuesRocketCached()[itemStack.getItemDamage()]);
         list.add(GCCoreUtil.translate("gui.message.fuel.name") + ": " + itemStack.getTagCompound().getInteger("RocketFuel") + " / " + rocket.fuelTank.getCapacity());

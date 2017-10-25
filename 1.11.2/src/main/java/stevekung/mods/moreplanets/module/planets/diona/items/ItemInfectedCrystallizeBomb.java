@@ -42,7 +42,7 @@ public class ItemInfectedCrystallizeBomb extends ItemBaseMP
             world.spawnEntity(bomb);
         }
         player.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
     }
 
     @Override

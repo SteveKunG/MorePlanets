@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockFronosDirt extends BlockBaseMP implements ITerraformableBlock, IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockFronosDirt(String name)
     {
@@ -75,7 +75,7 @@ public class BlockFronosDirt extends BlockBaseMP implements ITerraformableBlock,
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     public static enum BlockType implements IStringSerializable

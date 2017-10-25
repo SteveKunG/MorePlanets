@@ -42,7 +42,7 @@ public class ItemInfectedSnowball extends ItemBaseMP
             world.spawnEntity(ball);
         }
         player.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
     }
 
     @Override

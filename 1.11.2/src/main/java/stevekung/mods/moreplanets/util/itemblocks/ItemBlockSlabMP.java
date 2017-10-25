@@ -81,7 +81,7 @@ public class ItemBlockSlabMP extends ItemBlockBaseMP
             ISlabBlock singleSlab = (ISlabBlock) this.block;
 
             BlockPos blockpos1 = pos;
-            IProperty iproperty = singleSlab.getHalf().getVariantProperty();
+            IProperty<?> iproperty = singleSlab.getHalf().getVariantProperty();
             Object object = singleSlab.getHalf().getTypeForItem(itemStack);
             IBlockState state = world.getBlockState(pos);
 

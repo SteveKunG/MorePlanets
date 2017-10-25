@@ -42,7 +42,7 @@ import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 
 public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss, IEntityBreathable, ISpaceMob
 {
-    private TileEntityDungeonSpawner spawner;
+    private TileEntityDungeonSpawner<?> spawner;
     public int deathTicks = 0;
     public int entitiesWithin;
     public int entitiesWithinLast;

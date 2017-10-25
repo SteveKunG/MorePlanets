@@ -41,7 +41,7 @@ public class ItemInfectedEgg extends ItemBaseMP
             world.spawnEntity(entityegg);
         }
         player.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
     }
 
     @Override

@@ -12,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.ChunkProviderOverworld;
 
@@ -222,7 +223,7 @@ public abstract class ChunkProviderBaseMP extends ChunkProviderOverworld
     }
 
     @Override
-    public List getPossibleCreatures(EnumCreatureType type, BlockPos pos)
+    public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType type, BlockPos pos)
     {
         return this.worldObj.getBiome(pos).getSpawnableList(type);
     }

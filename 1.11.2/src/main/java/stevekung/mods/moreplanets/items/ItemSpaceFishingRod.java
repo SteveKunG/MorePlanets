@@ -163,7 +163,7 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
             player.swingArm(hand);
             player.addStat(StatList.getObjectUseStats(this));
         }
-        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
     }
 
     @Override

@@ -28,7 +28,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
 
 public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, IGrowable
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
     protected static AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
     public BlockNibiruSapling(String name)
@@ -222,7 +222,7 @@ public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, I
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     public static enum BlockType implements IStringSerializable

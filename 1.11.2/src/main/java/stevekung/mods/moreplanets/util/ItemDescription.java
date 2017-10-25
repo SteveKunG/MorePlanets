@@ -6,5 +6,5 @@ import net.minecraft.item.ItemStack;
 
 public interface ItemDescription
 {
-    void addDescription(ItemStack itemStack, List list);
+    void addDescription(ItemStack itemStack, List<String> list);
 }

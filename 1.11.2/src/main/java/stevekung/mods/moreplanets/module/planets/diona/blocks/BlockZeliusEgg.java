@@ -28,7 +28,7 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
         this.setHardness(0.5F);
         this.setUnlocalizedName(name);
         this.setSoundType(MPSounds.ALIEN_EGG);
-        this.slipperiness = 0.8F;
+        this.setDefaultSlipperiness(0.8F);
     }
 
     @Override

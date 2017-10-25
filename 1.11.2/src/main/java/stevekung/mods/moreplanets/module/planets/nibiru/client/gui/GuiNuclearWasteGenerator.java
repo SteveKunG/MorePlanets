@@ -45,7 +45,6 @@ public class GuiNuclearWasteGenerator extends GuiContainerGC
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void initGui()
     {

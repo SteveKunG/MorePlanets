@@ -35,7 +35,7 @@ import stevekung.mods.moreplanets.util.tileentity.TileEntityNull;
 
 public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockVariants, ITileEntityProvider
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockInfectedCrystallizePart(String name)
     {
@@ -45,7 +45,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.INFECTED_CRYSTALLIZE_BLOCK));
         this.setUnlocalizedName(name);
         this.setSoundType(MPSounds.ALIEN_EGG);
-        this.slipperiness = 0.8F;
+        this.setDefaultSlipperiness(0.8F);
     }
 
     @Override
@@ -201,7 +201,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(VARIANT)).ordinal();
+        return state.getValue(VARIANT).ordinal();
     }
 
     @Override

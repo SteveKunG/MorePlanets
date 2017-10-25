@@ -20,7 +20,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityMiniVeinFloater;
 
-public class TileEntityNibiruDungeonSpawner extends TileEntityDungeonSpawner
+public class TileEntityNibiruDungeonSpawner extends TileEntityDungeonSpawner<EntityMiniVeinFloater>
 {
     public TileEntityNibiruDungeonSpawner()
     {

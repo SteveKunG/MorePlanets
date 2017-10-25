@@ -379,7 +379,7 @@ public class GeneralEventHandler
         }
     }
 
-    private void setFarmland(UseHoeEvent event, World world, BlockPos pos, IBlockState state, IProperty property, Object value, Block dirt, Block farmland)
+    private void setFarmland(UseHoeEvent event, World world, BlockPos pos, IBlockState state, IProperty<?> property, Object value, Block dirt, Block farmland)
     {
         if (state.getValue(property) == value)
         {

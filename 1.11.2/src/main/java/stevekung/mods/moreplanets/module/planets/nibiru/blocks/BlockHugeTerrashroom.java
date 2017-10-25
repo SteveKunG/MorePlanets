@@ -94,7 +94,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     {
         IBlockState state = world.getBlockState(pos);
 
-        for (IProperty prop : state.getProperties().keySet())
+        for (IProperty<?> prop : state.getProperties().keySet())
         {
             if (prop.getName().equals("variant"))
             {

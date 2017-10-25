@@ -48,25 +48,29 @@ public abstract class EntityFlyingBossMP extends EntityLiving implements IMob
         }
         else
         {
-            float f2 = 0.91F;
+            float f = 0.91F;
 
             if (this.onGround)
             {
-                f2 = this.world.getBlockState(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.getEntityBoundingBox().minY) - 1, MathHelper.floor(this.posZ))).getBlock().slipperiness * 0.91F;
+                BlockPos underPos = new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.getEntityBoundingBox().minY) - 1, MathHelper.floor(this.posZ));
+                IBlockState underState = this.world.getBlockState(underPos);
+                f = underState.getBlock().getSlipperiness(underState, this.world, underPos, this) * 0.91F;
             }
 
-            float f3 = 0.16277136F / (f2 * f2 * f2);
-            this.moveRelative(strafe, forward, this.onGround ? 0.1F * f3 : 0.02F);
-            f2 = 0.91F;
+            float f1 = 0.16277136F / (f * f * f);
+            this.moveRelative(strafe, forward, this.onGround ? 0.1F * f1 : 0.02F);
+            f = 0.91F;
 
             if (this.onGround)
             {
-                f2 = this.world.getBlockState(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.getEntityBoundingBox().minY) - 1, MathHelper.floor(this.posZ))).getBlock().slipperiness * 0.91F;
+                BlockPos underPos = new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.getEntityBoundingBox().minY) - 1, MathHelper.floor(this.posZ));
+                IBlockState underState = this.world.getBlockState(underPos);
+                f = underState.getBlock().getSlipperiness(underState, this.world, underPos, this) * 0.91F;
             }
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
-            this.motionX *= f2;
-            this.motionY *= f2;
-            this.motionZ *= f2;
+            this.motionX *= f;
+            this.motionY *= f;
+            this.motionZ *= f;
         }
 
         this.prevLimbSwingAmount = this.limbSwingAmount;

@@ -41,7 +41,7 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
     @Override
     public int damageDropped(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(BlockStateHelper.COLOR)).getMetadata();
+        return state.getValue(BlockStateHelper.COLOR).getMetadata();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
     @Override
     public MapColor getMapColor(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(BlockStateHelper.COLOR)).getMapColor();
+        return state.getValue(BlockStateHelper.COLOR).getMapColor();
     }
 
     @Override
@@ -112,7 +112,7 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(BlockStateHelper.COLOR)).getMetadata();
+        return state.getValue(BlockStateHelper.COLOR).getMetadata();
     }
 
     @Override

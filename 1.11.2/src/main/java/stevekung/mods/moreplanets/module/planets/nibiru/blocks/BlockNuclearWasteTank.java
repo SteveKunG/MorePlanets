@@ -27,7 +27,7 @@ import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
 public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityProvider
 {
-    public static PropertyEnum STATE = PropertyEnum.create("state", BlockType.class);
+    public static PropertyEnum<BlockType> STATE = PropertyEnum.create("state", BlockType.class);
 
     public BlockNuclearWasteTank(String name)
     {
@@ -140,7 +140,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockType)state.getValue(STATE)).ordinal();
+        return state.getValue(STATE).ordinal();
     }
 
     @Override

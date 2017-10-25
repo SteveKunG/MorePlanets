@@ -48,7 +48,7 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     @Override
     public int damageDropped(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(BlockStateHelper.COLOR)).getMetadata();
+        return state.getValue(BlockStateHelper.COLOR).getMetadata();
     }
 
     @Override
@@ -77,7 +77,7 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumDyeColor)state.getValue(BlockStateHelper.COLOR)).getMetadata();
+        return state.getValue(BlockStateHelper.COLOR).getMetadata();
     }
 
     @Override

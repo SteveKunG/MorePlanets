@@ -111,7 +111,7 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
         EnumRocketType type;
 
@@ -165,5 +165,5 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
     protected abstract void spawnRocket(ItemStack itemStack, World world, EntityPlayer player, float centerX, float centerY, float centerZ);
 
     @SideOnly(Side.CLIENT)
-    protected abstract void addDescription(ItemStack itemStack, List list);
+    protected abstract void addDescription(ItemStack itemStack, List<String> list);
 }

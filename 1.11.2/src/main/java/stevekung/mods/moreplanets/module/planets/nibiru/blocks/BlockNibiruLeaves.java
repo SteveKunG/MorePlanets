@@ -34,7 +34,7 @@ import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
 {
-    public static PropertyEnum VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
     int[] adjacentTreeBlocks;
 
     public BlockNibiruLeaves(String name)
@@ -100,7 +100,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     public int getMetaFromState(IBlockState state)
     {
         byte b0 = 0;
-        int i = b0 | ((BlockType)state.getValue(VARIANT)).ordinal();
+        int i = b0 | state.getValue(VARIANT).ordinal();
 
         if (!state.getValue(BlockStateHelper.DECAYABLE).booleanValue())
         {
@@ -123,7 +123,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     public ArrayList<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
     {
         ArrayList<ItemStack> ret = Lists.newArrayList();
-        ret.add(new ItemStack(this, 1, ((BlockType)world.getBlockState(pos).getValue(VARIANT)).ordinal()));
+        ret.add(new ItemStack(this, 1, world.getBlockState(pos).getValue(VARIANT).ordinal()));
         return ret;
     }
 

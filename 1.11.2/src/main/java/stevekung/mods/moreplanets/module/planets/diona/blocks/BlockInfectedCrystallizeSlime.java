@@ -18,7 +18,7 @@ public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
     {
         super(Material.CLAY);
         this.setUnlocalizedName(name);
-        this.slipperiness = 0.8F;
+        this.setDefaultSlipperiness(0.8F);
         this.setSoundType(MPSounds.ALIEN_EGG);
     }
 
