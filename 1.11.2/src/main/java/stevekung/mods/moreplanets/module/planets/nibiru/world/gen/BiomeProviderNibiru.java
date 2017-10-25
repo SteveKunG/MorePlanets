@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
@@ -18,7 +16,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.layer.Ge
 
 public class BiomeProviderNibiru extends BiomeProvider
 {
-    public static ArrayList<Biome> allowedBiomes = Lists.newArrayList(Arrays.asList(MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DEAD_TAIGA, MPBiomes.INFECTED_EXTREME_HILLS, MPBiomes.INFECTED_ICE_PLAINS, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_SWAMPLAND, MPBiomes.GREEN_VEIN));
+    public static ArrayList<Biome> allowedBiomes = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DEAD_TAIGA, MPBiomes.INFECTED_EXTREME_HILLS, MPBiomes.INFECTED_ICE_PLAINS, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_SWAMPLAND, MPBiomes.GREEN_VEIN));
     private BiomeCache biomeCache;
     private List<Biome> biomesToSpawn;
     private GenLayer zoomedBiomes;
@@ -27,7 +25,7 @@ public class BiomeProviderNibiru extends BiomeProvider
     protected BiomeProviderNibiru()
     {
         this.biomeCache = new BiomeCache(this);
-        this.biomesToSpawn = Lists.newArrayList();
+        this.biomesToSpawn = new ArrayList<>();
         this.biomesToSpawn.addAll(allowedBiomes);
     }
 

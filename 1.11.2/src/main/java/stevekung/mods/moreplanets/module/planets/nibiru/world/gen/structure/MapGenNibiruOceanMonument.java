@@ -1,11 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
+import java.util.*;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -24,9 +19,9 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 {
     private int spacing;
     private int separation;
-    public List<Biome> waterBiomes = Lists.newArrayList(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER);
+    public List<Biome> waterBiomes = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
     public Biome spawnBiome = MPBiomes.INFECTED_DEEP_OCEAN;
-    private static List<SpawnListEntry> MONUMENT_ENEMIES = Lists.newArrayList();
+    private static List<SpawnListEntry> MONUMENT_ENEMIES = new ArrayList<>();
 
     static
     {
@@ -72,7 +67,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 
         if (i == k && j == l)
         {
-            if (!this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 16, Lists.newArrayList(this.spawnBiome)))
+            if (!this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 16, new ArrayList<>(Arrays.asList(this.spawnBiome))))
             {
                 return false;
             }
@@ -107,7 +102,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 
     public static class StartMonument extends StructureStart
     {
-        private Set<ChunkPos> processed = Sets.newHashSet();
+        private Set<ChunkPos> processed = new HashSet<>();
         private boolean wasCreated;
 
         public StartMonument() {}

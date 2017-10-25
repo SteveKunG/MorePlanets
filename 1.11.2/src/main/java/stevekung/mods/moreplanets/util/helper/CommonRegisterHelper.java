@@ -1,15 +1,11 @@
 package stevekung.mods.moreplanets.util.helper;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
 
 import micdoodle8.mods.galacticraft.core.util.StackSorted;
@@ -56,10 +52,10 @@ import stevekung.mods.moreplanets.util.items.ISortableItem;
 public class CommonRegisterHelper
 {
     private static int ID = 0;
-    public static Map<EnumSortCategoryBlock, List<StackSorted>> SORT_MAP_BLOCKS = Maps.newHashMap();
-    public static Map<EnumSortCategoryItem, List<StackSorted>> SORT_MAP_ITEMS = Maps.newHashMap();
-    public static Map<Block, String> SINGLE_BLOCK_RENDER_LIST = Maps.newHashMap();
-    public static Map<Item, String> SINGLE_ITEM_RENDER_LIST = Maps.newHashMap();
+    public static Map<EnumSortCategoryBlock, List<StackSorted>> SORT_MAP_BLOCKS = new HashMap<>();
+    public static Map<EnumSortCategoryItem, List<StackSorted>> SORT_MAP_ITEMS = new HashMap<>();
+    public static Map<Block, String> SINGLE_BLOCK_RENDER_LIST = new HashMap<>();
+    public static Map<Item, String> SINGLE_ITEM_RENDER_LIST = new HashMap<>();
 
     public static void registerBlock(Block block)
     {
@@ -292,7 +288,7 @@ public class CommonRegisterHelper
 
                 if (!CommonRegisterHelper.SORT_MAP_BLOCKS.containsKey(categoryBlock))
                 {
-                    CommonRegisterHelper.SORT_MAP_BLOCKS.put(categoryBlock, Lists.newArrayList());
+                    CommonRegisterHelper.SORT_MAP_BLOCKS.put(categoryBlock, new ArrayList<>());
                 }
                 CommonRegisterHelper.SORT_MAP_BLOCKS.get(categoryBlock).add(new StackSorted(itemStack.getItem(), itemStack.getItemDamage()));
             }
@@ -305,7 +301,7 @@ public class CommonRegisterHelper
 
     public static void postRegisteredSortBlock()
     {
-        List<StackSorted> itemOrderListBlocks = Lists.newArrayList();
+        List<StackSorted> itemOrderListBlocks = new ArrayList<>();
 
         for (EnumSortCategoryBlock type : EnumSortCategoryBlock.valuesCached())
         {
@@ -330,7 +326,7 @@ public class CommonRegisterHelper
 
                 if (!CommonRegisterHelper.SORT_MAP_ITEMS.containsKey(categoryItem))
                 {
-                    CommonRegisterHelper.SORT_MAP_ITEMS.put(categoryItem, Lists.newArrayList());
+                    CommonRegisterHelper.SORT_MAP_ITEMS.put(categoryItem, new ArrayList<>());
                 }
                 CommonRegisterHelper.SORT_MAP_ITEMS.get(categoryItem).add(new StackSorted(itemStack.getItem(), itemStack.getItemDamage()));
             }
@@ -343,7 +339,7 @@ public class CommonRegisterHelper
 
     public static void postRegisteredSortItem()
     {
-        List<StackSorted> itemOrderListItems = Lists.newArrayList();
+        List<StackSorted> itemOrderListItems = new ArrayList<>();
 
         for (EnumSortCategoryItem type : EnumSortCategoryItem.valuesCached())
         {

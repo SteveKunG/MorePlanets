@@ -5,8 +5,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -72,8 +70,8 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 
     private boolean absorb(World world, BlockPos pos)
     {
-        LinkedList<Tuple> linkedlist = Lists.newLinkedList();
-        ArrayList<BlockPos> arraylist = Lists.newArrayList();
+        LinkedList<Tuple> linkedlist = new LinkedList<>();
+        ArrayList<BlockPos> arraylist = new ArrayList<>();
         linkedlist.add(new Tuple<>(pos, Integer.valueOf(0)));
         int i = 0;
         BlockPos blockpos1;

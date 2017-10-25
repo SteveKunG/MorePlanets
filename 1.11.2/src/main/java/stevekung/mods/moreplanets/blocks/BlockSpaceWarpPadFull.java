@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
@@ -278,7 +277,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
         Random rand = world instanceof World ? ((World)world).rand : RANDOM;
         TileEntity tile = world.getTileEntity(pos);
         int count = this.quantityDropped(state, fortune, rand);

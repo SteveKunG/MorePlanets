@@ -1,10 +1,9 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import net.minecraft.block.*;
@@ -62,7 +61,7 @@ public class StructureNibiruVillagePieces
 
     public static List<PieceWeight> getStructureVillageWeightedPieceList(Random rand, int size)
     {
-        List<PieceWeight> list = Lists.newArrayList();
+        List<PieceWeight> list = new ArrayList<>();
         list.add(new PieceWeight(House4Garden.class, 4, MathHelper.getInt(rand, 2 + size, 4 + size * 2)));
         list.add(new PieceWeight(Church.class, 20, MathHelper.getInt(rand, 0 + size, 1 + size)));
         list.add(new PieceWeight(House1.class, 20, MathHelper.getInt(rand, 0 + size, 2 + size)));
@@ -1236,8 +1235,8 @@ public class StructureNibiruVillagePieces
         public int terrainType;
         public PieceWeight structVillagePieceWeight;
         public List<PieceWeight> structureVillageWeightedPieceList;
-        public List<StructureComponent> pendingHouses = Lists.newArrayList();
-        public List<StructureComponent> pendingRoads = Lists.newArrayList();
+        public List<StructureComponent> pendingHouses = new ArrayList<>();
+        public List<StructureComponent> pendingRoads = new ArrayList<>();
         public Biome biome;
 
         public Start() {}

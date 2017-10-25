@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -58,7 +57,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
     {
         if (state.getValue(VARIANT) != BlockType.GREEN_VEIN_TALL_GRASS)
         {
-            List<ItemStack> ret = Lists.newArrayList();
+            List<ItemStack> ret = new ArrayList<>();
 
             if (RANDOM.nextInt(8) != 0)
             {
@@ -69,7 +68,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
         }
         else
         {
-            List<ItemStack> ret = Lists.newArrayList();
+            List<ItemStack> ret = new ArrayList<>();
 
             if (RANDOM.nextInt(24) != 0)
             {
@@ -128,7 +127,7 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
     @Override
     public List<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
         ret.add(new ItemStack(this, 1, 0));
         return ret;
     }

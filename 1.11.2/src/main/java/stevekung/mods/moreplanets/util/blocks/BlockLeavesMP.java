@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.util.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -230,7 +229,7 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
         Random rand = world instanceof World ? ((World)world).rand : new Random();
         int chance = 20;
 

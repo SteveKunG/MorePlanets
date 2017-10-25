@@ -1,11 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
-import com.google.common.collect.Lists;
+import java.util.*;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -629,7 +624,7 @@ public class StructureNibiruOceanMonumentPieces
     {
         private RoomDefinition sourceRoom;
         private RoomDefinition coreRoom;
-        private List<Piece> childPieces = Lists.newArrayList();
+        private List<Piece> childPieces = new ArrayList<>();
 
         public MonumentBuilding() {}
 
@@ -652,7 +647,7 @@ public class StructureNibiruOceanMonumentPieces
             this.sourceRoom.claimed = true;
             this.childPieces.add(new EntryRoom(enumfacing, this.sourceRoom));
             this.childPieces.add(new MonumentCoreRoom(enumfacing, this.coreRoom));
-            List<MonumentRoomFitHelper> list1 = Lists.newArrayList();
+            List<MonumentRoomFitHelper> list1 = new ArrayList<>();
             list1.add(new XYDoubleRoomFitHelper());
             list1.add(new YZDoubleRoomFitHelper());
             list1.add(new ZDoubleRoomFitHelper());
@@ -791,7 +786,7 @@ public class StructureNibiruOceanMonumentPieces
             this.coreRoom.connections[EnumFacing.EAST.getIndex()].connections[EnumFacing.UP.getIndex()].claimed = true;
             this.coreRoom.connections[EnumFacing.NORTH.getIndex()].connections[EnumFacing.UP.getIndex()].claimed = true;
             this.coreRoom.connections[EnumFacing.EAST.getIndex()].connections[EnumFacing.NORTH.getIndex()].connections[EnumFacing.UP.getIndex()].claimed = true;
-            List<RoomDefinition> list = Lists.newArrayList();
+            List<RoomDefinition> list = new ArrayList<>();
 
             for (RoomDefinition roomdefinition4 : aroomdefinition)
             {

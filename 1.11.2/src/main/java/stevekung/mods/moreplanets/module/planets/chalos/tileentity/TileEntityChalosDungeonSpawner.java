@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.chalos.tileentity;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.client.sounds.GCSounds;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
@@ -25,7 +24,7 @@ public class TileEntityChalosDungeonSpawner extends TileEntityDungeonSpawner<Ent
     @Override
     public List<Class<? extends EntityLiving>> getDisabledCreatures()
     {
-        List<Class<? extends EntityLiving>> list = Lists.newArrayList();
+        List<Class<? extends EntityLiving>> list = new ArrayList<>();
         list.add(EntityEvolvedSkeleton.class);
         list.add(EntityEvolvedZombie.class);
         list.add(EntityEvolvedSpider.class);

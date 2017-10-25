@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.util.world.gen.dungeon;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -12,8 +11,8 @@ import stevekung.mods.moreplanets.util.MPLog;
 
 public class DungeonStartMP extends RoomEntranceMP
 {
-    public List<StructureComponent> attachedComponents = Lists.newArrayList();
-    public List<StructureBoundingBox> componentBounds = Lists.newArrayList();
+    public List<StructureComponent> attachedComponents = new ArrayList<>();
+    public List<StructureBoundingBox> componentBounds = new ArrayList<>();
 
     public DungeonStartMP() {}
 

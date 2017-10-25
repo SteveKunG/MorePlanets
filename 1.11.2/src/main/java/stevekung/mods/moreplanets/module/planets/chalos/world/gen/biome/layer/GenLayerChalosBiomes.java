@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
@@ -32,7 +31,7 @@ public class GenLayerChalosBiomes extends GenLayerChalos
 
             if (this.biomes[idx] == null)
             {
-                this.biomes[idx] = Lists.newArrayList();
+                this.biomes[idx] = new ArrayList<>();
             }
             if (biomesToAdd != null)
             {
@@ -45,11 +44,11 @@ public class GenLayerChalosBiomes extends GenLayerChalos
     {
         @SuppressWarnings("unchecked")
         ArrayList<BiomeEntry>[] currentBiomes = new ArrayList[CachedEnumUtil.valuesBiomeCached().length];
-        List<BiomeEntry> list = Lists.newArrayList();
+        List<BiomeEntry> list = new ArrayList<>();
         list.add(new BiomeEntry(MPBiomes.CHALOS_PLAINS, 30));
         list.add(new BiomeEntry(MPBiomes.CHALOS_HILLS, 20));
         list.add(new BiomeEntry(MPBiomes.SLIMELY_WASTELAND, 10));
-        currentBiomes[BiomeType.WARM.ordinal()] = Lists.newArrayList(list);
+        currentBiomes[BiomeType.WARM.ordinal()] = new ArrayList<>(list);
         return currentBiomes;
     }
 

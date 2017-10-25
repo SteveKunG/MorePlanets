@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.client.gui;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
@@ -24,7 +23,7 @@ public class GuiNuclearWasteGenerator extends GuiContainerGC
     private ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/nuclear_waste_generator.png");
     private TileEntityNuclearWasteGenerator generator;
     private GuiButton buttonEnable;
-    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 107, (this.height - this.ySize) / 2 + 101, 56, 9, Lists.newArrayList(), this.width, this.height, this);
+    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 107, (this.height - this.ySize) / 2 + 101, 56, 9, new ArrayList<>(), this.width, this.height, this);
 
     public GuiNuclearWasteGenerator(InventoryPlayer invPlayer, TileEntityNuclearWasteGenerator generator)
     {
@@ -49,7 +48,7 @@ public class GuiNuclearWasteGenerator extends GuiContainerGC
     public void initGui()
     {
         super.initGui();
-        List<String> electricityDesc = Lists.newArrayList();
+        List<String> electricityDesc = new ArrayList<>();
         electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
         electricityDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.generator.getEnergyStoredGC()) + " / " + (int) Math.floor(this.generator.getMaxEnergyStoredGC())));
         this.electricInfoRegion.tooltipStrings = electricityDesc;
@@ -58,7 +57,7 @@ public class GuiNuclearWasteGenerator extends GuiContainerGC
         this.electricInfoRegion.parentWidth = this.width;
         this.electricInfoRegion.parentHeight = this.height;
         this.infoRegions.add(this.electricInfoRegion);
-        List<String> batterySlotDesc = Lists.newArrayList();
+        List<String> batterySlotDesc = new ArrayList<>();
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 121, (this.height - this.ySize) / 2 + 19, 18, 18, batterySlotDesc, this.width, this.height, this));
@@ -115,7 +114,7 @@ public class GuiNuclearWasteGenerator extends GuiContainerGC
         int height = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(width, height, 0, 0, this.xSize, this.ySize);
 
-        List<String> electricityDesc = Lists.newArrayList();
+        List<String> electricityDesc = new ArrayList<>();
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.generator.getEnergyStoredGC(), this.generator.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
 

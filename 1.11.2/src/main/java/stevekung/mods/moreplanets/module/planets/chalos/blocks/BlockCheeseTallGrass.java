@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -39,7 +38,7 @@ public class BlockCheeseTallGrass extends BlockBushMP implements IShearable, IGr
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
 
         if (RANDOM.nextInt(8) != 0)
         {
@@ -71,7 +70,7 @@ public class BlockCheeseTallGrass extends BlockBushMP implements IShearable, IGr
     @Override
     public List<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
         ret.add(new ItemStack(this, 1, 0));
         return ret;
     }

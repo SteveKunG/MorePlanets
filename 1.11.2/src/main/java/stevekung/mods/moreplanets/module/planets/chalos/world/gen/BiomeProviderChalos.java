@@ -7,8 +7,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -21,7 +19,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.layer.Ge
 
 public class BiomeProviderChalos extends BiomeProvider
 {
-    public static ArrayList<Biome> allowedBiomes = Lists.newArrayList(Arrays.asList(MPBiomes.CHALOS_PLAINS, MPBiomes.CHALOS_HILLS));
+    public static ArrayList<Biome> allowedBiomes = new ArrayList<>(Arrays.asList(MPBiomes.CHALOS_PLAINS, MPBiomes.CHALOS_HILLS));
     private BiomeCache biomeCache;
     private List<Biome> biomesToSpawn;
     private GenLayer zoomedBiomes;
@@ -30,7 +28,7 @@ public class BiomeProviderChalos extends BiomeProvider
     protected BiomeProviderChalos()
     {
         this.biomeCache = new BiomeCache(this);
-        this.biomesToSpawn = Lists.newArrayList();
+        this.biomesToSpawn = new ArrayList<>();
         this.biomesToSpawn.addAll(allowedBiomes);
     }
 

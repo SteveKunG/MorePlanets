@@ -1,11 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.block.Block;
@@ -385,7 +384,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     {
         this.setSheared(true);
         int i = 1 + this.rand.nextInt(3);
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
 
         for (int j = 0; j < i; ++j)
         {

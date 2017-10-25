@@ -4,12 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.io.Charsets;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -50,7 +49,7 @@ public class GuiFullChangeLog extends GuiScreen
 
         if (this.stringList == null)
         {
-            this.stringList = Lists.newArrayList();
+            this.stringList = new ArrayList<>();
 
             try
             {

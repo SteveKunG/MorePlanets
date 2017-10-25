@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
@@ -65,7 +64,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
 
         if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, heldStack) > 0)
         {
-            List<ItemStack> items = Lists.newArrayList();
+            List<ItemStack> items = new ArrayList<>();
             ItemStack itemstack = this.getSilkTouchDrop(state);
 
             if (!itemstack.isEmpty())

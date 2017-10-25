@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.client.renderer;
 
-import com.google.common.collect.Lists;
+import java.util.Arrays;
 
 import stevekung.mods.moreplanets.blocks.BlockPolishedSpaceDecoration;
 import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
@@ -53,7 +53,7 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_SANDSTONE, BlockNibiruSandstone.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_LOG, BlockNibiruLog.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_PLANKS, BlockNibiruPlanks.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_ORE, BlockNibiruOre.BlockType.class, Lists.newArrayList("nibiru_redstone_ore_active"), Lists.newArrayList("nibiru_redstone_ore"));
+        ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_ORE, BlockNibiruOre.BlockType.class, Arrays.asList("nibiru_redstone_ore_active"), Arrays.asList("nibiru_redstone_ore"));
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_LEAVES, BlockNibiruLeaves.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_SAPLING, BlockNibiruSapling.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_FLOWER, BlockNibiruFlower.BlockType.class);
@@ -73,7 +73,7 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_GRASS_PATH, BlockNibiruGrassPath.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_DIRT, BlockFronosDirt.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_BLOCK, BlockFronos.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_ORE, BlockFronosOre.BlockType.class, Lists.newArrayList("fronos_redstone_ore_active"), Lists.newArrayList("fronos_redstone_ore"));
+        ClientRegisterHelper.registerVariantsName(FronosBlocks.FRONOS_ORE, BlockFronosOre.BlockType.class, Arrays.asList("fronos_redstone_ore_active"), Arrays.asList("fronos_redstone_ore"));
         ClientRegisterHelper.registerVariantsName(FronosBlocks.CANDY_CANE_1, BlockCandyCane1.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.CANDY_CANE_2, BlockCandyCane2.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.JELLY_BLOCK, BlockJelly.BlockType.class);

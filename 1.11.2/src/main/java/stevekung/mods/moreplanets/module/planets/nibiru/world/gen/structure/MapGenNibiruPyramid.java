@@ -1,11 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
 import net.minecraft.util.math.BlockPos;
@@ -35,7 +34,7 @@ public class MapGenNibiruPyramid extends MapGenStructure
     {
         this.maxDistanceBetweenScatteredFeatures = 32;
         this.minDistanceBetweenScatteredFeatures = 8;
-        this.entitySpawnList = Lists.<SpawnListEntry>newArrayList();
+        this.entitySpawnList = new ArrayList<>();
         this.entitySpawnList.add(new SpawnListEntry(EntityEvolvedWitch.class, 1, 1, 1));
     }
 

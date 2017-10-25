@@ -1,9 +1,9 @@
 package stevekung.mods.moreplanets.client.gui;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
@@ -50,13 +50,13 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
         super.initGui();
         int width = (this.width - this.xSize) / 2;
         int height = (this.height - this.ySize) / 2;
-        List<String> renderDesc = Lists.newArrayList();
+        List<String> renderDesc = new ArrayList<>();
         renderDesc.add(GCCoreUtil.translate("gui.disable_black_hole.desc"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 180, (this.height - this.ySize) / 2 + 192, 13, 13, renderDesc, this.width, this.height, this));
-        renderDesc = Lists.newArrayList();
+        renderDesc = new ArrayList<>();
         renderDesc.add(GCCoreUtil.translate("gui.use_hopper.desc"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 200, (this.height - this.ySize) / 2 + 192, 13, 13, renderDesc, this.width, this.height, this));
-        renderDesc = Lists.newArrayList();
+        renderDesc = new ArrayList<>();
         renderDesc.add(GCCoreUtil.translate("gui.collect_mode.desc"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 220, (this.height - this.ySize) / 2 + 192, 13, 13, renderDesc, this.width, this.height, this));
         this.infoRegions.add(this.xpValueInfo = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 238, (this.height - this.ySize) / 2 + 170, 5, 37, null, this.width, this.height, this));
@@ -83,7 +83,7 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
         String collectMode = this.tile.collectMode.equals("item") ? TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_item.name") : this.tile.collectMode.equals("item_and_xp") ? TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_item_and_xp.name") : TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_xp.name");
         this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.collect_mode.name") + ": " + collectMode, this.xSize - 91 + 8, this.ySize - 86 + 62, 2536735);
 
-        List<String> renderDesc = Lists.newArrayList(GCCoreUtil.translate("gui.xp_value.desc") + ": " + this.tile.xp + "/" + this.tile.getMaxXP());
+        List<String> renderDesc = new ArrayList<>(Arrays.asList(GCCoreUtil.translate("gui.xp_value.desc") + ": " + this.tile.xp + "/" + this.tile.getMaxXP()));
         this.xpValueInfo.tooltipStrings = renderDesc;
     }
 

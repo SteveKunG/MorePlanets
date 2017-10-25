@@ -1,10 +1,8 @@
 package stevekung.mods.moreplanets.recipe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
@@ -15,7 +13,7 @@ import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
 
 public class RocketCrusherRecipes
 {
-    private static List<IRecipe> recipes = Lists.newArrayList();
+    private static List<IRecipe> recipes = new ArrayList<>();
 
     public static ShapedRecipesMP addRecipe(ItemStack output, Object... inputList)
     {
@@ -48,7 +46,7 @@ public class RocketCrusherRecipes
 
         HashMap<Character, ItemStack> hashmap;
 
-        for (hashmap = Maps.newHashMap(); i < inputList.length; i += 2)
+        for (hashmap = new HashMap<>(); i < inputList.length; i += 2)
         {
             Character character = (Character) inputList[i];
             ItemStack itemstack1 = ItemStack.EMPTY;

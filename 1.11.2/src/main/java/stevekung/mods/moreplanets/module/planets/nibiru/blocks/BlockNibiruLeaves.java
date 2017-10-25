@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -122,7 +120,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     @Override
     public ArrayList<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
     {
-        ArrayList<ItemStack> ret = Lists.newArrayList();
+        ArrayList<ItemStack> ret = new ArrayList<>();
         ret.add(new ItemStack(this, 1, world.getBlockState(pos).getValue(VARIANT).ordinal()));
         return ret;
     }

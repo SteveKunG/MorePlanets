@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -34,7 +33,7 @@ public class MapGenNibiruStronghold extends MapGenStructure
         this.structureCoords = new ChunkPos[128];
         this.distance = 32.0D;
         this.spread = 3;
-        this.allowedBiomes = Lists.newArrayList();
+        this.allowedBiomes = new ArrayList<>();
 
         for (Biome biome : Biome.REGISTRY)
         {

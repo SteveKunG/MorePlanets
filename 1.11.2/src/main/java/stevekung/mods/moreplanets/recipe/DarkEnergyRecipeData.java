@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.recipe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.item.ItemStack;
 
@@ -12,7 +11,7 @@ public class DarkEnergyRecipeData
     private HashMap<Integer, ItemStack> input;
     private ItemStack output;
     private int timeMultiplier;
-    private static List<DarkEnergyRecipeData> recipes = Lists.newArrayList();
+    private static List<DarkEnergyRecipeData> recipes = new ArrayList<>();
 
     private DarkEnergyRecipeData(HashMap<Integer, ItemStack> input, ItemStack output, int timeMultiplier)
     {

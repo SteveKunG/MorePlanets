@@ -1,11 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
@@ -664,7 +663,7 @@ public class StructureNibiruMineshaftPieces
 
     public static class Room extends Piece
     {
-        private List<StructureBoundingBox> roomsLinkedToTheRoom = Lists.newLinkedList();
+        private List<StructureBoundingBox> roomsLinkedToTheRoom = new LinkedList<>();
 
         public Room() {}
 

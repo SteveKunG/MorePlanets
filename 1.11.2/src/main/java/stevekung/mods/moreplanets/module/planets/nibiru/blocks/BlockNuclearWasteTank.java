@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -99,7 +98,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = Lists.newArrayList();
+        List<ItemStack> ret = new ArrayList<>();
         boolean flag = false;
 
         if (state.getValue(STATE) == BlockType.DEPLETE || state.getValue(STATE) == BlockType.NO_ROD)

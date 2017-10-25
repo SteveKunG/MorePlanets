@@ -1,9 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
@@ -75,7 +74,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
 
         if (this.canSilkHarvest(world, pos, world.getBlockState(pos), player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, heldStack) > 0)
         {
-            List<ItemStack> items = Lists.newArrayList();
+            List<ItemStack> items = new ArrayList<>();
             ItemStack itemstack = this.getSilkTouchDrop(state);
 
             if (!itemstack.isEmpty())
