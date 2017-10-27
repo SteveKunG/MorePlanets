@@ -1,6 +1,9 @@
 package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.BlockRenderLayer;
@@ -11,6 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
 {
@@ -20,6 +24,13 @@ public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
         this.setUnlocalizedName(name);
         this.setDefaultSlipperiness(0.8F);
         this.setSoundType(MPSounds.ALIEN_EGG);
+    }
+
+    @Override
+    @Nullable
+    public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
+    {
+        return ColorHelper.rgbToFloatArray(68, 61, 84);
     }
 
     @Override

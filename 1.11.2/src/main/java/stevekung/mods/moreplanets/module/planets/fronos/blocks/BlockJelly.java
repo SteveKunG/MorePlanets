@@ -1,5 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
+import java.util.EnumMap;
+import java.util.Map;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -21,10 +26,24 @@ import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class BlockJelly extends BlockBreakableMP implements IBlockVariants
 {
     public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
+    private static final Map<BlockType, float[]> JELLY_RGB = new EnumMap<>(BlockType.class);
+
+    static
+    {
+        BlockJelly.JELLY_RGB.put(BlockType.GRAPE_JELLY_BLOCK, ColorHelper.rgbToFloatArray(230, 77, 201));
+        BlockJelly.JELLY_RGB.put(BlockType.RASPBERRY_JELLY_BLOCK, ColorHelper.rgbToFloatArray(250, 68, 112));
+        BlockJelly.JELLY_RGB.put(BlockType.STRAWBERRY_JELLY_BLOCK, ColorHelper.rgbToFloatArray(247, 102, 103));
+        BlockJelly.JELLY_RGB.put(BlockType.BERRY_JELLY_BLOCK, ColorHelper.rgbToFloatArray(122, 47, 198));
+        BlockJelly.JELLY_RGB.put(BlockType.LIME_JELLY_BLOCK, ColorHelper.rgbToFloatArray(197, 254, 136));
+        BlockJelly.JELLY_RGB.put(BlockType.ORANGE_JELLY_BLOCK, ColorHelper.rgbToFloatArray(255, 144, 32));
+        BlockJelly.JELLY_RGB.put(BlockType.GREEN_JELLY_BLOCK, ColorHelper.rgbToFloatArray(47, 151, 47));
+        BlockJelly.JELLY_RGB.put(BlockType.LEMON_JELLY_BLOCK, ColorHelper.rgbToFloatArray(183, 221, 67));
+    }
 
     public BlockJelly(String name)
     {
@@ -32,6 +51,13 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
         this.setSoundType(MPSounds.SMALL_SLIME);
         this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.GRAPE_JELLY_BLOCK));
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    @Nullable
+    public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
+    {
+        return BlockJelly.JELLY_RGB.get(state.getValue(VARIANT));
     }
 
     @Override

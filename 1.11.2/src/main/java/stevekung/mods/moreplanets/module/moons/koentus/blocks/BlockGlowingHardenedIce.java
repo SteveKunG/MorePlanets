@@ -2,12 +2,13 @@ package stevekung.mods.moreplanets.module.moons.koentus.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.SoundType;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
@@ -19,20 +20,24 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.CachedEnumUtil;
-import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
+import stevekung.mods.moreplanets.util.blocks.BlockIceMP;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
-public class BlockGlowingHardenedIce extends BlockBreakableMP
+public class BlockGlowingHardenedIce extends BlockIceMP
 {
     public BlockGlowingHardenedIce(String name)
     {
-        super(Material.ICE);
+        super();
         this.setUnlocalizedName(name);
-        this.slipperiness = 0.98F;
-        this.setSoundType(SoundType.GLASS);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.COLOR, EnumDyeColor.WHITE));
-        this.setHardness(0.5F);
         this.setLightLevel(1.0F);
+    }
+
+    @Override
+    @Nullable
+    public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
+    {
+        return EntitySheep.getDyeRgb(state.getValue(BlockStateHelper.COLOR));
     }
 
     @Override

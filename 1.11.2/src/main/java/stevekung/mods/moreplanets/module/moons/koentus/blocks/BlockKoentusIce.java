@@ -21,15 +21,23 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import stevekung.mods.moreplanets.util.blocks.BlockIceMP;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class BlockKoentusIce extends BlockIceMP
 {
     public BlockKoentusIce(String name)
     {
-        super(Material.ICE);
+        super();
         this.setUnlocalizedName(name);
         this.setDefaultSlipperiness(1.05F);
         this.name = name;
+    }
+
+    @Override
+    @Nullable
+    public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
+    {
+        return ColorHelper.rgbToFloatArray(78, 101, 145);
     }
 
     @Override
