@@ -2,8 +2,11 @@ package stevekung.mods.moreplanets.module.planets.diona.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -90,6 +93,12 @@ public class BlockDiona extends BlockBasicMP implements IDetectableResource, ITe
             return 40.0F;
         }
         return super.getExplosionResistance(world, pos, exploder, explosion);
+    }
+
+    @Override
+    public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity)
+    {
+        return this.getMetaFromState(world.getBlockState(pos)) == 9 || this.getMetaFromState(world.getBlockState(pos)) == 10 ? SoundType.METAL : SoundType.STONE;
     }
 
     @Override

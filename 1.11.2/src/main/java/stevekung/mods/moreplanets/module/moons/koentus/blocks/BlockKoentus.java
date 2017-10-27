@@ -2,10 +2,13 @@ package stevekung.mods.moreplanets.module.moons.koentus.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -54,7 +57,8 @@ public class BlockKoentus extends BlockBasicMP implements IDetectableResource, I
     @Override
     public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon)
     {
-        return this.getMetaFromState(world.getBlockState(pos)) == 9 || this.getMetaFromState(world.getBlockState(pos)) == 10;
+        IBlockState state = world.getBlockState(pos);
+        return state.getValue(VARIANT) == BlockType.ANTI_GRAVITY_FRAGMENT_BLOCK || state.getValue(VARIANT) == BlockType.GOLDENITE_CRYSTAL_BLOCK;
     }
 
     @Override
@@ -74,11 +78,11 @@ public class BlockKoentus extends BlockBasicMP implements IDetectableResource, I
         {
             return 2.0F;
         }
-        if (meta >= 4 && meta <= 8)
+        if (meta >= 4 && meta <= 9)
         {
             return 3.0F;
         }
-        if (meta == 9 || meta == 10)
+        if (meta == 10 || meta == 11)
         {
             return 5.0F;
         }
@@ -88,11 +92,17 @@ public class BlockKoentus extends BlockBasicMP implements IDetectableResource, I
     @Override
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion)
     {
-        if (this.getMetaFromState(world.getBlockState(pos)) == 11)
+        if (this.getMetaFromState(world.getBlockState(pos)) == 12)
         {
             return 40.0F;
         }
         return super.getExplosionResistance(world, pos, exploder, explosion);
+    }
+
+    @Override
+    public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity)
+    {
+        return state.getValue(VARIANT) == BlockType.ANTI_GRAVITY_FRAGMENT_BLOCK || state.getValue(VARIANT) == BlockType.GOLDENITE_CRYSTAL_BLOCK ? SoundType.METAL : SoundType.STONE;
     }
 
     @Override
@@ -118,7 +128,7 @@ public class BlockKoentus extends BlockBasicMP implements IDetectableResource, I
     @Override
     public boolean isValueable(IBlockState state)
     {
-        if (this.getMetaFromState(state) >= 4 && this.getMetaFromState(state) <= 8)
+        if (this.getMetaFromState(state) >= 4 && this.getMetaFromState(state) <= 9)
         {
             return true;
         }
