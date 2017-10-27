@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.blocks;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
@@ -10,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -37,6 +40,13 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
         this.setResistance(20.0F);
         this.setSoundType(SoundType.GLASS);
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    @Nullable
+    public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
+    {
+        return EntitySheep.getDyeRgb(state.getValue(BlockStateHelper.COLOR));
     }
 
     @Override

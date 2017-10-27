@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -14,33 +14,26 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
+import stevekung.mods.moreplanets.util.blocks.BlockIceMP;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
-public class BlockInfectedIce extends BlockBreakableMP
+public class BlockInfectedIce extends BlockIceMP
 {
     public BlockInfectedIce(String name)
     {
-        super(Material.ICE);
-        this.slipperiness = 0.98F;
-        this.setTickRandomly(true);
-        this.setHardness(0.5F);
-        this.setLightOpacity(3);
-        this.setSoundType(SoundType.GLASS);
+        super();
         this.setUnlocalizedName(name);
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    @Nullable
+    public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
     {
-        return BlockRenderLayer.TRANSLUCENT;
+        return ColorHelper.rgbToFloatArray(138, 57, 36);
     }
 
     @Override
@@ -87,12 +80,6 @@ public class BlockInfectedIce extends BlockBreakableMP
     }
 
     @Override
-    public int quantityDropped(Random rand)
-    {
-        return 0;
-    }
-
-    @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
         if (world.getLightFor(EnumSkyBlock.BLOCK, pos) > 11 - state.getLightOpacity(world, pos))
@@ -107,24 +94,6 @@ public class BlockInfectedIce extends BlockBreakableMP
                 world.setBlockState(pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
             }
         }
-    }
-
-    @Override
-    public EnumPushReaction getMobilityFlag(IBlockState state)
-    {
-        return EnumPushReaction.NORMAL;
-    }
-
-    @Override
-    protected boolean isTranslucent()
-    {
-        return true;
-    }
-
-    @Override
-    protected boolean renderSideWithState()
-    {
-        return false;
     }
 
     @Override

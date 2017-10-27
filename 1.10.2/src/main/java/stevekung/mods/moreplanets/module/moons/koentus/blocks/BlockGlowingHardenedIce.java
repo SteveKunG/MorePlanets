@@ -3,12 +3,15 @@ package stevekung.mods.moreplanets.module.moons.koentus.blocks;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
@@ -33,6 +36,13 @@ public class BlockGlowingHardenedIce extends BlockBreakableMP
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.COLOR, EnumDyeColor.WHITE));
         this.setHardness(0.5F);
         this.setLightLevel(1.0F);
+    }
+
+    @Override
+    @Nullable
+    public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
+    {
+        return EntitySheep.getDyeRgb(state.getValue(BlockStateHelper.COLOR));
     }
 
     @Override

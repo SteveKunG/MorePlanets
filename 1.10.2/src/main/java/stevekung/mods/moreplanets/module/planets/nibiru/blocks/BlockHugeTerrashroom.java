@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -19,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class BlockHugeTerrashroom extends BlockBreakableMP
 {
@@ -32,6 +35,13 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
         this.setLightOpacity(3);
         this.setSoundType(SoundType.WOOD);
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    @Nullable
+    public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
+    {
+        return ColorHelper.rgbToFloatArray(116, 161, 212);
     }
 
     @Override
