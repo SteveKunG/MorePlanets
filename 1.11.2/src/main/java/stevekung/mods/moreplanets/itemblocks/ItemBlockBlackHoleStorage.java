@@ -81,91 +81,99 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
-        if (this.getBlock() instanceof IBlockDescription)
+        if (this.getBlock() instanceof IBlockDescription && this.getBlock() instanceof BlockBlackHoleStorage)
         {
-            if (CommonRegisterHelper.isShiftKeyDown())
+            TileEntity tile = ((BlockBlackHoleStorage) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
+
+            if (tile instanceof TileEntityBlackHoleStorage)
             {
-                ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
-            }
-            else if (CommonRegisterHelper.isControlKeyDown())
-            {
-                if (this.getBlock() instanceof BlockBlackHoleStorage)
+                TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
+
+                if (CommonRegisterHelper.isShiftKeyDown())
                 {
-                    TileEntity tile = ((BlockBlackHoleStorage) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
-
-                    if (tile instanceof TileEntityBlackHoleStorage)
-                    {
-                        TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
-                        NonNullList<ItemStack> nonNullList = storage.inventory;
-                        ItemStackHelper.loadAllItems(itemStack.getTagCompound(), nonNullList);
-                        int i = 0;
-                        int j = 0;
-
-                        for (ItemStack invStack : nonNullList)
-                        {
-                            if (!invStack.isEmpty())
-                            {
-                                ++j;
-
-                                if (i < 8)
-                                {
-                                    ++i;
-                                    list.add(invStack.getDisplayName() + " x" + invStack.getCount());
-                                }
-                            }
-                        }
-                        if (j - i > 0)
-                        {
-                            list.add(TextFormatting.ITALIC + GCCoreUtil.translateWithFormat("desc.bhs_more.name", Integer.valueOf(j - i)));
-                        }
-                    }
+                    ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
                 }
-            }
-            else
-            {
-                if (this.getBlock() instanceof BlockBlackHoleStorage)
+                else if (CommonRegisterHelper.isControlKeyDown() && this.hasItemsKey(itemStack))
                 {
-                    TileEntity tile = ((BlockBlackHoleStorage) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
+                    NonNullList<ItemStack> nonNullList = storage.inventory;
+                    ItemStackHelper.loadAllItems(itemStack.getTagCompound(), nonNullList);
+                    int i = 0;
+                    int j = 0;
 
-                    if (tile instanceof TileEntityBlackHoleStorage)
+                    for (ItemStack invStack : nonNullList)
                     {
-                        TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
-
-                        if (itemStack.hasTagCompound())
+                        if (!invStack.isEmpty())
                         {
-                            NBTTagCompound nbt = itemStack.getTagCompound();
+                            ++j;
 
-                            if (nbt.hasKey("Disable") && nbt.hasKey("Mode") && nbt.hasKey("XP") && nbt.hasKey("Hopper") && nbt.hasKey("Items"))
+                            if (i < 8)
                             {
-                                String mode = nbt.getString("Mode").equals("item") ? "Item" : nbt.getString("Mode").equals("item_and_xp") ? "Item/EXP" : "EXP";
-                                TextFormatting disable = nbt.getBoolean("Disable") ? TextFormatting.GREEN : TextFormatting.RED;
-                                TextFormatting hopper = nbt.getBoolean("Hopper") ? TextFormatting.GREEN : TextFormatting.RED;
-                                list.add(GCCoreUtil.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
-                                list.add(GCCoreUtil.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
-                                list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + TextFormatting.AQUA + mode);
-                                list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getInteger("XP") + "/" + storage.getMaxXP());
-
-                                NBTTagList nbtlist = nbt.getTagList("Items", 10);
-                                int slot = 0;
-
-                                for (int i = 0; i < nbtlist.tagCount(); ++i)
-                                {
-                                    nbt = nbtlist.getCompoundTagAt(i);
-                                    slot = nbt.getByte("Slot");
-
-                                    if (slot >= 0 && slot < 108)
-                                    {
-                                        slot = slot + 1;
-                                    }
-                                }
-                                list.add(GCCoreUtil.translate("desc.bhs_slot_used.name") + ": " + TextFormatting.GOLD + slot + "/" + storage.getSizeInventory());
+                                ++i;
+                                list.add(invStack.getDisplayName() + " x" + invStack.getCount());
                             }
                         }
                     }
+                    if (j - i > 0)
+                    {
+                        list.add(TextFormatting.ITALIC + GCCoreUtil.translateWithFormat("desc.bhs_more.name", Integer.valueOf(j - i)));
+                    }
                 }
-                list.add(GCCoreUtil.translate("desc.shift_info.name"));
-                list.add(GCCoreUtil.translate("desc.control_info.name"));
+                else
+                {
+                    if (itemStack.hasTagCompound())
+                    {
+                        NBTTagCompound nbt = itemStack.getTagCompound();
+
+                        if (nbt.hasKey("Disable") && nbt.hasKey("Mode") && nbt.hasKey("XP") && nbt.hasKey("Hopper") && nbt.hasKey("Items"))
+                        {
+                            String mode = nbt.getString("Mode").equals("item") ? "Item" : nbt.getString("Mode").equals("item_and_xp") ? "Item/EXP" : "EXP";
+                            TextFormatting disable = nbt.getBoolean("Disable") ? TextFormatting.GREEN : TextFormatting.RED;
+                            TextFormatting hopper = nbt.getBoolean("Hopper") ? TextFormatting.GREEN : TextFormatting.RED;
+                            list.add(GCCoreUtil.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
+                            list.add(GCCoreUtil.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
+                            list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + TextFormatting.AQUA + mode);
+                            list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getInteger("XP") + "/" + storage.getMaxXP());
+
+                            NBTTagList nbtlist = nbt.getTagList("Items", 10);
+                            int slot = 0;
+
+                            for (int i = 0; i < nbtlist.tagCount(); ++i)
+                            {
+                                nbt = nbtlist.getCompoundTagAt(i);
+                                slot = nbt.getByte("Slot");
+
+                                if (slot >= 0 && slot < 108)
+                                {
+                                    slot = slot + 1;
+                                }
+                            }
+                            list.add(GCCoreUtil.translate("desc.bhs_slot_used.name") + ": " + TextFormatting.GOLD + slot + "/" + storage.getSizeInventory());
+                        }
+                    }
+                    list.add(GCCoreUtil.translate("desc.shift_info.name"));
+
+                    if (this.hasItemsKey(itemStack))
+                    {
+                        list.add(GCCoreUtil.translate("desc.control_info.name"));
+                    }
+                }
             }
         }
+    }
+
+    private boolean hasItemsKey(ItemStack itemStack)
+    {
+        NBTTagCompound nbt = itemStack.getTagCompound();
+
+        if (itemStack.hasTagCompound() && nbt.hasKey("Items"))
+        {
+            NBTTagList list = nbt.getTagList("Items", 10);
+
+            for (int i = 0; i < list.tagCount();)
+            {
+                return list.getCompoundTagAt(i).hasKey("Slot");
+            }
+        }
+        return false;
     }
 }
