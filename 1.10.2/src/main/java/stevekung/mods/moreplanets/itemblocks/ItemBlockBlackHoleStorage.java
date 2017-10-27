@@ -80,96 +80,103 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
     {
-        if (this.getBlock() instanceof IBlockDescription)
+        if (this.getBlock() instanceof IBlockDescription && this.getBlock() instanceof BlockBlackHoleStorage)
         {
-            if (CommonRegisterHelper.isShiftKeyDown())
+            TileEntity tile = ((BlockBlackHoleStorage) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
+
+            if (tile instanceof TileEntityBlackHoleStorage)
             {
-                ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
-            }
-            else if (CommonRegisterHelper.isControlKeyDown())
-            {
-                if (this.getBlock() instanceof BlockBlackHoleStorage)
+                TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
+
+                if (CommonRegisterHelper.isShiftKeyDown())
                 {
-                    TileEntity tile = ((BlockBlackHoleStorage) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
-
-                    if (tile instanceof TileEntityBlackHoleStorage)
+                    ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
+                }
+                else if (CommonRegisterHelper.isControlKeyDown() && this.hasItemsKey(itemStack))
+                {
+                    if (itemStack.hasTagCompound())
                     {
-                        TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
+                        List<ItemStack> stackList = Arrays.asList(storage.inventory);
+                        ItemBlockBlackHoleStorage.loadAllItems(itemStack.getTagCompound(), stackList);
+                        int i = 0;
+                        int j = 0;
 
-                        if (itemStack.hasTagCompound())
+                        for (ItemStack invStack : stackList)
                         {
-                            List<ItemStack> stackList = Arrays.asList(storage.inventory);
-                            ItemBlockBlackHoleStorage.loadAllItems(itemStack.getTagCompound(), stackList);
-                            int i = 0;
-                            int j = 0;
-
-                            for (ItemStack invStack : stackList)
+                            if (invStack != null)
                             {
-                                if (invStack != null)
-                                {
-                                    ++j;
+                                ++j;
 
-                                    if (i < 8)
-                                    {
-                                        ++i;
-                                        list.add(invStack.getDisplayName() + " x" + invStack.stackSize);
-                                    }
+                                if (i < 8)
+                                {
+                                    ++i;
+                                    list.add(invStack.getDisplayName() + " x" + invStack.stackSize);
                                 }
                             }
-                            if (j - i > 0)
-                            {
-                                list.add(TextFormatting.ITALIC + GCCoreUtil.translateWithFormat("desc.bhs_more.name", Integer.valueOf(j - i)));
-                            }
+                        }
+                        if (j - i > 0)
+                        {
+                            list.add(TextFormatting.ITALIC + GCCoreUtil.translateWithFormat("desc.bhs_more.name", Integer.valueOf(j - i)));
                         }
                     }
                 }
-            }
-            else
-            {
-                if (this.getBlock() instanceof BlockBlackHoleStorage)
+                else
                 {
-                    TileEntity tile = ((BlockBlackHoleStorage) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
-
-                    if (tile instanceof TileEntityBlackHoleStorage)
+                    if (itemStack.hasTagCompound())
                     {
-                        TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
+                        NBTTagCompound nbt = itemStack.getTagCompound();
 
-                        if (itemStack.hasTagCompound())
+                        if (nbt.hasKey("Disable") && nbt.hasKey("Mode") && nbt.hasKey("XP") && nbt.hasKey("Hopper") && nbt.hasKey("Items"))
                         {
-                            NBTTagCompound nbt = itemStack.getTagCompound();
+                            String mode = nbt.getString("Mode").equals("item") ? "Item" : nbt.getString("Mode").equals("item_and_xp") ? "Item/EXP" : "EXP";
+                            TextFormatting disable = nbt.getBoolean("Disable") ? TextFormatting.GREEN : TextFormatting.RED;
+                            TextFormatting hopper = nbt.getBoolean("Hopper") ? TextFormatting.GREEN : TextFormatting.RED;
+                            list.add(GCCoreUtil.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
+                            list.add(GCCoreUtil.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
+                            list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + TextFormatting.AQUA + mode);
+                            list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getInteger("XP") + "/" + storage.getMaxXP());
 
-                            if (nbt.hasKey("Disable") && nbt.hasKey("Mode") && nbt.hasKey("XP") && nbt.hasKey("Hopper") && nbt.hasKey("Items"))
+                            NBTTagList nbtlist = nbt.getTagList("Items", 10);
+                            int slot = 0;
+
+                            for (int i = 0; i < nbtlist.tagCount(); ++i)
                             {
-                                String mode = nbt.getString("Mode").equals("item") ? "Item" : nbt.getString("Mode").equals("item_and_xp") ? "Item/EXP" : "EXP";
-                                TextFormatting disable = nbt.getBoolean("Disable") ? TextFormatting.GREEN : TextFormatting.RED;
-                                TextFormatting hopper = nbt.getBoolean("Hopper") ? TextFormatting.GREEN : TextFormatting.RED;
-                                list.add(GCCoreUtil.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
-                                list.add(GCCoreUtil.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
-                                list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + TextFormatting.AQUA + mode);
-                                list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getInteger("XP") + "/" + storage.getMaxXP());
+                                nbt = nbtlist.getCompoundTagAt(i);
+                                slot = nbt.getByte("Slot");
 
-                                NBTTagList nbtlist = nbt.getTagList("Items", 10);
-                                int slot = 0;
-
-                                for (int i = 0; i < nbtlist.tagCount(); ++i)
+                                if (slot >= 0 && slot < 108)
                                 {
-                                    nbt = nbtlist.getCompoundTagAt(i);
-                                    slot = nbt.getByte("Slot");
-
-                                    if (slot >= 0 && slot < 108)
-                                    {
-                                        slot = slot + 1;
-                                    }
+                                    slot = slot + 1;
                                 }
-                                list.add(GCCoreUtil.translate("desc.bhs_slot_used.name") + ": " + TextFormatting.GOLD + slot + "/" + storage.getSizeInventory());
                             }
+                            list.add(GCCoreUtil.translate("desc.bhs_slot_used.name") + ": " + TextFormatting.GOLD + slot + "/" + storage.getSizeInventory());
                         }
                     }
+                    list.add(GCCoreUtil.translate("desc.shift_info.name"));
+
+                    if (this.hasItemsKey(itemStack))
+                    {
+                        list.add(GCCoreUtil.translate("desc.control_info.name"));
+                    }
                 }
-                list.add(GCCoreUtil.translate("desc.shift_info.name"));
-                list.add(GCCoreUtil.translate("desc.control_info.name"));
             }
         }
+    }
+
+    private boolean hasItemsKey(ItemStack itemStack)
+    {
+        NBTTagCompound nbt = itemStack.getTagCompound();
+
+        if (itemStack.hasTagCompound() && nbt.hasKey("Items"))
+        {
+            NBTTagList list = nbt.getTagList("Items", 10);
+
+            for (int i = 0; i < list.tagCount();)
+            {
+                return list.getCompoundTagAt(i).hasKey("Slot");
+            }
+        }
+        return false;
     }
 
     private static void loadAllItems(NBTTagCompound tag, List<ItemStack> list)
