@@ -3,7 +3,10 @@ package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -84,6 +87,12 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
             return 40.0F;
         }
         return super.getExplosionResistance(world, pos, exploder, explosion);
+    }
+
+    @Override
+    public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity)
+    {
+        return state.getValue(VARIANT) == BlockType.DIREMSIUM_BLOCK || state.getValue(VARIANT) == BlockType.ZYPTORIUM_BLOCK ? SoundType.METAL : SoundType.STONE;
     }
 
     @Override
