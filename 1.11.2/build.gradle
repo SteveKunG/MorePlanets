@@ -24,7 +24,7 @@ archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.11.2-13.20.1.2510"
+    version = "1.11.2-13.20.1.2530"
     runDir = "run"
     mappings = "snapshot_20161220"
     makeObfSourceJar = false
@@ -59,7 +59,7 @@ curseforge {
     apiKey = api.more_planets
     project {
         id = '261990'
-        changelog = 'To read full change log use command /mpchangelog in-game.'
+        changelog = 'To read full change log use command /mpchangelog in-game.\n\n or follow this link: https://raw.githubusercontent.com/SteveKunG/MorePlanets/master/' + mcVersion + '/src/main/resources/assets/moreplanets/change_log.txt'
         releaseType = 'release'
         addGameVersion mcVersion
 
