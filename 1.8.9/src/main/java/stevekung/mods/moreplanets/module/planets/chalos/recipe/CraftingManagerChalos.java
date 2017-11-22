@@ -10,6 +10,7 @@ import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
@@ -23,7 +24,11 @@ public class CraftingManagerChalos
         CraftingManagerChalos.addItemRecipe();
         CraftingManagerChalos.addBlockSmelting();
         CraftingManagerChalos.addItemSmelting();
-        CraftingManagerChalos.addRocketRecipe();
+
+        if (ConfigManagerMP.enableTier5RocketRecipe)
+        {
+            CraftingManagerChalos.addRocketRecipe();
+        }
     }
 
     private static void addBlockRecipe()

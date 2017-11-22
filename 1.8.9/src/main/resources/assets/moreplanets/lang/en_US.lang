@@ -623,6 +623,7 @@ gui.config.mp.other=Others Configuration.
 configgeneralguimp=General Config
 configdimensionguimp=Dimension Config
 configbiomeguimp=Biome Config
+config_moreplanets_gc_addon_compat=GC-Addon Compatibility Configuration
 configotherguimp=Other Config
 
 # GUI JEI

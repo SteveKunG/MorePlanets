@@ -1,3 +1,2 @@
--Added- Added Chinese Language by DJYDsoy
--Update- Update to use Galacticraft Build 117 or higher
--Fixed- Fixed block harvest level
+-Added- Added GC-Addon Compatibility configuration
+-Update- Update to use Galacticraft Build 119 or higher
