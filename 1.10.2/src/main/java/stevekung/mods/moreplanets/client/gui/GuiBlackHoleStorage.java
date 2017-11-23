@@ -52,17 +52,17 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
         int height = (this.height - this.ySize) / 2;
         List<String> renderDesc = new ArrayList<>();
         renderDesc.add(GCCoreUtil.translate("gui.disable_black_hole.desc"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 180, (this.height - this.ySize) / 2 + 192, 13, 13, renderDesc, this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 178, (this.height - this.ySize) / 2 + 192, 13, 13, renderDesc, this.width, this.height, this));
         renderDesc = new ArrayList<>();
         renderDesc.add(GCCoreUtil.translate("gui.use_hopper.desc"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 200, (this.height - this.ySize) / 2 + 192, 13, 13, renderDesc, this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 198, (this.height - this.ySize) / 2 + 192, 13, 13, renderDesc, this.width, this.height, this));
         renderDesc = new ArrayList<>();
         renderDesc.add(GCCoreUtil.translate("gui.collect_mode.desc"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 220, (this.height - this.ySize) / 2 + 192, 13, 13, renderDesc, this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 218, (this.height - this.ySize) / 2 + 192, 13, 13, renderDesc, this.width, this.height, this));
         this.infoRegions.add(this.xpValueInfo = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 238, (this.height - this.ySize) / 2 + 170, 5, 37, null, this.width, this.height, this));
-        this.disableBlackHoleCheckbox = new GuiElementCheckbox(0, this, width + 180, height + 192, "");
-        this.useHopperCheckbox = new GuiElementCheckbox(1, this, width + 200, height + 192, "");
-        this.collectModeCheckbox = new GuiElementCheckboxMP(2, this, width + 220, height + 192, "");
+        this.disableBlackHoleCheckbox = new GuiElementCheckbox(0, this, width + 178, height + 192, "");
+        this.useHopperCheckbox = new GuiElementCheckbox(1, this, width + 198, height + 192, "");
+        this.collectModeCheckbox = new GuiElementCheckboxMP(2, this, width + 218, height + 192, "");
         this.buttonList.add(this.disableBlackHoleCheckbox);
         this.buttonList.add(this.useHopperCheckbox);
         this.buttonList.add(this.collectModeCheckbox);
@@ -75,13 +75,13 @@ public class GuiBlackHoleStorage extends GuiContainerGC implements ICheckBoxCall
         this.fontRendererObj.drawString(GCCoreUtil.translate("container.black_hole_storage_short.name"), this.xSize - 92 + 8, this.ySize - 87 + 12, 4210752);
 
         String bhStatus = this.tile.disableBlackHole ? TextFormatting.RED + GCCoreUtil.translate("gui.button.disable.name") : TextFormatting.GREEN + GCCoreUtil.translate("gui.button.enable.name");
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.message.status.name") + ": " + bhStatus, this.xSize - 91 + 8, this.ySize - 86 + 42, 2536735);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.message.status.name") + ": " + bhStatus, this.xSize - 91 + 8, this.ySize - 86 + 44, 2536735);
 
         String hopperStatus = !this.tile.useHopper ? TextFormatting.RED + GCCoreUtil.translate("gui.button.disable.name") : TextFormatting.GREEN + GCCoreUtil.translate("gui.button.enable.name");
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.use_hopper.name") + ": " + hopperStatus, this.xSize - 91 + 8, this.ySize - 86 + 52, 2536735);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.use_hopper.name") + ": " + hopperStatus, this.xSize - 91 + 8, this.ySize - 86 + 54, 2536735);
 
         String collectMode = this.tile.collectMode.equals("item") ? TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_item.name") : this.tile.collectMode.equals("item_and_xp") ? TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_item_and_xp.name") : TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_xp.name");
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.collect_mode.name") + ": " + collectMode, this.xSize - 91 + 8, this.ySize - 86 + 62, 2536735);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.collect_mode.name") + ": " + collectMode, this.xSize - 91 + 8, this.ySize - 86 + 64, 2536735);
 
         List<String> renderDesc = new ArrayList<>(Arrays.asList(GCCoreUtil.translate("gui.xp_value.desc") + ": " + this.tile.xp + "/" + this.tile.getMaxXP()));
         this.xpValueInfo.tooltipStrings = renderDesc;

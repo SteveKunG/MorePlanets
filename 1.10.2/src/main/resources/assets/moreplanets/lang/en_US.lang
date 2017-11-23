@@ -612,8 +612,8 @@ itemGroup.MorePlanetsBlocks=More Planets Blocks
 itemGroup.MorePlanetsItems=More Planets Items
 
 # GUI STATUS
-gui.status.no_warp_pos.name=No Warp Position
-gui.status.missing_warp_pad.name=Missing Warp Pad
+gui.status.empty_dimension_data.name=Empty Dimension Data!
+gui.status.warp_core_required.name=Space Warper Core required!
 gui.status.dark_energy_percent0.name=%s
 gui.status.dark_energy_percent1.name=% Complete
 gui.status.dark_energy_core_created.name=Core Created
@@ -634,21 +634,21 @@ gui.status.shield_damage.name=Shield Damage
 gui.status.shield_size.name=Shield Size
 gui.status.set_shield_damage.name=Damage
 gui.status.set_max_shield_size.name=Size
+gui.status.empty.name=Empty
+gui.status.dimension.name=Dimension
+gui.status.name.name=Name
+gui.status.destination.name=Destination
 
 # GUI MESSAGE
-gui.no_warp_data.message=No Space Warp Pad data stored
-gui.cannot_detect_pad.message=Cannot Detect Space Warp Pad
-gui.warp_pad_data_add.message=Space Warp Pad data added
-gui.warp_pad_data_add_fail.message=Failed to set dimension data, You need to collect dimension data first!
 gui.place_only_space.message=Space Warp Pad can be placed only in the Space or Overworld dimension!
+gui.no_warp_destination.message=Unknown destination!
 gui.dark_energy_success.message=Dark Energy Receiver successfully activated
 gui.dark_energy_already_active.message=Dark Energy Receiver already activated
 gui.dark_energy_no_power.message=Dark Energy Receiver needs large power source to running!
 gui.dark_energy_disabled.message=You should enable this first!
 gui.dark_energy_malfunction.message=Dark Energy Receiver Malfunction, machine will explode in %s
 gui.warp_core_data_add.message=Space Dimension data added
-gui.warp_core_data_add_fail0.message=You need to standing on Space Warp Pad to collect dimension data!
-gui.warp_core_data_add_fail1.message=You need to standing on the center of Space Warp Pad!
+gui.warp_core_data_add_fail.message=You can only add Dimension data at once!
 gui.space_dimension_only.message=Space Warper Core can be collect data only in Space or Overworld dimension!
 gui.place_in_liquid.message=Cannot place block inside liquid!
 gui.bh_storage.too_close.message=Too close another Black Hole Storage

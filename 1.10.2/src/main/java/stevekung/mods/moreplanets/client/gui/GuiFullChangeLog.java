@@ -45,7 +45,7 @@ public class GuiFullChangeLog extends GuiScreen
     public void initGui()
     {
         this.buttonList.clear();
-        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 2 + 120, I18n.format("gui.done")));
+        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height - 45, I18n.format("gui.done")));
 
         if (this.stringList == null)
         {

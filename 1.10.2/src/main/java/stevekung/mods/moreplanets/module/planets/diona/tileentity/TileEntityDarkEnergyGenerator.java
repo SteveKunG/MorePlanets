@@ -24,6 +24,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
+import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.dimension.IDarkEnergyProvider;
 
 public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSource implements IDisableableMachine, ISidedInventory, IConnector
@@ -37,8 +38,10 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     @NetworkedField(targetSide = Side.CLIENT)
     public int darkEnergyFuel = 0;
     @NetworkedField(targetSide = Side.CLIENT)
+    public int prevDarkEnergyFuel = 0;
+    @NetworkedField(targetSide = Side.CLIENT)
     public int facing;
-    private ItemStack[] containingItems = new ItemStack[1];
+    private ItemStack[] containingItems = new ItemStack[3];
     public int renderTicks;
     private boolean initialize = true;
 
@@ -75,12 +78,24 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         {
             this.receiveEnergyGC(null, this.generateWatts, false);
             this.recharge(this.containingItems[0]);
+            this.recharge(this.containingItems[1]);
 
             if (!this.disabled)
             {
                 if (this.ticks % 20 == 0 && this.darkEnergyFuel > 0)
                 {
                     this.darkEnergyFuel--;
+                }
+                if (this.containingItems[2] != null && this.darkEnergyFuel <= 0)
+                {
+                    this.darkEnergyFuel = 1000;//TODO More dark energy fuel
+                    this.prevDarkEnergyFuel = this.darkEnergyFuel;
+                    --this.containingItems[2].stackSize;
+
+                    if (this.containingItems[2].stackSize == 0)
+                    {
+                        this.containingItems[2] = null;
+                    }
                 }
             }
             if (this.disableCooldown > 0)
@@ -125,6 +140,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         this.containingItems = new ItemStack[this.getSizeInventory()];
         this.facing = nbt.getInteger("Facing");
         this.darkEnergyFuel = nbt.getInteger("DarkEnergyFuel");
+        this.prevDarkEnergyFuel = nbt.getInteger("PrevDarkEnergyFuel");
 
         for (int i = 0; i < list.tagCount(); ++i)
         {
@@ -147,6 +163,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         nbt.setBoolean("Disabled", this.getDisabled(0));
         nbt.setInteger("Facing", this.facing);
         nbt.setInteger("DarkEnergyFuel", this.darkEnergyFuel);
+        nbt.setInteger("PrevDarkEnergyFuel", this.prevDarkEnergyFuel);
         NBTTagList list = new NBTTagList();
 
         for (int i = 0; i < this.containingItems.length; ++i)
@@ -351,13 +368,17 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     @Override
     public boolean canExtractItem(int slotID, ItemStack itemStack, EnumFacing side)
     {
-        return slotID == 0;
+        return slotID == 0 || slotID == 1;
     }
 
     @Override
     public boolean isItemValidForSlot(int slotID, ItemStack itemStack)
     {
-        return slotID == 0 && ItemElectricBase.isElectricItem(itemStack.getItem());
+        if (slotID == 2)
+        {
+            return itemStack.getItem() == DionaItems.DARK_ENERGY_PEARL;
+        }
+        return (slotID == 0 || slotID == 1) && ItemElectricBase.isElectricItem(itemStack.getItem());
     }
 
     @Override

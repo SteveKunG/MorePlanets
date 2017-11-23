@@ -2,7 +2,10 @@ package stevekung.mods.moreplanets.core.event;
 
 import java.util.*;
 
+import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
 
 import com.google.common.collect.ImmutableList;
 
@@ -108,19 +111,34 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onClientTick(ClientTickEvent event)
     {
-        if (MorePlanetsCore.isObfuscatedEnvironment() && Keyboard.isKeyDown(Keyboard.KEY_F7))
+        if (MorePlanetsCore.isObfuscatedEnvironment())
         {
+            if (Keyboard.isKeyDown(Keyboard.KEY_F7))
+            {
+                try
+                {
+                    // used for real time debugging item description
+                    Class<?> clazz = Class.forName("mezz.jei.JustEnoughItems");
+                    Object obj = clazz.getDeclaredMethod("getProxy").invoke(Class.forName("mezz.jei.ProxyCommonClient"));
+                    obj.getClass().getDeclaredMethod("restartJEI").invoke(obj);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
             try
             {
-                // used for real time debugging item description
-                Class<?> clazz = Class.forName("mezz.jei.JustEnoughItems");
-                Object obj = clazz.getDeclaredMethod("getProxy").invoke(Class.forName("mezz.jei.ProxyCommonClient"));
-                obj.getClass().getDeclaredMethod("restartJEI").invoke(obj);
+                if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD1))
+                {
+                    Display.setDisplayMode(new DisplayMode(1280, 720));
+                }
+                if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD2))
+                {
+                    Display.setDisplayMode(new DisplayMode(854, 480));
+                }
             }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            catch (LWJGLException e) {}
         }
         if (ClientEventHandler.loadRenderers)
         {

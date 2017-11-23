@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
@@ -18,7 +16,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -36,7 +33,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.handler.TeleportHandler;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.MPLog;
@@ -156,157 +152,68 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
         }
         else
         {
-            TileEntity tile = world.getTileEntity(pos);
-
-            if (tile instanceof TileEntitySpaceWarpPadFull)
+            if (!player.isSneaking())
             {
-                ItemStack itemStack = player.inventory.getCurrentItem();
-                TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull) tile;
+                TileEntity tile = world.getTileEntity(pos);
 
-                if (itemStack != null && itemStack.getItem() == MPItems.SPACE_WARPER_CORE)
+                if (tile instanceof TileEntitySpaceWarpPadFull)
                 {
-                    NBTTagCompound warpCoreData = itemStack.getTagCompound();
+                    ItemStack itemStack = player.inventory.getCurrentItem();
+                    TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull) tile;
+                    JsonUtil json = new JsonUtil();
 
-                    if (!player.capabilities.isCreativeMode)
+                    if (!warpPad.disabled)
                     {
-                        itemStack.stackSize--;
-                    }
-                    if (warpCoreData != null && warpCoreData.hasKey("DimensionID"))
-                    {
-                        warpPad.setTeleportData(new BlockPos(warpCoreData.getInteger("X"), warpCoreData.getInteger("Y"), warpCoreData.getInteger("Z")), warpCoreData.getInteger("DimensionID"), true);
-                        player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.warp_pad_data_add.message")).setStyle(new JsonUtil().colorFromConfig("green")));
-                        return true;
-                    }
-                    else
-                    {
-                        player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.warp_pad_data_add_fail.message")).setStyle(new JsonUtil().red()));
-
-                        if (warpCoreData == null)
+                        if (warpPad.hasWarpCore())
                         {
-                            warpCoreData = new NBTTagCompound();
-                            itemStack.setTagCompound(warpCoreData);
-                        }
-                        return false;
-                    }
-                }
-                if (warpPad.getHasReceiveData())
-                {
-                    if (player.isSneaking())
-                    {
-                        if (warpPad.getCheckInvalid())
-                        {
-                            player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.cannot_detect_pad.message")).setStyle(new JsonUtil().red()));
-                            return false;
-                        }
-                        if (!warpPad.disabled)
-                        {
-                            if (warpPad.getEnergyStoredGC() >= 5000.0F)
+                            if (warpPad.getDestinationPos() == null)
                             {
-                                warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
-                                MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-                                WorldServer worldserver = server.worldServerForDimension(GCCoreUtil.getDimensionID(server.worldServers[0]));
-
-                                if (player instanceof EntityPlayerMP)
-                                {
-                                    TeleportHandler.setWarpDimension((EntityPlayerMP) player, worldserver, warpPad.getBlockPos().getX(), warpPad.getBlockPos().getY(), warpPad.getBlockPos().getZ(), warpPad.getDimensionID(), false);
-                                }
-
-                                world.playSound(player, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                                player.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
-                                MPLog.debug("Teleport player to %s, %s, %s, %s, %s", warpPad.getBlockPos().getX(), warpPad.getBlockPos().getY(), warpPad.getBlockPos().getZ(), warpPad.getDimensionID(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionID()).getDimensionType().getName());
+                                player.addChatMessage(json.text(GCCoreUtil.translate("gui.no_warp_destination.message")).setStyle(json.red()));
                                 return true;
                             }
                             else
                             {
-                                player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.status.missingpower.name")).setStyle(new JsonUtil().red()));
-                                return true;
+                                if (warpPad.getEnergyStoredGC() >= 5000.0F)
+                                {
+                                    warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
+                                    MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+                                    WorldServer worldserver = server.worldServerForDimension(GCCoreUtil.getDimensionID(server.worldServers[0]));
+
+                                    if (player instanceof EntityPlayerMP)
+                                    {
+                                        TeleportHandler.setWarpDimension((EntityPlayerMP) player, worldserver, warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), false);
+                                    }
+                                    world.playSound(player, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                    player.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
+                                    MPLog.debug("Teleport player to %s, %s, %s, %s, %s", warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionId()).getDimensionType().getName());
+                                    return true;
+                                }
+                                else
+                                {
+                                    player.addChatMessage(json.text(GCCoreUtil.translate("gui.status.missingpower.name")).setStyle(json.red()));
+                                    return true;
+                                }
                             }
                         }
                         else
                         {
-                            player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtil().red()));
+                            player.addChatMessage(json.text(GCCoreUtil.translate("gui.status.warp_core_required.name")).setStyle(json.red()));
+                            return true;
                         }
                     }
                     else
                     {
-                        player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
+                        player.addChatMessage(json.text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(json.red()));
                         return true;
                     }
                 }
-                else
-                {
-                    if (player.isSneaking())
-                    {
-                        player.addChatMessage(new JsonUtil().text(GCCoreUtil.translate("gui.no_warp_data.message")).setStyle(new JsonUtil().red()));
-                        return true;
-                    }
-                    else
-                    {
-                        player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
-                        return true;
-                    }
-                }
+            }
+            else
+            {
+                player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
+                return true;
             }
         }
         return false;
-    }
-
-    @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack heldStack)
-    {
-        super.harvestBlock(world, player, pos, state, tile, heldStack);
-
-        if (tile instanceof TileEntitySpaceWarpPadFull)
-        {
-            ItemStack machine = new ItemStack(MPItems.SPACE_WARPER_CORE);
-            TileEntitySpaceWarpPadFull pad = (TileEntitySpaceWarpPadFull) tile;
-
-            if (pad.getHasReceiveData())
-            {
-                machine.setTagCompound(new NBTTagCompound());
-                machine.getTagCompound().setInteger("DimensionID", pad.getDimensionID());
-                machine.getTagCompound().setInteger("X", pad.getBlockPos().getX());
-                machine.getTagCompound().setInteger("Y", pad.getBlockPos().getY());
-                machine.getTagCompound().setInteger("Z", pad.getBlockPos().getZ());
-                machine.getTagCompound().setBoolean("Checked", true);
-                Block.spawnAsEntity(world, pos, machine);
-            }
-        }
-    }
-
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
-        List<ItemStack> ret = new ArrayList<>();
-        Random rand = world instanceof World ? ((World)world).rand : RANDOM;
-        TileEntity tile = world.getTileEntity(pos);
-        int count = this.quantityDropped(state, fortune, rand);
-
-        for (int i = 0; i < count; i++)
-        {
-            Item item = this.getItemDropped(state, rand, fortune);
-
-            if (item != null)
-            {
-                ret.add(new ItemStack(item, 1, this.damageDropped(state)));
-            }
-        }
-        if (tile instanceof TileEntitySpaceWarpPadFull)
-        {
-            ItemStack machine = new ItemStack(MPItems.SPACE_WARPER_CORE);
-            TileEntitySpaceWarpPadFull pad = (TileEntitySpaceWarpPadFull) tile;
-
-            if (pad.getHasReceiveData())
-            {
-                machine.setTagCompound(new NBTTagCompound());
-                machine.getTagCompound().setInteger("DimensionID", pad.getDimensionID());
-                machine.getTagCompound().setInteger("X", pad.getBlockPos().getX());
-                machine.getTagCompound().setInteger("Y", pad.getBlockPos().getY());
-                machine.getTagCompound().setInteger("Z", pad.getBlockPos().getZ());
-                machine.getTagCompound().setBoolean("Checked", true);
-                ret.add(machine);
-            }
-        }
-        return ret;
     }
 }

@@ -97,7 +97,7 @@ public class GuiShieldGenerator extends GuiContainerGC implements ICheckBoxCallb
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 80, this.height / 2 - 8, 72, 20, !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name")));
         this.buttonList.add(new GuiButton(5, this.width / 2 + 52, this.height / 2 - 8, 25, 20, "WIP"));
 
-        this.shieldDamageText = new GuiTextField(1, this.fontRendererObj, this.width / 2 + 60, this.height / 4 + 7, 20, 16);
+        this.shieldDamageText = new GuiTextField(1, this.fontRendererObj, this.width / 2 + 60, this.height / 2 - 83, 20, 16);
         this.shieldDamageText.setMaxStringLength(2);
         this.shieldDamageText.setFocused(false);
         this.shieldDamageText.setCanLoseFocus(true);
@@ -105,7 +105,7 @@ public class GuiShieldGenerator extends GuiContainerGC implements ICheckBoxCallb
         this.shieldDamageText.setTextColor(16777215);
         this.shieldDamageText.setText(String.valueOf(this.tile.shieldDamage));
 
-        this.shieldMaxSizeText = new GuiTextField(2, this.fontRendererObj, this.width / 2 + 60, this.height / 4 + 27, 20, 16);
+        this.shieldMaxSizeText = new GuiTextField(2, this.fontRendererObj, this.width / 2 + 60, this.height / 2 - 62, 20, 16);
         this.shieldMaxSizeText.setMaxStringLength(2);
         this.shieldMaxSizeText.setFocused(false);
         this.shieldMaxSizeText.setCanLoseFocus(true);
@@ -193,6 +193,12 @@ public class GuiShieldGenerator extends GuiContainerGC implements ICheckBoxCallb
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.shieldDamageText.drawTextBox();
         this.shieldMaxSizeText.drawTextBox();
+
+        for (int k = 0; k < this.infoRegions.size(); ++k)
+        {
+            GuiElementInfoRegion guibutton = this.infoRegions.get(k);
+            guibutton.drawRegion(mouseX, mouseY);
+        }
     }
 
     @Override

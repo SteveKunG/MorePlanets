@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.client.gui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
@@ -19,109 +20,94 @@ import stevekung.mods.moreplanets.tileentity.TileEntityRocketCrusher;
 @SideOnly(Side.CLIENT)
 public class GuiRocketCrusher extends GuiContainerGC
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/rocket_crusher.png");
-    private TileEntityRocketCrusher tileEntity;
-    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion(0, 0, 56, 9, null, 0, 0, this);
-    private GuiElementInfoRegion processInfoRegion = new GuiElementInfoRegion(0, 0, 52, 25, null, 0, 0, this);
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/rocket_crusher.png");
+    private final TileEntityRocketCrusher tile;
+    private GuiElementInfoRegion electricInfoRegion;
+    private GuiElementInfoRegion processInfoRegion;
+    private GuiElementInfoRegion batteryInfoRegion;
 
     public GuiRocketCrusher(InventoryPlayer inv, TileEntityRocketCrusher tile)
     {
         super(new ContainerRocketCrusher(inv, tile));
-        this.tileEntity = tile;
-        this.ySize = 199;
+        this.tile = tile;
+        this.ySize = 195;
     }
 
     @Override
     public void initGui()
     {
         super.initGui();
-        this.electricInfoRegion.tooltipStrings = new ArrayList<>();
-        this.electricInfoRegion.xPosition = (this.width - this.xSize) / 2 + 17;
-        this.electricInfoRegion.yPosition = (this.height - this.ySize) / 2 + 95;
-        this.electricInfoRegion.parentWidth = this.width;
-        this.electricInfoRegion.parentHeight = this.height;
+        this.electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 6, (this.height - this.ySize) / 2 + 31, 9, 57, new ArrayList<>(), this.width, this.height, this);
+        this.batteryInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 18, (this.height - this.ySize) / 2 + 79, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.battery_slot.desc.0"), GCCoreUtil.translate("gui.battery_slot.desc.1")), this.width, this.height, this);
+        this.processInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 30, 52, 25, new ArrayList<>(), this.width, this.height, this);
         this.infoRegions.add(this.electricInfoRegion);
-        List<String> batterySlotDesc = new ArrayList<>();
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 54, (this.height - this.ySize) / 2 + 74, 18, 18, batterySlotDesc, this.width, this.height, this));
-        this.processInfoRegion.tooltipStrings = new ArrayList<>();
-        this.processInfoRegion.xPosition = (this.width - this.xSize) / 2 + 77;
-        this.processInfoRegion.yPosition = (this.height - this.ySize) / 2 + 30;
-        this.processInfoRegion.parentWidth = this.width;
-        this.processInfoRegion.parentHeight = this.height;
+        this.infoRegions.add(this.batteryInfoRegion);
         this.infoRegions.add(this.processInfoRegion);
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2)
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        this.fontRendererObj.drawString(this.tileEntity.getName(), 10, 6, 4210752);
-        String displayText;
+        this.fontRendererObj.drawString(this.tile.getName(), 8, 6, 4210752);
+        String text;
 
-        if (this.tileEntity.processTicks > 0)
+        if (this.tile.processTicks > 0)
         {
-            displayText = EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.status.running.name");
+            text = EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.status.running.name");
         }
         else
         {
-            displayText = EnumColor.ORANGE + GCCoreUtil.translate("gui.status.idle.name");
+            text = EnumColor.ORANGE + GCCoreUtil.translate("gui.status.idle.name");
         }
-        String str = GCCoreUtil.translate("gui.message.status.name") + ": " + displayText;
-        this.fontRendererObj.drawString(str, 120 - this.fontRendererObj.getStringWidth(str) / 2, 75, 4210752);
+
+        String status = GCCoreUtil.translate("gui.message.status.name") + ": " + text;
+
+        if (this.tile.processTicks > 0)
+        {
+            int scale = (int) ((double) this.tile.processTicks / (double) this.tile.processTimeRequired * 100);
+            this.fontRendererObj.drawString(GCCoreUtil.translate("gui.electric_compressor.desc.0") + ": " + scale + "%", 80, 62, 4210752);
+        }
+        this.fontRendererObj.drawString(status, 76, 84, 4210752);
         this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 93, 4210752);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
-        this.mc.renderEngine.bindTexture(GuiRocketCrusher.texture);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        int containerWidth = (this.width - this.xSize) / 2;
-        int containerHeight = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize);
+        int width = (this.width - this.xSize) / 2;
+        int height = (this.height - this.ySize) / 2;
         int scale;
+        this.mc.renderEngine.bindTexture(TEXTURE);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        this.drawTexturedModalRect(width, height, 0, 0, this.xSize, this.ySize);
+
         List<String> electricityDesc = new ArrayList<>();
         electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
-        EnergyDisplayHelper.getEnergyDisplayTooltip(this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC(), electricityDesc);
+        EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
 
-        if (this.tileEntity.processTicks > 0)
+        if (this.tile.getEnergyStoredGC() > 0)
         {
-            scale = (int) ((double) this.tileEntity.processTicks / (double) this.tileEntity.processTimeRequired * 100);
+            scale = this.tile.getScaledElecticalLevel(54);
+            this.drawTexturedModalRect(width + 7, height + 86 - scale, 176, 54 - scale + 40, 7, scale);
+            this.drawTexturedModalRect(width + 4, height + 88, 176, 30, 11, 10);
         }
-        else
+        if (this.tile.processTicks > 0)
         {
-            scale = 0;
+            scale = (int) ((double) this.tile.processTicks / (double) this.tile.processTimeRequired * 54);
+            this.drawTexturedModalRect(width + 80, height + 39, 176, 13, scale, 17);
         }
-
-        List<String> processDesc = new ArrayList<>();
-        processDesc.clear();
-        processDesc.add(GCCoreUtil.translate("gui.electric_compressor.desc.0") + ": " + scale + "%");
-        this.processInfoRegion.tooltipStrings = processDesc;
-
-        if (this.tileEntity.processTicks > 0)
+        if (this.tile.processTicks >= 40)
         {
-            scale = (int) ((double) this.tileEntity.processTicks / (double) this.tileEntity.processTimeRequired * 54);
-            this.drawTexturedModalRect(containerWidth + 77, containerHeight + 38, 176, 13, scale, 17);
+            this.drawTexturedModalRect(width + 83, height + 30, 176, 0, 15, 13);
         }
-        if (this.tileEntity.getEnergyStoredGC() > 0)
+        if (this.tile.processTicks >= 80)
         {
-            scale = this.tileEntity.getScaledElecticalLevel(54);
-            this.drawTexturedModalRect(containerWidth + 116 - 98, containerHeight + 96, 176, 30, scale, 7);
-            this.drawTexturedModalRect(containerWidth + 4, containerHeight + 95, 176, 37, 11, 10);
+            this.drawTexturedModalRect(width + 96, height + 30, 176, 0, 15, 13);
         }
-        if (this.tileEntity.processTicks >= 40)
+        if (this.tile.processTicks >= 130)
         {
-            this.drawTexturedModalRect(containerWidth + 80, containerHeight + 30, 176, 0, 15, 13);
-        }
-        if (this.tileEntity.processTicks >= 80)
-        {
-            this.drawTexturedModalRect(containerWidth + 93, containerHeight + 30, 176, 0, 15, 13);
-        }
-        if (this.tileEntity.processTicks >= 130)
-        {
-            this.drawTexturedModalRect(containerWidth + 106, containerHeight + 30, 176, 0, 15, 13);
+            this.drawTexturedModalRect(width + 109, height + 30, 176, 0, 15, 13);
         }
     }
 }

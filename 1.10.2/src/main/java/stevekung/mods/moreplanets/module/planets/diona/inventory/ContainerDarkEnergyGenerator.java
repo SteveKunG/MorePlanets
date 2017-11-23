@@ -8,6 +8,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 
 public class ContainerDarkEnergyGenerator extends Container
@@ -17,7 +18,9 @@ public class ContainerDarkEnergyGenerator extends Container
     public ContainerDarkEnergyGenerator(InventoryPlayer invPlayer, TileEntityDarkEnergyGenerator generator)
     {
         this.tileEntity = generator;
-        this.addSlotToContainer(new SlotSpecific(generator, 0, 23, 21, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(generator, 0, 8, 85, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(generator, 1, 26, 85, IItemElectric.class));
+        this.addSlotToContainer(new SlotDarkEnergyFuel(generator, 2, 62, 85));
 
         // Player inv:
         for (int i = 0; i < 3; ++i)
@@ -51,7 +54,7 @@ public class ContainerDarkEnergyGenerator extends Container
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
 
-            if (index == 0)
+            if (index == 0 || index == 1 || index == 2)
             {
                 if (!this.mergeItemStack(stack, invSize - 36, invSize, true))
                 {
@@ -62,7 +65,14 @@ public class ContainerDarkEnergyGenerator extends Container
             {
                 if (EnergyUtil.isElectricItem(stack.getItem()))
                 {
-                    if (!this.mergeItemStack(stack, 0, 1, false))
+                    if (!this.mergeItemStack(stack, 0, 2, false))
+                    {
+                        return null;
+                    }
+                }
+                else if (stack.getItem() == DionaItems.DARK_ENERGY_PEARL)
+                {
+                    if (!this.mergeItemStack(stack, 2, 3, false))
                     {
                         return null;
                     }

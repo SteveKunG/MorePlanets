@@ -25,12 +25,12 @@ public class ContainerRocketCrusher extends Container
         {
             for (int y = 0; y < 3; y++)
             {
-                this.addSlotToContainer(new Slot(tile.compressingCraftMatrix, y + x * 3, 19 + y * 18, 18 + x * 18));
+                this.addSlotToContainer(new Slot(tile.compressingCraftMatrix, y + x * 3, 19 + y * 18, 20 + x * 18));
             }
         }
 
         // Battery Slot
-        this.addSlotToContainer(new SlotSpecific(tile, 0, 55, 75, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(tile, 0, 19, 80, IItemElectric.class));
 
         // Plate result
         this.addSlotToContainer(new SlotFurnaceOutput(invPlayer.player, tile, 1, 143, 38));
@@ -41,13 +41,13 @@ public class ContainerRocketCrusher extends Container
         {
             for (int slotStack = 0; slotStack < 9; ++slotStack)
             {
-                this.addSlotToContainer(new Slot(invPlayer, slotStack + invSlot * 9 + 9, 8 + slotStack * 18, 117 + invSlot * 18));
+                this.addSlotToContainer(new Slot(invPlayer, slotStack + invSlot * 9 + 9, 8 + slotStack * 18, 113 + invSlot * 18));
             }
         }
 
         for (invSlot = 0; invSlot < 9; ++invSlot)
         {
-            this.addSlotToContainer(new Slot(invPlayer, invSlot, 8 + invSlot * 18, 175));
+            this.addSlotToContainer(new Slot(invPlayer, invSlot, 8 + invSlot * 18, 171));
         }
     }
 
@@ -75,9 +75,9 @@ public class ContainerRocketCrusher extends Container
             ItemStack slotStack = invSlot.getStack();
             itemStack = slotStack.copy();
 
-            if (slot <= 11)
+            if (slot <= 10)
             {
-                if (!this.mergeItemStack(slotStack, 12, 47, true))
+                if (!this.mergeItemStack(slotStack, 11, 47, true))
                 {
                     return null;
                 }
@@ -97,12 +97,12 @@ public class ContainerRocketCrusher extends Container
                 }
                 else if (slot < 39)
                 {
-                    if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 39, 48, false))
+                    if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 38, 47, false))
                     {
                         return null;
                     }
                 }
-                else if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 12, 39, false))
+                else if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 11, 38, false))
                 {
                     return null;
                 }
