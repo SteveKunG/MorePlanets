@@ -14,6 +14,7 @@ run
 */src/main/java/cofh
 */src/main/java/com
 */src/main/java/ic2
+*/src/main/java/itemtransformhelper
 */src/main/java/mekanism
 */src/main/java/micdoodle8
 */src/main/java/mezz
@@ -26,6 +27,7 @@ run
 */src/main/resources/assets/galacticraftmoon
 */src/main/resources/assets/galacticraftmars
 */src/main/resources/assets/galacticraftasteroids
+*/src/main/resources/assets/itemtransformhelper
 */src/main/resources/assets/nbtedit
 */src/main/resources/assets/indicatia
 */src/main/resources/micdoodlecore_at.cfg
