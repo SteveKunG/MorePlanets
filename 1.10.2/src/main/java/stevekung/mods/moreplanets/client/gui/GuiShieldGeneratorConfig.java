@@ -169,6 +169,14 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         {
             this.messageTicks--;
         }
+        if (this.shieldDamageText.getText().isEmpty() || this.shieldSizeText.getText().isEmpty())
+        {
+            this.buttonDone.enabled = false;
+        }
+        else
+        {
+            this.buttonDone.enabled = true;
+        }
     }
 
     @Override
