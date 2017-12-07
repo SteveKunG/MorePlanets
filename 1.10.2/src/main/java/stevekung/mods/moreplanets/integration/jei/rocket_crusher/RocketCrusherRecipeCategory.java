@@ -67,7 +67,7 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
         {
             itemStacks.init(j, true, 0 + j % 3 * 18, 0 + j / 3 * 18);
         }
-        itemStacks.init(9, false, 124, 20);
+        itemStacks.init(9, false, 124, 18);
         itemStacks.set(ingredients);
     }
 }

@@ -5,19 +5,23 @@ import micdoodle8.mods.galacticraft.core.energy.EnergyUtil;
 import micdoodle8.mods.galacticraft.core.inventory.SlotSpecific;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 
-public class ContainerShieldGenerator extends Container
+public class ContainerShieldGeneratorConfig extends Container
 {
     private TileEntityShieldGenerator tile;
 
-    public ContainerShieldGenerator(InventoryPlayer inventory, TileEntityShieldGenerator tile)
+    public ContainerShieldGeneratorConfig(InventoryPlayer inventory, TileEntityShieldGenerator tile)
     {
         this.tile = tile;
         this.addSlotToContainer(new SlotSpecific(tile, 0, 152, 78, IItemElectric.class));
+        this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 1, 152, 24, "damage"));
+        this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 2, 152, 42, "size"));
+        this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 3, 152, 60, "capacity"));
 
         int i;
         int j;
@@ -53,7 +57,7 @@ public class ContainerShieldGenerator extends Container
             ItemStack slotStack = slot.getStack();
             itemStack = slotStack.copy();
 
-            if (index < 1)
+            if (index == 0 || index == 1 || index == 2 || index == 3)
             {
                 if (!this.mergeItemStack(slotStack, invSize - 36, invSize, true))
                 {
@@ -65,6 +69,27 @@ public class ContainerShieldGenerator extends Container
                 if (EnergyUtil.isElectricItem(slotStack.getItem()))
                 {
                     if (!this.mergeItemStack(slotStack, 0, 1, false))
+                    {
+                        return null;
+                    }
+                }
+                else if (slotStack.getItem() == Items.REDSTONE)
+                {
+                    if (!this.mergeItemValidSize(slotStack, 1, 2))
+                    {
+                        return null;
+                    }
+                }
+                else if (slotStack.getItem() == Items.ENDER_PEARL)
+                {
+                    if (!this.mergeItemValidSize(slotStack, 2, 3))
+                    {
+                        return null;
+                    }
+                }
+                else if (slotStack.getItem() == Items.DIAMOND)
+                {
+                    if (!this.mergeItemValidSize(slotStack, 3, 4))
                     {
                         return null;
                     }
@@ -99,5 +124,34 @@ public class ContainerShieldGenerator extends Container
             slot.onPickupFromSlot(player, slotStack);
         }
         return itemStack;
+    }
+
+    private boolean mergeItemValidSize(ItemStack itemStack, int startIndex, int endIndex)
+    {
+        boolean flag = false;
+
+        if (itemStack.stackSize > 0)
+        {
+            Slot slot;
+            ItemStack slotStack;
+
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                slot = this.inventorySlots.get(i);
+                slotStack = slot.getStack();
+
+                if (slotStack == null && slot.isItemValid(itemStack))
+                {
+                    ItemStack stackOneItem = itemStack.copy();
+                    stackOneItem.stackSize = slot.getSlotStackLimit();
+                    itemStack.stackSize -= slot.getSlotStackLimit();
+                    slot.putStack(stackOneItem);
+                    slot.onSlotChanged();
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        return flag;
     }
 }

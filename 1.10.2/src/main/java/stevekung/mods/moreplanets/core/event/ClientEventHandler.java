@@ -2,10 +2,7 @@ package stevekung.mods.moreplanets.core.event;
 
 import java.util.*;
 
-import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 
 import com.google.common.collect.ImmutableList;
 
@@ -127,7 +124,7 @@ public class ClientEventHandler
                     e.printStackTrace();
                 }
             }
-            try
+            /*try
             {
                 if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD1))
                 {
@@ -138,7 +135,7 @@ public class ClientEventHandler
                     Display.setDisplayMode(new DisplayMode(854, 480));
                 }
             }
-            catch (LWJGLException e) {}
+            catch (LWJGLException e) {}*/
         }
         if (ClientEventHandler.loadRenderers)
         {

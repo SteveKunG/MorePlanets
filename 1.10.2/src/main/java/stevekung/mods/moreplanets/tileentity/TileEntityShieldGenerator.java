@@ -9,6 +9,7 @@ import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.entities.IBubbleProvider;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
+import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
@@ -19,6 +20,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.entity.projectile.EntityShulkerBullet;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,6 +28,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -33,6 +36,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -56,17 +60,29 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public int facing;
     public int renderTicks;
     public int solarRotate;
-    private ItemStack[] containingItems = new ItemStack[1];
+    private ItemStack[] containingItems = new ItemStack[4];
     @NetworkedField(targetSide = Side.CLIENT)
     public float shieldSize;
     @NetworkedField(targetSide = Side.CLIENT)
+    public float prevShieldSize;
+    @NetworkedField(targetSide = Side.CLIENT)
     public boolean shouldRender = true;
     @NetworkedField(targetSide = Side.CLIENT)
-    public int maxShieldSize = 20;
+    public boolean enableShield = true;
     @NetworkedField(targetSide = Side.CLIENT)
-    public int knockAmount = 5;
+    public boolean enableDamage = true;
     @NetworkedField(targetSide = Side.CLIENT)
-    public int shieldDamage = 10;
+    public int maxShieldSize = 16;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int shieldCapacity;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int maxShieldCapacity = 32000;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int shieldDamage = 8;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int shieldChargeCooldown = 1200;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public boolean needCharged;
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
     private boolean initialize = true;
@@ -140,31 +156,49 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         if (entity instanceof IMob)
         {
-            if (!this.disabled && this.isInRangeOfShield(event.getEntity().getPosition()))
+            if (!this.disabled && this.enableShield && this.shieldCapacity > 0 && this.isInRangeOfShield(event.getEntity().getPosition()))
             {
-                double d4 = entity.getDistance(this.pos.getX(), this.pos.getY(), this.pos.getZ());
-                double d6 = entity.posX - this.pos.getX();
-                double d8 = entity.posY - this.pos.getY();
-                double d10 = entity.posZ - this.pos.getZ();
-                double d11 = MathHelper.sqrt_double(d6 * d6 + d8 * d8 + d10 * d10);
-                d6 /= d11;
-                d8 /= d11;
-                d10 /= d11;
-                double d13 = (0.0D - d4) * this.knockAmount / 10.0D;
-                double d14 = d13;
-                double knockSpeed = 10.0D;
-                entity.motionX -= d6 * d14 / knockSpeed;
-                entity.motionY -= d8 * d14 / knockSpeed;
-                entity.motionZ -= d10 * d14 / knockSpeed;
-
+                if (!this.enableDamage)
+                {
+                    double d4 = entity.getDistance(this.pos.getX(), this.pos.getY(), this.pos.getZ());
+                    double d6 = entity.posX - this.pos.getX();
+                    double d8 = entity.posY - this.pos.getY();
+                    double d10 = entity.posZ - this.pos.getZ();
+                    double d11 = MathHelper.sqrt_double(d6 * d6 + d8 * d8 + d10 * d10);
+                    d6 /= d11;
+                    d8 /= d11;
+                    d10 /= d11;
+                    double d13 = (0.0D - d4) * 2.0D / 10.0D;
+                    double d14 = d13;
+                    double knockSpeed = 10.0D;
+                    entity.motionX -= d6 * d14 / knockSpeed;
+                    entity.motionY -= d8 * d14 / knockSpeed;
+                    entity.motionZ -= d10 * d14 / knockSpeed;
+                }
                 if (this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID)) != null)
                 {
-                    entity.attackEntityFrom(DamageSource.causePlayerDamage(this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID))), this.shieldDamage);
+                    if (entity.ticksExisted % 8 == 0 && this.worldObj instanceof WorldServer)
+                    {
+                        ((WorldServer)this.worldObj).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                    }
+                    if (this.enableDamage)
+                    {
+                        entity.attackEntityFrom(DamageSource.causePlayerDamage(this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID))), this.shieldDamage);
+                    }
                 }
                 else
                 {
-                    entity.attackEntityFrom(DamageSource.generic, this.shieldDamage);
+                    if (entity.ticksExisted % 8 == 0 && this.worldObj instanceof WorldServer)
+                    {
+                        ((WorldServer)this.worldObj).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                    }
+                    if (this.enableDamage)
+                    {
+                        entity.attackEntityFrom(DamageSource.generic, this.shieldDamage);
+                    }
                 }
+                float motion = MathHelper.sqrt_double(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
+                this.shieldCapacity -= motion * 2;
             }
         }
     }
@@ -194,24 +228,47 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         }
         if (!this.worldObj.isRemote)
         {
-            if (this.getEnergyStoredGC() > 0.0F && this.hasEnoughEnergyToRun)
+            if (!this.needCharged && this.shieldCapacity == 0)
             {
-                this.shieldSize += 0.05F;
+                this.needCharged = true;
+                this.shieldChargeCooldown = 1200;
+
+                if (this.shieldChargeCooldown == 0)
+                {
+                    this.shieldCapacity = 100;
+                }
+            }
+            if (!this.disabled && this.getEnergyStoredGC() > 0.0F && this.hasEnoughEnergyToRun)
+            {
+                if (this.shieldSize <= this.maxShieldSize)
+                {
+                    this.shieldSize += 0.1F;
+
+                    if (this.shieldChargeCooldown > 0)
+                    {
+                        this.shieldChargeCooldown--;
+                    }
+                    if (this.shieldChargeCooldown == 0 && this.ticks % 2 == 0)
+                    {
+                        this.shieldCapacity += 100;
+                        this.needCharged = false;
+                    }
+                }
             }
             else
             {
-                this.shieldSize -= 1.0F;
+                this.shieldSize -= 0.1F;
             }
-            this.shieldSize = Math.min(Math.max(this.shieldSize, 0.0F), this.maxShieldSize);
-        }
 
-        if (this.knockAmount > 10)
-        {
-            this.knockAmount = 10;
-        }
-        if (this.knockAmount < 0)
-        {
-            this.knockAmount = 0;
+            if (this.shieldSize <= this.maxShieldSize)
+            {
+                this.shieldSize = Math.min(Math.max(this.shieldSize, 0.0F), this.maxShieldSize);
+            }
+            else
+            {
+                this.shieldSize -= 0.1F;
+            }
+            this.shieldCapacity = Math.min(Math.max(this.shieldCapacity, 0), this.maxShieldCapacity);
         }
 
         float range = this.shieldSize;
@@ -219,24 +276,17 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         for (Entity entity : entitiesMob)
         {
-            if (!this.disabled)
+            if (!this.disabled && this.enableShield && this.shieldCapacity > 0)
             {
                 if (entity instanceof EntityArrow && !(((EntityArrow)entity).shootingEntity instanceof EntityPlayer) && !((EntityArrow)entity).inGround || entity instanceof EntityPotion && !(((EntityPotion)entity).getThrower() instanceof EntityPlayer) || entity instanceof EntityFireball || entity instanceof EntityShulkerBullet)
                 {
-                    double d4 = entity.getDistance(this.pos.getX(), this.pos.getY(), this.pos.getZ());
-                    double d6 = entity.posX - this.pos.getX();
-                    double d8 = entity.posY - this.pos.getY();
-                    double d10 = entity.posZ - this.pos.getZ();
-                    double d11 = MathHelper.sqrt_double(d6 * d6 + d8 * d8 + d10 * d10);
-                    d6 /= d11;
-                    d8 /= d11;
-                    d10 /= d11;
-                    double d13 = (0.0D - d4) * this.knockAmount / 10.0D;
-                    double d14 = d13;
-                    double knockSpeed = 10.0D;
-                    entity.motionX -= d6 * d14 / knockSpeed;
-                    entity.motionY -= d8 * d14 / knockSpeed;
-                    entity.motionZ -= d10 * d14 / knockSpeed;
+                    if (this.worldObj instanceof WorldServer)
+                    {
+                        ((WorldServer)this.worldObj).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                    }
+                    float motion = MathHelper.sqrt_double(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
+                    this.shieldCapacity -= motion * 2;
+                    entity.setDead();
                 }
             }
         }
@@ -305,27 +355,16 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-
-        if (nbt.hasKey("ShieldVisible"))
-        {
-            this.setBubbleVisible(nbt.getBoolean("ShieldVisible"));
-        }
-        if (nbt.hasKey("ShieldSize"))
-        {
-            this.shieldSize = nbt.getFloat("ShieldSize");
-        }
-        if (nbt.hasKey("MaxShieldSize"))
-        {
-            this.maxShieldSize = nbt.getInteger("MaxShieldSize");
-        }
-        if (nbt.hasKey("KnockAmount"))
-        {
-            this.knockAmount = nbt.getInteger("KnockAmount");
-        }
-        if (nbt.hasKey("ShieldDamage"))
-        {
-            this.shieldDamage = nbt.getInteger("ShieldDamage");
-        }
+        this.setBubbleVisible(nbt.getBoolean("ShieldVisible"));
+        this.shieldSize = nbt.getFloat("ShieldSize");
+        this.maxShieldSize = nbt.getInteger("MaxShieldSize");
+        this.shieldDamage = nbt.getInteger("ShieldDamage");
+        this.shieldCapacity = nbt.getInteger("ShieldCapacity");
+        this.maxShieldCapacity = nbt.getInteger("MaxShieldCapacity");
+        this.shieldChargeCooldown = nbt.getInteger("ShieldChargeCooldown");
+        this.needCharged = nbt.getBoolean("NeedCharged");
+        this.enableShield = nbt.getBoolean("EnableShield");
+        this.enableDamage = nbt.getBoolean("EnableDamage");
         this.facing = nbt.getInteger("Facing");
         this.ownerUUID = nbt.getString("OwnerUUID");
 
@@ -351,8 +390,13 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         nbt.setBoolean("ShieldVisible", this.shouldRender);
         nbt.setFloat("ShieldSize", this.shieldSize);
         nbt.setInteger("MaxShieldSize", this.maxShieldSize);
-        nbt.setInteger("KnockAmount", this.knockAmount);
         nbt.setInteger("ShieldDamage", this.shieldDamage);
+        nbt.setInteger("ShieldCapacity", this.shieldCapacity);
+        nbt.setInteger("MaxShieldCapacity", this.maxShieldCapacity);
+        nbt.setInteger("ShieldChargeCooldown", this.shieldChargeCooldown);
+        nbt.setBoolean("NeedCharged", this.needCharged);
+        nbt.setBoolean("EnableShield", this.enableShield);
+        nbt.setBoolean("EnableDamage", this.enableDamage);
         nbt.setInteger("Facing", this.facing);
         NBTTagList list = new NBTTagList();
 
@@ -487,6 +531,18 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemStack)
     {
+        if (slot == 1)
+        {
+            return itemStack.getItem() == Items.REDSTONE;
+        }
+        else if (slot == 2)
+        {
+            return itemStack.getItem() == Items.ENDER_PEARL;
+        }
+        else if (slot == 3)
+        {
+            return itemStack.getItem() == Items.DIAMOND;
+        }
         return slot == 0 && ItemElectricBase.isElectricItem(itemStack.getItem());
     }
 
@@ -570,6 +626,27 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public void setFacing(int facing)
     {
         this.facing = facing;
+    }
+
+    public String getStatus()
+    {
+        if (this.getEnergyStoredGC() == 0)
+        {
+            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.missingpower.name");
+        }
+        if (this.getDisabled(0))
+        {
+            return EnumColor.ORANGE + GCCoreUtil.translate("gui.status.ready.name");
+        }
+        if (this.getEnergyStoredGC() < this.storage.getMaxExtract())
+        {
+            return EnumColor.ORANGE + GCCoreUtil.translate("gui.status.missingpower.name");
+        }
+        if (this.needCharged)
+        {
+            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.shield_charging.name");
+        }
+        return EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.status.active.name");
     }
 
     private boolean isInRangeOfShield(BlockPos pos)

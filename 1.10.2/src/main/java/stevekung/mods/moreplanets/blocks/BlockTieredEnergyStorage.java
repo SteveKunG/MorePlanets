@@ -165,7 +165,16 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, this.getMetaFromState(state));
+        int meta = this.getMetaFromState(state);
+
+        if (meta >= 0 && meta <= 3)
+        {
+            return new ItemStack(this, 1, 0);
+        }
+        else
+        {
+            return new ItemStack(this, 1, 4);
+        }
     }
 
     @Override

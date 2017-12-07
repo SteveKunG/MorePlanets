@@ -63,6 +63,7 @@ public class ConfigManagerMP
     public static int idBaseSchematic;
     public static int idBaseRocketSchematicGui;
     public static int idBaseSchematicGui;
+    public static boolean enableDescriptionInWaila;
 
     // GC-Addon Compatibility stuffs
     public static boolean enableTier4RocketSchematic;
@@ -329,6 +330,10 @@ public class ConfigManagerMP
 
         prop = ConfigManagerMP.config.get(ConfigManagerMP.OTHERS, "Base Schematic GUI ID", 550);
         ConfigManagerMP.idBaseSchematicGui = prop.getInt();
+        propOrder.add(prop.getName());
+
+        prop = ConfigManagerMP.config.get(ConfigManagerMP.OTHERS, "Enable Description in Waila Tooltip", true);
+        ConfigManagerMP.enableDescriptionInWaila = prop.getBoolean();
         propOrder.add(prop.getName());
         return propOrder;
     }

@@ -38,6 +38,11 @@ add option other player can use bh storage
 fix boss bar sometime not work
 fall block dust color
 
+shield generator upgrade
+- damage upgrade 8
+- size upgrade max 10
+- capacity upgrade 4
+
 1.10.2
 villager profession rewrite
 nibiru biome gen fix

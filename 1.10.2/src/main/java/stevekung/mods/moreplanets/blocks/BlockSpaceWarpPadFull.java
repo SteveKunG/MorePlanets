@@ -158,7 +158,6 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
 
                 if (tile instanceof TileEntitySpaceWarpPadFull)
                 {
-                    ItemStack itemStack = player.inventory.getCurrentItem();
                     TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull) tile;
                     JsonUtil json = new JsonUtil();
 

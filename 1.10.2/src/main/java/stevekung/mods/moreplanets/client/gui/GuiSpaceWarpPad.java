@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
-import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
@@ -19,12 +17,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.inventory.ContainerSpaceWarpPad;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
+import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
 
-public class GuiSpaceWarpPad extends GuiContainerGC
+public class GuiSpaceWarpPad extends GuiContainerMP
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/space_warp_pad.png");
     private final TileEntitySpaceWarpPadFull tile;
-    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 112, (this.height - this.ySize) / 2 + 37, 56, 9, new ArrayList<>(), this.width, this.height, this);
+    private GuiElementInfoRegionMP electricInfoRegion;
     private GuiButton buttonEnable;
 
     public GuiSpaceWarpPad(InventoryPlayer inv, TileEntitySpaceWarpPadFull tile)
@@ -52,8 +52,8 @@ public class GuiSpaceWarpPad extends GuiContainerGC
         List<String> batterySlotDesc = new ArrayList<>();
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 7, (this.height - this.ySize) / 2 + 23, 9, 57, new ArrayList<>(), this.width, this.height, this);
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 21, (this.height - this.ySize) / 2 + 71, 18, 18, batterySlotDesc, this.width, this.height, this));
+        this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 7, (this.height - this.ySize) / 2 + 23, 9, 57, new ArrayList<>(), this.width, this.height, this);
+        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 21, (this.height - this.ySize) / 2 + 71, 18, 18, batterySlotDesc, this.width, this.height, this));
         this.infoRegions.add(this.electricInfoRegion);
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 45, this.height / 2 - 16, 72, 20, !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name")));
     }

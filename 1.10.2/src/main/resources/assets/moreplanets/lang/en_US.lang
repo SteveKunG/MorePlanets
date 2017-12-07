@@ -638,6 +638,19 @@ gui.status.empty.name=Empty
 gui.status.dimension.name=Dimension
 gui.status.name.name=Name
 gui.status.destination.name=Destination
+gui.status.destruct.name=Destruct in
+gui.status.process.name=Process
+gui.status.transform_time.name=Transform Time
+gui.status.shield_capacity.name=Shield Capacity
+gui.status.shield_charge_cooldown.name=Charge Cooldown
+gui.status.shield_charging.name=Charging...
+gui.status.settings.name=Settings
+gui.status.config_save.name=Configuration saved!
+gui.status.owner.name=Owner
+gui.status.mode.name=Mode
+
+# GUI BUTTON
+gui.button.config.name=Config
 
 # GUI MESSAGE
 gui.place_only_space.message=Space Warp Pad can be placed only in the Space or Overworld dimension!
@@ -665,8 +678,8 @@ gui.use_hopper.desc=Use Hopper
 gui.collect_mode.desc=Collect Mode
 gui.xp_value.desc=XP
 gui.shield_visible.desc=Shield Visible
-gui.increase_knock.desc=Increase Knock
-gui.decrease_knock.desc=Decrease Knock
+gui.enable_shield.desc=Enable Shield
+gui.enable_shield_damage.desc=Enable Damage
 item.record.a_planet_to_conquer.desc=Phil Rey - A planet to conquer
 
 # GUI DEATH MESSAGE

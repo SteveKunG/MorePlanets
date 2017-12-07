@@ -8,6 +8,7 @@ import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
+import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.player.EntityPlayer;
@@ -382,5 +383,30 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     public ITextComponent getDisplayName()
     {
         return new TextComponentTranslation(this.getName());
+    }
+
+    public String getStatus()
+    {
+        if (this.getDisabled(0))
+        {
+            return EnumColor.ORANGE + GCCoreUtil.translate("gui.status.disabled.name");
+        }
+        if (this.missingTank && this.missingWaste)
+        {
+            return EnumColor.RED + GCCoreUtil.translate("gui.status.waste_and_tank_depleted.name");
+        }
+        if (this.missingTank)
+        {
+            return EnumColor.RED + GCCoreUtil.translate("gui.status.waste_tank_depleted.name");
+        }
+        if (this.missingWaste)
+        {
+            return EnumColor.RED + GCCoreUtil.translate("gui.status.waste_depleted.name");
+        }
+        if (this.generateTick > 0)
+        {
+            return EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.status.collectingenergy.name");
+        }
+        return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.no_waste_sources.name");
     }
 }

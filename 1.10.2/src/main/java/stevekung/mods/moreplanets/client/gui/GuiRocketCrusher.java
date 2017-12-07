@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
-import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -16,15 +14,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.inventory.ContainerRocketCrusher;
 import stevekung.mods.moreplanets.tileentity.TileEntityRocketCrusher;
+import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
 
 @SideOnly(Side.CLIENT)
-public class GuiRocketCrusher extends GuiContainerGC
+public class GuiRocketCrusher extends GuiContainerMP
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/rocket_crusher.png");
     private final TileEntityRocketCrusher tile;
-    private GuiElementInfoRegion electricInfoRegion;
-    private GuiElementInfoRegion processInfoRegion;
-    private GuiElementInfoRegion batteryInfoRegion;
+    private GuiElementInfoRegionMP electricInfoRegion;
+    private GuiElementInfoRegionMP processInfoRegion;
+    private GuiElementInfoRegionMP batteryInfoRegion;
 
     public GuiRocketCrusher(InventoryPlayer inv, TileEntityRocketCrusher tile)
     {
@@ -37,9 +37,9 @@ public class GuiRocketCrusher extends GuiContainerGC
     public void initGui()
     {
         super.initGui();
-        this.electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 6, (this.height - this.ySize) / 2 + 31, 9, 57, new ArrayList<>(), this.width, this.height, this);
-        this.batteryInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 18, (this.height - this.ySize) / 2 + 79, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.battery_slot.desc.0"), GCCoreUtil.translate("gui.battery_slot.desc.1")), this.width, this.height, this);
-        this.processInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 30, 52, 25, new ArrayList<>(), this.width, this.height, this);
+        this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 6, (this.height - this.ySize) / 2 + 31, 9, 57, new ArrayList<>(), this.width, this.height, this);
+        this.batteryInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 18, (this.height - this.ySize) / 2 + 79, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.battery_slot.desc.0"), GCCoreUtil.translate("gui.battery_slot.desc.1")), this.width, this.height, this);
+        this.processInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 30, 52, 25, new ArrayList<>(), this.width, this.height, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.infoRegions.add(this.batteryInfoRegion);
         this.infoRegions.add(this.processInfoRegion);

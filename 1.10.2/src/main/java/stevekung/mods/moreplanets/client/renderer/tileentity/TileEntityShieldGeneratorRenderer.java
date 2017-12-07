@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
+import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -81,7 +82,9 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
             GlStateManager.depthMask(false);
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
             GlStateManager.scale(tile.getBubbleSize(), tile.getBubbleSize(), tile.getBubbleSize());
-            ClientUtil.drawBakedModel(this.shield);
+            int capacity = tile.shieldCapacity * 171 / tile.maxShieldCapacity;
+            int color = ColorUtil.to32BitColor(capacity + 84, 255, 255, 255);
+            ClientUtil.drawBakedModelColored(this.shield, color);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.matrixMode(5890);
             GlStateManager.depthMask(true);
@@ -99,7 +102,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow1.png"));
         this.model.renderBase();
         GlStateManager.pushMatrix();
-        GlStateManager.rotate(tile.hasEnoughEnergyToRun ? partialTicks + tile.solarRotate : tile.solarRotate, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(tile.hasEnoughEnergyToRun && !tile.disabled ? partialTicks + tile.solarRotate : tile.solarRotate, 0.0F, 1.0F, 0.0F);
         this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow1.png"));
         this.model.renderRod();
         GlStateManager.popMatrix();
@@ -109,7 +112,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow2.png"));
         this.model.renderBase();
         GlStateManager.pushMatrix();
-        GlStateManager.rotate(tile.hasEnoughEnergyToRun ? partialTicks + tile.solarRotate : tile.solarRotate, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(tile.hasEnoughEnergyToRun && !tile.disabled ? partialTicks + tile.solarRotate : tile.solarRotate, 0.0F, 1.0F, 0.0F);
         this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow2.png"));
         this.model.renderRod();
         GlStateManager.popMatrix();
@@ -118,7 +121,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
         this.bindTexture(TileEntityShieldGeneratorRenderer.texture);
         this.model.renderBase();
-        GlStateManager.rotate(tile.hasEnoughEnergyToRun ? partialTicks + tile.solarRotate : tile.solarRotate, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(tile.hasEnoughEnergyToRun && !tile.disabled ? partialTicks + tile.solarRotate : tile.solarRotate, 0.0F, 1.0F, 0.0F);
         this.model.renderRod();
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);

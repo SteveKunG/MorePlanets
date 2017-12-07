@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
-import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
@@ -19,13 +17,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.module.planets.diona.inventory.ContainerDarkEnergyGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
+import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
 
-public class GuiDarkEnergyGenerator extends GuiContainerGC
+public class GuiDarkEnergyGenerator extends GuiContainerMP
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/dark_energy_generator.png");
     private final TileEntityDarkEnergyGenerator tile;
     private GuiButton buttonEnable;
-    private GuiElementInfoRegion electricInfoRegion;
+    private GuiElementInfoRegionMP electricInfoRegion;
 
     public GuiDarkEnergyGenerator(InventoryPlayer invPlayer, TileEntityDarkEnergyGenerator tile)
     {
@@ -53,10 +53,10 @@ public class GuiDarkEnergyGenerator extends GuiContainerGC
         List<String> electricityDesc = new ArrayList<>();
         electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
         electricityDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC())));
-        this.electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 51, (this.height - this.ySize) / 2 + 24, 54, 9, electricityDesc, this.width, this.height, this);
+        this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 51, (this.height - this.ySize) / 2 + 24, 54, 9, electricityDesc, this.width, this.height, this);
         this.infoRegions.add(this.electricInfoRegion);
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 7, (this.height - this.ySize) / 2 + 84, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.battery_slot.desc.0"), GCCoreUtil.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 25, (this.height - this.ySize) / 2 + 84, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.battery_slot.desc.0"), GCCoreUtil.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 7, (this.height - this.ySize) / 2 + 84, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.battery_slot.desc.0"), GCCoreUtil.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 25, (this.height - this.ySize) / 2 + 84, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.battery_slot.desc.0"), GCCoreUtil.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 + 5, this.height / 2 - 18, 72, 20, !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name")));
         this.buttonEnable.enabled = this.tile.disableCooldown == 0;
     }

@@ -37,10 +37,10 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     public void drawInfo(Minecraft mc, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
     {
         int time = this.time / 20;
-        String text = "Time : " + time + "s * Count";
+        String text = "Transform Time : " + time + "s * Count";
         FontRenderer fontRendererObj = mc.fontRendererObj;
-        int width = fontRendererObj.getStringWidth(text);
-        mc.fontRendererObj.drawString(text, recipeWidth - 18 - width, 38, Color.gray.getRGB());
+        int width = fontRendererObj.getStringWidth(text) / 2;
+        mc.fontRendererObj.drawString(text, recipeWidth - 60 - width, 38, Color.gray.getRGB());
     }
 
     @Override

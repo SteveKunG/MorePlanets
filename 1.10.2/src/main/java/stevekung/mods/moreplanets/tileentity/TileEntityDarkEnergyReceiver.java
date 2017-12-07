@@ -34,6 +34,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -748,6 +749,23 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         if (this.getEnergyStoredGC() < this.storage.getMaxExtract())
         {
             return EnumColor.ORANGE + GCCoreUtil.translate("gui.status.missingpower.name");
+        }
+        return EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.status.active.name");
+    }
+
+    public String getGuiStatusWaila()
+    {
+        if (this.successful)
+        {
+            return TextFormatting.GREEN + GCCoreUtil.translate("gui.status.dark_energy_core_created.name");
+        }
+        if (this.getEnergyStoredGC() == 0)
+        {
+            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.dark_energy_offline.name");
+        }
+        if (this.getDisabled(0))
+        {
+            return EnumColor.ORANGE + GCCoreUtil.translate("gui.status.ready.name");
         }
         return EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.status.active.name");
     }
