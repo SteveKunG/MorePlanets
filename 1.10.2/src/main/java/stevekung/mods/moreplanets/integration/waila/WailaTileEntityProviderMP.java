@@ -82,7 +82,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
 
             if (type == BlockDummy.BlockType.DARK_ENERGY_SOLAR1 || type == BlockDummy.BlockType.DARK_ENERGY_SOLAR2 || type == BlockDummy.BlockType.DARK_ENERGY_SOLAR3 || type == BlockDummy.BlockType.DARK_ENERGY_SOLAR4)
             {
-                int process = nbt.getInteger("ActivatedTick");
+                int process = nbt.getInteger("ActivatedTick") * 100 / 12000;
                 int destruct = nbt.getInteger("FailedTick");
 
                 if (destruct > 0)
@@ -97,7 +97,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
 
                 if (process > 0 && process < 100)
                 {
-                    tooltip.add("Process: " + TextFormatting.DARK_GREEN + process * 100 / 12000 + "%");
+                    tooltip.add("Process: " + process + "%");
                 }
             }
             if (type == BlockDummy.BlockType.WARP_PAD)
@@ -140,7 +140,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         // tile
         if (tile instanceof TileEntityDarkEnergyReceiver)
         {
-            int process = nbt.getInteger("ActivatedTick");
+            int process = nbt.getInteger("ActivatedTick") * 100 / 12000;
             int destruct = nbt.getInteger("FailedTick");
 
             if (destruct > 0)
@@ -153,9 +153,9 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
             }
 
-            if (process > 0)
+            if (process > 0 && process < 100)
             {
-                tooltip.add(GCCoreUtil.translate("gui.status.process.name") + ": " + process * 100 / ((TileEntityDarkEnergyReceiver)tile).getSuccessfulTick() + "%");
+                tooltip.add(GCCoreUtil.translate("gui.status.process.name") + ": " + process + "%");
             }
         }
         if (tile instanceof TileEntityDarkEnergyCore)
