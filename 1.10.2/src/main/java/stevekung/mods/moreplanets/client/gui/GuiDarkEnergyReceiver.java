@@ -57,7 +57,12 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
         this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 31, (this.height - this.ySize) / 2 + 26, 18, 18, batterySlotDesc, this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 155, (this.height - this.ySize) / 2 + 87, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.receiver_render_guide.desc")), this.width, this.height, this));
+
+        if (!this.tile.successful && !this.tile.activated)
+        {
+            this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 155, (this.height - this.ySize) / 2 + 87, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.receiver_render_guide.desc")), this.width, this.height, this));
+        }
+
         this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 107, (this.height - this.ySize) / 2 + 31, 56, 9, new ArrayList<>(), this.width, this.height, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 36, this.height / 2 - 19, 72, 20, !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name")));
@@ -65,7 +70,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
         int width = (this.width - this.xSize) / 2;
         int height = (this.height - this.ySize) / 2;
         this.checkboxRender = new GuiElementCheckbox(1, this, width + 155, height + 87, "");
-        this.checkboxRender.enabled = !this.tile.successful && !this.tile.activated;
+        this.checkboxRender.visible = !this.tile.successful && !this.tile.activated;
         this.buttonList.add(this.checkboxRender);
     }
 
