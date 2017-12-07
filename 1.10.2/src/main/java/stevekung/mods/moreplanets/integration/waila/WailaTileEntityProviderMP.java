@@ -153,9 +153,9 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
             }
 
-            if (process > 0 && process < 100)
+            if (process > 0)
             {
-                tooltip.add(GCCoreUtil.translate("gui.status.process.name") + ": " + TextFormatting.DARK_GREEN + process * 100 / ((TileEntityDarkEnergyReceiver)tile).getSuccessfulTick() + "%");
+                tooltip.add(GCCoreUtil.translate("gui.status.process.name") + ": " + process * 100 / ((TileEntityDarkEnergyReceiver)tile).getSuccessfulTick() + "%");
             }
         }
         if (tile instanceof TileEntityDarkEnergyCore)
