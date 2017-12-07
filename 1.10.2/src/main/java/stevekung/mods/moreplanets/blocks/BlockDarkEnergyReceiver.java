@@ -79,14 +79,13 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
 
         if (tile instanceof TileEntityDarkEnergyReceiver)
         {
-            ItemStack itemStack = new ItemStack(this);
             TileEntityDarkEnergyReceiver energy = (TileEntityDarkEnergyReceiver) world.getTileEntity(pos);
             energy.onCreate(world, pos);
             energy.setFacing(direction);
 
-            if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
+            if (heldStack.hasTagCompound() && heldStack.getTagCompound().hasKey("EnergyStored"))
             {
-                energy.storage.setEnergyStored(itemStack.getTagCompound().getFloat("EnergyStored"));
+                energy.storage.setEnergyStored(heldStack.getTagCompound().getFloat("EnergyStored"));
             }
         }
     }
@@ -94,6 +93,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
     @Override
     public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
     {
+        ItemStack machine = new ItemStack(this);
         player.addExhaustion(0.025F);
 
         if (tile instanceof TileEntityDarkEnergyReceiver)
@@ -102,12 +102,12 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
 
             if (electric.getEnergyStoredGC() > 0)
             {
-                itemStack.setTagCompound(new NBTTagCompound());
-                itemStack.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
+                machine.setTagCompound(new NBTTagCompound());
+                machine.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
             }
             if (!electric.successful && !electric.failed)
             {
-                Block.spawnAsEntity(world, pos, itemStack);
+                Block.spawnAsEntity(world, pos, machine);
             }
         }
     }
