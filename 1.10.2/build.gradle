@@ -69,7 +69,7 @@ curseforge {
     apiKey = api.more_planets
     project {
         id = '261990'
-        changelog = 'To read full change log use command /mpchangelog in-game.\n\n or follow this link: https://raw.githubusercontent.com/SteveKunG/MorePlanets/master/' + mcVersion + '/src/main/resources/assets/moreplanets/change_log.txt'
+        changelog = 'To read full change log use command /mpchangelog in-game.\n\n or following by this link: https://discord.gg/5KDqYh2'
         releaseType = 'release'
         addGameVersion mcVersion
 
