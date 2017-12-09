@@ -86,9 +86,11 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
     private boolean initialize = true;
+    private static ShieldEvent EVENT;
 
     public TileEntityShieldGenerator()
     {
+        EVENT = new ShieldEvent(this);
         this.storage.setMaxExtract(250);
         this.storage.setCapacity(100000.0F);
     }
@@ -100,7 +102,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         if (!this.worldObj.isRemote)
         {
-            MinecraftForge.EVENT_BUS.unregister(this);
+            MinecraftForge.EVENT_BUS.unregister(TileEntityShieldGenerator.EVENT);
         }
     }
 
@@ -111,7 +113,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         if (!this.worldObj.isRemote)
         {
-            MinecraftForge.EVENT_BUS.unregister(this);
+            MinecraftForge.EVENT_BUS.unregister(TileEntityShieldGenerator.EVENT);
         }
     }
 
@@ -120,86 +122,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     {
         if (!this.worldObj.isRemote)
         {
-            MinecraftForge.EVENT_BUS.register(this);
-        }
-    }
-
-    @SubscribeEvent
-    public void onLivingSpawn(LivingSpawnEvent.CheckSpawn event)
-    {
-        if (event.getResult() == Result.ALLOW) //TODO Check spawner
-        {
-            return;
-        }
-        if (this.worldObj != null && !this.worldObj.isRemote)
-        {
-            if (!this.disabled && this.isInRangeOfShield(event.getEntity().getPosition()))
-            {
-                event.setResult(Result.DENY);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onEnderTeleport(EnderTeleportEvent event)
-    {
-        if (!this.disabled && this.isInRangeOfShield(event.getEntity().getPosition()))
-        {
-            event.setCanceled(true);
-        }
-    }
-
-    @SubscribeEvent
-    public void onLivingUpdate(LivingUpdateEvent event)
-    {
-        Entity entity = event.getEntity();
-
-        if (entity instanceof IMob)
-        {
-            if (!this.disabled && this.enableShield && this.shieldCapacity > 0 && this.isInRangeOfShield(event.getEntity().getPosition()))
-            {
-                if (!this.enableDamage)
-                {
-                    double d4 = entity.getDistance(this.pos.getX(), this.pos.getY(), this.pos.getZ());
-                    double d6 = entity.posX - this.pos.getX();
-                    double d8 = entity.posY - this.pos.getY();
-                    double d10 = entity.posZ - this.pos.getZ();
-                    double d11 = MathHelper.sqrt_double(d6 * d6 + d8 * d8 + d10 * d10);
-                    d6 /= d11;
-                    d8 /= d11;
-                    d10 /= d11;
-                    double d13 = (0.0D - d4) * 2.0D / 10.0D;
-                    double d14 = d13;
-                    double knockSpeed = 10.0D;
-                    entity.motionX -= d6 * d14 / knockSpeed;
-                    entity.motionY -= d8 * d14 / knockSpeed;
-                    entity.motionZ -= d10 * d14 / knockSpeed;
-                }
-                if (this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID)) != null)
-                {
-                    if (entity.ticksExisted % 8 == 0 && this.worldObj instanceof WorldServer)
-                    {
-                        ((WorldServer)this.worldObj).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                    }
-                    if (this.enableDamage)
-                    {
-                        entity.attackEntityFrom(DamageSource.causePlayerDamage(this.worldObj.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID))), this.shieldDamage);
-                    }
-                }
-                else
-                {
-                    if (entity.ticksExisted % 8 == 0 && this.worldObj instanceof WorldServer)
-                    {
-                        ((WorldServer)this.worldObj).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                    }
-                    if (this.enableDamage)
-                    {
-                        entity.attackEntityFrom(DamageSource.generic, this.shieldDamage);
-                    }
-                }
-                float motion = MathHelper.sqrt_double(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
-                this.shieldCapacity -= motion * 2;
-            }
+            MinecraftForge.EVENT_BUS.register(TileEntityShieldGenerator.EVENT);
         }
     }
 
@@ -649,7 +572,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         return EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.status.active.name");
     }
 
-    private boolean isInRangeOfShield(BlockPos pos)
+    protected boolean isInRangeOfShield(BlockPos pos)
     {
         double dx = this.pos.getX() + 0.5D - pos.getX();
         double dy = Math.abs(this.pos.getY() + 0.5D - pos.getY());
@@ -660,5 +583,94 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             return true;
         }
         return false;
+    }
+
+    public static class ShieldEvent
+    {
+        private TileEntityShieldGenerator tile;
+
+        public ShieldEvent(TileEntityShieldGenerator tile)
+        {
+            this.tile = tile;
+        }
+
+        @SubscribeEvent
+        public void onLivingSpawn(LivingSpawnEvent.CheckSpawn event)
+        {
+            if (event.getResult() == Result.ALLOW) //TODO Check spawner
+            {
+                return;
+            }
+            if (this.tile.worldObj != null && !this.tile.worldObj.isRemote)
+            {
+                if (!this.tile.disabled && this.tile.isInRangeOfShield(event.getEntity().getPosition()))
+                {
+                    event.setResult(Result.DENY);
+                }
+            }
+        }
+
+        @SubscribeEvent
+        public void onEnderTeleport(EnderTeleportEvent event)
+        {
+            if (!this.tile.disabled && this.tile.isInRangeOfShield(event.getEntity().getPosition()))
+            {
+                event.setCanceled(true);
+            }
+        }
+
+        @SubscribeEvent
+        public void onLivingUpdate(LivingUpdateEvent event)
+        {
+            Entity entity = event.getEntity();
+
+            if (entity instanceof IMob)
+            {
+                if (!this.tile.disabled && this.tile.enableShield && this.tile.shieldCapacity > 0 && this.tile.isInRangeOfShield(event.getEntity().getPosition()))
+                {
+                    if (!this.tile.enableDamage)
+                    {
+                        double d4 = entity.getDistance(this.tile.pos.getX(), this.tile.pos.getY(), this.tile.pos.getZ());
+                        double d6 = entity.posX - this.tile.pos.getX();
+                        double d8 = entity.posY - this.tile.pos.getY();
+                        double d10 = entity.posZ - this.tile.pos.getZ();
+                        double d11 = MathHelper.sqrt_double(d6 * d6 + d8 * d8 + d10 * d10);
+                        d6 /= d11;
+                        d8 /= d11;
+                        d10 /= d11;
+                        double d13 = (0.0D - d4) * 2.0D / 10.0D;
+                        double d14 = d13;
+                        double knockSpeed = 10.0D;
+                        entity.motionX -= d6 * d14 / knockSpeed;
+                        entity.motionY -= d8 * d14 / knockSpeed;
+                        entity.motionZ -= d10 * d14 / knockSpeed;
+                    }
+                    if (this.tile.worldObj.getPlayerEntityByUUID(UUID.fromString(this.tile.ownerUUID)) != null)
+                    {
+                        if (entity.ticksExisted % 8 == 0 && this.tile.worldObj instanceof WorldServer)
+                        {
+                            ((WorldServer)this.tile.worldObj).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                        }
+                        if (this.tile.enableDamage)
+                        {
+                            entity.attackEntityFrom(DamageSource.causePlayerDamage(this.tile.worldObj.getPlayerEntityByUUID(UUID.fromString(this.tile.ownerUUID))), this.tile.shieldDamage);
+                        }
+                    }
+                    else
+                    {
+                        if (entity.ticksExisted % 8 == 0 && this.tile.worldObj instanceof WorldServer)
+                        {
+                            ((WorldServer)this.tile.worldObj).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                        }
+                        if (this.tile.enableDamage)
+                        {
+                            entity.attackEntityFrom(DamageSource.generic, this.tile.shieldDamage);
+                        }
+                    }
+                    float motion = MathHelper.sqrt_double(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
+                    this.tile.shieldCapacity -= motion * 2;
+                }
+            }
+        }
     }
 }
