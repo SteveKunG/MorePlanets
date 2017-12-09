@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.tileentity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,8 +76,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public boolean rendered;
     public float solarRotate;
     public float rodUp;
-    private ArrayList<BlockPos> posList = new ArrayList<>();
-    private ArrayList<BlockPos> obsidianPosList = new ArrayList<>();
     public static final Map<BlockPos, IBlockState> multiBlockLists = new HashMap<>();
 
     static
