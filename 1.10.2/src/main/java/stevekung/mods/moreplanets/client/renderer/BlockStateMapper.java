@@ -57,6 +57,7 @@ public class BlockStateMapper
         ClientRegisterHelper.registerStateMapper(DionaBlocks.GLOWING_IRON_BLOCK, new StateMapperCTM());
         ClientRegisterHelper.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS, new StateMapperCTM());
         ClientRegisterHelper.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZE_WEB, new StateMapperCTM());
+        ClientRegisterHelper.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZE_PART, new StateMapperCTM());
         ClientRegisterHelper.registerStateMapper(NibiruBlocks.SPORELILY, new StateMapperCTM());
         ClientRegisterHelper.registerStateMapper(NibiruBlocks.NIBIRU_FLOWER, new StateMapperCTM());
     }
