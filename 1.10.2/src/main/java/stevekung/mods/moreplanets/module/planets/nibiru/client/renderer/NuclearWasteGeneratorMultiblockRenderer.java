@@ -28,6 +28,7 @@ public class NuclearWasteGeneratorMultiblockRenderer
         renderTank(x - 3, y, z);
 
         GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 1, y - 1, z);
