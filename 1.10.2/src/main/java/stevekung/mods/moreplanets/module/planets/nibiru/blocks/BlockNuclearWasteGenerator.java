@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -15,6 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.ItemDescription;
 import stevekung.mods.moreplanets.util.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
@@ -73,6 +76,19 @@ public class BlockNuclearWasteGenerator extends BlockTileMP implements IBlockDes
             }
             Block.spawnAsEntity(world, pos, itemStack);
         }
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        TileEntity tile = world.getTileEntity(pos);
+
+        if (tile instanceof TileEntityNuclearWasteGenerator)
+        {
+            TileEntityNuclearWasteGenerator generator = (TileEntityNuclearWasteGenerator) tile;
+            GalacticraftCore.packetPipeline.sendToDimension(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_GENERATOR_GUIDE_POS, world.provider.getDimension(), generator.getPos()), world.provider.getDimension());
+        }
+        super.breakBlock(world, pos, state);
     }
 
     @Override

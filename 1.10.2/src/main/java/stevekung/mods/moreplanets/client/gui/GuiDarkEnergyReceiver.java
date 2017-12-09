@@ -60,7 +60,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
 
         if (!this.tile.successful && !this.tile.activated)
         {
-            this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 155, (this.height - this.ySize) / 2 + 87, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.receiver_render_guide.desc")), this.width, this.height, this));
+            this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 155, (this.height - this.ySize) / 2 + 87, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.multiblock_guide.desc")), this.width, this.height, this));
         }
 
         this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 107, (this.height - this.ySize) / 2 + 31, 56, 9, new ArrayList<>(), this.width, this.height, this);

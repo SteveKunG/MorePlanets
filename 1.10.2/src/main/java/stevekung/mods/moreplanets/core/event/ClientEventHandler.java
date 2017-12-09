@@ -57,6 +57,7 @@ import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.FakeAlienBeamRenderer;
 import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.NuclearWasteGeneratorMultiblockRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
@@ -75,6 +76,7 @@ public class ClientEventHandler
     private int loadRendererTick = 30;
     private int partialTicks;
     public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
+    public static final List<BlockPos> wasteRenderPos = new ArrayList<>();
     public static final List<String> entityId = new ArrayList<>();
     public static final Set<IMorePlanetsBoss> bossList = Collections.newSetFromMap(new WeakHashMap<>());
     private static final ResourceLocation BOSS_BAR = new ResourceLocation("moreplanets:textures/gui/boss_bars.png");
@@ -97,6 +99,16 @@ public class ClientEventHandler
                 GlStateManager.pushMatrix();
                 GlStateManager.blendFunc(770, 771);
                 DarkEnergyReceiverMultiblockRenderer.render(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ);
+                GlStateManager.popMatrix();
+            }
+        }
+        if (!ClientEventHandler.wasteRenderPos.isEmpty())
+        {
+            for (BlockPos renderPos : ClientEventHandler.wasteRenderPos)
+            {
+                GlStateManager.pushMatrix();
+                GlStateManager.blendFunc(770, 771);
+                NuclearWasteGeneratorMultiblockRenderer.render(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ);
                 GlStateManager.popMatrix();
             }
         }

@@ -1,6 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.tileentity;
 
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import micdoodle8.mods.galacticraft.api.tile.IDisableableMachine;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
@@ -11,6 +13,7 @@ import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ISidedInventory;
@@ -42,6 +45,30 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean missingWaste;
     private int alertTick;
+    public static final Map<BlockPos, IBlockState> multiBlockLists = new HashMap<>();
+
+    static
+    {
+        multiBlockLists.put(new BlockPos(1, -1, 0), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(1, -1, 1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(1, -1, -1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-1, -1, -1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-1, -1, 1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-1, -1, 0), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(0, -1, 1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(0, -1, -1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+
+        multiBlockLists.put(new BlockPos(3, 0, 0), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(2, 0, 2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(2, 0, -2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+
+        multiBlockLists.put(new BlockPos(-3, 0, 0), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-2, 0, -2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-2, 0, 2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+
+        multiBlockLists.put(new BlockPos(0, 0, 3), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(0, 0, -3), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+    }
 
     public TileEntityNuclearWasteGenerator()
     {

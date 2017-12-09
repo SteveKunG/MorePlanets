@@ -129,6 +129,10 @@ public class PacketSimpleMP extends PacketBase
                 player.openContainer.windowId = (Integer) this.data.get(1);
             }
             break;
+        case C_REMOVE_GENERATOR_GUIDE_POS:
+            pos = (BlockPos) this.data.get(0);
+            ClientEventHandler.wasteRenderPos.remove(pos);
+            break;
         default:
             break;
         }
@@ -276,7 +280,8 @@ public class PacketSimpleMP extends PacketBase
         C_REMOVE_ENTITY_ID(Side.CLIENT, String.class),
         C_REMOVE_GUIDE_POS(Side.CLIENT, BlockPos.class),
         C_RELOAD_RENDERER(Side.CLIENT),
-        C_SWITCH_SHIELD_GENERATOR_GUI(Side.CLIENT, BlockPos.class, Integer.class, Boolean.class);
+        C_SWITCH_SHIELD_GENERATOR_GUI(Side.CLIENT, BlockPos.class, Integer.class, Boolean.class),
+        C_REMOVE_GENERATOR_GUIDE_POS(Side.CLIENT, BlockPos.class);
 
         private Side targetSide;
         private Class[] decodeAs;

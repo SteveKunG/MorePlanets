@@ -672,7 +672,7 @@ gui.target_too_far.message=Target is too far away %s blocks!
 gui.not_air_block.message=Target is not air block!
 
 # GUI DESCRIPTION
-gui.receiver_render_guide.desc=Receiver Placing Guide
+gui.multiblock_guide.desc=Multiblock Structure Guide
 gui.disable_black_hole.desc=Disable Black Hole
 gui.use_hopper.desc=Use Hopper
 gui.collect_mode.desc=Collect Mode
