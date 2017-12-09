@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -12,6 +13,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -27,9 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
@@ -126,18 +126,24 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                 if (world.getTileEntity(pos) instanceof TileEntityDarkEnergyReceiver)
                 {
                     TileEntityDarkEnergyReceiver tile = (TileEntityDarkEnergyReceiver) world.getTileEntity(pos);
-                    boolean flag = tile.successful || tile.failed;
+                    if (TileEntityDarkEnergyReceiver.checkValidMultiblock(pos, world))
+                    {
+                        for (Map.Entry<BlockPos, IBlockState> list : TileEntityDarkEnergyReceiver.multiBlockLists.entrySet())
+                        {
+                            BlockPos blockpos = list.getKey();
+                            IBlockState blockstate = list.getValue();
+                            BlockPos newPos = pos.add(blockpos);
+                            JsonUtil json = new JsonUtil();
 
-                    if (this.checkBlock(world, pos.down().north(), player, DionaBlocks.ZELIUS_EGG.getDefaultState(), flag) && this.checkBlock(world, pos.down().south(), player, DionaBlocks.ZELIUS_EGG.getDefaultState(), flag)
-                            && this.checkBlock(world, pos.down().east(), player, DionaBlocks.ZELIUS_EGG.getDefaultState(), flag) && this.checkBlock(world, pos.down().west(), player, DionaBlocks.ZELIUS_EGG.getDefaultState(), flag) && this.checkBlock(world, pos.down().down().north(), player, DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState(), flag)
-                            && this.checkBlock(world, pos.down().down().south(), player, DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState(), flag) && this.checkBlock(world, pos.down().down().east(), player, DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState(), flag) && this.checkBlock(world, pos.down().down().west(), player, DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState(), flag)
-                            && this.checkBlock(world, pos.down().down().north().east(), player, MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), flag) && this.checkBlock(world, pos.down().down().south().east(), player, MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), flag) && this.checkBlock(world, pos.down().down().north().west(), player, MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), flag)
-                            && this.checkBlock(world, pos.down().down().south().west(), player, MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), flag) && this.checkBlock(world, pos.add(3, -1, 3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState(), flag) && this.checkBlock(world, pos.add(3, -1, -3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState(), flag)
-                            && this.checkBlock(world, pos.add(-3, -1, 3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState(), flag) && this.checkBlock(world, pos.add(-3, -1, -3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState(), flag) && this.checkBlock(world, pos.add(3, 0, 3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1), flag)
-                            && this.checkBlock(world, pos.add(3, 0, -3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1), flag) && this.checkBlock(world, pos.add(-3, 0, 3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1), flag) && this.checkBlock(world, pos.add(-3, 0, -3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1), flag)
-                            && this.checkBlock(world, pos.add(3, 1, 3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState(), flag) && this.checkBlock(world, pos.add(3, 1, -3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState(), flag) && this.checkBlock(world, pos.add(-3, 1, 3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState(), flag)
-                            && this.checkBlock(world, pos.add(-3, 1, -3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState(), flag) && this.checkBlock(world, pos.add(3, 2, 3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2), flag) && this.checkBlock(world, pos.add(3, 2, -3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2), flag)
-                            && this.checkBlock(world, pos.add(-3, 2, 3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2), flag) && this.checkBlock(world, pos.add(-3, 2, -3), player, DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2), flag))
+                            if (world.getBlockState(newPos) != blockstate)
+                            {
+                                Item item = Item.getItemFromBlock(blockstate.getBlock());
+                                String name = item.getItemStackDisplayName(new ItemStack(item, 1, blockstate.getBlock().getMetaFromState(blockstate)));
+                                player.addChatMessage(json.text("Missing block " + name + " at " + newPos.getX() + " " + newPos.getY() + " " + newPos.getZ()).setStyle(json.red()));
+                            }
+                        }
+                    }
+                    else
                     {
                         if (!tile.disabled)
                         {
@@ -211,22 +217,6 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
         int j = i / 60;
         i = i % 60;
         return i < 10 ? j + ":0" + i : j + ":" + i;
-    }
-
-    private boolean checkBlock(World world, BlockPos pos, EntityPlayer player, IBlockState state, boolean flag)
-    {
-        if (world.getBlockState(pos) == state)
-        {
-            return true;
-        }
-        else
-        {
-            if (!flag)
-            {
-                player.addChatMessage(new JsonUtil().text("Missing block " + state.getBlock().getLocalizedName() + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ()).setStyle(new JsonUtil().red()));
-            }
-            return false;
-        }
     }
 
     @Override
