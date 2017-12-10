@@ -645,7 +645,19 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                         entity.motionY -= d8 * d14 / knockSpeed;
                         entity.motionZ -= d10 * d14 / knockSpeed;
                     }
-                    if (this.tile.worldObj.getPlayerEntityByUUID(UUID.fromString(this.tile.ownerUUID)) != null)
+
+                    UUID uuid;
+
+                    try
+                    {
+                        uuid = UUID.fromString(this.tile.ownerUUID);
+                    }
+                    catch (Exception e)
+                    {
+                        uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); //default uuid :)
+                    }
+
+                    if (uuid != null && this.tile.worldObj.getPlayerEntityByUUID(uuid) != null)
                     {
                         if (entity.ticksExisted % 8 == 0 && this.tile.worldObj instanceof WorldServer)
                         {
@@ -653,7 +665,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                         }
                         if (this.tile.enableDamage)
                         {
-                            entity.attackEntityFrom(DamageSource.causePlayerDamage(this.tile.worldObj.getPlayerEntityByUUID(UUID.fromString(this.tile.ownerUUID))), this.tile.shieldDamage);
+                            entity.attackEntityFrom(DamageSource.causePlayerDamage(this.tile.worldObj.getPlayerEntityByUUID(uuid)), this.tile.shieldDamage);
                         }
                     }
                     else
