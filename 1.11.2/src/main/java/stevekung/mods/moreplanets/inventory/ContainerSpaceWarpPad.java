@@ -9,6 +9,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 
 public class ContainerSpaceWarpPad extends Container
@@ -18,7 +19,8 @@ public class ContainerSpaceWarpPad extends Container
     public ContainerSpaceWarpPad(InventoryPlayer invPlayer, TileEntitySpaceWarpPadFull tile)
     {
         this.tileEntity = tile;
-        this.addSlotToContainer(new SlotSpecific(tile, 0, 32, 27, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(tile, 0, 22, 72, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpaceWarpPad(tile, 1, 22, 54));
 
         int i;
         int j;
@@ -27,13 +29,13 @@ public class ContainerSpaceWarpPad extends Container
         {
             for (j = 0; j < 9; ++j)
             {
-                this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 46 + 58 + i * 18));
+                this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 112 + i * 18));
             }
         }
 
         for (i = 0; i < 9; ++i)
         {
-            this.addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 46 + 116));
+            this.addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 170));
         }
     }
 
@@ -55,7 +57,7 @@ public class ContainerSpaceWarpPad extends Container
             ItemStack stack = invSlot.getStack();
             itemStack = stack.copy();
 
-            if (slot == 0)
+            if (slot == 0 || slot == 1)
             {
                 if (!this.mergeItemStack(stack, slotSize - 36, slotSize, true))
                 {
@@ -67,6 +69,13 @@ public class ContainerSpaceWarpPad extends Container
                 if (EnergyUtil.isElectricItem(stack.getItem()))
                 {
                     if (!this.mergeItemStack(stack, 0, 1, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                else if (stack.getItem() == MPItems.SPACE_WARPER_CORE)
+                {
+                    if (!this.mergeItemStack(stack, 1, 2, false))
                     {
                         return ItemStack.EMPTY;
                     }

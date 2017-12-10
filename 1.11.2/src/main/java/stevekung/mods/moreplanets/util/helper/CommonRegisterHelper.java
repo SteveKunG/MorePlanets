@@ -360,4 +360,12 @@ public class CommonRegisterHelper
     {
         return Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL);
     }
+
+    public static String ticksToElapsedTime(int ticks)
+    {
+        int i = ticks / 20;
+        int j = i / 60;
+        i = i % 60;
+        return i < 10 ? j + ":0" + i : j + ":" + i;
+    }
 }

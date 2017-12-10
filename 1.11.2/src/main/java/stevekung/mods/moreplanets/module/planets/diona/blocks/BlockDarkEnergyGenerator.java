@@ -22,7 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.moreplanets.util.ItemDescription;
 import stevekung.mods.moreplanets.util.blocks.BlockTileMP;
@@ -213,37 +212,8 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     @Override
     public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (!heldItem.isEmpty() && heldItem.getItem() == DionaItems.DARK_ENERGY_PEARL)
-        {
-            TileEntity tile = world.getTileEntity(pos);
-
-            if (tile instanceof TileEntityDarkEnergyGenerator)
-            {
-                TileEntityDarkEnergyGenerator energy = (TileEntityDarkEnergyGenerator) tile;
-
-                if (energy.darkEnergyFuel == 0)
-                {
-                    energy.darkEnergyFuel = 1000;
-
-                    if (!player.capabilities.isCreativeMode)
-                    {
-                        heldItem.shrink(1);
-                    }
-                    return true;
-                }
-                else
-                {
-                    player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
-                    return true;
-                }
-            }
-        }
-        else
-        {
-            player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
-            return true;
-        }
-        return false;
+        player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
+        return true;
     }
 
     @Override

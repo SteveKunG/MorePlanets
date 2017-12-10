@@ -102,4 +102,22 @@ public class ClientRendererUtil
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/particle/particles.png"));
         vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
     }
+
+    public static void renderLightState(boolean disable)
+    {
+        if (disable)
+        {
+            GlStateManager.disableLighting();
+            GlStateManager.disableLight(0);
+            GlStateManager.disableLight(1);
+            GlStateManager.disableColorMaterial();
+        }
+        else
+        {
+            GlStateManager.enableLighting();
+            GlStateManager.enableLight(0);
+            GlStateManager.enableLight(1);
+            GlStateManager.enableColorMaterial();
+        }
+    }
 }

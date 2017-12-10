@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.inventory;
 
 import micdoodle8.mods.galacticraft.api.item.IItemElectric;
-import micdoodle8.mods.galacticraft.api.item.IItemOxygenSupply;
 import micdoodle8.mods.galacticraft.core.energy.EnergyUtil;
 import micdoodle8.mods.galacticraft.core.inventory.SlotSpecific;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +17,7 @@ public class ContainerShieldGenerator extends Container
     public ContainerShieldGenerator(InventoryPlayer inventory, TileEntityShieldGenerator tile)
     {
         this.tile = tile;
-        this.addSlotToContainer(new SlotSpecific(tile, 0, 11, 24, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(tile, 0, 152, 78, IItemElectric.class));
 
         int i;
         int j;
@@ -27,12 +26,12 @@ public class ContainerShieldGenerator extends Container
         {
             for (j = 0; j < 9; ++j)
             {
-                this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 129 + i * 18));
+                this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 136 + i * 18));
             }
         }
         for (i = 0; i < 9; ++i)
         {
-            this.addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 187));
+            this.addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 194));
         }
     }
 
@@ -66,13 +65,6 @@ public class ContainerShieldGenerator extends Container
                 if (EnergyUtil.isElectricItem(slotStack.getItem()))
                 {
                     if (!this.mergeItemStack(slotStack, 0, 1, false))
-                    {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                else if (slotStack.getItem() instanceof IItemOxygenSupply)
-                {
-                    if (!this.mergeItemStack(slotStack, 1, 2, false))
                     {
                         return ItemStack.EMPTY;
                     }

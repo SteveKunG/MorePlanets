@@ -1,13 +1,12 @@
 package stevekung.mods.moreplanets.client.gui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox.ICheckBoxCallback;
-import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
@@ -21,12 +20,14 @@ import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.inventory.ContainerDarkEnergyReceiver;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
+import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
 
-public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCallback
+public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCallback
 {
     private ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/dark_energy_receiver.png");
     private TileEntityDarkEnergyReceiver tile;
-    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 112, (this.height - this.ySize) / 2 + 37, 56, 9, new ArrayList<>(), this.width, this.height, this);
+    private GuiElementInfoRegionMP electricInfoRegion;
     private GuiButton buttonEnable;
     private GuiElementCheckbox checkboxRender;
 
@@ -55,21 +56,21 @@ public class GuiDarkEnergyReceiver extends GuiContainerGC implements ICheckBoxCa
         List<String> batterySlotDesc = new ArrayList<>();
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        List<String> renderDesc = new ArrayList<>();
-        renderDesc.add(GCCoreUtil.translate("gui.receiver_render_guide.desc"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 31, (this.height - this.ySize) / 2 + 26, 18, 18, batterySlotDesc, this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 155, (this.height - this.ySize) / 2 + 87, 13, 13, renderDesc, this.width, this.height, this));
-        this.electricInfoRegion.xPosition = (this.width - this.xSize) / 2 + 107;
-        this.electricInfoRegion.yPosition = (this.height - this.ySize) / 2 + 31;
-        this.electricInfoRegion.parentWidth = this.width;
-        this.electricInfoRegion.parentHeight = this.height;
+        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 31, (this.height - this.ySize) / 2 + 26, 18, 18, batterySlotDesc, this.width, this.height, this));
+
+        if (!this.tile.successful && !this.tile.activated)
+        {
+            this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 155, (this.height - this.ySize) / 2 + 87, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.multiblock_guide.desc")), this.width, this.height, this));
+        }
+
+        this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 107, (this.height - this.ySize) / 2 + 31, 56, 9, new ArrayList<>(), this.width, this.height, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 36, this.height / 2 - 19, 72, 20, !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name")));
         this.buttonEnable.enabled = this.tile.disableCooldown == 0 && !this.tile.successful;
         int width = (this.width - this.xSize) / 2;
         int height = (this.height - this.ySize) / 2;
         this.checkboxRender = new GuiElementCheckbox(1, this, width + 155, height + 87, "");
-        this.checkboxRender.enabled = !this.tile.successful && !this.tile.activated;
+        this.checkboxRender.visible = !this.tile.successful && !this.tile.activated;
         this.buttonList.add(this.checkboxRender);
     }
 

@@ -26,7 +26,7 @@ import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
 public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElectricalSource implements ISidedInventory, IInventoryDefaults, IConnector, IMachineSides
 {
     private float nuclearWasteCapacity = 50000000;
-    private NonNullList<ItemStack> containingItems = NonNullList.withSize(2, ItemStack.EMPTY);
+    private NonNullList<ItemStack> containingItems = NonNullList.withSize(4, ItemStack.EMPTY);
     public Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
     public int scaledEnergyLevel;
     public int lastScaledEnergyLevel;
@@ -58,7 +58,9 @@ public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElect
         if (!this.world.isRemote)
         {
             this.recharge(this.containingItems.get(0));
-            this.discharge(this.containingItems.get(1));
+            this.recharge(this.containingItems.get(1));
+            this.discharge(this.containingItems.get(2));
+            this.discharge(this.containingItems.get(3));
             this.produce();
         }
         this.lastScaledEnergyLevel = this.scaledEnergyLevel;
@@ -165,11 +167,11 @@ public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElect
     {
         if (itemStack.getItem() instanceof ItemElectricBase)
         {
-            if (slot == 0)
+            if (slot == 0 || slot == 1)
             {
                 return ((ItemElectricBase) itemStack.getItem()).getTransfer(itemStack) > 0;
             }
-            else if (slot == 1)
+            else if (slot == 2 || slot == 3)
             {
                 return ((ItemElectricBase) itemStack.getItem()).getElectricityStored(itemStack) > 0;
             }
@@ -182,11 +184,11 @@ public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElect
     {
         if (itemStack.getItem() instanceof ItemElectricBase)
         {
-            if (slot == 0)
+            if (slot == 0 || slot == 1)
             {
                 return ((ItemElectricBase) itemStack.getItem()).getTransfer(itemStack) <= 0;
             }
-            else if (slot == 1)
+            else if (slot == 2 || slot == 3)
             {
                 return ((ItemElectricBase) itemStack.getItem()).getElectricityStored(itemStack) <= 0 || this.getEnergyStoredGC() >= this.getMaxEnergyStoredGC();
             }

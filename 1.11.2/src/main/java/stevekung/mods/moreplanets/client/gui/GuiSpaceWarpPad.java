@@ -4,31 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
-import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.inventory.ContainerSpaceWarpPad;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
+import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
 
-public class GuiSpaceWarpPad extends GuiContainerGC
+public class GuiSpaceWarpPad extends GuiContainerMP
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/space_warp_pad.png");
-    private TileEntitySpaceWarpPadFull warpPad;
-    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 112, (this.height - this.ySize) / 2 + 37, 56, 9, new ArrayList<>(), this.width, this.height, this);
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/space_warp_pad.png");
+    private final TileEntitySpaceWarpPadFull tile;
+    private GuiElementInfoRegionMP electricInfoRegion;
     private GuiButton buttonEnable;
 
     public GuiSpaceWarpPad(InventoryPlayer inv, TileEntitySpaceWarpPadFull tile)
     {
         super(new ContainerSpaceWarpPad(inv, tile));
-        this.warpPad = tile;
-        this.ySize = 180;
+        this.tile = tile;
+        this.ySize = 189;
     }
 
     @Override
@@ -37,7 +40,7 @@ public class GuiSpaceWarpPad extends GuiContainerGC
         switch (button.id)
         {
         case 0:
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_UPDATE_DISABLEABLE_BUTTON, GCCoreUtil.getDimensionID(this.warpPad.getWorld()), new Object[] { this.warpPad.getPos(), 0 }));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_UPDATE_DISABLEABLE_BUTTON, GCCoreUtil.getDimensionID(this.tile.getWorld()), new Object[] { this.tile.getPos(), 0 }));
             break;
         }
     }
@@ -49,51 +52,55 @@ public class GuiSpaceWarpPad extends GuiContainerGC
         List<String> batterySlotDesc = new ArrayList<>();
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 31, (this.height - this.ySize) / 2 + 26, 18, 18, batterySlotDesc, this.width, this.height, this));
-        this.electricInfoRegion.xPosition = (this.width - this.xSize) / 2 + 106;
-        this.electricInfoRegion.yPosition = (this.height - this.ySize) / 2 + 30;
-        this.electricInfoRegion.parentWidth = this.width;
-        this.electricInfoRegion.parentHeight = this.height;
+        this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 7, (this.height - this.ySize) / 2 + 23, 9, 57, new ArrayList<>(), this.width, this.height, this);
+        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 21, (this.height - this.ySize) / 2 + 71, 18, 18, batterySlotDesc, this.width, this.height, this));
         this.infoRegions.add(this.electricInfoRegion);
-        this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 36, this.height / 2 - 19, 72, 20, !this.warpPad.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name")));
+        this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 45, this.height / 2 - 16, 72, 20, !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name")));
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        this.buttonEnable.enabled = this.warpPad.disableCooldown == 0;
-        this.buttonEnable.displayString = !this.warpPad.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name");
-        this.fontRendererObj.drawString(this.warpPad.getName(), 8, 10, 4210752);
-        GCCoreUtil.drawStringCentered(GCCoreUtil.translate("gui.message.status.name") + ": " + this.warpPad.getGUIStatus(), this.xSize / 2, 55, 4210752, this.fontRendererObj);
+        String dimension = TextFormatting.RED + GCCoreUtil.translate("gui.status.unknown.name");
+        String name = TextFormatting.RED + GCCoreUtil.translate("gui.status.unknown.name");
+        String dest = TextFormatting.RED + GCCoreUtil.translate("gui.status.unknown.name");
+        this.buttonEnable.enabled = this.tile.disableCooldown == 0;
+        this.buttonEnable.displayString = !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name");
+        this.fontRendererObj.drawString(this.tile.getName(), 8, 10, 4210752);
+        this.fontRendererObj.drawSplitString(GCCoreUtil.translate("gui.message.status.name") + ": " + this.tile.getGUIStatus(), 46, 56, 120, 2536735);
         this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
+
+        if (this.tile.hasWarpCore() && this.tile.containingItems.get(1).hasTagCompound())
+        {
+            NBTTagCompound compound = this.tile.containingItems.get(1).getTagCompound();
+            dimension = TextFormatting.GREEN + String.valueOf(compound.getInteger("DimensionID"));
+            name = TextFormatting.GREEN + WorldUtil.getProviderForDimensionClient(compound.getInteger("DimensionID")).getDimensionType().getName();
+            dest = TextFormatting.GREEN + "" + compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
+        }
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.dimension.name") + ": " + dimension + " ", 46, 26, 2536735);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.name.name") + ": " + name, 46, 36, 2536735);
+        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.destination.name") + ": " + dest, 46, 46, 2536735);
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(GuiSpaceWarpPad.texture);
+        this.mc.getTextureManager().bindTexture(TEXTURE);
         int width = (this.width - this.xSize) / 2;
         int height = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(width, height + 5, 0, 0, this.xSize, 181);
+        this.drawTexturedModalRect(width, height + 5, 0, 0, this.xSize, this.ySize);
 
-        if (this.warpPad != null)
+        int scale = this.tile.getScaledElecticalLevel(54);
+        this.drawTexturedModalRect(width + 8, height + 78 - scale, 176, 54 - scale + 10, 7, scale);
+
+        if (this.tile.getEnergyStoredGC() > 0)
         {
-            int scale = this.warpPad.getScaledElecticalLevel(54);
-            this.drawTexturedModalRect(width + 107, height + 31, 197, 0, Math.min(scale, 54), 7);
-
-            if (this.warpPad.getEnergyStoredGC() > 0)
-            {
-                this.drawTexturedModalRect(width + 94, height + 30, 176, 0, 11, 10);
-            }
-            if (this.warpPad.getHasReceiveData())
-            {
-                this.drawTexturedModalRect(width + 57, height + 19, 176, 10, 32, 32);
-            }
-            List<String> electricityDesc = new ArrayList<>();
-            electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
-            EnergyDisplayHelper.getEnergyDisplayTooltip(this.warpPad.getEnergyStoredGC(), this.warpPad.getMaxEnergyStoredGC(), electricityDesc);
-            this.electricInfoRegion.tooltipStrings = electricityDesc;
+            this.drawTexturedModalRect(width + 6, height + 80, 176, 0, 11, 10);
         }
+        List<String> electricityDesc = new ArrayList<>();
+        electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
+        EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
+        this.electricInfoRegion.tooltipStrings = electricityDesc;
     }
 }

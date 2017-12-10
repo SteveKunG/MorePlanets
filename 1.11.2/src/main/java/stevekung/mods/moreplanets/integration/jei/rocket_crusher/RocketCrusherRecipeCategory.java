@@ -43,20 +43,20 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
     @Override
     public IDrawable getBackground()
     {
-        return JEIRegistryHelper.guiHelper.createDrawable(texture, 18, 17, 142, 54);
+        return JEIRegistryHelper.guiHelper.createDrawable(texture, 18, 19, 142, 54);
     }
 
     @Override
     public void drawExtras(Minecraft mc)
     {
-        int x = 62;
+        int x = 65;
 
         for (int i = 0; i < 3; i++)
         {
-            this.progressHammerDrawable[i].draw(mc, x, 13);
+            this.progressHammerDrawable[i].draw(mc, x, 11);
             x += 13;
         }
-        this.progressBar.draw(mc, 59, 22);
+        this.progressBar.draw(mc, 62, 20);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class RocketCrusherRecipeCategory extends BlankRecipeCategory
         {
             itemStacks.init(j, true, 0 + j % 3 * 18, 0 + j / 3 * 18);
         }
-        itemStacks.init(9, false, 124, 20);
+        itemStacks.init(9, false, 124, 18);
         itemStacks.set(ingredients);
     }
 

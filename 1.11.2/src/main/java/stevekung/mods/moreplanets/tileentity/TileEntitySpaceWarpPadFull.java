@@ -9,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -29,16 +28,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 
 public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
 {
-    public int dimensionID;
-    @NetworkedField(targetSide = Side.CLIENT)
-    public boolean receiveData;
-    @NetworkedField(targetSide = Side.CLIENT)
-    public boolean checkInvalid;
-    public BlockPos pos;
-    private NonNullList<ItemStack> containingItems = NonNullList.withSize(1, ItemStack.EMPTY);
+    public NonNullList<ItemStack> containingItems = NonNullList.withSize(2, ItemStack.EMPTY);
     private boolean initialised;
 
     public TileEntitySpaceWarpPadFull()
@@ -75,18 +69,6 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             this.initialiseMultiTiles(this.getPos(), this.world);
             this.initialised = true;
         }
-
-        /*if (this.pos != null) TODO
-        {
-            if (this.worldObj.getBlockState(this.pos).getBlock() == MPBlocks.SPACE_WARP_PAD_FULL)
-            {
-                this.checkInvalid = false;
-            }
-            else
-            {
-                this.checkInvalid = true;
-            }
-        }*/
         super.update();
     }
 
@@ -143,11 +125,6 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        NBTTagCompound tag = nbt.getCompoundTag("TeleportPos");
-        this.pos = new BlockPos(tag.getInteger("X"), tag.getInteger("Y"), tag.getInteger("Z"));
-        this.dimensionID = nbt.getInteger("DimensionID");
-        this.receiveData = nbt.getBoolean("ReceiveData");
-        this.checkInvalid = nbt.getBoolean("CheckInvalid");
         this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, this.containingItems);
     }
@@ -156,18 +133,6 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setInteger("DimensionID", this.dimensionID);
-        nbt.setBoolean("ReceiveData", this.receiveData);
-        nbt.setBoolean("CheckInvalid", this.checkInvalid);
-
-        if (this.pos != null)
-        {
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setInteger("X", this.pos.getX());
-            tag.setInteger("Y", this.pos.getY());
-            tag.setInteger("Z", this.pos.getZ());
-            nbt.setTag("TeleportPos", tag);
-        }
         ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
     }
@@ -179,37 +144,10 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
         return new AxisAlignedBB(this.getPos().getX() - 1, this.getPos().getY(), this.getPos().getZ() - 1, this.getPos().getX() + 2, this.getPos().getY() + 0.4D, this.getPos().getZ() + 2);
     }
 
-    public void setTeleportData(BlockPos pos, int dimension, boolean receiveData)
-    {
-        this.pos = pos;
-        this.dimensionID = dimension;
-        this.receiveData = receiveData;
-    }
-
-    public boolean getHasReceiveData()
-    {
-        return this.receiveData;
-    }
-
-    public boolean getCheckInvalid()
-    {
-        return this.checkInvalid;
-    }
-
-    public int getDimensionID()
-    {
-        return this.dimensionID;
-    }
-
-    public BlockPos getBlockPos()
-    {
-        return this.pos;
-    }
-
     @Override
     public boolean shouldUseEnergy()
     {
-        return this.receiveData && !this.disabled;
+        return this.hasWarpCore() && !this.disabled;
     }
 
     @Override
@@ -311,6 +249,10 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public boolean isItemValidForSlot(int slotID, ItemStack itemStack)
     {
+        if (slotID == 1)
+        {
+            return itemStack.getItem() == MPItems.SPACE_WARPER_CORE;
+        }
         return slotID == 0 && ItemElectricBase.isElectricItem(itemStack.getItem());
     }
 
@@ -320,14 +262,6 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
         {
             return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.missingpower.name");
         }
-        if (!this.getHasReceiveData())
-        {
-            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.no_warp_pos.name");
-        }
-        if (this.getCheckInvalid())
-        {
-            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.missing_warp_pad.name");
-        }
         if (this.getDisabled(0))
         {
             return EnumColor.ORANGE + GCCoreUtil.translate("gui.status.ready.name");
@@ -336,7 +270,40 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
         {
             return EnumColor.ORANGE + GCCoreUtil.translate("gui.status.missingpower.name");
         }
+        if (!this.hasWarpCore())
+        {
+            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.warp_core_required.name");
+        }
+        if (this.hasWarpCore() && !this.containingItems.get(1).hasTagCompound())
+        {
+            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.empty_dimension_data.name");
+        }
         return EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.status.active.name");
+    }
+
+    public boolean hasWarpCore()
+    {
+        return !this.containingItems.get(1).isEmpty();
+    }
+
+    public BlockPos getDestinationPos()
+    {
+        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
+        {
+            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
+            return new BlockPos(compound.getInteger("X"), compound.getInteger("Y"), compound.getInteger("Z"));
+        }
+        return null;
+    }
+
+    public int getDimensionId()
+    {
+        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
+        {
+            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
+            return compound.getInteger("DimensionID");
+        }
+        return 0;
     }
 
     private boolean initialiseMultiTiles(BlockPos pos, World world)

@@ -7,6 +7,7 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.client.gui.GuiRocketCrusher;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.integration.jei.black_hole_storage.BlackHoleStorageRecipeCategory;
 import stevekung.mods.moreplanets.integration.jei.black_hole_storage.BlackHoleStorageRecipeWrapper;
@@ -40,6 +41,7 @@ public class MorePlanetsJEIPlugin extends BlankModPlugin
 
         ItemDescription.init();
 
+        registry.addRecipeClickArea(GuiRocketCrusher.class, 80, 30, 52, 25, MPJEIRecipes.ROCKET_CRUSHER);
         JEIRegistryHelper.registerRecipeHandlers(DarkEnergyRecipeData.class, DarkEnergyTransformRecipeWrapper::new, MPJEIRecipes.DARK_ENERGY_TRANSFORM);
         JEIRegistryHelper.registerRecipeHandlers(ShapedRecipesMP.class, RocketCrusherRecipesWrapper::new, MPJEIRecipes.ROCKET_CRUSHER);
         JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, Tier4RocketRecipeWrapper::new, MPJEIRecipes.TIER_4_ROCKET);

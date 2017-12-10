@@ -44,7 +44,10 @@ public class ItemDiona extends ItemBaseVariantsMP
     @Override
     public boolean onEntityItemUpdate(EntityItem entityItem)
     {
-        entityItem.motionY += TransformerHooks.getItemGravity(entityItem);
+        if (entityItem.getEntityItem().getItemDamage() == 8)
+        {
+            entityItem.motionY += TransformerHooks.getItemGravity(entityItem);
+        }
         return false;
     }
 
