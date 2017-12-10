@@ -126,6 +126,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                 if (world.getTileEntity(pos) instanceof TileEntityDarkEnergyReceiver)
                 {
                     TileEntityDarkEnergyReceiver tile = (TileEntityDarkEnergyReceiver) world.getTileEntity(pos);
+
                     if (TileEntityDarkEnergyReceiver.checkValidMultiblock(pos, world))
                     {
                         for (Map.Entry<BlockPos, IBlockState> list : TileEntityDarkEnergyReceiver.multiBlockLists.entrySet())
