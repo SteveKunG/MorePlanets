@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.blocks;
 
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -9,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -120,11 +122,55 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
             shield.setFacing(direction);
             shield.onCreate(world, pos);
 
+            if (itemStack.hasTagCompound())
+            {
+                NBTTagCompound nbt = itemStack.getTagCompound();
+                shield.storage.setEnergyStored(nbt.getFloat("EnergyStored"));
+                shield.shieldSize = nbt.getFloat("ShieldSize");
+                shield.maxShieldSize = nbt.getInteger("MaxShieldSize");
+                shield.shieldDamage = nbt.getInteger("ShieldDamage");
+                shield.shieldCapacity = nbt.getInteger("ShieldCapacity");
+                shield.maxShieldCapacity = nbt.getInteger("MaxShieldCapacity");
+                shield.shieldChargeCooldown = nbt.getInteger("ShieldChargeCooldown");
+                shield.needCharged = nbt.getBoolean("NeedCharged");
+                shield.enableShield = nbt.getBoolean("EnableShield");
+                shield.enableDamage = nbt.getBoolean("EnableDamage");
+            }
             if (placer instanceof EntityPlayer)
             {
                 EntityPlayer player = (EntityPlayer) placer;
                 shield.ownerUUID = player.getGameProfile().getId().toString();
             }
+        }
+    }
+
+    @Override
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack heldStack)
+    {
+        player.addExhaustion(0.025F);
+
+        if (tile instanceof TileEntityShieldGenerator)
+        {
+            ItemStack machine = new ItemStack(this);
+            TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
+            NBTTagCompound nbt = new NBTTagCompound();
+
+            nbt.setFloat("ShieldSize", shield.shieldSize);
+            nbt.setInteger("MaxShieldSize", shield.maxShieldSize);
+            nbt.setInteger("ShieldDamage", shield.shieldDamage);
+            nbt.setInteger("ShieldCapacity", shield.shieldCapacity);
+            nbt.setInteger("MaxShieldCapacity", shield.maxShieldCapacity);
+            nbt.setInteger("ShieldChargeCooldown", shield.shieldChargeCooldown);
+            nbt.setBoolean("NeedCharged", shield.needCharged);
+            nbt.setBoolean("EnableShield", shield.enableShield);
+            nbt.setBoolean("EnableDamage", shield.enableDamage);
+
+            if (shield.getEnergyStoredGC() > 0)
+            {
+                nbt.setFloat("EnergyStored", shield.getEnergyStoredGC());
+            }
+            machine.setTagCompound(nbt);
+            Block.spawnAsEntity(world, pos, machine);
         }
     }
 
