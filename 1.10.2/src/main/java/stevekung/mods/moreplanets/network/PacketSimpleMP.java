@@ -11,6 +11,7 @@ import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
@@ -24,9 +25,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGenerator;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGeneratorConfig;
+import stevekung.mods.moreplanets.client.gui.test.GuiShieldGeneratorEntityFilter;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.core.handler.TeleportHandler;
+import stevekung.mods.moreplanets.inventory.ContainerShieldGenerator;
 import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
@@ -116,7 +119,7 @@ public class PacketSimpleMP extends PacketBase
             break;
         case C_SWITCH_SHIELD_GENERATOR_GUI:
             pos = (BlockPos) this.data.get(0);
-            boolean isConfig = (boolean) this.data.get(2);
+            int guiId = (int) this.data.get(2);
 
             if (pos != null)
             {
@@ -124,7 +127,21 @@ public class PacketSimpleMP extends PacketBase
 
                 if (tile != null && tile instanceof TileEntityShieldGenerator)
                 {
-                    FMLClientHandler.instance().getClient().displayGuiScreen(isConfig ? new GuiShieldGeneratorConfig(player.inventory, (TileEntityShieldGenerator) tile) : new GuiShieldGenerator(player.inventory, (TileEntityShieldGenerator) tile));
+                    GuiContainer gui = null;
+
+                    if (guiId == 0)
+                    {
+                        gui = new GuiShieldGenerator(player.inventory, (TileEntityShieldGenerator) tile);
+                    }
+                    else if (guiId == 1)
+                    {
+                        gui = new GuiShieldGeneratorConfig(player.inventory, (TileEntityShieldGenerator) tile);
+                    }
+                    else
+                    {
+                        gui = new GuiShieldGeneratorEntityFilter(player.inventory, (TileEntityShieldGenerator) tile);
+                    }
+                    FMLClientHandler.instance().getClient().displayGuiScreen(gui);
                 }
                 player.openContainer.windowId = (Integer) this.data.get(1);
             }
@@ -250,12 +267,12 @@ public class PacketSimpleMP extends PacketBase
             break;
         case S_SWITCH_SHIELD_GENERATOR_GUI:
             tile = player.worldObj.getTileEntity((BlockPos) this.data.get(0));
-            boolean isConfig = (boolean) this.data.get(1);
+            int guiId = (int) this.data.get(1);
 
             if (tile instanceof TileEntityShieldGenerator)
             {
                 TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
-                PacketSimpleMP.openShieldGeneratorConfig(playerMP, shield, isConfig);
+                PacketSimpleMP.openShieldGeneratorConfig(playerMP, shield, guiId);
             }
             break;
         default:
@@ -273,14 +290,14 @@ public class PacketSimpleMP extends PacketBase
         S_ENABLE_SHIELD(Side.SERVER, BlockPos.class),
         S_ENABLE_SHIELD_DAMAGE(Side.SERVER, BlockPos.class),
         S_SHIELD_GENERATOR_OPTION(Side.SERVER, BlockPos.class, Integer.class, String.class),
-        S_SWITCH_SHIELD_GENERATOR_GUI(Side.SERVER, BlockPos.class, Boolean.class),
+        S_SWITCH_SHIELD_GENERATOR_GUI(Side.SERVER, BlockPos.class, Integer.class),
 
         // CLIENT
         C_ADD_ENTITY_ID(Side.CLIENT, String.class),
         C_REMOVE_ENTITY_ID(Side.CLIENT, String.class),
         C_REMOVE_GUIDE_POS(Side.CLIENT, BlockPos.class),
         C_RELOAD_RENDERER(Side.CLIENT),
-        C_SWITCH_SHIELD_GENERATOR_GUI(Side.CLIENT, BlockPos.class, Integer.class, Boolean.class),
+        C_SWITCH_SHIELD_GENERATOR_GUI(Side.CLIENT, BlockPos.class, Integer.class, Integer.class),
         C_REMOVE_GENERATOR_GUIDE_POS(Side.CLIENT, BlockPos.class);
 
         private Side targetSide;
@@ -337,13 +354,21 @@ public class PacketSimpleMP extends PacketBase
         }
     }
 
-    private static void openShieldGeneratorConfig(EntityPlayerMP player, TileEntityShieldGenerator tile, boolean isConfig)
+    private static void openShieldGeneratorConfig(EntityPlayerMP player, TileEntityShieldGenerator tile, int guiId)
     {
         player.getNextWindowId();
         player.closeContainer();
         int windowId = player.currentWindowId;
-        GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_SWITCH_SHIELD_GENERATOR_GUI, GCCoreUtil.getDimensionID(player.worldObj), tile.getPos(), windowId, isConfig), player);
-        player.openContainer = new ContainerShieldGeneratorConfig(player.inventory, tile);
+        GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_SWITCH_SHIELD_GENERATOR_GUI, GCCoreUtil.getDimensionID(player.worldObj), tile.getPos(), windowId, guiId), player);
+
+        if (guiId == 1)
+        {
+            player.openContainer = new ContainerShieldGeneratorConfig(player.inventory, tile);
+        }
+        else
+        {
+            player.openContainer = new ContainerShieldGenerator(player.inventory, tile);
+        }
         player.openContainer.windowId = windowId;
         player.openContainer.addListener(player);
     }
