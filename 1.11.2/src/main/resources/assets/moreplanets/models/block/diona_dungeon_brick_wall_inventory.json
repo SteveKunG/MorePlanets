@@ -1,6 +1,0 @@
-{
-    "parent": "block/wall_inventory",
-    "textures": {
-        "wall": "moreplanets:blocks/diona_dungeon_brick"
-    }
-}

@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "variant=infected_bookshelf": { "model": "moreplanets:infected_bookshelf" },
-        "variant=alien_berry_bookshelf": { "model": "moreplanets:alien_berry_bookshelf" }
-    }
-}

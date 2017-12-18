@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "wet=false": { "model": "moreplanets:infected_sponge" },
-        "wet=true": { "model": "moreplanets:infected_wet_sponge" }
-    }
-}

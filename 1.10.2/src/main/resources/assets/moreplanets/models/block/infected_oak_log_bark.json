@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "moreplanets:blocks/infected_oak_log_side"
-    }
-}

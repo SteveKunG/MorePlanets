@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "moreplanets:blocks/nibiru_dungeon_brick",
-        "top": "moreplanets:blocks/nibiru_dungeon_brick",
-        "side": "moreplanets:blocks/nibiru_dungeon_brick"
-    }
-}
