@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "variant=polished_tin_decoration_block": { "model": "moreplanets:polished_tin_decoration_block" },
-        "variant=polished_aluminum_decoration_block": { "model": "moreplanets:polished_aluminum_decoration_block" }
-    }
-}

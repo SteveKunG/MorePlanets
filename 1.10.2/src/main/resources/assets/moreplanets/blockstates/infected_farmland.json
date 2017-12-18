@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "moisture=0": { "model": "moreplanets:infected_farmland_dry" },
-        "moisture=1": { "model": "moreplanets:infected_farmland_moist" }
-    }
-}

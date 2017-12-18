@@ -1,6 +1,0 @@
-{
-    "parent": "moreplanets:block/fallen_meteor",
-    "textures": {
-        "meteor": "moreplanets:blocks/fallen_koentus_meteor"
-    }
-}
