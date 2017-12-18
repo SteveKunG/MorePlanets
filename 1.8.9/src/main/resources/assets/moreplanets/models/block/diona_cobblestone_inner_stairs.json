@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "moreplanets:blocks/diona_cobblestone",
-        "top": "moreplanets:blocks/diona_cobblestone",
-        "side": "moreplanets:blocks/diona_cobblestone"
-    }
-}

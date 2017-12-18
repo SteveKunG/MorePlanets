@@ -1,7 +1,0 @@
-{
-    "parent": "block/column_side",
-    "textures": {
-        "end": "moreplanets:blocks/infected_jungle_log_top",
-        "side": "moreplanets:blocks/infected_jungle_log_side"
-    }
-}

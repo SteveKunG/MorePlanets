@@ -1,6 +1,0 @@
-{
-    "parent": "block/fence_post",
-    "textures": {
-        "texture": "moreplanets:blocks/alien_berry_oak_planks"
-    }
-}

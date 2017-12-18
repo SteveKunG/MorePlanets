@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "moreplanets:blocks/infected_vein_stone_bricks",
-        "top": "moreplanets:blocks/infected_vein_stone_bricks",
-        "side": "moreplanets:blocks/infected_vein_stone_bricks"
-    }
-}

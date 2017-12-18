@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "moreplanets:nibiru_treasure_chest" },
-        "facing=east":  { "model": "moreplanets:nibiru_treasure_chest" },
-        "facing=west":  { "model": "moreplanets:nibiru_treasure_chest" },
-        "facing=south": { "model": "moreplanets:nibiru_treasure_chest" }
-    }
-}

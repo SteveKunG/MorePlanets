@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "particle": "moreplanets:blocks/glowing_iron_block",
-        "all": "moreplanets:blocks/glowing_iron_block"
-    }
-}

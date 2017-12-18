@@ -1,7 +1,0 @@
-{
-    "variants": {
-		"variant=infected_prismarine_slab": { "model": "moreplanets:infected_prismarine" },
-		"variant=infected_prismarine_bricks_slab": { "model": "moreplanets:infected_prismarine_bricks" },
-		"variant=infected_dark_prismarine_slab": { "model": "moreplanets:infected_dark_prismarine" }
-    }
-}

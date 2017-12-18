@@ -1,7 +1,0 @@
-{
-    "variants": {
-		"variant=diona_cobblestone_slab": { "model": "moreplanets:diona_cobblestone" },
-		"variant=chalos_cobblestone_slab": { "model": "moreplanets:chalos_cobblestone" },
-		"variant=nibiru_cobblestone_slab": { "model": "moreplanets:nibiru_cobblestone" }
-    }
-}

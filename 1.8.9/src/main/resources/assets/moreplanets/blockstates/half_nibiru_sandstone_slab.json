@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "half=bottom,variant=nibiru_sandstone_slab": { "model": "moreplanets:half_slab_nibiru_sandstone" },
-        "half=top,variant=nibiru_sandstone_slab": { "model": "moreplanets:upper_slab_nibiru_sandstone" },
-		"half=bottom,variant=nibiru_smooth_sandstone_slab": { "model": "moreplanets:half_slab_nibiru_smooth_sandstone" },
-        "half=top,variant=nibiru_smooth_sandstone_slab": { "model": "moreplanets:upper_slab_nibiru_smooth_sandstone" }
-    }
-}

@@ -1,7 +1,0 @@
-{
-    "parent": "block/pane_n",
-    "textures": {
-        "edge": "moreplanets:blocks/tinted_glass_pane_top",
-        "pane": "moreplanets:blocks/brown_tinted_glass_pane"
-    }
-}
