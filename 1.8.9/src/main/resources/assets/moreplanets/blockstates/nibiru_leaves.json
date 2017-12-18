@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "variant=infected_oak_leaves": { "model": "moreplanets:infected_oak_leaves" },
-		"variant=infected_dead_oak_leaves": { "model": "moreplanets:infected_dead_oak_leaves" },
-		"variant=infected_jungle_leaves": { "model": "moreplanets:infected_jungle_leaves" },
-		"variant=alien_berry_oak_leaves": { "model": "moreplanets:alien_berry_oak_leaves" }
-    }
-}

@@ -37,7 +37,6 @@ run
 
 # file
 *.launch
-*.txt
 .metadata
 .classpath
 .project

@@ -1,6 +1,0 @@
-{
-    "parent": "moreplanets:item/slime",
-    "textures": {
-        "texture": "moreplanets:blocks/cheese_slime_block"
-    }
-}

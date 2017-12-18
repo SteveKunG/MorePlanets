@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "planet=diona": { "model": "moreplanets:dummy" },
-        "planet=chalos": { "model": "moreplanets:dummy" },
-        "planet=nibiru": { "model": "moreplanets:dummy" }
-    }
-}

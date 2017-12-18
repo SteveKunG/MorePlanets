@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "moreplanets:blocks/chalos_cobblestone",
-        "top": "moreplanets:blocks/chalos_cobblestone",
-        "side": "moreplanets:blocks/chalos_cobblestone"
-    }
-}

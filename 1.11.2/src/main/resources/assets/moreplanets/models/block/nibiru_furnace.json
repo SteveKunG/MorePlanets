@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "moreplanets:blocks/nibiru_furnace_top",
-        "front": "moreplanets:blocks/nibiru_furnace_front_off",
-        "side": "moreplanets:blocks/nibiru_furnace_side"
-    }
-}
