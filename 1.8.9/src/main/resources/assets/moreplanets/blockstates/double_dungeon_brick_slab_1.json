@@ -1,7 +1,0 @@
-{
-    "variants": {
-		"variant=diona_dungeon_brick_slab": { "model": "moreplanets:diona_dungeon_brick" },
-		"variant=chalos_dungeon_brick_slab": { "model": "moreplanets:chalos_dungeon_brick" },
-		"variant=nibiru_dungeon_brick_slab": { "model": "moreplanets:nibiru_dungeon_brick" }
-    }
-}

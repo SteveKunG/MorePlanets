@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top",
-    "textures": {
-        "bottom": "moreplanets:blocks/door_infected_lower",
-        "top": "moreplanets:blocks/door_infected_upper"
-    }
-}

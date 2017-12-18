@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "moreplanets:blocks/infected_prismarine_bricks",
-        "top": "moreplanets:blocks/infected_prismarine_bricks",
-        "side": "moreplanets:blocks/infected_prismarine_bricks"
-    }
-}

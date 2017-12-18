@@ -1,6 +1,0 @@
-{
-    "parent": "block/tallgrass",
-    "textures": {
-        "cross": "moreplanets:blocks/infected_sugar_cane_block"
-    }
-}

@@ -1,6 +1,0 @@
-{
-    "parent": "block/tallgrass",
-    "textures": {
-        "cross": "moreplanets:blocks/double_green_vein_grass_top"
-    }
-}

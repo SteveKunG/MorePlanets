@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "moreplanets:chalos_ancient_chest" },
-        "facing=east":  { "model": "moreplanets:chalos_ancient_chest" },
-        "facing=west":  { "model": "moreplanets:chalos_ancient_chest" },
-        "facing=south": { "model": "moreplanets:chalos_ancient_chest" }
-    }
-}

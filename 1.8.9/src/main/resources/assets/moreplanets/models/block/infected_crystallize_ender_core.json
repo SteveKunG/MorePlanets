@@ -1,9 +1,0 @@
-{
-    "parent": "moreplanets:block/obelisk_ender_core_part",
-    "textures": {
-		"particle": "moreplanets:blocks/infected_crystallize_ender_core",
-        "side": "moreplanets:blocks/infected_crystallize_block",
-		"up": "moreplanets:blocks/infected_crystallize_ender_core",
-		"down": "moreplanets:blocks/infected_crystallize_block"
-    }
-}
