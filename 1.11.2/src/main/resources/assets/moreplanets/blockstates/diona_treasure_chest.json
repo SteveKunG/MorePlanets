@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "moreplanets:diona_treasure_chest" },
-        "facing=east":  { "model": "moreplanets:diona_treasure_chest" },
-        "facing=west":  { "model": "moreplanets:diona_treasure_chest" },
-        "facing=south": { "model": "moreplanets:diona_treasure_chest" }
-    }
-}

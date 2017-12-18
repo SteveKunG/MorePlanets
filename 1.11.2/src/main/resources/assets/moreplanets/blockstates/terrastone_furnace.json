@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "moreplanets:terrastone_furnace" },
-        "facing=south": { "model": "moreplanets:terrastone_furnace", "y": 180 },
-        "facing=west":  { "model": "moreplanets:terrastone_furnace", "y": 270 },
-        "facing=east":  { "model": "moreplanets:terrastone_furnace", "y": 90 }
-    }
-}

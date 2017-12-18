@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "variant=cheese_spore_wood_slab": { "model": "moreplanets:cheese_spore_planks" },
-        "variant=infected_wood_slab": { "model": "moreplanets:infected_planks" },
-        "variant=infected_dead_oak_wood_slab": { "model": "moreplanets:infected_dead_oak_planks" },
-        "variant=alien_berry_oak_wood_slab": { "model": "moreplanets:alien_berry_oak_planks" }
-    }
-}

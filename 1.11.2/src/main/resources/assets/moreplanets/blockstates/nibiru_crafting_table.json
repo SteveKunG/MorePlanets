@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "variant=nibiru_crafting_table": { "model": "moreplanets:nibiru_crafting_table" },
-        "variant=alien_berry_crafting_table": { "model": "moreplanets:alien_berry_crafting_table" }
-    }
-}
