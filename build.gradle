@@ -24,7 +24,7 @@ archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.11.2-13.20.1.2530"
+    version = "1.11.2-13.20.1.2563"
     runDir = "run"
     mappings = "snapshot_20161220"
     makeObfSourceJar = false
@@ -55,13 +55,13 @@ repositories {
 
 dependencies {
     compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    compile "codechicken:NotEnoughItems:1.11.2-2.3.0.227:deobf"
-    compile "codechicken:CodeChickenLib:1.11.2-3.0.0.274:deobf"
-    deobfCompile "team.chisel.ctm:CTM:MC1.11.2-0.2.2.12"
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}_1.11"
+    compile "codechicken:NotEnoughItems:${mc_version}-${nei_version}:deobf"
+    compile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
+    deobfCompile "team.chisel.ctm:CTM:MC${mc_version}-${ctm_version}"
+    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    runtime "codechicken:NotEnoughItems:1.11.2-2.3.0.227:deobf"
-    runtime "codechicken:CodeChickenLib:1.11.2-3.0.0.274:deobf"
+    runtime "codechicken:NotEnoughItems:${mc_version}-${nei_version}:deobf"
+    runtime "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
 }
 
 curseforge {
