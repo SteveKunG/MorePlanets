@@ -301,6 +301,11 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         {
             TileEntityDummy dummy = (TileEntityDummy) tile;
 
+            if (world.getTileEntity(dummy.mainBlockPosition) instanceof TileEntitySpaceWarpPadFull)
+            {
+                TileEntitySpaceWarpPadFull warp = (TileEntitySpaceWarpPadFull) world.getTileEntity(dummy.mainBlockPosition);
+                return warp.writeToNBT(nbt);
+            }
             if (world.getTileEntity(dummy.mainBlockPosition) instanceof TileEntityDarkEnergyReceiver)
             {
                 TileEntityDarkEnergyReceiver receiver = (TileEntityDarkEnergyReceiver) world.getTileEntity(dummy.mainBlockPosition);
