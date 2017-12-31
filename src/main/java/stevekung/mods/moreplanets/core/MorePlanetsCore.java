@@ -229,14 +229,29 @@ public class MorePlanetsCore
         MorePlanetsCore.mpToolsTab = new CreativeTabsHelper("MorePlanetsTools", new ItemStack(KapteynBToolsItems.uranium_pickaxe));
         MorePlanetsCore.mpArmorTab = new CreativeTabsHelper("MorePlanetsArmor", new ItemStack(FronosArmorItems.iridium_helmet));
 
-        SchematicRegistry.registerSchematicRecipe(new SchematicTier4Rocket());
-        SchematicRegistry.registerSchematicRecipe(new SchematicTier4RocketNoFlag());
-        SchematicRegistry.registerSchematicRecipe(new SchematicTier5Rocket());
-        SchematicRegistry.registerSchematicRecipe(new SchematicTier5RocketNoFlag());
-        SchematicRegistry.registerSchematicRecipe(new SchematicTier6Rocket());
-        SchematicRegistry.registerSchematicRecipe(new SchematicTier6RocketNoFlag());
-        SchematicRegistry.registerSchematicRecipe(new SchematicTier7Rocket());
-        SchematicRegistry.registerSchematicRecipe(new SchematicTier8Rocket());
+        if (ConfigManagerMP.enableTier4RocketSchematic)
+        {
+            SchematicRegistry.registerSchematicRecipe(new SchematicTier4Rocket());
+            SchematicRegistry.registerSchematicRecipe(new SchematicTier4RocketNoFlag());
+        }
+        if (ConfigManagerMP.enableTier5RocketSchematic)
+        {
+            SchematicRegistry.registerSchematicRecipe(new SchematicTier5Rocket());
+            SchematicRegistry.registerSchematicRecipe(new SchematicTier5RocketNoFlag());
+        }
+        if (ConfigManagerMP.enableTier6RocketSchematic)
+        {
+            SchematicRegistry.registerSchematicRecipe(new SchematicTier6Rocket());
+            SchematicRegistry.registerSchematicRecipe(new SchematicTier6RocketNoFlag());
+        }
+        if (ConfigManagerMP.enableTier7RocketSchematic)
+        {
+            SchematicRegistry.registerSchematicRecipe(new SchematicTier7Rocket());
+        }
+        if (ConfigManagerMP.enableTier8RocketSchematic)
+        {
+            SchematicRegistry.registerSchematicRecipe(new SchematicTier8Rocket());
+        }
 
         if (ConfigManagerMP.enableRocketWithThaiFlag)
         {

@@ -14,6 +14,7 @@ import micdoodle8.mods.galacticraft.core.items.GCItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.planets.kapteynb.blocks.KapteynBBlocks;
@@ -30,7 +31,11 @@ public class CraftingRecipesKapteynB
         CraftingRecipesKapteynB.addItemRecipes();
         CraftingRecipesKapteynB.addBlockSmelting();
         CraftingRecipesKapteynB.addItemSmelting();
-        CraftingRecipesKapteynB.addTier8RocketRecipes();
+
+        if (ConfigManagerMP.enableTier8RocketRecipe)
+        {
+            CraftingRecipesKapteynB.addTier8RocketRecipes();
+        }
     }
 
     private static void addBlockRecipes()

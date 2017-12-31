@@ -18,6 +18,7 @@ import codechicken.nei.api.IConfigureNEI;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.planets.kapteynb.items.KapteynBItems;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
@@ -29,9 +30,12 @@ public class NEIKapteynBConfig implements IConfigureNEI
     @Override
     public void loadConfig()
     {
-        API.registerRecipeHandler(new Tier8RocketRecipeHandlerMP());
-        API.registerUsageHandler(new Tier8RocketRecipeHandlerMP());
-        this.addRocketRecipes();
+        if (ConfigManagerMP.enableTier8RocketRecipe)
+        {
+            API.registerRecipeHandler(new Tier8RocketRecipeHandlerMP());
+            API.registerUsageHandler(new Tier8RocketRecipeHandlerMP());
+            this.addRocketRecipes();
+        }
     }
 
     @Override

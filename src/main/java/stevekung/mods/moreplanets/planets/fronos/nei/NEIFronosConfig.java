@@ -18,6 +18,7 @@ import codechicken.nei.api.IConfigureNEI;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 
@@ -32,9 +33,13 @@ public class NEIFronosConfig implements IConfigureNEI
         API.registerUsageHandler(new FuelRecipeHandlerMP());
         API.registerRecipeHandler(new CandyExtractorRecipeHandler());
         API.registerUsageHandler(new CandyExtractorRecipeHandler());
-        API.registerRecipeHandler(new Tier7RocketRecipeHandlerMP());
-        API.registerUsageHandler(new Tier7RocketRecipeHandlerMP());
-        this.addRocketRecipes();
+
+        if (ConfigManagerMP.enableTier7RocketRecipe)
+        {
+            API.registerRecipeHandler(new Tier7RocketRecipeHandlerMP());
+            API.registerUsageHandler(new Tier7RocketRecipeHandlerMP());
+            this.addRocketRecipes();
+        }
     }
 
     @Override

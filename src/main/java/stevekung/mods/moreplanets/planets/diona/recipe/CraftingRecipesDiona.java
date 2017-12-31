@@ -19,6 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.asteroids.darkasteroids.blocks.DarkAsteroidsBlocks;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.init.MPBlocks;
 import stevekung.mods.moreplanets.core.init.MPItems;
 import stevekung.mods.moreplanets.moons.europa.blocks.EuropaBlocks;
@@ -37,8 +38,11 @@ public class CraftingRecipesDiona
 {
     public static void loadRecipes()
     {
-        CraftingRecipesDiona.addTier4RocketRecipes();
-        CraftingRecipesDiona.addTier4RocketNoFlagRecipes();
+        if (ConfigManagerMP.enableTier4RocketRecipe)
+        {
+            CraftingRecipesDiona.addTier4RocketRecipes();
+            CraftingRecipesDiona.addTier4RocketNoFlagRecipes();
+        }
         CraftingRecipesDiona.addBlockRecipes();
         CraftingRecipesDiona.addItemRecipes();
         CraftingRecipesDiona.addBlockSmelting();

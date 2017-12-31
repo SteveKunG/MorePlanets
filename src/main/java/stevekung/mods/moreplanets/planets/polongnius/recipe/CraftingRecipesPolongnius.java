@@ -17,6 +17,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.polongnius.blocks.PolongniusBlocks;
@@ -32,8 +33,13 @@ public class CraftingRecipesPolongnius
         CraftingRecipesPolongnius.addItemRecipes();
         CraftingRecipesPolongnius.addBlockSmelting();
         CraftingRecipesPolongnius.addItemSmelting();
-        CraftingRecipesPolongnius.addTier5RocketRecipes();
-        CraftingRecipesPolongnius.addTier5RocketNoFlagRecipes();
+
+        if (ConfigManagerMP.enableTier5RocketRecipe)
+        {
+            CraftingRecipesPolongnius.addTier5RocketRecipes();
+            CraftingRecipesPolongnius.addTier5RocketNoFlagRecipes();
+        }
+
         CraftingRecipesPolongnius.addOreDictionary();
     }
 

@@ -19,6 +19,7 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 
 public class NEIDionaConfig implements IConfigureNEI
@@ -29,12 +30,16 @@ public class NEIDionaConfig implements IConfigureNEI
     @Override
     public void loadConfig()
     {
-        this.addRocketRecipes();
-        this.addRocketNoFlagRecipes();
-        API.registerRecipeHandler(new Tier4RocketRecipeHandlerMP());
-        API.registerUsageHandler(new Tier4RocketRecipeHandlerMP());
-        API.registerRecipeHandler(new Tier4RocketNoFlagRecipeHandlerMP());
-        API.registerUsageHandler(new Tier4RocketNoFlagRecipeHandlerMP());
+        if (ConfigManagerMP.enableTier4RocketRecipe)
+        {
+            this.addRocketRecipes();
+            this.addRocketNoFlagRecipes();
+
+            API.registerRecipeHandler(new Tier4RocketRecipeHandlerMP());
+            API.registerUsageHandler(new Tier4RocketRecipeHandlerMP());
+            API.registerRecipeHandler(new Tier4RocketNoFlagRecipeHandlerMP());
+            API.registerUsageHandler(new Tier4RocketNoFlagRecipeHandlerMP());
+        }
     }
 
     @Override

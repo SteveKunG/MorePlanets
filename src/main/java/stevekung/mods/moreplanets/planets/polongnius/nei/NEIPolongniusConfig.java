@@ -19,6 +19,7 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.polongnius.items.PolongniusItems;
 
@@ -30,12 +31,15 @@ public class NEIPolongniusConfig implements IConfigureNEI
     @Override
     public void loadConfig()
     {
-        this.addRocketRecipes();
-        this.addRocketNoFlagRecipes();
-        API.registerRecipeHandler(new Tier5RocketRecipeHandlerMP());
-        API.registerUsageHandler(new Tier5RocketRecipeHandlerMP());
-        API.registerRecipeHandler(new Tier5RocketNoFlagRecipeHandlerMP());
-        API.registerUsageHandler(new Tier5RocketNoFlagRecipeHandlerMP());
+        if (ConfigManagerMP.enableTier5RocketRecipe)
+        {
+            this.addRocketRecipes();
+            this.addRocketNoFlagRecipes();
+            API.registerRecipeHandler(new Tier5RocketRecipeHandlerMP());
+            API.registerUsageHandler(new Tier5RocketRecipeHandlerMP());
+            API.registerRecipeHandler(new Tier5RocketNoFlagRecipeHandlerMP());
+            API.registerUsageHandler(new Tier5RocketNoFlagRecipeHandlerMP());
+        }
     }
 
     @Override

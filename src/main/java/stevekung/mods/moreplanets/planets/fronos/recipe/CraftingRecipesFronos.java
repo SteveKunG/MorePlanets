@@ -35,7 +35,11 @@ public class CraftingRecipesFronos
         CraftingRecipesFronos.addItemSmelting();
         CraftingRecipesFronos.addOreDictRecipe();
         CraftingRecipesFronos.addExtractingRecipe();
-        CraftingRecipesFronos.addTier7RocketRecipes();
+
+        if (ConfigManagerMP.enableTier7RocketRecipe)
+        {
+            CraftingRecipesFronos.addTier7RocketRecipes();
+        }
     }
 
     private static void addBlockRecipes()

@@ -27,6 +27,7 @@ public class ConfigManagerMP
     public static String BIOMES = "biomes";
     public static String POTIONS = "potions";
     public static String GUIS = "guis";
+    public static String GC_ADDON_COMPAT = "gc_addon_compat";
 
     // Dimensions
     public static int idDimensionDiona;
@@ -139,6 +140,18 @@ public class ConfigManagerMP
     public static int idPotionChemical;
     public static int idPotionEMP;
     public static int idPotionIcyPoison;
+
+    // GC-Addon Compatibility stuffs
+    public static boolean enableTier4RocketSchematic;
+    public static boolean enableTier5RocketSchematic;
+    public static boolean enableTier6RocketSchematic;
+    public static boolean enableTier7RocketSchematic;
+    public static boolean enableTier8RocketSchematic;
+    public static boolean enableTier4RocketRecipe;
+    public static boolean enableTier5RocketRecipe;
+    public static boolean enableTier6RocketRecipe;
+    public static boolean enableTier7RocketRecipe;
+    public static boolean enableTier8RocketRecipe;
 
     public static void init(File file)
     {
@@ -553,6 +566,56 @@ public class ConfigManagerMP
             ConfigManagerMP.idPotionIcyPoison = prop.getInt();
             propOrder.add(prop.getName());
 
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 4 Rocket Schematic", true);
+            ConfigManagerMP.enableTier4RocketSchematic = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 5 Rocket Schematic", true);
+            ConfigManagerMP.enableTier5RocketSchematic = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 6 Rocket Schematic", true);
+            ConfigManagerMP.enableTier6RocketSchematic = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 7 Rocket Schematic", true);
+            ConfigManagerMP.enableTier7RocketSchematic = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 8 Rocket Schematic", true);
+            ConfigManagerMP.enableTier8RocketSchematic = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 4 Rocket Recipe", true);
+            ConfigManagerMP.enableTier4RocketRecipe = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 5 Rocket Recipe", true);
+            ConfigManagerMP.enableTier5RocketRecipe = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 6 Rocket Recipe", true);
+            ConfigManagerMP.enableTier6RocketRecipe = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 7 Rocket Recipe", true);
+            ConfigManagerMP.enableTier7RocketRecipe = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
+            prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 8 Rocket Recipe", true);
+            ConfigManagerMP.enableTier8RocketRecipe = prop.getBoolean();
+            prop.setRequiresMcRestart(true);
+            propOrder.add(prop.getName());
+
             ConfigManagerMP.config.setCategoryPropertyOrder(Configuration.CATEGORY_GENERAL, propOrder);
 
             if (ConfigManagerMP.config.hasChanged())
@@ -576,6 +639,7 @@ public class ConfigManagerMP
         list.addAll(new ConfigElement(ConfigManagerMP.config.getCategory(ConfigManagerMP.POTIONS)).getChildElements());
         list.addAll(new ConfigElement(ConfigManagerMP.config.getCategory(ConfigManagerMP.SCHEMATICS)).getChildElements());
         list.addAll(new ConfigElement(ConfigManagerMP.config.getCategory(ConfigManagerMP.GUIS)).getChildElements());
+        list.addAll(new ConfigElement(ConfigManagerMP.config.getCategory(ConfigManagerMP.GC_ADDON_COMPAT)).getChildElements());
         return list;
     }
 }

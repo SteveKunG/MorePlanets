@@ -17,6 +17,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
@@ -34,8 +35,12 @@ public class CraftingRecipesNibiru
         CraftingRecipesNibiru.addBlockSmelting();
         CraftingRecipesNibiru.addItemSmelting();
         CraftingRecipesNibiru.addOreDictRecipe();
-        CraftingRecipesNibiru.addTier6RocketRecipes();
-        CraftingRecipesNibiru.addTier6RocketNoFlagRecipes();
+
+        if (ConfigManagerMP.enableTier6RocketRecipe)
+        {
+            CraftingRecipesNibiru.addTier6RocketRecipes();
+            CraftingRecipesNibiru.addTier6RocketNoFlagRecipes();
+        }
     }
 
     private static void addBlockRecipes()
