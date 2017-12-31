@@ -10,13 +10,16 @@ package stevekung.mods.moreplanets.moons.europa.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.core.blocks.BlockDoorMP;
 import stevekung.mods.moreplanets.core.blocks.BlockDoorMP.DoorType;
 import stevekung.mods.moreplanets.core.blocks.BlockFenceGateMP;
 import stevekung.mods.moreplanets.core.blocks.BlockStairsMP;
 import stevekung.mods.moreplanets.core.blocks.BlockStairsMP.StairsCategory;
+import stevekung.mods.moreplanets.core.init.MPBlocks;
 import stevekung.mods.moreplanets.core.util.RegisterHelper;
 import stevekung.mods.moreplanets.moons.europa.blocks.BlockEuropaLeaves.EuropaLeafCategory;
 import stevekung.mods.moreplanets.moons.europa.blocks.BlockEuropaLog.EuropaLogCategory;
@@ -138,5 +141,10 @@ public class EuropaBlocks
         RegisterHelper.setFireBurn(EuropaBlocks.europa_fence, 5, 20);
         RegisterHelper.setFireBurn(EuropaBlocks.europa_fence_gate, 5, 20);
         RegisterHelper.setFireBurn(EuropaBlocks.europa_wood_stairs, 5, 20);
+
+        OreDictionary.registerOre("logWood", new ItemStack(EuropaBlocks.europa_log));
+        OreDictionary.registerOre("plankWood", new ItemStack(EuropaBlocks.europa_planks));
+        OreDictionary.registerOre("slabWood", new ItemStack(MPBlocks.wooden_slab_half, 1, 5));
+        OreDictionary.registerOre("stairWood", new ItemStack(EuropaBlocks.europa_wood_stairs));
     }
 }

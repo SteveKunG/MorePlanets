@@ -18,6 +18,7 @@ import stevekung.mods.moreplanets.asteroids.darkasteroids.itemblocks.ItemBlockDa
 import stevekung.mods.moreplanets.core.blocks.BlockFenceGateMP;
 import stevekung.mods.moreplanets.core.blocks.BlockStairsMP;
 import stevekung.mods.moreplanets.core.blocks.BlockStairsMP.StairsCategory;
+import stevekung.mods.moreplanets.core.init.MPBlocks;
 import stevekung.mods.moreplanets.core.itemblocks.ItemBlockDirtMP;
 import stevekung.mods.moreplanets.core.util.RegisterHelper;
 
@@ -105,5 +106,9 @@ public class DarkAsteroidsBlocks
         OreDictionary.registerOre("oreDiamond", new ItemStack(DarkAsteroidsBlocks.dark_asteroid_block, 1, 8));
         OreDictionary.registerOre("oreEmerald", new ItemStack(DarkAsteroidsBlocks.dark_asteroid_block, 1, 9));
         OreDictionary.registerOre("oreLapis", new ItemStack(DarkAsteroidsBlocks.dark_asteroid_block, 1, 10));
+        OreDictionary.registerOre("logWood", new ItemStack(DarkAsteroidsBlocks.alien_log));
+        OreDictionary.registerOre("plankWood", new ItemStack(DarkAsteroidsBlocks.alien_planks));
+        OreDictionary.registerOre("slabWood", new ItemStack(MPBlocks.wooden_slab_half, 1, 6));
+        OreDictionary.registerOre("stairWood", new ItemStack(DarkAsteroidsBlocks.alien_wood_stairs));
     }
 }
