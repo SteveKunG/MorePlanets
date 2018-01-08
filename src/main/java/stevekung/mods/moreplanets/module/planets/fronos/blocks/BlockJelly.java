@@ -178,6 +178,12 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
         return true;
     }
 
+    @Override
+    public boolean isStickyBlock(IBlockState state)
+    {
+        return true;
+    }
+
     public static enum BlockType implements IStringSerializable
     {
         GRAPE_JELLY_BLOCK,

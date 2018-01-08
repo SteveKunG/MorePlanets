@@ -101,6 +101,12 @@ public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
     }
 
     @Override
+    public boolean isStickyBlock(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
     public String getName()
     {
         return "infected_crystallize_slime_block";

@@ -102,6 +102,12 @@ public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
     }
 
     @Override
+    public boolean isStickyBlock(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
     public String getName()
     {
         return "cheese_slime_block";
