@@ -4,10 +4,10 @@ import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -52,7 +52,7 @@ public class ClientRendererUtil
     private static void renderModelBrightnessColorQuads(float brightness, float red, float green, float blue, List<BakedQuad> listQuads)
     {
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        BufferBuilder vertexbuffer = tessellator.getBuffer();
         int i = 0;
 
         for (int j = listQuads.size(); i < j; ++i)
@@ -75,7 +75,7 @@ public class ClientRendererUtil
         }
     }
 
-    private static void putColorRGB_F4(VertexBuffer vertexbuffer, float red, float green, float blue)
+    private static void putColorRGB_F4(BufferBuilder vertexbuffer, float red, float green, float blue)
     {
         for (int i = 0; i < 4; ++i)
         {
@@ -83,7 +83,7 @@ public class ClientRendererUtil
         }
     }
 
-    private static void putColorRGB_F(VertexBuffer vertexbuffer, float red, float green, float blue, int vertexIndex)
+    private static void putColorRGB_F(BufferBuilder vertexbuffer, float red, float green, float blue, int vertexIndex)
     {
         int i = vertexbuffer.getColorIndex(vertexIndex);
         int j = MathHelper.clamp((int)(red * 255.0F), 0, 255);
@@ -97,7 +97,7 @@ public class ClientRendererUtil
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(resource));
     }
 
-    public static void drawDefaultParticlesTexture(VertexBuffer vertexbuffer)
+    public static void drawDefaultParticlesTexture(BufferBuilder vertexbuffer)
     {
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/particle/particles.png"));
         vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);

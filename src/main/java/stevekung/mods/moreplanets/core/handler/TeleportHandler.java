@@ -39,7 +39,7 @@ public class TeleportHandler
 
             if (mcServer != null)
             {
-                WorldServer worldServer = mcServer.worldServerForDimension(dimID);
+                WorldServer worldServer = mcServer.getWorld(dimID);
 
                 if (worldServer == null)
                 {
@@ -87,14 +87,14 @@ public class TeleportHandler
             {
                 Chunk chunkOld = worldOld.getChunkFromChunkCoords(player.chunkCoordX, player.chunkCoordZ);
                 chunkOld.removeEntity(player);
-                chunkOld.setChunkModified();
+                chunkOld.setModified(true);
             }
 
             worldOld.loadedEntityList.remove(player);
             worldOld.onEntityRemoved(player);
             worldNew.spawnEntity(player);
             player.setWorld(worldNew);
-            ((WorldServer) worldNew).getChunkProvider().loadChunk(pair.chunkXPos, pair.chunkZPos);
+            ((WorldServer) worldNew).getChunkProvider().loadChunk(pair.x, pair.z);
             worldNew.updateEntityWithOptionalForce(player, false);
 
             if (!nether)
@@ -107,7 +107,7 @@ public class TeleportHandler
             {
                 if (blockpos != null)
                 {
-                    BlockPos blockpos1 = EntityPlayer.getBedSpawnLocation(player.mcServer.worldServerForDimension(player.dimension), blockpos, flag);
+                    BlockPos blockpos1 = EntityPlayer.getBedSpawnLocation(player.mcServer.getWorld(player.dimension), blockpos, flag);
 
                     if (blockpos1 != null)
                     {
@@ -173,7 +173,7 @@ public class TeleportHandler
             {
                 Chunk chunkOld = worldOld.getChunkFromChunkCoords(player.chunkCoordX, player.chunkCoordZ);
                 chunkOld.removeEntity(player);
-                chunkOld.setChunkModified();
+                chunkOld.setModified(true);
             }
 
             worldOld.loadedEntityList.remove(player);
@@ -214,7 +214,7 @@ public class TeleportHandler
                 player.inventory.addItemStackToInventory(new ItemStack(AsteroidsItems.canisterLOX));
             }
 
-            worldNew.getChunkProvider().loadChunk(pair.chunkXPos, pair.chunkZPos);
+            worldNew.getChunkProvider().loadChunk(pair.x, pair.z);
             worldNew.updateEntityWithOptionalForce(player, false);
             player.setLocationAndAngles(blockpos.getX(), blockpos.getY() + 16.0D, blockpos.getZ(), player.rotationYaw, player.rotationPitch);
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 15 * 20, 5));

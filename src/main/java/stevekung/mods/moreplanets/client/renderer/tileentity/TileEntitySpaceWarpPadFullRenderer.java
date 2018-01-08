@@ -16,7 +16,7 @@ public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRendere
     public ModelSpaceWarpPad model = new ModelSpaceWarpPad();
 
     @Override
-    public void renderTileEntityAt(TileEntitySpaceWarpPadFull te, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntitySpaceWarpPadFull te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;

@@ -82,9 +82,9 @@ public class BlockFluidInfectedWater extends BlockFluidBaseMP implements IFishab
         {
             EntityItem item = (EntityItem) entity;
 
-            if (item.getEntityItem().getItem() == Items.ARROW)
+            if (item.getItem().getItem() == Items.ARROW)
             {
-                item.setEntityItemStack(new ItemStack(NibiruItems.INFECTED_ARROW, item.getEntityItem().getCount()));
+                item.setItem(new ItemStack(NibiruItems.INFECTED_ARROW, item.getItem().getCount()));
             }
         }
     }

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.recipe.DarkEnergyRecipeData;
 
-public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
+public class DarkEnergyTransformRecipeWrapper implements IRecipeWrapper
 {
     private HashMap<Integer, ItemStack> input;
     private ItemStack output;
@@ -29,9 +29,9 @@ public class DarkEnergyTransformRecipeWrapper extends BlankRecipeWrapper
     {
         int time = this.time / 20;
         String text = "Transform Time : " + time + "s * Count";
-        FontRenderer fontRendererObj = mc.fontRendererObj;
+        FontRenderer fontRendererObj = mc.fontRenderer;
         int width = fontRendererObj.getStringWidth(text) / 2;
-        mc.fontRendererObj.drawString(text, recipeWidth - 60 - width, 38, Color.gray.getRGB());
+        mc.fontRenderer.drawString(text, recipeWidth - 60 - width, 38, Color.gray.getRGB());
     }
 
     @Override

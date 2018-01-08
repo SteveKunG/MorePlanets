@@ -89,7 +89,7 @@ public class ItemVeinEye extends ItemBaseMP
         {
             if (!world.isRemote)
             {
-                BlockPos blockpos = ((WorldServer)world).getChunkProvider().getStrongholdGen(world, "NibiruStronghold", new BlockPos(player), false);
+                BlockPos blockpos = ((WorldServer)world).getChunkProvider().getNearestStructurePos(world, "NibiruStronghold", new BlockPos(player), false);
 
                 if (blockpos != null)
                 {

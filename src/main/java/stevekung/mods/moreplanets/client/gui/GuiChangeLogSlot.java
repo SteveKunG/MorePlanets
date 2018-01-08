@@ -4,9 +4,9 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiSlot;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -58,18 +58,18 @@ public class GuiChangeLogSlot extends GuiSlot
     protected void drawBackground() {}
 
     @Override
-    protected void drawSlot(int entryID, int insideLeft, int yPos, int insideSlotHeight, int mouseXIn, int mouseYIn)
+    protected void drawSlot(int slotIndex, int xPos, int yPos, int heightIn, int mouseXIn, int mouseYIn, float partialTicks)
     {
-        String test = this.stringList.get(entryID);
-        this.mc.fontRendererObj.drawStringWithShadow(test, insideLeft - 20, yPos + 2, 16777215);
+        String test = this.stringList.get(slotIndex);
+        this.mc.fontRenderer.drawStringWithShadow(test, heightIn - 20, yPos + 2, 16777215);
     }
 
     @Override
     protected void overlayBackground(int startY, int endY, int startAlpha, int endAlpha)
     {
-        this.parent.drawCenteredString(this.mc.fontRendererObj, "More Planets " + MorePlanetsCore.VERSION + " Change Log", this.width / 2, 16, 16777215);
+        this.parent.drawCenteredString(this.mc.fontRenderer, "More Planets " + MorePlanetsCore.VERSION + " Change Log", this.width / 2, 16, 16777215);
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        BufferBuilder vertexbuffer = tessellator.getBuffer();
         this.mc.getTextureManager().bindTexture(this.textureType ? GuiChangeLogSlot.POLISHED_TIN : GuiChangeLogSlot.POLISHED_ALUMINUM);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         float size = 32.0F;
@@ -85,7 +85,7 @@ public class GuiChangeLogSlot extends GuiSlot
     @Override
     protected void drawContainerBackground(Tessellator tessellator)
     {
-        VertexBuffer buffer = tessellator.getBuffer();
+        BufferBuilder buffer = tessellator.getBuffer();
         this.mc.getTextureManager().bindTexture(GuiChangeLogSlot.TRANSPARENT);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.enableBlend();
@@ -115,7 +115,7 @@ public class GuiChangeLogSlot extends GuiSlot
             GlStateManager.disableLighting();
             GlStateManager.disableFog();
             Tessellator tessellator = Tessellator.getInstance();
-            VertexBuffer vertexbuffer = tessellator.getBuffer();
+            BufferBuilder vertexbuffer = tessellator.getBuffer();
             this.drawContainerBackground(tessellator);
             int k = this.left + this.width / 2 - this.getListWidth() / 2 + 2;
             int l = this.top + 4 - (int)this.amountScrolled;
@@ -125,7 +125,7 @@ public class GuiChangeLogSlot extends GuiSlot
                 this.drawListHeader(k, l, tessellator);
             }
 
-            this.drawSelectionBox(k, l, mouseX, mouseY);
+            this.drawSelectionBox(k, l, mouseX, mouseY, partialTicks);
             GlStateManager.disableDepth();
             this.overlayBackground(0, this.top, 255, 255);
             this.overlayBackground(this.bottom, this.height, 255, 255);

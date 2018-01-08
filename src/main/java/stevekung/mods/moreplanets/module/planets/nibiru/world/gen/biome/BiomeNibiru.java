@@ -24,16 +24,16 @@ public class BiomeNibiru extends BiomeBaseMP
     {
         super(properties);
         this.getBiomeDecorator().clayPerChunk = 1;
-        this.getBiomeDecorator().sandPerChunk = 1;
-        this.getBiomeDecorator().sandPerChunk2 = 3;
+        this.getBiomeDecorator().gravelPatchesPerChunk = 1;
+        this.getBiomeDecorator().sandPatchesPerChunk = 3;
         this.getBiomeDecorator().pureHurbPerChunk = 4;
-        this.theBiomeDecorator.treesPerChunk = -999;
-        this.theBiomeDecorator.flowersPerChunk = -999;
-        this.theBiomeDecorator.grassPerChunk = -999;
+        this.decorator.treesPerChunk = -999;
+        this.decorator.flowersPerChunk = -999;
+        this.decorator.grassPerChunk = -999;
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0) : new WorldGenInfectedTrees(true, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
     }
@@ -46,7 +46,7 @@ public class BiomeNibiru extends BiomeBaseMP
 
     protected BiomeDecoratorNibiru getBiomeDecorator()
     {
-        return (BiomeDecoratorNibiru)this.theBiomeDecorator;
+        return (BiomeDecoratorNibiru)this.decorator;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class BiomeNibiru extends BiomeBaseMP
 
                         if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
                         {
-                            if (this.getFloatTemperature(blockpos$mutableblockpos.setPos(chunkX, j1, chunkZ)) < 0.15F)
+                            if (this.getTemperature(blockpos$mutableblockpos.setPos(chunkX, j1, chunkZ)) < 0.15F)
                             {
                                 iblockstate = NibiruBlocks.INFECTED_ICE.getDefaultState();
                             }

@@ -24,7 +24,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
     }
 
     @Override
-    public void renderTileEntityAt(TileEntityNuclearWasteTank tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityNuclearWasteTank tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;

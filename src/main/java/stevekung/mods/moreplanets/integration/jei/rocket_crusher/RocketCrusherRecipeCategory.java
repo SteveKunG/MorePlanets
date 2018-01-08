@@ -2,7 +2,7 @@ package stevekung.mods.moreplanets.integration.jei.rocket_crusher;
 
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeCategory;
+import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
@@ -11,7 +11,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
-public class RocketCrusherRecipeCategory extends BlankRecipeCategory
+public class RocketCrusherRecipeCategory implements IRecipeCategory
 {
     private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/rocket_crusher.png");
     private IDrawableAnimated progressBar;

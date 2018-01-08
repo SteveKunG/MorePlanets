@@ -11,7 +11,7 @@ public class BiomeInfectedOcean extends BiomeNibiru
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         this.getBiomeDecorator().seaweedPerChunk = 4;
-        this.theBiomeDecorator.treesPerChunk = -999;
+        this.decorator.treesPerChunk = -999;
     }
 
     @Override

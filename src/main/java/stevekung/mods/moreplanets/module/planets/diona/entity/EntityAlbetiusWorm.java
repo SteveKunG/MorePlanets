@@ -75,7 +75,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return SoundEvents.ENTITY_SILVERFISH_HURT;
     }
@@ -200,9 +200,9 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
         }
 
         @Override
-        public boolean continueExecuting()
+        public boolean shouldContinueExecuting()
         {
-            return this.doMerge ? false : super.continueExecuting();
+            return this.doMerge ? false : super.shouldContinueExecuting();
         }
 
         @Override

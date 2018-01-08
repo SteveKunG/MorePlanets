@@ -15,7 +15,7 @@ public class ItemBlockKoentus extends ItemBlockMultiVariant
     @Override
     public boolean onEntityItemUpdate(EntityItem entityItem)
     {
-        if (entityItem.getEntityItem().getItemDamage() == 4 || entityItem.getEntityItem().getItemDamage() == 10)
+        if (entityItem.getItem().getItemDamage() == 4 || entityItem.getItem().getItemDamage() == 10)
         {
             entityItem.motionY += TransformerHooks.getItemGravity(entityItem);
         }

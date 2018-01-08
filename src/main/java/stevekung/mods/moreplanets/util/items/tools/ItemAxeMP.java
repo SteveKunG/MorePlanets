@@ -34,7 +34,7 @@ public class ItemAxeMP extends ItemAxe implements ISortableItem
 
     public ItemAxeMP(String name, ToolMaterial material, Item item, int meta, EnumToolSpeed speed)
     {
-        super(material, material.getDamageVsEntity(), speed.getSpeed());
+        super(material, material.getAttackDamage(), speed.getSpeed());
         this.repairItem = item;
         this.repairItemMeta = meta;
         this.setUnlocalizedName(name);

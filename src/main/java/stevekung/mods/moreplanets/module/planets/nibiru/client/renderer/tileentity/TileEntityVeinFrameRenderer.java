@@ -16,7 +16,7 @@ public class TileEntityVeinFrameRenderer extends TileEntitySpecialRenderer<TileE
     private ModelVeinFrame model = new ModelVeinFrame();
 
     @Override
-    public void renderTileEntityAt(TileEntityVeinFrame tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityVeinFrame tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;

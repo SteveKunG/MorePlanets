@@ -37,8 +37,8 @@ public class GuiBlackHoleStorageSchematic extends GuiPositionedContainer impleme
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        this.fontRendererObj.drawString(GCCoreUtil.translate("container.schematic.black_hole_storage"), 7, -20 + 27, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, 220 - 104 + 2 + 27, 4210752);
+        this.fontRenderer.drawString(GCCoreUtil.translate("container.schematic.black_hole_storage"), 7, -20 + 27, 4210752);
+        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, 220 - 104 + 2 + 27, 4210752);
     }
 
     @Override

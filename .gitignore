@@ -45,3 +45,4 @@ gradle-wrapper.properties
 gradlew.bat
 gradlew
 *_at.cfg
+!moreplanets_at.cfg

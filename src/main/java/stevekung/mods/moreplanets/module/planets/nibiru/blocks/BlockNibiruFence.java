@@ -1,13 +1,14 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
@@ -34,11 +35,11 @@ public class BlockNibiruFence extends BlockFenceMP implements IBlockVariants
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
-            list.add(new ItemStack(item, 1, i));
+            list.add(new ItemStack(this, 1, i));
         }
     }
 
@@ -69,13 +70,20 @@ public class BlockNibiruFence extends BlockFenceMP implements IBlockVariants
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return state.withProperty(NORTH, Boolean.valueOf(this.canConnectTo(world, pos.north()))).withProperty(EAST, Boolean.valueOf(this.canConnectTo(world, pos.east()))).withProperty(SOUTH, Boolean.valueOf(this.canConnectTo(world, pos.south()))).withProperty(WEST, Boolean.valueOf(this.canConnectTo(world, pos.west())));
+        return state.withProperty(NORTH, this.canFenceConnectTo(world, pos, EnumFacing.NORTH)).withProperty(EAST,  this.canFenceConnectTo(world, pos, EnumFacing.EAST)).withProperty(SOUTH, this.canFenceConnectTo(world, pos, EnumFacing.SOUTH)).withProperty(WEST,  this.canFenceConnectTo(world, pos, EnumFacing.WEST));
     }
 
     @Override
     public VariantsName getVariantsName()
     {
         return new VariantsName("infected", "infected_dead_oak", "alien_berry_oak");
+    }
+
+    private boolean canFenceConnectTo(IBlockAccess world, BlockPos pos, EnumFacing facing)
+    {
+        BlockPos other = pos.offset(facing);
+        Block block = world.getBlockState(other).getBlock();
+        return block.canBeConnectedTo(world, other, facing.getOpposite()) || this.canConnectTo(world, other, facing.getOpposite());
     }
 
     public static enum BlockType implements IStringSerializable

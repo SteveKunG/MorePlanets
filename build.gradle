@@ -4,7 +4,7 @@ buildscript {
         maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.0.9'
     }
 }
@@ -24,9 +24,9 @@ archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.11.2-13.20.1.2563"
+    version = "1.12.2-14.23.1.2584"
     runDir = "run"
-    mappings = "snapshot_20161220"
+    mappings = "snapshot_20171003"
     makeObfSourceJar = false
 }
 
@@ -57,7 +57,7 @@ dependencies {
     compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
     compile "codechicken:NotEnoughItems:${mc_version}-${nei_version}:deobf"
     compile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
-    deobfCompile "team.chisel.ctm:CTM:MC${mc_version}-${ctm_version}"
+    deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
     runtime "codechicken:NotEnoughItems:${mc_version}-${nei_version}:deobf"

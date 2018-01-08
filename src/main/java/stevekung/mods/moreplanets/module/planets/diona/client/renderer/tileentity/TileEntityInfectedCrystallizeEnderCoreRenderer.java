@@ -15,7 +15,7 @@ public class TileEntityInfectedCrystallizeEnderCoreRenderer extends TileEntitySp
     private ModelInfectedCrystallizeEnderCore model = new ModelInfectedCrystallizeEnderCore();
 
     @Override
-    public void renderTileEntityAt(TileEntityInfectedCrystallizeEnderCore tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityInfectedCrystallizeEnderCore tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float renderPartialTicks = tile.renderTicks + partialTicks;
         float ticks = MathHelper.sin(renderPartialTicks / 8) / 10.0F + 0.75F;

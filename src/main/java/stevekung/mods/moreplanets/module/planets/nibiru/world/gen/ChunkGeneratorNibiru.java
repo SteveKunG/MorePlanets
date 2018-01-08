@@ -20,11 +20,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkGenerator;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.NoiseGenerator;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.*;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
@@ -180,7 +176,7 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
     }
 
     @Override
-    public Chunk provideChunk(int chunkX, int chunkZ)
+    public Chunk generateChunk(int chunkX, int chunkZ)
     {
         this.rand.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
@@ -427,9 +423,15 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
     }
 
     @Override
-    public BlockPos getStrongholdGen(World world, String structureName, BlockPos position, boolean findUnexplored)
+    public BlockPos getNearestStructurePos(World world, String structureName, BlockPos position, boolean findUnexplored)
     {
-        return "NibiruStronghold".equals(structureName) && this.strongholdGenerator != null ? this.strongholdGenerator.getClosestStrongholdPos(world, position, false) : null;
+        return "NibiruStronghold".equals(structureName) && this.strongholdGenerator != null ? this.strongholdGenerator.getNearestStructurePos(world, position, false) : null;
+    }
+
+    @Override
+    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
+    {
+        return false;
     }
 
     @Override

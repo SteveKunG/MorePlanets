@@ -16,7 +16,7 @@ public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileE
     private ModelJuicerEgg model = new ModelJuicerEgg();
 
     @Override
-    public void renderTileEntityAt(TileEntityJuicerEgg tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityJuicerEgg tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
         GlStateManager.pushMatrix();
@@ -37,6 +37,6 @@ public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileE
     private void renderJuicer(float partialTicks)
     {
         EntityJuicer juicer = new EntityJuicer(Minecraft.getMinecraft().world);
-        Minecraft.getMinecraft().getRenderManager().doRenderEntity(juicer, 0.0F, 0.1F, 0.0F, 0.0F, partialTicks, false);
+        Minecraft.getMinecraft().getRenderManager().renderEntity(juicer, 0.0F, 0.1F, 0.0F, 0.0F, partialTicks, false);
     }
 }

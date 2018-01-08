@@ -104,7 +104,7 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
     }
 
     @Override
-    public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
+    public BlockPos getNearestStructurePos(World world, BlockPos pos, boolean findUnexplored)
     {
         this.world = world;
         return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 14357617, false, 100, findUnexplored);

@@ -83,7 +83,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
             {
                 this.attackEntityFrom(DamageSource.DROWN, 1.0F);
             }
-            if (this.world.getBiome(new BlockPos(i, 0, k)).getFloatTemperature(new BlockPos(i, j, k)) > 1.0F)
+            if (this.world.getBiome(new BlockPos(i, 0, k)).getTemperature(new BlockPos(i, j, k)) > 1.0F)
             {
                 this.attackEntityFrom(DamageSource.ON_FIRE, 1.0F);
             }
@@ -95,7 +95,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
                 k = MathHelper.floor(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
                 BlockPos blockpos = new BlockPos(i, j, k);
 
-                if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(new BlockPos(i, 0, k)).getFloatTemperature(blockpos) < 0.8F && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, blockpos))
+                if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(new BlockPos(i, 0, k)).getTemperature(blockpos) < 0.8F && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, blockpos))
                 {
                     this.world.setBlockState(blockpos, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                 }
@@ -125,7 +125,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
         double d2 = d0 - entitysnowball.posY;
         double d3 = target.posZ - this.posZ;
         float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
-        entitysnowball.setThrowableHeading(d1, d2 + f, d3, 1.6F, 12.0F);
+        entitysnowball.shoot(d1, d2 + f, d3, 1.6F, 12.0F);
         this.playSound(SoundEvents.ENTITY_SNOWMAN_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.world.spawnEntity(entitysnowball);
     }
@@ -153,4 +153,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     {
         return true;
     }
+
+    @Override
+    public void setSwingingArms(boolean swingingArms) {}
 }

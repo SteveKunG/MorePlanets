@@ -68,7 +68,7 @@ public class BiomeGreenVein extends BiomeNibiru
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         return rand.nextInt(3) == 0 ? new WorldGenAlienBerryBigTree() : new WorldGenAlienBerryTree();
     }

@@ -2,10 +2,10 @@ package stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.entity;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -40,7 +40,7 @@ public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
             if (player != null && !player.capabilities.isCreativeMode && entity.getVinePull())
             {
                 Tessellator tessellator = Tessellator.getInstance();
-                VertexBuffer worldrenderer = tessellator.getBuffer();
+                BufferBuilder worldrenderer = tessellator.getBuffer();
                 this.bindTexture(new ResourceLocation("moreplanets:textures/blocks/infected_vines.png"));
                 GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
                 GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
@@ -62,8 +62,8 @@ public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
                 Vec3d vec32 = vec3.subtract(vec31);
                 double d0 = vec32.lengthVector();
                 vec32 = vec32.normalize();
-                float f5 = (float)Math.acos(vec32.yCoord);
-                float f6 = (float)Math.atan2(vec32.zCoord, vec32.xCoord);
+                float f5 = (float)Math.acos(vec32.y);
+                float f6 = (float)Math.atan2(vec32.z, vec32.x);
                 GlStateManager.rotate(((float)Math.PI / 2F + -f6) * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
                 GlStateManager.rotate(f5 * (180F / (float)Math.PI), 1.0F, 0.0F, 0.0F);
                 int i = 1;

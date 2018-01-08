@@ -14,9 +14,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.ChunkProviderOverworld;
+import net.minecraft.world.gen.ChunkGeneratorOverworld;
 
-public abstract class ChunkProviderBaseMP extends ChunkProviderOverworld
+public abstract class ChunkProviderBaseMP extends ChunkGeneratorOverworld
 {
     protected NoiseModule noiseGen1;
     protected NoiseModule noiseGen2;

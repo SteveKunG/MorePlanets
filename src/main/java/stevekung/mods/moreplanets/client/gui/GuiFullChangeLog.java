@@ -4,11 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import org.apache.commons.io.Charsets;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -55,7 +54,7 @@ public class GuiFullChangeLog extends GuiScreen
             {
                 String s = "";
                 InputStream inputstream = this.mc.getResourceManager().getResource(new ResourceLocation("moreplanets:change_log.txt")).getInputStream();
-                BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(inputstream, Charsets.UTF_8));
+                BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
 
                 while ((s = bufferedreader.readLine()) != null)
                 {
@@ -63,7 +62,7 @@ public class GuiFullChangeLog extends GuiScreen
                     s = s.replaceAll("-Remove-", TextFormatting.RED + "-" + TextFormatting.RESET);
                     s = s.replaceAll("-Fixed-", TextFormatting.GOLD + "*" + TextFormatting.RESET);
                     s = s.replaceAll("-Update-", TextFormatting.YELLOW + "*" + TextFormatting.RESET);
-                    this.stringList.addAll(this.mc.fontRendererObj.listFormattedStringToWidth(s, 264));
+                    this.stringList.addAll(this.mc.fontRenderer.listFormattedStringToWidth(s, 264));
                     this.rand = new Random();
                 }
                 inputstream.close();

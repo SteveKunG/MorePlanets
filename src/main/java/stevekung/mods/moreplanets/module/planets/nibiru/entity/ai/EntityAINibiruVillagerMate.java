@@ -78,7 +78,7 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return this.matingTimeout >= 0 && this.checkSufficientDoorsPresentForNewVillager() && this.villagerObj.getGrowingAge() == 0 && this.villagerObj.getIsWillingToMate(false);
     }
@@ -89,7 +89,7 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
         --this.matingTimeout;
         this.villagerObj.getLookHelper().setLookPositionWithEntity(this.mate, 10.0F, 30.0F);
 
-        if (this.villagerObj.getDistanceSqToEntity(this.mate) > 2.25D)
+        if (this.villagerObj.getDistanceSq(this.mate) > 2.25D)
         {
             this.villagerObj.getNavigator().tryMoveToEntityLiving(this.mate, 0.25D);
         }

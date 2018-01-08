@@ -24,7 +24,7 @@ public class EntityAIFronosPanic extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (this.entity.getAITarget() == null && !this.entity.isBurning())
+        if (this.entity.getRevengeTarget() == null && !this.entity.isBurning())
         {
             return false;
         }
@@ -38,9 +38,9 @@ public class EntityAIFronosPanic extends EntityAIBase
             }
             else
             {
-                this.randPosX = vec3.xCoord;
-                this.randPosY = vec3.yCoord;
-                this.randPosZ = vec3.zCoord;
+                this.randPosX = vec3.x;
+                this.randPosY = vec3.y;
+                this.randPosZ = vec3.z;
                 return true;
             }
         }
@@ -55,7 +55,7 @@ public class EntityAIFronosPanic extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return !this.entity.getNavigator().noPath() && this.timer > 0;
     }

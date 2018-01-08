@@ -23,7 +23,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
     }
 
     @Override
-    public void renderTileEntityAt(TileEntityDarkEnergyGenerator tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityDarkEnergyGenerator tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float renderPartialTicks = tile.renderTicks + partialTicks;
         float ticks = MathHelper.sin(renderPartialTicks / 12) / 10.0F + 0.75F;

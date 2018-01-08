@@ -60,7 +60,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
         {
             AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
 
-            if (axisalignedbb != null && axisalignedbb.offset(blockpos).isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
+            if (axisalignedbb != null && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
                 this.inGround = true;
             }
@@ -105,11 +105,11 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
 
             if (movingobjectposition != null)
             {
-                vec3 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+                vec3 = new Vec3d(movingobjectposition.hitVec.x, movingobjectposition.hitVec.y, movingobjectposition.hitVec.z);
             }
 
             Entity entity = null;
-            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
 
             for (int i = 0; i < list.size(); ++i)
@@ -119,7 +119,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                 if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5))
                 {
                     float f1 = 0.3F;
-                    AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expand(f1, f1, f1);
+                    AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().grow(f1, f1, f1);
                     RayTraceResult movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
                     if (movingobjectposition1 != null)
@@ -237,9 +237,9 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
                     IBlockState iblockstate1 = this.world.getBlockState(blockpos1);
                     this.inTile = iblockstate1.getBlock();
                     this.inData = this.inTile.getMetaFromState(iblockstate1);
-                    this.motionX = (float)(movingobjectposition.hitVec.xCoord - this.posX);
-                    this.motionY = (float)(movingobjectposition.hitVec.yCoord - this.posY);
-                    this.motionZ = (float)(movingobjectposition.hitVec.zCoord - this.posZ);
+                    this.motionX = (float)(movingobjectposition.hitVec.x - this.posX);
+                    this.motionY = (float)(movingobjectposition.hitVec.y - this.posY);
+                    this.motionZ = (float)(movingobjectposition.hitVec.z - this.posZ);
                     float f5 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     this.posX -= this.motionX / f5 * 0.05000000074505806D;
                     this.posY -= this.motionY / f5 * 0.05000000074505806D;

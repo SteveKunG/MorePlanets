@@ -1,8 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.particle;
 
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -37,7 +37,7 @@ public class ParticleCrystallizeFlame extends Particle
     }
 
     @Override
-    public void renderParticle(VertexBuffer worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+    public void renderParticle(BufferBuilder worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         Tessellator tessellator = Tessellator.getInstance();
         float f = (this.particleAge + partialTicks) / this.particleMaxAge;

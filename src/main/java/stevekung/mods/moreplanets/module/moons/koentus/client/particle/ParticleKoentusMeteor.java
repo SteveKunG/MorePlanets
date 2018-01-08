@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.module.moons.koentus.client.particle;
 
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -45,7 +45,7 @@ public class ParticleKoentusMeteor extends Particle
     }
 
     @Override
-    public void renderParticle(VertexBuffer worldRenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+    public void renderParticle(BufferBuilder worldRenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         float f = (this.particleAge + partialTicks) / this.particleMaxAge;
         f = 1.0F - f;

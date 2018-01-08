@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.util.items;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -32,11 +31,11 @@ public abstract class ItemFoodVariantsMP extends ItemFood implements ISortableIt
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
+    public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < this.getItemVariantsName().length; i++)
         {
-            list.add(new ItemStack(item, 1, i));
+            list.add(new ItemStack(this, 1, i));
         }
     }
 

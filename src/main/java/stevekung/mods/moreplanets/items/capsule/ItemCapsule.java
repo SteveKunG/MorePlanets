@@ -2,11 +2,13 @@ package stevekung.mods.moreplanets.items.capsule;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -68,7 +70,7 @@ public class ItemCapsule extends ItemFoodMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    public void addInformation(ItemStack itemStack, @Nullable World world, List<String> list, ITooltipFlag flag)
     {
         if (itemStack.hasTagCompound())
         {
@@ -87,9 +89,9 @@ public class ItemCapsule extends ItemFoodMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
+    public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        list.add(new ItemStack(item, 1, 0));
+        list.add(new ItemStack(this, 1, 0));
 
         if (ItemCapsule.init)
         {

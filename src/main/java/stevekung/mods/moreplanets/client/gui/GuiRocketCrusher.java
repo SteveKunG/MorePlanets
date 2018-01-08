@@ -48,7 +48,7 @@ public class GuiRocketCrusher extends GuiContainerMP
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        this.fontRendererObj.drawString(this.tile.getName(), 8, 6, 4210752);
+        this.fontRenderer.drawString(this.tile.getName(), 8, 6, 4210752);
         String text;
 
         if (this.tile.processTicks > 0)
@@ -65,10 +65,10 @@ public class GuiRocketCrusher extends GuiContainerMP
         if (this.tile.processTicks > 0)
         {
             int scale = (int) ((double) this.tile.processTicks / (double) this.tile.processTimeRequired * 100);
-            this.fontRendererObj.drawString(GCCoreUtil.translate("gui.electric_compressor.desc.0") + ": " + scale + "%", 80, 62, 4210752);
+            this.fontRenderer.drawString(GCCoreUtil.translate("gui.electric_compressor.desc.0") + ": " + scale + "%", 80, 62, 4210752);
         }
-        this.fontRendererObj.drawString(status, 76, 84, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 93, 4210752);
+        this.fontRenderer.drawString(status, 76, 84, 4210752);
+        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 93, 4210752);
     }
 
     @Override

@@ -36,6 +36,12 @@ public class ItemNibiru extends ItemBaseVariantsMP
         return new String[] { "inferumite_crystal", "multalic_crystal", "infected_coal", "shlime_tail", "compressed_tier_5_rocket_plate", "infected_charcoal" };
     }
 
+    @Override
+    public int getItemBurnTime(ItemStack itemStack)
+    {
+        return itemStack.getItemDamage() == 2 ? 1600 : -1;
+    }
+
     public static enum ItemType
     {
         INFERUMITE_CRYSTAL,

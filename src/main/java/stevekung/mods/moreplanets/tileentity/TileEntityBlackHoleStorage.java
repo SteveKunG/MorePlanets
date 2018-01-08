@@ -325,12 +325,12 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         }
         else
         {
-            ItemStack itemstack = entityItem.getEntityItem().copy();
+            ItemStack itemstack = entityItem.getItem().copy();
             ItemStack itemstack1 = this.putStackInInventoryAllSlots(inventory, itemstack);
 
             if (!itemstack1.isEmpty() && itemstack1.getCount() != 0)
             {
-                entityItem.setEntityItemStack(itemstack1);
+                entityItem.setItem(itemstack1);
             }
             else
             {

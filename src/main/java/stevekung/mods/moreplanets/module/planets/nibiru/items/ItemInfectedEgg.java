@@ -37,7 +37,7 @@ public class ItemInfectedEgg extends ItemBaseMP
         if (!world.isRemote)
         {
             EntityInfectedEgg entityegg = new EntityInfectedEgg(world, player);
-            entityegg.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+            entityegg.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
             world.spawnEntity(entityegg);
         }
         player.addStat(StatList.getObjectUseStats(this));

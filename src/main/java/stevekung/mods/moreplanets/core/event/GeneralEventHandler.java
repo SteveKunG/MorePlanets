@@ -19,7 +19,6 @@ import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.stats.AchievementList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -29,6 +28,7 @@ import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -118,6 +118,17 @@ public class GeneralEventHandler
         if (event.getModID().equals(MorePlanetsCore.MOD_ID))
         {
             ConfigManagerMP.syncConfig(false);
+        }
+    }
+
+    @SubscribeEvent
+    public void onFuelBurnTime(FurnaceFuelBurnTimeEvent event)
+    {
+        Block block = Block.getBlockFromItem(event.getItemStack().getItem());
+
+        if (block == ChalosBlocks.CHEESE_SPORE_FLOWER || block == NibiruBlocks.NIBIRU_SAPLING)
+        {
+            event.setBurnTime(100);
         }
     }
 
@@ -263,13 +274,13 @@ public class GeneralEventHandler
     @SubscribeEvent
     public void onPickupItem(ItemPickupEvent event)
     {
-        ItemStack itemStack = event.pickedUp.getEntityItem();
+        ItemStack itemStack = event.getOriginalEntity().getItem();
         Item item = itemStack.getItem();
         Block block = Block.getBlockFromItem(item);
 
         if (block == ChalosBlocks.CHEESE_SPORE_STEM || block == NibiruBlocks.NIBIRU_LOG)
         {
-            event.player.addStat(AchievementList.MINE_WOOD);
+            //            event.player.addStat(AchievementList.MINE_WOOD);
         }
     }
 
@@ -281,15 +292,15 @@ public class GeneralEventHandler
 
         if (block == ChalosBlocks.CHALOS_CRAFTING_TABLE || block == NibiruBlocks.NIBIRU_CRAFTING_TABLE)
         {
-            event.player.addStat(AchievementList.BUILD_WORK_BENCH);
+            //            event.player.addStat(AchievementList.BUILD_WORK_BENCH);
         }
         if (item == NibiruItems.NIBIRU_STONE_PICKAXE)
         {
-            event.player.addStat(AchievementList.BUILD_BETTER_PICKAXE);
+            //            event.player.addStat(AchievementList.BUILD_BETTER_PICKAXE);
         }
         if (block == NibiruBlocks.NIBIRU_FURNACE || block == NibiruBlocks.TERRASTONE_FURNACE)
         {
-            event.player.addStat(AchievementList.BUILD_FURNACE);
+            //            event.player.addStat(AchievementList.BUILD_FURNACE);
         }
     }
 

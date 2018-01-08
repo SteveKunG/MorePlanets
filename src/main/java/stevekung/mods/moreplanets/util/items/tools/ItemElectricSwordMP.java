@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.util.items.tools;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
@@ -9,13 +11,13 @@ import micdoodle8.mods.galacticraft.api.item.ElectricItemHelper;
 import micdoodle8.mods.galacticraft.api.item.IItemElectric;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTBase;
@@ -56,9 +58,9 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
     }
 
     @Override
-    public float getStrVsBlock(ItemStack itemStack, IBlockState state)
+    public float getDestroySpeed(ItemStack itemStack, IBlockState state)
     {
-        return this.getElectricityStored(itemStack) == 0.0F ? 0.0F : super.getStrVsBlock(itemStack, state);
+        return this.getElectricityStored(itemStack) == 0.0F ? 0.0F : super.getDestroySpeed(itemStack, state);
     }
 
     @Override
@@ -129,7 +131,7 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    public void addInformation(ItemStack itemStack, @Nullable World world, List<String> list, ITooltipFlag flag)
     {
         TextFormatting color = null;
         float joules = this.getElectricityStored(itemStack);
@@ -238,9 +240,9 @@ public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISo
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
+    public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        list.add(ElectricItemHelper.getWithCharge(new ItemStack(item), this.getMaxElectricityStored(new ItemStack(item))));
+        list.add(ElectricItemHelper.getWithCharge(new ItemStack(this), this.getMaxElectricityStored(new ItemStack(this))));
     }
 
     @Override

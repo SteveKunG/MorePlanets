@@ -2,12 +2,14 @@ package stevekung.mods.moreplanets.util.items;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.core.TransformerHooks;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
@@ -65,7 +67,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    public void addInformation(ItemStack itemStack, @Nullable World world, List<String> list, ITooltipFlag flag)
     {
         if (this.type == ArrowType.INFECTED)
         {
@@ -83,7 +85,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
     @Override
     public boolean onEntityItemUpdate(EntityItem entityItem)
     {
-        if (entityItem.getEntityItem().getItem() == DionaItems.ANTI_GRAVITY_ARROW)
+        if (entityItem.getItem().getItem() == DionaItems.ANTI_GRAVITY_ARROW)
         {
             entityItem.motionY += TransformerHooks.getItemGravity(entityItem);
         }

@@ -243,7 +243,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
         if (player != null && !player.equals(this.targetedEntity) && !player.capabilities.isCreativeMode)
         {
-            if (this.getDistanceSqToEntity(player) < 400.0D)
+            if (this.getDistanceSq(player) < 400.0D)
             {
                 this.getNavigator().getPathToEntityLiving(player);
                 this.targetedEntity = player;
@@ -361,7 +361,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             }
             else if (super.attackEntityFrom(source, damage))
             {
-                Entity entity = source.getEntity();
+                Entity entity = source.getTrueSource();
 
                 if (this.getPassengers().contains(entity) && this.getRidingEntity() != entity)
                 {
@@ -385,7 +385,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return SoundEvents.ENTITY_SLIME_HURT;
     }
@@ -476,7 +476,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         public void updateTask()
         {
             EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
-            if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
+            if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
             {
                 World world = this.parentEntity.world;
                 ++this.attackTimer;
@@ -484,14 +484,14 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
                 if (this.attackTimer == 20)
                 {
                     Vec3d vec3d = this.parentEntity.getLook(1.0F);
-                    double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.xCoord * 4.0D);
+                    double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
                     double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (0.5D + this.parentEntity.posY + this.parentEntity.height / 2.0F);
-                    double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.zCoord * 4.0D);
+                    double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
                     world.playEvent((EntityPlayer)null, 1016, new BlockPos(this.parentEntity), 0);
                     EntityCheeseSpore cheeseSpore = new EntityCheeseSpore(world, this.parentEntity, d2, d3, d4);
-                    cheeseSpore.posX = this.parentEntity.posX + vec3d.xCoord * 4.0D;
+                    cheeseSpore.posX = this.parentEntity.posX + vec3d.x * 4.0D;
                     cheeseSpore.posY = this.parentEntity.posY + this.parentEntity.height / 2.0F + 0.5D;
-                    cheeseSpore.posZ = this.parentEntity.posZ + vec3d.zCoord * 4.0D;
+                    cheeseSpore.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
                     world.spawnEntity(cheeseSpore);
                     this.attackTimer = -40;
                 }
@@ -531,7 +531,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
             {
                 EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
 
-                if (entitylivingbase.getDistanceSqToEntity(this.entity) < 4096.0D)
+                if (entitylivingbase.getDistanceSq(this.entity) < 4096.0D)
                 {
                     double d1 = entitylivingbase.posX - this.entity.posX;
                     double d2 = entitylivingbase.posZ - this.entity.posZ;
@@ -572,7 +572,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         }
 
         @Override
-        public boolean continueExecuting()
+        public boolean shouldContinueExecuting()
         {
             return false;
         }

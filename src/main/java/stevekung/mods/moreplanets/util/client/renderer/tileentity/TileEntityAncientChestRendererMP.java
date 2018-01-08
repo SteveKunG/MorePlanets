@@ -36,7 +36,7 @@ public class TileEntityAncientChestRendererMP extends TileEntitySpecialRenderer<
     }
 
     @Override
-    public void renderTileEntityAt(TileEntityAncientChestMP tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityAncientChestMP tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         int meta;
 

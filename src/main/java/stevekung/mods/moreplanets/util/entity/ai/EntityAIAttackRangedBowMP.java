@@ -45,7 +45,7 @@ public class EntityAIAttackRangedBowMP extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return (this.shouldExecute() || !this.entity.getNavigator().noPath()) && this.isBowInMainhand();
     }
@@ -94,7 +94,7 @@ public class EntityAIAttackRangedBowMP extends EntityAIBase
 
             if (d0 <= this.maxAttackDistance && this.seeTime >= 20)
             {
-                this.entity.getNavigator().clearPathEntity();
+                this.entity.getNavigator().clearPath();
                 ++this.strafingTime;
             }
             else

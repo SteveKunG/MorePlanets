@@ -52,7 +52,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
     }
 
     @Override
-    public void renderTileEntityAt(TileEntityShieldGenerator tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityShieldGenerator tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;

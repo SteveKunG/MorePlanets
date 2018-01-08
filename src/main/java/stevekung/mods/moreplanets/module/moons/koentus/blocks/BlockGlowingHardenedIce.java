@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -54,9 +55,9 @@ public class BlockGlowingHardenedIce extends BlockIceMP
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state)
+    public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return state.getValue(BlockStateHelper.COLOR).getMapColor();
+        return MapColor.getBlockColor(state.getValue(BlockStateHelper.COLOR));
     }
 
     @Override
@@ -85,11 +86,11 @@ public class BlockGlowingHardenedIce extends BlockIceMP
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (EnumDyeColor color : CachedEnumUtil.valuesDyeCached())
         {
-            list.add(new ItemStack(item, 1, color.getMetadata()));
+            list.add(new ItemStack(this, 1, color.getMetadata()));
         }
     }
 

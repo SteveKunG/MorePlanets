@@ -122,13 +122,13 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
         {
             DecorateHelper.generatePlants(new WorldGenInfectedSugarCane(), world, rand, this.chunkPos);
         }
-        for (i = 0; i < this.sandPerChunk2; ++i)
+        for (i = 0; i < this.sandPatchesPerChunk; ++i)
         {
             int j = rand.nextInt(16) + 8;
             int k = rand.nextInt(16) + 8;
             new WorldGenNibiruSand(NibiruBlocks.INFECTED_SAND.getDefaultState(), 7).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
         }
-        for (i = 0; i < this.sandPerChunk; ++i)
+        for (i = 0; i < this.gravelPatchesPerChunk; ++i)
         {
             int i2 = rand.nextInt(16) + 8;
             int j6 = rand.nextInt(16) + 8;
@@ -147,7 +147,7 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
             int k6 = rand.nextInt(16) + 8;
             int l = rand.nextInt(16) + 8;
             BlockPos blockpos = world.getHeight(this.chunkPos.add(k6, 0, l));
-            WorldGenAbstractTree worldgenabstracttree = biome.genBigTreeChance(rand);
+            WorldGenAbstractTree worldgenabstracttree = biome.getRandomTreeFeature(rand);
 
             if (worldgenabstracttree.generate(world, rand, blockpos))
             {

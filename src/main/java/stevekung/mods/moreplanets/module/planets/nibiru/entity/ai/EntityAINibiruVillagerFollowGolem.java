@@ -54,7 +54,7 @@ public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return this.theGolem.getHoldRoseTick() > 0;
     }
@@ -64,14 +64,14 @@ public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
     {
         this.takeGolemRoseTick = this.theVillager.getRNG().nextInt(320);
         this.tookGolemRose = false;
-        this.theGolem.getNavigator().clearPathEntity();
+        this.theGolem.getNavigator().clearPath();
     }
 
     @Override
     public void resetTask()
     {
         this.theGolem = null;
-        this.theVillager.getNavigator().clearPathEntity();
+        this.theVillager.getNavigator().clearPath();
     }
 
     @Override
@@ -84,10 +84,10 @@ public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
             this.theVillager.getNavigator().tryMoveToEntityLiving(this.theGolem, 0.5D);
             this.tookGolemRose = true;
         }
-        if (this.tookGolemRose && this.theVillager.getDistanceSqToEntity(this.theGolem) < 4.0D)
+        if (this.tookGolemRose && this.theVillager.getDistanceSq(this.theGolem) < 4.0D)
         {
             this.theGolem.setHoldingRose(false);
-            this.theVillager.getNavigator().clearPathEntity();
+            this.theVillager.getNavigator().clearPath();
         }
     }
 }

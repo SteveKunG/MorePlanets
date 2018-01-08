@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
@@ -72,7 +73,7 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return SoundEvents.ENTITY_SQUID_HURT;
     }
@@ -188,7 +189,7 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
     }
 
     @Override
-    public void moveEntityWithHeading(float strafe, float forward)
+    public void travel(float strafe, float vertical, float forward)
     {
         this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
     }
@@ -255,7 +256,7 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
         @Override
         public void updateTask()
         {
-            int i = this.squid.getAge();
+            int i = this.squid.getIdleTime();
 
             if (i > 100)
             {

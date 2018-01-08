@@ -237,7 +237,7 @@ public abstract class EntityTieredRocketMP extends EntityTieredRocket
     @Override
     public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return !this.isDead && player.getDistanceSqToEntity(this) <= 64.0D;
+        return !this.isDead && player.getDistanceSq(this) <= 64.0D;
     }
 
     @Override

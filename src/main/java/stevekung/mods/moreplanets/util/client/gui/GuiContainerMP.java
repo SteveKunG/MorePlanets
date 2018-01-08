@@ -6,6 +6,7 @@ import java.util.List;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -53,13 +54,13 @@ public abstract class GuiContainerMP extends GuiContainer
         {
             Slot slot = this.inventorySlots.inventorySlots.get(i1);
 
-            if (slot.canBeHovered() && this.isPointInRegion(slot.xPos, slot.yPos, 16, 16, mouseX, mouseY))
+            if (slot.isEnabled() && this.isPointInRegion(slot.xPos, slot.yPos, 16, 16, mouseX, mouseY))
             {
                 ItemStack itemStack = slot.getStack();
 
                 if (!itemStack.isEmpty())
                 {
-                    List<String> list = itemStack.getTooltip(this.mc.player, this.mc.gameSettings.advancedItemTooltips);
+                    List<String> list = itemStack.getTooltip(this.mc.player, this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED : TooltipFlags.NORMAL);
                     int size = list.size();
 
                     if (CompatibilityManager.isWailaLoaded())

@@ -42,7 +42,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
             {
                 if (entityvillager != this.villagerObj && !entityvillager.isPlaying() && entityvillager.getGrowingAge() < 0)
                 {
-                    double d1 = entityvillager.getDistanceSqToEntity(this.villagerObj);
+                    double d1 = entityvillager.getDistanceSq(this.villagerObj);
 
                     if (d1 <= d0)
                     {
@@ -66,7 +66,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return this.playTime > 0;
     }
@@ -95,7 +95,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
 
         if (this.targetVillager != null)
         {
-            if (this.villagerObj.getDistanceSqToEntity(this.targetVillager) > 4.0D)
+            if (this.villagerObj.getDistanceSq(this.targetVillager) > 4.0D)
             {
                 this.villagerObj.getNavigator().tryMoveToEntityLiving(this.targetVillager, this.speed);
             }
@@ -108,7 +108,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
             {
                 return;
             }
-            this.villagerObj.getNavigator().tryMoveToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord, this.speed);
+            this.villagerObj.getNavigator().tryMoveToXYZ(vec3.x, vec3.y, vec3.z, this.speed);
         }
     }
 }

@@ -16,7 +16,7 @@ public class BiomeInfectedDesert extends BiomeNibiru
         this.getBiomeDecorator().deadBushPerChunk = 2;
         this.getBiomeDecorator().batasiaDandelionPerChunk = 3;
         this.getBiomeDecorator().reedsPerChunk = 50;
-        this.theBiomeDecorator.treesPerChunk = -999;
+        this.decorator.treesPerChunk = -999;
     }
 
     @Override

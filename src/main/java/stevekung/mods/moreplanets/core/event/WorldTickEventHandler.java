@@ -44,7 +44,7 @@ public class WorldTickEventHandler
         {
             if (WorldTickEventHandler.startedDimensionData == null)
             {
-                World world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
+                World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(0);
                 WorldTickEventHandler.startedDimensionData = (WorldDataStartedDimension) world.getMapStorage().getOrLoadData(WorldDataStartedDimension.class, WorldDataStartedDimension.saveDataID);
 
                 if (WorldTickEventHandler.startedDimensionData == null)
@@ -56,7 +56,7 @@ public class WorldTickEventHandler
         }
         if (event.phase == Phase.END)
         {
-            World world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(ConfigManagerMP.idDimensionDiona);
+            World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.idDimensionDiona);
 
             if (world.provider instanceof WorldProviderDiona)
             {
@@ -64,11 +64,11 @@ public class WorldTickEventHandler
                 {
                     WorldServer worldServer = (WorldServer) world;
 
-                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.theProfiler.endSection())
+                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.profiler.endSection())
                     {
                         Chunk chunk = iterator.next();
-                        int j = chunk.xPosition * 16;
-                        int k = chunk.zPosition * 16;
+                        int j = chunk.x * 16;
+                        int k = chunk.z * 16;
 
                         if (world.rand.nextInt(75000) == 0)
                         {
@@ -87,7 +87,7 @@ public class WorldTickEventHandler
                 }
             }
 
-            world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(ConfigManagerMP.idDimensionNibiru);
+            world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.idDimensionNibiru);
 
             if (world.provider instanceof WorldProviderNibiru)
             {
@@ -95,11 +95,11 @@ public class WorldTickEventHandler
                 {
                     WorldServer worldServer = (WorldServer) world;
 
-                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.theProfiler.endSection())
+                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.profiler.endSection())
                     {
                         Chunk chunk = iterator.next();
-                        int j = chunk.xPosition * 16;
-                        int k = chunk.zPosition * 16;
+                        int j = chunk.x * 16;
+                        int k = chunk.z * 16;
                         boolean flag = world.isRaining();
                         boolean flag1 = world.isThundering();
 

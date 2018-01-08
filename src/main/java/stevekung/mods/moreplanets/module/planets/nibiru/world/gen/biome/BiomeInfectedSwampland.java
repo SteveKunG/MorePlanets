@@ -28,8 +28,8 @@ public class BiomeInfectedSwampland extends BiomeNibiru
         this.getBiomeDecorator().whiteTailPerChunk = 4;
         this.getBiomeDecorator().clayPerChunk = 1;
         this.getBiomeDecorator().reedsPerChunk = 10;
-        this.getBiomeDecorator().sandPerChunk2 = 0;
-        this.getBiomeDecorator().sandPerChunk = 0;
+        this.getBiomeDecorator().sandPatchesPerChunk = 0;
+        this.getBiomeDecorator().gravelPatchesPerChunk = 0;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class BiomeInfectedSwampland extends BiomeNibiru
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         return rand.nextInt(20) == 0 ? new WorldGenInfectedSwampTree(false) : new WorldGenInfectedSwampTree(true);
     }

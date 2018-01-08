@@ -95,7 +95,7 @@ public class ModelGuardianMP extends ModelBase
             {
                 Vec3d vec3 = ((Entity)object).getPositionEyes(0.0F);
                 Vec3d vec31 = entity.getPositionEyes(0.0F);
-                double d0 = vec3.yCoord - vec31.yCoord;
+                double d0 = vec3.y - vec31.y;
 
                 if (d0 > 0.0D)
                 {
@@ -106,8 +106,8 @@ public class ModelGuardianMP extends ModelBase
                     this.guardianEye.rotationPointY = 1.0F;
                 }
                 Vec3d vec32 = entity.getLook(0.0F);
-                vec32 = new Vec3d(vec32.xCoord, 0.0D, vec32.zCoord);
-                Vec3d vec33 = new Vec3d(vec31.xCoord - vec3.xCoord, 0.0D, vec31.zCoord - vec3.zCoord).normalize().rotateYaw((float)Math.PI / 2F);
+                vec32 = new Vec3d(vec32.x, 0.0D, vec32.z);
+                Vec3d vec33 = new Vec3d(vec31.x - vec3.x, 0.0D, vec31.z - vec3.z).normalize().rotateYaw((float)Math.PI / 2F);
                 double d1 = vec32.dotProduct(vec33);
                 this.guardianEye.rotationPointX = MathHelper.sqrt((float)Math.abs(d1)) * 2.0F * (float)Math.signum(d1);
             }

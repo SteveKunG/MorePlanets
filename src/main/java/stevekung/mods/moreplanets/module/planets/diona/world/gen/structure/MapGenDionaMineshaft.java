@@ -39,7 +39,7 @@ public class MapGenDionaMineshaft extends MapGenStructure
     }
 
     @Override
-    public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean findUnexplored)
+    public BlockPos getNearestStructurePos(World world, BlockPos pos, boolean findUnexplored)
     {
         int j = pos.getX() >> 4;
         int k = pos.getZ() >> 4;
@@ -58,10 +58,10 @@ public class MapGenDionaMineshaft extends MapGenStructure
                     {
                         int k1 = j + i1;
                         int l1 = k + j1;
-                        this.rand.setSeed(k1 ^ l1 ^ worldIn.getSeed());
+                        this.rand.setSeed(k1 ^ l1 ^ world.getSeed());
                         this.rand.nextInt();
 
-                        if (this.canSpawnStructureAtCoords(k1, l1) && (!findUnexplored || !worldIn.isChunkGeneratedAt(k1, l1)))
+                        if (this.canSpawnStructureAtCoords(k1, l1) && (!findUnexplored || !world.isChunkGeneratedAt(k1, l1)))
                         {
                             return new BlockPos((k1 << 4) + 8, 64, (l1 << 4) + 8);
                         }

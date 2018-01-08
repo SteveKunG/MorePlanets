@@ -24,7 +24,7 @@ public class WorldGenFlowersMP extends WorldGenerator
         {
             BlockPos pos1 = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(pos1) && (!world.provider.hasNoSky() || pos1.getY() < 255) && ((BlockBushMP)this.flower.getBlock()).canBlockStay(world, pos1, this.flower))
+            if (world.isAirBlock(pos1) && (!world.provider.isNether() || pos1.getY() < 255) && ((BlockBushMP)this.flower.getBlock()).canBlockStay(world, pos1, this.flower))
             {
                 world.setBlockState(pos1, this.flower, 2);
             }

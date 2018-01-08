@@ -23,7 +23,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         if (rand.nextInt(3) > 0)
         {
@@ -35,7 +35,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
         }
         else
         {
-            return super.genBigTreeChance(rand);
+            return super.getRandomTreeFeature(rand);
         }
     }
 

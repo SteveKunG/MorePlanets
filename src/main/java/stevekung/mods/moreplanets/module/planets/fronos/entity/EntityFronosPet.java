@@ -132,7 +132,7 @@ public abstract class EntityFronosPet extends EntityTameable
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return MPSounds.FRONOS_MOB_HURT;
     }
@@ -158,7 +158,7 @@ public abstract class EntityFronosPet extends EntityTameable
         }
         else
         {
-            Entity entity = source.getEntity();
+            Entity entity = source.getTrueSource();
 
             if (this.aiSit != null)
             {
@@ -240,7 +240,7 @@ public abstract class EntityFronosPet extends EntityTameable
                 {
                     this.aiSit.setSitting(!this.isSitting());
                     this.isJumping = false;
-                    this.navigator.clearPathEntity();
+                    this.navigator.clearPath();
                 }
             }
         }
@@ -256,7 +256,7 @@ public abstract class EntityFronosPet extends EntityTameable
                 {
                     this.setTamed(true);
                     this.setHealth(20.0F);
-                    this.navigator.clearPathEntity();
+                    this.navigator.clearPath();
                     this.setOwnerId(player.getUniqueID());
                     this.playTameEffect(true);
                     this.world.setEntityState(this, (byte)7);

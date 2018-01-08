@@ -66,9 +66,9 @@ public class GuiSpaceWarpPad extends GuiContainerMP
         String dest = TextFormatting.RED + GCCoreUtil.translate("gui.status.unknown.name");
         this.buttonEnable.enabled = this.tile.disableCooldown == 0;
         this.buttonEnable.displayString = !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name");
-        this.fontRendererObj.drawString(this.tile.getName(), 8, 10, 4210752);
-        this.fontRendererObj.drawSplitString(GCCoreUtil.translate("gui.message.status.name") + ": " + this.tile.getGUIStatus(), 46, 56, 120, 2536735);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
+        this.fontRenderer.drawString(this.tile.getName(), 8, 10, 4210752);
+        this.fontRenderer.drawSplitString(GCCoreUtil.translate("gui.message.status.name") + ": " + this.tile.getGUIStatus(), 46, 56, 120, 2536735);
+        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
 
         if (this.tile.hasWarpCore() && this.tile.containingItems.get(1).hasTagCompound())
         {
@@ -77,9 +77,9 @@ public class GuiSpaceWarpPad extends GuiContainerMP
             name = TextFormatting.GREEN + WorldUtil.getProviderForDimensionClient(compound.getInteger("DimensionID")).getDimensionType().getName();
             dest = TextFormatting.GREEN + "" + compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
         }
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.dimension.name") + ": " + dimension + " ", 46, 26, 2536735);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.name.name") + ": " + name, 46, 36, 2536735);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.destination.name") + ": " + dest, 46, 46, 2536735);
+        this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.dimension.name") + ": " + dimension + " ", 46, 26, 2536735);
+        this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.name.name") + ": " + name, 46, 36, 2536735);
+        this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.destination.name") + ": " + dest, 46, 46, 2536735);
     }
 
     @Override

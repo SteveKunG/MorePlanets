@@ -23,7 +23,7 @@ public class BiomeInfectedForest extends BiomeNibiru
         this.getBiomeDecorator().infectedTreesPerChunk = 10;
         this.getBiomeDecorator().orangeBushPerChunk = 3;
         this.getBiomeDecorator().reedsPerChunk = 10;
-        this.theBiomeDecorator.treesPerChunk = -999;
+        this.decorator.treesPerChunk = -999;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class BiomeInfectedForest extends BiomeNibiru
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         if (rand.nextInt(10) == 0)
         {

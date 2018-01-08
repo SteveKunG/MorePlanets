@@ -96,7 +96,7 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
-        if (!(damageSource.getSourceOfDamage() instanceof EntityVeinBall))
+        if (!(damageSource.getImmediateSource() instanceof EntityVeinBall))
         {
             if (this.isEntityInvulnerable(damageSource))
             {
@@ -104,7 +104,7 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
             }
             else if (super.attackEntityFrom(damageSource, damage))
             {
-                Entity entity = damageSource.getEntity();
+                Entity entity = damageSource.getTrueSource();
 
                 if (this.getPassengers().contains(entity) && this.getRidingEntity() != entity)
                 {
@@ -181,7 +181,7 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
         {
             --this.attackTime;
             EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
-            double d0 = this.entity.getDistanceSqToEntity(entitylivingbase);
+            double d0 = this.entity.getDistanceSq(entitylivingbase);
 
             if (d0 < 1.5D)
             {
@@ -232,7 +232,7 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
             }
             else
             {
-                this.entity.getNavigator().clearPathEntity();
+                this.entity.getNavigator().clearPath();
                 this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
             }
             super.updateTask();

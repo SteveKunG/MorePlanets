@@ -10,11 +10,7 @@ import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityMultiPart;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.EntityDragonPart;
+import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,15 +48,15 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     public int entitiesWithin;
     public int entitiesWithinLast;
     private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityVeinFloater.class, DataSerializers.BOOLEAN);
-    public EntityDragonPart[] partArray;
-    public EntityDragonPart partHead;
+    public MultiPartEntityPart[] partArray;
+    public MultiPartEntityPart partHead;
     private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
     private boolean playMusic;
 
     public EntityVeinFloater(World world)
     {
         super(world);
-        this.partArray = new EntityDragonPart[] { this.partHead = new EntityDragonPart(this, "head", 6.0F, 4.0F) };
+        this.partArray = new MultiPartEntityPart[] { this.partHead = new MultiPartEntityPart(this, "head", 6.0F, 4.0F) };
         this.isImmuneToFire = true;
         this.setSize(6.0F, 16.0F);
     }
@@ -211,7 +207,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
-        if (!(damageSource.getSourceOfDamage() instanceof EntityVeinBall) && damageSource != DamageSource.LIGHTNING_BOLT)
+        if (!(damageSource.getImmediateSource() instanceof EntityVeinBall) && damageSource != DamageSource.LIGHTNING_BOLT)
         {
             if (this.isEntityInvulnerable(damageSource))
             {
@@ -219,7 +215,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
             }
             else if (super.attackEntityFrom(damageSource, damage))
             {
-                Entity entity = damageSource.getEntity();
+                Entity entity = damageSource.getTrueSource();
 
                 if (this.getPassengers().contains(entity) && this.getRidingEntity() != entity)
                 {
@@ -451,7 +447,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     }
 
     @Override
-    public boolean attackEntityFromPart(EntityDragonPart part, DamageSource source, float damage)
+    public boolean attackEntityFromPart(MultiPartEntityPart part, DamageSource source, float damage)
     {
         return super.attackEntityFrom(source, damage);
     }

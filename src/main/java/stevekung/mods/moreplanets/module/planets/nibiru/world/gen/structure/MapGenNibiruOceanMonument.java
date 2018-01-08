@@ -89,7 +89,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
     }
 
     @Override
-    public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
+    public BlockPos getNearestStructurePos(World world, BlockPos pos, boolean findUnexplored)
     {
         this.world = world;
         return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.spacing, this.separation, 10387313, true, 100, findUnexplored);
@@ -163,8 +163,8 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
             for (ChunkPos chunkpos : this.processed)
             {
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
-                nbttagcompound.setInteger("X", chunkpos.chunkXPos);
-                nbttagcompound.setInteger("Z", chunkpos.chunkZPos);
+                nbttagcompound.setInteger("X", chunkpos.x);
+                nbttagcompound.setInteger("Z", chunkpos.z);
                 nbttaglist.appendTag(nbttagcompound);
             }
             tagCompound.setTag("Processed", nbttaglist);

@@ -41,7 +41,7 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
     {
         this.eatingGrassTimer = 40;
         this.entityWorld.setEntityState(this.grassEaterEntity, (byte)10);
-        this.grassEaterEntity.getNavigator().clearPathEntity();
+        this.grassEaterEntity.getNavigator().clearPath();
     }
 
     @Override
@@ -51,7 +51,7 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return this.eatingGrassTimer > 0;
     }

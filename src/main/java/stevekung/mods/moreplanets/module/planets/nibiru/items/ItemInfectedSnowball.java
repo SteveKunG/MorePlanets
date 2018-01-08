@@ -38,7 +38,7 @@ public class ItemInfectedSnowball extends ItemBaseMP
         if (!world.isRemote)
         {
             EntityInfectedSnowball ball = new EntityInfectedSnowball(world, player);
-            ball.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+            ball.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
             world.spawnEntity(ball);
         }
         player.addStat(StatList.getObjectUseStats(this));

@@ -33,7 +33,7 @@ public class ItemInfectedWoodSword extends ItemSwordMP
     @Override
     public boolean onEntityItemUpdate(EntityItem item)
     {
-        ItemStack itemStack = item.getEntityItem();
+        ItemStack itemStack = item.getItem();
 
         if (itemStack.getItemDamage() < itemStack.getMaxDamage())
         {

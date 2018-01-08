@@ -20,7 +20,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPDimensions;
@@ -62,7 +62,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     public boolean canBlockFreeze(BlockPos pos, boolean byWater)
     {
         Biome biomegenbase = this.getBiomeForCoords(pos);
-        float f = biomegenbase.getFloatTemperature(pos);
+        float f = biomegenbase.getTemperature(pos);
 
         if (f > 0.15F)
         {
@@ -102,7 +102,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     public boolean canSnowAt(BlockPos pos, boolean checkLight)
     {
         Biome biomegenbase = this.getBiomeForCoords(pos);
-        float f = biomegenbase.getFloatTemperature(pos);
+        float f = biomegenbase.getTemperature(pos);
 
         if (f > 0.15F)
         {

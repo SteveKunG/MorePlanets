@@ -68,11 +68,11 @@ public class GuiDarkEnergyGenerator extends GuiContainerMP
         this.buttonEnable.enabled = this.tile.disableCooldown == 0;
         this.buttonEnable.displayString = !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name");
         String displayString = this.tile.getName();
-        this.fontRendererObj.drawString(displayString, this.xSize / 2 - this.fontRendererObj.getStringWidth(displayString) / 2, 7, 4210752);
+        this.fontRenderer.drawString(displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 7, 4210752);
         displayString = GCCoreUtil.translate("gui.message.status.name") + ": " + this.getStatus();
-        this.fontRendererObj.drawString(displayString, this.xSize / 2 - this.fontRendererObj.getStringWidth(displayString) / 2, 40 + 23 - 40 + offsetY, 4210752);
+        this.fontRenderer.drawString(displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 40 + 23 - 40 + offsetY, 4210752);
         displayString = GCCoreUtil.translate("gui.message.generating.name") + ": " + (this.tile.generateWatts > 0 ? EnergyDisplayHelper.getEnergyDisplayS(this.tile.generateWatts) + "/t" : GCCoreUtil.translate("gui.status.not_generating.name"));
-        this.fontRendererObj.drawString(displayString, this.xSize / 2 - this.fontRendererObj.getStringWidth(displayString) / 2, 28 + 23 - 40 + offsetY, 4210752);
+        this.fontRenderer.drawString(displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 28 + 23 - 40 + offsetY, 4210752);
         displayString = GCCoreUtil.translate("gui.status.dark_energy_fuel.name") + ": " + String.valueOf(this.tile.darkEnergyFuel * 100 / 1000) + "%";
 
         if (this.tile.darkEnergyFuel == 0)
@@ -80,8 +80,8 @@ public class GuiDarkEnergyGenerator extends GuiContainerMP
             displayString = GCCoreUtil.translate("gui.status.dark_energy_fuel.name") + ": " + TextFormatting.GOLD + GCCoreUtil.translate("gui.status.empty.name");
         }
 
-        this.fontRendererObj.drawString(displayString, this.xSize / 2 - this.fontRendererObj.getStringWidth(displayString) / 2, 52 + 23 - 40 + offsetY, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 94, 4210752);
+        this.fontRenderer.drawString(displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 52 + 23 - 40 + offsetY, 4210752);
+        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 94, 4210752);
     }
 
     @Override

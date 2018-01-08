@@ -2,11 +2,7 @@ package stevekung.mods.moreplanets.integration.waila;
 
 import java.util.List;
 
-import mcp.mobius.waila.addons.HUDHandlerBase;
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.IWailaDataAccessor;
-import mcp.mobius.waila.api.IWailaRegistrar;
-import mcp.mobius.waila.api.SpecialChars;
+import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,7 +13,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityFurnaceMP;
 
-public class HUDHandlerFurnaceMP extends HUDHandlerBase
+public class HUDHandlerFurnaceMP implements IWailaDataProvider
 {
     public static void register(IWailaRegistrar register)
     {

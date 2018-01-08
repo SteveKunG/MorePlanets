@@ -1,9 +1,9 @@
 package stevekung.mods.moreplanets.client.renderer.tileentity;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
@@ -20,7 +20,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
     public ModelDarkEnergyReceiver model = new ModelDarkEnergyReceiver();
 
     @Override
-    public void renderTileEntityAt(TileEntityDarkEnergyReceiver tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityDarkEnergyReceiver tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         if (tile == null)
         {
@@ -126,7 +126,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         float f = 1.0F;
         GlStateManager.alphaFunc(516, 0.1F);
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer worldrenderer = tessellator.getBuffer();
+        BufferBuilder worldrenderer = tessellator.getBuffer();
         GlStateManager.disableFog();
         int i = 0;
 

@@ -16,22 +16,22 @@ public class DarkEnergyReceiverMultiblockRenderer
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
 
-        TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityZeliusEgg(), x - 1, y - 1, z, 0.0F);
+        TileEntityRendererDispatcher.instance.render(new TileEntityZeliusEgg(), x - 1, y - 1, z, 0.0F);
 
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
 
-        TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityZeliusEgg(), x + 1, y - 1, z, 0.0F);
+        TileEntityRendererDispatcher.instance.render(new TileEntityZeliusEgg(), x + 1, y - 1, z, 0.0F);
 
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
 
-        TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityZeliusEgg(), x, y - 1, z + 1, 0.0F);
+        TileEntityRendererDispatcher.instance.render(new TileEntityZeliusEgg(), x, y - 1, z + 1, 0.0F);
 
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
 
-        TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityZeliusEgg(), x, y - 1, z - 1, 0.0F);
+        TileEntityRendererDispatcher.instance.render(new TileEntityZeliusEgg(), x, y - 1, z - 1, 0.0F);
 
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
@@ -96,7 +96,7 @@ public class DarkEnergyReceiverMultiblockRenderer
         ClientRendererUtil.renderModel(DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2));
         GlStateManager.popMatrix();
 
-        TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityInfectedCrystallizeEnderCore(), x + 3, y + 2, z + 3, 0.0F);
+        TileEntityRendererDispatcher.instance.render(new TileEntityInfectedCrystallizeEnderCore(), x + 3, y + 2, z + 3, 0.0F);
 
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
@@ -121,7 +121,7 @@ public class DarkEnergyReceiverMultiblockRenderer
         ClientRendererUtil.renderModel(DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2));
         GlStateManager.popMatrix();
 
-        TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityInfectedCrystallizeEnderCore(), x - 3, y + 2, z + 3, 0.0F);
+        TileEntityRendererDispatcher.instance.render(new TileEntityInfectedCrystallizeEnderCore(), x - 3, y + 2, z + 3, 0.0F);
 
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
@@ -146,7 +146,7 @@ public class DarkEnergyReceiverMultiblockRenderer
         ClientRendererUtil.renderModel(DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2));
         GlStateManager.popMatrix();
 
-        TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityInfectedCrystallizeEnderCore(), x - 3, y + 2, z - 3, 0.0F);
+        TileEntityRendererDispatcher.instance.render(new TileEntityInfectedCrystallizeEnderCore(), x - 3, y + 2, z - 3, 0.0F);
 
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
@@ -171,6 +171,6 @@ public class DarkEnergyReceiverMultiblockRenderer
         ClientRendererUtil.renderModel(DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2));
         GlStateManager.popMatrix();
 
-        TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityInfectedCrystallizeEnderCore(), x + 3, y + 2, z - 3, 0.0F);
+        TileEntityRendererDispatcher.instance.render(new TileEntityInfectedCrystallizeEnderCore(), x + 3, y + 2, z - 3, 0.0F);
     }
 }

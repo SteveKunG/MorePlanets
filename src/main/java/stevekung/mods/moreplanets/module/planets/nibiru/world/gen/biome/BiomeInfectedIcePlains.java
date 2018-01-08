@@ -61,7 +61,7 @@ public class BiomeInfectedIcePlains extends BiomeNibiru
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         return rand.nextInt(20) == 0 ? new WorldGenInfectedDeadTaiga2(false) : new WorldGenInfectedDeadTaiga2(true);
     }

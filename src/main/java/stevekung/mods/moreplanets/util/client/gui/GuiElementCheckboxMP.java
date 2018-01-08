@@ -2,9 +2,9 @@ package stevekung.mods.moreplanets.util.client.gui;
 
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 
@@ -48,7 +48,7 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
     }
 
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY)
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
     {
         if (this.isSelected == null)
         {
@@ -58,10 +58,10 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
         {
             mc.getTextureManager().bindTexture(GuiElementCheckboxMP.texture);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
-            this.drawTexturedModalRect(this.xPosition, this.yPosition, this.hovered ? this.texX + this.texWidth : this.texX, this.hovered ? this.shiftOnHover ? this.texY + this.texHeight : this.texY : this.texY, this.width, this.height);
+            this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
+            this.drawTexturedModalRect(this.x, this.y, this.hovered ? this.texX + this.texWidth : this.texX, this.hovered ? this.shiftOnHover ? this.texY + this.texHeight : this.texY : this.texY, this.width, this.height);
             this.mouseDragged(mc, mouseX, mouseY);
-            mc.fontRendererObj.drawString(this.displayString, this.xPosition + this.width + 3, this.yPosition + (this.height - 6) / 2, this.textColor, false);
+            mc.fontRenderer.drawString(this.displayString, this.x + this.width + 3, this.y + (this.height - 6) / 2, this.textColor, false);
         }
     }
 
@@ -71,7 +71,7 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
         float f = 0.00390625F;
         float f1 = 0.00390625F;
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer worldRenderer = tessellator.getBuffer();
+        BufferBuilder worldRenderer = tessellator.getBuffer();
         worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldRenderer.pos(x + 0, y + height, this.zLevel).tex((textureX + 0) * f, (textureY + this.texHeight) * f1).endVertex();
         worldRenderer.pos(x + width, y + height, this.zLevel).tex((textureX + this.texWidth) * f, (textureY + this.texHeight) * f1).endVertex();
@@ -83,7 +83,7 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
     @Override
     public boolean mousePressed(Minecraft mc, int mouseX, int mouseY)
     {
-        if (this.enabled && this.visible && mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height)
+        if (this.enabled && this.visible && mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height)
         {
             if (this.parentGui.canPlayerEdit(this, mc.player))
             {

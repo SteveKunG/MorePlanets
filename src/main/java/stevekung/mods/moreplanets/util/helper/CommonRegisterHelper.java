@@ -34,10 +34,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.IFuelHandler;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
@@ -67,7 +67,7 @@ public class CommonRegisterHelper
     public static void registerBlock(Block block, @Nullable Function<Block, ItemBlock> itemBlock)
     {
         String name = block.getUnlocalizedName().substring(5);
-        GameRegistry.register(block.setRegistryName(name));
+        ForgeRegistries.BLOCKS.register(block.setRegistryName(name));
 
         if (block instanceof ISingleBlockRender)
         {
@@ -80,7 +80,7 @@ public class CommonRegisterHelper
         }
         if (itemBlock != null)
         {
-            GameRegistry.register(itemBlock.apply(block).setRegistryName(block.getRegistryName()));
+            ForgeRegistries.ITEMS.register(itemBlock.apply(block).setRegistryName(block.getRegistryName()));
 
             if (CommonRegisterHelper.isEffectiveClient())
             {
@@ -97,7 +97,7 @@ public class CommonRegisterHelper
     public static void registerItem(Item item)
     {
         String name = item.getUnlocalizedName().substring(5);
-        GameRegistry.register(item.setRegistryName(name));
+        ForgeRegistries.ITEMS.register(item.setRegistryName(name));
 
         if (item instanceof ISingleItemRender)
         {
@@ -116,7 +116,7 @@ public class CommonRegisterHelper
 
     public static void registerPotion(Potion potion, String name)
     {
-        GameRegistry.register(potion.setRegistryName(name));
+        ForgeRegistries.POTIONS.register(potion.setRegistryName(name));
     }
 
     public static void registerBiome(int id, String name, Biome biome, @Nonnull BiomeDictionary.Type... biomeType)
@@ -127,7 +127,7 @@ public class CommonRegisterHelper
 
     public static SoundEvent registerSound(String name)
     {
-        GameRegistry.register(new SoundEvent(new ResourceLocation("moreplanets:" + name)).setRegistryName(new ResourceLocation("moreplanets:" + name)));
+        ForgeRegistries.SOUND_EVENTS.register(new SoundEvent(new ResourceLocation("moreplanets:" + name)).setRegistryName(new ResourceLocation("moreplanets:" + name)));
         return new SoundEvent(new ResourceLocation("moreplanets:" + name));
     }
 
@@ -174,11 +174,6 @@ public class CommonRegisterHelper
     public static void registerGUIHandler(Object obj, IGuiHandler handler)
     {
         NetworkRegistry.INSTANCE.registerGuiHandler(obj, handler);
-    }
-
-    public static void registerFuelHandler(IFuelHandler handler)
-    {
-        GameRegistry.registerFuelHandler(handler);
     }
 
     public static void setFireBurn(Block block, int encouragement, int flammibility)
@@ -282,7 +277,7 @@ public class CommonRegisterHelper
         {
             ISortableBlock sortableBlock = (ISortableBlock) block;
             NonNullList<ItemStack> blocks = NonNullList.create();
-            block.getSubBlocks(Item.getItemFromBlock(block), null, blocks);
+            block.getSubBlocks(null, blocks);
 
             for (ItemStack itemStack : blocks)
             {
@@ -320,7 +315,7 @@ public class CommonRegisterHelper
         {
             ISortableItem sortableItem = (ISortableItem) item;
             NonNullList<ItemStack> items = NonNullList.create();
-            item.getSubItems(item, null, items);
+            item.getSubItems(null, items);
 
             for (ItemStack itemStack : items)
             {

@@ -104,11 +104,11 @@ public class GuiShieldGenerator extends GuiContainerMP
         }
         for (String text : list)
         {
-            this.fontRendererObj.drawString(text, this.xSize / 2 - 80, y, 2536735);
+            this.fontRenderer.drawString(text, this.xSize / 2 - 80, y, 2536735);
             y += 10;
         }
-        this.fontRendererObj.drawString(owner + this.tile.getName(), 8, 10, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
+        this.fontRenderer.drawString(owner + this.tile.getName(), 8, 10, 4210752);
+        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
     }
 
     @Override

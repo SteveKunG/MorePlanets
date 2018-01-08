@@ -163,7 +163,7 @@ public class EntityInfectedCrystallizeTentacle extends Entity
         {
             if (!this.isDead && !this.world.isRemote)
             {
-                this.setBeenAttacked();
+                this.markVelocityChanged();
                 this.setDamage(this.getDamage() + amount * 10.0F);
                 this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.HOSTILE, 1.0F, 1.0F);
 

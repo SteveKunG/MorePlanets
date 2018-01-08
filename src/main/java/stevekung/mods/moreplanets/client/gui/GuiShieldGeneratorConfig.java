@@ -90,7 +90,7 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, GCCoreUtil.translate("gui.button.back.name")));
         this.buttonList.add(this.buttonDone = new GuiButton(1, this.width / 2 + 4, this.height / 2 - 6, 72, 20, GCCoreUtil.translate("gui.done")));
 
-        this.shieldDamageText = new GuiNumberField(1, this.fontRendererObj, this.width / 2 - 3, this.height / 2 - 83, 30, 16);
+        this.shieldDamageText = new GuiNumberField(1, this.fontRenderer, this.width / 2 - 3, this.height / 2 - 83, 30, 16);
         this.shieldDamageText.setMaxStringLength(2);
         this.shieldDamageText.setFocused(false);
         this.shieldDamageText.setCanLoseFocus(true);
@@ -98,7 +98,7 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         this.shieldDamageText.setTextColor(16777215);
         this.shieldDamageText.setText(String.valueOf(this.tile.shieldDamage));
 
-        this.shieldSizeText = new GuiNumberField(2, this.fontRendererObj, this.width / 2 - 3, this.height / 2 - 62, 30, 16);
+        this.shieldSizeText = new GuiNumberField(2, this.fontRenderer, this.width / 2 - 3, this.height / 2 - 62, 30, 16);
         this.shieldSizeText.setMaxStringLength(2);
         this.shieldSizeText.setFocused(false);
         this.shieldSizeText.setCanLoseFocus(true);
@@ -121,11 +121,11 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         {
             owner = "";
         }
-        this.fontRendererObj.drawString(owner + this.tile.getName(), 8, 10, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.shield_damage.name") + ":", 10, 27, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.shield_size.name") + ":", 10, 48, 4210752);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.settings.name") + ":", 10, 73, 4210752);
+        this.fontRenderer.drawString(owner + this.tile.getName(), 8, 10, 4210752);
+        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
+        this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.shield_damage.name") + ":", 10, 27, 4210752);
+        this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.shield_size.name") + ":", 10, 48, 4210752);
+        this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.settings.name") + ":", 10, 73, 4210752);
 
         if (this.messageTicks > 0)
         {
@@ -140,7 +140,7 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
             {
                 GlStateManager.enableBlend();
                 GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-                this.fontRendererObj.drawString(GCCoreUtil.translate("gui.status.config_save.name"), 10, 87, 4210752 + (alpha << 24 & -4210753));
+                this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.config_save.name"), 10, 87, 4210752 + (alpha << 24 & -4210753));
                 GlStateManager.disableBlend();
             }
         }

@@ -197,7 +197,7 @@ public class ItemSpaceBow extends ItemBaseMP
 
     private static void spawnArrow(ItemStack itemStack, ItemStack arrowStack, World world, EntityPlayer player, EntityArrow arrow, Item arrowItem, int power, int punch, float duration, boolean flag)
     {
-        arrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, duration * 3.0F, 1.0F);
+        arrow.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, duration * 3.0F, 1.0F);
 
         if (duration == 1.0F)
         {

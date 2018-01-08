@@ -81,7 +81,7 @@ public class MapGenNibiruVillage extends MapGenStructure
     }
 
     @Override
-    public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
+    public BlockPos getNearestStructurePos(World world, BlockPos pos, boolean findUnexplored)
     {
         this.world = world;
         return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.distance, 8, 10387312, false, 100, findUnexplored);

@@ -35,7 +35,7 @@ public class EntityAIFaceTexture extends EntityAIBase
     {
         this.timer = 20;
         this.world.setEntityState(this.entity, (byte)10);
-        this.entity.getNavigator().clearPathEntity();
+        this.entity.getNavigator().clearPath();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class EntityAIFaceTexture extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return this.timer > 0;
     }

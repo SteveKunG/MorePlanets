@@ -26,11 +26,11 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
         this.getBiomeDecorator().philipyPerChunk = 4;
         this.getBiomeDecorator().reedsPerChunk = 10;
         this.getBiomeDecorator().pureHurbPerChunk = -999;
-        this.theBiomeDecorator.treesPerChunk = -999;
+        this.decorator.treesPerChunk = -999;
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         if (rand.nextInt(5) > 0)
         {

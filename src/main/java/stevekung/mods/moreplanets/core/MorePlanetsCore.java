@@ -8,30 +8,29 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.ClientCommandHandler;
-import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
 import stevekung.mods.moreplanets.client.command.CommandChangeLog;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
-import stevekung.mods.moreplanets.core.event.ClientEventHandler;
-import stevekung.mods.moreplanets.core.event.EntityEventHandler;
-import stevekung.mods.moreplanets.core.event.GeneralEventHandler;
-import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
+import stevekung.mods.moreplanets.core.event.*;
 import stevekung.mods.moreplanets.core.handler.GuiHandlerMP;
 import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.items.capsule.ItemCapsule;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
-import stevekung.mods.moreplanets.util.*;
+import stevekung.mods.moreplanets.util.CreativeTabsMP;
+import stevekung.mods.moreplanets.util.SmeltWithDataFunction;
+import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 @Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = MorePlanetsCore.DEPENDENCIES, guiFactory = MorePlanetsCore.GUI_FACTORY)
@@ -64,10 +63,7 @@ public class MorePlanetsCore
 
     static
     {
-        if (ForgeModContainer.replaceVanillaBucketModel)
-        {
-            FluidRegistry.enableUniversalBucket();
-        }
+        FluidRegistry.enableUniversalBucket();
 
         try
         {
@@ -112,10 +108,10 @@ public class MorePlanetsCore
             ClientCommandHandler.instance.registerCommand(new CommandChangeLog());
         }
 
-        CommonRegisterHelper.registerForgeEvent(this);
         CommonRegisterHelper.registerForgeEvent(new EntityEventHandler());
         CommonRegisterHelper.registerForgeEvent(new GeneralEventHandler());
         CommonRegisterHelper.registerForgeEvent(new WorldTickEventHandler());
+        CommonRegisterHelper.registerForgeEvent(new MissingMappingHandler());
     }
 
     @EventHandler
@@ -124,7 +120,6 @@ public class MorePlanetsCore
         VersionChecker.startCheck();
         MorePlanetsCore.PROXY.registerPostRendering();
         CommonRegisterHelper.registerGUIHandler(this, new GuiHandlerMP());
-        CommonRegisterHelper.registerFuelHandler(new FuelHandlerMP());
         CraftingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
@@ -135,15 +130,6 @@ public class MorePlanetsCore
     public void serverAboutToStart(FMLServerAboutToStartEvent event)
     {
         WorldTickEventHandler.startedDimensionData = null;
-    }
-
-    @EventHandler
-    public void onMissingMapping(FMLMissingMappingsEvent event)
-    {
-        for (MissingMapping mapping : event.getAll())
-        {
-            BlockItemRemapper.remapBlock(mapping, "cheese_double_tall_grass", ChalosBlocks.CHALOS_DOUBLE_PLANT);
-        }
     }
 
     public static boolean isObfuscatedEnvironment()

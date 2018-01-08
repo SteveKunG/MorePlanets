@@ -221,9 +221,9 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        if (!this.isMoving() && !source.isMagicDamage() && source.getSourceOfDamage() instanceof EntityLivingBase)
+        if (!this.isMoving() && !source.isMagicDamage() && source.getImmediateSource() instanceof EntityLivingBase)
         {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)source.getSourceOfDamage();
+            EntityLivingBase entitylivingbase = (EntityLivingBase)source.getImmediateSource();
 
             if (!source.isExplosion())
             {
@@ -269,16 +269,16 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         }
 
         @Override
-        public boolean continueExecuting()
+        public boolean shouldContinueExecuting()
         {
-            return super.continueExecuting() && this.entity.getDistanceSqToEntity(this.entity.getAttackTarget()) > 9.0D;
+            return super.shouldContinueExecuting() && this.entity.getDistanceSq(this.entity.getAttackTarget()) > 9.0D;
         }
 
         @Override
         public void startExecuting()
         {
             this.tickCounter = -10;
-            this.entity.getNavigator().clearPathEntity();
+            this.entity.getNavigator().clearPath();
             this.entity.getLookHelper().setLookPositionWithEntity(this.entity.getAttackTarget(), 90.0F, 90.0F);
             this.entity.isAirBorne = true;
         }
@@ -295,7 +295,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         public void updateTask()
         {
             EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
-            this.entity.getNavigator().clearPathEntity();
+            this.entity.getNavigator().clearPath();
             this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 90.0F, 90.0F);
 
             if (!this.entity.canEntityBeSeen(entitylivingbase))
@@ -401,7 +401,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         @Override
         public boolean apply(EntityLivingBase entity)
         {
-            return (entity instanceof EntityPlayer || entity instanceof EntityInfectedSquid || entity instanceof EntityAlienMiner) && entity.getDistanceSqToEntity(this.entity) > 9.0D;
+            return (entity instanceof EntityPlayer || entity instanceof EntityInfectedSquid || entity instanceof EntityAlienMiner) && entity.getDistanceSq(this.entity) > 9.0D;
         }
     }
 }

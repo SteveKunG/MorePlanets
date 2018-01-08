@@ -44,11 +44,17 @@ public class ItemDiona extends ItemBaseVariantsMP
     @Override
     public boolean onEntityItemUpdate(EntityItem entityItem)
     {
-        if (entityItem.getEntityItem().getItemDamage() == 8)
+        if (entityItem.getItem().getItemDamage() == 8)
         {
             entityItem.motionY += TransformerHooks.getItemGravity(entityItem);
         }
         return false;
+    }
+
+    @Override
+    public int getItemBurnTime(ItemStack itemStack)
+    {
+        return itemStack.getItemDamage() == 4 ? 400 : -1;
     }
 
     @Override

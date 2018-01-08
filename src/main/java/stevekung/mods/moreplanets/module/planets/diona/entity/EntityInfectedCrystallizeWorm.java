@@ -92,7 +92,7 @@ public class EntityInfectedCrystallizeWorm extends EntityMob implements IEntityB
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return MPSounds.INFECTED_MOB_HURT;
     }

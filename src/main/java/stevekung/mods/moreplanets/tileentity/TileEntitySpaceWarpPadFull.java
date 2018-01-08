@@ -62,7 +62,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     {
         if (!this.initialised)
         {
-            if (!this.world.isRemote && this.world.getWorldType() != WorldType.DEBUG_WORLD)
+            if (!this.world.isRemote && this.world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES)
             {
                 this.onCreate(this.world, this.getPos());
             }

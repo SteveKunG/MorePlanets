@@ -60,7 +60,7 @@ public class MapGenNibiruStronghold extends MapGenStructure
         }
         for (ChunkPos chunkpos : this.structureCoords)
         {
-            if (chunkX == chunkpos.chunkXPos && chunkZ == chunkpos.chunkZPos)
+            if (chunkX == chunkpos.x && chunkZ == chunkpos.z)
             {
                 return true;
             }
@@ -77,7 +77,7 @@ public class MapGenNibiruStronghold extends MapGenStructure
     }
 
     @Override
-    public BlockPos getClosestStrongholdPos(World world, BlockPos pos, boolean findUnexplored)
+    public BlockPos getNearestStructurePos(World world, BlockPos pos, boolean findUnexplored)
     {
         if (!this.ranBiomeCheck)
         {
@@ -91,7 +91,7 @@ public class MapGenNibiruStronghold extends MapGenStructure
 
         for (ChunkPos chunkpos : this.structureCoords)
         {
-            blockpos$mutableblockpos.setPos((chunkpos.chunkXPos << 4) + 8, 32, (chunkpos.chunkZPos << 4) + 8);
+            blockpos$mutableblockpos.setPos((chunkpos.x << 4) + 8, 32, (chunkpos.z << 4) + 8);
             double d1 = blockpos$mutableblockpos.distanceSq(pos);
 
             if (blockpos == null)

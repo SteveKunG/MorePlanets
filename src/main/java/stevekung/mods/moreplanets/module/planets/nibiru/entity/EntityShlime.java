@@ -229,7 +229,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
                     {
                         vec3 = pathentity.getPosition(this);
                     }
-                    this.calculateRotationYaw(vec3.xCoord, vec3.zCoord);
+                    this.calculateRotationYaw(vec3.x, vec3.z);
                     this.doMovementAction(this.moveType);
                 }
             }
@@ -274,7 +274,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return MPSounds.SHLIME_HURT;
     }
@@ -554,7 +554,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         int j = ((EntityShlime)mother).getFleeceColor().getDyeDamage();
         this.inventoryCrafting.getStackInSlot(0).setItemDamage(i);
         this.inventoryCrafting.getStackInSlot(1).setItemDamage(j);
-        ItemStack itemStack = CraftingManager.getInstance().findMatchingRecipe(this.inventoryCrafting, ((EntityShlime)father).world);
+        ItemStack itemStack = CraftingManager.findMatchingResult(this.inventoryCrafting, ((EntityShlime)father).world);
         int k;
 
         if (!itemStack.isEmpty() && itemStack.getItem() == Items.DYE)

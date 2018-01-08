@@ -153,7 +153,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
 
             if (this.isInWater() && this.rand.nextInt(20) == 0)
             {
-                this.resetHeight();
+                this.doWaterSplashEffect();
             }
         }
         super.notifyDataManagerChange(key);
@@ -214,7 +214,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
     {
         int i = this.getSlimeSize();
 
-        if (this.canEntityBeSeen(entity) && this.getDistanceSqToEntity(entity) < this.getDetectRange() * i * this.getDetectRange() * i && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
+        if (this.canEntityBeSeen(entity) && this.getDistanceSq(entity) < this.getDetectRange() * i * this.getDetectRange() * i && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
         {
             this.applyEnchantments(this, entity);
         }
@@ -242,7 +242,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return this.isSmallSlime() ? SoundEvents.ENTITY_SMALL_SLIME_HURT : SoundEvents.ENTITY_SLIME_HURT;
     }
@@ -344,7 +344,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         }
 
         @Override
-        public boolean continueExecuting()
+        public boolean shouldContinueExecuting()
         {
             EntityLivingBase entitylivingbase = this.slime.getAttackTarget();
             return entitylivingbase == null ? false : !entitylivingbase.isEntityAlive() ? false : entitylivingbase instanceof EntityPlayer && ((EntityPlayer)entitylivingbase).capabilities.disableDamage ? false : --this.growTieredTimer > 0;

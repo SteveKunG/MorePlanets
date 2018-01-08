@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.integration.jei;
 
-import mezz.jei.api.BlankModPlugin;
+import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
@@ -31,7 +31,7 @@ import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
 import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
 
 @JEIPlugin
-public class MorePlanetsJEIPlugin extends BlankModPlugin
+public class MorePlanetsJEIPlugin implements IModPlugin
 {
     @Override
     public void register(IModRegistry registry)

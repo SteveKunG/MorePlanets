@@ -102,14 +102,14 @@ public class GuiGameOverMP extends GuiScreen implements GuiYesNoCallback
         GlStateManager.scale(2.0F, 2.0F, 2.0F);
         boolean flag = this.mc.world.getWorldInfo().isHardcoreModeEnabled();
         String s = flag ? I18n.format("deathScreen.title.hardcore") : I18n.format("deathScreen.title");
-        this.drawCenteredString(this.fontRendererObj, s, this.width / 2 / 2, 30, 16777215);
+        this.drawCenteredString(this.fontRenderer, s, this.width / 2 / 2, 30, 16777215);
         GlStateManager.popMatrix();
 
         if (flag)
         {
-            this.drawCenteredString(this.fontRendererObj, I18n.format("deathScreen.hardcoreInfo"), this.width / 2, 144, 16777215);
+            this.drawCenteredString(this.fontRenderer, I18n.format("deathScreen.hardcoreInfo"), this.width / 2, 144, 16777215);
         }
-        this.drawCenteredString(this.fontRendererObj, I18n.format("deathScreen.score") + ": " + TextFormatting.YELLOW + this.mc.player.getScore(), this.width / 2, 100, 16777215);
+        this.drawCenteredString(this.fontRenderer, I18n.format("deathScreen.score") + ": " + TextFormatting.YELLOW + this.mc.player.getScore(), this.width / 2, 100, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 

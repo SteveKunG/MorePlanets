@@ -109,7 +109,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return SoundEvents.ENTITY_SILVERFISH_HURT;
     }
@@ -284,7 +284,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
         }
 
         @Override
-        public boolean continueExecuting()
+        public boolean shouldContinueExecuting()
         {
             return false;
         }
@@ -381,7 +381,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
         }
 
         @Override
-        public boolean continueExecuting()
+        public boolean shouldContinueExecuting()
         {
             if (this.attackTick > 0)
             {

@@ -81,7 +81,7 @@ public class EntityInfectedCrystallizeSlimeMinion extends EntitySlimeBaseMP
     @Override
     protected void dealDamage(EntityLivingBase entity)
     {
-        if (this.canEntityBeSeen(entity) && this.getDistanceSqToEntity(entity) < this.getDetectRange() && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
+        if (this.canEntityBeSeen(entity) && this.getDistanceSq(entity) < this.getDetectRange() && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
         {
             this.applyEnchantments(this, entity);
             entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 200, 1));

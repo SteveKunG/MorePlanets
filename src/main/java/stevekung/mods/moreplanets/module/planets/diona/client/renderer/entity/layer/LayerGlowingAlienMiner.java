@@ -33,7 +33,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         GlStateManager.enableLighting();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.setLightmap(entity, partialTicks);
+        this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
@@ -50,7 +50,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         float sin = (MathHelper.sin(time / 4) + 1F) / 2F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.setLightmap(entity, partialTicks);
+        this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
@@ -67,7 +67,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         sin = (MathHelper.sin(time / 8) + 1F) / 2F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.setLightmap(entity, partialTicks);
+        this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
@@ -82,7 +82,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         GlStateManager.enableLighting();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.setLightmap(entity, partialTicks);
+        this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
@@ -99,7 +99,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         sin = (MathHelper.sin(time / 16) + 1F) / 1F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.setLightmap(entity, partialTicks);
+        this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();

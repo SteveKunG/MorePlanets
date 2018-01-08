@@ -56,7 +56,7 @@ public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
         {
             for (DarkEnergyRecipeData data : DarkEnergyRecipeData.getRecipeList())
             {
-                ItemStack mainItemStack = mainItem.getEntityItem();
+                ItemStack mainItemStack = mainItem.getItem();
 
                 if (mainItemStack.getItem() == data.getInput().get(0).getItem())
                 {
@@ -66,7 +66,7 @@ public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
 
                         for (EntityItem requiredItem : entityItemRequired)
                         {
-                            ItemStack requiredItemStack = requiredItem.getEntityItem();
+                            ItemStack requiredItemStack = requiredItem.getItem();
 
                             if (requiredItemStack.getItem() == dataStackRequired.getItem() && requiredItemStack.getCount() >= dataStackRequired.getCount() * mainItemStack.getCount() && requiredItemStack.getItemDamage() == dataStackRequired.getItemDamage())
                             {
@@ -91,8 +91,8 @@ public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
                                         this.world.playSound(null, mainItem.posX + 0.5D, mainItem.posY + 0.5D, mainItem.posZ + 0.5D, SoundEvents.ENTITY_ZOMBIE_INFECT, SoundCategory.BLOCKS, 0.25F, (mainItem.world.rand.nextFloat() - mainItem.world.rand.nextFloat()) * 0.2F + 1.0F);
                                         ((WorldServer)mainItem.world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, mainItem.posX, mainItem.posY + 0.25D, mainItem.posZ, 24, 0.0D, 0.0D, 0.0D, 0.0D);
                                         ((WorldServer)requiredItem.world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, requiredItem.posX, requiredItem.posY + 0.25D, requiredItem.posZ, 24, 0.0D, 0.0D, 0.0D, 0.0D);
-                                        mainItem.setEntityItemStack(new ItemStack(data.getOutput().getItem(), mainItemStack.getCount(), data.getOutput().getItemDamage()));
-                                        requiredItem.setEntityItemStack(new ItemStack(requiredItemStack.getItem(), requiredItemStack.getCount() - dataStackRequired.getCount() * mainItemStack.getCount(), requiredItemStack.getItemDamage()));
+                                        mainItem.setItem(new ItemStack(data.getOutput().getItem(), mainItemStack.getCount(), data.getOutput().getItemDamage()));
+                                        requiredItem.setItem(new ItemStack(requiredItemStack.getItem(), requiredItemStack.getCount() - dataStackRequired.getCount() * mainItemStack.getCount(), requiredItemStack.getItemDamage()));
                                         this.checkTransform = true;
                                     }
                                 }

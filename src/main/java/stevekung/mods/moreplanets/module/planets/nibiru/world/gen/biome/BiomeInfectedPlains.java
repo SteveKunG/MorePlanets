@@ -24,7 +24,7 @@ public class BiomeInfectedPlains extends BiomeNibiru
         this.getBiomeDecorator().extraTreeChance = 0.05F;
         this.getBiomeDecorator().infectedTreesPerChunk = 0;
         this.getBiomeDecorator().reedsPerChunk = 10;
-        this.theBiomeDecorator.treesPerChunk = -999;
+        this.decorator.treesPerChunk = -999;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class BiomeInfectedPlains extends BiomeNibiru
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         return rand.nextInt(3) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0) : new WorldGenInfectedTrees(true, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
     }

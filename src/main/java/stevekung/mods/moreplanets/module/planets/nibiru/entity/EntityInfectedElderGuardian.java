@@ -8,6 +8,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -70,7 +71,7 @@ public class EntityInfectedElderGuardian extends EntityInfectedGuardian
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return this.isInWater() ? SoundEvents.ENTITY_ELDER_GUARDIAN_HURT : SoundEvents.ENTITY_ELDER_GUARDIAN_HURT_LAND;
     }
@@ -94,7 +95,7 @@ public class EntityInfectedElderGuardian extends EntityInfectedGuardian
         {
             Potion potion = MobEffects.MINING_FATIGUE;
 
-            for (EntityPlayerMP entityplayermp : this.world.getPlayers(EntityPlayerMP.class, entity -> this.getDistanceSqToEntity(entity) < 2500.0D && entity.interactionManager.survivalOrAdventure()))
+            for (EntityPlayerMP entityplayermp : this.world.getPlayers(EntityPlayerMP.class, entity -> this.getDistanceSq(entity) < 2500.0D && entity.interactionManager.survivalOrAdventure()))
             {
                 if (!entityplayermp.isPotionActive(potion) || entityplayermp.getActivePotionEffect(potion).getAmplifier() < 2 || entityplayermp.getActivePotionEffect(potion).getDuration() < 1200)
                 {

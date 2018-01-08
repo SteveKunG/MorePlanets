@@ -14,7 +14,7 @@ public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRend
     private ModelAlienDefenderBeacon model = new ModelAlienDefenderBeacon();
 
     @Override
-    public void renderTileEntityAt(TileEntityAlienDefenderBeacon tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityAlienDefenderBeacon tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;

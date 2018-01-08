@@ -79,10 +79,10 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
     {
         this.buttonEnable.enabled = this.tile.disableCooldown == 0 && !this.tile.successful;
         this.buttonEnable.displayString = !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name");
-        this.fontRendererObj.drawString(this.tile.getName(), 8, 10, 4210752);
-        GCCoreUtil.drawStringCentered(GCCoreUtil.translate("gui.message.status.name") + ": " + this.tile.getGUIStatus(), this.xSize / 2, 50, 4210752, this.fontRendererObj);
-        GCCoreUtil.drawStringCentered(GCCoreUtil.translate("gui.status.machine_status.name") + ": " + this.getStatus(), this.xSize / 2, 60, 4210752, this.fontRendererObj);
-        this.fontRendererObj.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
+        this.fontRenderer.drawString(this.tile.getName(), 8, 10, 4210752);
+        GCCoreUtil.drawStringCentered(GCCoreUtil.translate("gui.message.status.name") + ": " + this.tile.getGUIStatus(), this.xSize / 2, 50, 4210752, this.fontRenderer);
+        GCCoreUtil.drawStringCentered(GCCoreUtil.translate("gui.status.machine_status.name") + ": " + this.getStatus(), this.xSize / 2, 60, 4210752, this.fontRenderer);
+        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
     }
 
     @Override

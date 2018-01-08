@@ -20,9 +20,9 @@ public class BiomeChalos extends BiomeBaseMP
     public BiomeChalos(BiomeProperties properties)
     {
         super(properties);
-        this.theBiomeDecorator.treesPerChunk = -999;
-        this.theBiomeDecorator.flowersPerChunk = -999;
-        this.theBiomeDecorator.grassPerChunk = -999;
+        this.decorator.treesPerChunk = -999;
+        this.decorator.flowersPerChunk = -999;
+        this.decorator.grassPerChunk = -999;
         this.decorator = this.getBiomeDecorator();
     }
 

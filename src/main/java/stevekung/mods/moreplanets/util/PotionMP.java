@@ -1,9 +1,9 @@
 package stevekung.mods.moreplanets.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -41,7 +41,7 @@ public class PotionMP extends Potion
     {
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/potion/icon.png"));
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer buf = tessellator.getBuffer();
+        BufferBuilder buf = tessellator.getBuffer();
         buf.begin(7, DefaultVertexFormats.POSITION_TEX);
         GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
         int textureX = this.iconIndex % 8 * 18;

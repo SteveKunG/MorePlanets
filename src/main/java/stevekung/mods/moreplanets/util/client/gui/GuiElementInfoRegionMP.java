@@ -64,7 +64,7 @@ public class GuiElementInfoRegionMP extends Gui
             while (iterator.hasNext())
             {
                 String s = iterator.next();
-                int l = FMLClientHandler.instance().getClient().fontRendererObj.getStringWidth(s);
+                int l = FMLClientHandler.instance().getClient().fontRenderer.getStringWidth(s);
 
                 if (l > k)
                 {
@@ -106,7 +106,7 @@ public class GuiElementInfoRegionMP extends Gui
             for (int k2 = 0; k2 < this.tooltipStrings.size(); ++k2)
             {
                 String s1 = this.tooltipStrings.get(k2);
-                FMLClientHandler.instance().getClient().fontRendererObj.drawStringWithShadow(s1, i1, j1, -1);
+                FMLClientHandler.instance().getClient().fontRenderer.drawStringWithShadow(s1, i1, j1, -1);
                 j1 += 10;
             }
             this.zLevel = 0.0F;

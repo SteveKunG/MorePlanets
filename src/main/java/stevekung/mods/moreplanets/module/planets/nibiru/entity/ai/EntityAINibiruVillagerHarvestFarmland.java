@@ -43,9 +43,9 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
-        return this.field_179501_f >= 0 && super.continueExecuting();
+        return this.field_179501_f >= 0 && super.shouldContinueExecuting();
     }
 
     @Override

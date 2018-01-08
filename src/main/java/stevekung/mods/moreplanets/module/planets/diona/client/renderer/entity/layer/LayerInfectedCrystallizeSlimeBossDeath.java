@@ -2,9 +2,9 @@ package stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.l
 
 import java.util.Random;
 
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,7 +20,7 @@ public class LayerInfectedCrystallizeSlimeBossDeath implements LayerRenderer<Ent
         if (entity.deathTicks > 0)
         {
             Tessellator tessellator = Tessellator.getInstance();
-            VertexBuffer worldrenderer = tessellator.getBuffer();
+            BufferBuilder worldrenderer = tessellator.getBuffer();
             float f = (entity.deathTicks + partialTicks) / 200.0F;
             float f1 = 0.0F;
 

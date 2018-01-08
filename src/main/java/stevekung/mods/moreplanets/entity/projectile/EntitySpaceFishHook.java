@@ -86,13 +86,13 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
     }
 
     @Override
-    public void func_191516_a(int lureSpeed)
+    public void setLureSpeed(int lureSpeed)
     {
         this.lureSpeed = lureSpeed;
     }
 
     @Override
-    public void func_191517_b(int luck)
+    public void setLuck(int luck)
     {
         this.luck = luck;
     }
@@ -197,7 +197,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                     this.checkCollision();
                 }
 
-                if (!this.inGround && !this.onGround && !this.isCollidedHorizontally)
+                if (!this.inGround && !this.onGround && !this.collidedHorizontally)
                 {
                     ++this.ticksInAir;
                 }
@@ -276,7 +276,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
         boolean flag = itemStack.getItem() instanceof ItemSpaceFishingRod && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
         boolean flag1 = itemStack1.getItem() instanceof ItemSpaceFishingRod && itemStack1.hasTagCompound() && itemStack1.getTagCompound().getBoolean("Cast");
 
-        if (!this.angler.isDead && this.angler.isEntityAlive() && (flag || flag1) && this.getDistanceSqToEntity(this.angler) <= 1024.0D)
+        if (!this.angler.isDead && this.angler.isEntityAlive() && (flag || flag1) && this.getDistanceSq(this.angler) <= 1024.0D)
         {
             return false;
         }
@@ -319,18 +319,18 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
 
         if (raytraceresult != null)
         {
-            vec3d1 = new Vec3d(raytraceresult.hitVec.xCoord, raytraceresult.hitVec.yCoord, raytraceresult.hitVec.zCoord);
+            vec3d1 = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
         }
 
         Entity entity = null;
-        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expandXyz(1.0D));
+        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D));
         double d0 = 0.0D;
 
         for (Entity entity1 : list)
         {
             if (this.canBeHooked(entity1) && (entity1 != this.angler || this.ticksInAir >= 5))
             {
-                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expandXyz(0.30000001192092896D);
+                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.30000001192092896D);
                 RayTraceResult raytraceresult1 = axisalignedbb.calculateIntercept(vec3d, vec3d1);
 
                 if (raytraceresult1 != null)

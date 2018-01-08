@@ -15,7 +15,7 @@ public class TileEntityZeliusEggRenderer extends TileEntitySpecialRenderer<TileE
     private ModelZeliusEgg model = new ModelZeliusEgg();
 
     @Override
-    public void renderTileEntityAt(TileEntityZeliusEgg tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityZeliusEgg tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float renderPartialTicks = tile.renderTicks + partialTicks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 1F) / 2F + 0.15F;

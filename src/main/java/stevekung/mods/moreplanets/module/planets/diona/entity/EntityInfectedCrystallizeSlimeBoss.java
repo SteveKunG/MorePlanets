@@ -306,7 +306,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
         while (iterator.hasNext())
         {
             EntityInfectedCrystallizeTentacle tentacle1 = (EntityInfectedCrystallizeTentacle)iterator.next();
-            double distance = tentacle1.getDistanceSqToEntity(this);
+            double distance = tentacle1.getDistanceSq(this);
 
             if (distance < distance1)
             {
@@ -363,7 +363,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     @Override
     protected void dealDamage(EntityLivingBase entity)
     {
-        if (this.canEntityBeSeen(entity) && this.getDistanceSqToEntity(entity) < this.getDetectRange() && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
+        if (this.canEntityBeSeen(entity) && this.getDistanceSq(entity) < this.getDetectRange() && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
         {
             this.applyEnchantments(this, entity);
             entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 200, 1));
@@ -377,7 +377,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return SoundEvents.ENTITY_SLIME_HURT;
     }
@@ -401,7 +401,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
         }
         else if (super.attackEntityFrom(damageSource, damage))
         {
-            Entity entity = damageSource.getEntity();
+            Entity entity = damageSource.getTrueSource();
 
             if (this.getPassengers().contains(entity) && this.getRidingEntity() != entity)
             {

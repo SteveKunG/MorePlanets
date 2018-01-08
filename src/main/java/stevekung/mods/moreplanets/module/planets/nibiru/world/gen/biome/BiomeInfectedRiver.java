@@ -12,6 +12,6 @@ public class BiomeInfectedRiver extends BiomeNibiru
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
         this.getBiomeDecorator().reedsPerChunk = 10;
-        this.theBiomeDecorator.treesPerChunk = -999;
+        this.decorator.treesPerChunk = -999;
     }
 }

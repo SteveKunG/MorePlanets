@@ -120,7 +120,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return MPSounds.ALIEN_MINER_HURT;
     }
@@ -281,16 +281,16 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         }
 
         @Override
-        public boolean continueExecuting()
+        public boolean shouldContinueExecuting()
         {
-            return super.continueExecuting() && this.entity.getDistanceSqToEntity(this.entity.getAttackTarget()) > 5.0D;
+            return super.shouldContinueExecuting() && this.entity.getDistanceSq(this.entity.getAttackTarget()) > 5.0D;
         }
 
         @Override
         public void startExecuting()
         {
             this.tickCounter = -10;
-            this.entity.getNavigator().clearPathEntity();
+            this.entity.getNavigator().clearPath();
             this.entity.getLookHelper().setLookPositionWithEntity(this.entity.getAttackTarget(), 90.0F, 90.0F);
             this.entity.isAirBorne = true;
         }
@@ -306,7 +306,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         public void updateTask()
         {
             EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
-            this.entity.getNavigator().clearPathEntity();
+            this.entity.getNavigator().clearPath();
             this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 90.0F, 90.0F);
 
             if (!this.entity.canEntityBeSeen(entitylivingbase))
@@ -390,9 +390,9 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         }
 
         @Override
-        public boolean continueExecuting()
+        public boolean shouldContinueExecuting()
         {
-            return this.findStone ? false : super.continueExecuting();
+            return this.findStone ? false : super.shouldContinueExecuting();
         }
 
         @Override
@@ -428,7 +428,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         @Override
         public boolean apply(EntityLivingBase entity)
         {
-            return !(entity instanceof EntityAlienMiner) && entity.getDistanceSqToEntity(this.entity) > 5.0D;
+            return !(entity instanceof EntityAlienMiner) && entity.getDistanceSq(this.entity) > 5.0D;
         }
     }
 }

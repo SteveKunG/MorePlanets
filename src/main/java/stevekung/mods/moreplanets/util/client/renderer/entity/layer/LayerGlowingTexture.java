@@ -48,7 +48,7 @@ public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
         }
 
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        this.render.setLightmap(entity, partialTicks);
+        this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();

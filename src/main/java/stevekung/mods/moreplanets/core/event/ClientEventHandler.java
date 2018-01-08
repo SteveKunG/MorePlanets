@@ -20,9 +20,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGameOver;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -273,7 +273,7 @@ public class ClientEventHandler
             float f = living.width * 1.4F;
             GlStateManager.scale(f, f, f);
             Tessellator tessellator = Tessellator.getInstance();
-            VertexBuffer worldrenderer = tessellator.getBuffer();
+            BufferBuilder worldrenderer = tessellator.getBuffer();
             float f1 = 0.5F;
             float f2 = 0.0F;
             float f3 = living.height / f;
@@ -326,7 +326,7 @@ public class ClientEventHandler
                 if (this.mc.player.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE))
                 {
                     Tessellator tessellator = Tessellator.getInstance();
-                    VertexBuffer worldrenderer = tessellator.getBuffer();
+                    BufferBuilder worldrenderer = tessellator.getBuffer();
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 0.9F);
                     GlStateManager.depthFunc(519);
                     GlStateManager.depthMask(false);
@@ -365,11 +365,11 @@ public class ClientEventHandler
                 }
                 if (this.isEntityInsideBlock(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK))
                 {
-                    this.renderOverlay("cheese_of_milk_gas", this.mc.player.getBrightness(event.getPartialTicks()), 0.75F, event.getPartialTicks(), -0.25D);
+                    this.renderOverlay("cheese_of_milk_gas", this.mc.player.getBrightness(), 0.75F, event.getPartialTicks(), -0.25D);
                 }
                 if (this.isEntityInsideBlock(NibiruBlocks.HELIUM_GAS_BLOCK))
                 {
-                    this.renderOverlay("helium_gas", this.mc.player.getBrightness(event.getPartialTicks()), 0.75F, event.getPartialTicks(), -0.25D);
+                    this.renderOverlay("helium_gas", this.mc.player.getBrightness(), 0.75F, event.getPartialTicks(), -0.25D);
                 }
             }
         }
@@ -418,17 +418,17 @@ public class ClientEventHandler
             if (this.checkInsideBlock(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
-                this.renderOverlay("crystallize_water", this.mc.player.getBrightness(partialTicks), 0.75F, partialTicks, -0.5D);
+                this.renderOverlay("crystallize_water", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
             if (this.checkInsideBlock(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK))
             {
                 event.setCanceled(true);
-                this.renderOverlay("cheese_of_milk", this.mc.player.getBrightness(partialTicks), 0.75F, partialTicks, -0.5D);
+                this.renderOverlay("cheese_of_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
             if (this.checkInsideBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
-                this.renderOverlay("infected_water", this.mc.player.getBrightness(partialTicks), 0.5F, partialTicks, -0.5D);
+                this.renderOverlay("infected_water", this.mc.player.getBrightness(), 0.5F, partialTicks, -0.5D);
             }
         }
     }
@@ -595,7 +595,7 @@ public class ClientEventHandler
     {
         this.mc.getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/misc/" + texture + ".png"));
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer worldrenderer = tessellator.getBuffer();
+        BufferBuilder worldrenderer = tessellator.getBuffer();
         GlStateManager.color(brightness, brightness, brightness, alpha);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);

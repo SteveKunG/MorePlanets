@@ -23,7 +23,7 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
     }
 
     @Override
-    public void renderTileEntityAt(TileEntityLargeInfectedCrystallize tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityLargeInfectedCrystallize tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         if (tile.facing == null)
         {

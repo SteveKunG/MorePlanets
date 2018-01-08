@@ -16,7 +16,7 @@ public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRendere
     private ModelBlackHoleStorage model = new ModelBlackHoleStorage();
 
     @Override
-    public void renderTileEntityAt(TileEntityBlackHoleStorage tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityBlackHoleStorage tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float renderPartialTicks = tile.renderTicks + partialTicks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 1F) / 2F + 0.15F;

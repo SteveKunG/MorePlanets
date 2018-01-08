@@ -48,7 +48,7 @@ public class ContainerWorkbenchMP extends Container
     @Override
     public void onCraftMatrixChanged(IInventory inventory)
     {
-        this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.worldObj));
+        this.craftResult.setInventorySlotContents(0, CraftingManager.findMatchingResult(this.craftMatrix, this.worldObj));
     }
 
     @Override

@@ -41,7 +41,7 @@ public class LayerInfectedCrystallizeSlimeBossBarrier implements LayerRenderer<E
             float sin = (MathHelper.sin(time / 4) + 1F) / 2F + 0.15F;
             GlStateManager.color(sin, sin, sin, sin);
             this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-            this.render.setLightmap(entity, partialTicks);
+            this.render.setLightmap(entity);
             GlStateManager.depthMask(true);
             GlStateManager.disableBlend();
             GlStateManager.enableAlpha();
@@ -60,9 +60,9 @@ public class LayerInfectedCrystallizeSlimeBossBarrier implements LayerRenderer<E
             GlStateManager.disableLighting();
             GlStateManager.blendFunc(1, 1);
             this.model.setModelAttributes(this.render.getMainModel());
-            Minecraft.getMinecraft().entityRenderer.func_191514_d(true);
+            Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
             this.model.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-            Minecraft.getMinecraft().entityRenderer.func_191514_d(false);
+            Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
             GlStateManager.matrixMode(5890);
             GlStateManager.loadIdentity();
             GlStateManager.matrixMode(5888);
@@ -85,7 +85,7 @@ public class LayerInfectedCrystallizeSlimeBossBarrier implements LayerRenderer<E
             float sin = (MathHelper.sin(time / 4) + 1F) / 2F + 0.15F;
             GlStateManager.color(sin, sin, sin, sin);
             this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-            this.render.setLightmap(entity, partialTicks);
+            this.render.setLightmap(entity);
             GlStateManager.depthMask(true);
             GlStateManager.disableBlend();
             GlStateManager.enableAlpha();

@@ -176,7 +176,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                                 {
                                     warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
                                     MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-                                    WorldServer worldserver = server.worldServerForDimension(GCCoreUtil.getDimensionID(server.worlds[0]));
+                                    WorldServer worldserver = server.getWorld(GCCoreUtil.getDimensionID(server.worlds[0]));
 
                                     if (player instanceof EntityPlayerMP)
                                     {

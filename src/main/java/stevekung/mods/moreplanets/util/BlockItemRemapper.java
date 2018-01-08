@@ -2,25 +2,43 @@ package stevekung.mods.moreplanets.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.event.RegistryEvent;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 
 public class BlockItemRemapper
 {
-    public static void remapBlock(MissingMapping mapping, String oldName, Block block)
+    public static void remapBlock(RegistryEvent.MissingMappings<Block> event, String oldName, Block block)
     {
-        if (mapping.name.equals("moreplanets:" + oldName))
+        for (RegistryEvent.MissingMappings.Mapping<Block> mappings : event.getMappings())
         {
-            if (mapping.type == GameRegistry.Type.BLOCK)
+            if (mappings.key.getResourceDomain().equals(MorePlanetsCore.MOD_ID) && mappings.key.getResourcePath().equals(oldName))
             {
-                mapping.remap(block);
-                MPLog.info("Remapping Block Complete (From {} to {})", mapping.name, block.getRegistryName());
+                mappings.remap(block);
+                MPLog.info("Remapping Block Complete (From {} to {})", mappings.key, block.getRegistryName());
             }
-            else
+        }
+    }
+
+    public static void remapItem(RegistryEvent.MissingMappings<Item> event, String oldName, Block block)
+    {
+        for (RegistryEvent.MissingMappings.Mapping<Item> mappings : event.getMappings())
+        {
+            if (mappings.key.getResourceDomain().equals(MorePlanetsCore.MOD_ID) && mappings.key.getResourcePath().equals(oldName))
             {
-                Item item = Item.getItemFromBlock(block);
-                mapping.remap(item);
-                MPLog.info("Remapping ItemBlock Complete (From {} to {})", mapping.name, item.getRegistryName());
+                mappings.remap(Item.getItemFromBlock(block));
+                MPLog.info("Remapping Block Complete (From {} to {})", mappings.key, block.getRegistryName());
+            }
+        }
+    }
+
+    public static void remapItem(RegistryEvent.MissingMappings<Item> event, String oldName, Item item)
+    {
+        for (RegistryEvent.MissingMappings.Mapping<Item> mappings : event.getMappings())
+        {
+            if (mappings.key.getResourceDomain().equals(MorePlanetsCore.MOD_ID) && mappings.key.getResourcePath().equals(oldName))
+            {
+                mappings.remap(item);
+                MPLog.info("Remapping Block Complete (From {} to {})", mappings.key, item.getRegistryName());
             }
         }
     }

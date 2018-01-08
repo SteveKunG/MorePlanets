@@ -23,11 +23,11 @@ public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
         this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
         this.getBiomeDecorator().orangeBushPerChunk = 3;
         this.getBiomeDecorator().reedsPerChunk = 10;
-        this.theBiomeDecorator.treesPerChunk = -999;
+        this.decorator.treesPerChunk = -999;
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         if (rand.nextInt(8) < 1)
         {
@@ -53,8 +53,7 @@ public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
                 int k = i * 4 + 1 + 8 + rand.nextInt(3);
                 int l = j * 4 + 1 + 8 + rand.nextInt(3);
                 BlockPos blockpos = world.getHeight(pos.add(k, 0, l));
-
-                WorldGenAbstractTree worldgenabstracttree = this.genBigTreeChance(rand);
+                WorldGenAbstractTree worldgenabstracttree = this.getRandomTreeFeature(rand);
 
                 if (worldgenabstracttree.generate(world, rand, blockpos))
                 {

@@ -43,7 +43,7 @@ public class BiomeInfectedDeadTaiga extends BiomeNibiru
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         if (rand.nextInt(20) == 0)
         {

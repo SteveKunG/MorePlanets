@@ -33,7 +33,7 @@ public class LayerCheeseFloaterSlime implements LayerRenderer<EntityCheeseFloate
             item.hoverStart = 0.0F;
             GlStateManager.translate(0.0F, 1.615F - hoverTime, 0.0F);
             GlStateManager.rotate(180.0F, 1, 0, 0);
-            this.render.getRenderManager().doRenderEntity(item, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
+            this.render.getRenderManager().renderEntity(item, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
         }
     }
 

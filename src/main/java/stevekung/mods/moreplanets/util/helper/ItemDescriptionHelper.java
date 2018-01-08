@@ -12,6 +12,6 @@ public class ItemDescriptionHelper
     @SideOnly(Side.CLIENT)
     public static List<String> getDescription(String name)
     {
-        return Minecraft.getMinecraft().fontRendererObj.listFormattedStringToWidth(I18n.format(name), 150);
+        return Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(I18n.format(name), 150);
     }
 }

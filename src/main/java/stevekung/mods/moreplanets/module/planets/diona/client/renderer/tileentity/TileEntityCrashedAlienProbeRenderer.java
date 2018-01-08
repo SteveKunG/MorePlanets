@@ -11,7 +11,7 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityCras
 public class TileEntityCrashedAlienProbeRenderer extends TileEntitySpecialRenderer<TileEntityCrashedAlienProbe>
 {
     @Override
-    public void renderTileEntityAt(TileEntityCrashedAlienProbe tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityCrashedAlienProbe tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
         GlStateManager.pushMatrix();
@@ -24,7 +24,7 @@ public class TileEntityCrashedAlienProbeRenderer extends TileEntitySpecialRender
             GlStateManager.rotate(-90.0F + rand.nextInt(10), 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(rand.nextInt(45), 0.0F, 0.0F, 1.0F);
             EntityAlienMiner miner = new EntityAlienMiner(Minecraft.getMinecraft().world);
-            Minecraft.getMinecraft().getRenderManager().doRenderEntity(miner, 0.0F, -0.75F, 0.6F, 0.0F, partialTicks, false);
+            Minecraft.getMinecraft().getRenderManager().renderEntity(miner, 0.0F, -0.75F, 0.6F, 0.0F, partialTicks, false);
         }
         GlStateManager.popMatrix();
     }

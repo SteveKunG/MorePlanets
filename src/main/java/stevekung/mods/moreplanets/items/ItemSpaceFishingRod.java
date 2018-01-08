@@ -138,16 +138,16 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
             if (!world.isRemote)
             {
                 EntitySpaceFishHook entityfishhook = new EntitySpaceFishHook(world, player);
-                int lure = EnchantmentHelper.func_191528_c(itemStack);
-                int luck = EnchantmentHelper.func_191529_b(itemStack);
+                int lure = EnchantmentHelper.getFishingSpeedBonus(itemStack);
+                int luck = EnchantmentHelper.getFishingLuckBonus(itemStack);
 
                 if (lure > 0)
                 {
-                    entityfishhook.func_191516_a(lure);
+                    entityfishhook.setLureSpeed(lure);
                 }
                 if (luck > 0)
                 {
-                    entityfishhook.func_191517_b(luck);
+                    entityfishhook.setLuck(luck);
                 }
                 world.spawnEntity(entityfishhook);
             }

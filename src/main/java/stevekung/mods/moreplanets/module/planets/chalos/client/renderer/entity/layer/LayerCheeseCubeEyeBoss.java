@@ -34,7 +34,7 @@ public class LayerCheeseCubeEyeBoss implements LayerRenderer<EntityCheeseCubeEye
             GlStateManager.enableLighting();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-            this.render.setLightmap(entity, partialTicks);
+            this.render.setLightmap(entity);
             GlStateManager.depthMask(true);
             GlStateManager.disableBlend();
             GlStateManager.enableAlpha();

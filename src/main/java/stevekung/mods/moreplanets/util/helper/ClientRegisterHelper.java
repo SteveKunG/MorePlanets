@@ -62,7 +62,7 @@ public class ClientRegisterHelper
 
     public static void registerTileEntityItemStackRendering(TileEntity tile, double yOffset)
     {
-        TileEntityRendererDispatcher.instance.renderTileEntityAt(tile, 0.0D, yOffset, 0.0D, 0.0F);
+        TileEntityRendererDispatcher.instance.render(tile, 0.0D, yOffset, 0.0D, 0.0F);
     }
 
     public static void registerVariantsName(Item item, String... variant)

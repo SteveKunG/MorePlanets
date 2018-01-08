@@ -207,14 +207,14 @@ public class EntityVeinEye extends Entity
     public void readEntityFromNBT(NBTTagCompound tagCompund) {}
 
     @Override
-    public float getBrightness(float partialTicks)
+    public float getBrightness()
     {
         return 1.0F;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBrightnessForRender(float partialTicks)
+    public int getBrightnessForRender()
     {
         return 15728880;
     }

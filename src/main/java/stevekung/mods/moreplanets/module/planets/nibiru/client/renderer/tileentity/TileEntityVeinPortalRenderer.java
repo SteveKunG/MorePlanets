@@ -4,10 +4,10 @@ import java.nio.FloatBuffer;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
@@ -28,7 +28,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
     FloatBuffer buffer = GLAllocation.createDirectFloatBuffer(16);
 
     @Override
-    public void renderTileEntityAt(TileEntityVeinPortal tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityVeinPortal tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         GlStateManager.disableFog();
 
@@ -36,7 +36,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
         {
             int i = 0;
             Tessellator tessellator = Tessellator.getInstance();
-            VertexBuffer worldrenderer = tessellator.getBuffer();
+            BufferBuilder worldrenderer = tessellator.getBuffer();
             int k = i + 66;
             this.bindTexture(END_GATEWAY_BEAM_TEXTURE);
             GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
@@ -208,7 +208,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             GlStateManager.multMatrix(PROJECTION);
             GlStateManager.multMatrix(MODELVIEW);
             Tessellator tessellator = Tessellator.getInstance();
-            VertexBuffer worldRenderer = tessellator.getBuffer();
+            BufferBuilder worldRenderer = tessellator.getBuffer();
             worldRenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
             float f2 = RANDOM.nextFloat() * 0.85F * f5;
             float f3 = RANDOM.nextFloat() * 0.35F * f5;

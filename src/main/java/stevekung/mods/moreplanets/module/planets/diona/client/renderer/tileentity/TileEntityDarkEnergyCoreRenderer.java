@@ -15,7 +15,7 @@ public class TileEntityDarkEnergyCoreRenderer extends TileEntitySpecialRenderer<
     private ModelDarkEnergyBlock model = new ModelDarkEnergyBlock();
 
     @Override
-    public void renderTileEntityAt(TileEntityDarkEnergyCore tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityDarkEnergyCore tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float renderPartialTicks = tile.renderTicks + partialTicks;
         float ticks = MathHelper.sin(renderPartialTicks / 8) / 10.0F + 1F;

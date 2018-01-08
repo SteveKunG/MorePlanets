@@ -3,11 +3,11 @@ package stevekung.mods.moreplanets.integration.jei.rockett4;
 import java.util.ArrayList;
 
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import net.minecraft.item.ItemStack;
 
-public class Tier4RocketRecipeWrapper extends BlankRecipeWrapper
+public class Tier4RocketRecipeWrapper implements IRecipeWrapper
 {
     private INasaWorkbenchRecipe recipe;
 

@@ -69,7 +69,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             double d5 = d2 / d3;
             this.setLocationAndAngles(shooter.posX + d4, this.posY, shooter.posZ + d5, f, f1);
             float f2 = (float)(d3 * 0.20000000298023224D);
-            this.setThrowableHeading(d0, d1 + f2, d2, velocity, inaccuracy);
+            this.shoot(d0, d1 + f2, d2, velocity, inaccuracy);
         }
     }
 
@@ -86,7 +86,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI);
         this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI);
         this.motionY = -MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI);
-        this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
+        this.shoot(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     }
 
     @Override
-    public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy)
+    public void shoot(double x, double y, double z, float velocity, float inaccuracy)
     {
         float f = MathHelper.sqrt(x * x + y * y + z * z);
         x = x / f;
@@ -177,11 +177,11 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         }
         if (movingobjectposition != null)
         {
-            vec3 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+            vec3 = new Vec3d(movingobjectposition.hitVec.x, movingobjectposition.hitVec.y, movingobjectposition.hitVec.z);
         }
 
         Entity entity = null;
-        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
         double d0 = 0.0D;
 
         for (int i = 0; i < list.size(); ++i)
@@ -191,7 +191,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5))
             {
                 float f1 = 0.3F;
-                AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expand(f1, f1, f1);
+                AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().grow(f1, f1, f1);
                 RayTraceResult movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
                 if (movingobjectposition1 != null)
@@ -282,9 +282,9 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             }
             else
             {
-                this.motionX = (float)(movingobjectposition.hitVec.xCoord - this.posX);
-                this.motionY = (float)(movingobjectposition.hitVec.yCoord - this.posY);
-                this.motionZ = (float)(movingobjectposition.hitVec.zCoord - this.posZ);
+                this.motionX = (float)(movingobjectposition.hitVec.x - this.posX);
+                this.motionY = (float)(movingobjectposition.hitVec.y - this.posY);
+                this.motionZ = (float)(movingobjectposition.hitVec.z - this.posZ);
                 float f5 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                 this.posX -= this.motionX / f5 * 0.05000000074505806D;
                 this.posY -= this.motionY / f5 * 0.05000000074505806D;
@@ -374,13 +374,13 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBrightnessForRender(float partialTicks)
+    public int getBrightnessForRender()
     {
         return 15728880;
     }
 
     @Override
-    public float getBrightness(float partialTicks)
+    public float getBrightness()
     {
         return 1.0F;
     }

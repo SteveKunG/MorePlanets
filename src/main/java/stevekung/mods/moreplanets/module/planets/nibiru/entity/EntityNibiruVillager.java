@@ -21,6 +21,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -326,7 +327,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return SoundEvents.ENTITY_VILLAGER_HURT;
     }
@@ -370,7 +371,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     {
         if (this.villageObj != null)
         {
-            Entity entity = cause.getEntity();
+            Entity entity = cause.getTrueSource();
 
             if (entity != null)
             {
@@ -629,7 +630,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     @Override
     protected void updateEquipmentIfNeeded(EntityItem itemEntity)
     {
-        ItemStack itemStack = itemEntity.getEntityItem();
+        ItemStack itemStack = itemEntity.getItem();
 
         if (this.canVillagerPickupItem(itemStack))
         {
@@ -897,7 +898,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         {
             Enchantment enchantment = Enchantment.REGISTRY.getRandomObject(rand);
             int i = MathHelper.getInt(rand, enchantment.getMinLevel(), enchantment.getMaxLevel());
-            ItemStack itemstack = Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(enchantment, i));
+            ItemStack itemstack = ItemEnchantedBook.getEnchantedItemStack(new EnchantmentData(enchantment, i));
             int j = 2 + rand.nextInt(5 + i * 10) + 3 * i;
 
             if (j > 64)

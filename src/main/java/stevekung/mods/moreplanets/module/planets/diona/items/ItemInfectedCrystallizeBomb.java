@@ -38,7 +38,7 @@ public class ItemInfectedCrystallizeBomb extends ItemBaseMP
         if (!world.isRemote)
         {
             EntityInfectedCrystallizeBomb bomb = new EntityInfectedCrystallizeBomb(world, player);
-            bomb.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+            bomb.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
             world.spawnEntity(bomb);
         }
         player.addStat(StatList.getObjectUseStats(this));

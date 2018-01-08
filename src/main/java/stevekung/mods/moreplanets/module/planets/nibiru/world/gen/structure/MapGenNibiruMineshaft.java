@@ -39,7 +39,7 @@ public class MapGenNibiruMineshaft extends MapGenStructure
     }
 
     @Override
-    public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean findUnexplored)
+    public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
     {
         int j = pos.getX() >> 4;
         int k = pos.getZ() >> 4;
