@@ -435,47 +435,5 @@ public class NibiruBlocks
         CommonRegisterHelper.setFireBurn(NibiruBlocks.INFECTED_DEAD_OAK_STAIRS, 5, 20);
         CommonRegisterHelper.setFireBurn(NibiruBlocks.ALIEN_BERRY_OAK_STAIRS, 5, 20);
         CommonRegisterHelper.setFireBurn(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, 5, 20);
-
-        /**************************************************************/
-        /********************ORE DICTIONARY STUFF**********************/
-        /**************************************************************/
-
-        CommonRegisterHelper.registerOreDictionary("plankWood", new ItemStack(NibiruBlocks.NIBIRU_PLANKS, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("logWood", new ItemStack(NibiruBlocks.NIBIRU_LOG, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("treeLeaves", new ItemStack(NibiruBlocks.NIBIRU_LEAVES, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("treeSapling", new ItemStack(NibiruBlocks.NIBIRU_SAPLING, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("stairWood", NibiruBlocks.INFECTED_OAK_STAIRS);
-        CommonRegisterHelper.registerOreDictionary("stairWood", NibiruBlocks.INFECTED_DEAD_OAK_STAIRS);
-        CommonRegisterHelper.registerOreDictionary("stairWood", NibiruBlocks.ALIEN_BERRY_OAK_STAIRS);
-        CommonRegisterHelper.registerOreDictionary("grass", NibiruBlocks.INFECTED_GRASS);
-        CommonRegisterHelper.registerOreDictionary("grass", NibiruBlocks.GREEN_VEIN_GRASS);
-        CommonRegisterHelper.registerOreDictionary("dirt", new ItemStack(NibiruBlocks.INFECTED_DIRT, 1, 0));
-        CommonRegisterHelper.registerOreDictionary("stone", new ItemStack(NibiruBlocks.NIBIRU_BLOCK, 1, 0));
-        CommonRegisterHelper.registerOreDictionary("cobblestone", new ItemStack(NibiruBlocks.NIBIRU_BLOCK, 1, 1));
-        CommonRegisterHelper.registerOreDictionary("sand", NibiruBlocks.INFECTED_SAND);
-        CommonRegisterHelper.registerOreDictionary("gravel", NibiruBlocks.INFECTED_GRAVEL);
-        CommonRegisterHelper.registerOreDictionary("gravel", NibiruBlocks.PURIFY_GRAVEL);
-        CommonRegisterHelper.registerOreDictionary("blockPrismarine", new ItemStack(NibiruBlocks.INFECTED_PRISMARINE, 1, 0));
-        CommonRegisterHelper.registerOreDictionary("blockPrismarineBrick", new ItemStack(NibiruBlocks.INFECTED_PRISMARINE, 1, 1));
-        CommonRegisterHelper.registerOreDictionary("blockPrismarineDark", new ItemStack(NibiruBlocks.INFECTED_PRISMARINE, 1, 2));
-        CommonRegisterHelper.registerOreDictionary("oreCoal", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 0));
-        CommonRegisterHelper.registerOreDictionary("oreIron", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 1));
-        CommonRegisterHelper.registerOreDictionary("oreGold", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 2));
-        CommonRegisterHelper.registerOreDictionary("oreDiamond", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 3));
-        CommonRegisterHelper.registerOreDictionary("oreRedstone", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 4));
-        CommonRegisterHelper.registerOreDictionary("oreLapis", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 5));
-        CommonRegisterHelper.registerOreDictionary("oreEmerald", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 6));
-        CommonRegisterHelper.registerOreDictionary("workbench", new ItemStack(NibiruBlocks.NIBIRU_CRAFTING_TABLE, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("chestWood", NibiruBlocks.INFECTED_CHEST);
-        CommonRegisterHelper.registerOreDictionary("chestWood", NibiruBlocks.ALIEN_BERRY_CHEST);
-        CommonRegisterHelper.registerOreDictionary("chestWood", NibiruBlocks.NIBIRU_ANCIENT_CHEST);
-        CommonRegisterHelper.registerOreDictionary("chest", NibiruBlocks.INFECTED_CHEST);
-        CommonRegisterHelper.registerOreDictionary("chest", NibiruBlocks.ALIEN_BERRY_CHEST);
-        CommonRegisterHelper.registerOreDictionary("chest", NibiruBlocks.NIBIRU_ANCIENT_CHEST);
-        CommonRegisterHelper.registerOreDictionary("blockCactus", NibiruBlocks.INFECTED_CACTUS);
-        CommonRegisterHelper.registerOreDictionary("vine", NibiruBlocks.INFECTED_VINES);
-        CommonRegisterHelper.registerOreDictionary("torch", NibiruBlocks.INFECTED_TORCH);
-        CommonRegisterHelper.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 0));
-        CommonRegisterHelper.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 1));
     }
 }

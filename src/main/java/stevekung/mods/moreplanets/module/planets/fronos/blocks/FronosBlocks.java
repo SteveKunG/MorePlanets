@@ -86,12 +86,5 @@ public class FronosBlocks
 
         CommonRegisterHelper.setFireBurn(FronosBlocks.CANDY_CANE_1, 60, 100);
         CommonRegisterHelper.setFireBurn(FronosBlocks.CANDY_CANE_2, 60, 100);
-
-        /**************************************************************/
-        /********************ORE DICTIONARY STUFF**********************/
-        /**************************************************************/
-
-        CommonRegisterHelper.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_1);
-        CommonRegisterHelper.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_2);
     }
 }

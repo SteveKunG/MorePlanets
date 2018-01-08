@@ -37,11 +37,11 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.event.RegistryEventHandler;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
@@ -58,6 +58,8 @@ public class CommonRegisterHelper
     public static Map<EnumSortCategoryItem, List<StackSorted>> SORT_MAP_ITEMS = new HashMap<>();
     public static Map<Block, String> SINGLE_BLOCK_RENDER_LIST = new HashMap<>();
     public static Map<Item, String> SINGLE_ITEM_RENDER_LIST = new HashMap<>();
+    public static HashSet<Block> SORTED_BLOCK_LIST = new HashSet<>();
+    public static HashSet<Item> SORTED_ITEM_LIST = new HashSet<>();
 
     public static void registerBlock(Block block)
     {
@@ -67,7 +69,7 @@ public class CommonRegisterHelper
     public static void registerBlock(Block block, @Nullable Function<Block, ItemBlock> itemBlock)
     {
         String name = block.getUnlocalizedName().substring(5);
-        ForgeRegistries.BLOCKS.register(block.setRegistryName(name));
+        RegistryEventHandler.BLOCK_REGISTRY.add(block.setRegistryName(name));
 
         if (block instanceof ISingleBlockRender)
         {
@@ -80,11 +82,11 @@ public class CommonRegisterHelper
         }
         if (itemBlock != null)
         {
-            ForgeRegistries.ITEMS.register(itemBlock.apply(block).setRegistryName(block.getRegistryName()));
+            RegistryEventHandler.ITEM_REGISTRY.add(itemBlock.apply(block).setRegistryName(block.getRegistryName()));
 
             if (CommonRegisterHelper.isEffectiveClient())
             {
-                CommonRegisterHelper.registerSorted(block);
+                CommonRegisterHelper.SORTED_BLOCK_LIST.add(block);
             }
         }
     }
@@ -97,7 +99,7 @@ public class CommonRegisterHelper
     public static void registerItem(Item item)
     {
         String name = item.getUnlocalizedName().substring(5);
-        ForgeRegistries.ITEMS.register(item.setRegistryName(name));
+        RegistryEventHandler.ITEM_REGISTRY.add(item.setRegistryName(name));
 
         if (item instanceof ISingleItemRender)
         {
@@ -108,26 +110,30 @@ public class CommonRegisterHelper
                 CommonRegisterHelper.SINGLE_ITEM_RENDER_LIST.put(item, itemRender.getName());
             }
         }
-        if (CommonRegisterHelper.isClient())
+        if (CommonRegisterHelper.isEffectiveClient())
         {
-            CommonRegisterHelper.registerSorted(item);
+            CommonRegisterHelper.SORTED_ITEM_LIST.add(item);
         }
     }
 
     public static void registerPotion(Potion potion, String name)
     {
-        ForgeRegistries.POTIONS.register(potion.setRegistryName(name));
+        RegistryEventHandler.POTION_REGISTRY.add(potion.setRegistryName(name));
     }
 
-    public static void registerBiome(int id, String name, Biome biome, @Nonnull BiomeDictionary.Type... biomeType)
+    public static void registerBiome(String name, Biome biome)
     {
-        Biome.registerBiome(id, "moreplanets:" + name, biome);
+        RegistryEventHandler.BIOME_REGISTRY.add(biome.setRegistryName("moreplanets:" + name));
+    }
+
+    public static void registerBiomeType(Biome biome, @Nonnull BiomeDictionary.Type... biomeType)
+    {
         BiomeDictionary.addTypes(biome, biomeType);
     }
 
     public static SoundEvent registerSound(String name)
     {
-        ForgeRegistries.SOUND_EVENTS.register(new SoundEvent(new ResourceLocation("moreplanets:" + name)).setRegistryName(new ResourceLocation("moreplanets:" + name)));
+        RegistryEventHandler.SOUND_EVENT_REGISTRY.add(new SoundEvent(new ResourceLocation("moreplanets:" + name)).setRegistryName(new ResourceLocation("moreplanets:" + name)));
         return new SoundEvent(new ResourceLocation("moreplanets:" + name));
     }
 
@@ -271,7 +277,7 @@ public class CommonRegisterHelper
         return FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
     }
 
-    private static void registerSorted(Block block)
+    public static void registerSorted(Block block)
     {
         if (block instanceof ISortableBlock)
         {
@@ -303,13 +309,21 @@ public class CommonRegisterHelper
         for (EnumSortCategoryBlock type : EnumSortCategoryBlock.valuesCached())
         {
             List<StackSorted> stackSorteds = CommonRegisterHelper.SORT_MAP_BLOCKS.get(type);
-            itemOrderListBlocks.addAll(stackSorteds);
+
+            if (stackSorteds != null)
+            {
+                itemOrderListBlocks.addAll(stackSorteds);
+            }
+            else
+            {
+                System.out.println("ERROR: null sort stack: " + type.toString());
+            }
         }
         Comparator<ItemStack> tabSorterBlocks = Ordering.explicit(itemOrderListBlocks).onResultOf(input -> new StackSorted(input.getItem(), input.getItemDamage()));
         MorePlanetsCore.BLOCK_TAB.setTabSorter(tabSorterBlocks);
     }
 
-    private static void registerSorted(Item item)
+    public static void registerSorted(Item item)
     {
         if (item instanceof ISortableItem)
         {
@@ -340,7 +354,16 @@ public class CommonRegisterHelper
 
         for (EnumSortCategoryItem type : EnumSortCategoryItem.valuesCached())
         {
-            itemOrderListItems.addAll(CommonRegisterHelper.SORT_MAP_ITEMS.get(type));
+            List<StackSorted> stackSorteds = CommonRegisterHelper.SORT_MAP_ITEMS.get(type);
+
+            if (stackSorteds != null)
+            {
+                itemOrderListItems.addAll(stackSorteds);
+            }
+            else
+            {
+                System.out.println("ERROR: null sort stack: " + type.toString());
+            }
         }
         Comparator<ItemStack> tabSorterItems = Ordering.explicit(itemOrderListItems).onResultOf(input -> new StackSorted(input.getItem(), input.getItemDamage()));
         MorePlanetsCore.ITEM_TAB.setTabSorter(tabSorterItems);

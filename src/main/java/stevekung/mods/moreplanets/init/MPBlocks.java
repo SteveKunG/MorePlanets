@@ -137,14 +137,5 @@ public class MPBlocks
         CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_RECEIVER, EnumHarvestLevel.PICKAXE, 2);
         CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, EnumHarvestLevel.PICKAXE, 2);
         CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.SHIELD_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
-
-        /**************************************************************/
-        /********************ORE DICTIONARY STUFF**********************/
-        /**************************************************************/
-
-        CommonRegisterHelper.registerOreDictionary("glowstone", MPBlocks.DUNGEON_GLOWSTONE);
-        CommonRegisterHelper.registerOreDictionary("slabWood", new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("blockGlass", new ItemStack(MPBlocks.TINTED_GLASS, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("paneGlass", new ItemStack(MPBlocks.TINTED_GLASS_PANE, 1, OreDictionary.WILDCARD_VALUE));
     }
 }

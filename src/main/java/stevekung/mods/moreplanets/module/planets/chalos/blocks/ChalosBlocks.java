@@ -162,23 +162,5 @@ public class ChalosBlocks
         CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_SPORE_STAIRS, 5, 20);
         CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_SPORE_FENCE, 5, 20);
         CommonRegisterHelper.setFireBurn(ChalosBlocks.CHEESE_SPORE_FENCE_GATE, 5, 20);
-
-        /**************************************************************/
-        /********************ORE DICTIONARY STUFF**********************/
-        /**************************************************************/
-
-        CommonRegisterHelper.registerOreDictionary("plankWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_PLANKS, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("logWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_STEM, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("stairWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_STAIRS));
-        CommonRegisterHelper.registerOreDictionary("dirt", new ItemStack(ChalosBlocks.CHEESE_DIRT, 1, 0));
-        CommonRegisterHelper.registerOreDictionary("grass", ChalosBlocks.CHEESE_GRASS);
-        CommonRegisterHelper.registerOreDictionary("stone", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 0));
-        CommonRegisterHelper.registerOreDictionary("cobblestone", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1));
-        CommonRegisterHelper.registerOreDictionary("blockSlime", ChalosBlocks.CHEESE_SLIME_BLOCK);
-        CommonRegisterHelper.registerOreDictionary("workbench", ChalosBlocks.CHALOS_CRAFTING_TABLE);
-        CommonRegisterHelper.registerOreDictionary("chestWood", ChalosBlocks.CHEESE_SPORE_CHEST);
-        CommonRegisterHelper.registerOreDictionary("chestWood", ChalosBlocks.CHALOS_ANCIENT_CHEST);
-        CommonRegisterHelper.registerOreDictionary("chest", ChalosBlocks.CHEESE_SPORE_CHEST);
-        CommonRegisterHelper.registerOreDictionary("chest", ChalosBlocks.CHALOS_ANCIENT_CHEST);
     }
 }

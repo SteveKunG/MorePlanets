@@ -14,7 +14,7 @@ import stevekung.mods.moreplanets.util.MPLog;
 
 public class ConfigManagerMP
 {
-    private static Configuration config;
+    public static Configuration config;
     public static String GENERAL = "config_moreplanets_general";
     public static String DIMENSIONS = "config_moreplanets_dimensions";
     public static String BIOMES = "config_moreplanets_biomes";

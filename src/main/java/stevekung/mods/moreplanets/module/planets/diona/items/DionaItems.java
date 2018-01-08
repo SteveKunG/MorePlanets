@@ -126,12 +126,6 @@ public class DionaItems
         CommonRegisterHelper.setToolHarvestLevel(DionaItems.ILLENIUM_AXE, EnumHarvestLevel.AXE, 3);
 
         /**************************************************************/
-        /********************ORE DICTIONARY STUFF**********************/
-        /**************************************************************/
-
-        CommonRegisterHelper.registerOreDictionary("slimeball", DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
-
-        /**************************************************************/
         /************************FLUID STUFF***************************/
         /**************************************************************/
 

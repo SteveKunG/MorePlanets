@@ -3,23 +3,34 @@ package stevekung.mods.moreplanets.util.helper;
 import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
+import stevekung.mods.moreplanets.util.JSONRecipe;
 
 public class RecipeHelper
 {
     public static void addRecipe(ItemStack output, Object... obj)
     {
-        //        GameRegistry.addShapedRecipe(output, obj);
+        if (MorePlanetsCore.isObfuscatedEnvironment())
+        {
+            JSONRecipe.addShapedRecipe(output, obj);
+        }
     }
 
     public static void addOreRecipe(ItemStack output, Object... obj)
     {
-        //        GameRegistry.addRecipe(new ShapedOreRecipe(output, obj));
+        if (MorePlanetsCore.isObfuscatedEnvironment())
+        {
+            JSONRecipe.addShapedRecipe(output, obj);
+        }
     }
 
     public static void addShapelessRecipe(ItemStack output, Object... obj)
     {
-        //        GameRegistry.addShapelessRecipe(output, obj);
+        if (MorePlanetsCore.isObfuscatedEnvironment())
+        {
+            JSONRecipe.addShapelessRecipe(output, obj);
+        }
     }
 
     public static void addSmeltingRecipe(ItemStack input, ItemStack output, float xp)

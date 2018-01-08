@@ -141,12 +141,6 @@ public class ChalosItems
         CommonRegisterHelper.setToolHarvestLevel(ChalosItems.DIREMSIUM_AXE, EnumHarvestLevel.AXE, 3);
 
         /**************************************************************/
-        /********************ORE DICTIONARY STUFF**********************/
-        /**************************************************************/
-
-        CommonRegisterHelper.registerOreDictionary("slimeball", ChalosItems.CHEESE_SLIMEBALL);
-
-        /**************************************************************/
         /************************FLUID STUFF***************************/
         /**************************************************************/
 

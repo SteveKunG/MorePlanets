@@ -61,12 +61,6 @@ public class MPItems
         CommonRegisterHelper.registerItem(MPItems.CREATIVE_SPACE_KIT);
         CommonRegisterHelper.registerItem(MPItems.VEIN_FLOATER_DISC);
 
-        /**************************************************************/
-        /********************ORE DICTIONARY STUFF**********************/
-        /**************************************************************/
-
-        CommonRegisterHelper.registerOreDictionary("dyeBlue", MPItems.DYE);
-
         DionaItems.init();
         ChalosItems.init();
         NibiruItems.init();

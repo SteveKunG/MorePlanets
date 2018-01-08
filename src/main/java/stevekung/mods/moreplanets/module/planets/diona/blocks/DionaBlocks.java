@@ -138,17 +138,5 @@ public class DionaBlocks
 
         CommonRegisterHelper.setFireBurn(DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS, 5, 20);
         CommonRegisterHelper.setFireBurn(DionaBlocks.INFECTED_CRYSTALLIZE_FENCE, 5, 20);
-
-        /**************************************************************/
-        /********************ORE DICTIONARY STUFF**********************/
-        /**************************************************************/
-
-        CommonRegisterHelper.registerOreDictionary("plankWood", DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS);
-        CommonRegisterHelper.registerOreDictionary("stone", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 2));
-        CommonRegisterHelper.registerOreDictionary("cobblestone", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 3));
-        CommonRegisterHelper.registerOreDictionary("blockSlime", DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK);
-        CommonRegisterHelper.registerOreDictionary("chestWood", DionaBlocks.DIONA_ANCIENT_CHEST);
-        CommonRegisterHelper.registerOreDictionary("chest", DionaBlocks.DIONA_ANCIENT_CHEST);
-        CommonRegisterHelper.registerOreDictionary("torch", DionaBlocks.INFECTED_CRYSTALLIZE_TORCH);
     }
 }

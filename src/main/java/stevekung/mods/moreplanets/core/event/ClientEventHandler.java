@@ -6,8 +6,6 @@ import java.util.*;
 
 import org.lwjgl.input.Keyboard;
 
-import com.google.common.collect.ImmutableList;
-
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
@@ -40,7 +38,6 @@ import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -67,8 +64,6 @@ import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
-import stevekung.mods.moreplanets.util.client.renderer.item.ItemRendererTieredRocket;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
 public class ClientEventHandler
 {
@@ -167,27 +162,6 @@ public class ClientEventHandler
             WeatherRendererNibiru.INSTANCE.runRenderTick();
             CloudRendererNibiru.INSTANCE.runRenderTick();
         }
-    }
-
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void onTexturesStitch(TextureStitchEvent.Pre event)
-    {
-        ClientRegisterHelper.registerSpriteTexture(event, "blocks/infected_crystallize");
-        ClientRegisterHelper.registerSpriteTexture(event, "blocks/shield");
-        ClientRegisterHelper.registerSpriteTexture(event, "entity/space_capsule");
-        ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_4_rocket");
-        ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_5_rocket");
-        ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_6_rocket");
-    }
-
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void onModelBake(ModelBakeEvent event)
-    {
-        ClientRegisterHelper.registerOBJModel(event, "tier_4_rocket", "tier_4_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
-        ClientRegisterHelper.registerOBJModel(event, "tier_5_rocket", "tier_5_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
-        ClientRegisterHelper.registerOBJModel(event, "tier_6_rocket", "tier_6_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
     }
 
     @SubscribeEvent

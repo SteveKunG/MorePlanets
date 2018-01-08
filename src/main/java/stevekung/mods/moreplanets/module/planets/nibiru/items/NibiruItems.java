@@ -218,16 +218,6 @@ public class NibiruItems
         CommonRegisterHelper.setToolHarvestLevel(NibiruItems.MULTALIC_CRYSTAL_AXE, EnumHarvestLevel.AXE, 3);
 
         /**************************************************************/
-        /********************ORE DICTIONARY STUFF**********************/
-        /**************************************************************/
-
-        CommonRegisterHelper.registerOreDictionary("cropWheat", NibiruItems.INFECTED_WHEAT);
-        CommonRegisterHelper.registerOreDictionary("sugarcane", NibiruItems.INFECTED_SUGAR_CANE);
-        CommonRegisterHelper.registerOreDictionary("gemPrismarine", new ItemStack(NibiruItems.INFECTED_PRISMARINE, 1, 0));
-        CommonRegisterHelper.registerOreDictionary("dustPrismarine", new ItemStack(NibiruItems.INFECTED_PRISMARINE, 1, 1));
-        CommonRegisterHelper.registerOreDictionary("egg", NibiruItems.INFECTED_EGG);
-
-        /**************************************************************/
         /************************FLUID STUFF***************************/
         /**************************************************************/
 

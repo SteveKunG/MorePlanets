@@ -46,7 +46,7 @@ public class MorePlanetsCore
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
     public static final String FORGE_VERSION = "after:forge@[13.20.1.2388,);";
-    public static final String DEPENDENCIES = "required-after:galacticraftcore; required-after:galacticraftplanets; required-after:Micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
+    public static final String DEPENDENCIES = "required-after:galacticraftcore; required-after:galacticraftplanets; required-after:micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
     public static final String MC_VERSION = String.valueOf(FMLInjectionData.data()[4]);
     private static boolean DEOBFUSCATED;
 
@@ -87,6 +87,7 @@ public class MorePlanetsCore
         MPPotions.init();
         MPBiomes.init();
         MPOthers.init();
+        CommonRegisterHelper.registerForgeEvent(new RegistryEventHandler());
         MorePlanetsCore.PROXY.registerPreRendering();
     }
 
@@ -94,6 +95,8 @@ public class MorePlanetsCore
     public void init(FMLInitializationEvent event)
     {
         MPTileEntities.init();
+        MPOreDictionary.init();
+        MPBiomeTypes.init();
         GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.idNetworkHandler, PacketSimpleMP.class);
         MorePlanetsCore.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
         MorePlanetsCore.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
@@ -102,8 +105,8 @@ public class MorePlanetsCore
 
         if (CommonRegisterHelper.isClient())
         {
-            CommonRegisterHelper.postRegisteredSortBlock();
-            CommonRegisterHelper.postRegisteredSortItem();
+//            CommonRegisterHelper.postRegisteredSortBlock();TODO
+//            CommonRegisterHelper.postRegisteredSortItem();
             CommonRegisterHelper.registerForgeEvent(new ClientEventHandler());
             ClientCommandHandler.instance.registerCommand(new CommandChangeLog());
         }

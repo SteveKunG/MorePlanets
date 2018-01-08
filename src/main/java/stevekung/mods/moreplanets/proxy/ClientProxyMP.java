@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.proxy;
 
 import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -14,13 +15,22 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.internal.FMLMessage.EntitySpawnMessage;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import stevekung.mods.moreplanets.client.renderer.*;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.client.renderer.EntityRendererMP;
+import stevekung.mods.moreplanets.client.renderer.ItemModelRenderer;
+import stevekung.mods.moreplanets.client.renderer.TileEntityItemStackRendererMP;
+import stevekung.mods.moreplanets.client.renderer.TileEntityRenderer;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
@@ -42,8 +52,10 @@ import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleFallingDustMP;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLavaMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLiquidDrip;
+import stevekung.mods.moreplanets.util.client.renderer.item.ItemRendererTieredRocket;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class ClientProxyMP extends ServerProxyMP
 {
@@ -53,9 +65,8 @@ public class ClientProxyMP extends ServerProxyMP
         OBJLoader.INSTANCE.addDomain(MorePlanetsCore.MOD_ID);
         EntityRendererMP.init();
         TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
-        VariantsRenderer.init();
-        BlockStateMapper.init();
         ClientProxyMP.handleSpaceFishHookSpawning();
+        CommonRegisterHelper.registerForgeEvent(this);
     }
 
     @Override
@@ -81,6 +92,27 @@ public class ClientProxyMP extends ServerProxyMP
     public void registerPostRendering()
     {
         MPSchematics.registerSchematicTexture();
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onTexturesStitch(TextureStitchEvent.Pre event)
+    {
+        ClientRegisterHelper.registerSpriteTexture(event, "blocks/infected_crystallize");
+        ClientRegisterHelper.registerSpriteTexture(event, "blocks/shield");
+        ClientRegisterHelper.registerSpriteTexture(event, "entity/space_capsule");
+        ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_4_rocket");
+        ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_5_rocket");
+        ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_6_rocket");
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onModelBake(ModelBakeEvent event)
+    {
+        ClientRegisterHelper.registerOBJModel(event, "tier_4_rocket", "tier_4_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
+        ClientRegisterHelper.registerOBJModel(event, "tier_5_rocket", "tier_5_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
+        ClientRegisterHelper.registerOBJModel(event, "tier_6_rocket", "tier_6_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
     }
 
     @Override
