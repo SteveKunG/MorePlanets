@@ -11,8 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.feature.WorldGenCheeseSporeTree;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
@@ -81,7 +79,6 @@ public class BlockCheeseSporeFlower extends BlockBushMP implements IGrowable
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public EnumOffsetType getOffsetType()
     {
         return EnumOffsetType.XYZ;

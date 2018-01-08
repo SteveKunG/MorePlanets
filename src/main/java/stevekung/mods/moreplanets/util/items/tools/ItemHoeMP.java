@@ -5,8 +5,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
@@ -45,7 +43,6 @@ public class ItemHoeMP extends ItemHoe implements ISortableItem
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsCore.ITEM_TAB;

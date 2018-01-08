@@ -37,7 +37,6 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return null;

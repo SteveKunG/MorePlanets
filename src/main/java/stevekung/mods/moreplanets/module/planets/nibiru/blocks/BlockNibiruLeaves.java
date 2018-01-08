@@ -43,7 +43,6 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)

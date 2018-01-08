@@ -102,7 +102,6 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < CachedEnumUtil.valuesRocketCached().length; i++)

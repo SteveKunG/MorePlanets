@@ -37,7 +37,6 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsCore.ITEM_TAB;

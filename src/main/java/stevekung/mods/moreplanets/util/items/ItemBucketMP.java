@@ -16,8 +16,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidLavaBaseMP;
 
@@ -41,7 +39,6 @@ public class ItemBucketMP extends ItemBucket implements ISortableItem, ISingleIt
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsCore.ITEM_TAB;

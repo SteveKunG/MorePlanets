@@ -14,8 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
 
@@ -55,7 +53,6 @@ public class BlockCheeseTallGrass extends BlockBushMP implements IShearable, IGr
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public EnumOffsetType getOffsetType()
     {
         return EnumOffsetType.XYZ;

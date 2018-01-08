@@ -19,8 +19,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 {
@@ -50,7 +48,6 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return null;

@@ -46,7 +46,6 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return !this.isBurning ? MorePlanetsCore.BLOCK_TAB : null;

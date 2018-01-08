@@ -199,14 +199,12 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, IS
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         list.add(ElectricItemHelper.getWithCharge(new ItemStack(this), this.getMaxElectricityStored(new ItemStack(this))));
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsCore.ITEM_TAB;

@@ -55,7 +55,6 @@ public class BlockTintedGlass extends BlockBreakableMP implements IPartialSealab
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < CachedEnumUtil.valuesDyeCached().length; ++i)

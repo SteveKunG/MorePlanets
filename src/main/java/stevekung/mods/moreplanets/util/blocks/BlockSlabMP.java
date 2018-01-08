@@ -11,8 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 
 public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlabBlock
@@ -41,7 +39,6 @@ public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, I
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return !this.isDouble() ? MorePlanetsCore.BLOCK_TAB : null;

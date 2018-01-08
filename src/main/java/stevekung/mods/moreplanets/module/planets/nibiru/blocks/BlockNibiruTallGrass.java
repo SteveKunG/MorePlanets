@@ -20,8 +20,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
@@ -101,7 +99,6 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
@@ -111,7 +108,6 @@ public class BlockNibiruTallGrass extends BlockBushMP implements IShearable, IBl
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public EnumOffsetType getOffsetType()
     {
         return EnumOffsetType.XYZ;

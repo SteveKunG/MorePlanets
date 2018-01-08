@@ -32,7 +32,6 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsCore.ITEM_TAB;

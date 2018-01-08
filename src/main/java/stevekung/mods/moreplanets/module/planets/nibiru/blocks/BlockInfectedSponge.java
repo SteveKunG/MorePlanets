@@ -117,7 +117,6 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < 2; i++)

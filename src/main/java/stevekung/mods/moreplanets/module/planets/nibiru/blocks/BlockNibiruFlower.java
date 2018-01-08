@@ -17,8 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
 import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.VariantsName;
@@ -128,7 +126,6 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
@@ -208,7 +205,6 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public EnumOffsetType getOffsetType()
     {
         return EnumOffsetType.XZ;

@@ -90,7 +90,6 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsCore.ITEM_TAB;

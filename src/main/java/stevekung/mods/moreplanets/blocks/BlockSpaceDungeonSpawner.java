@@ -53,7 +53,6 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < DungeonType.valuesCached().length; ++i)

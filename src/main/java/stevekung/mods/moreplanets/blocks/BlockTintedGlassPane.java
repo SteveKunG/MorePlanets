@@ -48,7 +48,6 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return MorePlanetsCore.BLOCK_TAB;
@@ -61,7 +60,6 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < CachedEnumUtil.valuesDyeCached().length; ++i)

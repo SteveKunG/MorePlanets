@@ -58,7 +58,6 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsCore.ITEM_TAB;

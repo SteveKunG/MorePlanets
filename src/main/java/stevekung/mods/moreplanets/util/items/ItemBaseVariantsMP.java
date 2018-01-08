@@ -4,8 +4,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 
 public abstract class ItemBaseVariantsMP extends Item implements ISortableItem
@@ -17,7 +15,6 @@ public abstract class ItemBaseVariantsMP extends Item implements ISortableItem
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsCore.ITEM_TAB;
@@ -30,7 +27,6 @@ public abstract class ItemBaseVariantsMP extends Item implements ISortableItem
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < this.getItemVariantsName().length; i++)

@@ -85,7 +85,6 @@ public class BlockGlowingHardenedIce extends BlockIceMP
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (EnumDyeColor color : CachedEnumUtil.valuesDyeCached())

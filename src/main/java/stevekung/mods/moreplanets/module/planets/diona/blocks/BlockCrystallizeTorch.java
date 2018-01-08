@@ -31,7 +31,6 @@ public class BlockCrystallizeTorch extends BlockTorch implements ISortableBlock,
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return MorePlanetsCore.BLOCK_TAB;

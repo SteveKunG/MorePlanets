@@ -88,7 +88,6 @@ public class ItemCapsule extends ItemFoodMP
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         list.add(new ItemStack(this, 1, 0));

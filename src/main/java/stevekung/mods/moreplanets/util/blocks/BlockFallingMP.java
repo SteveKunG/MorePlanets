@@ -3,8 +3,6 @@ package stevekung.mods.moreplanets.util.blocks;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 
 public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISingleBlockRender
@@ -27,7 +25,6 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISin
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return MorePlanetsCore.BLOCK_TAB;

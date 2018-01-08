@@ -5,8 +5,6 @@ import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 
 public class BlockStairsMP extends BlockStairs implements ISortableBlock, ISingleBlockRender
@@ -33,7 +31,6 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, ISingl
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return MorePlanetsCore.BLOCK_TAB;

@@ -23,8 +23,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.BlockFluidBase;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
@@ -47,7 +45,6 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
@@ -121,7 +118,6 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public EnumOffsetType getOffsetType()
     {
         return EnumOffsetType.XYZ;

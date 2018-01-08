@@ -26,8 +26,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyStorageCluster;
 import stevekung.mods.moreplanets.tileentity.TileEntityNuclearWasteStorageCluster;
@@ -147,7 +145,6 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
         list.add(new ItemStack(this, 1, 0));
