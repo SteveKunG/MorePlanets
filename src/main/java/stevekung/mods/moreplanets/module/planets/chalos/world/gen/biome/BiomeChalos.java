@@ -15,7 +15,7 @@ import stevekung.mods.moreplanets.util.world.gen.biome.BiomeBaseMP;
 public class BiomeChalos extends BiomeBaseMP
 {
     protected IBlockState stoneBlock;
-    protected BiomeDecoratorChalos decorator;
+    protected BiomeDecoratorChalos decorator = this.getBiomeDecorator();
 
     public BiomeChalos(BiomeProperties properties)
     {
@@ -23,7 +23,6 @@ public class BiomeChalos extends BiomeBaseMP
         this.decorator.treesPerChunk = -999;
         this.decorator.flowersPerChunk = -999;
         this.decorator.grassPerChunk = -999;
-        this.decorator = this.getBiomeDecorator();
     }
 
     @Override
