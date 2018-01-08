@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DG",
+    "GD"
+  ],
+  "key": {
+    "D": {
+      "item": "moreplanets:infected_dirt",
+      "data": 0
+    },
+    "G": {
+      "item": "minecraft:gravel"
+    }
+  },
+  "result": {
+    "item": "moreplanets:infected_dirt",
+    "data": 1,
+    "count": 4
+  }
+}

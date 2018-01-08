@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moreplanets:capsule"
+    },
+    {
+      "item": "moreplanets:diona_item",
+      "data": 4
+    },
+    {
+      "item": "galacticraftplanets:item_basic_mars",
+      "data": 0
+    }
+  ],
+  "result": {
+    "type": "minecraft:item_nbt",
+    "item": "moreplanets:capsule",
+    "nbt": "{Color:4934475,DarkEnergyProtection:1b}"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C  ",
+    " DT",
+    "  D"
+  ],
+  "key": {
+    "C": {
+      "item": "galacticraftplanets:item_basic_asteroids",
+      "data": 8
+    },
+    "D": {
+      "item": "galacticraftplanets:item_basic_mars",
+      "data": 5
+    },
+    "T": {
+      "item": "galacticraftplanets:item_basic_asteroids",
+      "data": 6
+    }
+  },
+  "result": {
+    "item": "moreplanets:laser_gun"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PXP",
+    "ATA",
+    "IWI"
+  ],
+  "key": {
+    "P": {
+      "item": "moreplanets:tier_4_rocket_part",
+      "data": 0
+    },
+    "A": {
+      "item": "moreplanets:diona_item",
+      "data": 5
+    },
+    "T": {
+      "item": "moreplanets:nuclear_waste_tank"
+    },
+    "W": {
+      "item": "galacticraftcore:basic_item",
+      "data": 14
+    },
+    "X": {
+      "item": "moreplanets:nibiru_item",
+      "data": 1
+    },
+    "I": {
+      "item": "galacticraftcore:aluminum_wire",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "moreplanets:nuclear_waste_generator"
+  }
+}

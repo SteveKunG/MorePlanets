@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:chalos_item",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "moreplanets:diremsium_chestplate"
+  }
+}

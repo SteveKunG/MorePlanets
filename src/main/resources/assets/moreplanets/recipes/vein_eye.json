@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " V ",
+    "VXV",
+    " V "
+  ],
+  "key": {
+    "V": {
+      "item": "moreplanets:infected_vines"
+    },
+    "X": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "result": {
+    "item": "moreplanets:vein_eye"
+  }
+}

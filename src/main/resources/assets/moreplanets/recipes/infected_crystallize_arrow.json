@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "S",
+    "Y"
+  ],
+  "key": {
+    "S": {
+      "item": "galacticraftplanets:item_basic_mars",
+      "data": 1
+    },
+    "X": {
+      "item": "moreplanets:diona_item",
+      "data": 4
+    },
+    "Y": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "moreplanets:infected_crystallize_arrow",
+    "count": 6
+  }
+}

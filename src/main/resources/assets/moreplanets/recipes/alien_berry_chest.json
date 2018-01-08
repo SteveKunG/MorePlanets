@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:nibiru_planks",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "moreplanets:alien_berry_chest"
+  }
+}

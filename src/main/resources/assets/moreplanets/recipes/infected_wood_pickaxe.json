@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " Y ",
+    " Y "
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:nibiru_planks",
+      "data": 0
+    },
+    "Y": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "moreplanets:infected_wood_pickaxe"
+  }
+}

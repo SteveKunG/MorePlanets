@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C",
+    "X "
+  ],
+  "key": {
+    "C": {
+      "item": "galacticraftcore:canister",
+      "data": 0
+    },
+    "X": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "moreplanets:capsule"
+  }
+}

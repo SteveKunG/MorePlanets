@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moreplanets:nibiru_block",
+      "data": 7
+    }
+  ],
+  "result": {
+    "item": "moreplanets:nibiru_item",
+    "data": 0,
+    "count": 9
+  }
+}

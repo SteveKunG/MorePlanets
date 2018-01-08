@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:terrastone"
+    }
+  },
+  "result": {
+    "item": "moreplanets:half_infected_stone_bricks_slab",
+    "data": 3,
+    "count": 6
+  }
+}

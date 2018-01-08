@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moreplanets:cheese_spore_stem"
+    }
+  ],
+  "result": {
+    "item": "moreplanets:cheese_spore_planks",
+    "count": 4
+  }
+}

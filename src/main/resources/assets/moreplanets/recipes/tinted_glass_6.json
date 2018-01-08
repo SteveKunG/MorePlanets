@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IDI",
+    "III"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:dye",
+      "data": 9
+    },
+    "I": {
+      "item": "moreplanets:tinted_glass",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "moreplanets:tinted_glass",
+    "data": 6,
+    "count": 8
+  }
+}

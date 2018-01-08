@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moreplanets:nibiru_block",
+      "data": 3
+    },
+    {
+      "item": "moreplanets:infected_vines"
+    }
+  ],
+  "result": {
+    "item": "moreplanets:nibiru_block",
+    "data": 4
+  }
+}

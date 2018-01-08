@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "VY ",
+    "XWX",
+    "XZX"
+  ],
+  "key": {
+    "V": {
+      "item": "minecraft:stone_button"
+    },
+    "W": {
+      "item": "galacticraftcore:canister",
+      "data": 32767
+    },
+    "X": {
+      "item": "moreplanets:tier_4_rocket_part",
+      "data": 0
+    },
+    "Y": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "Z": {
+      "item": "galacticraftcore:air_vent"
+    }
+  },
+  "result": {
+    "item": "moreplanets:tier_4_rocket_part",
+    "data": 1
+  }
+}

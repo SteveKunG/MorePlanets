@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:diona_item",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "moreplanets:illenium_leggings"
+  }
+}

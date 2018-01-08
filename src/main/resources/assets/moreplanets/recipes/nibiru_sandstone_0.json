@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:infected_sand"
+    }
+  },
+  "result": {
+    "item": "moreplanets:nibiru_sandstone",
+    "data": 0,
+    "count": 4
+  }
+}

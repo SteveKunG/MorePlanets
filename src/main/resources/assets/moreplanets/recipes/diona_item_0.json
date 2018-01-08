@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moreplanets:diona_block",
+      "data": 10
+    }
+  ],
+  "result": {
+    "item": "moreplanets:diona_item",
+    "data": 0,
+    "count": 9
+  }
+}

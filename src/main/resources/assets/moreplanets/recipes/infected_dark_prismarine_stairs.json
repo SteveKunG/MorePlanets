@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:infected_prismarine",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "moreplanets:infected_dark_prismarine_stairs",
+    "count": 4
+  }
+}

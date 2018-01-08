@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:fronos_block",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "moreplanets:fronos_block",
+    "data": 2,
+    "count": 4
+  }
+}

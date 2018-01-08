@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:nibiru_item",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "moreplanets:multalic_crystal_block"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "moreplanets:cheese_food",
+      "data": 0
+    },
+    "M": {
+      "item": "moreplanets:cheese_of_milk_fluid_bucket"
+    }
+  },
+  "result": {
+    "item": "moreplanets:cheese_of_milk_cake"
+  }
+}

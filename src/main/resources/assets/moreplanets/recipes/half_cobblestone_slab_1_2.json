@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:nibiru_block",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "moreplanets:half_cobblestone_slab_1",
+    "data": 2,
+    "count": 6
+  }
+}

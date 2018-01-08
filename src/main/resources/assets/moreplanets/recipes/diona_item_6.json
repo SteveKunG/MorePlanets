@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moreplanets:glowing_iron_block"
+    }
+  ],
+  "result": {
+    "item": "moreplanets:diona_item",
+    "data": 6,
+    "count": 9
+  }
+}

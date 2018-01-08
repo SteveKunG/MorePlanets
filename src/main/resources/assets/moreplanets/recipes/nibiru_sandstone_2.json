@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:nibiru_sandstone",
+      "data": 0,
+      "count": 4
+    }
+  },
+  "result": {
+    "item": "moreplanets:nibiru_sandstone",
+    "data": 2,
+    "count": 4
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:candy_cane",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "moreplanets:candy_cane_1",
+    "data": 1
+  }
+}

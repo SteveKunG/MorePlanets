@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:nibiru_block",
+      "data": 8
+    }
+  },
+  "result": {
+    "item": "moreplanets:nibiru_dungeon_brick_stairs",
+    "count": 4
+  }
+}

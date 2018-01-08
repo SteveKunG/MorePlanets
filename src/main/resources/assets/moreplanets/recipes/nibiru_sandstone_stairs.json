@@ -1,0 +1,17 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "#NIBIRUSANDSTONE"
+    }
+  },
+  "result": {
+    "item": "moreplanets:nibiru_sandstone_stairs",
+    "count": 4
+  }
+}

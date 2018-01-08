@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "moreplanets:tinted_glass",
+      "data": 14
+    }
+  },
+  "result": {
+    "item": "moreplanets:tinted_glass_pane",
+    "data": 14,
+    "count": 16
+  }
+}

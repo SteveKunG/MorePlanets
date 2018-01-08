@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:nibiru_planks",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "moreplanets:infected_dead_oak_stairs",
+    "count": 4
+  }
+}

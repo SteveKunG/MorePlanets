@@ -198,6 +198,7 @@ public class JSONRecipe
     // Call this after you are done generating
     public static void generateConstants()
     {
+        setupDir();
         List<Map<String, Object>> json = new ArrayList<>();
 
         for (String s : USED_OD_NAMES)

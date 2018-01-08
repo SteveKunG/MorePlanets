@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SXS",
+    "SXS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "moreplanets:cheese_spore_planks"
+    }
+  },
+  "result": {
+    "item": "moreplanets:cheese_spore_fence_gate"
+  }
+}

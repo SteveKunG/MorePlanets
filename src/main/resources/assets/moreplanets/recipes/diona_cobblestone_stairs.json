@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:diona_block",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "moreplanets:diona_cobblestone_stairs",
+    "count": 4
+  }
+}

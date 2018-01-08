@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "BBB",
+    "WWW"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:book"
+    },
+    "W": {
+      "item": "moreplanets:nibiru_planks",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "moreplanets:nibiru_bookshelf",
+    "data": 0
+  }
+}

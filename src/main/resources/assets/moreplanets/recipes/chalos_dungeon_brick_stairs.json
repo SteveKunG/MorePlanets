@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:chalos_block",
+      "data": 11
+    }
+  },
+  "result": {
+    "item": "moreplanets:chalos_dungeon_brick_stairs",
+    "count": 4
+  }
+}

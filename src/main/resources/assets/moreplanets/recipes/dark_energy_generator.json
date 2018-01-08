@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HPH",
+    "ACA",
+    "WFW"
+  ],
+  "key": {
+    "P": {
+      "item": "galacticraftcore:steel_pole"
+    },
+    "A": {
+      "item": "moreplanets:diona_item",
+      "data": 5
+    },
+    "C": {
+      "item": "moreplanets:nibiru_item",
+      "data": 1
+    },
+    "F": {
+      "item": "galacticraftcore:basic_item",
+      "data": 14
+    },
+    "W": {
+      "item": "galacticraftcore:aluminum_wire",
+      "data": 1
+    },
+    "H": {
+      "item": "moreplanets:tier_4_rocket_part",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "moreplanets:dark_energy_generator"
+  }
+}

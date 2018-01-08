@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:nibiru_fruits",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "moreplanets:infected_melon_block"
+  }
+}

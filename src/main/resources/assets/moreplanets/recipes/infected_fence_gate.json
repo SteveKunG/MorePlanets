@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SXS",
+    "SXS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "moreplanets:nibiru_planks",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "moreplanets:infected_fence_gate"
+  }
+}

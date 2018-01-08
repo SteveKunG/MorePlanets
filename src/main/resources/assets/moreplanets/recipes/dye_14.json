@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "moreplanets:nibiru_flower",
+      "data": 3
+    }
+  ],
+  "result": {
+    "item": "minecraft:dye",
+    "data": 14
+  }
+}
