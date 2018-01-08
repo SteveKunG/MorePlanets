@@ -17,7 +17,6 @@ public class ConfigManagerMP
     public static Configuration config;
     public static String GENERAL = "config_moreplanets_general";
     public static String DIMENSIONS = "config_moreplanets_dimensions";
-    public static String BIOMES = "config_moreplanets_biomes";
     public static String GC_ADDON_COMPAT = "config_moreplanets_gc_addon_compat";
     public static String OTHERS = "config_moreplanets_others";
 
@@ -37,26 +36,6 @@ public class ConfigManagerMP
     public static int idDimensionChalos;
     public static int idDimensionNibiru;
     public static int idDimensionFronos;
-
-    // Biomes
-    public static int idBiomeDiona;
-    public static int idBiomeChalosPlains;
-    public static int idBiomeChalosHills;
-    public static int idBiomeSlimelyWasteland;
-    public static int idBiomeInfectedPlains;
-    public static int idBiomeInfectedForest;
-    public static int idBiomeInfectedDesert;
-    public static int idBiomeInfectedRiver;
-    public static int idBiomeInfectedOcean;
-    public static int idBiomeInfectedDeepOcean;
-    public static int idBiomeInfectedDeadTaiga;
-    public static int idBiomeInfectedSwampland;
-    public static int idBiomeInfectedExtremeHills;
-    public static int idBiomeInfectedDeadRoofedForest;
-    public static int idBiomeInfectedJungle;
-    public static int idBiomeInfectedDeadSavanna;
-    public static int idBiomeInfectedIcePlains;
-    public static int idBiomeGreenVein;
 
     // Others
     public static int idBaseRocketSchematic;
@@ -93,7 +72,6 @@ public class ConfigManagerMP
 
             ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.GENERAL, ConfigManagerMP.addGeneralConfig());
             ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.DIMENSIONS, ConfigManagerMP.addDimensionIDConfig());
-            ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.BIOMES, ConfigManagerMP.addBiomeIDConfig());
             ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.GC_ADDON_COMPAT, ConfigManagerMP.addGCAddonCompatConfig());
             ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.OTHERS, ConfigManagerMP.addOtherConfig());
 
@@ -180,102 +158,6 @@ public class ConfigManagerMP
         return propOrder;
     }
 
-    private static ArrayList<String> addBiomeIDConfig()
-    {
-        ArrayList<String> propOrder = new ArrayList<>();
-        Property prop;
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Diona Biome ID", 180);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeDiona = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Chalos Plains Biome ID", 181);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeChalosPlains = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Chalos Hills Biome ID", 182);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeChalosHills = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Slimely Wasteland Biome ID", 183);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeSlimelyWasteland = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Plains Biome ID", 184);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedPlains = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Forest Biome ID", 185);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedForest = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Desert Biome ID", 186);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedDesert = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected River Biome ID", 187);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedRiver = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Ocean Biome ID", 188);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedOcean = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Deep Ocean Biome ID", 189);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedDeepOcean = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Dead Taiga Biome ID", 190);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedDeadTaiga = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Swampland Biome ID", 191);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedSwampland = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Extreme Hills Biome ID", 192);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedExtremeHills = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Dead Roofed Forest Biome ID", 193);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedDeadRoofedForest = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Jungle Biome ID", 194);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedJungle = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Dead Savanna Biome ID", 195);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedDeadSavanna = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Infected Ice Plains Biome ID", 196);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeInfectedIcePlains = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.BIOMES, "Green Vein Biome ID", 197);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idBiomeGreenVein = prop.getInt();
-        propOrder.add(prop.getName());
-        return propOrder;
-    }
-
     private static ArrayList<String> addGCAddonCompatConfig()
     {
         ArrayList<String> propOrder = new ArrayList<>();
@@ -348,10 +230,6 @@ public class ConfigManagerMP
         ConfigCategory configDimension = ConfigManagerMP.config.getCategory(ConfigManagerMP.DIMENSIONS);
         configDimension.setComment(GCCoreUtil.translate("gui.config.mp.dimension"));
         list.add(new ConfigElement(configDimension));
-
-        ConfigCategory configBiome = ConfigManagerMP.config.getCategory(ConfigManagerMP.BIOMES);
-        configBiome.setComment(GCCoreUtil.translate("gui.config.mp.biome"));
-        list.add(new ConfigElement(configBiome));
 
         ConfigCategory configGCAddon = ConfigManagerMP.config.getCategory(ConfigManagerMP.GC_ADDON_COMPAT);
         configGCAddon.setComment(GCCoreUtil.translate("gui.config.mp.gcaddon"));
