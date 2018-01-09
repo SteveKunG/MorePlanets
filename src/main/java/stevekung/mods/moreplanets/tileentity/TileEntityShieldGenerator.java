@@ -563,7 +563,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         @SubscribeEvent
         public void onLivingSpawn(LivingSpawnEvent.CheckSpawn event)
         {
-            if (event.getResult() == Result.ALLOW) //TODO Check spawner
+            if (event.getResult() == Result.ALLOW || event.isSpawner())
             {
                 return;
             }
