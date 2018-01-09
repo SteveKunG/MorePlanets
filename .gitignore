@@ -4,10 +4,8 @@
 .gradle_data
 bin
 build
-gradle
 eclipse
 run
-temporary
 src/main/java/api
 src/main/java/appeng
 src/main/java/buildcraft
@@ -29,7 +27,5 @@ src/main/resources/assets/nbtedit
 # file
 .classpath
 .project
-gradlew.bat
-gradlew
 *_at.cfg
-*_at.deobf
+*.deobf
