@@ -5,7 +5,6 @@
 bin
 build
 eclipse
-gradle
 run
 src/main/java/api
 src/main/java/appeng
@@ -26,5 +25,3 @@ src/main/resources/micdoodlecore_at.deobf
 .classpath
 *.launch
 .project
-gradlew.bat
-gradlew
