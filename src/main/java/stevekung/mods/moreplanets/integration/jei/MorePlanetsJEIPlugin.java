@@ -58,6 +58,13 @@ public class MorePlanetsJEIPlugin implements IModPlugin
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(DionaBlocks.DARK_ENERGY_CORE), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.BLACK_HOLE_STORAGE), MPJEIRecipes.BLACK_HOLE_STORAGE);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(GCBlocks.nasaWorkbench), MPJEIRecipes.TIER_4_ROCKET, MPJEIRecipes.TIER_5_ROCKET, MPJEIRecipes.TIER_6_ROCKET);
+    }
+
+    @Override
+    public void registerCategories(IRecipeCategoryRegistration registry)
+    {
+        JEIRegistryHelper.categoryRegistration = registry;
+        JEIRegistryHelper.guiHelper = registry.getJeiHelpers().getGuiHelper();
 
         JEIRegistryHelper.registerRecipeCategories(new DarkEnergyTransformRecipeCategory());
         JEIRegistryHelper.registerRecipeCategories(new RocketCrusherRecipeCategory());
@@ -65,11 +72,5 @@ public class MorePlanetsJEIPlugin implements IModPlugin
         JEIRegistryHelper.registerRecipeCategories(new Tier5RocketRecipeCategory());
         JEIRegistryHelper.registerRecipeCategories(new Tier6RocketRecipeCategory());
         JEIRegistryHelper.registerRecipeCategories(new BlackHoleStorageRecipeCategory());
-    }
-
-    @Override
-    public void registerCategories(IRecipeCategoryRegistration registry)
-    {
-        JEIRegistryHelper.categoryRegistration = registry;
     }
 }
