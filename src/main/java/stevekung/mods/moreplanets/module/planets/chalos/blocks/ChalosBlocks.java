@@ -3,9 +3,7 @@ package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.fluid.FluidCheeseOfMilkGas;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.*;
@@ -89,22 +87,22 @@ public class ChalosBlocks
         /**************************************************************/
 
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_GRASS);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_DIRT, ItemBlockMultiVariant::new);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_BLOCK, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_DIRT, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_BLOCK, ItemBlockMultiVariant.class);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_STEM);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_PLANKS);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SLIME_BLOCK);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_ANCIENT_CHEST);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_TREASURE_CHEST);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_CAKE, ItemBlockDescription::new);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_FLOWER, ItemBlockFlower::new);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_TALL_GRASS, ItemBlockFlower::new);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_CAKE, ItemBlockDescription.class);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_FLOWER, ItemBlockFlower.class);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_TALL_GRASS, ItemBlockFlower.class);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_FARMLAND);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_BERRY_CROPS, null);
-        CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_DOUBLE_PLANT, ItemBlockFlower::new);
+        CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_DOUBLE_PLANT, ItemBlockFlower.class);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_CRAFTING_TABLE);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHEESE_SPORE_CHEST);
         CommonRegisterHelper.registerBlock(ChalosBlocks.CHALOS_COBBLESTONE_STAIRS);

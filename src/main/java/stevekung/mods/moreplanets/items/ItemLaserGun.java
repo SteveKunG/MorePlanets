@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.items;
 
 import javax.annotation.Nullable;
 
+import micdoodle8.mods.galacticraft.api.item.ElectricItemHelper;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,6 +19,7 @@ import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet.EnumLaserType;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISingleItemRender;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
@@ -93,6 +95,16 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
     public CreativeTabs getCreativeTab()
     {
         return MorePlanetsCore.ITEM_TAB;
+    }
+
+    @Override
+    public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
+    {
+        if (CommonRegisterHelper.isItemTab(creativeTabs))
+        {
+            list.add(ElectricItemHelper.getUncharged(new ItemStack(this)));
+            list.add(ElectricItemHelper.getWithCharge(new ItemStack(this), this.getMaxElectricityStored(new ItemStack(this))));
+        }
     }
 
     @Override

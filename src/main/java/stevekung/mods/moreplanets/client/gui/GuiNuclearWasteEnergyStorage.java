@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.client.gui;
 
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -10,9 +9,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.inventory.ContainerNuclearWasteEnergyStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityNuclearWasteStorageCluster;
+import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
 
 @SideOnly(Side.CLIENT)
-public class GuiNuclearWasteEnergyStorage extends GuiContainer
+public class GuiNuclearWasteEnergyStorage extends GuiContainerMP
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/nuclear_waste_storage_module.png");
     private final TileEntityNuclearWasteStorageCluster tile;

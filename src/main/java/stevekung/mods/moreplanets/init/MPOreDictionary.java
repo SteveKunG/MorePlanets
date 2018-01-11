@@ -19,7 +19,7 @@ public class MPOreDictionary
         CommonRegisterHelper.registerOreDictionary("slabWood", new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("blockGlass", new ItemStack(MPBlocks.TINTED_GLASS, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("paneGlass", new ItemStack(MPBlocks.TINTED_GLASS_PANE, 1, OreDictionary.WILDCARD_VALUE));
-        
+
         CommonRegisterHelper.registerOreDictionary("plankWood", DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS);
         CommonRegisterHelper.registerOreDictionary("stone", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 2));
         CommonRegisterHelper.registerOreDictionary("cobblestone", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 3));
@@ -27,7 +27,7 @@ public class MPOreDictionary
         CommonRegisterHelper.registerOreDictionary("chestWood", DionaBlocks.DIONA_ANCIENT_CHEST);
         CommonRegisterHelper.registerOreDictionary("chest", DionaBlocks.DIONA_ANCIENT_CHEST);
         CommonRegisterHelper.registerOreDictionary("torch", DionaBlocks.INFECTED_CRYSTALLIZE_TORCH);
-        
+
         CommonRegisterHelper.registerOreDictionary("plankWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_PLANKS, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("logWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_STEM, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("stairWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_STAIRS));
@@ -41,7 +41,7 @@ public class MPOreDictionary
         CommonRegisterHelper.registerOreDictionary("chestWood", ChalosBlocks.CHALOS_ANCIENT_CHEST);
         CommonRegisterHelper.registerOreDictionary("chest", ChalosBlocks.CHEESE_SPORE_CHEST);
         CommonRegisterHelper.registerOreDictionary("chest", ChalosBlocks.CHALOS_ANCIENT_CHEST);
-        
+
         CommonRegisterHelper.registerOreDictionary("plankWood", new ItemStack(NibiruBlocks.NIBIRU_PLANKS, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("logWood", new ItemStack(NibiruBlocks.NIBIRU_LOG, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("treeLeaves", new ItemStack(NibiruBlocks.NIBIRU_LEAVES, 1, OreDictionary.WILDCARD_VALUE));
@@ -79,16 +79,16 @@ public class MPOreDictionary
         CommonRegisterHelper.registerOreDictionary("torch", NibiruBlocks.INFECTED_TORCH);
         CommonRegisterHelper.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 0));
         CommonRegisterHelper.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 1));
-        
+
         CommonRegisterHelper.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_1);
         CommonRegisterHelper.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_2);
-        
+
         CommonRegisterHelper.registerOreDictionary("dyeBlue", MPItems.DYE);
-        
+
         CommonRegisterHelper.registerOreDictionary("slimeball", DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
-        
+
         CommonRegisterHelper.registerOreDictionary("slimeball", ChalosItems.CHEESE_SLIMEBALL);
-        
+
         CommonRegisterHelper.registerOreDictionary("cropWheat", NibiruItems.INFECTED_WHEAT);
         CommonRegisterHelper.registerOreDictionary("sugarcane", NibiruItems.INFECTED_SUGAR_CANE);
         CommonRegisterHelper.registerOreDictionary("gemPrismarine", new ItemStack(NibiruItems.INFECTED_PRISMARINE, 1, 0));

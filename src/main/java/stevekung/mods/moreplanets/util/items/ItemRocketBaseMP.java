@@ -26,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.CachedEnumUtil;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableItem, ISortableItem
 {
@@ -104,9 +105,12 @@ public abstract class ItemRocketBaseMP extends ItemBaseMP implements IHoldableIt
     @Override
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        for (int i = 0; i < CachedEnumUtil.valuesRocketCached().length; i++)
+        if (CommonRegisterHelper.isItemTab(creativeTabs))
         {
-            list.add(new ItemStack(this, 1, i));
+            for (int i = 0; i < CachedEnumUtil.valuesRocketCached().length; i++)
+            {
+                list.add(new ItemStack(this, 1, i));
+            }
         }
     }
 

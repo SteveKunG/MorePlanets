@@ -32,4 +32,6 @@ public class ServerProxyMP
     public void addBoss(IMorePlanetsBoss boss) {}
 
     public void removeBoss(IMorePlanetsBoss boss) {}
+
+    public void registerVariant() {}
 }

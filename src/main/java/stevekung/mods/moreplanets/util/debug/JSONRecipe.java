@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.util;
+package stevekung.mods.moreplanets.util.debug;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -23,6 +23,7 @@ public class JSONRecipe
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static File RECIPE_DIR = null;
     private static final Set<String> USED_OD_NAMES = new TreeSet<>();
+    private static boolean ENABLE = false;
 
     private static void setupDir()
     {
@@ -38,6 +39,11 @@ public class JSONRecipe
 
     public static void addShapedRecipe(ItemStack result, Object... components)
     {
+        if (!ENABLE)
+        {
+            return;
+        }
+
         setupDir();
         Map<String, Object> json = new LinkedHashMap<>();
         List<String> pattern = new ArrayList<>();
@@ -109,6 +115,11 @@ public class JSONRecipe
 
     public static void addShapelessRecipe(ItemStack result, Object... components)
     {
+        if (!ENABLE)
+        {
+            return;
+        }
+
         setupDir();
         Map<String, Object> json = new LinkedHashMap<>();
         boolean isOreDict = false;

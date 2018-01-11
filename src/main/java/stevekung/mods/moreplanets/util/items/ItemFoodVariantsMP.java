@@ -5,6 +5,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public abstract class ItemFoodVariantsMP extends ItemFood implements ISortableItem
 {
@@ -29,9 +30,12 @@ public abstract class ItemFoodVariantsMP extends ItemFood implements ISortableIt
     @Override
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        for (int i = 0; i < this.getItemVariantsName().length; i++)
+        if (CommonRegisterHelper.isItemTab(creativeTabs))
         {
-            list.add(new ItemStack(this, 1, i));
+            for (int i = 0; i < this.getItemVariantsName().length; i++)
+            {
+                list.add(new ItemStack(this, 1, i));
+            }
         }
     }
 

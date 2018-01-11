@@ -31,7 +31,7 @@ public class BlockDungeonBrickWall extends BlockWallMP implements IBlockVariants
     {
         for (int i = 0; i < BlockType.valuesCached().length; ++i)
         {
-            list.add(new ItemStack(this));
+            list.add(new ItemStack(this, 1, i));
         }
     }
 

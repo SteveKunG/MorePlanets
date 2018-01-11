@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
-import stevekung.mods.moreplanets.util.JSONRecipe;
+import stevekung.mods.moreplanets.util.debug.JSONRecipe;
 
 public class RecipeHelper
 {

@@ -27,10 +27,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.client.renderer.EntityRendererMP;
-import stevekung.mods.moreplanets.client.renderer.ItemModelRenderer;
-import stevekung.mods.moreplanets.client.renderer.TileEntityItemStackRendererMP;
-import stevekung.mods.moreplanets.client.renderer.TileEntityRenderer;
+import stevekung.mods.moreplanets.client.renderer.*;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
@@ -59,6 +56,13 @@ import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class ClientProxyMP extends ServerProxyMP
 {
+    @Override
+    public void registerVariant()
+    {
+        VariantsRenderer.init();
+        BlockStateMapper.init();
+    }
+
     @Override
     public void registerPreRendering()
     {

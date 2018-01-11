@@ -30,6 +30,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
 
@@ -201,7 +202,10 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, IS
     @Override
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        list.add(ElectricItemHelper.getWithCharge(new ItemStack(this), this.getMaxElectricityStored(new ItemStack(this))));
+        if (CommonRegisterHelper.isItemTab(creativeTabs))
+        {
+            list.add(ElectricItemHelper.getWithCharge(new ItemStack(this), this.getMaxElectricityStored(new ItemStack(this))));
+        }
     }
 
     @Override

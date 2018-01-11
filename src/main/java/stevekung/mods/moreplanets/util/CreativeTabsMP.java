@@ -41,7 +41,14 @@ public class CreativeTabsMP extends CreativeTabs
 
         if (this.tabSorter != null)
         {
-            Collections.sort(list, this.tabSorter);
+            try
+            {
+                Collections.sort(list, this.tabSorter);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 

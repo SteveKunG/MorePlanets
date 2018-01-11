@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerHopper;
@@ -9,9 +8,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
 
 @SideOnly(Side.CLIENT)
-public class GuiCrashedAlienProbe extends GuiContainer
+public class GuiCrashedAlienProbe extends GuiContainerMP
 {
     private ResourceLocation texture = new ResourceLocation("textures/gui/container/hopper.png");
     private IInventory playerInventory;

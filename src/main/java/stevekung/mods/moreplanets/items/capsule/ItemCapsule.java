@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.ItemFoodMP;
 
 public class ItemCapsule extends ItemFoodMP
@@ -90,12 +91,15 @@ public class ItemCapsule extends ItemFoodMP
     @Override
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        list.add(new ItemStack(this, 1, 0));
-
-        if (ItemCapsule.init)
+        if (CommonRegisterHelper.isItemTab(creativeTabs))
         {
-            list.add(CapsuleType.getInfectedProtectionCapsule());
-            list.add(CapsuleType.getDarkEnergyProtectionCapsule());
+            list.add(new ItemStack(this, 1, 0));
+
+            if (ItemCapsule.init)
+            {
+                list.add(CapsuleType.getInfectedProtectionCapsule());
+                list.add(CapsuleType.getDarkEnergyProtectionCapsule());
+            }
         }
     }
 

@@ -2,14 +2,21 @@ package stevekung.mods.moreplanets.core;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
@@ -18,6 +25,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
 import stevekung.mods.moreplanets.client.command.CommandChangeLog;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
@@ -87,7 +95,6 @@ public class MorePlanetsCore
         MPPotions.init();
         MPBiomes.init();
         MPOthers.init();
-        CommonRegisterHelper.registerForgeEvent(new RegistryEventHandler());
         MorePlanetsCore.PROXY.registerPreRendering();
     }
 
@@ -105,8 +112,8 @@ public class MorePlanetsCore
 
         if (CommonRegisterHelper.isClient())
         {
-//            CommonRegisterHelper.postRegisteredSortBlock();TODO
-//            CommonRegisterHelper.postRegisteredSortItem();
+            CommonRegisterHelper.postRegisteredSortBlock();
+            CommonRegisterHelper.postRegisteredSortItem();
             CommonRegisterHelper.registerForgeEvent(new ClientEventHandler());
             ClientCommandHandler.instance.registerCommand(new CommandChangeLog());
         }
@@ -150,5 +157,49 @@ public class MorePlanetsCore
         info.url = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
         info.credits = "All credits to Galacticraft Sources/API and some people who helped.";
         info.authorList = Arrays.asList("SteveKunG");
+    }
+
+    @EventBusSubscriber(modid = MorePlanetsCore.MOD_ID)
+    public static class RegistryEventHandler
+    {
+        public static final LinkedList<Biome> BIOME_REGISTRY = new LinkedList<>();
+        public static final LinkedList<Potion> POTION_REGISTRY = new LinkedList<>();
+        public static final LinkedList<SoundEvent> SOUND_EVENT_REGISTRY = new LinkedList<>();
+
+        @SubscribeEvent
+        public static void registerBiomes(RegistryEvent.Register<Biome> event)
+        {
+            for (Biome biome : BIOME_REGISTRY)
+            {
+                event.getRegistry().register(biome);
+            }
+        }
+
+        @SubscribeEvent
+        public static void registerPotions(RegistryEvent.Register<Potion> event)
+        {
+            for (Potion potion : POTION_REGISTRY)
+            {
+                event.getRegistry().register(potion);
+            }
+        }
+
+        @SubscribeEvent
+        public static void registerSounds(RegistryEvent.Register<SoundEvent> event)
+        {
+            if (CommonRegisterHelper.isEffectiveClient())
+            {
+                for (SoundEvent sound : SOUND_EVENT_REGISTRY)
+                {
+                    event.getRegistry().register(sound);
+                }
+            }
+        }
+
+        @SubscribeEvent
+        public static void registerModels(ModelRegistryEvent event)
+        {
+            PROXY.registerVariant();
+        }
     }
 }

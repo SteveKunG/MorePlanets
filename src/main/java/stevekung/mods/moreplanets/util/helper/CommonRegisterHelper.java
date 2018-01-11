@@ -1,24 +1,25 @@
 package stevekung.mods.moreplanets.util.helper;
 
+import java.lang.reflect.Constructor;
 import java.util.*;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import org.lwjgl.input.Keyboard;
 
-import com.google.common.base.Function;
 import com.google.common.collect.Ordering;
 
 import micdoodle8.mods.galacticraft.core.util.StackSorted;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -37,11 +38,12 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.core.event.RegistryEventHandler;
+import stevekung.mods.moreplanets.core.MorePlanetsCore.RegistryEventHandler;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
@@ -58,18 +60,16 @@ public class CommonRegisterHelper
     public static Map<EnumSortCategoryItem, List<StackSorted>> SORT_MAP_ITEMS = new HashMap<>();
     public static Map<Block, String> SINGLE_BLOCK_RENDER_LIST = new HashMap<>();
     public static Map<Item, String> SINGLE_ITEM_RENDER_LIST = new HashMap<>();
-    public static HashSet<Block> SORTED_BLOCK_LIST = new HashSet<>();
-    public static HashSet<Item> SORTED_ITEM_LIST = new HashSet<>();
 
     public static void registerBlock(Block block)
     {
-        CommonRegisterHelper.registerBlock(block, ItemBlock::new);
+        CommonRegisterHelper.registerBlock(block, ItemBlock.class);
     }
 
-    public static void registerBlock(Block block, @Nullable Function<Block, ItemBlock> itemBlock)
+    public static void registerBlock(Block block, Class<? extends ItemBlock> itemBlock)
     {
         String name = block.getUnlocalizedName().substring(5);
-        RegistryEventHandler.BLOCK_REGISTRY.add(block.setRegistryName(name));
+        ForgeRegistries.BLOCKS.register(block.setRegistryName(name));
 
         if (block instanceof ISingleBlockRender)
         {
@@ -82,11 +82,23 @@ public class CommonRegisterHelper
         }
         if (itemBlock != null)
         {
-            RegistryEventHandler.ITEM_REGISTRY.add(itemBlock.apply(block).setRegistryName(block.getRegistryName()));
+            ItemBlock item = null;
+
+            try
+            {
+                Constructor<? extends ItemBlock> constructor = itemBlock.getConstructor(Block.class);
+                item = constructor.newInstance(block);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            ForgeRegistries.ITEMS.register(item.setRegistryName(block.getRegistryName()));
 
             if (CommonRegisterHelper.isEffectiveClient())
             {
-                CommonRegisterHelper.SORTED_BLOCK_LIST.add(block);
+                CommonRegisterHelper.registerSorted(block);
             }
         }
     }
@@ -99,7 +111,8 @@ public class CommonRegisterHelper
     public static void registerItem(Item item)
     {
         String name = item.getUnlocalizedName().substring(5);
-        RegistryEventHandler.ITEM_REGISTRY.add(item.setRegistryName(name));
+        item.setRegistryName(name);
+        ForgeRegistries.ITEMS.register(item);
 
         if (item instanceof ISingleItemRender)
         {
@@ -110,9 +123,9 @@ public class CommonRegisterHelper
                 CommonRegisterHelper.SINGLE_ITEM_RENDER_LIST.put(item, itemRender.getName());
             }
         }
-        if (CommonRegisterHelper.isEffectiveClient())
+        if (CommonRegisterHelper.isClient())
         {
-            CommonRegisterHelper.SORTED_ITEM_LIST.add(item);
+            CommonRegisterHelper.registerSorted(item);
         }
     }
 
@@ -281,6 +294,13 @@ public class CommonRegisterHelper
     {
         if (block instanceof ISortableBlock)
         {
+            Item item = Item.getItemFromBlock(block);
+
+            if (item == Items.AIR)
+            {
+                return;
+            }
+
             ISortableBlock sortableBlock = (ISortableBlock) block;
             NonNullList<ItemStack> blocks = NonNullList.create();
             block.getSubBlocks(null, blocks);
@@ -314,10 +334,6 @@ public class CommonRegisterHelper
             {
                 itemOrderListBlocks.addAll(stackSorteds);
             }
-            else
-            {
-                System.out.println("ERROR: null sort stack: " + type.toString());
-            }
         }
         Comparator<ItemStack> tabSorterBlocks = Ordering.explicit(itemOrderListBlocks).onResultOf(input -> new StackSorted(input.getItem(), input.getItemDamage()));
         MorePlanetsCore.BLOCK_TAB.setTabSorter(tabSorterBlocks);
@@ -329,7 +345,7 @@ public class CommonRegisterHelper
         {
             ISortableItem sortableItem = (ISortableItem) item;
             NonNullList<ItemStack> items = NonNullList.create();
-            item.getSubItems(null, items);
+            item.getSubItems(MorePlanetsCore.ITEM_TAB, items);
 
             for (ItemStack itemStack : items)
             {
@@ -360,10 +376,6 @@ public class CommonRegisterHelper
             {
                 itemOrderListItems.addAll(stackSorteds);
             }
-            else
-            {
-                System.out.println("ERROR: null sort stack: " + type.toString());
-            }
         }
         Comparator<ItemStack> tabSorterItems = Ordering.explicit(itemOrderListItems).onResultOf(input -> new StackSorted(input.getItem(), input.getItemDamage()));
         MorePlanetsCore.ITEM_TAB.setTabSorter(tabSorterItems);
@@ -385,5 +397,10 @@ public class CommonRegisterHelper
         int j = i / 60;
         i = i % 60;
         return i < 10 ? j + ":0" + i : j + ":" + i;
+    }
+
+    public static boolean isItemTab(CreativeTabs creativeTabs)
+    {
+        return creativeTabs == MorePlanetsCore.ITEM_TAB || creativeTabs == CreativeTabs.SEARCH;
     }
 }
