@@ -123,7 +123,7 @@ public class CommonRegisterHelper
                 CommonRegisterHelper.SINGLE_ITEM_RENDER_LIST.put(item, itemRender.getName());
             }
         }
-        if (CommonRegisterHelper.isClient())
+        if (CommonRegisterHelper.isEffectiveClient())
         {
             CommonRegisterHelper.registerSorted(item);
         }
