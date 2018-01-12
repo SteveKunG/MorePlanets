@@ -44,7 +44,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.core.MorePlanetsCore.RegistryEventHandler;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
@@ -120,13 +119,12 @@ public class CommonRegisterHelper
 
     public static void registerPotion(Potion potion, String name)
     {
-        RegistryEventHandler.POTION_REGISTRY.add(potion.setRegistryName(name));
+        ForgeRegistries.POTIONS.register(potion.setRegistryName(name));
     }
 
     public static void registerBiome(String name, Biome biome)
     {
         ForgeRegistries.BIOMES.register(biome.setRegistryName("moreplanets:" + name));
-//        RegistryEventHandler.BIOME_REGISTRY.add(biome.setRegistryName("moreplanets:" + name));
     }
 
     public static void registerBiomeType(Biome biome, @Nonnull BiomeDictionary.Type... biomeType)
@@ -136,7 +134,7 @@ public class CommonRegisterHelper
 
     public static SoundEvent registerSound(String name)
     {
-        RegistryEventHandler.SOUND_EVENT_REGISTRY.add(new SoundEvent(new ResourceLocation("moreplanets:" + name)).setRegistryName(new ResourceLocation("moreplanets:" + name)));
+        ForgeRegistries.SOUND_EVENTS.register(new SoundEvent(new ResourceLocation("moreplanets:" + name)).setRegistryName(new ResourceLocation("moreplanets:" + name)));
         return new SoundEvent(new ResourceLocation("moreplanets:" + name));
     }
 
