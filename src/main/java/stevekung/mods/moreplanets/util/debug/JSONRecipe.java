@@ -14,16 +14,22 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 
+//You can include this in your mod/a pack/whatever you want, as long as that work follows the Mojang EULA.
+//The original source is viewable at https://gist.github.com/williewillus/a1a899ce5b0f0ba099078d46ae3dae6e
 public class JSONRecipe
 {
     // This is a janky JSON generator, for porting from below 1.12 to 1.12.
     // Simply replace calls to GameRegistry.addShapeless/ShapedRecipe with these methods, which will dump it to a json in RECIPE_DIR
     // Also works with OD, replace GameRegistry.addRecipe(new ShapedOreRecipe/ShapelessOreRecipe with the same calls
 
+    //Credit 1: https://gist.github.com/P3pp3rF1y/ea85fa337c9082e95336b1b61d1c3cb5 - for NBT recipe support
+    //Credit 2: https://gist.github.com/Draco18s/6398d3b94a4c07ded26eb641639a2ce2 - for Advancements (recipes unlocked)
+
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static File RECIPE_DIR = null;
+    private static File ADVANCE_DIR = null;
     private static final Set<String> USED_OD_NAMES = new TreeSet<>();
-    private static boolean ENABLE = false;
+    private static final boolean ENABLE = false;
 
     private static void setupDir()
     {
@@ -34,6 +40,18 @@ public class JSONRecipe
         if (!RECIPE_DIR.exists())
         {
             RECIPE_DIR.mkdir();
+        }
+    }
+
+    private static void setupAdvDir()
+    {
+        if (ADVANCE_DIR == null)
+        {
+            ADVANCE_DIR = ConfigManagerMP.config.getConfigFile().toPath().resolve("../advancements/").toFile();
+        }
+        if (!ADVANCE_DIR.exists())
+        {
+            ADVANCE_DIR.mkdir();
         }
     }
 
@@ -103,6 +121,8 @@ public class JSONRecipe
             f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
         }
 
+        writeAdvancements(result.getItem().getRegistryName().getResourcePath() + suffix);
+
         try (FileWriter w = new FileWriter(f))
         {
             GSON.toJson(json, w);
@@ -149,6 +169,8 @@ public class JSONRecipe
             suffix += "_alt";
             f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
         }
+
+        writeAdvancements(result.getItem().getRegistryName().getResourcePath() + suffix);
 
         try (FileWriter w = new FileWriter(f))
         {
@@ -204,6 +226,66 @@ public class JSONRecipe
             return ret;
         }
         throw new IllegalArgumentException("Not a block, item, stack, or od name");
+    }
+
+    public static void writeAdvancements(String result)
+    {
+        if (!ENABLE)
+        {
+            return;
+        }
+
+        setupAdvDir();
+        Map<String, Object> json = new HashMap<>();
+        Map<String, Object> rewards = new HashMap<>();
+        List<String> recipes = new ArrayList<>();
+        Map<String, Map<String, Object>> criteria = new HashMap<>();
+        Map<String, Object> has_item = new HashMap<>();
+        Map<String, Object> conditions = new HashMap<>();
+        Map<String, Object> conditions2 = new HashMap<>();
+        Map<String, Object> has_the_recipe = new HashMap<>();
+        ArrayList<ArrayList<String>> requirements = new ArrayList<>();
+        ArrayList<String> reqs = new ArrayList<>();
+
+        json.put("parent", "minecraft:recipes/root");
+        recipes.add("moreplanets:" + result);
+        rewards.put("recipes", recipes);
+
+        has_item.put("trigger", "minecraft:inventory_changed");
+        conditions.put("items", new ArrayList<>());
+        conditions2.put("recipe", result);
+        has_the_recipe.put("trigger", "minecraft:recipe_unlocked");
+        has_the_recipe.put("conditions", conditions2);
+
+        has_item.put("conditions", conditions);
+        criteria.put("has_item", has_item);
+        criteria.put("has_the_recipe", has_the_recipe);
+
+        reqs.add("has_item");
+        reqs.add("has_the_recipe");
+        requirements.add(reqs);
+
+        json.put("requirements", requirements);
+        json.put("criteria", criteria);
+        json.put("rewards", rewards);
+
+        String suffix = "";
+        File f = new File(ADVANCE_DIR, result + suffix + ".json");
+
+        while (f.exists())
+        {
+            suffix += "_alt";
+            f = new File(ADVANCE_DIR, result + suffix + ".json");
+        }
+
+        try (FileWriter w = new FileWriter(f))
+        {
+            GSON.toJson(json, w);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     // Call this after you are done generating
