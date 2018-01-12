@@ -228,32 +228,32 @@ public class NibiruBlocks
         /**************************************************************/
 
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_GRASS);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DIRT, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DIRT, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_FARMLAND);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_TALL_GRASS, ItemBlockMultiFlower.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_TALL_GRASS, ItemBlockMultiFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SAND);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CACTUS, ItemBlockFlower.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_BLOCK, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_ORE, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SANDSTONE, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_LOG, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_PLANKS, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_LEAVES, ItemBlockMultiVariantLeaves.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SAPLING, ItemBlockMultiFlower.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CACTUS, ItemBlockFlower::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_BLOCK, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_ORE, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SANDSTONE, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_LOG, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_PLANKS, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_LEAVES, ItemBlockMultiVariantLeaves::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SAPLING, ItemBlockMultiFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_VINES);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.SPORELILY, ItemBlockSporelily.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_FLOWER, ItemBlockMultiFlower.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_CRAFTING_TABLE, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SILVERFISH_STONE, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_BOOKSHELF, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_FENCE, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.SPORELILY, ItemBlockSporelily::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_FLOWER, ItemBlockMultiFlower::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_CRAFTING_TABLE, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SILVERFISH_STONE, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_BOOKSHELF, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_FENCE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_FENCE_GATE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DEAD_OAK_FENCE_GATE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DOOR_BLOCK, null);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK, null);
         CommonRegisterHelper.registerBlock(NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, null);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_DOUBLE_PLANT, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_DOUBLE_PLANT, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_STONE_BRICKS_STAIRS);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_ANCIENT_CHEST);
@@ -261,7 +261,7 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SNOW);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_ICE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_PACKED_ICE);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SNOW_LAYER, ItemBlockInfectedSnow.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SNOW_LAYER, ItemBlockInfectedSnow::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.GREEN_VEIN_GRASS);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_MELON_BLOCK);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_WHEAT_BLOCK, null);
@@ -273,10 +273,10 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.ALIEN_BERRY_CHEST);
         CommonRegisterHelper.registerBlock(NibiruBlocks.MULTALIC_CRYSTAL);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK, null);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_PRISMARINE, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_PRISMARINE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SEA_LANTERN);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SPONGE, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SEAWEED, ItemBlockMultiFlower.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SPONGE, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SEAWEED, ItemBlockMultiFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.OIL_ORE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.HELIUM_GAS_BLOCK);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_VINES_DIRT);
@@ -295,17 +295,17 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_VEIN_STONE_BRICKS_STAIRS);
         CommonRegisterHelper.registerBlock(NibiruBlocks.CRACKED_INFECTED_STONE_BRICKS_STAIRS);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SMOOTH_SANDSTONE_STAIRS);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NUCLEAR_WASTE_TANK, ItemBlockNuclearWasteTank.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NUCLEAR_WASTE_TANK, ItemBlockNuclearWasteTank::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(NibiruBlocks.VEIN_FRAME);
         CommonRegisterHelper.registerBlock(NibiruBlocks.VEIN_PORTAL, null);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NUCLEAR_WASTE_GENERATOR, ItemBlockDescription.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NUCLEAR_WASTE_GENERATOR, ItemBlockDescription::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.HALF_INFECTED_PRISMARINE_SLAB, ItemBlockSlabMP.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.HALF_INFECTED_PRISMARINE_SLAB, ItemBlockSlabMP::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.DOUBLE_INFECTED_PRISMARINE_SLAB, null);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, ItemBlockSlabMP.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, ItemBlockSlabMP::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB, null);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.HALF_NIBIRU_SANDSTONE_SLAB, ItemBlockSlabMP.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.HALF_NIBIRU_SANDSTONE_SLAB, ItemBlockSlabMP::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.DOUBLE_NIBIRU_SANDSTONE_SLAB, null);
         CommonRegisterHelper.registerBlock(NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
         CommonRegisterHelper.registerBlock(NibiruBlocks.TERRASTONE);
@@ -317,7 +317,7 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.TERRASTONE_FURNACE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.TERRASTONE_LIT_FURNACE, null);
         CommonRegisterHelper.registerBlock(NibiruBlocks.SEALABLE_NUCLEAR_WASTE_ROD);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_GRASS_PATH, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_GRASS_PATH, ItemBlockMultiVariant::new);
 
         /**************************************************************/
         /**********************HARVEST LEVEL STUFF*********************/

@@ -1,12 +1,13 @@
 package stevekung.mods.moreplanets.util.helper;
 
-import java.lang.reflect.Constructor;
 import java.util.*;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.lwjgl.input.Keyboard;
 
+import com.google.common.base.Function;
 import com.google.common.collect.Ordering;
 
 import micdoodle8.mods.galacticraft.core.util.StackSorted;
@@ -63,10 +64,10 @@ public class CommonRegisterHelper
 
     public static void registerBlock(Block block)
     {
-        CommonRegisterHelper.registerBlock(block, ItemBlock.class);
+        CommonRegisterHelper.registerBlock(block, ItemBlock::new);
     }
 
-    public static void registerBlock(Block block, Class<? extends ItemBlock> itemBlock)
+    public static void registerBlock(Block block, @Nullable Function<Block, ItemBlock> itemBlock)
     {
         String name = block.getUnlocalizedName().substring(5);
         ForgeRegistries.BLOCKS.register(block.setRegistryName(name));
@@ -82,19 +83,7 @@ public class CommonRegisterHelper
         }
         if (itemBlock != null)
         {
-            ItemBlock item = null;
-
-            try
-            {
-                Constructor<? extends ItemBlock> constructor = itemBlock.getConstructor(Block.class);
-                item = constructor.newInstance(block);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-
-            ForgeRegistries.ITEMS.register(item.setRegistryName(block.getRegistryName()));
+            ForgeRegistries.ITEMS.register(itemBlock.apply(block).setRegistryName(block.getRegistryName()));
 
             if (CommonRegisterHelper.isEffectiveClient())
             {
@@ -136,7 +125,8 @@ public class CommonRegisterHelper
 
     public static void registerBiome(String name, Biome biome)
     {
-        RegistryEventHandler.BIOME_REGISTRY.add(biome.setRegistryName("moreplanets:" + name));
+        ForgeRegistries.BIOMES.register(biome.setRegistryName("moreplanets:" + name));
+//        RegistryEventHandler.BIOME_REGISTRY.add(biome.setRegistryName("moreplanets:" + name));
     }
 
     public static void registerBiomeType(Biome biome, @Nonnull BiomeDictionary.Type... biomeType)

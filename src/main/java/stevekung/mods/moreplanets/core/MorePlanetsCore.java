@@ -162,17 +162,17 @@ public class MorePlanetsCore
     @EventBusSubscriber(modid = MorePlanetsCore.MOD_ID)
     public static class RegistryEventHandler
     {
-        public static final LinkedList<Biome> BIOME_REGISTRY = new LinkedList<>();
+//        public static final LinkedList<Biome> BIOME_REGISTRY = new LinkedList<>();
         public static final LinkedList<Potion> POTION_REGISTRY = new LinkedList<>();
         public static final LinkedList<SoundEvent> SOUND_EVENT_REGISTRY = new LinkedList<>();
 
         @SubscribeEvent
         public static void registerBiomes(RegistryEvent.Register<Biome> event)
         {
-            for (Biome biome : BIOME_REGISTRY)
-            {
-                event.getRegistry().register(biome);
-            }
+//            for (Biome biome : BIOME_REGISTRY)
+//            {
+//                event.getRegistry().register(biome);
+//            }
         }
 
         @SubscribeEvent

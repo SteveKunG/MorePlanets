@@ -28,9 +28,9 @@ public class KoentusBlocks
         /************************REGISTER STUFF************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerBlock(KoentusBlocks.KOENTUS_BLOCK, ItemBlockKoentus.class);
+        CommonRegisterHelper.registerBlock(KoentusBlocks.KOENTUS_BLOCK, ItemBlockKoentus::new);
         CommonRegisterHelper.registerBlock(KoentusBlocks.FALLEN_KOENTUS_METEOR);
-        CommonRegisterHelper.registerBlock(KoentusBlocks.GLOWING_HARDENED_ICE, ItemBlockColoredMP.class);
+        CommonRegisterHelper.registerBlock(KoentusBlocks.GLOWING_HARDENED_ICE, ItemBlockColoredMP::new);
         CommonRegisterHelper.registerBlock(KoentusBlocks.KOENTUS_ICE);
 
         /**************************************************************/

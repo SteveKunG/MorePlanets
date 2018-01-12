@@ -77,8 +77,8 @@ public class DionaBlocks
         /************************REGISTER STUFF************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_BLOCK, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_PART, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_BLOCK, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_PART, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(DionaBlocks.ALBETIUS_WORM_EGG_ROCK);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_FENCE);
@@ -90,12 +90,12 @@ public class DionaBlocks
         CommonRegisterHelper.registerBlock(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE);
         CommonRegisterHelper.registerBlock(DionaBlocks.ALIEN_MINER_BLOOD);
         CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_CORE, ItemBlockDescription.class);
+        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_CORE, ItemBlockDescription::new);
         CommonRegisterHelper.registerBlock(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK);
         CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_COBBLESTONE_STAIRS);
         CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_DUNGEON_BRICK_STAIRS);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_GENERATOR, ItemBlockDarkEnergyGenerator.class);
+        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_GENERATOR, ItemBlockDarkEnergyGenerator::new);
         CommonRegisterHelper.registerBlock(DionaBlocks.GLOWING_IRON_BLOCK);
         CommonRegisterHelper.registerBlock(DionaBlocks.CRASHED_ALIEN_PROBE);
 

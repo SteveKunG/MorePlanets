@@ -86,28 +86,28 @@ public class MPBlocks
         /**************************************************************/
 
         CommonRegisterHelper.registerBlock(MPBlocks.DUMMY_BLOCK, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad.class);
+        CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad::new);
         CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.ROCKET_CRUSHER, ItemBlockDescription.class);
+        CommonRegisterHelper.registerBlock(MPBlocks.ROCKET_CRUSHER, ItemBlockDescription::new);
         CommonRegisterHelper.registerBlock(MPBlocks.DUNGEON_GLOWSTONE);
         CommonRegisterHelper.registerBlock(MPBlocks.SPACE_DUNGEON_SPAWNER, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.TINTED_GLASS, ItemBlockColoredMP.class);
-        CommonRegisterHelper.registerBlock(MPBlocks.TINTED_GLASS_PANE, ItemBlockColoredMP.class);
-        CommonRegisterHelper.registerBlock(MPBlocks.POLISHED_SPACE_DECORATION, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(MPBlocks.DARK_ENERGY_RECEIVER, ItemBlockDarkEnergyReceiver.class);
-        CommonRegisterHelper.registerBlock(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, ItemBlockSlabMP.class);
+        CommonRegisterHelper.registerBlock(MPBlocks.TINTED_GLASS, ItemBlockColoredMP::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.TINTED_GLASS_PANE, ItemBlockColoredMP::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.POLISHED_SPACE_DECORATION, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.DARK_ENERGY_RECEIVER, ItemBlockDarkEnergyReceiver::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, ItemBlockSlabMP::new);
         CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, ItemBlockTieredEnergyStorage.class);
-        CommonRegisterHelper.registerBlock(MPBlocks.HALF_COBBLESTONE_SLAB_1, ItemBlockSlabMP.class);
+        CommonRegisterHelper.registerBlock(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, ItemBlockTieredEnergyStorage::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.HALF_COBBLESTONE_SLAB_1, ItemBlockSlabMP::new);
         CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_COBBLESTONE_SLAB_1, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.HALF_WOODEN_SLAB_1, ItemBlockSlabMP.class);
+        CommonRegisterHelper.registerBlock(MPBlocks.HALF_WOODEN_SLAB_1, ItemBlockSlabMP::new);
         CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_WOODEN_SLAB_1, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.COBBLESTONE_WALL, ItemBlockMultiVariant.class);
-        CommonRegisterHelper.registerBlock(MPBlocks.DUNGEON_BRICK_WALL, ItemBlockMultiVariant.class);
+        CommonRegisterHelper.registerBlock(MPBlocks.COBBLESTONE_WALL, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.DUNGEON_BRICK_WALL, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(MPBlocks.SPACE_PORTAL);
-        CommonRegisterHelper.registerBlock(MPBlocks.BLACK_HOLE_STORAGE, ItemBlockBlackHoleStorage.class);
+        CommonRegisterHelper.registerBlock(MPBlocks.BLACK_HOLE_STORAGE, ItemBlockBlackHoleStorage::new);
         CommonRegisterHelper.registerBlock(MPBlocks.ALIEN_DEFENDER_BEACON);
-        CommonRegisterHelper.registerBlock(MPBlocks.SHIELD_GENERATOR, ItemBlockShieldGenerator.class);
+        CommonRegisterHelper.registerBlock(MPBlocks.SHIELD_GENERATOR, ItemBlockShieldGenerator::new);
 
         DionaBlocks.init();
         KoentusBlocks.init();
