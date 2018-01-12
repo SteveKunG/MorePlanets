@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "candy_cane_block",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:candy_cane",
+      "data": 7
+    }
+  },
+  "result": {
+    "item": "moreplanets:candy_cane_2",
+    "data": 3
+  }
+}

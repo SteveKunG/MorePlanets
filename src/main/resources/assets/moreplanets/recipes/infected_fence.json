@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence",
+  "pattern": [
+    "XSX",
+    "XSX"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "moreplanets:nibiru_planks",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "moreplanets:nibiru_fence",
+    "data": 0,
+    "count": 3
+  }
+}

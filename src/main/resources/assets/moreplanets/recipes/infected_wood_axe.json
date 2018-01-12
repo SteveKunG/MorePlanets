@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "infected_wood_axe",
   "pattern": [
     "XX",
     "XY",

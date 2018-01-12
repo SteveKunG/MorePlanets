@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "candy_cane",
+  "ingredients": [
+    {
+      "item": "moreplanets:candy_cane_2",
+      "data": 1
+    }
+  ],
+  "result": {
+    "item": "moreplanets:candy_cane",
+    "data": 5,
+    "count": 9
+  }
+}

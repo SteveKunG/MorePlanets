@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "dungeon_brick_wall",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "moreplanets:nibiru_block",
+      "data": 8
+    }
+  },
+  "result": {
+    "item": "moreplanets:dungeon_brick_wall_mp",
+    "data": 2,
+    "count": 6
+  }
+}

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "more_planets_cobblestone_stairs",
   "pattern": [
     "X  ",
     "XX ",
