@@ -45,6 +45,15 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     }
 
     @Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+        if (world.getBlockState(pos.up()).getMaterial().isSolid())
+        {
+            world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState());
+        }
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer()
     {

@@ -113,6 +113,15 @@ public class BlockNibiruGrassPath extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+        if (world.getBlockState(pos.up()).getMaterial().isSolid())
+        {
+            world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState());
+        }
+    }
+
+    @Override
     public VariantsName getVariantsName()
     {
         return new VariantsName("infected", "green_vein");

@@ -59,7 +59,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
 
             if (world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canPlace && world.isAirBlock(pos.up()))
             {
-                return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
+                return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
             }
         }
         else
@@ -68,7 +68,7 @@ public class BlockNibiruDoublePlant extends BlockBushMP implements IGrowable, IS
 
             if (world.getBlockState(pos).getBlock().isReplaceable(world, pos) && canPlace && world.isAirBlock(pos.up()))
             {
-                return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
+                return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
             }
         }
         return world.getBlockState(pos);

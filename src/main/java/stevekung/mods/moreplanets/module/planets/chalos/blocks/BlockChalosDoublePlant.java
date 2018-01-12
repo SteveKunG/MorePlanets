@@ -51,7 +51,7 @@ public class BlockChalosDoublePlant extends BlockBushMP implements IGrowable, IS
     {
         if (this.canPlaceBlockAt(world, pos))
         {
-            return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
+            return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
         }
         return world.getBlockState(pos);
     }
