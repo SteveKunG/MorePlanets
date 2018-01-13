@@ -43,10 +43,19 @@ public class ItemSpaceWarperCore extends ItemBaseMP
                     {
                         itemStack.setTagCompound(new NBTTagCompound());
                         itemStack.getTagCompound().setInteger("DimensionID", GCCoreUtil.getDimensionID(world));
+<<<<<<< HEAD
                         itemStack.getTagCompound().setInteger("X", MathHelper.floor(player.posX));
                         itemStack.getTagCompound().setInteger("Y", MathHelper.floor(player.posY));
                         itemStack.getTagCompound().setInteger("Z", MathHelper.floor(player.posZ));
                         player.sendMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add.message")));
+=======
+                        itemStack.getTagCompound().setInteger("X", MathHelper.floor_double(player.posX));
+                        itemStack.getTagCompound().setInteger("Y", MathHelper.floor_double(player.posY));
+                        itemStack.getTagCompound().setInteger("Z", MathHelper.floor_double(player.posZ));
+                        itemStack.getTagCompound().setFloat("Pitch", player.rotationPitch);
+                        itemStack.getTagCompound().setFloat("Yaw", player.rotationYaw);
+                        player.addChatMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add.message")));
+>>>>>>> a3008470... Update teleport handler
                         return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
                     }
                     else

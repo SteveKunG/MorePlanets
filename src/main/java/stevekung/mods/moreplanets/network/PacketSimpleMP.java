@@ -26,11 +26,16 @@ import stevekung.mods.moreplanets.client.gui.GuiShieldGenerator;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGeneratorConfig;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
+<<<<<<< HEAD
 import stevekung.mods.moreplanets.core.handler.TeleportHandler;
+=======
+import stevekung.mods.moreplanets.inventory.ContainerShieldGenerator;
+>>>>>>> a3008470... Update teleport handler
 import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.util.MPLog;
+import stevekung.mods.moreplanets.util.TeleportUtil;
 import stevekung.mods.moreplanets.util.helper.WorldDimensionHelper;
 
 public class PacketSimpleMP extends PacketBase
@@ -160,7 +165,7 @@ public class PacketSimpleMP extends PacketBase
                 WorldServer worldOld = (WorldServer) world;
                 WorldServer worldNew = WorldDimensionHelper.getStartWorld(worldOld);
                 BlockPos spawnPos = worldNew.getTopSolidOrLiquidBlock(worldNew.getSpawnPoint());
-                TeleportHandler.setWarpDimension(playerMP, worldNew, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimension(), true);
+                TeleportUtil.setWarpDimension(playerMP, worldNew, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimension(), true);
                 player.respawnPlayer();
                 player.closeScreen();
             }

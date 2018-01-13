@@ -12,11 +12,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -26,16 +24,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.core.handler.TeleportHandler;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.MPLog;
+import stevekung.mods.moreplanets.util.TeleportUtil;
 
 public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartialSealableBlock
 {
@@ -175,6 +171,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                                 if (warpPad.getEnergyStoredGC() >= 5000.0F)
                                 {
                                     warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
+<<<<<<< HEAD
                                     MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
                                     WorldServer worldserver = server.worldServerForDimension(GCCoreUtil.getDimensionID(server.worlds[0]));
 
@@ -184,6 +181,10 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                                     }
                                     world.playSound(player, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.BLOCKS, 1.0F, 1.0F);
                                     player.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
+=======
+                                    TeleportUtil.teleportEntity(player, warpPad.getDimensionId(), warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getRotationPitch(), warpPad.getRotationYaw());
+                                    world.playSound(null, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 0.75F, 1.0F);
+>>>>>>> a3008470... Update teleport handler
                                     MPLog.debug("Teleport player to %s, %s, %s, %s, %s", warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionId()).getDimensionType().getName());
                                     return true;
                                 }
