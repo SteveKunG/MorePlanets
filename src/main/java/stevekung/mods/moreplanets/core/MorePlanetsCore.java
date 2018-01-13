@@ -47,7 +47,7 @@ public class MorePlanetsCore
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
     public static final String FORGE_VERSION = "after:forge@[13.20.1.2388,);";
-    public static final String DEPENDENCIES = "required-after:galacticraftcore; required-after:galacticraftplanets; required-after:Micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
+    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.120,); required-after:galacticraftplanets@[4.0.1.120,); required-after:Micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
     public static final String MC_VERSION = String.valueOf(FMLInjectionData.data()[4]);
     private static boolean DEOBFUSCATED;
 
