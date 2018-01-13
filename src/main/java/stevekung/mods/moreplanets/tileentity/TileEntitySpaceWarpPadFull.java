@@ -354,6 +354,26 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
         return 0;
     }
 
+    public float getRotationPitch()
+    {
+        if (this.hasWarpCore() && this.containingItems[1].hasTagCompound())
+        {
+            NBTTagCompound compound = this.containingItems[1].getTagCompound();
+            return compound.getFloat("Pitch");
+        }
+        return 0.0F;
+    }
+
+    public float getRotationYaw()
+    {
+        if (this.hasWarpCore() && this.containingItems[1].hasTagCompound())
+        {
+            NBTTagCompound compound = this.containingItems[1].getTagCompound();
+            return compound.getFloat("Yaw");
+        }
+        return 0.0F;
+    }
+
     private boolean initialiseMultiTiles(BlockPos pos, World world)
     {
         IMultiBlock thisTile = this;

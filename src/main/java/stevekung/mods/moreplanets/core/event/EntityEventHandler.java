@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
-import stevekung.mods.moreplanets.core.handler.TeleportHandler;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusZombie;
@@ -34,6 +33,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.MPLog;
+import stevekung.mods.moreplanets.util.TeleportUtil;
 import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
 import stevekung.mods.moreplanets.world.IMeteorType;
 
@@ -90,7 +90,7 @@ public class EntityEventHandler
             if (ConfigManagerMP.enableStartedPlanet && !WorldTickEventHandler.startedDimensionData.startedDimension && !(ConfigManagerMP.startedPlanet.equals("planet.") || ConfigManagerMP.startedPlanet.equals("moon.") || ConfigManagerMP.startedPlanet.equals("satellite.")))
             {
                 MPLog.debug("Start teleporting player to dimension %s", ConfigManagerMP.startedPlanet);
-                TeleportHandler.startNewDimension(player);
+                TeleportUtil.startNewDimension(player);
                 WorldTickEventHandler.startedDimensionData.startedDimension = true;
                 WorldTickEventHandler.startedDimensionData.planetToBack = ConfigManagerMP.startedPlanet;
                 WorldTickEventHandler.startedDimensionData.setDirty(true);
