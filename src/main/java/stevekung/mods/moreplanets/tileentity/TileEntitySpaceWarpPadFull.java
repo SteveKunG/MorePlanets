@@ -308,9 +308,9 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
 
     public float getRotationPitch()
     {
-        if (this.hasWarpCore() && this.containingItems[1].hasTagCompound())
+        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
         {
-            NBTTagCompound compound = this.containingItems[1].getTagCompound();
+            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
             return compound.getFloat("Pitch");
         }
         return 0.0F;
@@ -318,9 +318,9 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
 
     public float getRotationYaw()
     {
-        if (this.hasWarpCore() && this.containingItems[1].hasTagCompound())
+        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
         {
-            NBTTagCompound compound = this.containingItems[1].getTagCompound();
+            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
             return compound.getFloat("Yaw");
         }
         return 0.0F;

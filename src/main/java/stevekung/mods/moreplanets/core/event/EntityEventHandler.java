@@ -89,13 +89,8 @@ public class EntityEventHandler
 
             if (ConfigManagerMP.enableStartedPlanet && !WorldTickEventHandler.startedDimensionData.startedDimension && !(ConfigManagerMP.startedPlanet.equals("planet.") || ConfigManagerMP.startedPlanet.equals("moon.") || ConfigManagerMP.startedPlanet.equals("satellite.")))
             {
-<<<<<<< HEAD
                 MPLog.debug("Start teleporting player to dimension {}", ConfigManagerMP.startedPlanet);
-                TeleportHandler.startNewDimension(player);
-=======
-                MPLog.debug("Start teleporting player to dimension %s", ConfigManagerMP.startedPlanet);
                 TeleportUtil.startNewDimension(player);
->>>>>>> a3008470... Update teleport handler
                 WorldTickEventHandler.startedDimensionData.startedDimension = true;
                 WorldTickEventHandler.startedDimensionData.planetToBack = ConfigManagerMP.startedPlanet;
                 WorldTickEventHandler.startedDimensionData.setDirty(true);

@@ -26,11 +26,6 @@ import stevekung.mods.moreplanets.client.gui.GuiShieldGenerator;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGeneratorConfig;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
-<<<<<<< HEAD
-import stevekung.mods.moreplanets.core.handler.TeleportHandler;
-=======
-import stevekung.mods.moreplanets.inventory.ContainerShieldGenerator;
->>>>>>> a3008470... Update teleport handler
 import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;

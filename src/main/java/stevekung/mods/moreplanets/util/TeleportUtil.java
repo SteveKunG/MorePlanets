@@ -43,13 +43,13 @@ public class TeleportUtil
 
     public static Entity teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
     {
-        if (entity == null || entity.worldObj.isRemote)
+        if (entity == null || entity.world.isRemote)
         {
             return entity;
         }
 
         MinecraftServer server = entity.getServer();
-        int sourceDim = entity.worldObj.provider.getDimension();
+        int sourceDim = entity.world.provider.getDimension();
 
         if (!entity.isBeingRidden() && !entity.isRiding())
         {
@@ -60,7 +60,7 @@ public class TeleportUtil
 
     private static Entity handleEntityTeleport(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
     {
-        if (entity == null || entity.worldObj.isRemote)
+        if (entity == null || entity.world.isRemote)
         {
             return entity;
         }
@@ -123,7 +123,7 @@ public class TeleportUtil
         entity.isDead = false;
         entity.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
         sourceWorld.updateEntityWithOptionalForce(entity, false);
-        Entity newEntity = EntityList.createEntityByName(EntityList.getEntityString(entity), targetWorld);
+        Entity newEntity = EntityList.newEntity(entity.getClass(), targetWorld);
 
         if (newEntity != null)
         {
@@ -131,7 +131,7 @@ public class TeleportUtil
             newEntity.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
             boolean flag = newEntity.forceSpawn;
             newEntity.forceSpawn = true;
-            targetWorld.spawnEntityInWorld(newEntity);
+            targetWorld.spawnEntity(newEntity);
             newEntity.forceSpawn = flag;
             targetWorld.updateEntityWithOptionalForce(newEntity, false);
         }
@@ -155,7 +155,7 @@ public class TeleportUtil
         // world transfer
         player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
         player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
-        targetWorld.spawnEntityInWorld(player);
+        targetWorld.spawnEntity(player);
         targetWorld.updateEntityWithOptionalForce(player, false);
         player.setWorld(targetWorld);
 

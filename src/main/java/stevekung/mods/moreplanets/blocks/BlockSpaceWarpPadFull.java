@@ -171,20 +171,8 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                                 if (warpPad.getEnergyStoredGC() >= 5000.0F)
                                 {
                                     warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
-<<<<<<< HEAD
-                                    MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-                                    WorldServer worldserver = server.worldServerForDimension(GCCoreUtil.getDimensionID(server.worlds[0]));
-
-                                    if (player instanceof EntityPlayerMP)
-                                    {
-                                        TeleportHandler.setWarpDimension((EntityPlayerMP) player, worldserver, warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), false);
-                                    }
-                                    world.playSound(player, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                                    player.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
-=======
                                     TeleportUtil.teleportEntity(player, warpPad.getDimensionId(), warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getRotationPitch(), warpPad.getRotationYaw());
                                     world.playSound(null, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 0.75F, 1.0F);
->>>>>>> a3008470... Update teleport handler
                                     MPLog.debug("Teleport player to %s, %s, %s, %s, %s", warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionId()).getDimensionType().getName());
                                     return true;
                                 }
