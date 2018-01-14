@@ -107,8 +107,8 @@ public class TeleportUtil
             return null;
         }
 
-        WorldServer sourceWorld = server.worldServerForDimension(sourceDim);
-        WorldServer targetWorld = server.worldServerForDimension(targetDim);
+        WorldServer sourceWorld = server.getWorld(sourceDim);
+        WorldServer targetWorld = server.getWorld(targetDim);
 
         //Set the entity dead before calling changeDimension. Still need to call changeDimension for things like minecarts which will drop their contents otherwise.
         if (!entity.isDead && entity instanceof EntityMinecart)
@@ -143,8 +143,8 @@ public class TeleportUtil
 
     private static EntityPlayer teleportPlayerInternational(EntityPlayerMP player, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
     {
-        WorldServer sourceWorld = server.worldServerForDimension(sourceDim);
-        WorldServer targetWorld = server.worldServerForDimension(targetDim);
+        WorldServer sourceWorld = server.getWorld(sourceDim);
+        WorldServer targetWorld = server.getWorld(targetDim);
         PlayerList playerList = server.getPlayerList();
         player.dimension = targetDim;
         player.connection.sendPacket(new SPacketRespawn(player.dimension, targetWorld.getDifficulty(), targetWorld.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
