@@ -49,6 +49,8 @@ public class ItemSpaceWarperCore extends ItemBaseMP
                         itemStack.getTagCompound().setInteger("X", MathHelper.floor(player.posX));
                         itemStack.getTagCompound().setInteger("Y", MathHelper.floor(player.posY));
                         itemStack.getTagCompound().setInteger("Z", MathHelper.floor(player.posZ));
+                        itemStack.getTagCompound().setFloat("Pitch", player.rotationPitch);
+                        itemStack.getTagCompound().setFloat("Yaw", player.rotationYaw);
                         player.sendMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add.message")));
                         return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
                     }

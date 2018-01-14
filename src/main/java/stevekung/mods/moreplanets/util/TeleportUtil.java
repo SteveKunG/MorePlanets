@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.core.handler;
+package stevekung.mods.moreplanets.util;
 
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
@@ -7,30 +7,177 @@ import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketEntityEffect;
+import net.minecraft.network.play.server.SPacketPlayerAbilities;
 import net.minecraft.network.play.server.SPacketRespawn;
 import net.minecraft.network.play.server.SPacketSetExperience;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
-import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.helper.WorldDimensionHelper;
 import stevekung.mods.moreplanets.world.IStartedDimension;
 
-public class TeleportHandler
+public class TeleportUtil
 {
+    public static Entity teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord)
+    {
+        return TeleportUtil.teleportEntity(entity, dimension, xCoord, yCoord, zCoord, 0.0F, 0.0F);
+    }
+
+    public static Entity teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+    {
+        if (entity == null || entity.world.isRemote)
+        {
+            return entity;
+        }
+
+        MinecraftServer server = entity.getServer();
+        int sourceDim = entity.world.provider.getDimension();
+
+        if (!entity.isBeingRidden() && !entity.isRiding())
+        {
+            return TeleportUtil.handleEntityTeleport(entity, server, sourceDim, dimension, xCoord, yCoord, zCoord, yaw, pitch);
+        }
+        return entity;
+    }
+
+    private static Entity handleEntityTeleport(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+    {
+        if (entity == null || entity.world.isRemote)
+        {
+            return entity;
+        }
+
+        boolean interDimensional = sourceDim != targetDim;
+
+        if (interDimensional && !ForgeHooks.onTravelToDimension(entity, targetDim))
+        {
+            return entity;
+        }
+
+        if (interDimensional)
+        {
+            if (entity instanceof EntityPlayerMP)
+            {
+                return TeleportUtil.teleportPlayerInternational((EntityPlayerMP) entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
+            }
+            else
+            {
+                return TeleportUtil.teleportEntityInternational(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
+            }
+        }
+        else
+        {
+            if (entity instanceof EntityPlayerMP)
+            {
+                EntityPlayerMP player = (EntityPlayerMP) entity;
+                player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
+                player.setRotationYawHead(yaw);
+            }
+            else
+            {
+                entity.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
+                entity.setRotationYawHead(yaw);
+            }
+        }
+        return entity;
+    }
+
+    private static Entity teleportEntityInternational(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+    {
+        if (entity.isDead)
+        {
+            return null;
+        }
+
+        WorldServer sourceWorld = server.worldServerForDimension(sourceDim);
+        WorldServer targetWorld = server.worldServerForDimension(targetDim);
+
+        //Set the entity dead before calling changeDimension. Still need to call changeDimension for things like minecarts which will drop their contents otherwise.
+        if (!entity.isDead && entity instanceof EntityMinecart)
+        {
+            entity.isDead = true;
+            entity.changeDimension(targetDim);
+            entity.isDead = false;
+        }
+
+        entity.dimension = targetDim;
+        sourceWorld.removeEntity(entity);
+        entity.isDead = false;
+        entity.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
+        sourceWorld.updateEntityWithOptionalForce(entity, false);
+        Entity newEntity = EntityList.newEntity(entity.getClass(), targetWorld);
+
+        if (newEntity != null)
+        {
+            newEntity.copyDataFromOld(entity);
+            newEntity.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
+            boolean flag = newEntity.forceSpawn;
+            newEntity.forceSpawn = true;
+            targetWorld.spawnEntity(newEntity);
+            newEntity.forceSpawn = flag;
+            targetWorld.updateEntityWithOptionalForce(newEntity, false);
+        }
+        entity.isDead = true;
+        sourceWorld.resetUpdateEntityTick();
+        targetWorld.resetUpdateEntityTick();
+        return newEntity;
+    }
+
+    private static EntityPlayer teleportPlayerInternational(EntityPlayerMP player, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+    {
+        WorldServer sourceWorld = server.worldServerForDimension(sourceDim);
+        WorldServer targetWorld = server.worldServerForDimension(targetDim);
+        PlayerList playerList = server.getPlayerList();
+        player.dimension = targetDim;
+        player.connection.sendPacket(new SPacketRespawn(player.dimension, targetWorld.getDifficulty(), targetWorld.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
+        playerList.updatePermissionLevel(player);
+        sourceWorld.removeEntityDangerously(player);
+        player.isDead = false;
+
+        // world transfer
+        player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
+        player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
+        targetWorld.spawnEntity(player);
+        targetWorld.updateEntityWithOptionalForce(player, false);
+        player.setWorld(targetWorld);
+
+        playerList.preparePlayer(player, sourceWorld);
+        player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
+        player.interactionManager.setWorld(targetWorld);
+        player.connection.sendPacket(new SPacketPlayerAbilities(player.capabilities));
+        playerList.updateTimeAndWeatherForPlayer(player, targetWorld);
+        playerList.syncPlayerInventory(player);
+
+        for (PotionEffect potion : player.getActivePotionEffects())
+        {
+            player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion));
+        }
+        player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
+        FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, sourceDim, targetDim);
+        player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
+        return player;
+    }
+
+    // OLD STUFF
+    @Deprecated
     public static EntityPlayerMP setWarpDimension(EntityPlayerMP player, WorldServer world, int x, int y, int z, int dimID, boolean nether)
     {
         if (!world.isRemote)
@@ -46,12 +193,13 @@ public class TeleportHandler
                     MPLog.error("Cannot Transfer Entity to Dimension: Could not get World for Dimension {}", dimID);
                     return null;
                 }
-                return TeleportHandler.teleportEntity(worldServer, player, x, y, z, dimID, nether);
+                return teleportEntity(worldServer, player, x, y, z, dimID, nether);
             }
         }
         return null;
     }
 
+    @Deprecated
     private static EntityPlayerMP teleportEntity(World worldNew, EntityPlayerMP player, int x, int y, int z, int dimID, boolean nether)
     {
         BlockPos blockpos = player.getBedLocation(dimID);
@@ -142,6 +290,7 @@ public class TeleportHandler
         return player;
     }
 
+    @Deprecated
     public static void startNewDimension(EntityPlayerMP player)
     {
         WorldServer worldOld = (WorldServer) player.world;
