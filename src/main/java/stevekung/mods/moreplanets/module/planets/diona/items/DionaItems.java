@@ -26,8 +26,6 @@ public class DionaItems
     public static Item TIER_5_ROCKET_SCHEMATIC;
     public static Item INFECTED_CRYSTALLIZE_SLIMEBALL;
     public static Item INFECTED_CRYSTALLIZE_ARROW;
-    public static Item CRYSTALLIZE_WATER_FLUID_BUCKET;
-    public static Item CRYSTALLIZE_LAVA_FLUID_BUCKET;
     public static Item DARK_ENERGY_PEARL;
     public static Item ANTI_GRAVITY_ARROW;
 
@@ -63,8 +61,6 @@ public class DionaItems
         DionaItems.INFECTED_CRYSTALLIZE_BOMB = new ItemInfectedCrystallizeBomb("infected_crystallize_bomb");
         DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL = new ItemBaseMP("infected_crystallize_slimeball");
         DionaItems.INFECTED_CRYSTALLIZE_ARROW = new ItemArrowMP("infected_crystallize_arrow", ItemArrowMP.ArrowType.INFECTED_CRYSTALLIZE);
-        DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET = new ItemBucketMP("crystallize_water_bucket", DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK);
-        DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET = new ItemBucketMP("crystallize_lava_bucket", DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK);
         DionaItems.DARK_ENERGY_PEARL = new ItemBaseMP("dark_energy_pearl").setSortCategory(EnumSortCategoryItem.GENERAL);
         DionaItems.ANTI_GRAVITY_ARROW = new ItemArrowMP("anti_gravity_arrow", ItemArrowMP.ArrowType.ANTI_GRAVITY);
 
@@ -100,8 +96,6 @@ public class DionaItems
         CommonRegisterHelper.registerItem(DionaItems.DIONA_DUNGEON_KEY);
         CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
         CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZE_ARROW);
-        CommonRegisterHelper.registerItem(DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET);
-        CommonRegisterHelper.registerItem(DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET);
         CommonRegisterHelper.registerItem(DionaItems.DARK_ENERGY_PEARL);
         CommonRegisterHelper.registerItem(DionaItems.ANTI_GRAVITY_ARROW);
 

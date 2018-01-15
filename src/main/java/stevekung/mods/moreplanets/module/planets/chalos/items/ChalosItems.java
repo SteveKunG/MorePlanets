@@ -27,8 +27,6 @@ public class ChalosItems
     public static Item TIER_6_ROCKET_SCHEMATIC;
     public static Item CHEESE_SPORE;
     public static Item CHEESE_SPORE_SEED;
-    public static Item CHEESE_OF_MILK_FLUID_BUCKET;
-    public static Item CHEESE_OF_MILK_GAS_BUCKET;
     public static Item CHEESE_SPORE_DOOR;
 
     // Tools
@@ -69,8 +67,6 @@ public class ChalosItems
         ChalosItems.CHALOS_DUNGEON_KEY = new ItemDungeonKeyMP("chalos_dungeon_key", 5);
         ChalosItems.CHEESE_SPORE = new ItemCheeseSpore("cheese_spore_item");
         ChalosItems.CHEESE_SPORE_SEED = new ItemCheeseSporeSeed("cheese_spore_seed");
-        ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET = new ItemBucketMP("cheese_of_milk_fluid_bucket", ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK);
-        ChalosItems.CHEESE_OF_MILK_GAS_BUCKET = new ItemGasBucketMP("cheese_of_milk_gas_bucket", ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK);
         ChalosItems.CHEESE_SPORE_DOOR = new ItemDoorMP("cheese_spore_door", ChalosBlocks.CHEESE_SPORE_DOOR_BLOCK);
 
         /**************************************************************/
@@ -107,8 +103,6 @@ public class ChalosItems
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SLIMEBALL);
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE);
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_SEED);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_OF_MILK_GAS_BUCKET);
         CommonRegisterHelper.registerItem(ChalosItems.TIER_5_ROCKET_PART);
         CommonRegisterHelper.registerItem(ChalosItems.TIER_6_ROCKET_SCHEMATIC);
         CommonRegisterHelper.registerItem(ChalosItems.TIER_5_ROCKET);

@@ -11,7 +11,9 @@
       "data": 0
     },
     "M": {
-      "item": "moreplanets:cheese_of_milk_fluid_bucket"
+      "type": "minecraft:item_nbt",
+      "item": "forge:bucketfilled",
+      "nbt": "{FluidName:\"cheese_of_milk_fluid\",Amount:1000}"
     }
   },
   "result": {

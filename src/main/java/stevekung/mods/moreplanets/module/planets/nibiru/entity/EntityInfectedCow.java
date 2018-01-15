@@ -23,7 +23,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
@@ -141,7 +140,7 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
 
             if (itemStack.isEmpty())
             {
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET));
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.MILK_BUCKET));
             }
             else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.MILK_BUCKET)))
             {

@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.init;
 
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizeBomb;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
@@ -12,7 +11,6 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.Entity
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedEgg;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedSnowball;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.BehaviorProjectileDispenseBucketMP;
 import stevekung.mods.moreplanets.util.BehaviorProjectileDispenseMP;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
@@ -31,13 +29,6 @@ public class MPOthers
         CommonRegisterHelper.registerProjectileDispense(NibiruItems.INFECTED_EGG, new BehaviorProjectileDispenseMP(EntityInfectedEgg.class));
         CommonRegisterHelper.registerProjectileDispense(DionaItems.INFECTED_CRYSTALLIZE_ARROW, new BehaviorProjectileDispenseMP(EntityInfectedCrystallizeArrow.class, true));
         CommonRegisterHelper.registerProjectileDispense(NibiruItems.INFECTED_ARROW, new BehaviorProjectileDispenseMP(EntityInfectedArrow.class, true));
-        CommonRegisterHelper.registerProjectileDispense(DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET, new BehaviorProjectileDispenseBucketMP());
-        CommonRegisterHelper.registerProjectileDispense(DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET, new BehaviorProjectileDispenseBucketMP());
-        CommonRegisterHelper.registerProjectileDispense(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET, new BehaviorProjectileDispenseBucketMP());
-        CommonRegisterHelper.registerProjectileDispense(ChalosItems.CHEESE_OF_MILK_GAS_BUCKET, new BehaviorProjectileDispenseBucketMP());
-        CommonRegisterHelper.registerProjectileDispense(NibiruItems.INFECTED_WATER_FLUID_BUCKET, new BehaviorProjectileDispenseBucketMP());
-        CommonRegisterHelper.registerProjectileDispense(NibiruItems.HELIUM_GAS_BUCKET, new BehaviorProjectileDispenseBucketMP());
-        CommonRegisterHelper.registerProjectileDispense(NibiruItems.NUCLEAR_WASTE_BUCKET, new BehaviorProjectileDispenseBucketMP());
     }
 
     private static void registerEndermanCarriableBlock()

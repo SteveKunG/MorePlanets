@@ -24,7 +24,6 @@ public class NibiruItems
     public static Item INFECTED_DOOR;
     public static Item INFECTED_DEAD_OAK_DOOR;
     public static Item ALIEN_BERRY_OAK_DOOR;
-    public static Item INFECTED_WATER_FLUID_BUCKET;
     public static Item NIBIRU_FRUITS;
     public static Item INFECTED_WHEAT;
     public static Item INFECTED_CLAY_BALL;
@@ -33,12 +32,9 @@ public class NibiruItems
     public static Item INFECTED_SUGAR_CANE;
     public static Item INFECTED_PRISMARINE;
     public static Item INFECTED_EGG;
-    public static Item HELIUM_GAS_BUCKET;
     public static Item INFECTED_ARROW;
     public static Item INFECTED_MELON_SEEDS;
-    public static Item NUCLEAR_WASTE_BUCKET;
     public static Item VEIN_EYE;
-    public static Item PURIFY_WATER_BUCKET;
     public static Item NIBIRU_FOOD;
     public static Item WASTE_ROD_PICKER;
     public static Item NUCLEAR_WASTE_ROD;
@@ -88,7 +84,6 @@ public class NibiruItems
         NibiruItems.INFECTED_DOOR = new ItemDoorMP("infected_door", NibiruBlocks.INFECTED_DOOR_BLOCK);
         NibiruItems.INFECTED_DEAD_OAK_DOOR = new ItemDoorMP("infected_dead_oak_door", NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK);
         NibiruItems.ALIEN_BERRY_OAK_DOOR = new ItemDoorMP("alien_berry_oak_door", NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK);
-        NibiruItems.INFECTED_WATER_FLUID_BUCKET = new ItemBucketMP("infected_water_bucket", NibiruBlocks.INFECTED_WATER_FLUID_BLOCK);
         NibiruItems.NIBIRU_FRUITS = new ItemNibiruFruits("nibiru_fruits");
         NibiruItems.INFECTED_WHEAT = new ItemBaseMP("infected_wheat");
         NibiruItems.INFECTED_CLAY_BALL = new ItemBaseMP("infected_clay_ball");
@@ -97,12 +92,9 @@ public class NibiruItems
         NibiruItems.INFECTED_SUGAR_CANE = new ItemInfectedSugarCane("infected_sugar_cane");
         NibiruItems.INFECTED_PRISMARINE = new ItemInfectedPrismarine("infected_prismarine_item");
         NibiruItems.INFECTED_EGG = new ItemInfectedEgg("infected_egg");
-        NibiruItems.HELIUM_GAS_BUCKET = new ItemGasBucketMP("helium_gas_bucket", NibiruBlocks.HELIUM_GAS_BLOCK);
         NibiruItems.INFECTED_ARROW = new ItemArrowMP("infected_arrow", ItemArrowMP.ArrowType.INFECTED);
         NibiruItems.INFECTED_MELON_SEEDS = new ItemInfectedMelonSeeds("infected_melon_seeds");
-        NibiruItems.NUCLEAR_WASTE_BUCKET = new ItemBucketMP("nuclear_waste_bucket", NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK);
         NibiruItems.VEIN_EYE = new ItemVeinEye("vein_eye");
-        NibiruItems.PURIFY_WATER_BUCKET = new ItemBucketMP("purify_water_bucket", NibiruBlocks.PURIFY_WATER_FLUID_BLOCK);
         NibiruItems.NIBIRU_FOOD = new ItemNibiruFood("nibiru_food");
         NibiruItems.WASTE_ROD_PICKER = new ItemWasteRodPicker("waste_rod_picker");
         NibiruItems.NUCLEAR_WASTE_ROD = new ItemBaseMP("nuclear_waste_rod");
@@ -152,7 +144,6 @@ public class NibiruItems
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_DOOR);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_DEAD_OAK_DOOR);
         CommonRegisterHelper.registerItem(NibiruItems.ALIEN_BERRY_OAK_DOOR);
-        CommonRegisterHelper.registerItem(NibiruItems.INFECTED_WATER_FLUID_BUCKET);
         CommonRegisterHelper.registerItem(NibiruItems.NIBIRU_FRUITS);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_WHEAT);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_CLAY_BALL);
@@ -161,12 +152,9 @@ public class NibiruItems
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_SUGAR_CANE);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_PRISMARINE);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_EGG);
-        CommonRegisterHelper.registerItem(NibiruItems.HELIUM_GAS_BUCKET);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_ARROW);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_MELON_SEEDS);
-        CommonRegisterHelper.registerItem(NibiruItems.NUCLEAR_WASTE_BUCKET);
         CommonRegisterHelper.registerItem(NibiruItems.VEIN_EYE);
-        CommonRegisterHelper.registerItem(NibiruItems.PURIFY_WATER_BUCKET);
         CommonRegisterHelper.registerItem(NibiruItems.NIBIRU_FOOD);
         CommonRegisterHelper.registerItem(NibiruItems.WASTE_ROD_PICKER);
         CommonRegisterHelper.registerItem(NibiruItems.NUCLEAR_WASTE_ROD);

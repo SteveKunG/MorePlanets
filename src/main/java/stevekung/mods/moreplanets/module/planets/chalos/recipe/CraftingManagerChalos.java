@@ -8,6 +8,8 @@ import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
@@ -33,7 +35,7 @@ public class CraftingManagerChalos
     {
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 9), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 0) });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 10), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 1) });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_OF_MILK_CAKE), new Object[] { "MMM", "CCC", "CCC", 'C', new ItemStack(ChalosItems.CHEESE_FOOD), 'M', ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET });
+        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_OF_MILK_CAKE), new Object[] { "MMM", "CCC", "CCC", 'C', new ItemStack(ChalosItems.CHEESE_FOOD), 'M', FluidUtil.getFilledBucket(new FluidStack(ChalosBlocks.CHEESE_OF_MILK_FLUID, 1000)) });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_CRAFTING_TABLE), new Object[] { "XX", "XX", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SLIME_BLOCK), new Object[] { "XXX", "XXX", "XXX", 'X', ChalosItems.CHEESE_SLIMEBALL });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_DIRT, 4, 1), new Object[] { "DG", "GD", 'D', new ItemStack(ChalosBlocks.CHEESE_DIRT, 1, 0), 'G', Blocks.GRAVEL });

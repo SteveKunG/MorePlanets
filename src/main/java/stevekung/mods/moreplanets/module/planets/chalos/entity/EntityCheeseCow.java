@@ -19,6 +19,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
@@ -120,11 +122,11 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
 
             if (itemStack.isEmpty())
             {
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET));
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidUtil.getFilledBucket(new FluidStack(ChalosBlocks.CHEESE_OF_MILK_FLUID, 1000)));
             }
-            else if (!player.inventory.addItemStackToInventory(new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET)))
+            else if (!player.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(ChalosBlocks.CHEESE_OF_MILK_FLUID, 1000))))
             {
-                player.dropItem(new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET, 1, 0), false);
+                player.dropItem(FluidUtil.getFilledBucket(new FluidStack(ChalosBlocks.CHEESE_OF_MILK_FLUID, 1000)), false);
             }
             return true;
         }

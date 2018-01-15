@@ -12,7 +12,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
@@ -24,13 +23,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -43,9 +40,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockCheeseDirt;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.BlockFronosDirt;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockInfectedDirt;
@@ -54,7 +49,6 @@ import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.CachedEnumUtil;
-import stevekung.mods.moreplanets.util.blocks.BlockFluidLavaBaseMP;
 import stevekung.mods.moreplanets.util.blocks.IFireBlock;
 
 public class GeneralEventHandler
@@ -342,49 +336,6 @@ public class GeneralEventHandler
             else if (block == FronosBlocks.FRONOS_DIRT)
             {
                 this.setFarmland(event, world, pos, state, BlockFronosDirt.VARIANT, BlockFronosDirt.BlockType.FRONOS_COARSE_DIRT, FronosBlocks.FRONOS_DIRT, FronosBlocks.FRONOS_FARMLAND);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onBucketFill(FillBucketEvent event)
-    {
-        World world = event.getWorld();
-
-        if (event.getTarget() != null)
-        {
-            if (!FluidRegistry.isUniversalBucketEnabled())
-            {
-                BlockPos pos = event.getTarget().getBlockPos();
-                this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_FLUID_BUCKET), false);
-                this.registerBucket(event, world, pos, ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, new ItemStack(ChalosItems.CHEESE_OF_MILK_GAS_BUCKET), false);
-                this.registerBucket(event, world, pos, NibiruBlocks.HELIUM_GAS_BLOCK, new ItemStack(NibiruItems.HELIUM_GAS_BUCKET), false);
-                this.registerBucket(event, world, pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.INFECTED_WATER_FLUID_BUCKET), false);
-                this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_WATER_FLUID_BUCKET), false);
-                this.registerBucket(event, world, pos, DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, new ItemStack(DionaItems.CRYSTALLIZE_LAVA_FLUID_BUCKET), false);
-                this.registerBucket(event, world, pos, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK, new ItemStack(NibiruItems.NUCLEAR_WASTE_BUCKET), false);
-                this.registerBucket(event, world, pos, NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, new ItemStack(NibiruItems.PURIFY_WATER_BUCKET), false);
-            }
-        }
-    }
-
-    private void registerBucket(FillBucketEvent event, World world, BlockPos pos, Block block, ItemStack itemStack, boolean cancelBucket)
-    {
-        if (world.getBlockState(pos) == block.getDefaultState())
-        {
-            if (cancelBucket)
-            {
-                if (event.getEmptyBucket().getItem() == Items.BUCKET)
-                {
-                    event.setCanceled(true);
-                }
-            }
-            else
-            {
-                event.getEntityPlayer().playSound(block instanceof BlockFluidLavaBaseMP ? SoundEvents.ITEM_BUCKET_FILL_LAVA : SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
-                world.setBlockToAir(pos);
-                event.setFilledBucket(itemStack);
-                event.setResult(Result.ALLOW);
             }
         }
     }
