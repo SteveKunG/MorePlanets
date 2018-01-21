@@ -4,24 +4,9 @@
 .settings
 bin
 build
+dependencies
 eclipse
 run
-src/main/java/api
-src/main/java/appeng
-src/main/java/biomesoplenty
-src/main/java/buildcraft
-src/main/java/codechicken
-src/main/java/cofh
-src/main/java/ic2
-src/main/java/mekanism
-src/main/java/mezz
-src/main/java/micdoodle8
-src/main/java/net
-src/main/java/powercrystals
-src/main/resources/assets/galacticraftcore
-src/main/resources/assets/galacticraftplanets
-src/main/resources/*.cfg
-src/main/resources/micdoodlecore_at.deobf
 
 # file
 .classpath
