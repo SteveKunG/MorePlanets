@@ -18,13 +18,23 @@ def api = new groovy.json.JsonSlurper().parseText(file("${api_token_path}").text
 def mcVersion = project.mc_version
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+
+sourceSets.main {
+    java {
+        srcDirs = ['src/main/java', 'dependencies/main/java']
+    }
+    resources {
+        srcDirs = ['src/main/resources', 'dependencies/main/resources']
+    }
+}
+
 version = project.version
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.11.2-13.20.1.2563"
+    version = "1.11.2-13.20.1.2588"
     runDir = "run"
     mappings = "snapshot_20161220"
     makeObfSourceJar = false
