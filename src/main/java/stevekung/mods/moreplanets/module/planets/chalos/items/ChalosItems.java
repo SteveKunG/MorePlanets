@@ -12,7 +12,10 @@ import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemBreathab
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.*;
+import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.util.items.ItemDoorMP;
+import stevekung.mods.moreplanets.util.items.ItemDungeonKeyMP;
 import stevekung.mods.moreplanets.util.items.tools.*;
 
 public class ChalosItems

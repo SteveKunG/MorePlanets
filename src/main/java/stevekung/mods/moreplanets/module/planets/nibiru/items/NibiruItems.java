@@ -13,7 +13,9 @@ import stevekung.mods.moreplanets.module.planets.nibiru.items.tools.*;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.*;
+import stevekung.mods.moreplanets.util.items.ItemArrowMP;
+import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.util.items.ItemDoorMP;
 import stevekung.mods.moreplanets.util.items.tools.*;
 
 public class NibiruItems

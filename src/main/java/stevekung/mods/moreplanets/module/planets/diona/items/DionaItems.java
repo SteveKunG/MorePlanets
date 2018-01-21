@@ -12,7 +12,10 @@ import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemBreathabl
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.*;
+import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.util.items.ItemArrowMP;
+import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.util.items.ItemDungeonKeyMP;
 import stevekung.mods.moreplanets.util.items.tools.*;
 
 public class DionaItems
