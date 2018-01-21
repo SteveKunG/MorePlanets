@@ -4,28 +4,10 @@
 .gradle_data
 bin
 build
+dependencies
 eclipse
 run
-src/main/java/api
-src/main/java/appeng
-src/main/java/buildcraft
-src/main/java/codechicken
-src/main/java/cofh
-src/main/java/ic2
-src/main/java/mekanism
-src/main/java/micdoodle8
-src/main/java/net
-src/main/java/powercrystals
-src/main/java/tconstruct
-src/main/java/uristqwerty
-src/main/resources/assets/galacticraftcore
-src/main/resources/assets/galacticraftmoon
-src/main/resources/assets/galacticraftmars
-src/main/resources/assets/galacticraftasteroids
-src/main/resources/assets/nbtedit
 
 # file
 .classpath
 .project
-*_at.cfg
-*.deobf
