@@ -1,13 +1,12 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.tileentity;
 
-import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
 
-public class TileEntityMultalicCrystal extends TileEntityAdvanced implements ITickable
+public class TileEntityMultalicCrystal extends TileEntityAdvancedMP
 {
     @NetworkedField(targetSide = Side.CLIENT)
     public EnumFacing facing = null;

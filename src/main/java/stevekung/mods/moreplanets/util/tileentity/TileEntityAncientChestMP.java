@@ -321,6 +321,12 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
         return new AxisAlignedBB(this.getPos().add(-1, 0, -1), this.getPos().add(2, 2, 2));
     }
 
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
     public IItemHandler getSingleChestHandler()
     {
         return super.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);

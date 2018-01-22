@@ -434,6 +434,12 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
         return false;
     }
 
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
     protected boolean checkLootAndRead(NBTTagCompound compound)
     {
         if (compound.hasKey("LootTable", 8))

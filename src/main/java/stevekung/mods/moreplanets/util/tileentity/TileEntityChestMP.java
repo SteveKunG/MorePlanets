@@ -392,6 +392,12 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
         return true;
     }
 
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
     public IItemHandler getSingleChestHandler()
     {
         return super.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
