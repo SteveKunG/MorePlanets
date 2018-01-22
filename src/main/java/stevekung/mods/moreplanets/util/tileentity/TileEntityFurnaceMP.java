@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.util.tileentity;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.math.MathHelper;
 
@@ -79,6 +80,12 @@ public abstract class TileEntityFurnaceMP extends TileEntityFurnace
         {
             this.markDirty();
         }
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        return this.writeToNBT(new NBTTagCompound());
     }
 
     protected abstract void setState();

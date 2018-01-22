@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.tileentity;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -24,8 +23,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
 
-public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements IInventoryDefaults, ISidedInventory
+public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IInventoryDefaults, ISidedInventory
 {
     private static final int[] SLOTS = new int[108];
     public NonNullList<ItemStack> inventory = NonNullList.withSize(108, ItemStack.EMPTY);
@@ -189,12 +189,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     public double getPacketRange()
     {
         return 32;
-    }
-
-    @Override
-    public int getPacketCooldown()
-    {
-        return 1;
     }
 
     @Override

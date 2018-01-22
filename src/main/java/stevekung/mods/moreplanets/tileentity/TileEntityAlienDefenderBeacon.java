@@ -1,12 +1,12 @@
 package stevekung.mods.moreplanets.tileentity;
 
-import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
 
-public class TileEntityAlienDefenderBeacon extends TileEntityAdvanced
+public class TileEntityAlienDefenderBeacon extends TileEntityAdvancedMP
 {
     @NetworkedField(targetSide = Side.CLIENT)
     public int bossCountdown = 1;
@@ -65,12 +65,6 @@ public class TileEntityAlienDefenderBeacon extends TileEntityAdvanced
     public double getPacketRange()
     {
         return 32;
-    }
-
-    @Override
-    public int getPacketCooldown()
-    {
-        return 1;
     }
 
     @Override

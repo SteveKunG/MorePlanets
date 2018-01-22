@@ -1,17 +1,14 @@
 package stevekung.mods.moreplanets.util.tileentity;
 
+import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
 
-public class TileEntityRenderTickable extends TileEntity implements ITickable
+public abstract class TileEntityAdvancedMP extends TileEntityAdvanced
 {
-    public int renderTicks;
-
     @Override
-    public void update()
+    public int getPacketCooldown()
     {
-        this.renderTicks++;
+        return 1;
     }
 
     @Override
