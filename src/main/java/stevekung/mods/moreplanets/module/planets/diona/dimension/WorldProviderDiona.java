@@ -1,7 +1,11 @@
 package stevekung.mods.moreplanets.module.planets.diona.dimension;
 
+import java.util.Arrays;
+import java.util.List;
+
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
+import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
@@ -11,6 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
+import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.sky.SkyProviderDiona;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.BiomeProviderDiona;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.ChunkProviderDiona;
@@ -148,5 +153,11 @@ public class WorldProviderDiona extends WorldProviderMP
     public DimensionType getDimensionType()
     {
         return MPDimensions.DIONA;
+    }
+
+    @Override
+    public List<Block> getSurfaceBlocks()
+    {
+        return Arrays.asList(DionaBlocks.DIONA_BLOCK);
     }
 }
