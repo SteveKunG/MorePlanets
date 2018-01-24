@@ -1,8 +1,12 @@
 package stevekung.mods.moreplanets.module.planets.chalos.dimension;
 
+import java.util.Arrays;
+import java.util.List;
+
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
+import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
@@ -12,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
+import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.client.sky.SkyProviderChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.BiomeProviderChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.ChunkGeneratorChalos;
@@ -164,5 +169,11 @@ public class WorldProviderChalos extends WorldProviderMP
     public DimensionType getDimensionType()
     {
         return MPDimensions.CHALOS;
+    }
+
+    @Override
+    public List<Block> getSurfaceBlocks()
+    {
+        return Arrays.asList(ChalosBlocks.CHEESE_GRASS, ChalosBlocks.CHEESE_DIRT, ChalosBlocks.CHALOS_BLOCK);
     }
 }

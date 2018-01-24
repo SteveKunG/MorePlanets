@@ -1,5 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.dimension;
 
+import java.util.Arrays;
+import java.util.List;
+
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -303,5 +306,11 @@ public class WorldProviderNibiru extends WorldProviderMP
     public DimensionType getDimensionType()
     {
         return MPDimensions.NIBIRU;
+    }
+
+    @Override
+    public List<Block> getSurfaceBlocks()
+    {
+        return Arrays.asList(NibiruBlocks.INFECTED_GRASS, NibiruBlocks.GREEN_VEIN_GRASS, NibiruBlocks.INFECTED_DIRT, NibiruBlocks.NIBIRU_BLOCK, NibiruBlocks.TERRASTONE);
     }
 }
