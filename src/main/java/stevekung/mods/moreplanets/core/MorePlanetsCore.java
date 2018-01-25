@@ -40,13 +40,13 @@ public class MorePlanetsCore
     public static final String MOD_ID = "moreplanets";
     public static final int MAJOR_VERSION = 2;
     public static final int MINOR_VERSION = 0;
-    public static final int BUILD_VERSION = 10;
+    public static final int BUILD_VERSION = 11;
     public static final String VERSION = MorePlanetsCore.MAJOR_VERSION + "." + MorePlanetsCore.MINOR_VERSION + "." + MorePlanetsCore.BUILD_VERSION;
     public static final String GUI_FACTORY = "stevekung.mods.moreplanets.core.config.ConfigGuiFactoryMP";
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
     public static final String FORGE_VERSION = "after:forge@[13.20.1.2388,);";
-    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.120,); required-after:galacticraftplanets@[4.0.1.120,); required-after:micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
+    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.121,); required-after:galacticraftplanets@[4.0.1.121,); required-after:micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
     public static final String MC_VERSION = String.valueOf(FMLInjectionData.data()[4]);
     private static boolean DEOBFUSCATED;
 
