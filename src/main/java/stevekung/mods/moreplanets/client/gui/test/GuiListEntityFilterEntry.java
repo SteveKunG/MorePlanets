@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -31,7 +30,7 @@ public class GuiListEntityFilterEntry implements GuiListExtended.IGuiListEntry
     public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected)
     {
         this.mc.fontRendererObj.drawString(this.entityName, x + 32 + 3, y + 1, 16777215);
-        drawEntityOnScreen(x + 51, y + 75, 20, mouseX, mouseY, EntityList.createEntityByIDFromName(this.entityName, this.mc.theWorld));
+        //drawEntityOnScreen(x + 51, y + 75, 20, mouseX, mouseY, EntityList.createEntityByIDFromName(this.entityName, this.mc.theWorld));
     }
 
     public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, Entity entity)
@@ -83,31 +82,11 @@ public class GuiListEntityFilterEntry implements GuiListExtended.IGuiListEntry
     {
         this.containingListSel.selectEntity(slotIndex);
         return true;
-        //
-        //        if (relativeX <= 32 && relativeX < 32)
-        //        {
-        //            this.joinWorld();
-        //            return true;
-        //        }
-        //        else if (Minecraft.getSystemTime() - this.lastClickTime < 250L)
-        //        {
-        //            this.joinWorld();
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            this.lastClickTime = Minecraft.getSystemTime();
-        //            return false;
-        //        }
     }
 
     @Override
-    public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
-    {
-    }
+    public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {}
 
     @Override
-    public void setSelected(int entryID, int insideLeft, int yPos)
-    {
-    }
+    public void setSelected(int entryID, int insideLeft, int yPos) {}
 }

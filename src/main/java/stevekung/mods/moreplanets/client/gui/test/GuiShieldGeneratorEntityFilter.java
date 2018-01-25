@@ -67,6 +67,7 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
         this.infoRegions.add(new GuiElementInfoRegionMP(width + 100, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.enable_shield_damage.desc")), this.width, this.height, this));
         this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, GCCoreUtil.translate("gui.button.back.name")));
         this.buttonList.add(this.buttonAdd = new GuiButton(1, this.width / 2 - 160, this.height / 2 - 6, 72, 20, GCCoreUtil.translate("gui.button.add.name")));
+        this.buttonAdd.enabled = false;
 
         this.entityTextbox = new GuiTextField(0, this.fontRendererObj, this.width / 2 - 3, this.height / 2 - 83, 30, 16);
         this.entityTextbox.setMaxStringLength(2);
@@ -150,25 +151,18 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        this.selectionList.drawScreen(mouseX, mouseY, partialTicks);
         super.drawScreen(mouseX, mouseY, partialTicks);
+        this.selectionList.drawScreen(mouseX, mouseY, partialTicks);
         GlStateManager.disableLighting();
         GlStateManager.disableBlend();
         this.entityTextbox.drawTextBox();
         GlStateManager.enableLighting();
         GlStateManager.enableBlend();
-        //        this.renderInfo(mouseX, mouseY);
-
     }
 
     public void selectEntity(@Nullable GuiListEntityFilterEntry entry)
     {
-        System.out.println(entry != null);
         boolean flag = entry != null;
         this.buttonAdd.enabled = flag;
-        //        this.selectButton.enabled = flag;
-        //        this.deleteButton.enabled = flag;
-        //        this.renameButton.enabled = flag;
-        //        this.copyButton.enabled = flag;
     }
 }
