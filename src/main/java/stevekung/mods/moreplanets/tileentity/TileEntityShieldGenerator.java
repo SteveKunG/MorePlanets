@@ -11,6 +11,8 @@ import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.IMob;
@@ -19,6 +21,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.entity.projectile.EntityShulkerBullet;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -83,11 +86,10 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
     private boolean initialize = true;
-    private static ShieldEvent EVENT;
+    private final ShieldEvent event = new ShieldEvent(this);
 
     public TileEntityShieldGenerator()
     {
-        EVENT = new ShieldEvent(this);
         this.storage.setMaxExtract(250);
         this.storage.setCapacity(100000.0F);
     }
@@ -99,7 +101,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         if (!this.world.isRemote)
         {
-            MinecraftForge.EVENT_BUS.unregister(TileEntityShieldGenerator.EVENT);
+            MinecraftForge.EVENT_BUS.unregister(this.event);
         }
     }
 
@@ -110,7 +112,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         if (!this.world.isRemote)
         {
-            MinecraftForge.EVENT_BUS.unregister(TileEntityShieldGenerator.EVENT);
+            MinecraftForge.EVENT_BUS.unregister(this.event);
         }
     }
 
@@ -119,7 +121,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     {
         if (!this.world.isRemote)
         {
-            MinecraftForge.EVENT_BUS.register(TileEntityShieldGenerator.EVENT);
+            MinecraftForge.EVENT_BUS.register(this.event);
         }
     }
 
@@ -233,7 +235,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(), MPBlocks.DUMMY_BLOCK.getDefaultState().withProperty(BlockDummy.VARIANT, BlockDummy.BlockType.SHIELD_GENERATOR_TOP));
         }
-        this.world.destroyBlock(this.getPos(), true);
+        this.destroyBlock();
         this.world.destroyBlock(thisBlock.up(), false);
     }
 
@@ -540,15 +542,49 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
     private boolean isInRangeOfShield(BlockPos pos)
     {
-        double dx = this.pos.getX() + 0.5D - pos.getX();
-        double dy = Math.abs(this.pos.getY() + 0.5D - pos.getY());
-        double dz = this.pos.getZ() + 0.5D - pos.getZ();
+        double dx = this.pos.getX() - pos.getX();
+        double dy = Math.abs(this.pos.getY() - pos.getY());
+        double dz = this.pos.getZ() - pos.getZ();
 
         if (dx * dx + dz * dz <= this.shieldSize * this.shieldSize && dy <= this.shieldSize)
         {
             return true;
         }
         return false;
+    }
+
+    private boolean destroyBlock()
+    {
+        IBlockState state = this.world.getBlockState(this.pos);
+
+        if (state.getMaterial() == Material.AIR)
+        {
+            return false;
+        }
+        else
+        {
+            this.world.playEvent(2001, this.pos, Block.getStateId(state));
+            ItemStack machine = new ItemStack(MPBlocks.SHIELD_GENERATOR);
+            TileEntityShieldGenerator shield = this;
+            NBTTagCompound nbt = new NBTTagCompound();
+            nbt.setFloat("ShieldSize", shield.shieldSize);
+            nbt.setInteger("MaxShieldSize", shield.maxShieldSize);
+            nbt.setInteger("ShieldDamage", shield.shieldDamage);
+            nbt.setInteger("ShieldCapacity", shield.shieldCapacity);
+            nbt.setInteger("MaxShieldCapacity", shield.maxShieldCapacity);
+            nbt.setInteger("ShieldChargeCooldown", shield.shieldChargeCooldown);
+            nbt.setBoolean("NeedCharged", shield.needCharged);
+            nbt.setBoolean("EnableShield", shield.enableShield);
+            nbt.setBoolean("EnableDamage", shield.enableDamage);
+
+            if (shield.getEnergyStoredGC() > 0)
+            {
+                nbt.setFloat("EnergyStored", shield.getEnergyStoredGC());
+            }
+            machine.setTagCompound(nbt);
+            Block.spawnAsEntity(this.world, this.pos, machine);
+            return this.world.setBlockState(this.pos, Blocks.AIR.getDefaultState(), 3);
+        }
     }
 
     public static class ShieldEvent
