@@ -100,7 +100,7 @@ lombok {
 
 ext.finalJar = "build/libs/" + "More-Planets-" + mcVersion + "-" + version + ".jar"
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
-ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'META-INF/moreplanets_at.cfg']
+ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'license.txt', 'META-INF/moreplanets_at.cfg']
 
 // signing jar first
 task buildJar(type: SignJar, dependsOn: "processJar") {
