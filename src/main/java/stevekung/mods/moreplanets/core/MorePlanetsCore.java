@@ -34,7 +34,7 @@ import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
 import stevekung.mods.moreplanets.util.*;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
-@Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = MorePlanetsCore.DEPENDENCIES, guiFactory = MorePlanetsCore.GUI_FACTORY)
+@Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = MorePlanetsCore.DEPENDENCIES, guiFactory = MorePlanetsCore.GUI_FACTORY, certificateFingerprint = MorePlanetsCore.CERTIFICATE)
 public class MorePlanetsCore
 {
     public static final String NAME = "More Planets";
@@ -47,8 +47,9 @@ public class MorePlanetsCore
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
     public static final String FORGE_VERSION = "after:forge@[12.18.3.2185,);";
-    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.121,); required-after:galacticraftplanets@[4.0.1.121,); required-after:Micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
+    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:Micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
     public static final String MC_VERSION = String.valueOf(FMLInjectionData.data()[4]);
+    public static final String CERTIFICATE = "@FINGERPRINT@";
     private static boolean DEOBFUSCATED;
 
     @SidedProxy(clientSide = MorePlanetsCore.CLIENT_CLASS, serverSide = MorePlanetsCore.SERVER_CLASS)
@@ -144,6 +145,19 @@ public class MorePlanetsCore
         for (MissingMapping mapping : event.getAll())
         {
             BlockItemRemapper.remapBlock(mapping, "cheese_double_tall_grass", ChalosBlocks.CHALOS_DOUBLE_PLANT);
+        }
+    }
+
+    @EventHandler
+    public void onFingerprintViolation(FMLFingerprintViolationEvent event)
+    {
+        if (MorePlanetsCore.isObfuscatedEnvironment())
+        {
+            MPLog.info("Development environment detected! Ignore certificate check.");
+        }
+        else
+        {
+            throw new RuntimeException("Invalid fingerprint detected! This version will NOT be supported by the author!");
         }
     }
 

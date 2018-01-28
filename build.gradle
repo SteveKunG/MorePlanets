@@ -15,6 +15,7 @@ plugins {
 }
 
 def api = new groovy.json.JsonSlurper().parseText(file("${api_token_path}").text)
+def keystore = new groovy.json.JsonSlurper().parseText(file("${keystore_path}").text)
 def mcVersion = project.mc_version
 
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -38,6 +39,10 @@ minecraft {
     runDir = "run"
     mappings = "snapshot_20161111"
     makeObfSourceJar = false
+
+    replace '@FINGERPRINT@', keystore.sha1
+    replace '4.0.1.-1', project.gc_require_version
+    replaceIn "MorePlanetsCore.java"
 }
 
 repositories {
@@ -94,11 +99,22 @@ lombok {
     sha256 = "e0a471be03e1e6b02bf019480cec7a3ac9801702bf7bf62f15d077ad4df8dd5d"
 }
 
+ext.finalJar = "build/libs/" + "More-Planets-" + mcVersion + "-" + version + ".jar"
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
 ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'license.txt', 'META-INF/moreplanets_at.cfg']
 
-// build normal jar
-task buildJar(type: Jar, dependsOn: "rePackAllJar") {
+// signing jar first
+task buildJar(type: SignJar, dependsOn: "processJar") {
+    keyStore = keystore.keystore_path
+    alias = keystore.alias
+    storePass = keystore.keystore_pass
+    keyPass = keystore.keystore_pass
+    inputFile = project.ext.finalJar
+    outputFile = project.ext.finalJar
+}
+
+// processing jar
+task processJar(type: Jar, dependsOn: "rePackAllJar") {
     outputs.upToDateWhen { false }
     baseName = "More-Planets-" + mcVersion
 
@@ -120,35 +136,17 @@ task copyModFiles(type: Copy, dependsOn: "reobfJar") {
     into 'temporary'
 }
 
-// build deobf jar
-task buildDeobfJar(type: Jar, dependsOn: "rePackAllDeobfJar") {
-    outputs.upToDateWhen { false }
-    baseName = "More-Planets-" + mcVersion
+task buildDeobfJar(type: Jar) {
+    from sourceSets.main.output
     classifier = 'deobf'
-
-    from(zipTree(project.ext.coreJar)) {
-        includes.addAll(project.ext.coreFiles)
-    }
     manifest {
         attributes.put("FMLAT", "moreplanets_at.cfg")
         attributes.put("FMLCorePluginContainsFMLMod", "true")
     }
 }
 
-task rePackAllDeobfJar(type: Jar, dependsOn: "copyDeobfModFiles") {
-    from 'temporary_deobf'
-}
-
-task copyDeobfModFiles(type: Copy, dependsOn: "reobfJar") {
-    from sourceSets.main.output
-    into 'temporary_deobf'
-}
-
-// delete temp folders
 task deleteTemporary(type: Delete) {
     delete 'temporary'
-    delete 'temporary_deobf'
 }
 
 buildJar.finalizedBy(deleteTemporary)
-buildDeobfJar.finalizedBy(deleteTemporary)
