@@ -2,7 +2,14 @@ package stevekung.mods.moreplanets.tileentity;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
+import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
+import micdoodle8.mods.galacticraft.core.tile.FluidTankGC;
+import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
+import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -17,18 +24,27 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
+import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
 
-public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IInventoryDefaults, ISidedInventory
+public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IInventoryDefaults, ISidedInventory, IFluidHandlerWrapper, IConnector
 {
     private static final int[] SLOTS = new int[108];
     public NonNullList<ItemStack> inventory = NonNullList.withSize(108, ItemStack.EMPTY);
+    public FluidTankGC fluidTank = new FluidTankGC(1000000, this);
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean disableBlackHole = false;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -73,10 +89,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
                 bh.setDisable(this.disableBlackHole);
                 bh.setCollectMode(this.collectMode);
             }
-            if (this.xp >= this.getMaxXP())
-            {
-                this.xp = this.getMaxXP();
-            }
+            this.xp = this.fluidTank.getFluidAmount();
         }
     }
 
@@ -86,6 +99,11 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         super.readFromNBT(nbt);
         this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, this.inventory);
+
+        if (nbt.hasKey("XpFluid"))
+        {
+            this.fluidTank.readFromNBT(nbt.getCompoundTag("XpFluid"));
+        }
         this.disableBlackHole = nbt.getBoolean("DisableBlackHole");
         this.useHopper = nbt.getBoolean("UseHopper");
         this.collectMode = nbt.getString("CollectMode");
@@ -106,6 +124,10 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         if (this.collectMode != null)
         {
             nbt.setString("CollectMode", this.collectMode);
+        }
+        if (this.fluidTank.getFluid() != null)
+        {
+            nbt.setTag("XpFluid", this.fluidTank.writeToNBT(new NBTTagCompound()));
         }
         nbt.setBoolean("DisableBlackHole", this.disableBlackHole);
         nbt.setBoolean("UseHopper", this.useHopper);
@@ -239,9 +261,228 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         return this.inventory;
     }
 
+    @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
+    {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+    {
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+        {
+            return (T) new FluidHandlerWrapper(this, facing);
+        }
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public int fill(EnumFacing from, FluidStack resource, boolean doFill)
+    {
+        if (from == EnumFacing.UP)
+        {
+            return 0;
+        }
+        else
+        {
+            return this.fluidTank.fill(resource.copy(), doFill);
+        }
+    }
+
+    @Override
+    public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
+    {
+        if (resource == null)
+        {
+            return null;
+        }
+        if (from == EnumFacing.UP)
+        {
+            return null;
+        }
+        else
+        {
+            return this.drain(from, resource.amount, doDrain);
+        }
+    }
+
+    @Override
+    public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain)
+    {
+        if (from == EnumFacing.UP)
+        {
+            return null;
+        }
+        else
+        {
+            return this.fluidTank.drain(maxDrain, doDrain);
+        }
+    }
+
+    @Override
+    public boolean canFill(EnumFacing from, Fluid fluid)
+    {
+        if (from == EnumFacing.UP)
+        {
+            return false;
+        }
+        else
+        {
+            return fluid != null && fluid.getName().equals("xpjuice");
+        }
+    }
+
+    @Override
+    public boolean canDrain(EnumFacing from, Fluid fluid)
+    {
+        if (from == EnumFacing.UP)
+        {
+            return false;
+        }
+        else
+        {
+            return fluid == null || this.fluidTank.getFluid() != null && this.fluidTank.getFluid().getFluid() == fluid;
+        }
+    }
+
+    @Override
+    public FluidTankInfo[] getTankInfo(EnumFacing from)
+    {
+        if (from == EnumFacing.UP)
+        {
+            return new FluidTankInfo[0];
+        }
+        else
+        {
+            FluidTank compositeTank = new FluidTank(this.fluidTank.getCapacity());
+            int capacity = this.fluidTank.getCapacity();
+            compositeTank.setCapacity(capacity);
+            return new FluidTankInfo[] { compositeTank.getInfo() };
+        }
+    }
+
+    @Override
+    public boolean canConnect(EnumFacing facing, NetworkType type)
+    {
+        return facing != EnumFacing.UP;
+    }
+
     public int getMaxXP()
     {
         return 1000000;
+    }
+
+    public boolean drainExp(EntityPlayer player)
+    {
+        FluidStack fluid = this.fluidTank.getFluid();
+        boolean isXP = false;
+
+        if (!CompatibilityManagerMP.isOpenBlocksLoaded() && !CompatibilityManagerMP.isEnderIOLoaded())
+        {
+            isXP = fluid.isFluidEqual(new FluidStack(MPBlocks.FLUID_XP, 0));
+        }
+        else
+        {
+            isXP = fluid.getFluid().getName().equals("xpjuice");
+        }
+
+        if (fluid != null && isXP)
+        {
+            int requiredXp = MathHelper.ceil(player.xpBarCap() * (1 - player.experience));
+            int requiredXPJuice = this.xpToLiquidRatio(requiredXp);
+            FluidStack drained = this.fluidTank.drain(requiredXPJuice, false);
+
+            if (drained != null)
+            {
+                int xp = this.liquidToXpRatio(drained.amount);
+
+                if (xp > 0)
+                {
+                    int actualDrain = this.xpToLiquidRatio(xp);
+                    this.addPlayerXP(player, xp);
+                    this.fluidTank.drain(actualDrain, true);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private int liquidToXpRatio(int liquid)
+    {
+        return liquid / 20;
+    }
+
+    private int xpToLiquidRatio(int xp)
+    {
+        return xp * 20;
+    }
+
+    private void addPlayerXP(EntityPlayer player, int amount)
+    {
+        int experience = this.getPlayerXP(player) + amount;
+        player.experienceTotal = experience;
+        player.experienceLevel = this.getLevelForExperience(experience);
+        int expForLevel = this.getExperienceForLevel(player.experienceLevel);
+        player.experience = (float)(experience - expForLevel) / (float)player.xpBarCap();
+    }
+
+    private int getPlayerXP(EntityPlayer player)
+    {
+        return (int)(this.getExperienceForLevel(player.experienceLevel) + player.experience * player.xpBarCap());
+    }
+
+    private int getExperienceForLevel(int level)
+    {
+        if (level == 0)
+        {
+            return 0;
+        }
+        if (level <= 15)
+        {
+            return this.sum(level, 7, 2);
+        }
+        if (level <= 30)
+        {
+            return 315 + this.sum(level - 15, 37, 5);
+        }
+        return 1395 + this.sum(level - 30, 112, 9);
+    }
+
+    private int getLevelForExperience(int targetXp)
+    {
+        int level = 0;
+
+        while (true)
+        {
+            final int xpToNextLevel = this.xpBarCap(level);
+
+            if (targetXp < xpToNextLevel)
+            {
+                return level;
+            }
+            level++;
+            targetXp -= xpToNextLevel;
+        }
+    }
+
+    private int xpBarCap(int level)
+    {
+        if (level >= 30)
+        {
+            return 112 + (level - 30) * 9;
+        }
+        if (level >= 15)
+        {
+            return 37 + (level - 15) * 5;
+        }
+        return 7 + level * 2;
+    }
+
+    private int sum(int n, int a0, int d)
+    {
+        return n * (2 * a0 + (n - 1) * d) / 2;
     }
 
     private boolean updateStorage()
@@ -303,7 +544,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         }
         else
         {
-            this.xp += xpOrb.xpValue;
+            this.fluidTank.fill(new FluidStack(MPBlocks.FLUID_XP, xpOrb.xpValue), true);
             xpOrb.setDead();
             return true;
         }

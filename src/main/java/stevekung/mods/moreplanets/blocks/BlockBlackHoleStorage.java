@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.blocks;
 
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -19,6 +20,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
@@ -115,30 +118,43 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
         else
         {
             TileEntity tile = world.getTileEntity(pos);
+            int slot = player.inventory.currentItem;
 
             if (tile instanceof TileEntityBlackHoleStorage)
             {
                 TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
+                FluidActionResult result = FluidUtil.interactWithFluidHandler(player.inventory.getCurrentItem(), storage.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null), player);
 
-                if (player.getGameProfile().getId().toString().equals(storage.ownerUUID))
+                if (result.isSuccess())
                 {
-                    if (player.isSneaking() && storage.xp > 0)
+                    player.inventory.setInventorySlotContents(slot, result.result);
+
+                    if (player.inventoryContainer != null)
                     {
-                        Random rand = world.rand;
-                        int drainExp = rand.nextInt(25) == 0 ? 24 + rand.nextInt(16) : rand.nextInt(10) == 0 ? 20 + rand.nextInt(5) : rand.nextInt(5) == 0 ? 10 + rand.nextInt(5) : 3 + rand.nextInt(5);
-                        storage.xp -= storage.xp < drainExp ? storage.xp : drainExp;
-                        player.addExperience(drainExp);
-                        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.1F, 0.5F * ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.8F));
+                        player.inventoryContainer.detectAndSendChanges();
                     }
-                    else
-                    {
-                        player.openGui(MorePlanetsCore.MOD_ID, -1, world, pos.getX(), pos.getY(), pos.getZ());
-                    }
+                    return true;
                 }
                 else
                 {
-                    JsonUtil json = new JsonUtil();
-                    player.sendMessage(json.text(GCCoreUtil.translate("gui.bh_storage_not_owner.message")).setStyle(json.red()));
+                    if (player.getGameProfile().getId().toString().equals(storage.ownerUUID))
+                    {
+                        if (player.isSneaking() && storage.fluidTank.getFluidAmount() > 0)
+                        {
+                            Random rand = world.rand;
+                            storage.drainExp(player);
+                            world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.1F, 0.5F * ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.8F));
+                        }
+                        else
+                        {
+                            player.openGui(MorePlanetsCore.MOD_ID, -1, world, pos.getX(), pos.getY(), pos.getZ());
+                        }
+                    }
+                    else
+                    {
+                        JsonUtil json = new JsonUtil();
+                        player.sendMessage(json.text(GCCoreUtil.translate("gui.bh_storage_not_owner.message")).setStyle(json.red()));
+                    }
                 }
             }
             return true;

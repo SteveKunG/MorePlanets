@@ -353,6 +353,9 @@ tile.jelly_block.orange.name=Orange Jelly
 tile.jelly_block.lemon.name=Lemon Jelly
 
 # ITEMS
+fluid.xpjuice=XP
+
+# ITEMS
 item.space_warper_core.name=Space Warper Core
 item.capsule.name=Capsule
 item.space_bow.name=Space Bow

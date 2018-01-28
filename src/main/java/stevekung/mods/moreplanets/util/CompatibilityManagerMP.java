@@ -6,8 +6,10 @@ import net.minecraftforge.fml.common.Loader;
 
 public class CompatibilityManagerMP
 {
-    private static boolean isCTMLoaded = Loader.isModLoaded("ctm");
-    private static boolean isBigReactorLoaded = Loader.isModLoaded("bigreactors");
+    private static final boolean isCTMLoaded = Loader.isModLoaded("ctm");
+    private static final boolean isBigReactorLoaded = Loader.isModLoaded("bigreactors");
+    private static final boolean isOpenBlocksLoaded = Loader.isModLoaded("OpenBlocks");
+    private static final boolean isEnderIOLoaded = Loader.isModLoaded("EnderIO");
 
     // Extreme Reactors
     private static Method erRegisterFluid;
@@ -39,6 +41,16 @@ public class CompatibilityManagerMP
     public static boolean isBigReactorLoaded()
     {
         return CompatibilityManagerMP.isBigReactorLoaded;
+    }
+
+    public static boolean isOpenBlocksLoaded()
+    {
+        return CompatibilityManagerMP.isOpenBlocksLoaded;
+    }
+
+    public static boolean isEnderIOLoaded()
+    {
+        return CompatibilityManagerMP.isEnderIOLoaded;
     }
 
     public static void registerExtremeReactorFluid(String name, float absorption, float heatEfficiency, float moderation, float heatConductivity)
