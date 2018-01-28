@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.blocks.*;
 import stevekung.mods.moreplanets.blocks.decoration.*;
@@ -13,9 +15,11 @@ import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.BlockSlabMP;
+import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockColoredMP;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
@@ -53,6 +57,8 @@ public class MPBlocks
     public static Block COBBLESTONE_WALL;
     public static Block DUNGEON_BRICK_WALL;
 
+    public static Fluid FLUID_XP;
+
     public static void init()
     {
         /**************************************************************/
@@ -82,6 +88,12 @@ public class MPBlocks
         MPBlocks.BLACK_HOLE_STORAGE = new BlockBlackHoleStorage("black_hole_storage");
         MPBlocks.ALIEN_DEFENDER_BEACON = new BlockAlienDefenderBeacon("alien_defender_beacon");
         MPBlocks.SHIELD_GENERATOR = new BlockShieldGenerator("shield_generator");
+
+        if (!CompatibilityManagerMP.isOpenBlocksLoaded() && !CompatibilityManagerMP.isEnderIOLoaded())
+        {
+            MPBlocks.FLUID_XP = new FluidMP("xpjuice").setLuminosity(10).setDensity(800).setViscosity(1500);
+            FluidRegistry.addBucketForFluid(MPBlocks.FLUID_XP);
+        }
 
         /**************************************************************/
         /************************REGISTER STUFF************************/

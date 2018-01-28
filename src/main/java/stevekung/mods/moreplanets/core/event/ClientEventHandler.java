@@ -184,6 +184,8 @@ public class ClientEventHandler
     {
         ClientRegisterHelper.registerSpriteTexture(event, "blocks/infected_crystallize");
         ClientRegisterHelper.registerSpriteTexture(event, "blocks/shield");
+        ClientRegisterHelper.registerSpriteTexture(event, "blocks/xpjuice_still");
+        ClientRegisterHelper.registerSpriteTexture(event, "blocks/xpjuice_flowing");
         ClientRegisterHelper.registerSpriteTexture(event, "entity/space_capsule");
         ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_4_rocket");
         ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_5_rocket");
