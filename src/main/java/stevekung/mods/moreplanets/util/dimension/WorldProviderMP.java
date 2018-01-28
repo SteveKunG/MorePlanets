@@ -152,6 +152,12 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
         return null;
     }
 
+    @Override
+    public boolean hasSkyLight()
+    {
+        return true;
+    }
+
     protected abstract void renderSky();
     protected abstract void renderCloud();
     protected abstract void renderWeather();

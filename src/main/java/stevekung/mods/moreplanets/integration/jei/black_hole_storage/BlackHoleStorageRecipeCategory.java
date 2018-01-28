@@ -30,7 +30,7 @@ public class BlackHoleStorageRecipeCategory implements IRecipeCategory
     @Override
     public IDrawable getBackground()
     {
-        return JEIRegistryHelper.guiHelper.createBlankDrawable(200, 40);
+        return JEIRegistryHelper.guiHelper.createBlankDrawable(200, 150);
     }
 
     @Override

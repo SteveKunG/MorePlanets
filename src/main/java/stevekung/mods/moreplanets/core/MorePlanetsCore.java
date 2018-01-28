@@ -14,10 +14,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
 import stevekung.mods.moreplanets.client.command.CommandChangeLog;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
@@ -29,11 +26,12 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
 import stevekung.mods.moreplanets.util.CreativeTabsMP;
+import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.SmeltWithDataFunction;
 import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
-@Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = MorePlanetsCore.DEPENDENCIES, guiFactory = MorePlanetsCore.GUI_FACTORY)
+@Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = MorePlanetsCore.DEPENDENCIES, guiFactory = MorePlanetsCore.GUI_FACTORY, certificateFingerprint = MorePlanetsCore.CERTIFICATE)
 public class MorePlanetsCore
 {
     public static final String NAME = "More Planets";
@@ -45,9 +43,10 @@ public class MorePlanetsCore
     public static final String GUI_FACTORY = "stevekung.mods.moreplanets.core.config.ConfigGuiFactoryMP";
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
-    public static final String FORGE_VERSION = "after:forge@[13.20.1.2388,);";
-    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.121,); required-after:galacticraftplanets@[4.0.1.121,); required-after:micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
+    public static final String FORGE_VERSION = "after:forge@[14.23.1.2555,);";
+    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:Micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
     public static final String MC_VERSION = String.valueOf(FMLInjectionData.data()[4]);
+    public static final String CERTIFICATE = "@FINGERPRINT@";
     private static boolean DEOBFUSCATED;
 
     @SidedProxy(clientSide = MorePlanetsCore.CLIENT_CLASS, serverSide = MorePlanetsCore.SERVER_CLASS)
@@ -132,6 +131,19 @@ public class MorePlanetsCore
     public void serverAboutToStart(FMLServerAboutToStartEvent event)
     {
         WorldTickEventHandler.startedDimensionData = null;
+    }
+
+    @EventHandler
+    public void onFingerprintViolation(FMLFingerprintViolationEvent event)
+    {
+        if (MorePlanetsCore.isObfuscatedEnvironment())
+        {
+            MPLog.info("Development environment detected! Ignore certificate check.");
+        }
+        else
+        {
+            throw new RuntimeException("Invalid fingerprint detected! This version will NOT be supported by the author!");
+        }
     }
 
     public static boolean isObfuscatedEnvironment()
