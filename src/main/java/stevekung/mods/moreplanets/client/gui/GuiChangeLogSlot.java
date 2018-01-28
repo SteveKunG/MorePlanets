@@ -58,10 +58,10 @@ public class GuiChangeLogSlot extends GuiSlot
     protected void drawBackground() {}
 
     @Override
-    protected void drawSlot(int slotIndex, int xPos, int yPos, int heightIn, int mouseXIn, int mouseYIn, float partialTicks)
+    protected void drawSlot(int entryID, int insideLeft, int yPos, int insideSlotHeight, int mouseX, int mouseY, float partialTicks)
     {
-        String test = this.stringList.get(slotIndex);
-        this.mc.fontRenderer.drawStringWithShadow(test, heightIn - 20, yPos + 2, 16777215);
+        String test = this.stringList.get(entryID);
+        this.mc.fontRenderer.drawStringWithShadow(test, insideLeft - 20, yPos + 2, 16777215);
     }
 
     @Override
