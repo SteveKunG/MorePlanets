@@ -673,6 +673,7 @@ gui.alien_defender_beacon.message=Alien Defender Reinforcement beacon is created
 gui.alien_defender_arrived.message=Alien Defender Reinforcement have arrived!
 gui.target_too_far.message=Target is too far away by %s blocks!
 gui.not_air_block.message=Target is not an air block!
+gui.black_hole_disappear.message=Your Black Hole Storage has been destroyed by something!
 
 # GUI DESCRIPTION
 gui.multiblock_guide.desc=Multiblock Structure Guide
