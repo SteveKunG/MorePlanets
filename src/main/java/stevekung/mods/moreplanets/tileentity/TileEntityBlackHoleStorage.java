@@ -38,6 +38,7 @@ import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 
 public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements IInventoryDefaults, ISidedInventory, IFluidHandler, IFluidHandlerWrapper, IConnector
 {
+    @NetworkedField(targetSide = Side.CLIENT)
     public FluidTankGC fluidTank = new FluidTankGC(1000000, this);
     public ItemStack[] inventory = new ItemStack[108];
     @NetworkedField(targetSide = Side.CLIENT)
@@ -48,6 +49,8 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
     public String ownerUUID = "";
     @NetworkedField(targetSide = Side.CLIENT)
     public int xp = 0;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int xpTemp = 0;
     @NetworkedField(targetSide = Side.CLIENT)
     public String collectMode = "item";
     public int renderTicks;
@@ -79,7 +82,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
                 bh.setDisable(this.disableBlackHole);
                 bh.setCollectMode(this.collectMode);
             }
-            this.xp = this.fluidTank.getFluidAmount();
+            this.xpTemp = this.fluidTank.getFluidAmount();
         }
     }
 
@@ -104,6 +107,14 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         {
             this.fluidTank.readFromNBT(nbt.getCompoundTag("XpFluid"));
         }
+        else
+        {
+            NBTTagCompound fluidNbt = new NBTTagCompound();
+            fluidNbt.setString("FluidName", "xpjuice");
+            fluidNbt.setInteger("Amount", nbt.getInteger("XP"));
+            this.fluidTank.readFromNBT(fluidNbt);
+        }
+
         this.disableBlackHole = nbt.getBoolean("DisableBlackHole");
         this.useHopper = nbt.getBoolean("UseHopper");
         this.collectMode = nbt.getString("CollectMode");
@@ -552,7 +563,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
                 return false;
             }
         }
-        if (this.xp >= this.getMaxXP())
+        if (this.fluidTank.getFluidAmount() >= this.getMaxXP())
         {
             return false;
         }
@@ -561,14 +572,17 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
 
     private boolean putXPValue(EntityXPOrb xpOrb)
     {
-        if (xpOrb == null || this.xp >= this.getMaxXP())
+        if (xpOrb == null || this.fluidTank.getFluidAmount() >= this.getMaxXP())
         {
             return false;
         }
         else
         {
-            this.fluidTank.fill(new FluidStack(MPBlocks.FLUID_XP, xpOrb.xpValue), true);
-            xpOrb.setDead();
+            if (this.fluidTank.getFluidAmount() < this.fluidTank.getCapacity() - xpOrb.xpValue)
+            {
+                this.fluidTank.fill(new FluidStack(MPBlocks.FLUID_XP, xpOrb.xpValue), true);
+                xpOrb.setDead();
+            }
             return true;
         }
     }

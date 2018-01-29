@@ -102,8 +102,20 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         storage.inventory = new ItemStack[storage.getSizeInventory()];
                         storage.disableBlackHole = itemStack.getTagCompound().getBoolean("Disable");
                         storage.useHopper = itemStack.getTagCompound().getBoolean("Hopper");
-                        storage.xp = itemStack.getTagCompound().getInteger("XP");
                         storage.collectMode = itemStack.getTagCompound().getString("Mode");
+
+                        //TODO: Remove in 1.13
+                        if (itemStack.getTagCompound().hasKey("XP"))
+                        {
+                            NBTTagCompound fluidNbt = new NBTTagCompound();
+                            fluidNbt.setString("FluidName", "xpjuice");
+                            fluidNbt.setInteger("Amount", itemStack.getTagCompound().getInteger("XP"));
+                            storage.fluidTank.readFromNBT(fluidNbt);
+                        }
+                        else
+                        {
+                            storage.fluidTank.readFromNBT(itemStack.getTagCompound().getCompoundTag("XpFluid"));
+                        }
 
                         for (int i = 0; i < list.tagCount(); ++i)
                         {
@@ -139,6 +151,12 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
 
                 if (heldItem != null && FluidUtil.interactWithFluidHandler(heldItem, storage.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null), player))
                 {
+                    player.inventory.setInventorySlotContents(slot, heldItem);
+
+                    if (player.inventoryContainer != null)
+                    {
+                        player.inventoryContainer.detectAndSendChanges();
+                    }
                     return true;
                 }
                 else
@@ -201,7 +219,15 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
             nbt.setBoolean("Disable", storage.disableBlackHole);
             nbt.setBoolean("Hopper", storage.useHopper);
             nbt.setString("Mode", storage.collectMode);
-            nbt.setInteger("XP", storage.xp);
+
+            if (storage.fluidTank.getFluid() != null)
+            {
+                NBTTagCompound fluidNbt = new NBTTagCompound();
+                fluidNbt.setString("FluidName", "xpjuice");
+                fluidNbt.setInteger("Amount", storage.fluidTank.getFluidAmount());
+                nbt.setTag("XpFluid", fluidNbt);
+            }
+
             itemStack.setTagCompound(nbt);
             Block.spawnAsEntity(world, pos, itemStack);
         }

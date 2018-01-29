@@ -16,6 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -224,9 +225,10 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             {
                 owner = "";
             }
+            int xp = nbt.hasKey("XpFluid", Constants.NBT.TAG_COMPOUND) ? nbt.getCompoundTag("XpFluid").getInteger("Amount") : 0;
             tooltip.add(GCCoreUtil.translate("gui.status.owner.name") + ": " + owner);
             tooltip.add(GCCoreUtil.translate("gui.status.mode.name") + ": " + collectMode);
-            tooltip.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + nbt.getInteger("XP") + "/" + 1000000);
+            tooltip.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + xp + "/" + 1000000);
         }
         if (tile instanceof TileEntityShieldGenerator)
         {
