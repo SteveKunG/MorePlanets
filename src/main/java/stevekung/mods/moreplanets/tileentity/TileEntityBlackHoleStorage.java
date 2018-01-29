@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.tileentity;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -8,12 +9,16 @@ import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.FluidTankGC;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -38,12 +43,14 @@ import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
 
 public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IInventoryDefaults, ISidedInventory, IFluidHandlerWrapper, IConnector
 {
     private static final int[] SLOTS = new int[108];
     public NonNullList<ItemStack> inventory = NonNullList.withSize(108, ItemStack.EMPTY);
+    @NetworkedField(targetSide = Side.CLIENT)
     public FluidTankGC fluidTank = new FluidTankGC(1000000, this);
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean disableBlackHole = false;
@@ -53,6 +60,8 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     public String ownerUUID = "";
     @NetworkedField(targetSide = Side.CLIENT)
     public int xp = 0;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int xpTemp = 0;
     @NetworkedField(targetSide = Side.CLIENT)
     public String collectMode = "item";
     public int renderTicks;
@@ -89,7 +98,18 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
                 bh.setDisable(this.disableBlackHole);
                 bh.setCollectMode(this.collectMode);
             }
-            this.xp = this.fluidTank.getFluidAmount();
+            if (blackHoleList.isEmpty())
+            {
+                JsonUtil json = new JsonUtil();
+                EntityPlayer player = this.world.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID));
+                this.destroyBlock();
+
+                if (player != null)
+                {
+                    player.sendMessage(json.text(GCCoreUtil.translate("gui.black_hole_disappear.message")).setStyle(json.red()));
+                }
+            }
+            this.xpTemp = this.fluidTank.getFluidAmount();
         }
     }
 
@@ -104,6 +124,14 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         {
             this.fluidTank.readFromNBT(nbt.getCompoundTag("XpFluid"));
         }
+        else
+        {
+            NBTTagCompound fluidNbt = new NBTTagCompound();
+            fluidNbt.setString("FluidName", "xpjuice");
+            fluidNbt.setInteger("Amount", nbt.getInteger("XP"));
+            this.fluidTank.readFromNBT(fluidNbt);
+        }
+
         this.disableBlackHole = nbt.getBoolean("DisableBlackHole");
         this.useHopper = nbt.getBoolean("UseHopper");
         this.collectMode = nbt.getString("CollectMode");
@@ -529,7 +557,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
                 return false;
             }
         }
-        if (this.xp >= this.getMaxXP())
+        if (this.fluidTank.getFluidAmount() >= this.getMaxXP())
         {
             return false;
         }
@@ -538,14 +566,17 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
 
     private boolean putXPValue(EntityXPOrb xpOrb)
     {
-        if (xpOrb == null || this.xp >= this.getMaxXP())
+        if (xpOrb == null || this.fluidTank.getFluidAmount() >= this.getMaxXP())
         {
             return false;
         }
         else
         {
-            this.fluidTank.fill(new FluidStack(MPBlocks.FLUID_XP, xpOrb.xpValue), true);
-            xpOrb.setDead();
+            if (this.fluidTank.getFluidAmount() < this.fluidTank.getCapacity() - xpOrb.xpValue)
+            {
+                this.fluidTank.fill(new FluidStack(MPBlocks.FLUID_XP, xpOrb.xpValue), true);
+                xpOrb.setDead();
+            }
             return true;
         }
     }
@@ -643,5 +674,37 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     private boolean canCombine(ItemStack itemStack1, ItemStack itemStack2)
     {
         return itemStack1.getItem() != itemStack2.getItem() ? false : itemStack1.getMetadata() != itemStack2.getMetadata() ? false : itemStack1.getCount() > itemStack1.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(itemStack1, itemStack2);
+    }
+
+    private boolean destroyBlock()
+    {
+        IBlockState iblockstate = this.world.getBlockState(pos);
+        Block block = iblockstate.getBlock();
+
+        if (block.isAir(iblockstate, this.world, pos))
+        {
+            return false;
+        }
+        else
+        {
+            this.world.playEvent(2001, pos, Block.getStateId(iblockstate));
+            ItemStack itemStack = new ItemStack(MPBlocks.BLACK_HOLE_STORAGE);
+            NBTTagCompound nbt = new NBTTagCompound();
+            ItemStackHelper.saveAllItems(nbt, this.inventory);
+            nbt.setBoolean("Disable", this.disableBlackHole);
+            nbt.setBoolean("Hopper", this.useHopper);
+            nbt.setString("Mode", this.collectMode);
+
+            if (this.fluidTank.getFluid() != null)
+            {
+                NBTTagCompound fluidNbt = new NBTTagCompound();
+                fluidNbt.setString("FluidName", "xpjuice");
+                fluidNbt.setInteger("Amount", this.fluidTank.getFluidAmount());
+                nbt.setTag("XpFluid", fluidNbt);
+            }
+            itemStack.setTagCompound(nbt);
+            Block.spawnAsEntity(world, pos, itemStack);
+            return this.world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+        }
     }
 }
