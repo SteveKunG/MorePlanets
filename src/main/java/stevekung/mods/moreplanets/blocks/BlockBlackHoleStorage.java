@@ -99,9 +99,21 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         storage.inventory = NonNullList.withSize(storage.getSizeInventory(), ItemStack.EMPTY);
                         storage.disableBlackHole = itemStack.getTagCompound().getBoolean("Disable");
                         storage.useHopper = itemStack.getTagCompound().getBoolean("Hopper");
-                        storage.xp = itemStack.getTagCompound().getInteger("XP");
                         storage.collectMode = itemStack.getTagCompound().getString("Mode");
                         ItemStackHelper.loadAllItems(itemStack.getTagCompound(), storage.inventory);
+
+                        //TODO: Remove in 1.13
+                        if (itemStack.getTagCompound().hasKey("XP"))
+                        {
+                            NBTTagCompound fluidNbt = new NBTTagCompound();
+                            fluidNbt.setString("FluidName", "xpjuice");
+                            fluidNbt.setInteger("Amount", itemStack.getTagCompound().getInteger("XP"));
+                            storage.fluidTank.readFromNBT(fluidNbt);
+                        }
+                        else
+                        {
+                            storage.fluidTank.readFromNBT(itemStack.getTagCompound().getCompoundTag("XpFluid"));
+                        }
                     }
                 }
             }
@@ -183,7 +195,15 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
             nbt.setBoolean("Disable", storage.disableBlackHole);
             nbt.setBoolean("Hopper", storage.useHopper);
             nbt.setString("Mode", storage.collectMode);
-            nbt.setInteger("XP", storage.xp);
+
+            if (storage.fluidTank.getFluid() != null)
+            {
+                NBTTagCompound fluidNbt = new NBTTagCompound();
+                fluidNbt.setString("FluidName", "xpjuice");
+                fluidNbt.setInteger("Amount", storage.fluidTank.getFluidAmount());
+                nbt.setTag("XpFluid", fluidNbt);
+            }
+
             itemStack.setTagCompound(nbt);
             Block.spawnAsEntity(world, pos, itemStack);
         }

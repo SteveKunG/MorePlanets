@@ -21,6 +21,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -126,32 +127,40 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                     if (itemStack.hasTagCompound())
                     {
                         NBTTagCompound nbt = itemStack.getTagCompound();
+                        String mode = nbt.getString("Mode").equals("item") ? "Item" : nbt.getString("Mode").equals("item_and_xp") ? "Item/EXP" : "EXP";
+                        TextFormatting disable = nbt.getBoolean("Disable") ? TextFormatting.GREEN : TextFormatting.RED;
+                        TextFormatting hopper = nbt.getBoolean("Hopper") ? TextFormatting.GREEN : TextFormatting.RED;
+                        list.add(GCCoreUtil.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
+                        list.add(GCCoreUtil.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
+                        list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + TextFormatting.AQUA + mode);
 
-                        if (nbt.hasKey("Disable") && nbt.hasKey("Mode") && nbt.hasKey("XP") && nbt.hasKey("Hopper") && nbt.hasKey("Items"))
+                        //TODO: Remove in 1.13
+                        if (nbt.hasKey("XP"))
                         {
-                            String mode = nbt.getString("Mode").equals("item") ? "Item" : nbt.getString("Mode").equals("item_and_xp") ? "Item/EXP" : "EXP";
-                            TextFormatting disable = nbt.getBoolean("Disable") ? TextFormatting.GREEN : TextFormatting.RED;
-                            TextFormatting hopper = nbt.getBoolean("Hopper") ? TextFormatting.GREEN : TextFormatting.RED;
-                            list.add(GCCoreUtil.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
-                            list.add(GCCoreUtil.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
-                            list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + TextFormatting.AQUA + mode);
                             list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getInteger("XP") + "/" + storage.getMaxXP());
-
-                            NBTTagList nbtlist = nbt.getTagList("Items", 10);
-                            int slot = 0;
-
-                            for (int i = 0; i < nbtlist.tagCount(); ++i)
-                            {
-                                nbt = nbtlist.getCompoundTagAt(i);
-                                slot = nbt.getByte("Slot");
-
-                                if (slot >= 0 && slot < 108)
-                                {
-                                    slot = slot + 1;
-                                }
-                            }
-                            list.add(GCCoreUtil.translate("desc.bhs_slot_used.name") + ": " + TextFormatting.GOLD + slot + "/" + storage.getSizeInventory());
                         }
+                        else
+                        {
+                            if (nbt.hasKey("XpFluid", Constants.NBT.TAG_COMPOUND))
+                            {
+                                list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getCompoundTag("XpFluid").getInteger("Amount") + "/" + storage.getMaxXP());
+                            }
+                        }
+
+                        NBTTagList nbtlist = nbt.getTagList("Items", 10);
+                        int slot = 0;
+
+                        for (int i = 0; i < nbtlist.tagCount(); ++i)
+                        {
+                            nbt = nbtlist.getCompoundTagAt(i);
+                            slot = nbt.getByte("Slot");
+
+                            if (slot >= 0 && slot < 108)
+                            {
+                                slot = slot + 1;
+                            }
+                        }
+                        list.add(GCCoreUtil.translate("desc.bhs_slot_used.name") + ": " + TextFormatting.GOLD + slot + "/" + storage.getSizeInventory());
                     }
                     list.add(GCCoreUtil.translate("desc.shift_info.name"));
 

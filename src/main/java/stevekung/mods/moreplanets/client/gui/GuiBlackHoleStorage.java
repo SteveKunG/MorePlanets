@@ -83,7 +83,7 @@ public class GuiBlackHoleStorage extends GuiContainerMP implements ICheckBoxCall
         String collectMode = this.tile.collectMode.equals("item") ? TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_item.name") : this.tile.collectMode.equals("item_and_xp") ? TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_item_and_xp.name") : TextFormatting.AQUA + GCCoreUtil.translate("gui.status.collect_xp.name");
         this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.collect_mode.name") + ": " + collectMode, this.xSize - 91 + 8, this.ySize - 86 + 64, 2536735);
 
-        List<String> renderDesc = new ArrayList<>(Arrays.asList(GCCoreUtil.translate("gui.xp_value.desc") + ": " + this.tile.xp + "/" + this.tile.getMaxXP()));
+        List<String> renderDesc = new ArrayList<>(Arrays.asList(GCCoreUtil.translate("gui.xp_value.desc") + ": " + this.tile.xpTemp + "/" + this.tile.getMaxXP()));
         this.xpValueInfo.tooltipStrings = renderDesc;
     }
 
@@ -96,7 +96,7 @@ public class GuiBlackHoleStorage extends GuiContainerMP implements ICheckBoxCall
         int j = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
         this.mc.getTextureManager().bindTexture(this.textureXP);
-        int level = Math.min((int) Math.floor(this.tile.xp * 37 / this.tile.getMaxXP()), 37);
+        int level = Math.min((int) Math.floor(this.tile.fluidTank.getFluidAmount() * 37 / this.tile.getMaxXP()), 37);
         this.drawTexturedModalRect(i + 238, j + 170 + 37 - level, 238, 170 - level + 37, 5, level);
         this.disableBlackHoleCheckbox.isSelected = this.tile.disableBlackHole;
         this.useHopperCheckbox.isSelected = this.tile.useHopper;
