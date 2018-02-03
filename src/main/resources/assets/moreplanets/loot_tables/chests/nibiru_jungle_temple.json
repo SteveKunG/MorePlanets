@@ -41,8 +41,14 @@
                 },
                 {
                     "type": "item",
-                    "name": "moreplanets:nuclear_waste_bucket",
-                    "weight": 3
+                    "name": "forge:bucketfilled",
+                    "weight": 3,
+                    "functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{Amount:1000,FluidName:\"nuclear_waste_fluid\"}"
+                        }
+                    ]
                 },
                 {
                     "type": "item",
