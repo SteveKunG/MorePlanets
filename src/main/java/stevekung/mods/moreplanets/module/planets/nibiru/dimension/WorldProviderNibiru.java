@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.GCItems;
@@ -22,6 +23,7 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
@@ -288,6 +290,13 @@ public class WorldProviderNibiru extends WorldProviderMP
     protected void renderWeather()
     {
         this.setWeatherRenderer(new WeatherRendererNibiru());
+    }
+
+    @Override
+    public Class<? extends BiomeProvider> getBiomeProviderClass()
+    {
+        BiomeAdaptive.setBodyMultiBiome(this.getCelestialBody());
+        return BiomeProviderNibiru.class;
     }
 
     @Override

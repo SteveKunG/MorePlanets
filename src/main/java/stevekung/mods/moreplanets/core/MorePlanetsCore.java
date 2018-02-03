@@ -95,6 +95,7 @@ public class MorePlanetsCore
         MPTileEntities.init();
         MPOreDictionary.init();
         MPBiomeTypes.init();
+        MPPlanets.register();
         GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.idNetworkHandler, PacketSimpleMP.class);
         MorePlanetsCore.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
         MorePlanetsCore.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));

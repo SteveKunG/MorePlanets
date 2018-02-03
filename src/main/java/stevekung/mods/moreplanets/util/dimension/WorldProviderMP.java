@@ -12,7 +12,6 @@ import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -136,12 +135,6 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
 
     @Override
     public Class<? extends IChunkGenerator> getChunkProviderClass()
-    {
-        return null;
-    }
-
-    @Override
-    public Class<? extends BiomeProvider> getBiomeProviderClass()
     {
         return null;
     }

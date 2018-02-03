@@ -32,23 +32,23 @@ public class MPBiomes
 
     public static void init()
     {
-        CommonRegisterHelper.registerBiome("diona", MPBiomes.DIONA);
-        CommonRegisterHelper.registerBiome("chalos_plains", MPBiomes.CHALOS_PLAINS);
-        CommonRegisterHelper.registerBiome("chalos_hills", MPBiomes.CHALOS_HILLS);
-        CommonRegisterHelper.registerBiome("slimely_wasteland", MPBiomes.SLIMELY_WASTELAND);
-        CommonRegisterHelper.registerBiome("infected_plains", MPBiomes.INFECTED_PLAINS);
-        CommonRegisterHelper.registerBiome("infected_dead_savanna", MPBiomes.INFECTED_DEAD_SAVANNA);
-        CommonRegisterHelper.registerBiome("infected_desert", MPBiomes.INFECTED_DESERT);
-        CommonRegisterHelper.registerBiome("infected_river", MPBiomes.INFECTED_RIVER);
-        CommonRegisterHelper.registerBiome("infected_ocean", MPBiomes.INFECTED_OCEAN);
-        CommonRegisterHelper.registerBiome("infected_forest", MPBiomes.INFECTED_FOREST);
-        CommonRegisterHelper.registerBiome("infected_deep_ocean", MPBiomes.INFECTED_DEEP_OCEAN);
-        CommonRegisterHelper.registerBiome("infected_dead_roofed_forest", MPBiomes.INFECTED_DEAD_ROOFED_FOREST);
-        CommonRegisterHelper.registerBiome("infected_extreme_hills", MPBiomes.INFECTED_EXTREME_HILLS);
-        CommonRegisterHelper.registerBiome("infected_swampland", MPBiomes.INFECTED_SWAMPLAND);
-        CommonRegisterHelper.registerBiome("infected_dead_taiga", MPBiomes.INFECTED_DEAD_TAIGA);
-        CommonRegisterHelper.registerBiome("infected_jungle", MPBiomes.INFECTED_JUNGLE);
-        CommonRegisterHelper.registerBiome("infected_ice_plains", MPBiomes.INFECTED_ICE_PLAINS);
-        CommonRegisterHelper.registerBiome("green_vein", MPBiomes.GREEN_VEIN);
+        CommonRegisterHelper.registerBiome(MPBiomes.DIONA);
+        CommonRegisterHelper.registerBiome(MPBiomes.CHALOS_PLAINS);
+        CommonRegisterHelper.registerBiome(MPBiomes.CHALOS_HILLS);
+        CommonRegisterHelper.registerBiome(MPBiomes.SLIMELY_WASTELAND);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_PLAINS);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DEAD_SAVANNA);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DESERT);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_RIVER);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_OCEAN);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_FOREST);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DEEP_OCEAN);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DEAD_ROOFED_FOREST);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_EXTREME_HILLS);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_SWAMPLAND);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DEAD_TAIGA);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_JUNGLE);
+        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_ICE_PLAINS);
+        CommonRegisterHelper.registerBiome(MPBiomes.GREEN_VEIN);
     }
 }

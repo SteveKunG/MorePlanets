@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
@@ -12,6 +13,7 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.init.MPPlanets;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.layer.GenLayerNibiru;
 
 public class BiomeProviderNibiru extends BiomeProvider
@@ -52,12 +54,14 @@ public class BiomeProviderNibiru extends BiomeProvider
     @Override
     public Biome getBiome(BlockPos pos, Biome biome)
     {
+        BiomeAdaptive.setBodyMultiBiome(MPPlanets.NIBIRU);
         return this.biomeCache.getBiome(pos.getX(), pos.getZ(), biome);
     }
 
     @Override
     public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height)
     {
+        BiomeAdaptive.setBodyMultiBiome(MPPlanets.NIBIRU);
         IntCache.resetIntCache();
 
         if (biomes == null || biomes.length < width * height)
@@ -90,6 +94,7 @@ public class BiomeProviderNibiru extends BiomeProvider
     @Override
     public Biome[] getBiomes(Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
     {
+        BiomeAdaptive.setBodyMultiBiome(MPPlanets.NIBIRU);
         IntCache.resetIntCache();
 
         if (listToReuse == null || listToReuse.length < width * length)

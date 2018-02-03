@@ -37,6 +37,9 @@ public class MPPlanets
 
         // Planets
         MPPlanets.DIONA = CelestialRegisterHelper.createPlanet("diona", MPPlanets.LAZENDUS_SOLAR_SYSTEM, -14.25F, 4.25F, 20.0F, 0.876F, 4, ConfigManagerMP.idDimensionDiona, WorldProviderDiona.class);
+        MPPlanets.CHALOS = CelestialRegisterHelper.createPlanet("chalos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 8.75F, 3.5F, 60.5F, 10.0F, 5, ConfigManagerMP.idDimensionChalos, WorldProviderChalos.class);
+        MPPlanets.NIBIRU = CelestialRegisterHelper.createPlanet("nibiru", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 27.0F, 2.0F, 1050.5F, 2.0F, 6, ConfigManagerMP.idDimensionNibiru, WorldProviderNibiru.class);
+        
         CelestialRegisterHelper.setAtmosphereComponentList(MPPlanets.DIONA, EnumAtmosphericGas.ARGON, EnumAtmosphericGas.HELIUM);
         CelestialRegisterHelper.setAtmosphere(MPPlanets.DIONA, false, false, false, 0.0F, 0.0F, 0.0F);
         CelestialRegisterHelper.setChecklistKeys(MPPlanets.DIONA, "equipOxygenSuit");
@@ -52,7 +55,7 @@ public class MPPlanets
         CelestialRegisterHelper.addMobInfo(MPPlanets.DIONA, EntityZeliusSkeleton.class, 100, 4, 4);
         CelestialRegisterHelper.addMobInfo(MPPlanets.DIONA, EntityAlienMiner.class, 1, 1, 2);
 
-        MPPlanets.CHALOS = CelestialRegisterHelper.createPlanet("chalos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 8.75F, 3.5F, 60.5F, 10.0F, 5, ConfigManagerMP.idDimensionChalos, WorldProviderChalos.class);
+        
         CelestialRegisterHelper.setAtmosphereComponentList(MPPlanets.CHALOS, EnumAtmosphericGas.HYDROGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.CO2);
         CelestialRegisterHelper.setAtmosphere(MPPlanets.CHALOS, false, false, false, 0.0F, 0.65F, 28.0F);
         CelestialRegisterHelper.setChecklistKeys(MPPlanets.CHALOS, "equipOxygenSuit");
@@ -67,7 +70,7 @@ public class MPPlanets
         CelestialRegisterHelper.addMobInfo(MPPlanets.CHALOS, EntityCheeseSlime.class, 30, 2, 4);
         CelestialRegisterHelper.addMobInfo(MPPlanets.CHALOS, EntityCheeseCow.class, 8, 4, 4);
 
-        MPPlanets.NIBIRU = CelestialRegisterHelper.createPlanet("nibiru", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 27.0F, 2.0F, 1050.5F, 2.0F, 6, ConfigManagerMP.idDimensionNibiru, WorldProviderNibiru.class);
+        
         CelestialRegisterHelper.setAtmosphereComponentList(MPPlanets.NIBIRU, EnumAtmosphericGas.WATER, EnumAtmosphericGas.HELIUM, EnumAtmosphericGas.CO2, EnumAtmosphericGas.ARGON);
         CelestialRegisterHelper.setAtmosphere(MPPlanets.NIBIRU, false, true, true, 0.0F, 1.25F, 46.5F);
         CelestialRegisterHelper.setChecklistKeys(MPPlanets.NIBIRU, "equipOxygenSuit", "thermalPaddingT2", "craftInfectedProtectionCapsule");
@@ -87,11 +90,9 @@ public class MPPlanets
 
         //        MPPlanets.FRONOS = CelestialRegisterHelper.createPlanet("fronos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 1.2762F, 1.5F, 1 / 0.05F, 0.5F, 7, ConfigManagerMP.idDimensionFronos, WorldProviderFronos.class);
         //        CelestialRegisterHelper.setAtmosphereComponentList(MPPlanets.NIBIRU, EnumAtmosphericGas.OXYGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.HYDROGEN);
-
-        MPPlanets.register();
     }
 
-    private static void register()
+    public static void register()
     {
         CelestialRegisterHelper.registerSolarSystem(MPPlanets.LAZENDUS_SOLAR_SYSTEM);
         CelestialRegisterHelper.registerPlanet(MPPlanets.DIONA);

@@ -122,9 +122,9 @@ public class CommonRegisterHelper
         ForgeRegistries.POTIONS.register(potion.setRegistryName(name));
     }
 
-    public static void registerBiome(String name, Biome biome)
+    public static void registerBiome(Biome biome)
     {
-        ForgeRegistries.BIOMES.register(biome.setRegistryName("moreplanets:" + name));
+        ForgeRegistries.BIOMES.register(biome);
     }
 
     public static void registerBiomeType(Biome biome, @Nonnull BiomeDictionary.Type... biomeType)
