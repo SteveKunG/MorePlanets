@@ -101,7 +101,7 @@ public class MorePlanetsCore
         MorePlanetsCore.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
         MorePlanetsCore.PROXY.registerInitRendering();
         LootFunctionManager.registerFunction(new SmeltWithDataFunction.Serializer());
-        
+
         for (BiomeGenBaseGC biome : MPBiomes.biomeList)
         {
             biome.registerTypes(biome);
