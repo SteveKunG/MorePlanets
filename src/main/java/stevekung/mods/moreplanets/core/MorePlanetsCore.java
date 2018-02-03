@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.core;
 import java.io.File;
 import java.util.Arrays;
 
+import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
@@ -94,13 +95,17 @@ public class MorePlanetsCore
     {
         MPTileEntities.init();
         MPOreDictionary.init();
-        MPBiomeTypes.init();
         MPPlanets.register();
         GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.idNetworkHandler, PacketSimpleMP.class);
         MorePlanetsCore.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
         MorePlanetsCore.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
         MorePlanetsCore.PROXY.registerInitRendering();
         LootFunctionManager.registerFunction(new SmeltWithDataFunction.Serializer());
+        
+        for (BiomeGenBaseGC biome : MPBiomes.biomeList)
+        {
+            biome.registerTypes(biome);
+        }
 
         if (CommonRegisterHelper.isClient())
         {

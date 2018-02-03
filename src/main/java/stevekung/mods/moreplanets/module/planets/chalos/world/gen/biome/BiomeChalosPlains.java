@@ -1,11 +1,15 @@
 package stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.PLAINS;
+
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.feature.WorldGenCheeseDoubleTallGrass;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class BiomeChalosPlains extends BiomeChalos
 {
@@ -15,6 +19,12 @@ public class BiomeChalosPlains extends BiomeChalos
         this.topBlock = ChalosBlocks.CHEESE_GRASS.getDefaultState();
         this.fillerBlock = ChalosBlocks.CHEESE_DIRT.getDefaultState();
         this.stoneBlock = ChalosBlocks.CHALOS_BLOCK.getDefaultState();
+    }
+
+    @Override
+    public void registerTypes(Biome biome)
+    {
+        CommonRegisterHelper.registerBiomeType(biome, PLAINS);
     }
 
     @Override

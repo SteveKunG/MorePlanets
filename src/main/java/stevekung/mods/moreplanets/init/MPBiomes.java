@@ -1,5 +1,9 @@
 package stevekung.mods.moreplanets.init;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosHills;
@@ -11,7 +15,9 @@ import stevekung.mods.moreplanets.util.world.gen.biome.BiomeBaseMP;
 
 public class MPBiomes
 {
-    public static Biome DIONA = new BiomeBaseMP(new BiomeProperties("Diona").setRainfall(0.0F));
+    public static final List<BiomeGenBaseGC> biomeList = new LinkedList<>();
+
+    public static Biome DIONA = new BiomeBaseMP("diona", new BiomeProperties("Diona").setRainfall(0.0F));
     public static Biome CHALOS_PLAINS = new BiomeChalosPlains(new BiomeProperties("Chalos Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F));
     public static Biome CHALOS_HILLS = new BiomeChalosHills(new BiomeProperties("Chalos Hills").setTemperature(0.2F).setRainfall(0.3F).setBaseHeight(1.0F).setHeightVariation(0.5F));
     public static Biome SLIMELY_WASTELAND = new BiomeSlimelyWasteland(new BiomeProperties("Slimely Wasteland").setBaseHeight(0.2F).setHeightVariation(0.2F));

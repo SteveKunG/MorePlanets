@@ -1,6 +1,11 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
+import static net.minecraftforge.common.BiomeDictionary.Type.RIVER;
+
+import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class BiomeInfectedRiver extends BiomeNibiru
 {
@@ -13,5 +18,11 @@ public class BiomeInfectedRiver extends BiomeNibiru
         this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
         this.getBiomeDecorator().reedsPerChunk = 10;
         this.decorator.treesPerChunk = -999;
+    }
+
+    @Override
+    public void registerTypes(Biome biome)
+    {
+        CommonRegisterHelper.registerBiomeType(biome, RIVER, DEAD);
     }
 }

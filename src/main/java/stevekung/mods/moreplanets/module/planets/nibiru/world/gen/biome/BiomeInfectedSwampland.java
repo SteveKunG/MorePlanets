@@ -1,5 +1,9 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
+import static net.minecraftforge.common.BiomeDictionary.Type.SWAMP;
+import static net.minecraftforge.common.BiomeDictionary.Type.WET;
+
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
@@ -12,6 +16,7 @@ import net.minecraft.world.gen.feature.WorldGenFossils;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedSwampTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.helper.DecorateHelper;
 
 public class BiomeInfectedSwampland extends BiomeNibiru
@@ -30,6 +35,12 @@ public class BiomeInfectedSwampland extends BiomeNibiru
         this.getBiomeDecorator().reedsPerChunk = 10;
         this.getBiomeDecorator().sandPatchesPerChunk = 0;
         this.getBiomeDecorator().gravelPatchesPerChunk = 0;
+    }
+
+    @Override
+    public void registerTypes(Biome biome)
+    {
+        CommonRegisterHelper.registerBiomeType(biome, WET, SWAMP, DEAD);
     }
 
     @Override

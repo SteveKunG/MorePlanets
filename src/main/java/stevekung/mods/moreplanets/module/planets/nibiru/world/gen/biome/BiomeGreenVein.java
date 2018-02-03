@@ -1,10 +1,15 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.FOREST;
+import static net.minecraftforge.common.BiomeDictionary.Type.MAGICAL;
+import static net.minecraftforge.common.BiomeDictionary.Type.RARE;
+
 import java.util.LinkedList;
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruFlower;
@@ -13,6 +18,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenAlienBerryTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
 
 public class BiomeGreenVein extends BiomeNibiru
@@ -27,6 +33,12 @@ public class BiomeGreenVein extends BiomeNibiru
         this.getBiomeDecorator().terrapuffHurbPerChunk = 4;
         this.getBiomeDecorator().greenVeinTallGrassPerChunk = 128;
         this.getBiomeDecorator().infectedTreesPerChunk = 4;
+    }
+
+    @Override
+    public void registerTypes(Biome biome)
+    {
+        CommonRegisterHelper.registerBiomeType(biome, FOREST, RARE, MAGICAL);
     }
 
     @Override

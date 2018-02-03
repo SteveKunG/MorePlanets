@@ -1,14 +1,18 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.*;
+
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruTallGrass;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.*;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.helper.DecorateHelper;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
 
@@ -27,6 +31,12 @@ public class BiomeInfectedJungle extends BiomeNibiru
         this.getBiomeDecorator().infectedFernPerChunk = 25;
         this.getBiomeDecorator().pureHurbPerChunk = 4;
         this.decorator.treesPerChunk = -999;
+    }
+
+    @Override
+    public void registerTypes(Biome biome)
+    {
+        CommonRegisterHelper.registerBiomeType(biome, HOT, WET, DENSE, JUNGLE, DEAD);
     }
 
     @Override

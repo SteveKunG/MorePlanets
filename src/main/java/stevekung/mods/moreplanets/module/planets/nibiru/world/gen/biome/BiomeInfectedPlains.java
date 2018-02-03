@@ -1,15 +1,20 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
+import static net.minecraftforge.common.BiomeDictionary.Type.PLAINS;
+
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.helper.DecorateHelper;
 
 public class BiomeInfectedPlains extends BiomeNibiru
@@ -25,6 +30,12 @@ public class BiomeInfectedPlains extends BiomeNibiru
         this.getBiomeDecorator().infectedTreesPerChunk = 0;
         this.getBiomeDecorator().reedsPerChunk = 10;
         this.decorator.treesPerChunk = -999;
+    }
+
+    @Override
+    public void registerTypes(Biome biome)
+    {
+        CommonRegisterHelper.registerBiomeType(biome, PLAINS, DEAD);
     }
 
     @Override

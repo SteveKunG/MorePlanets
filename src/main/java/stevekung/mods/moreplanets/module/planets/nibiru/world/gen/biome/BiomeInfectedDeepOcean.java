@@ -1,8 +1,13 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
+import static net.minecraftforge.common.BiomeDictionary.Type.OCEAN;
+
 import java.util.LinkedList;
 
+import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class BiomeInfectedDeepOcean extends BiomeNibiru
 {
@@ -14,6 +19,12 @@ public class BiomeInfectedDeepOcean extends BiomeNibiru
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         this.getBiomeDecorator().seaweedPerChunk = 4;
         this.decorator.treesPerChunk = -999;
+    }
+
+    @Override
+    public void registerTypes(Biome biome)
+    {
+        CommonRegisterHelper.registerBiomeType(biome, OCEAN, DEAD);
     }
 
     @Override

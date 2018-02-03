@@ -1,9 +1,14 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.COLD;
+import static net.minecraftforge.common.BiomeDictionary.Type.CONIFEROUS;
+import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
+
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -11,6 +16,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.helper.DecorateHelper;
 
 public class BiomeInfectedDeadTaiga extends BiomeNibiru
@@ -23,6 +29,12 @@ public class BiomeInfectedDeadTaiga extends BiomeNibiru
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
         this.getBiomeDecorator().infectedTreesPerChunk = 10;
         this.getBiomeDecorator().infectedTallGrassPerChunk = 7;
+    }
+
+    @Override
+    public void registerTypes(Biome biome)
+    {
+        CommonRegisterHelper.registerBiomeType(biome, COLD, CONIFEROUS, DEAD);
     }
 
     @Override

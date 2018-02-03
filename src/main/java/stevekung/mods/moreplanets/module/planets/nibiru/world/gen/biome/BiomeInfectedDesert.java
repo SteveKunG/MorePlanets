@@ -1,8 +1,15 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
+import static net.minecraftforge.common.BiomeDictionary.Type.DRY;
+import static net.minecraftforge.common.BiomeDictionary.Type.HOT;
+import static net.minecraftforge.common.BiomeDictionary.Type.SANDY;
+
 import java.util.LinkedList;
 
+import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class BiomeInfectedDesert extends BiomeNibiru
 {
@@ -17,6 +24,12 @@ public class BiomeInfectedDesert extends BiomeNibiru
         this.getBiomeDecorator().batasiaDandelionPerChunk = 3;
         this.getBiomeDecorator().reedsPerChunk = 50;
         this.decorator.treesPerChunk = -999;
+    }
+
+    @Override
+    public void registerTypes(Biome biome)
+    {
+        CommonRegisterHelper.registerBiomeType(biome, HOT, DRY, SANDY, DEAD);
     }
 
     @Override
