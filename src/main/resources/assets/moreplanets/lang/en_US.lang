@@ -369,6 +369,7 @@ item.space_fish.glowing_alien.name=Glowing Alien Fish
 item.space_fish.cheese.name=Cheese Fish
 item.alien_defender_reinforcement.name=Alien Defender Reinforcement
 item.creative_space_kit.name=Creative Space Kit
+item.upgrade_template.name=Upgrade Template
 item.shield_damage_upgrade.name=Shield Damage Upgrade
 item.shield_size_upgrade.name=Shield Size Upgrade
 item.shield_capacity_upgrade.name=Shield Capacity Upgrade

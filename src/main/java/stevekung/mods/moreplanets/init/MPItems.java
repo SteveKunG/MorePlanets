@@ -8,6 +8,7 @@ import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 import stevekung.mods.moreplanets.util.items.ItemRecordMP;
 
@@ -25,6 +26,7 @@ public class MPItems
     public static Item ALIEN_DEFENDER_REINFORCEMENT;
     public static Item CREATIVE_SPACE_KIT;
     public static Item VEIN_FLOATER_DISC;
+    public static Item UPGRADE_TEMPLATE;
     public static Item SHIELD_DAMAGE_UPGRADE;
     public static Item SHIELD_SIZE_UPGRADE;
     public static Item SHIELD_CAPACITY_UPGRADE;
@@ -48,10 +50,11 @@ public class MPItems
         MPItems.ALIEN_DEFENDER_REINFORCEMENT = new ItemAlienDefenderReinforcement("alien_defender_reinforcement");
         MPItems.CREATIVE_SPACE_KIT = new ItemCreativeSpaceKit("creative_space_kit");
         MPItems.VEIN_FLOATER_DISC = new ItemRecordMP("vein_floater_disc", "a_planet_to_conquer", MPSounds.A_PLANET_TO_CONQUER);
-        MPItems.SHIELD_DAMAGE_UPGRADE = new ItemBaseMP("shield_damage_upgrade");
-        MPItems.SHIELD_SIZE_UPGRADE = new ItemBaseMP("shield_size_upgrade");
-        MPItems.SHIELD_CAPACITY_UPGRADE = new ItemBaseMP("shield_capacity_upgrade");
-        MPItems.MACHINE_SPEED_UPGRADE = new ItemBaseMP("machine_speed_upgrade");
+        MPItems.UPGRADE_TEMPLATE = new ItemBaseMP("upgrade_template").setSortCategory(EnumSortCategoryItem.UPGRADE);
+        MPItems.SHIELD_DAMAGE_UPGRADE = new ItemBaseMP("shield_damage_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
+        MPItems.SHIELD_SIZE_UPGRADE = new ItemBaseMP("shield_size_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
+        MPItems.SHIELD_CAPACITY_UPGRADE = new ItemBaseMP("shield_capacity_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
+        MPItems.MACHINE_SPEED_UPGRADE = new ItemBaseMP("machine_speed_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
 
         /**************************************************************/
         /**********************REGISTER STUFF**************************/
@@ -69,6 +72,7 @@ public class MPItems
         CommonRegisterHelper.registerItem(MPItems.ALIEN_DEFENDER_REINFORCEMENT);
         CommonRegisterHelper.registerItem(MPItems.CREATIVE_SPACE_KIT);
         CommonRegisterHelper.registerItem(MPItems.VEIN_FLOATER_DISC);
+        CommonRegisterHelper.registerItem(MPItems.UPGRADE_TEMPLATE);
         CommonRegisterHelper.registerItem(MPItems.SHIELD_DAMAGE_UPGRADE);
         CommonRegisterHelper.registerItem(MPItems.SHIELD_SIZE_UPGRADE);
         CommonRegisterHelper.registerItem(MPItems.SHIELD_CAPACITY_UPGRADE);

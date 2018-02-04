@@ -6,6 +6,7 @@ public enum EnumSortCategoryItem
     ARROW,
     PROJECTILE,
     INGOT,
+    UPGRADE,
     BUCKET_FLUID,
     BUCKET_GAS,
     FOOD,
