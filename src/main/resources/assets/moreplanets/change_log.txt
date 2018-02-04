@@ -1,6 +1,10 @@
--Added- Added Entity Filter for Shield Generator (WIP)
--Update- Update latest GC API
--Update- Shield Generator now save machine config
--Update- Improve teleport handler
--Fixed- Fixed Waila not display energy stored in Warp Pad dummy block
--Fixed- Fixed Chalos Tall Grass generation
+-Added- Added Jar Signing (Certificate)
+-Added- Added XP Fluid support for Black Hole Storage
+-Added- Added Backward Compatibility for Black Hole Storage
+-Added- Added Shield Generator Machine Upgrade
+-Added- Added Machine Speed Upgrade
+-Added- Added Upgrade Template
+-Added- Added Falldust particle for falling block
+-Update- Black Hole Storage improvement
+-Fixed- Fixed Black Hole Storage recipe height
+-Fixed- Fixed fluid block side rendering
