@@ -8,4 +8,5 @@
 -Update- Black Hole Storage improvement
 -Fixed- Fixed Black Hole Storage recipe height
 -Fixed- Fixed fluid block side rendering
+-Fixed- Fixed Infected Elder Guardian name
 -Fixed- Attempt to fix Chalos Tall Grass generation
