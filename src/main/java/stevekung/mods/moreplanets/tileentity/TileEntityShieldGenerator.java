@@ -63,7 +63,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public int facing;
     public int renderTicks;
     public int solarRotate;
-    private ItemStack[] containingItems = new ItemStack[4];
+    public ItemStack[] containingItems = new ItemStack[4];
     @NetworkedField(targetSide = Side.CLIENT)
     public float shieldSize;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -77,11 +77,15 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @NetworkedField(targetSide = Side.CLIENT)
     public int maxShieldSize = 16;
     @NetworkedField(targetSide = Side.CLIENT)
+    public int maxShieldSizeUpgrade;
+    @NetworkedField(targetSide = Side.CLIENT)
     public int shieldCapacity;
     @NetworkedField(targetSide = Side.CLIENT)
-    public int maxShieldCapacity = 32000;
+    public int maxShieldCapacity = 16000;
     @NetworkedField(targetSide = Side.CLIENT)
     public int shieldDamage = 8;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int maxShieldDamage;
     @NetworkedField(targetSide = Side.CLIENT)
     public int shieldChargeCooldown = 1200;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -144,7 +148,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             this.solarRotate++;
             this.solarRotate %= 360;
-            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.pos.getX() + 0.5D, this.pos.getY() + 1.75D, this.pos.getZ() + 0.5D, new Object[] { -0.5F });
+            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.pos.getX() + 0.5D, this.pos.getY() + 1.5D, this.pos.getZ() + 0.5D, new Object[] { -0.5F });
 
             if (this.ticks % 33 == 0)
             {
@@ -153,6 +157,46 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         }
         if (!this.worldObj.isRemote)
         {
+            int count = 0;
+            int capacityUpgradeCount = 0;
+
+            // shield damage upgrade
+            if (this.containingItems[1] != null)
+            {
+                count = this.containingItems[1].stackSize;
+                this.maxShieldDamage = 8 * count;
+            }
+            else
+            {
+                this.maxShieldDamage = 8;
+            }
+
+            // shield size upgrade
+            if (this.containingItems[2] != null)
+            {
+                count = this.containingItems[2].stackSize;
+                this.maxShieldSizeUpgrade = 16 + count;
+            }
+            else
+            {
+                this.maxShieldSizeUpgrade = 16;
+            }
+
+            // shield capacity upgrade
+            if (this.containingItems[3] != null)
+            {
+                count = this.containingItems[3].stackSize;
+                capacityUpgradeCount = this.containingItems[3].stackSize;
+                this.maxShieldCapacity = 32000 * count;
+            }
+            else
+            {
+                this.maxShieldCapacity = 16000;
+            }
+
+            int sum = (int) (this.shieldDamage + this.shieldSize + capacityUpgradeCount) / 2;
+            this.storage.setMaxExtract(250 * sum);
+
             if (!this.needCharged && this.shieldCapacity == 0)
             {
                 this.needCharged = true;
@@ -284,6 +328,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         this.shieldSize = nbt.getFloat("ShieldSize");
         this.maxShieldSize = nbt.getInteger("MaxShieldSize");
         this.shieldDamage = nbt.getInteger("ShieldDamage");
+        this.maxShieldDamage = nbt.getInteger("MaxShieldDamage");
         this.shieldCapacity = nbt.getInteger("ShieldCapacity");
         this.maxShieldCapacity = nbt.getInteger("MaxShieldCapacity");
         this.shieldChargeCooldown = nbt.getInteger("ShieldChargeCooldown");
@@ -316,6 +361,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         nbt.setFloat("ShieldSize", this.shieldSize);
         nbt.setInteger("MaxShieldSize", this.maxShieldSize);
         nbt.setInteger("ShieldDamage", this.shieldDamage);
+        nbt.setInteger("MaxShieldDamage", this.maxShieldDamage);
         nbt.setInteger("ShieldCapacity", this.shieldCapacity);
         nbt.setInteger("MaxShieldCapacity", this.maxShieldCapacity);
         nbt.setInteger("ShieldChargeCooldown", this.shieldChargeCooldown);
@@ -523,12 +569,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public void getPositions(BlockPos placedPosition, List<BlockPos> positions) {}
 
     @Override
-    public boolean canRenderBreaking()
-    {
-        return true;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox()
     {
@@ -601,9 +641,11 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             ItemStack machine = new ItemStack(MPBlocks.SHIELD_GENERATOR);
             TileEntityShieldGenerator shield = this;
             NBTTagCompound nbt = new NBTTagCompound();
+            NBTTagList list = new NBTTagList();
             nbt.setFloat("ShieldSize", shield.shieldSize);
             nbt.setInteger("MaxShieldSize", shield.maxShieldSize);
             nbt.setInteger("ShieldDamage", shield.shieldDamage);
+            nbt.setInteger("MaxShieldDamage", shield.maxShieldDamage);
             nbt.setInteger("ShieldCapacity", shield.shieldCapacity);
             nbt.setInteger("MaxShieldCapacity", shield.maxShieldCapacity);
             nbt.setInteger("ShieldChargeCooldown", shield.shieldChargeCooldown);
@@ -615,6 +657,18 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             {
                 nbt.setFloat("EnergyStored", shield.getEnergyStoredGC());
             }
+            for (int i = 0; i < shield.containingItems.length; ++i)
+            {
+                if (shield.containingItems[i] != null)
+                {
+                    NBTTagCompound compound = new NBTTagCompound();
+                    compound.setByte("Slot", (byte) i);
+                    shield.containingItems[i].writeToNBT(compound);
+                    list.appendTag(compound);
+                }
+            }
+
+            nbt.setTag("Items", list);
             machine.setTagCompound(nbt);
             Block.spawnAsEntity(this.worldObj, this.pos, machine);
             return this.worldObj.setBlockState(this.pos, Blocks.AIR.getDefaultState(), 3);
@@ -633,7 +687,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         @SubscribeEvent
         public void onLivingSpawn(LivingSpawnEvent.CheckSpawn event)
         {
-            if (event.getResult() == Result.ALLOW) //TODO Check spawner
+            if (event.getResult() == Result.ALLOW)
             {
                 return;
             }

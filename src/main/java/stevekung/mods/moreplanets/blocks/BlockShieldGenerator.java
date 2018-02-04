@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -129,12 +130,27 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
                 shield.shieldSize = nbt.getFloat("ShieldSize");
                 shield.maxShieldSize = nbt.getInteger("MaxShieldSize");
                 shield.shieldDamage = nbt.getInteger("ShieldDamage");
+                shield.maxShieldDamage = nbt.getInteger("MaxShieldDamage");
                 shield.shieldCapacity = nbt.getInteger("ShieldCapacity");
                 shield.maxShieldCapacity = nbt.getInteger("MaxShieldCapacity");
                 shield.shieldChargeCooldown = nbt.getInteger("ShieldChargeCooldown");
                 shield.needCharged = nbt.getBoolean("NeedCharged");
                 shield.enableShield = nbt.getBoolean("EnableShield");
                 shield.enableDamage = nbt.getBoolean("EnableDamage");
+
+                NBTTagList list = nbt.getTagList("Items", 10);
+                shield.containingItems = new ItemStack[shield.getSizeInventory()];
+
+                for (int i = 0; i < list.tagCount(); ++i)
+                {
+                    NBTTagCompound compound = list.getCompoundTagAt(i);
+                    int slot = compound.getByte("Slot") & 255;
+
+                    if (slot < shield.containingItems.length)
+                    {
+                        shield.containingItems[slot] = ItemStack.loadItemStackFromNBT(compound);
+                    }
+                }
             }
             if (placer instanceof EntityPlayer)
             {
@@ -154,16 +170,31 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
             ItemStack machine = new ItemStack(this);
             TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
             NBTTagCompound nbt = new NBTTagCompound();
+            NBTTagList list = new NBTTagList();
 
             nbt.setFloat("ShieldSize", shield.shieldSize);
             nbt.setInteger("MaxShieldSize", shield.maxShieldSize);
             nbt.setInteger("ShieldDamage", shield.shieldDamage);
+            nbt.setInteger("MaxShieldDamage", shield.maxShieldDamage);
             nbt.setInteger("ShieldCapacity", shield.shieldCapacity);
             nbt.setInteger("MaxShieldCapacity", shield.maxShieldCapacity);
             nbt.setInteger("ShieldChargeCooldown", shield.shieldChargeCooldown);
             nbt.setBoolean("NeedCharged", shield.needCharged);
             nbt.setBoolean("EnableShield", shield.enableShield);
             nbt.setBoolean("EnableDamage", shield.enableDamage);
+
+            for (int i = 0; i < shield.containingItems.length; ++i)
+            {
+                if (shield.containingItems[i] != null)
+                {
+                    NBTTagCompound compound = new NBTTagCompound();
+                    compound.setByte("Slot", (byte) i);
+                    shield.containingItems[i].writeToNBT(compound);
+                    list.appendTag(compound);
+                }
+            }
+
+            nbt.setTag("Items", list);
 
             if (shield.getEnergyStoredGC() > 0)
             {
@@ -195,7 +226,10 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
         {
             ((TileEntityShieldGenerator) tile).onDestroy(tile);
         }
-        super.breakBlock(world, pos, state);
+        if (this.hasTileEntity(state))
+        {
+            world.removeTileEntity(pos);
+        }
     }
 
     @Override

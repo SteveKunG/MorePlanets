@@ -111,6 +111,19 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         this.shieldSizeText.setEnableBackgroundDrawing(true);
         this.shieldSizeText.setTextColor(16777215);
         this.shieldSizeText.setText(String.valueOf(this.tile.maxShieldSize));
+
+        if (this.tempDamage > this.tile.maxShieldDamage)
+        {
+            this.tempDamage = this.tile.maxShieldDamage;
+            this.shieldDamageText.setText(String.valueOf(this.tempDamage));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SHIELD_GENERATOR_OPTION, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), this.tempDamage, "damage"));
+        }
+        if (this.tempSize > this.tile.maxShieldSizeUpgrade)
+        {
+            this.tempSize = this.tile.maxShieldSizeUpgrade;
+            this.shieldSizeText.setText(String.valueOf(this.tempSize));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SHIELD_GENERATOR_OPTION, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), this.tempSize, "size"));
+        }
     }
 
     @Override
@@ -183,6 +196,19 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         {
             this.buttonDone.enabled = true;
         }
+
+        if (this.tempDamage > this.tile.maxShieldDamage)
+        {
+            this.tempDamage = this.tile.maxShieldDamage;
+            this.shieldDamageText.setText(String.valueOf(this.tempDamage));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SHIELD_GENERATOR_OPTION, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), this.tempDamage, "damage"));
+        }
+        if (this.tempSize > this.tile.maxShieldSizeUpgrade)
+        {
+            this.tempSize = this.tile.maxShieldSizeUpgrade;
+            this.shieldSizeText.setText(String.valueOf(this.tempSize));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SHIELD_GENERATOR_OPTION, GCCoreUtil.getDimensionID(this.tile.getWorld()), this.tile.getPos(), this.tempSize, "size"));
+        }
     }
 
     @Override
@@ -228,9 +254,9 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
                 this.tempDamage = 0;
                 this.shieldDamageText.setText(String.valueOf(this.tempDamage));
             }
-            if (this.tempDamage > 10)
+            if (this.tempDamage > this.tile.maxShieldDamage)
             {
-                this.tempDamage = 10;
+                this.tempDamage = this.tile.maxShieldDamage;
                 this.shieldDamageText.setText(String.valueOf(this.tempDamage));
             }
         }
@@ -250,9 +276,9 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
                 this.tempSize = 1;
                 this.shieldSizeText.setText(String.valueOf(this.tempSize));
             }
-            if (this.tempSize > 20)
+            if (this.tempSize > this.tile.maxShieldSizeUpgrade)
             {
-                this.tempSize = 20;
+                this.tempSize = this.tile.maxShieldSizeUpgrade;
                 this.shieldSizeText.setText(String.valueOf(this.tempSize));
             }
         }
