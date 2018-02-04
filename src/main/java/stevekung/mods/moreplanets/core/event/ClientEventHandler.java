@@ -66,6 +66,7 @@ import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
 import stevekung.mods.moreplanets.util.client.renderer.item.ItemRendererTieredRocket;
+import stevekung.mods.moreplanets.util.debug.GuiGetItemName;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
 public class ClientEventHandler
@@ -146,6 +147,10 @@ public class ClientEventHandler
                 }
             }
             catch (LWJGLException e) {}*/
+            if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD5) && this.mc.thePlayer.getHeldItemMainhand() != null)
+            {
+                this.mc.displayGuiScreen(new GuiGetItemName());
+            }
         }
         if (ClientEventHandler.loadRenderers)
         {
