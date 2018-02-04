@@ -236,7 +236,7 @@ public class ContainerShieldGeneratorConfig extends Container
         return merged;
     }
 
-    protected int getSmaller(int slotStackSize, int slotStackLimit)
+    private int getSmaller(int slotStackSize, int slotStackLimit)
     {
         if (slotStackSize < slotStackLimit)
         {

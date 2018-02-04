@@ -28,6 +28,7 @@ public class MPItems
     public static Item SHIELD_DAMAGE_UPGRADE;
     public static Item SHIELD_SIZE_UPGRADE;
     public static Item SHIELD_CAPACITY_UPGRADE;
+    public static Item MACHINE_SPEED_UPGRADE;
 
     public static void init()
     {
@@ -50,6 +51,7 @@ public class MPItems
         MPItems.SHIELD_DAMAGE_UPGRADE = new ItemBaseMP("shield_damage_upgrade");
         MPItems.SHIELD_SIZE_UPGRADE = new ItemBaseMP("shield_size_upgrade");
         MPItems.SHIELD_CAPACITY_UPGRADE = new ItemBaseMP("shield_capacity_upgrade");
+        MPItems.MACHINE_SPEED_UPGRADE = new ItemBaseMP("machine_speed_upgrade");
 
         /**************************************************************/
         /**********************REGISTER STUFF**************************/
@@ -70,6 +72,7 @@ public class MPItems
         CommonRegisterHelper.registerItem(MPItems.SHIELD_DAMAGE_UPGRADE);
         CommonRegisterHelper.registerItem(MPItems.SHIELD_SIZE_UPGRADE);
         CommonRegisterHelper.registerItem(MPItems.SHIELD_CAPACITY_UPGRADE);
+        CommonRegisterHelper.registerItem(MPItems.MACHINE_SPEED_UPGRADE);
 
         /**************************************************************/
         /********************ORE DICTIONARY STUFF**********************/

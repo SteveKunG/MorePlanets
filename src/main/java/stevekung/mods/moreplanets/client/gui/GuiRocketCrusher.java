@@ -25,6 +25,7 @@ public class GuiRocketCrusher extends GuiContainerMP
     private GuiElementInfoRegionMP electricInfoRegion;
     private GuiElementInfoRegionMP processInfoRegion;
     private GuiElementInfoRegionMP batteryInfoRegion;
+    private GuiElementInfoRegionMP machineUpgradeInfoRegion;
 
     public GuiRocketCrusher(InventoryPlayer inv, TileEntityRocketCrusher tile)
     {
@@ -39,9 +40,11 @@ public class GuiRocketCrusher extends GuiContainerMP
         super.initGui();
         this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 6, (this.height - this.ySize) / 2 + 31, 9, 57, new ArrayList<>(), this.width, this.height, this);
         this.batteryInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 18, (this.height - this.ySize) / 2 + 79, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.battery_slot.desc.0"), GCCoreUtil.translate("gui.battery_slot.desc.1")), this.width, this.height, this);
+        this.machineUpgradeInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 37, (this.height - this.ySize) / 2 + 79, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.machine_upgrade_slot.desc.0"), GCCoreUtil.translate("gui.machine_upgrade_slot.desc.1")), this.width, this.height, this);
         this.processInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 30, 52, 25, new ArrayList<>(), this.width, this.height, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.infoRegions.add(this.batteryInfoRegion);
+        this.infoRegions.add(this.machineUpgradeInfoRegion);
         this.infoRegions.add(this.processInfoRegion);
     }
 
@@ -85,6 +88,7 @@ public class GuiRocketCrusher extends GuiContainerMP
         electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
+        int speed = this.tile.containingItems[2] != null ? 1 + this.tile.containingItems[2].stackSize : 1;
 
         if (this.tile.getEnergyStoredGC() > 0)
         {
@@ -97,15 +101,15 @@ public class GuiRocketCrusher extends GuiContainerMP
             scale = (int) ((double) this.tile.processTicks / (double) this.tile.processTimeRequired * 54);
             this.drawTexturedModalRect(width + 80, height + 39, 176, 13, scale, 17);
         }
-        if (this.tile.processTicks >= 40)
+        if (this.tile.processTicks % 45 - speed >= 15 / speed)
         {
             this.drawTexturedModalRect(width + 83, height + 30, 176, 0, 15, 13);
         }
-        if (this.tile.processTicks >= 80)
+        if (this.tile.processTicks % 45 - speed >= 25 / speed)
         {
             this.drawTexturedModalRect(width + 96, height + 30, 176, 0, 15, 13);
         }
-        if (this.tile.processTicks >= 130)
+        if (this.tile.processTicks % 45 - speed >= 35 / speed)
         {
             this.drawTexturedModalRect(width + 109, height + 30, 176, 0, 15, 13);
         }

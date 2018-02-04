@@ -82,6 +82,9 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
         batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
         this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 77, 18, 18, batterySlotDesc, this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 59, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.shield_capacity_upgrade.desc.0"), GCCoreUtil.translate("gui.shield_capacity_upgrade.desc.1")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 41, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.shield_size_upgrade.desc.0"), GCCoreUtil.translate("gui.shield_size_upgrade.desc.1")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 23, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.shield_damage_upgrade.desc.0"), GCCoreUtil.translate("gui.shield_damage_upgrade.desc.1")), this.width, this.height, this));
         this.infoRegions.add(new GuiElementInfoRegionMP(width + 60, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.shield_visible.desc")), this.width, this.height, this));
         this.infoRegions.add(new GuiElementInfoRegionMP(width + 80, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.enable_shield.desc")), this.width, this.height, this));
         this.infoRegions.add(new GuiElementInfoRegionMP(width + 100, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.enable_shield_damage.desc")), this.width, this.height, this));
