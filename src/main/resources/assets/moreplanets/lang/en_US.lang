@@ -352,7 +352,7 @@ tile.jelly_block.green.name=Green Jelly
 tile.jelly_block.orange.name=Orange Jelly
 tile.jelly_block.lemon.name=Lemon Jelly
 
-# ITEMS
+# FLUIDS
 fluid.xpjuice=XP
 
 # ITEMS
@@ -369,6 +369,11 @@ item.space_fish.glowing_alien.name=Glowing Alien Fish
 item.space_fish.cheese.name=Cheese Fish
 item.alien_defender_reinforcement.name=Alien Defender Reinforcement
 item.creative_space_kit.name=Creative Space Kit
+item.upgrade_template.name=Upgrade Template
+item.shield_damage_upgrade.name=Shield Damage Upgrade
+item.shield_size_upgrade.name=Shield Size Upgrade
+item.shield_capacity_upgrade.name=Shield Capacity Upgrade
+item.machine_speed_upgrade.name=Machine Speed Upgrade
 
 # ITEMS - DIONA
 item.diona_dungeon_key.name=Diona Dungeon Key
@@ -684,6 +689,14 @@ gui.xp_value.desc=XP
 gui.shield_visible.desc=Shield Visible
 gui.enable_shield.desc=Enable Shield
 gui.enable_shield_damage.desc=Enable Damage
+gui.machine_upgrade_slot.desc.0=Machine Speed Upgrade slot,
+gui.machine_upgrade_slot.desc.1=place here to increase speed of production
+gui.shield_damage_upgrade.desc.0=Shield Damage Upgrade slot,
+gui.shield_damage_upgrade.desc.1=place here to increase max damage of shield protection
+gui.shield_size_upgrade.desc.0=Shield Size Upgrade slot,
+gui.shield_size_upgrade.desc.1=place here to expand the range of shield
+gui.shield_capacity_upgrade.desc.0=Shield Capacity Upgrade slot,
+gui.shield_capacity_upgrade.desc.1=place here to get max capacity of shield
 item.record.a_planet_to_conquer.desc=Phil Rey - A planet to conquer
 
 # GUI DEATH MESSAGE

@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.ClientCommandHandler;
-import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -41,7 +40,7 @@ public class MorePlanetsCore
     public static final String MOD_ID = "moreplanets";
     public static final int MAJOR_VERSION = 2;
     public static final int MINOR_VERSION = 0;
-    public static final int BUILD_VERSION = 11;
+    public static final int BUILD_VERSION = 12;
     public static final String VERSION = MorePlanetsCore.MAJOR_VERSION + "." + MorePlanetsCore.MINOR_VERSION + "." + MorePlanetsCore.BUILD_VERSION;
     public static final String GUI_FACTORY = "stevekung.mods.moreplanets.core.config.ConfigGuiFactoryMP";
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
@@ -65,10 +64,7 @@ public class MorePlanetsCore
 
     static
     {
-        if (ForgeModContainer.replaceVanillaBucketModel)
-        {
-            FluidRegistry.enableUniversalBucket();
-        }
+        FluidRegistry.enableUniversalBucket();
 
         try
         {

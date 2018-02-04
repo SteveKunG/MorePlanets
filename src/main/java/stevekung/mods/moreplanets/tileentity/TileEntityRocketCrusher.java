@@ -36,7 +36,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     public int processTicks = 0;
     private ItemStack producingStack = ItemStack.EMPTY;
     private long ticks;
-    private NonNullList<ItemStack> containingItems = NonNullList.withSize(2, ItemStack.EMPTY);
+    public NonNullList<ItemStack> containingItems = NonNullList.withSize(3, ItemStack.EMPTY);
     public PersistantInventoryCrafting compressingCraftMatrix = new PersistantInventoryCrafting();
 
     public TileEntityRocketCrusher()
@@ -59,15 +59,16 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
         if (!this.world.isRemote)
         {
             boolean updateInv = false;
+            int speed = !this.containingItems.get(2).isEmpty() ? 1 + this.containingItems.get(2).getCount() : 1;
 
             if (this.hasEnoughEnergyToRun)
             {
                 if (this.canCompress())
                 {
                     ++this.processTicks;
-                    this.processTimeRequired = TileEntityRocketCrusher.PROCESS_TIME_REQUIRED_BASE * 2 / (1 + this.poweredByTierGC);
+                    this.processTimeRequired = TileEntityRocketCrusher.PROCESS_TIME_REQUIRED_BASE * 2 / (1 + this.poweredByTierGC) / speed;
 
-                    if (this.processTicks == 40 || this.processTicks == 80 || this.processTicks == 130)
+                    if (this.processTicks % 45 - speed == 0)
                     {
                         this.world.playSound(null, this.getPos(), SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.BLOCKS, 0.3F, 0.5F);
                     }
