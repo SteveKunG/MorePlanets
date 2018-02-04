@@ -173,7 +173,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
         {
             return false;
         }
-        if (block != this)
+        if (block != this && block instanceof BlockFluidBaseMP)
         {
             return true;
         }
