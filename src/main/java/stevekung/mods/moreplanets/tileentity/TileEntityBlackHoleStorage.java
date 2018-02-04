@@ -701,16 +701,16 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
 
     private boolean destroyBlock()
     {
-        IBlockState iblockstate = this.worldObj.getBlockState(pos);
+        IBlockState iblockstate = this.worldObj.getBlockState(this.pos);
         Block block = iblockstate.getBlock();
 
-        if (block.isAir(iblockstate, this.worldObj, pos))
+        if (block.isAir(iblockstate, this.worldObj, this.pos))
         {
             return false;
         }
         else
         {
-            this.worldObj.playEvent(2001, pos, Block.getStateId(iblockstate));
+            this.worldObj.playEvent(2001, this.pos, Block.getStateId(iblockstate));
             ItemStack itemStack = new ItemStack(MPBlocks.BLACK_HOLE_STORAGE);
             NBTTagCompound nbt = new NBTTagCompound();
             NBTTagList list = new NBTTagList();
@@ -738,8 +738,8 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
                 nbt.setTag("XpFluid", fluidNbt);
             }
             itemStack.setTagCompound(nbt);
-            Block.spawnAsEntity(worldObj, pos, itemStack);
-            return this.worldObj.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+            Block.spawnAsEntity(this.worldObj, this.pos, itemStack);
+            return this.worldObj.setBlockState(this.pos, Blocks.AIR.getDefaultState(), 3);
         }
     }
 }
