@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
 public class BiomeDecoratorChalos extends BiomeDecoratorMP
 {
     public int cheeseSporeFlowerPerChunk = 4;
-    public int cheeseTallGrassPerChunk = 10;
+    public int cheeseTallGrassPerChunk = 120;
     public int cheeseSporeTreePerChunk = 1;
     public int cheeseSporeStemPerChunk = 1;
 
