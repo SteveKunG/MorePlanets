@@ -566,6 +566,7 @@ entity.moreplanets.bearry.name=Bearry
 entity.moreplanets.berry.name=Berry
 entity.moreplanets.zelius_skeleton.name=Zelius Skeleton
 entity.moreplanets.infected_guardian.name=Infected Guardian
+entity.moreplanets.infected_elder_guardian.name=Infected Elder Guardian
 entity.moreplanets.infected_squid.name=Infected Squid
 entity.moreplanets.infected_chicken.name=Infected Chicken
 entity.moreplanets.infected_cow.name=Infected Cow
