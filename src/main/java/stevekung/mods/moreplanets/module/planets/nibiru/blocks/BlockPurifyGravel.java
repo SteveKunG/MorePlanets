@@ -6,7 +6,10 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.BlockFallingMP;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class BlockPurifyGravel extends BlockFallingMP
 {
@@ -26,6 +29,13 @@ public class BlockPurifyGravel extends BlockFallingMP
             fortune = 3;
         }
         return rand.nextInt(10 - fortune * 3) == 0 ? Items.FLINT : Item.getItemFromBlock(this);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getDustColor(IBlockState state)
+    {
+        return ColorHelper.rgbToDecimal(146, 152, 157);
     }
 
     @Override
