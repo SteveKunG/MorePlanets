@@ -1,9 +1,9 @@
 package stevekung.mods.moreplanets.inventory;
 
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.init.MPItems;
 
 public class SlotShieldGeneratorUpgrade extends Slot
 {
@@ -20,15 +20,15 @@ public class SlotShieldGeneratorUpgrade extends Slot
     {
         if (this.type.equals("damage"))
         {
-            return itemStack.getItem() == Items.REDSTONE;
+            return itemStack.getItem() == MPItems.SHIELD_DAMAGE_UPGRADE;
         }
         else if (this.type.equals("size"))
         {
-            return itemStack.getItem() == Items.ENDER_PEARL;
+            return itemStack.getItem() == MPItems.SHIELD_SIZE_UPGRADE;
         }
         else
         {
-            return itemStack.getItem() == Items.DIAMOND;
+            return itemStack.getItem() == MPItems.SHIELD_CAPACITY_UPGRADE;
         }
     }
 
@@ -37,11 +37,11 @@ public class SlotShieldGeneratorUpgrade extends Slot
     {
         if (this.type.equals("damage"))
         {
-            return 8;
+            return 4;
         }
         else if (this.type.equals("size"))
         {
-            return 10;
+            return 16;
         }
         else
         {

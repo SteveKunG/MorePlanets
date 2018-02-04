@@ -10,6 +10,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceOutput;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.tileentity.TileEntityRocketCrusher;
 
 public class ContainerRocketCrusher extends Container
@@ -34,6 +35,9 @@ public class ContainerRocketCrusher extends Container
 
         // Plate result
         this.addSlotToContainer(new SlotFurnaceOutput(invPlayer.player, tile, 1, 143, 38));
+
+        // Upgrade
+        this.addSlotToContainer(new SlotMachineUpgrade(tile, 2, 38, 80));
 
         int invSlot;
 
@@ -75,9 +79,9 @@ public class ContainerRocketCrusher extends Container
             ItemStack slotStack = invSlot.getStack();
             itemStack = slotStack.copy();
 
-            if (slot <= 10)
+            if (slot <= 11)
             {
-                if (!this.mergeItemStack(slotStack, 11, 47, true))
+                if (!this.mergeItemStack(slotStack, 12, 48, true))
                 {
                     return ItemStack.EMPTY;
                 }
@@ -95,14 +99,21 @@ public class ContainerRocketCrusher extends Container
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (slot < 39)
+                else if (slotStack.getItem() == MPItems.MACHINE_SPEED_UPGRADE)
                 {
-                    if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 38, 47, false))
+                    if (!this.mergeItemStack(slotStack, 11, 12, false))
                     {
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 11, 38, false))
+                else if (slot < 39)
+                {
+                    if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 39, 48, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                else if (!this.mergeItemStack(slotStack, 0, 9, false) && !this.mergeItemStack(slotStack, 12, 39, false))
                 {
                     return ItemStack.EMPTY;
                 }
@@ -123,5 +134,133 @@ public class ContainerRocketCrusher extends Container
             invSlot.onTake(player, slotStack);
         }
         return itemStack;
+    }
+
+    @Override
+    public boolean canDragIntoSlot(Slot slot)
+    {
+        return slot.slotNumber < 9;
+    }
+
+    @Override
+    protected boolean mergeItemStack(ItemStack itemStack, int startIndex, int endIndex, boolean reverseDirection)
+    {
+        boolean merged = false;
+        int slotIndex = startIndex;
+
+        if (reverseDirection)
+        {
+            slotIndex = endIndex - 1;
+        }
+
+        Slot slot;
+        ItemStack slotStack;
+
+        if (itemStack.isStackable())
+        {
+            while (itemStack.getCount() > 0 && (!reverseDirection && slotIndex < endIndex || reverseDirection && slotIndex >= startIndex))
+            {
+                slot = this.inventorySlots.get(slotIndex);
+                slotStack = slot.getStack();
+
+                if (!slotStack.isEmpty() && slotStack.getItem() == itemStack.getItem() && itemStack.getItemDamage() == slotStack.getItemDamage() && ItemStack.areItemStackTagsEqual(itemStack, slotStack) && slotStack.getCount() < slot.getSlotStackLimit())
+                {
+                    int mergedStackSize = itemStack.getCount() + this.getSmaller(slotStack.getCount(), slot.getSlotStackLimit());
+
+                    if (mergedStackSize <= itemStack.getMaxStackSize() && mergedStackSize <= slot.getSlotStackLimit())
+                    {
+                        itemStack.setCount(0);
+                        slotStack.setCount(mergedStackSize);
+                        slot.onSlotChanged();
+                        merged = true;
+                    }
+                    else if (slotStack.getCount() < itemStack.getMaxStackSize() && slotStack.getCount() < slot.getSlotStackLimit())
+                    {
+                        if (slot.getSlotStackLimit() >= itemStack.getMaxStackSize())
+                        {
+                            itemStack.shrink(itemStack.getMaxStackSize() - slotStack.getCount());
+                            slotStack.setCount(itemStack.getMaxStackSize());
+                            slot.onSlotChanged();
+                            merged = true;
+                        }
+                        else if (slot.getSlotStackLimit() < itemStack.getMaxStackSize())
+                        {
+                            itemStack.shrink(slot.getSlotStackLimit() - slotStack.getCount());
+                            slotStack.setCount(slot.getSlotStackLimit());
+                            slot.onSlotChanged();
+                            merged = true;
+                        }
+                    }
+                }
+
+                if (reverseDirection)
+                {
+                    --slotIndex;
+                }
+                else
+                {
+                    ++slotIndex;
+                }
+            }
+        }
+
+        if (itemStack.getCount() > 0)
+        {
+            if (reverseDirection)
+            {
+                slotIndex = endIndex - 1;
+            }
+            else
+            {
+                slotIndex = startIndex;
+            }
+
+            while (!reverseDirection && slotIndex < endIndex || reverseDirection && slotIndex >= startIndex)
+            {
+                slot = this.inventorySlots.get(slotIndex);
+                slotStack = slot.getStack();
+
+                if (slotStack.isEmpty() && slot.isItemValid(itemStack) && slot.getSlotStackLimit() < itemStack.getCount())
+                {
+                    ItemStack copy = itemStack.copy();
+                    copy.setCount(slot.getSlotStackLimit());
+                    itemStack.shrink(slot.getSlotStackLimit());
+                    slot.putStack(copy);
+                    slot.onSlotChanged();
+                    merged = true;
+                    break;
+                }
+                else if (slotStack.isEmpty() && slot.isItemValid(itemStack))
+                {
+                    slot.putStack(itemStack.copy());
+                    slot.onSlotChanged();
+                    itemStack.setCount(0);
+                    merged = true;
+                    break;
+                }
+
+                if (reverseDirection)
+                {
+                    --slotIndex;
+                }
+                else
+                {
+                    ++slotIndex;
+                }
+            }
+        }
+        return merged;
+    }
+
+    private int getSmaller(int slotStackSize, int slotStackLimit)
+    {
+        if (slotStackSize < slotStackLimit)
+        {
+            return slotStackSize;
+        }
+        else
+        {
+            return slotStackLimit;
+        }
     }
 }

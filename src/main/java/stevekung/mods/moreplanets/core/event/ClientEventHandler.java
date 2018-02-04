@@ -64,6 +64,7 @@ import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
+import stevekung.mods.moreplanets.util.debug.GuiGetItemName;
 
 public class ClientEventHandler
 {
@@ -115,22 +116,29 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onClientTick(ClientTickEvent event)
     {
-        if (MorePlanetsCore.isObfuscatedEnvironment() && Keyboard.isKeyDown(Keyboard.KEY_F7))
+        if (MorePlanetsCore.isObfuscatedEnvironment())
         {
-            try
+            if (Keyboard.isKeyDown(Keyboard.KEY_F7))
             {
-                // used for real time debugging item description
-                Object proxy = Class.forName("mezz.jei.JustEnoughItems").getDeclaredMethod("getProxy").invoke(Class.forName("mezz.jei.startup.ProxyCommonClient"));
-                Field pluginsField = proxy.getClass().getDeclaredField("plugins");
-                pluginsField.setAccessible(true);
-                Class<?> starter = Class.forName("mezz.jei.startup.JeiStarter");
-                Object obj = starter.newInstance();
-                Method method = obj.getClass().getDeclaredMethod("start", List.class);
-                method.invoke(obj, (ArrayList<Object>) pluginsField.get(proxy));
+                try
+                {
+                    // used for real time debugging item description
+                    Object proxy = Class.forName("mezz.jei.JustEnoughItems").getDeclaredMethod("getProxy").invoke(Class.forName("mezz.jei.startup.ProxyCommonClient"));
+                    Field pluginsField = proxy.getClass().getDeclaredField("plugins");
+                    pluginsField.setAccessible(true);
+                    Class<?> starter = Class.forName("mezz.jei.startup.JeiStarter");
+                    Object obj = starter.newInstance();
+                    Method method = obj.getClass().getDeclaredMethod("start", List.class);
+                    method.invoke(obj, (ArrayList<Object>) pluginsField.get(proxy));
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
             }
-            catch (Exception e)
+            if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD5) && !this.mc.player.getHeldItemMainhand().isEmpty())
             {
-                e.printStackTrace();
+                this.mc.displayGuiScreen(new GuiGetItemName());
             }
         }
         if (ClientEventHandler.loadRenderers)

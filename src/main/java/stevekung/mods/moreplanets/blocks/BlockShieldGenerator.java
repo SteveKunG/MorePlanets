@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -126,12 +127,14 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
                 shield.shieldSize = nbt.getFloat("ShieldSize");
                 shield.maxShieldSize = nbt.getInteger("MaxShieldSize");
                 shield.shieldDamage = nbt.getInteger("ShieldDamage");
+                shield.maxShieldDamage = nbt.getInteger("MaxShieldDamage");
                 shield.shieldCapacity = nbt.getInteger("ShieldCapacity");
                 shield.maxShieldCapacity = nbt.getInteger("MaxShieldCapacity");
                 shield.shieldChargeCooldown = nbt.getInteger("ShieldChargeCooldown");
                 shield.needCharged = nbt.getBoolean("NeedCharged");
                 shield.enableShield = nbt.getBoolean("EnableShield");
                 shield.enableDamage = nbt.getBoolean("EnableDamage");
+                ItemStackHelper.loadAllItems(itemStack.getTagCompound(), shield.containingItems);
             }
             if (placer instanceof EntityPlayer)
             {
@@ -155,12 +158,14 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
             nbt.setFloat("ShieldSize", shield.shieldSize);
             nbt.setInteger("MaxShieldSize", shield.maxShieldSize);
             nbt.setInteger("ShieldDamage", shield.shieldDamage);
+            nbt.setInteger("MaxShieldDamage", shield.maxShieldDamage);
             nbt.setInteger("ShieldCapacity", shield.shieldCapacity);
             nbt.setInteger("MaxShieldCapacity", shield.maxShieldCapacity);
             nbt.setInteger("ShieldChargeCooldown", shield.shieldChargeCooldown);
             nbt.setBoolean("NeedCharged", shield.needCharged);
             nbt.setBoolean("EnableShield", shield.enableShield);
             nbt.setBoolean("EnableDamage", shield.enableDamage);
+            ItemStackHelper.saveAllItems(nbt, shield.containingItems);
 
             if (shield.getEnergyStoredGC() > 0)
             {
@@ -192,7 +197,10 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
         {
             ((TileEntityShieldGenerator) tile).onDestroy(tile);
         }
-        super.breakBlock(world, pos, state);
+        if (this.hasTileEntity(state))
+        {
+            world.removeTileEntity(pos);
+        }
     }
 
     @Override

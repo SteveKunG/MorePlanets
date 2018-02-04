@@ -21,6 +21,7 @@ import stevekung.mods.moreplanets.module.moons.koentus.entity.EntityFallingKoent
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFallingMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
 public class BlockFallenKoentusMeteor extends BlockFallingMP
 {
@@ -79,6 +80,8 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
+        super.randomDisplayTick(state, world, pos, rand);
+
         if (!world.getBlockState(pos.up()).isSideSolid(world, pos.up(), EnumFacing.UP))
         {
             for (int i = 0; i < 4; i++)
@@ -146,5 +149,12 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, 0);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getDustColor(IBlockState state)
+    {
+        return ColorHelper.rgbToDecimal(29, 89, 141);
     }
 }
