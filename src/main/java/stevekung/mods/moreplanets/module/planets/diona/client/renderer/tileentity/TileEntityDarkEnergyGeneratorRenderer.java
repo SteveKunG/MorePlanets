@@ -68,6 +68,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
             this.bindTexture(DESTROY_STAGES[destroyStage]);
             GlStateManager.matrixMode(5890);
             GlStateManager.pushMatrix();
+            GlStateManager.enableBlend();
             GlStateManager.scale(4.0F, 4.0F, 1.0F);
             GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
             GlStateManager.matrixMode(5888);
@@ -91,6 +92,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         if (destroyStage >= 0)
         {
             GlStateManager.matrixMode(5890);
+            GlStateManager.disableBlend();
             GlStateManager.popMatrix();
             GlStateManager.matrixMode(5888);
         }
