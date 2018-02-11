@@ -1,2 +1,2 @@
 set GRADLE_USER_HOME=M:\Modding\.gradle_data_1.8
-gradlew curseforge
+gradlew buildJar curseforge
