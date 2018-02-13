@@ -1,2 +1,2 @@
-set GRADLE_USER_HOME=M:\Modding\MorePlanets\1.10.2\.gradle_data
+set GRADLE_USER_HOME=M:\Modding\.gradle_data_1.10
 gradlew buildJar
