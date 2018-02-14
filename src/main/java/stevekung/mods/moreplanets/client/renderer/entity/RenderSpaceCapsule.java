@@ -1,30 +1,25 @@
 package stevekung.mods.moreplanets.client.renderer.entity;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import micdoodle8.mods.galacticraft.planets.mars.client.model.ModelBalloonParachute;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJModel;
+import stevekung.mods.moreplanets.client.renderer.OBJLoaderMP;
 import stevekung.mods.moreplanets.entity.EntitySpaceCapsule;
 
 public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
 {
-    private OBJModel.OBJBakedModel modelEntryPod;
-    private OBJModel.OBJBakedModel modelFlame;
+    private IBakedModel modelEntryPod;
+    private IBakedModel modelFlame;
     protected ModelBalloonParachute parachuteModel = new ModelBalloonParachute();
 
     public RenderSpaceCapsule(RenderManager manager)
@@ -38,10 +33,7 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
         {
             try
             {
-                OBJModel model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("galacticraftplanets:pod_flame.obj"));
-                model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
-                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-                this.modelFlame = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("Flame_Sphere"), false), DefaultVertexFormats.ITEM, spriteFunction);
+                this.modelFlame = ClientUtil.modelFromOBJ(new ResourceLocation("galacticraftplanets:pod_flame.obj"), ImmutableList.of("Flame_Sphere"));
             }
             catch (Exception e)
             {
@@ -52,10 +44,7 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
         {
             try
             {
-                OBJModel model2 = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/space_capsule.obj"));
-                model2 = (OBJModel) model2.process(ImmutableMap.of("flip-v", "true"));
-                Function<ResourceLocation, TextureAtlasSprite> spriteFunction1 = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-                this.modelEntryPod = (OBJModel.OBJBakedModel) model2.bake(new OBJModel.OBJState(ImmutableList.of("Cone", "Tube0", "Tube1", "Tube2", "Tube3"), false), DefaultVertexFormats.ITEM, spriteFunction1);
+                this.modelEntryPod = OBJLoaderMP.getModelFromOBJ(new ResourceLocation("moreplanets:space_capsule.obj"), ImmutableList.of("Cone", "Tube0", "Tube1", "Tube2", "Tube3"));
             }
             catch (Exception e)
             {

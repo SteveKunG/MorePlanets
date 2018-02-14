@@ -9,9 +9,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import stevekung.mods.moreplanets.client.renderer.*;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
@@ -39,7 +38,7 @@ public class ClientProxyMP extends ServerProxyMP
     @Override
     public void registerPreRendering()
     {
-        OBJLoader.INSTANCE.addDomain(MorePlanetsCore.MOD_ID);
+        ModelLoaderRegistry.registerLoader(OBJLoaderMP.INSTANCE);
         EntityRendererMP.init();
         TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
         VariantsRenderer.init();

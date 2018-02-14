@@ -1,29 +1,23 @@
 package stevekung.mods.moreplanets.client.renderer.tileentity;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJModel;
-import net.minecraftforge.client.model.obj.OBJModel.OBJBakedModel;
 import stevekung.mods.moreplanets.client.model.ModelShieldGenerator;
+import stevekung.mods.moreplanets.client.renderer.OBJLoaderMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 
 public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityShieldGenerator>
 {
-    private OBJBakedModel shield;
+    private IBakedModel shield;
     private ModelShieldGenerator model = new ModelShieldGenerator();
     private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/shield_generator.png");
     public static TileEntityShieldGeneratorRenderer INSTANCE;
@@ -39,10 +33,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         {
             try
             {
-                OBJModel model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/shield.obj"));
-                model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
-                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-                this.shield = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("Shield"), false), DefaultVertexFormats.ITEM, spriteFunction);
+                this.shield = OBJLoaderMP.getModelFromOBJ(new ResourceLocation("moreplanets:shield.obj"), ImmutableList.of("Shield"));
             }
             catch (Exception e)
             {
