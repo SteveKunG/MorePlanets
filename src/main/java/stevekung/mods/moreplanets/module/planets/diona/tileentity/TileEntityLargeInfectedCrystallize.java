@@ -38,7 +38,11 @@ public class TileEntityLargeInfectedCrystallize extends TileEntityAdvanced imple
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setInteger("Facing", this.facing.ordinal());
+
+        if (this.facing != null)
+        {
+            nbt.setInteger("Facing", this.facing.ordinal());
+        }
         return nbt;
     }
 
