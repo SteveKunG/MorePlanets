@@ -321,7 +321,7 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.TERRASTONE_STAIRS);
         CommonRegisterHelper.registerBlock(NibiruBlocks.TERRASTONE_FURNACE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.TERRASTONE_LIT_FURNACE, null);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.SEALABLE_NUCLEAR_WASTE_ROD);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.SEALABLE_NUCLEAR_WASTE_ROD, ItemBlockDescription::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_GRASS_PATH, ItemBlockMultiVariant::new);
 
         /**************************************************************/
