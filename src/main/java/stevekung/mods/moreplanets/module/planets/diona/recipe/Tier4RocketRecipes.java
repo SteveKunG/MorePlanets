@@ -7,6 +7,7 @@ import java.util.List;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.recipe.NasaWorkbenchRecipe;
 import net.minecraft.item.ItemStack;
+import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 import stevekung.mods.moreplanets.integration.jei.rockett4.Tier4RocketRecipeWrapper;
 import stevekung.mods.moreplanets.inventory.InventorySchematicRocket;
 
@@ -44,9 +45,17 @@ public class Tier4RocketRecipes
     public static List<Tier4RocketRecipeWrapper> getRecipesList()
     {
         List<Tier4RocketRecipeWrapper> recipes = new ArrayList<>();
+        int chestCount = -1;
 
         for (INasaWorkbenchRecipe recipe : Tier4RocketRecipes.getRocketRecipes())
         {
+            int chests = MPJEIRecipes.countChests(recipe);
+
+            if (chests == chestCount)
+            {
+                continue;
+            }
+            chestCount = chests;
             Tier4RocketRecipeWrapper wrapper = new Tier4RocketRecipeWrapper(recipe);
             recipes.add(wrapper);
         }
