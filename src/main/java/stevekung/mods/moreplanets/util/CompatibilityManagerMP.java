@@ -8,8 +8,9 @@ public class CompatibilityManagerMP
 {
     private static final boolean isCTMLoaded = Loader.isModLoaded("ctm");
     private static final boolean isBigReactorLoaded = Loader.isModLoaded("bigreactors");
-    private static final boolean isOpenBlocksLoaded = Loader.isModLoaded("OpenBlocks");
-    private static final boolean isEnderIOLoaded = Loader.isModLoaded("EnderIO");
+    private static final boolean isOpenBlocksLoaded = Loader.isModLoaded("openblocks");
+    private static final boolean isEnderIOLoaded = Loader.isModLoaded("enderio");
+    private static final boolean isCCLLoaded = Loader.isModLoaded("codechickenlib");
 
     // Extreme Reactors
     private static Method erRegisterFluid;
