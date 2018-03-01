@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.client.model.ModelBlackHoleStorage;
+import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 
 public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRenderer<TileEntityBlackHoleStorage>
@@ -18,7 +19,7 @@ public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRendere
     @Override
     public void renderTileEntityAt(TileEntityBlackHoleStorage tile, double x, double y, double z, float partialTicks, int destroyStage)
     {
-        float renderPartialTicks = tile.renderTicks + partialTicks;
+        float renderPartialTicks = tile.getWorld() == null ? ClientEventHandler.itemRendererTicks : tile.renderTicks + partialTicks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 1F) / 2F + 0.15F;
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;

@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileent
 import java.awt.Color;
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -15,12 +16,7 @@ import stevekung.mods.moreplanets.util.helper.ColorHelper;
 public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer<TileEntityMultalicCrystal>
 {
     private ModelCrystal model = new ModelCrystal();
-    public static TileEntityMultalicCrystalRenderer INSTANCE;
-
-    public TileEntityMultalicCrystalRenderer()
-    {
-        TileEntityMultalicCrystalRenderer.INSTANCE = this;
-    }
+    public static final TileEntityMultalicCrystalRenderer INSTANCE = new TileEntityMultalicCrystalRenderer();
 
     @Override
     public void renderTileEntityAt(TileEntityMultalicCrystal tile, double x, double y, double z, float partialTicks, int destroyStage)
@@ -123,7 +119,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
         }
     }
 
-    public void renderItem()
+    public void render()
     {
         Random rand = new Random(4);
 
@@ -162,7 +158,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
         GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
         GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
         GlStateManager.color(r, g, b, 0.75F);
-        this.bindTexture(new ResourceLocation("moreplanets:textures/model/crystal.png"));
+        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/model/crystal.png"));
         this.model.render();
         GlStateManager.scale(1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();

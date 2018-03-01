@@ -61,7 +61,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == DionaBlocks.LARGE_INFECTED_CRYSTALLIZE)
         {
-            TileEntityLargeInfectedCrystallizeRenderer.INSTANCE.renderItem();
+            TileEntityLargeInfectedCrystallizeRenderer.INSTANCE.render();
         }
         else if (block == MPBlocks.DARK_ENERGY_RECEIVER)
         {
@@ -69,7 +69,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_BOMB)
         {
-            RenderInfectedCrystallizeBomb.INSTANCE.renderItem();
+            RenderInfectedCrystallizeBomb.INSTANCE.render(1.0F, 1.5F);
         }
         else if (block == NibiruBlocks.NIBIRU_ANCIENT_CHEST)
         {
@@ -89,7 +89,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == NibiruBlocks.MULTALIC_CRYSTAL)
         {
-            TileEntityMultalicCrystalRenderer.INSTANCE.renderItem();
+            TileEntityMultalicCrystalRenderer.INSTANCE.render();
         }
         else if (block == DionaBlocks.DARK_ENERGY_CORE)
         {
@@ -106,7 +106,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == NibiruBlocks.NUCLEAR_WASTE_TANK)
         {
-            TileEntityNuclearWasteTankRenderer.INSTANCE.renderItem();
+            TileEntityNuclearWasteTankRenderer.INSTANCE.render(1.0F, 1.5F);
         }
         else if (block == NibiruBlocks.VEIN_FRAME)
         {
@@ -115,7 +115,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == DionaBlocks.DARK_ENERGY_GENERATOR)
         {
-            TileEntityDarkEnergyGeneratorRenderer.INSTANCE.renderItem();
+            TileEntityDarkEnergyGeneratorRenderer.INSTANCE.render(1.0F, 1.5F);
         }
         else if (block == MPBlocks.BLACK_HOLE_STORAGE)
         {
@@ -130,7 +130,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == MPBlocks.SHIELD_GENERATOR)
         {
-            TileEntityShieldGeneratorRenderer.INSTANCE.renderItem();
+            TileEntityShieldGeneratorRenderer.INSTANCE.render(1.0F, 1.5F);
         }
         else
         {

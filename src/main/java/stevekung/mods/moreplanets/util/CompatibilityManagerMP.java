@@ -10,6 +10,7 @@ public class CompatibilityManagerMP
     private static final boolean isBigReactorLoaded = Loader.isModLoaded("bigreactors");
     private static final boolean isOpenBlocksLoaded = Loader.isModLoaded("OpenBlocks");
     private static final boolean isEnderIOLoaded = Loader.isModLoaded("EnderIO");
+    private static final boolean isCCLLoaded = Loader.isModLoaded("CodeChickenLib");
 
     // Extreme Reactors
     private static Method erRegisterFluid;
@@ -51,6 +52,11 @@ public class CompatibilityManagerMP
     public static boolean isEnderIOLoaded()
     {
         return CompatibilityManagerMP.isEnderIOLoaded;
+    }
+
+    public static boolean isCCLLoaded()
+    {
+        return CompatibilityManagerMP.isCCLLoaded;
     }
 
     public static void registerExtremeReactorFluid(String name, float absorption, float heatEfficiency, float moderation, float heatConductivity)

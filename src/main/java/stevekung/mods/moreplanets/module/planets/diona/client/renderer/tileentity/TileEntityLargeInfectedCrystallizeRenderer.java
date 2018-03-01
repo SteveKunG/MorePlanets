@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileenti
 import java.awt.Color;
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -15,12 +16,7 @@ import stevekung.mods.moreplanets.util.helper.ColorHelper;
 public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecialRenderer<TileEntityLargeInfectedCrystallize>
 {
     private ModelCrystal model = new ModelCrystal();
-    public static TileEntityLargeInfectedCrystallizeRenderer INSTANCE;
-
-    public TileEntityLargeInfectedCrystallizeRenderer()
-    {
-        TileEntityLargeInfectedCrystallizeRenderer.INSTANCE = this;
-    }
+    public static final TileEntityLargeInfectedCrystallizeRenderer INSTANCE = new TileEntityLargeInfectedCrystallizeRenderer();
 
     @Override
     public void renderTileEntityAt(TileEntityLargeInfectedCrystallize tile, double x, double y, double z, float partialTicks, int destroyStage)
@@ -117,7 +113,7 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
         }
     }
 
-    public void renderItem()
+    public void render()
     {
         Random rand = new Random(5);
 
@@ -144,7 +140,7 @@ public class TileEntityLargeInfectedCrystallizeRenderer extends TileEntitySpecia
                 GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
                 GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
                 GlStateManager.color(r, g, b, 1.0F);
-                this.bindTexture(new ResourceLocation("moreplanets:textures/model/infected_crystallize_crystal.png"));
+                Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/model/infected_crystallize_crystal.png"));
                 this.model.render();
                 GlStateManager.scale(1.0F, 1.0F, 1.0F);
                 GlStateManager.disableBlend();
