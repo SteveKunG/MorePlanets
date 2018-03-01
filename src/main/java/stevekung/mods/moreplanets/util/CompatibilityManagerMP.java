@@ -53,6 +53,11 @@ public class CompatibilityManagerMP
         return CompatibilityManagerMP.isEnderIOLoaded;
     }
 
+    public static boolean isCCLLoaded()
+    {
+        return CompatibilityManagerMP.isCCLLoaded;
+    }
+
     public static void registerExtremeReactorFluid(String name, float absorption, float heatEfficiency, float moderation, float heatConductivity)
     {
         MPLog.info("Registering %s into reactor interior", name);

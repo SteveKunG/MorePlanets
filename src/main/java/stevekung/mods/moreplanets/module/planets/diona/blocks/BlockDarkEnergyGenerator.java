@@ -9,8 +9,10 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -134,14 +136,12 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
 
             if (itemStack.hasTagCompound())
             {
-                if (itemStack.getTagCompound().hasKey("EnergyStored"))
-                {
-                    energy.storage.setEnergyStored(itemStack.getTagCompound().getFloat("EnergyStored"));
-                }
-                if (itemStack.getTagCompound().hasKey("DarkEnergyFuel"))
-                {
-                    energy.darkEnergyFuel = itemStack.getTagCompound().getInteger("DarkEnergyFuel");
-                }
+                NBTTagCompound nbt = itemStack.getTagCompound();
+                NBTTagList list = nbt.getTagList("Items", 10);
+                energy.storage.setEnergyStored(nbt.getFloat("EnergyStored"));
+                energy.darkEnergyFuel = nbt.getInteger("DarkEnergyFuel");
+                energy.containingItems = NonNullList.withSize(energy.getSizeInventory(), ItemStack.EMPTY);
+                ItemStackHelper.loadAllItems(nbt, energy.containingItems);
             }
         }
     }
@@ -153,25 +153,18 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
         {
             TileEntityDarkEnergyGenerator electric = (TileEntityDarkEnergyGenerator) tile;
             ItemStack itemStack = new ItemStack(this);
+            NBTTagCompound nbt = new NBTTagCompound();
 
             if (electric.getEnergyStoredGC() > 0)
             {
-                itemStack.setTagCompound(new NBTTagCompound());
-                itemStack.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
-
-                if (electric.darkEnergyFuel > 0)
-                {
-                    itemStack.getTagCompound().setInteger("DarkEnergyFuel", electric.darkEnergyFuel);
-                }
+                nbt.setFloat("EnergyStored", electric.getEnergyStoredGC());
             }
-            else
+            if (electric.darkEnergyFuel > 0)
             {
-                if (electric.darkEnergyFuel > 0)
-                {
-                    itemStack.setTagCompound(new NBTTagCompound());
-                    itemStack.getTagCompound().setInteger("DarkEnergyFuel", electric.darkEnergyFuel);
-                }
+                nbt.setInteger("DarkEnergyFuel", electric.darkEnergyFuel);
             }
+            ItemStackHelper.saveAllItems(nbt, electric.containingItems);
+            itemStack.setTagCompound(nbt);
             Block.spawnAsEntity(world, pos, itemStack);
         }
     }
@@ -214,6 +207,15 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     {
         player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        if (this.hasTileEntity(state))
+        {
+            world.removeTileEntity(pos);
+        }
     }
 
     @Override

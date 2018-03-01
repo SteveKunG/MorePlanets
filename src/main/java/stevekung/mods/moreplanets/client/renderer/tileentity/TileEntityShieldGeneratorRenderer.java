@@ -1,37 +1,28 @@
 package stevekung.mods.moreplanets.client.renderer.tileentity;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJModel;
-import net.minecraftforge.client.model.obj.OBJModel.OBJBakedModel;
 import stevekung.mods.moreplanets.client.model.ModelShieldGenerator;
+import stevekung.mods.moreplanets.client.renderer.OBJLoaderMP;
+import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 
 public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityShieldGenerator>
 {
-    private OBJBakedModel shield;
+    private IBakedModel shield;
     private ModelShieldGenerator model = new ModelShieldGenerator();
     private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/shield_generator.png");
-    public static TileEntityShieldGeneratorRenderer INSTANCE;
-
-    public TileEntityShieldGeneratorRenderer()
-    {
-        TileEntityShieldGeneratorRenderer.INSTANCE = this;
-    }
+    public static final TileEntityShieldGeneratorRenderer INSTANCE = new TileEntityShieldGeneratorRenderer();
 
     private void updateModels()
     {
@@ -39,10 +30,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         {
             try
             {
-                OBJModel model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation("moreplanets:obj/shield.obj"));
-                model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
-                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-                this.shield = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("Shield"), false), DefaultVertexFormats.ITEM, spriteFunction);
+                this.shield = OBJLoaderMP.getModelFromOBJ(new ResourceLocation("moreplanets:shield.obj"), ImmutableList.of("Shield"));
             }
             catch (Exception e)
             {
@@ -130,37 +118,39 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void renderItem()
+    public void render(float scale, float y)
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
+        float renderPartialTicks = ClientEventHandler.itemRendererTicks;
+        float lightTime = (MathHelper.sin(renderPartialTicks / 16) + 1F) / 2F + 0.15F;
 
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
-        GlStateManager.translate(0.5F, 1.5F, 0.5F);
-        GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+        GlStateManager.translate(0.5F, y, 0.5F);
+        GlStateManager.scale(-scale, -scale, scale);
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
-        GlStateManager.color(1.0F, 1.0F, 1.0F);
-        this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow1.png"));
+        GlStateManager.color(lightTime, lightTime, lightTime);
+        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow1.png"));
         this.model.renderBase();
         GlStateManager.pushMatrix();
-        this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow1.png"));
+        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow1.png"));
         this.model.renderRod();
         GlStateManager.popMatrix();
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow2.png"));
+        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow2.png"));
         this.model.renderBase();
         GlStateManager.pushMatrix();
-        this.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow2.png"));
+        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/model/shield_generator_glow2.png"));
         this.model.renderRod();
         GlStateManager.popMatrix();
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
-        this.bindTexture(TileEntityShieldGeneratorRenderer.texture);
+        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityShieldGeneratorRenderer.texture);
         this.model.renderBase();
         this.model.renderRod();
 

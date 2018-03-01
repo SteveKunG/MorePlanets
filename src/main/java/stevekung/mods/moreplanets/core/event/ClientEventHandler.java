@@ -83,6 +83,7 @@ public class ClientEventHandler
     public static final List<String> entityId = new ArrayList<>();
     public static final Set<IMorePlanetsBoss> bossList = Collections.newSetFromMap(new WeakHashMap<>());
     private static final ResourceLocation BOSS_BAR = new ResourceLocation("moreplanets:textures/gui/boss_bars.png");
+    public static int itemRendererTicks;
 
     public ClientEventHandler()
     {
@@ -168,9 +169,11 @@ public class ClientEventHandler
             ClientEventHandler.receiverRenderPos.clear();
             ClientEventHandler.entityId.clear();
             ClientEventHandler.bossList.clear();
+            ClientEventHandler.itemRendererTicks = 0;
         }
         if (event.phase == Phase.START)
         {
+            ClientEventHandler.itemRendererTicks++;
             this.partialTicks++;
             WeatherRendererNibiru.INSTANCE.runRenderTick();
             CloudRendererNibiru.INSTANCE.runRenderTick();
