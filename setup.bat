@@ -1,2 +1,2 @@
-set GRADLE_USER_HOME=M:\Modding\MorePlanets\1.11.2\.gradle_data
+set GRADLE_USER_HOME=M:\Modding\.gradle_data_1.11
 gradlew setupDecompWorkspace eclipse
