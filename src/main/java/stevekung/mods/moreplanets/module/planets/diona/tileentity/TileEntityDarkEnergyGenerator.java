@@ -43,7 +43,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     public int prevDarkEnergyFuel = 0;
     @NetworkedField(targetSide = Side.CLIENT)
     public int facing;
-    private NonNullList<ItemStack> containingItems = NonNullList.withSize(3, ItemStack.EMPTY);
+    public NonNullList<ItemStack> containingItems = NonNullList.withSize(3, ItemStack.EMPTY);
     public int renderTicks;
     private boolean initialize = true;
 

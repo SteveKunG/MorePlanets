@@ -736,6 +736,7 @@ tile.tiered_energy_storage_cluster_1.description=Nuclear Waste Energy Storage Cl
 tile.dark_energy_generator.description=Dark Energy Generator will collect dark energy from an unknown distant planet or produce energy from a Dark Energy Pearl, storing it for further use.
 tile.black_hole_storage.description=Black Hole Storage is a large item storage that uses gravity from a Black Hole to pull Item/EXP into itself. Items and EXP will not drop when break the block.
 tile.shield_generator.description=Shield Generator will protect players from dangerous things (monsters, projectiles).
+tile.sealable_nuclear_waste_rod.description=Sealable blocks should be used where air cannot pass, such as space base walls.
 item.infected_arrow.description=Can be obtained by throwing a normal arrow into infected water.
 desc.tier_4.name=Tier 4
 desc.tier_5.name=Tier 5

@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileent
 
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -16,12 +17,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
     private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/nuclear_waste_tank.png");
     private static ResourceLocation textureGlow = new ResourceLocation("moreplanets:textures/model/nuclear_waste_tank_glow.png");
     private ModelNuclearWasteTank model = new ModelNuclearWasteTank();
-    public static TileEntityNuclearWasteTankRenderer INSTANCE;
-
-    public TileEntityNuclearWasteTankRenderer()
-    {
-        TileEntityNuclearWasteTankRenderer.INSTANCE = this;
-    }
+    public static final TileEntityNuclearWasteTankRenderer INSTANCE = new TileEntityNuclearWasteTankRenderer();
 
     @Override
     public void render(TileEntityNuclearWasteTank tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -100,18 +96,18 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         return true;
     }
 
-    public void renderItem()
+    public void render(float scale, float y)
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0.5F, 1.5F, 0.5F);
-        GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+        GlStateManager.translate(0.5F, y, 0.5F);
+        GlStateManager.scale(-scale, -scale, scale);
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        this.bindTexture(TileEntityNuclearWasteTankRenderer.textureGlow);
+        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityNuclearWasteTankRenderer.textureGlow);
         this.model.renderWaste();
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -120,7 +116,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
-        this.bindTexture(TileEntityNuclearWasteTankRenderer.texture);
+        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityNuclearWasteTankRenderer.texture);
         this.model.renderBase();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(770, 771);
