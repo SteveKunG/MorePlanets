@@ -24,6 +24,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleAlienBerry;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedSpore;
+import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
@@ -40,9 +41,13 @@ public class ClientProxyMP extends ServerProxyMP
     {
         ModelLoaderRegistry.registerLoader(OBJLoaderMP.INSTANCE);
         EntityRendererMP.init();
-        TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
         VariantsRenderer.init();
         BlockStateMapper.init();
+
+        if (!CompatibilityManagerMP.isCCLLoaded())
+        {
+            TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
+        }
     }
 
     @Override
