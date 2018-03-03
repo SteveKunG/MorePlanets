@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.util.dimension;
 
+import java.util.List;
+
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -9,6 +11,7 @@ import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.WorldChunkManager;
@@ -154,6 +157,13 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
     @Override
     public String getDungeonChestType()
     {
+        return null;
+    }
+    
+    @Override
+    public List<Block> getSurfaceBlocks()
+    {
+        // TODO Auto-generated method stub
         return null;
     }
 
