@@ -173,6 +173,7 @@ public class ClientEventHandler
         if (this.mc.currentScreen instanceof GuiMainMenu)
         {
             ClientEventHandler.receiverRenderPos.clear();
+            ClientEventHandler.wasteRenderPos.clear();
             ClientEventHandler.entityId.clear();
             ClientEventHandler.bossList.clear();
             ClientEventHandler.itemRendererTicks = 0;
