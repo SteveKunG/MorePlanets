@@ -74,7 +74,7 @@ public class ClientProxyMP extends ServerProxyMP
 
         if (!CompatibilityManagerMP.isCCLLoaded())
         {
-            TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
+            TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP(TileEntityItemStackRenderer.instance);
         }
         else
         {

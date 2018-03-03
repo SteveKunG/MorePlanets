@@ -87,7 +87,7 @@ public class MPBlocks
         MPBlocks.ALIEN_DEFENDER_BEACON = new BlockAlienDefenderBeacon("alien_defender_beacon");
         MPBlocks.SHIELD_GENERATOR = new BlockShieldGenerator("shield_generator");
 
-        if (!CompatibilityManagerMP.isOpenBlocksLoaded() && !CompatibilityManagerMP.isEnderIOLoaded())
+        if (CompatibilityManagerMP.isModAddedXpFluid())
         {
             MPBlocks.FLUID_XP = new FluidMP("xpjuice").setLuminosity(10).setDensity(800).setViscosity(1500);
             FluidRegistry.addBucketForFluid(MPBlocks.FLUID_XP);

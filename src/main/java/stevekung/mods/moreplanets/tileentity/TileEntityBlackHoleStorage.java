@@ -33,10 +33,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
@@ -357,7 +354,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         }
         else
         {
-            return fluid != null && fluid.getName().equals("xpjuice");
+            return fluid == null || fluid.getName().equals("xpjuice");
         }
     }
 
@@ -406,9 +403,9 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         FluidStack fluid = this.fluidTank.getFluid();
         boolean isXP = false;
 
-        if (!CompatibilityManagerMP.isOpenBlocksLoaded() && !CompatibilityManagerMP.isEnderIOLoaded())
+        if (CompatibilityManagerMP.isModAddedXpFluid())
         {
-            isXP = fluid.isFluidEqual(new FluidStack(MPBlocks.FLUID_XP, 0));
+            isXP = fluid.isFluidEqual(new FluidStack(FluidRegistry.getFluid("xpjuice"), 0));
         }
         else
         {
@@ -574,7 +571,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         {
             if (this.fluidTank.getFluidAmount() < this.fluidTank.getCapacity() - xpOrb.xpValue)
             {
-                this.fluidTank.fill(new FluidStack(MPBlocks.FLUID_XP, xpOrb.xpValue), true);
+                this.fluidTank.fill(new FluidStack(FluidRegistry.getFluid("xpjuice"), xpOrb.xpValue), true);
                 xpOrb.setDead();
             }
             return true;
