@@ -33,6 +33,13 @@ import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 @SideOnly(Side.CLIENT)
 public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
 {
+    private TileEntityItemStackRenderer old;
+
+    public TileEntityItemStackRendererMP(TileEntityItemStackRenderer old)
+    {
+        this.old = old;
+    }
+
     @Override
     public void renderByItem(ItemStack itemStack)
     {
@@ -134,7 +141,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else
         {
-            super.renderByItem(itemStack);
+            this.old.renderByItem(itemStack);
         }
     }
 }
