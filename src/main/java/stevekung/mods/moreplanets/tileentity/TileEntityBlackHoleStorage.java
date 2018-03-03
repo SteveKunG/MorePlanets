@@ -380,7 +380,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         }
         else
         {
-            return fluid != null && fluid.getName().equals("xpjuice");
+            return fluid == null || fluid.getName().equals("xpjuice");
         }
     }
 
@@ -429,9 +429,9 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         FluidStack fluid = this.fluidTank.getFluid();
         boolean isXP = false;
 
-        if (!CompatibilityManagerMP.isOpenBlocksLoaded() && !CompatibilityManagerMP.isEnderIOLoaded())
+        if (CompatibilityManagerMP.isModAddedXpFluid())
         {
-            isXP = fluid.isFluidEqual(new FluidStack(MPBlocks.FLUID_XP, 0));
+            isXP = fluid.isFluidEqual(new FluidStack(FluidRegistry.getFluid("xpjuice"), 0));
         }
         else
         {
@@ -597,7 +597,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvanced implements II
         {
             if (this.fluidTank.getFluidAmount() < this.fluidTank.getCapacity() - xpOrb.xpValue)
             {
-                this.fluidTank.fill(new FluidStack(MPBlocks.FLUID_XP, xpOrb.xpValue), true);
+                this.fluidTank.fill(new FluidStack(FluidRegistry.getFluid("xpjuice"), xpOrb.xpValue), true);
                 xpOrb.setDead();
             }
             return true;
