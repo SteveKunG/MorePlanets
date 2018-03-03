@@ -42,7 +42,6 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityAli
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityInfectedChest;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruAncientChest;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
-import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
@@ -55,11 +54,6 @@ public class ItemModelRenderer
         ItemModelRenderer.registerBlockVariantsRenderer();
         ItemModelRenderer.registerItemRenderer();
         ItemModelRenderer.registerItemVariantsRenderer();
-
-        if (CompatibilityManagerMP.isCCLLoaded())
-        {
-            ItemModelRenderer.registerCCLRenderer();
-        }
     }
 
     private static void registerBlockRenderer()
@@ -168,7 +162,7 @@ public class ItemModelRenderer
         ClientRegisterHelper.registerModelRender(FronosItems.CANDY_CANE, ItemCandyCane.ItemType.class);
     }
 
-    private static void registerCCLRenderer()
+    public static void registerCCLRenderer()
     {
         try
         {

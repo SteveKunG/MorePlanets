@@ -18,9 +18,8 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.internal.FMLMessage.EntitySpawnMessage;
@@ -44,6 +43,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleAlienBerry;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.particle.ParticleInfectedSpore;
+import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
@@ -69,9 +69,17 @@ public class ClientProxyMP extends ServerProxyMP
     {
         ModelLoaderRegistry.registerLoader(OBJLoaderMP.INSTANCE);
         EntityRendererMP.init();
-        TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
         ClientProxyMP.handleSpaceFishHookSpawning();
         CommonRegisterHelper.registerForgeEvent(this);
+
+        if (!CompatibilityManagerMP.isCCLLoaded())
+        {
+            TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP();
+        }
+        else
+        {
+            ItemModelRenderer.registerCCLRenderer();
+        }
     }
 
     @Override
