@@ -9,19 +9,13 @@ public abstract class CCLRenderBase implements IItemRenderer
     @Override
     public boolean isAmbientOcclusion()
     {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isGui3d()
     {
         return true;
-    }
-
-    @Override
-    public boolean isBuiltInRenderer()
-    {
-        return false;
     }
 
     @Override
