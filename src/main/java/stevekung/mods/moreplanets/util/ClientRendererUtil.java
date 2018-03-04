@@ -120,4 +120,39 @@ public class ClientRendererUtil
             GlStateManager.enableColorMaterial();
         }
     }
+
+    public static void renderBeam(double x, double y, double z, float partialTicks, double prevX, double prevY, double prevZ, int ticksExisted, double targetX, double targetY, double targetZ)
+    {
+        float f = (float)(targetX - prevX);
+        float f1 = (float)(targetY - 1.0D - prevY);
+        float f2 = (float)(targetZ - prevZ);
+        float f3 = MathHelper.sqrt_float(f * f + f2 * f2);
+        float f4 = MathHelper.sqrt_float(f * f + f1 * f1 + f2 * f2);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)x, (float)y + 2.0F, (float)z);
+        GlStateManager.rotate((float)-Math.atan2(f2, f) * (180F / (float)Math.PI) - 90.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate((float)-Math.atan2(f3, f1) * (180F / (float)Math.PI) - 90.0F, 1.0F, 0.0F, 0.0F);
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        ClientRendererUtil.renderLightState(true);
+        GlStateManager.disableCull();
+        GlStateManager.shadeModel(7425);
+        float f5 = 0.0F - (ticksExisted + partialTicks) * 0.01F;
+        float f6 = MathHelper.sqrt_float(f * f + f1 * f1 + f2 * f2) / 32.0F - (ticksExisted + partialTicks) * 0.01F;
+        vertexbuffer.begin(5, DefaultVertexFormats.POSITION_TEX_COLOR);
+
+        for (int j = 0; j <= 8; ++j)
+        {
+            float f7 = MathHelper.sin(j % 8 * ((float)Math.PI * 2F) / 8.0F) * 0.75F;
+            float f8 = MathHelper.cos(j % 8 * ((float)Math.PI * 2F) / 8.0F) * 0.75F;
+            float f9 = j % 8 / 8.0F;
+            vertexbuffer.pos(f7 * 0.2F, f8 * 0.2F, 0.0D).tex(f9, f5).color(0, 0, 0, 255).endVertex();
+            vertexbuffer.pos(f7, f8, f4).tex(f9, f6).color(255, 255, 255, 255).endVertex();
+        }
+        tessellator.draw();
+        GlStateManager.enableCull();
+        GlStateManager.shadeModel(7424);
+        ClientRendererUtil.renderLightState(false);
+        GlStateManager.popMatrix();
+    }
 }
