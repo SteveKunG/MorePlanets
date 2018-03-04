@@ -50,15 +50,15 @@ public class RenderInfectedCrystallizeBomb extends Render<EntityInfectedCrystall
         return new ResourceLocation("moreplanets:textures/model/infected_crystallize_bomb.png");
     }
 
-    public void render(float scale, float y)
+    public void render()
     {
         EntityInfectedCrystallizeBomb entity = new EntityInfectedCrystallizeBomb(Minecraft.getMinecraft().theWorld);
         GlStateManager.translate(0.5F, 0.5F, 0.5F);
         GlStateManager.rotate(0.0F, 0.0F, 0.0F, 0.0F);
         GlStateManager.scale(1.0F, 1.0F, 1.0F);
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0.0F, y, 0.0F);
-        GlStateManager.scale(-scale, -scale, scale);
+        GlStateManager.translate(0.0F, 1.5F, 0.0F);
+        GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/model/infected_crystallize_bomb.png"));
         this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;

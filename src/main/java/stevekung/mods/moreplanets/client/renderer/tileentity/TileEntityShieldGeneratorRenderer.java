@@ -118,7 +118,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void render(float scale, float y)
+    public void render()
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
@@ -127,8 +127,8 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
 
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
-        GlStateManager.translate(0.5F, y, 0.5F);
-        GlStateManager.scale(-scale, -scale, scale);
+        GlStateManager.translate(0.5F, 1.5F, 0.5F);
+        GlStateManager.scale(-1.0F, -1.0F, 1.0F);
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.color(lightTime, lightTime, lightTime);
