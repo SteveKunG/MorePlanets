@@ -12,6 +12,7 @@ public class CompatibilityManagerMP
     private static final boolean isEnderIOLoaded = Loader.isModLoaded("enderio");
     private static final boolean isMobGrindingUtilsLoaded = Loader.isModLoaded("mob_grinding_utils");
     private static final boolean isCCLLoaded = Loader.isModLoaded("codechickenlib");
+    private static final boolean isBaubleLoaded = Loader.isModLoaded("baubles");
 
     // Extreme Reactors
     private static Method erRegisterFluid;
@@ -63,6 +64,11 @@ public class CompatibilityManagerMP
     public static boolean isCCLLoaded()
     {
         return CompatibilityManagerMP.isCCLLoaded;
+    }
+
+    public static boolean isBaubleLoaded()
+    {
+        return CompatibilityManagerMP.isBaubleLoaded;
     }
 
     public static boolean isModAddedXpFluid()

@@ -31,6 +31,7 @@ public class MPItems
     public static Item SHIELD_SIZE_UPGRADE;
     public static Item SHIELD_CAPACITY_UPGRADE;
     public static Item MACHINE_SPEED_UPGRADE;
+    public static Item GRAVITY_AMULET;
 
     public static void init()
     {
@@ -55,6 +56,7 @@ public class MPItems
         MPItems.SHIELD_SIZE_UPGRADE = new ItemBaseMP("shield_size_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
         MPItems.SHIELD_CAPACITY_UPGRADE = new ItemBaseMP("shield_capacity_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
         MPItems.MACHINE_SPEED_UPGRADE = new ItemBaseMP("machine_speed_upgrade").setSortCategory(EnumSortCategoryItem.UPGRADE);
+        MPItems.GRAVITY_AMULET = new ItemGravityAmulet("gravity_amulet");
 
         /**************************************************************/
         /**********************REGISTER STUFF**************************/
@@ -77,6 +79,7 @@ public class MPItems
         CommonRegisterHelper.registerItem(MPItems.SHIELD_SIZE_UPGRADE);
         CommonRegisterHelper.registerItem(MPItems.SHIELD_CAPACITY_UPGRADE);
         CommonRegisterHelper.registerItem(MPItems.MACHINE_SPEED_UPGRADE);
+        CommonRegisterHelper.registerItem(MPItems.GRAVITY_AMULET);
 
         /**************************************************************/
         /********************ORE DICTIONARY STUFF**********************/

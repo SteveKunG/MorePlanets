@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
@@ -93,5 +94,21 @@ public class FronosBlocks
 
         CommonRegisterHelper.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_1);
         CommonRegisterHelper.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_2);
+
+        CommonRegisterHelper.registerOreDictionary("oreIron", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 0));
+        CommonRegisterHelper.registerOreDictionary("oreGold", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 1));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 2));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 3));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreLead", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 5));
+        CommonRegisterHelper.registerOreDictionary("oreCoal", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 6));
+        CommonRegisterHelper.registerOreDictionary("oreLapis", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreDiamond", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreEmerald", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 9));
+        CommonRegisterHelper.registerOreDictionary("oreRedstone", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 10));
+        CommonRegisterHelper.registerOreDictionary("oreSilicon", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 11));
+        CommonRegisterHelper.registerOreDictionary("oreQuartz", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 12));
+        CommonRegisterHelper.registerOreDictionary("oreExtrailonite", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 13));
     }
 }

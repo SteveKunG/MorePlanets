@@ -178,12 +178,6 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
         }
     }
 
-    @Override
-    protected boolean isInfinite()
-    {
-        return false;
-    }
-
     private boolean isSurroundingBlockFlammable(World world, BlockPos pos)
     {
         EnumFacing[] aenumfacing = EnumFacing.VALUES;

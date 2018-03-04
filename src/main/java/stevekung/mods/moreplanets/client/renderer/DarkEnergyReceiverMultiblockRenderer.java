@@ -172,5 +172,6 @@ public class DarkEnergyReceiverMultiblockRenderer
         GlStateManager.popMatrix();
 
         TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityInfectedCrystallizeEnderCore(), x + 3, y + 2, z - 3, 0.0F);
+        GlStateManager.enableDepth();
     }
 }

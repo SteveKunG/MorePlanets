@@ -150,5 +150,12 @@ public class DionaBlocks
         CommonRegisterHelper.registerOreDictionary("chestWood", DionaBlocks.DIONA_ANCIENT_CHEST);
         CommonRegisterHelper.registerOreDictionary("chest", DionaBlocks.DIONA_ANCIENT_CHEST);
         CommonRegisterHelper.registerOreDictionary("torch", DionaBlocks.INFECTED_CRYSTALLIZE_TORCH);
+
+        CommonRegisterHelper.registerOreDictionary("oreSetrorium", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreIllenium", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 5));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 6));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 8));
     }
 }

@@ -28,6 +28,7 @@ public class MPLootTables
     public static final ResourceLocation BEARRY = CommonRegisterHelper.registerEntityLoot("bearry");
     public static final ResourceLocation GIANT_BLUEBERRY = CommonRegisterHelper.registerEntityLoot("giant_blueberry");
     public static final ResourceLocation MARSHMALLOW = CommonRegisterHelper.registerEntityLoot("marshmallow");
+    public static final ResourceLocation TERRASTONE_GOLEM = CommonRegisterHelper.registerEntityLoot("terrastone_golem");
 
     // Jelly Slime
     public static final ResourceLocation JELLY_SLIME_GRAPE = CommonRegisterHelper.registerEntityDyeLoot("jelly_slime", "grape");

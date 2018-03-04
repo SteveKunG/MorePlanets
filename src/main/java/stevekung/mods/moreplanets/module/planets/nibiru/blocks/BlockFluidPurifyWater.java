@@ -74,12 +74,6 @@ public class BlockFluidPurifyWater extends BlockFluidBaseMP implements IFishable
     }
 
     @Override
-    protected boolean isInfinite()
-    {
-        return false;
-    }
-
-    @Override
     public String getName()
     {
         return "purify_water_fluid";
