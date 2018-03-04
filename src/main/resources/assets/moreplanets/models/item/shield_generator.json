@@ -2,7 +2,7 @@
     "parent": "builtin/entity",
     "display": {
         "gui": {
-            "rotation": [ 30, 45, 0 ],
+            "rotation": [ 30, 135, 0 ],
             "translation": [ 0, -2.65, 0],
             "scale":[ 0.455, 0.455, 0.455 ]
         },

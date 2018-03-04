@@ -96,13 +96,13 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         return true;
     }
 
-    public void render(float scale, float y)
+    public void render()
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0.5F, y, 0.5F);
-        GlStateManager.scale(-scale, -scale, scale);
+        GlStateManager.translate(0.5F, 1.5F, 0.5F);
+        GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);

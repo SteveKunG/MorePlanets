@@ -82,7 +82,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         }
 
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0.0F, 0.65F, 0.0F);
+        GlStateManager.translate(0.0F, tile.getWorld() == null ? 0.0F : 0.65F, 0.0F);
         GlStateManager.translate(0.0F, -rodUp / 90, 0.0F);
         this.model.renderRod();
         GlStateManager.popMatrix();
