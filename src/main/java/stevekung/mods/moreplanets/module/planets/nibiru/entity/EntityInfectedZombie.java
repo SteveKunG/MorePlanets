@@ -103,7 +103,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
 
                 if (this.world.rand.nextFloat() < 0.05D)
                 {
-                    List<EntityInfectedChicken> list = this.world.<EntityInfectedChicken>getEntitiesWithinAABB(EntityInfectedChicken.class, this.getEntityBoundingBox().expand(5.0D, 3.0D, 5.0D), EntitySelectors.IS_STANDALONE);
+                    List<EntityInfectedChicken> list = this.world.getEntitiesWithinAABB(EntityInfectedChicken.class, this.getEntityBoundingBox().grow(5.0D, 3.0D, 5.0D), EntitySelectors.IS_STANDALONE);
 
                     if (!list.isEmpty())
                     {

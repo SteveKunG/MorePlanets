@@ -95,7 +95,7 @@ public class RenderTier5Rocket extends Render<EntityTier5Rocket>
     @Override
     public boolean shouldRender(EntityTier5Rocket rocket, ICamera camera, double camX, double camY, double camZ)
     {
-        AxisAlignedBB axisalignedbb = rocket.getEntityBoundingBox().expand(0.5D, 0, 0.5D);
+        AxisAlignedBB axisalignedbb = rocket.getEntityBoundingBox().grow(0.5D, 0, 0.5D);
         return rocket.isInRangeToRender3d(camX, camY, camZ) && camera.isBoundingBoxInFrustum(axisalignedbb);
     }
 

@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.entity;
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -101,12 +100,6 @@ public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreath
     protected ResourceLocation getLootTable()
     {
         return LootTableList.ENTITIES_SQUID;
-    }
-
-    @Override
-    public boolean isInWater()
-    {
-        return this.world.handleMaterialAcceleration(this.getEntityBoundingBox().expand(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, this);
     }
 
     @Override

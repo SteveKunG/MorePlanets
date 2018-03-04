@@ -92,14 +92,14 @@ public class EntityInfectedCrystallizeTentacle extends Entity
 
         if (!this.world.isRemote)
         {
-            List<EntityInfectedCrystallizeSlimeBoss> boss = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeSlimeBoss.class, this.getEntityBoundingBox().expand(32.0F, 32.0F, 32.0F));
+            List<EntityInfectedCrystallizeSlimeBoss> boss = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeSlimeBoss.class, this.getEntityBoundingBox().grow(32.0F, 32.0F, 32.0F));
 
             if (boss.isEmpty())
             {
                 this.setDead();
             }
 
-            int size = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeWorm.class, this.getEntityBoundingBox().expand(5.0F, 5.0F, 5.0F)).size();
+            int size = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeWorm.class, this.getEntityBoundingBox().grow(5.0F, 5.0F, 5.0F)).size();
 
             if (size > 16)
             {

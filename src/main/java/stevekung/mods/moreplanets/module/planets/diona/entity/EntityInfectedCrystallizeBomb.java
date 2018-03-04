@@ -40,7 +40,7 @@ public class EntityInfectedCrystallizeBomb extends EntityThrowable
         if (!this.world.isRemote)
         {
             this.setDead();
-            List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(2.5D, 2.5D, 2.5D));
+            List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().grow(2.5D, 2.5D, 2.5D));
             this.world.createExplosion(this, this.posX, this.posY, this.posZ, 1.0F + this.rand.nextFloat(), true);
             this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.BLOCKS, 1.5F, 1.0F);
 
