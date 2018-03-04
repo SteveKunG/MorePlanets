@@ -61,12 +61,6 @@ public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFis
     }
 
     @Override
-    protected boolean isInfinite()
-    {
-        return false;
-    }
-
-    @Override
     public String getName()
     {
         return "crystallize_water_fluid";

@@ -14,6 +14,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruFlower;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityTerrastoneGolem;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenAlienBerryBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenAlienBerryTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
@@ -29,6 +30,7 @@ public class BiomeGreenVein extends BiomeNibiru
         this.topBlock = NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityTerrastoneGolem.class, 8, 2, 4));
         this.getBiomeDecorator().pureHurbPerChunk = -999;
         this.getBiomeDecorator().terrapuffHurbPerChunk = 4;
         this.getBiomeDecorator().greenVeinTallGrassPerChunk = 128;

@@ -1,16 +1,17 @@
--Added- Added Jar Signing (Certificate)
--Added- Added XP Fluid support for Black Hole Storage
--Added- Added Backward Compatibility for Black Hole Storage
--Added- Added Shield Generator Machine Upgrade
--Added- Added Machine Speed Upgrade
--Added- Added Upgrade Template
--Added- Added Falldust particle for falling block
--Update- Update latest GC Biome API
--Update- Black Hole Storage improvement
--Fixed- Fixed Black Hole Storage recipe height
--Fixed- Fixed fluid block side rendering
--Fixed- Fixed Infected Elder Guardian name
--Fixed- Fixed World Lighting issue
--Fixed- Fixed Text offset in Change Log GUI
--Fixed- Fixed loot table with old bucket item
--Fixed- Attempt to fix Chalos Tall Grass generation
+-Added- Added Gravity Amulet (WIP)
+-Added- Added Terrastone Golem
+-Added- Added Item Renderer when Code Chicken Lib is loaded
+-Added- Added More Ore Dictionary support
+-Update- Dark Energy Generator now save items in inventory
+-Update- Improve OBJ Model loading
+-Update- More Compatibility for XP Fluid
+-Update- TESR Item Rendering now should work correctly
+-Fixed- Fixed Dark Energy Generator breaking animation
+-Fixed- Fixed rare crash with Crystals
+-Fixed- Fixed Sealable Nuclear Waste Rod description
+-Fixed- Fixed Black Hole Storage not accept XP Fluid
+-Fixed- Fixed Nuclear Waste Generator guide cache not being reset
+-Fixed- Fixed multiblock rendering
+-Fixed- Fixed loot table crashes when open Crashed Alien Probe
+-Fixed- Fixed TPS Drop with fluid blocks. Close #21
+-Fixed- Fixed MCP Method name

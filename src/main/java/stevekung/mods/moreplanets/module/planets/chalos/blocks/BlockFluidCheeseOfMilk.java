@@ -73,12 +73,6 @@ public class BlockFluidCheeseOfMilk extends BlockFluidBaseMP implements IFishabl
     }
 
     @Override
-    protected boolean isInfinite()
-    {
-        return true;
-    }
-
-    @Override
     public String getName()
     {
         return "cheese_of_milk_fluid";

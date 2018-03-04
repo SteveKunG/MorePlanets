@@ -12,7 +12,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -137,7 +136,6 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
             if (itemStack.hasTagCompound())
             {
                 NBTTagCompound nbt = itemStack.getTagCompound();
-                NBTTagList list = nbt.getTagList("Items", 10);
                 energy.storage.setEnergyStored(nbt.getFloat("EnergyStored"));
                 energy.darkEnergyFuel = nbt.getInteger("DarkEnergyFuel");
                 energy.containingItems = NonNullList.withSize(energy.getSizeInventory(), ItemStack.EMPTY);

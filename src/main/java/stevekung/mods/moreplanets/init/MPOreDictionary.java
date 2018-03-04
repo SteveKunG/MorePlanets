@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.init;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
@@ -19,7 +20,6 @@ public class MPOreDictionary
         CommonRegisterHelper.registerOreDictionary("slabWood", new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("blockGlass", new ItemStack(MPBlocks.TINTED_GLASS, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("paneGlass", new ItemStack(MPBlocks.TINTED_GLASS_PANE, 1, OreDictionary.WILDCARD_VALUE));
-
         CommonRegisterHelper.registerOreDictionary("plankWood", DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS);
         CommonRegisterHelper.registerOreDictionary("stone", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 2));
         CommonRegisterHelper.registerOreDictionary("cobblestone", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 3));
@@ -27,7 +27,6 @@ public class MPOreDictionary
         CommonRegisterHelper.registerOreDictionary("chestWood", DionaBlocks.DIONA_ANCIENT_CHEST);
         CommonRegisterHelper.registerOreDictionary("chest", DionaBlocks.DIONA_ANCIENT_CHEST);
         CommonRegisterHelper.registerOreDictionary("torch", DionaBlocks.INFECTED_CRYSTALLIZE_TORCH);
-
         CommonRegisterHelper.registerOreDictionary("plankWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_PLANKS, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("logWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_STEM, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("stairWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_STAIRS));
@@ -41,7 +40,6 @@ public class MPOreDictionary
         CommonRegisterHelper.registerOreDictionary("chestWood", ChalosBlocks.CHALOS_ANCIENT_CHEST);
         CommonRegisterHelper.registerOreDictionary("chest", ChalosBlocks.CHEESE_SPORE_CHEST);
         CommonRegisterHelper.registerOreDictionary("chest", ChalosBlocks.CHALOS_ANCIENT_CHEST);
-
         CommonRegisterHelper.registerOreDictionary("plankWood", new ItemStack(NibiruBlocks.NIBIRU_PLANKS, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("logWood", new ItemStack(NibiruBlocks.NIBIRU_LOG, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("treeLeaves", new ItemStack(NibiruBlocks.NIBIRU_LEAVES, 1, OreDictionary.WILDCARD_VALUE));
@@ -79,20 +77,59 @@ public class MPOreDictionary
         CommonRegisterHelper.registerOreDictionary("torch", NibiruBlocks.INFECTED_TORCH);
         CommonRegisterHelper.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 0));
         CommonRegisterHelper.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 1));
-
         CommonRegisterHelper.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_1);
         CommonRegisterHelper.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_2);
-
         CommonRegisterHelper.registerOreDictionary("dyeBlue", MPItems.DYE);
-
         CommonRegisterHelper.registerOreDictionary("slimeball", DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
-
         CommonRegisterHelper.registerOreDictionary("slimeball", ChalosItems.CHEESE_SLIMEBALL);
-
         CommonRegisterHelper.registerOreDictionary("cropWheat", NibiruItems.INFECTED_WHEAT);
         CommonRegisterHelper.registerOreDictionary("sugarcane", NibiruItems.INFECTED_SUGAR_CANE);
         CommonRegisterHelper.registerOreDictionary("gemPrismarine", new ItemStack(NibiruItems.INFECTED_PRISMARINE, 1, 0));
         CommonRegisterHelper.registerOreDictionary("dustPrismarine", new ItemStack(NibiruItems.INFECTED_PRISMARINE, 1, 1));
         CommonRegisterHelper.registerOreDictionary("egg", NibiruItems.INFECTED_EGG);
+        CommonRegisterHelper.registerOreDictionary("oreSetrorium", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreIllenium", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 5));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 6));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreDirensium", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 2));
+        CommonRegisterHelper.registerOreDictionary("oreZyptorium", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 3));
+        CommonRegisterHelper.registerOreDictionary("oreCheese", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreCheeseMilk", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreIron", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 5));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 6));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreOil", NibiruBlocks.OIL_ORE);
+        CommonRegisterHelper.registerOreDictionary("oreInferumite", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 11));
+        CommonRegisterHelper.registerOreDictionary("oreSilicon", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 10));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 9));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreIron", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 0));
+        CommonRegisterHelper.registerOreDictionary("oreGold", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 1));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 2));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 3));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreLead", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 5));
+        CommonRegisterHelper.registerOreDictionary("oreCoal", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 6));
+        CommonRegisterHelper.registerOreDictionary("oreLapis", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreDiamond", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreEmerald", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 9));
+        CommonRegisterHelper.registerOreDictionary("oreRedstone", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 10));
+        CommonRegisterHelper.registerOreDictionary("oreSilicon", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 11));
+        CommonRegisterHelper.registerOreDictionary("oreQuartz", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 12));
+        CommonRegisterHelper.registerOreDictionary("oreExtrailonite", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 13));
+        CommonRegisterHelper.registerOreDictionary("oreAntiGrav", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreGoldenite", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 5));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 6));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreIron", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 9));
     }
 }

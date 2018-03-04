@@ -97,5 +97,6 @@ public class EntityRendererMP
         ClientRegisterHelper.registerEntityRendering(EntityJellySlime.class, RenderJellySlime::new);
         ClientRegisterHelper.registerEntityRendering(EntityFallingKoentusMeteor.class, RenderFallingKoentusMeteor::new);
         ClientRegisterHelper.registerEntityRendering(EntityAntiGravFallingBlock.class, RenderAntiGravFallingBlock::new);
+        ClientRegisterHelper.registerEntityRendering(EntityTerrastoneGolem.class, RenderTerrastoneGolem::new);
     }
 }

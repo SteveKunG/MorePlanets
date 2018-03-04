@@ -61,6 +61,7 @@ public class MPEntities
         CommonRegisterHelper.registerEntity(EntityMarshmallow.class, "marshmallow", ColorHelper.rgbToDecimal(225, 215, 206), ColorHelper.rgbToDecimal(128, 128, 128));
         CommonRegisterHelper.registerEntity(EntityBearry.class, "bearry", ColorHelper.rgbToDecimal(179, 47, 47), ColorHelper.rgbToDecimal(0, 143, 0));
         CommonRegisterHelper.registerEntity(EntityJellySlime.class, "jelly_slime", ColorHelper.rgbToDecimal(244, 69, 109), ColorHelper.rgbToDecimal(199, 56, 89));
+        CommonRegisterHelper.registerEntity(EntityTerrastoneGolem.class, "terrastone_golem", ColorHelper.rgbToDecimal(101, 78, 83), ColorHelper.rgbToDecimal(101, 130, 56));
 
         CommonRegisterHelper.registerNonMobEntity(EntitySpaceMinecartChest.class, "space_minecart_chest");
         CommonRegisterHelper.registerNonMobEntity(EntityTier4Rocket.class, "tier_4_rocket", EnumEntityTrackerType.TIERED_ROCKET);

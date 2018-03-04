@@ -28,6 +28,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -123,6 +124,17 @@ public class GeneralEventHandler
         if (block == ChalosBlocks.CHEESE_SPORE_FLOWER || block == NibiruBlocks.NIBIRU_SAPLING)
         {
             event.setBurnTime(100);
+        }
+    }
+
+    @SubscribeEvent
+    public void onCreateFluidSource(CreateFluidSourceEvent event)
+    {
+        Block block = event.getState().getBlock();
+
+        if (block == DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK || block == ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK || block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+        {
+            event.setResult(Result.ALLOW);
         }
     }
 
