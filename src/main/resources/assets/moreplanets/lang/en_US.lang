@@ -584,6 +584,7 @@ entity.moreplanets.mini_vein_floater.name=Mini Vein Floater
 entity.moreplanets.giant_blueberry.name=Giant Blueberry
 entity.moreplanets.marshmallow.name=Marshmallow
 entity.moreplanets.jelly_slime.name=Jelly Slime
+entity.moreplanets.terrastone_golem.name=Terrastone Golem
 
 # NON-ENTITY
 entity.moreplanets.space_minecart_chest.name=Space Minecart Chest
