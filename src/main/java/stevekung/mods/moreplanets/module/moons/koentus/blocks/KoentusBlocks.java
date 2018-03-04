@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.module.moons.koentus.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.module.moons.koentus.itemblocks.ItemBlockKoentus;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
@@ -62,6 +63,12 @@ public class KoentusBlocks
         /********************ORE DICTIONARY STUFF**********************/
         /**************************************************************/
 
-
+        CommonRegisterHelper.registerOreDictionary("oreAntiGrav", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreGoldenite", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 5));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 6));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreIron", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 9));
     }
 }

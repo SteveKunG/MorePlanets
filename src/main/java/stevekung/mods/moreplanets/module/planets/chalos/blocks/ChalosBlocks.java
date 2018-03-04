@@ -179,5 +179,15 @@ public class ChalosBlocks
         CommonRegisterHelper.registerOreDictionary("chestWood", ChalosBlocks.CHALOS_ANCIENT_CHEST);
         CommonRegisterHelper.registerOreDictionary("chest", ChalosBlocks.CHEESE_SPORE_CHEST);
         CommonRegisterHelper.registerOreDictionary("chest", ChalosBlocks.CHALOS_ANCIENT_CHEST);
+
+        CommonRegisterHelper.registerOreDictionary("oreDirensium", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 2));
+        CommonRegisterHelper.registerOreDictionary("oreZyptorium", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 3));
+        CommonRegisterHelper.registerOreDictionary("oreCheese", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreCheeseMilk", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 4));
+        CommonRegisterHelper.registerOreDictionary("oreIron", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 5));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 6));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 8));
     }
 }

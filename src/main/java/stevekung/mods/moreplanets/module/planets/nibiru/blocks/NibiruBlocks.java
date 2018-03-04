@@ -480,5 +480,13 @@ public class NibiruBlocks
         CommonRegisterHelper.registerOreDictionary("torch", NibiruBlocks.INFECTED_TORCH);
         CommonRegisterHelper.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 0));
         CommonRegisterHelper.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 1));
+
+        CommonRegisterHelper.registerOreDictionary("oreOil", NibiruBlocks.OIL_ORE);
+        CommonRegisterHelper.registerOreDictionary("oreInferumite", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 11));
+        CommonRegisterHelper.registerOreDictionary("oreSilicon", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 10));
+        CommonRegisterHelper.registerOreDictionary("oreTin", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 9));
+        CommonRegisterHelper.registerOreDictionary("oreCopper", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 8));
+        CommonRegisterHelper.registerOreDictionary("oreAluminum", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 7));
+        CommonRegisterHelper.registerOreDictionary("oreAluminium", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 7));
     }
 }
