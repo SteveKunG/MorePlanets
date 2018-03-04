@@ -30,6 +30,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -118,6 +119,17 @@ public class GeneralEventHandler
         if (event.getModID().equals(MorePlanetsCore.MOD_ID))
         {
             ConfigManagerMP.syncConfig(false);
+        }
+    }
+
+    @SubscribeEvent
+    public void onCreateFluidSource(CreateFluidSourceEvent event)
+    {
+        Block block = event.getState().getBlock();
+
+        if (block == DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK || block == ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK || block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+        {
+            event.setResult(Result.ALLOW);
         }
     }
 

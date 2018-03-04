@@ -18,11 +18,9 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
@@ -40,21 +38,6 @@ public class BlockFluidInfectedWater extends BlockFluidBaseMP implements IFishab
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
         this.setUnlocalizedName(name);
-    }
-
-    @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
-    {
-        super.updateTick(world, pos, state, rand);
-        Biome biome = world.getBiome(pos);
-
-        if (biome == MPBiomes.GREEN_VEIN)
-        {
-            if (this.getMetaFromState(state) == 0 && rand.nextInt(8) == 0)
-            {
-                world.setBlockState(pos, NibiruBlocks.PURIFY_WATER_FLUID_BLOCK.getDefaultState());
-            }
-        }
     }
 
     @Override
@@ -118,12 +101,6 @@ public class BlockFluidInfectedWater extends BlockFluidBaseMP implements IFishab
                 MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_WATER_DRIP, d5, d6, d7);
             }
         }
-    }
-
-    @Override
-    protected boolean isInfinite()
-    {
-        return true;
     }
 
     @Override
