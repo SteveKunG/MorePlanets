@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.util.blocks;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -95,6 +96,12 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
             enumfacing = EnumFacing.NORTH;
         }
         return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
+    {
+        return BlockFaceShape.UNDEFINED;
     }
 
     @Override

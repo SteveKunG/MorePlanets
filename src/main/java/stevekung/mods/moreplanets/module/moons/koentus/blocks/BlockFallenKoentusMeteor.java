@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.module.moons.koentus.blocks;
 import java.util.Random;
 
 import net.minecraft.block.BlockFalling;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -156,5 +157,11 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     public int getDustColor(IBlockState state)
     {
         return ColorHelper.rgbToDecimal(29, 89, 141);
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
+    {
+        return BlockFaceShape.UNDEFINED;
     }
 }

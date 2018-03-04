@@ -16,3 +16,4 @@
 -Fixed- Fixed TPS Drop with fluid blocks. Close #21
 -Fixed- Fixed MCP Method name
 -Fixed- Fixed Infected Crystallized Slime Boss beam rendering
+-Fixed- Fixed block placement on machines, etc.

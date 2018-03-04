@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.ParticleManager;
@@ -246,6 +247,16 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
             }
         }
         return super.addHitEffects(state, world, target, manager);
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
+    {
+        if (state.getValue(VARIANT) == BlockType.NUCLEAR_WASTE_TANK_TOP)
+        {
+            return super.getBlockFaceShape(world, state, pos, facing);
+        }
+        return BlockFaceShape.UNDEFINED;
     }
 
     @Override
