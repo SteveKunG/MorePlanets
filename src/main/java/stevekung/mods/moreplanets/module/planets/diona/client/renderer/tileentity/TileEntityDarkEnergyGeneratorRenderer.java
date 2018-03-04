@@ -101,7 +101,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         return true;
     }
 
-    public void render(float scale, float y)
+    public void render()
     {
         float time = ClientEventHandler.itemRendererTicks;
         float ticks = MathHelper.sin(time / 8) / 1.0F + 0.75F;
@@ -110,8 +110,8 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0.5F, y, 0.5F);
-        GlStateManager.scale(-scale, -scale, scale);
+        GlStateManager.translate(0.5F, 1.5F, 0.5F);
+        GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
 
