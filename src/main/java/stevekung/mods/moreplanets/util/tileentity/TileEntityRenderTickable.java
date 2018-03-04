@@ -7,6 +7,7 @@ import net.minecraft.util.ITickable;
 public class TileEntityRenderTickable extends TileEntity implements ITickable
 {
     public int renderTicks;
+    protected boolean isContainer;
 
     @Override
     public void update()
@@ -17,6 +18,10 @@ public class TileEntityRenderTickable extends TileEntity implements ITickable
     @Override
     public NBTTagCompound getUpdateTag()
     {
-        return this.writeToNBT(new NBTTagCompound());
+        if (!this.isContainer)
+        {
+            return this.writeToNBT(new NBTTagCompound());
+        }
+        return super.getUpdateTag();
     }
 }
