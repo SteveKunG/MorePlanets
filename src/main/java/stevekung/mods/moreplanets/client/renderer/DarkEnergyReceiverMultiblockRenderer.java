@@ -12,6 +12,7 @@ public class DarkEnergyReceiverMultiblockRenderer
 {
     public static void render(double x, double y, double z)
     {
+        GlStateManager.disableDepth();
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
 
@@ -171,5 +172,6 @@ public class DarkEnergyReceiverMultiblockRenderer
         GlStateManager.popMatrix();
 
         TileEntityRendererDispatcher.instance.renderTileEntityAt(new TileEntityInfectedCrystallizeEnderCore(), x + 3, y + 2, z - 3, 0.0F);
+        GlStateManager.enableDepth();
     }
 }

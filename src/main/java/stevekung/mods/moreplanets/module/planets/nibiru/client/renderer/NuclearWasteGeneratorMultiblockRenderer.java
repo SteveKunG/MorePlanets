@@ -69,6 +69,7 @@ public class NuclearWasteGeneratorMultiblockRenderer
         GlStateManager.translate(x - 1, y - 1, z + 2);
         ClientRendererUtil.renderModel(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
+        GlStateManager.enableDepth();
     }
 
     private static void renderTank(double x, double y, double z)
