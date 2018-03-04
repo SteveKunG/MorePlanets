@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusZombie;
 import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
@@ -32,6 +34,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedZom
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.TeleportUtil;
 import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
@@ -70,6 +73,25 @@ public class EntityEventHandler
         EntityLivingBase living = event.getEntityLiving();
         int id = GCCoreUtil.getDimensionID(living.worldObj);
         PacketSimpleMP.sendToAllAround(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_ENTITY_ID, id, String.valueOf(living.getEntityId())), living.worldObj, id, living.getPosition(), 64);
+    }
+
+    @SubscribeEvent
+    public void onLivingFall(LivingFallEvent event)
+    {
+        if (!CompatibilityManagerMP.isBaubleLoaded())
+        {
+            EntityLivingBase living = event.getEntityLiving();
+
+            if (living instanceof EntityPlayer)
+            {
+                EntityPlayer player = (EntityPlayer) living;
+
+                if (player.inventory.hasItemStack(new ItemStack(MPItems.GRAVITY_AMULET)))
+                {
+                    event.setCanceled(true);
+                }
+            }
+        }
     }
 
     @SubscribeEvent

@@ -374,6 +374,7 @@ item.shield_damage_upgrade.name=Shield Damage Upgrade
 item.shield_size_upgrade.name=Shield Size Upgrade
 item.shield_capacity_upgrade.name=Shield Capacity Upgrade
 item.machine_speed_upgrade.name=Machine Speed Upgrade
+item.gravity_amulet.name=Gravity Amulet (WIP)
 
 # ITEMS - DIONA
 item.diona_dungeon_key.name=Diona Dungeon Key
