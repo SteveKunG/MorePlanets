@@ -27,6 +27,11 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     protected long lootTableSeed;
     private NonNullList<ItemStack> containingItems = NonNullList.withSize(5, ItemStack.EMPTY);
 
+    public TileEntityCrashedAlienProbe()
+    {
+        this.isContainer = true;
+    }
+
     @Override
     public void update()
     {
