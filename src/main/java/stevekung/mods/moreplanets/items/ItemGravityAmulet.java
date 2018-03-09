@@ -12,7 +12,7 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 
-@Optional.Interface(iface = "baubles.api.IBauble", modid = "Baubles", striprefs = true)
+@Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles", striprefs = true)
 public class ItemGravityAmulet extends ItemBaseMP implements IBauble
 {
     public ItemGravityAmulet(String name)
@@ -30,14 +30,14 @@ public class ItemGravityAmulet extends ItemBaseMP implements IBauble
     }
 
     @Override
-    @Optional.Method(modid = "Baubles")
+    @Optional.Method(modid = "baubles")
     public BaubleType getBaubleType(ItemStack itemStack)
     {
         return BaubleType.AMULET;
     }
 
     @Override
-    @Optional.Method(modid = "Baubles")
+    @Optional.Method(modid = "baubles")
     public void onWornTick(ItemStack itemStack, EntityLivingBase living)
     {
         this.updateMovement(living);
