@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.util.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -81,6 +82,12 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
             return true;
         }
         return super.shouldSideBeRendered(state, world, pos, facing);
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
+    {
+        return BlockFaceShape.UNDEFINED;
     }
 
     protected void triggerMixEffects(World world, BlockPos pos)
