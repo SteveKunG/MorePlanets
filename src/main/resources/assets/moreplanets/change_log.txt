@@ -1,2 +1,3 @@
 -Fixed- Attempt to fix TPS Drop with gases. Close #21
 -Fixed- Fixed Translucent Armor crash with GC-152
+-Fixed- Fixed Baubles not working with Gravity Amulet
