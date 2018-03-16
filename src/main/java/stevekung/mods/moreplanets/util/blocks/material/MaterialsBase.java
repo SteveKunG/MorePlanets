@@ -4,5 +4,5 @@ import net.minecraft.block.material.Material;
 
 public class MaterialsBase
 {
-    public static Material GAS = new MaterialGas();
+    public static final Material GAS = new MaterialGas();
 }

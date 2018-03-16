@@ -13,12 +13,6 @@ public class MaterialGas extends Material
     }
 
     @Override
-    public boolean isLiquid()
-    {
-        return true;
-    }
-
-    @Override
     public boolean isSolid()
     {
         return false;

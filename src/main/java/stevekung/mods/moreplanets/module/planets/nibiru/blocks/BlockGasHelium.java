@@ -20,7 +20,7 @@ public class BlockGasHelium extends BlockFluidFiniteMP
         super(NibiruBlocks.HELIUM_GAS, MaterialsBase.GAS);
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockFluidBase.LEVEL, 7));
-        this.setLightOpacity(3);
+        this.setLightOpacity(0);
         this.setUnlocalizedName(name);
     }
 

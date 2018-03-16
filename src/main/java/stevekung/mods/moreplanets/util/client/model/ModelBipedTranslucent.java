@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ModelBipedTranslucent extends ModelBipedGC
+public class ModelBipedTranslucent extends ModelBiped
 {
     private boolean renderingEnchantment;
 
