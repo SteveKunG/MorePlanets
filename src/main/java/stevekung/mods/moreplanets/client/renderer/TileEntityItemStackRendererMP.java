@@ -22,6 +22,7 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDion
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaTreasureChest;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityZeliusEgg;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.TileEntityJuicerEggRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.TileEntityMultalicCrystalRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.TileEntityNuclearWasteTankRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
@@ -110,6 +111,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         else if (block == NibiruBlocks.JUICER_EGG)
         {
             ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityJuicerEgg());
+            TileEntityJuicerEggRenderer.renderItem(null, true);
         }
         else if (block == NibiruBlocks.NUCLEAR_WASTE_TANK)
         {

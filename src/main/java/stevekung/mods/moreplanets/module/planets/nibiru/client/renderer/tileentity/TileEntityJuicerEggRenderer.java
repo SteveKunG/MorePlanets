@@ -5,10 +5,14 @@ import java.util.Random;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.model.ModelJuicerEgg;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityJuicerEgg;
+import stevekung.mods.moreplanets.util.ClientRendererUtil;
 
 public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileEntityJuicerEgg>
 {
@@ -31,6 +35,32 @@ public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileE
 
         this.bindTexture(TileEntityJuicerEggRenderer.texture);
         this.model.renderAll();
+        GlStateManager.popMatrix();
+    }
+
+    public static void renderItem(ItemCameraTransforms.TransformType type, boolean render)
+    {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0.5F, 1.35F, 0.5F);
+        GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+        GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
+
+        RenderManager manager = Minecraft.getMinecraft().getRenderManager();
+        EntityJuicer juicer = new EntityJuicer(Minecraft.getMinecraft().world);
+        manager.renderEntity(juicer, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
+
+        if (type != null && type == ItemCameraTransforms.TransformType.GUI || render)
+        {
+            GlStateManager.enableRescaleNormal();
+            GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+            GlStateManager.disableTexture2D();
+            GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
+            GlStateManager.disableLighting();
+            ClientRendererUtil.renderLightState(false);
+        }
+
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.popMatrix();
     }
 
