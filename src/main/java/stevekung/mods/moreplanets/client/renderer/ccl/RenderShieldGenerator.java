@@ -4,23 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import codechicken.lib.render.CCModelState;
-import codechicken.lib.texture.TextureUtils;
 import codechicken.lib.util.TransformUtils;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
 import stevekung.mods.moreplanets.client.renderer.tileentity.TileEntityShieldGeneratorRenderer;
 
 public class RenderShieldGenerator extends CCLRenderBase
 {
-    @Override
-    public TextureAtlasSprite getParticleTexture()
-    {
-        return TextureUtils.getTexture("moreplanets:blocks/machine_side");
-    }
-
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
