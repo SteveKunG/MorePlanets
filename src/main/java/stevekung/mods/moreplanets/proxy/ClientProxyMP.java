@@ -72,7 +72,7 @@ public class ClientProxyMP extends ServerProxyMP
         ClientProxyMP.handleSpaceFishHookSpawning();
         CommonRegisterHelper.registerForgeEvent(this);
 
-        if (!CompatibilityManagerMP.isCCLLoaded())
+        if (!CompatibilityManagerMP.isCCLLoaded)
         {
             TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP(TileEntityItemStackRenderer.instance);
         }

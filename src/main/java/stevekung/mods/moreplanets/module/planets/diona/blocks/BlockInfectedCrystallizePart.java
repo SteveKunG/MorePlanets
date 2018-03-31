@@ -171,7 +171,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     @Override
     public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
     {
-        return CompatibilityManagerMP.isCTMLoaded() && state.getValue(VARIANT) != BlockType.INFECTED_CRYSTALLIZE_BLOCK ? layer == BlockRenderLayer.CUTOUT : layer == BlockRenderLayer.SOLID;
+        return CompatibilityManagerMP.isCTMLoaded && state.getValue(VARIANT) != BlockType.INFECTED_CRYSTALLIZE_BLOCK ? layer == BlockRenderLayer.CUTOUT : layer == BlockRenderLayer.SOLID;
     }
 
     @Override

@@ -5,14 +5,14 @@ import baubles.api.IBauble;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
-import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 
-@Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles", striprefs = true)
+@Optional.Interface(iface = "baubles.api.IBauble", modid = CompatibilityManagerMP.baublesModId, striprefs = true)
 public class ItemGravityAmulet extends ItemBaseMP implements IBauble
 {
     public ItemGravityAmulet(String name)
@@ -23,24 +23,40 @@ public class ItemGravityAmulet extends ItemBaseMP implements IBauble
     @Override
     public void onUpdate(ItemStack itemStack, World world, Entity entity, int slot, boolean isSelected)
     {
-        if (!CompatibilityManagerMP.isBaubleLoaded())
+        if (!CompatibilityManagerMP.isBaubleLoaded)
         {
-            this.updateMovement(entity);
+            if (entity instanceof EntityPlayerMP)
+            {
+                EntityPlayerMP player = (EntityPlayerMP) entity;
+                this.updateMovement(player, player.inventory.hasItemStack(new ItemStack(this)));
+            }
         }
     }
 
     @Override
-    @Optional.Method(modid = "baubles")
+    public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player)
+    {
+        player.capabilities.isFlying = false;
+        player.sendPlayerAbilities();
+        return true;
+    }
+
+    @Override
+    @Optional.Method(modid = CompatibilityManagerMP.baublesModId)
     public BaubleType getBaubleType(ItemStack itemStack)
     {
         return BaubleType.AMULET;
     }
 
     @Override
-    @Optional.Method(modid = "baubles")
+    @Optional.Method(modid = CompatibilityManagerMP.baublesModId)
     public void onWornTick(ItemStack itemStack, EntityLivingBase living)
     {
-        this.updateMovement(living);
+        if (living instanceof EntityPlayerMP)
+        {
+            EntityPlayerMP player = (EntityPlayerMP) living;
+            this.updateMovement(player, player.inventory.hasItemStack(new ItemStack(this)));
+        }
     }
 
     @Override
@@ -49,20 +65,26 @@ public class ItemGravityAmulet extends ItemBaseMP implements IBauble
         return "gravity_amulet";
     }
 
-    private void updateMovement(Entity entity)
+    private void updateMovement(EntityPlayerMP player, boolean hasItem)
     {
-        if (entity instanceof EntityPlayer)
+        if (player.isSpectator())
         {
-            EntityPlayer player = (EntityPlayer) entity;
+            return;
+        }
+        if (player.capabilities.isCreativeMode)
+        {
+            hasItem = true;
+        }
 
-            if (player.inventory.hasItemStack(new ItemStack(MPItems.GRAVITY_AMULET)))
+        if (player.capabilities.allowFlying != hasItem)
+        {
+            player.capabilities.allowFlying = hasItem;
+
+            if (!hasItem)
             {
-                player.capabilities.allowFlying = true;
+                player.capabilities.isFlying = false;
             }
-            else
-            {
-                player.capabilities.allowFlying = false;
-            }
+            player.sendPlayerAbilities();
         }
     }
 }

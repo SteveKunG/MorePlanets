@@ -78,17 +78,21 @@ public class EntityEventHandler
     @SubscribeEvent
     public void onLivingFall(LivingFallEvent event)
     {
-        if (!CompatibilityManagerMP.isBaubleLoaded())
+        if (!CompatibilityManagerMP.isBaubleLoaded)
         {
             EntityLivingBase living = event.getEntityLiving();
 
-            if (living instanceof EntityPlayer)
+            if (living instanceof EntityPlayerMP)
             {
-                EntityPlayer player = (EntityPlayer) living;
+                EntityPlayerMP player = (EntityPlayerMP) living;
 
                 if (player.inventory.hasItemStack(new ItemStack(MPItems.GRAVITY_AMULET)))
                 {
                     event.setCanceled(true);
+                }
+                else
+                {
+                    event.setCanceled(false);
                 }
             }
         }

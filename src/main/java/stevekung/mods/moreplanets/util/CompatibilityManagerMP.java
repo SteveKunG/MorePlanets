@@ -6,13 +6,14 @@ import net.minecraftforge.fml.common.Loader;
 
 public class CompatibilityManagerMP
 {
-    private static final boolean isCTMLoaded = Loader.isModLoaded("ctm");
-    private static final boolean isBigReactorLoaded = Loader.isModLoaded("bigreactors");
-    private static final boolean isOpenBlocksLoaded = Loader.isModLoaded("openblocks");
-    private static final boolean isEnderIOLoaded = Loader.isModLoaded("enderio");
-    private static final boolean isMobGrindingUtilsLoaded = Loader.isModLoaded("mob_grinding_utils");
-    private static final boolean isCCLLoaded = Loader.isModLoaded("codechickenlib");
-    private static final boolean isBaubleLoaded = Loader.isModLoaded("baubles");
+    public static final String baublesModId = "baubles";
+    public static final boolean isCTMLoaded = Loader.isModLoaded("ctm");
+    public static final boolean isBigReactorLoaded = Loader.isModLoaded("bigreactors");
+    public static final boolean isOpenBlocksLoaded = Loader.isModLoaded("openblocks");
+    public static final boolean isEnderIOLoaded = Loader.isModLoaded("enderio");
+    public static final boolean isMobGrindingUtilsLoaded = Loader.isModLoaded("mob_grinding_utils");
+    public static final boolean isCCLLoaded = Loader.isModLoaded("codechickenlib");
+    public static final boolean isBaubleLoaded = Loader.isModLoaded("baubles");
 
     // Extreme Reactors
     private static Method erRegisterFluid;
@@ -36,44 +37,9 @@ public class CompatibilityManagerMP
         }
     }
 
-    public static boolean isCTMLoaded()
-    {
-        return CompatibilityManagerMP.isCTMLoaded;
-    }
-
-    public static boolean isBigReactorLoaded()
-    {
-        return CompatibilityManagerMP.isBigReactorLoaded;
-    }
-
-    public static boolean isOpenBlocksLoaded()
-    {
-        return CompatibilityManagerMP.isOpenBlocksLoaded;
-    }
-
-    public static boolean isEnderIOLoaded()
-    {
-        return CompatibilityManagerMP.isEnderIOLoaded;
-    }
-
-    public static boolean isMobGrindingUtilsLoaded()
-    {
-        return CompatibilityManagerMP.isMobGrindingUtilsLoaded;
-    }
-
-    public static boolean isCCLLoaded()
-    {
-        return CompatibilityManagerMP.isCCLLoaded;
-    }
-
-    public static boolean isBaubleLoaded()
-    {
-        return CompatibilityManagerMP.isBaubleLoaded;
-    }
-
     public static boolean isModAddedXpFluid()
     {
-        return !CompatibilityManagerMP.isOpenBlocksLoaded() && !CompatibilityManagerMP.isEnderIOLoaded() && !CompatibilityManagerMP.isMobGrindingUtilsLoaded();
+        return !CompatibilityManagerMP.isOpenBlocksLoaded && !CompatibilityManagerMP.isEnderIOLoaded && !CompatibilityManagerMP.isMobGrindingUtilsLoaded;
     }
 
     public static void registerExtremeReactorFluid(String name, float absorption, float heatEfficiency, float moderation, float heatConductivity)

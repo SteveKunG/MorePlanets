@@ -30,10 +30,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
-import stevekung.mods.moreplanets.util.CreativeTabsMP;
-import stevekung.mods.moreplanets.util.MPLog;
-import stevekung.mods.moreplanets.util.SmeltWithDataFunction;
-import stevekung.mods.moreplanets.util.VersionChecker;
+import stevekung.mods.moreplanets.util.*;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 @Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = MorePlanetsCore.DEPENDENCIES, guiFactory = MorePlanetsCore.GUI_FACTORY, certificateFingerprint = MorePlanetsCore.CERTIFICATE)
@@ -79,6 +76,7 @@ public class MorePlanetsCore
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        CompatibilityManagerMP.init();
         ConfigManagerMP.init(new File(event.getModConfigurationDirectory(), "MorePlanets.cfg"));
         MorePlanetsCore.initModInfo(event.getModMetadata());
         MorePlanetsCore.BLOCK_TAB = new CreativeTabsMP("MorePlanetsBlocks");

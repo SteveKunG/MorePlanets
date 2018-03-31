@@ -27,7 +27,7 @@ public class StateMapperCTM extends StateMapperBase
         {
             map.remove(BlockCrashedAlienProbe.HAS_ALIEN);
         }
-        String ctm = CompatibilityManagerMP.isCTMLoaded() ? "_glow" : "";
+        String ctm = CompatibilityManagerMP.isCTMLoaded ? "_glow" : "";
         return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()) + ctm, this.getPropertyString(ignoreState ? map : state.getProperties()));
     }
 }
