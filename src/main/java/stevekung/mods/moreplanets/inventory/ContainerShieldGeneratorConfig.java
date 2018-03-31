@@ -56,6 +56,7 @@ public class ContainerShieldGeneratorConfig extends Container
         {
             ItemStack slotStack = slot.getStack();
             itemStack = slotStack.copy();
+            boolean movedToMachineSlot = false;
 
             if (index == 0 || index == 1 || index == 2 || index == 3)
             {
@@ -72,6 +73,7 @@ public class ContainerShieldGeneratorConfig extends Container
                     {
                         return ItemStack.EMPTY;
                     }
+                    movedToMachineSlot = true;
                 }
                 else if (slotStack.getItem() == MPItems.SHIELD_DAMAGE_UPGRADE)
                 {
@@ -107,11 +109,21 @@ public class ContainerShieldGeneratorConfig extends Container
                     {
                         return ItemStack.EMPTY;
                     }
+                    movedToMachineSlot = true;
                 }
             }
             if (slotStack.getCount() == 0)
             {
-                slot.putStack(ItemStack.EMPTY);
+                if (movedToMachineSlot && itemStack.getCount() > 1)
+                {
+                    ItemStack remainder = itemStack.copy();
+                    remainder.shrink(1);
+                    slot.putStack(remainder);
+                }
+                else
+                {
+                    slot.putStack(ItemStack.EMPTY);
+                }
             }
             else
             {

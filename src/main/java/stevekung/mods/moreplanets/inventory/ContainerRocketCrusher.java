@@ -78,6 +78,7 @@ public class ContainerRocketCrusher extends Container
         {
             ItemStack slotStack = invSlot.getStack();
             itemStack = slotStack.copy();
+            boolean movedToMachineSlot = false;
 
             if (slot <= 11)
             {
@@ -98,6 +99,7 @@ public class ContainerRocketCrusher extends Container
                     {
                         return ItemStack.EMPTY;
                     }
+                    movedToMachineSlot = true;
                 }
                 else if (slotStack.getItem() == MPItems.MACHINE_SPEED_UPGRADE)
                 {
@@ -120,7 +122,16 @@ public class ContainerRocketCrusher extends Container
             }
             if (slotStack.getCount() == 0)
             {
-                invSlot.putStack(ItemStack.EMPTY);
+                if (movedToMachineSlot && itemStack.getCount() > 1)
+                {
+                    ItemStack remainder = itemStack.copy();
+                    remainder.shrink(1);
+                    invSlot.putStack(remainder);
+                }
+                else
+                {
+                    invSlot.putStack(ItemStack.EMPTY);
+                }
             }
             else
             {

@@ -53,6 +53,7 @@ public class ContainerDarkEnergyGenerator extends Container
         {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
+            boolean movedToMachineSlot = false;
 
             if (index == 0 || index == 1 || index == 2)
             {
@@ -69,6 +70,7 @@ public class ContainerDarkEnergyGenerator extends Container
                     {
                         return ItemStack.EMPTY;
                     }
+                    movedToMachineSlot = true;
                 }
                 else if (stack.getItem() == DionaItems.DARK_ENERGY_PEARL)
                 {
@@ -90,12 +92,22 @@ public class ContainerDarkEnergyGenerator extends Container
                     {
                         return ItemStack.EMPTY;
                     }
+                    movedToMachineSlot = true;
                 }
             }
 
             if (stack.getCount() == 0)
             {
-                slot.putStack(ItemStack.EMPTY);
+                if (movedToMachineSlot && itemStack.getCount() > 1)
+                {
+                    ItemStack remainder = itemStack.copy();
+                    remainder.shrink(1);
+                    slot.putStack(remainder);
+                }
+                else
+                {
+                    slot.putStack(ItemStack.EMPTY);
+                }
             }
             else
             {

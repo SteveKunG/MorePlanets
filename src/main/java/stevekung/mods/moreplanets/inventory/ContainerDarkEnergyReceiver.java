@@ -53,6 +53,7 @@ public class ContainerDarkEnergyReceiver extends Container
         {
             ItemStack stack = invSlot.getStack();
             itemStack = stack.copy();
+            boolean movedToMachineSlot = false;
 
             if (slot == 0)
             {
@@ -69,6 +70,7 @@ public class ContainerDarkEnergyReceiver extends Container
                     {
                         return ItemStack.EMPTY;
                     }
+                    movedToMachineSlot = true;
                 }
                 else
                 {
@@ -88,7 +90,16 @@ public class ContainerDarkEnergyReceiver extends Container
 
             if (stack.getCount() == 0)
             {
-                invSlot.putStack(ItemStack.EMPTY);
+                if (movedToMachineSlot && itemStack.getCount() > 1)
+                {
+                    ItemStack remainder = itemStack.copy();
+                    remainder.shrink(1);
+                    invSlot.putStack(remainder);
+                }
+                else
+                {
+                    invSlot.putStack(ItemStack.EMPTY);
+                }
             }
             else
             {

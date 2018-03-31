@@ -63,6 +63,7 @@ public class ContainerDarkEnergyStorage extends Container
         {
             ItemStack itemStack = slot.getStack();
             returnStack = itemStack.copy();
+            boolean movedToMachineSlot = false;
 
             if (slotID != 0 && slotID != 1 && slotID != 2 && slotID != 3)
             {
@@ -77,6 +78,7 @@ public class ContainerDarkEnergyStorage extends Container
                                 return ItemStack.EMPTY;
                             }
                         }
+                        movedToMachineSlot = true;
                     }
                     else
                     {
@@ -84,6 +86,7 @@ public class ContainerDarkEnergyStorage extends Container
                         {
                             return ItemStack.EMPTY;
                         }
+                        movedToMachineSlot = true;
                     }
                 }
                 else
@@ -108,7 +111,16 @@ public class ContainerDarkEnergyStorage extends Container
 
             if (itemStack.getCount() == 0)
             {
-                slot.putStack(ItemStack.EMPTY);
+                if (movedToMachineSlot && itemStack.getCount() > 1)
+                {
+                    ItemStack remainder = itemStack.copy();
+                    remainder.shrink(1);
+                    slot.putStack(remainder);
+                }
+                else
+                {
+                    slot.putStack(ItemStack.EMPTY);
+                }
             }
             else
             {
