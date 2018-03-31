@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -43,6 +44,7 @@ public class GuiFullChangeLog extends GuiScreen
     public void initGui()
     {
         List<String> debugText = new LinkedList<>();
+        debugText.add("More Planets " + MorePlanetsCore.VERSION + " Change Log for Minecraft " + ForgeVersion.mcVersion);
         this.buttonList.clear();
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height - 45, I18n.format("gui.done")));
 
@@ -75,7 +77,8 @@ public class GuiFullChangeLog extends GuiScreen
         {
             try
             {
-                FileWriter writer = new FileWriter(new File(this.mc.mcDataDir, "change_log_formatted.txt"), true);
+                File file = new File(this.mc.mcDataDir, "change_log_formatted.txt");
+                FileWriter writer = new FileWriter(file, false);
 
                 for (String text : debugText)
                 {
