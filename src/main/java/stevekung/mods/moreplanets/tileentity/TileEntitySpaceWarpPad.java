@@ -9,10 +9,12 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class TileEntitySpaceWarpPad extends TileEntity implements ITickable
 {
+    private int corner = 0;
+    
     @Override
     public void update()
     {
-        if (!this.world.isRemote)
+        if (!this.world.isRemote && this.corner == 0)
         {
             ArrayList<TileEntity> attachedLaunchPads = new ArrayList<>();
 
@@ -22,7 +24,7 @@ public class TileEntitySpaceWarpPad extends TileEntity implements ITickable
                 {
                     TileEntity tile = this.world.getTileEntity(new BlockPos(x, this.getPos().getY(), z));
 
-                    if (tile instanceof TileEntitySpaceWarpPad)
+                    if (tile instanceof TileEntitySpaceWarpPad && !tile.isInvalid() && ((TileEntitySpaceWarpPad)tile).corner == 0)
                     {
                         attachedLaunchPads.add(tile);
                     }
@@ -34,6 +36,7 @@ public class TileEntitySpaceWarpPad extends TileEntity implements ITickable
                 for (TileEntity tile : attachedLaunchPads)
                 {
                     this.world.markTileEntityForRemoval(tile);
+                    ((TileEntitySpaceWarpPad)tile).corner = 1;
                 }
 
                 this.world.setBlockState(this.getPos(), MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState(), 2);
