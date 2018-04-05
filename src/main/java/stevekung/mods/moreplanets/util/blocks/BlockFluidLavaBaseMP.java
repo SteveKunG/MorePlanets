@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.util.blocks;
 
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.core.blocks.BlockGrating;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -145,8 +146,11 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
         {
             if (this.displacements.get(block))
             {
-                this.triggerMixEffects(world, pos);
-                block.dropBlockAsItem(world, pos, state, 0);
+                if (!(block instanceof BlockGrating))
+                {
+                    this.triggerMixEffects(world, pos);
+                    block.dropBlockAsItem(world, pos, state, 0);
+                }
                 return true;
             }
             return false;
@@ -163,8 +167,11 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 
         if (density == Integer.MAX_VALUE)
         {
-            this.triggerMixEffects(world, pos);
-            block.dropBlockAsItem(world, pos, state, 0);
+            if (!(block instanceof BlockGrating))
+            {
+                this.triggerMixEffects(world, pos);
+                block.dropBlockAsItem(world, pos, state, 0);
+            }
             return true;
         }
 

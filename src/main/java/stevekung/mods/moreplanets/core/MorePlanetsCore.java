@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.core;
 import java.io.File;
 import java.util.Arrays;
 
-import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.item.ItemStack;
@@ -24,9 +23,6 @@ import stevekung.mods.moreplanets.core.event.*;
 import stevekung.mods.moreplanets.core.handler.GuiHandlerMP;
 import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.items.capsule.ItemCapsule;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
@@ -89,14 +85,6 @@ public class MorePlanetsCore
         MPPotions.init();
         MPBiomes.init();
         MPOthers.init();
-        GalacticraftRegistry.registerGratingFluid(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK);
-        GalacticraftRegistry.registerGratingFluid(DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK);
-        GalacticraftRegistry.registerGratingFluid(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK);
-        GalacticraftRegistry.registerGratingFluid(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK);
-        GalacticraftRegistry.registerGratingFluid(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK);
-        GalacticraftRegistry.registerGratingFluid(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK);
-        GalacticraftRegistry.registerGratingFluid(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK);
-        GalacticraftRegistry.registerGratingFluid(NibiruBlocks.HELIUM_GAS_BLOCK);
         MorePlanetsCore.PROXY.registerPreRendering();
     }
 
