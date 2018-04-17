@@ -170,7 +170,6 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         GlStateManager.enableTexture2D();
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableColorMaterial();
-        GlStateManager.disableFog();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.depthMask(true);
         GlStateManager.blendFunc(770, 771);

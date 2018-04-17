@@ -137,7 +137,7 @@ public class ClientEventHandler
                     e.printStackTrace();
                 }
             }
-            if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD5) && !this.mc.player.getHeldItemMainhand().isEmpty())
+            if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD5) && !this.mc.player.getHeldItemMainhand().isEmpty() && this.mc.currentScreen == null)
             {
                 this.mc.displayGuiScreen(new GuiGetItemName());
             }

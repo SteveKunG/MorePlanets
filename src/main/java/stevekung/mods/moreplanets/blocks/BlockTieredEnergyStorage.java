@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.blocks;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSides;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties;
+import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties.MachineSidesModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -40,7 +41,7 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variants", BlockType.class);
     public static PropertyInteger VALUE = PropertyInteger.create("value", 0, 33);
     public static IMachineSidesProperties MACHINESIDES_RENDERTYPE = IMachineSidesProperties.TWOFACES_HORIZ;
-    public static PropertyEnum SIDES = MACHINESIDES_RENDERTYPE.asProperty;
+    public static PropertyEnum<MachineSidesModel> SIDES = MACHINESIDES_RENDERTYPE.asProperty;
 
     public BlockTieredEnergyStorage(String name)
     {
