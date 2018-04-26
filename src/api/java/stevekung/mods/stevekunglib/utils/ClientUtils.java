@@ -38,7 +38,7 @@ public class ClientUtils
 
     public static void setOverlayMessage(ITextComponent component)
     {
-        Minecraft.getMinecraft().ingameGUI.setOverlayMessage(component, false);
+        Minecraft.getMinecraft().ingameGUI.setOverlayMessage(component.getFormattedText(), false);
     }
 
     public static void printClientMessage(String text)
