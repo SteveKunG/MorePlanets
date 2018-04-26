@@ -18,10 +18,6 @@ public class ConfigManagerMP
     @Config.Comment(value = "Others Configuration.")
     public static final Other moreplanets_other = new Other();
 
-    @Config.LangKey(value = "moreplanets_addon_compat")
-    @Config.Comment(value = "GC-Addon Compatibility Configuration.")
-    public static final AddonCompatibility moreplanets_addon_compat = new AddonCompatibility();
-
     // General
     public static class General
     {
@@ -76,41 +72,13 @@ public class ConfigManagerMP
     // Others
     public static class Other
     {
-        @Config.Name(value = "Base Tiered Rocket Schematic ID")
-        public int idBaseRocketSchematic = 800;
-
         @Config.Name(value = "Base Schematic ID")
         public int idBaseSchematic = 850;
-
-        @Config.Name(value = "Base Tiered Rocket Schematic GUI ID")
-        public int idBaseRocketSchematicGui = 500;
 
         @Config.Name(value = "Base Schematic GUI ID")
         public int idBaseSchematicGui = 550;
 
         @Config.Name(value = "Enable Description in Waila Tooltip")
         public boolean enableDescriptionInWaila = false;
-    }
-
-    // GC-Addon Compatibility stuffs
-    public static class AddonCompatibility
-    {
-        @Config.Name(value = "Enable Tier 4 Rocket Schematic")
-        public boolean enableTier4RocketSchematic = true;
-
-        @Config.Name(value = "Enable Tier 5 Rocket Schematic")
-        public boolean enableTier5RocketSchematic = true;
-
-        @Config.Name(value = "Enable Tier 6 Rocket Schematic")
-        public boolean enableTier6RocketSchematic = true;
-
-        @Config.Name(value = "Enable Tier 4 Rocket Recipe")
-        public boolean enableTier4RocketRecipe = true;
-
-        @Config.Name(value = "Enable Tier 5 Rocket Recipe")
-        public boolean enableTier5RocketRecipe = true;
-
-        @Config.Name(value = "Enable Tier 6 Rocket Recipe")
-        public boolean enableTier6RocketRecipe = true;
     }
 }

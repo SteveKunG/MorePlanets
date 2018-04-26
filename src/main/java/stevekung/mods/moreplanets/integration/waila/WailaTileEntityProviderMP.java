@@ -26,7 +26,7 @@ import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageMP;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
 
 @WailaPlugin
 public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlugin
@@ -48,7 +48,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         WailaUtil.register(TileEntitySpaceWarpPadFull.class, true, true, false, false, false);
         WailaUtil.register(TileEntityRocketCrusher.class, true, true, false, false, false);
         WailaUtil.register(TileEntityDarkEnergyGenerator.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityEnergyStorageMP.class, true, true, false, false, false);
+        WailaUtil.register(TileEntityEnergyStorageClusterMP.class, true, true, false, false, false);
         WailaUtil.register(TileEntityBlackHoleStorage.class, true, true, false, false, false);
         WailaUtil.register(TileEntityShieldGenerator.class, true, true, false, false, false);
         WailaUtil.register(TileEntityNuclearWasteGenerator.class, true, true, false, false, false);
@@ -192,7 +192,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             tooltip.add(GCCoreUtil.translate("gui.status.name.name") + ": " + name);
             tooltip.add(GCCoreUtil.translate("gui.status.destination.name") + ": " + dest);
         }
-        if (tile instanceof TileEntityEnergyStorageMP || tile instanceof TileEntityNuclearWasteGenerator)
+        if (tile instanceof TileEntityEnergyStorageClusterMP || tile instanceof TileEntityNuclearWasteGenerator)
         {
             tooltip.add(TextFormatting.GREEN + GCCoreUtil.translate("gui.message.max_energy") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("MaxEnergy")));
             tooltip.add(GCCoreUtil.translate("gui.max_output.desc") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("MaxOutput")) + "/t");
@@ -327,9 +327,9 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             nbt.setInteger("GenerateWatts", generator.generateWatts);
             return generator.writeToNBT(nbt);
         }
-        if (tile instanceof TileEntityEnergyStorageMP)
+        if (tile instanceof TileEntityEnergyStorageClusterMP)
         {
-            TileEntityEnergyStorageMP energy = (TileEntityEnergyStorageMP) tile;
+            TileEntityEnergyStorageClusterMP energy = (TileEntityEnergyStorageClusterMP) tile;
             nbt.setFloat("MaxEnergy", energy.getMaxEnergyStoredGC());
             nbt.setFloat("MaxOutput", energy.storage.getMaxExtract());
             return energy.writeToNBT(nbt);

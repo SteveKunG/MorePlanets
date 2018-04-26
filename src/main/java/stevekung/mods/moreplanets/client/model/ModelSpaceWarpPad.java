@@ -5,37 +5,37 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelSpaceWarpPad extends ModelBase
 {
-    ModelRenderer base1;
-    ModelRenderer base2;
-    ModelRenderer base3;
-    ModelRenderer rod11;
-    ModelRenderer rod12;
-    ModelRenderer rod13;
-    ModelRenderer rod14;
-    ModelRenderer rod21;
-    ModelRenderer rod22;
-    ModelRenderer rod23;
-    ModelRenderer rod24;
-    ModelRenderer rod31;
-    ModelRenderer rod32;
-    ModelRenderer rod33;
-    ModelRenderer rod34;
-    ModelRenderer rod41;
-    ModelRenderer rod42;
-    ModelRenderer rod43;
-    ModelRenderer rod44;
-    ModelRenderer rodh1;
-    ModelRenderer rodh2;
-    ModelRenderer rodh3;
-    ModelRenderer rodh4;
-    ModelRenderer rodh5;
-    ModelRenderer rodh6;
-    ModelRenderer rodh7;
-    ModelRenderer rodh8;
-    ModelRenderer rodh9;
-    ModelRenderer rodh10;
-    ModelRenderer rodh11;
-    ModelRenderer rodh12;
+    private ModelRenderer base1;
+    private ModelRenderer base2;
+    private ModelRenderer base3;
+    private ModelRenderer rod11;
+    private ModelRenderer rod12;
+    private ModelRenderer rod13;
+    private ModelRenderer rod14;
+    private ModelRenderer rod21;
+    private ModelRenderer rod22;
+    private ModelRenderer rod23;
+    private ModelRenderer rod24;
+    private ModelRenderer rod31;
+    private ModelRenderer rod32;
+    private ModelRenderer rod33;
+    private ModelRenderer rod34;
+    private ModelRenderer rod41;
+    private ModelRenderer rod42;
+    private ModelRenderer rod43;
+    private ModelRenderer rod44;
+    private ModelRenderer rodh1;
+    private ModelRenderer rodh2;
+    private ModelRenderer rodh3;
+    private ModelRenderer rodh4;
+    private ModelRenderer rodh5;
+    private ModelRenderer rodh6;
+    private ModelRenderer rodh7;
+    private ModelRenderer rodh8;
+    private ModelRenderer rodh9;
+    private ModelRenderer rodh10;
+    private ModelRenderer rodh11;
+    private ModelRenderer rodh12;
 
     public ModelSpaceWarpPad()
     {

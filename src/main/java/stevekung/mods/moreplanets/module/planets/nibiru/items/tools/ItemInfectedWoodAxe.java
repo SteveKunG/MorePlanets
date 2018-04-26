@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.items.tools.ItemAxeMP;
+import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
 public class ItemInfectedWoodAxe extends ItemAxeMP
 {

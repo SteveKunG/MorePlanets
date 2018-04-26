@@ -132,10 +132,4 @@ public class BlockFluidCrystallizeLava extends BlockFluidLavaBaseMP
     {
         return true;
     }
-
-    @Override
-    public String getName()
-    {
-        return "crystallize_lava_fluid";
-    }
 }

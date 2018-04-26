@@ -18,7 +18,6 @@ import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.BlockSlabMP;
 import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
@@ -26,6 +25,7 @@ import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockSlabMP;
+import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class MPBlocks
 {
@@ -49,8 +49,8 @@ public class MPBlocks
     public static Block NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER;
 
     // Polish
-    public static Block POLISHED_TIN_DECORATION;
-    public static Block POLISHED_ALUMINUM_DECORATION;
+    public static Block POLISHED_TIN_DECORATION_BLOCK;
+    public static Block POLISHED_ALUMINUM_DECORATION_BLOCK;
 
     // Tinted Glass
     public static Block WHITE_TINTED_GLASS;
@@ -134,12 +134,12 @@ public class MPBlocks
         MPBlocks.NIBIRU_DUNGEON_SPAWNER = new BlockSpaceDungeonSpawner("nibiru_dungeon_spawner", BlockSpaceDungeonSpawner.DungeonType.NIBIRU);
 
         // Energy Storage
-        MPBlocks.DARK_ENERGY_STORAGE_CLUSTER = new BlockTieredEnergyStorage("dark_energy_storage_cluster", BlockTieredEnergyStorage.BlockType.DARK_ENERGY_STORAGE_MODULE);
-        MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER = new BlockTieredEnergyStorage("nuclear_waste_energy_storage_cluster", BlockTieredEnergyStorage.BlockType.NUCLEAR_WASTE_STORAGE_MODULE);
+        MPBlocks.DARK_ENERGY_STORAGE_CLUSTER = new BlockTieredEnergyStorageCluster("dark_energy_storage_cluster", BlockTieredEnergyStorageCluster.BlockType.DARK_ENERGY_STORAGE_CLUSTER);
+        MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER = new BlockTieredEnergyStorageCluster("nuclear_waste_energy_storage_cluster", BlockTieredEnergyStorageCluster.BlockType.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER);
 
         // Polish
-        MPBlocks.POLISHED_TIN_DECORATION = new BlockPolishedSpaceDecoration("polished_tin_decoration", BlockPolishedSpaceDecoration.BlockType.POLISHED_TIN_DECORATION_BLOCK);
-        MPBlocks.POLISHED_ALUMINUM_DECORATION = new BlockPolishedSpaceDecoration("polished_aluminum_decoration", BlockPolishedSpaceDecoration.BlockType.POLISHED_ALUMINUM_DECORATION_BLOCK);
+        MPBlocks.POLISHED_TIN_DECORATION_BLOCK = new BlockBaseMP("polished_tin_decoration_block", Material.ROCK).setHardness(1.5F);
+        MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK = new BlockBaseMP("polished_aluminum_decoration_block", Material.ROCK).setHardness(1.5F);
 
         // Tinted Glass
         MPBlocks.WHITE_TINTED_GLASS = new BlockTintedGlass("white_tinted_glass", EnumDyeColor.WHITE);
@@ -160,22 +160,22 @@ public class MPBlocks
         MPBlocks.BLACK_TINTED_GLASS = new BlockTintedGlass("black_tinted_glass", EnumDyeColor.BLACK);
 
         // Tinted Glass Pane
-        MPBlocks.WHITE_TINTED_GLASS_PANE = new BlockTintedGlass("white_tinted_glass_pane", EnumDyeColor.WHITE);
-        MPBlocks.ORANGE_TINTED_GLASS_PANE = new BlockTintedGlass("orange_tinted_glass_pane", EnumDyeColor.ORANGE);
-        MPBlocks.MAGENTA_TINTED_GLASS_PANE = new BlockTintedGlass("magenta_tinted_glass_pane", EnumDyeColor.MAGENTA);
-        MPBlocks.LIGHT_BLUE_TINTED_GLASS_PANE = new BlockTintedGlass("light_blue_tinted_glass_pane", EnumDyeColor.LIGHT_BLUE);
-        MPBlocks.YELLOW_TINTED_GLASS_PANE = new BlockTintedGlass("yellow_tinted_glass_pane", EnumDyeColor.YELLOW);
-        MPBlocks.LIME_TINTED_GLASS_PANE = new BlockTintedGlass("lime_tinted_glass_pane", EnumDyeColor.LIME);
-        MPBlocks.PINK_TINTED_GLASS_PANE = new BlockTintedGlass("pink_tinted_glass_pane", EnumDyeColor.PINK);
-        MPBlocks.GRAY_TINTED_GLASS_PANE = new BlockTintedGlass("gray_tinted_glass_pane", EnumDyeColor.GRAY);
-        MPBlocks.SILVER_TINTED_GLASS_PANE = new BlockTintedGlass("silver_tinted_glass_pane", EnumDyeColor.SILVER);
-        MPBlocks.CYAN_TINTED_GLASS_PANE = new BlockTintedGlass("cyan_tinted_glass_pane", EnumDyeColor.CYAN);
-        MPBlocks.PURPLE_TINTED_GLASS_PANE = new BlockTintedGlass("purple_tinted_glass_pane", EnumDyeColor.PURPLE);
-        MPBlocks.BLUE_TINTED_GLASS_PANE = new BlockTintedGlass("blue_tinted_glass_pane", EnumDyeColor.BLUE);
-        MPBlocks.BROWN_TINTED_GLASS_PANE = new BlockTintedGlass("brown_tinted_glass_pane", EnumDyeColor.BROWN);
-        MPBlocks.GREEN_TINTED_GLASS_PANE = new BlockTintedGlass("green_tinted_glass_pane", EnumDyeColor.GREEN);
-        MPBlocks.RED_TINTED_GLASS_PANE = new BlockTintedGlass("red_tinted_glass_pane", EnumDyeColor.RED);
-        MPBlocks.BLACK_TINTED_GLASS_PANE = new BlockTintedGlass("black_tinted_glass_pane", EnumDyeColor.BLACK);
+        MPBlocks.WHITE_TINTED_GLASS_PANE = new BlockTintedGlassPane("white_tinted_glass_pane", EnumDyeColor.WHITE);
+        MPBlocks.ORANGE_TINTED_GLASS_PANE = new BlockTintedGlassPane("orange_tinted_glass_pane", EnumDyeColor.ORANGE);
+        MPBlocks.MAGENTA_TINTED_GLASS_PANE = new BlockTintedGlassPane("magenta_tinted_glass_pane", EnumDyeColor.MAGENTA);
+        MPBlocks.LIGHT_BLUE_TINTED_GLASS_PANE = new BlockTintedGlassPane("light_blue_tinted_glass_pane", EnumDyeColor.LIGHT_BLUE);
+        MPBlocks.YELLOW_TINTED_GLASS_PANE = new BlockTintedGlassPane("yellow_tinted_glass_pane", EnumDyeColor.YELLOW);
+        MPBlocks.LIME_TINTED_GLASS_PANE = new BlockTintedGlassPane("lime_tinted_glass_pane", EnumDyeColor.LIME);
+        MPBlocks.PINK_TINTED_GLASS_PANE = new BlockTintedGlassPane("pink_tinted_glass_pane", EnumDyeColor.PINK);
+        MPBlocks.GRAY_TINTED_GLASS_PANE = new BlockTintedGlassPane("gray_tinted_glass_pane", EnumDyeColor.GRAY);
+        MPBlocks.SILVER_TINTED_GLASS_PANE = new BlockTintedGlassPane("silver_tinted_glass_pane", EnumDyeColor.SILVER);
+        MPBlocks.CYAN_TINTED_GLASS_PANE = new BlockTintedGlassPane("cyan_tinted_glass_pane", EnumDyeColor.CYAN);
+        MPBlocks.PURPLE_TINTED_GLASS_PANE = new BlockTintedGlassPane("purple_tinted_glass_pane", EnumDyeColor.PURPLE);
+        MPBlocks.BLUE_TINTED_GLASS_PANE = new BlockTintedGlassPane("blue_tinted_glass_pane", EnumDyeColor.BLUE);
+        MPBlocks.BROWN_TINTED_GLASS_PANE = new BlockTintedGlassPane("brown_tinted_glass_pane", EnumDyeColor.BROWN);
+        MPBlocks.GREEN_TINTED_GLASS_PANE = new BlockTintedGlassPane("green_tinted_glass_pane", EnumDyeColor.GREEN);
+        MPBlocks.RED_TINTED_GLASS_PANE = new BlockTintedGlassPane("red_tinted_glass_pane", EnumDyeColor.RED);
+        MPBlocks.BLACK_TINTED_GLASS_PANE = new BlockTintedGlassPane("black_tinted_glass_pane", EnumDyeColor.BLACK);
 
         MPBlocks.SPACE_WARP_PAD = new BlockSpaceWarpPad("space_warp_pad");
         MPBlocks.SPACE_WARP_PAD_FULL = new BlockSpaceWarpPadFull("space_warp_pad_full");
@@ -184,7 +184,6 @@ public class MPBlocks
         MPBlocks.DARK_ENERGY_RECEIVER = new BlockDarkEnergyReceiver("dark_energy_receiver");
         MPBlocks.HALF_DUNGEON_BRICK_SLAB_1 = new BlockHalfDungeonBrickSlab1("half_dungeon_brick_slab_1");
         MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1 = new BlockDoubleDungeonBrickSlab1("double_dungeon_brick_slab_1");
-
         MPBlocks.HALF_COBBLESTONE_SLAB_1 = new BlockHalfCobblestoneSlab1("half_cobblestone_slab_1");
         MPBlocks.DOUBLE_COBBLESTONE_SLAB_1 = new BlockDoubleCobblestoneSlab1("double_cobblestone_slab_1");
         MPBlocks.HALF_WOODEN_SLAB_1 = new BlockHalfWoodenSlab1("half_wooden_slab_1");
@@ -222,12 +221,12 @@ public class MPBlocks
         CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_DUNGEON_SPAWNER, null);
 
         // Energy Storage
-        CommonRegisterHelper.registerBlock(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER);
-        CommonRegisterHelper.registerBlock(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER);
+        CommonRegisterHelper.registerBlock(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER, ItemBlockDescription::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER, ItemBlockDescription::new);
 
         // Polish
-        CommonRegisterHelper.registerBlock(MPBlocks.POLISHED_TIN_DECORATION);
-        CommonRegisterHelper.registerBlock(MPBlocks.POLISHED_ALUMINUM_DECORATION);
+        CommonRegisterHelper.registerBlock(MPBlocks.POLISHED_TIN_DECORATION_BLOCK);
+        CommonRegisterHelper.registerBlock(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK);
 
         // Tinted Glass
         CommonRegisterHelper.registerBlock(MPBlocks.WHITE_TINTED_GLASS);
@@ -309,8 +308,8 @@ public class MPBlocks
         CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER, EnumHarvestLevel.PICKAXE, 2);
 
         // Polish
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.POLISHED_TIN_DECORATION, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.POLISHED_ALUMINUM_DECORATION, EnumHarvestLevel.PICKAXE, 0);
+        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.POLISHED_TIN_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
+        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
 
         CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.HALF_WOODEN_SLAB_1, EnumHarvestLevel.AXE, 0);
         CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DOUBLE_WOODEN_SLAB_1, EnumHarvestLevel.AXE, 0);

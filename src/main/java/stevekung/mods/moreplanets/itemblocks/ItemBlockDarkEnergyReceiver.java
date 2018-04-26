@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.itemblocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -15,6 +14,7 @@ import stevekung.mods.moreplanets.util.helper.BlockEventHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
 {
@@ -33,7 +33,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
         {
             if (world.isRemote)
             {
-                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.place_in_liquid.message")).setStyle(JsonUtils.red()).getFormattedText());
+                ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.place_in_liquid.message")).setStyle(JsonUtils.red()));
             }
             return false;
         }
@@ -49,7 +49,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
+                    ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
                 }
                 return false;
             }
@@ -57,7 +57,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
+                    ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
                 }
                 return false;
             }
@@ -85,7 +85,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
+                    ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
                 }
                 return false;
             }
@@ -93,7 +93,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
+                    ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
                 }
                 return false;
             }

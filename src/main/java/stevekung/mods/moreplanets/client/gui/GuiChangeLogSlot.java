@@ -24,9 +24,9 @@ public class GuiChangeLogSlot extends GuiSlot
     private static final ResourceLocation POLISHED_ALUMINUM = new ResourceLocation("moreplanets:textures/blocks/polished_aluminum_decoration_block.png");
     private static final ResourceLocation TRANSPARENT = new ResourceLocation("moreplanets:textures/gui/change_log_overlay.png");
 
-    public GuiChangeLogSlot(Minecraft mc, GuiFullChangeLog parent, List<String> stringList, int width, int height, boolean texture)
+    public GuiChangeLogSlot(GuiFullChangeLog parent, List<String> stringList, int width, int height, boolean texture)
     {
-        super(mc, width, height, 32, height - 64, 13);
+        super(Minecraft.getMinecraft(), width, height, 32, height - 64, 13);
         this.stringList = stringList;
         this.parent = parent;
         this.textureType = texture;
@@ -40,9 +40,6 @@ public class GuiChangeLogSlot extends GuiSlot
     }
 
     @Override
-    protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY) {}
-
-    @Override
     protected boolean isSelected(int slotIndex)
     {
         return false;
@@ -53,9 +50,6 @@ public class GuiChangeLogSlot extends GuiSlot
     {
         return 5 + this.getSize() * 13;
     }
-
-    @Override
-    protected void drawBackground() {}
 
     @Override
     protected void drawSlot(int entryID, int insideLeft, int yPos, int insideSlotHeight, int mouseX, int mouseY, float partialTicks)
@@ -178,4 +172,10 @@ public class GuiChangeLogSlot extends GuiSlot
             GlStateManager.disableBlend();
         }
     }
+
+    @Override
+    protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY) {}
+
+    @Override
+    protected void drawBackground() {}
 }

@@ -102,10 +102,4 @@ public class BlockFluidInfectedWater extends BlockFluidBaseMP implements IFishab
             }
         }
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_water_fluid";
-    }
 }

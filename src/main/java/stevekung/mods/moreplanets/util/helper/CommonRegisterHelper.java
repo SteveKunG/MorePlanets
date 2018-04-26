@@ -44,7 +44,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
 import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
@@ -52,6 +51,7 @@ import stevekung.mods.moreplanets.util.entity.EnumEntityTrackerType;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISingleItemRender;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
+import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class CommonRegisterHelper
 {

@@ -8,13 +8,13 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageMP;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
 
 public class ContainerEnergyStorageCluster extends Container
 {
-    private TileEntityEnergyStorageMP tileEntity;
+    private TileEntityEnergyStorageClusterMP tileEntity;
 
-    public ContainerEnergyStorageCluster(InventoryPlayer invPlayer, TileEntityEnergyStorageMP batteryBox)
+    public ContainerEnergyStorageCluster(InventoryPlayer invPlayer, TileEntityEnergyStorageClusterMP batteryBox)
     {
         this.tileEntity = batteryBox;
         // Top slot for battery output

@@ -119,10 +119,4 @@ public class BlockNibiruAncientChest extends BlockAncientChestMP
     {
         return Container.calcRedstoneFromInventory(this.getLockableContainer(world, pos));
     }
-
-    @Override
-    public String getName()
-    {
-        return "nibiru_ancient_chest";
-    }
 }

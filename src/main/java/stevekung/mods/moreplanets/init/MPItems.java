@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.init;
 
 import net.minecraft.item.Item;
 import stevekung.mods.moreplanets.items.*;
-import stevekung.mods.moreplanets.items.capsule.ItemCapsule;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
@@ -14,8 +13,12 @@ import stevekung.mods.moreplanets.util.items.ItemRecordMP;
 
 public class MPItems
 {
+    // Capsule
+    public static Item EMPTY_CAPSULE;
+    public static Item INFECTED_SPORE_PROTECTION_CAPSULE;
+    public static Item DARK_ENERGY_PROTECTION_CAPSULE;
+
     public static Item SPACE_WARPER_CORE;
-    public static Item CAPSULE;
     public static Item SPACE_BOW;
     public static Item SPACE_FISHING_ROD;
     public static Item DYE;
@@ -39,8 +42,12 @@ public class MPItems
         /**********************INITIAL STUFF***************************/
         /**************************************************************/
 
+        // Capsule
+        MPItems.EMPTY_CAPSULE = new ItemCapsule("empty_capsule", ItemCapsule.CapsuleType.EMPTY);
+        MPItems.INFECTED_SPORE_PROTECTION_CAPSULE = new ItemCapsule("infected_spore_protection_capsule", ItemCapsule.CapsuleType.INFECTED_SPORE);
+        MPItems.DARK_ENERGY_PROTECTION_CAPSULE = new ItemCapsule("dark_energy_protection_capsule", ItemCapsule.CapsuleType.DARK_ENERGY);
+
         MPItems.SPACE_WARPER_CORE = new ItemSpaceWarperCore("space_warper_core");
-        MPItems.CAPSULE = new ItemCapsule("capsule");
         MPItems.SPACE_BOW = new ItemSpaceBow("space_bow");
         MPItems.SPACE_FISHING_ROD = new ItemSpaceFishingRod("space_fishing_rod");
         MPItems.DYE = new ItemDyeMP("dye_mp");
@@ -62,8 +69,12 @@ public class MPItems
         /**********************REGISTER STUFF**************************/
         /**************************************************************/
 
+        // Capsule
+        CommonRegisterHelper.registerItem(MPItems.EMPTY_CAPSULE);
+        CommonRegisterHelper.registerItem(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE);
+        CommonRegisterHelper.registerItem(MPItems.DARK_ENERGY_PROTECTION_CAPSULE);
+
         CommonRegisterHelper.registerItem(MPItems.SPACE_WARPER_CORE);
-        CommonRegisterHelper.registerItem(MPItems.CAPSULE);
         CommonRegisterHelper.registerItem(MPItems.SPACE_BOW);
         CommonRegisterHelper.registerItem(MPItems.SPACE_FISHING_ROD);
         CommonRegisterHelper.registerItem(MPItems.DYE);

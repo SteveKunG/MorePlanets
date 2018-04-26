@@ -113,10 +113,4 @@ public class BlockAlienBerryChest extends BlockChestMP
     {
         return new TileEntityAlienBerryChest();
     }
-
-    @Override
-    public String getName()
-    {
-        return "alien_berry_chest";
-    }
 }

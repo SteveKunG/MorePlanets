@@ -45,8 +45,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.items.capsule.CapsuleType;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.ai.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
@@ -90,8 +90,8 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     private ITradeList[] medicTradeList = new ITradeList[] {
             new EmeraldForItems(new ItemStack(Items.IRON_INGOT), new PriceInfo(24, 32)),
             new EmeraldForItems(new ItemStack(GCItems.basicItem, 1, 4), new PriceInfo(8, 10)),
-            new ListItemForEmeralds(CapsuleType.getInfectedProtectionCapsule(), new PriceInfo(4, 6), true),
-            new ListItemForEmeralds(CapsuleType.getDarkEnergyProtectionCapsule(), new PriceInfo(4, 6), true)
+            new ListItemForEmeralds(new ItemStack(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE), new PriceInfo(4, 6), true),
+            new ListItemForEmeralds(new ItemStack(MPItems.DARK_ENERGY_PROTECTION_CAPSULE), new PriceInfo(4, 6), true)
     };
 
     public EntityNibiruVillager(World world)

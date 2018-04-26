@@ -7,7 +7,6 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,6 +21,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.fml.relauncher.Side;
@@ -259,25 +259,25 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     {
         if (this.getEnergyStoredGC() == 0)
         {
-            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.missingpower.name");
+            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.missingpower.name");
         }
         if (this.getDisabled(0))
         {
-            return EnumColor.ORANGE + GCCoreUtil.translate("gui.status.ready.name");
+            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.ready.name");
         }
         if (this.getEnergyStoredGC() < this.storage.getMaxExtract())
         {
-            return EnumColor.ORANGE + GCCoreUtil.translate("gui.status.missingpower.name");
+            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.missingpower.name");
         }
         if (!this.hasWarpCore())
         {
-            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.warp_core_required.name");
+            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.warp_core_required.name");
         }
         if (this.hasWarpCore() && !this.containingItems.get(1).hasTagCompound())
         {
-            return EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.empty_dimension_data.name");
+            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.empty_dimension_data.name");
         }
-        return EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.status.active.name");
+        return TextFormatting.DARK_GREEN + GCCoreUtil.translate("gui.status.active.name");
     }
 
     public boolean hasWarpCore()

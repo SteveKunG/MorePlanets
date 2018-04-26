@@ -28,7 +28,7 @@ public class MPLog
 
     public static void debug(String message)
     {
-        if (ConfigManagerMP.moreplanets_general.enableDebug || MorePlanetsMod.isDevelopmentEnvironment())
+        if (ConfigManagerMP.moreplanets_general.enableDebug || MorePlanetsMod.isDevelopment)
         {
             MPLog.LOG_DEBUG.info(message);
         }
@@ -51,7 +51,7 @@ public class MPLog
 
     public static void debug(String message, Object... obj)
     {
-        if (ConfigManagerMP.moreplanets_general.enableDebug || MorePlanetsMod.isDevelopmentEnvironment())
+        if (ConfigManagerMP.moreplanets_general.enableDebug || MorePlanetsMod.isDevelopment)
         {
             MPLog.LOG_DEBUG.info(message, obj);
         }

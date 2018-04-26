@@ -128,9 +128,6 @@ public class ItemModelRenderer
         ClientRegisterHelper.registerArmorModelRender(DionaItems.ILLENIUM_HELMET, DionaItems.ILLENIUM_CHESTPLATE, DionaItems.ILLENIUM_LEGGINGS, DionaItems.ILLENIUM_BOOTS, "illenium");
         ClientRegisterHelper.registerArmorModelRender(ChalosItems.DIREMSIUM_HELMET, ChalosItems.DIREMSIUM_CHESTPLATE, ChalosItems.DIREMSIUM_LEGGINGS, ChalosItems.DIREMSIUM_BOOTS, "diremsium");
         ClientRegisterHelper.registerArmorModelRender(NibiruItems.MULTALIC_CRYSTAL_HELMET, NibiruItems.MULTALIC_CRYSTAL_CHESTPLATE, NibiruItems.MULTALIC_CRYSTAL_LEGGINGS, NibiruItems.MULTALIC_CRYSTAL_BOOTS, "multalic_crystal");
-        ClientRegisterHelper.registerRocketModelRender(DionaItems.TIER_4_ROCKET, 4);
-        ClientRegisterHelper.registerRocketModelRender(ChalosItems.TIER_5_ROCKET, 5);
-        ClientRegisterHelper.registerRocketModelRender(NibiruItems.TIER_6_ROCKET, 6);
     }
 
     private static void registerItemVariantsRenderer()

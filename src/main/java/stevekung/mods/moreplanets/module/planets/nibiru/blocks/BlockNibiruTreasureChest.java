@@ -73,10 +73,4 @@ public class BlockNibiruTreasureChest extends BlockTreasureChestMP
     {
         return new TileEntityNibiruTreasureChest();
     }
-
-    @Override
-    public String getName()
-    {
-        return "nibiru_treasure_chest";
-    }
 }

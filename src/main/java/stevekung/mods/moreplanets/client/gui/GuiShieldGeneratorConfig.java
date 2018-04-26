@@ -1,9 +1,7 @@
 package stevekung.mods.moreplanets.client.gui;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 import org.lwjgl.input.Keyboard;
@@ -24,6 +22,7 @@ import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
 import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
 import stevekung.mods.moreplanets.util.client.gui.GuiNumberField;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBoxCallback
 {
@@ -69,29 +68,26 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
     {
         super.initGui();
         Keyboard.enableRepeatEvents(true);
-        int width = (this.width - this.xSize) / 2;
-        int height = (this.height - this.ySize) / 2;
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
         this.tempDamage = this.tile.shieldDamage;
         this.tempSize = this.tile.maxShieldSize;
-        List<String> batterySlotDesc = new ArrayList<>();
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 77, 18, 18, batterySlotDesc, this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 59, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.shield_capacity_upgrade.desc.0"), GCCoreUtil.translate("gui.shield_capacity_upgrade.desc.1")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 41, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.shield_size_upgrade.desc.0"), GCCoreUtil.translate("gui.shield_size_upgrade.desc.1")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 23, 18, 18, Arrays.asList(GCCoreUtil.translate("gui.shield_damage_upgrade.desc.0"), GCCoreUtil.translate("gui.shield_damage_upgrade.desc.1")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 60, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.shield_visible.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 80, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.enable_shield.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 100, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.enable_shield_damage.desc")), this.width, this.height, this));
-        this.checkboxRenderShield = new GuiElementCheckbox(100, this, width + 60, height + 70, "");
-        this.checkboxEnableShield = new GuiElementCheckbox(101, this, width + 80, height + 70, "");
-        this.checkboxEnableDamage = new GuiElementCheckbox(102, this, width + 100, height + 70, "");
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 77, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 59, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_capacity_upgrade.desc.0"), LangUtils.translate("gui.shield_capacity_upgrade.desc.1")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 41, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_size_upgrade.desc.0"), LangUtils.translate("gui.shield_size_upgrade.desc.1")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 23, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_damage_upgrade.desc.0"), LangUtils.translate("gui.shield_damage_upgrade.desc.1")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 60, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.shield_visible.desc")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 80, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield.desc")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 100, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this.height, this));
+        this.checkboxRenderShield = new GuiElementCheckbox(100, this, x + 60, y + 70, "");
+        this.checkboxEnableShield = new GuiElementCheckbox(101, this, x + 80, y + 70, "");
+        this.checkboxEnableDamage = new GuiElementCheckbox(102, this, x + 100, y + 70, "");
 
         this.buttonList.add(this.checkboxRenderShield);
         this.buttonList.add(this.checkboxEnableShield);
         this.buttonList.add(this.checkboxEnableDamage);
-        this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, GCCoreUtil.translate("gui.button.back.name")));
-        this.buttonList.add(this.buttonDone = new GuiButton(1, this.width / 2 + 4, this.height / 2 - 6, 72, 20, GCCoreUtil.translate("gui.done")));
+        this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.back.name")));
+        this.buttonList.add(this.buttonDone = new GuiButton(1, this.width / 2 + 4, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.done")));
 
         this.shieldDamageText = new GuiNumberField(1, this.fontRenderer, this.width / 2 - 3, this.height / 2 - 83, 30, 16);
         this.shieldDamageText.setMaxStringLength(2);
@@ -126,22 +122,19 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        // backward compatibility
-        String owner = null;
+        String owner = "";
 
         try
         {
             owner = this.tile.getWorld().getPlayerEntityByUUID(UUID.fromString(this.tile.ownerUUID)).getName() + "'s ";
         }
-        catch (Exception e)
-        {
-            owner = "";
-        }
+        catch (Exception e) {}
+
         this.fontRenderer.drawString(owner + this.tile.getName(), 8, 10, 4210752);
-        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
-        this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.shield_damage.name") + ":", 10, 27, 4210752);
-        this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.shield_size.name") + ":", 10, 48, 4210752);
-        this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.settings.name") + ":", 10, 73, 4210752);
+        this.fontRenderer.drawString(LangUtils.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
+        this.fontRenderer.drawString(LangUtils.translate("gui.status.shield_damage.name") + ":", 10, 27, 4210752);
+        this.fontRenderer.drawString(LangUtils.translate("gui.status.shield_size.name") + ":", 10, 48, 4210752);
+        this.fontRenderer.drawString(LangUtils.translate("gui.status.settings.name") + ":", 10, 73, 4210752);
 
         if (this.messageTicks > 0)
         {
@@ -156,7 +149,7 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
             {
                 GlStateManager.enableBlend();
                 GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-                this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.config_save.name"), 10, 87, 4210752 + (alpha << 24 & -4210753));
+                this.fontRenderer.drawString(LangUtils.translate("gui.status.config_save.name"), 10, 87, 4210752 + (alpha << 24 & -4210753));
                 GlStateManager.disableBlend();
             }
         }
@@ -167,9 +160,9 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(GuiShieldGeneratorConfig.TEXTURE);
-        int width = (this.width - this.xSize) / 2;
-        int height = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(width, height + 5, 0, 0, this.xSize, this.ySize);
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(x, y + 5, 0, 0, this.xSize, this.ySize);
         this.checkboxRenderShield.isSelected = this.tile.shouldRender;
         this.checkboxEnableShield.isSelected = this.tile.enableShield;
         this.checkboxEnableDamage.isSelected = this.tile.enableDamage;

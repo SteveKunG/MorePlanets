@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
-public abstract class BlockChestMP extends BlockContainerMP implements ISingleBlockRender
+public abstract class BlockChestMP extends BlockContainerMP
 {
     protected static AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 0.9375D, 0.875D, 0.9375D);
     protected static AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 1.0D);

@@ -22,7 +22,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.inventory.ContainerNucle
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageMP;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
 
 public class GuiHandlerMP implements IGuiHandler
 {
@@ -54,9 +54,9 @@ public class GuiHandlerMP implements IGuiHandler
             {
                 return new ContainerNuclearWasteGenerator(player.inventory, (TileEntityNuclearWasteGenerator)tile);
             }
-            else if (tile instanceof TileEntityEnergyStorageMP)
+            else if (tile instanceof TileEntityEnergyStorageClusterMP)
             {
-                return new ContainerEnergyStorageCluster(player.inventory, (TileEntityEnergyStorageMP)tile);
+                return new ContainerEnergyStorageCluster(player.inventory, (TileEntityEnergyStorageClusterMP)tile);
             }
             else if (tile instanceof TileEntityDarkEnergyGenerator)
             {
@@ -105,9 +105,9 @@ public class GuiHandlerMP implements IGuiHandler
                 {
                     return new GuiNuclearWasteGenerator(player.inventory, (TileEntityNuclearWasteGenerator)tile);
                 }
-                else if (tile instanceof TileEntityEnergyStorageMP)
+                else if (tile instanceof TileEntityEnergyStorageClusterMP)
                 {
-                    return new GuiDarkEnergyStorage(player.inventory, (TileEntityEnergyStorageMP)tile);
+                    return new GuiDarkEnergyStorage(player.inventory, (TileEntityEnergyStorageClusterMP)tile);
                 }
                 else if (tile instanceof TileEntityDarkEnergyGenerator)
                 {

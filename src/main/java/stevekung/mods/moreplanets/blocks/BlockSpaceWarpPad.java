@@ -2,33 +2,29 @@ package stevekung.mods.moreplanets.blocks;
 
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPad;
 import stevekung.mods.moreplanets.util.ItemDescription;
+import stevekung.mods.moreplanets.util.blocks.BlockAdvancedTileMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSealableBlock, IBlockDescription, ISortableBlock, ISingleBlockRender
+public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSealableBlock, IBlockDescription
 {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D);
 
@@ -45,12 +41,6 @@ public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSeal
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return BlockSpaceWarpPad.AABB;
-    }
-
-    @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
-    {
-        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
@@ -115,12 +105,6 @@ public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSeal
     public ItemDescription getDescription()
     {
         return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockSpaceWarpPad.this.getUnlocalizedName() + ".description"));
-    }
-
-    @Override
-    public String getName()
-    {
-        return "space_warp_pad";
     }
 
     private boolean checkAxis(World world, BlockPos pos, EnumFacing facing)

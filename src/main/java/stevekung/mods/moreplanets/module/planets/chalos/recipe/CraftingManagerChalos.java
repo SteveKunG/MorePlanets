@@ -1,19 +1,14 @@
 package stevekung.mods.moreplanets.module.planets.chalos.recipe;
 
-import java.util.HashMap;
-
 import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.helper.RecipeHelper;
 
 public class CraftingManagerChalos
@@ -24,11 +19,6 @@ public class CraftingManagerChalos
         CraftingManagerChalos.addItemRecipe();
         CraftingManagerChalos.addBlockSmelting();
         CraftingManagerChalos.addItemSmelting();
-
-        if (ConfigManagerMP.moreplanets_addon_compat.enableTier5RocketRecipe)
-        {
-            CraftingManagerChalos.addRocketRecipe();
-        }
     }
 
     private static void addBlockRecipe()
@@ -91,74 +81,5 @@ public class CraftingManagerChalos
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 8), new ItemStack(GCItems.basicItem, 1, 5), 0.8F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosItems.CHEESE_FOOD, 1, 1), new ItemStack(ChalosItems.CHEESE_FOOD, 1, 2), 0.35F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_STEM), new ItemStack(Items.COAL, 1, 1), 0.15F);
-    }
-
-    private static void addRocketRecipe()
-    {
-        HashMap<Integer, ItemStack> input = new HashMap<>();
-        input.put(1, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 2));
-        input.put(2, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(3, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(4, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(5, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(6, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(7, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(8, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(9, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(10, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(11, new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0));
-        input.put(12, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3));
-        input.put(13, new ItemStack(AsteroidsItems.basicItem, 1, 2));
-        input.put(14, new ItemStack(AsteroidsItems.basicItem, 1, 2));
-        input.put(15, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 1));
-        input.put(16, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3));
-        input.put(17, new ItemStack(AsteroidsItems.basicItem, 1, 2));
-        input.put(18, new ItemStack(AsteroidsItems.basicItem, 1, 2));
-        input.put(19, ItemStack.EMPTY);
-        input.put(20, ItemStack.EMPTY);
-        input.put(21, ItemStack.EMPTY);
-        Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 0), input);
-
-        HashMap<Integer, ItemStack> input2 = new HashMap<>(input);
-        input2.put(19, new ItemStack(Blocks.CHEST));
-        input2.put(20, ItemStack.EMPTY);
-        input2.put(21, ItemStack.EMPTY);
-        Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 1), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, ItemStack.EMPTY);
-        input2.put(20, new ItemStack(Blocks.CHEST));
-        input2.put(21, ItemStack.EMPTY);
-        Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 1), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, ItemStack.EMPTY);
-        input2.put(20, ItemStack.EMPTY);
-        input2.put(21, new ItemStack(Blocks.CHEST));
-        Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 1), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, new ItemStack(Blocks.CHEST));
-        input2.put(20, new ItemStack(Blocks.CHEST));
-        input2.put(21, ItemStack.EMPTY);
-        Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 2), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, new ItemStack(Blocks.CHEST));
-        input2.put(20, ItemStack.EMPTY);
-        input2.put(21, new ItemStack(Blocks.CHEST));
-        Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 2), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, ItemStack.EMPTY);
-        input2.put(20, new ItemStack(Blocks.CHEST));
-        input2.put(21, new ItemStack(Blocks.CHEST));
-        Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 2), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, new ItemStack(Blocks.CHEST));
-        input2.put(20, new ItemStack(Blocks.CHEST));
-        input2.put(21, new ItemStack(Blocks.CHEST));
-        Tier5RocketRecipes.addRocketRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET, 1, 3), input2);
     }
 }

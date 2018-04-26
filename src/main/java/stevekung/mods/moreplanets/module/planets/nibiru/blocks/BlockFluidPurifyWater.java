@@ -72,10 +72,4 @@ public class BlockFluidPurifyWater extends BlockFluidBaseMP implements IFishable
             }
         }
     }
-
-    @Override
-    public String getName()
-    {
-        return "purify_water_fluid";
-    }
 }

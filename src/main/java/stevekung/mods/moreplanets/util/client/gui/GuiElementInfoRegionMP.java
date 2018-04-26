@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.ClientRendererUtil;
+import stevekung.mods.stevekunglib.utils.RenderUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiElementInfoRegionMP extends Gui
@@ -44,7 +44,7 @@ public class GuiElementInfoRegionMP extends Gui
     public void drawRegion(int mouseX, int mouseZ)
     {
         GlStateManager.disableRescaleNormal();
-        ClientRendererUtil.renderLightState(true);
+        RenderUtils.disableLighting();
         GlStateManager.disableDepth();
 
         this.withinRegion = mouseX >= this.xPosition && mouseZ >= this.yPosition && mouseX < this.xPosition + this.width && mouseZ < this.yPosition + this.height;
@@ -112,7 +112,7 @@ public class GuiElementInfoRegionMP extends Gui
             this.zLevel = 0.0F;
         }
         GlStateManager.enableDepth();
-        ClientRendererUtil.renderLightState(false);
+        RenderUtils.enableLighting();
         GlStateManager.enableRescaleNormal();
     }
 

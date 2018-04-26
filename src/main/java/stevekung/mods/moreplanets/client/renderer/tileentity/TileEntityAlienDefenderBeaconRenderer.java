@@ -9,9 +9,9 @@ import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 
 public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRenderer<TileEntityAlienDefenderBeacon>
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/alien_defender_beacon.png");
-    private static ResourceLocation textureGlow1 = new ResourceLocation("moreplanets:textures/model/alien_defender_beacon_glow.png");
-    private ModelAlienDefenderBeacon model = new ModelAlienDefenderBeacon();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/alien_defender_beacon.png");
+    private static final ResourceLocation GLOW = new ResourceLocation("moreplanets:textures/model/alien_defender_beacon_glow.png");
+    private final ModelAlienDefenderBeacon model = new ModelAlienDefenderBeacon();
 
     @Override
     public void render(TileEntityAlienDefenderBeacon tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -35,7 +35,7 @@ public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRend
         }
         else
         {
-            this.bindTexture(TileEntityAlienDefenderBeaconRenderer.texture);
+            this.bindTexture(TileEntityAlienDefenderBeaconRenderer.TEXTURE);
         }
 
         this.model.renderBase();
@@ -44,7 +44,7 @@ public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRend
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        this.bindTexture(TileEntityAlienDefenderBeaconRenderer.textureGlow1);
+        this.bindTexture(TileEntityAlienDefenderBeaconRenderer.GLOW);
         this.model.renderBase();
         GlStateManager.enableCull();
         GlStateManager.enableBlend();

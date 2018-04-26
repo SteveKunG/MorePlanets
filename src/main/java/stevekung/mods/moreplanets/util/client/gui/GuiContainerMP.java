@@ -52,10 +52,8 @@ public abstract class GuiContainerMP extends GuiContainer
 
     public int getTooltipOffset(int mouseX, int mouseY)
     {
-        for (int i1 = 0; i1 < this.inventorySlots.inventorySlots.size(); ++i1)
+        for (Slot slot : this.inventorySlots.inventorySlots)
         {
-            Slot slot = this.inventorySlots.inventorySlots.get(i1);
-
             if (slot.isEnabled() && this.isPointInRegion(slot.xPos, slot.yPos, 16, 16, mouseX, mouseY))
             {
                 ItemStack itemStack = slot.getStack();

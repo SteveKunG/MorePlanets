@@ -11,7 +11,7 @@ public class RecipeHelper
 {
     public static void addRecipe(ItemStack output, Object... obj)
     {
-        if (MorePlanetsMod.isDevelopmentEnvironment())
+        if (MorePlanetsMod.isDevelopment)
         {
             JSONRecipe.addShapedRecipe(output, obj);
         }
@@ -19,7 +19,7 @@ public class RecipeHelper
 
     public static void addOreRecipe(ItemStack output, Object... obj)
     {
-        if (MorePlanetsMod.isDevelopmentEnvironment())
+        if (MorePlanetsMod.isDevelopment)
         {
             JSONRecipe.addShapedRecipe(output, obj);
         }
@@ -27,7 +27,7 @@ public class RecipeHelper
 
     public static void addShapelessRecipe(ItemStack output, Object... obj)
     {
-        if (MorePlanetsMod.isDevelopmentEnvironment())
+        if (MorePlanetsMod.isDevelopment)
         {
             JSONRecipe.addShapelessRecipe(output, obj);
         }

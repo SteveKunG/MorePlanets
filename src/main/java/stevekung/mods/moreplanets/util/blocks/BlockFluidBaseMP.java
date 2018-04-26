@@ -20,6 +20,8 @@ import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 
 public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISingleBlockRender
 {
+    private String name;
+
     public BlockFluidBaseMP(Fluid fluid)
     {
         super(fluid, Material.WATER);
@@ -30,6 +32,13 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
     {
         super(fluid, material);
         this.setHardness(100.0F);
+    }
+
+    @Override
+    public Block setUnlocalizedName(String name)
+    {
+        this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override
@@ -88,6 +97,12 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
     public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
     {
         return BlockFaceShape.UNDEFINED;
+    }
+
+    @Override
+    public String getName()
+    {
+        return this.name;
     }
 
     protected void triggerMixEffects(World world, BlockPos pos)

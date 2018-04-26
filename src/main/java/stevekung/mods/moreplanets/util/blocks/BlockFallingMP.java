@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.util.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +20,13 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISin
     public BlockFallingMP(String name)
     {
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public Block setUnlocalizedName(String name)
+    {
         this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override

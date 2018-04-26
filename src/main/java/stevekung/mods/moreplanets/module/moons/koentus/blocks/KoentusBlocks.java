@@ -3,8 +3,8 @@ package stevekung.mods.moreplanets.module.moons.koentus.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumDyeColor;
 import stevekung.mods.moreplanets.module.moons.koentus.itemblocks.ItemBlockKoentus;
-import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class KoentusBlocks
 {

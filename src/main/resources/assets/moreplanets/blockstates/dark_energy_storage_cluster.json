@@ -1,0 +1,50 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "moreplanets:blocks/machine_blank",
+            "front": "moreplanets:blocks/dark_energy_storage_module_0",
+            "rear": "moreplanets:blocks/dark_energy_storage_module_0",
+            "side": "moreplanets:blocks/machine_blank",
+            "el_in": "moreplanets:blocks/machine_input",
+            "el_out": "moreplanets:blocks/machine_output",
+            "top": "moreplanets:blocks/machine_blank",
+            "base": "moreplanets:blocks/machine_blank"
+        }
+    },
+    "variants": {
+        "facing" : {
+           "north": { },
+           "east":  { "y": 90 },
+           "west":  { "y": 270 },
+           "south": { "y": 180 }
+        },
+        "msm" : {
+            "lr": { "model": "galacticraftcore:machine_tiered_lr" },
+            "lb": { "model": "galacticraftcore:machine_tiered_lb" },
+            "rl": { "model": "galacticraftcore:machine_tiered_rl" },
+            "rb": { "model": "galacticraftcore:machine_tiered_rb" },
+            "bl": { "model": "galacticraftcore:machine_tiered_bl" },
+            "br": { "model": "galacticraftcore:machine_tiered_br" }
+        },
+        "value" : {
+            "0": { },
+            "1": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_1", "rear": "moreplanets:blocks/dark_energy_storage_module_1"  }},
+            "2": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_2", "rear": "moreplanets:blocks/dark_energy_storage_module_2"  }},
+            "3": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_3", "rear": "moreplanets:blocks/dark_energy_storage_module_3"  }},
+            "4": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_4", "rear": "moreplanets:blocks/dark_energy_storage_module_4"  }},
+            "5": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_5", "rear": "moreplanets:blocks/dark_energy_storage_module_5"  }},
+            "6": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_6", "rear": "moreplanets:blocks/dark_energy_storage_module_6"  }},
+            "7": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_7", "rear": "moreplanets:blocks/dark_energy_storage_module_7"  }},
+            "8": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_8", "rear": "moreplanets:blocks/dark_energy_storage_module_8"  }},
+            "9": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_9", "rear": "moreplanets:blocks/dark_energy_storage_module_9"  }},
+            "10": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_10", "rear": "moreplanets:blocks/dark_energy_storage_module_10"  }},
+            "11": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_11", "rear": "moreplanets:blocks/dark_energy_storage_module_11"  }},
+            "12": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_12", "rear": "moreplanets:blocks/dark_energy_storage_module_12"  }},
+            "13": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_13", "rear": "moreplanets:blocks/dark_energy_storage_module_13"  }},
+            "14": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_14", "rear": "moreplanets:blocks/dark_energy_storage_module_14"  }},
+            "15": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_15", "rear": "moreplanets:blocks/dark_energy_storage_module_15"  }},
+            "16": { "textures": { "front": "moreplanets:blocks/dark_energy_storage_module_16", "rear": "moreplanets:blocks/dark_energy_storage_module_16"  }}
+        }
+    }
+}

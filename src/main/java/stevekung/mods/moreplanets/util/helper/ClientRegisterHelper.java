@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.IStateMapper;
-import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -33,8 +33,8 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.OBJLoaderMP;
-import stevekung.mods.moreplanets.util.EnumStateMapper;
 import stevekung.mods.moreplanets.util.client.model.ModelBipedTranslucent;
+import stevekung.mods.stevekunglib.utils.EnumStateMapper;
 
 @SideOnly(Side.CLIENT)
 public class ClientRegisterHelper
@@ -264,7 +264,7 @@ public class ClientRegisterHelper
 
     public static void registerStateMapper(Block block, EnumStateMapper mapper)
     {
-        ClientRegisterHelper.registerStateMapper(block, new Builder().ignore(mapper.getProperty()).build());
+        ClientRegisterHelper.registerStateMapper(block, new StateMap.Builder().ignore(mapper.getProperty()).build());
     }
 
     public static void registerStateMapper(Block block, IStateMapper mapper)
@@ -274,12 +274,12 @@ public class ClientRegisterHelper
 
     public static void registerStateMapperSplitVariants(Block block, IProperty property)
     {
-        ClientRegisterHelper.registerStateMapper(block, new Builder().withName(property).build());
+        ClientRegisterHelper.registerStateMapper(block, new StateMap.Builder().withName(property).build());
     }
 
     public static void registerStateMapper(Block block, IProperty... property)
     {
-        ClientRegisterHelper.registerStateMapper(block, new Builder().ignore(property).build());
+        ClientRegisterHelper.registerStateMapper(block, new StateMap.Builder().ignore(property).build());
     }
 
     public static void registerSpriteTexture(TextureStitchEvent.Pre event, String texture)

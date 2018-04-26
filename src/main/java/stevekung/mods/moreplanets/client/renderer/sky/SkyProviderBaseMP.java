@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.stevekunglib.utils.GLConstants;
 
 public abstract class SkyProviderBaseMP extends IRenderHandler
 {
@@ -45,7 +46,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         {
             for (int l = -byte2 * i; l <= byte2 * i; l += byte2)
             {
-                worldrenderer.begin(7, DefaultVertexFormats.POSITION);
+                worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION);
                 worldrenderer.pos(j + 0, f, l + 0).endVertex();
                 worldrenderer.pos(j + byte2, f, l + 0).endVertex();
                 worldrenderer.pos(j + byte2, f, l + byte2).endVertex();
@@ -58,7 +59,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         this.glSkyList2 = this.starList + 2;
         GlStateManager.glNewList(this.glSkyList2, 4864);
         f = -16F;
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
+        worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION);
 
         for (int k = -byte2 * i; k <= byte2 * i; k += byte2)
         {
@@ -139,7 +140,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
             GlStateManager.callList(this.glSkyList2);
             GlStateManager.popMatrix();
             float f = -((float)(playerEyes + 65.0D));
-            worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+            worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_COLOR);
             worldrenderer.pos(-1.0D, f, 1.0D).color(0, 0, 0, 255).endVertex();
             worldrenderer.pos(1.0D, f, 1.0D).color(0, 0, 0, 255).endVertex();
             worldrenderer.pos(1.0D, -1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
@@ -181,7 +182,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder worldrenderer = tessellator.getBuffer();
         Random rand = new Random(10842L);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
+        worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION);
 
         for (int starIndex = 0; starIndex < (ConfigManagerCore.moreStars ? this.getMaxStarCount()[0] : 6000); ++starIndex)
         {

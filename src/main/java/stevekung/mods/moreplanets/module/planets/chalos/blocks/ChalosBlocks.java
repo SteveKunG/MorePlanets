@@ -5,7 +5,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.fluid.FluidCheeseOfMilkGas;
-import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.*;
 import stevekung.mods.moreplanets.util.blocks.BlockStairsMP.EnumStairsType;
 import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
@@ -13,6 +12,7 @@ import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockFlower;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
+import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class ChalosBlocks
 {

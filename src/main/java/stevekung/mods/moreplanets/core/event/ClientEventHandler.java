@@ -77,7 +77,6 @@ public class ClientEventHandler
     public static final List<String> entityId = new ArrayList<>();
     public static final Set<IMorePlanetsBoss> bossList = Collections.newSetFromMap(new WeakHashMap<>());
     private static final ResourceLocation BOSS_BAR = new ResourceLocation("moreplanets:textures/gui/boss_bars.png");
-    public static int itemRendererTicks;
 
     public ClientEventHandler()
     {
@@ -116,7 +115,7 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onClientTick(ClientTickEvent event)
     {
-        if (MorePlanetsMod.isDevelopmentEnvironment())
+        if (MorePlanetsMod.isDevelopment)
         {
             if (Keyboard.isKeyDown(Keyboard.KEY_F7))
             {
@@ -141,63 +140,63 @@ public class ClientEventHandler
                 this.mc.displayGuiScreen(new GuiGetItemName());
             }
         }
-        if (ClientEventHandler.loadRenderers)
-        {
-            if (--this.loadRendererTick == 0)
-            {
-                MPLog.debug("Reload chunk renderer");
-                this.mc.renderGlobal.loadRenderers();
-                this.loadRendererTick = 30;
-                ClientEventHandler.loadRenderers = false;
-            }
-        }
-        if (this.mc.player != null)
-        {
-            if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && this.mc.player.dimension == -1 && this.mc.currentScreen instanceof GuiGameOver && !(this.mc.currentScreen instanceof GuiGameOverMP))
-            {
-                this.mc.displayGuiScreen(new GuiGameOverMP());
-            }
-        }
         if (this.mc.currentScreen instanceof GuiMainMenu)
         {
             ClientEventHandler.receiverRenderPos.clear();
             ClientEventHandler.wasteRenderPos.clear();
             ClientEventHandler.entityId.clear();
             ClientEventHandler.bossList.clear();
-            ClientEventHandler.itemRendererTicks = 0;
         }
         if (event.phase == Phase.START)
         {
-            ClientEventHandler.itemRendererTicks++;
             this.partialTicks++;
             WeatherRendererNibiru.INSTANCE.runRenderTick();
             CloudRendererNibiru.INSTANCE.runRenderTick();
-        }
-        if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
-        {
-            if (!MorePlanetsMod.noConnection && MorePlanetsMod.checker.noConnection())
+
+            if (ClientEventHandler.loadRenderers)
             {
-                VersionChecker.createFailedToCheckMessage(this.mc.player, MorePlanetsMod.checker.getExceptionMessage());
-                MorePlanetsMod.noConnection = true;
-                return;
-            }
-            if (!MorePlanetsMod.foundLatest && !MorePlanetsMod.noConnection && MorePlanetsMod.checker.isLatestVersion())
-            {
-                VersionChecker.createFoundLatestMessage(this.mc.player, MorePlanetsMod.NAME, MorePlanetsMod.URL);
-                MorePlanetsMod.foundLatest = true;
-            }
-        }
-        if (ConfigManagerMP.moreplanets_general.enableChangeLogInGame)
-        {
-            if (!MorePlanetsMod.showAnnounceMessage && !MorePlanetsMod.noConnection)
-            {
-                MorePlanetsMod.checker.getAnnounceMessage().forEach(log ->
+                if (--this.loadRendererTick == 0)
                 {
-                    this.mc.player.sendMessage(JsonUtils.create(log).setStyle(JsonUtils.gray()));
-                });
-                this.mc.player.sendMessage(JsonUtils.create("To read More Planets full change log. Use /mpchangelog command!").setStyle(JsonUtils.gray().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
+                    MPLog.debug("Reload chunk renderer");
+                    this.mc.renderGlobal.loadRenderers();
+                    this.loadRendererTick = 30;
+                    ClientEventHandler.loadRenderers = false;
+                }
             }
-            MorePlanetsMod.showAnnounceMessage = true;
+            if (this.mc.player != null)
+            {
+                if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && this.mc.player.dimension == -1 && this.mc.currentScreen instanceof GuiGameOver && !(this.mc.currentScreen instanceof GuiGameOverMP))
+                {
+                    this.mc.displayGuiScreen(new GuiGameOverMP());
+                }
+
+                if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
+                {
+                    if (!MorePlanetsMod.noConnection && MorePlanetsMod.checker.noConnection())
+                    {
+                        VersionChecker.createFailedToCheckMessage(this.mc.player, MorePlanetsMod.checker.getExceptionMessage());
+                        MorePlanetsMod.noConnection = true;
+                        return;
+                    }
+                    if (!MorePlanetsMod.foundLatest && !MorePlanetsMod.noConnection && MorePlanetsMod.checker.isLatestVersion())
+                    {
+                        VersionChecker.createFoundLatestMessage(this.mc.player, MorePlanetsMod.NAME, MorePlanetsMod.URL);
+                        MorePlanetsMod.foundLatest = true;
+                    }
+                }
+                if (ConfigManagerMP.moreplanets_general.enableChangeLogInGame)
+                {
+                    if (!MorePlanetsMod.showAnnounceMessage && !MorePlanetsMod.noConnection)
+                    {
+                        MorePlanetsMod.checker.getAnnounceMessage().forEach(log ->
+                        {
+                            this.mc.player.sendMessage(JsonUtils.create(log).setStyle(JsonUtils.gray()));
+                        });
+                        this.mc.player.sendMessage(JsonUtils.create("To read More Planets full change log. Use /mpchangelog command!").setStyle(JsonUtils.gray().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
+                    }
+                    MorePlanetsMod.showAnnounceMessage = true;
+                }
+            }
         }
     }
 

@@ -58,10 +58,4 @@ public class BlockGasHelium extends BlockFluidFiniteMP
             entity.fallDistance = 0.0F;
         }
     }
-
-    @Override
-    public String getName()
-    {
-        return "helium_gas";
-    }
 }

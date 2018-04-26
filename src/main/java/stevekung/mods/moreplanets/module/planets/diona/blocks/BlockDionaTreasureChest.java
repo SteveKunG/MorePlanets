@@ -73,10 +73,4 @@ public class BlockDionaTreasureChest extends BlockTreasureChestMP
     {
         return new TileEntityDionaTreasureChest();
     }
-
-    @Override
-    public String getName()
-    {
-        return "diona_treasure_chest";
-    }
 }

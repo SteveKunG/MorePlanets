@@ -5,7 +5,6 @@ public enum EnumEntityTrackerType
     NORMAL(80, 3),
     THROWABLE(64, 10),
     ARROW(60, 10),
-    TIERED_ROCKET(150, 1),
     FISHING_HOOK(64, 5);
 
     private int trackingRange;

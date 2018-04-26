@@ -94,10 +94,4 @@ public class BlockCrashedAlienProbe extends BlockTileMP implements ISingleBlockR
     {
         return new BlockStateContainer(this, HAS_ALIEN);
     }
-
-    @Override
-    public String getName()
-    {
-        return "crashed_alien_probe";
-    }
 }

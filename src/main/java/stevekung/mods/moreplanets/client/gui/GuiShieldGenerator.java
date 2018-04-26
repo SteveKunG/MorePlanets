@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.client.gui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
-import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,9 +19,10 @@ import stevekung.mods.moreplanets.inventory.ContainerShieldGenerator;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
-import stevekung.mods.moreplanets.util.NumberUtil;
 import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
 import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
+import stevekung.mods.stevekunglib.utils.LangUtils;
+import stevekung.mods.stevekunglib.utils.NumberUtils;
 
 public class GuiShieldGenerator extends GuiContainerMP
 {
@@ -56,36 +57,29 @@ public class GuiShieldGenerator extends GuiContainerMP
     public void initGui()
     {
         super.initGui();
-        List<String> batterySlotDesc = new ArrayList<>();
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 151, (this.height - this.ySize) / 2 + 77, 18, 18, batterySlotDesc, this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 151, (this.height - this.ySize) / 2 + 77, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
         List<String> electricityDesc = new ArrayList<>();
-        electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
-        electricityDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC())));
+        electricityDesc.add(LangUtils.translate("gui.energy_storage.desc.0"));
+        electricityDesc.add(TextFormatting.YELLOW + LangUtils.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC())));
         this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 156, (this.height - this.ySize) / 2 + 21, 8, 43, electricityDesc, this.width, this.height, this);
         this.infoRegions.add(this.electricInfoRegion);
-        this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name")));
-        this.buttonList.add(this.buttonConfig = new GuiButton(1, this.width / 2 + 4, this.height / 2 - 6, 72, 20, GCCoreUtil.translate("gui.button.config.name")));
+        this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, !this.tile.getDisabled(0) ? LangUtils.translate("gui.button.disable.name") : LangUtils.translate("gui.button.enable.name")));
+        this.buttonList.add(this.buttonConfig = new GuiButton(1, this.width / 2 + 4, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.config.name")));
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
         this.buttonEnable.enabled = this.tile.disableCooldown == 0;
-        this.buttonEnable.displayString = !this.tile.getDisabled(0) ? GCCoreUtil.translate("gui.button.disable.name") : GCCoreUtil.translate("gui.button.enable.name");
+        this.buttonEnable.displayString = !this.tile.getDisabled(0) ? LangUtils.translate("gui.button.disable.name") : LangUtils.translate("gui.button.enable.name");
 
-        // backward compatibility
-        String owner = null;
+        String owner = "";
 
         try
         {
             owner = this.tile.getWorld().getPlayerEntityByUUID(UUID.fromString(this.tile.ownerUUID)).getName() + "'s ";
         }
-        catch (Exception e)
-        {
-            owner = "";
-        }
+        catch (Exception e) {}
 
         boolean half = this.tile.shieldCapacity < this.tile.maxShieldCapacity / 1.25F;
         boolean half1 = this.tile.shieldCapacity < this.tile.maxShieldCapacity / 4F;
@@ -93,14 +87,14 @@ public class GuiShieldGenerator extends GuiContainerMP
 
         List<String> list = new ArrayList<>();
         int y = 24;
-        list.add(GCCoreUtil.translate("gui.message.status.name") + ": " + this.tile.getStatus());
-        list.add(GCCoreUtil.translate("gui.status.shield_damage.name") + ": " + TextFormatting.GREEN + this.tile.shieldDamage);
-        list.add(GCCoreUtil.translate("gui.status.shield_size.name") + ": " + TextFormatting.GREEN + this.tile.maxShieldSize);
-        list.add(GCCoreUtil.translate("gui.status.shield_capacity.name") + ": " + color + NumberUtil.format(this.tile.shieldCapacity) + "/" + NumberUtil.format(this.tile.maxShieldCapacity));
+        list.add(LangUtils.translate("gui.message.status.name") + ": " + this.tile.getStatus());
+        list.add(LangUtils.translate("gui.status.shield_damage.name") + ": " + TextFormatting.GREEN + this.tile.shieldDamage);
+        list.add(LangUtils.translate("gui.status.shield_size.name") + ": " + TextFormatting.GREEN + this.tile.maxShieldSize);
+        list.add(LangUtils.translate("gui.status.shield_capacity.name") + ": " + color + NumberUtils.format(this.tile.shieldCapacity) + "/" + NumberUtils.format(this.tile.maxShieldCapacity));
 
         if (this.tile.shieldChargeCooldown > 0)
         {
-            list.add(GCCoreUtil.translate("gui.status.shield_charge_cooldown.name") + ": " + TextFormatting.AQUA + this.tile.shieldChargeCooldown / 20);
+            list.add(LangUtils.translate("gui.status.shield_charge_cooldown.name") + ": " + TextFormatting.AQUA + this.tile.shieldChargeCooldown / 20);
         }
         for (String text : list)
         {
@@ -108,7 +102,7 @@ public class GuiShieldGenerator extends GuiContainerMP
             y += 10;
         }
         this.fontRenderer.drawString(owner + this.tile.getName(), 8, 10, 4210752);
-        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
+        this.fontRenderer.drawString(LangUtils.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
     }
 
     @Override
@@ -127,8 +121,7 @@ public class GuiShieldGenerator extends GuiContainerMP
             this.drawTexturedModalRect(width + 154, height + 66, 176, 0, 11, 10);
         }
 
-        List<String> electricityDesc = new ArrayList<>();
-        electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
+        List<String> electricityDesc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
     }

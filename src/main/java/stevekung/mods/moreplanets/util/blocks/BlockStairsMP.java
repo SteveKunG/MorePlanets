@@ -26,8 +26,14 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, ISingl
         {
             this.setResistance(40.0F);
         }
-        this.name = name;
         this.useNeighborBrightness = true;
+    }
+
+    @Override
+    public Block setUnlocalizedName(String name)
+    {
+        this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override

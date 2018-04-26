@@ -85,10 +85,4 @@ public class BlockFluidNuclearWaste extends BlockFluidLavaBaseMP
     {
         return false;
     }
-
-    @Override
-    public String getName()
-    {
-        return "nuclear_waste_fluid";
-    }
 }

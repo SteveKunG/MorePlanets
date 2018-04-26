@@ -113,10 +113,4 @@ public class BlockCheeseSporeChest extends BlockChestMP
     {
         return new TileEntityCheeseSporeChest();
     }
-
-    @Override
-    public String getName()
-    {
-        return "cheese_spore_chest";
-    }
 }

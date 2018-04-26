@@ -4,11 +4,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
@@ -32,6 +30,7 @@ import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemBlockBlackHoleStorage extends ItemBlockDescription
 {
@@ -62,7 +61,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                         {
                             if (world.isRemote)
                             {
-                                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()).getFormattedText());
+                                ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
                             }
                             return false;
                         }
@@ -71,7 +70,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                     {
                         if (world.isRemote)
                         {
-                            ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.bh_storage.too_close.message")).setStyle(JsonUtils.red()).getFormattedText());
+                            ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.bh_storage.too_close.message")).setStyle(JsonUtils.red()));
                         }
                         return false;
                     }
@@ -119,7 +118,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                     }
                     if (j - i > 0)
                     {
-                        list.add(TextFormatting.ITALIC + GCCoreUtil.translateWithFormat("desc.bhs_more.name", Integer.valueOf(j - i)));
+                        list.add(TextFormatting.ITALIC + LangUtils.translate("desc.bhs_more.name", Integer.valueOf(j - i)));
                     }
                 }
                 else
@@ -130,21 +129,13 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                         String mode = nbt.getString("Mode").equals("item") ? "Item" : nbt.getString("Mode").equals("item_and_xp") ? "Item/EXP" : "EXP";
                         TextFormatting disable = nbt.getBoolean("Disable") ? TextFormatting.GREEN : TextFormatting.RED;
                         TextFormatting hopper = nbt.getBoolean("Hopper") ? TextFormatting.GREEN : TextFormatting.RED;
-                        list.add(GCCoreUtil.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
-                        list.add(GCCoreUtil.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
-                        list.add(GCCoreUtil.translate("desc.bhs_collect_mode.name") + ": " + TextFormatting.AQUA + mode);
+                        list.add(LangUtils.translate("desc.bhs_disable.name") + ": " + disable + nbt.getBoolean("Disable"));
+                        list.add(LangUtils.translate("desc.bhs_hopper.name") + ": " + hopper + nbt.getBoolean("Hopper"));
+                        list.add(LangUtils.translate("desc.bhs_collect_mode.name") + ": " + TextFormatting.AQUA + mode);
 
-                        //TODO: Remove in 1.13
-                        if (nbt.hasKey("XP"))
+                        if (nbt.hasKey("XpFluid", Constants.NBT.TAG_COMPOUND))
                         {
-                            list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getInteger("XP") + "/" + storage.getMaxXP());
-                        }
-                        else
-                        {
-                            if (nbt.hasKey("XpFluid", Constants.NBT.TAG_COMPOUND))
-                            {
-                                list.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getCompoundTag("XpFluid").getInteger("Amount") + "/" + storage.getMaxXP());
-                            }
+                            list.add(LangUtils.translate("desc.bhs_xp.name") + ": " + TextFormatting.GREEN + nbt.getCompoundTag("XpFluid").getInteger("Amount") + "/" + storage.getMaxXP());
                         }
 
                         NBTTagList nbtlist = nbt.getTagList("Items", 10);
@@ -160,13 +151,13 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                                 slot = slot + 1;
                             }
                         }
-                        list.add(GCCoreUtil.translate("desc.bhs_slot_used.name") + ": " + TextFormatting.GOLD + slot + "/" + storage.getSizeInventory());
+                        list.add(LangUtils.translate("desc.bhs_slot_used.name") + ": " + TextFormatting.GOLD + slot + "/" + storage.getSizeInventory());
                     }
-                    list.add(GCCoreUtil.translate("desc.shift_info.name"));
+                    list.add(LangUtils.translate("desc.shift_info.name"));
 
                     if (this.hasItemsKey(itemStack))
                     {
-                        list.add(GCCoreUtil.translate("desc.control_info.name"));
+                        list.add(LangUtils.translate("desc.control_info.name"));
                     }
                 }
             }

@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelLaser extends ModelBase
 {
-    ModelRenderer laser;
+    private ModelRenderer laser;
 
     public ModelLaser()
     {

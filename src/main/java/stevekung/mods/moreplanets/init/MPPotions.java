@@ -1,8 +1,8 @@
 package stevekung.mods.moreplanets.init;
 
 import net.minecraft.potion.Potion;
-import stevekung.mods.moreplanets.items.capsule.effect.DarkEnergyProtectionEffect;
-import stevekung.mods.moreplanets.items.capsule.effect.InfectedSporeProtectionEffect;
+import stevekung.mods.moreplanets.items.capsule_effect.DarkEnergyProtectionEffect;
+import stevekung.mods.moreplanets.items.capsule_effect.InfectedSporeProtectionEffect;
 import stevekung.mods.moreplanets.module.planets.diona.potion.DarkEnergyEffect;
 import stevekung.mods.moreplanets.module.planets.diona.potion.InfectedCrystallizeEffect;
 import stevekung.mods.moreplanets.module.planets.nibiru.potion.InfectedSporeEffect;

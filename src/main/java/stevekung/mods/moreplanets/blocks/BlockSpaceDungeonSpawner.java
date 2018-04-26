@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -119,7 +118,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP
         return 0;
     }
 
-    public static enum DungeonType implements IStringSerializable
+    public static enum DungeonType
     {
         DIONA,
         CHALOS,
@@ -127,12 +126,6 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP
 
         @Override
         public String toString()
-        {
-            return this.getName().toLowerCase();
-        }
-
-        @Override
-        public String getName()
         {
             return this.name().toLowerCase();
         }

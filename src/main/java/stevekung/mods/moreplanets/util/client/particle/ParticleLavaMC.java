@@ -9,7 +9,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.ClientRendererUtil;
+import stevekung.mods.stevekunglib.utils.RenderUtils;
 
 @SideOnly(Side.CLIENT)
 public class ParticleLavaMC extends Particle
@@ -48,7 +48,7 @@ public class ParticleLavaMC extends Particle
         this.particleScale = this.lavaParticleScale * (1.0F - f6 * f6);
         super.renderParticle(worldrenderer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
         tessellator.draw();
-        ClientRendererUtil.bindTexture(this.texture);
+        RenderUtils.bindTexture(this.texture);
         float sizeFactor = 0.1F * this.particleScale;
         float var13 = (float)(this.prevPosX + (this.posX - this.prevPosX) * partialTicks - Particle.interpPosX);
         float var14 = (float)(this.prevPosY + (this.posY - this.prevPosY) * partialTicks - Particle.interpPosY);
@@ -59,7 +59,7 @@ public class ParticleLavaMC extends Particle
         worldrenderer.pos(var13 + rotationX * sizeFactor + rotationXY * sizeFactor, var14 + rotationZ * sizeFactor, var15 + rotationYZ * sizeFactor + rotationXZ * sizeFactor).tex(1.0D, 0.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
         worldrenderer.pos(var13 + rotationX * sizeFactor - rotationXY * sizeFactor, var14 - rotationZ * sizeFactor, var15 + rotationYZ * sizeFactor - rotationXZ * sizeFactor).tex(0.0D, 0.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
         tessellator.draw();
-        ClientRendererUtil.drawDefaultParticlesTexture(worldrenderer);
+        RenderUtils.drawDefaultParticlesTexture(worldrenderer);
     }
 
     @Override

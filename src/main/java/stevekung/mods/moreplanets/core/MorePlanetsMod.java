@@ -24,7 +24,6 @@ import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.*;
 import stevekung.mods.moreplanets.core.handler.GuiHandlerMP;
 import stevekung.mods.moreplanets.init.*;
-import stevekung.mods.moreplanets.items.capsule.ItemCapsule;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
@@ -50,7 +49,7 @@ public class MorePlanetsMod
     public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION;
     public static final String CERTIFICATE = "@FINGERPRINT@";
     public static final String URL = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
-    private static boolean isDevelopment;
+    public static boolean isDevelopment;
 
     @SidedProxy(clientSide = MorePlanetsMod.CLIENT_CLASS, serverSide = MorePlanetsMod.SERVER_CLASS)
     public static ServerProxyMP PROXY;
@@ -62,7 +61,6 @@ public class MorePlanetsMod
     public static boolean foundLatest;
     public static boolean showAnnounceMessage;
     public static final VersionChecker checker = new VersionChecker(MOD_ID, VERSION, MAJOR_VERSION, MINOR_VERSION, BUILD_VERSION);
-
     public static final CreativeTabsMP BLOCK_TAB = new CreativeTabsMP("more_planets_blocks");
     public static final CreativeTabsMP ITEM_TAB = new CreativeTabsMP("more_planets_items") ;
 
@@ -139,7 +137,6 @@ public class MorePlanetsMod
         CraftingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
-        ItemCapsule.init = true;
     }
 
     @EventHandler
@@ -151,7 +148,7 @@ public class MorePlanetsMod
     @EventHandler
     public void onFingerprintViolation(FMLFingerprintViolationEvent event)
     {
-        if (MorePlanetsMod.isDevelopmentEnvironment())
+        if (MorePlanetsMod.isDevelopment)
         {
             MPLog.info("Development environment detected! Ignore certificate check.");
         }
@@ -168,11 +165,6 @@ public class MorePlanetsMod
         {
             ConfigManager.sync(MorePlanetsMod.MOD_ID, Config.Type.INSTANCE);
         }
-    }
-
-    public static boolean isDevelopmentEnvironment()
-    {
-        return MorePlanetsMod.isDevelopment;
     }
 
     private static void initModInfo(ModMetadata info)

@@ -162,10 +162,4 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
             Block.spawnAsEntity(world, pos, itemStack);
         }
     }
-
-    @Override
-    public String getName()
-    {
-        return "rocket_crusher";
-    }
 }

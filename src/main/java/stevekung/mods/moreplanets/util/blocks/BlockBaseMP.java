@@ -9,7 +9,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRender
 {
     private EnumSortCategoryBlock category;
-    protected String name;
+    private String name;
 
     public BlockBaseMP(Material material)
     {
@@ -19,8 +19,14 @@ public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRe
     public BlockBaseMP(String name, Material material)
     {
         super(material);
-        this.name = name;
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public Block setUnlocalizedName(String name)
+    {
+        this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override
@@ -42,15 +48,15 @@ public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRe
         return this.category == null ? EnumSortCategoryBlock.BUILDING_BLOCK : this.category;
     }
 
-    public BlockBaseMP setSortCategory(EnumSortCategoryBlock category)
-    {
-        this.category = category;
-        return this;
-    }
-
     @Override
     public String getName()
     {
         return this.name;
+    }
+
+    public BlockBaseMP setSortCategory(EnumSortCategoryBlock category)
+    {
+        this.category = category;
+        return this;
     }
 }

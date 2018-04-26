@@ -119,10 +119,4 @@ public class BlockDionaAncientChest extends BlockAncientChestMP
     {
         return Container.calcRedstoneFromInventory(this.getLockableContainer(world, pos));
     }
-
-    @Override
-    public String getName()
-    {
-        return "diona_ancient_chest";
-    }
 }

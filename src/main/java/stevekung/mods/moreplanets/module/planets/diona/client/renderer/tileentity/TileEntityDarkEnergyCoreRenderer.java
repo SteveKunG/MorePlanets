@@ -5,9 +5,9 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelDarkEnergyBlock;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyCore;
+import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class TileEntityDarkEnergyCoreRenderer extends TileEntitySpecialRenderer<TileEntityDarkEnergyCore>
 {
@@ -18,7 +18,7 @@ public class TileEntityDarkEnergyCoreRenderer extends TileEntitySpecialRenderer<
     @Override
     public void render(TileEntityDarkEnergyCore tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        float renderPartialTicks = tile.getWorld() == null ? ClientEventHandler.itemRendererTicks : tile.renderTicks + partialTicks;
+        float renderPartialTicks = tile.getWorld() == null ? ClientEventHandler.ticks : tile.renderTicks + partialTicks;
         float ticks = MathHelper.sin(renderPartialTicks / 8) / 10.0F + 1F;
         ticks = ticks * ticks + ticks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 4) + 1F) / 2F + 0.15F;

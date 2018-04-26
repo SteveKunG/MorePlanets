@@ -6,10 +6,10 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelDarkEnergyGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
+import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityDarkEnergyGenerator>
 {
@@ -103,7 +103,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
 
     public void render()
     {
-        float time = ClientEventHandler.itemRendererTicks;
+        float time = ClientEventHandler.ticks;
         float ticks = MathHelper.sin(time / 8) / 1.0F + 0.75F;
         ticks = ticks * ticks + ticks;
         float sinOfTheTime = (MathHelper.sin(time / 4) + 1F) / 2F + 0.15F;

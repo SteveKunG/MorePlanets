@@ -36,6 +36,7 @@ import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
+import stevekung.mods.moreplanets.items.ItemCapsule;
 import stevekung.mods.moreplanets.module.moons.koentus.client.particle.ParticleKoentusMeteor;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleAlienMinerSpark;
@@ -101,7 +102,8 @@ public class ClientProxyMP extends ServerProxyMP
 
         ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> color.colorMultiplier(((ItemBlock)itemStack.getItem()).getBlock().getStateFromMeta(itemStack.getMetadata()), null, null, tintIndex), FronosBlocks.FRONOS_GRASS);
         ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
-        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> itemStack.hasTagCompound() && tintIndex == 1 ? itemStack.getTagCompound().getInteger("Color") : -1, MPItems.CAPSULE);
+        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> tintIndex == 1 ? ItemCapsule.CapsuleType.INFECTED_SPORE.getColor() : -1, MPItems.INFECTED_SPORE_PROTECTION_CAPSULE);
+        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> tintIndex == 1 ? ItemCapsule.CapsuleType.DARK_ENERGY.getColor() : -1, MPItems.DARK_ENERGY_PROTECTION_CAPSULE);
     }
 
     @Override

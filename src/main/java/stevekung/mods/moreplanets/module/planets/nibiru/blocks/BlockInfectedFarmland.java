@@ -19,7 +19,6 @@ public class BlockInfectedFarmland extends BlockFarmlandMP
     public BlockInfectedFarmland(String name)
     {
         super();
-        this.name = name;
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.MOISTURE, Integer.valueOf(0)));
         this.setUnlocalizedName(name);
     }

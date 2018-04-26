@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.client.model.ModelShieldGenerator;
 import stevekung.mods.moreplanets.client.renderer.OBJLoaderMP;
-import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
+import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityShieldGenerator>
 {
@@ -122,7 +122,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
-        float renderPartialTicks = ClientEventHandler.itemRendererTicks;
+        float renderPartialTicks = ClientEventHandler.ticks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 16) + 1F) / 2F + 0.15F;
 
         GlStateManager.pushMatrix();

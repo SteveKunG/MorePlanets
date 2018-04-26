@@ -29,9 +29,9 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPDimensions;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPlanets;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.items.capsule.CapsuleType;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
@@ -269,7 +269,7 @@ public class WorldProviderNibiru extends WorldProviderMP
         stats.getExtendedInventory().setInventorySlotContents(8, new ItemStack(VenusItems.thermalPaddingTier2, 1, 2));
         stats.getExtendedInventory().setInventorySlotContents(9, new ItemStack(VenusItems.thermalPaddingTier2, 1, 3));
         stats.getExtendedInventory().setInventorySlotContents(10, new ItemStack(VenusItems.basicItem, 1, 0));
-        player.inventory.addItemStackToInventory(CapsuleType.getInfectedProtectionCapsule());
+        player.inventory.addItemStackToInventory(new ItemStack(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE));
         player.inventory.addItemStackToInventory(new ItemStack(AsteroidsItems.canisterLOX));
         player.inventory.addItemStackToInventory(new ItemStack(AsteroidsItems.canisterLOX));
     }

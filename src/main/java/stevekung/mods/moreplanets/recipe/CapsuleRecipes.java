@@ -6,7 +6,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.init.MPItems;
-import stevekung.mods.moreplanets.items.capsule.CapsuleType;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
@@ -18,12 +17,10 @@ public class CapsuleRecipes
 {
     public static void init()
     {
-        ItemStack capsule = new ItemStack(MPItems.CAPSULE);
-        capsule.setTagCompound(null);
-        RecipeHelper.addRecipe(new ItemStack(MPItems.CAPSULE), new Object[] { " C", "X ", 'C', new ItemStack(GCItems.canister, 1, 0), 'X', Items.IRON_INGOT });
-        RecipeHelper.addShapelessRecipe(CapsuleType.getInfectedProtectionCapsule(), capsule, new ItemStack(ChalosItems.CHEESE_FOOD, 1, 3), ChalosBlocks.CHEESE_SPORE_FLOWER, Blocks.BROWN_MUSHROOM);
-        RecipeHelper.addShapelessRecipe(CapsuleType.getInfectedProtectionCapsule(), capsule, new ItemStack(NibiruBlocks.NIBIRU_FLOWER, 1, 0), new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 0));
-        RecipeHelper.addShapelessRecipe(CapsuleType.getDarkEnergyProtectionCapsule(), capsule, new ItemStack(DionaItems.DIONA_ITEM, 1, 4), new ItemStack(MarsItems.marsItemBasic, 1, 0));
-        RecipeHelper.addShapelessRecipe(CapsuleType.getDarkEnergyProtectionCapsule(), capsule, new ItemStack(NibiruBlocks.NIBIRU_FLOWER, 1, 1), new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 0), new ItemStack(MarsItems.marsItemBasic, 1, 0));
+        RecipeHelper.addRecipe(new ItemStack(MPItems.EMPTY_CAPSULE), new Object[] { " C", "X ", 'C', new ItemStack(GCItems.canister, 1, 0), 'X', Items.IRON_INGOT });
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, new ItemStack(ChalosItems.CHEESE_FOOD, 1, 3), ChalosBlocks.CHEESE_SPORE_FLOWER, Blocks.BROWN_MUSHROOM);
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, new ItemStack(NibiruBlocks.NIBIRU_FLOWER, 1, 0), new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 0));
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.DARK_ENERGY_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, new ItemStack(DionaItems.DIONA_ITEM, 1, 4), new ItemStack(MarsItems.marsItemBasic, 1, 0));
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.DARK_ENERGY_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, new ItemStack(NibiruBlocks.NIBIRU_FLOWER, 1, 1), new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 0), new ItemStack(MarsItems.marsItemBasic, 1, 0));
     }
 }

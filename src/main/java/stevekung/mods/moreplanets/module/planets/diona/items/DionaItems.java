@@ -9,14 +9,14 @@ import net.minecraftforge.common.util.EnumHelper;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemArmorIllenium;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemBreathableIllenium;
-import stevekung.mods.moreplanets.util.EnumHarvestLevel;
-import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ItemArrowMP;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 import stevekung.mods.moreplanets.util.items.ItemDungeonKeyMP;
 import stevekung.mods.moreplanets.util.items.tools.*;
+import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
+import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
 public class DionaItems
 {
@@ -24,7 +24,6 @@ public class DionaItems
     public static Item DIONA_ITEM;
     public static Item DIONA_DUNGEON_KEY;
     public static Item INFECTED_CRYSTALLIZE_BOMB;
-    public static Item TIER_4_ROCKET;
     public static Item TIER_4_ROCKET_PART;
     public static Item TIER_5_ROCKET_SCHEMATIC;
     public static Item INFECTED_CRYSTALLIZE_SLIMEBALL;
@@ -59,7 +58,6 @@ public class DionaItems
         DionaItems.DIONA_ITEM = new ItemDiona("diona_item");
         DionaItems.TIER_4_ROCKET_PART = new ItemTier4RocketPart("tier_4_rocket_part");
         DionaItems.TIER_5_ROCKET_SCHEMATIC = new ItemTier5RocketSchematic("tier_5_rocket_schematic");
-        DionaItems.TIER_4_ROCKET = new ItemTier4Rocket("tier_4_rocket");
         DionaItems.DIONA_DUNGEON_KEY = new ItemDungeonKeyMP("diona_dungeon_key", 4);
         DionaItems.INFECTED_CRYSTALLIZE_BOMB = new ItemInfectedCrystallizeBomb("infected_crystallize_bomb");
         DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL = new ItemBaseMP("infected_crystallize_slimeball");
@@ -95,7 +93,6 @@ public class DionaItems
         CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZE_BOMB);
         CommonRegisterHelper.registerItem(DionaItems.TIER_4_ROCKET_PART);
         CommonRegisterHelper.registerItem(DionaItems.TIER_5_ROCKET_SCHEMATIC);
-        CommonRegisterHelper.registerItem(DionaItems.TIER_4_ROCKET);
         CommonRegisterHelper.registerItem(DionaItems.DIONA_DUNGEON_KEY);
         CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
         CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZE_ARROW);

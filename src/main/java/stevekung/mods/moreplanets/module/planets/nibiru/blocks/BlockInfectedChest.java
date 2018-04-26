@@ -113,10 +113,4 @@ public class BlockInfectedChest extends BlockChestMP
     {
         return new TileEntityInfectedChest();
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_chest";
-    }
 }

@@ -39,7 +39,6 @@ public class BlockSnowLayerMP extends BlockBaseMP
         this.setUnlocalizedName(name);
         this.snowball = snow;
         this.meta = meta;
-        this.name = name;
     }
 
     @Override

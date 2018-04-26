@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.module.planets.diona.blocks;
 import net.minecraft.block.Block;
 import net.minecraftforge.fluids.Fluid;
 import stevekung.mods.moreplanets.module.planets.diona.itemblocks.ItemBlockDarkEnergyGenerator;
-import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.BlockFenceMP;
 import stevekung.mods.moreplanets.util.blocks.BlockStairsMP;
 import stevekung.mods.moreplanets.util.blocks.BlockStairsMP.EnumStairsType;
@@ -12,6 +11,7 @@ import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
+import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class DionaBlocks
 {

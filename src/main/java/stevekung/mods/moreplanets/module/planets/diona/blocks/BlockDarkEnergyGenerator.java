@@ -283,10 +283,4 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     {
         return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockDarkEnergyGenerator.this.getUnlocalizedName() + ".description"));
     }
-
-    @Override
-    public String getName()
-    {
-        return "dark_energy_generator";
-    }
 }

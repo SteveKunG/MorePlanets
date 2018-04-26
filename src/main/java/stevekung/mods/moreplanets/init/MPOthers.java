@@ -11,8 +11,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.Entity
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedEgg;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedSnowball;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.BehaviorProjectileDispenseMP;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.stevekunglib.utils.BehaviorProjectileDispenseBase;
 
 public class MPOthers
 {
@@ -24,11 +24,11 @@ public class MPOthers
 
     private static void registerDispenserObject()
     {
-        CommonRegisterHelper.registerProjectileDispense(DionaItems.INFECTED_CRYSTALLIZE_BOMB, new BehaviorProjectileDispenseMP(EntityInfectedCrystallizeBomb.class));
-        CommonRegisterHelper.registerProjectileDispense(NibiruItems.INFECTED_SNOWBALL, new BehaviorProjectileDispenseMP(EntityInfectedSnowball.class));
-        CommonRegisterHelper.registerProjectileDispense(NibiruItems.INFECTED_EGG, new BehaviorProjectileDispenseMP(EntityInfectedEgg.class));
-        CommonRegisterHelper.registerProjectileDispense(DionaItems.INFECTED_CRYSTALLIZE_ARROW, new BehaviorProjectileDispenseMP(EntityInfectedCrystallizeArrow.class, true));
-        CommonRegisterHelper.registerProjectileDispense(NibiruItems.INFECTED_ARROW, new BehaviorProjectileDispenseMP(EntityInfectedArrow.class, true));
+        CommonRegisterHelper.registerProjectileDispense(DionaItems.INFECTED_CRYSTALLIZE_BOMB, new BehaviorProjectileDispenseBase(EntityInfectedCrystallizeBomb.class));
+        CommonRegisterHelper.registerProjectileDispense(NibiruItems.INFECTED_SNOWBALL, new BehaviorProjectileDispenseBase(EntityInfectedSnowball.class));
+        CommonRegisterHelper.registerProjectileDispense(NibiruItems.INFECTED_EGG, new BehaviorProjectileDispenseBase(EntityInfectedEgg.class));
+        CommonRegisterHelper.registerProjectileDispense(DionaItems.INFECTED_CRYSTALLIZE_ARROW, new BehaviorProjectileDispenseBase(EntityInfectedCrystallizeArrow.class, true));
+        CommonRegisterHelper.registerProjectileDispense(NibiruItems.INFECTED_ARROW, new BehaviorProjectileDispenseBase(EntityInfectedArrow.class, true));
     }
 
     private static void registerEndermanCarriableBlock()

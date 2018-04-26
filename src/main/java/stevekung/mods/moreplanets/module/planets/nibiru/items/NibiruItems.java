@@ -10,13 +10,13 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.armor.ItemArmorMultalicCrystal;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.armor.ItemBreathableMultalicCrystal;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.tools.*;
-import stevekung.mods.moreplanets.util.EnumHarvestLevel;
-import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.ItemArrowMP;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 import stevekung.mods.moreplanets.util.items.ItemDoorMP;
 import stevekung.mods.moreplanets.util.items.tools.*;
+import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
+import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
 public class NibiruItems
 {
@@ -40,7 +40,6 @@ public class NibiruItems
     public static Item NIBIRU_FOOD;
     public static Item WASTE_ROD_PICKER;
     public static Item NUCLEAR_WASTE_ROD;
-    public static Item TIER_6_ROCKET;
 
     // Tools
     public static Item INFECTED_WOOD_SWORD;
@@ -100,7 +99,6 @@ public class NibiruItems
         NibiruItems.NIBIRU_FOOD = new ItemNibiruFood("nibiru_food");
         NibiruItems.WASTE_ROD_PICKER = new ItemWasteRodPicker("waste_rod_picker");
         NibiruItems.NUCLEAR_WASTE_ROD = new ItemBaseMP("nuclear_waste_rod");
-        NibiruItems.TIER_6_ROCKET = new ItemTier6Rocket("tier_6_rocket");
 
         /**************************************************************/
         /**********************INITIAL TOOL STUFF**********************/
@@ -160,7 +158,6 @@ public class NibiruItems
         CommonRegisterHelper.registerItem(NibiruItems.NIBIRU_FOOD);
         CommonRegisterHelper.registerItem(NibiruItems.WASTE_ROD_PICKER);
         CommonRegisterHelper.registerItem(NibiruItems.NUCLEAR_WASTE_ROD);
-        CommonRegisterHelper.registerItem(NibiruItems.TIER_6_ROCKET);
 
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_WOOD_SWORD);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_WOOD_SHOVEL);

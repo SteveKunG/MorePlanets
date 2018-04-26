@@ -1,15 +1,11 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.recipe;
 
-import java.util.HashMap;
-
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
@@ -25,11 +21,6 @@ public class CraftingManagerNibiru
         CraftingManagerNibiru.addItemRecipe();
         CraftingManagerNibiru.addBlockSmelting();
         CraftingManagerNibiru.addItemSmelting();
-
-        if (ConfigManagerMP.moreplanets_addon_compat.enableTier6RocketRecipe)
-        {
-            CraftingManagerNibiru.addRocketRecipe();
-        }
     }
 
     private static void addBlockRecipe()
@@ -190,74 +181,5 @@ public class CraftingManagerNibiru
         RecipeHelper.addSmeltingRecipe(new ItemStack(NibiruBlocks.NIBIRU_LOG, 1, 2), new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 5), 0.15F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(NibiruBlocks.NIBIRU_LOG, 1, 3), new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 5), 0.15F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(NibiruItems.NIBIRU_FOOD, 1, 0), new ItemStack(NibiruItems.NIBIRU_FOOD, 1, 1), 0.35F);
-    }
-
-    private static void addRocketRecipe()
-    {
-        HashMap<Integer, ItemStack> input = new HashMap<>();
-        input.put(1, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 2));
-        input.put(2, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(3, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(4, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(5, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(6, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(7, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(8, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(9, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(10, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(11, new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4));
-        input.put(12, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3));
-        input.put(13, new ItemStack(AsteroidsItems.basicItem, 1, 2));
-        input.put(14, new ItemStack(AsteroidsItems.basicItem, 1, 2));
-        input.put(15, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 1));
-        input.put(16, new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3));
-        input.put(17, new ItemStack(AsteroidsItems.basicItem, 1, 2));
-        input.put(18, new ItemStack(AsteroidsItems.basicItem, 1, 2));
-        input.put(19, ItemStack.EMPTY);
-        input.put(20, ItemStack.EMPTY);
-        input.put(21, ItemStack.EMPTY);
-        Tier6RocketRecipes.addRocketRecipe(new ItemStack(NibiruItems.TIER_6_ROCKET, 1, 0), input);
-
-        HashMap<Integer, ItemStack> input2 = new HashMap<>(input);
-        input2.put(19, new ItemStack(Blocks.CHEST));
-        input2.put(20, ItemStack.EMPTY);
-        input2.put(21, ItemStack.EMPTY);
-        Tier6RocketRecipes.addRocketRecipe(new ItemStack(NibiruItems.TIER_6_ROCKET, 1, 1), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, ItemStack.EMPTY);
-        input2.put(20, new ItemStack(Blocks.CHEST));
-        input2.put(21, ItemStack.EMPTY);
-        Tier6RocketRecipes.addRocketRecipe(new ItemStack(NibiruItems.TIER_6_ROCKET, 1, 1), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, ItemStack.EMPTY);
-        input2.put(20, ItemStack.EMPTY);
-        input2.put(21, new ItemStack(Blocks.CHEST));
-        Tier6RocketRecipes.addRocketRecipe(new ItemStack(NibiruItems.TIER_6_ROCKET, 1, 1), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, new ItemStack(Blocks.CHEST));
-        input2.put(20, new ItemStack(Blocks.CHEST));
-        input2.put(21, ItemStack.EMPTY);
-        Tier6RocketRecipes.addRocketRecipe(new ItemStack(NibiruItems.TIER_6_ROCKET, 1, 2), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, new ItemStack(Blocks.CHEST));
-        input2.put(20, ItemStack.EMPTY);
-        input2.put(21, new ItemStack(Blocks.CHEST));
-        Tier6RocketRecipes.addRocketRecipe(new ItemStack(NibiruItems.TIER_6_ROCKET, 1, 2), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, ItemStack.EMPTY);
-        input2.put(20, new ItemStack(Blocks.CHEST));
-        input2.put(21, new ItemStack(Blocks.CHEST));
-        Tier6RocketRecipes.addRocketRecipe(new ItemStack(NibiruItems.TIER_6_ROCKET, 1, 2), input2);
-
-        input2 = new HashMap<>(input);
-        input2.put(19, new ItemStack(Blocks.CHEST));
-        input2.put(20, new ItemStack(Blocks.CHEST));
-        input2.put(21, new ItemStack(Blocks.CHEST));
-        Tier6RocketRecipes.addRocketRecipe(new ItemStack(NibiruItems.TIER_6_ROCKET, 1, 3), input2);
     }
 }

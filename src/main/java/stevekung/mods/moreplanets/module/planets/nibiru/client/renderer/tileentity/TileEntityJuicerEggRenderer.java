@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.model.ModelJuicerEgg;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityJuicerEgg;
-import stevekung.mods.moreplanets.util.ClientRendererUtil;
+import stevekung.mods.stevekunglib.utils.RenderUtils;
 
 public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileEntityJuicerEgg>
 {
@@ -56,7 +56,7 @@ public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileE
             GlStateManager.disableTexture2D();
             GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
             GlStateManager.disableLighting();
-            ClientRendererUtil.renderLightState(false);
+            RenderUtils.enableLighting();
         }
 
         GlStateManager.enableBlend();

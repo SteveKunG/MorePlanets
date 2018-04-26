@@ -26,10 +26,4 @@ public class BlockGasCheeseOfMilk extends BlockFluidFiniteMP
     {
         world.setBlockState(pos, this.getDefaultState().withProperty(BlockFluidBase.LEVEL, 7), 3);
     }
-
-    @Override
-    public String getName()
-    {
-        return "cheese_of_milk_gas";
-    }
 }

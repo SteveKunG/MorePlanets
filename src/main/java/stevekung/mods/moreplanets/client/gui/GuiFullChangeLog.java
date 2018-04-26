@@ -14,12 +14,12 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.ForgeVersion;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.stevekunglib.utils.CommonUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiFullChangeLog extends GuiScreen
@@ -30,14 +30,14 @@ public class GuiFullChangeLog extends GuiScreen
 
     public void display()
     {
-        MinecraftForge.EVENT_BUS.register(this);
+        CommonUtils.registerEventHandler(this);
     }
 
     @SubscribeEvent
     public void onClientTick(ClientTickEvent event)
     {
         Minecraft.getMinecraft().displayGuiScreen(this);
-        MinecraftForge.EVENT_BUS.unregister(this);
+        CommonUtils.unregisterEventHandler(this);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class GuiFullChangeLog extends GuiScreen
             catch (Exception e) {}
         }
 
-        if (MorePlanetsMod.isDevelopmentEnvironment())
+        if (MorePlanetsMod.isDevelopment)
         {
             try
             {
@@ -89,7 +89,7 @@ public class GuiFullChangeLog extends GuiScreen
             catch (Exception e) {}
         }
 
-        this.changeLogSlot = new GuiChangeLogSlot(this.mc, this, this.stringList, this.width, this.height, this.rand.nextBoolean());
+        this.changeLogSlot = new GuiChangeLogSlot(this, this.stringList, this.width, this.height, this.rand.nextBoolean());
         this.changeLogSlot.registerScrollButtons(1, 1);
     }
 
@@ -109,7 +109,7 @@ public class GuiFullChangeLog extends GuiScreen
     {
         if (button.id == 0)
         {
-            this.mc.displayGuiScreen((GuiScreen)null);
+            this.mc.displayGuiScreen(null);
         }
     }
 
@@ -118,7 +118,7 @@ public class GuiFullChangeLog extends GuiScreen
     {
         if (keyCode == 1 || keyCode == 28)
         {
-            this.mc.displayGuiScreen((GuiScreen)null);
+            this.mc.displayGuiScreen(null);
         }
     }
 

@@ -21,10 +21,7 @@ import stevekung.mods.moreplanets.integration.jei.rockett5.Tier5RocketRecipeCate
 import stevekung.mods.moreplanets.integration.jei.rockett5.Tier5RocketRecipeWrapper;
 import stevekung.mods.moreplanets.integration.jei.rockett6.Tier6RocketRecipeCategory;
 import stevekung.mods.moreplanets.integration.jei.rockett6.Tier6RocketRecipeWrapper;
-import stevekung.mods.moreplanets.module.planets.chalos.recipe.Tier5RocketRecipes;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.recipe.Tier4RocketRecipes;
-import stevekung.mods.moreplanets.module.planets.nibiru.recipe.Tier6RocketRecipes;
 import stevekung.mods.moreplanets.recipe.BlackHoleStorageRecipes;
 import stevekung.mods.moreplanets.recipe.DarkEnergyRecipeData;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
@@ -50,9 +47,6 @@ public class MorePlanetsJEIPlugin implements IModPlugin
         JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, BlackHoleStorageRecipeWrapper::new, MPJEIRecipes.BLACK_HOLE_STORAGE);
         JEIRegistryHelper.registerRecipe(DarkEnergyRecipeData.getRecipeList(), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
         JEIRegistryHelper.registerRecipe(RocketCrusherRecipes.getRecipeList(), MPJEIRecipes.ROCKET_CRUSHER);
-        JEIRegistryHelper.registerRecipe(Tier4RocketRecipes.getRecipesList(), MPJEIRecipes.TIER_4_ROCKET);
-        JEIRegistryHelper.registerRecipe(Tier5RocketRecipes.getRecipesList(), MPJEIRecipes.TIER_5_ROCKET);
-        JEIRegistryHelper.registerRecipe(Tier6RocketRecipes.getRecipesList(), MPJEIRecipes.TIER_6_ROCKET);
         JEIRegistryHelper.registerRecipe(BlackHoleStorageRecipes.getRecipesList(), MPJEIRecipes.BLACK_HOLE_STORAGE);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.ROCKET_CRUSHER), MPJEIRecipes.ROCKET_CRUSHER);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(DionaBlocks.DARK_ENERGY_CORE), MPJEIRecipes.DARK_ENERGY_TRANSFORM);

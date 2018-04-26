@@ -1,13 +1,11 @@
 package stevekung.mods.moreplanets.blocks;
 
-import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
@@ -25,14 +23,13 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.util.ItemDescription;
+import stevekung.mods.moreplanets.util.blocks.BlockAdvancedTileMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
-public class BlockShieldGenerator extends BlockAdvancedTile implements ISortableBlock, ISingleBlockRender, IBlockDescription
+public class BlockShieldGenerator extends BlockAdvancedTileMP implements IBlockDescription
 {
     public BlockShieldGenerator(String name)
     {
@@ -41,12 +38,6 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
         this.setUnlocalizedName(name);
         this.setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
-    }
-
-    @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
-    {
-        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
@@ -252,12 +243,6 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
     public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.MACHINE_NON_BLOCK;
-    }
-
-    @Override
-    public String getName()
-    {
-        return "shield_generator";
     }
 
     @Override

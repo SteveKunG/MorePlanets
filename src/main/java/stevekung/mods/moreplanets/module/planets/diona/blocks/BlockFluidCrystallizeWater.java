@@ -17,9 +17,8 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidBaseMP;
 import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
 
-public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFishableLiquidBlock, ISingleBlockRender
+public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFishableLiquidBlock
 {
     public BlockFluidCrystallizeWater(String name)
     {
@@ -58,12 +57,6 @@ public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFis
                 MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CRYSTALLIZE_WATER_DRIP, d5, d6, d7);
             }
         }
-    }
-
-    @Override
-    public String getName()
-    {
-        return "crystallize_water_fluid";
     }
 
     @Override

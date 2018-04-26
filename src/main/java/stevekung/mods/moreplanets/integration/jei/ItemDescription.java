@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.integration.jei;
 import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.util.CachedEnumUtil;
+import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 /***
  *
@@ -21,7 +21,7 @@ public class ItemDescription
 
     static String text(String original)
     {
-        for (TextFormatting formatting : CachedEnumUtil.valuesTextFormattingCached())
+        for (TextFormatting formatting : CachedEnum.textFormatValues)
         {
             if (original.contains("%" + formatting.getFriendlyName().toLowerCase() + "%"))
             {

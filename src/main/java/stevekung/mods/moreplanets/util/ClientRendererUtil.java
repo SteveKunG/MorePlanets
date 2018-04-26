@@ -14,11 +14,11 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
+import stevekung.mods.stevekunglib.utils.RenderUtils;
 
 public class ClientRendererUtil
 {
@@ -92,35 +92,6 @@ public class ClientRendererUtil
         vertexbuffer.putColorRGBA(i, j, k, l, 127);
     }
 
-    public static void bindTexture(String resource)
-    {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(resource));
-    }
-
-    public static void drawDefaultParticlesTexture(BufferBuilder vertexbuffer)
-    {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/particle/particles.png"));
-        vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
-    }
-
-    public static void renderLightState(boolean disable)
-    {
-        if (disable)
-        {
-            GlStateManager.disableLighting();
-            GlStateManager.disableLight(0);
-            GlStateManager.disableLight(1);
-            GlStateManager.disableColorMaterial();
-        }
-        else
-        {
-            GlStateManager.enableLighting();
-            GlStateManager.enableLight(0);
-            GlStateManager.enableLight(1);
-            GlStateManager.enableColorMaterial();
-        }
-    }
-
     public static void renderBeam(double x, double y, double z, float partialTicks, double prevX, double prevY, double prevZ, int ticksExisted, double targetX, double targetY, double targetZ)
     {
         float f = (float)(targetX - prevX);
@@ -134,7 +105,7 @@ public class ClientRendererUtil
         GlStateManager.rotate((float)-Math.atan2(f3, f1) * (180F / (float)Math.PI) - 90.0F, 1.0F, 0.0F, 0.0F);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder vertexbuffer = tessellator.getBuffer();
-        ClientRendererUtil.renderLightState(true);
+        RenderUtils.disableLighting();
         GlStateManager.disableCull();
         GlStateManager.shadeModel(7425);
         float f5 = 0.0F - (ticksExisted + partialTicks) * 0.01F;
@@ -152,7 +123,7 @@ public class ClientRendererUtil
         tessellator.draw();
         GlStateManager.enableCull();
         GlStateManager.shadeModel(7424);
-        ClientRendererUtil.renderLightState(false);
+        RenderUtils.enableLighting();
         GlStateManager.popMatrix();
     }
 }

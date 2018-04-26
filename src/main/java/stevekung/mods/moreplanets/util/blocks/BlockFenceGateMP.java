@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.util.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
@@ -17,7 +18,13 @@ public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, 
         this.setSoundType(SoundType.WOOD);
         this.setHardness(2.0F);
         this.setResistance(5.0F);
+    }
+
+    @Override
+    public Block setUnlocalizedName(String name)
+    {
         this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override

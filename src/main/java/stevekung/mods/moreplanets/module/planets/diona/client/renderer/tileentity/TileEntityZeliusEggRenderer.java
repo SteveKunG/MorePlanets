@@ -5,9 +5,9 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelZeliusEgg;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityZeliusEgg;
+import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class TileEntityZeliusEggRenderer extends TileEntitySpecialRenderer<TileEntityZeliusEgg>
 {
@@ -18,7 +18,7 @@ public class TileEntityZeliusEggRenderer extends TileEntitySpecialRenderer<TileE
     @Override
     public void render(TileEntityZeliusEgg tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        float renderPartialTicks = tile.getWorld() == null ? ClientEventHandler.itemRendererTicks : tile.renderTicks + partialTicks;
+        float renderPartialTicks = tile.getWorld() == null ? ClientEventHandler.ticks : tile.renderTicks + partialTicks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 1F) / 2F + 0.15F;
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;

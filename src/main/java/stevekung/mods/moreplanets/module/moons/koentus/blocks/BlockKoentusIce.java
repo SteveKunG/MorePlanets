@@ -30,7 +30,6 @@ public class BlockKoentusIce extends BlockIceMP
         super();
         this.setUnlocalizedName(name);
         this.setDefaultSlipperiness(1.05F);
-        this.name = name;
     }
 
     @Override

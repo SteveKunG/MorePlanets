@@ -5,37 +5,38 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelShieldGenerator extends ModelBase
 {
-    ModelRenderer base;
-    ModelRenderer baseside;
-    ModelRenderer side1;
-    ModelRenderer side2;
-    ModelRenderer side3;
-    ModelRenderer side4;
-    ModelRenderer basetop;
-    ModelRenderer rod;
-    ModelRenderer rodbase;
-    ModelRenderer rodbase1;
-    ModelRenderer rodbase2;
-    ModelRenderer rodbase3;
-    ModelRenderer rodbase4;
-    ModelRenderer rodbase5;
-    ModelRenderer rodbase6;
-    ModelRenderer rodbase7;
-    ModelRenderer rodbase8;
-    ModelRenderer rodbase51;
-    ModelRenderer solar1;
-    ModelRenderer rodbase61;
-    ModelRenderer solar2;
-    ModelRenderer rodbase71;
-    ModelRenderer solar3;
-    ModelRenderer rodbase81;
-    ModelRenderer solar4;
-    ModelRenderer input;
+    private ModelRenderer base;
+    private ModelRenderer baseside;
+    private ModelRenderer side1;
+    private ModelRenderer side2;
+    private ModelRenderer side3;
+    private ModelRenderer side4;
+    private ModelRenderer basetop;
+    private ModelRenderer rod;
+    private ModelRenderer rodbase;
+    private ModelRenderer rodbase1;
+    private ModelRenderer rodbase2;
+    private ModelRenderer rodbase3;
+    private ModelRenderer rodbase4;
+    private ModelRenderer rodbase5;
+    private ModelRenderer rodbase6;
+    private ModelRenderer rodbase7;
+    private ModelRenderer rodbase8;
+    private ModelRenderer rodbase51;
+    private ModelRenderer solar1;
+    private ModelRenderer rodbase61;
+    private ModelRenderer solar2;
+    private ModelRenderer rodbase71;
+    private ModelRenderer solar3;
+    private ModelRenderer rodbase81;
+    private ModelRenderer solar4;
+    private ModelRenderer input;
 
     public ModelShieldGenerator()
     {
         this.textureWidth = 128;
         this.textureHeight = 64;
+
         this.rod = new ModelRenderer(this, 30, 28);
         this.rod.setRotationPoint(0.0F, 10.0F, 0.0F);
         this.rod.addBox(-1.0F, -6.0F, -1.0F, 2, 6, 2, 0.0F);

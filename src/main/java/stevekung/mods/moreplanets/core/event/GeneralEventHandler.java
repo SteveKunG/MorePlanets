@@ -46,8 +46,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.blocks.IFireBlock;
+import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 public class GeneralEventHandler
 {
@@ -354,7 +354,7 @@ public class GeneralEventHandler
         event.setResult(Result.ALLOW);
         world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
 
-        for (EnumHand hand : CachedEnumUtil.valuesHandCached())
+        for (EnumHand hand : CachedEnum.handValues)
         {
             event.getEntityPlayer().swingArm(hand);
         }
@@ -366,7 +366,7 @@ public class GeneralEventHandler
         event.setResult(Result.ALLOW);
         world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
 
-        for (EnumHand hand : CachedEnumUtil.valuesHandCached())
+        for (EnumHand hand : CachedEnum.handValues)
         {
             event.getEntityPlayer().swingArm(hand);
         }

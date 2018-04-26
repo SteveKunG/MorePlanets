@@ -73,12 +73,6 @@ public class BlockFluidCheeseOfMilk extends BlockFluidBaseMP implements IFishabl
     }
 
     @Override
-    public String getName()
-    {
-        return "cheese_of_milk_fluid";
-    }
-
-    @Override
     @Nullable
     public ResourceLocation getLootTable()
     {

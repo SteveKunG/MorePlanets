@@ -119,10 +119,4 @@ public class BlockChalosAncientChest extends BlockAncientChestMP
     {
         return Container.calcRedstoneFromInventory(this.getLockableContainer(world, pos));
     }
-
-    @Override
-    public String getName()
-    {
-        return "chalos_ancient_chest";
-    }
 }

@@ -277,10 +277,4 @@ public class BlockTerrastoneFurnace extends BlockContainerMP implements ISingleB
     {
         return new BlockStateContainer(this, BlockStateProperty.FACING_HORIZON);
     }
-
-    @Override
-    public String getName()
-    {
-        return "terrastone_furnace";
-    }
 }

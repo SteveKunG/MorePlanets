@@ -5,7 +5,10 @@ import stevekung.mods.moreplanets.entity.*;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.module.moons.koentus.entity.EntityFallingKoentusMeteor;
-import stevekung.mods.moreplanets.module.planets.chalos.entity.*;
+import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCow;
+import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCubeEyeBoss;
+import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseFloater;
+import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseSlime;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.diona.entity.*;
@@ -64,9 +67,7 @@ public class MPEntities
         CommonRegisterHelper.registerEntity(EntityTerrastoneGolem.class, "terrastone_golem", ColorHelper.rgbToDecimal(101, 78, 83), ColorHelper.rgbToDecimal(101, 130, 56));
 
         CommonRegisterHelper.registerNonMobEntity(EntitySpaceMinecartChest.class, "space_minecart_chest");
-        CommonRegisterHelper.registerNonMobEntity(EntityTier4Rocket.class, "tier_4_rocket", EnumEntityTrackerType.TIERED_ROCKET);
         CommonRegisterHelper.registerNonMobEntity(EntityInfectedCrystallizeTentacle.class, "infected_crystallize_tentacle");
-        CommonRegisterHelper.registerNonMobEntity(EntityTier5Rocket.class, "tier_5_rocket", EnumEntityTrackerType.TIERED_ROCKET);
         CommonRegisterHelper.registerNonMobEntity(EntityCheeseSpore.class, "cheese_spore", EnumEntityTrackerType.THROWABLE);
         CommonRegisterHelper.registerNonMobEntity(EntitySmallCheeseSpore.class, "small_cheese_spore", EnumEntityTrackerType.THROWABLE);
         CommonRegisterHelper.registerNonMobEntity(EntityInfectedCrystallizeBomb.class, "infected_crystallize_bomb", EnumEntityTrackerType.THROWABLE);
@@ -83,7 +84,6 @@ public class MPEntities
         CommonRegisterHelper.registerNonMobEntity(EntityLaserBullet.class, "laser_bullet", EnumEntityTrackerType.ARROW);
         CommonRegisterHelper.registerNonMobEntity(EntitySpaceCapsule.class, "space_capsule");
         CommonRegisterHelper.registerNonMobEntity(EntityVeinBall.class, "vein_ball", EnumEntityTrackerType.THROWABLE);
-        CommonRegisterHelper.registerNonMobEntity(EntityTier6Rocket.class, "tier_6_rocket", EnumEntityTrackerType.TIERED_ROCKET);
         CommonRegisterHelper.registerNonMobEntity(EntityBlackHoleStorage.class, "black_hole_storage");
         CommonRegisterHelper.registerNonMobEntity(EntityAntiGravityArrow.class, "anti_gravity_arrow", EnumEntityTrackerType.ARROW);
         CommonRegisterHelper.registerNonMobEntity(EntityFallingKoentusMeteor.class, "falling_koentus_meteor", 160, 20);

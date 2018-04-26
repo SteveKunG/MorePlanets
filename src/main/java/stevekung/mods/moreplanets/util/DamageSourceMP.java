@@ -9,10 +9,10 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.Entity
 
 public class DamageSourceMP extends DamageSource
 {
-    public static DamageSource INFECTED_CRYSTALLIZE = new DamageSource("infected_crystallize").setDamageBypassesArmor().setDifficultyScaled();
-    public static DamageSource INFECTED_GAS = new DamageSource("infected_gas").setDamageBypassesArmor().setDifficultyScaled();
-    public static DamageSource DARK_ENERGY = new DamageSource("dark_energy").setDamageBypassesArmor().setDifficultyScaled();
-    public static DamageSource BLACK_HOLE = new DamageSource("black_hole").setDamageBypassesArmor().setDamageAllowedInCreativeMode();
+    public static final DamageSource INFECTED_CRYSTALLIZE = new DamageSource("infected_crystallize").setDamageBypassesArmor().setDifficultyScaled();
+    public static final DamageSource INFECTED_GAS = new DamageSource("infected_gas").setDamageBypassesArmor().setDifficultyScaled();
+    public static final DamageSource DARK_ENERGY = new DamageSource("dark_energy").setDamageBypassesArmor().setDifficultyScaled();
+    public static final DamageSource BLACK_HOLE = new DamageSource("black_hole").setDamageBypassesArmor().setDamageAllowedInCreativeMode();
 
     public DamageSourceMP(String damageType)
     {

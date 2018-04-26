@@ -277,10 +277,4 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     {
         return new BlockStateContainer(this, BlockStateProperty.FACING_HORIZON);
     }
-
-    @Override
-    public String getName()
-    {
-        return "nibiru_furnace";
-    }
 }

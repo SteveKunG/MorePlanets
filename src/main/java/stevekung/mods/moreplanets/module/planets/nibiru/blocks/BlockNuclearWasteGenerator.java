@@ -108,10 +108,4 @@ public class BlockNuclearWasteGenerator extends BlockTileMP implements IBlockDes
     {
         return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockNuclearWasteGenerator.this.getUnlocalizedName() + ".description"));
     }
-
-    @Override
-    public String getName()
-    {
-        return "nuclear_waste_generator";
-    }
 }
