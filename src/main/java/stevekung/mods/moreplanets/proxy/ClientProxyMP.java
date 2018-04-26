@@ -21,6 +21,9 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.internal.FMLMessage.EntitySpawnMessage;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -65,7 +68,7 @@ public class ClientProxyMP extends ServerProxyMP
     }
 
     @Override
-    public void registerPreRendering()
+    public void preInit(FMLPreInitializationEvent event)
     {
         ModelLoaderRegistry.registerLoader(OBJLoaderMP.INSTANCE);
         EntityRendererMP.init();
@@ -83,7 +86,7 @@ public class ClientProxyMP extends ServerProxyMP
     }
 
     @Override
-    public void registerInitRendering()
+    public void init(FMLInitializationEvent event)
     {
         BlockColors color = Minecraft.getMinecraft().getBlockColors();
 
@@ -102,7 +105,7 @@ public class ClientProxyMP extends ServerProxyMP
     }
 
     @Override
-    public void registerPostRendering()
+    public void postInit(FMLPostInitializationEvent event)
     {
         MPSchematics.registerSchematicTexture();
     }

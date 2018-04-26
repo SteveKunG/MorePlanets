@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.blocks;
 
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -18,8 +17,10 @@ import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
-public class BlockAlienDefenderBeacon extends BlockBaseMP implements ITileEntityProvider
+public class BlockAlienDefenderBeacon extends BlockBaseMP
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
+
     public BlockAlienDefenderBeacon(String name)
     {
         super(Material.ROCK);
@@ -31,7 +32,7 @@ public class BlockAlienDefenderBeacon extends BlockBaseMP implements ITileEntity
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D / 16.0D, 1.0D);
+        return BlockAlienDefenderBeacon.AABB;
     }
 
     @Override
@@ -80,13 +81,13 @@ public class BlockAlienDefenderBeacon extends BlockBaseMP implements ITileEntity
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta)
+    public TileEntity createTileEntity(World world, IBlockState state)
     {
         return new TileEntityAlienDefenderBeacon();
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }

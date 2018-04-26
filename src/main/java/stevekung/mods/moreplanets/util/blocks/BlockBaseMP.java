@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRender
 {
@@ -33,11 +33,11 @@ public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRe
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return MorePlanetsCore.BLOCK_TAB;
+        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return this.category == null ? EnumSortCategoryBlock.BUILDING_BLOCK : this.category;
     }

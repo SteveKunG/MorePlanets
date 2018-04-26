@@ -14,7 +14,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet.EnumLaserType;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -94,7 +94,7 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return MorePlanetsCore.ITEM_TAB;
+        return MorePlanetsMod.ITEM_TAB;
     }
 
     @Override

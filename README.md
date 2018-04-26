@@ -8,4 +8,4 @@ An add-on exploration with custom planets for Galacticraft!
 
 License
 ==============
-LICENSE: https://github.com/SteveKunG/MorePlanets/blob/master/LICENSE.md
+LICENSE: https://github.com/SteveKunG/MorePlanets/blob/1.13/LICENSE.md

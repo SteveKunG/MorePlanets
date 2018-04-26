@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
@@ -147,7 +147,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                     ++this.chargedTime;
                 }
 
-                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.posX, this.posY + 0.85D + this.getHoverTick(FMLClientHandler.instance().getClient().getRenderPartialTicks()), this.posZ, new Object[] { -this.getChargedTime(0.0F) });
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.posX, this.posY + 0.85D + this.getHoverTick(FMLClientHandler.instance().getClient().getRenderPartialTicks()), this.posZ, new Object[] { -this.getChargedTime(0.0F) });
                 EntityLivingBase entitylivingbase = this.getTargetedEntity();
 
                 if (entitylivingbase != null)
@@ -338,7 +338,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
 
                     if (entitylivingbase instanceof EntityPlayer)
                     {
-                        MorePlanetsCore.PROXY.resetFloatingTick((EntityPlayer) entitylivingbase);
+                        MorePlanetsMod.PROXY.resetFloatingTick((EntityPlayer) entitylivingbase);
                     }
                 }
                 super.updateTask();

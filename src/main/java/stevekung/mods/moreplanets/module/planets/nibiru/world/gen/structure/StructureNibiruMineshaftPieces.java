@@ -27,7 +27,7 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.entity.EntitySpaceMinecartChest;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class StructureNibiruMineshaftPieces
 {
@@ -202,7 +202,7 @@ public class StructureNibiruMineshaftPieces
                 this.setBlockState(world, iblockstate, x, y, z, structurebb);
                 EntitySpaceMinecartChest entityminecartchest = new EntitySpaceMinecartChest(world, blockpos.getX() + 0.5F, blockpos.getY() + 0.5F, blockpos.getZ() + 0.5F);
                 entityminecartchest.setLootTable(loot, rand.nextLong());
-                entityminecartchest.setDisplayTile(NibiruBlocks.INFECTED_CHEST.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, EnumFacing.NORTH));
+                entityminecartchest.setDisplayTile(NibiruBlocks.INFECTED_CHEST.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
                 entityminecartchest.setDisplayTileOffset(8);
                 world.spawnEntity(entityminecartchest);
                 return true;

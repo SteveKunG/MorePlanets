@@ -30,15 +30,15 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss, IEntityBreathable, ISpaceMob
 {
@@ -85,7 +85,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     public void onUpdate()
     {
         super.onUpdate();
-        MorePlanetsCore.PROXY.addBoss(this);
+        MorePlanetsMod.PROXY.addBoss(this);
         this.motionY *= 0.5D;
 
         if (this.getHealth() <= 0.0F)
@@ -306,8 +306,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
 
                 for (EntityPlayer player : playerWithin)
                 {
-                    JsonUtil json = new JsonUtil();
-                    player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
                 }
                 this.setDead();
                 return;
@@ -327,7 +326,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
             this.spawner.boss = null;
             this.spawner.spawned = false;
         }
-        MorePlanetsCore.PROXY.removeBoss(this);
+        MorePlanetsMod.PROXY.removeBoss(this);
         super.setDead();
     }
 

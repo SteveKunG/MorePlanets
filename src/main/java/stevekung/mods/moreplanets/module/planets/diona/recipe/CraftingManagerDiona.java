@@ -26,7 +26,7 @@ public class CraftingManagerDiona
         CraftingManagerDiona.addBlockSmelting();
         CraftingManagerDiona.addItemSmelting();
 
-        if (ConfigManagerMP.enableTier4RocketRecipe)
+        if (ConfigManagerMP.moreplanets_addon_compat.enableTier4RocketRecipe)
         {
             CraftingManagerDiona.addRocketRecipe();
         }
@@ -53,7 +53,7 @@ public class CraftingManagerDiona
         RecipeHelper.addShapelessRecipe(new ItemStack(DionaItems.DIONA_ITEM, 9, 6), DionaBlocks.GLOWING_IRON_BLOCK);
         RecipeHelper.addShapelessRecipe(new ItemStack(DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL, 9), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK);
 
-        if (ConfigManagerMP.enableTier4RocketRecipe)
+        if (ConfigManagerMP.moreplanets_addon_compat.enableTier4RocketRecipe)
         {
             RecipeHelper.addRecipe(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 1), new Object[] { "VY ", "XWX", "XZX", 'V', Blocks.STONE_BUTTON, 'W', new ItemStack(GCItems.canister, 1, OreDictionary.WILDCARD_VALUE), 'X', new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0), 'Y', Items.FLINT_AND_STEEL, 'Z', GCItems.oxygenVent });
             RecipeHelper.addRecipe(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 2), new Object[] { " Y ", " X ", "X X", 'X', new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0), 'Y', Blocks.REDSTONE_TORCH });

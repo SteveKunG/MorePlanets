@@ -34,7 +34,6 @@ import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
@@ -46,7 +45,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.DarkEnergyReceiverMultiblockRenderer;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -60,15 +59,15 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.NuclearW
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.MPLog;
-import stevekung.mods.moreplanets.util.VersionChecker;
 import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
 import stevekung.mods.moreplanets.util.debug.GuiGetItemName;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.VersionChecker;
 
 public class ClientEventHandler
 {
-    private Map<BlockPos, Integer> beam = new HashMap<>();
+    private final Map<BlockPos, Integer> beam = new HashMap<>();
     private Minecraft mc;
     public static boolean loadRenderers;
     private int loadRendererTick = 30;
@@ -117,7 +116,7 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onClientTick(ClientTickEvent event)
     {
-        if (MorePlanetsCore.isObfuscatedEnvironment())
+        if (MorePlanetsMod.isDevelopmentEnvironment())
         {
             if (Keyboard.isKeyDown(Keyboard.KEY_F7))
             {
@@ -146,7 +145,7 @@ public class ClientEventHandler
         {
             if (--this.loadRendererTick == 0)
             {
-                MPLog.debug("Reload renderer");
+                MPLog.debug("Reload chunk renderer");
                 this.mc.renderGlobal.loadRenderers();
                 this.loadRendererTick = 30;
                 ClientEventHandler.loadRenderers = false;
@@ -154,7 +153,7 @@ public class ClientEventHandler
         }
         if (this.mc.player != null)
         {
-            if (ConfigManagerMP.enableStartedPlanet && this.mc.player.dimension == -1 && this.mc.currentScreen instanceof GuiGameOver && !(this.mc.currentScreen instanceof GuiGameOverMP))
+            if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && this.mc.player.dimension == -1 && this.mc.currentScreen instanceof GuiGameOver && !(this.mc.currentScreen instanceof GuiGameOverMP))
             {
                 this.mc.displayGuiScreen(new GuiGameOverMP());
             }
@@ -174,14 +173,38 @@ public class ClientEventHandler
             WeatherRendererNibiru.INSTANCE.runRenderTick();
             CloudRendererNibiru.INSTANCE.runRenderTick();
         }
+        if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
+        {
+            if (!MorePlanetsMod.noConnection && MorePlanetsMod.checker.noConnection())
+            {
+                VersionChecker.createFailedToCheckMessage(this.mc.player, MorePlanetsMod.checker.getExceptionMessage());
+                MorePlanetsMod.noConnection = true;
+                return;
+            }
+            if (!MorePlanetsMod.foundLatest && !MorePlanetsMod.noConnection && MorePlanetsMod.checker.isLatestVersion())
+            {
+                VersionChecker.createFoundLatestMessage(this.mc.player, MorePlanetsMod.NAME, MorePlanetsMod.URL);
+                MorePlanetsMod.foundLatest = true;
+            }
+        }
+        if (ConfigManagerMP.moreplanets_general.enableChangeLogInGame)
+        {
+            if (!MorePlanetsMod.showAnnounceMessage && !MorePlanetsMod.noConnection)
+            {
+                MorePlanetsMod.checker.getAnnounceMessage().forEach(log ->
+                {
+                    this.mc.player.sendMessage(JsonUtils.create(log).setStyle(JsonUtils.gray()));
+                });
+                this.mc.player.sendMessage(JsonUtils.create("To read More Planets full change log. Use /mpchangelog command!").setStyle(JsonUtils.gray().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
+            }
+            MorePlanetsMod.showAnnounceMessage = true;
+        }
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onPlayerTick(PlayerTickEvent event)
     {
-        String URL = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
-        JsonUtil json = new JsonUtil();
         EntityPlayer player = event.player;
 
         if (player != null)
@@ -190,40 +213,6 @@ public class ClientEventHandler
             if (this.mc.player == player)
             {
                 this.runAlienBeamTick(player);
-            }
-
-            // Credit to Jarbelar
-            // 0 = OutOfDate, 1 = ShowDesc, 2 = NoConnection
-            if (player.world.isRemote)
-            {
-                if (ConfigManagerMP.enableVersionChecker)
-                {
-                    if (!MorePlanetsCore.STATUS_CHECK[2] && VersionChecker.INSTANCE.noConnection())
-                    {
-                        player.sendMessage(json.text("Unable to check latest version, Please check your internet connection").setStyle(json.red()));
-                        player.sendMessage(json.text(VersionChecker.INSTANCE.getExceptionMessage()).setStyle(json.red()));
-                        MorePlanetsCore.STATUS_CHECK[2] = true;
-                        return;
-                    }
-                    if (!MorePlanetsCore.STATUS_CHECK[0] && !MorePlanetsCore.STATUS_CHECK[2] && VersionChecker.INSTANCE.isLatestVersion())
-                    {
-                        player.sendMessage(json.text("New version of ").appendSibling(json.text("More Planets").setStyle(json.style().setColor(TextFormatting.AQUA)).appendSibling(json.text(" is available ").setStyle(json.white()).appendSibling(json.text("v" + VersionChecker.INSTANCE.getLatestVersion().replace("[" + MorePlanetsCore.MC_VERSION + "]=", "")).setStyle(json.style().setColor(TextFormatting.GREEN)).appendSibling(json.text(" for ").setStyle(json.white()).appendSibling(json.text("MC-" + MorePlanetsCore.MC_VERSION).setStyle(json.style().setColor(TextFormatting.GOLD))))))));
-                        player.sendMessage(json.text("Download Link ").setStyle(json.style().setColor(TextFormatting.YELLOW)).appendSibling(json.text("[CLICK HERE]").setStyle(json.style().setColor(TextFormatting.BLUE).setHoverEvent(json.hover(HoverEvent.Action.SHOW_TEXT, json.text("Click Here!").setStyle(json.style().setColor(TextFormatting.DARK_GREEN)))).setClickEvent(json.click(ClickEvent.Action.OPEN_URL, URL)))));
-                        MorePlanetsCore.STATUS_CHECK[0] = true;
-                    }
-                }
-                if (ConfigManagerMP.enableChangeLogInGame)
-                {
-                    if (!MorePlanetsCore.STATUS_CHECK[1] && !MorePlanetsCore.STATUS_CHECK[2])
-                    {
-                        for (String log : VersionChecker.INSTANCE.getChangeLog())
-                        {
-                            player.sendMessage(json.text(log).setStyle(json.colorFromConfig("gray")));
-                        }
-                        player.sendMessage(json.text("To read More Planets full change log. Use /mpchangelog command!").setStyle(json.colorFromConfig("gray").setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
-                    }
-                    MorePlanetsCore.STATUS_CHECK[1] = true;
-                }
             }
         }
     }
@@ -302,7 +291,7 @@ public class ClientEventHandler
     }
 
     @SubscribeEvent
-    @SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT) //TODO Fix overlay
     public void onRenderGameOverlay(RenderGameOverlayEvent event)
     {
         if (event.getType().equals(RenderGameOverlayEvent.ElementType.ALL))
@@ -381,6 +370,7 @@ public class ClientEventHandler
                 String bossType = boss.getBossType();
                 String name = boss.getBossName();
 
+                // start render custom boss bar
                 event.setCanceled(true);
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 this.mc.getTextureManager().bindTexture(BOSS_BAR);
@@ -394,7 +384,7 @@ public class ClientEventHandler
     }
 
     @SubscribeEvent
-    @SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)//TODO testing
     public void onRenderBlockOverlay(RenderBlockOverlayEvent event)
     {
         float partialTicks = event.getRenderPartialTicks();

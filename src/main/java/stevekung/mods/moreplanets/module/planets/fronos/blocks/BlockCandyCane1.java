@@ -14,9 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockLogMP;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper.EnumAxis;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper.SwitchEnumAxis;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockCandyCane1 extends BlockLogMP implements IBlockVariants
 {
@@ -28,7 +26,7 @@ public class BlockCandyCane1 extends BlockLogMP implements IBlockVariants
         this.setHardness(0.55F);
         this.setResistance(3.0F);
         this.setSoundType(SoundType.CLOTH);
-        this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.RED_CANDY_CANE).withProperty(BlockStateHelper.AXIS, EnumAxis.Y));
+        this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.RED_CANDY_CANE).withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
         this.setUnlocalizedName(name);
     }
 
@@ -49,16 +47,16 @@ public class BlockCandyCane1 extends BlockLogMP implements IBlockVariants
         switch (meta & 12)
         {
         case 0:
-            state = state.withProperty(BlockStateHelper.AXIS, EnumAxis.Y);
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y);
             break;
         case 4:
-            state = state.withProperty(BlockStateHelper.AXIS, EnumAxis.X);
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.X);
             break;
         case 8:
-            state = state.withProperty(BlockStateHelper.AXIS, EnumAxis.Z);
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Z);
             break;
         default:
-            state = state.withProperty(BlockStateHelper.AXIS, EnumAxis.NONE);
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.NONE);
         }
         return state;
     }
@@ -69,7 +67,7 @@ public class BlockCandyCane1 extends BlockLogMP implements IBlockVariants
         byte b = 0;
         int i = b | state.getValue(VARIANT).ordinal();
 
-        switch (SwitchEnumAxis.AXIS_LOOKUP[state.getValue(BlockStateHelper.AXIS).ordinal()])
+        switch (BlockStateProperty.SwitchEnumAxis.AXIS_LOOKUP[state.getValue(BlockStateProperty.AXIS).ordinal()])
         {
         case 1:
             i |= 4;
@@ -86,7 +84,7 @@ public class BlockCandyCane1 extends BlockLogMP implements IBlockVariants
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, VARIANT, BlockStateHelper.AXIS);
+        return new BlockStateContainer(this, VARIANT, BlockStateProperty.AXIS);
     }
 
     @Override

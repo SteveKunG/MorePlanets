@@ -8,7 +8,6 @@ import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,6 +26,7 @@ import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageMP;
 
 @WailaPlugin
 public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlugin
@@ -48,13 +48,18 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         WailaUtil.register(TileEntitySpaceWarpPadFull.class, true, true, false, false, false);
         WailaUtil.register(TileEntityRocketCrusher.class, true, true, false, false, false);
         WailaUtil.register(TileEntityDarkEnergyGenerator.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityDarkEnergyStorageCluster.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityNuclearWasteStorageCluster.class, true, true, false, false, false);
+        WailaUtil.register(TileEntityEnergyStorageMP.class, true, true, false, false, false);
         WailaUtil.register(TileEntityBlackHoleStorage.class, true, true, false, false, false);
         WailaUtil.register(TileEntityShieldGenerator.class, true, true, false, false, false);
         WailaUtil.register(TileEntityNuclearWasteGenerator.class, true, true, false, false, false);
         WailaUtil.register(IBlockDescription.class, false, false, true, false, false);
-        WailaUtil.register(MPBlocks.DUMMY_BLOCK.getClass(), true, true, true, false, false);
+        WailaUtil.register(BlockDummy.class, true, true, true, false, false);
+        WailaUtil.register(MPBlocks.DER_SOLAR1_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtil.register(MPBlocks.DER_SOLAR2_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtil.register(MPBlocks.DER_SOLAR3_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtil.register(MPBlocks.DER_SOLAR4_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtil.register(MPBlocks.WARP_PAD_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtil.register(MPBlocks.SHIELD_GENERATOR_DUMMY.getClass(), true, true, true, false, false);
     }
 
     @Override
@@ -68,73 +73,67 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
     {
         TileEntity tile = accessor.getTileEntity();
         Block block = accessor.getBlock();
-        IBlockState state = accessor.getBlockState();
         NBTTagCompound nbt = accessor.getNBTData();
 
-        if (nbt.hasKey("EnergyF") && !(block == MPBlocks.DUMMY_BLOCK && (state.getValue(BlockDummy.VARIANT) == BlockDummy.BlockType.NUCLEAR_WASTE_TANK_MIDDLE || state.getValue(BlockDummy.VARIANT) == BlockDummy.BlockType.NUCLEAR_WASTE_TANK_TOP)))
+        if (nbt.hasKey("EnergyF") && !(block == MPBlocks.NWT_MIDDLE_DUMMY || block == MPBlocks.NWT_TOP_DUMMY))
         {
             tooltip.add(TextFormatting.GREEN + GCCoreUtil.translate("gui.message.energy") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("EnergyF")));
         }
 
         // block
-        if (block == MPBlocks.DUMMY_BLOCK)
+        if (block == MPBlocks.DER_SOLAR1_DUMMY || block == MPBlocks.DER_SOLAR2_DUMMY || block == MPBlocks.DER_SOLAR3_DUMMY || block == MPBlocks.DER_SOLAR4_DUMMY)
         {
-            BlockDummy.BlockType type = state.getValue(BlockDummy.VARIANT);
+            int process = nbt.getInteger("ActivatedTick") * 100 / 12000;
+            int destruct = nbt.getInteger("FailedTick");
 
-            if (type == BlockDummy.BlockType.DARK_ENERGY_SOLAR1 || type == BlockDummy.BlockType.DARK_ENERGY_SOLAR2 || type == BlockDummy.BlockType.DARK_ENERGY_SOLAR3 || type == BlockDummy.BlockType.DARK_ENERGY_SOLAR4)
+            if (destruct > 0)
             {
-                int process = nbt.getInteger("ActivatedTick") * 100 / 12000;
-                int destruct = nbt.getInteger("FailedTick");
-
-                if (destruct > 0)
-                {
-                    destruct = 600 - destruct;
-                    tooltip.add(TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.destruct.name") + ": " + CommonRegisterHelper.ticksToElapsedTime(destruct));
-                }
-                else
-                {
-                    tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
-                }
-
-                if (process > 0 && process < 100)
-                {
-                    tooltip.add("Process: " + process + "%");
-                }
+                destruct = 600 - destruct;
+                tooltip.add(TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.destruct.name") + ": " + CommonRegisterHelper.ticksToElapsedTime(destruct));
             }
-            if (type == BlockDummy.BlockType.WARP_PAD)
+            else
             {
-                if (tile instanceof TileEntityDummy)
-                {
-                    TileEntityDummy dummy = (TileEntityDummy) tile;
-                    TileEntitySpaceWarpPadFull warp = (TileEntitySpaceWarpPadFull) accessor.getWorld().getTileEntity(dummy.mainBlockPosition);
-                    String dimension = GCCoreUtil.translate("gui.status.unknown.name");
-                    String name = GCCoreUtil.translate("gui.status.unknown.name");
-                    String dest = GCCoreUtil.translate("gui.status.unknown.name");
-
-                    if (warp.hasWarpCore() && warp.containingItems.get(1).hasTagCompound())
-                    {
-                        NBTTagCompound compound = warp.containingItems.get(1).getTagCompound();
-                        dimension = String.valueOf(compound.getInteger("DimensionID"));
-                        name = WorldUtil.getProviderForDimensionClient(compound.getInteger("DimensionID")).getDimensionType().getName();
-                        dest = compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
-                    }
-                    tooltip.add(GCCoreUtil.translate("gui.status.dimension.name") + ": " + dimension + " ");
-                    tooltip.add(GCCoreUtil.translate("gui.status.name.name") + ": " + name);
-                    tooltip.add(GCCoreUtil.translate("gui.status.destination.name") + ": " + dest);
-                }
-            }
-            if (type == BlockDummy.BlockType.SHIELD_GENERATOR_TOP)
-            {
-                int chargeCooldown = nbt.getInteger("ShieldChargeCooldown");
                 tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
-                tooltip.add(GCCoreUtil.translate("gui.status.shield_damage.name") + ": " + nbt.getInteger("ShieldDamage"));
-                tooltip.add(GCCoreUtil.translate("gui.status.shield_size.name") + ": " + nbt.getInteger("MaxShieldSize"));
-                tooltip.add(GCCoreUtil.translate("gui.status.shield_capacity.name") + ": " + nbt.getInteger("ShieldCapacity") + "/" + nbt.getInteger("MaxShieldCapacity"));
+            }
 
-                if (chargeCooldown > 0)
+            if (process > 0 && process < 100)
+            {
+                tooltip.add("Process: " + process + "%");
+            }
+        }
+        if (block == MPBlocks.WARP_PAD_DUMMY)
+        {
+            if (tile instanceof TileEntityDummy)
+            {
+                TileEntityDummy dummy = (TileEntityDummy) tile;
+                TileEntitySpaceWarpPadFull warp = (TileEntitySpaceWarpPadFull) accessor.getWorld().getTileEntity(dummy.mainBlockPosition);
+                String dimension = GCCoreUtil.translate("gui.status.unknown.name");
+                String name = GCCoreUtil.translate("gui.status.unknown.name");
+                String dest = GCCoreUtil.translate("gui.status.unknown.name");
+
+                if (warp.hasWarpCore() && warp.containingItems.get(1).hasTagCompound())
                 {
-                    tooltip.add(GCCoreUtil.translate("gui.status.shield_charge_cooldown.name") + ": " + chargeCooldown / 20);
+                    NBTTagCompound compound = warp.containingItems.get(1).getTagCompound();
+                    dimension = String.valueOf(compound.getInteger("DimensionID"));
+                    name = WorldUtil.getProviderForDimensionClient(compound.getInteger("DimensionID")).getDimensionType().getName();
+                    dest = compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
                 }
+                tooltip.add(GCCoreUtil.translate("gui.status.dimension.name") + ": " + dimension + " ");
+                tooltip.add(GCCoreUtil.translate("gui.status.name.name") + ": " + name);
+                tooltip.add(GCCoreUtil.translate("gui.status.destination.name") + ": " + dest);
+            }
+        }
+        if (block == MPBlocks.SHIELD_GENERATOR_DUMMY)
+        {
+            int chargeCooldown = nbt.getInteger("ShieldChargeCooldown");
+            tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
+            tooltip.add(GCCoreUtil.translate("gui.status.shield_damage.name") + ": " + nbt.getInteger("ShieldDamage"));
+            tooltip.add(GCCoreUtil.translate("gui.status.shield_size.name") + ": " + nbt.getInteger("MaxShieldSize"));
+            tooltip.add(GCCoreUtil.translate("gui.status.shield_capacity.name") + ": " + nbt.getInteger("ShieldCapacity") + "/" + nbt.getInteger("MaxShieldCapacity"));
+
+            if (chargeCooldown > 0)
+            {
+                tooltip.add(GCCoreUtil.translate("gui.status.shield_charge_cooldown.name") + ": " + chargeCooldown / 20);
             }
         }
 
@@ -193,7 +192,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             tooltip.add(GCCoreUtil.translate("gui.status.name.name") + ": " + name);
             tooltip.add(GCCoreUtil.translate("gui.status.destination.name") + ": " + dest);
         }
-        if (tile instanceof TileEntityDarkEnergyStorageCluster || tile instanceof TileEntityNuclearWasteStorageCluster || tile instanceof TileEntityNuclearWasteGenerator)
+        if (tile instanceof TileEntityEnergyStorageMP || tile instanceof TileEntityNuclearWasteGenerator)
         {
             tooltip.add(TextFormatting.GREEN + GCCoreUtil.translate("gui.message.max_energy") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("MaxEnergy")));
             tooltip.add(GCCoreUtil.translate("gui.max_output.desc") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("MaxOutput")) + "/t");
@@ -252,7 +251,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         TileEntity tile = accessor.getTileEntity();
         Block block = accessor.getBlock();
 
-        if (ConfigManagerMP.enableDescriptionInWaila)
+        if (ConfigManagerMP.moreplanets_other.enableDescriptionInWaila)
         {
             if (block instanceof IBlockDescription)
             {
@@ -268,7 +267,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 }
             }
             // block
-            if (block == MPBlocks.DUMMY_BLOCK)
+            if (block.getClass().equals(BlockDummy.class))
             {
                 TileEntityDummy dummy = (TileEntityDummy) tile;
 
@@ -328,16 +327,9 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             nbt.setInteger("GenerateWatts", generator.generateWatts);
             return generator.writeToNBT(nbt);
         }
-        if (tile instanceof TileEntityDarkEnergyStorageCluster)
+        if (tile instanceof TileEntityEnergyStorageMP)
         {
-            TileEntityDarkEnergyStorageCluster energy = (TileEntityDarkEnergyStorageCluster) tile;
-            nbt.setFloat("MaxEnergy", energy.getMaxEnergyStoredGC());
-            nbt.setFloat("MaxOutput", energy.storage.getMaxExtract());
-            return energy.writeToNBT(nbt);
-        }
-        if (tile instanceof TileEntityNuclearWasteStorageCluster)
-        {
-            TileEntityNuclearWasteStorageCluster energy = (TileEntityNuclearWasteStorageCluster) tile;
+            TileEntityEnergyStorageMP energy = (TileEntityEnergyStorageMP) tile;
             nbt.setFloat("MaxEnergy", energy.getMaxEnergyStoredGC());
             nbt.setFloat("MaxOutput", energy.storage.getMaxExtract());
             return energy.writeToNBT(nbt);

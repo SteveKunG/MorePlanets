@@ -41,7 +41,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.entity.EntityBlackHole;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -51,7 +51,7 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityDarkLightnin
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.JsonUtil;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
 {
@@ -325,7 +325,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                             {
                                 for (int i = 0; i < 120; i++)
                                 {
-                                    MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, pos.getX() + this.world.rand.nextDouble() * 1.0D, pos.getY() + this.world.rand.nextDouble() * 1.0D, pos.getZ() + this.world.rand.nextDouble() * 1.0D, 0.0D, -this.world.rand.nextDouble(), 0.0D);
+                                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, pos.getX() + this.world.rand.nextDouble() * 1.0D, pos.getY() + this.world.rand.nextDouble() * 1.0D, pos.getZ() + this.world.rand.nextDouble() * 1.0D, 0.0D, -this.world.rand.nextDouble(), 0.0D);
                                 }
                                 this.world.setBlockToAir(pos);
                             }
@@ -337,7 +337,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         this.setDisabled(0, true);
                         this.activatedMessage = true;
                         this.successful = true;
-                        FMLClientHandler.instance().getClient().player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.status.dark_energy_core_created.name")).setStyle(new JsonUtil().colorFromConfig("green")));
+                        FMLClientHandler.instance().getClient().player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.status.dark_energy_core_created.name")).setStyle(JsonUtils.green()));
                     }
                 }
 
@@ -483,7 +483,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(pos, MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState());
                 }
-                if (this.world.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(1) || this.world.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(2))
+                if (this.world.getBlockState(pos).getBlock() == MPBlocks.DER_SOLAR1_DUMMY || this.world.getBlockState(pos).getBlock() == MPBlocks.DER_SOLAR2_DUMMY)
                 {
                     this.world.destroyBlock(pos, false);
                 }
@@ -500,7 +500,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(pos, MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState());
                 }
-                if (this.world.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(3) || this.world.getBlockState(pos) == MPBlocks.DUMMY_BLOCK.getStateFromMeta(4))
+                if (this.world.getBlockState(pos).getBlock() == MPBlocks.DER_SOLAR3_DUMMY || this.world.getBlockState(pos).getBlock() == MPBlocks.DER_SOLAR4_DUMMY)
                 {
                     this.world.destroyBlock(pos, false);
                 }

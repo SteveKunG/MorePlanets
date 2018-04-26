@@ -29,7 +29,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
@@ -211,7 +211,7 @@ public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, IS
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return MorePlanetsCore.ITEM_TAB;
+        return MorePlanetsMod.ITEM_TAB;
     }
 
     @Override

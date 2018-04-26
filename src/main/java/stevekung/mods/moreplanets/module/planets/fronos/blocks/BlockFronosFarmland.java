@@ -2,7 +2,7 @@ package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
 import net.minecraft.block.Block;
 import stevekung.mods.moreplanets.util.blocks.BlockFarmlandMP;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockFronosFarmland extends BlockFarmlandMP
 {
@@ -10,7 +10,7 @@ public class BlockFronosFarmland extends BlockFarmlandMP
     {
         super();
         this.name = name;
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.MOISTURE, Integer.valueOf(0)));
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.MOISTURE, Integer.valueOf(0)));
         this.setUnlocalizedName(name);
     }
 

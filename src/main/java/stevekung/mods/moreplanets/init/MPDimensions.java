@@ -12,8 +12,8 @@ public class MPDimensions
 
     public static void init()
     {
-        MPDimensions.DIONA = WorldUtil.getDimensionTypeById(ConfigManagerMP.idDimensionDiona);
-        MPDimensions.CHALOS = WorldUtil.getDimensionTypeById(ConfigManagerMP.idDimensionChalos);
-        MPDimensions.NIBIRU = WorldUtil.getDimensionTypeById(ConfigManagerMP.idDimensionNibiru);
+        MPDimensions.DIONA = WorldUtil.getDimensionTypeById(ConfigManagerMP.moreplanets_dimension.idDimensionDiona);
+        MPDimensions.CHALOS = WorldUtil.getDimensionTypeById(ConfigManagerMP.moreplanets_dimension.idDimensionChalos);
+        MPDimensions.NIBIRU = WorldUtil.getDimensionTypeById(ConfigManagerMP.moreplanets_dimension.idDimensionNibiru);
     }
 }

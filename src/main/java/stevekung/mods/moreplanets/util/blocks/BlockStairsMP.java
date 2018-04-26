@@ -5,7 +5,7 @@ import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 public class BlockStairsMP extends BlockStairs implements ISortableBlock, ISingleBlockRender
 {
@@ -33,11 +33,11 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, ISingl
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return MorePlanetsCore.BLOCK_TAB;
+        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return this.category == null ? EnumSortCategoryBlock.STAIRS_STONE : this.category;
     }

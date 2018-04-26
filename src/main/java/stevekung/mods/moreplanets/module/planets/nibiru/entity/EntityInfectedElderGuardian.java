@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
@@ -99,7 +99,7 @@ public class EntityInfectedElderGuardian extends EntityInfectedGuardian
             {
                 if (!entityplayermp.isPotionActive(potion) || entityplayermp.getActivePotionEffect(potion).getAmplifier() < 2 || entityplayermp.getActivePotionEffect(potion).getDuration() < 1200)
                 {
-                    MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ);
+                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ);
                     entityplayermp.world.playSound(entityplayermp, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, SoundCategory.HOSTILE, 1.0F, 1.0F);
                     entityplayermp.addPotionEffect(new PotionEffect(potion, 6000, 2));
 

@@ -7,8 +7,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAncientChestMP;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class RoomChestMP extends RoomEmptyMP
 {
@@ -32,7 +32,7 @@ public class RoomChestMP extends RoomEmptyMP
             int chestX = this.sizeX / 2;
             int chestY = 1;
             int chestZ = this.sizeZ / 2;
-            this.setBlockState(world, this.configuration.getAncientChestBlock().withProperty(BlockStateHelper.FACING_HORIZON, this.getDirection().getOpposite()), chestX, chestY, chestZ, boundingBox);
+            this.setBlockState(world, this.configuration.getAncientChestBlock().withProperty(BlockStateProperty.FACING_HORIZON, this.getDirection().getOpposite()), chestX, chestY, chestZ, boundingBox);
             BlockPos blockpos = new BlockPos(this.getXWithOffset(chestX, chestZ), this.getYWithOffset(chestY), this.getZWithOffset(chestX, chestZ));
             TileEntityAncientChestMP chest = (TileEntityAncientChestMP)world.getTileEntity(blockpos);
 

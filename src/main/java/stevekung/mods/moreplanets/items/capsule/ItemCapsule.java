@@ -22,6 +22,7 @@ import stevekung.mods.moreplanets.util.items.ItemFoodMP;
 
 public class ItemCapsule extends ItemFoodMP
 {
+    @Deprecated
     public static boolean init;
 
     public ItemCapsule(String name)

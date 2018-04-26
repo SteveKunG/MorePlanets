@@ -109,7 +109,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.ORE;
     }

@@ -9,11 +9,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class ItemBlockShieldGenerator extends ItemBlockDescription
 {
@@ -32,7 +31,7 @@ public class ItemBlockShieldGenerator extends ItemBlockDescription
         {
             if (world.isRemote)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
             }
             return false;
         }
@@ -40,7 +39,7 @@ public class ItemBlockShieldGenerator extends ItemBlockDescription
         {
             if (!vecToAdd.equals(pos))
             {
-                MPBlocks.DUMMY_BLOCK.makeFakeBlock(world, vecToAdd, pos, BlockDummy.BlockType.SHIELD_GENERATOR_TOP);
+                MPBlocks.SHIELD_GENERATOR_DUMMY.makeFakeBlock(world, vecToAdd, pos);
             }
             return super.placeBlockAt(itemStack, player, world, pos, facing, hitX, hitY, hitZ, state);
         }

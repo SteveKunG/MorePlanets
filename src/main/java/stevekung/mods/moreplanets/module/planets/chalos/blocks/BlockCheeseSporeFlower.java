@@ -85,7 +85,7 @@ public class BlockCheeseSporeFlower extends BlockBushMP implements IGrowable
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.SAPLING;
     }

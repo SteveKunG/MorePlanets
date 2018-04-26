@@ -1,8 +1,6 @@
-package stevekung.mods.moreplanets.tileentity;
+package stevekung.mods.moreplanets.util.tileentity;
 
 import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Set;
 
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
@@ -11,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSides;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -22,21 +19,23 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElectricalSource implements ISidedInventory, IInventoryDefaults, IConnector, IMachineSides
+public class TileEntityEnergyStorageMP extends TileBaseUniversalElectricalSource implements ISidedInventory, IInventoryDefaults, IConnector, IMachineSides
 {
-    private float nuclearWasteCapacity = 50000000;
     private NonNullList<ItemStack> containingItems = NonNullList.withSize(4, ItemStack.EMPTY);
-    public Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
     public int scaledEnergyLevel;
     public int lastScaledEnergyLevel;
+    private float lastEnergy = 0;
     private MachineSidePack[] machineSides;
+    public String containerName = "";
 
-    public TileEntityNuclearWasteStorageCluster()
+    public TileEntityEnergyStorageMP(float capacity, float extract, int tier, String containerName)
     {
-        this.setTierGC(4);
-        this.storage.setCapacity(this.nuclearWasteCapacity);
-        this.storage.setMaxExtract(7500);
+        this.setTierGC(tier);
+        this.storage.setCapacity(capacity);
+        this.storage.setMaxExtract(extract);
+        this.containerName = containerName;
     }
 
     @Override
@@ -48,6 +47,17 @@ public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElect
     @Override
     public void update()
     {
+        float energy = this.storage.getEnergyStoredGC();
+
+        if (!this.world.isRemote)
+        {
+            if (this.lastEnergy - energy > this.storage.getMaxExtract() - 1)
+            {
+                this.storage.extractEnergyGC(25, false);
+            }
+        }
+
+        this.lastEnergy = energy;
         super.update();
         this.scaledEnergyLevel = (int) Math.floor((this.getEnergyStoredGC() + 49) * 16 / this.getMaxEnergyStoredGC());
 
@@ -129,7 +139,7 @@ public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElect
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container.tiered_energy_storage_cluster_1.name");
+        return LangUtils.translate("container." + this.containerName + ".name");
     }
 
     @Override

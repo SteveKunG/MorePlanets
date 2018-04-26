@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidBaseMP;
@@ -55,7 +55,7 @@ public class BlockFluidCrystallizeWater extends BlockFluidBaseMP implements IFis
                 double d5 = pos.getX() + rand.nextFloat();
                 double d6 = pos.getY() - 1.05D;
                 double d7 = pos.getZ() + rand.nextFloat();
-                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CRYSTALLIZE_WATER_DRIP, d5, d6, d7);
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CRYSTALLIZE_WATER_DRIP, d5, d6, d7);
             }
         }
     }

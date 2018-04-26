@@ -83,7 +83,7 @@ public class BlockInfectedCrystallizeSlime extends BlockBreakableMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_BLOCK;
     }

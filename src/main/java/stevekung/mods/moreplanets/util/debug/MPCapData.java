@@ -5,7 +5,7 @@ import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 
 public class MPCapData implements MorePlanetsCapabilityData
 {
-    private String startedCelestial = ConfigManagerMP.startedPlanet;
+    private String startedCelestial = ConfigManagerMP.moreplanets_general.startedPlanet;
 
     @Override
     public void writeNBT(NBTTagCompound nbt)

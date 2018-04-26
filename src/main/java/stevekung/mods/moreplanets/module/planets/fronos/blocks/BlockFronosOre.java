@@ -346,7 +346,7 @@ public class BlockFronosOre extends BlockBaseMP implements IDetectableResource, 
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.ORE;
     }

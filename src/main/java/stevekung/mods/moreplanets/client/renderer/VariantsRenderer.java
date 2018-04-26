@@ -2,8 +2,6 @@ package stevekung.mods.moreplanets.client.renderer;
 
 import java.util.Arrays;
 
-import stevekung.mods.moreplanets.blocks.BlockPolishedSpaceDecoration;
-import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
 import stevekung.mods.moreplanets.blocks.decoration.*;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -39,11 +37,9 @@ public class VariantsRenderer
     {
         VariantsRenderer.init3DRendering();
 
-        ClientRegisterHelper.registerVariantsName(MPBlocks.POLISHED_SPACE_DECORATION, BlockPolishedSpaceDecoration.BlockType.class);
         ClientRegisterHelper.registerVariantsName(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, BlockHalfDungeonBrickSlab1.BlockType.class);
         ClientRegisterHelper.registerVariantsName(MPBlocks.HALF_COBBLESTONE_SLAB_1, BlockHalfCobblestoneSlab1.BlockType.class);
         ClientRegisterHelper.registerVariantsName(MPBlocks.HALF_WOODEN_SLAB_1, BlockHalfWoodenSlab1.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, BlockTieredEnergyStorage.BlockType.class);
         ClientRegisterHelper.registerVariantsName(MPBlocks.COBBLESTONE_WALL, BlockCobblestoneWall.BlockType.class);
         ClientRegisterHelper.registerVariantsName(MPBlocks.DUNGEON_BRICK_WALL, BlockDungeonBrickWall.BlockType.class);
         ClientRegisterHelper.registerVariantsName(DionaBlocks.DIONA_BLOCK, BlockDiona.BlockType.class);
@@ -80,9 +76,6 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(FronosBlocks.CANDY_CANE_1, BlockCandyCane1.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.CANDY_CANE_2, BlockCandyCane2.BlockType.class);
         ClientRegisterHelper.registerVariantsName(FronosBlocks.JELLY_BLOCK, BlockJelly.BlockType.class);
-        ClientRegisterHelper.registerVariantNameWithDyeColor(MPBlocks.TINTED_GLASS);
-        ClientRegisterHelper.registerVariantNameWithDyeColor(MPBlocks.TINTED_GLASS_PANE);
-        ClientRegisterHelper.registerVariantNameWithDyeColor(KoentusBlocks.GLOWING_HARDENED_ICE);
 
         ClientRegisterHelper.registerVariantsName(MPItems.SPACE_BOW, "space_bow", "space_bow_pulling_0", "space_bow_pulling_1", "space_bow_pulling_2");
         ClientRegisterHelper.registerVariantsName(MPItems.SPACE_FISHING_ROD, "space_fishing_rod", "space_fishing_rod_cast");
@@ -109,7 +102,7 @@ public class VariantsRenderer
 
     private static void init3DRendering()
     {
-        if (!ConfigManagerMP.use3DTorchItemModel)
+        if (!ConfigManagerMP.moreplanets_general.use3DTorchItemModel)
         {
             ClientRegisterHelper.registerVariantsName(DionaBlocks.INFECTED_CRYSTALLIZE_TORCH, "infected_crystallize_torch_vanilla");
             ClientRegisterHelper.registerVariantsName(NibiruBlocks.INFECTED_TORCH, "infected_torch_vanilla");

@@ -26,17 +26,17 @@ import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityProvider, IBlockDescription
 {
@@ -67,8 +67,8 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                     double z = pos.getZ() + rand.nextFloat();
                     double motionX = rand.nextDouble() - 0.5D;
                     double motionZ = rand.nextDouble() - 0.5D;
-                    MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, x + 0.5D, y, z, motionX, 1.0D, 0.0D);
-                    MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, x + 0.5D, y, z + 0.0D, 0.0D, 1.0D, motionZ);
+                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, x + 0.5D, y, z, motionX, 1.0D, 0.0D);
+                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, x + 0.5D, y, z + 0.0D, 0.0D, 1.0D, motionZ);
                 }
             }
         }
@@ -103,19 +103,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         storage.useHopper = itemStack.getTagCompound().getBoolean("Hopper");
                         storage.collectMode = itemStack.getTagCompound().getString("Mode");
                         ItemStackHelper.loadAllItems(itemStack.getTagCompound(), storage.inventory);
-
-                        //TODO: Remove in 1.13
-                        if (itemStack.getTagCompound().hasKey("XP"))
-                        {
-                            NBTTagCompound fluidNbt = new NBTTagCompound();
-                            fluidNbt.setString("FluidName", "xpjuice");
-                            fluidNbt.setInteger("Amount", itemStack.getTagCompound().getInteger("XP"));
-                            storage.fluidTank.readFromNBT(fluidNbt);
-                        }
-                        else
-                        {
-                            storage.fluidTank.readFromNBT(itemStack.getTagCompound().getCompoundTag("XpFluid"));
-                        }
+                        storage.fluidTank.readFromNBT(itemStack.getTagCompound().getCompoundTag("XpFluid"));
                     }
                 }
             }
@@ -161,13 +149,12 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                         }
                         else
                         {
-                            player.openGui(MorePlanetsCore.MOD_ID, -1, world, pos.getX(), pos.getY(), pos.getZ());
+                            player.openGui(MorePlanetsMod.MOD_ID, -1, world, pos.getX(), pos.getY(), pos.getZ());
                         }
                     }
                     else
                     {
-                        JsonUtil json = new JsonUtil();
-                        player.sendMessage(json.text(GCCoreUtil.translate("gui.bh_storage_not_owner.message")).setStyle(json.red()));
+                        player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.bh_storage_not_owner.message")).setStyle(JsonUtils.red()));
                     }
                 }
             }
@@ -271,7 +258,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.MACHINE_BLOCK;
     }

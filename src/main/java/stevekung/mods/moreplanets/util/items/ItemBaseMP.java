@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.util.items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 
 public class ItemBaseMP extends Item implements ISortableItem, ISingleItemRender
@@ -32,7 +32,7 @@ public class ItemBaseMP extends Item implements ISortableItem, ISingleItemRender
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return MorePlanetsCore.ITEM_TAB;
+        return MorePlanetsMod.ITEM_TAB;
     }
 
     @Override

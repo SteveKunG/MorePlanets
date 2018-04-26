@@ -2,11 +2,9 @@ package stevekung.mods.moreplanets.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -29,22 +27,26 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
+import stevekung.mods.stevekunglib.utils.CommonUtils;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescription, ISingleBlockRender
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.225D, 0.0D, 0.225D, 0.775D, 0.7D, 0.775D);
+
     public BlockDarkEnergyReceiver(String name)
     {
         super(Material.IRON);
@@ -92,7 +94,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack itemStack)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile, ItemStack heldStack)
     {
         ItemStack machine = new ItemStack(this);
         player.addExhaustion(0.025F);
@@ -122,28 +124,27 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
         }
         else
         {
-            if (player.isSneaking())
+            if (world.getTileEntity(pos) instanceof TileEntityDarkEnergyReceiver)
             {
-                if (world.getTileEntity(pos) instanceof TileEntityDarkEnergyReceiver)
-                {
-                    TileEntityDarkEnergyReceiver tile = (TileEntityDarkEnergyReceiver) world.getTileEntity(pos);
+                TileEntityDarkEnergyReceiver tile = (TileEntityDarkEnergyReceiver) world.getTileEntity(pos);
 
+                if (player.isSneaking())
+                {
                     if (TileEntityDarkEnergyReceiver.checkValidMultiblock(pos, world))
                     {
-                        for (Map.Entry<BlockPos, IBlockState> list : TileEntityDarkEnergyReceiver.multiBlockLists.entrySet())
+                        TileEntityDarkEnergyReceiver.multiBlockLists.entrySet().forEach(list ->
                         {
                             BlockPos blockpos = list.getKey();
                             IBlockState blockstate = list.getValue();
                             BlockPos newPos = pos.add(blockpos);
-                            JsonUtil json = new JsonUtil();
 
                             if (world.getBlockState(newPos) != blockstate)
                             {
                                 Item item = Item.getItemFromBlock(blockstate.getBlock());
                                 String name = item.getItemStackDisplayName(new ItemStack(item, 1, blockstate.getBlock().getMetaFromState(blockstate)));
-                                player.sendMessage(json.text("Missing block " + name + " at " + newPos.getX() + " " + newPos.getY() + " " + newPos.getZ()).setStyle(json.red()));
+                                player.sendMessage(JsonUtils.create(LangUtils.translate("gui.missing_block.message", name, newPos.getX(), newPos.getY(), newPos.getZ())).setStyle(JsonUtils.red()));
                             }
-                        }
+                        });
                     }
                     else
                     {
@@ -155,12 +156,12 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                                 {
                                     tile.setActivated(true);
                                     tile.getWorld().playSound(player, tile.getPos(), MPSounds.MACHINE_START, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                                    player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_success.message")).setStyle(new JsonUtil().colorFromConfig("green")));
+                                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.dark_energy_success.message")).setStyle(JsonUtils.green()));
                                     return true;
                                 }
                                 else
                                 {
-                                    player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_already_active.message")).setStyle(new JsonUtil().red()));
+                                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.dark_energy_already_active.message")).setStyle(JsonUtils.red()));
                                     return false;
                                 }
                             }
@@ -168,25 +169,20 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                             {
                                 if (!tile.isActivated())
                                 {
-                                    player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_no_power.message")).setStyle(new JsonUtil().red()));
+                                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.dark_energy_no_power.message")).setStyle(JsonUtils.red()));
                                     return false;
                                 }
                             }
                         }
                         else
                         {
-                            player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(new JsonUtil().red()));
+                            player.sendMessage(JsonUtils.create(LangUtils.translate("gui.dark_energy_disabled.message")).setStyle(JsonUtils.red()));
                             return false;
                         }
                     }
                 }
-            }
-            else
-            {
-                if (world.getTileEntity(pos) instanceof TileEntityDarkEnergyReceiver)
+                else
                 {
-                    TileEntityDarkEnergyReceiver tile = (TileEntityDarkEnergyReceiver) world.getTileEntity(pos);
-
                     if (tile.failedTick > 0 && !tile.successful)
                     {
                         int failedTick = 600 - tile.failedTick;
@@ -196,14 +192,14 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                         {
                             s = "";
                         }
-                        player.sendMessage(new JsonUtil().text(GCCoreUtil.translateWithFormat("gui.dark_energy_malfunction.message", this.ticksToElapsedTime(failedTick)) + " second" + s + "!").setStyle(new JsonUtil().red()));
+                        player.sendMessage(JsonUtils.create(LangUtils.translate("gui.dark_energy_malfunction.message", CommonUtils.ticksToElapsedTime(failedTick)) + " second" + s + "!").setStyle(JsonUtils.red()));
                         return false;
                     }
                     else
                     {
                         if (!tile.failed)
                         {
-                            player.openGui(MorePlanetsCore.MOD_ID, -1, world, pos.getX(), pos.getY(), pos.getZ());
+                            player.openGui(MorePlanetsMod.MOD_ID, -1, world, pos.getX(), pos.getY(), pos.getZ());
                         }
                         return true;
                     }
@@ -213,18 +209,10 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
         return false;
     }
 
-    private String ticksToElapsedTime(int ticks)
-    {
-        int i = ticks / 20;
-        int j = i / 60;
-        i = i % 60;
-        return i < 10 ? j + ":0" + i : j + ":" + i;
-    }
-
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(0.225D, 0.0D, 0.225D, 0.775D, 0.7D, 0.775D);
+        return BlockDarkEnergyReceiver.AABB;
     }
 
     @Override
@@ -287,7 +275,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                     int j = rand.nextInt(2) * 2 - 1;
                     d2 = pos.getZ() + 0.5D + 0.25D * j;
                     d5 = rand.nextFloat() * 2.0F * j;
-                    MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, d0, d1, d2, d3, d4, d5);
+                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, d0, d1, d2, d3, d4, d5);
                 }
                 for (int i = 0; i < 32; ++i)
                 {
@@ -300,7 +288,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                     int j = rand.nextInt(2) * 2 - 1;
                     d0 = pos.getX() + 0.5D + 0.25D * j;
                     d3 = rand.nextFloat() * 2.0F * j;
-                    MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, d0, d1, d2, d3, d4, d5);
+                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, d0, d1, d2, d3, d4, d5);
                 }
             }
         }
@@ -364,7 +352,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta)
+    public TileEntity createTileEntity(World world, IBlockState state)
     {
         return new TileEntityDarkEnergyReceiver();
     }
@@ -388,7 +376,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.MACHINE_NON_BLOCK;
     }

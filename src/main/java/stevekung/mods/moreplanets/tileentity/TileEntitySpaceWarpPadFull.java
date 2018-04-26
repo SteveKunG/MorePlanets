@@ -26,7 +26,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 
@@ -91,7 +90,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
 
                 if (!vecToAdd.equals(placedPosition))
                 {
-                    MPBlocks.DUMMY_BLOCK.makeFakeBlock(world, vecToAdd, placedPosition, BlockDummy.BlockType.WARP_PAD);
+                    MPBlocks.WARP_PAD_DUMMY.makeFakeBlock(world, vecToAdd, placedPosition);
                 }
             }
         }

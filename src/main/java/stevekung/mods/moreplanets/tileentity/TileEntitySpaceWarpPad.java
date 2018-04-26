@@ -10,7 +10,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 public class TileEntitySpaceWarpPad extends TileEntity implements ITickable
 {
     private int corner = 0;
-    
+
     @Override
     public void update()
     {

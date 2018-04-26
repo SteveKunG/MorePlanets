@@ -5,7 +5,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.util.EnumToolSpeed;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
@@ -41,7 +41,7 @@ public class ItemAxeMP extends ItemAxe implements ISortableItem
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return MorePlanetsCore.ITEM_TAB;
+        return MorePlanetsMod.ITEM_TAB;
     }
 
     @Override

@@ -1608,8 +1608,8 @@ public class StructureNibiruStrongholdPieces
             if (box.isVecInside(pos))
             {
                 world.setBlockState(pos, NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, Boolean.valueOf(rand.nextFloat() > 0.9F) ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE), 2);
-                world.setBlockState(pos.up(), MPBlocks.DUMMY_BLOCK.getStateFromMeta(5), 2);
-                world.setBlockState(pos.up(2), MPBlocks.DUMMY_BLOCK.getStateFromMeta(6), 2);
+                world.setBlockState(pos.up(), MPBlocks.NWT_MIDDLE_DUMMY.getDefaultState(), 2);
+                world.setBlockState(pos.up(2), MPBlocks.NWT_TOP_DUMMY.getDefaultState(), 2);
                 TileEntity tile = world.getTileEntity(pos);
                 TileEntity tile1 = world.getTileEntity(pos.up());
                 TileEntity tile2 = world.getTileEntity(pos.up(2));

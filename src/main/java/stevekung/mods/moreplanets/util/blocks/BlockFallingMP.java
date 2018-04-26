@@ -6,7 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
 
@@ -32,7 +32,7 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISin
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return MorePlanetsCore.BLOCK_TAB;
+        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISin
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.BUILDING_BLOCK;
     }

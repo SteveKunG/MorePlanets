@@ -17,9 +17,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class ItemInfectedSugarCane extends ItemBaseMP
 {
@@ -37,7 +37,7 @@ public class ItemInfectedSugarCane extends ItemBaseMP
         Block block = iblockstate.getBlock();
         BlockBushMP cane = NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK;
 
-        if (block == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1 || block == NibiruBlocks.INFECTED_SNOW_LAYER && iblockstate.getValue(BlockStateHelper.LAYERS).intValue() < 1)
+        if (block == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1 || block == NibiruBlocks.INFECTED_SNOW_LAYER && iblockstate.getValue(BlockStateProperty.LAYERS).intValue() < 1)
         {
             facing = EnumFacing.UP;
         }

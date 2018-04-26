@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedChicken;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.util.blocks.BlockFarmlandMP;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockInfectedFarmland extends BlockFarmlandMP
 {
@@ -20,7 +20,7 @@ public class BlockInfectedFarmland extends BlockFarmlandMP
     {
         super();
         this.name = name;
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.MOISTURE, Integer.valueOf(0)));
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.MOISTURE, Integer.valueOf(0)));
         this.setUnlocalizedName(name);
     }
 

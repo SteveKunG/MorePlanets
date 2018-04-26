@@ -31,7 +31,7 @@ import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityLargeInfectedCrystallize;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileEntityProvider
 {
@@ -43,14 +43,14 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
         this.setHardness(0.4F);
         this.setSoundType(SoundType.GLASS);
         this.setUnlocalizedName(name);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING_ALL, EnumFacing.UP));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_ALL, EnumFacing.UP));
         this.setLightOpacity(255);
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        EnumFacing facing = state.getValue(BlockStateHelper.FACING_ALL);
+        EnumFacing facing = state.getValue(BlockStateProperty.FACING_ALL);
         double box = 0.0625D;
 
         switch (facing)
@@ -203,13 +203,13 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.canPlaceBlock(world, pos, facing.getOpposite()) ? this.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, facing) : this.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, EnumFacing.DOWN);
+        return this.canPlaceBlock(world, pos, facing.getOpposite()) ? this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, facing) : this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, EnumFacing.DOWN);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
-        if (this.checkForDrop(world, pos) && !this.canPlaceBlock(world, pos, state.getValue(BlockStateHelper.FACING_ALL).getOpposite()))
+        if (this.checkForDrop(world, pos) && !this.canPlaceBlock(world, pos, state.getValue(BlockStateProperty.FACING_ALL).getOpposite()))
         {
             world.destroyBlock(pos, false);
             world.setBlockToAir(pos);
@@ -257,7 +257,7 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
         default:
             facing = EnumFacing.UP;
         }
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, facing);
+        return this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, facing);
     }
 
     @Override
@@ -265,7 +265,7 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     {
         int i;
 
-        switch (state.getValue(BlockStateHelper.FACING_ALL))
+        switch (state.getValue(BlockStateProperty.FACING_ALL))
         {
         case EAST:
             i = 1;
@@ -292,23 +292,23 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rotation)
     {
-        return state.withProperty(BlockStateHelper.FACING_ALL, rotation.rotate(state.getValue(BlockStateHelper.FACING_ALL)));
+        return state.withProperty(BlockStateProperty.FACING_ALL, rotation.rotate(state.getValue(BlockStateProperty.FACING_ALL)));
     }
 
     @Override
     public IBlockState withMirror(IBlockState state, Mirror mirror)
     {
-        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING_ALL)));
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateProperty.FACING_ALL)));
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockStateHelper.FACING_ALL);
+        return new BlockStateContainer(this, BlockStateProperty.FACING_ALL);
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }

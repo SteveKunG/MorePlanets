@@ -9,7 +9,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 
@@ -81,6 +81,6 @@ public class BlackHoleStorageRecipeCategory implements IRecipeCategory
     @Override
     public String getModName()
     {
-        return MorePlanetsCore.NAME;
+        return MorePlanetsMod.NAME;
     }
 }

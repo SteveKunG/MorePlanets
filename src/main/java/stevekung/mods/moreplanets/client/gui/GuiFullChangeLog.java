@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 @SideOnly(Side.CLIENT)
 public class GuiFullChangeLog extends GuiScreen
@@ -44,7 +44,7 @@ public class GuiFullChangeLog extends GuiScreen
     public void initGui()
     {
         List<String> debugText = new LinkedList<>();
-        debugText.add("More Planets " + MorePlanetsCore.VERSION + " Change Log for Minecraft " + ForgeVersion.mcVersion);
+        debugText.add("More Planets " + MorePlanetsMod.VERSION + " Change Log for Minecraft " + ForgeVersion.mcVersion);
         this.buttonList.clear();
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height - 45, I18n.format("gui.done")));
 
@@ -73,7 +73,7 @@ public class GuiFullChangeLog extends GuiScreen
             catch (Exception e) {}
         }
 
-        if (MorePlanetsCore.isObfuscatedEnvironment())
+        if (MorePlanetsMod.isDevelopmentEnvironment())
         {
             try
             {

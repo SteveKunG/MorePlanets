@@ -26,7 +26,7 @@ public class CraftingManagerNibiru
         CraftingManagerNibiru.addBlockSmelting();
         CraftingManagerNibiru.addItemSmelting();
 
-        if (ConfigManagerMP.enableTier6RocketRecipe)
+        if (ConfigManagerMP.moreplanets_addon_compat.enableTier6RocketRecipe)
         {
             CraftingManagerNibiru.addRocketRecipe();
         }

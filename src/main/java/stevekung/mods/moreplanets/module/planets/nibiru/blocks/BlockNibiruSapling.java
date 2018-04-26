@@ -90,7 +90,7 @@ public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, I
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.SAPLING;
     }

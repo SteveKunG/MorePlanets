@@ -10,11 +10,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class ItemAlienDefenderReinforcement extends ItemBaseMP
 {
@@ -44,7 +44,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.alien_defender_beacon.message")).setStyle(new JsonUtil().colorFromConfig("yellow")).getFormattedText(), false);
+                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.alien_defender_beacon.message")).setStyle(JsonUtils.yellow()).getFormattedText());
                     player.swingArm(hand);
                 }
                 else
@@ -63,7 +63,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.not_air_block.message")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.not_air_block.message")).setStyle(JsonUtils.red()).getFormattedText());
                     player.swingArm(hand);
                 }
             }
@@ -72,7 +72,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
         {
             if (world.isRemote && disable)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.target_too_far.message", range)).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.target_too_far.message", range)).setStyle(JsonUtils.red()).getFormattedText());
                 player.swingArm(hand);
             }
         }

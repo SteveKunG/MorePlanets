@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 
 public class MPLog
@@ -28,7 +28,7 @@ public class MPLog
 
     public static void debug(String message)
     {
-        if (ConfigManagerMP.enableDebug || MorePlanetsCore.isObfuscatedEnvironment())
+        if (ConfigManagerMP.moreplanets_general.enableDebug || MorePlanetsMod.isDevelopmentEnvironment())
         {
             MPLog.LOG_DEBUG.info(message);
         }
@@ -51,7 +51,7 @@ public class MPLog
 
     public static void debug(String message, Object... obj)
     {
-        if (ConfigManagerMP.enableDebug || MorePlanetsCore.isObfuscatedEnvironment())
+        if (ConfigManagerMP.moreplanets_general.enableDebug || MorePlanetsMod.isDevelopmentEnvironment())
         {
             MPLog.LOG_DEBUG.info(message, obj);
         }

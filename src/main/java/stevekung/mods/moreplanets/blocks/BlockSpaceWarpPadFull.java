@@ -5,7 +5,6 @@ import java.util.Random;
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -27,15 +26,18 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.TeleportUtil;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartialSealableBlock
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4D, 1.0D);
+
     public BlockSpaceWarpPadFull(String name)
     {
         super(Material.ROCK);
@@ -72,7 +74,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4D, 1.0D);
+        return BlockSpaceWarpPadFull.AABB;
     }
 
     @Override
@@ -82,7 +84,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
         {
             for (int z2 = -1; z2 < 2; ++z2)
             {
-                if (!super.canPlaceBlockAt(world, new BlockPos(pos.getX() + x2, pos.getY(), pos.getZ() + z2)))
+                if (!super.canPlaceBlockAt(world, pos.add(x2, 0, z2)))
                 {
                     return false;
                 }
@@ -137,7 +139,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(MPBlocks.SPACE_WARP_PAD, 1, 0);
+        return new ItemStack(MPBlocks.SPACE_WARP_PAD);
     }
 
     @Override
@@ -162,7 +164,6 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                 if (tile instanceof TileEntitySpaceWarpPadFull)
                 {
                     TileEntitySpaceWarpPadFull warpPad = (TileEntitySpaceWarpPadFull) tile;
-                    JsonUtil json = new JsonUtil();
 
                     if (!warpPad.disabled)
                     {
@@ -170,7 +171,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                         {
                             if (warpPad.getDestinationPos() == null)
                             {
-                                player.sendMessage(json.text(GCCoreUtil.translate("gui.no_warp_destination.message")).setStyle(json.red()));
+                                player.sendMessage(JsonUtils.create(LangUtils.translate("gui.no_warp_destination.message")).setStyle(JsonUtils.red()));
                                 return true;
                             }
                             else
@@ -180,32 +181,32 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                                     warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
                                     TeleportUtil.teleportEntity(player, warpPad.getDimensionId(), warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getRotationPitch(), warpPad.getRotationYaw());
                                     world.playSound(null, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 0.75F, 1.0F);
-                                    MPLog.debug("Teleport player to %s, %s, %s, %s, %s", warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionId()).getDimensionType().getName());
+                                    MPLog.debug("Teleport player to {} {} {} {} {}", warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionId()).getDimensionType().getName());
                                     return true;
                                 }
                                 else
                                 {
-                                    player.sendMessage(json.text(GCCoreUtil.translate("gui.status.missingpower.name")).setStyle(json.red()));
+                                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.status.missingpower.name")).setStyle(JsonUtils.red()));
                                     return true;
                                 }
                             }
                         }
                         else
                         {
-                            player.sendMessage(json.text(GCCoreUtil.translate("gui.status.warp_core_required.name")).setStyle(json.red()));
+                            player.sendMessage(JsonUtils.create(LangUtils.translate("gui.status.warp_core_required.name")).setStyle(JsonUtils.red()));
                             return true;
                         }
                     }
                     else
                     {
-                        player.sendMessage(json.text(GCCoreUtil.translate("gui.dark_energy_disabled.message")).setStyle(json.red()));
+                        player.sendMessage(JsonUtils.create(LangUtils.translate("gui.dark_energy_disabled.message")).setStyle(JsonUtils.red()));
                         return true;
                     }
                 }
             }
             else
             {
-                player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
+                player.openGui(MorePlanetsMod.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
                 return true;
             }
         }

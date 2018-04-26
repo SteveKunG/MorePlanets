@@ -20,7 +20,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.ItemNibiruFruits;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
@@ -28,7 +28,7 @@ import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockLeavesMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
 {
@@ -38,7 +38,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     public BlockNibiruLeaves(String name)
     {
         super();
-        this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.INFECTED_OAK_LEAVES).withProperty(BlockStateHelper.CHECK_DECAY, true).withProperty(BlockStateHelper.DECAYABLE, true));
+        this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.INFECTED_OAK_LEAVES).withProperty(BlockStateProperty.CHECK_DECAY, true).withProperty(BlockStateProperty.DECAYABLE, true));
         this.setUnlocalizedName(name);
     }
 
@@ -64,7 +64,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
                 double d0 = pos.getX() + rand.nextFloat();
                 double d1 = pos.getY() - 0.05D;
                 double d2 = pos.getZ() + rand.nextFloat();
-                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_BERRY_LEAVES, d0, d1, d2);
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_BERRY_LEAVES, d0, d1, d2);
             }
         }
     }
@@ -84,13 +84,13 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, VARIANT, BlockStateHelper.DECAYABLE, BlockStateHelper.CHECK_DECAY);
+        return new BlockStateContainer(this, VARIANT, BlockStateProperty.DECAYABLE, BlockStateProperty.CHECK_DECAY);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[(meta & 3) % 4]).withProperty(BlockStateHelper.DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(BlockStateHelper.CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
+        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[(meta & 3) % 4]).withProperty(BlockStateProperty.DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(BlockStateProperty.CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
     }
 
     @Override
@@ -99,11 +99,11 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
         byte b0 = 0;
         int i = b0 | state.getValue(VARIANT).ordinal();
 
-        if (!state.getValue(BlockStateHelper.DECAYABLE).booleanValue())
+        if (!state.getValue(BlockStateProperty.DECAYABLE).booleanValue())
         {
             i |= 4;
         }
-        if (state.getValue(BlockStateHelper.CHECK_DECAY).booleanValue())
+        if (state.getValue(BlockStateProperty.CHECK_DECAY).booleanValue())
         {
             i |= 8;
         }
@@ -131,7 +131,7 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_BLOCK;
     }

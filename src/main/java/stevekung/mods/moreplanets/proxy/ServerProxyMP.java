@@ -2,24 +2,27 @@ package stevekung.mods.moreplanets.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 
 public class ServerProxyMP
 {
-    public void registerPreRendering() {}
+    public void preInit(FMLPreInitializationEvent event) {}
 
-    public void registerPostRendering() {}
+    public void init(FMLInitializationEvent event) {}
 
-    public void registerInitRendering() {}
+    public void postInit(FMLPostInitializationEvent event) {}
 
     public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z) {}
 
-    public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, Object[] objects) {}
+    public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, Object... objects) {}
 
     public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, double motionX, double motionY, double motionZ) {}
 
-    public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, double motionX, double motionY, double motionZ, Object[] objects) {}
+    public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, double motionX, double motionY, double motionZ, Object... objects) {}
 
     public void resetFloatingTick(EntityPlayer player)
     {
@@ -33,5 +36,6 @@ public class ServerProxyMP
 
     public void removeBoss(IMorePlanetsBoss boss) {}
 
+    @Deprecated
     public void registerVariant() {}
 }

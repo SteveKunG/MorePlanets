@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
@@ -171,7 +171,7 @@ public class EntityJellySlime extends EntitySlimeBaseMP
             float f3 = MathHelper.cos(f) * i * 0.5F * f1;
             double d0 = this.posX + f2;
             double d1 = this.posZ + f3;
-            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING_META, d0, this.getEntityBoundingBox().minY, d1, new Object[] { FronosItems.JELLY, this.getJellySlimeType() });
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING_META, d0, this.getEntityBoundingBox().minY, d1, new Object[] { FronosItems.JELLY, this.getJellySlimeType() });
         }
     }
 

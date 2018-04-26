@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidBaseMP;
@@ -58,7 +58,7 @@ public class BlockFluidCheeseOfMilk extends BlockFluidBaseMP implements IFishabl
                 double d5 = pos.getX() + rand.nextFloat();
                 double d6 = pos.getY() - 1.05D;
                 double d7 = pos.getZ() + rand.nextFloat();
-                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CHEESE_OF_MILK_DRIP, d5, d6, d7);
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CHEESE_OF_MILK_DRIP, d5, d6, d7);
             }
         }
     }

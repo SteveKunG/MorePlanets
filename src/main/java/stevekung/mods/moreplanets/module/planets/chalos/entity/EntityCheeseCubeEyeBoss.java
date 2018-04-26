@@ -38,16 +38,16 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.entity.EntityFlyingBossMP;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IMorePlanetsBoss
 {
@@ -232,7 +232,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     @Override
     public void setDead()
     {
-        MorePlanetsCore.PROXY.removeBoss(this);
+        MorePlanetsMod.PROXY.removeBoss(this);
         super.setDead();
     }
 
@@ -265,8 +265,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
                 for (EntityPlayer player2 : playerWithin)
                 {
-                    JsonUtil json = new JsonUtil();
-                    player2.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    player2.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
                 }
                 this.setDead();
                 return;
@@ -281,7 +280,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public void onUpdate()
     {
         super.onUpdate();
-        MorePlanetsCore.PROXY.addBoss(this);
+        MorePlanetsMod.PROXY.addBoss(this);
 
         if (this.getHealth() <= 0.0F)
         {

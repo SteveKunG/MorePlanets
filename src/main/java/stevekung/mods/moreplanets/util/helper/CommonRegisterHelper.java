@@ -43,7 +43,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.util.EnumHarvestLevel;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
@@ -200,7 +200,7 @@ public class CommonRegisterHelper
 
     public static void registerEntity(Class<? extends Entity> entity, String name, int backgroundColor, int foregroundColor, int trackingRange, int updateFrequency)
     {
-        EntityRegistry.registerModEntity(new ResourceLocation("moreplanets:" + name), entity, "moreplanets." + name, CommonRegisterHelper.ID++, MorePlanetsCore.MOD_ID, trackingRange, updateFrequency, true, backgroundColor, foregroundColor);
+        EntityRegistry.registerModEntity(new ResourceLocation("moreplanets:" + name), entity, "moreplanets." + name, CommonRegisterHelper.ID++, MorePlanetsMod.MOD_ID, trackingRange, updateFrequency, true, backgroundColor, foregroundColor);
     }
 
     public static void registerNonMobEntity(Class<? extends Entity> entity, String name)
@@ -215,7 +215,7 @@ public class CommonRegisterHelper
 
     public static void registerNonMobEntity(Class<? extends Entity> entity, String name, int trackingRange, int updateFrequency)
     {
-        EntityRegistry.registerModEntity(new ResourceLocation("moreplanets:" + name), entity, name, CommonRegisterHelper.ID++, MorePlanetsCore.MOD_ID, trackingRange, updateFrequency, true);
+        EntityRegistry.registerModEntity(new ResourceLocation("moreplanets:" + name), entity, name, CommonRegisterHelper.ID++, MorePlanetsMod.MOD_ID, trackingRange, updateFrequency, true);
     }
 
     public static void registerEntityPlacement(Class<? extends Entity> entity, SpawnPlacementType type)
@@ -295,7 +295,7 @@ public class CommonRegisterHelper
 
             for (ItemStack itemStack : blocks)
             {
-                EnumSortCategoryBlock categoryBlock = sortableBlock.getBlockCategory(itemStack.getItemDamage());
+                EnumSortCategoryBlock categoryBlock = sortableBlock.getBlockCategory();
 
                 if (!CommonRegisterHelper.SORT_MAP_BLOCKS.containsKey(categoryBlock))
                 {
@@ -304,7 +304,7 @@ public class CommonRegisterHelper
                 CommonRegisterHelper.SORT_MAP_BLOCKS.get(categoryBlock).add(new StackSorted(itemStack.getItem(), itemStack.getItemDamage()));
             }
         }
-        else if (block.getCreativeTabToDisplayOn() == MorePlanetsCore.BLOCK_TAB)
+        else if (block.getCreativeTabToDisplayOn() == MorePlanetsMod.BLOCK_TAB)
         {
             throw new RuntimeException(block.getClass() + " must inherit " + ISortableBlock.class.getSimpleName() + "!");
         }
@@ -324,7 +324,7 @@ public class CommonRegisterHelper
             }
         }
         Comparator<ItemStack> tabSorterBlocks = Ordering.explicit(itemOrderListBlocks).onResultOf(input -> new StackSorted(input.getItem(), input.getItemDamage()));
-        MorePlanetsCore.BLOCK_TAB.setTabSorter(tabSorterBlocks);
+        MorePlanetsMod.BLOCK_TAB.setTabSorter(tabSorterBlocks);
     }
 
     public static void registerSorted(Item item)
@@ -333,7 +333,7 @@ public class CommonRegisterHelper
         {
             ISortableItem sortableItem = (ISortableItem) item;
             NonNullList<ItemStack> items = NonNullList.create();
-            item.getSubItems(MorePlanetsCore.ITEM_TAB, items);
+            item.getSubItems(MorePlanetsMod.ITEM_TAB, items);
 
             for (ItemStack itemStack : items)
             {
@@ -346,7 +346,7 @@ public class CommonRegisterHelper
                 CommonRegisterHelper.SORT_MAP_ITEMS.get(categoryItem).add(new StackSorted(itemStack.getItem(), itemStack.getItemDamage()));
             }
         }
-        else if (item.getCreativeTab() == MorePlanetsCore.ITEM_TAB)
+        else if (item.getCreativeTab() == MorePlanetsMod.ITEM_TAB)
         {
             throw new RuntimeException(item.getClass() + " must inherit " + ISortableItem.class.getSimpleName() + "!");
         }
@@ -366,7 +366,7 @@ public class CommonRegisterHelper
             }
         }
         Comparator<ItemStack> tabSorterItems = Ordering.explicit(itemOrderListItems).onResultOf(input -> new StackSorted(input.getItem(), input.getItemDamage()));
-        MorePlanetsCore.ITEM_TAB.setTabSorter(tabSorterItems);
+        MorePlanetsMod.ITEM_TAB.setTabSorter(tabSorterItems);
     }
 
     public static boolean isShiftKeyDown()
@@ -389,6 +389,6 @@ public class CommonRegisterHelper
 
     public static boolean isItemTab(CreativeTabs creativeTabs)
     {
-        return creativeTabs == MorePlanetsCore.ITEM_TAB || creativeTabs == CreativeTabs.SEARCH;
+        return creativeTabs == MorePlanetsMod.ITEM_TAB || creativeTabs == CreativeTabs.SEARCH;
     }
 }

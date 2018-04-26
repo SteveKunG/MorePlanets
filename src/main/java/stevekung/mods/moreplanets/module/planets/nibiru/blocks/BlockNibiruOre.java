@@ -290,7 +290,7 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.ORE;
     }

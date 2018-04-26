@@ -10,12 +10,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.helper.BlockEventHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
 {
@@ -34,7 +33,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
         {
             if (world.isRemote)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.place_in_liquid.message")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.place_in_liquid.message")).setStyle(JsonUtils.red()).getFormattedText());
             }
             return false;
         }
@@ -50,7 +49,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
                 }
                 return false;
             }
@@ -58,7 +57,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
                 }
                 return false;
             }
@@ -66,11 +65,11 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (!vecToAdd.equals(pos))
                 {
-                    MPBlocks.DUMMY_BLOCK.makeFakeBlock(world, vecToAdd, pos, BlockDummy.BlockType.DARK_ENERGY_SOLAR1);
+                    MPBlocks.DER_SOLAR1_DUMMY.makeFakeBlock(world, vecToAdd, pos);
                 }
                 if (!vecToAdd1.equals(pos))
                 {
-                    MPBlocks.DUMMY_BLOCK.makeFakeBlock(world, vecToAdd1, pos, BlockDummy.BlockType.DARK_ENERGY_SOLAR2);
+                    MPBlocks.DER_SOLAR2_DUMMY.makeFakeBlock(world, vecToAdd1, pos);
                 }
                 return super.placeBlockAt(itemStack, player, world, pos, facing, hitX, hitY, hitZ, state);
             }
@@ -86,7 +85,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
                 }
                 return false;
             }
@@ -94,7 +93,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (world.isRemote)
                 {
-                    FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
                 }
                 return false;
             }
@@ -102,11 +101,11 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
             {
                 if (!vecToAdd.equals(pos))
                 {
-                    MPBlocks.DUMMY_BLOCK.makeFakeBlock(world, vecToAdd, pos, BlockDummy.BlockType.DARK_ENERGY_SOLAR3);
+                    MPBlocks.DER_SOLAR3_DUMMY.makeFakeBlock(world, vecToAdd, pos);
                 }
                 if (!vecToAdd1.equals(pos))
                 {
-                    MPBlocks.DUMMY_BLOCK.makeFakeBlock(world, vecToAdd1, pos, BlockDummy.BlockType.DARK_ENERGY_SOLAR4);
+                    MPBlocks.DER_SOLAR4_DUMMY.makeFakeBlock(world, vecToAdd1, pos);
                 }
                 return super.placeBlockAt(itemStack, player, world, pos, facing, hitX, hitY, hitZ, state);
             }

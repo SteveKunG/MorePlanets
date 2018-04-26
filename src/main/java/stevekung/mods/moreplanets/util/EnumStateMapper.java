@@ -8,7 +8,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 @SideOnly(Side.CLIENT)
 public enum EnumStateMapper
@@ -18,9 +18,9 @@ public enum EnumStateMapper
     FORGE_LEVEL(BlockFluidBase.LEVEL),
     VANILLA_LEVEL(BlockLiquid.LEVEL),
     FIRE(BlockFire.AGE),
-    TNT(BlockStateHelper.EXPLODE),
-    LEAVES(BlockStateHelper.CHECK_DECAY, BlockStateHelper.DECAYABLE),
-    PLANT_AGE(BlockStateHelper.AGE);
+    TNT(BlockStateProperty.EXPLODE),
+    LEAVES(BlockStateProperty.CHECK_DECAY, BlockStateProperty.DECAYABLE),
+    PLANT_AGE(BlockStateProperty.AGE);
 
     private IProperty[] property;
 

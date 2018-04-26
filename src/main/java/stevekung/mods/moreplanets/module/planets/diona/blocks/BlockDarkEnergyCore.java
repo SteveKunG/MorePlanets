@@ -112,7 +112,7 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.MACHINE_NON_BLOCK;
     }

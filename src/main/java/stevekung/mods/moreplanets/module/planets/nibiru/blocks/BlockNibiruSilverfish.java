@@ -111,7 +111,7 @@ public class BlockNibiruSilverfish extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_BLOCK;
     }

@@ -11,12 +11,12 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class CapabilityHandlerMP
 {
-    private static final ResourceLocation CONSTANT = new ResourceLocation(MorePlanetsCore.MOD_ID, "more_planets_data");
+    private static final ResourceLocation CONSTANT = new ResourceLocation(MorePlanetsMod.MOD_ID, "more_planets_data");
 
     @SubscribeEvent
     public void onAttachCapability(AttachCapabilitiesEvent<Entity> event)

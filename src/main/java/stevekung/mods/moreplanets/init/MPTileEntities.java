@@ -8,6 +8,7 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityNull;
 
 public class MPTileEntities
@@ -21,8 +22,7 @@ public class MPTileEntities
         CommonRegisterHelper.registerTileEntity(TileEntityRocketCrusher.class, "rocket_crusher");
         CommonRegisterHelper.registerTileEntity(TileEntityDarkEnergyReceiver.class, "dark_energy_receiver");
         CommonRegisterHelper.registerTileEntity(TileEntityNull.class, "dummy_null_mp");
-        CommonRegisterHelper.registerTileEntity(TileEntityDarkEnergyStorageCluster.class, "dark_energy_storage_cluster");
-        CommonRegisterHelper.registerTileEntity(TileEntityNuclearWasteStorageCluster.class, "nuclear_waste_storage_cluster");
+        CommonRegisterHelper.registerTileEntity(TileEntityEnergyStorageMP.class, "energy_storage_cluster_mp");
         CommonRegisterHelper.registerTileEntity(TileEntityBlackHoleStorage.class, "black_hole_storage");
         CommonRegisterHelper.registerTileEntity(TileEntityAlienDefenderBeacon.class, "alien_defender_beacon");
         CommonRegisterHelper.registerTileEntity(TileEntityShieldGenerator.class, "shield_generator");

@@ -22,16 +22,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.blocks.BlockBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class ItemBlockBlackHoleStorage extends ItemBlockDescription
 {
@@ -62,7 +62,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                         {
                             if (world.isRemote)
                             {
-                                FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()).getFormattedText());
                             }
                             return false;
                         }
@@ -71,7 +71,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                     {
                         if (world.isRemote)
                         {
-                            FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.bh_storage.too_close.message")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                            ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.bh_storage.too_close.message")).setStyle(JsonUtils.red()).getFormattedText());
                         }
                         return false;
                     }

@@ -4,16 +4,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import stevekung.mods.moreplanets.util.blocks.BlockLogMP;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper.EnumAxis;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper.SwitchEnumAxis;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockCheeseSporeStem extends BlockLogMP
 {
     public BlockCheeseSporeStem(String name)
     {
         super(Material.WOOD);
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.AXIS, EnumAxis.Y));
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
         this.setUnlocalizedName(name);
     }
 
@@ -25,16 +23,16 @@ public class BlockCheeseSporeStem extends BlockLogMP
         switch (meta & 12)
         {
         case 0:
-            state = state.withProperty(BlockStateHelper.AXIS, EnumAxis.Y);
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y);
             break;
         case 4:
-            state = state.withProperty(BlockStateHelper.AXIS, EnumAxis.X);
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.X);
             break;
         case 8:
-            state = state.withProperty(BlockStateHelper.AXIS, EnumAxis.Z);
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Z);
             break;
         default:
-            state = state.withProperty(BlockStateHelper.AXIS, EnumAxis.NONE);
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.NONE);
         }
         return state;
     }
@@ -44,7 +42,7 @@ public class BlockCheeseSporeStem extends BlockLogMP
     {
         int i = 0;
 
-        switch (SwitchEnumAxis.AXIS_LOOKUP[state.getValue(BlockStateHelper.AXIS).ordinal()])
+        switch (BlockStateProperty.SwitchEnumAxis.AXIS_LOOKUP[state.getValue(BlockStateProperty.AXIS).ordinal()])
         {
         case 1:
             i |= 4;
@@ -61,7 +59,7 @@ public class BlockCheeseSporeStem extends BlockLogMP
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockStateHelper.AXIS);
+        return new BlockStateContainer(this, BlockStateProperty.AXIS);
     }
 
     @Override

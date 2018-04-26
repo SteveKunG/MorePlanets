@@ -100,7 +100,7 @@ public class BlockHalfInfectedStoneBricksSlab extends BlockSlabMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.SLAB_STONE;
     }

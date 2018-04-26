@@ -18,13 +18,13 @@ public class BlackHoleStorageSchematic extends SchematicMP
     @Override
     public int getPageID()
     {
-        return ConfigManagerMP.idBaseSchematic;
+        return ConfigManagerMP.moreplanets_other.idBaseSchematic;
     }
 
     @Override
     public int getGuiID()
     {
-        return ConfigManagerMP.idBaseSchematicGui;
+        return ConfigManagerMP.moreplanets_other.idBaseSchematicGui;
     }
 
     @Override

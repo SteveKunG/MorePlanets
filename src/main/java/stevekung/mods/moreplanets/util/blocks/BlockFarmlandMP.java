@@ -23,7 +23,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public abstract class BlockFarmlandMP extends BlockBaseMP
 {
@@ -63,13 +63,13 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        int i = state.getValue(BlockStateHelper.MOISTURE).intValue();
+        int i = state.getValue(BlockStateProperty.MOISTURE).intValue();
 
         if (!this.hasWater(world, pos) && !world.isRainingAt(pos.up()))
         {
             if (i == 1)
             {
-                world.setBlockState(pos, state.withProperty(BlockStateHelper.MOISTURE, Integer.valueOf(0)), 2);
+                world.setBlockState(pos, state.withProperty(BlockStateProperty.MOISTURE, Integer.valueOf(0)), 2);
             }
             else if (!this.hasCrops(world, pos))
             {
@@ -78,7 +78,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
         }
         else if (i == 0)
         {
-            world.setBlockState(pos, state.withProperty(BlockStateHelper.MOISTURE, Integer.valueOf(1)), 2);
+            world.setBlockState(pos, state.withProperty(BlockStateProperty.MOISTURE, Integer.valueOf(1)), 2);
         }
     }
 
@@ -179,7 +179,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateHelper.MOISTURE, Integer.valueOf(meta & 1));
+        return this.getDefaultState().withProperty(BlockStateProperty.MOISTURE, Integer.valueOf(meta & 1));
     }
 
     @Override
@@ -191,19 +191,19 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateHelper.MOISTURE).intValue();
+        return state.getValue(BlockStateProperty.MOISTURE).intValue();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockStateHelper.MOISTURE);
+        return new BlockStateContainer(this, BlockStateProperty.MOISTURE);
     }
 
     @Override
     public boolean isFertile(World world, BlockPos pos)
     {
-        return world.getBlockState(pos).getValue(BlockStateHelper.MOISTURE) == 1;
+        return world.getBlockState(pos).getValue(BlockStateProperty.MOISTURE) == 1;
     }
 
     @Override

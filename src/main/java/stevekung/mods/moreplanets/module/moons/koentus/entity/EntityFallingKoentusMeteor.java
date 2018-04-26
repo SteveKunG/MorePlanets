@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.module.moons.koentus.entity;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityFallingBlock;
@@ -66,7 +67,7 @@ public class EntityFallingKoentusMeteor extends EntityFallingBlock
                     Block.spawnAsEntity(this.world, this.getPosition(), new ItemStack(Items.REDSTONE));//TODO
                 }
 
-                if (this.world.getBlockState(this.getPosition().down()).getBlock() == KoentusBlocks.GLOWING_HARDENED_ICE)
+                if (this.world.getBlockState(this.getPosition().down()).getMaterial() == Material.GLASS)//TODO
                 {
                     this.world.destroyBlock(this.getPosition().down(), false);
                     int chance = this.rand.nextInt(3);

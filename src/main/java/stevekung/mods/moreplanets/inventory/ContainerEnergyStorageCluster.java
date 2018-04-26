@@ -8,13 +8,13 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.tileentity.TileEntityNuclearWasteStorageCluster;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageMP;
 
-public class ContainerNuclearWasteEnergyStorage extends Container
+public class ContainerEnergyStorageCluster extends Container
 {
-    private TileEntityNuclearWasteStorageCluster tileEntity;
+    private TileEntityEnergyStorageMP tileEntity;
 
-    public ContainerNuclearWasteEnergyStorage(InventoryPlayer invPlayer, TileEntityNuclearWasteStorageCluster batteryBox)
+    public ContainerEnergyStorageCluster(InventoryPlayer invPlayer, TileEntityEnergyStorageMP batteryBox)
     {
         this.tileEntity = batteryBox;
         // Top slot for battery output
@@ -36,14 +36,6 @@ public class ContainerNuclearWasteEnergyStorage extends Container
         {
             this.addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 147));
         }
-        this.tileEntity.playersUsing.add(invPlayer.player);
-    }
-
-    @Override
-    public void onContainerClosed(EntityPlayer player)
-    {
-        super.onContainerClosed(player);
-        this.tileEntity.playersUsing.remove(player);
     }
 
     @Override

@@ -18,13 +18,13 @@ public class Tier5RocketSchematic extends SchematicMP
     @Override
     public int getPageID()
     {
-        return ConfigManagerMP.idBaseRocketSchematic + 1;
+        return ConfigManagerMP.moreplanets_other.idBaseRocketSchematic + 1;
     }
 
     @Override
     public int getGuiID()
     {
-        return ConfigManagerMP.idBaseRocketSchematicGui + 1;
+        return ConfigManagerMP.moreplanets_other.idBaseRocketSchematicGui + 1;
     }
 
     @Override

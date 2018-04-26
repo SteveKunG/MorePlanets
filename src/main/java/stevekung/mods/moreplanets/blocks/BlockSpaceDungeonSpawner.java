@@ -2,20 +2,15 @@ package stevekung.mods.moreplanets.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -27,19 +22,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityNull;
 
-public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntityProvider
+public class BlockSpaceDungeonSpawner extends BlockBaseMP
 {
-    public static PropertyEnum<DungeonType> PLANET = PropertyEnum.create("planet", DungeonType.class);
+    private final DungeonType type;
 
-    public BlockSpaceDungeonSpawner(String name)
+    public BlockSpaceDungeonSpawner(String name, DungeonType type)
     {
         super(Material.AIR);
         this.setBlockUnbreakable();
         this.setResistance(6000001.0F);
         this.translucent = true;
-        this.setDefaultState(this.getDefaultState().withProperty(PLANET, DungeonType.DIONA));
         this.setUnlocalizedName(name);
+        this.type = type;
     }
 
     @Override
@@ -52,15 +48,6 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
     public RayTraceResult collisionRayTrace(IBlockState state, World world, BlockPos pos, Vec3d start, Vec3d end)
     {
         return null;
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
-    {
-        for (int i = 0; i < DungeonType.valuesCached().length; ++i)
-        {
-            list.add(new ItemStack(this, 1, i));
-        }
     }
 
     @Override
@@ -101,16 +88,16 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta)
+    public TileEntity createTileEntity(World world, IBlockState state)
     {
-        switch (meta)
+        switch (this.type)
         {
-        case 0:
+        case DIONA:
             return new TileEntityDionaDungeonSpawner();
-        case 1:
+        case CHALOS:
             return new TileEntityChalosDungeonSpawner();
         default:
-            return null;
+            return new TileEntityNull();
         }
     }
 
@@ -132,36 +119,11 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
         return 0;
     }
 
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, PLANET);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(PLANET, DungeonType.valuesCached()[meta]);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(PLANET).ordinal();
-    }
-
     public static enum DungeonType implements IStringSerializable
     {
         DIONA,
         CHALOS,
         NIBIRU;
-
-        private static DungeonType[] values = DungeonType.values();
-
-        public static DungeonType[] valuesCached()
-        {
-            return DungeonType.values;
-        }
 
         @Override
         public String toString()

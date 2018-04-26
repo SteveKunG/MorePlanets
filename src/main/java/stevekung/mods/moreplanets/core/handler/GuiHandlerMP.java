@@ -22,6 +22,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.inventory.ContainerNucle
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageMP;
 
 public class GuiHandlerMP implements IGuiHandler
 {
@@ -53,13 +54,9 @@ public class GuiHandlerMP implements IGuiHandler
             {
                 return new ContainerNuclearWasteGenerator(player.inventory, (TileEntityNuclearWasteGenerator)tile);
             }
-            else if (tile instanceof TileEntityDarkEnergyStorageCluster)
+            else if (tile instanceof TileEntityEnergyStorageMP)
             {
-                return new ContainerDarkEnergyStorage(player.inventory, (TileEntityDarkEnergyStorageCluster)tile);
-            }
-            else if (tile instanceof TileEntityNuclearWasteStorageCluster)
-            {
-                return new ContainerNuclearWasteEnergyStorage(player.inventory, (TileEntityNuclearWasteStorageCluster)tile);
+                return new ContainerEnergyStorageCluster(player.inventory, (TileEntityEnergyStorageMP)tile);
             }
             else if (tile instanceof TileEntityDarkEnergyGenerator)
             {
@@ -108,13 +105,9 @@ public class GuiHandlerMP implements IGuiHandler
                 {
                     return new GuiNuclearWasteGenerator(player.inventory, (TileEntityNuclearWasteGenerator)tile);
                 }
-                else if (tile instanceof TileEntityDarkEnergyStorageCluster)
+                else if (tile instanceof TileEntityEnergyStorageMP)
                 {
-                    return new GuiDarkEnergyStorage(player.inventory, (TileEntityDarkEnergyStorageCluster)tile);
-                }
-                else if (tile instanceof TileEntityNuclearWasteStorageCluster)
-                {
-                    return new GuiNuclearWasteEnergyStorage(player.inventory, (TileEntityNuclearWasteStorageCluster)tile);
+                    return new GuiDarkEnergyStorage(player.inventory, (TileEntityEnergyStorageMP)tile);
                 }
                 else if (tile instanceof TileEntityDarkEnergyGenerator)
                 {

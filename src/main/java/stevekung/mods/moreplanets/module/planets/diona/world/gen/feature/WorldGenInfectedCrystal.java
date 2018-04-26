@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class WorldGenInfectedCrystal extends WorldGenerator
 {
@@ -23,7 +23,7 @@ public class WorldGenInfectedCrystal extends WorldGenerator
 
                 if (world.isAirBlock(pos) && block.canPlaceBlockOnSide(world, pos, facing))
                 {
-                    world.setBlockState(pos, block.getDefaultState().withProperty(BlockStateHelper.FACING_ALL, facing), 2);
+                    world.setBlockState(pos, block.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, facing), 2);
                 }
             }
         }

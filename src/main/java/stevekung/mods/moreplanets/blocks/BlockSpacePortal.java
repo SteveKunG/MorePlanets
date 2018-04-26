@@ -45,7 +45,9 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (ConfigManagerMP.enableStartedPlanet && !(ConfigManagerMP.startedPlanet.equals("planet.") || ConfigManagerMP.startedPlanet.equals("moon.") || ConfigManagerMP.startedPlanet.equals("satellite.")))
+        String startedPlanet = ConfigManagerMP.moreplanets_general.startedPlanet;
+
+        if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && !(startedPlanet.equals("planet.") || startedPlanet.equals("moon.") || startedPlanet.equals("satellite.")))
         {
             if (!player.isRiding() && !player.isBeingRidden() && player.isNonBoss() && player instanceof EntityPlayerMP)
             {
@@ -126,7 +128,7 @@ public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRe
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.MACHINE_BLOCK;
     }

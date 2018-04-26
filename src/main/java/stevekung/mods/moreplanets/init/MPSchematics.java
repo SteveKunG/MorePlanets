@@ -21,17 +21,17 @@ public class MPSchematics
     {
         RocketRegisterHelper.registerSchematicRecipe(new BlackHoleStorageSchematic());
 
-        if (ConfigManagerMP.enableTier4RocketSchematic)
+        if (ConfigManagerMP.moreplanets_addon_compat.enableTier4RocketSchematic)
         {
             RocketRegisterHelper.registerSchematicRecipe(new Tier4RocketSchematic());
             RocketRegisterHelper.registerSchematicDungeonLoot(3, new ItemStack(DionaItems.TIER_5_ROCKET_SCHEMATIC, 1, 0));
         }
-        if (ConfigManagerMP.enableTier5RocketSchematic)
+        if (ConfigManagerMP.moreplanets_addon_compat.enableTier5RocketSchematic)
         {
             RocketRegisterHelper.registerSchematicRecipe(new Tier5RocketSchematic());
             RocketRegisterHelper.registerSchematicDungeonLoot(4, new ItemStack(DionaItems.TIER_5_ROCKET_SCHEMATIC, 1, 1));
         }
-        if (ConfigManagerMP.enableTier6RocketSchematic)
+        if (ConfigManagerMP.moreplanets_addon_compat.enableTier6RocketSchematic)
         {
             RocketRegisterHelper.registerSchematicRecipe(new Tier6RocketSchematic());
             RocketRegisterHelper.registerSchematicDungeonLoot(5, new ItemStack(ChalosItems.TIER_6_ROCKET_SCHEMATIC, 1, 0));

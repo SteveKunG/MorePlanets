@@ -6,9 +6,7 @@ import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +24,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
@@ -36,44 +33,49 @@ import stevekung.mods.moreplanets.util.blocks.BlockContainerMP;
 
 public class BlockDummy extends BlockContainerMP implements IPartialSealableBlock
 {
-    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
+    private static final AxisAlignedBB AABB_WARP_PAD = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D);
+    private static final AxisAlignedBB AABB_DER_SOLAR1 = new AxisAlignedBB(-0.25D, 0.3D, 0.3D, 0.5D, 0.6D, 0.7D);
+    private static final AxisAlignedBB AABB_DER_SOLAR2 = new AxisAlignedBB(0.5D, 0.3D, 0.3D, 1.25D, 0.6D, 0.7D);
+    private static final AxisAlignedBB AABB_DER_SOLAR3 = new AxisAlignedBB(0.3D, 0.3D, -0.25D, 0.7D, 0.6D, 0.5D);
+    private static final AxisAlignedBB AABB_DER_SOLAR4 = new AxisAlignedBB(0.3D, 0.3D, 0.5D, 0.7D, 0.6D, 1.25D);
+    private final BlockType type;
 
-    public BlockDummy(String name)
+    public BlockDummy(String name, BlockType type)
     {
         super(Material.IRON);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);
         this.setUnlocalizedName(name);
         this.setResistance(1000000000000000.0F);
-        this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.WARP_PAD));
+        this.type = type;
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if (state.getValue(VARIANT) == BlockType.WARP_PAD)
+        if (this.type == BlockType.WARP_PAD)
         {
-            return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D / 16.0D, 1.0D);
+            return BlockDummy.AABB_WARP_PAD;
         }
-        else if (state.getValue(VARIANT) == BlockType.DARK_ENERGY_SOLAR1)
+        else if (this.type == BlockType.DARK_ENERGY_SOLAR1)
         {
-            return new AxisAlignedBB(-0.25D, 0.3D, 0.3D, 0.5D, 0.6D, 0.7D);
+            return BlockDummy.AABB_DER_SOLAR1;
         }
-        else if (state.getValue(VARIANT) == BlockType.DARK_ENERGY_SOLAR2)
+        else if (this.type == BlockType.DARK_ENERGY_SOLAR2)
         {
-            return new AxisAlignedBB(0.5D, 0.3D, 0.3D, 1.25D, 0.6D, 0.7D);
+            return BlockDummy.AABB_DER_SOLAR2;
         }
-        else if (state.getValue(VARIANT) == BlockType.DARK_ENERGY_SOLAR3)
+        else if (this.type == BlockType.DARK_ENERGY_SOLAR3)
         {
-            return new AxisAlignedBB(0.3D, 0.3D, -0.25D, 0.7D, 0.6D, 0.5D);
+            return BlockDummy.AABB_DER_SOLAR3;
         }
-        else if (state.getValue(VARIANT) == BlockType.DARK_ENERGY_SOLAR4)
+        else if (this.type == BlockType.DARK_ENERGY_SOLAR4)
         {
-            return new AxisAlignedBB(0.3D, 0.3D, 0.5D, 0.7D, 0.6D, 1.25D);
+            return BlockDummy.AABB_DER_SOLAR4;
         }
         else
         {
-            return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+            return Block.FULL_BLOCK_AABB;
         }
     }
 
@@ -81,13 +83,6 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     public boolean canDropFromExplosion(Explosion explosion)
     {
         return false;
-    }
-
-    public void makeFakeBlock(World world, BlockPos pos, BlockPos mainBlock, BlockDummy.BlockType type)
-    {
-        world.setBlockState(pos, MPBlocks.DUMMY_BLOCK.getStateFromMeta(type.ordinal()), 3);
-        world.getTileEntity(pos).setWorld(world);
-        ((TileEntityDummy) world.getTileEntity(pos)).setMainBlock(mainBlock);
     }
 
     @Override
@@ -99,7 +94,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         {
             BlockPos mainBlockPosition = ((TileEntityDummy) tileEntity).mainBlockPosition;
 
-            if (mainBlockPosition != null && !mainBlockPosition.equals(new BlockPos(pos.getX(), pos.getY(), pos.getZ())))
+            if (mainBlockPosition != null && !mainBlockPosition.equals(pos))
             {
                 TileEntity tileOther = world.getTileEntity(mainBlockPosition);
 
@@ -121,7 +116,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     @Override
     public boolean isSealed(World world, BlockPos pos, EnumFacing facing)
     {
-        if (world.getBlockState(pos).getValue(VARIANT) == BlockType.WARP_PAD)
+        if (this.type == BlockType.WARP_PAD)
         {
             return facing == EnumFacing.DOWN;
         }
@@ -150,36 +145,30 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         {
             return false;
         }
-        if (state.getValue(VARIANT) == BlockType.NUCLEAR_WASTE_TANK_MIDDLE && world.getBlockState(pos.down()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
+        if (this.type == BlockType.NUCLEAR_WASTE_TANK_MIDDLE && world.getBlockState(pos.down()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
-            if (!heldStack.isEmpty())
+            if (!heldStack.isEmpty() && heldStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
             {
-                if (heldStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
+                if (!player.capabilities.isCreativeMode)
                 {
-                    if (!player.capabilities.isCreativeMode)
-                    {
-                        heldStack.damageItem(1, player);
-                    }
-                    Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
-                    world.setBlockState(pos.down(), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
-                    return true;
+                    heldStack.damageItem(1, player);
                 }
+                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
+                world.setBlockState(pos.down(), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
+                return true;
             }
         }
-        if (state.getValue(VARIANT) == BlockType.NUCLEAR_WASTE_TANK_TOP && world.getBlockState(pos.down(2)) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
+        if (this.type == BlockType.NUCLEAR_WASTE_TANK_TOP && world.getBlockState(pos.down(2)) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
-            if (!heldStack.isEmpty())
+            if (!heldStack.isEmpty() && heldStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
             {
-                if (heldStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
+                if (!player.capabilities.isCreativeMode)
                 {
-                    if (!player.capabilities.isCreativeMode)
-                    {
-                        heldStack.damageItem(1, player);
-                    }
-                    Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
-                    world.setBlockState(pos.down(2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
-                    return true;
+                    heldStack.damageItem(1, player);
                 }
+                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
+                world.setBlockState(pos.down(2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
+                return true;
             }
         }
         return tileEntity.onBlockActivated(world, pos, player);
@@ -204,7 +193,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta)
+    public TileEntity createTileEntity(World world, IBlockState state)
     {
         return new TileEntityDummy();
     }
@@ -218,7 +207,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         {
             BlockPos mainBlockPosition = ((TileEntityDummy) tileEntity).mainBlockPosition;
 
-            if (mainBlockPosition != null && !mainBlockPosition.equals(new BlockPos(pos.getX(), pos.getY(), pos.getZ())))
+            if (mainBlockPosition != null && !mainBlockPosition.equals(pos))
             {
                 Block mainBlock = world.getBlockState(mainBlockPosition).getBlock();
 
@@ -241,7 +230,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         {
             BlockPos mainBlockPosition = ((TileEntityDummy) tileEntity).mainBlockPosition;
 
-            if (mainBlockPosition != null && !mainBlockPosition.equals(new BlockPos(target.getBlockPos().getX(), target.getBlockPos().getY(), target.getBlockPos().getZ())))
+            if (mainBlockPosition != null && !mainBlockPosition.equals(target.getBlockPos()))
             {
                 manager.addBlockHitEffects(mainBlockPosition, target);
             }
@@ -252,29 +241,14 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
     {
-        if (state.getValue(VARIANT) == BlockType.NUCLEAR_WASTE_TANK_TOP)
-        {
-            return super.getBlockFaceShape(world, state, pos, facing);
-        }
-        return BlockFaceShape.UNDEFINED;
+        return this.type == BlockType.NUCLEAR_WASTE_TANK_TOP ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
 
-    @Override
-    protected BlockStateContainer createBlockState()
+    public void makeFakeBlock(World world, BlockPos pos, BlockPos mainBlock)
     {
-        return new BlockStateContainer(this, VARIANT);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta]);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(VARIANT).ordinal();
+        world.setBlockState(pos, this.getDefaultState(), 3);
+        world.getTileEntity(pos).setWorld(world);
+        ((TileEntityDummy) world.getTileEntity(pos)).setMainBlock(mainBlock);
     }
 
     public static enum BlockType implements IStringSerializable
@@ -287,13 +261,6 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         NUCLEAR_WASTE_TANK_MIDDLE,
         NUCLEAR_WASTE_TANK_TOP,
         SHIELD_GENERATOR_TOP;
-
-        private static BlockType[] values = BlockType.values();
-
-        public static BlockType[] valuesCached()
-        {
-            return BlockType.values;
-        }
 
         @Override
         public String toString()

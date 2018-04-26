@@ -20,7 +20,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.DamageSourceMP;
@@ -115,7 +115,7 @@ public class EntityBlackHole extends Entity
             {
                 this.setDead();
 
-                if (ConfigManagerMP.enableBlackHoleExplosion)
+                if (ConfigManagerMP.moreplanets_general.enableBlackHoleExplosion)
                 {
                     this.world.createExplosion(null, this.posX, this.posY, this.posZ, 128.0F, true);
                 }
@@ -137,7 +137,7 @@ public class EntityBlackHole extends Entity
                 d3 = this.rand.nextFloat() * 2.0F * j;
                 d2 = this.posZ + 0.25D * j;
                 d5 = this.rand.nextFloat() * 2.0F * j;
-                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, d0, d1, d2, d3, d4, d5);
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, d0, d1, d2, d3, d4, d5);
             }
         }
     }

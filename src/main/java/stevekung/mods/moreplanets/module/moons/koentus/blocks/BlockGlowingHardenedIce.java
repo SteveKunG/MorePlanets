@@ -5,40 +5,36 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.material.MapColor;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.blocks.BlockIceMP;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class BlockGlowingHardenedIce extends BlockIceMP
 {
-    public BlockGlowingHardenedIce(String name)
+    private final EnumDyeColor type;
+
+    public BlockGlowingHardenedIce(String name, EnumDyeColor type)
     {
         super();
         this.setUnlocalizedName(name);
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.COLOR, EnumDyeColor.WHITE));
         this.setLightLevel(1.0F);
+        this.type = type;
     }
 
     @Override
     @Nullable
     public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
     {
-        return EntitySheep.getDyeRgb(state.getValue(BlockStateHelper.COLOR));
+        return EntitySheep.getDyeRgb(this.type);
     }
 
     @Override
@@ -49,48 +45,15 @@ public class BlockGlowingHardenedIce extends BlockIceMP
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return state.getValue(BlockStateHelper.COLOR).getMetadata();
-    }
-
-    @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return MapColor.getBlockColor(state.getValue(BlockStateHelper.COLOR));
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(BlockStateHelper.COLOR, EnumDyeColor.byMetadata(meta));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(BlockStateHelper.COLOR).getMetadata();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, BlockStateHelper.COLOR);
+        return MapColor.getBlockColor(this.type);
     }
 
     @Override
     public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
         return true;
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
-    {
-        for (EnumDyeColor color : CachedEnumUtil.valuesDyeCached())
-        {
-            list.add(new ItemStack(this, 1, color.getMetadata()));
-        }
     }
 
     @Override

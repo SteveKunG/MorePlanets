@@ -7,21 +7,22 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.inventory.ContainerDarkEnergyStorage;
-import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyStorageCluster;
+import stevekung.mods.moreplanets.inventory.ContainerEnergyStorageCluster;
 import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageMP;
 
 @SideOnly(Side.CLIENT)
 public class GuiDarkEnergyStorage extends GuiContainerMP
 {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/dark_energy_storage_module.png");
-    private final TileEntityDarkEnergyStorageCluster tile;
+    private static ResourceLocation texture;
+    private final TileEntityEnergyStorageMP tile;
 
-    public GuiDarkEnergyStorage(InventoryPlayer invPlayer, TileEntityDarkEnergyStorageCluster tile)
+    public GuiDarkEnergyStorage(InventoryPlayer invPlayer, TileEntityEnergyStorageMP tile)
     {
-        super(new ContainerDarkEnergyStorage(invPlayer, tile));
+        super(new ContainerEnergyStorageCluster(invPlayer, tile));
         this.tile = tile;
         this.ySize = 171;
+        texture = new ResourceLocation("moreplanets:textures/gui/" + tile.containerName + ".png");
     }
 
     @Override
@@ -47,7 +48,7 @@ public class GuiDarkEnergyStorage extends GuiContainerMP
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
-        this.mc.renderEngine.bindTexture(TEXTURE);
+        this.mc.renderEngine.bindTexture(texture);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         int containerWidth = (this.width - this.xSize) / 2;
         int containerHeight = (this.height - this.ySize) / 2;

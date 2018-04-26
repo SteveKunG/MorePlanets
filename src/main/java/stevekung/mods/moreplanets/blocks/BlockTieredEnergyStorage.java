@@ -12,7 +12,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -21,63 +20,47 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyStorageCluster;
-import stevekung.mods.moreplanets.tileentity.TileEntityNuclearWasteStorageCluster;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.*;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
+import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageMP;
 
-public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescription, ISortableBlock, IBlockVariants
+public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescription, ISortableBlock, ISingleBlockRender
 {
-    public static PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variants", BlockType.class);
-    public static PropertyInteger VALUE = PropertyInteger.create("value", 0, 33);
-    public static IMachineSidesProperties MACHINESIDES_RENDERTYPE = IMachineSidesProperties.TWOFACES_HORIZ;
-    public static PropertyEnum<MachineSidesModel> SIDES = MACHINESIDES_RENDERTYPE.asProperty;
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    private static final PropertyInteger VALUE = PropertyInteger.create("value", 0, 16);
+    public static final IMachineSidesProperties MACHINESIDES_RENDERTYPE = IMachineSidesProperties.TWOFACES_HORIZ;
+    private static final PropertyEnum<MachineSidesModel> SIDES = MACHINESIDES_RENDERTYPE.asProperty;
+    private final BlockType type;
 
-    public BlockTieredEnergyStorage(String name)
+    public BlockTieredEnergyStorage(String name, BlockType type)
     {
         super(Material.IRON);
         this.setHardness(2.0F);
         this.setSoundType(SoundType.METAL);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockType.DARK_ENERGY_STORAGE_MODULE).withProperty(VALUE, 0).withProperty(FACING, EnumFacing.NORTH));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(VALUE, 0).withProperty(FACING, EnumFacing.NORTH));
         this.setUnlocalizedName(name);
+        this.type = type;
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
-        int meta = this.getMetaFromState(state);
         int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
-
-        if (meta >= 4)
-        {
-            world.setBlockState(pos, this.getStateFromMeta(4 + change), 3);
-        }
-        else if (meta >= 0)
-        {
-            world.setBlockState(pos, this.getStateFromMeta(change), 3);
-        }
+        world.setBlockState(pos, this.getStateFromMeta(change), 3);
 
         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
         {
-            if (world.getTileEntity(pos) instanceof TileEntityDarkEnergyStorageCluster)
+            if (world.getTileEntity(pos) instanceof TileEntityEnergyStorageMP)
             {
-                TileEntityDarkEnergyStorageCluster electric = (TileEntityDarkEnergyStorageCluster) world.getTileEntity(pos);
-                electric.storage.setEnergyStored(itemStack.getTagCompound().getFloat("EnergyStored"));
-            }
-            if (world.getTileEntity(pos) instanceof TileEntityNuclearWasteStorageCluster)
-            {
-                TileEntityNuclearWasteStorageCluster electric = (TileEntityNuclearWasteStorageCluster) world.getTileEntity(pos);
+                TileEntityEnergyStorageMP electric = (TileEntityEnergyStorageMP) world.getTileEntity(pos);
                 electric.storage.setEnergyStored(itemStack.getTagCompound().getFloat("EnergyStored"));
             }
         }
@@ -88,22 +71,10 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     {
         player.addExhaustion(0.025F);
 
-        if (tile instanceof TileEntityDarkEnergyStorageCluster)
+        if (tile instanceof TileEntityEnergyStorageMP)
         {
             ItemStack machine = new ItemStack(this, 1, 0);
-            TileEntityDarkEnergyStorageCluster electric = (TileEntityDarkEnergyStorageCluster) tile;
-
-            if (electric.getEnergyStoredGC() > 0)
-            {
-                machine.setTagCompound(new NBTTagCompound());
-                machine.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
-            }
-            Block.spawnAsEntity(world, pos, machine);
-        }
-        if (tile instanceof TileEntityNuclearWasteStorageCluster)
-        {
-            ItemStack machine = new ItemStack(this, 1, 4);
-            TileEntityNuclearWasteStorageCluster electric = (TileEntityNuclearWasteStorageCluster) tile;
+            TileEntityEnergyStorageMP electric = (TileEntityEnergyStorageMP) tile;
 
             if (electric.getEnergyStoredGC() > 0)
             {
@@ -127,7 +98,7 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     {
         if (!world.isRemote)
         {
-            player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
+            player.openGui(MorePlanetsMod.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
         }
         return true;
     }
@@ -135,66 +106,43 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
-        if (meta >= 0 && meta <= 3)
+        if (this.type == BlockType.DARK_ENERGY_STORAGE_MODULE)
         {
-            return new TileEntityDarkEnergyStorageCluster();
+            return new TileEntityEnergyStorageMP(12500000.0F, 2500.0F, 4, BlockType.DARK_ENERGY_STORAGE_MODULE.getName());
         }
         else
         {
-            return new TileEntityNuclearWasteStorageCluster();
+            return new TileEntityEnergyStorageMP(50000000.0F, 7500.0F, 4, BlockType.NUCLEAR_WASTE_STORAGE_MODULE.getName());
         }
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
-    {
-        list.add(new ItemStack(this, 1, 0));
-        list.add(new ItemStack(this, 1, 4));
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return this.getMetaFromState(state) & 12;
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        int meta = this.getMetaFromState(state);
-
-        if (meta >= 0 && meta <= 3)
-        {
-            return new ItemStack(this, 1, 0);
-        }
-        else
-        {
-            return new ItemStack(this, 1, 4);
-        }
+        return new ItemStack(this);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
         EnumFacing enumfacing = EnumFacing.getHorizontal(meta % 4);
-        BlockType type = BlockType.valuesCached()[(int) Math.floor(meta / 4)];
-        return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(VARIANT, type);
+        return this.getDefaultState().withProperty(FACING, enumfacing);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(FACING).getHorizontalIndex() + state.getValue(VARIANT).ordinal() * 4;
+        return state.getValue(FACING).getHorizontalIndex();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, FACING, VARIANT, VALUE, SIDES);
+        return new BlockStateContainer(this, FACING, VALUE, SIDES);
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.MACHINE_BLOCK;
     }
@@ -205,15 +153,10 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
         TileEntity tile = world.getTileEntity(pos);
         state = IMachineSides.addPropertyForTile(state, tile, MACHINESIDES_RENDERTYPE, SIDES);
 
-        if (tile instanceof TileEntityDarkEnergyStorageCluster)
+        if (tile instanceof TileEntityEnergyStorageMP)
         {
-            TileEntityDarkEnergyStorageCluster storageModule = (TileEntityDarkEnergyStorageCluster) tile;
+            TileEntityEnergyStorageMP storageModule = (TileEntityEnergyStorageMP) tile;
             return state.withProperty(VALUE, storageModule.scaledEnergyLevel);
-        }
-        else if (tile instanceof TileEntityNuclearWasteStorageCluster)
-        {
-            TileEntityNuclearWasteStorageCluster storageModule = (TileEntityNuclearWasteStorageCluster) tile;
-            return state.withProperty(VALUE, storageModule.scaledEnergyLevel + 17);
         }
         else
         {
@@ -238,7 +181,7 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     public ItemDescription getDescription()
     {
         return (itemStack, list) -> {
-            if (itemStack.getItemDamage() == 0)
+            if (this.type == BlockType.DARK_ENERGY_STORAGE_MODULE)
             {
                 list.addAll(ItemDescriptionHelper.getDescription(BlockTieredEnergyStorage.this.getUnlocalizedName() + "_0.description"));
             }
@@ -250,22 +193,15 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
     }
 
     @Override
-    public VariantsName getVariantsName()
+    public String getName()
     {
-        return new VariantsName("dark_energy", "nuclear_waste");
+        return this.type.getName();
     }
 
-    public enum BlockType implements IStringSerializable
+    public static enum BlockType implements IStringSerializable
     {
         DARK_ENERGY_STORAGE_MODULE,
         NUCLEAR_WASTE_STORAGE_MODULE;
-
-        private static BlockType[] values = BlockType.values();
-
-        public static BlockType[] valuesCached()
-        {
-            return BlockType.values;
-        }
 
         @Override
         public String toString()

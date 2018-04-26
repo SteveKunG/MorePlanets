@@ -11,7 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public abstract class BlockLogMP extends BlockBaseMP
 {
@@ -34,7 +34,7 @@ public abstract class BlockLogMP extends BlockBaseMP
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
-        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(BlockStateHelper.AXIS, BlockStateHelper.EnumAxis.fromFacingAxis(facing.getAxis()));
+        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.fromFacingAxis(facing.getAxis()));
     }
 
     @Override

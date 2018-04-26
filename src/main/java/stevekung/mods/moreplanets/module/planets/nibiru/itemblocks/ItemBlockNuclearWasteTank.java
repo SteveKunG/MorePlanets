@@ -10,10 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.util.JsonUtil;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class ItemBlockNuclearWasteTank extends ItemBlock
 {
@@ -34,7 +33,7 @@ public class ItemBlockNuclearWasteTank extends ItemBlock
         {
             if (world.isRemote)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
             }
             return false;
         }
@@ -42,7 +41,7 @@ public class ItemBlockNuclearWasteTank extends ItemBlock
         {
             if (world.isRemote)
             {
-                FMLClientHandler.instance().getClient().ingameGUI.setOverlayMessage(new JsonUtil().text(I18n.format("gui.warning.noroom")).setStyle(new JsonUtil().red()).getFormattedText(), false);
+                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
             }
             return false;
         }
@@ -50,11 +49,11 @@ public class ItemBlockNuclearWasteTank extends ItemBlock
         {
             if (!vecToAdd.equals(pos))
             {
-                MPBlocks.DUMMY_BLOCK.makeFakeBlock(world, vecToAdd, pos, BlockDummy.BlockType.NUCLEAR_WASTE_TANK_MIDDLE);
+                MPBlocks.NWT_MIDDLE_DUMMY.makeFakeBlock(world, vecToAdd, pos);
             }
             if (!vecToAdd1.equals(pos))
             {
-                MPBlocks.DUMMY_BLOCK.makeFakeBlock(world, vecToAdd1, pos, BlockDummy.BlockType.NUCLEAR_WASTE_TANK_TOP);
+                MPBlocks.NWT_TOP_DUMMY.makeFakeBlock(world, vecToAdd1, pos);
             }
             return super.placeBlockAt(itemStack, player, world, pos, facing, hitX, hitY, hitZ, state);
         }

@@ -57,7 +57,7 @@ public class BlockInfectedVines extends BlockVinesMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }

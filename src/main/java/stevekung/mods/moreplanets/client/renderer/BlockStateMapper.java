@@ -12,17 +12,17 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.EnumStateMapper;
 import stevekung.mods.moreplanets.util.client.renderer.StateMapperCTM;
 import stevekung.mods.moreplanets.util.client.renderer.StateMapperUtil;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockStateMapper
 {
     public static void init()
     {
-        ClientRegisterHelper.registerStateMapper(MPBlocks.SHIELD_GENERATOR, BlockStateHelper.FACING_HORIZON);
+        ClientRegisterHelper.registerStateMapper(MPBlocks.SHIELD_GENERATOR, BlockStateProperty.FACING_HORIZON);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegisterHelper.registerStateMapper(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, BlockStateHelper.FACING_ALL);
+        ClientRegisterHelper.registerStateMapper(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, BlockStateProperty.FACING_ALL);
         ClientRegisterHelper.registerStateMapper(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegisterHelper.registerStateMapper(ChalosBlocks.CHEESE_SPORE_FENCE_GATE, EnumStateMapper.FENCE_GATE);
@@ -44,7 +44,7 @@ public class BlockStateMapper
         ClientRegisterHelper.registerStateMapper(NibiruBlocks.VEIN_FRAME, BlockVeinFrame.EYE, BlockVeinFrame.FACING);
         ClientRegisterHelper.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegisterHelper.registerStateMapper(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegisterHelper.registerStateMapper(NibiruBlocks.MULTALIC_CRYSTAL, BlockStateHelper.FACING_ALL);
+        ClientRegisterHelper.registerStateMapper(NibiruBlocks.MULTALIC_CRYSTAL, BlockStateProperty.FACING_ALL);
 
         ClientRegisterHelper.registerStateMapperSplitVariants(MPBlocks.COBBLESTONE_WALL, BlockCobblestoneWall.VARIANT);
         ClientRegisterHelper.registerStateMapperSplitVariants(MPBlocks.DUNGEON_BRICK_WALL, BlockDungeonBrickWall.VARIANT);

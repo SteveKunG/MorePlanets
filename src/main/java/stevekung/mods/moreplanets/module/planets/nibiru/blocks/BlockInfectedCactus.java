@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.util.DamageSourceMP;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.helper.BlockEventHelper;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockInfectedCactus extends BlockBushMP
 {
@@ -50,18 +50,18 @@ public class BlockInfectedCactus extends BlockBushMP
 
             if (i < 3)
             {
-                int j = state.getValue(BlockStateHelper.AGE).intValue();
+                int j = state.getValue(BlockStateProperty.AGE).intValue();
 
                 if (j == 15)
                 {
                     world.setBlockState(blockpos, this.getDefaultState());
-                    IBlockState iblockstate = state.withProperty(BlockStateHelper.AGE, Integer.valueOf(0));
+                    IBlockState iblockstate = state.withProperty(BlockStateProperty.AGE, Integer.valueOf(0));
                     world.setBlockState(pos, iblockstate, 4);
                     iblockstate.neighborChanged(world, blockpos, this, pos);
                 }
                 else
                 {
-                    world.setBlockState(pos, state.withProperty(BlockStateHelper.AGE, Integer.valueOf(j + 1)), 4);
+                    world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE, Integer.valueOf(j + 1)), 4);
                 }
             }
         }
@@ -133,7 +133,7 @@ public class BlockInfectedCactus extends BlockBushMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }
@@ -141,19 +141,19 @@ public class BlockInfectedCactus extends BlockBushMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateHelper.AGE, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(BlockStateProperty.AGE, Integer.valueOf(meta));
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateHelper.AGE).intValue();
+        return state.getValue(BlockStateProperty.AGE).intValue();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockStateHelper.AGE);
+        return new BlockStateContainer(this, BlockStateProperty.AGE);
     }
 
     @Override

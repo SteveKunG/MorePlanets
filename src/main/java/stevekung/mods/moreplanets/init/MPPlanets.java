@@ -36,9 +36,9 @@ public class MPPlanets
         MPPlanets.LAZENDUS_SOLAR_SYSTEM = CelestialRegisterHelper.createStarAndSolarSystem(MPPlanets.LAZENDUS_SOLAR_SYSTEM, MPPlanets.LAZENDUS, "lazendus", "lazendus", new Vector3(0.75F, 1.25F, 0.0F), "lazendus_celestial");
 
         // Planets
-        MPPlanets.DIONA = CelestialRegisterHelper.createPlanet("diona", MPPlanets.LAZENDUS_SOLAR_SYSTEM, -14.25F, 4.25F, 20.0F, 0.876F, 4, ConfigManagerMP.idDimensionDiona, WorldProviderDiona.class);
-        MPPlanets.CHALOS = CelestialRegisterHelper.createPlanet("chalos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 8.75F, 3.5F, 60.5F, 10.0F, 5, ConfigManagerMP.idDimensionChalos, WorldProviderChalos.class);
-        MPPlanets.NIBIRU = CelestialRegisterHelper.createPlanet("nibiru", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 27.0F, 2.0F, 1050.5F, 2.0F, 6, ConfigManagerMP.idDimensionNibiru, WorldProviderNibiru.class);
+        MPPlanets.DIONA = CelestialRegisterHelper.createPlanet("diona", MPPlanets.LAZENDUS_SOLAR_SYSTEM, -14.25F, 4.25F, 20.0F, 0.876F, 4, ConfigManagerMP.moreplanets_dimension.idDimensionDiona, WorldProviderDiona.class);
+        MPPlanets.CHALOS = CelestialRegisterHelper.createPlanet("chalos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 8.75F, 3.5F, 60.5F, 10.0F, 5, ConfigManagerMP.moreplanets_dimension.idDimensionChalos, WorldProviderChalos.class);
+        MPPlanets.NIBIRU = CelestialRegisterHelper.createPlanet("nibiru", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 27.0F, 2.0F, 1050.5F, 2.0F, 6, ConfigManagerMP.moreplanets_dimension.idDimensionNibiru, WorldProviderNibiru.class);
 
         CelestialRegisterHelper.setAtmosphereComponentList(MPPlanets.DIONA, EnumAtmosphericGas.ARGON, EnumAtmosphericGas.HELIUM);
         CelestialRegisterHelper.setAtmosphere(MPPlanets.DIONA, false, false, false, 0.0F, 0.0F, 0.0F);

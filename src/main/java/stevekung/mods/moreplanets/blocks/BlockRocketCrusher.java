@@ -25,7 +25,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.tileentity.TileEntityRocketCrusher;
 import stevekung.mods.moreplanets.util.ItemDescription;
 import stevekung.mods.moreplanets.util.blocks.BlockTileMP;
@@ -36,7 +36,7 @@ import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
 
 public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription, ISingleBlockRender
 {
-    public static PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
     public BlockRocketCrusher(String name)
     {
@@ -72,7 +72,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     {
         int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
-        world.setBlockState(pos, this.getStateFromMeta((this.getMetaFromState(state) & 12) + change), 3);
+        world.setBlockState(pos, this.getStateFromMeta(change), 3);
 
         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
         {
@@ -85,7 +85,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     }
 
     @Override
-    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer player, EnumHand hand, ItemStack heldStack, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         IBlockState state = world.getBlockState(pos);
         TileBaseUniversalElectrical.onUseWrenchBlock(state, world, pos, state.getValue(FACING));
@@ -93,18 +93,18 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     }
 
     @Override
-    public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldStack, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (!world.isRemote)
         {
-            player.openGui(MorePlanetsCore.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
+            player.openGui(MorePlanetsMod.INSTANCE, -1, world, pos.getX(), pos.getY(), pos.getZ());
             return true;
         }
         return true;
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta)
+    public TileEntity createTileEntity(World world, IBlockState state)
     {
         return new TileEntityRocketCrusher();
     }
@@ -112,7 +112,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, 0);
+        return new ItemStack(this);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.MACHINE_BLOCK;
     }
@@ -130,8 +130,8 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta % 4);
-        return this.getDefaultState().withProperty(FACING, enumfacing);
+        EnumFacing facing = EnumFacing.getHorizontal(meta % 4);
+        return this.getDefaultState().withProperty(FACING, facing);
     }
 
     @Override

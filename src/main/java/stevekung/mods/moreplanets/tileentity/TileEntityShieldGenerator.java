@@ -46,13 +46,12 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.blocks.BlockDummy;
 import stevekung.mods.moreplanets.blocks.BlockShieldGenerator;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider, IInventoryDefaults, ISidedInventory
 {
@@ -145,7 +144,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             this.solarRotate++;
             this.solarRotate %= 360;
-            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.pos.getX() + 0.5D, this.pos.getY() + 1.5D, this.pos.getZ() + 0.5D, new Object[] { -0.5F });
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.pos.getX() + 0.5D, this.pos.getY() + 1.5D, this.pos.getZ() + 0.5D, new Object[] { -0.5F });
 
             if (this.ticks % 33 == 0)
             {
@@ -277,7 +276,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
         {
-            FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(), MPBlocks.DUMMY_BLOCK.getDefaultState().withProperty(BlockDummy.VARIANT, BlockDummy.BlockType.SHIELD_GENERATOR_TOP));
+            FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(), MPBlocks.SHIELD_GENERATOR_DUMMY.getDefaultState());
         }
         this.destroyBlock();
         this.world.destroyBlock(thisBlock.up(), false);
@@ -496,7 +495,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         if (state.getBlock() instanceof BlockShieldGenerator)
         {
-            return state.getValue(BlockStateHelper.FACING_HORIZON);
+            return state.getValue(BlockStateProperty.FACING_HORIZON);
         }
         return EnumFacing.NORTH;
     }

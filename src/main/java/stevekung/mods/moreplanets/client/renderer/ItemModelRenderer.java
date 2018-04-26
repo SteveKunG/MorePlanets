@@ -5,7 +5,6 @@ import java.util.Map.Entry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import stevekung.mods.moreplanets.blocks.BlockPolishedSpaceDecoration;
 import stevekung.mods.moreplanets.blocks.decoration.*;
 import stevekung.mods.moreplanets.client.renderer.ccl.*;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -68,15 +67,9 @@ public class ItemModelRenderer
 
     private static void registerBlockVariantsRenderer()
     {
-        ClientRegisterHelper.registerModelRender(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, 0, "dark_energy_storage_module");
-        ClientRegisterHelper.registerModelRender(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, 4, "nuclear_waste_storage_module");
         ClientRegisterHelper.registerModelRender(NibiruBlocks.INFECTED_SPONGE, 0, "infected_sponge");
         ClientRegisterHelper.registerModelRender(NibiruBlocks.INFECTED_SPONGE, 1, "infected_wet_sponge");
-        ClientRegisterHelper.registerModelRenderWithDyeColor(MPBlocks.TINTED_GLASS);
-        ClientRegisterHelper.registerModelRenderWithDyeColor(MPBlocks.TINTED_GLASS_PANE);
-        ClientRegisterHelper.registerModelRenderWithDyeColor(KoentusBlocks.GLOWING_HARDENED_ICE);
 
-        ClientRegisterHelper.registerModelRender(MPBlocks.POLISHED_SPACE_DECORATION, BlockPolishedSpaceDecoration.BlockType.class);
         ClientRegisterHelper.registerModelRender(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, BlockHalfDungeonBrickSlab1.BlockType.class);
         ClientRegisterHelper.registerModelRender(MPBlocks.HALF_COBBLESTONE_SLAB_1, BlockHalfCobblestoneSlab1.BlockType.class);
         ClientRegisterHelper.registerModelRender(MPBlocks.HALF_WOODEN_SLAB_1, BlockHalfWoodenSlab1.BlockType.class);

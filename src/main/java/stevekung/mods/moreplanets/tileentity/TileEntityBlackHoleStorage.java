@@ -40,8 +40,8 @@ import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IInventoryDefaults, ISidedInventory, IFluidHandlerWrapper, IConnector
 {
@@ -97,13 +97,12 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
             }
             if (blackHoleList.isEmpty())
             {
-                JsonUtil json = new JsonUtil();
                 EntityPlayer player = this.world.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID));
                 this.destroyBlock();
 
                 if (player != null)
                 {
-                    player.sendMessage(json.text(GCCoreUtil.translate("gui.black_hole_disappear.message")).setStyle(json.red()));
+                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.black_hole_disappear.message")).setStyle(JsonUtils.red()));
                 }
             }
             this.xpTemp = this.fluidTank.getFluidAmount();

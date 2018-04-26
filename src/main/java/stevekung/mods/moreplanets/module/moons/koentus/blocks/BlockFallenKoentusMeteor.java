@@ -17,7 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.moons.koentus.entity.EntityFallingKoentusMeteor;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFallingMP;
@@ -36,7 +36,7 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }
@@ -93,7 +93,7 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
                 double d5 = 0.0D;
                 d3 = (rand.nextFloat() - 0.5D) * 0.5D;
                 d5 = (rand.nextFloat() - 0.5D) * 0.5D;
-                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.KOENTUS_METEOR_SMOKE, d0, pos.getY() + 2, d2, d3, -2.0D, d5);
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.KOENTUS_METEOR_SMOKE, d0, pos.getY() + 2, d2, d3, -2.0D, d5);
             }
         }
     }

@@ -225,29 +225,29 @@ public class BlockKoentus extends BlockBasicMP implements IDetectableResource, I
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
-        switch (meta)
-        {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        default:
-            return EnumSortCategoryBlock.BUILDING_BLOCK;
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-            return EnumSortCategoryBlock.ORE;
-        case 10:
-        case 11:
-            return EnumSortCategoryBlock.INGOT_BLOCK;
-        case 12:
-            return EnumSortCategoryBlock.DUNGEON_BRICK;
-        }
+        //        switch (meta)
+        //        {
+        //        case 0:
+        //        case 1:
+        //        case 2:
+        //        case 3:
+        //        default:
+        return EnumSortCategoryBlock.BUILDING_BLOCK;
+        //        case 4:
+        //        case 5:
+        //        case 6:
+        //        case 7:
+        //        case 8:
+        //        case 9:
+        //            return EnumSortCategoryBlock.ORE;
+        //        case 10:
+        //        case 11:
+        //            return EnumSortCategoryBlock.INGOT_BLOCK;
+        //        case 12:
+        //            return EnumSortCategoryBlock.DUNGEON_BRICK;
+        //        }
     }
 
     @Override

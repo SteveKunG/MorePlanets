@@ -103,7 +103,7 @@ public class BlockHalfDungeonBrickSlab1 extends BlockSlabMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.SLAB_DUNGEON_BRICK;
     }

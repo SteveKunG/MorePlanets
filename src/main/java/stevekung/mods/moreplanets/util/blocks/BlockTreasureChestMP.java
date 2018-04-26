@@ -13,7 +13,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public abstract class BlockTreasureChestMP extends BlockContainerMP implements ISingleBlockRender
 {
@@ -23,7 +23,7 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     {
         super(Material.ROCK);
         this.setResistance(10000000.0F);
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, EnumFacing.NORTH));
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
         this.setHardness(-1.0F);
     }
 
@@ -67,7 +67,7 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite());
+        return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, placer.getHorizontalFacing().getOpposite());
     }
 
     public boolean cannotOpenChest(World world, BlockPos pos)
@@ -95,7 +95,7 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
         {
             enumfacing = EnumFacing.NORTH;
         }
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
+        return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, enumfacing);
     }
 
     @Override
@@ -107,29 +107,29 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateHelper.FACING_HORIZON).getIndex();
+        return state.getValue(BlockStateProperty.FACING_HORIZON).getIndex();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockStateHelper.FACING_HORIZON);
+        return new BlockStateContainer(this, BlockStateProperty.FACING_HORIZON);
     }
 
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rotation)
     {
-        return state.withProperty(BlockStateHelper.FACING_HORIZON, rotation.rotate(state.getValue(BlockStateHelper.FACING_HORIZON)));
+        return state.withProperty(BlockStateProperty.FACING_HORIZON, rotation.rotate(state.getValue(BlockStateProperty.FACING_HORIZON)));
     }
 
     @Override
     public IBlockState withMirror(IBlockState state, Mirror mirror)
     {
-        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING_HORIZON)));
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateProperty.FACING_HORIZON)));
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.TREASURE_CHEST;
     }

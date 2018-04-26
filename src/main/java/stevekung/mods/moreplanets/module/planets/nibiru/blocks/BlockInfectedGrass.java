@@ -14,7 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockGrassMP;
 
@@ -86,7 +86,7 @@ public class BlockInfectedGrass extends BlockGrassMP implements IGrowable
         {
             if (!world.getBlockState(pos.up()).isSideSolid(world, pos.up(), EnumFacing.UP))
             {
-                MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_SPORE, pos.getX() + rand.nextFloat(), pos.getY() + 1.1F, pos.getZ() + rand.nextFloat());
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_SPORE, pos.getX() + rand.nextFloat(), pos.getY() + 1.1F, pos.getZ() + rand.nextFloat());
             }
         }
     }

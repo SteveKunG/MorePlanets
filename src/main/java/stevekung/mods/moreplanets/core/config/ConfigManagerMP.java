@@ -1,243 +1,116 @@
 package stevekung.mods.moreplanets.core.config;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraftforge.common.config.Config;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import net.minecraftforge.common.config.ConfigCategory;
-import net.minecraftforge.common.config.ConfigElement;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.client.config.IConfigElement;
-import stevekung.mods.moreplanets.util.MPLog;
-
+@Config(modid = MorePlanetsMod.MOD_ID)
 public class ConfigManagerMP
 {
-    public static Configuration config;
-    public static String GENERAL = "config_moreplanets_general";
-    public static String DIMENSIONS = "config_moreplanets_dimensions";
-    public static String GC_ADDON_COMPAT = "config_moreplanets_gc_addon_compat";
-    public static String OTHERS = "config_moreplanets_others";
+    @Config.LangKey(value = "moreplanets_general")
+    @Config.Comment(value = "Based More Planets Configuration. Version Checker, Debug, Mod Option. etc.")
+    public static final General moreplanets_general = new General();
+
+    @Config.LangKey(value = "moreplanets_dimension")
+    @Config.Comment(value = "Planet or Moon Dimension IDs Configuration.")
+    public static final Dimension moreplanets_dimension = new Dimension();
+
+    @Config.LangKey(value = "moreplanets_other")
+    @Config.Comment(value = "Others Configuration.")
+    public static final Other moreplanets_other = new Other();
+
+    @Config.LangKey(value = "moreplanets_addon_compat")
+    @Config.Comment(value = "GC-Addon Compatibility Configuration.")
+    public static final AddonCompatibility moreplanets_addon_compat = new AddonCompatibility();
 
     // General
-    public static String startedPlanet;
-    public static boolean enableDebug;
-    public static boolean enableVersionChecker;
-    public static boolean enableChangeLogInGame;
-    public static boolean enableNightVisionEffect;
-    public static boolean enableBlackHoleExplosion;
-    public static boolean enableStartedPlanet;
-    public static boolean use3DTorchItemModel;
-    public static int idNetworkHandler;
+    public static class General
+    {
+        @Config.Comment("Put planet name that you would like to spawn (Also you need to enable started planet in the config). For example \"planet.nibiru\", \"moon.moon\", \"satellite.spacestation.overworld\" ")
+        @Config.Name(value = "Planet to Start")
+        public String startedPlanet = "planet.";
+
+        @Config.Name(value = "Enable Debug Logging")
+        public boolean enableDebug = false;
+
+        @Config.Name(value = "Enable Version Checker")
+        @Config.RequiresMcRestart
+        public boolean enableVersionChecker = true;
+
+        @Config.Name(value = "Enable Change Log in Game")
+        public boolean enableChangeLogInGame = true;
+
+        @Config.Name(value = "Enable Night Vision Effect while boss fight")
+        public boolean enableNightVisionEffect = false;
+
+        @Config.Name(value = "Enable Black Hole Explosion")
+        public boolean enableBlackHoleExplosion = true;
+
+        @Config.Name(value = "Enable Started Planet")
+        public boolean enableStartedPlanet = false;
+
+        @Config.Name(value = "Use 3D Item Model for Torch")
+        @Config.RequiresMcRestart
+        public boolean use3DTorchItemModel = true;
+
+        @Config.Name(value = "Network Handler ID")
+        @Config.RequiresMcRestart
+        public int idNetworkHandler = 2542;
+    }
 
     // Dimensions
-    public static int idDimensionDiona;
-    public static int idDimensionChalos;
-    public static int idDimensionNibiru;
-    public static int idDimensionFronos;
+    public static class Dimension
+    {
+        @Config.Name(value = "Diona Dimension ID")
+        public int idDimensionDiona = -2542;
+
+        @Config.Name(value = "Chalos Dimension ID")
+        public int idDimensionChalos = -2543;
+
+        @Config.Name(value = "Nibiru Dimension ID")
+        public int idDimensionNibiru = -2544;
+
+        @Config.Name(value = "Fronos Dimension ID")
+        public int idDimensionFronos = -2545;
+    }
 
     // Others
-    public static int idBaseRocketSchematic;
-    public static int idBaseSchematic;
-    public static int idBaseRocketSchematicGui;
-    public static int idBaseSchematicGui;
-    public static boolean enableDescriptionInWaila;
+    public static class Other
+    {
+        @Config.Name(value = "Base Tiered Rocket Schematic ID")
+        public int idBaseRocketSchematic = 800;
+
+        @Config.Name(value = "Base Schematic ID")
+        public int idBaseSchematic = 850;
+
+        @Config.Name(value = "Base Tiered Rocket Schematic GUI ID")
+        public int idBaseRocketSchematicGui = 500;
+
+        @Config.Name(value = "Base Schematic GUI ID")
+        public int idBaseSchematicGui = 550;
+
+        @Config.Name(value = "Enable Description in Waila Tooltip")
+        public boolean enableDescriptionInWaila = false;
+    }
 
     // GC-Addon Compatibility stuffs
-    public static boolean enableTier4RocketSchematic;
-    public static boolean enableTier5RocketSchematic;
-    public static boolean enableTier6RocketSchematic;
-    public static boolean enableTier4RocketRecipe;
-    public static boolean enableTier5RocketRecipe;
-    public static boolean enableTier6RocketRecipe;
-
-    public static void init(File file)
+    public static class AddonCompatibility
     {
-        ConfigManagerMP.config = new Configuration(file);
-        ConfigManagerMP.syncConfig(true);
-    }
+        @Config.Name(value = "Enable Tier 4 Rocket Schematic")
+        public boolean enableTier4RocketSchematic = true;
 
-    public static void syncConfig(boolean load)
-    {
-        try
-        {
-            if (!ConfigManagerMP.config.isChild)
-            {
-                if (load)
-                {
-                    ConfigManagerMP.config.load();
-                }
-            }
+        @Config.Name(value = "Enable Tier 5 Rocket Schematic")
+        public boolean enableTier5RocketSchematic = true;
 
-            ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.GENERAL, ConfigManagerMP.addGeneralConfig());
-            ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.DIMENSIONS, ConfigManagerMP.addDimensionIDConfig());
-            ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.GC_ADDON_COMPAT, ConfigManagerMP.addGCAddonCompatConfig());
-            ConfigManagerMP.config.setCategoryPropertyOrder(ConfigManagerMP.OTHERS, ConfigManagerMP.addOtherConfig());
+        @Config.Name(value = "Enable Tier 6 Rocket Schematic")
+        public boolean enableTier6RocketSchematic = true;
 
-            if (ConfigManagerMP.config.hasChanged())
-            {
-                ConfigManagerMP.config.save();
-            }
-        }
-        catch (Exception e)
-        {
-            MPLog.error("More Planets has a problem loading it's configuration");
-        }
-    }
+        @Config.Name(value = "Enable Tier 4 Rocket Recipe")
+        public boolean enableTier4RocketRecipe = true;
 
-    private static ArrayList<String> addGeneralConfig()
-    {
-        ArrayList<String> propOrder = new ArrayList<>();
-        Property prop;
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Planet to Start", "planet.");
-        prop.setComment("Put planet name that you would like to spawn (Also you need to enable started planet in the config). For example \"planet.nibiru\", \"moon.moon\", \"satellite.spacestation.overworld\" ");
-        ConfigManagerMP.startedPlanet = prop.getString();
-        propOrder.add(prop.getName());
+        @Config.Name(value = "Enable Tier 5 Rocket Recipe")
+        public boolean enableTier5RocketRecipe = true;
 
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Enable Started Planet", false);
-        ConfigManagerMP.enableStartedPlanet = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Enable Night Vision Effect while boss fight", false);
-        ConfigManagerMP.enableNightVisionEffect = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Enable Black Hole Explosion", true);
-        ConfigManagerMP.enableBlackHoleExplosion = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Use 3D Item Model for Torch", true);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.use3DTorchItemModel = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Enable Debug Logging", false);
-        ConfigManagerMP.enableDebug = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Enable Version Checker", true);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.enableVersionChecker = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Enable Change Log in Game", true);
-        ConfigManagerMP.enableChangeLogInGame = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GENERAL, "Network Handler ID", 2542);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idNetworkHandler = prop.getInt();
-        propOrder.add(prop.getName());
-        return propOrder;
-    }
-
-    private static ArrayList<String> addDimensionIDConfig()
-    {
-        ArrayList<String> propOrder = new ArrayList<>();
-        Property prop;
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.DIMENSIONS, "Diona Dimension ID", -2542);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idDimensionDiona = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.DIMENSIONS, "Chalos Dimension ID", -2543);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idDimensionChalos = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.DIMENSIONS, "Nibiru Dimension ID", -2544);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idDimensionNibiru = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.DIMENSIONS, "Fronos Dimension ID", -2545);
-        prop.setRequiresMcRestart(true);
-        ConfigManagerMP.idDimensionFronos = prop.getInt();
-        propOrder.add(prop.getName());
-        return propOrder;
-    }
-
-    private static ArrayList<String> addGCAddonCompatConfig()
-    {
-        ArrayList<String> propOrder = new ArrayList<>();
-        Property prop;
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 4 Rocket Schematic", true);
-        ConfigManagerMP.enableTier4RocketSchematic = prop.getBoolean();
-        prop.setRequiresMcRestart(true);
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 5 Rocket Schematic", true);
-        ConfigManagerMP.enableTier5RocketSchematic = prop.getBoolean();
-        prop.setRequiresMcRestart(true);
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 6 Rocket Schematic", true);
-        ConfigManagerMP.enableTier6RocketSchematic = prop.getBoolean();
-        prop.setRequiresMcRestart(true);
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 4 Rocket Recipe", true);
-        ConfigManagerMP.enableTier4RocketRecipe = prop.getBoolean();
-        prop.setRequiresMcRestart(true);
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 5 Rocket Recipe", true);
-        ConfigManagerMP.enableTier5RocketRecipe = prop.getBoolean();
-        prop.setRequiresMcRestart(true);
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.GC_ADDON_COMPAT, "Enable Tier 6 Rocket Recipe", true);
-        ConfigManagerMP.enableTier6RocketRecipe = prop.getBoolean();
-        prop.setRequiresMcRestart(true);
-        propOrder.add(prop.getName());
-        return propOrder;
-    }
-
-    private static ArrayList<String> addOtherConfig()
-    {
-        ArrayList<String> propOrder = new ArrayList<>();
-        Property prop;
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.OTHERS, "Tier 4 Rocket Schematic ID", 800);
-        ConfigManagerMP.idBaseRocketSchematic = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.OTHERS, "Base Schematic ID", 850);
-        ConfigManagerMP.idBaseSchematic = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.OTHERS, "Tier 4 Rocket Schematic GUI ID", 500);
-        ConfigManagerMP.idBaseRocketSchematicGui = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.OTHERS, "Base Schematic GUI ID", 550);
-        ConfigManagerMP.idBaseSchematicGui = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = ConfigManagerMP.config.get(ConfigManagerMP.OTHERS, "Enable Description in Waila Tooltip", true);
-        ConfigManagerMP.enableDescriptionInWaila = prop.getBoolean();
-        propOrder.add(prop.getName());
-        return propOrder;
-    }
-
-    public static List<IConfigElement> getConfigElements()
-    {
-        List<IConfigElement> list = new ArrayList<>();
-        ConfigCategory configGeneral = ConfigManagerMP.config.getCategory(ConfigManagerMP.GENERAL);
-        configGeneral.setComment(GCCoreUtil.translate("gui.config.mp.general"));
-        list.add(new ConfigElement(configGeneral));
-
-        ConfigCategory configDimension = ConfigManagerMP.config.getCategory(ConfigManagerMP.DIMENSIONS);
-        configDimension.setComment(GCCoreUtil.translate("gui.config.mp.dimension"));
-        list.add(new ConfigElement(configDimension));
-
-        ConfigCategory configGCAddon = ConfigManagerMP.config.getCategory(ConfigManagerMP.GC_ADDON_COMPAT);
-        configGCAddon.setComment(GCCoreUtil.translate("gui.config.mp.gcaddon"));
-        list.add(new ConfigElement(configGCAddon));
-
-        ConfigCategory configGUIs = ConfigManagerMP.config.getCategory(ConfigManagerMP.OTHERS);
-        configGUIs.setComment(GCCoreUtil.translate("gui.config.mp.other"));
-        list.add(new ConfigElement(configGUIs));
-        return list;
+        @Config.Name(value = "Enable Tier 6 Rocket Recipe")
+        public boolean enableTier6RocketRecipe = true;
     }
 }

@@ -48,12 +48,12 @@ public class CraftingManagerMP
     {
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_WARP_PAD, 9), new Object[] { "PPP", "MMM", 'P', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'M', new ItemStack(GCBlocks.basicBlock, 1, 12) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ROCKET_CRUSHER, 1), new Object[] { "PPP", "HAH", "WFW", 'P', Blocks.PISTON, 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'A', Blocks.ANVIL, 'W', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'F', new ItemStack(GCItems.basicItem, 1, 14) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS, 8, 0), new Object[] {"III", "IDI", "III", 'I', new ItemStack(Blocks.GLASS), 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_SPACE_DECORATION, 4, 0), new Object[] { "TT", "TT", 'T', new ItemStack(GCBlocks.basicBlock, 1, 4) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_SPACE_DECORATION, 8, 1), new Object[] { "TTT", "TAT", "TTT", 'T', new ItemStack(MPBlocks.POLISHED_SPACE_DECORATION, 1, 0), 'A', new ItemStack(GCItems.basicItem, 1, 8) });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.WHITE_TINTED_GLASS, 8), new Object[] {"III", "IDI", "III", 'I', new ItemStack(Blocks.GLASS), 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_TIN_DECORATION, 4), new Object[] { "TT", "TT", 'T', new ItemStack(GCBlocks.basicBlock, 1, 4) });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_ALUMINUM_DECORATION, 8), new Object[] { "TTT", "TAT", "TTT", 'T', MPBlocks.POLISHED_TIN_DECORATION, 'A', new ItemStack(GCItems.basicItem, 1, 8) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.DARK_ENERGY_RECEIVER), new Object[] { "HPH", "SCS", "ITI", 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'P', new ItemStack(GCItems.flagPole), 'S', new ItemStack(GCItems.basicItem, 1, 1), 'C', MPItems.SPACE_WARPER_CORE, 'I', Items.IRON_INGOT, 'T', new ItemStack(AsteroidsItems.basicItem, 1, 5) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER), new Object[] { "EAE", "AWA", "EAE", 'E', new ItemStack(GCBlocks.machineTiered, 1, 8), 'A', new ItemStack(DionaItems.DIONA_ITEM, 1, 5), 'W', new ItemStack(GCItems.basicItem, 1, 14) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, 1, 4), new Object[] { "EAE", "ANA", "EAE", 'E', new ItemStack(MPBlocks.TIERED_ENERGY_STORAGE_CLUSTER, 1, 0), 'A', new ItemStack(DionaItems.DIONA_ITEM, 1, 5), 'N', NibiruBlocks.NUCLEAR_WASTE_TANK });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER), new Object[] { "EAE", "AWA", "EAE", 'E', new ItemStack(GCBlocks.machineTiered, 1, 8), 'A', new ItemStack(DionaItems.DIONA_ITEM, 1, 5), 'W', new ItemStack(GCItems.basicItem, 1, 14) });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER), new Object[] { "EAE", "ANA", "EAE", 'E', new ItemStack(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER), 'A', new ItemStack(DionaItems.DIONA_ITEM, 1, 5), 'N', NibiruBlocks.NUCLEAR_WASTE_TANK });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_PORTAL), new Object[] { "OFO", "OOO", "OOO", 'O', Blocks.OBSIDIAN, 'F', Items.FLINT_AND_STEEL });
 
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 6, 0), new Object[] { "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 11) });
@@ -81,9 +81,9 @@ public class CraftingManagerMP
         {
             if (i != 15)
             {
-                RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS, 8, 15 - i), new Object[] {"III", "IDI", "III", 'I', new ItemStack(MPBlocks.TINTED_GLASS, 1, 0), 'D', new ItemStack(Items.DYE, 1, i)});
+                //                RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS, 8, 15 - i), new Object[] {"III", "IDI", "III", 'I', new ItemStack(MPBlocks.TINTED_GLASS, 1, 0), 'D', new ItemStack(Items.DYE, 1, i)});
             }
-            RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS_PANE, 16, i), new Object[] {"GGG", "GGG", 'G', new ItemStack(MPBlocks.TINTED_GLASS, 1, i)});
+            //            RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS_PANE, 16, i), new Object[] {"GGG", "GGG", 'G', new ItemStack(MPBlocks.TINTED_GLASS, 1, i)});
         }
     }
 

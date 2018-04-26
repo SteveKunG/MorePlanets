@@ -14,7 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class ItemBlockInfectedSnow extends ItemBlock
 {
@@ -43,11 +43,11 @@ public class ItemBlockInfectedSnow extends ItemBlock
 
             if (block == this.block)
             {
-                int i = iblockstate.getValue(BlockStateHelper.LAYERS).intValue();
+                int i = iblockstate.getValue(BlockStateProperty.LAYERS).intValue();
 
                 if (i <= 7)
                 {
-                    IBlockState iblockstate1 = iblockstate.withProperty(BlockStateHelper.LAYERS, Integer.valueOf(i + 1));
+                    IBlockState iblockstate1 = iblockstate.withProperty(BlockStateProperty.LAYERS, Integer.valueOf(i + 1));
                     AxisAlignedBB axisalignedbb = iblockstate1.getCollisionBoundingBox(world, blockpos);
 
                     if (axisalignedbb != Block.NULL_AABB && world.checkNoEntityCollision(axisalignedbb.offset(blockpos)) && world.setBlockState(blockpos, iblockstate1, 10))
@@ -83,6 +83,6 @@ public class ItemBlockInfectedSnow extends ItemBlock
     public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack)
     {
         IBlockState state = world.getBlockState(pos);
-        return state.getBlock() != NibiruBlocks.INFECTED_SNOW_LAYER || state.getValue(BlockStateHelper.LAYERS) > 7 ? super.canPlaceBlockOnSide(world, pos, side, player, stack) : true;
+        return state.getBlock() != NibiruBlocks.INFECTED_SNOW_LAYER || state.getValue(BlockStateProperty.LAYERS) > 7 ? super.canPlaceBlockOnSide(world, pos, side, player, stack) : true;
     }
 }

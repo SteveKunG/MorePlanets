@@ -37,16 +37,16 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.entity.EntitySlimeBaseMP;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implements IMorePlanetsBoss
 {
@@ -241,7 +241,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
     public void onUpdate()
     {
         super.onUpdate();
-        MorePlanetsCore.PROXY.addBoss(this);
+        MorePlanetsMod.PROXY.addBoss(this);
         List<EntityInfectedCrystallizeTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizeTentacle.class, this.getEntityBoundingBox().grow(32.0F, 32.0F, 32.0F));
         this.updateTentacle();
 
@@ -276,8 +276,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
 
                 for (EntityPlayer player : playerWithin)
                 {
-                    JsonUtil json = new JsonUtil();
-                    player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
                 }
                 this.setDead();
                 return;
@@ -465,7 +464,7 @@ public class EntityInfectedCrystallizeSlimeBoss extends EntitySlimeBaseMP implem
             float f3 = MathHelper.cos(f) * i * 0.65F * f1;
             double d0 = this.posX + f2;
             double d1 = this.posZ + f3;
-            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, d0, this.getEntityBoundingBox().minY, d1, new Object[] { DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL });
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, d0, this.getEntityBoundingBox().minY, d1, new Object[] { DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL });
         }
     }
 

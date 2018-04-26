@@ -110,9 +110,10 @@ public class BlockFronos extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
-        return meta == 6 ? EnumSortCategoryBlock.DUNGEON_BRICK : EnumSortCategoryBlock.BUILDING_BLOCK;
+        return EnumSortCategoryBlock.BUILDING_BLOCK;
+        //        return meta == 6 ? EnumSortCategoryBlock.DUNGEON_BRICK : EnumSortCategoryBlock.BUILDING_BLOCK;
     }
 
     public static enum BlockType implements IStringSerializable

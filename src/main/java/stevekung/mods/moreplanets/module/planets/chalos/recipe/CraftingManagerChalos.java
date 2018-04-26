@@ -25,7 +25,7 @@ public class CraftingManagerChalos
         CraftingManagerChalos.addBlockSmelting();
         CraftingManagerChalos.addItemSmelting();
 
-        if (ConfigManagerMP.enableTier5RocketRecipe)
+        if (ConfigManagerMP.moreplanets_addon_compat.enableTier5RocketRecipe)
         {
             CraftingManagerChalos.addRocketRecipe();
         }

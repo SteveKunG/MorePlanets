@@ -34,7 +34,7 @@ public class BlockMultalicCrystalBlock extends BlockBreakableMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.INGOT_BLOCK;
     }

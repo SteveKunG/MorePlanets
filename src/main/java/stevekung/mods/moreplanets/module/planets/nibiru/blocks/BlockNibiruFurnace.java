@@ -19,12 +19,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruFurnace;
 import stevekung.mods.moreplanets.util.blocks.BlockContainerMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlockRender
 {
@@ -34,7 +34,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     protected BlockNibiruFurnace(String name, boolean isBurning)
     {
         super(Material.ROCK);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateHelper.FACING_HORIZON, EnumFacing.NORTH));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
         this.setUnlocalizedName(name);
         this.setHardness(3.5F);
         this.isBurning = isBurning;
@@ -48,11 +48,11 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return !this.isBurning ? MorePlanetsCore.BLOCK_TAB : null;
+        return !this.isBurning ? MorePlanetsMod.BLOCK_TAB : null;
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_BLOCK;
     }
@@ -77,7 +77,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
             IBlockState block1 = world.getBlockState(pos.south());
             IBlockState block2 = world.getBlockState(pos.west());
             IBlockState block3 = world.getBlockState(pos.east());
-            EnumFacing enumfacing = state.getValue(BlockStateHelper.FACING_HORIZON);
+            EnumFacing enumfacing = state.getValue(BlockStateProperty.FACING_HORIZON);
 
             if (enumfacing == EnumFacing.NORTH && block.isFullBlock() && !block1.isFullBlock())
             {
@@ -95,7 +95,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
             {
                 enumfacing = EnumFacing.WEST;
             }
-            world.setBlockState(pos, state.withProperty(BlockStateHelper.FACING_HORIZON, enumfacing), 2);
+            world.setBlockState(pos, state.withProperty(BlockStateProperty.FACING_HORIZON, enumfacing), 2);
         }
     }
 
@@ -105,7 +105,7 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     {
         if (this.isBurning)
         {
-            EnumFacing enumfacing = state.getValue(BlockStateHelper.FACING_HORIZON);
+            EnumFacing enumfacing = state.getValue(BlockStateProperty.FACING_HORIZON);
             double d0 = pos.getX() + 0.5D;
             double d1 = pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
             double d2 = pos.getZ() + 0.5D;
@@ -162,13 +162,13 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
 
         if (active)
         {
-            world.setBlockState(pos, NibiruBlocks.NIBIRU_LIT_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, iblockstate.getValue(BlockStateHelper.FACING_HORIZON)), 3);
-            world.setBlockState(pos, NibiruBlocks.NIBIRU_LIT_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, iblockstate.getValue(BlockStateHelper.FACING_HORIZON)), 3);
+            world.setBlockState(pos, NibiruBlocks.NIBIRU_LIT_FURNACE.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, iblockstate.getValue(BlockStateProperty.FACING_HORIZON)), 3);
+            world.setBlockState(pos, NibiruBlocks.NIBIRU_LIT_FURNACE.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, iblockstate.getValue(BlockStateProperty.FACING_HORIZON)), 3);
         }
         else
         {
-            world.setBlockState(pos, NibiruBlocks.NIBIRU_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, iblockstate.getValue(BlockStateHelper.FACING_HORIZON)), 3);
-            world.setBlockState(pos, NibiruBlocks.NIBIRU_FURNACE.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, iblockstate.getValue(BlockStateHelper.FACING_HORIZON)), 3);
+            world.setBlockState(pos, NibiruBlocks.NIBIRU_FURNACE.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, iblockstate.getValue(BlockStateProperty.FACING_HORIZON)), 3);
+            world.setBlockState(pos, NibiruBlocks.NIBIRU_FURNACE.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, iblockstate.getValue(BlockStateProperty.FACING_HORIZON)), 3);
         }
 
         keepInventory = false;
@@ -189,13 +189,13 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite());
+        return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, placer.getHorizontalFacing().getOpposite());
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
-        world.setBlockState(pos, state.withProperty(BlockStateHelper.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()), 2);
+        world.setBlockState(pos, state.withProperty(BlockStateProperty.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()), 2);
 
         if (itemStack.hasDisplayName())
         {
@@ -245,13 +245,13 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        return state.withProperty(BlockStateHelper.FACING_HORIZON, rot.rotate(state.getValue(BlockStateHelper.FACING_HORIZON)));
+        return state.withProperty(BlockStateProperty.FACING_HORIZON, rot.rotate(state.getValue(BlockStateProperty.FACING_HORIZON)));
     }
 
     @Override
     public IBlockState withMirror(IBlockState state, Mirror mirror)
     {
-        return state.withRotation(mirror.toRotation(state.getValue(BlockStateHelper.FACING_HORIZON)));
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateProperty.FACING_HORIZON)));
     }
 
     @Override
@@ -263,19 +263,19 @@ public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlock
         {
             enumfacing = EnumFacing.NORTH;
         }
-        return this.getDefaultState().withProperty(BlockStateHelper.FACING_HORIZON, enumfacing);
+        return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, enumfacing);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateHelper.FACING_HORIZON).getIndex();
+        return state.getValue(BlockStateProperty.FACING_HORIZON).getIndex();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockStateHelper.FACING_HORIZON);
+        return new BlockStateContainer(this, BlockStateProperty.FACING_HORIZON);
     }
 
     @Override

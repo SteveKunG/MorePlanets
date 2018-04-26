@@ -47,9 +47,10 @@ public class EntityEventHandler
     {
         if (event.getEntity() instanceof EntityInfectedZombie)
         {
-            event.setCustomSummonedAid(new EntityInfectedZombie(event.getWorld()));
+            EntityInfectedZombie zombie = new EntityInfectedZombie(event.getWorld());
+            event.setCustomSummonedAid(zombie);
 
-            if (((EntityLivingBase) event.getEntity()).getRNG().nextFloat() < ((EntityInfectedZombie) event.getEntity()).getEntityAttribute(((EntityInfectedZombie) event.getEntity()).getReinforcementsAttribute()).getAttributeValue())
+            if (zombie.getRNG().nextFloat() < zombie.getEntityAttribute(zombie.getReinforcementsAttribute()).getAttributeValue())
             {
                 event.setResult(Result.ALLOW);
             }
@@ -57,9 +58,10 @@ public class EntityEventHandler
         }
         if (event.getEntity() instanceof EntityZeliusZombie)
         {
-            event.setCustomSummonedAid(new EntityZeliusZombie(event.getWorld()));
+            EntityZeliusZombie zombie = new EntityZeliusZombie(event.getWorld());
+            event.setCustomSummonedAid(zombie);
 
-            if (((EntityLivingBase) event.getEntity()).getRNG().nextFloat() < ((EntityZeliusZombie) event.getEntity()).getEntityAttribute(((EntityZeliusZombie) event.getEntity()).getReinforcementsAttribute()).getAttributeValue())
+            if (zombie.getRNG().nextFloat() < zombie.getEntityAttribute(zombie.getReinforcementsAttribute()).getAttributeValue())
             {
                 event.setResult(Result.ALLOW);
             }
@@ -75,7 +77,7 @@ public class EntityEventHandler
         PacketSimpleMP.sendToAllAround(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_ENTITY_ID, id, String.valueOf(living.getEntityId())), living.world, id, living.getPosition(), 64);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent //TODO Fix fall damage
     public void onLivingFall(LivingFallEvent event)
     {
         if (!CompatibilityManagerMP.isBaubleLoaded)
@@ -112,13 +114,14 @@ public class EntityEventHandler
         if (living instanceof EntityPlayerMP)
         {
             EntityPlayerMP player = (EntityPlayerMP)living;
+            String startedPlanet = ConfigManagerMP.moreplanets_general.startedPlanet;
 
-            if (ConfigManagerMP.enableStartedPlanet && !WorldTickEventHandler.startedDimensionData.startedDimension && !(ConfigManagerMP.startedPlanet.equals("planet.") || ConfigManagerMP.startedPlanet.equals("moon.") || ConfigManagerMP.startedPlanet.equals("satellite.")))
+            if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && !WorldTickEventHandler.startedDimensionData.startedDimension && !(startedPlanet.equals("planet.") || startedPlanet.equals("moon.") || startedPlanet.equals("satellite.")))
             {
-                MPLog.debug("Start teleporting player to dimension {}", ConfigManagerMP.startedPlanet);
+                MPLog.debug("Start teleporting player to dimension {}", startedPlanet);
                 TeleportUtil.startNewDimension(player);
                 WorldTickEventHandler.startedDimensionData.startedDimension = true;
-                WorldTickEventHandler.startedDimensionData.planetToBack = ConfigManagerMP.startedPlanet;
+                WorldTickEventHandler.startedDimensionData.planetToBack = startedPlanet;
                 WorldTickEventHandler.startedDimensionData.setDirty(true);
             }
             if (player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) || this.isInOxygen(world, player))

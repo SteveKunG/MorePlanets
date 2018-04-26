@@ -15,7 +15,7 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 
 public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISingleBlockRender
@@ -96,7 +96,7 @@ public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISin
 
         for (int i = 0; i < 8; ++i)
         {
-            MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.MC_SMOKE_LARGE, pos.getX() + Math.random(), pos.getY() + 1.2D, pos.getZ() + Math.random());
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.MC_SMOKE_LARGE, pos.getX() + Math.random(), pos.getY() + 1.2D, pos.getZ() + Math.random());
         }
     }
 }

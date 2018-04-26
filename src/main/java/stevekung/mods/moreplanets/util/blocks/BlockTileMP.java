@@ -10,7 +10,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 public abstract class BlockTileMP extends BlockTileGC implements ISortableBlock
 {
@@ -38,6 +38,6 @@ public abstract class BlockTileMP extends BlockTileGC implements ISortableBlock
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return MorePlanetsCore.BLOCK_TAB;
+        return MorePlanetsMod.BLOCK_TAB;
     }
 }

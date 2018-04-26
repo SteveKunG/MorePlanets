@@ -4,8 +4,10 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import net.minecraft.world.World;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 public abstract class BlockContainerMP extends BlockContainer implements ISortableBlock
 {
@@ -21,7 +23,7 @@ public abstract class BlockContainerMP extends BlockContainer implements ISortab
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.BUILDING_BLOCK;
     }
@@ -29,6 +31,12 @@ public abstract class BlockContainerMP extends BlockContainer implements ISortab
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return MorePlanetsCore.BLOCK_TAB;
+        return MorePlanetsMod.BLOCK_TAB;
+    }
+
+    @Override //TODO Remove 1.13
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return null;
     }
 }

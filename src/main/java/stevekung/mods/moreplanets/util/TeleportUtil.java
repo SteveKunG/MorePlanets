@@ -29,7 +29,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.util.helper.WorldDimensionHelper;
 import stevekung.mods.moreplanets.world.IStartedDimension;
@@ -329,12 +329,12 @@ public class TeleportUtil
             worldOld.onEntityRemoved(player);
             worldNew.spawnEntity(player);
             player.setWorld(worldNew);
-            MorePlanetsCore.PROXY.resetFloatingTick(player);
+            MorePlanetsMod.PROXY.resetFloatingTick(player);
 
             if (!(worldNew.provider instanceof IGalacticraftWorldProvider))
             {
-                MPLog.error("{} is not space world!", ConfigManagerMP.startedPlanet);
-                throw new RuntimeException(ConfigManagerMP.startedPlanet + " is not space world!");
+                MPLog.error("{} is not space world!", ConfigManagerMP.moreplanets_general.startedPlanet);
+                throw new RuntimeException(ConfigManagerMP.moreplanets_general.startedPlanet + " is not space world!");
             }
 
             if (worldNew.provider instanceof IStartedDimension)

@@ -11,7 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
@@ -31,7 +31,7 @@ public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, IS
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return MorePlanetsCore.BLOCK_TAB;
+        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, IS
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.TORCH;
     }
@@ -56,6 +56,6 @@ public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, IS
     @Override
     public String getName()
     {
-        return ConfigManagerMP.use3DTorchItemModel ? "infected_torch" : "infected_torch_vanilla";
+        return ConfigManagerMP.moreplanets_general.use3DTorchItemModel ? "infected_torch" : "infected_torch_vanilla";
     }
 }

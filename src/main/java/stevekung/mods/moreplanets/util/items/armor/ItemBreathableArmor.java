@@ -11,7 +11,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISingleItemRender;
@@ -34,7 +34,7 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return MorePlanetsCore.ITEM_TAB;
+        return MorePlanetsMod.ITEM_TAB;
     }
 
     @Override

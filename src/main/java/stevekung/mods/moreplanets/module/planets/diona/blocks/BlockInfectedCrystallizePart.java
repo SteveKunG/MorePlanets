@@ -181,7 +181,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }

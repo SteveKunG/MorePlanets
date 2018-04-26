@@ -18,8 +18,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class ItemSpaceWarperCore extends ItemBaseMP
 {
@@ -33,7 +33,6 @@ public class ItemSpaceWarperCore extends ItemBaseMP
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        JsonUtil json = new JsonUtil();
         ItemStack itemStack = player.getHeldItem(hand);
 
         if (!player.world.isRemote)
@@ -51,17 +50,17 @@ public class ItemSpaceWarperCore extends ItemBaseMP
                         itemStack.getTagCompound().setInteger("Z", MathHelper.floor(player.posZ));
                         itemStack.getTagCompound().setFloat("Pitch", player.rotationPitch);
                         itemStack.getTagCompound().setFloat("Yaw", player.rotationYaw);
-                        player.sendMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add.message")));
+                        player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.warp_core_data_add.message")));
                         return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
                     }
                     else
                     {
-                        player.sendMessage(json.text(GCCoreUtil.translate("gui.warp_core_data_add_fail.message")));
+                        player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.warp_core_data_add_fail.message")));
                     }
                 }
                 else
                 {
-                    player.sendMessage(json.text(GCCoreUtil.translate("gui.space_dimension_only.message")).setStyle(json.red()));
+                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.space_dimension_only.message")).setStyle(JsonUtils.red()));
                 }
             }
         }

@@ -167,28 +167,28 @@ public class BlockDiona extends BlockBasicMP implements IDetectableResource, ITe
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
-        switch (meta)
-        {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        default:
-            return EnumSortCategoryBlock.BUILDING_BLOCK;
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-            return EnumSortCategoryBlock.ORE;
-        case 9:
-        case 10:
-            return EnumSortCategoryBlock.INGOT_BLOCK;
-        case 11:
-            return EnumSortCategoryBlock.DUNGEON_BRICK;
-        }
+        //        switch (meta)
+        //        {
+        //        case 0:
+        //        case 1:
+        //        case 2:
+        //        case 3:
+        //        default:
+        return EnumSortCategoryBlock.BUILDING_BLOCK;
+        //        case 4:
+        //        case 5:
+        //        case 6:
+        //        case 7:
+        //        case 8:
+        //            return EnumSortCategoryBlock.ORE;
+        //        case 9:
+        //        case 10:
+        //            return EnumSortCategoryBlock.INGOT_BLOCK;
+        //        case 11:
+        //            return EnumSortCategoryBlock.DUNGEON_BRICK;
+        //        }
     }
 
     @Override

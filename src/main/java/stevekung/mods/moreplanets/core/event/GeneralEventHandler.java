@@ -29,13 +29,10 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -54,8 +51,8 @@ import stevekung.mods.moreplanets.util.blocks.IFireBlock;
 
 public class GeneralEventHandler
 {
-    private static List<BreakBlockData> INFECTED_BLOCK_LIST = new ArrayList<>();
-    private static List<BreakBlockData> NON_INFECTED_BLOCK_LIST = new ArrayList<>();
+    private static final List<BreakBlockData> INFECTED_BLOCK_LIST = new ArrayList<>();
+    private static final List<BreakBlockData> NON_INFECTED_BLOCK_LIST = new ArrayList<>();
 
     static
     {
@@ -105,15 +102,6 @@ public class GeneralEventHandler
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, 11));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB, 3));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_GRASS_PATH, 1));
-    }
-
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent event)
-    {
-        if (event.getModID().equals(MorePlanetsCore.MOD_ID))
-        {
-            ConfigManagerMP.syncConfig(false);
-        }
     }
 
     @SubscribeEvent
@@ -258,7 +246,7 @@ public class GeneralEventHandler
                 player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
             }
         }
-        if (source.getRegistryName().toString().contains("moreplanets"))
+        if (source.getRegistryName().toString().startsWith("moreplanets"))
         {
             if (source.getUnlocalizedName().contains("infected") || source.getUnlocalizedName().contains("nibiru") || source.getLocalizedName().contains("infected"))
             {
@@ -277,7 +265,7 @@ public class GeneralEventHandler
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent //TODO advancement
     public void onPickupItem(ItemPickupEvent event)
     {
         ItemStack itemStack = event.getOriginalEntity().getItem();
@@ -290,7 +278,7 @@ public class GeneralEventHandler
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent //TODO advancement
     public void onCraftItem(ItemCraftedEvent event)
     {
         Item item = event.crafting.getItem();
@@ -362,6 +350,7 @@ public class GeneralEventHandler
         {
             world.setBlockState(pos, farmland.getDefaultState());
         }
+
         event.setResult(Result.ALLOW);
         world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
 
@@ -388,7 +377,7 @@ public class GeneralEventHandler
         return player.getActiveItemStack() != null && player.getActiveItemStack().getItem() instanceof ItemShears;
     }
 
-    private static class BreakBlockData
+    static class BreakBlockData
     {
         private Block block;
         private int meta;

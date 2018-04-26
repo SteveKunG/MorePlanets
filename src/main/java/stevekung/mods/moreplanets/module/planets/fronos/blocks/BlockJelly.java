@@ -72,7 +72,7 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_BLOCK;
     }

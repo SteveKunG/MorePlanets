@@ -30,16 +30,16 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityVeinBall;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IEntityBreathable, ISpaceMob, IEntityMultiPart
 {
@@ -90,7 +90,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     public void onUpdate()
     {
         super.onUpdate();
-        MorePlanetsCore.PROXY.addBoss(this);
+        MorePlanetsMod.PROXY.addBoss(this);
         this.motionY *= 0.5D;
 
         if (this.getHealth() <= 0.0F)
@@ -378,8 +378,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
 
                 for (EntityPlayer player : playerWithin)
                 {
-                    JsonUtil json = new JsonUtil();
-                    player.sendMessage(json.text(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(json.red()));
+                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
                 }
                 this.setDead();
                 return;
@@ -406,7 +405,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
             this.spawner.boss = null;
             this.spawner.spawned = false;
         }
-        MorePlanetsCore.PROXY.removeBoss(this);
+        MorePlanetsMod.PROXY.removeBoss(this);
         super.setDead();
     }
 

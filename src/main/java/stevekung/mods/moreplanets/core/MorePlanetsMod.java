@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.core;
 
-import java.io.File;
 import java.util.Arrays;
 
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
@@ -9,14 +8,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.relauncher.FMLInjectionData;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.client.command.CommandChangeLog;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.*;
@@ -26,37 +28,43 @@ import stevekung.mods.moreplanets.items.capsule.ItemCapsule;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
-import stevekung.mods.moreplanets.util.*;
+import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
+import stevekung.mods.moreplanets.util.CreativeTabsMP;
+import stevekung.mods.moreplanets.util.MPLog;
+import stevekung.mods.moreplanets.util.SmeltWithDataFunction;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.stevekunglib.utils.VersionChecker;
 
-@Mod(modid = MorePlanetsCore.MOD_ID, name = MorePlanetsCore.NAME, version = MorePlanetsCore.VERSION, dependencies = MorePlanetsCore.DEPENDENCIES, guiFactory = MorePlanetsCore.GUI_FACTORY, certificateFingerprint = MorePlanetsCore.CERTIFICATE)
-public class MorePlanetsCore
+@Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.DEPENDENCIES, certificateFingerprint = MorePlanetsMod.CERTIFICATE)
+public class MorePlanetsMod
 {
     public static final String NAME = "More Planets";
     public static final String MOD_ID = "moreplanets";
-    public static final int MAJOR_VERSION = 2;
+    public static final int MAJOR_VERSION = 3;
     public static final int MINOR_VERSION = 0;
-    public static final int BUILD_VERSION = 14;
-    public static final String VERSION = MorePlanetsCore.MAJOR_VERSION + "." + MorePlanetsCore.MINOR_VERSION + "." + MorePlanetsCore.BUILD_VERSION;
-    public static final String GUI_FACTORY = "stevekung.mods.moreplanets.core.config.ConfigGuiFactoryMP";
+    public static final int BUILD_VERSION = 0;
+    public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
-    public static final String FORGE_VERSION = "after:forge@[14.23.1.2555,);";
-    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
-    public static final String MC_VERSION = String.valueOf(FMLInjectionData.data()[4]);
+    public static final String FORGE_VERSION = "after:forge@[14.23.2.2654,);";
+    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION;
     public static final String CERTIFICATE = "@FINGERPRINT@";
-    private static boolean DEOBFUSCATED;
+    public static final String URL = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
+    private static boolean isDevelopment;
 
-    @SidedProxy(clientSide = MorePlanetsCore.CLIENT_CLASS, serverSide = MorePlanetsCore.SERVER_CLASS)
+    @SidedProxy(clientSide = MorePlanetsMod.CLIENT_CLASS, serverSide = MorePlanetsMod.SERVER_CLASS)
     public static ServerProxyMP PROXY;
 
-    @Instance(MorePlanetsCore.MOD_ID)
-    public static MorePlanetsCore INSTANCE;
+    @Instance(MorePlanetsMod.MOD_ID)
+    public static MorePlanetsMod INSTANCE;
 
-    public static boolean[] STATUS_CHECK = { false, false, false };
+    public static boolean noConnection;
+    public static boolean foundLatest;
+    public static boolean showAnnounceMessage;
+    public static final VersionChecker checker = new VersionChecker(MOD_ID, VERSION, MAJOR_VERSION, MINOR_VERSION, BUILD_VERSION);
 
-    public static CreativeTabsMP BLOCK_TAB;
-    public static CreativeTabsMP ITEM_TAB;
+    public static final CreativeTabsMP BLOCK_TAB = new CreativeTabsMP("more_planets_blocks");
+    public static final CreativeTabsMP ITEM_TAB = new CreativeTabsMP("more_planets_items") ;
 
     static
     {
@@ -64,7 +72,7 @@ public class MorePlanetsCore
 
         try
         {
-            MorePlanetsCore.DEOBFUSCATED = Launch.classLoader.getClassBytes("net.minecraft.world.World") != null;
+            MorePlanetsMod.isDevelopment = Launch.classLoader.getClassBytes("net.minecraft.world.World") != null;
         }
         catch (Exception e) {}
     }
@@ -73,10 +81,8 @@ public class MorePlanetsCore
     public void preInit(FMLPreInitializationEvent event)
     {
         CompatibilityManagerMP.init();
-        ConfigManagerMP.init(new File(event.getModConfigurationDirectory(), "MorePlanets.cfg"));
-        MorePlanetsCore.initModInfo(event.getModMetadata());
-        MorePlanetsCore.BLOCK_TAB = new CreativeTabsMP("MorePlanetsBlocks");
-        MorePlanetsCore.ITEM_TAB = new CreativeTabsMP("MorePlanetsItems");
+        MorePlanetsMod.initModInfo(event.getModMetadata());
+        CommonRegisterHelper.registerForgeEvent(this);
 
         MPBlocks.init();
         MPItems.init();
@@ -85,7 +91,7 @@ public class MorePlanetsCore
         MPPotions.init();
         MPBiomes.init();
         MPOthers.init();
-        MorePlanetsCore.PROXY.registerPreRendering();
+        MorePlanetsMod.PROXY.preInit(event);
     }
 
     @EventHandler
@@ -94,10 +100,10 @@ public class MorePlanetsCore
         MPTileEntities.init();
         MPOreDictionary.init();
         MPPlanets.register();
-        GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.idNetworkHandler, PacketSimpleMP.class);
-        MorePlanetsCore.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
-        MorePlanetsCore.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
-        MorePlanetsCore.PROXY.registerInitRendering();
+        GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.moreplanets_general.idNetworkHandler, PacketSimpleMP.class);
+        MorePlanetsMod.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
+        MorePlanetsMod.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
+        MorePlanetsMod.PROXY.init(event);
         LootFunctionManager.registerFunction(new SmeltWithDataFunction.Serializer());
 
         for (BiomeGenBaseGC biome : MPBiomes.biomeList)
@@ -122,8 +128,13 @@ public class MorePlanetsCore
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        VersionChecker.startCheck();
-        MorePlanetsCore.PROXY.registerPostRendering();
+        MorePlanetsMod.PROXY.postInit(event);
+
+        if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
+        {
+            MorePlanetsMod.checker.startCheck();
+        }
+
         CommonRegisterHelper.registerGUIHandler(this, new GuiHandlerMP());
         CraftingManagerMP.init();
         MPSchematics.init();
@@ -140,7 +151,7 @@ public class MorePlanetsCore
     @EventHandler
     public void onFingerprintViolation(FMLFingerprintViolationEvent event)
     {
-        if (MorePlanetsCore.isObfuscatedEnvironment())
+        if (MorePlanetsMod.isDevelopmentEnvironment())
         {
             MPLog.info("Development environment detected! Ignore certificate check.");
         }
@@ -150,19 +161,28 @@ public class MorePlanetsCore
         }
     }
 
-    public static boolean isObfuscatedEnvironment()
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
     {
-        return MorePlanetsCore.DEOBFUSCATED;
+        if (event.getModID().equals(MorePlanetsMod.MOD_ID))
+        {
+            ConfigManager.sync(MorePlanetsMod.MOD_ID, Config.Type.INSTANCE);
+        }
+    }
+
+    public static boolean isDevelopmentEnvironment()
+    {
+        return MorePlanetsMod.isDevelopment;
     }
 
     private static void initModInfo(ModMetadata info)
     {
         info.autogenerated = false;
-        info.modId = MorePlanetsCore.MOD_ID;
-        info.name = MorePlanetsCore.NAME;
-        info.version = MorePlanetsCore.VERSION;
+        info.modId = MorePlanetsMod.MOD_ID;
+        info.name = MorePlanetsMod.NAME;
+        info.version = MorePlanetsMod.VERSION;
         info.description = "An add-on exploration with custom planets for Galacticraft!";
-        info.url = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
+        info.url = MorePlanetsMod.URL;
         info.credits = "All credits to Galacticraft Sources/API and some people who helped.";
         info.authorList = Arrays.asList("SteveKunG");
     }

@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.moons.koentus.blocks.BlockKoentus;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.helper.ColorHelper;
@@ -133,7 +133,7 @@ public class EntityAntiGravFallingBlock extends Entity
                     {
                         color = this.rand.nextInt(3) == 0 ? ColorHelper.rgbToDecimal(88, 88, 88) : this.rand.nextInt(2) == 0 ? ColorHelper.rgbToDecimal(206, 105, 10) : ColorHelper.rgbToDecimal(16, 136, 207);
                     }
-                    MorePlanetsCore.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_FALLING_DUST, d0, d1, d2, new Object[] { color });
+                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_FALLING_DUST, d0, d1, d2, new Object[] { color });
                 }
             }
         }

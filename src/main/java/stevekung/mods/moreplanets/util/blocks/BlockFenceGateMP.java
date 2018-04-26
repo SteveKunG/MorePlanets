@@ -4,7 +4,7 @@ import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, ISingleBlockRender
 {
@@ -23,11 +23,11 @@ public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, 
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return MorePlanetsCore.BLOCK_TAB;
+        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.FENCE_GATE;
     }

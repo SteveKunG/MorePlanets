@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.util.helper;
 import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
 import stevekung.mods.moreplanets.util.debug.JSONRecipe;
 
@@ -11,7 +11,7 @@ public class RecipeHelper
 {
     public static void addRecipe(ItemStack output, Object... obj)
     {
-        if (MorePlanetsCore.isObfuscatedEnvironment())
+        if (MorePlanetsMod.isDevelopmentEnvironment())
         {
             JSONRecipe.addShapedRecipe(output, obj);
         }
@@ -19,7 +19,7 @@ public class RecipeHelper
 
     public static void addOreRecipe(ItemStack output, Object... obj)
     {
-        if (MorePlanetsCore.isObfuscatedEnvironment())
+        if (MorePlanetsMod.isDevelopmentEnvironment())
         {
             JSONRecipe.addShapedRecipe(output, obj);
         }
@@ -27,7 +27,7 @@ public class RecipeHelper
 
     public static void addShapelessRecipe(ItemStack output, Object... obj)
     {
-        if (MorePlanetsCore.isObfuscatedEnvironment())
+        if (MorePlanetsMod.isDevelopmentEnvironment())
         {
             JSONRecipe.addShapelessRecipe(output, obj);
         }

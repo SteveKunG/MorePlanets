@@ -18,8 +18,8 @@ public class MPOreDictionary
     {
         CommonRegisterHelper.registerOreDictionary("glowstone", MPBlocks.DUNGEON_GLOWSTONE);
         CommonRegisterHelper.registerOreDictionary("slabWood", new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("blockGlass", new ItemStack(MPBlocks.TINTED_GLASS, 1, OreDictionary.WILDCARD_VALUE));
-        CommonRegisterHelper.registerOreDictionary("paneGlass", new ItemStack(MPBlocks.TINTED_GLASS_PANE, 1, OreDictionary.WILDCARD_VALUE));
+        //        CommonRegisterHelper.registerOreDictionary("blockGlass", new ItemStack(MPBlocks.TINTED_GLASS, 1, OreDictionary.WILDCARD_VALUE));
+        //        CommonRegisterHelper.registerOreDictionary("paneGlass", new ItemStack(MPBlocks.TINTED_GLASS_PANE, 1, OreDictionary.WILDCARD_VALUE));
         CommonRegisterHelper.registerOreDictionary("plankWood", DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS);
         CommonRegisterHelper.registerOreDictionary("stone", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 2));
         CommonRegisterHelper.registerOreDictionary("cobblestone", new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 3));

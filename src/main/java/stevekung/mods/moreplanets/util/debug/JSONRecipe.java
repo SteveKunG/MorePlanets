@@ -10,9 +10,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 
 //You can include this in your mod/a pack/whatever you want, as long as that work follows the Mojang EULA.
 //The original source is viewable at https://gist.github.com/williewillus/a1a899ce5b0f0ba099078d46ae3dae6e
@@ -21,6 +21,8 @@ public class JSONRecipe
     // This is a janky JSON generator, for porting from below 1.12 to 1.12.
     // Simply replace calls to GameRegistry.addShapeless/ShapedRecipe with these methods, which will dump it to a json in RECIPE_DIR
     // Also works with OD, replace GameRegistry.addRecipe(new ShapedOreRecipe/ShapelessOreRecipe with the same calls
+    // After you are done, call generateConstants()
+    // Note that in many cases, you can combine multiple old recipes into one, since you can now specify multiple possibilities for an ingredient without using the OD. See vanilla for examples.
 
     //Credit 1: https://gist.github.com/P3pp3rF1y/ea85fa337c9082e95336b1b61d1c3cb5 - for NBT recipe support
     //Credit 2: https://gist.github.com/Draco18s/6398d3b94a4c07ded26eb641639a2ce2 - for Advancements (recipes unlocked)
@@ -35,7 +37,7 @@ public class JSONRecipe
     {
         if (RECIPE_DIR == null)
         {
-            RECIPE_DIR = ConfigManagerMP.config.getConfigFile().toPath().resolve("../recipes/").toFile();
+            RECIPE_DIR = Minecraft.getMinecraft().mcDataDir.toPath().resolve("../recipes/").toFile();
         }
         if (!RECIPE_DIR.exists())
         {
@@ -47,7 +49,7 @@ public class JSONRecipe
     {
         if (ADVANCE_DIR == null)
         {
-            ADVANCE_DIR = ConfigManagerMP.config.getConfigFile().toPath().resolve("../advancements/").toFile();
+            ADVANCE_DIR = Minecraft.getMinecraft().mcDataDir.toPath().resolve("../advancements/").toFile();
         }
         if (!ADVANCE_DIR.exists())
         {
@@ -311,4 +313,45 @@ public class JSONRecipe
             e.printStackTrace();
         }
     }
+
+    // EXPERIMENTAL: JSONs generated will definitely not work in 1.12.2 and below, and may not even work when 1.13 comes out
+    // When Forge 1.13 is fully released, I will fix this to be correct
+    // Usage: Replace calls to GameRegistry.addSmelting with this
+    public static void addSmelting(ItemStack in, ItemStack result, float xp)
+    {
+        addSmelting(in, result, xp, 200);
+    }
+
+    public static void addSmelting(ItemStack in, ItemStack result, float xp, int cookTime)
+    {
+        setupDir();
+        Map<String, Object> json = new HashMap<>();
+        json.put("type", "minecraft:smelting");
+        json.put("ingredient", serializeItem(in));
+        json.put("result", serializeItem(result)); // vanilla jsons just have a string?
+        json.put("experience", xp);
+        json.put("cookingtime", cookTime);
+
+        // names the json the same name as the output's registry name
+        // repeatedly adds _alt if a file already exists
+        // janky I know but it works
+        String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
+        File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+
+        while (f.exists())
+        {
+            suffix += "_alt";
+            f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+        }
+
+        try (FileWriter w = new FileWriter(f))
+        {
+            GSON.toJson(json, w);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 }

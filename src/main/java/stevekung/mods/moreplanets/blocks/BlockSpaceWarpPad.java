@@ -15,20 +15,23 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPad;
 import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
 import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSealableBlock, IBlockDescription, ISortableBlock, ISingleBlockRender
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D);
+
     public BlockSpaceWarpPad(String name)
     {
         super(Material.IRON);
@@ -41,27 +44,13 @@ public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSeal
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D / 16.0D, 1.0D);
+        return BlockSpaceWarpPad.AABB;
     }
 
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return MorePlanetsCore.BLOCK_TAB;
-    }
-
-    private boolean checkAxis(World world, BlockPos pos, EnumFacing facing)
-    {
-        int sameCount = 0;
-
-        for (int i = 1; i <= 3; i++)
-        {
-            if (world.getBlockState(pos.offset(facing, i)).getBlock() == MPBlocks.SPACE_WARP_PAD)
-            {
-                sameCount++;
-            }
-        }
-        return sameCount < 3;
+        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
@@ -69,7 +58,7 @@ public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSeal
     {
         if (!(GCCoreUtil.getDimensionID(world) == 0 || world.provider instanceof IGalacticraftWorldProvider))
         {
-            FMLClientHandler.instance().getClientPlayerEntity().sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.place_only_space.message")).setStyle(new JsonUtil().red()));
+            ClientUtils.printClientMessage(JsonUtils.create(LangUtils.translate("gui.place_only_space.message")).setStyle(JsonUtils.red()));
             return false;
         }
         if (!this.checkAxis(world, pos, EnumFacing.EAST) || !this.checkAxis(world, pos, EnumFacing.WEST) || !this.checkAxis(world, pos, EnumFacing.NORTH) || !this.checkAxis(world, pos, EnumFacing.SOUTH))
@@ -117,7 +106,7 @@ public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSeal
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.MACHINE_NON_BLOCK;
     }
@@ -132,5 +121,19 @@ public class BlockSpaceWarpPad extends BlockAdvancedTile implements IPartialSeal
     public String getName()
     {
         return "space_warp_pad";
+    }
+
+    private boolean checkAxis(World world, BlockPos pos, EnumFacing facing)
+    {
+        int sameCount = 0;
+
+        for (int i = 1; i <= 3; i++)
+        {
+            if (world.getBlockState(pos.offset(facing, i)).getBlock() == MPBlocks.SPACE_WARP_PAD)
+            {
+                sameCount++;
+            }
+        }
+        return sameCount < 3;
     }
 }

@@ -682,6 +682,7 @@ gui.alien_defender_arrived.message=Alien Defender Reinforcement have arrived!
 gui.target_too_far.message=Target is too far away by %s blocks!
 gui.not_air_block.message=Target is not an air block!
 gui.black_hole_disappear.message=Your Black Hole Storage has been destroyed by something!
+gui.missing_block.message=Missing Block %s at %s %s %s
 
 # GUI DESCRIPTION
 gui.multiblock_guide.desc=Multiblock Structure Guide
@@ -710,15 +711,14 @@ death.attack.black_hole=%s was sucked into black hole (tasty)
 death.attack.laser=%s was shot by a laser bullet
 
 # GUI CONFIG
-gui.config.mp=More Planets Configuration GUI
 gui.config.mp.general=Based More Planets Configuration. Version Checker, Debug, Mod Option. etc.
 gui.config.mp.dimension=Planet or Moon Dimension IDs Configuration.
 gui.config.mp.gcaddon=GC-Addon Compatibility Configuration.
 gui.config.mp.other=Others Configuration.
-config_moreplanets_general=General Config
-config_moreplanets_dimensions=Dimensions Config
-config_moreplanets_gc_addon_compat=GC-Addon Config
-config_moreplanets_others=Others Config
+moreplanets_general=General Config
+moreplanets_dimension=Dimensions Config
+moreplanets_addon_compat=GC-Addon Config
+moreplanets_other=Others Config
 
 # GUI JEI
 gui.jei.dark_energy_transform=Dark Energy Transform

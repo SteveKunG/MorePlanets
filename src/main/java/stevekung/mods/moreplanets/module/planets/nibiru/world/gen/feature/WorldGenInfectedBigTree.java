@@ -11,7 +11,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class WorldGenInfectedBigTree extends WorldGenAbstractTree
 {
@@ -155,7 +155,7 @@ public class WorldGenInfectedBigTree extends WorldGenAbstractTree
         {
             for (int i = 0; i < this.leafDistanceLimit; ++i)
             {
-                this.func_181631_a(pos.up(i), this.leafSize(i), this.leaves.getStateFromMeta(this.leavesMeta).withProperty(BlockStateHelper.CHECK_DECAY, Boolean.valueOf(false)));
+                this.func_181631_a(pos.up(i), this.leafSize(i), this.leaves.getStateFromMeta(this.leavesMeta).withProperty(BlockStateProperty.CHECK_DECAY, Boolean.valueOf(false)));
             }
         }
     }
@@ -171,8 +171,8 @@ public class WorldGenInfectedBigTree extends WorldGenAbstractTree
         for (int j = 0; j <= i; ++j)
         {
             BlockPos blockpos1 = p_175937_1_.add(0.5F + j * f, 0.5F + j * f1, 0.5F + j * f2);
-            BlockStateHelper.EnumAxis blocklog$enumaxis = this.func_175938_b(p_175937_1_, blockpos1);
-            this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getStateFromMeta(this.logMeta).withProperty(BlockStateHelper.AXIS, blocklog$enumaxis));
+            BlockStateProperty.EnumAxis blocklog$enumaxis = this.func_175938_b(p_175937_1_, blockpos1);
+            this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getStateFromMeta(this.logMeta).withProperty(BlockStateProperty.AXIS, blocklog$enumaxis));
         }
     }
 
@@ -184,9 +184,9 @@ public class WorldGenInfectedBigTree extends WorldGenAbstractTree
         return k > i && k > j ? k : j > i ? j : i;
     }
 
-    private BlockStateHelper.EnumAxis func_175938_b(BlockPos p_175938_1_, BlockPos p_175938_2_)
+    private BlockStateProperty.EnumAxis func_175938_b(BlockPos p_175938_1_, BlockPos p_175938_2_)
     {
-        BlockStateHelper.EnumAxis blocklog$enumaxis = BlockStateHelper.EnumAxis.Y;
+        BlockStateProperty.EnumAxis blocklog$enumaxis = BlockStateProperty.EnumAxis.Y;
         int i = Math.abs(p_175938_2_.getX() - p_175938_1_.getX());
         int j = Math.abs(p_175938_2_.getZ() - p_175938_1_.getZ());
         int k = Math.max(i, j);
@@ -195,11 +195,11 @@ public class WorldGenInfectedBigTree extends WorldGenAbstractTree
         {
             if (i == k)
             {
-                blocklog$enumaxis = BlockStateHelper.EnumAxis.X;
+                blocklog$enumaxis = BlockStateProperty.EnumAxis.X;
             }
             else if (j == k)
             {
-                blocklog$enumaxis = BlockStateHelper.EnumAxis.Z;
+                blocklog$enumaxis = BlockStateProperty.EnumAxis.Z;
             }
         }
         return blocklog$enumaxis;

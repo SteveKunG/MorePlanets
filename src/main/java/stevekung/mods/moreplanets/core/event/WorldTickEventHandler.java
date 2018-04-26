@@ -56,7 +56,7 @@ public class WorldTickEventHandler
         }
         if (event.phase == Phase.END)
         {
-            World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.idDimensionDiona);
+            World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionDiona);
 
             if (world.provider instanceof WorldProviderDiona)
             {
@@ -87,7 +87,7 @@ public class WorldTickEventHandler
                 }
             }
 
-            world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.idDimensionNibiru);
+            world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionNibiru);
 
             if (world.provider instanceof WorldProviderNibiru)
             {

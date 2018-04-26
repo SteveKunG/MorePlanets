@@ -8,7 +8,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import stevekung.mods.moreplanets.blocks.BlockSpaceDungeonSpawner;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
@@ -126,7 +125,7 @@ public class RoomBossDiona extends RoomBossMP
         int spawnerX = this.sizeX / 2;
         int spawnerY = 1;
         int spawnerZ = this.sizeZ / 2;
-        this.setBlockState(world, MPBlocks.SPACE_DUNGEON_SPAWNER.getDefaultState().withProperty(BlockSpaceDungeonSpawner.PLANET, BlockSpaceDungeonSpawner.DungeonType.DIONA), spawnerX, spawnerY, spawnerZ, boundingBox);
+        this.setBlockState(world, MPBlocks.DIONA_DUNGEON_SPAWNER.getDefaultState(), spawnerX, spawnerY, spawnerZ, boundingBox);
         BlockPos blockpos = new BlockPos(this.getXWithOffset(spawnerX, spawnerZ), this.getYWithOffset(spawnerY), this.getZWithOffset(spawnerX, spawnerZ));
         TileEntityDionaDungeonSpawner spawner = (TileEntityDionaDungeonSpawner) world.getTileEntity(blockpos);
 

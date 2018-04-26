@@ -102,18 +102,18 @@ public class BlockNibiru extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
-        switch (meta)
-        {
-        case 7:
-            return EnumSortCategoryBlock.INGOT_BLOCK;
-        case 8:
-        case 9:
-            return EnumSortCategoryBlock.DUNGEON_BRICK;
-        default:
-            return EnumSortCategoryBlock.BUILDING_BLOCK;
-        }
+        //        switch (meta)
+        //        {
+        //        case 7:
+        //            return EnumSortCategoryBlock.INGOT_BLOCK;
+        //        case 8:
+        //        case 9:
+        //            return EnumSortCategoryBlock.DUNGEON_BRICK;
+        //        default:
+        return EnumSortCategoryBlock.BUILDING_BLOCK;
+        //        }
     }
 
     @Override

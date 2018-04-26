@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlabBlock
 {
@@ -41,7 +41,7 @@ public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, I
     @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
-        return !this.isDouble() ? MorePlanetsCore.BLOCK_TAB : null;
+        return !this.isDouble() ? MorePlanetsMod.BLOCK_TAB : null;
     }
 
     @Override

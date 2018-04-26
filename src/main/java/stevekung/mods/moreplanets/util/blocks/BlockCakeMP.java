@@ -21,7 +21,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public abstract class BlockCakeMP extends BlockBaseMP
 {
@@ -32,14 +32,14 @@ public abstract class BlockCakeMP extends BlockBaseMP
         super(Material.CAKE);
         this.setTickRandomly(true);
         this.setHardness(0.5F);
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateHelper.BITES, 0));
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.BITES, 0));
         this.setSoundType(SoundType.CLOTH);
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return CAKE_AABB[state.getValue(BlockStateHelper.BITES).intValue()];
+        return CAKE_AABB[state.getValue(BlockStateProperty.BITES).intValue()];
     }
 
     @Override
@@ -82,11 +82,11 @@ public abstract class BlockCakeMP extends BlockBaseMP
         }
 
         player.getFoodStats().addStats(this.getFoodAmount(), this.getSaturationAmount());
-        int i = state.getValue(BlockStateHelper.BITES).intValue();
+        int i = state.getValue(BlockStateProperty.BITES).intValue();
 
         if (i < 6)
         {
-            world.setBlockState(pos, state.withProperty(BlockStateHelper.BITES, i + 1), 3);
+            world.setBlockState(pos, state.withProperty(BlockStateProperty.BITES, i + 1), 3);
         }
         else
         {
@@ -152,25 +152,25 @@ public abstract class BlockCakeMP extends BlockBaseMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateHelper.BITES, meta);
+        return this.getDefaultState().withProperty(BlockStateProperty.BITES, meta);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateHelper.BITES).intValue();
+        return state.getValue(BlockStateProperty.BITES).intValue();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockStateHelper.BITES);
+        return new BlockStateContainer(this, BlockStateProperty.BITES);
     }
 
     @Override
     public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
-        return (7 - state.getValue(BlockStateHelper.BITES).intValue()) * 2;
+        return (7 - state.getValue(BlockStateProperty.BITES).intValue()) * 2;
     }
 
     @Override
@@ -180,7 +180,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.CAKE;
     }

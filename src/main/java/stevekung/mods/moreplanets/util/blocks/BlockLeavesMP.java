@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
 {
@@ -69,7 +69,7 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
     {
         if (!world.isRemote)
         {
-            if (state.getValue(BlockStateHelper.CHECK_DECAY).booleanValue() && state.getValue(BlockStateHelper.DECAYABLE).booleanValue())
+            if (state.getValue(BlockStateProperty.CHECK_DECAY).booleanValue() && state.getValue(BlockStateProperty.DECAYABLE).booleanValue())
             {
                 byte b0 = 4;
                 int i = b0 + 1;
@@ -165,7 +165,7 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
 
                 if (k1 >= 0)
                 {
-                    world.setBlockState(pos, state.withProperty(BlockStateHelper.CHECK_DECAY, Boolean.valueOf(false)), 4);
+                    world.setBlockState(pos, state.withProperty(BlockStateProperty.CHECK_DECAY, Boolean.valueOf(false)), 4);
                 }
                 else
                 {
@@ -285,9 +285,9 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
     @Override
     public void beginLeavesDecay(IBlockState state, World world, BlockPos pos)
     {
-        if (!(Boolean)state.getValue(BlockStateHelper.CHECK_DECAY))
+        if (!(Boolean)state.getValue(BlockStateProperty.CHECK_DECAY))
         {
-            world.setBlockState(pos, state.withProperty(BlockStateHelper.CHECK_DECAY, true), 4);
+            world.setBlockState(pos, state.withProperty(BlockStateProperty.CHECK_DECAY, true), 4);
         }
     }
 

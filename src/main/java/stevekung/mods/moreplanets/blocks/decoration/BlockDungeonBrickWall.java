@@ -66,7 +66,7 @@ public class BlockDungeonBrickWall extends BlockWallMP implements IBlockVariants
     }
 
     @Override
-    public EnumSortCategoryBlock getBlockCategory(int meta)
+    public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.WALL;
     }

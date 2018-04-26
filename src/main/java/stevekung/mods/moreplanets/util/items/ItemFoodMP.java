@@ -2,7 +2,7 @@ package stevekung.mods.moreplanets.util.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemFood;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 public abstract class ItemFoodMP extends ItemFood implements ISortableItem, ISingleItemRender
 {
@@ -14,7 +14,7 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, ISin
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return MorePlanetsCore.ITEM_TAB;
+        return MorePlanetsMod.ITEM_TAB;
     }
 
     @Override

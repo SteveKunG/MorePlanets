@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 @SideOnly(Side.CLIENT)
 public class GuiChangeLogSlot extends GuiSlot
@@ -67,7 +67,7 @@ public class GuiChangeLogSlot extends GuiSlot
     @Override
     protected void overlayBackground(int startY, int endY, int startAlpha, int endAlpha)
     {
-        this.parent.drawCenteredString(this.mc.fontRenderer, "More Planets " + MorePlanetsCore.VERSION + " Change Log", this.width / 2, 16, 16777215);
+        this.parent.drawCenteredString(this.mc.fontRenderer, "More Planets " + MorePlanetsMod.VERSION + " Change Log", this.width / 2, 16, 16777215);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder vertexbuffer = tessellator.getBuffer();
         this.mc.getTextureManager().bindTexture(this.textureType ? GuiChangeLogSlot.POLISHED_TIN : GuiChangeLogSlot.POLISHED_ALUMINUM);

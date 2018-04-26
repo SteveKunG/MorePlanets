@@ -645,17 +645,15 @@ death.attack.black_hole=%s 被黑洞吞噬了
 death.attack.laser=%s 被镭射弹射死了
 
 # GUI CONFIG
-gui.config.mp=更多行星配置GUI
 gui.config.mp.general=基于更多行星配置.版本检查,调试,Mod选项.等等.
 gui.config.mp.dimension=行星/卫星维度ID配置.
 gui.config.mp.biome=世界生物群系ID配置.
 gui.config.mp.gcaddon=GC插件兼容配置.
 gui.config.mp.other=其他配置.
-config_moreplanets_general=通用配置
-config_moreplanets_dimensions=维度配置
-config_moreplanets_biomes=生物群系配置
-config_moreplanets_gc_addon_compat=GC插件配置
-config_moreplanets_others=其他配置
+moreplanets_general=通用配置
+moreplanets_dimension=维度配置
+moreplanets_addon_compat=GC插件配置
+moreplanets_other=其他配置
 
 # GUI JEI
 gui.jei.dark_energy_transform=Dark Energy Transform
