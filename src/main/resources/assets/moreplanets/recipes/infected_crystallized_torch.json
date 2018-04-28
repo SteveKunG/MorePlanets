@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "I": {
+      "item": "moreplanets:diona_item",
+      "data": 4
+    }
+  },
+  "result": {
+    "item": "moreplanets:infected_crystallized_torch",
+    "count": 4
+  }
+}

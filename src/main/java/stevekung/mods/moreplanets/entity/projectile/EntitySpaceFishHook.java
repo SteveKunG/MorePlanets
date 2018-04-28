@@ -495,34 +495,33 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
             }
             else if (this.ticksCatchable > 0)
             {
-                LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer)this.world);
-                lootcontext$builder.withLuck(this.luck + this.angler.getLuck());
+                LootContext.Builder lootBuilder = new LootContext.Builder((WorldServer)this.world);
+                lootBuilder.withLuck(this.luck + this.angler.getLuck());
                 double x = MathHelper.floor(this.posX);
                 double y = MathHelper.floor(this.getEntityBoundingBox().minY) + 1.0F;
                 double z = MathHelper.floor(this.posZ);
                 Block block = this.world.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
                 ResourceLocation resource = block instanceof IFishableLiquidBlock ? ((IFishableLiquidBlock)block).getLootTable() : this.world.provider instanceof IGalacticraftWorldProvider ? MPLootTables.SPACE_FISHING : LootTableList.GAMEPLAY_FISHING;
-                List<ItemStack> result = this.world.getLootTableManager().getLootTableFromLocation(resource).generateLootForPools(this.rand, lootcontext$builder.build());
 
-                for (ItemStack itemstack : result)
+                this.world.getLootTableManager().getLootTableFromLocation(resource).generateLootForPools(this.rand, lootBuilder.build()).forEach(itemStack ->
                 {
-                    EntityItem entityitem = new EntityItem(this.world, this.posX, this.posY, this.posZ, itemstack);
+                    EntityItem entityItem = new EntityItem(this.world, this.posX, this.posY, this.posZ, itemStack);
                     double d0 = this.angler.posX - this.posX;
                     double d1 = this.angler.posY - this.posY;
                     double d2 = this.angler.posZ - this.posZ;
                     double d3 = MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
-                    entityitem.motionX = d0 * 0.1D;
-                    entityitem.motionY = d1 * 0.1D + MathHelper.sqrt(d3) * 0.08D;
-                    entityitem.motionZ = d2 * 0.1D;
-                    this.world.spawnEntity(entityitem);
+                    entityItem.motionX = d0 * 0.1D;
+                    entityItem.motionY = d1 * 0.1D + MathHelper.sqrt(d3) * 0.08D;
+                    entityItem.motionZ = d2 * 0.1D;
+                    this.world.spawnEntity(entityItem);
                     this.angler.world.spawnEntity(new EntityXPOrb(this.angler.world, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
-                    Item item = itemstack.getItem();
+                    Item item = itemStack.getItem();
 
                     if (item == Items.FISH || item == Items.COOKED_FISH)
                     {
                         this.angler.addStat(StatList.FISH_CAUGHT, 1);
                     }
-                }
+                });
                 i = 1;
             }
             if (this.inGround)

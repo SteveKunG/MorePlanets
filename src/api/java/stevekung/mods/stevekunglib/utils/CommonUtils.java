@@ -4,6 +4,8 @@ import java.awt.Desktop;
 import java.net.URI;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class CommonUtils
 {
@@ -15,6 +17,11 @@ public class CommonUtils
     public static void unregisterEventHandler(Object event)
     {
         MinecraftForge.EVENT_BUS.unregister(event);
+    }
+
+    public static void registerGuiHandler(Object obj, IGuiHandler handler)
+    {
+        NetworkRegistry.INSTANCE.registerGuiHandler(obj, handler);
     }
 
     public static String ticksToElapsedTime(int ticks)

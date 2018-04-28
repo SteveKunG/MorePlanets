@@ -4,13 +4,13 @@ import net.minecraft.entity.EntityLivingBase;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.util.DamageSourceMP;
 import stevekung.mods.moreplanets.util.PotionMP;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class DarkEnergyEffect extends PotionMP
 {
     public DarkEnergyEffect()
     {
-        super("dark_energy", true, ColorHelper.rgbToDecimal(20, 20, 20), 2);
+        super("dark_energy", true, ColorUtils.rgbToDecimal(20, 20, 20), 2);
     }
 
     @Override

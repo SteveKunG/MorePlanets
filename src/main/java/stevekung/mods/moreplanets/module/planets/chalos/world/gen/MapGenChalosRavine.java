@@ -199,7 +199,7 @@ public class MapGenChalosRavine extends MapGenBase
     protected boolean isOceanBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
         Block block = data.getBlockState(x, y, z).getBlock();
-        return block == ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK;
+        return block == ChalosBlocks.CHEESE_MILK_FLUID_BLOCK;
     }
 
     private boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
@@ -216,7 +216,7 @@ public class MapGenChalosRavine extends MapGenBase
         IBlockState top = biome.topBlock;
         IBlockState filler = biome.fillerBlock;
 
-        if (state.getBlock() == ChalosBlocks.CHALOS_BLOCK || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == ChalosBlocks.CHALOS_ROCK || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y < 10)
             {

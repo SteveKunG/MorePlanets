@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -251,7 +250,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         ((TileEntityDummy) world.getTileEntity(pos)).setMainBlock(mainBlock);
     }
 
-    public static enum BlockType implements IStringSerializable
+    public static enum BlockType
     {
         WARP_PAD,
         DARK_ENERGY_SOLAR1,
@@ -264,12 +263,6 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
 
         @Override
         public String toString()
-        {
-            return this.getName().toLowerCase();
-        }
-
-        @Override
-        public String getName()
         {
             return this.name().toLowerCase();
         }

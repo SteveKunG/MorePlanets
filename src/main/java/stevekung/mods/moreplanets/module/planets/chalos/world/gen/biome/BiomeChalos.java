@@ -66,7 +66,7 @@ public class BiomeChalos extends BiomeBaseMP
                 {
                     j = -1;
                 }
-                else if (iblockstate2.getBlock() == ChalosBlocks.CHALOS_BLOCK)
+                else if (iblockstate2.getBlock() == ChalosBlocks.CHALOS_ROCK)
                 {
                     if (this.stoneBlock != null)
                     {
@@ -77,7 +77,7 @@ public class BiomeChalos extends BiomeBaseMP
                         if (k <= 0)
                         {
                             iblockstate = null;
-                            iblockstate1 = ChalosBlocks.CHALOS_BLOCK.getDefaultState();
+                            iblockstate1 = ChalosBlocks.CHALOS_ROCK.getDefaultState();
                         }
                         else if (j1 >= i - 4 && j1 <= i + 1)
                         {
@@ -87,7 +87,7 @@ public class BiomeChalos extends BiomeBaseMP
 
                         if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
                         {
-                            iblockstate = ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK.getDefaultState();
+                            iblockstate = ChalosBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState();
                         }
 
                         j = k;
@@ -99,8 +99,8 @@ public class BiomeChalos extends BiomeBaseMP
                         else if (j1 < i - 7 - k)
                         {
                             iblockstate = null;
-                            iblockstate1 = ChalosBlocks.CHALOS_BLOCK.getDefaultState();
-                            chunkPrimer.setBlockState(i1, j1, l, ChalosBlocks.CHALOS_BLOCK.getDefaultState());//gravel
+                            iblockstate1 = ChalosBlocks.CHALOS_ROCK.getDefaultState();
+                            chunkPrimer.setBlockState(i1, j1, l, ChalosBlocks.CHALOS_ROCK.getDefaultState());//gravel
                         }
                         else
                         {

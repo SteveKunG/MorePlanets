@@ -25,6 +25,7 @@ import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockSlabMP;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class MPBlocks
@@ -294,35 +295,35 @@ public class MPBlocks
         /**************************************************************/
 
         // Dummy
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.WARP_PAD_DUMMY, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DER_SOLAR1_DUMMY, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DER_SOLAR2_DUMMY, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DER_SOLAR3_DUMMY, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DER_SOLAR4_DUMMY, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.NWT_MIDDLE_DUMMY, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.NWT_TOP_DUMMY, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.SHIELD_GENERATOR_DUMMY, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.WARP_PAD_DUMMY, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DER_SOLAR1_DUMMY, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DER_SOLAR2_DUMMY, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DER_SOLAR3_DUMMY, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DER_SOLAR4_DUMMY, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.NWT_MIDDLE_DUMMY, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.NWT_TOP_DUMMY, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.SHIELD_GENERATOR_DUMMY, EnumHarvestLevel.PICKAXE, 2);
 
         // Energy Storage
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER, EnumHarvestLevel.PICKAXE, 2);
 
         // Polish
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.POLISHED_TIN_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.POLISHED_TIN_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
 
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.HALF_WOODEN_SLAB_1, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DOUBLE_WOODEN_SLAB_1, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.HALF_COBBLESTONE_SLAB_1, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DOUBLE_COBBLESTONE_SLAB_1, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DUNGEON_BRICK_WALL, EnumHarvestLevel.PICKAXE, 1);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, EnumHarvestLevel.PICKAXE, 1);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1, EnumHarvestLevel.PICKAXE, 1);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.SPACE_WARP_PAD, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.SPACE_WARP_PAD_FULL, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.ROCKET_CRUSHER, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_RECEIVER, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(MPBlocks.SHIELD_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.HALF_WOODEN_SLAB_1, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_WOODEN_SLAB_1, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.HALF_COBBLESTONE_SLAB_1, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_COBBLESTONE_SLAB_1, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DUNGEON_BRICK_WALL, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.SPACE_WARP_PAD, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.SPACE_WARP_PAD_FULL, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.ROCKET_CRUSHER, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_RECEIVER, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.SHIELD_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
     }
 }

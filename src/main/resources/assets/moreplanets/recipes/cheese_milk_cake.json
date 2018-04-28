@@ -13,10 +13,10 @@
     "M": {
       "type": "minecraft:item_nbt",
       "item": "forge:bucketfilled",
-      "nbt": "{FluidName:\"cheese_of_milk_fluid\",Amount:1000}"
+      "nbt": "{FluidName:\"cheese_milk_fluid\",Amount:1000}"
     }
   },
   "result": {
-    "item": "moreplanets:cheese_of_milk_cake"
+    "item": "moreplanets:cheese_milk_cake"
   }
 }

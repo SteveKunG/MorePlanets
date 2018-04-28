@@ -134,10 +134,4 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }
-
-    @Override
-    public String getName()
-    {
-        return "zelius_egg";
-    }
 }

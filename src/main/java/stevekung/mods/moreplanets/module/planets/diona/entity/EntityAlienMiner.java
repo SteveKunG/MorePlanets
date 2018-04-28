@@ -175,7 +175,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     public boolean isPotionApplicable(PotionEffect potion)
     {
         Potion potionEff = potion.getPotion();
-        return potionEff != MobEffects.POISON && potionEff != MobEffects.INSTANT_DAMAGE && potionEff != MobEffects.WITHER && potionEff != MPPotions.INFECTED_CRYSTALLIZE && potionEff != MPPotions.INFECTED_SPORE;
+        return potionEff != MobEffects.POISON && potionEff != MobEffects.INSTANT_DAMAGE && potionEff != MobEffects.WITHER && potionEff != MPPotions.INFECTED_CRYSTALLIZED && potionEff != MPPotions.INFECTED_SPORE;
     }
 
     @Override
@@ -378,7 +378,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                     BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
                     IBlockState iblockstate = this.entity.world.getBlockState(blockpos.down());
 
-                    if (iblockstate == DionaBlocks.DIONA_BLOCK.getStateFromMeta(0))
+                    if (iblockstate == DionaBlocks.DIONA_SURFACE_ROCK)
                     {
                         this.findStone = true;
                         return true;
@@ -408,7 +408,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                 BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
                 IBlockState iblockstate = world.getBlockState(blockpos.down());
 
-                if (iblockstate == DionaBlocks.DIONA_BLOCK.getStateFromMeta(0))
+                if (iblockstate == DionaBlocks.DIONA_SURFACE_ROCK)
                 {
                     world.setBlockState(blockpos.down(), DionaBlocks.ALIEN_MINER_BLOOD.getDefaultState(), 3);
                 }

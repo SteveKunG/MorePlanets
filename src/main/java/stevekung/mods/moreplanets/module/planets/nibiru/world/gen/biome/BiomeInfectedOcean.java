@@ -4,8 +4,8 @@ import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
 import static net.minecraftforge.common.BiomeDictionary.Type.OCEAN;
 
 import net.minecraft.world.biome.Biome;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class BiomeInfectedOcean extends BiomeNibiru
 {
@@ -22,7 +22,7 @@ public class BiomeInfectedOcean extends BiomeNibiru
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, OCEAN, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, OCEAN, DEAD);
     }
 
     @Override

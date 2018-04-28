@@ -19,7 +19,6 @@ public class ItemDoorMP extends ItemBaseMP
 
     public ItemDoorMP(String name, Block door)
     {
-        this.name = name;
         this.door = door;
         this.setUnlocalizedName(name);
     }

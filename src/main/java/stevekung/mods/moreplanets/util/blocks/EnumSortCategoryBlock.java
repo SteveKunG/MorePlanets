@@ -27,10 +27,5 @@ public enum EnumSortCategoryBlock
     FLOWER,
     SAPLING;
 
-    private static EnumSortCategoryBlock[] values = EnumSortCategoryBlock.values();
-
-    public static EnumSortCategoryBlock[] valuesCached()
-    {
-        return EnumSortCategoryBlock.values;
-    }
+    public static final EnumSortCategoryBlock[] values = EnumSortCategoryBlock.values();
 }

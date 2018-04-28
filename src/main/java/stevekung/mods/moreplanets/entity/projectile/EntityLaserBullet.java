@@ -271,7 +271,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
                         }
                         if (this.getLaserType() == 1)
                         {
-                            entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 100));
+                            entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 100));
                         }
                     }
                     if (!(movingobjectposition.entityHit instanceof EntityEnderman))
@@ -408,6 +408,6 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     public static enum EnumLaserType
     {
         NORMAL,
-        INFECTED_CRYSTALLIZE;
+        INFECTED_CRYSTALLIZED;
     }
 }

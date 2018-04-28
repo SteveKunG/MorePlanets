@@ -57,7 +57,7 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     {
         if (entity instanceof EntityLivingBase)
         {
-            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 120, 1));
+            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 120, 1));
             this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
         return super.attackEntityAsMob(entity);
@@ -92,7 +92,7 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZED ? false : super.isPotionApplicable(potion);
     }
 
     public IAttribute getReinforcementsAttribute()

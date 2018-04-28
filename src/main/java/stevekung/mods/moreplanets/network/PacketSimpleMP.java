@@ -316,7 +316,7 @@ public class PacketSimpleMP extends PacketBase
         double z = pos.getZ() + 0.5D;
         double r2 = radius * radius;
 
-        for (EntityPlayer player : world.playerEntities)
+        world.playerEntities.forEach(player ->
         {
             if (player instanceof EntityPlayerMP)
             {
@@ -334,7 +334,7 @@ public class PacketSimpleMP extends PacketBase
                     }
                 }
             }
-        }
+        });
     }
 
     private static void openShieldGeneratorConfig(EntityPlayerMP player, TileEntityShieldGenerator tile, boolean isConfig)

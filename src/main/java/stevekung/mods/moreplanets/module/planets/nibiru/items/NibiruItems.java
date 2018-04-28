@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.armor.ItemArmorMultalicCrystal;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.armor.ItemBreathableMultalicCrystal;
@@ -15,6 +16,7 @@ import stevekung.mods.moreplanets.util.items.ItemArrowMP;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 import stevekung.mods.moreplanets.util.items.ItemDoorMP;
 import stevekung.mods.moreplanets.util.items.tools.*;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
@@ -190,27 +192,27 @@ public class NibiruItems
         /********************HARVEST LEVEL STUFF***********************/
         /**************************************************************/
 
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.INFECTED_WOOD_SHOVEL, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.INFECTED_WOOD_PICKAXE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.INFECTED_WOOD_AXE, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.ALIEN_BERRY_WOOD_SHOVEL, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.ALIEN_BERRY_WOOD_PICKAXE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.ALIEN_BERRY_WOOD_AXE, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.NIBIRU_STONE_SHOVEL, EnumHarvestLevel.SHOVEL, 1);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.NIBIRU_STONE_PICKAXE, EnumHarvestLevel.PICKAXE, 1);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.NIBIRU_STONE_AXE, EnumHarvestLevel.AXE, 1);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.MULTALIC_CRYSTAL_SHOVEL, EnumHarvestLevel.SHOVEL, 3);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.MULTALIC_CRYSTAL_PICKAXE, EnumHarvestLevel.PICKAXE, 3);
-        CommonRegisterHelper.setToolHarvestLevel(NibiruItems.MULTALIC_CRYSTAL_AXE, EnumHarvestLevel.AXE, 3);
+        BlockUtils.setToolHarvestLevel(NibiruItems.INFECTED_WOOD_SHOVEL, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setToolHarvestLevel(NibiruItems.INFECTED_WOOD_PICKAXE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setToolHarvestLevel(NibiruItems.INFECTED_WOOD_AXE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setToolHarvestLevel(NibiruItems.ALIEN_BERRY_WOOD_SHOVEL, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setToolHarvestLevel(NibiruItems.ALIEN_BERRY_WOOD_PICKAXE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setToolHarvestLevel(NibiruItems.ALIEN_BERRY_WOOD_AXE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setToolHarvestLevel(NibiruItems.NIBIRU_STONE_SHOVEL, EnumHarvestLevel.SHOVEL, 1);
+        BlockUtils.setToolHarvestLevel(NibiruItems.NIBIRU_STONE_PICKAXE, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setToolHarvestLevel(NibiruItems.NIBIRU_STONE_AXE, EnumHarvestLevel.AXE, 1);
+        BlockUtils.setToolHarvestLevel(NibiruItems.MULTALIC_CRYSTAL_SHOVEL, EnumHarvestLevel.SHOVEL, 3);
+        BlockUtils.setToolHarvestLevel(NibiruItems.MULTALIC_CRYSTAL_PICKAXE, EnumHarvestLevel.PICKAXE, 3);
+        BlockUtils.setToolHarvestLevel(NibiruItems.MULTALIC_CRYSTAL_AXE, EnumHarvestLevel.AXE, 3);
 
         /**************************************************************/
         /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.INFECTED_WATER_FLUID);
-        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.HELIUM_GAS);
-        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.NUCLEAR_WASTE_FLUID);
-        CommonRegisterHelper.registerForgeBucket(NibiruBlocks.PURIFY_WATER_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(NibiruBlocks.INFECTED_WATER_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(NibiruBlocks.HELIUM_GAS);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(NibiruBlocks.NUCLEAR_WASTE_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(NibiruBlocks.PURIFY_WATER_FLUID);
 
         /**************************************************************/
         /************************OTHER STUFF***************************/

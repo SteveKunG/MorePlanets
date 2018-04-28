@@ -159,7 +159,7 @@ public class MapGenChalosCave extends MapGenBase
                                         {
                                             IBlockState state = chunk.getBlockState(k2, j3, j4);
 
-                                            if (state.getBlock() == ChalosBlocks.CHEESE_DIRT || state.getBlock() == ChalosBlocks.CHEESE_SLIME_BLOCK || state.getBlock() == ChalosBlocks.CHALOS_BLOCK)
+                                            if (state.getBlock() == ChalosBlocks.CHEESE_DIRT || state.getBlock() == ChalosBlocks.CHEESE_COARSE_DIRT || state.getBlock() == ChalosBlocks.CHEESE_SLIME_BLOCK || state.getBlock() == ChalosBlocks.CHALOS_ROCK)
                                             {
                                                 if (j3 < 10)
                                                 {
@@ -170,7 +170,7 @@ public class MapGenChalosCave extends MapGenBase
                                                     chunk.setBlockState(k2, j3, j4, Blocks.AIR.getDefaultState());
                                                 }
                                             }
-                                            else if (state.getBlock() == ChalosBlocks.CHEESE_GRASS || state.getBlock() == ChalosBlocks.CHEESE_SLIME_BLOCK)
+                                            else if (state.getBlock() == ChalosBlocks.CHEESE_GRASS_BLOCK || state.getBlock() == ChalosBlocks.CHEESE_SLIME_BLOCK)
                                             {
                                                 chunk.setBlockState(k2, j3, j4, Blocks.AIR.getDefaultState());
                                             }

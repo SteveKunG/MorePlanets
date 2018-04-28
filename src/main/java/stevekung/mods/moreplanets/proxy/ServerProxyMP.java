@@ -18,11 +18,11 @@ public class ServerProxyMP
 
     public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z) {}
 
-    public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, Object... objects) {}
+    public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, Object[] objects) {}
 
     public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, double motionX, double motionY, double motionZ) {}
 
-    public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, double motionX, double motionY, double motionZ, Object... objects) {}
+    public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, double motionX, double motionY, double motionZ, Object[] objects) {}
 
     public void resetFloatingTick(EntityPlayer player)
     {

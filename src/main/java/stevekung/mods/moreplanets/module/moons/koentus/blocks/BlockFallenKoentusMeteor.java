@@ -22,7 +22,7 @@ import stevekung.mods.moreplanets.module.moons.koentus.entity.EntityFallingKoent
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFallingMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockFallenKoentusMeteor extends BlockFallingMP
 {
@@ -156,7 +156,7 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     @SideOnly(Side.CLIENT)
     public int getDustColor(IBlockState state)
     {
-        return ColorHelper.rgbToDecimal(29, 89, 141);
+        return ColorUtils.rgbToDecimal(29, 89, 141);
     }
 
     @Override

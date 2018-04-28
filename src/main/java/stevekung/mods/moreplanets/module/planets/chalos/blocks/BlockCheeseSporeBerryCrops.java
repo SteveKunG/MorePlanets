@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -10,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.util.blocks.BlockCropsMP;
 
 public class BlockCheeseSporeBerryCrops extends BlockCropsMP
 {
-    private static AxisAlignedBB[] CARROT_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5625D, 1.0D)};
+    private static final AxisAlignedBB[] CARROT_AABB = { new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5625D, 1.0D) };
 
     public BlockCheeseSporeBerryCrops(String name)
     {
@@ -65,24 +65,16 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
     }
 
     @Override
-    public int damageDropped(IBlockState state)
+    public boolean validBlock(Block block)
     {
-        return 0;
+        return block == ChalosBlocks.CHEESE_FARMLAND;
     }
 
     @Override
-    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        Block block = world.getBlockState(pos.down()).getBlock();
-        return super.canBlockStay(world, pos, state) && block == ChalosBlocks.CHEESE_FARMLAND;
-    }
-
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
-        List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
         int age = state.getValue(AGE).intValue();
-        Random rand = world instanceof World ? ((World)world).rand : new Random();
+        Random rand = world instanceof World ? ((World)world).rand : RANDOM;
 
         if (age >= 7)
         {
@@ -90,14 +82,13 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
             {
                 if (rand.nextInt(15) <= age)
                 {
-                    ret.add(new ItemStack(this.getCrop(), 1, 3));
+                    drops.add(new ItemStack(this.getCrop(), 1, 3));
                 }
             }
             for (int i = 0; i < 2 + fortune; i++)
             {
-                ret.add(new ItemStack(this.getSeed()));
+                drops.add(new ItemStack(this.getSeed()));
             }
         }
-        return ret;
     }
 }

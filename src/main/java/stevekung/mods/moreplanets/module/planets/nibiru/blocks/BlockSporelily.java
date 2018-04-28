@@ -71,10 +71,4 @@ public class BlockSporelily extends BlockBushMP
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }
-
-    @Override
-    public String getName()
-    {
-        return "sporelily";
-    }
 }

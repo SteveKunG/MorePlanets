@@ -9,13 +9,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.helper.DecorateHelper;
+import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedPlains extends BiomeNibiru
 {
@@ -35,7 +35,7 @@ public class BiomeInfectedPlains extends BiomeNibiru
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, PLAINS, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, PLAINS, DEAD);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class BiomeInfectedPlains extends BiomeNibiru
 
             for (int i = 0; i < 7; ++i)
             {
-                new WorldGenNibiruDoublePlant(BlockNibiruDoublePlant.BlockType.DOUBLE_INFECTED_GRASS).generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));
+                new WorldGenNibiruDoublePlant(BlockNibiruDoublePlant.BlockType.DOUBLE_INFECTED_GRASS).generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
             }
         }
         super.decorate(world, rand, pos);

@@ -19,9 +19,18 @@ import stevekung.mods.moreplanets.util.items.ISortableItem;
 
 public abstract class ItemBreathableArmor extends ItemArmor implements IBreathableArmor, ISortableItem, ISingleItemRender
 {
+    private String name;
+
     public ItemBreathableArmor(ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, -1, type);
+    }
+
+    @Override
+    public Item setUnlocalizedName(String name)
+    {
+        this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override
@@ -75,6 +84,12 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     public EnumSortCategoryItem getItemCategory(int meta)
     {
         return EnumSortCategoryItem.HELMET_BREATHABLE;
+    }
+
+    @Override
+    public String getName()
+    {
+        return this.name;
     }
 
     protected abstract Item getRepairItems();

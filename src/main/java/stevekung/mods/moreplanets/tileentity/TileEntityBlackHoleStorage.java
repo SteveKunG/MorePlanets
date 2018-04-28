@@ -32,6 +32,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.WorldType;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -85,16 +86,16 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         {
             this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
-        if (this.world != null && !this.world.isRemote)
+        if (!this.world.isRemote && this.world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES)
         {
             this.updateStorage();
             List<EntityBlackHoleStorage> blackHoleList = this.world.getEntitiesWithinAABB(EntityBlackHoleStorage.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY() + 2, this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 3, this.pos.getZ() + 1.0D));
 
-            for (EntityBlackHoleStorage bh : blackHoleList)
+            blackHoleList.forEach(bh ->
             {
                 bh.setDisable(this.disableBlackHole);
                 bh.setCollectMode(this.collectMode);
-            }
+            });
             if (blackHoleList.isEmpty())
             {
                 EntityPlayer player = this.world.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID));

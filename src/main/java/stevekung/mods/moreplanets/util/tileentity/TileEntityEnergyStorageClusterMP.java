@@ -30,6 +30,11 @@ public class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectrica
     private MachineSidePack[] machineSides;
     public String containerName = "";
 
+    public TileEntityEnergyStorageClusterMP()
+    {
+        this(12500000.0F, 2500.0F, 4, BlockTieredEnergyStorageCluster.BlockType.DARK_ENERGY_STORAGE_CLUSTER.toString());
+    }
+
     public TileEntityEnergyStorageClusterMP(float capacity, float extract, int tier, String containerName)
     {
         this.setTierGC(tier);

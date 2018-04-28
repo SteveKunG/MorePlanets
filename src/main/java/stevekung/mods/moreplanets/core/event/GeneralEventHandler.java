@@ -36,7 +36,6 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockCheeseDirt;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.BlockFronosDirt;
@@ -74,13 +73,15 @@ public class GeneralEventHandler
         GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.OIL_ORE, -1));
         GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.SPORELILY, -1));
         GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_GRASS_PATH, 0));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZE_FENCE, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZE_TORCH, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZE_WEB, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZE_PART, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK, -1));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS, -1));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_FENCE, -1));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.LARGE_INFECTED_CRYSTALLIZED, -1));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_TORCH, -1));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_WEB, -1));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT, -1));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE, -1));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, -1));
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK, -1));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_BOOKSHELF, 1));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_TALL_GRASS, 2));
         GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_CRAFTING_TABLE, 1));
@@ -120,7 +121,7 @@ public class GeneralEventHandler
     {
         Block block = event.getState().getBlock();
 
-        if (block == DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK || block == ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK || block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+        if (block == DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK || block == ChalosBlocks.CHEESE_MILK_FLUID_BLOCK || block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
         {
             event.setResult(Result.ALLOW);
         }
@@ -200,7 +201,8 @@ public class GeneralEventHandler
         {
             return;
         }
-        for (BreakBlockData data : GeneralEventHandler.NON_INFECTED_BLOCK_LIST)
+
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.forEach(data ->
         {
             Block block = data.getBlock();
             int meta = data.getMeta();
@@ -219,9 +221,9 @@ public class GeneralEventHandler
                     return;
                 }
             }
-        }
+        });
 
-        for (BreakBlockData data : GeneralEventHandler.NON_INFECTED_BLOCK_LIST)
+        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.forEach(data ->
         {
             Block block = data.getBlock();
             int meta = data.getMeta();
@@ -245,7 +247,8 @@ public class GeneralEventHandler
             {
                 player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
             }
-        }
+        });
+
         if (source.getRegistryName().toString().startsWith("moreplanets"))
         {
             if (source.getUnlocalizedName().contains("infected") || source.getUnlocalizedName().contains("nibiru") || source.getLocalizedName().contains("infected"))
@@ -284,7 +287,7 @@ public class GeneralEventHandler
         Item item = event.crafting.getItem();
         Block block = Block.getBlockFromItem(item);
 
-        if (block == ChalosBlocks.CHALOS_CRAFTING_TABLE || block == NibiruBlocks.NIBIRU_CRAFTING_TABLE)
+        if (block == ChalosBlocks.CHEESE_SPORE_CRAFTING_TABLE || block == NibiruBlocks.NIBIRU_CRAFTING_TABLE)
         {
             //            event.player.addStat(AchievementList.BUILD_WORK_BENCH);
         }
@@ -313,14 +316,14 @@ public class GeneralEventHandler
 
         if (world.isAirBlock(pos.up()))
         {
-            if (block == ChalosBlocks.CHEESE_DIRT)
+            if (block == ChalosBlocks.CHEESE_DIRT || block == ChalosBlocks.CHEESE_COARSE_DIRT || block == ChalosBlocks.CHEESE_GRASS_BLOCK)
             {
-                this.setFarmland(event, world, pos, state, BlockCheeseDirt.VARIANT, BlockCheeseDirt.BlockType.CHEESE_COARSE_DIRT, ChalosBlocks.CHEESE_DIRT, ChalosBlocks.CHEESE_FARMLAND);
+                this.setFarmland(event, world, pos, state, ChalosBlocks.CHEESE_COARSE_DIRT, ChalosBlocks.CHEESE_DIRT, ChalosBlocks.CHEESE_FARMLAND);
             }
-            else if (block == ChalosBlocks.CHEESE_GRASS)
-            {
-                this.setFarmland(event, world, pos, ChalosBlocks.CHEESE_FARMLAND);
-            }
+            //            else if (block == ChalosBlocks.CHEESE_GRASS)
+            //            {
+            //                this.setFarmland(event, world, pos, ChalosBlocks.CHEESE_FARMLAND);
+            //            }
             else if (block == NibiruBlocks.INFECTED_DIRT)
             {
                 this.setFarmland(event, world, pos, state, BlockInfectedDirt.VARIANT, BlockInfectedDirt.BlockType.INFECTED_COARSE_DIRT, NibiruBlocks.INFECTED_DIRT, NibiruBlocks.INFECTED_FARMLAND);
@@ -340,6 +343,27 @@ public class GeneralEventHandler
         }
     }
 
+    private void setFarmland(UseHoeEvent event, World world, BlockPos pos, IBlockState state, Block coarse, Block dirt, Block farmland)
+    {
+        if (state.getBlock() == coarse)
+        {
+            world.setBlockState(pos, dirt.getDefaultState());
+        }
+        else
+        {
+            world.setBlockState(pos, farmland.getDefaultState());
+        }
+
+        event.setResult(Result.ALLOW);
+        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
+
+        for (EnumHand hand : CachedEnum.handValues)
+        {
+            event.getEntityPlayer().swingArm(hand);
+        }
+    }
+
+    @Deprecated //TODO Remove 1.13
     private void setFarmland(UseHoeEvent event, World world, BlockPos pos, IBlockState state, IProperty<?> property, Object value, Block dirt, Block farmland)
     {
         if (state.getValue(property) == value)
@@ -360,6 +384,7 @@ public class GeneralEventHandler
         }
     }
 
+    @Deprecated //TODO Remove 1.13
     private void setFarmland(UseHoeEvent event, World world, BlockPos pos, Block farmland)
     {
         world.setBlockState(pos, farmland.getDefaultState());
@@ -374,7 +399,7 @@ public class GeneralEventHandler
 
     private boolean isShears(EntityPlayer player)
     {
-        return player.getActiveItemStack() != null && player.getActiveItemStack().getItem() instanceof ItemShears;
+        return !player.getActiveItemStack().isEmpty() && player.getActiveItemStack().getItem() instanceof ItemShears;
     }
 
     static class BreakBlockData

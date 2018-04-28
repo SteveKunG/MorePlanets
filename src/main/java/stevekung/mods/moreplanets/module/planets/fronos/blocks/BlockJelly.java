@@ -25,7 +25,7 @@ import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockJelly extends BlockBreakableMP implements IBlockVariants
 {
@@ -34,14 +34,14 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
 
     static
     {
-        BlockJelly.JELLY_RGB.put(BlockType.GRAPE_JELLY_BLOCK, ColorHelper.rgbToFloatArray(230, 77, 201));
-        BlockJelly.JELLY_RGB.put(BlockType.RASPBERRY_JELLY_BLOCK, ColorHelper.rgbToFloatArray(250, 68, 112));
-        BlockJelly.JELLY_RGB.put(BlockType.STRAWBERRY_JELLY_BLOCK, ColorHelper.rgbToFloatArray(247, 102, 103));
-        BlockJelly.JELLY_RGB.put(BlockType.BERRY_JELLY_BLOCK, ColorHelper.rgbToFloatArray(122, 47, 198));
-        BlockJelly.JELLY_RGB.put(BlockType.LIME_JELLY_BLOCK, ColorHelper.rgbToFloatArray(197, 254, 136));
-        BlockJelly.JELLY_RGB.put(BlockType.ORANGE_JELLY_BLOCK, ColorHelper.rgbToFloatArray(255, 144, 32));
-        BlockJelly.JELLY_RGB.put(BlockType.GREEN_JELLY_BLOCK, ColorHelper.rgbToFloatArray(47, 151, 47));
-        BlockJelly.JELLY_RGB.put(BlockType.LEMON_JELLY_BLOCK, ColorHelper.rgbToFloatArray(183, 221, 67));
+        BlockJelly.JELLY_RGB.put(BlockType.GRAPE_JELLY_BLOCK, ColorUtils.rgbToFloatArray(230, 77, 201));
+        BlockJelly.JELLY_RGB.put(BlockType.RASPBERRY_JELLY_BLOCK, ColorUtils.rgbToFloatArray(250, 68, 112));
+        BlockJelly.JELLY_RGB.put(BlockType.STRAWBERRY_JELLY_BLOCK, ColorUtils.rgbToFloatArray(247, 102, 103));
+        BlockJelly.JELLY_RGB.put(BlockType.BERRY_JELLY_BLOCK, ColorUtils.rgbToFloatArray(122, 47, 198));
+        BlockJelly.JELLY_RGB.put(BlockType.LIME_JELLY_BLOCK, ColorUtils.rgbToFloatArray(197, 254, 136));
+        BlockJelly.JELLY_RGB.put(BlockType.ORANGE_JELLY_BLOCK, ColorUtils.rgbToFloatArray(255, 144, 32));
+        BlockJelly.JELLY_RGB.put(BlockType.GREEN_JELLY_BLOCK, ColorUtils.rgbToFloatArray(47, 151, 47));
+        BlockJelly.JELLY_RGB.put(BlockType.LEMON_JELLY_BLOCK, ColorUtils.rgbToFloatArray(183, 221, 67));
     }
 
     public BlockJelly(String name)

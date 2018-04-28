@@ -91,10 +91,4 @@ public class BlockAlienDefenderBeacon extends BlockBaseMP
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }
-
-    @Override
-    public String getName()
-    {
-        return "alien_defender_beacon";
-    }
 }

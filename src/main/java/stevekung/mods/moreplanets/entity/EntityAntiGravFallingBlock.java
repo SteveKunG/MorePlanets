@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.moons.koentus.blocks.BlockKoentus;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class EntityAntiGravFallingBlock extends Entity
 {
@@ -127,11 +127,11 @@ public class EntityAntiGravFallingBlock extends Entity
                     double d0 = (float)this.posX - 0.5D + this.rand.nextFloat();
                     double d1 = this.posY - 0.05D;
                     double d2 = (float)this.posZ - 0.5D + this.rand.nextFloat();
-                    int color = this.rand.nextInt(4) == 0 ? ColorHelper.rgbToDecimal(47, 66, 87) : this.rand.nextInt(2) == 0 ? ColorHelper.rgbToDecimal(38, 53, 70) : ColorHelper.rgbToDecimal(47, 62, 79);
+                    int color = this.rand.nextInt(4) == 0 ? ColorUtils.rgbToDecimal(47, 66, 87) : this.rand.nextInt(2) == 0 ? ColorUtils.rgbToDecimal(38, 53, 70) : ColorUtils.rgbToDecimal(47, 62, 79);
 
                     if (this.getBlockState().getValue(BlockKoentus.VARIANT) == BlockKoentus.BlockType.ANTI_GRAVITY_FRAGMENT_BLOCK)
                     {
-                        color = this.rand.nextInt(3) == 0 ? ColorHelper.rgbToDecimal(88, 88, 88) : this.rand.nextInt(2) == 0 ? ColorHelper.rgbToDecimal(206, 105, 10) : ColorHelper.rgbToDecimal(16, 136, 207);
+                        color = this.rand.nextInt(3) == 0 ? ColorUtils.rgbToDecimal(88, 88, 88) : this.rand.nextInt(2) == 0 ? ColorUtils.rgbToDecimal(206, 105, 10) : ColorUtils.rgbToDecimal(16, 136, 207);
                     }
                     MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_FALLING_DUST, d0, d1, d2, new Object[] { color });
                 }

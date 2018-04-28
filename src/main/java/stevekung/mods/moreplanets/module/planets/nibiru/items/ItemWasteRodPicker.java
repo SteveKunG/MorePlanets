@@ -18,10 +18,4 @@ public class ItemWasteRodPicker extends ItemBaseMP
     {
         return EnumSortCategoryItem.OTHER_TOOL;
     }
-
-    @Override
-    public String getName()
-    {
-        return "waste_rod_picker";
-    }
 }

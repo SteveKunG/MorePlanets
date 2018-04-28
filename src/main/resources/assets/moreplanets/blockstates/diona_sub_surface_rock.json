@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "moreplanets:diona_sub_surface_rock" },
+            { "model": "moreplanets:diona_sub_surface_rock", "y": 90 },
+            { "model": "moreplanets:diona_sub_surface_rock", "y": 180 },
+            { "model": "moreplanets:diona_sub_surface_rock", "y": 270 }
+        ]
+    }
+}

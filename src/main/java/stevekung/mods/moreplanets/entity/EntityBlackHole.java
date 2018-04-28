@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.entity;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -52,11 +50,9 @@ public class EntityBlackHole extends Entity
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         this.move(MoverType.SELF, 0.0D, 0.0D, 0.0D);
-
         int range = this.getRange();
-        List<Entity> entitiesAroundBH = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
-        for (Entity entity : entitiesAroundBH)
+        this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range)).forEach(entity ->
         {
             if (!(entity instanceof EntityPlayer && ((EntityPlayer)entity).capabilities.isCreativeMode) && !(entity instanceof IImmuneBlackHole && ((IImmuneBlackHole)entity).isImmune()))
             {
@@ -72,25 +68,24 @@ public class EntityBlackHole extends Entity
                 entity.motionX = motionX * this.getPullSpeed();
                 entity.motionY = motionY * this.getPullSpeed();
                 entity.motionZ = motionZ * this.getPullSpeed();
-                List<Entity> entityNearBH = this.world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 0.25D, this.posY - 0.25D, this.posZ - 0.25D, this.posX + 0.25D, this.posY + 0.5D, this.posZ + 0.25D));
 
-                for (Entity near : entityNearBH)
+                this.world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 0.25D, this.posY - 0.25D, this.posZ - 0.25D, this.posX + 0.25D, this.posY + 0.5D, this.posZ + 0.25D)).forEach(nearest ->
                 {
-                    if (near instanceof EntityLivingBase)
+                    if (nearest instanceof EntityLivingBase)
                     {
-                        ((EntityLivingBase)near).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 32767, 0, false, false));
+                        ((EntityLivingBase)nearest).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 32767, 0, false, false));
                     }
-                    if (near instanceof EntityPlayer)
+                    if (nearest instanceof EntityPlayer)
                     {
-                        near.attackEntityFrom(DamageSourceMP.BLACK_HOLE, 10.0F);
+                        nearest.attackEntityFrom(DamageSourceMP.BLACK_HOLE, 10.0F);
                     }
-                    if (!(near instanceof EntityPlayer) && !(near instanceof EntityBlackHole))
+                    if (!(nearest instanceof EntityPlayer) && !(nearest instanceof EntityBlackHole))
                     {
-                        near.setDead();
+                        nearest.setDead();
                     }
-                }
+                });
             }
-        }
+        });
 
         if (this.lifeTick == 0)
         {

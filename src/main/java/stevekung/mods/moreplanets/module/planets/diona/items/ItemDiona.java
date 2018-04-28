@@ -60,7 +60,7 @@ public class ItemDiona extends ItemBaseVariantsMP
     @Override
     public String[] getItemVariantsName()
     {
-        return new String[] { "illenium_ingot", "setrorium_shard", "compressed_illenium", "compressed_setrorium", "infected_crystallize_shard", "alien_miner_part", "glowing_iron_ingot", "black_hole_fragment", "anti_gravity_fragment" };
+        return new String[] { "illenium_ingot", "setrorium_shard", "compressed_illenium", "compressed_setrorium", "infected_crystallized_shard", "alien_miner_part", "glowing_iron_ingot", "black_hole_fragment", "anti_gravity_fragment" };
     }
 
     public static enum ItemType
@@ -69,7 +69,7 @@ public class ItemDiona extends ItemBaseVariantsMP
         SETRORIUM_SHARD,
         COMPRESSED_ILLENIUM,
         COMPRESSED_SETRORIUM,
-        INFECTED_CRYSTALLIZE_SHARD,
+        INFECTED_CRYSTALLIZED_SHARD,
         ALIEN_MINER_PART,
         GLOWING_IRON_INGOT,
         BLACK_HOLE_FRAGMENT,

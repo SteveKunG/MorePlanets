@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemArmorIllenium;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemBreathableIllenium;
@@ -15,6 +16,7 @@ import stevekung.mods.moreplanets.util.items.ItemArrowMP;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 import stevekung.mods.moreplanets.util.items.ItemDungeonKeyMP;
 import stevekung.mods.moreplanets.util.items.tools.*;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
@@ -23,11 +25,10 @@ public class DionaItems
     // Base
     public static Item DIONA_ITEM;
     public static Item DIONA_DUNGEON_KEY;
-    public static Item INFECTED_CRYSTALLIZE_BOMB;
+    public static Item INFECTED_CRYSTALLIZED_BOMB;
     public static Item TIER_4_ROCKET_PART;
-    public static Item TIER_5_ROCKET_SCHEMATIC;
-    public static Item INFECTED_CRYSTALLIZE_SLIMEBALL;
-    public static Item INFECTED_CRYSTALLIZE_ARROW;
+    public static Item INFECTED_CRYSTALLIZED_SLIMEBALL;
+    public static Item INFECTED_CRYSTALLIZED_ARROW;
     public static Item DARK_ENERGY_PEARL;
     public static Item ANTI_GRAVITY_ARROW;
 
@@ -57,11 +58,10 @@ public class DionaItems
 
         DionaItems.DIONA_ITEM = new ItemDiona("diona_item");
         DionaItems.TIER_4_ROCKET_PART = new ItemTier4RocketPart("tier_4_rocket_part");
-        DionaItems.TIER_5_ROCKET_SCHEMATIC = new ItemTier5RocketSchematic("tier_5_rocket_schematic");
         DionaItems.DIONA_DUNGEON_KEY = new ItemDungeonKeyMP("diona_dungeon_key", 4);
-        DionaItems.INFECTED_CRYSTALLIZE_BOMB = new ItemInfectedCrystallizeBomb("infected_crystallize_bomb");
-        DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL = new ItemBaseMP("infected_crystallize_slimeball");
-        DionaItems.INFECTED_CRYSTALLIZE_ARROW = new ItemArrowMP("infected_crystallize_arrow", ItemArrowMP.ArrowType.INFECTED_CRYSTALLIZE);
+        DionaItems.INFECTED_CRYSTALLIZED_BOMB = new ItemInfectedCrystallizedBomb("infected_crystallized_bomb");
+        DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL = new ItemBaseMP("infected_crystallized_slimeball");
+        DionaItems.INFECTED_CRYSTALLIZED_ARROW = new ItemArrowMP("infected_crystallized_arrow", ItemArrowMP.ArrowType.INFECTED_CRYSTALLIZED);
         DionaItems.DARK_ENERGY_PEARL = new ItemBaseMP("dark_energy_pearl").setSortCategory(EnumSortCategoryItem.GENERAL);
         DionaItems.ANTI_GRAVITY_ARROW = new ItemArrowMP("anti_gravity_arrow", ItemArrowMP.ArrowType.ANTI_GRAVITY);
 
@@ -90,12 +90,11 @@ public class DionaItems
         /**************************************************************/
 
         CommonRegisterHelper.registerItem(DionaItems.DIONA_ITEM);
-        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZE_BOMB);
+        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_BOMB);
         CommonRegisterHelper.registerItem(DionaItems.TIER_4_ROCKET_PART);
-        CommonRegisterHelper.registerItem(DionaItems.TIER_5_ROCKET_SCHEMATIC);
         CommonRegisterHelper.registerItem(DionaItems.DIONA_DUNGEON_KEY);
-        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZE_SLIMEBALL);
-        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZE_ARROW);
+        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
+        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_ARROW);
         CommonRegisterHelper.registerItem(DionaItems.DARK_ENERGY_PEARL);
         CommonRegisterHelper.registerItem(DionaItems.ANTI_GRAVITY_ARROW);
 
@@ -115,15 +114,15 @@ public class DionaItems
         /********************HARVEST LEVEL STUFF***********************/
         /**************************************************************/
 
-        CommonRegisterHelper.setToolHarvestLevel(DionaItems.ILLENIUM_SHOVEL, EnumHarvestLevel.SHOVEL, 3);
-        CommonRegisterHelper.setToolHarvestLevel(DionaItems.ILLENIUM_PICKAXE, EnumHarvestLevel.PICKAXE, 3);
-        CommonRegisterHelper.setToolHarvestLevel(DionaItems.ILLENIUM_AXE, EnumHarvestLevel.AXE, 3);
+        BlockUtils.setToolHarvestLevel(DionaItems.ILLENIUM_SHOVEL, EnumHarvestLevel.SHOVEL, 3);
+        BlockUtils.setToolHarvestLevel(DionaItems.ILLENIUM_PICKAXE, EnumHarvestLevel.PICKAXE, 3);
+        BlockUtils.setToolHarvestLevel(DionaItems.ILLENIUM_AXE, EnumHarvestLevel.AXE, 3);
 
         /**************************************************************/
         /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerForgeBucket(DionaBlocks.CRYSTALLIZE_WATER_FLUID);
-        CommonRegisterHelper.registerForgeBucket(DionaBlocks.CRYSTALLIZE_LAVA_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(DionaBlocks.CRYSTALLIZED_WATER_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(DionaBlocks.CRYSTALLIZED_LAVA_FLUID);
     }
 }

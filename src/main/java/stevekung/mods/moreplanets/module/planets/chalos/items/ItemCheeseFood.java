@@ -36,12 +36,12 @@ public class ItemCheeseFood extends ItemFoodVariantsMP
     @Override
     public String[] getItemVariantsName()
     {
-        return new String[] { "cheese_of_milk_curd", "raw_cheese_beef", "cooked_cheese_beef", "cheese_spore_berry" };
+        return new String[] { "cheese_milk_curd", "raw_cheese_beef", "cooked_cheese_beef", "cheese_spore_berry" };
     }
 
     public static enum ItemType
     {
-        CHEESE_OF_MILK_CURD(3, 0.35F),
+        CHEESE_MILK_CURD(3, 0.35F),
         RAW_CHEESE_BEEF(3, 0.2F),
         COOKED_CHEESE_BEEF(8, 0.8F),
         CHEESE_SPORE_BERRY(4, 0.4F);

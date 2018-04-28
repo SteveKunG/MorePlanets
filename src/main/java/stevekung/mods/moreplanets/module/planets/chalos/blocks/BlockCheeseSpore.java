@@ -1,12 +1,12 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,10 +30,9 @@ public class BlockCheeseSpore extends BlockBaseMP
     }
 
     @Override
-    public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         Random rand = world instanceof World ? ((World)world).rand : RANDOM;
-        ArrayList<ItemStack> ret = new ArrayList<>();
         int chance = 20;
 
         if (fortune > 0)
@@ -48,16 +47,9 @@ public class BlockCheeseSpore extends BlockBaseMP
 
         if (rand.nextInt(chance) == 0)
         {
-            ret.add(new ItemStack(ChalosItems.CHEESE_SPORE, 1 + rand.nextInt(2)));
+            drops.add(new ItemStack(ChalosItems.CHEESE_SPORE, 1 + rand.nextInt(2)));
         }
         this.captureDrops(true);
-        ret.addAll(this.captureDrops(false));
-        return ret;
-    }
-
-    @Override
-    public String getName()
-    {
-        return "cheese_spore_block";
+        drops.addAll(this.captureDrops(false));
     }
 }

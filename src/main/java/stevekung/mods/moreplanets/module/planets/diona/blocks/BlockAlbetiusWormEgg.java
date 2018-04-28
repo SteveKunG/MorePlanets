@@ -55,10 +55,4 @@ public class BlockAlbetiusWormEgg extends BlockBaseMP
     {
         return EnumSortCategoryBlock.DECORATION_BLOCK;
     }
-
-    @Override
-    public String getName()
-    {
-        return "albetius_worm_egg_rock";
-    }
 }

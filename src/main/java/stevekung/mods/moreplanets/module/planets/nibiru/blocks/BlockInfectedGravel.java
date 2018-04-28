@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.BlockFallingMP;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockInfectedGravel extends BlockFallingMP
 {
@@ -35,12 +35,6 @@ public class BlockInfectedGravel extends BlockFallingMP
     @SideOnly(Side.CLIENT)
     public int getDustColor(IBlockState state)
     {
-        return ColorHelper.rgbToDecimal(131, 78, 65);
-    }
-
-    @Override
-    public String getName()
-    {
-        return "infected_gravel";
+        return ColorUtils.rgbToDecimal(131, 78, 65);
     }
 }

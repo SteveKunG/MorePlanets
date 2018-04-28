@@ -44,10 +44,4 @@ public class ItemBreathableMultalicCrystal extends ItemBreathableArmor
     {
         return this;
     }
-
-    @Override
-    public String getName()
-    {
-        return "breathable_multalic_crystal_helmet";
-    }
 }

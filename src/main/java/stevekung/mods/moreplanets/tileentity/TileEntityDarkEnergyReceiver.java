@@ -89,30 +89,30 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         multiBlockLists.put(new BlockPos(1, -2, -1), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState());
         multiBlockLists.put(new BlockPos(-1, -2, -1), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState());
 
-        multiBlockLists.put(new BlockPos(1, -2, 0), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(0, -2, 1), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(-1, -2, 0), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(0, -2, -1), DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(1, -2, 0), DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(0, -2, 1), DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-1, -2, 0), DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(0, -2, -1), DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
 
-        multiBlockLists.put(new BlockPos(3, -1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState());
-        multiBlockLists.put(new BlockPos(3, 0, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1));
-        multiBlockLists.put(new BlockPos(3, 1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState());
-        multiBlockLists.put(new BlockPos(3, 2, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2));
+        multiBlockLists.put(new BlockPos(3, -1, 3), DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        multiBlockLists.put(new BlockPos(3, 0, 3), DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
+        multiBlockLists.put(new BlockPos(3, 1, 3), DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        multiBlockLists.put(new BlockPos(3, 2, 3), DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
 
-        multiBlockLists.put(new BlockPos(-3, -1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState());
-        multiBlockLists.put(new BlockPos(-3, 0, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1));
-        multiBlockLists.put(new BlockPos(-3, 1, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState());
-        multiBlockLists.put(new BlockPos(-3, 2, 3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2));
+        multiBlockLists.put(new BlockPos(-3, -1, 3), DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        multiBlockLists.put(new BlockPos(-3, 0, 3), DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
+        multiBlockLists.put(new BlockPos(-3, 1, 3), DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        multiBlockLists.put(new BlockPos(-3, 2, 3), DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
 
-        multiBlockLists.put(new BlockPos(3, -1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState());
-        multiBlockLists.put(new BlockPos(3, 0, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1));
-        multiBlockLists.put(new BlockPos(3, 1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState());
-        multiBlockLists.put(new BlockPos(3, 2, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2));
+        multiBlockLists.put(new BlockPos(3, -1, -3), DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        multiBlockLists.put(new BlockPos(3, 0, -3), DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
+        multiBlockLists.put(new BlockPos(3, 1, -3), DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        multiBlockLists.put(new BlockPos(3, 2, -3), DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
 
-        multiBlockLists.put(new BlockPos(-3, -1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState());
-        multiBlockLists.put(new BlockPos(-3, 0, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(1));
-        multiBlockLists.put(new BlockPos(-3, 1, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getDefaultState());
-        multiBlockLists.put(new BlockPos(-3, 2, -3), DionaBlocks.INFECTED_CRYSTALLIZE_PART.getStateFromMeta(2));
+        multiBlockLists.put(new BlockPos(-3, -1, -3), DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        multiBlockLists.put(new BlockPos(-3, 0, -3), DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
+        multiBlockLists.put(new BlockPos(-3, 1, -3), DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        multiBlockLists.put(new BlockPos(-3, 2, -3), DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
     }
 
     public TileEntityDarkEnergyReceiver()
@@ -149,21 +149,20 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 if (!this.successful)
                 {
                     int radius = 32;
-                    List<Entity> entity = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - radius, this.pos.getY() - radius, this.pos.getZ() - radius, this.pos.getX() + radius, this.pos.getY() + radius, this.pos.getZ() + radius));
 
-                    for (Entity around : entity)
+                    this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - radius, this.pos.getY() - radius, this.pos.getZ() - radius, this.pos.getX() + radius, this.pos.getY() + radius, this.pos.getZ() + radius)).forEach(entity ->
                     {
-                        if (around instanceof EntityLivingBase)
+                        if (entity instanceof EntityLivingBase)
                         {
-                            EntityLivingBase living = (EntityLivingBase) around;
+                            EntityLivingBase living = (EntityLivingBase) entity;
 
                             if (!(living instanceof EntityPlayer))
                             {
                                 living.addPotionEffect(new PotionEffect(MPPotions.DARK_ENERGY, 200, 0));
                             }
-                            if (around instanceof EntityPlayer)
+                            if (entity instanceof EntityPlayer)
                             {
-                                EntityPlayer player = (EntityPlayer) around;
+                                EntityPlayer player = (EntityPlayer) entity;
 
                                 if (!player.capabilities.isCreativeMode && !player.isPotionActive(MPPotions.DARK_ENERGY_PROTECTION))
                                 {
@@ -171,7 +170,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                                 }
                             }
                         }
-                    }
+                    });
                 }
 
                 if (this.activatedTick < this.getSuccessfulTick())
@@ -315,12 +314,12 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                             this.world.spawnEntity(bolt);
                             this.world.setBlockState(this.getPos().up(), DionaBlocks.DARK_ENERGY_CORE.getDefaultState());
                         }
-                        for (Map.Entry<BlockPos, IBlockState> list : multiBlockLists.entrySet())
+                        TileEntityDarkEnergyReceiver.multiBlockLists.entrySet().forEach(list ->
                         {
                             IBlockState state = list.getValue();
                             BlockPos pos = this.pos.add(list.getKey());
 
-                            if (state != MPBlocks.DUNGEON_GLOWSTONE.getDefaultState() && state != DionaBlocks.INFECTED_CRYSTALLIZE_SLIME_BLOCK.getDefaultState())
+                            if (state != MPBlocks.DUNGEON_GLOWSTONE.getDefaultState() && state != DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState())
                             {
                                 for (int i = 0; i < 120; i++)
                                 {
@@ -332,7 +331,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                             {
                                 this.world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
                             }
-                        }
+                        });
                         this.setDisabled(0, true);
                         this.activatedMessage = true;
                         this.successful = true;
@@ -689,7 +688,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
     public static boolean checkValidMultiblock(BlockPos pos, World world)
     {
-        for (Map.Entry<BlockPos, IBlockState> list : multiBlockLists.entrySet())
+        for (Map.Entry<BlockPos, IBlockState> list : TileEntityDarkEnergyReceiver.multiBlockLists.entrySet())
         {
             BlockPos blockpos = list.getKey();
             IBlockState state = list.getValue();

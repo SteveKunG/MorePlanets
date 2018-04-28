@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISingleBlockRender
 {
@@ -46,7 +46,7 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISin
     @SideOnly(Side.CLIENT)
     public int getDustColor(IBlockState state)
     {
-        return state.getBlock() == NibiruBlocks.INFECTED_SAND ? ColorHelper.rgbToDecimal(141, 54, 32) : super.getDustColor(state);
+        return state.getBlock() == NibiruBlocks.INFECTED_SAND ? ColorUtils.rgbToDecimal(141, 54, 32) : super.getDustColor(state);
     }
 
     @Override

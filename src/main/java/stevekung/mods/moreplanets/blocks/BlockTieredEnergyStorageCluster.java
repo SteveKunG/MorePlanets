@@ -111,7 +111,7 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IBlo
         }
         else
         {
-            return new TileEntityEnergyStorageClusterMP(50000000.0F, 7500.0F, 4, BlockType.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER.toString());
+            return new TileEntityEnergyStorageClusterMP(50000000.0F, 7500.0F, 5, BlockType.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER.toString());
         }
     }
 

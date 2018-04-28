@@ -22,6 +22,6 @@ public class BlockCheeseFarmland extends BlockFarmlandMP
     @Override
     protected Block getSourceBlock()
     {
-        return ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK;
+        return ChalosBlocks.CHEESE_MILK_FLUID_BLOCK;
     }
 }

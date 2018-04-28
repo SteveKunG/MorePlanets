@@ -28,8 +28,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.dungeon.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure.*;
 import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenLiquidLakes;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenSpaceDungeons;
+import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorNibiru implements IChunkGenerator
 {
@@ -343,11 +343,11 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
         }
         if (biomegenbase != MPBiomes.INFECTED_DESERT && biomegenbase != MPBiomes.GREEN_VEIN && this.rand.nextInt(4) == 0)
         {
-            new WorldGenLiquidLakes(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, NibiruBlocks.NIBIRU_BLOCK, 0, false).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenLiquidLake(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), NibiruBlocks.NIBIRU_BLOCK, 0, false).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
         if (biomegenbase == MPBiomes.GREEN_VEIN && this.rand.nextInt(6) == 0)
         {
-            new WorldGenLiquidLakes(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, NibiruBlocks.TERRASTONE, 0, true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenLiquidLake(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK.getDefaultState(), NibiruBlocks.TERRASTONE.getDefaultState(), true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
         if (this.rand.nextInt(8) == 0)
         {
@@ -355,7 +355,7 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
 
             if (y < 63 || this.rand.nextInt(10) == 0)
             {
-                new WorldGenLiquidLakes(Blocks.LAVA, NibiruBlocks.NIBIRU_BLOCK, 0, true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
+                new WorldGenLiquidLake(Blocks.LAVA.getDefaultState(), NibiruBlocks.NIBIRU_BLOCK, 0, true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
             }
         }
 

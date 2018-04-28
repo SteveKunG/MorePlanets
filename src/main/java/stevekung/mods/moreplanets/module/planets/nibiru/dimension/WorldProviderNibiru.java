@@ -32,7 +32,6 @@ import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPlanets;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.SkyProviderNibiru;
@@ -256,8 +255,6 @@ public class WorldProviderNibiru extends WorldProviderMP
         GCPlayerStats stats = GCPlayerStats.get(player);
         SchematicRegistry.unlockNewPage(player, new ItemStack(GCItems.schematic, 1, 1)); //Knows how to build T2 rocket
         SchematicRegistry.unlockNewPage(player, new ItemStack(MarsItems.schematic, 1, 0)); //Knows how to build T3 rocket
-        SchematicRegistry.unlockNewPage(player, new ItemStack(DionaItems.TIER_5_ROCKET_SCHEMATIC, 1, 0)); //Knows how to build T4 rocket
-        SchematicRegistry.unlockNewPage(player, new ItemStack(DionaItems.TIER_5_ROCKET_SCHEMATIC, 1, 1)); //Knows how to build T5 rocket
         player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE_PROTECTION, 36020, 0, true, true));
         stats.getExtendedInventory().setInventorySlotContents(0, new ItemStack(GCItems.oxMask, 1, 0));
         stats.getExtendedInventory().setInventorySlotContents(1, new ItemStack(GCItems.oxygenGear, 1, 0));

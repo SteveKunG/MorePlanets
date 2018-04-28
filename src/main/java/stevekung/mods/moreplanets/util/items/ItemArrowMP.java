@@ -18,11 +18,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityAntiGravityArrow;
-import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
+import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedArrow;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
 
 public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItemRender
 {
@@ -53,8 +53,8 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
     {
         switch (this.type)
         {
-        case INFECTED_CRYSTALLIZE:
-            return new EntityInfectedCrystallizeArrow(world, shooter);
+        case INFECTED_CRYSTALLIZED:
+            return new EntityInfectedCrystallizedArrow(world, shooter);
         case INFECTED:
             return new EntityInfectedArrow(world, shooter);
         case ANTI_GRAVITY:
@@ -70,7 +70,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
     {
         if (this.type == ArrowType.INFECTED)
         {
-            if (CommonRegisterHelper.isShiftKeyDown())
+            if (ClientUtils.isShiftKeyDown())
             {
                 list.addAll(ItemDescriptionHelper.getDescription(this.getUnlocalizedName() + ".description"));
             }
@@ -99,7 +99,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
 
     public static enum ArrowType
     {
-        INFECTED_CRYSTALLIZE,
+        INFECTED_CRYSTALLIZED,
         INFECTED,
         ANTI_GRAVITY;
     }

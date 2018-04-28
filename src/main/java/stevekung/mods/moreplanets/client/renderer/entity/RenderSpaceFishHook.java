@@ -21,6 +21,8 @@ import stevekung.mods.moreplanets.init.MPItems;
 @SideOnly(Side.CLIENT)
 public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/space_fish_hook.png");
+
     public RenderSpaceFishHook(RenderManager manager)
     {
         super(manager);
@@ -133,6 +135,6 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
     @Override
     protected ResourceLocation getEntityTexture(EntitySpaceFishHook entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/space_fish_hook.png");
+        return RenderSpaceFishHook.TEXTURE;
     }
 }

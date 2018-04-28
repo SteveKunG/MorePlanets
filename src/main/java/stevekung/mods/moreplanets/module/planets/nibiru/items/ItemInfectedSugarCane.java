@@ -80,10 +80,4 @@ public class ItemInfectedSugarCane extends ItemBaseMP
     {
         return EnumSortCategoryItem.PLACEABLE_PLANT;
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_sugar_cane";
-    }
 }

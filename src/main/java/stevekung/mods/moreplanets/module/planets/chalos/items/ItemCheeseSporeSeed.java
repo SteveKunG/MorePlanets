@@ -43,10 +43,4 @@ public class ItemCheeseSporeSeed extends ItemBaseMP
     {
         return EnumSortCategoryItem.PLANT_SEEDS;
     }
-
-    @Override
-    public String getName()
-    {
-        return "cheese_spore_seed";
-    }
 }

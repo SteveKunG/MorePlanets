@@ -23,18 +23,18 @@ public class CraftingManagerChalos
 
     private static void addBlockRecipe()
     {
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 9), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 0) });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 10), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 1) });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_OF_MILK_CAKE), new Object[] { "MMM", "CCC", "CCC", 'C', new ItemStack(ChalosItems.CHEESE_FOOD), 'M', FluidUtil.getFilledBucket(new FluidStack(ChalosBlocks.CHEESE_OF_MILK_FLUID, 1000)) });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_CRAFTING_TABLE), new Object[] { "XX", "XX", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS });
+        //        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 9), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 0) });
+        //        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 10), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 1) });
+        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_MILK_CAKE), new Object[] { "MMM", "CCC", "CCC", 'C', new ItemStack(ChalosItems.CHEESE_FOOD), 'M', FluidUtil.getFilledBucket(new FluidStack(ChalosBlocks.CHEESE_MILK_FLUID, 1000)) });
+        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_CRAFTING_TABLE), new Object[] { "XX", "XX", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SLIME_BLOCK), new Object[] { "XXX", "XXX", "XXX", 'X', ChalosItems.CHEESE_SLIMEBALL });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_DIRT, 4, 1), new Object[] { "DG", "GD", 'D', new ItemStack(ChalosBlocks.CHEESE_DIRT, 1, 0), 'G', Blocks.GRAVEL });
+        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_COARSE_DIRT, 4), new Object[] { "DG", "GD", 'D', ChalosBlocks.CHEESE_DIRT, 'G', Blocks.GRAVEL });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_CHEST), new Object[] { "XXX", "X X", "XXX", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_FENCE, 3), new Object[] { "XSX", "XSX", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'S', Items.STICK });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_FENCE_GATE), new Object[] { "SXS", "SXS", 'X', ChalosBlocks.CHEESE_SPORE_PLANKS, 'S', Items.STICK });
 
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_COBBLESTONE_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1) });
-        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_DUNGEON_BRICK_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 11) });
+        //        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_COBBLESTONE_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1) });
+        //        RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHALOS_DUNGEON_BRICK_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 11) });
         RecipeHelper.addRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(ChalosBlocks.CHEESE_SPORE_PLANKS) });
 
         RecipeHelper.addShapelessRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_PLANKS, 4), new ItemStack(ChalosBlocks.CHEESE_SPORE_STEM, 1) );
@@ -42,8 +42,8 @@ public class CraftingManagerChalos
 
     private static void addItemRecipe()
     {
-        RecipeHelper.addShapelessRecipe(new ItemStack(ChalosItems.CHALOS_ITEM, 9, 0), new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 9));
-        RecipeHelper.addShapelessRecipe(new ItemStack(ChalosItems.CHALOS_ITEM, 9, 1), new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 10));
+        //        RecipeHelper.addShapelessRecipe(new ItemStack(ChalosItems.CHALOS_ITEM, 9, 0), new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 9));
+        //        RecipeHelper.addShapelessRecipe(new ItemStack(ChalosItems.CHALOS_ITEM, 9, 1), new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 10));
         RecipeHelper.addShapelessRecipe(new ItemStack(ChalosItems.CHEESE_SLIMEBALL, 9), new ItemStack(ChalosBlocks.CHEESE_SLIME_BLOCK));
 
         RecipeHelper.addRecipe(new ItemStack(ChalosItems.DIREMSIUM_HELMET, 1, 0), new Object[] { "XXX", "X X", 'X', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2) });
@@ -67,18 +67,18 @@ public class CraftingManagerChalos
 
     private static void addBlockSmelting()
     {
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1), new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 0), 0.1F);
+        //        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1), new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 0), 0.1F);
     }
 
     private static void addItemSmelting()
     {
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 2), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 0), 0.8F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 3), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 1), 0.8F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 4), new ItemStack(ChalosItems.CHEESE_FOOD, 2), 0.8F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 5), new ItemStack(Items.IRON_INGOT), 0.8F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 6), new ItemStack(GCItems.basicItem, 1, 4), 0.8F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 7), new ItemStack(GCItems.basicItem, 1, 3), 0.8F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 8), new ItemStack(GCItems.basicItem, 1, 5), 0.8F);
+        //        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 2), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 0), 0.8F);
+        //        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 3), new ItemStack(ChalosItems.CHALOS_ITEM, 1, 1), 0.8F);
+        //        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 4), new ItemStack(ChalosItems.CHEESE_FOOD, 2), 0.8F);
+        //        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 5), new ItemStack(Items.IRON_INGOT), 0.8F);
+        //        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 6), new ItemStack(GCItems.basicItem, 1, 4), 0.8F);
+        //        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 7), new ItemStack(GCItems.basicItem, 1, 3), 0.8F);
+        //        RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 8), new ItemStack(GCItems.basicItem, 1, 5), 0.8F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosItems.CHEESE_FOOD, 1, 1), new ItemStack(ChalosItems.CHEESE_FOOD, 1, 2), 0.35F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_STEM), new ItemStack(Items.COAL, 1, 1), 0.15F);
     }

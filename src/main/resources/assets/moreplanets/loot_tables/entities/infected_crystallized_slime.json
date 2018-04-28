@@ -1,0 +1,62 @@
+{
+    "pools": [
+        {
+            "name": "slime",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "moreplanets:infected_crystallized_slimeball",
+                    "weight": 1,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 2
+                            }
+                        },
+                        {
+                            "function": "looting_enchant",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "shard",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "moreplanets:diona_item",
+                    "weight": 1,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 2
+                            }
+                        },
+                        {
+                            "function": "looting_enchant",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        },
+                        {
+                            "function": "set_data",
+                            "data": 4
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

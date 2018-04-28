@@ -11,12 +11,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenMultalicCrystal;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenMinableMP;
 
 public class BiomeInfectedExtremeHills extends BiomeNibiru
@@ -31,7 +31,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, MOUNTAIN, HILLS, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, MOUNTAIN, HILLS, DEAD);
     }
 
     @Override

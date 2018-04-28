@@ -45,8 +45,8 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.Entity
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.entity.EntityFlyingBossMP;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IMorePlanetsBoss
@@ -443,7 +443,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     @Override
     public int getBossTextColor()
     {
-        return ColorHelper.rgbToDecimal(246, 220, 160);
+        return ColorUtils.rgbToDecimal(246, 220, 160);
     }
 
     private static class AICheeseSporeAttack extends EntityAIBase

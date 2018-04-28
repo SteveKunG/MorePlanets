@@ -76,7 +76,7 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
                 BlockPos down = pos.down();
                 Block blockSoil = world.getBlockState(down).getBlock();
 
-                if (blockSoil != ChalosBlocks.CHEESE_GRASS && blockSoil != ChalosBlocks.CHEESE_DIRT)
+                if (blockSoil != ChalosBlocks.CHEESE_GRASS_BLOCK && blockSoil != ChalosBlocks.CHEESE_DIRT && blockSoil != ChalosBlocks.CHEESE_COARSE_DIRT)
                 {
                     return false;
                 }

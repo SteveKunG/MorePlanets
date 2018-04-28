@@ -9,7 +9,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 public class ItemBaseMP extends Item implements ISortableItem, ISingleItemRender
 {
     private EnumSortCategoryItem category;
-    protected String name;
+    private String name;
 
     public ItemBaseMP()
     {
@@ -19,8 +19,14 @@ public class ItemBaseMP extends Item implements ISortableItem, ISingleItemRender
     public ItemBaseMP(String name)
     {
         super();
-        this.name = name;
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public Item setUnlocalizedName(String name)
+    {
+        this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override

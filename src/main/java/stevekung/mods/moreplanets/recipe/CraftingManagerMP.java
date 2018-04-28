@@ -15,7 +15,6 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.chalos.recipe.CraftingManagerChalos;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.recipe.CraftingManagerDiona;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
@@ -51,20 +50,20 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER), new Object[] { "EAE", "ANA", "EAE", 'E', new ItemStack(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER), 'A', new ItemStack(DionaItems.DIONA_ITEM, 1, 5), 'N', NibiruBlocks.NUCLEAR_WASTE_TANK });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_PORTAL), new Object[] { "OFO", "OOO", "OOO", 'O', Blocks.OBSIDIAN, 'F', Items.FLINT_AND_STEEL });
 
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 6, 0), new Object[] { "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 11) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 6, 1), new Object[] { "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 11) });
+        //        RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 6, 0), new Object[] { "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 11) });
+        //        RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 6, 1), new Object[] { "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 11) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 6, 2), new Object[] { "XXX", 'X', new ItemStack(NibiruBlocks.NIBIRU_BLOCK, 1, 8) });
 
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_COBBLESTONE_SLAB_1, 6, 0), new Object[] { "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 3) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_COBBLESTONE_SLAB_1, 6, 1), new Object[] { "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1) });
+        //        RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_COBBLESTONE_SLAB_1, 6, 0), new Object[] { "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 3) });
+        //        RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_COBBLESTONE_SLAB_1, 6, 1), new Object[] { "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_COBBLESTONE_SLAB_1, 6, 2), new Object[] { "XXX", 'X', new ItemStack(NibiruBlocks.NIBIRU_BLOCK, 1, 1) });
 
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.DUNGEON_BRICK_WALL, 6, 0), new Object[] { "XXX", "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 11) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.DUNGEON_BRICK_WALL, 6, 1), new Object[] { "XXX", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 11) });
+        //        RecipeHelper.addRecipe(new ItemStack(MPBlocks.DUNGEON_BRICK_WALL, 6, 0), new Object[] { "XXX", "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 11) });
+        //        RecipeHelper.addRecipe(new ItemStack(MPBlocks.DUNGEON_BRICK_WALL, 6, 1), new Object[] { "XXX", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 11) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.DUNGEON_BRICK_WALL, 6, 2), new Object[] { "XXX", "XXX", 'X', new ItemStack(NibiruBlocks.NIBIRU_BLOCK, 1, 8) });
 
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.COBBLESTONE_WALL, 6, 0), new Object[] { "XXX", "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 3) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.COBBLESTONE_WALL, 6, 1), new Object[] { "XXX", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1) });
+        //        RecipeHelper.addRecipe(new ItemStack(MPBlocks.COBBLESTONE_WALL, 6, 0), new Object[] { "XXX", "XXX", 'X', new ItemStack(DionaBlocks.DIONA_BLOCK, 1, 3) });
+        //        RecipeHelper.addRecipe(new ItemStack(MPBlocks.COBBLESTONE_WALL, 6, 1), new Object[] { "XXX", "XXX", 'X', new ItemStack(ChalosBlocks.CHALOS_BLOCK, 1, 1) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.COBBLESTONE_WALL, 6, 2), new Object[] { "XXX", "XXX", 'X', new ItemStack(NibiruBlocks.NIBIRU_BLOCK, 1, 1) });
 
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 6, 0), new Object[] { "XXX", 'X', new ItemStack(ChalosBlocks.CHEESE_SPORE_PLANKS) });

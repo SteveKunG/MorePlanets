@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockHugeTerrashroom extends BlockBreakableMP
 {
@@ -41,7 +41,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     @Nullable
     public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
     {
-        return ColorHelper.rgbToFloatArray(116, 161, 212);
+        return ColorUtils.rgbToFloatArray(116, 161, 212);
     }
 
     @Override

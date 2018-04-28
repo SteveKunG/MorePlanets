@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
-import stevekung.mods.moreplanets.util.helper.BlockEventHelper;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 
 public class BlockInfectedSugarCane extends BlockBushMP
 {
@@ -75,7 +75,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     {
         Block block = world.getBlockState(pos.down()).getBlock();
 
-        if (BlockEventHelper.isLiquidBlock(world, pos))
+        if (BlockUtils.isFluid(world, pos))
         {
             return false;
         }

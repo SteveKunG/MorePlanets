@@ -5,6 +5,7 @@ import net.minecraft.block.BlockFire;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.fluid.FluidHeliumGas;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockInfectedSnow;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockNuclearWasteTank;
@@ -15,6 +16,7 @@ import stevekung.mods.moreplanets.util.blocks.BlockStairsMP.EnumStairsType;
 import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.*;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class NibiruBlocks
@@ -214,10 +216,10 @@ public class NibiruBlocks
         NibiruBlocks.HELIUM_GAS = new FluidHeliumGas("helium_gas", "moreplanets:blocks/helium_gas", "moreplanets:blocks/helium_gas").setBlock(NibiruBlocks.HELIUM_GAS_BLOCK);
         NibiruBlocks.NUCLEAR_WASTE_FLUID = new FluidMP("nuclear_waste_fluid").setBlock(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK).setLuminosity(15).setDensity(3000).setViscosity(8000).setTemperature(2600);
         NibiruBlocks.PURIFY_WATER_FLUID = new FluidMP("purify_water_fluid").setBlock(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK);
-        CommonRegisterHelper.registerFluid(NibiruBlocks.INFECTED_WATER_FLUID);
-        CommonRegisterHelper.registerFluid(NibiruBlocks.HELIUM_GAS);
-        CommonRegisterHelper.registerFluid(NibiruBlocks.NUCLEAR_WASTE_FLUID);
-        CommonRegisterHelper.registerFluid(NibiruBlocks.PURIFY_WATER_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerFluid(NibiruBlocks.INFECTED_WATER_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerFluid(NibiruBlocks.HELIUM_GAS);
+        MorePlanetsMod.COMMON_REGISTRY.registerFluid(NibiruBlocks.NUCLEAR_WASTE_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerFluid(NibiruBlocks.PURIFY_WATER_FLUID);
         NibiruBlocks.INFECTED_WATER_FLUID_BLOCK = new BlockFluidInfectedWater("infected_water_fluid");
         NibiruBlocks.HELIUM_GAS_BLOCK = new BlockGasHelium("helium_gas");
         NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK = new BlockFluidNuclearWaste("nuclear_waste_fluid");
@@ -323,78 +325,78 @@ public class NibiruBlocks
         /**********************HARVEST LEVEL STUFF*********************/
         /**************************************************************/
 
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_GRASS, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_FARMLAND, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_SAND, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_SNOW, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_SNOW_LAYER, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.GREEN_VEIN_GRASS, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_GRAVEL, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_CLAY, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.PURIFY_GRAVEL, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_GRASS_PATH, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SANDSTONE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SANDSTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_PACKED_ICE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_PRISMARINE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_FURNACE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_LIT_FURNACE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.OIL_ORE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_PRISMARINE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_PRISMARINE_BRICK_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_DARK_PRISMARINE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_VEIN_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.CRACKED_INFECTED_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SMOOTH_SANDSTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.HALF_INFECTED_PRISMARINE_SLAB, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.DOUBLE_INFECTED_PRISMARINE_SLAB, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.HALF_NIBIRU_SANDSTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.DOUBLE_NIBIRU_SANDSTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.TERRASTONE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.TERRASTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.TERRASTONE_FURNACE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.TERRASTONE_LIT_FURNACE, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.SEALABLE_NUCLEAR_WASTE_ROD, EnumHarvestLevel.PICKAXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.MULTALIC_CRYSTAL_BLOCK, EnumHarvestLevel.PICKAXE, 1);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_DUNGEON_BRICK_STAIRS, EnumHarvestLevel.PICKAXE, 1);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NUCLEAR_WASTE_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NUCLEAR_WASTE_TANK, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.MULTALIC_CRYSTAL, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_LOG, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_PLANKS, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_CRAFTING_TABLE, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BOOKSHELF, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_FENCE_GATE, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_DEAD_OAK_FENCE_GATE, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_FENCE, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_DOOR_BLOCK, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_ANCIENT_CHEST, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_MELON_BLOCK, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_CHEST, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.ALIEN_BERRY_CHEST, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_OAK_STAIRS, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.INFECTED_DEAD_OAK_STAIRS, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.ALIEN_BERRY_OAK_STAIRS, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, EnumHarvestLevel.AXE, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.HUGE_TERRASHROOM_BLOCK, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_GRASS, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_FARMLAND, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_SAND, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_SNOW, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_SNOW_LAYER, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.GREEN_VEIN_GRASS, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_GRAVEL, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_CLAY, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.PURIFY_GRAVEL, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_GRASS_PATH, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SANDSTONE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SANDSTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_PACKED_ICE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_PRISMARINE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_FURNACE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_LIT_FURNACE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.OIL_ORE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_PRISMARINE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_PRISMARINE_BRICK_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_DARK_PRISMARINE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_VEIN_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.CRACKED_INFECTED_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SMOOTH_SANDSTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.HALF_INFECTED_PRISMARINE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.DOUBLE_INFECTED_PRISMARINE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.HALF_NIBIRU_SANDSTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.DOUBLE_NIBIRU_SANDSTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.TERRASTONE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.TERRASTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.TERRASTONE_FURNACE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.TERRASTONE_LIT_FURNACE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.SEALABLE_NUCLEAR_WASTE_ROD, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.MULTALIC_CRYSTAL_BLOCK, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_DUNGEON_BRICK_STAIRS, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NUCLEAR_WASTE_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NUCLEAR_WASTE_TANK, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.MULTALIC_CRYSTAL, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_LOG, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_PLANKS, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_CRAFTING_TABLE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BOOKSHELF, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_FENCE_GATE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_DEAD_OAK_FENCE_GATE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_FENCE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_DOOR_BLOCK, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_ANCIENT_CHEST, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_MELON_BLOCK, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_CHEST, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.ALIEN_BERRY_CHEST, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_OAK_STAIRS, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_DEAD_OAK_STAIRS, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.ALIEN_BERRY_OAK_STAIRS, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.HUGE_TERRASHROOM_BLOCK, EnumHarvestLevel.AXE, 0);
 
         for (int i = 0; i < BlockNibiru.BlockType.valuesCached().length; i++)
         {
             if (i >= 7)
             {
-                CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
+                BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
             }
             else
             {
-                CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BLOCK, EnumHarvestLevel.PICKAXE, 0, i);
+                BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BLOCK, EnumHarvestLevel.PICKAXE, 0, i);
             }
         }
 
@@ -402,15 +404,15 @@ public class NibiruBlocks
         {
             if (i == 0)
             {
-                CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_ORE, EnumHarvestLevel.PICKAXE, 0, i);
+                BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_ORE, EnumHarvestLevel.PICKAXE, 0, i);
             }
             else if (i == 1 || i == 5 || i >= 7)
             {
-                CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_ORE, EnumHarvestLevel.PICKAXE, 1, i);
+                BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_ORE, EnumHarvestLevel.PICKAXE, 1, i);
             }
             else
             {
-                CommonRegisterHelper.setBlockHarvestLevel(NibiruBlocks.NIBIRU_ORE, EnumHarvestLevel.PICKAXE, 2, i);
+                BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_ORE, EnumHarvestLevel.PICKAXE, 2, i);
             }
         }
 
@@ -418,20 +420,20 @@ public class NibiruBlocks
         /************************FIRE BURN STUFF***********************/
         /**************************************************************/
 
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.NIBIRU_TALL_GRASS, 60, 100);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.NIBIRU_SAPLING, 60, 100);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.NIBIRU_FLOWER, 60, 100);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.NIBIRU_LOG, 5, 20);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.NIBIRU_PLANKS, 5, 20);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.NIBIRU_BOOKSHELF, 5, 20);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.NIBIRU_FENCE, 5, 20);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.INFECTED_FENCE_GATE, 5, 20);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.INFECTED_DEAD_OAK_FENCE_GATE, 5, 20);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.NIBIRU_LEAVES, 60, 100);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.INFECTED_VINES, 15, 100);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.INFECTED_OAK_STAIRS, 5, 20);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.INFECTED_DEAD_OAK_STAIRS, 5, 20);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.ALIEN_BERRY_OAK_STAIRS, 5, 20);
-        CommonRegisterHelper.setFireBurn(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_TALL_GRASS, 60, 100);
+        BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_SAPLING, 60, 100);
+        BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_FLOWER, 60, 100);
+        BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_LOG, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_PLANKS, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_BOOKSHELF, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_FENCE, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.INFECTED_FENCE_GATE, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.INFECTED_DEAD_OAK_FENCE_GATE, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_LEAVES, 60, 100);
+        BlockUtils.setFireBurn(NibiruBlocks.INFECTED_VINES, 15, 100);
+        BlockUtils.setFireBurn(NibiruBlocks.INFECTED_OAK_STAIRS, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.INFECTED_DEAD_OAK_STAIRS, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.ALIEN_BERRY_OAK_STAIRS, 5, 20);
+        BlockUtils.setFireBurn(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, 5, 20);
     }
 }

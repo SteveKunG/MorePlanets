@@ -64,7 +64,7 @@ public class WorldTickEventHandler
                 {
                     WorldServer worldServer = (WorldServer) world;
 
-                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.profiler.endSection())
+                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext();)
                     {
                         Chunk chunk = iterator.next();
                         int j = chunk.x * 16;
@@ -95,7 +95,7 @@ public class WorldTickEventHandler
                 {
                     WorldServer worldServer = (WorldServer) world;
 
-                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.profiler.endSection())
+                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext();)
                     {
                         Chunk chunk = iterator.next();
                         int j = chunk.x * 16;

@@ -43,25 +43,19 @@ public class BlockAlienMinerBlood extends BlockBaseMP
     {
         if (rand.nextInt(200) == 0)
         {
-            world.setBlockState(pos, DionaBlocks.DIONA_BLOCK.getDefaultState());
+            world.setBlockState(pos, DionaBlocks.DIONA_ROCK.getDefaultState());
         }
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(DionaBlocks.DIONA_BLOCK);
+        return Item.getItemFromBlock(DionaBlocks.DIONA_ROCK);
     }
 
     @Override
     public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
         return false;
-    }
-
-    @Override
-    public String getName()
-    {
-        return "alien_miner_blood";
     }
 }

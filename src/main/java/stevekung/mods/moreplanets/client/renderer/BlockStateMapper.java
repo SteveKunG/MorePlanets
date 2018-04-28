@@ -20,11 +20,11 @@ public class BlockStateMapper
     public static void init()
     {
         ClientRegistryUtils.registerStateMapper(MPBlocks.SHIELD_GENERATOR, BlockStateProperty.FACING_HORIZON);
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, BlockStateProperty.FACING_ALL);
-        ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK, EnumStateMapper.FORGE_LEVEL);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.LARGE_INFECTED_CRYSTALLIZED, BlockStateProperty.FACING_ALL);
+        ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_MILK_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
+        ClientRegistryUtils.registerStateMapper(ChalosBlocks.GASEOUS_CHEESE_MILK_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_SPORE_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_SPORE_DOOR_BLOCK, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
@@ -55,9 +55,10 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(DionaBlocks.ALIEN_MINER_BLOOD, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.CRASHED_ALIEN_PROBE, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.GLOWING_IRON_BLOCK, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZE_WEB, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZE_PART, new StateMapperCTM());
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS, new StateMapperCTM());
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_WEB, new StateMapperCTM());
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE, new StateMapperCTM());
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.SPORELILY, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.NIBIRU_FLOWER, new StateMapperCTM());
     }

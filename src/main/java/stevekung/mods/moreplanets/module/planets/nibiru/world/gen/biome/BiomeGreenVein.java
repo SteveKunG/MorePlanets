@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruFlower;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -19,7 +20,6 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenAlienBerryTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
 
 public class BiomeGreenVein extends BiomeNibiru
@@ -40,7 +40,7 @@ public class BiomeGreenVein extends BiomeNibiru
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, FOREST, RARE, MAGICAL);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, FOREST, RARE, MAGICAL);
     }
 
     @Override

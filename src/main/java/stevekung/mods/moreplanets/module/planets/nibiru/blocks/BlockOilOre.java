@@ -113,10 +113,4 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     {
         return EnumSortCategoryBlock.ORE;
     }
-
-    @Override
-    public String getName()
-    {
-        return "oil_ore";
-    }
 }

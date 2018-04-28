@@ -89,10 +89,4 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     {
         return EnumSortCategoryBlock.DECORATION_BLOCK;
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_vines_dirt";
-    }
 }

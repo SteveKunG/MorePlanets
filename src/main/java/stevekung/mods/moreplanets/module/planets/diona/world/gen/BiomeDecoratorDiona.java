@@ -6,11 +6,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.world.gen.feature.WorldGenInfectedCrystal;
+import stevekung.mods.moreplanets.module.planets.diona.world.gen.feature.WorldGenLargeInfectedCrystallized;
 import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.moreplanets.util.world.gen.feature.EnumOreGen;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenCaveLiquids;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenMinableMP;
+import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
 
 public class BiomeDecoratorDiona extends BiomeDecoratorMP
 {
@@ -24,13 +24,13 @@ public class BiomeDecoratorDiona extends BiomeDecoratorMP
 
     public BiomeDecoratorDiona()
     {
-        this.dirtGen = new WorldGenMinableMP(DionaBlocks.DIONA_BLOCK.getStateFromMeta(1), DionaBlocks.DIONA_BLOCK.getStateFromMeta(2), EnumOreGen.DIRT);
-        this.setroriumGen = new WorldGenMinableMP(DionaBlocks.DIONA_BLOCK.getStateFromMeta(4), DionaBlocks.DIONA_BLOCK.getStateFromMeta(2), 9);
-        this.illeniumGen = new WorldGenMinableMP(DionaBlocks.DIONA_BLOCK.getStateFromMeta(5), DionaBlocks.DIONA_BLOCK.getStateFromMeta(2), 4);
-        this.tinGen = new WorldGenMinableMP(DionaBlocks.DIONA_BLOCK.getStateFromMeta(6), DionaBlocks.DIONA_BLOCK.getStateFromMeta(2), EnumOreGen.TIN);
-        this.copperGen = new WorldGenMinableMP(DionaBlocks.DIONA_BLOCK.getStateFromMeta(7), DionaBlocks.DIONA_BLOCK.getStateFromMeta(2), EnumOreGen.COPPER);
-        this.aluminumGen = new WorldGenMinableMP(DionaBlocks.DIONA_BLOCK.getStateFromMeta(8), DionaBlocks.DIONA_BLOCK.getStateFromMeta(2), EnumOreGen.ALUMINUM);
-        this.wormEggGen = new WorldGenMinableMP(DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), DionaBlocks.DIONA_BLOCK.getStateFromMeta(2), 8);
+        this.dirtGen = new WorldGenMinableMP(DionaBlocks.DIONA_SUB_SURFACE_ROCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.DIRT);
+        this.setroriumGen = new WorldGenMinableMP(DionaBlocks.SETRORIUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 9);
+        this.illeniumGen = new WorldGenMinableMP(DionaBlocks.ILLENIUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 4);
+        this.tinGen = new WorldGenMinableMP(DionaBlocks.DIONA_TIN_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.TIN);
+        this.copperGen = new WorldGenMinableMP(DionaBlocks.DIONA_COPPER_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.COPPER);
+        this.aluminumGen = new WorldGenMinableMP(DionaBlocks.DIONA_ALUMINUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
+        this.wormEggGen = new WorldGenMinableMP(DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 8);
     }
 
     @Override
@@ -50,17 +50,17 @@ public class BiomeDecoratorDiona extends BiomeDecoratorMP
         for (int i = 0; i < 50; ++i)
         {
             int y = rand.nextInt(rand.nextInt(248) + 8);
-            new WorldGenCaveLiquids(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK, DionaBlocks.DIONA_BLOCK).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (int i = 0; i < 20; ++i)
         {
             int y = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
-            new WorldGenCaveLiquids(DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK, DionaBlocks.DIONA_BLOCK).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (int i = 0; i < 16; ++i)
         {
             int y = rand.nextInt(48);
-            new WorldGenInfectedCrystal().generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenLargeInfectedCrystallized().generate(world, rand, this.chunkPos.add(x, y, z));
         }
     }
 }

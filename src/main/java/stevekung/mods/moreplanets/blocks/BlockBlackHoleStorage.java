@@ -268,10 +268,4 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     {
         return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockBlackHoleStorage.this.getUnlocalizedName() + ".description"));
     }
-
-    @Override
-    public String getName()
-    {
-        return "black_hole_storage";
-    }
 }

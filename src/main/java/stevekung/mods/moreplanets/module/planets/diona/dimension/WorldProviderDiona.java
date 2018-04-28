@@ -158,6 +158,6 @@ public class WorldProviderDiona extends WorldProviderMP
     @Override
     public List<Block> getSurfaceBlocks()
     {
-        return Arrays.asList(DionaBlocks.DIONA_BLOCK);
+        return Arrays.asList(DionaBlocks.DIONA_SURFACE_ROCK, DionaBlocks.DIONA_SUB_SURFACE_ROCK);
     }
 }

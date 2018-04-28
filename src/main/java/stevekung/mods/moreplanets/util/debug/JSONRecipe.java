@@ -296,13 +296,13 @@ public class JSONRecipe
         setupDir();
         List<Map<String, Object>> json = new ArrayList<>();
 
-        for (String s : USED_OD_NAMES)
+        USED_OD_NAMES.forEach(name ->
         {
             Map<String, Object> entry = new HashMap<>();
-            entry.put("name", s.toUpperCase(Locale.ROOT));
-            entry.put("ingredient", ImmutableMap.of("type", "forge:ore_dict", "ore", s));
+            entry.put("name", name.toUpperCase(Locale.ROOT));
+            entry.put("ingredient", ImmutableMap.of("type", "forge:ore_dict", "ore", name));
             json.add(entry);
-        }
+        });
 
         try (FileWriter w = new FileWriter(new File(RECIPE_DIR, "_constants.json")))
         {

@@ -54,10 +54,4 @@ public class BlockInfectedMelon extends BlockBaseMP
     {
         return Math.min(9, this.quantityDropped(rand) + rand.nextInt(1 + fortune));
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_melon_block";
-    }
 }

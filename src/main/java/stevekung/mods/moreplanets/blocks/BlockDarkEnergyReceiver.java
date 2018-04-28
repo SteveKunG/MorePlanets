@@ -141,7 +141,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IBlockDescri
                             if (world.getBlockState(newPos) != blockstate)
                             {
                                 Item item = Item.getItemFromBlock(blockstate.getBlock());
-                                String name = item.getItemStackDisplayName(new ItemStack(item, 1, blockstate.getBlock().getMetaFromState(blockstate)));
+                                String name = item.getItemStackDisplayName(new ItemStack(item));
                                 player.sendMessage(JsonUtils.create(LangUtils.translate("gui.missing_block.message", name, newPos.getX(), newPos.getY(), newPos.getZ())).setStyle(JsonUtils.red()));
                             }
                         });

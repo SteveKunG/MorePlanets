@@ -15,7 +15,7 @@ public class RocketCrusherRecipeCategory implements IRecipeCategory
 {
     private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/rocket_crusher.png");
     private IDrawableAnimated progressBar;
-    private IDrawableStatic[] progressHammerDrawable = new IDrawableStatic[3];
+    private static IDrawableStatic[] progressHammerDrawable = new IDrawableStatic[3];
 
     public RocketCrusherRecipeCategory()
     {
@@ -24,7 +24,7 @@ public class RocketCrusherRecipeCategory implements IRecipeCategory
 
         for (int i = 0; i < 3; i++)
         {
-            this.progressHammerDrawable[i] = JEIRegistryHelper.guiHelper.createDrawable(texture, 176, 0, 12, 13);
+            RocketCrusherRecipeCategory.progressHammerDrawable[i] = JEIRegistryHelper.guiHelper.createDrawable(texture, 176, 0, 12, 13);
         }
     }
 
@@ -53,7 +53,7 @@ public class RocketCrusherRecipeCategory implements IRecipeCategory
 
         for (int i = 0; i < 3; i++)
         {
-            this.progressHammerDrawable[i].draw(mc, x, 11);
+            RocketCrusherRecipeCategory.progressHammerDrawable[i].draw(mc, x, 11);
             x += 13;
         }
         this.progressBar.draw(mc, 62, 20);

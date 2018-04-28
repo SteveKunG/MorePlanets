@@ -42,10 +42,4 @@ public class ItemInfectedMelonSeeds extends ItemBaseMP
     {
         return EnumSortCategoryItem.PLANT_SEEDS;
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_melon_seeds";
-    }
 }

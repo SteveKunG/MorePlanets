@@ -10,8 +10,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.EnumChestTexture;
 import stevekung.mods.moreplanets.util.blocks.BlockAncientChestMP;
-import stevekung.mods.moreplanets.util.helper.CalendarHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAncientChestMP;
+import stevekung.mods.stevekunglib.utils.CalendarUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityAncientChestRendererMP extends TileEntitySpecialRenderer<TileEntityAncientChestMP>
@@ -74,11 +74,11 @@ public class TileEntityAncientChestRendererMP extends TileEntitySpecialRenderer<
                     GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
                     GlStateManager.matrixMode(5888);
                 }
-                else if (CalendarHelper.isChristmasDay())
+                else if (CalendarUtils.isChristmasDay())
                 {
                     this.bindTexture(this.textureChristmas);
                 }
-                else if (CalendarHelper.isMorePlanetsBirthDay())
+                else if (CalendarUtils.isMorePlanetsBirthDay())
                 {
                     this.bindTexture(this.morePlanetsChestNormal);
                 }
@@ -100,11 +100,11 @@ public class TileEntityAncientChestRendererMP extends TileEntitySpecialRenderer<
                     GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
                     GlStateManager.matrixMode(5888);
                 }
-                else if (CalendarHelper.isChristmasDay())
+                else if (CalendarUtils.isChristmasDay())
                 {
                     this.bindTexture(this.textureChristmasDouble);
                 }
-                else if (CalendarHelper.isMorePlanetsBirthDay())
+                else if (CalendarUtils.isMorePlanetsBirthDay())
                 {
                     this.bindTexture(this.morePlanetsLargeChestNormal);
                 }

@@ -135,10 +135,4 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     {
         return new TileEntityVeinFrame();
     }
-
-    @Override
-    public String getName()
-    {
-        return "vein_frame";
-    }
 }

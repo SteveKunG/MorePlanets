@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockMultalicCrystalBlock extends BlockBreakableMP
 {
@@ -30,7 +30,7 @@ public class BlockMultalicCrystalBlock extends BlockBreakableMP
     @Nullable
     public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
     {
-        return ColorHelper.rgbToFloatArray(0, 44, 127);
+        return ColorUtils.rgbToFloatArray(0, 44, 127);
     }
 
     @Override
@@ -62,11 +62,5 @@ public class BlockMultalicCrystalBlock extends BlockBreakableMP
     protected boolean renderSideWithState()
     {
         return false;
-    }
-
-    @Override
-    public String getName()
-    {
-        return "multalic_crystal_block";
     }
 }

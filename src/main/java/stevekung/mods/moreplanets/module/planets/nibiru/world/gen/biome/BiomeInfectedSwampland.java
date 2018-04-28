@@ -13,11 +13,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenFossils;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedSwampTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.helper.DecorateHelper;
+import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedSwampland extends BiomeNibiru
 {
@@ -40,7 +40,7 @@ public class BiomeInfectedSwampland extends BiomeNibiru
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, WET, SWAMP, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, WET, SWAMP, DEAD);
     }
 
     @Override
@@ -48,11 +48,11 @@ public class BiomeInfectedSwampland extends BiomeNibiru
     {
         if (rand.nextInt(25) == 0)
         {
-            new WorldGenInfectedVinesDirt().generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));
+            new WorldGenInfectedVinesDirt().generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
         }
         if (rand.nextInt(64) == 0)
         {
-            new WorldGenFossils().generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));//TODO Reformat structure files
+            new WorldGenFossils().generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));//TODO Reformat structure files
         }
         super.decorate(world, rand, pos);
     }

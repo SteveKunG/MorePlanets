@@ -38,7 +38,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNib
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IEntityBreathable, ISpaceMob, IEntityMultiPart
@@ -484,7 +484,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     @Override
     public int getBossTextColor()
     {
-        return ColorHelper.rgbToDecimal(189, 95, 17);
+        return ColorUtils.rgbToDecimal(189, 95, 17);
     }
 
     public boolean getVinePull()

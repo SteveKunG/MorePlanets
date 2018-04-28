@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
 
 public class ItemBlockMultiVariantInfo extends ItemBlockBaseMP
 {
@@ -28,7 +28,7 @@ public class ItemBlockMultiVariantInfo extends ItemBlockBaseMP
     {
         if (this.block instanceof IBlockDescription)
         {
-            if (CommonRegisterHelper.isShiftKeyDown())
+            if (ClientUtils.isShiftKeyDown())
             {
                 ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
             }

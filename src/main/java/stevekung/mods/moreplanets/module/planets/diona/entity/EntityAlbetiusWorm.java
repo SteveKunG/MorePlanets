@@ -119,7 +119,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     @Override
     public float getBlockPathWeight(BlockPos pos)
     {
-        return this.world.getBlockState(pos.down()) == DionaBlocks.DIONA_BLOCK.getStateFromMeta(2) ? 10.0F : super.getBlockPathWeight(pos);
+        return this.world.getBlockState(pos.down()).getBlock() == DionaBlocks.DIONA_ROCK ? 10.0F : super.getBlockPathWeight(pos);
     }
 
     @Override
@@ -188,7 +188,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
                     BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
                     IBlockState iblockstate = this.entity.world.getBlockState(blockpos);
 
-                    if (iblockstate == DionaBlocks.DIONA_BLOCK.getStateFromMeta(2))
+                    if (iblockstate == DionaBlocks.DIONA_ROCK.getDefaultState())
                     {
                         this.doMerge = true;
                         return true;
@@ -218,7 +218,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
                 BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
                 IBlockState iblockstate = world.getBlockState(blockpos);
 
-                if (iblockstate == DionaBlocks.DIONA_BLOCK.getStateFromMeta(2))
+                if (iblockstate == DionaBlocks.DIONA_ROCK.getDefaultState())
                 {
                     world.setBlockState(blockpos, DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
                     this.entity.spawnExplosionParticle();

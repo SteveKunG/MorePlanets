@@ -61,10 +61,4 @@ public class BlockInfectedSeaLantern extends BlockBaseMP
     {
         return new ItemStack(this, 1, 0);
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_sea_lantern";
-    }
 }

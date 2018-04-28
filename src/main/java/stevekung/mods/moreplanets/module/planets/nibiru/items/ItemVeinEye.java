@@ -115,10 +115,4 @@ public class ItemVeinEye extends ItemBaseMP
     {
         return FactoryBlockPattern.start().aisle(new String[] {"?vvv?", ">???<", ">???<", ">???<", "?^^^?"}).where('?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where('^', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.SOUTH)))).where('>', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.WEST)))).where('v', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.NORTH)))).where('<', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.EAST)))).build();
     }
-
-    @Override
-    public String getName()
-    {
-        return "vein_eye";
-    }
 }

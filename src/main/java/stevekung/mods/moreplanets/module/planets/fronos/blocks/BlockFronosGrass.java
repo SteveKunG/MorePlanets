@@ -96,12 +96,6 @@ public class BlockFronosGrass extends BlockGrassMP
         return 0;
     }
 
-    @Override
-    public String getName()
-    {
-        return "fronos_grass";
-    }
-
     public static enum BlockType implements IStringSerializable
     {
         NONE,

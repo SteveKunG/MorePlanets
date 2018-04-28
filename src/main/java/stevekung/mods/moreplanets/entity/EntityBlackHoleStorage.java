@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.entity;
 
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityItem;
@@ -23,8 +21,8 @@ import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 public class EntityBlackHoleStorage extends Entity
 {
     private BlockPos mainTilePos;
-    private static DataParameter<String> COLLECT_MODE = EntityDataManager.createKey(EntityBlackHoleStorage.class, DataSerializers.STRING);
-    private static DataParameter<Boolean> DISABLE = EntityDataManager.createKey(EntityBlackHoleStorage.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<String> COLLECT_MODE = EntityDataManager.createKey(EntityBlackHoleStorage.class, DataSerializers.STRING);
+    private static final DataParameter<Boolean> DISABLE = EntityDataManager.createKey(EntityBlackHoleStorage.class, DataSerializers.BOOLEAN);
 
     public EntityBlackHoleStorage(World world)
     {
@@ -72,9 +70,8 @@ public class EntityBlackHoleStorage extends Entity
             if (this.getCollectMode().equals("item") || collectAll)
             {
                 int range = 12;
-                List<EntityItem> entitiesAroundBH = this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
-                for (EntityItem entity : entitiesAroundBH)
+                this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range)).forEach(entity ->
                 {
                     double motionX = this.posX - entity.posX;
                     double motionY = this.posY - entity.posY + 0.5D;
@@ -82,14 +79,13 @@ public class EntityBlackHoleStorage extends Entity
                     entity.motionX = motionX * 0.1F;
                     entity.motionY = motionY * 0.1F;
                     entity.motionZ = motionZ * 0.1F;
-                }
+                });
             }
             if (this.getCollectMode().equals("xp") || collectAll)
             {
                 int range = 12;
-                List<EntityXPOrb> entitiesAroundBH = this.world.getEntitiesWithinAABB(EntityXPOrb.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
-                for (EntityXPOrb entity : entitiesAroundBH)
+                this.world.getEntitiesWithinAABB(EntityXPOrb.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range)).forEach(entity ->
                 {
                     double motionX = this.posX - entity.posX;
                     double motionY = this.posY - entity.posY + 0.5D;
@@ -98,7 +94,7 @@ public class EntityBlackHoleStorage extends Entity
                     entity.motionY = motionY * 0.1F;
                     entity.motionZ = motionZ * 0.1F;
                     entity.delayBeforeCanPickup = 5;
-                }
+                });
             }
             if (this.world.isRemote)
             {

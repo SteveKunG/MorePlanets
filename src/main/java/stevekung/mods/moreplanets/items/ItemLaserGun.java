@@ -138,7 +138,7 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
                         }
                         if (meta == 1)
                         {
-                            laser.setLaserType(EnumLaserType.INFECTED_CRYSTALLIZE);
+                            laser.setLaserType(EnumLaserType.INFECTED_CRYSTALLIZED);
                         }
                         slot = i;
                         break;

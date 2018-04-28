@@ -23,7 +23,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.dungeon.MapGenChalosDungeon;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.dungeon.RoomBossChalos;
@@ -31,8 +30,8 @@ import stevekung.mods.moreplanets.module.planets.chalos.world.gen.dungeon.RoomSp
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.dungeon.RoomTreasureChalos;
 import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
 import stevekung.mods.moreplanets.util.world.gen.dungeon.RoomChestMP;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenLiquidLakes;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenSpaceDungeons;
+import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorChalos implements IChunkGenerator
 {
@@ -57,7 +56,7 @@ public class ChunkGeneratorChalos implements IChunkGenerator
     double[] maxLimitRegion;
     double[] depthRegion;
 
-    private MapGenChalosDungeon dungeonGenerator = new MapGenChalosDungeon(new DungeonConfigurationMP(ChalosBlocks.CHALOS_BLOCK.getDefaultState().withProperty(BlockChalos.VARIANT, BlockChalos.BlockType.CHALOS_DUNGEON_BRICK), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), GCBlocks.unlitTorch.getDefaultState(), ChalosBlocks.CHALOS_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossChalos.class, RoomTreasureChalos.class, RoomSpawnerChalos.class, RoomChestMP.class));
+    private MapGenChalosDungeon dungeonGenerator = new MapGenChalosDungeon(new DungeonConfigurationMP(ChalosBlocks.CHALOS_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), GCBlocks.unlitTorch.getDefaultState(), ChalosBlocks.CHALOS_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossChalos.class, RoomTreasureChalos.class, RoomSpawnerChalos.class, RoomChestMP.class));
 
     public ChunkGeneratorChalos(World world, long seed)
     {
@@ -139,11 +138,11 @@ public class ChunkGeneratorChalos implements IChunkGenerator
                             {
                                 if ((lvt_45_1_ += d16) > 0.0D)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, ChalosBlocks.CHALOS_BLOCK.getDefaultState());
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, ChalosBlocks.CHALOS_ROCK.getDefaultState());
                                 }
                                 else if (i2 * 8 + j2 < 63)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK.getDefaultState());
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, ChalosBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState());
                                 }
                             }
                             d10 += d12;
@@ -326,11 +325,11 @@ public class ChunkGeneratorChalos implements IChunkGenerator
 
         for (int i = 0; i < 8; ++i)
         {
-            new WorldGenSpaceDungeons(ChalosBlocks.CHALOS_ANCIENT_CHEST, ChalosBlocks.CHALOS_BLOCK, ChalosBlocks.CHEESE_SLIME_BLOCK, 1, 0).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenSpaceDungeons(ChalosBlocks.CHALOS_ANCIENT_CHEST, ChalosBlocks.CHALOS_ROCK, ChalosBlocks.CHEESE_SLIME_BLOCK, 1, 0).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
         if (biomeGen != MPBiomes.SLIMELY_WASTELAND && this.rand.nextInt(8) == 0)
         {
-            new WorldGenLiquidLakes(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, ChalosBlocks.CHALOS_BLOCK, 0, false).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenLiquidLake(ChalosBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), false).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
         BlockFalling.fallInstantly = false;
     }
@@ -407,7 +406,7 @@ public class ChunkGeneratorChalos implements IChunkGenerator
                             {
                                 continue;
                             }
-                            world.setBlockState(new BlockPos(bx + x, by + cy, bz + z), ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK.getDefaultState(), 2);
+                            world.setBlockState(new BlockPos(bx + x, by + cy, bz + z), ChalosBlocks.GASEOUS_CHEESE_MILK_BLOCK.getDefaultState(), 2);
                         }
                     }
                 }
@@ -443,6 +442,6 @@ public class ChunkGeneratorChalos implements IChunkGenerator
         {
             return true;
         }
-        return block instanceof BlockLiquid && block != ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK;
+        return block instanceof BlockLiquid && block != ChalosBlocks.GASEOUS_CHEESE_MILK_BLOCK;
     }
 }

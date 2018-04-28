@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.client.renderer;
 
 import java.lang.reflect.Method;
-import java.util.Map.Entry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -14,9 +13,6 @@ import stevekung.mods.moreplanets.items.ItemSpaceFish;
 import stevekung.mods.moreplanets.items.ItemSpecialSchematic;
 import stevekung.mods.moreplanets.module.moons.koentus.blocks.BlockKoentus;
 import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalos;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalosDoublePlant;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockCheeseDirt;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ItemChalos;
@@ -24,13 +20,10 @@ import stevekung.mods.moreplanets.module.planets.chalos.items.ItemCheeseFood;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosAncientChest;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosTreasureChest;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityCheeseSporeChest;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockDiona;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockInfectedCrystallizePart;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.ItemDiona;
 import stevekung.mods.moreplanets.module.planets.diona.items.ItemTier4RocketPart;
-import stevekung.mods.moreplanets.module.planets.diona.items.ItemTier5RocketSchematic;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaAncientChest;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaTreasureChest;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.*;
@@ -42,6 +35,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityInf
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruAncientChest;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
 import stevekung.mods.moreplanets.util.MPLog;
+import stevekung.mods.moreplanets.util.blocks.BlockDoublePlantMP;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
@@ -57,12 +51,12 @@ public class ItemModelRenderer
 
     private static void registerBlockRenderer()
     {
-        for (Entry<Block, String> map : CommonRegisterHelper.SINGLE_BLOCK_RENDER_LIST.entrySet())
+        CommonRegisterHelper.SINGLE_BLOCK_RENDER_LIST.entrySet().forEach(map ->
         {
             Block block = map.getKey();
             String name = map.getValue();
             ClientRegisterHelper.registerModelRender(block, name);
-        }
+        });
     }
 
     private static void registerBlockVariantsRenderer()
@@ -75,12 +69,8 @@ public class ItemModelRenderer
         ClientRegisterHelper.registerModelRender(MPBlocks.HALF_WOODEN_SLAB_1, BlockHalfWoodenSlab1.BlockType.class);
         ClientRegisterHelper.registerModelRender(MPBlocks.COBBLESTONE_WALL, BlockCobblestoneWall.BlockType.class);
         ClientRegisterHelper.registerModelRender(MPBlocks.DUNGEON_BRICK_WALL, BlockDungeonBrickWall.BlockType.class);
-        ClientRegisterHelper.registerModelRender(DionaBlocks.DIONA_BLOCK, BlockDiona.BlockType.class);
-        ClientRegisterHelper.registerModelRender(DionaBlocks.INFECTED_CRYSTALLIZE_PART, BlockInfectedCrystallizePart.BlockType.class);
         ClientRegisterHelper.registerModelRender(KoentusBlocks.KOENTUS_BLOCK, BlockKoentus.BlockType.class);
-        ClientRegisterHelper.registerModelRender(ChalosBlocks.CHALOS_BLOCK, BlockChalos.BlockType.class);
-        ClientRegisterHelper.registerModelRender(ChalosBlocks.CHEESE_DIRT, BlockCheeseDirt.BlockType.class);
-        ClientRegisterHelper.registerModelRender(ChalosBlocks.CHALOS_DOUBLE_PLANT, BlockChalosDoublePlant.BlockType.class);
+        ClientRegisterHelper.registerModelRender(ChalosBlocks.CHEESE_TALL_GRASS, BlockDoublePlantMP.BlockType.class);
         ClientRegisterHelper.registerModelRender(NibiruBlocks.INFECTED_DIRT, BlockInfectedDirt.BlockType.class);
         ClientRegisterHelper.registerModelRender(NibiruBlocks.NIBIRU_SANDSTONE, BlockNibiruSandstone.BlockType.class);
         ClientRegisterHelper.registerModelRender(NibiruBlocks.NIBIRU_LOG, BlockNibiruLog.BlockType.class);
@@ -112,12 +102,12 @@ public class ItemModelRenderer
 
     private static void registerItemRenderer()
     {
-        for (Entry<Item, String> map : CommonRegisterHelper.SINGLE_ITEM_RENDER_LIST.entrySet())
+        CommonRegisterHelper.SINGLE_ITEM_RENDER_LIST.entrySet().forEach(map ->
         {
             Item item = map.getKey();
             String name = map.getValue();
             ClientRegisterHelper.registerModelRender(item, name);
-        }
+        });
         ClientRegisterHelper.registerToolsModelRender(DionaItems.ILLENIUM_SWORD, DionaItems.ILLENIUM_SHOVEL, DionaItems.ILLENIUM_PICKAXE, DionaItems.ILLENIUM_AXE, DionaItems.ILLENIUM_HOE, "illenium");
         ClientRegisterHelper.registerToolsModelRender(ChalosItems.DIREMSIUM_SWORD, ChalosItems.DIREMSIUM_SHOVEL, ChalosItems.DIREMSIUM_PICKAXE, ChalosItems.DIREMSIUM_AXE, ChalosItems.DIREMSIUM_HOE, "diremsium");
         ClientRegisterHelper.registerToolsModelRender(ChalosItems.CHEESE_SPORE_WOOD_SWORD, ChalosItems.CHEESE_SPORE_WOOD_SHOVEL, ChalosItems.CHEESE_SPORE_WOOD_PICKAXE, ChalosItems.CHEESE_SPORE_WOOD_AXE, ChalosItems.CHEESE_SPORE_WOOD_HOE, "cheese_spore_wood");
@@ -137,7 +127,6 @@ public class ItemModelRenderer
         ClientRegisterHelper.registerModelRender(MPItems.SPECIAL_SCHEMATIC, ItemSpecialSchematic.ItemType.class);
         ClientRegisterHelper.registerModelRender(DionaItems.DIONA_ITEM, ItemDiona.ItemType.class);
         ClientRegisterHelper.registerModelRender(DionaItems.TIER_4_ROCKET_PART, ItemTier4RocketPart.ItemType.class);
-        ClientRegisterHelper.registerModelRender(DionaItems.TIER_5_ROCKET_SCHEMATIC, ItemTier5RocketSchematic.ItemType.class);
         ClientRegisterHelper.registerModelRender(ChalosItems.CHALOS_ITEM, ItemChalos.ItemType.class);
         ClientRegisterHelper.registerModelRender(ChalosItems.CHEESE_FOOD, ItemCheeseFood.ItemType.class);
         ClientRegisterHelper.registerModelRender(NibiruItems.NIBIRU_ITEM, ItemNibiru.ItemType.class);
@@ -173,11 +162,11 @@ public class ItemModelRenderer
             ItemModelRenderer.registerCCLItemRenderer(NibiruBlocks.ALIEN_BERRY_CHEST, new RenderChest(new TileEntityAlienBerryChest()));
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_DEFENDER_BEACON, new RenderAlienDefenderBeacon());
             ItemModelRenderer.registerCCLItemRenderer(DionaBlocks.ZELIUS_EGG, new RenderZeliusEgg());
-            ItemModelRenderer.registerCCLItemRenderer(DionaBlocks.LARGE_INFECTED_CRYSTALLIZE, new RenderLargeInfectedCrystallize());
+            ItemModelRenderer.registerCCLItemRenderer(DionaBlocks.LARGE_INFECTED_CRYSTALLIZED, new RenderLargeInfectedCrystallized());
             ItemModelRenderer.registerCCLItemRenderer(NibiruBlocks.MULTALIC_CRYSTAL, new RenderMultalicCrystal());
             ItemModelRenderer.registerCCLItemRenderer(NibiruBlocks.JUICER_EGG, new RenderJuicerEgg());
             ItemModelRenderer.registerCCLItemRenderer(NibiruBlocks.VEIN_FRAME, new RenderVeinFrame());
-            ItemModelRenderer.registerCCLItemRenderer(DionaItems.INFECTED_CRYSTALLIZE_BOMB, new RenderInfectedCrystallizedBomb());
+            ItemModelRenderer.registerCCLItemRenderer(DionaItems.INFECTED_CRYSTALLIZED_BOMB, new RenderInfectedCrystallizedBombCCL());
 
             MPLog.info("Successfully registered CodeChickenCore item rendering for More Planets tile entities");
         }

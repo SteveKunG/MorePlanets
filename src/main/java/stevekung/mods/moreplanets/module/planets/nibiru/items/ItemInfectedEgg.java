@@ -49,10 +49,4 @@ public class ItemInfectedEgg extends ItemBaseMP
     {
         return EnumSortCategoryItem.PROJECTILE;
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_egg";
-    }
 }

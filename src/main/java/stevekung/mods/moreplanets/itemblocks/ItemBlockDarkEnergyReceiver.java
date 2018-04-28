@@ -10,8 +10,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.util.helper.BlockEventHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
@@ -29,7 +29,7 @@ public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
         int angle = MathHelper.floor(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
 
-        if (BlockEventHelper.isLiquidBlock(world, pos))
+        if (BlockUtils.isFluid(world, pos))
         {
             if (world.isRemote)
             {

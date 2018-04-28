@@ -1,0 +1,7 @@
+{
+    "parent": "moreplanets:block/fluid_block",
+    "textures": {
+        "top": "moreplanets:blocks/crystallized_lava_still",
+        "side": "moreplanets:blocks/crystallized_lava_flowing"
+    }
+}

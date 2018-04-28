@@ -6,8 +6,8 @@ import static net.minecraftforge.common.BiomeDictionary.Type.WASTELAND;
 import java.util.LinkedList;
 
 import net.minecraft.world.biome.Biome;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class BiomeSlimelyWasteland extends BiomeChalos
 {
@@ -16,13 +16,13 @@ public class BiomeSlimelyWasteland extends BiomeChalos
         super(properties);
         this.topBlock = ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState();
         this.fillerBlock = ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState();
-        this.stoneBlock = ChalosBlocks.CHALOS_BLOCK.getDefaultState();
+        this.stoneBlock = ChalosBlocks.CHALOS_ROCK.getDefaultState();
     }
 
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, WASTELAND, DRY);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, WASTELAND, DRY);
     }
 
     @Override

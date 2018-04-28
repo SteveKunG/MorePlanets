@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import stevekung.mods.moreplanets.util.client.model.ModelCrystal;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer<TileEntityMultalicCrystal>
 {
@@ -30,7 +30,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
 
         for (int i = 0; i < 4; i++)
         {
-            int[] colorList = new int[] { ColorHelper.rgbToDecimal(76, 132, 255), ColorHelper.rgbToDecimal(50, 101, 236), ColorHelper.rgbToDecimal(75, 131, 255), ColorHelper.rgbToDecimal(28, 60, 146) };
+            int[] colorList = new int[] { ColorUtils.rgbToDecimal(76, 132, 255), ColorUtils.rgbToDecimal(50, 101, 236), ColorUtils.rgbToDecimal(75, 131, 255), ColorUtils.rgbToDecimal(28, 60, 146) };
 
             for (int spike = 0; spike < 2; spike++)
             {
@@ -125,7 +125,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
 
         for (int i = 0; i < 4; i++)
         {
-            int[] colorList = new int[] { ColorHelper.rgbToDecimal(76, 132, 255), ColorHelper.rgbToDecimal(50, 101, 236), ColorHelper.rgbToDecimal(75, 131, 255), ColorHelper.rgbToDecimal(28, 60, 146) };
+            int[] colorList = new int[] { ColorUtils.rgbToDecimal(76, 132, 255), ColorUtils.rgbToDecimal(50, 101, 236), ColorUtils.rgbToDecimal(75, 131, 255), ColorUtils.rgbToDecimal(28, 60, 146) };
 
             for (int spike = 0; spike < 2; spike++)
             {

@@ -237,9 +237,8 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         }
 
         float range = this.shieldSize;
-        List<Entity> entitiesMob = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - range, this.pos.getY() - range, this.pos.getZ() - range, this.pos.getX() + range, this.pos.getY() + range, this.pos.getZ() + range));
 
-        for (Entity entity : entitiesMob)
+        this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - range, this.pos.getY() - range, this.pos.getZ() - range, this.pos.getX() + range, this.pos.getY() + range, this.pos.getZ() + range)).forEach(entity ->
         {
             if (!this.disabled && this.enableShield && this.shieldCapacity > 0)
             {
@@ -254,7 +253,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                     entity.setDead();
                 }
             }
-        }
+        });
     }
 
     @Override

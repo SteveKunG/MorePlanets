@@ -15,9 +15,6 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank.BlockType;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
 
 public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMultiBlock
@@ -47,22 +44,22 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
         super.update();
         this.renderTicks++;
 
-        if (!this.world.isRemote)
-        {
-            int count = this.world.getBlockState(this.pos).getValue(BlockNuclearWasteTank.FLUID_COUNT);
-
-            if (count == 3 && this.rodCreateTime < 100)
-            {
-                this.rodCreateTime++;
-
-                if (this.rodCreateTime == 100)
-                {
-                    this.world.setBlockState(this.pos, NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockType.NONE));
-                    this.rodCreateTime = 0;
-                }
-                System.out.println(this.rodCreateTime);
-            }
-        }
+        //        if (!this.world.isRemote)
+        //        {
+        //            int count = this.world.getBlockState(this.pos).getValue(BlockNuclearWasteTank.FLUID_COUNT);
+        //
+        //            if (count == 3 && this.rodCreateTime < 100)
+        //            {
+        //                this.rodCreateTime++;
+        //
+        //                if (this.rodCreateTime == 100)
+        //                {
+        //                    this.world.setBlockState(this.pos, NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockType.NONE));
+        //                    this.rodCreateTime = 0;
+        //                }
+        //                System.out.println(this.rodCreateTime);
+        //            }
+        //        }
     }
 
     @Override

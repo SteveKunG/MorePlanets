@@ -1,0 +1,9 @@
+{
+    "parent": "moreplanets:block/obelisk_part",
+    "textures": {
+        "particle": "moreplanets:blocks/infected_crystallized_block",
+        "side": "moreplanets:blocks/infected_crystallized_block",
+        "up": "moreplanets:blocks/infected_crystallized_block",
+        "down": "moreplanets:blocks/infected_crystallized_block"
+    }
+}

@@ -25,8 +25,9 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuc
 import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.CommonUtils;
 
 @WailaPlugin
 public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlugin
@@ -89,7 +90,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             if (destruct > 0)
             {
                 destruct = 600 - destruct;
-                tooltip.add(TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.destruct.name") + ": " + CommonRegisterHelper.ticksToElapsedTime(destruct));
+                tooltip.add(TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.destruct.name") + ": " + CommonUtils.ticksToElapsedTime(destruct));
             }
             else
             {
@@ -146,7 +147,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             if (destruct > 0)
             {
                 destruct = 600 - destruct;
-                tooltip.add(TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.destruct.name") + ": " + CommonRegisterHelper.ticksToElapsedTime(destruct));
+                tooltip.add(TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.destruct.name") + ": " + CommonUtils.ticksToElapsedTime(destruct));
             }
             else
             {
@@ -164,7 +165,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
 
             if (transform > 0)
             {
-                tooltip.add(GCCoreUtil.translate("gui.status.transform_time.name") + ": " + CommonRegisterHelper.ticksToElapsedTime(transform));
+                tooltip.add(GCCoreUtil.translate("gui.status.transform_time.name") + ": " + CommonUtils.ticksToElapsedTime(transform));
             }
         }
         if (tile instanceof TileEntityDarkEnergyGenerator)
@@ -257,7 +258,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             {
                 IBlockDescription desc = (IBlockDescription) block;
 
-                if (CommonRegisterHelper.isShiftKeyDown())
+                if (ClientUtils.isShiftKeyDown())
                 {
                     desc.getDescription().addDescription(itemStack, tooltip);
                 }
@@ -275,7 +276,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 {
                     IBlockDescription desc = (IBlockDescription) accessor.getWorld().getBlockState(dummy.mainBlockPosition).getBlock();
 
-                    if (CommonRegisterHelper.isShiftKeyDown())
+                    if (ClientUtils.isShiftKeyDown())
                     {
                         desc.getDescription().addDescription(itemStack, tooltip);
                     }

@@ -8,8 +8,8 @@ import static net.minecraftforge.common.BiomeDictionary.Type.SANDY;
 import java.util.LinkedList;
 
 import net.minecraft.world.biome.Biome;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class BiomeInfectedDesert extends BiomeNibiru
 {
@@ -29,7 +29,7 @@ public class BiomeInfectedDesert extends BiomeNibiru
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, HOT, DRY, SANDY, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, HOT, DRY, SANDY, DEAD);
     }
 
     @Override

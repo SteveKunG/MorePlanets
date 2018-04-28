@@ -1,0 +1,8 @@
+{
+    "parent": "moreplanets:block/cube_all_glow",
+    "textures": {
+        "particle": "moreplanets:blocks/infected_crystallized_planks",
+        "all": "moreplanets:blocks/infected_crystallized_planks",
+        "glow": "moreplanets:blocks/infected_crystallized_planks_glow"
+    }
+}

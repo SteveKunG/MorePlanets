@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
@@ -13,22 +14,82 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
-public abstract class BlockLogMP extends BlockBaseMP
+public class BlockLogMP extends BlockBaseMP
 {
-    public BlockLogMP()
+    public BlockLogMP(String name)
     {
         super(Material.WOOD);
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
         this.setHardness(2.0F);
         this.setResistance(5.0F);
         this.setSoundType(SoundType.WOOD);
+        this.setUnlocalizedName(name);
+    }
+
+    public BlockLogMP(String name, Material material)
+    {
+        super(material);
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
+        this.setSoundType(SoundType.WOOD);
+        this.setUnlocalizedName(name);
     }
 
     public BlockLogMP(Material material)
     {
         super(material);
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y));
         this.setHardness(2.0F);
         this.setResistance(5.0F);
         this.setSoundType(SoundType.WOOD);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        IBlockState state = this.getDefaultState();
+
+        switch (meta & 12)
+        {
+        case 0:
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y);
+            break;
+        case 4:
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.X);
+            break;
+        case 8:
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Z);
+            break;
+        default:
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.NONE);
+        }
+        return state;
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        int i = 0;
+
+        switch (BlockStateProperty.SwitchEnumAxis.AXIS_LOOKUP[state.getValue(BlockStateProperty.AXIS).ordinal()])
+        {
+        case 1:
+            i |= 4;
+            break;
+        case 2:
+            i |= 8;
+            break;
+        case 3:
+            i |= 12;
+        }
+        return i;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, BlockStateProperty.AXIS);
     }
 
     @Override
@@ -63,12 +124,12 @@ public abstract class BlockLogMP extends BlockBaseMP
     @Override
     public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return true;
+        return state.getMaterial() == Material.WOOD;
     }
 
     @Override
     public boolean isWood(IBlockAccess world, BlockPos pos)
     {
-        return true;
+        return world.getBlockState(pos).getMaterial() == Material.WOOD;
     }
 }

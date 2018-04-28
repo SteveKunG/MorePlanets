@@ -21,7 +21,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import stevekung.mods.moreplanets.util.blocks.BlockIceMP;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockKoentusIce extends BlockIceMP
 {
@@ -36,7 +36,7 @@ public class BlockKoentusIce extends BlockIceMP
     @Nullable
     public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
     {
-        return ColorHelper.rgbToFloatArray(78, 101, 145);
+        return ColorUtils.rgbToFloatArray(78, 101, 145);
     }
 
     @Override

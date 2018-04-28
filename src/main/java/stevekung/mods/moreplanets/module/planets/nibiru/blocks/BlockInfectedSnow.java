@@ -44,10 +44,4 @@ public class BlockInfectedSnow extends BlockBaseMP
             world.setBlockToAir(pos);
         }
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_snow";
-    }
 }

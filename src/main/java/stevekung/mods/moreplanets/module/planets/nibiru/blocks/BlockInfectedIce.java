@@ -19,7 +19,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import stevekung.mods.moreplanets.util.blocks.BlockIceMP;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockInfectedIce extends BlockIceMP
 {
@@ -33,7 +33,7 @@ public class BlockInfectedIce extends BlockIceMP
     @Nullable
     public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
     {
-        return ColorHelper.rgbToFloatArray(138, 57, 36);
+        return ColorUtils.rgbToFloatArray(138, 57, 36);
     }
 
     @Override
@@ -94,11 +94,5 @@ public class BlockInfectedIce extends BlockIceMP
                 world.setBlockState(pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
             }
         }
-    }
-
-    @Override
-    public String getName()
-    {
-        return "infected_ice";
     }
 }

@@ -117,10 +117,4 @@ public class BlockGreenVeinGrass extends BlockGrassMP implements IGrowable
             }
         }
     }
-
-    @Override
-    public String getName()
-    {
-        return "green_vein_grass";
-    }
 }

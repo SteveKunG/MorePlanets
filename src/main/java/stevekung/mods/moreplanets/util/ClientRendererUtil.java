@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.util;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
@@ -42,10 +43,10 @@ public class ClientRendererUtil
 
     public static void renderModelBrightnessColor(IBlockState state, IBakedModel model, float brightness, float red, float green, float blue)
     {
-        for (EnumFacing facing : EnumFacing.VALUES)
+        Arrays.asList(EnumFacing.VALUES).forEach(facing ->
         {
             ClientRendererUtil.renderModelBrightnessColorQuads(brightness, red, green, blue, model.getQuads(state, facing, 0L));
-        }
+        });
         ClientRendererUtil.renderModelBrightnessColorQuads(brightness, red, green, blue, model.getQuads(state, (EnumFacing)null, 0L));
     }
 

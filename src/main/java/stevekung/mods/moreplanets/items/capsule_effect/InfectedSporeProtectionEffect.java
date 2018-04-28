@@ -3,13 +3,13 @@ package stevekung.mods.moreplanets.items.capsule_effect;
 import net.minecraft.entity.EntityLivingBase;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.util.PotionMP;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class InfectedSporeProtectionEffect extends PotionMP
 {
     public InfectedSporeProtectionEffect()
     {
-        super("infected_spore_protection", false, ColorHelper.rgbToDecimal(200, 200, 200), 3);
+        super("infected_spore_protection", false, ColorUtils.rgbToDecimal(200, 200, 200), 3);
         this.setBeneficial();
     }
 

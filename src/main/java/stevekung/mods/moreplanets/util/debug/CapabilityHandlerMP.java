@@ -12,7 +12,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.stevekunglib.utils.CommonUtils;
 
 public class CapabilityHandlerMP
 {
@@ -57,6 +57,6 @@ public class CapabilityHandlerMP
                 instance.readNBT((NBTTagCompound) nbt);
             }
         }, MPCapData::new);
-        CommonRegisterHelper.registerForgeEvent(new CapabilityHandlerMP());
+        CommonUtils.registerEventHandler(new CapabilityHandlerMP());
     }
 }

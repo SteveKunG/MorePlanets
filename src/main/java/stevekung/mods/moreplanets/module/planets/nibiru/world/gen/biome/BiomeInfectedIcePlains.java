@@ -12,12 +12,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedSnowman;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruIcePath;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruIceSpike;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class BiomeInfectedIcePlains extends BiomeNibiru
 {
@@ -36,7 +36,7 @@ public class BiomeInfectedIcePlains extends BiomeNibiru
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, COLD, SNOWY, WASTELAND, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, COLD, SNOWY, WASTELAND, DEAD);
     }
 
     @Override

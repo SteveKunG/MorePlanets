@@ -26,7 +26,6 @@ import stevekung.mods.moreplanets.blocks.BlockBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
@@ -92,11 +91,11 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
             {
                 TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
 
-                if (CommonRegisterHelper.isShiftKeyDown())
+                if (ClientUtils.isShiftKeyDown())
                 {
                     ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
                 }
-                else if (CommonRegisterHelper.isControlKeyDown() && this.hasItemsKey(itemStack))
+                else if (ClientUtils.isControlKeyDown() && this.hasItemsKey(itemStack))
                 {
                     NonNullList<ItemStack> nonNullList = storage.inventory;
                     ItemStackHelper.loadAllItems(itemStack.getTagCompound(), nonNullList);

@@ -7,11 +7,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -63,16 +61,6 @@ public class BlockBushMP extends BlockBaseMP
     }
 
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
-    {
-        if (world.getBlockState(pos).getBlock().isReplaceable(world, pos) && this.canBlockStay(world, pos, this.getStateFromMeta(meta)))
-        {
-            return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
-        }
-        return world.getBlockState(pos);
-    }
-
-    @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         this.checkAndDropBlock(world, pos, state);
@@ -82,6 +70,13 @@ public class BlockBushMP extends BlockBaseMP
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
         this.checkAndDropBlock(world, pos, state);
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
+    {
+        Block block = world.getBlockState(pos.down()).getBlock();
+        return super.canPlaceBlockAt(world, pos) && this.validBlock(block);
     }
 
     protected void checkAndDropBlock(World world, BlockPos pos, IBlockState state)
@@ -95,7 +90,18 @@ public class BlockBushMP extends BlockBaseMP
 
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
-        return true;
+        Block block = world.getBlockState(pos.down()).getBlock();
+
+        if (state.getBlock() == this)
+        {
+            return this.validBlock(block);
+        }
+        return this.validBlock(block);
+    }
+
+    protected boolean validBlock(Block block)
+    {
+        return block == Blocks.GRASS;
     }
 
     @Override

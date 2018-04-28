@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.EnumDyeColor;
 import stevekung.mods.moreplanets.module.moons.koentus.itemblocks.ItemBlockKoentus;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class KoentusBlocks
@@ -89,36 +90,36 @@ public class KoentusBlocks
         /**************************************************************/
 
         // Glowing Hardened Ice
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.WHITE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.ORANGE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.MAGENTA_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.LIGHT_BLUE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.YELLOW_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.LIME_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.PINK_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.GRAY_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.SILVER_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.CYAN_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.PURPLE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.BLUE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.BROWN_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.GREEN_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.RED_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.BLACK_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.WHITE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.ORANGE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.MAGENTA_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.LIGHT_BLUE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.YELLOW_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.LIME_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.PINK_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.GRAY_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.SILVER_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.CYAN_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.PURPLE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.BLUE_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.BROWN_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.GREEN_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.RED_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.BLACK_GLOWING_HARDENED_ICE, EnumHarvestLevel.PICKAXE, 2);
 
         for (int i = 0; i < BlockKoentus.BlockType.valuesCached().length; i++)
         {
             if (i == 4 || i == 5)
             {
-                CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.KOENTUS_BLOCK, EnumHarvestLevel.PICKAXE, 2, i);
+                BlockUtils.setBlockHarvestLevel(KoentusBlocks.KOENTUS_BLOCK, EnumHarvestLevel.PICKAXE, 2, i);
             }
             else
             {
-                CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.KOENTUS_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
+                BlockUtils.setBlockHarvestLevel(KoentusBlocks.KOENTUS_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
             }
         }
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.KOENTUS_ICE, EnumHarvestLevel.PICKAXE, 1);
-        CommonRegisterHelper.setBlockHarvestLevel(KoentusBlocks.FALLEN_KOENTUS_METEOR, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.KOENTUS_ICE, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(KoentusBlocks.FALLEN_KOENTUS_METEOR, EnumHarvestLevel.PICKAXE, 2);
 
         /**************************************************************/
         /************************FIRE BURN STUFF***********************/

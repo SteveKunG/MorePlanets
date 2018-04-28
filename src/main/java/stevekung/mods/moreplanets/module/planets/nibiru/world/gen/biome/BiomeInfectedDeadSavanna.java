@@ -8,14 +8,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSavannaTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.helper.DecorateHelper;
+import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedDeadSavanna extends BiomeNibiru
 {
@@ -36,7 +36,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, HOT, SAVANNA, PLAINS, SPARSE, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, HOT, SAVANNA, PLAINS, SPARSE, DEAD);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
         {
             for (int i = 0; i < 12; ++i)
             {
-                BlockPos newpos = DecorateHelper.getSimplePos(world, pos, rand);
+                BlockPos newpos = WorldDecorateUtils.getSimplePos(world, pos, rand);
 
                 if (world.getBlockState(newpos).getBlock() == NibiruBlocks.INFECTED_GRASS)
                 {

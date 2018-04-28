@@ -22,8 +22,8 @@ public class TileEntityRenderer
         ClientRegisterHelper.registerTileEntityRendering(TileEntitySpaceWarpPadFull.class, new TileEntitySpaceWarpPadFullRenderer());
         ClientRegisterHelper.registerTileEntityRendering(TileEntityZeliusEgg.class, new TileEntityZeliusEggRenderer());
         ClientRegisterHelper.registerTileEntityRendering(TileEntityDarkEnergyReceiver.class, new TileEntityDarkEnergyReceiverRenderer());
-        ClientRegisterHelper.registerTileEntityRendering(TileEntityLargeInfectedCrystallize.class, new TileEntityLargeInfectedCrystallizeRenderer());
-        ClientRegisterHelper.registerTileEntityRendering(TileEntityInfectedCrystallizeEnderCore.class, new TileEntityInfectedCrystallizeEnderCoreRenderer());
+        ClientRegisterHelper.registerTileEntityRendering(TileEntityLargeInfectedCrystallized.class, new TileEntityLargeInfectedCrystallizedRenderer());
+        ClientRegisterHelper.registerTileEntityRendering(TileEntityInfectedCrystallizedEnderCore.class, new TileEntityInfectedCrystallizedEnderCoreRenderer());
         ClientRegisterHelper.registerTileEntityRendering(TileEntityDionaTreasureChest.class, new TileEntityTreasureChestRendererMP(EnumChestTexture.DIONA));
         ClientRegisterHelper.registerTileEntityRendering(TileEntityDionaAncientChest.class, new TileEntityAncientChestRendererMP(EnumChestTexture.DIONA));
         ClientRegisterHelper.registerTileEntityRendering(TileEntityChalosTreasureChest.class, new TileEntityTreasureChestRendererMP(EnumChestTexture.CHALOS));

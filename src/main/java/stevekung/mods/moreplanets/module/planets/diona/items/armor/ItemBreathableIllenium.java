@@ -44,10 +44,4 @@ public class ItemBreathableIllenium extends ItemBreathableArmor
     {
         return this;
     }
-
-    @Override
-    public String getName()
-    {
-        return "breathable_illenium_helmet";
-    }
 }

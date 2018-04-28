@@ -166,10 +166,10 @@ public class TeleportUtil
         playerList.updateTimeAndWeatherForPlayer(player, targetWorld);
         playerList.syncPlayerInventory(player);
 
-        for (PotionEffect potion : player.getActivePotionEffects())
+        player.getActivePotionEffects().forEach(potion ->
         {
             player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion));
-        }
+        });
         player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
         FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, sourceDim, targetDim);
         player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
@@ -270,11 +270,10 @@ public class TeleportUtil
             player.mcServer.getPlayerList().syncPlayerInventory(player);
             player.setSneaking(false);
 
-            for (Object o : player.getActivePotionEffects())
+            player.getActivePotionEffects().forEach(potion ->
             {
-                PotionEffect potion = (PotionEffect) o;
                 player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion));
-            }
+            });
             player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
         }
         else
@@ -373,11 +372,10 @@ public class TeleportUtil
             player.mcServer.getPlayerList().updateTimeAndWeatherForPlayer(player, worldNew);
             player.mcServer.getPlayerList().syncPlayerInventory(player);
 
-            for (Object o : player.getActivePotionEffects())
+            player.getActivePotionEffects().forEach(potion ->
             {
-                PotionEffect potion = (PotionEffect) o;
                 player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion));
-            }
+            });
             player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
         }
         else

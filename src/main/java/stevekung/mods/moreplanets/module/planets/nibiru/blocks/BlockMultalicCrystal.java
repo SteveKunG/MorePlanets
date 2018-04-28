@@ -275,13 +275,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }
 
-    @Override
-    public String getName()
-    {
-        return "multalic_crystal";
-    }
-
-    protected boolean canPlaceBlock(World world, BlockPos pos, EnumFacing facing)
+    private boolean canPlaceBlock(World world, BlockPos pos, EnumFacing facing)
     {
         BlockPos blockpos = pos.offset(facing);
         return world.getBlockState(blockpos).isSideSolid(world, blockpos, facing.getOpposite()) || world.getBlockState(blockpos).getBlock() == NibiruBlocks.MULTALIC_CRYSTAL_BLOCK;

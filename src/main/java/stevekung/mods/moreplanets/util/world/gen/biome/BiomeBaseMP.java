@@ -9,8 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 
 public class BiomeBaseMP extends BiomeGenBaseGC
 {
@@ -33,7 +33,7 @@ public class BiomeBaseMP extends BiomeGenBaseGC
     {
         if (this.singleName.equals("diona"))
         {
-            CommonRegisterHelper.registerBiomeType(biome, COLD, DEAD, DRY);
+            MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, COLD, DEAD, DRY);
         }
     }
 

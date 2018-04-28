@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemArmorDiremsium;
 import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemBreathableDiremsium;
@@ -15,6 +16,7 @@ import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 import stevekung.mods.moreplanets.util.items.ItemDoorMP;
 import stevekung.mods.moreplanets.util.items.ItemDungeonKeyMP;
 import stevekung.mods.moreplanets.util.items.tools.*;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
@@ -26,7 +28,6 @@ public class ChalosItems
     public static Item CHEESE_SLIMEBALL;
     public static Item CHALOS_DUNGEON_KEY;
     public static Item TIER_5_ROCKET_PART;
-    public static Item TIER_6_ROCKET_SCHEMATIC;
     public static Item CHEESE_SPORE;
     public static Item CHEESE_SPORE_SEED;
     public static Item CHEESE_SPORE_DOOR;
@@ -64,7 +65,6 @@ public class ChalosItems
         ChalosItems.CHEESE_FOOD = new ItemCheeseFood("cheese_food");
         ChalosItems.CHEESE_SLIMEBALL = new ItemBaseMP("cheese_slimeball");
         ChalosItems.TIER_5_ROCKET_PART = new ItemBaseMP("tier_5_rocket_part").setSortCategory(EnumSortCategoryItem.HEAVY_PLATE);
-        ChalosItems.TIER_6_ROCKET_SCHEMATIC = new ItemTier6RocketSchematic("tier_6_rocket_schematic");
         ChalosItems.CHALOS_DUNGEON_KEY = new ItemDungeonKeyMP("chalos_dungeon_key", 5);
         ChalosItems.CHEESE_SPORE = new ItemCheeseSpore("cheese_spore_item");
         ChalosItems.CHEESE_SPORE_SEED = new ItemCheeseSporeSeed("cheese_spore_seed");
@@ -105,7 +105,6 @@ public class ChalosItems
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE);
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_SEED);
         CommonRegisterHelper.registerItem(ChalosItems.TIER_5_ROCKET_PART);
-        CommonRegisterHelper.registerItem(ChalosItems.TIER_6_ROCKET_SCHEMATIC);
         CommonRegisterHelper.registerItem(ChalosItems.CHALOS_DUNGEON_KEY);
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_DOOR);
 
@@ -130,16 +129,16 @@ public class ChalosItems
         /********************HARVEST LEVEL STUFF***********************/
         /**************************************************************/
 
-        CommonRegisterHelper.setToolHarvestLevel(ChalosItems.DIREMSIUM_SHOVEL, EnumHarvestLevel.SHOVEL, 3);
-        CommonRegisterHelper.setToolHarvestLevel(ChalosItems.DIREMSIUM_PICKAXE, EnumHarvestLevel.PICKAXE, 3);
-        CommonRegisterHelper.setToolHarvestLevel(ChalosItems.DIREMSIUM_AXE, EnumHarvestLevel.AXE, 3);
+        BlockUtils.setToolHarvestLevel(ChalosItems.DIREMSIUM_SHOVEL, EnumHarvestLevel.SHOVEL, 3);
+        BlockUtils.setToolHarvestLevel(ChalosItems.DIREMSIUM_PICKAXE, EnumHarvestLevel.PICKAXE, 3);
+        BlockUtils.setToolHarvestLevel(ChalosItems.DIREMSIUM_AXE, EnumHarvestLevel.AXE, 3);
 
         /**************************************************************/
         /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerForgeBucket(ChalosBlocks.CHEESE_OF_MILK_FLUID);
-        CommonRegisterHelper.registerForgeBucket(ChalosBlocks.CHEESE_OF_MILK_GAS);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(ChalosBlocks.CHEESE_MILK_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(ChalosBlocks.GASEOUS_CHEESE_MILK);
 
         /**************************************************************/
         /************************OTHER STUFF***************************/

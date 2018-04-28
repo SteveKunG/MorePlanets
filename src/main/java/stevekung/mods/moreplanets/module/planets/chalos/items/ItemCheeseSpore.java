@@ -32,7 +32,7 @@ public class ItemCheeseSpore extends ItemBaseMP
         }
         else
         {
-            if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS && !world.getBlockState(pos).isSideSolid(world, pos.up(), EnumFacing.UP) || world.getBlockState(pos.up()).getBlock() == ChalosBlocks.CHEESE_SPORE_FLOWER)
+            if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS_BLOCK && !world.getBlockState(pos).isSideSolid(world, pos.up(), EnumFacing.UP) || world.getBlockState(pos.up()).getBlock() == ChalosBlocks.CHEESE_SPORE_FLOWER)
             {
                 this.growCheeseSporeFlower(world, pos, world.rand);
                 itemStack.shrink(1);
@@ -80,18 +80,12 @@ public class ItemCheeseSpore extends ItemBaseMP
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(blockpos1.down()).getBlock() != ChalosBlocks.CHEESE_GRASS || world.getBlockState(blockpos1).isNormalCube())
+                if (world.getBlockState(blockpos1.down()).getBlock() != ChalosBlocks.CHEESE_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
                 {
                     break;
                 }
                 ++j;
             }
         }
-    }
-
-    @Override
-    public String getName()
-    {
-        return "cheese_spore_item";
     }
 }

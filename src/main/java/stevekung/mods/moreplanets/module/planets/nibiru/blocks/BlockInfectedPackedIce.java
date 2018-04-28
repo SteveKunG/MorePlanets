@@ -23,10 +23,4 @@ public class BlockInfectedPackedIce extends BlockBaseMP implements IIce
     {
         return 0;
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_packed_ice";
-    }
 }

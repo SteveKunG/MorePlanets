@@ -8,23 +8,17 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidUtil;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
@@ -33,7 +27,6 @@ import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityProvider
 {
     public static final PropertyEnum<BlockType> STATE = PropertyEnum.create("state", BlockType.class);
-    public static final PropertyInteger FLUID_COUNT = PropertyInteger.create("fluid_count", 0, 3);
 
     public BlockNuclearWasteTank(String name)
     {
@@ -64,25 +57,25 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
                     return true;
                 }
             }
-            if (world.getTileEntity(pos) instanceof TileEntityNuclearWasteTank)
-            {
-                world.getTileEntity(pos);
-                int count = state.getValue(FLUID_COUNT) + 1;
-
-                if (state.getValue(FLUID_COUNT) < 3 && world.getBlockState(pos) == state.withProperty(STATE, BlockNuclearWasteTank.BlockType.NO_ROD))
-                {
-                    if (itemStack.getItem() == FluidUtil.getFilledBucket(FluidRegistry.getFluidStack("nuclear_waste_fluid", 1000)).getItem())
-                    {
-                        if (!player.capabilities.isCreativeMode)
-                        {
-                            player.setHeldItem(hand, new ItemStack(Items.BUCKET));
-                        }
-                        world.setBlockState(pos, state.withProperty(FLUID_COUNT, count));
-                        world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                        return true;
-                    }
-                }
-            }
+            //            if (world.getTileEntity(pos) instanceof TileEntityNuclearWasteTank)
+            //            {
+            //                world.getTileEntity(pos);
+            //                int count = state.getValue(FLUID_COUNT) + 1;
+            //
+            //                if (state.getValue(FLUID_COUNT) < 3 && world.getBlockState(pos) == state.withProperty(STATE, BlockNuclearWasteTank.BlockType.NO_ROD))
+            //                {
+            //                    if (itemStack.getItem() == FluidUtil.getFilledBucket(FluidRegistry.getFluidStack("nuclear_waste_fluid", 1000)).getItem())
+            //                    {
+            //                        if (!player.capabilities.isCreativeMode)
+            //                        {
+            //                            player.setHeldItem(hand, new ItemStack(Items.BUCKET));
+            //                        }
+            //                        world.setBlockState(pos, state.withProperty(FLUID_COUNT, count));
+            //                        world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            //                        return true;
+            //                    }
+            //                }
+            //            }
         }
         return false;
     }
@@ -169,12 +162,6 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     public int getMetaFromState(IBlockState state)
     {
         return state.getValue(STATE).ordinal();
-    }
-
-    @Override
-    public String getName()
-    {
-        return "nuclear_waste_tank";
     }
 
     public static enum BlockType implements IStringSerializable

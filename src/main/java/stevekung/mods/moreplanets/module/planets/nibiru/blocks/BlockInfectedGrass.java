@@ -161,10 +161,4 @@ public class BlockInfectedGrass extends BlockGrassMP implements IGrowable
     {
         return new BlockStateContainer(this, SNOWY);
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_grass";
-    }
 }

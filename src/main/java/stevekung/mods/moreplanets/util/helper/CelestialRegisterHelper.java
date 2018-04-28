@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.util.helper;
 
+import java.util.Arrays;
+
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.*;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
@@ -65,10 +67,10 @@ public class CelestialRegisterHelper
 
     public static void setAtmosphereComponentList(CelestialBody celestial, EnumAtmosphericGas... gasList)
     {
-        for (EnumAtmosphericGas gas : gasList)
+        Arrays.asList(gasList).forEach(gas ->
         {
             celestial.atmosphereComponent(gas);
-        }
+        });
     }
 
     public static void setAtmosphere(CelestialBody celestial, Boolean breathable, boolean precipitation, boolean corrosive, float relativeTemperature, float windLevel, float density)

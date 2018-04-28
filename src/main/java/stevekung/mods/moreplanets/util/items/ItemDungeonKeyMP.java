@@ -10,7 +10,6 @@ public class ItemDungeonKeyMP extends ItemBaseMP implements IKeyItem
     public ItemDungeonKeyMP(String name, int tier)
     {
         super();
-        this.name = name;
         this.setMaxStackSize(1);
         this.setUnlocalizedName(name);
         this.tier = tier;

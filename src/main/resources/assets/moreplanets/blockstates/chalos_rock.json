@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "moreplanets:chalos_rock" },
+            { "model": "moreplanets:chalos_rock_mirrored" },
+            { "model": "moreplanets:chalos_rock", "y": 180 },
+            { "model": "moreplanets:chalos_rock_mirrored", "y": 180 }
+        ]
+    }
+}

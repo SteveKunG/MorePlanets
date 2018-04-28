@@ -2,14 +2,15 @@ package stevekung.mods.moreplanets.core;
 
 import java.util.Arrays;
 
-import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -32,6 +33,9 @@ import stevekung.mods.moreplanets.util.CreativeTabsMP;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.SmeltWithDataFunction;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.CommonRegistryUtils;
+import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.VersionChecker;
 
 @Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.DEPENDENCIES, certificateFingerprint = MorePlanetsMod.CERTIFICATE)
@@ -62,7 +66,8 @@ public class MorePlanetsMod
     public static boolean showAnnounceMessage;
     public static final VersionChecker checker = new VersionChecker(MOD_ID, VERSION, MAJOR_VERSION, MINOR_VERSION, BUILD_VERSION);
     public static final CreativeTabsMP BLOCK_TAB = new CreativeTabsMP("more_planets_blocks");
-    public static final CreativeTabsMP ITEM_TAB = new CreativeTabsMP("more_planets_items") ;
+    public static final CreativeTabsMP ITEM_TAB = new CreativeTabsMP("more_planets_items");
+    public static final CommonRegistryUtils COMMON_REGISTRY = new CommonRegistryUtils(MOD_ID);
 
     static
     {
@@ -80,7 +85,7 @@ public class MorePlanetsMod
     {
         CompatibilityManagerMP.init();
         MorePlanetsMod.initModInfo(event.getModMetadata());
-        CommonRegisterHelper.registerForgeEvent(this);
+        CommonUtils.registerEventHandler(this);
 
         MPBlocks.init();
         MPItems.init();
@@ -104,23 +109,18 @@ public class MorePlanetsMod
         MorePlanetsMod.PROXY.init(event);
         LootFunctionManager.registerFunction(new SmeltWithDataFunction.Serializer());
 
-        for (BiomeGenBaseGC biome : MPBiomes.biomeList)
-        {
-            biome.registerTypes(biome);
-        }
-
-        if (CommonRegisterHelper.isClient())
+        if (ClientUtils.isClient())
         {
             CommonRegisterHelper.postRegisteredSortBlock();
             CommonRegisterHelper.postRegisteredSortItem();
-            CommonRegisterHelper.registerForgeEvent(new ClientEventHandler());
+            CommonUtils.registerEventHandler(new ClientEventHandler());
             ClientCommandHandler.instance.registerCommand(new CommandChangeLog());
         }
 
-        CommonRegisterHelper.registerForgeEvent(new EntityEventHandler());
-        CommonRegisterHelper.registerForgeEvent(new GeneralEventHandler());
-        CommonRegisterHelper.registerForgeEvent(new WorldTickEventHandler());
-        CommonRegisterHelper.registerForgeEvent(new MissingMappingHandler());
+        CommonUtils.registerEventHandler(new EntityEventHandler());
+        CommonUtils.registerEventHandler(new GeneralEventHandler());
+        CommonUtils.registerEventHandler(new WorldTickEventHandler());
+        CommonUtils.registerEventHandler(new MissingMappingHandler());
     }
 
     @EventHandler
@@ -133,7 +133,7 @@ public class MorePlanetsMod
             MorePlanetsMod.checker.startCheck();
         }
 
-        CommonRegisterHelper.registerGUIHandler(this, new GuiHandlerMP());
+        CommonUtils.registerGuiHandler(this, new GuiHandlerMP());
         CraftingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
@@ -165,6 +165,15 @@ public class MorePlanetsMod
         {
             ConfigManager.sync(MorePlanetsMod.MOD_ID, Config.Type.INSTANCE);
         }
+    }
+
+    @SubscribeEvent
+    public void onBiomeRegister(RegistryEvent.Register<Biome> event)
+    {
+        MPBiomes.biomeList.forEach(biome ->
+        {
+            biome.registerTypes(biome);
+        });
     }
 
     private static void initModInfo(ModMetadata info)

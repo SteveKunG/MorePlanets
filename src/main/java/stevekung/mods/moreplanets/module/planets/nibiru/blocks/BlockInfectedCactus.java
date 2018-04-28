@@ -20,8 +20,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.DamageSourceMP;
 import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.helper.BlockEventHelper;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 
 public class BlockInfectedCactus extends BlockBushMP
 {
@@ -118,7 +118,7 @@ public class BlockInfectedCactus extends BlockBushMP
                 return false;
             }
         }
-        if (BlockEventHelper.isLiquidBlock(world, pos))
+        if (BlockUtils.isFluid(world, pos))
         {
             return false;
         }
@@ -154,11 +154,5 @@ public class BlockInfectedCactus extends BlockBushMP
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, BlockStateProperty.AGE);
-    }
-
-    @Override
-    public String getName()
-    {
-        return "infected_cactus";
     }
 }

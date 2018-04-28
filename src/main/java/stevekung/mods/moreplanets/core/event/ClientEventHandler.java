@@ -17,6 +17,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGameOver;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -61,13 +62,12 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRender
 import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
-import stevekung.mods.moreplanets.util.debug.GuiGetItemName;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.VersionChecker;
 
 public class ClientEventHandler
 {
-    private final Map<BlockPos, Integer> beam = new HashMap<>();
+    private final Map<BlockPos, Integer> beamList = new HashMap<>();
     private Minecraft mc;
     public static boolean loadRenderers;
     private int loadRendererTick = 30;
@@ -91,23 +91,23 @@ public class ClientEventHandler
 
         if (!ClientEventHandler.receiverRenderPos.isEmpty())
         {
-            for (BlockPos renderPos : ClientEventHandler.receiverRenderPos)
+            ClientEventHandler.receiverRenderPos.forEach(renderPos ->
             {
                 GlStateManager.pushMatrix();
                 GlStateManager.blendFunc(770, 771);
                 DarkEnergyReceiverMultiblockRenderer.render(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ);
                 GlStateManager.popMatrix();
-            }
+            });
         }
         if (!ClientEventHandler.wasteRenderPos.isEmpty())
         {
-            for (BlockPos renderPos : ClientEventHandler.wasteRenderPos)
+            ClientEventHandler.wasteRenderPos.forEach(renderPos ->
             {
                 GlStateManager.pushMatrix();
                 GlStateManager.blendFunc(770, 771);
                 NuclearWasteGeneratorMultiblockRenderer.render(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ);
                 GlStateManager.popMatrix();
-            }
+            });
         }
     }
 
@@ -135,9 +135,9 @@ public class ClientEventHandler
                     e.printStackTrace();
                 }
             }
-            if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD5) && !this.mc.player.getHeldItemMainhand().isEmpty() && this.mc.currentScreen == null)
+            if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD5) && !this.mc.player.getHeldItemMainhand().isEmpty())
             {
-                this.mc.displayGuiScreen(new GuiGetItemName());
+                GuiScreen.setClipboardString(this.mc.player.getHeldItemMainhand().getDisplayName());
             }
         }
         if (this.mc.currentScreen instanceof GuiMainMenu)
@@ -222,7 +222,7 @@ public class ClientEventHandler
     {
         if (this.mc.player != null)
         {
-            Iterator<Map.Entry<BlockPos, Integer>> it = this.beam.entrySet().iterator();
+            Iterator<Map.Entry<BlockPos, Integer>> it = this.beamList.entrySet().iterator();
 
             while (it.hasNext())
             {
@@ -237,11 +237,11 @@ public class ClientEventHandler
     {
         EntityLivingBase living = event.getEntity();
 
-        if (ClientEventHandler.entityId.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE))
+        if (ClientEventHandler.entityId.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
         {
             GlStateManager.disableLighting();
             TextureMap texturemap = this.mc.getTextureMapBlocks();
-            TextureAtlasSprite textureatlassprite = texturemap.getAtlasSprite("moreplanets:blocks/infected_crystallize");
+            TextureAtlasSprite textureatlassprite = texturemap.getAtlasSprite("moreplanets:blocks/infected_crystallized");
             GlStateManager.pushMatrix();
             GlStateManager.translate((float)event.getX(), (float)event.getY(), (float)event.getZ());
             float f = living.width * 1.4F;
@@ -297,7 +297,7 @@ public class ClientEventHandler
         {
             if (this.mc.gameSettings.thirdPersonView == 0)
             {
-                if (this.mc.player.isPotionActive(MPPotions.INFECTED_CRYSTALLIZE))
+                if (this.mc.player.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
                 {
                     Tessellator tessellator = Tessellator.getInstance();
                     BufferBuilder worldrenderer = tessellator.getBuffer();
@@ -311,7 +311,7 @@ public class ClientEventHandler
                     for (int i = 0; i < 2; ++i)
                     {
                         GlStateManager.pushMatrix();
-                        TextureAtlasSprite textureatlassprite = this.mc.getTextureMapBlocks().getAtlasSprite("moreplanets:blocks/infected_crystallize");
+                        TextureAtlasSprite textureatlassprite = this.mc.getTextureMapBlocks().getAtlasSprite("moreplanets:blocks/infected_crystallized");
                         this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
                         float f1 = textureatlassprite.getMinU();
                         float f2 = textureatlassprite.getMaxU();
@@ -337,9 +337,9 @@ public class ClientEventHandler
                     GlStateManager.depthMask(true);
                     GlStateManager.depthFunc(515);
                 }
-                if (this.isEntityInsideBlock(ChalosBlocks.CHEESE_OF_MILK_GAS_BLOCK))
+                if (this.isEntityInsideBlock(ChalosBlocks.GASEOUS_CHEESE_MILK_BLOCK))
                 {
-                    this.renderOverlay("cheese_of_milk_gas", this.mc.player.getBrightness(), 0.75F, event.getPartialTicks(), -0.25D);
+                    this.renderOverlay("gaseous_cheese_milk", this.mc.player.getBrightness(), 0.75F, event.getPartialTicks(), -0.25D);
                 }
                 if (this.isEntityInsideBlock(NibiruBlocks.HELIUM_GAS_BLOCK))
                 {
@@ -362,7 +362,7 @@ public class ClientEventHandler
         int barY = y + 4;
         int percent = (int) (bossBarWidth * event.getBossInfo().getPercent());
 
-        for (IMorePlanetsBoss boss : ClientEventHandler.bossList)
+        ClientEventHandler.bossList.forEach(boss ->
         {
             if (boss.getBossUUID().equals(uuid))
             {
@@ -379,7 +379,7 @@ public class ClientEventHandler
                 this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(TextFormatting.ITALIC + name, width / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(name) / 2, y + 8, boss.getBossTextColor());
                 event.setIncrement(bossBarHeight * 2);
             }
-        }
+        });
     }
 
     @SubscribeEvent
@@ -390,15 +390,15 @@ public class ClientEventHandler
 
         if (event.getOverlayType() == OverlayType.WATER)
         {
-            if (this.checkInsideBlock(DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK))
+            if (this.checkInsideBlock(DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
-                this.renderOverlay("crystallize_water", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
+                this.renderOverlay("crystallized_water", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
-            if (this.checkInsideBlock(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK))
+            if (this.checkInsideBlock(ChalosBlocks.CHEESE_MILK_FLUID_BLOCK))
             {
                 event.setCanceled(true);
-                this.renderOverlay("cheese_of_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
+                this.renderOverlay("cheese_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
             if (this.checkInsideBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK))
             {
@@ -414,19 +414,19 @@ public class ClientEventHandler
     {
         Block block = ActiveRenderInfo.getBlockStateAtEntityViewpoint(this.mc.world, event.getEntity(), (float) event.getRenderPartialTicks()).getBlock();
 
-        if (block == DionaBlocks.CRYSTALLIZE_WATER_FLUID_BLOCK)
+        if (block == DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK)
         {
             event.setRed(0.5F);
             event.setGreen(0.375F);
             event.setBlue(0.8F);
         }
-        if (block == DionaBlocks.CRYSTALLIZE_LAVA_FLUID_BLOCK)
+        if (block == DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK)
         {
             event.setRed(0.35F);
             event.setGreen(0.25F);
             event.setBlue(0.55F);
         }
-        if (block == ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK)
+        if (block == ChalosBlocks.CHEESE_MILK_FLUID_BLOCK)
         {
             event.setRed(0.85F);
             event.setGreen(0.8F);
@@ -590,7 +590,7 @@ public class ClientEventHandler
 
     private void runAlienBeamTick(EntityPlayer player)
     {
-        Iterator<Map.Entry<BlockPos, Integer>> it = this.beam.entrySet().iterator();
+        Iterator<Map.Entry<BlockPos, Integer>> it = this.beamList.entrySet().iterator();
 
         while (it.hasNext())
         {
@@ -619,7 +619,7 @@ public class ClientEventHandler
                 double posY = 48;
                 double posZ = player.posZ + dZ;
                 this.mc.world.playSound(player, posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 1.0F + player.getRNG().nextFloat() * 0.8F);
-                this.beam.put(new BlockPos(posX, posY, posZ), 40);
+                this.beamList.put(new BlockPos(posX, posY, posZ), 40);
             }
         }
     }

@@ -45,6 +45,7 @@ public class StructureDionaMineshaftPieces
         private boolean hasSpiders;
         private boolean spawnerPlaced;
         private int sectionCount;
+        private static final ResourceLocation SPIDER = new ResourceLocation("moreplanets:infected_crystallized_spider");
 
         public Corridor() {}
 
@@ -229,7 +230,7 @@ public class StructureDionaMineshaftPieces
 
                 if (this.hasSpiders)
                 {
-                    this.generateMaybeBox(world, box, rand, 0.6F, 0, 0, 0, 2, 1, i1, DionaBlocks.INFECTED_CRYSTALLIZE_WEB.getDefaultState(), Blocks.AIR.getDefaultState(), false, 8);
+                    this.generateMaybeBox(world, box, rand, 0.6F, 0, 0, 0, 2, 1, i1, DionaBlocks.INFECTED_CRYSTALLIZED_WEB.getDefaultState(), Blocks.AIR.getDefaultState(), false, 8);
                 }
 
                 for (int j1 = 0; j1 < this.sectionCount; ++j1)
@@ -265,7 +266,7 @@ public class StructureDionaMineshaftPieces
 
                             if (tileentity instanceof TileEntityMobSpawner)
                             {
-                                ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(new ResourceLocation("moreplanets:infected_crystallize_spider"));
+                                ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(Corridor.SPIDER);
                             }
                         }
                     }
@@ -321,8 +322,8 @@ public class StructureDionaMineshaftPieces
                 else
                 {
                     this.fillWithBlocks(world, box, par3, par6, par5, par7, par6, par5, iblockstate, iblockstate2, false);
-                    this.randomlyPlaceBlock(world, box, rand, 0.05F, par3 + 1, par6, par5 - 1, DionaBlocks.INFECTED_CRYSTALLIZE_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.NORTH));
-                    this.randomlyPlaceBlock(world, box, rand, 0.05F, par3 + 1, par6, par5 + 1, DionaBlocks.INFECTED_CRYSTALLIZE_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.SOUTH));
+                    this.randomlyPlaceBlock(world, box, rand, 0.05F, par3 + 1, par6, par5 - 1, DionaBlocks.INFECTED_CRYSTALLIZED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.NORTH));
+                    this.randomlyPlaceBlock(world, box, rand, 0.05F, par3 + 1, par6, par5 + 1, DionaBlocks.INFECTED_CRYSTALLIZED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.SOUTH));
                 }
             }
         }
@@ -331,7 +332,7 @@ public class StructureDionaMineshaftPieces
         {
             if (this.getSkyBrightness(world, x, y, z, box) < 8)
             {
-                this.randomlyPlaceBlock(world, box, rand, chance, x, y, z, DionaBlocks.INFECTED_CRYSTALLIZE_WEB.getDefaultState());
+                this.randomlyPlaceBlock(world, box, rand, chance, x, y, z, DionaBlocks.INFECTED_CRYSTALLIZED_WEB.getDefaultState());
             }
         }
     }
@@ -485,12 +486,12 @@ public class StructureDionaMineshaftPieces
 
         protected IBlockState getPlanks()
         {
-            return DionaBlocks.INFECTED_CRYSTALLIZE_PLANKS.getDefaultState();
+            return DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS.getDefaultState();
         }
 
         protected IBlockState getFence()
         {
-            return DionaBlocks.INFECTED_CRYSTALLIZE_FENCE.getDefaultState();
+            return DionaBlocks.INFECTED_CRYSTALLIZED_FENCE.getDefaultState();
         }
 
         protected boolean isSupportingBox(World world, StructureBoundingBox box, int xMin, int x, int y, int z)
@@ -766,7 +767,7 @@ public class StructureDionaMineshaftPieces
             }
             else
             {
-                this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.minY, this.boundingBox.maxZ, DionaBlocks.DIONA_BLOCK.getStateFromMeta(1), Blocks.AIR.getDefaultState(), true);
+                this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.minY, this.boundingBox.maxZ, DionaBlocks.DIONA_SUB_SURFACE_ROCK.getDefaultState(), Blocks.AIR.getDefaultState(), true);
                 this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY + 1, this.boundingBox.minZ, this.boundingBox.maxX, Math.min(this.boundingBox.minY + 3, this.boundingBox.maxY), this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
                 for (StructureBoundingBox room : this.roomsLinkedToTheRoom)

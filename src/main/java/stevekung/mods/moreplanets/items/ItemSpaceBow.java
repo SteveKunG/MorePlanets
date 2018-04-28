@@ -192,7 +192,7 @@ public class ItemSpaceBow extends ItemBaseMP
 
     protected boolean isArrow(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && (itemStack.getItem() instanceof ItemArrow || itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_ARROW || itemStack.getItem() == NibiruItems.INFECTED_ARROW || itemStack.getItem() == DionaItems.ANTI_GRAVITY_ARROW);
+        return !itemStack.isEmpty() && (itemStack.getItem() instanceof ItemArrow || itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZED_ARROW || itemStack.getItem() == NibiruItems.INFECTED_ARROW || itemStack.getItem() == DionaItems.ANTI_GRAVITY_ARROW);
     }
 
     private static void spawnArrow(ItemStack itemStack, ItemStack arrowStack, World world, EntityPlayer player, EntityArrow arrow, Item arrowItem, int power, int punch, float duration, boolean flag)

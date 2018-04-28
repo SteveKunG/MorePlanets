@@ -1,0 +1,7 @@
+{
+    "parent": "moreplanets:block/cross_glow",
+    "textures": {
+        "cross": "moreplanets:blocks/infected_crystallized_web",
+        "glow": "moreplanets:blocks/infected_crystallized_web_glow"
+    }
+}

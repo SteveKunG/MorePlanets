@@ -147,10 +147,4 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
     }
-
-    @Override
-    public String getName()
-    {
-        return "juicer_egg";
-    }
 }

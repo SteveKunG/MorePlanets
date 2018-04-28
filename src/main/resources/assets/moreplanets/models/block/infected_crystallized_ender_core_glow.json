@@ -1,0 +1,10 @@
+{
+    "parent": "moreplanets:block/obelisk_ender_core_part_glow",
+    "textures": {
+        "particle": "moreplanets:blocks/infected_crystallized_ender_core",
+        "side": "moreplanets:blocks/infected_crystallized_block",
+        "up": "moreplanets:blocks/infected_crystallized_ender_core",
+        "up_glow": "moreplanets:blocks/infected_crystallized_ender_core_glow",
+        "down": "moreplanets:blocks/infected_crystallized_block"
+    }
+}

@@ -69,7 +69,7 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
 
                 for (EntityLivingBase living : list)
                 {
-                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 240, 1));
+                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 240, 1));
                 }
             }
             else
@@ -78,7 +78,7 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
 
                 for (EntityLivingBase living : list)
                 {
-                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 120, 1));
+                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 120, 1));
                 }
                 this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, flag);
             }
@@ -97,7 +97,7 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZED ? false : super.isPotionApplicable(potion);
     }
 
     @Override

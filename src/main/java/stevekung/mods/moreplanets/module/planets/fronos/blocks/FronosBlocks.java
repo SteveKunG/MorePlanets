@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 import net.minecraft.block.Block;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
+import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class FronosBlocks
@@ -52,15 +53,15 @@ public class FronosBlocks
         {
             if (i == 6 || i == 12)
             {
-                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 0, i);
+                BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 0, i);
             }
             else if (i == 0 || i >= 2 && i <= 5 || i == 7)
             {
-                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 1, i);
+                BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 1, i);
             }
             else
             {
-                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 2, i);
+                BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_ORE, EnumHarvestLevel.PICKAXE, 2, i);
             }
         }
 
@@ -68,23 +69,23 @@ public class FronosBlocks
         {
             if (i == 6)
             {
-                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
+                BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
             }
             else
             {
-                CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_BLOCK, EnumHarvestLevel.PICKAXE, 0, i);
+                BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_BLOCK, EnumHarvestLevel.PICKAXE, 0, i);
             }
         }
 
-        CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_GRASS, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_DIRT, EnumHarvestLevel.SHOVEL, 0);
-        CommonRegisterHelper.setBlockHarvestLevel(FronosBlocks.FRONOS_FARMLAND, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_GRASS, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_DIRT, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_FARMLAND, EnumHarvestLevel.SHOVEL, 0);
 
         /**************************************************************/
         /************************FIRE BURN STUFF***********************/
         /**************************************************************/
 
-        CommonRegisterHelper.setFireBurn(FronosBlocks.CANDY_CANE_1, 60, 100);
-        CommonRegisterHelper.setFireBurn(FronosBlocks.CANDY_CANE_2, 60, 100);
+        BlockUtils.setFireBurn(FronosBlocks.CANDY_CANE_1, 60, 100);
+        BlockUtils.setFireBurn(FronosBlocks.CANDY_CANE_2, 60, 100);
     }
 }

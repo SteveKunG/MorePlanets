@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.proxy;
 
 import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -19,7 +18,6 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -40,7 +38,7 @@ import stevekung.mods.moreplanets.items.ItemCapsule;
 import stevekung.mods.moreplanets.module.moons.koentus.client.particle.ParticleKoentusMeteor;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleAlienMinerSpark;
-import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleCrystallizeFlame;
+import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleCrystallizedFlame;
 import stevekung.mods.moreplanets.module.planets.diona.client.particle.ParticleDarkPortal;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
@@ -54,10 +52,9 @@ import stevekung.mods.moreplanets.util.client.particle.ParticleBreakingMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleFallingDustMP;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLavaMC;
 import stevekung.mods.moreplanets.util.client.particle.ParticleLiquidDrip;
-import stevekung.mods.moreplanets.util.client.renderer.item.ItemRendererTieredRocket;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
+import stevekung.mods.stevekunglib.utils.CommonUtils;
 
 public class ClientProxyMP extends ServerProxyMP
 {
@@ -74,7 +71,7 @@ public class ClientProxyMP extends ServerProxyMP
         ModelLoaderRegistry.registerLoader(OBJLoaderMP.INSTANCE);
         EntityRendererMP.init();
         ClientProxyMP.handleSpaceFishHookSpawning();
-        CommonRegisterHelper.registerForgeEvent(this);
+        CommonUtils.registerEventHandler(this);
 
         if (!CompatibilityManagerMP.isCCLLoaded)
         {
@@ -95,13 +92,13 @@ public class ClientProxyMP extends ServerProxyMP
         TileEntityRenderer.init();
 
         ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> world != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(world, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D), FronosBlocks.FRONOS_GRASS);
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(120, 85, 190), DionaBlocks.LARGE_INFECTED_CRYSTALLIZE);
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL);
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorHelper.rgbToDecimal(143, 55, 33), NibiruBlocks.INFECTED_MELON_STEM);
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(120, 85, 190), DionaBlocks.LARGE_INFECTED_CRYSTALLIZED);
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL);
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
+        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(143, 55, 33), NibiruBlocks.INFECTED_MELON_STEM);
 
         ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> color.colorMultiplier(((ItemBlock)itemStack.getItem()).getBlock().getStateFromMeta(itemStack.getMetadata()), null, null, tintIndex), FronosBlocks.FRONOS_GRASS);
-        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> ColorHelper.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
+        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> ColorUtils.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
         ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> tintIndex == 1 ? ItemCapsule.CapsuleType.INFECTED_SPORE.getColor() : -1, MPItems.INFECTED_SPORE_PROTECTION_CAPSULE);
         ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> tintIndex == 1 ? ItemCapsule.CapsuleType.DARK_ENERGY.getColor() : -1, MPItems.DARK_ENERGY_PROTECTION_CAPSULE);
     }
@@ -116,23 +113,18 @@ public class ClientProxyMP extends ServerProxyMP
     @SideOnly(Side.CLIENT)
     public void onTexturesStitch(TextureStitchEvent.Pre event)
     {
-        ClientRegisterHelper.registerSpriteTexture(event, "blocks/infected_crystallize");
+        ClientRegisterHelper.registerSpriteTexture(event, "blocks/infected_crystallized");
         ClientRegisterHelper.registerSpriteTexture(event, "blocks/shield");
         ClientRegisterHelper.registerSpriteTexture(event, "blocks/xpjuice_still");
         ClientRegisterHelper.registerSpriteTexture(event, "blocks/xpjuice_flowing");
         ClientRegisterHelper.registerSpriteTexture(event, "entity/space_capsule");
-        ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_4_rocket");
-        ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_5_rocket");
-        ClientRegisterHelper.registerSpriteTexture(event, "entity/tier_6_rocket");
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onModelBake(ModelBakeEvent event)
     {
-        ClientRegisterHelper.registerOBJModel(event, "tier_4_rocket", "tier_4_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
-        ClientRegisterHelper.registerOBJModel(event, "tier_5_rocket", "tier_5_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
-        ClientRegisterHelper.registerOBJModel(event, "tier_6_rocket", "tier_6_rocket", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemRendererTieredRocket.class, TRSRTransformation.identity());
+
     }
 
     @SubscribeEvent
@@ -163,7 +155,7 @@ public class ClientProxyMP extends ServerProxyMP
     @Override
     public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, double motionX, double motionY, double motionZ, Object[] data)
     {
-        Particle entityfx = null;
+        Particle particle = null;
         Minecraft mc = Minecraft.getMinecraft();
 
         if (mc.getRenderViewEntity() != null && mc.effectRenderer != null && mc.world != null)
@@ -187,61 +179,61 @@ public class ClientProxyMP extends ServerProxyMP
                 return;
             }
 
-            if (type == EnumParticleTypesMP.CRYSTALLIZE_FLAME)
+            if (type == EnumParticleTypesMP.CRYSTALLIZED_FLAME)
             {
-                entityfx = new ParticleCrystallizeFlame(mc.world, x, y, z);
+                particle = new ParticleCrystallizedFlame(mc.world, x, y, z);
             }
-            else if (type == EnumParticleTypesMP.CHEESE_OF_MILK_DRIP)
+            else if (type == EnumParticleTypesMP.CHEESE_MILK_DRIP)
             {
-                entityfx = new ParticleLiquidDrip(mc.world, x, y, z, 1.0F, 0.85F, 0.5F, 0.4F, false);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, 1.0F, 0.85F, 0.5F, 0.4F, false);
             }
             else if (type == EnumParticleTypesMP.INFECTED_SPORE)
             {
-                entityfx = new ParticleInfectedSpore(mc.world, x, y, z, motionX, motionY, motionZ);
+                particle = new ParticleInfectedSpore(mc.world, x, y, z, motionX, motionY, motionZ);
             }
             else if (type == EnumParticleTypesMP.ALIEN_MINER_SPARK)
             {
-                entityfx = new ParticleAlienMinerSpark(mc.world, x, y, z, (float) data[0]);
+                particle = new ParticleAlienMinerSpark(mc.world, x, y, z, (float) data[0]);
             }
             else if (type == EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE)
             {
-                entityfx = new ParticleInfectedGuardianAppearance(mc.world, x, y, z);
+                particle = new ParticleInfectedGuardianAppearance(mc.world, x, y, z);
             }
             else if (type == EnumParticleTypesMP.DARK_PORTAL)
             {
-                entityfx = new ParticleDarkPortal(mc.world, x, y, z, motionX, motionY, motionZ);
+                particle = new ParticleDarkPortal(mc.world, x, y, z, motionX, motionY, motionZ);
             }
             else if (type == EnumParticleTypesMP.ALIEN_BERRY_LEAVES)
             {
-                entityfx = new ParticleAlienBerry(mc.world, x, y, z);
+                particle = new ParticleAlienBerry(mc.world, x, y, z);
             }
             else if (type == EnumParticleTypesMP.CUSTOM_BREAKING)
             {
-                entityfx = new ParticleBreakingMC(mc.world, x, y, z, (Item) data[0]);
+                particle = new ParticleBreakingMC(mc.world, x, y, z, (Item) data[0]);
             }
             else if (type == EnumParticleTypesMP.CUSTOM_BREAKING_META)
             {
-                entityfx = new ParticleBreakingMC(mc.world, x, y, z, (Item) data[0], (int) data[1]);
+                particle = new ParticleBreakingMC(mc.world, x, y, z, (Item) data[0], (int) data[1]);
             }
             else if (type == EnumParticleTypesMP.CUSTOM_BREAKING_MOTION)
             {
-                entityfx = new ParticleBreakingMC(mc.world, x, y, z, motionX, motionY, motionZ, (Item) data[0]);
+                particle = new ParticleBreakingMC(mc.world, x, y, z, motionX, motionY, motionZ, (Item) data[0]);
             }
             else if (type == EnumParticleTypesMP.INFECTED_WATER_DRIP)
             {
-                entityfx = new ParticleLiquidDrip(mc.world, x, y, z, 0.95F, 0.4F, 0.3F, 0.6F, false);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.95F, 0.4F, 0.3F, 0.6F, false);
             }
-            else if (type == EnumParticleTypesMP.CRYSTALLIZE_WATER_DRIP)
+            else if (type == EnumParticleTypesMP.CRYSTALLIZED_WATER_DRIP)
             {
-                entityfx = new ParticleLiquidDrip(mc.world, x, y, z, 0.6F, 0.2F, 0.8F, 0.6F, false);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.6F, 0.2F, 0.8F, 0.6F, false);
             }
-            else if (type == EnumParticleTypesMP.CRYSTALLIZE_LAVA_DRIP)
+            else if (type == EnumParticleTypesMP.CRYSTALLIZED_LAVA_DRIP)
             {
-                entityfx = new ParticleLiquidDrip(mc.world, x, y, z, 0.6F, 0.2F, 0.8F, 1.0F, true);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.6F, 0.2F, 0.8F, 1.0F, true);
             }
-            else if (type == EnumParticleTypesMP.CRYSTALLIZE_LAVA)
+            else if (type == EnumParticleTypesMP.CRYSTALLIZED_LAVA)
             {
-                entityfx = new ParticleLavaMC(mc.world, x, y, z, "crystallize_lava");
+                particle = new ParticleLavaMC(mc.world, x, y, z, "crystallized_lava");
             }
             else if (type == EnumParticleTypesMP.MC_SMOKE_LARGE)
             {
@@ -249,24 +241,24 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.NUCLEAR_WASTE_DRIP)
             {
-                entityfx = new ParticleLiquidDrip(mc.world, x, y, z, 0.4F, 0.8F, 0.1F, 1.0F, true);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.4F, 0.8F, 0.1F, 1.0F, true);
             }
             else if (type == EnumParticleTypesMP.PURIFY_WATER_DRIP)
             {
-                entityfx = new ParticleLiquidDrip(mc.world, x, y, z, 0.45F, 0.8F, 1.0F, 0.6F, false);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.45F, 0.8F, 1.0F, 0.6F, false);
             }
             else if (type == EnumParticleTypesMP.KOENTUS_METEOR_SMOKE)
             {
-                entityfx = new ParticleKoentusMeteor(mc.world, x, y, z, motionX, motionY, motionZ);
+                particle = new ParticleKoentusMeteor(mc.world, x, y, z, motionX, motionY, motionZ);
             }
             else if (type == EnumParticleTypesMP.CUSTOM_FALLING_DUST)
             {
-                entityfx = new ParticleFallingDustMP(mc.world, x, y, z, (int) data[0]);
+                particle = new ParticleFallingDustMP(mc.world, x, y, z, (int) data[0]);
             }
 
-            if (entityfx != null)
+            if (particle != null)
             {
-                mc.effectRenderer.addEffect(entityfx);
+                mc.effectRenderer.addEffect(particle);
             }
         }
     }

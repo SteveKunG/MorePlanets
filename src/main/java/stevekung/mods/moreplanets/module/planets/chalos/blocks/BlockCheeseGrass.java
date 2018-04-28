@@ -1,129 +1,100 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.blocks.BlockGrassMP;
+import net.minecraftforge.common.IShearable;
+import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
+import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
 
-public class BlockCheeseGrass extends BlockGrassMP implements IGrowable
+public class BlockCheeseGrass extends BlockBushMP implements IShearable, IGrowable
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+
     public BlockCheeseGrass(String name)
     {
-        super();
+        super(Material.PLANTS);
         this.setUnlocalizedName(name);
     }
 
     @Override
-    public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS)
-        {
-            world.setBlockState(pos, ChalosBlocks.CHEESE_DIRT.getDefaultState(), 2);
-        }
+        return BlockCheeseGrass.AABB;
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        if (!world.isRemote)
-        {
-            if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockLightOpacity(pos.up()) > 2)
-            {
-                world.setBlockState(pos, ChalosBlocks.CHEESE_DIRT.getDefaultState());
-            }
-            else if (world.getLightFromNeighbors(pos.up()) >= 9)
-            {
-                for (int i = 0; i < 4; ++i)
-                {
-                    BlockPos pos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+        List<ItemStack> ret = new ArrayList<>();
 
-                    if (world.getBlockState(pos1) == ChalosBlocks.CHEESE_DIRT.getDefaultState())
-                    {
-                        if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity(world, pos1) <= 2)
-                        {
-                            world.setBlockState(pos1, this.getDefaultState());
-                        }
-                    }
-                }
-            }
+        if (RANDOM.nextInt(8) != 0)
+        {
+            return ret;
         }
+        ret.add(new ItemStack(ChalosItems.CHEESE_SPORE_SEED));
+        return ret;
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
-        return Item.getItemFromBlock(ChalosBlocks.CHEESE_DIRT);
+        return true;
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
+    public EnumOffsetType getOffsetType()
     {
-        if (rand.nextInt(10) == 0)
-        {
-            world.spawnParticle(EnumParticleTypes.TOWN_AURA, pos.getX() + rand.nextFloat(), pos.getY() + 1.1F, pos.getZ() + rand.nextFloat(), 0.0D, 0.0D, 0.0D);
-        }
+        return EnumOffsetType.XYZ;
+    }
+
+    @Override
+    public boolean isShearable(ItemStack itemStack, IBlockAccess world, BlockPos pos)
+    {
+        return true;
+    }
+
+    @Override
+    public List<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
+    {
+        return Arrays.asList(new ItemStack(this));
+    }
+
+    @Override
+    protected boolean validBlock(Block block)
+    {
+        return block == ChalosBlocks.CHEESE_GRASS_BLOCK || block == ChalosBlocks.CHEESE_DIRT || block == ChalosBlocks.CHEESE_COARSE_DIRT || block == ChalosBlocks.CHEESE_FARMLAND;
     }
 
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return true;
+        return ChalosBlocks.CHEESE_TALL_GRASS.canPlaceBlockAt(world, pos) && world.isAirBlock(pos.up());
     }
 
     @Override
     public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
     {
-        return true;
+        return ChalosBlocks.CHEESE_TALL_GRASS.canPlaceBlockAt(world, pos) && world.isAirBlock(pos.up());
     }
 
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state)
     {
-        BlockPos blockpos = pos.up();
-
-        for (int i = 0; i < 128; ++i)
+        if (ChalosBlocks.CHEESE_TALL_GRASS.canPlaceBlockAt(world, pos) && world.isAirBlock(pos.up()))
         {
-            BlockPos blockpos1 = blockpos;
-            int j = 0;
-
-            while (true)
-            {
-                if (j >= i / 16)
-                {
-                    if (world.isAirBlock(blockpos1))
-                    {
-                        IBlockState iblockstate1 = ChalosBlocks.CHEESE_TALL_GRASS.getDefaultState();
-
-                        if (ChalosBlocks.CHEESE_TALL_GRASS.canBlockStay(world, blockpos1, iblockstate1))
-                        {
-                            world.setBlockState(blockpos1, iblockstate1, 3);
-                        }
-                    }
-                    break;
-                }
-
-                blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
-
-                if (world.getBlockState(blockpos1.down()).getBlock() != ChalosBlocks.CHEESE_GRASS || world.getBlockState(blockpos1).isNormalCube())
-                {
-                    break;
-                }
-                ++j;
-            }
+            ChalosBlocks.CHEESE_TALL_GRASS.placeAt(world, pos, ChalosBlocks.CHEESE_TALL_GRASS, 2);
         }
-    }
-
-    @Override
-    public String getName()
-    {
-        return "cheese_grass";
     }
 }

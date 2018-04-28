@@ -9,8 +9,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.moreplanets.util.world.gen.feature.EnumOreGen;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenCaveLiquids;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenMinableMP;
+import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
 
 public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
 {
@@ -72,12 +72,12 @@ public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
         for (i = 0; i < 50; ++i)
         {
             int y = rand.nextInt(rand.nextInt(248) + 8);
-            new WorldGenCaveLiquids(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, NibiruBlocks.NIBIRU_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), NibiruBlocks.NIBIRU_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (i = 0; i < 20; ++i)
         {
             int y = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
-            new WorldGenCaveLiquids(Blocks.FLOWING_LAVA, NibiruBlocks.NIBIRU_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(Blocks.FLOWING_LAVA.getDefaultState(), NibiruBlocks.NIBIRU_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
         }
     }
 }

@@ -6,11 +6,11 @@ import java.util.List;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosHills;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosPlains;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeSlimelyWasteland;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.*;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.world.gen.biome.BiomeBaseMP;
 
 public class MPBiomes
@@ -38,23 +38,23 @@ public class MPBiomes
 
     public static void init()
     {
-        CommonRegisterHelper.registerBiome(MPBiomes.DIONA);
-        CommonRegisterHelper.registerBiome(MPBiomes.CHALOS_PLAINS);
-        CommonRegisterHelper.registerBiome(MPBiomes.CHALOS_HILLS);
-        CommonRegisterHelper.registerBiome(MPBiomes.SLIMELY_WASTELAND);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_PLAINS);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DEAD_SAVANNA);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DESERT);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_RIVER);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_OCEAN);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_FOREST);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DEEP_OCEAN);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DEAD_ROOFED_FOREST);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_EXTREME_HILLS);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_SWAMPLAND);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_DEAD_TAIGA);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_JUNGLE);
-        CommonRegisterHelper.registerBiome(MPBiomes.INFECTED_ICE_PLAINS);
-        CommonRegisterHelper.registerBiome(MPBiomes.GREEN_VEIN);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.DIONA);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.CHALOS_PLAINS);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.CHALOS_HILLS);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.SLIMELY_WASTELAND);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_PLAINS);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEAD_SAVANNA);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DESERT);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_RIVER);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_OCEAN);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_FOREST);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEEP_OCEAN);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEAD_ROOFED_FOREST);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_EXTREME_HILLS);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_SWAMPLAND);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEAD_TAIGA);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_JUNGLE);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_ICE_PLAINS);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.GREEN_VEIN);
     }
 }

@@ -40,10 +40,4 @@ public class BlockGlowingIronBlock extends BlockBaseMP implements IDetectableRes
     {
         return true;
     }
-
-    @Override
-    public String getName()
-    {
-        return "glowing_iron_block";
-    }
 }

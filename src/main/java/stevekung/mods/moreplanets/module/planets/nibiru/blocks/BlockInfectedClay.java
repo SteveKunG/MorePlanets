@@ -30,10 +30,4 @@ public class BlockInfectedClay extends BlockBaseMP
     {
         return 4;
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_clay";
-    }
 }

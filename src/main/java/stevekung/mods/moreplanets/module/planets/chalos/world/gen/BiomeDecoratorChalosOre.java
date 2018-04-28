@@ -9,8 +9,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.moreplanets.util.world.gen.feature.EnumOreGen;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenCaveLiquids;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenMinableMP;
+import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
 
 public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
 {
@@ -25,14 +25,14 @@ public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
 
     public BiomeDecoratorChalosOre()
     {
-        this.dirtGen = new WorldGenMinableMP(ChalosBlocks.CHEESE_DIRT.getDefaultState(), ChalosBlocks.CHALOS_BLOCK.getDefaultState(), EnumOreGen.DIRT);
-        this.diremsiumGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_BLOCK.getStateFromMeta(2), ChalosBlocks.CHALOS_BLOCK.getDefaultState(), 9);
-        this.zyptoriumGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_BLOCK.getStateFromMeta(3), ChalosBlocks.CHALOS_BLOCK.getDefaultState(), 9);
-        this.ironGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_BLOCK.getStateFromMeta(4), ChalosBlocks.CHALOS_BLOCK.getDefaultState(), EnumOreGen.IRON);
-        this.cheeseGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_BLOCK.getStateFromMeta(5), ChalosBlocks.CHALOS_BLOCK.getDefaultState(), 4);
-        this.tinGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_BLOCK.getStateFromMeta(6), ChalosBlocks.CHALOS_BLOCK.getDefaultState(), EnumOreGen.TIN);
-        this.copperGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_BLOCK.getStateFromMeta(7), ChalosBlocks.CHALOS_BLOCK.getDefaultState(), EnumOreGen.COPPER);
-        this.aluminumGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_BLOCK.getStateFromMeta(8), ChalosBlocks.CHALOS_BLOCK.getDefaultState(), EnumOreGen.ALUMINUM);
+        this.dirtGen = new WorldGenMinableMP(ChalosBlocks.CHEESE_DIRT.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.DIRT);
+        this.diremsiumGen = new WorldGenMinableMP(ChalosBlocks.DIREMSIUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 9);
+        this.zyptoriumGen = new WorldGenMinableMP(ChalosBlocks.ZYPTORIUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 9);
+        this.ironGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_IRON_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.IRON);
+        this.cheeseGen = new WorldGenMinableMP(ChalosBlocks.CHEESE_MILK_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 4);
+        this.tinGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_TIN_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.TIN);
+        this.copperGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_COPPER_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.COPPER);
+        this.aluminumGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_ALUMINUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
     }
 
     @Override
@@ -53,12 +53,12 @@ public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
         for (int j = 0; j < 50; ++j)
         {
             int y = rand.nextInt(rand.nextInt(248) + 8);
-            new WorldGenCaveLiquids(ChalosBlocks.CHEESE_OF_MILK_FLUID_BLOCK, ChalosBlocks.CHALOS_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(ChalosBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (int j = 0; j < 20; ++j)
         {
             int y = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
-            new WorldGenCaveLiquids(Blocks.FLOWING_LAVA, ChalosBlocks.CHALOS_BLOCK, 0).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(Blocks.FLOWING_LAVA.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
     }
 }

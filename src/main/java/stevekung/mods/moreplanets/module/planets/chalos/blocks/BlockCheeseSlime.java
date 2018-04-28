@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
-import stevekung.mods.moreplanets.util.helper.ColorHelper;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
 {
@@ -31,7 +31,7 @@ public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
     @Nullable
     public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
     {
-        return ColorHelper.rgbToFloatArray(241, 204, 116);
+        return ColorUtils.rgbToFloatArray(241, 204, 116);
     }
 
     @Override
@@ -105,11 +105,5 @@ public class BlockCheeseSlime extends BlockBreakableMP implements ISortableBlock
     public boolean isStickyBlock(IBlockState state)
     {
         return true;
-    }
-
-    @Override
-    public String getName()
-    {
-        return "cheese_slime_block";
     }
 }

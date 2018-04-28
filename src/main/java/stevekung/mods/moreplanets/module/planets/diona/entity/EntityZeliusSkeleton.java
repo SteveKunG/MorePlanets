@@ -23,7 +23,7 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizeArrow;
+import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
 import stevekung.mods.moreplanets.util.entity.ai.EntityAIAttackRangedBowMP;
 
 public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreathable
@@ -67,7 +67,7 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
         {
             if (entity instanceof EntityLivingBase)
             {
-                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZE, 120, 1));
+                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 120, 1));
                 this.world.playSound((EntityPlayer) entity, this.posX, this.posY, this.posZ, MPSounds.ALIEN_MINER_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
             return true;
@@ -109,7 +109,7 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distance)
     {
-        EntityInfectedCrystallizeArrow entityarrow = new EntityInfectedCrystallizeArrow(this.world, this);
+        EntityInfectedCrystallizedArrow entityarrow = new EntityInfectedCrystallizedArrow(this.world, this);
         double d0 = target.posX - this.posX;
         double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - entityarrow.posY;
         double d2 = target.posZ - this.posZ;
@@ -152,7 +152,7 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZE ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZED ? false : super.isPotionApplicable(potion);
     }
 
     @Override

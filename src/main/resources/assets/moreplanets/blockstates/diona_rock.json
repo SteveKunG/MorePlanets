@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "moreplanets:diona_rock" },
+            { "model": "moreplanets:diona_rock_mirrored" },
+            { "model": "moreplanets:diona_rock", "y": 180 },
+            { "model": "moreplanets:diona_rock_mirrored", "y": 180 }
+        ]
+    }
+}

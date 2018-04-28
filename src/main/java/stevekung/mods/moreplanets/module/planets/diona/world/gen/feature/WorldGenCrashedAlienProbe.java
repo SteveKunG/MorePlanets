@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.module.planets.diona.world.gen.feature;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -35,12 +36,13 @@ public class WorldGenCrashedAlienProbe extends WorldGenerator
                 {
                     int distance = poolX * poolX + Math.min(0, poolY) * Math.min(0, poolY) + poolZ * poolZ;
                     BlockPos posnew = new BlockPos(poolX + pos.getX(), poolY + pos.getY(), poolZ + pos.getZ());
+                    Block block = world.getBlockState(posnew).getBlock();
 
                     if (distance <= radiusSq)
                     {
                         world.setBlockState(posnew, Blocks.AIR.getDefaultState(), 2);
                     }
-                    else if (world.getBlockState(posnew).getBlock() == DionaBlocks.DIONA_BLOCK && poolY < 0 && rand.nextInt(4) == 0)
+                    else if ((block == DionaBlocks.DIONA_SURFACE_ROCK || block == DionaBlocks.DIONA_SUB_SURFACE_ROCK || block == DionaBlocks.DIONA_ROCK) && poolY < 0 && rand.nextInt(4) == 0)
                     {
                         world.setBlockState(posnew, DionaBlocks.GLOWING_IRON_BLOCK.getDefaultState(), 2);
                     }

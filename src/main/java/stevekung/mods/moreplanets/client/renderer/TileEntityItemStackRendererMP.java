@@ -13,9 +13,9 @@ import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityCha
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosTreasureChest;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityCheeseSporeChest;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.RenderInfectedCrystallizeBomb;
+import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.RenderInfectedCrystallizedBomb;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileentity.TileEntityDarkEnergyGeneratorRenderer;
-import stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileentity.TileEntityLargeInfectedCrystallizeRenderer;
+import stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileentity.TileEntityLargeInfectedCrystallizedRenderer;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyCore;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaAncientChest;
@@ -67,17 +67,17 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
             ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityZeliusEgg());
             GlStateManager.enableBlend();
         }
-        else if (block == DionaBlocks.LARGE_INFECTED_CRYSTALLIZE)
+        else if (block == DionaBlocks.LARGE_INFECTED_CRYSTALLIZED)
         {
-            TileEntityLargeInfectedCrystallizeRenderer.INSTANCE.render();
+            TileEntityLargeInfectedCrystallizedRenderer.INSTANCE.render();
         }
         else if (block == MPBlocks.DARK_ENERGY_RECEIVER)
         {
             ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDarkEnergyReceiver());
         }
-        else if (itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZE_BOMB)
+        else if (itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZED_BOMB)
         {
-            RenderInfectedCrystallizeBomb.INSTANCE.render();
+            RenderInfectedCrystallizedBomb.INSTANCE.render();
         }
         else if (block == NibiruBlocks.NIBIRU_ANCIENT_CHEST)
         {

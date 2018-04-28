@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.util.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -14,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -74,7 +74,91 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
         }
     }
 
-    public void grow(World world, BlockPos pos, IBlockState state)
+    @Override
+    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    {
+        Block block = world.getBlockState(pos.down()).getBlock();
+        return this.validBlock(block) && world.getLight(pos) >= 8 || world.canSeeSky(pos);
+    }
+
+    @Override
+    public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune)
+    {
+        super.dropBlockAsItemWithChance(world, pos, state, chance, 0);
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return state.getValue(AGE).intValue() == 7 ? this.getCrop() : this.getSeed();
+    }
+
+    @Override
+    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
+    {
+        return state.getValue(AGE).intValue() < 7;
+    }
+
+    @Override
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        return new ItemStack(this.getSeed());
+    }
+
+    @Override
+    public void grow(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        this.grow(world, pos, state);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(AGE).intValue();
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, AGE);
+    }
+
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        int age = state.getValue(AGE).intValue();
+        Random rand = world instanceof World ? ((World)world).rand : RANDOM;
+
+        if (age >= 7)
+        {
+            for (int i = 0; i < 3 + fortune; ++i)
+            {
+                if (rand.nextInt(15) <= age)
+                {
+                    drops.add(new ItemStack(this.getSeed(), 1, this.damageDropped(state)));
+                }
+            }
+        }
+    }
+
+    public int getMaxAge()
+    {
+        return 7;
+    }
+
+    protected void grow(World world, BlockPos pos, IBlockState state)
     {
         int i = state.getValue(AGE).intValue() + MathHelper.getInt(world.rand, 2, 5);
 
@@ -135,91 +219,6 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
             }
         }
         return f;
-    }
-
-    @Override
-    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
-    {
-        return world.getLight(pos) >= 8 || world.canSeeSky(pos);
-    }
-
-    @Override
-    public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune)
-    {
-        super.dropBlockAsItemWithChance(world, pos, state, chance, 0);
-    }
-
-    @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return state.getValue(AGE).intValue() == 7 ? this.getCrop() : this.getSeed();
-    }
-
-    @Override
-    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
-    {
-        return state.getValue(AGE).intValue() < 7;
-    }
-
-    @Override
-    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
-    {
-        return true;
-    }
-
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-    {
-        return new ItemStack(this.getSeed());
-    }
-
-    @Override
-    public void grow(World world, Random rand, BlockPos pos, IBlockState state)
-    {
-        this.grow(world, pos, state);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(AGE).intValue();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, AGE);
-    }
-
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
-        List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
-        int age = state.getValue(AGE).intValue();
-        Random rand = world instanceof World ? ((World)world).rand : new Random();
-
-        if (age >= 7)
-        {
-            for (int i = 0; i < 3 + fortune; ++i)
-            {
-                if (rand.nextInt(15) <= age)
-                {
-                    ret.add(new ItemStack(this.getSeed(), 1, this.damageDropped(state)));
-                }
-            }
-        }
-        return ret;
-    }
-
-    public int getMaxAge()
-    {
-        return 7;
     }
 
     protected abstract Item getSeed();

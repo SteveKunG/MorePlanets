@@ -50,10 +50,4 @@ public class ItemInfectedSnowball extends ItemBaseMP
     {
         return EnumSortCategoryItem.PROJECTILE;
     }
-
-    @Override
-    public String getName()
-    {
-        return "infected_snowball";
-    }
 }

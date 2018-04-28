@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
 
 public class ItemBlockDescription extends ItemBlock
 {
@@ -35,7 +35,7 @@ public class ItemBlockDescription extends ItemBlock
     {
         if (this.getBlock() instanceof IBlockDescription)
         {
-            if (CommonRegisterHelper.isShiftKeyDown())
+            if (ClientUtils.isShiftKeyDown())
             {
                 ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
             }

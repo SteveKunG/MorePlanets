@@ -9,12 +9,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruTallGrass;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.*;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.helper.DecorateHelper;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
+import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedJungle extends BiomeNibiru
 {
@@ -36,7 +36,7 @@ public class BiomeInfectedJungle extends BiomeNibiru
     @Override
     public void registerTypes(Biome biome)
     {
-        CommonRegisterHelper.registerBiomeType(biome, HOT, WET, DENSE, JUNGLE, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, HOT, WET, DENSE, JUNGLE, DEAD);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class BiomeInfectedJungle extends BiomeNibiru
         super.decorate(world, rand, pos);
         int i = rand.nextInt(16) + 8;
         int j = rand.nextInt(16) + 8;
-        new WorldGenNibiruMelon().generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));
+        new WorldGenNibiruMelon().generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
         WorldGenInfectedVines worldgenvines = new WorldGenInfectedVines();
 
         for (j = 0; j < 50; ++j)
@@ -66,7 +66,7 @@ public class BiomeInfectedJungle extends BiomeNibiru
         }
         if (rand.nextInt(25) == 0)
         {
-            new WorldGenInfectedVinesDirt().generate(world, rand, DecorateHelper.getSimplePos(world, pos, rand));
+            new WorldGenInfectedVinesDirt().generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
         }
     }
 }

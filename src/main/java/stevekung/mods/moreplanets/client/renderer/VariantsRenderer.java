@@ -11,24 +11,19 @@ import stevekung.mods.moreplanets.items.ItemSpaceFish;
 import stevekung.mods.moreplanets.items.ItemSpecialSchematic;
 import stevekung.mods.moreplanets.module.moons.koentus.blocks.BlockKoentus;
 import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalos;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockChalosDoublePlant;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockCheeseDirt;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ItemChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ItemCheeseFood;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockDiona;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockInfectedCrystallizePart;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.ItemDiona;
 import stevekung.mods.moreplanets.module.planets.diona.items.ItemTier4RocketPart;
-import stevekung.mods.moreplanets.module.planets.diona.items.ItemTier5RocketSchematic;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.*;
 import stevekung.mods.moreplanets.module.planets.fronos.items.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.*;
+import stevekung.mods.moreplanets.util.blocks.BlockDoublePlantMP;
 import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
 
 public class VariantsRenderer
@@ -42,12 +37,8 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(MPBlocks.HALF_WOODEN_SLAB_1, BlockHalfWoodenSlab1.BlockType.class);
         ClientRegisterHelper.registerVariantsName(MPBlocks.COBBLESTONE_WALL, BlockCobblestoneWall.BlockType.class);
         ClientRegisterHelper.registerVariantsName(MPBlocks.DUNGEON_BRICK_WALL, BlockDungeonBrickWall.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(DionaBlocks.DIONA_BLOCK, BlockDiona.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(DionaBlocks.INFECTED_CRYSTALLIZE_PART, BlockInfectedCrystallizePart.BlockType.class);
         ClientRegisterHelper.registerVariantsName(KoentusBlocks.KOENTUS_BLOCK, BlockKoentus.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHALOS_BLOCK, BlockChalos.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHEESE_DIRT, BlockCheeseDirt.BlockType.class);
-        ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHALOS_DOUBLE_PLANT, BlockChalosDoublePlant.BlockType.class);
+        ClientRegisterHelper.registerVariantsName(ChalosBlocks.CHEESE_TALL_GRASS, BlockDoublePlantMP.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.INFECTED_DIRT, BlockInfectedDirt.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_SANDSTONE, BlockNibiruSandstone.BlockType.class);
         ClientRegisterHelper.registerVariantsName(NibiruBlocks.NIBIRU_LOG, BlockNibiruLog.BlockType.class);
@@ -85,7 +76,6 @@ public class VariantsRenderer
         ClientRegisterHelper.registerVariantsName(MPItems.SPECIAL_SCHEMATIC, ItemSpecialSchematic.ItemType.class);
         ClientRegisterHelper.registerVariantsName(DionaItems.DIONA_ITEM, ItemDiona.ItemType.class);
         ClientRegisterHelper.registerVariantsName(DionaItems.TIER_4_ROCKET_PART, ItemTier4RocketPart.ItemType.class);
-        ClientRegisterHelper.registerVariantsName(DionaItems.TIER_5_ROCKET_SCHEMATIC, ItemTier5RocketSchematic.ItemType.class);
         ClientRegisterHelper.registerVariantsName(ChalosItems.CHALOS_ITEM, ItemChalos.ItemType.class);
         ClientRegisterHelper.registerVariantsName(ChalosItems.CHEESE_FOOD, ItemCheeseFood.ItemType.class);
         ClientRegisterHelper.registerVariantsName(NibiruItems.NIBIRU_ITEM, ItemNibiru.ItemType.class);
@@ -104,7 +94,7 @@ public class VariantsRenderer
     {
         if (!ConfigManagerMP.moreplanets_general.use3DTorchItemModel)
         {
-            ClientRegisterHelper.registerVariantsName(DionaBlocks.INFECTED_CRYSTALLIZE_TORCH, "infected_crystallize_torch_vanilla");
+            ClientRegisterHelper.registerVariantsName(DionaBlocks.INFECTED_CRYSTALLIZED_TORCH, "infected_crystallized_torch_vanilla");
             ClientRegisterHelper.registerVariantsName(NibiruBlocks.INFECTED_TORCH, "infected_torch_vanilla");
         }
     }

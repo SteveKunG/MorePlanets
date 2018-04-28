@@ -96,27 +96,15 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
     }
 
     @Override
-    public String getName()
+    protected BlockStateContainer createBlockState()
     {
-        return "sealable_nuclear_waste_rod";
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState();
+        return new BlockStateContainer(this, UP, DOWN, NORTH, EAST, SOUTH, WEST);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
         return 0;
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, UP, DOWN, NORTH, EAST, SOUTH, WEST);
     }
 
     @Override

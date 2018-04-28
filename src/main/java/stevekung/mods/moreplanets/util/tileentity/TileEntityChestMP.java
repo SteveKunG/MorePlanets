@@ -226,18 +226,18 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
             this.numPlayersUsing = 0;
             float f = 5.0F;
 
-            for (EntityPlayer entityplayer : this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f)))
+            this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f)).forEach(player ->
             {
-                if (entityplayer.openContainer instanceof ContainerChest)
+                if (player.openContainer instanceof ContainerChest)
                 {
-                    IInventory iinventory = ((ContainerChest)entityplayer.openContainer).getLowerChestInventory();
+                    IInventory iinventory = ((ContainerChest)player.openContainer).getLowerChestInventory();
 
                     if (iinventory == this || iinventory instanceof InventoryLargeChest && ((InventoryLargeChest)iinventory).isPartOfLargeChest(this))
                     {
                         ++this.numPlayersUsing;
                     }
                 }
-            }
+            });
         }
 
         this.prevLidAngle = this.lidAngle;

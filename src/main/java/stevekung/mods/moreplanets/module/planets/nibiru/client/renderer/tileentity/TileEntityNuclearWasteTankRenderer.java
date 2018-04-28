@@ -40,7 +40,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
 
         if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD))
         {
-            int count = tile.getWorld().getBlockState(tile.getPos()).getValue(BlockNuclearWasteTank.FLUID_COUNT);
+            int count = 3;//tile.getWorld().getBlockState(tile.getPos()).getValue(BlockNuclearWasteTank.FLUID_COUNT);
 
             for (int i = 0; i < count; i++)
             {

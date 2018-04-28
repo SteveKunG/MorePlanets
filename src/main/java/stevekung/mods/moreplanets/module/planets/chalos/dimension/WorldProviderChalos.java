@@ -183,6 +183,6 @@ public class WorldProviderChalos extends WorldProviderMP
     @Override
     public List<Block> getSurfaceBlocks()
     {
-        return Arrays.asList(ChalosBlocks.CHEESE_GRASS, ChalosBlocks.CHEESE_DIRT, ChalosBlocks.CHALOS_BLOCK);
+        return Arrays.asList(ChalosBlocks.CHEESE_GRASS_BLOCK, ChalosBlocks.CHEESE_DIRT, ChalosBlocks.CHEESE_COARSE_DIRT, ChalosBlocks.CHALOS_ROCK);
     }
 }
