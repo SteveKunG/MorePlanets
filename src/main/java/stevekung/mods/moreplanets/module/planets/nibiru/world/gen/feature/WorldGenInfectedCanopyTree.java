@@ -34,7 +34,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
             IBlockState state = world.getBlockState(blockpos);
             Block block = state.getBlock();
 
-            if (!(block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND) && pos.getY() < 256 - i - 1)
+            if (!(block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND) && pos.getY() < 256 - i - 1)
             {
                 return false;
             }

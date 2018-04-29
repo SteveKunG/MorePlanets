@@ -34,13 +34,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.BlockFronosDirt;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockInfectedDirt;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
@@ -51,68 +50,31 @@ import stevekung.mods.stevekunglib.utils.CachedEnum;
 public class GeneralEventHandler
 {
     private static final List<BreakBlockData> INFECTED_BLOCK_LIST = new ArrayList<>();
-    private static final List<BreakBlockData> NON_INFECTED_BLOCK_LIST = new ArrayList<>();
 
     static
     {
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.HALF_WOODEN_SLAB_1, 1));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.HALF_WOODEN_SLAB_1, 9));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.HALF_WOODEN_SLAB_1, 2));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.HALF_WOODEN_SLAB_1, 10));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.DOUBLE_WOODEN_SLAB_1, 1));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.DOUBLE_WOODEN_SLAB_1, 2));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.HALF_COBBLESTONE_SLAB_1, 2));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.HALF_COBBLESTONE_SLAB_1, 10));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.DOUBLE_COBBLESTONE_SLAB_1, 2));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 2));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, 10));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1, 2));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.COBBLESTONE_WALL, 2));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.DUNGEON_BRICK_WALL, 2));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.JUICER_EGG, -1));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.OIL_ORE, -1));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.SPORELILY, -1));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_GRASS_PATH, 0));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_FENCE, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.LARGE_INFECTED_CRYSTALLIZED, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_TORCH, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_WEB, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK, -1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_BOOKSHELF, 1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_TALL_GRASS, 2));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_CRAFTING_TABLE, 1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_LEAVES, 3));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_LEAVES, 7));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_LEAVES, 11));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_FENCE, 2));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_LOG, 3));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_LOG, 7));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_LOG, 11));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_PLANKS, 2));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_SAPLING, 3));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_DOUBLE_PLANT, 3));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_DOUBLE_PLANT, 8));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_FLOWER, 1));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_FLOWER, 7));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_BLOCK, 7));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, 3));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB, 11));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB, 3));
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.NIBIRU_GRASS_PATH, 1));
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.JUICER_EGG));
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.OIL_ORE));
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.SPORELILY));
     }
 
     @SubscribeEvent
     public void onFuelBurnTime(FurnaceFuelBurnTimeEvent event)
     {
-        Block block = Block.getBlockFromItem(event.getItemStack().getItem());
+        Item item = event.getItemStack().getItem();
+        Block block = Block.getBlockFromItem(item);
 
         if (block == ChalosBlocks.CHEESE_SPORE_FLOWER || block == NibiruBlocks.NIBIRU_SAPLING)
         {
             event.setBurnTime(100);
+        }
+        if (item == DionaItems.INFECTED_CRYSTALLIZED_SHARD)
+        {
+            event.setBurnTime(400);
+        }
+        if (item == NibiruItems.INFECTED_COAL || item == NibiruItems.INFECTED_CHARCOAL)
+        {
+            event.setBurnTime(1600);
         }
     }
 
@@ -151,7 +113,7 @@ public class GeneralEventHandler
         {
             if (event.getFace() != EnumFacing.DOWN && world.getBlockState(pos.up()).getMaterial() == Material.AIR)
             {
-                if (world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_GRASS)
+                if (world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK)
                 {
                     if (!world.isRemote)
                     {
@@ -161,7 +123,7 @@ public class GeneralEventHandler
                     }
                     player.swingArm(event.getHand());
                 }
-                else if (world.getBlockState(pos).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS)
+                else if (world.getBlockState(pos).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK)
                 {
                     if (!world.isRemote)
                     {
@@ -202,48 +164,11 @@ public class GeneralEventHandler
             return;
         }
 
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.forEach(data ->
+        GeneralEventHandler.INFECTED_BLOCK_LIST.forEach(data ->
         {
             Block block = data.getBlock();
-            int meta = data.getMeta();
 
-            if (meta != -1)
-            {
-                if (source == block && source.getMetaFromState(sourceState) == meta)
-                {
-                    return;
-                }
-            }
-            else
-            {
-                if (source == block)
-                {
-                    return;
-                }
-            }
-        });
-
-        GeneralEventHandler.NON_INFECTED_BLOCK_LIST.forEach(data ->
-        {
-            Block block = data.getBlock();
-            int meta = data.getMeta();
-            boolean flag = false;
-
-            if (meta != -1)
-            {
-                if (source == block && source.getMetaFromState(sourceState) == meta)
-                {
-                    flag = true;
-                }
-            }
-            else
-            {
-                if (source == block)
-                {
-                    flag = true;
-                }
-            }
-            if (flag && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
+            if (source == block && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
             {
                 player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
             }
@@ -251,11 +176,20 @@ public class GeneralEventHandler
 
         if (source.getRegistryName().toString().startsWith("moreplanets"))
         {
-            if (source.getUnlocalizedName().contains("infected") || source.getUnlocalizedName().contains("nibiru") || source.getLocalizedName().contains("infected"))
+            String sourceName = source.getUnlocalizedName().substring(5);
+
+            if (sourceName.contains("infected_crystallized"))
             {
-                if (!player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
+                return;
+            }
+            else
+            {
+                if (sourceName.contains("infected") || sourceName.contains("nibiru"))
                 {
-                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
+                    if (!player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
+                    {
+                        player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
+                    }
                 }
             }
         }
@@ -324,11 +258,11 @@ public class GeneralEventHandler
             //            {
             //                this.setFarmland(event, world, pos, ChalosBlocks.CHEESE_FARMLAND);
             //            }
-            else if (block == NibiruBlocks.INFECTED_DIRT)
+            else if (block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT)
             {
-                this.setFarmland(event, world, pos, state, BlockInfectedDirt.VARIANT, BlockInfectedDirt.BlockType.INFECTED_COARSE_DIRT, NibiruBlocks.INFECTED_DIRT, NibiruBlocks.INFECTED_FARMLAND);
+                this.setFarmland(event, world, pos, state, NibiruBlocks.INFECTED_COARSE_DIRT, NibiruBlocks.INFECTED_DIRT, NibiruBlocks.INFECTED_FARMLAND);
             }
-            else if (block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.GREEN_VEIN_GRASS)
+            else if (block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK)
             {
                 this.setFarmland(event, world, pos, NibiruBlocks.INFECTED_FARMLAND);
             }
@@ -405,22 +339,15 @@ public class GeneralEventHandler
     static class BreakBlockData
     {
         private Block block;
-        private int meta;
 
-        public BreakBlockData(Block block, int meta)
+        public BreakBlockData(Block block)
         {
             this.block = block;
-            this.meta = meta;
         }
 
         public Block getBlock()
         {
             return this.block;
-        }
-
-        public int getMeta()
-        {
-            return this.meta;
         }
     }
 }

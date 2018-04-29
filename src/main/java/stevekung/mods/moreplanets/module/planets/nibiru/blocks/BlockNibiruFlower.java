@@ -143,7 +143,7 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
 
         if (meta == 1)
         {
-            return blockDown.getBlock() == NibiruBlocks.GREEN_VEIN_GRASS || blockDown.getBlock() == NibiruBlocks.INFECTED_DIRT;
+            return blockDown.getBlock() == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || blockDown.getBlock() == NibiruBlocks.INFECTED_DIRT;
         }
         else if (meta == 2)
         {
@@ -155,12 +155,12 @@ public class BlockNibiruFlower extends BlockBushMP implements IBlockVariants, IG
         }
         else if (meta == 7)
         {
-            boolean lowlight = world.getLight(pos) < 13 && (blockDown.getBlock() == NibiruBlocks.NIBIRU_BLOCK || blockDown.getBlock() == NibiruBlocks.INFECTED_DIRT || blockDown.getBlock() == NibiruBlocks.NIBIRU_ORE);
-            return blockDown.getBlock() == NibiruBlocks.GREEN_VEIN_GRASS || blockDown.getBlock() == NibiruBlocks.TERRASTONE || blockDown.getBlock() == NibiruBlocks.PURIFY_GRAVEL || lowlight;
+            boolean lowlight = world.getLight(pos) < 13 && (blockDown.getBlock() == NibiruBlocks.NIBIRU_ROCK || blockDown.getBlock() == NibiruBlocks.INFECTED_DIRT || blockDown.getBlock() == NibiruBlocks.NIBIRU_ORE);
+            return blockDown.getBlock() == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || blockDown.getBlock() == NibiruBlocks.TERRASTONE || blockDown.getBlock() == NibiruBlocks.PURIFY_GRAVEL || lowlight;
         }
         else
         {
-            return blockDown.getBlock() == NibiruBlocks.INFECTED_GRASS || blockDown.getBlock() == NibiruBlocks.INFECTED_DIRT;
+            return blockDown.getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK || blockDown.getBlock() == NibiruBlocks.INFECTED_DIRT;
         }
     }
 

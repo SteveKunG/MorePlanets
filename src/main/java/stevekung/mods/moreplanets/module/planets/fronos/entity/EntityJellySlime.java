@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -171,7 +172,28 @@ public class EntityJellySlime extends EntitySlimeBaseMP
             float f3 = MathHelper.cos(f) * i * 0.5F * f1;
             double d0 = this.posX + f2;
             double d1 = this.posZ + f3;
-            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING_META, d0, this.getEntityBoundingBox().minY, d1, new Object[] { FronosItems.JELLY, this.getJellySlimeType() });
+            Item item = null;
+
+            switch (this.getJellySlimeType())
+            {
+            case 0:
+                item = FronosItems.GRAPE_JELLY;
+            case 1:
+                item = FronosItems.RASPBERRY_JELLY;
+            case 2:
+                item = FronosItems.STRAWBERRY_JELLY;
+            case 3:
+                item = FronosItems.BERRY_JELLY;
+            case 4:
+                item = FronosItems.LIME_JELLY;
+            case 5:
+                item = FronosItems.ORANGE_JELLY;
+            case 6:
+                item = FronosItems.GREEN_JELLY;
+            case 7:
+                item = FronosItems.LEMON_JELLY;
+            }
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, d0, this.getEntityBoundingBox().minY, d1, new Object[] { item });
         }
     }
 

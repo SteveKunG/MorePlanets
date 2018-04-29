@@ -9,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockTileGC;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
@@ -21,6 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemBlockDescription extends ItemBlock
 {
@@ -51,7 +51,7 @@ public class ItemBlockDescription extends ItemBlock
 
                         if (powerDrawn > 0)
                         {
-                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
+                            list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
                         }
                     }
                     if (te instanceof TileBaseUniversalElectrical)
@@ -59,7 +59,7 @@ public class ItemBlockDescription extends ItemBlock
                         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
                         {
                             int power = (int)itemStack.getTagCompound().getFloat("EnergyStored");
-                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("desc.energy_stored.name", EnergyDisplayHelper.getEnergyDisplayS(power)));
+                            list.add(TextFormatting.GREEN + LangUtils.translate("desc.energy_stored.name", EnergyDisplayHelper.getEnergyDisplayS(power)));
                         }
                     }
                 }
@@ -73,11 +73,11 @@ public class ItemBlockDescription extends ItemBlock
 
                         if (powerDrawn > 0)
                         {
-                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
+                            list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
                         }
                     }
                 }
-                list.add(GCCoreUtil.translate("desc.shift_info.name"));
+                list.add(LangUtils.translate("desc.shift_info.name"));
             }
         }
     }

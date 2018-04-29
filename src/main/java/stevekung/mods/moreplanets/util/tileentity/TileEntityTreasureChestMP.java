@@ -38,6 +38,7 @@ import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKeyable, IInteractionObject, ISidedInventory, IInventoryDefaults
 {
@@ -131,7 +132,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container." + this.name + ".treasurechest.name");
+        return LangUtils.translate("container." + this.name + ".treasurechest.name");
     }
 
     @Override

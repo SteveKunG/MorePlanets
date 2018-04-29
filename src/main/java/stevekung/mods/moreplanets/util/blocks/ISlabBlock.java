@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.util.blocks;
 
-public interface ISlabBlock extends IBlockVariants
+public interface ISlabBlock
 {
     public BlockSlabMP getHalf();
     public BlockSlabMP getDouble();

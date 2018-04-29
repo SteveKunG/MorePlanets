@@ -11,10 +11,7 @@ import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemArmorIllenium;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemBreathableIllenium;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ItemArrowMP;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
-import stevekung.mods.moreplanets.util.items.ItemDungeonKeyMP;
+import stevekung.mods.moreplanets.util.items.*;
 import stevekung.mods.moreplanets.util.items.tools.*;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
@@ -22,11 +19,19 @@ import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
 public class DionaItems
 {
+    public static Item ILLENIUM_INGOT;
+    public static Item SETRORIUM_SHARD;
+    public static Item COMPRESSED_ILLENIUM;
+    public static Item COMPRESSED_SETRORIUM;
+    public static Item INFECTED_CRYSTALLIZED_SHARD;
+    public static Item ALIEN_MINER_PART;
+    public static Item GLOWING_IRON_INGOT;
+    public static Item BLACK_HOLE_FRAGMENTS;
+    public static Item ANTI_GRAVITY_FRAGMENTS;
+
     // Base
-    public static Item DIONA_ITEM;
     public static Item DIONA_DUNGEON_KEY;
     public static Item INFECTED_CRYSTALLIZED_BOMB;
-    public static Item TIER_4_ROCKET_PART;
     public static Item INFECTED_CRYSTALLIZED_SLIMEBALL;
     public static Item INFECTED_CRYSTALLIZED_ARROW;
     public static Item DARK_ENERGY_PEARL;
@@ -47,8 +52,8 @@ public class DionaItems
     public static Item BREATHABLE_ILLENIUM_HELMET;
 
     // Material
-    public static ToolMaterial ILLENIUM_TOOL = EnumHelper.addToolMaterial("ILLENIUM", 3, 1432, 8.5F, 4.5F, 10);
-    public static ArmorMaterial ILLENIUM_ARMOR = EnumHelper.addArmorMaterial("ILLENIUM", "ILLENIUM", 40, new int[] { 5, 10, 8, 5 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.25F);
+    public static final ToolMaterial ILLENIUM_TOOL = EnumHelper.addToolMaterial("ILLENIUM", 3, 1432, 8.5F, 4.5F, 10);
+    public static final ArmorMaterial ILLENIUM_ARMOR = EnumHelper.addArmorMaterial("ILLENIUM", "ILLENIUM", 40, new int[] { 5, 10, 8, 5 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.25F);
 
     public static void init()
     {
@@ -56,8 +61,16 @@ public class DionaItems
         /**********************INITIAL BASE STUFF**********************/
         /**************************************************************/
 
-        DionaItems.DIONA_ITEM = new ItemDiona("diona_item");
-        DionaItems.TIER_4_ROCKET_PART = new ItemTier4RocketPart("tier_4_rocket_part");
+        DionaItems.ILLENIUM_INGOT = new ItemBaseMP("illenium_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
+        DionaItems.SETRORIUM_SHARD = new ItemBaseMP("setrorium_shard");
+        DionaItems.COMPRESSED_ILLENIUM = new ItemCompressedMetal("compressed_illenium").setSortCategory(EnumSortCategoryItem.PLATE);
+        DionaItems.COMPRESSED_SETRORIUM = new ItemCompressedMetal("compressed_setrorium").setSortCategory(EnumSortCategoryItem.PLATE);
+        DionaItems.INFECTED_CRYSTALLIZED_SHARD = new ItemBaseMP("infected_crystallized_shard");
+        DionaItems.ALIEN_MINER_PART = new ItemBaseMP("alien_miner_part");
+        DionaItems.GLOWING_IRON_INGOT = new ItemBaseMP("glowing_iron_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
+        DionaItems.BLACK_HOLE_FRAGMENTS = new ItemBaseMP("black_hole_fragments");
+        DionaItems.ANTI_GRAVITY_FRAGMENTS = new ItemAntiGravity("anti_gravity_fragments");
+
         DionaItems.DIONA_DUNGEON_KEY = new ItemDungeonKeyMP("diona_dungeon_key", 4);
         DionaItems.INFECTED_CRYSTALLIZED_BOMB = new ItemInfectedCrystallizedBomb("infected_crystallized_bomb");
         DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL = new ItemBaseMP("infected_crystallized_slimeball");
@@ -69,11 +82,11 @@ public class DionaItems
         /**********************INITIAL TOOL STUFF**********************/
         /**************************************************************/
 
-        DionaItems.ILLENIUM_SWORD = new ItemSwordMP("illenium_sword", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2);
-        DionaItems.ILLENIUM_SHOVEL = new ItemShovelMP("illenium_shovel", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2);
-        DionaItems.ILLENIUM_PICKAXE = new ItemPickaxeMP("illenium_pickaxe", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2);
-        DionaItems.ILLENIUM_AXE = new ItemAxeMP("illenium_axe", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2, EnumToolSpeed.COMMON);
-        DionaItems.ILLENIUM_HOE = new ItemHoeMP("illenium_hoe", DionaItems.ILLENIUM_TOOL, DionaItems.DIONA_ITEM, 2);
+        DionaItems.ILLENIUM_SWORD = new ItemSwordMP("illenium_sword", DionaItems.ILLENIUM_TOOL, DionaItems.COMPRESSED_ILLENIUM);
+        DionaItems.ILLENIUM_SHOVEL = new ItemShovelMP("illenium_shovel", DionaItems.ILLENIUM_TOOL, DionaItems.COMPRESSED_ILLENIUM);
+        DionaItems.ILLENIUM_PICKAXE = new ItemPickaxeMP("illenium_pickaxe", DionaItems.ILLENIUM_TOOL, DionaItems.COMPRESSED_ILLENIUM);
+        DionaItems.ILLENIUM_AXE = new ItemAxeMP("illenium_axe", DionaItems.ILLENIUM_TOOL, DionaItems.COMPRESSED_ILLENIUM, EnumToolSpeed.COMMON);
+        DionaItems.ILLENIUM_HOE = new ItemHoeMP("illenium_hoe", DionaItems.ILLENIUM_TOOL, DionaItems.COMPRESSED_ILLENIUM);
 
         /**************************************************************/
         /*********************INITIAL ARMOR STUFF**********************/
@@ -89,9 +102,17 @@ public class DionaItems
         /**********************REGISTER STUFF**************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerItem(DionaItems.DIONA_ITEM);
+        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_INGOT);
+        CommonRegisterHelper.registerItem(DionaItems.SETRORIUM_SHARD);
+        CommonRegisterHelper.registerItem(DionaItems.COMPRESSED_ILLENIUM);
+        CommonRegisterHelper.registerItem(DionaItems.COMPRESSED_SETRORIUM);
+        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_SHARD);
+        CommonRegisterHelper.registerItem(DionaItems.ALIEN_MINER_PART);
+        CommonRegisterHelper.registerItem(DionaItems.GLOWING_IRON_INGOT);
+        CommonRegisterHelper.registerItem(DionaItems.BLACK_HOLE_FRAGMENTS);
+        CommonRegisterHelper.registerItem(DionaItems.ANTI_GRAVITY_FRAGMENTS);
+
         CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_BOMB);
-        CommonRegisterHelper.registerItem(DionaItems.TIER_4_ROCKET_PART);
         CommonRegisterHelper.registerItem(DionaItems.DIONA_DUNGEON_KEY);
         CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
         CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_ARROW);

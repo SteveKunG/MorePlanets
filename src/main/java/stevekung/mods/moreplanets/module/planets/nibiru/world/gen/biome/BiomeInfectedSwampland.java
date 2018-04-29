@@ -24,9 +24,9 @@ public class BiomeInfectedSwampland extends BiomeNibiru
     public BiomeInfectedSwampland(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
+        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
+        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTreesPerChunk = 2;
         this.getBiomeDecorator().infectedTallGrassPerChunk = 5;
         this.getBiomeDecorator().waterlilyPerChunk = 4;

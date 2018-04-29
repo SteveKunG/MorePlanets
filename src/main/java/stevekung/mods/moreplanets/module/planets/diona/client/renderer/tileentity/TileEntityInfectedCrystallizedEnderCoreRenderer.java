@@ -10,9 +10,9 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityInfe
 
 public class TileEntityInfectedCrystallizedEnderCoreRenderer extends TileEntitySpecialRenderer<TileEntityInfectedCrystallizedEnderCore>
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/infected_crystallize_ender_core.png");
-    private static ResourceLocation textureLight1 = new ResourceLocation("moreplanets:textures/model/infected_crystallize_ender_core_glow.png");
-    private ModelInfectedCrystallizedEnderCore model = new ModelInfectedCrystallizedEnderCore();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/infected_crystallized_ender_core.png");
+    private static final ResourceLocation LIGHT = new ResourceLocation("moreplanets:textures/model/infected_crystallized_ender_core_glow.png");
+    private final ModelInfectedCrystallizedEnderCore model = new ModelInfectedCrystallizedEnderCore();
 
     @Override
     public void render(TileEntityInfectedCrystallizedEnderCore tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -27,12 +27,12 @@ public class TileEntityInfectedCrystallizedEnderCoreRenderer extends TileEntityS
         GlStateManager.enableRescaleNormal();
         GlStateManager.translate((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
-        this.bindTexture(TileEntityInfectedCrystallizedEnderCoreRenderer.texture);
+        this.bindTexture(TileEntityInfectedCrystallizedEnderCoreRenderer.TEXTURE);
         this.model.renderAll(ticks * 0.2F);
         GlStateManager.color(lightTime, lightTime, lightTime);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        this.bindTexture(TileEntityInfectedCrystallizedEnderCoreRenderer.textureLight1);
+        this.bindTexture(TileEntityInfectedCrystallizedEnderCoreRenderer.LIGHT);
         this.model.renderAll(ticks * 0.2F);
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

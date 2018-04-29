@@ -10,7 +10,6 @@ import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectricalSource implements IConnector, IDisableableMachine, ISidedInventory, IInventoryDefaults
 {
@@ -261,7 +261,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container.nuclear_waste_generator.name");
+        return LangUtils.translate("container.nuclear_waste_generator.name");
     }
 
     @Override
@@ -386,24 +386,24 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     {
         if (this.getDisabled(0))
         {
-            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.disabled.name");
+            return TextFormatting.GOLD + LangUtils.translate("gui.status.disabled.name");
         }
         if (this.missingTank && this.missingWaste)
         {
-            return TextFormatting.RED + GCCoreUtil.translate("gui.status.waste_and_tank_depleted.name");
+            return TextFormatting.RED + LangUtils.translate("gui.status.waste_and_tank_depleted.name");
         }
         if (this.missingTank)
         {
-            return TextFormatting.RED + GCCoreUtil.translate("gui.status.waste_tank_depleted.name");
+            return TextFormatting.RED + LangUtils.translate("gui.status.waste_tank_depleted.name");
         }
         if (this.missingWaste)
         {
-            return TextFormatting.RED + GCCoreUtil.translate("gui.status.waste_depleted.name");
+            return TextFormatting.RED + LangUtils.translate("gui.status.waste_depleted.name");
         }
         if (this.generateTick > 0)
         {
-            return TextFormatting.DARK_GREEN + GCCoreUtil.translate("gui.status.collectingenergy.name");
+            return TextFormatting.DARK_GREEN + LangUtils.translate("gui.status.collectingenergy.name");
         }
-        return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.no_waste_sources.name");
+        return TextFormatting.DARK_RED + LangUtils.translate("gui.status.no_waste_sources.name");
     }
 }

@@ -7,7 +7,6 @@ import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.inventory.PersistantInventoryCrafting;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.blocks.BlockRocketCrusher;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
 import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityRocketCrusher extends TileBaseElectricBlock implements IInventoryDefaults, ISidedInventory
 {
@@ -331,7 +331,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("tile.rocket_crusher.name");
+        return LangUtils.translate("tile.rocket_crusher.name");
     }
 
     @Override

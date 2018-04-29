@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.module.planets.nibiru.items.ItemNibiruFruits;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.VariantsName;
@@ -143,11 +142,11 @@ public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants
         {
             if (state.getValue(VARIANT) == BlockType.INFECTED_OAK_LEAVES || state.getValue(VARIANT) == BlockType.INFECTED_DEAD_OAK_LEAVES)
             {
-                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NIBIRU_FRUITS, 1, ItemNibiruFruits.ItemType.INFECTED_APPLE.ordinal()));
+                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.INFECTED_APPLE));
             }
             else if (state.getValue(VARIANT) == BlockType.ALIEN_BERRY_OAK_LEAVES)
             {
-                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NIBIRU_FRUITS, 1, ItemNibiruFruits.ItemType.ALIEN_BERRY.ordinal()));
+                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.ALIEN_BERRY));
             }
         }
     }

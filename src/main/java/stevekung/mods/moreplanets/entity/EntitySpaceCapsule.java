@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFuelLevel, ICameraZoomEntity, IIgnoreShift
 {
@@ -142,7 +143,7 @@ public class EntitySpaceCapsule extends EntityLanderBase implements IScaleableFu
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container.entry_pod.name");
+        return LangUtils.translate("container.entry_pod.name");
     }
 
     @Override

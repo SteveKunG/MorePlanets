@@ -24,7 +24,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     public BiomeInfectedExtremeHills(BiomeProperties properties)
     {
         super(properties);
-        this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
+        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
     }
 
@@ -61,7 +61,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
         {
             BlockPos blockpos = pos.add(rand.nextInt(16), rand.nextInt(28) + 4, rand.nextInt(16));
 
-            if (world.getBlockState(blockpos) == NibiruBlocks.NIBIRU_BLOCK.getDefaultState())
+            if (world.getBlockState(blockpos) == NibiruBlocks.NIBIRU_ROCK.getDefaultState())
             {
                 world.setBlockState(blockpos, NibiruBlocks.NIBIRU_ORE.getStateFromMeta(6), 2);
             }
@@ -71,7 +71,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
             int j1 = rand.nextInt(16);
             int k1 = rand.nextInt(64);
             int l1 = rand.nextInt(16);
-            new WorldGenMinableMP(NibiruBlocks.NIBIRU_SILVERFISH_STONE.getDefaultState(), NibiruBlocks.NIBIRU_BLOCK.getDefaultState(), 8).generate(world, rand, pos.add(j1, k1, l1));
+            new WorldGenMinableMP(NibiruBlocks.INFESTED_NIBIRU_ROCK.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), 8).generate(world, rand, pos.add(j1, k1, l1));
         }
         for (int i = 0; i < 24; i++)
         {
@@ -83,13 +83,13 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     @Override
     public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double noise)
     {
-        this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
+        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
 
         if (noise > 1.0D)
         {
-            this.topBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
-            this.fillerBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
+            this.topBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+            this.fillerBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
         }
         super.genTerrainBlocks(world, rand, chunkPrimer, chunkX, chunkZ, noise);
     }

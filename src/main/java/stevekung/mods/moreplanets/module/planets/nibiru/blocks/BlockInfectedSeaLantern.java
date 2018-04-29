@@ -41,13 +41,7 @@ public class BlockInfectedSeaLantern extends BlockBaseMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return NibiruItems.INFECTED_PRISMARINE;
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return 1;
+        return NibiruItems.INFECTED_PRISMARINE_CRYSTALS;
     }
 
     @Override

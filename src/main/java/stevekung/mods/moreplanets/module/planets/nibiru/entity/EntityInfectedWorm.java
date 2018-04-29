@@ -20,8 +20,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruSilverfish;
+import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruInfested;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
@@ -142,7 +141,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
     @Override
     public float getBlockPathWeight(BlockPos pos)
     {
-        return this.world.getBlockState(pos.down()) == NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.NIBIRU_ROCK) ? 10.0F : super.getBlockPathWeight(pos);
+        return this.world.getBlockState(pos.down()) == NibiruBlocks.INFESTED_NIBIRU_ROCK.getDefaultState() ? 10.0F : super.getBlockPathWeight(pos);
     }
 
     @Override
@@ -185,7 +184,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
 
     private boolean canContainSilverfish(IBlockState state)
     {
-        return state == NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.NIBIRU_ROCK) || state == NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.NIBIRU_COBBLESTONE) || state == NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.INFECTED_STONE_BRICKS) || state == NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.INFECTED_VEIN_STONE_BRICKS) || state == NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.INFECTED_CRACKED_STONE_BRICKS) || state == NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.INFECTED_CHISELED_STONE_BRICKS);
+        return state == NibiruBlocks.NIBIRU_ROCK.getDefaultState() || state == NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState() || state == NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState() || state == NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState() || state == NibiruBlocks.INFECTED_VEIN_STONE_BRICKS.getDefaultState() || state == NibiruBlocks.INFECTED_CRACKED_STONE_BRICKS.getDefaultState() || state == NibiruBlocks.INFECTED_CHISELED_STONE_BRICKS.getDefaultState();
     }
 
     static class AIHideInStone extends EntityAIWander
@@ -250,11 +249,11 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
             {
                 World world = this.entity.world;
                 BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
-                IBlockState iblockstate = world.getBlockState(blockpos);
+                IBlockState state = world.getBlockState(blockpos);
 
-                if (this.entity.canContainSilverfish(iblockstate))
+                if (this.entity.canContainSilverfish(state))
                 {
-                    world.setBlockState(blockpos, NibiruBlocks.NIBIRU_SILVERFISH_STONE.getDefaultState().withProperty(BlockNibiruSilverfish.VARIANT, BlockNibiruSilverfish.BlockType.getParentBlock(iblockstate)), 3);
+                    world.setBlockState(blockpos, BlockNibiruInfested.getInfested(state.getBlock()).getDefaultState(), 3);
                     this.entity.spawnExplosionParticle();
                     this.entity.setDead();
                 }
@@ -306,7 +305,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
                             BlockPos blockpos1 = blockpos.add(j, i, k);
                             IBlockState iblockstate = world.getBlockState(blockpos1);
 
-                            if (iblockstate.getBlock() == NibiruBlocks.NIBIRU_SILVERFISH_STONE)
+                            if (iblockstate.getBlock() instanceof BlockNibiruInfested)
                             {
                                 if (world.getGameRules().getBoolean("mobGriefing"))
                                 {
@@ -314,7 +313,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
                                 }
                                 else
                                 {
-                                    world.setBlockState(blockpos1, iblockstate.withProperty(BlockNibiruSilverfish.VARIANT, BlockNibiruSilverfish.BlockType.getParentBlock(iblockstate)), 3);
+                                    world.setBlockState(blockpos1, BlockNibiruInfested.getParent(iblockstate.getBlock()).getDefaultState(), 3);
                                 }
 
                                 if (random.nextBoolean())

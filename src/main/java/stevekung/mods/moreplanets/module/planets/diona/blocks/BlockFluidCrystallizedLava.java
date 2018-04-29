@@ -89,7 +89,7 @@ public class BlockFluidCrystallizedLava extends BlockFluidLavaBaseMP
 
                 if (world.rand.nextInt(500) == 0)
                 {
-                    Block.spawnAsEntity(world, pos.up(), new ItemStack(DionaItems.DIONA_ITEM, 1, 4));
+                    Block.spawnAsEntity(world, pos.up(), new ItemStack(DionaItems.INFECTED_CRYSTALLIZED_SHARD));
                 }
                 return true;
             }

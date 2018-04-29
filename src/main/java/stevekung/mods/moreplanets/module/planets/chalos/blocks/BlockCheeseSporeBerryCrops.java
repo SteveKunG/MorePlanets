@@ -55,7 +55,7 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
     @Override
     protected Item getCrop()
     {
-        return ChalosItems.CHEESE_FOOD;
+        return ChalosItems.CHEESE_SPORE_BERRY;
     }
 
     @Override

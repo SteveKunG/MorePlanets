@@ -37,7 +37,7 @@ public class EntityGiantBlueberry extends EntityFronosPet
         this.aiSit = new EntityAISit(this);
         this.aiTexture = new EntityAIFaceTexture(this);
         this.aiPanic = new EntityAIFronosPanic(this, 1.75D);
-        this.aiTempt = new EntityAIFronosTempt(this, 1.4D, new ItemStack(FronosItems.FRONOS_FOOD, 1, 0), false);
+        this.aiTempt = new EntityAIFronosTempt(this, 1.4D, new ItemStack(FronosItems.CHOCOLATE_BAR), false);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(1, this.aiPanic);
         this.tasks.addTask(2, this.aiSit);
@@ -139,6 +139,6 @@ public class EntityGiantBlueberry extends EntityFronosPet
     @Override
     protected ItemStack getLayItem()
     {
-        return new ItemStack(FronosItems.FRONOS_FRUITS, 1, 1);
+        return new ItemStack(FronosItems.GIANT_BLUEBERRY);
     }
 }

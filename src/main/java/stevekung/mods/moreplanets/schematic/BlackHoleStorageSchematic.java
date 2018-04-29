@@ -30,7 +30,7 @@ public class BlackHoleStorageSchematic extends SchematicMP
     @Override
     public ItemStack getRequiredItem()
     {
-        return new ItemStack(MPItems.SPECIAL_SCHEMATIC, 1, 1);
+        return new ItemStack(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC);
     }
 
     @Override

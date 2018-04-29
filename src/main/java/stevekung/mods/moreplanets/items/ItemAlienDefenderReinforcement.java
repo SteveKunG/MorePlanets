@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.items;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -15,6 +14,7 @@ import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemAlienDefenderReinforcement extends ItemBaseMP
 {
@@ -44,7 +44,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
             {
                 if (world.isRemote)
                 {
-                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.alien_defender_beacon.message")).setStyle(JsonUtils.yellow()).getFormattedText());
+                    ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.alien_defender_beacon.message")).setStyle(JsonUtils.yellow()).getFormattedText());
                     player.swingArm(hand);
                 }
                 else
@@ -63,7 +63,7 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
             {
                 if (world.isRemote)
                 {
-                    ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.not_air_block.message")).setStyle(JsonUtils.red()).getFormattedText());
+                    ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.not_air_block.message")).setStyle(JsonUtils.red()).getFormattedText());
                     player.swingArm(hand);
                 }
             }
@@ -72,16 +72,10 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
         {
             if (world.isRemote && disable)
             {
-                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.target_too_far.message", range)).setStyle(JsonUtils.red()).getFormattedText());
+                ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.target_too_far.message", range)).setStyle(JsonUtils.red()).getFormattedText());
                 player.swingArm(hand);
             }
         }
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
-    }
-
-    @Override
-    public String getName()
-    {
-        return "alien_defender_reinforcement";
     }
 }

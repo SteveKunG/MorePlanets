@@ -58,11 +58,11 @@ public class BlockNibiruSapling extends BlockBushMP implements IBlockVariants, I
 
         if (meta == 3)
         {
-            return block == NibiruBlocks.GREEN_VEIN_GRASS || block == NibiruBlocks.INFECTED_DIRT;
+            return block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT;
         }
         else
         {
-            return block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
+            return block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
         }
     }
 

@@ -80,7 +80,7 @@ public class BiomeNibiru extends BiomeBaseMP
                 {
                     j = -1;
                 }
-                else if (iblockstate2.getBlock() == NibiruBlocks.NIBIRU_BLOCK)
+                else if (iblockstate2.getBlock() == NibiruBlocks.NIBIRU_ROCK)
                 {
                     if (this.stoneBlock != null)
                     {
@@ -91,7 +91,7 @@ public class BiomeNibiru extends BiomeBaseMP
                         if (k <= 0)
                         {
                             iblockstate = null;
-                            iblockstate1 = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
+                            iblockstate1 = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
                         }
                         else if (j1 >= i - 4 && j1 <= i + 1)
                         {
@@ -120,7 +120,7 @@ public class BiomeNibiru extends BiomeBaseMP
                         else if (j1 < i - 7 - k)
                         {
                             iblockstate = null;
-                            iblockstate1 = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
+                            iblockstate1 = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
                             chunkPrimer.setBlockState(i1, j1, l, NibiruBlocks.INFECTED_GRAVEL.getDefaultState());
                         }
                         else
@@ -136,7 +136,7 @@ public class BiomeNibiru extends BiomeBaseMP
                         if (j == 0 && iblockstate1.getBlock() == NibiruBlocks.INFECTED_SAND)
                         {
                             j = rand.nextInt(4) + Math.max(0, j1 - 63);
-                            iblockstate1 = NibiruBlocks.NIBIRU_SANDSTONE.getDefaultState();
+                            iblockstate1 = NibiruBlocks.INFECTED_SANDSTONE.getDefaultState();
                         }
                     }
                 }

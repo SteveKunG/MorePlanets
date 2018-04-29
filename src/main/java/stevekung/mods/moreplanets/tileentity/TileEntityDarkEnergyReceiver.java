@@ -9,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -51,6 +50,7 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
 {
@@ -335,7 +335,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         this.setDisabled(0, true);
                         this.activatedMessage = true;
                         this.successful = true;
-                        FMLClientHandler.instance().getClient().player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.status.dark_energy_core_created.name")).setStyle(JsonUtils.green()));
+                        FMLClientHandler.instance().getClient().player.sendMessage(JsonUtils.create(LangUtils.translate("gui.status.dark_energy_core_created.name")).setStyle(JsonUtils.green()));
                     }
                 }
 
@@ -596,7 +596,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container.dark_energy_receiver.name");
+        return LangUtils.translate("container.dark_energy_receiver.name");
     }
 
     @Override
@@ -737,38 +737,38 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     {
         if (this.successful)
         {
-            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.off.name");
+            return TextFormatting.DARK_RED + LangUtils.translate("gui.status.off.name");
         }
         if (this.getEnergyStoredGC() == 0)
         {
-            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.missingpower.name");
+            return TextFormatting.DARK_RED + LangUtils.translate("gui.status.missingpower.name");
         }
         if (this.getDisabled(0))
         {
-            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.ready.name");
+            return TextFormatting.GOLD + LangUtils.translate("gui.status.ready.name");
         }
         if (this.getEnergyStoredGC() < this.storage.getMaxExtract())
         {
-            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.missingpower.name");
+            return TextFormatting.GOLD + LangUtils.translate("gui.status.missingpower.name");
         }
-        return TextFormatting.DARK_GREEN + GCCoreUtil.translate("gui.status.active.name");
+        return TextFormatting.DARK_GREEN + LangUtils.translate("gui.status.active.name");
     }
 
     public String getGuiStatusWaila()
     {
         if (this.successful)
         {
-            return TextFormatting.GREEN + GCCoreUtil.translate("gui.status.dark_energy_core_created.name");
+            return TextFormatting.GREEN + LangUtils.translate("gui.status.dark_energy_core_created.name");
         }
         if (this.getEnergyStoredGC() == 0)
         {
-            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.dark_energy_offline.name");
+            return TextFormatting.DARK_RED + LangUtils.translate("gui.status.dark_energy_offline.name");
         }
         if (this.getDisabled(0))
         {
-            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.ready.name");
+            return TextFormatting.GOLD + LangUtils.translate("gui.status.ready.name");
         }
-        return TextFormatting.DARK_GREEN + GCCoreUtil.translate("gui.status.active.name");
+        return TextFormatting.DARK_GREEN + LangUtils.translate("gui.status.active.name");
     }
 
     @Override

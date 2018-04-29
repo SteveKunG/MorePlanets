@@ -249,7 +249,7 @@ public class MapGenNibiruCaves extends MapGenBase
     {
         Biome biome = this.world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
-        return this.isExceptionBiome(biome) ? state.getBlock() == NibiruBlocks.INFECTED_GRASS : state.getBlock() == biome.topBlock;
+        return this.isExceptionBiome(biome) ? state.getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK : state.getBlock() == biome.topBlock;
     }
 
     protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop, IBlockState state, IBlockState up)
@@ -258,7 +258,7 @@ public class MapGenNibiruCaves extends MapGenBase
         IBlockState top = biome.topBlock;
         IBlockState filler = biome.fillerBlock;
 
-        if (state.getBlock() == NibiruBlocks.NIBIRU_BLOCK || state.getBlock() == NibiruBlocks.NIBIRU_ORE || state.getBlock() == NibiruBlocks.NIBIRU_SANDSTONE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == NibiruBlocks.NIBIRU_ROCK || state.getBlock() == NibiruBlocks.NIBIRU_ORE || state.getBlock() == NibiruBlocks.INFECTED_SANDSTONE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y < 10)
             {

@@ -99,7 +99,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
                     pos = pos.offset(EnumFacing.Plane.HORIZONTAL.random(rand));
                     Block block = world.getBlockState(pos.down()).getBlock();
 
-                    if (world.isAirBlock(pos) && (block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND))
+                    if (world.isAirBlock(pos) && (block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND))
                     {
                         world.setBlockState(pos, this.crop.getDefaultState());
                     }

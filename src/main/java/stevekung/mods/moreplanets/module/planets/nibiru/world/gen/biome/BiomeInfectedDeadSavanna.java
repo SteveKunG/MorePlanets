@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSavannaTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
@@ -22,9 +21,9 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
     public BiomeInfectedDeadSavanna(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
+        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
+        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 20;
         this.getBiomeDecorator().infectedTreesPerChunk = 1;
         this.getBiomeDecorator().philipyPerChunk = 4;
@@ -63,7 +62,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
             {
                 BlockPos newpos = WorldDecorateUtils.getSimplePos(world, pos, rand);
 
-                if (world.getBlockState(newpos).getBlock() == NibiruBlocks.INFECTED_GRASS)
+                if (world.getBlockState(newpos).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK)
                 {
                     new WorldGenInfectedVinesDirt().generate(world, rand, newpos);
                 }
@@ -74,7 +73,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
             int x = rand.nextInt(16) + 8;
             int z = rand.nextInt(16) + 8;
             int y = rand.nextInt(world.getHeight(pos.add(x, 0, z)).getY() + 32);
-            new WorldGenNibiruDoublePlant(BlockNibiruDoublePlant.BlockType.DOUBLE_INFECTED_GRASS).generate(world, rand, pos.add(x, y, z));
+            new WorldGenNibiruDoublePlant(NibiruBlocks.INFECTED_TALL_GRASS).generate(world, rand, pos.add(x, y, z));
         }
         super.decorate(world, rand, pos);
     }

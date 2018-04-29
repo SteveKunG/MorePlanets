@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.blocks;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -37,6 +36,7 @@ import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityProvider, IBlockDescription
 {
@@ -154,7 +154,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                     }
                     else
                     {
-                        player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.bh_storage_not_owner.message")).setStyle(JsonUtils.red()));
+                        player.sendMessage(JsonUtils.create(LangUtils.translate("gui.bh_storage_not_owner.message")).setStyle(JsonUtils.red()));
                     }
                 }
             }

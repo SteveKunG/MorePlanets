@@ -8,7 +8,6 @@ import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -28,6 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.util.dimension.IDarkEnergyProvider;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSource implements IDisableableMachine, ISidedInventory, IConnector, IInventoryDefaults
 {
@@ -211,7 +211,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container.dark_energy_generator.name");
+        return LangUtils.translate("container.dark_energy_generator.name");
     }
 
     @Override

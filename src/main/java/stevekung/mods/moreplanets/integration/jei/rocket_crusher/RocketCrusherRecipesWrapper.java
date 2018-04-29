@@ -5,12 +5,12 @@ import java.util.Arrays;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class RocketCrusherRecipesWrapper implements IRecipeWrapper
 {
@@ -42,7 +42,7 @@ public class RocketCrusherRecipesWrapper implements IRecipeWrapper
 
         if (experience > 0)
         {
-            String experienceString = GCCoreUtil.translateWithFormat("gui.jei.category.smelting.experience", experience);
+            String experienceString = LangUtils.translate("gui.jei.category.smelting.experience", experience);
             FontRenderer fontRendererObj = mc.fontRenderer;
             int stringWidth = fontRendererObj.getStringWidth(experienceString);
             fontRendererObj.drawString(experienceString, recipeWidth + 6 - stringWidth, 8, Color.gray.getRGB());

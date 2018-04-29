@@ -9,7 +9,6 @@ import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.FluidTankGC;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
@@ -43,6 +42,7 @@ import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IInventoryDefaults, ISidedInventory, IFluidHandlerWrapper, IConnector
 {
@@ -103,7 +103,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
 
                 if (player != null)
                 {
-                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.black_hole_disappear.message")).setStyle(JsonUtils.red()));
+                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.black_hole_disappear.message")).setStyle(JsonUtils.red()));
                 }
             }
             this.xpTemp = this.fluidTank.getFluidAmount();

@@ -5,7 +5,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -20,6 +19,7 @@ import net.minecraft.world.storage.loot.LootTable;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implements IInventoryDefaults
 {
@@ -68,7 +68,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container.crashed_probe.name");
+        return LangUtils.translate("container.crashed_probe.name");
     }
 
     @Override

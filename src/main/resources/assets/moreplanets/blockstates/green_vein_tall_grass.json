@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=lower": { "model": "moreplanets:green_vein_tall_grass_lower" },
+        "half=upper": { "model": "moreplanets:green_vein_tall_grass_upper" }
+    }
+}

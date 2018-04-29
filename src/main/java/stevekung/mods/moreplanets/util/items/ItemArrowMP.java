@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.core.TransformerHooks;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,6 +22,7 @@ import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItemRender
 {
@@ -76,7 +76,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
             }
             else
             {
-                list.add(GCCoreUtil.translate("desc.shift_info.name"));
+                list.add(LangUtils.translate("desc.shift_info.name"));
             }
         }
     }

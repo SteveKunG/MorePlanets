@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom": { "model": "moreplanets:chalos_cobblestone_slab_bottom" },
+        "half=top": { "model": "moreplanets:chalos_cobblestone_slab_top" }
+    }
+}

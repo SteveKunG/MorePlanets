@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "moreplanets:nibiru_rock" },
+            { "model": "moreplanets:nibiru_rock_mirrored" },
+            { "model": "moreplanets:nibiru_rock", "y": 180 },
+            { "model": "moreplanets:nibiru_rock_mirrored", "y": 180 }
+        ]
+    }
+}

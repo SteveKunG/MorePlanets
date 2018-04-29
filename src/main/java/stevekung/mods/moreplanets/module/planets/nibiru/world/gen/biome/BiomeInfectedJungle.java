@@ -10,7 +10,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruTallGrass;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.*;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
@@ -21,9 +20,9 @@ public class BiomeInfectedJungle extends BiomeNibiru
     public BiomeInfectedJungle(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_GRASS.getDefaultState();
+        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
+        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 25;
         this.getBiomeDecorator().vealiumVinePerChunk = 4;
         this.getBiomeDecorator().pyoloniaPerChunk = 4;
@@ -48,7 +47,7 @@ public class BiomeInfectedJungle extends BiomeNibiru
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
-        return rand.nextInt(4) == 0 ? new WorldGenFlowersMP(NibiruBlocks.NIBIRU_TALL_GRASS.getDefaultState().withProperty(BlockNibiruTallGrass.VARIANT, BlockNibiruTallGrass.BlockType.INFECTED_FERN)) : new WorldGenFlowersMP(NibiruBlocks.NIBIRU_TALL_GRASS.getDefaultState().withProperty(BlockNibiruTallGrass.VARIANT, BlockNibiruTallGrass.BlockType.INFECTED_TALL_GRASS));
+        return rand.nextInt(4) == 0 ? new WorldGenFlowersMP(NibiruBlocks.INFECTED_FERN.getDefaultState()) : new WorldGenFlowersMP(NibiruBlocks.INFECTED_GRASS.getDefaultState());
     }
 
     @Override

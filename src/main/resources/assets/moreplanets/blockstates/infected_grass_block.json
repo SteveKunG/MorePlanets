@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "snowy=false": [
+            { "model": "moreplanets:infected_grass_block" },
+            { "model": "moreplanets:infected_grass_block", "y": 90 },
+            { "model": "moreplanets:infected_grass_block", "y": 180 },
+            { "model": "moreplanets:infected_grass_block", "y": 270 }
+        ],
+        "snowy=true":  { "model": "moreplanets:infected_grass_block_snowed" }
+    }
+}

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -168,6 +169,12 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
     public TileEntity createTileEntity(World world, IBlockState state)
     {
         return this.type == BlockType.INFECTED_CRYSTALLIZED_ENDER_CORE ? new TileEntityInfectedCrystallizedEnderCore() : new TileEntityNull();
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
+    {
+        return BlockFaceShape.MIDDLE_POLE;
     }
 
     @Override

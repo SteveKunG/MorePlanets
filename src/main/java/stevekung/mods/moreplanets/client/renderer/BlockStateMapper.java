@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.client.renderer;
 
-import stevekung.mods.moreplanets.blocks.decoration.BlockCobblestoneWall;
-import stevekung.mods.moreplanets.blocks.decoration.BlockDungeonBrickWall;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
@@ -46,9 +44,6 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.MULTALIC_CRYSTAL, BlockStateProperty.FACING_ALL);
 
-        ClientRegistryUtils.registerStateMapperSplitVariants(MPBlocks.COBBLESTONE_WALL, BlockCobblestoneWall.VARIANT);
-        ClientRegistryUtils.registerStateMapperSplitVariants(MPBlocks.DUNGEON_BRICK_WALL, BlockDungeonBrickWall.VARIANT);
-
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_MELON_STEM, new StateMapperUtil("stem"));
 
         // CTM Integration
@@ -56,6 +51,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(DionaBlocks.CRASHED_ALIEN_PROBE, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.GLOWING_IRON_BLOCK, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS, new StateMapperCTM());
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_FENCE, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_WEB, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, new StateMapperCTM());

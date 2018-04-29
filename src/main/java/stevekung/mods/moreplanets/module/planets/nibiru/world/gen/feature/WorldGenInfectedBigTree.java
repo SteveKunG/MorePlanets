@@ -314,7 +314,7 @@ public class WorldGenInfectedBigTree extends WorldGenAbstractTree
         IBlockState state = this.world.getBlockState(down);
         Block block = state.getBlock();
 
-        if (block != NibiruBlocks.INFECTED_GRASS && block != NibiruBlocks.INFECTED_DIRT && block != NibiruBlocks.INFECTED_FARMLAND)
+        if (block != NibiruBlocks.INFECTED_GRASS_BLOCK && block != NibiruBlocks.INFECTED_DIRT && block != NibiruBlocks.INFECTED_FARMLAND)
         {
             return false;
         }

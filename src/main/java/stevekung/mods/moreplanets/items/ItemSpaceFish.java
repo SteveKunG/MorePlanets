@@ -2,14 +2,17 @@ package stevekung.mods.moreplanets.items;
 
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ItemFoodVariantsMP;
+import stevekung.mods.moreplanets.util.items.ItemFoodMP;
 
-public class ItemSpaceFish extends ItemFoodVariantsMP
+public class ItemSpaceFish extends ItemFoodMP
 {
-    public ItemSpaceFish(String name)
+    private final ItemType type;
+
+    public ItemSpaceFish(String name, ItemType type)
     {
         super();
         this.setUnlocalizedName(name);
+        this.type = type;
     }
 
     @Override
@@ -19,21 +22,15 @@ public class ItemSpaceFish extends ItemFoodVariantsMP
     }
 
     @Override
-    public String[] getItemVariantsName()
-    {
-        return new String[] { "zelius", "glowing_alien", "cheese" };
-    }
-
-    @Override
     public int getHealAmount(ItemStack itemStack)
     {
-        return ItemType.valuesCached()[itemStack.getItemDamage()].hunger;
+        return this.type.getHunger();
     }
 
     @Override
     public float getSaturationModifier(ItemStack itemStack)
     {
-        return ItemType.valuesCached()[itemStack.getItemDamage()].saturation;
+        return this.type.getSaturation();
     }
 
     public static enum ItemType
@@ -42,9 +39,8 @@ public class ItemSpaceFish extends ItemFoodVariantsMP
         GLOWING_ALIEN_FISH(2, 0.1F),
         CHEESE_FISH(2, 0.1F);
 
-        int hunger;
-        float saturation;
-        private static ItemType[] values = ItemType.values();
+        private int hunger;
+        private float saturation;
 
         ItemType(int hunger, float saturation)
         {
@@ -52,9 +48,14 @@ public class ItemSpaceFish extends ItemFoodVariantsMP
             this.saturation = saturation;
         }
 
-        public static ItemType[] valuesCached()
+        public int getHunger()
         {
-            return ItemType.values;
+            return this.hunger;
+        }
+
+        public float getSaturation()
+        {
+            return this.saturation;
         }
     }
 }

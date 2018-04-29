@@ -76,7 +76,7 @@ public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
                 BlockPos down = pos.down();
                 Block block1 = world.getBlockState(down).getBlock();
 
-                if (block1 == NibiruBlocks.INFECTED_GRASS || block1 == NibiruBlocks.INFECTED_DIRT || block1 == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
+                if (block1 == NibiruBlocks.INFECTED_GRASS_BLOCK || block1 == NibiruBlocks.INFECTED_DIRT || block1 == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
                 {
                     block1.onPlantGrow(world.getBlockState(down), world, down, pos);
                     int k2 = 3;

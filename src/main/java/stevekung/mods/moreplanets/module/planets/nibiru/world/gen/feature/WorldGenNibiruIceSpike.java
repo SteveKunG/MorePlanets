@@ -20,7 +20,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
             pos = pos.down();
         }
 
-        if (world.getBlockState(pos).getBlock() != NibiruBlocks.INFECTED_GRASS)
+        if (world.getBlockState(pos).getBlock() != NibiruBlocks.INFECTED_GRASS_BLOCK)
         {
             return false;
         }
@@ -52,7 +52,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                         {
                             Block block = world.getBlockState(pos.add(i1, k, j1)).getBlock();
 
-                            if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                            if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
                             {
                                 this.setBlockAndNotifyAdequately(world, pos.add(i1, k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
                             }
@@ -61,7 +61,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                             {
                                 block = world.getBlockState(pos.add(i1, -k, j1)).getBlock();
 
-                                if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                                if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
                                 {
                                     this.setBlockAndNotifyAdequately(world, pos.add(i1, -k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
                                 }
@@ -98,7 +98,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                     {
                         Block block1 = world.getBlockState(blockpos).getBlock();
 
-                        if (world.getBlockState(blockpos).getMaterial() != Material.AIR && block1 != NibiruBlocks.INFECTED_GRASS && block1 != NibiruBlocks.INFECTED_DIRT && block1 != NibiruBlocks.INFECTED_ICE && block1 != NibiruBlocks.INFECTED_PACKED_ICE)
+                        if (world.getBlockState(blockpos).getMaterial() != Material.AIR && block1 != NibiruBlocks.INFECTED_GRASS_BLOCK && block1 != NibiruBlocks.INFECTED_DIRT && block1 != NibiruBlocks.INFECTED_ICE && block1 != NibiruBlocks.INFECTED_PACKED_ICE)
                         {
                             break;
                         }

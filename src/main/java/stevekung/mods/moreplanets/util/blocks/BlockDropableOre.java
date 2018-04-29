@@ -28,11 +28,11 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
     {
         if (this.type == BlockType.SETRORIUM_ORE)
         {
-            return DionaItems.DIONA_ITEM;
+            return DionaItems.SETRORIUM_SHARD;
         }
         else if (this.type == BlockType.CHEESE_MILK_ORE)
         {
-            return ChalosItems.CHEESE_FOOD;
+            return ChalosItems.CHEESE_MILK_CURD;
         }
         return Item.getItemFromBlock(this);
     }

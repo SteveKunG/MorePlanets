@@ -11,10 +11,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemArmorDiremsium;
 import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemBreathableDiremsium;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
-import stevekung.mods.moreplanets.util.items.ItemDoorMP;
-import stevekung.mods.moreplanets.util.items.ItemDungeonKeyMP;
+import stevekung.mods.moreplanets.util.items.*;
 import stevekung.mods.moreplanets.util.items.tools.*;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
@@ -22,12 +19,19 @@ import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
 public class ChalosItems
 {
+    public static Item DIREMSIUM_INGOT;
+    public static Item ZYPTORIUM_INGOT;
+    public static Item COMPRESSED_DIREMSIUM;
+    public static Item COMPRESSED_ZYPTORIUM;
+
+    public static Item CHEESE_MILK_CURD;
+    public static Item RAW_CHEESE_BEEF;
+    public static Item COOKED_CHEESE_BEEF;
+    public static Item CHEESE_SPORE_BERRY;
+
     // Base
-    public static Item CHALOS_ITEM;
-    public static Item CHEESE_FOOD;
     public static Item CHEESE_SLIMEBALL;
     public static Item CHALOS_DUNGEON_KEY;
-    public static Item TIER_5_ROCKET_PART;
     public static Item CHEESE_SPORE;
     public static Item CHEESE_SPORE_SEED;
     public static Item CHEESE_SPORE_DOOR;
@@ -52,8 +56,8 @@ public class ChalosItems
     public static Item BREATHABLE_DIREMSIUM_HELMET;
 
     // Material
-    public static ToolMaterial DIREMSIUM_TOOL = EnumHelper.addToolMaterial("DIREMSIUM", 3, 1532, 9.0F, 5.0F, 10);
-    public static ArmorMaterial DIREMSIUM_ARMOR = EnumHelper.addArmorMaterial("DIREMSIUM", "DIREMSIUM", 48, new int[] { 7, 12, 10, 7 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.5F);
+    public static final ToolMaterial DIREMSIUM_TOOL = EnumHelper.addToolMaterial("DIREMSIUM", 3, 1532, 9.0F, 5.0F, 10);
+    public static final ArmorMaterial DIREMSIUM_ARMOR = EnumHelper.addArmorMaterial("DIREMSIUM", "DIREMSIUM", 48, new int[] { 7, 12, 10, 7 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.5F);
 
     public static void init()
     {
@@ -61,10 +65,17 @@ public class ChalosItems
         /**********************INITIAL BASE STUFF**********************/
         /**************************************************************/
 
-        ChalosItems.CHALOS_ITEM = new ItemChalos("chalos_item");
-        ChalosItems.CHEESE_FOOD = new ItemCheeseFood("cheese_food");
+        ChalosItems.DIREMSIUM_INGOT = new ItemBaseMP("diremsium_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
+        ChalosItems.ZYPTORIUM_INGOT = new ItemBaseMP("zyptorium_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
+        ChalosItems.COMPRESSED_DIREMSIUM = new ItemCompressedMetal("compressed_diremsium").setSortCategory(EnumSortCategoryItem.PLATE);
+        ChalosItems.COMPRESSED_ZYPTORIUM = new ItemCompressedMetal("compressed_zyptorium").setSortCategory(EnumSortCategoryItem.PLATE);
+
+        ChalosItems.CHEESE_MILK_CURD = new ItemAllFood("cheese_milk_curd", ItemAllFood.ItemType.CHEESE_MILK_CURD);
+        ChalosItems.RAW_CHEESE_BEEF = new ItemAllFood("raw_cheese_beef", ItemAllFood.ItemType.RAW_CHEESE_BEEF);
+        ChalosItems.COOKED_CHEESE_BEEF = new ItemAllFood("cooked_cheese_beef", ItemAllFood.ItemType.COOKED_CHEESE_BEEF);
+        ChalosItems.CHEESE_SPORE_BERRY = new ItemAllFood("cheese_spore_berry", ItemAllFood.ItemType.CHEESE_SPORE_BERRY);
+
         ChalosItems.CHEESE_SLIMEBALL = new ItemBaseMP("cheese_slimeball");
-        ChalosItems.TIER_5_ROCKET_PART = new ItemBaseMP("tier_5_rocket_part").setSortCategory(EnumSortCategoryItem.HEAVY_PLATE);
         ChalosItems.CHALOS_DUNGEON_KEY = new ItemDungeonKeyMP("chalos_dungeon_key", 5);
         ChalosItems.CHEESE_SPORE = new ItemCheeseSpore("cheese_spore_item");
         ChalosItems.CHEESE_SPORE_SEED = new ItemCheeseSporeSeed("cheese_spore_seed");
@@ -74,11 +85,11 @@ public class ChalosItems
         /**********************INITIAL TOOL STUFF**********************/
         /**************************************************************/
 
-        ChalosItems.DIREMSIUM_SWORD = new ItemSwordMP("diremsium_sword", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2);
-        ChalosItems.DIREMSIUM_SHOVEL = new ItemShovelMP("diremsium_shovel", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2);
-        ChalosItems.DIREMSIUM_PICKAXE = new ItemPickaxeMP("diremsium_pickaxe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2);
-        ChalosItems.DIREMSIUM_AXE = new ItemAxeMP("diremsium_axe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2, EnumToolSpeed.COMMON);
-        ChalosItems.DIREMSIUM_HOE = new ItemHoeMP("diremsium_hoe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.CHALOS_ITEM, 2);
+        ChalosItems.DIREMSIUM_SWORD = new ItemSwordMP("diremsium_sword", ChalosItems.DIREMSIUM_TOOL, ChalosItems.COMPRESSED_DIREMSIUM);
+        ChalosItems.DIREMSIUM_SHOVEL = new ItemShovelMP("diremsium_shovel", ChalosItems.DIREMSIUM_TOOL, ChalosItems.COMPRESSED_DIREMSIUM);
+        ChalosItems.DIREMSIUM_PICKAXE = new ItemPickaxeMP("diremsium_pickaxe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.COMPRESSED_DIREMSIUM);
+        ChalosItems.DIREMSIUM_AXE = new ItemAxeMP("diremsium_axe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.COMPRESSED_DIREMSIUM, EnumToolSpeed.COMMON);
+        ChalosItems.DIREMSIUM_HOE = new ItemHoeMP("diremsium_hoe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.COMPRESSED_DIREMSIUM);
         ChalosItems.CHEESE_SPORE_WOOD_SWORD = new ItemSwordMP("cheese_spore_wood_sword", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
         ChalosItems.CHEESE_SPORE_WOOD_SHOVEL = new ItemShovelMP("cheese_spore_wood_shovel", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
         ChalosItems.CHEESE_SPORE_WOOD_PICKAXE = new ItemPickaxeMP("cheese_spore_wood_pickaxe", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
@@ -99,12 +110,19 @@ public class ChalosItems
         /**********************REGISTER STUFF**************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerItem(ChalosItems.CHALOS_ITEM);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_FOOD);
+        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_INGOT);
+        CommonRegisterHelper.registerItem(ChalosItems.ZYPTORIUM_INGOT);
+        CommonRegisterHelper.registerItem(ChalosItems.COMPRESSED_DIREMSIUM);
+        CommonRegisterHelper.registerItem(ChalosItems.COMPRESSED_ZYPTORIUM);
+
+        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_MILK_CURD);
+        CommonRegisterHelper.registerItem(ChalosItems.RAW_CHEESE_BEEF);
+        CommonRegisterHelper.registerItem(ChalosItems.COOKED_CHEESE_BEEF);
+        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_BERRY);
+
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SLIMEBALL);
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE);
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_SEED);
-        CommonRegisterHelper.registerItem(ChalosItems.TIER_5_ROCKET_PART);
         CommonRegisterHelper.registerItem(ChalosItems.CHALOS_DUNGEON_KEY);
         CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_DOOR);
 

@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.itemblocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -13,6 +12,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemBlockNuclearWasteTank extends ItemBlock
 {
@@ -33,7 +33,7 @@ public class ItemBlockNuclearWasteTank extends ItemBlock
         {
             if (world.isRemote)
             {
-                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
+                ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
             }
             return false;
         }
@@ -41,7 +41,7 @@ public class ItemBlockNuclearWasteTank extends ItemBlock
         {
             if (world.isRemote)
             {
-                ClientUtils.setOverlayMessage(JsonUtils.create(I18n.format("gui.warning.noroom")).setStyle(JsonUtils.red()));
+                ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
             }
             return false;
         }

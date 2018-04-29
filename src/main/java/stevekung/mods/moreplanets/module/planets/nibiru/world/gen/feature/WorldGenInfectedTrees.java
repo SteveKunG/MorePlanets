@@ -73,7 +73,7 @@ public class WorldGenInfectedTrees extends WorldGenAbstractTree
             {
                 IBlockState state = world.getBlockState(pos.down());
 
-                if (state.getBlock() == NibiruBlocks.INFECTED_GRASS || state.getBlock() == NibiruBlocks.INFECTED_DIRT || state.getBlock() == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
+                if (state.getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK || state.getBlock() == NibiruBlocks.INFECTED_DIRT || state.getBlock() == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
                 {
                     state.getBlock().onPlantGrow(state, world, pos.down(), pos);
 

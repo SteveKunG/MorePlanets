@@ -40,6 +40,7 @@ import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IEntityBreathable, ISpaceMob, IEntityMultiPart
 {
@@ -352,7 +353,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
                 this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
             }
 
-            this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_DUNGEON_KEY, 1, this.rand.nextBoolean() ? 1 : 2), 0.5F);
+            this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_DUNGEON_KEY_BLADE), 0.5F);
             this.setDead();
 
             if (this.spawner != null)
@@ -378,7 +379,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
 
                 for (EntityPlayer player : playerWithin)
                 {
-                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
+                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
                 }
                 this.setDead();
                 return;

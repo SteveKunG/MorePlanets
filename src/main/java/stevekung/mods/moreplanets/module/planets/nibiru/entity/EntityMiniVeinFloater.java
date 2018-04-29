@@ -39,6 +39,7 @@ import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss, IEntityBreathable, ISpaceMob
 {
@@ -280,7 +281,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
                 }
             }
 
-            this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_DUNGEON_KEY, 1, this.rand.nextBoolean() ? 1 : 2), 0.5F);
+            this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_DUNGEON_KEY_BOW), 0.5F);
             this.setDead();
 
             if (this.spawner != null)
@@ -306,7 +307,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
 
                 for (EntityPlayer player : playerWithin)
                 {
-                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
+                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
                 }
                 this.setDead();
                 return;

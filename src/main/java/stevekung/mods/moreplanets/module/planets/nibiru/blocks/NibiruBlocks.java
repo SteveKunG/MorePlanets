@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockGrassMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.fluid.FluidHeliumGas;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockInfectedSnow;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockNuclearWasteTank;
@@ -21,15 +22,46 @@ import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
 public class NibiruBlocks
 {
-    public static Block INFECTED_GRASS;
+    public static Block INFECTED_GRASS_BLOCK;
     public static Block INFECTED_DIRT;
+    public static Block INFECTED_COARSE_DIRT;
+
+    public static BlockBushMP INFECTED_GRASS;
+    public static BlockBushMP INFECTED_FERN;
+    public static BlockBushMP GREEN_VEIN_GRASS;
+
+    public static BlockDoublePlantMP INFECTED_ORANGE_ROSE_BUSH;
+    public static BlockDoublePlantMP INFECTED_TALL_GRASS;
+    public static BlockDoublePlantMP INFECTED_LARGE_FERN;
+    public static BlockDoublePlantMP GREEN_VEIN_TALL_GRASS;
+
+    public static Block INFECTED_SANDSTONE;
+    public static Block INFECTED_CHISELED_SANDSTONE;
+    public static Block INFECTED_CUT_SANDSTONE;
+
+    public static BlockCobblestoneDrop NIBIRU_ROCK;
+    public static Block NIBIRU_COBBLESTONE;
+    public static Block NIBIRU_VEIN_COBBLESTONE;
+    public static Block INFECTED_STONE_BRICKS;
+    public static Block INFECTED_VEIN_STONE_BRICKS;
+    public static Block INFECTED_CRACKED_STONE_BRICKS;
+    public static Block INFECTED_CHISELED_STONE_BRICKS;
+    public static Block INFERUMITE_BLOCK;
+    public static Block NIBIRU_DUNGEON_BRICK;
+    public static Block MOSSY_NIBIRU_DUNGEON_BRICK;
+
+    public static Block INFESTED_NIBIRU_ROCK;
+    public static Block INFESTED_NIBIRU_COBBLESTONE;
+    public static Block INFESTED_NIBIRU_VEIN_COBBLESTONE;
+    public static Block INFESTED_INFECTED_STONE_BRICKS;
+    public static Block INFESTED_INFECTED_VEIN_STONE_BRICKS;
+    public static Block INFESTED_INFECTED_CRACKED_STONE_BRICKS;
+    public static Block INFESTED_INFECTED_CHISELED_STONE_BRICKS;
+
     public static Block INFECTED_FARMLAND;
-    public static BlockBushMP NIBIRU_TALL_GRASS;
     public static Block INFECTED_SAND;
     public static BlockBushMP INFECTED_CACTUS;
-    public static Block NIBIRU_BLOCK;
     public static Block NIBIRU_ORE;
-    public static Block NIBIRU_SANDSTONE;
     public static Block INFECTED_WATER_FLUID_BLOCK;
     public static Block NIBIRU_LOG;
     public static Block NIBIRU_PLANKS;
@@ -39,10 +71,8 @@ public class NibiruBlocks
     public static BlockBushMP SPORELILY;
     public static BlockBushMP NIBIRU_FLOWER;
     public static Block NIBIRU_CRAFTING_TABLE;
-    public static Block NIBIRU_SILVERFISH_STONE;
     public static Block NIBIRU_BOOKSHELF;
     public static Block NIBIRU_FENCE;
-    public static BlockNibiruDoublePlant NIBIRU_DOUBLE_PLANT;
     public static Block INFECTED_FENCE_GATE;
     public static Block INFECTED_DEAD_OAK_FENCE_GATE;
     public static BlockDoorMP INFECTED_DOOR_BLOCK;
@@ -56,7 +86,7 @@ public class NibiruBlocks
     public static Block INFECTED_PACKED_ICE;
     public static Block INFECTED_SNOW;
     public static Block INFECTED_SNOW_LAYER;
-    public static Block GREEN_VEIN_GRASS;
+    public static Block GREEN_VEIN_GRASS_BLOCK;
     public static Block INFECTED_MELON_BLOCK;
     public static BlockBushMP INFECTED_WHEAT_BLOCK;
     public static Block INFECTED_GRAVEL;
@@ -124,15 +154,52 @@ public class NibiruBlocks
         /*************************INITIAL STUFF************************/
         /**************************************************************/
 
-        NibiruBlocks.INFECTED_GRASS = new BlockInfectedGrass("infected_grass");
-        NibiruBlocks.INFECTED_DIRT = new BlockInfectedDirt("infected_dirt");
+        NibiruBlocks.INFECTED_GRASS_BLOCK = new BlockInfectedGrassBlock("infected_grass_block");
+        NibiruBlocks.INFECTED_DIRT = new BlockTerraformable("infected_dirt", Material.GROUND).setSoundType(SoundType.GROUND).setHardness(0.55F);
+        NibiruBlocks.INFECTED_COARSE_DIRT = new BlockTerraformable("infected_coarse_dirt", Material.GROUND).setSoundType(SoundType.GROUND).setHardness(0.55F);
+
+        NibiruBlocks.INFECTED_GRASS = new BlockGrassMP("infected_grass", BlockGrassMP.BlockType.INFECTED_GRASS);
+        NibiruBlocks.INFECTED_FERN = new BlockGrassMP("infected_fern", BlockGrassMP.BlockType.INFECTED_FERN);
+        NibiruBlocks.GREEN_VEIN_GRASS = new BlockGrassMP("green_vein_grass", BlockGrassMP.BlockType.GREEN_VEIN_GRASS);
+
+        NibiruBlocks.INFECTED_ORANGE_ROSE_BUSH = new BlockDoublePlantMP("infected_orange_rose_bush", BlockDoublePlantMP.BlockType.INFECTED_ORANGE_ROSE_BUSH);
+        NibiruBlocks.INFECTED_TALL_GRASS = new BlockDoublePlantMP("infected_tall_grass", BlockDoublePlantMP.BlockType.INFECTED_TALL_GRASS);
+        NibiruBlocks.INFECTED_LARGE_FERN = new BlockDoublePlantMP("infected_large_fern", BlockDoublePlantMP.BlockType.INFECTED_LARGE_FERN);
+        NibiruBlocks.GREEN_VEIN_TALL_GRASS = new BlockDoublePlantMP("green_vein_tall_grass", BlockDoublePlantMP.BlockType.GREEN_VEIN_TALL_GRASS);
+
+        NibiruBlocks.INFECTED_SANDSTONE = new BlockBaseMP("infected_sandstone", Material.ROCK).setHardness(0.8F);
+        NibiruBlocks.INFECTED_CHISELED_SANDSTONE = new BlockBaseMP("infected_chiseled_sandstone", Material.ROCK).setHardness(0.8F);
+        NibiruBlocks.INFECTED_CUT_SANDSTONE = new BlockBaseMP("infected_cut_sandstone", Material.ROCK).setHardness(0.8F);
+
+        NibiruBlocks.NIBIRU_ROCK = new BlockCobblestoneDrop("nibiru_rock").setHardness(1.5F);
+        NibiruBlocks.NIBIRU_COBBLESTONE = new BlockBaseMP("nibiru_cobblestone", Material.ROCK).setHardness(2.0F);
+        NibiruBlocks.NIBIRU_VEIN_COBBLESTONE = new BlockBaseMP("nibiru_vein_cobblestone", Material.ROCK).setHardness(2.0F);
+        NibiruBlocks.INFECTED_STONE_BRICKS = new BlockBaseMP("infected_stone_bricks", Material.ROCK).setHardness(1.5F);
+        NibiruBlocks.INFECTED_VEIN_STONE_BRICKS = new BlockBaseMP("infected_vein_stone_bricks", Material.ROCK).setHardness(1.5F);
+        NibiruBlocks.INFECTED_CRACKED_STONE_BRICKS = new BlockBaseMP("infected_cracked_stone_bricks", Material.ROCK).setHardness(1.5F);
+        NibiruBlocks.INFECTED_CHISELED_STONE_BRICKS = new BlockBaseMP("infected_chiseled_stone_bricks", Material.ROCK).setHardness(1.5F);
+        //        NibiruBlocks.ZYPTORIUM_ORE = new BlockMineableOre("zyptorium_ore").setHardness(3.0F);
+        //        NibiruBlocks.CHEESE_MILK_ORE = new BlockDropableOre("cheese_milk_ore", BlockDropableOre.BlockType.CHEESE_MILK_ORE);
+        //        NibiruBlocks.CHALOS_IRON_ORE = new BlockMineableOre("chalos_iron_ore").setHardness(3.0F);
+        //        NibiruBlocks.CHALOS_TIN_ORE = new BlockMineableOre("chalos_tin_ore").setHardness(3.0F);
+        //        NibiruBlocks.CHALOS_COPPER_ORE = new BlockMineableOre("chalos_copper_ore").setHardness(3.0F);
+        //        NibiruBlocks.CHALOS_ALUMINUM_ORE = new BlockMineableOre("chalos_aluminum_ore").setHardness(3.0F);
+        NibiruBlocks.INFERUMITE_BLOCK = new BlockCompressedMetal("inferumite_block").setSoundType(SoundType.METAL).setHardness(5.0F);
+        NibiruBlocks.NIBIRU_DUNGEON_BRICK = new BlockBaseMP("nibiru_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
+        NibiruBlocks.MOSSY_NIBIRU_DUNGEON_BRICK = new BlockBaseMP("mossy_nibiru_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
+
+        NibiruBlocks.INFESTED_NIBIRU_ROCK = new BlockNibiruInfested("infested_nibiru_rock", BlockNibiruInfested.BlockType.NIBIRU_ROCK);
+        NibiruBlocks.INFESTED_NIBIRU_COBBLESTONE = new BlockNibiruInfested("infested_nibiru_cobblestone", BlockNibiruInfested.BlockType.NIBIRU_COBBLESTONE);
+        NibiruBlocks.INFESTED_NIBIRU_VEIN_COBBLESTONE = new BlockNibiruInfested("infested_nibiru_vein_cobblestone", BlockNibiruInfested.BlockType.NIBIRU_VEIN_COBBLESTONE);
+        NibiruBlocks.INFESTED_INFECTED_STONE_BRICKS = new BlockNibiruInfested("infested_infected_stone_bricks", BlockNibiruInfested.BlockType.INFECTED_STONE_BRICKS);
+        NibiruBlocks.INFESTED_INFECTED_VEIN_STONE_BRICKS = new BlockNibiruInfested("infested_infected_vein_stone_bricks", BlockNibiruInfested.BlockType.INFECTED_VEIN_STONE_BRICKS);
+        NibiruBlocks.INFESTED_INFECTED_CRACKED_STONE_BRICKS = new BlockNibiruInfested("infested_infected_cracked_stone_bricks", BlockNibiruInfested.BlockType.INFECTED_CRACKED_STONE_BRICKS);
+        NibiruBlocks.INFESTED_INFECTED_CHISELED_STONE_BRICKS = new BlockNibiruInfested("infested_infected_chiseled_stone_bricks", BlockNibiruInfested.BlockType.INFECTED_CHISELED_STONE_BRICKS);
+
         NibiruBlocks.INFECTED_FARMLAND = new BlockInfectedFarmland("infected_farmland");
         NibiruBlocks.INFECTED_SAND = new BlockFallingMP("infected_sand").setSoundType(SoundType.SAND).setHardness(0.5F);
-        NibiruBlocks.NIBIRU_TALL_GRASS = new BlockNibiruTallGrass("nibiru_tall_grass");
         NibiruBlocks.INFECTED_CACTUS = new BlockInfectedCactus("infected_cactus");
-        NibiruBlocks.NIBIRU_BLOCK = new BlockNibiru("nibiru_block");
         NibiruBlocks.NIBIRU_ORE = new BlockNibiruOre("nibiru_ore");
-        NibiruBlocks.NIBIRU_SANDSTONE = new BlockNibiruSandstone("nibiru_sandstone");
         NibiruBlocks.NIBIRU_LOG = new BlockNibiruLog("nibiru_log");
         NibiruBlocks.NIBIRU_PLANKS = new BlockNibiruPlanks("nibiru_planks");
         NibiruBlocks.NIBIRU_LEAVES = new BlockNibiruLeaves("nibiru_leaves");
@@ -141,7 +208,6 @@ public class NibiruBlocks
         NibiruBlocks.SPORELILY = new BlockSporelily("sporelily");
         NibiruBlocks.NIBIRU_FLOWER = new BlockNibiruFlower("nibiru_flower");
         NibiruBlocks.NIBIRU_CRAFTING_TABLE = new BlockNibiruCraftingTable("nibiru_crafting_table");
-        NibiruBlocks.NIBIRU_SILVERFISH_STONE = new BlockNibiruSilverfish("nibiru_silverfish_stone");
         NibiruBlocks.NIBIRU_BOOKSHELF = new BlockNibiruBookshelf("nibiru_bookshelf");
         NibiruBlocks.NIBIRU_FENCE = new BlockNibiruFence("nibiru_fence");
         NibiruBlocks.INFECTED_FENCE_GATE = new BlockFenceGateMP("infected_fence_gate");
@@ -149,7 +215,6 @@ public class NibiruBlocks
         NibiruBlocks.INFECTED_DOOR_BLOCK = new BlockDoorMP("infected_door_block");
         NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK = new BlockDoorMP("infected_dead_oak_door_block");
         NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK = new BlockDoorMP("alien_berry_oak_door_block");
-        NibiruBlocks.NIBIRU_DOUBLE_PLANT = new BlockNibiruDoublePlant("nibiru_double_plant");
         NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS = new BlockStairsMP("nibiru_cobblestone_stairs", EnumStairsType.COBBLESTONE);
         NibiruBlocks.NIBIRU_STONE_BRICKS_STAIRS = new BlockStairsMP("nibiru_stone_bricks_stairs", EnumStairsType.STONE_BRICK);
         NibiruBlocks.NIBIRU_ANCIENT_CHEST = new BlockNibiruAncientChest("nibiru_ancient_chest");
@@ -158,7 +223,7 @@ public class NibiruBlocks
         NibiruBlocks.INFECTED_ICE = new BlockInfectedIce("infected_ice");
         NibiruBlocks.INFECTED_PACKED_ICE = new BlockInfectedPackedIce("infected_packed_ice");
         NibiruBlocks.INFECTED_SNOW_LAYER = new BlockSnowLayerMP("infected_snow_layer", NibiruItems.INFECTED_SNOWBALL, 0);
-        NibiruBlocks.GREEN_VEIN_GRASS = new BlockGreenVeinGrass("green_vein_grass");
+        NibiruBlocks.GREEN_VEIN_GRASS_BLOCK = new BlockGreenVeinGrassBlock("green_vein_grass_block");
         NibiruBlocks.INFECTED_MELON_BLOCK = new BlockInfectedMelon("infected_melon_block");
         NibiruBlocks.INFECTED_WHEAT_BLOCK = new BlockInfectedWheatCrops("infected_wheat_block");
         NibiruBlocks.INFECTED_GRAVEL = new BlockInfectedGravel("infected_gravel");
@@ -229,15 +294,46 @@ public class NibiruBlocks
         /************************REGISTER STUFF************************/
         /**************************************************************/
 
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_GRASS_BLOCK);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DIRT);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_COARSE_DIRT);
+
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_GRASS);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DIRT, ItemBlockMultiVariant::new);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_FERN);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.GREEN_VEIN_GRASS);
+
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_ORANGE_ROSE_BUSH);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_TALL_GRASS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_LARGE_FERN);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.GREEN_VEIN_TALL_GRASS);
+
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SANDSTONE);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CHISELED_SANDSTONE);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CUT_SANDSTONE);
+
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_ROCK);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_COBBLESTONE);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_STONE_BRICKS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_VEIN_STONE_BRICKS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CRACKED_STONE_BRICKS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CHISELED_STONE_BRICKS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFERUMITE_BLOCK);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_DUNGEON_BRICK);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.MOSSY_NIBIRU_DUNGEON_BRICK);
+
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFESTED_NIBIRU_ROCK);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFESTED_NIBIRU_COBBLESTONE);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFESTED_NIBIRU_VEIN_COBBLESTONE);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFESTED_INFECTED_STONE_BRICKS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFESTED_INFECTED_VEIN_STONE_BRICKS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFESTED_INFECTED_CRACKED_STONE_BRICKS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.INFESTED_INFECTED_CHISELED_STONE_BRICKS);
+
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_FARMLAND);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_TALL_GRASS, ItemBlockMultiFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SAND);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_CACTUS, ItemBlockFlower::new);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_BLOCK, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_ORE, ItemBlockMultiVariant::new);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SANDSTONE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_LOG, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_PLANKS, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_LEAVES, ItemBlockMultiVariantLeaves::new);
@@ -247,7 +343,6 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.SPORELILY, ItemBlockSporelily::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_FLOWER, ItemBlockMultiFlower::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_CRAFTING_TABLE, ItemBlockMultiVariant::new);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_SILVERFISH_STONE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_BOOKSHELF, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_FENCE, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_FENCE_GATE);
@@ -255,7 +350,6 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DOOR_BLOCK, null);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK, null);
         CommonRegisterHelper.registerBlock(NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, null);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_DOUBLE_PLANT, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_STONE_BRICKS_STAIRS);
         CommonRegisterHelper.registerBlock(NibiruBlocks.NIBIRU_ANCIENT_CHEST);
@@ -264,7 +358,7 @@ public class NibiruBlocks
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_ICE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_PACKED_ICE);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_SNOW_LAYER, ItemBlockInfectedSnow::new);
-        CommonRegisterHelper.registerBlock(NibiruBlocks.GREEN_VEIN_GRASS);
+        CommonRegisterHelper.registerBlock(NibiruBlocks.GREEN_VEIN_GRASS_BLOCK);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_MELON_BLOCK);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_WHEAT_BLOCK, null);
         CommonRegisterHelper.registerBlock(NibiruBlocks.INFECTED_GRAVEL);
@@ -325,19 +419,21 @@ public class NibiruBlocks
         /**********************HARVEST LEVEL STUFF*********************/
         /**************************************************************/
 
-        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_GRASS, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_GRASS_BLOCK, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_COARSE_DIRT, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_FARMLAND, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_SAND, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_SNOW, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_SNOW_LAYER, EnumHarvestLevel.SHOVEL, 0);
-        BlockUtils.setBlockHarvestLevel(NibiruBlocks.GREEN_VEIN_GRASS, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.GREEN_VEIN_GRASS_BLOCK, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_GRAVEL, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_CLAY, EnumHarvestLevel.SHOVEL, 0);
-        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.PURIFY_GRAVEL, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_GRASS_PATH, EnumHarvestLevel.SHOVEL, 0);
-        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SANDSTONE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_SANDSTONE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_CHISELED_SANDSTONE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_CUT_SANDSTONE, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_SANDSTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
@@ -388,17 +484,16 @@ public class NibiruBlocks
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(NibiruBlocks.HUGE_TERRASHROOM_BLOCK, EnumHarvestLevel.AXE, 0);
 
-        for (int i = 0; i < BlockNibiru.BlockType.valuesCached().length; i++)
-        {
-            if (i >= 7)
-            {
-                BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BLOCK, EnumHarvestLevel.PICKAXE, 1, i);
-            }
-            else
-            {
-                BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_BLOCK, EnumHarvestLevel.PICKAXE, 0, i);
-            }
-        }
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_ROCK, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_COBBLESTONE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_STONE_BRICKS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_VEIN_STONE_BRICKS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_CRACKED_STONE_BRICKS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFECTED_CHISELED_STONE_BRICKS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.INFERUMITE_BLOCK, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.NIBIRU_DUNGEON_BRICK, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(NibiruBlocks.MOSSY_NIBIRU_DUNGEON_BRICK, EnumHarvestLevel.PICKAXE, 0);
 
         for (int i = 0; i < BlockNibiruOre.BlockType.valuesCached().length; i++)
         {
@@ -420,7 +515,9 @@ public class NibiruBlocks
         /************************FIRE BURN STUFF***********************/
         /**************************************************************/
 
-        BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_TALL_GRASS, 60, 100);
+        BlockUtils.setFireBurn(NibiruBlocks.INFECTED_GRASS, 60, 100);
+        BlockUtils.setFireBurn(NibiruBlocks.INFECTED_FERN, 60, 100);
+        BlockUtils.setFireBurn(NibiruBlocks.GREEN_VEIN_GRASS, 60, 100);
         BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_SAPLING, 60, 100);
         BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_FLOWER, 60, 100);
         BlockUtils.setFireBurn(NibiruBlocks.NIBIRU_LOG, 5, 20);
@@ -435,5 +532,7 @@ public class NibiruBlocks
         BlockUtils.setFireBurn(NibiruBlocks.INFECTED_DEAD_OAK_STAIRS, 5, 20);
         BlockUtils.setFireBurn(NibiruBlocks.ALIEN_BERRY_OAK_STAIRS, 5, 20);
         BlockUtils.setFireBurn(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, 5, 20);
+
+        NibiruBlocks.NIBIRU_ROCK.setDrop(NibiruBlocks.NIBIRU_COBBLESTONE);
     }
 }

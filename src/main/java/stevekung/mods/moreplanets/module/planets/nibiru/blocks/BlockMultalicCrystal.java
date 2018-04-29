@@ -116,13 +116,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return NibiruItems.NIBIRU_ITEM;
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return 1;
+        return NibiruItems.MULTALIC_CRYSTAL_PIECES;
     }
 
     @Override

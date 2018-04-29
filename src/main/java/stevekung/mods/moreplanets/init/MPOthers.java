@@ -43,13 +43,14 @@ public class MPOthers
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(ChalosBlocks.CHEESE_COARSE_DIRT);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(ChalosBlocks.CHEESE_SLIME_BLOCK);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(ChalosBlocks.CHEESE_MILK_CAKE);
-        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_GRASS);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_GRASS_BLOCK);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_DIRT);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_COARSE_DIRT);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_CLAY);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_GRAVEL);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_SNOW);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_SNOW_LAYER);
-        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.GREEN_VEIN_GRASS);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.GREEN_VEIN_GRASS_BLOCK);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_MELON_BLOCK);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_SAND);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_CACTUS);

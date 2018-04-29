@@ -7,7 +7,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.*;
+import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruFlower;
+import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruSeaweed;
+import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.*;
 import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
@@ -38,7 +40,7 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
 
         for (i = 0; i < this.infectedTallGrassPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.NIBIRU_TALL_GRASS.getDefaultState().withProperty(BlockNibiruTallGrass.VARIANT, BlockNibiruTallGrass.BlockType.INFECTED_TALL_GRASS)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.INFECTED_GRASS.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.pureHurbPerChunk; ++i)
         {
@@ -86,7 +88,7 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
         }
         for (i = 0; i < this.greenVeinTallGrassPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.NIBIRU_TALL_GRASS.getDefaultState().withProperty(BlockNibiruTallGrass.VARIANT, BlockNibiruTallGrass.BlockType.GREEN_VEIN_TALL_GRASS)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.waterlilyPerChunk; ++i)
         {
@@ -172,7 +174,7 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
                 {
                     int y = rand.nextInt(world.getHeight(this.chunkPos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)).getY() + 32);
 
-                    if (new WorldGenNibiruDoublePlant(BlockNibiruDoublePlant.BlockType.INFECTED_ORANGE_ROSE_BUSH).generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
+                    if (new WorldGenNibiruDoublePlant(NibiruBlocks.INFECTED_ORANGE_ROSE_BUSH).generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
                     {
                         break;
                     }

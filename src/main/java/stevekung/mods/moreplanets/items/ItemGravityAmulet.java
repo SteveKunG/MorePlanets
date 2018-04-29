@@ -59,12 +59,6 @@ public class ItemGravityAmulet extends ItemBaseMP implements IBauble
         }
     }
 
-    @Override
-    public String getName()
-    {
-        return "gravity_amulet";
-    }
-
     private void updateMovement(EntityPlayerMP player, boolean hasItem)
     {
         if (player.isSpectator())

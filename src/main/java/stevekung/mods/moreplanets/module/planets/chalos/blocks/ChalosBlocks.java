@@ -92,7 +92,7 @@ public class ChalosBlocks
         ChalosBlocks.CHEESE_SPORE = new BlockCheeseSpore("cheese_spore_block");
         ChalosBlocks.CHEESE_SPORE_STEM = new BlockLogMP("cheese_spore_stem");
         ChalosBlocks.CHEESE_SPORE_PLANKS = new BlockBaseMP("cheese_spore_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
-        ChalosBlocks.CHEESE_GRASS = new BlockCheeseGrass("cheese_grass");
+        ChalosBlocks.CHEESE_GRASS = new BlockGrassMP("cheese_grass", BlockGrassMP.BlockType.CHEESE_GRASS);
         ChalosBlocks.CHEESE_SPORE_BERRY_CROPS = new BlockCheeseSporeBerryCrops("cheese_spore_berry_crops");
         ChalosBlocks.CHEESE_TALL_GRASS = new BlockDoublePlantMP("cheese_tall_grass", BlockDoublePlantMP.BlockType.CHEESE_TALL_GRASS);
         ChalosBlocks.CHEESE_SPORE_CRAFTING_TABLE = new BlockCraftingTableMP("cheese_spore_crafting_table");

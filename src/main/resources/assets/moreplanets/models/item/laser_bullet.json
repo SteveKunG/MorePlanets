@@ -1,10 +1,6 @@
 {
-    "elements": [
-        {   "from": [ 0, 0, 0 ],
-            "to": [ 0, 0, 0 ],
-            "faces": {
-                "down":  { "texture": "null" }
-            }
-        }
-    ]
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "moreplanets:items/normal_laser_bullet"
+    }
 }

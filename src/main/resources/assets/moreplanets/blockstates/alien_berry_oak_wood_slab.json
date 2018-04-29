@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom": { "model": "moreplanets:alien_berry_oak_wood_slab_bottom" },
+        "half=top": { "model": "moreplanets:alien_berry_oak_wood_slab_top" }
+    }
+}

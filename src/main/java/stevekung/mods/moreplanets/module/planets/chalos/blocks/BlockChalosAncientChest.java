@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
 import java.util.Iterator;
 
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +15,7 @@ import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosAncientChest;
 import stevekung.mods.moreplanets.util.blocks.BlockAncientChestMP;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlockChalosAncientChest extends BlockAncientChestMP
 {
@@ -94,11 +94,11 @@ public class BlockChalosAncientChest extends BlockAncientChestMP
                         {
                             if (enumfacing != EnumFacing.WEST && enumfacing != EnumFacing.NORTH)
                             {
-                                object = new InventoryLargeChest(GCCoreUtil.translate("container.chalos.ancientchest.name"), (ILockableContainer)object, (TileEntityChalosAncientChest)tileentity1);
+                                object = new InventoryLargeChest(LangUtils.translate("container.chalos.ancientchest.name"), (ILockableContainer)object, (TileEntityChalosAncientChest)tileentity1);
                             }
                             else
                             {
-                                object = new InventoryLargeChest(GCCoreUtil.translate("container.chalos.ancientchest.name"), (TileEntityChalosAncientChest)tileentity1, (ILockableContainer)object);
+                                object = new InventoryLargeChest(LangUtils.translate("container.chalos.ancientchest.name"), (TileEntityChalosAncientChest)tileentity1, (ILockableContainer)object);
                             }
                         }
                     }

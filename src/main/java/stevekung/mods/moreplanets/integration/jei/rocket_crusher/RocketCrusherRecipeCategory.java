@@ -4,12 +4,12 @@ import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class RocketCrusherRecipeCategory implements IRecipeCategory
 {
@@ -37,7 +37,7 @@ public class RocketCrusherRecipeCategory implements IRecipeCategory
     @Override
     public String getTitle()
     {
-        return GCCoreUtil.translate("tile.rocket_crusher.name");
+        return LangUtils.translate("tile.rocket_crusher.name");
     }
 
     @Override

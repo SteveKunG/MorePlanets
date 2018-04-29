@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemSpaceWarperCore extends ItemBaseMP
 {
@@ -50,17 +51,17 @@ public class ItemSpaceWarperCore extends ItemBaseMP
                         itemStack.getTagCompound().setInteger("Z", MathHelper.floor(player.posZ));
                         itemStack.getTagCompound().setFloat("Pitch", player.rotationPitch);
                         itemStack.getTagCompound().setFloat("Yaw", player.rotationYaw);
-                        player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.warp_core_data_add.message")));
+                        player.sendMessage(JsonUtils.create(LangUtils.translate("gui.warp_core_data_add.message")));
                         return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
                     }
                     else
                     {
-                        player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.warp_core_data_add_fail.message")));
+                        player.sendMessage(JsonUtils.create(LangUtils.translate("gui.warp_core_data_add_fail.message")));
                     }
                 }
                 else
                 {
-                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.space_dimension_only.message")).setStyle(JsonUtils.red()));
+                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.space_dimension_only.message")).setStyle(JsonUtils.red()));
                 }
             }
         }
@@ -81,11 +82,5 @@ public class ItemSpaceWarperCore extends ItemBaseMP
             list.add("Dimension ID: " + itemStack.getTagCompound().getInteger("DimensionID"));
             list.add("Dimension Name: " + WorldUtil.getProviderForDimensionClient(itemStack.getTagCompound().getInteger("DimensionID")).getDimensionType().getName());
         }
-    }
-
-    @Override
-    public String getName()
-    {
-        return "space_warper_core";
     }
 }

@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruFlower;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityTerrastoneGolem;
@@ -27,9 +26,9 @@ public class BiomeGreenVein extends BiomeNibiru
     public BiomeGreenVein(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState();
+        this.topBlock = NibiruBlocks.GREEN_VEIN_GRASS_BLOCK.getDefaultState();
         this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_BLOCK.getDefaultState();
+        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
         this.spawnableCreatureList.add(new SpawnListEntry(EntityTerrastoneGolem.class, 8, 2, 4));
         this.getBiomeDecorator().pureHurbPerChunk = -999;
         this.getBiomeDecorator().terrapuffHurbPerChunk = 4;
@@ -62,7 +61,7 @@ public class BiomeGreenVein extends BiomeNibiru
                 int j = rand.nextInt(16) + 8;
                 int k = rand.nextInt(16) + 8;
                 int l = rand.nextInt(world.getHeight(pos.add(j, 0, k)).getY() + 32);
-                new WorldGenNibiruDoublePlant(BlockNibiruDoublePlant.BlockType.DOUBLE_GREEN_VEIN_GRASS).generate(world, rand, pos.add(j, l, k));
+                new WorldGenNibiruDoublePlant(NibiruBlocks.GREEN_VEIN_TALL_GRASS).generate(world, rand, pos.add(j, l, k));
             }
         }
         if (rand.nextInt(15) == 0)

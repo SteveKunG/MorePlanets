@@ -48,10 +48,4 @@ public class ItemDyeMP extends ItemBaseMP
             return false;
         }
     }
-
-    @Override
-    public String getName()
-    {
-        return "dye_mp";
-    }
 }

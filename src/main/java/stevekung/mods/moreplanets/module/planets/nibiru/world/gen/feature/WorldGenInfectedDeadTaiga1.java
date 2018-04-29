@@ -72,7 +72,7 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
                 BlockPos down = pos.down();
                 Block block = world.getBlockState(down).getBlock();
 
-                if (block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
+                if (block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
                 {
                     block.onPlantGrow(world.getBlockState(down), world, down, pos);
                     int k2 = 0;

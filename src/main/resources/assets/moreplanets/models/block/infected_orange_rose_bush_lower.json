@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "moreplanets:blocks/infected_orange_rose_bush_lower"
+    }
+}

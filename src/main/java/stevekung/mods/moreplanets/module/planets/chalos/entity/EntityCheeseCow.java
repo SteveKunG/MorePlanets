@@ -41,7 +41,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-        this.tasks.addTask(3, new EntityAITemptMP(this, 1.25D, false, new ItemStack(ChalosItems.CHEESE_FOOD, 1, 0)));
+        this.tasks.addTask(3, new EntityAITemptMP(this, 1.25D, false, new ItemStack(ChalosItems.CHEESE_MILK_CURD)));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -77,7 +77,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return itemStack.getItem() == ChalosItems.CHEESE_FOOD && itemStack.getItemDamage() == 0;
+        return itemStack.getItem() == ChalosItems.CHEESE_MILK_CURD;
     }
 
     @Override

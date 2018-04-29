@@ -46,7 +46,7 @@ public class WorldGenNibiruSand extends WorldGenerator
                             BlockPos blockpos = new BlockPos(k, k1, l);
                             Block block = world.getBlockState(blockpos).getBlock();
 
-                            if (block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_GRASS)
+                            if (block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_GRASS_BLOCK)
                             {
                                 world.setBlockState(blockpos, this.block, 2);
                             }

@@ -1,16 +1,25 @@
 package stevekung.mods.moreplanets.items;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.api.item.ElectricItemHelper;
-import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
+import micdoodle8.mods.galacticraft.api.item.IItemElectric;
+import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagDouble;
+import net.minecraft.nbt.NBTTagFloat;
 import net.minecraft.util.*;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -23,13 +32,19 @@ import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.util.items.ISingleItemRender;
 import stevekung.mods.moreplanets.util.items.ISortableItem;
+import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 
-public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISingleItemRender
+public class ItemLaserGun extends ItemBaseMP implements ISortableItem, ISingleItemRender, IItemElectric
 {
+    private float transferMax = 200.0F;
+    private static final int DAMAGE_RANGE = 100;
+
     public ItemLaserGun(String name)
     {
         super();
         this.setMaxStackSize(1);
+        this.setMaxDamage(DAMAGE_RANGE);
+        this.setNoRepair();
         this.setUnlocalizedName(name);
 
         this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
@@ -130,13 +145,11 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
                 {
                     if (!player.inventory.mainInventory.get(i).isEmpty() && player.inventory.mainInventory.get(i).getItem() == bulletStack.getItem())
                     {
-                        int meta = player.inventory.mainInventory.get(i).getItemDamage();
-
-                        if (meta == 0)
+                        if (bulletStack.getItem() == MPItems.LASER_BULLET)
                         {
                             laser.setLaserType(EnumLaserType.NORMAL);
                         }
-                        if (meta == 1)
+                        if (bulletStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET)
                         {
                             laser.setLaserType(EnumLaserType.INFECTED_CRYSTALLIZED);
                         }
@@ -186,15 +199,123 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
     }
 
     @Override
+    public float recharge(ItemStack itemStack, float energy, boolean doRecharge)
+    {
+        float rejectedElectricity = Math.max(this.getElectricityStored(itemStack) + energy - this.getMaxElectricityStored(itemStack), 0);
+        float energyToReceive = energy - rejectedElectricity;
+
+        if (energyToReceive > this.transferMax)
+        {
+            rejectedElectricity += energyToReceive - this.transferMax;
+            energyToReceive = this.transferMax;
+        }
+        if (doRecharge)
+        {
+            this.setElectricity(itemStack, this.getElectricityStored(itemStack) + energyToReceive);
+        }
+        return energyToReceive;
+    }
+
+    @Override
+    public float discharge(ItemStack itemStack, float energy, boolean doDischarge)
+    {
+        float thisEnergy = this.getElectricityStored(itemStack);
+        float energyToTransfer = Math.min(Math.min(thisEnergy, energy), this.transferMax);
+
+        if (doDischarge)
+        {
+            this.setElectricity(itemStack, thisEnergy - energyToTransfer);
+        }
+        return energyToTransfer;
+    }
+
+    @Override
+    public float getElectricityStored(ItemStack itemStack)
+    {
+        if (itemStack.getTagCompound() == null)
+        {
+            itemStack.setTagCompound(new NBTTagCompound());
+        }
+
+        float energyStored = 0.0F;
+
+        if (itemStack.getTagCompound().hasKey("electricity"))
+        {
+            NBTBase base = itemStack.getTagCompound().getTag("electricity");
+
+            if (base instanceof NBTTagDouble)
+            {
+                energyStored = ((NBTTagDouble) base).getFloat();
+            }
+            else if (base instanceof NBTTagFloat)
+            {
+                energyStored = ((NBTTagFloat) base).getFloat();
+            }
+        }
+        else
+        {
+            if (itemStack.getItemDamage() == DAMAGE_RANGE)
+            {
+                return 0F;
+            }
+            energyStored = this.getMaxElectricityStored(itemStack) * (DAMAGE_RANGE - itemStack.getItemDamage()) / DAMAGE_RANGE;
+            itemStack.getTagCompound().setFloat("electricity", energyStored);
+        }
+        itemStack.setItemDamage(DAMAGE_RANGE - (int) (energyStored / this.getMaxElectricityStored(itemStack) * DAMAGE_RANGE));
+        return energyStored;
+    }
+
+    @Override
+    public void setElectricity(ItemStack itemStack, float joules)
+    {
+        if (itemStack.getTagCompound() == null)
+        {
+            itemStack.setTagCompound(new NBTTagCompound());
+        }
+
+        float electricityStored = Math.max(Math.min(joules, this.getMaxElectricityStored(itemStack)), 0);
+
+        if (joules > 0F || itemStack.getTagCompound().hasKey("electricity"))
+        {
+            itemStack.getTagCompound().setFloat("electricity", electricityStored);
+        }
+        itemStack.setItemDamage(DAMAGE_RANGE - (int) (electricityStored / this.getMaxElectricityStored(itemStack) * DAMAGE_RANGE));
+    }
+
+    @Override
+    public float getTransfer(ItemStack itemStack)
+    {
+        return Math.min(this.transferMax, this.getMaxElectricityStored(itemStack) - this.getElectricityStored(itemStack));
+    }
+
+    @Override
+    public int getTierGC(ItemStack itemStack)
+    {
+        return 1;
+    }
+
+    @Override
     public EnumSortCategoryItem getItemCategory(int meta)
     {
         return EnumSortCategoryItem.OTHER_TOOL;
     }
 
     @Override
-    public String getName()
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemStack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
     {
-        return "laser_gun";
+        TextFormatting color = TextFormatting.GOLD;
+        float joules = this.getElectricityStored(itemStack);
+
+        if (joules <= this.getMaxElectricityStored(itemStack) / 3)
+        {
+            color = TextFormatting.DARK_RED;
+        }
+        else if (joules > this.getMaxElectricityStored(itemStack) * 2 / 3)
+        {
+            color = TextFormatting.DARK_GREEN;
+        }
+        tooltip.add(color + EnergyDisplayHelper.getEnergyDisplayS(joules) + "/" + EnergyDisplayHelper.getEnergyDisplayS(this.getMaxElectricityStored(itemStack)));
     }
 
     private ItemStack findBullet(EntityPlayer player)
@@ -224,6 +345,6 @@ public class ItemLaserGun extends ItemElectricBase implements ISortableItem, ISi
 
     protected boolean isBullet(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && itemStack.getItem() == MPItems.LASER_BULLET;
+        return !itemStack.isEmpty() && (itemStack.getItem() == MPItems.LASER_BULLET || itemStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET);
     }
 }

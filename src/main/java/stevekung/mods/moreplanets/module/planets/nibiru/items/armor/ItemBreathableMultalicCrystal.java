@@ -24,13 +24,13 @@ public class ItemBreathableMultalicCrystal extends ItemBreathableArmor
     @Override
     public Item getRepairItems()
     {
-        return NibiruItems.NIBIRU_ITEM;
+        return NibiruItems.MULTALIC_CRYSTAL_PIECES;
     }
 
     @Override
     public int getRepairItemsMetadata()
     {
-        return 2;
+        return -1;
     }
 
     @Override

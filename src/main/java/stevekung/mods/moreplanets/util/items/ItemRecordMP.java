@@ -1,11 +1,11 @@
 package stevekung.mods.moreplanets.util.items;
 
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemRecordMP extends ItemRecord implements ISortableItem, ISingleItemRender
 {
@@ -33,7 +33,7 @@ public class ItemRecordMP extends ItemRecord implements ISortableItem, ISingleIt
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        return GCCoreUtil.translate("item.record");
+        return LangUtils.translate("item.record");
     }
 
     @Override

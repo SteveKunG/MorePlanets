@@ -227,17 +227,17 @@ public class MapGenNibiruRavine extends MapGenBase
     {
         Biome biome = this.world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
-        return this.isExceptionBiome(biome) ? state.getBlock() == NibiruBlocks.INFECTED_GRASS : state.getBlock() == biome.topBlock;
+        return this.isExceptionBiome(biome) ? state.getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK : state.getBlock() == biome.topBlock;
     }
 
     protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop)
     {
         Biome biome = this.world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
-        IBlockState top = this.isExceptionBiome(biome) ? NibiruBlocks.INFECTED_GRASS.getDefaultState() : biome.topBlock;
+        IBlockState top = this.isExceptionBiome(biome) ? NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState() : biome.topBlock;
         IBlockState filler = this.isExceptionBiome(biome) ? NibiruBlocks.INFECTED_DIRT.getDefaultState() : biome.fillerBlock;
 
-        if (state.getBlock() == NibiruBlocks.NIBIRU_BLOCK || state.getBlock() == NibiruBlocks.NIBIRU_ORE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == NibiruBlocks.NIBIRU_ROCK || state.getBlock() == NibiruBlocks.NIBIRU_ORE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y < 10)
             {

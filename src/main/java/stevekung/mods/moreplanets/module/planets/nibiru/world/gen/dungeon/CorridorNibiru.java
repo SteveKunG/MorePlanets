@@ -62,11 +62,11 @@ public class CorridorNibiru extends SizedPieceNibiru
                     }
                     else if (this.getDirection().getAxis() == EnumFacing.Axis.Z && (i == 1 || i == this.boundingBox.getXSize() - 2) || j == 0 || j == this.boundingBox.getYSize() - 1 || this.getDirection().getAxis() == EnumFacing.Axis.X && (k == 1 || k == this.boundingBox.getZSize() - 2))
                     {
-                        this.setBlockState(worldIn, j == 0 || j == this.boundingBox.getYSize() - 1 ? NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(9) : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
+                        this.setBlockState(worldIn, j == 0 || j == this.boundingBox.getYSize() - 1 ? NibiruBlocks.MOSSY_NIBIRU_DUNGEON_BRICK.getDefaultState() : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
                     }
                     else if (this.getDirection().getAxis() == EnumFacing.Axis.Z && (i == 0 || i == this.boundingBox.getXSize() - 1) || this.getDirection().getAxis() == EnumFacing.Axis.X && (k == 0 || k == this.boundingBox.getZSize() - 1))
                     {
-                        this.setBlockState(worldIn, j == 0 || j == this.boundingBox.getYSize() - 1 ? NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(9) : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
+                        this.setBlockState(worldIn, j == 0 || j == this.boundingBox.getYSize() - 1 ? NibiruBlocks.MOSSY_NIBIRU_DUNGEON_BRICK.getDefaultState() : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
                     }
                     else
                     {

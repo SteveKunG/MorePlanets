@@ -23,6 +23,7 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
 import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
 {
@@ -59,14 +60,14 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
         int width = (this.width - this.xSize) / 2;
         int height = (this.height - this.ySize) / 2;
         List<String> batterySlotDesc = new ArrayList<>();
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
+        batterySlotDesc.add(LangUtils.translate("gui.battery_slot.desc.0"));
+        batterySlotDesc.add(LangUtils.translate("gui.battery_slot.desc.1"));
         this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 77, 18, 18, batterySlotDesc, this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 60, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.shield_visible.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 80, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.enable_shield.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 100, height + 70, 13, 13, Arrays.asList(GCCoreUtil.translate("gui.enable_shield_damage.desc")), this.width, this.height, this));
-        this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, GCCoreUtil.translate("gui.button.back.name")));
-        this.buttonList.add(this.buttonAdd = new GuiButton(1, this.width / 2 - 160, this.height / 2 - 6, 72, 20, GCCoreUtil.translate("gui.button.add.name")));
+        this.infoRegions.add(new GuiElementInfoRegionMP(width + 60, height + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.shield_visible.desc")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(width + 80, height + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield.desc")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(width + 100, height + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this.height, this));
+        this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.back.name")));
+        this.buttonList.add(this.buttonAdd = new GuiButton(1, this.width / 2 - 160, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.add.name")));
         this.buttonAdd.enabled = false;
 
         this.entityTextbox = new GuiTextField(0, this.fontRenderer, this.width / 2 - 3, this.height / 2 - 83, 30, 16);
@@ -102,7 +103,7 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
             owner = "";
         }
         this.fontRenderer.drawString(owner + this.tile.getName(), 8, 10, 4210752);
-        this.fontRenderer.drawString(GCCoreUtil.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
+        this.fontRenderer.drawString(LangUtils.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
     }
 
     @Override

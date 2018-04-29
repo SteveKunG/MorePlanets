@@ -87,7 +87,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
         {
             for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
             {
-                if ((block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_SAND) && world.getBlockState(pos.offset(enumfacing).down()).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+                if ((block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_SAND) && world.getBlockState(pos.offset(enumfacing).down()).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
                     return true;
                 }

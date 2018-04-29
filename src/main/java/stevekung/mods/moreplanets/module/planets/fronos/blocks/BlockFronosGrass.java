@@ -15,9 +15,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.blocks.BlockGrassMP;
+import stevekung.mods.moreplanets.util.blocks.BlockGrassBlockMP;
 
-public class BlockFronosGrass extends BlockGrassMP
+public class BlockFronosGrass extends BlockGrassBlockMP
 {
     public static PropertyEnum<BlockType> HAS_LAYER = PropertyEnum.create("layer", BlockType.class);
 

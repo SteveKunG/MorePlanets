@@ -24,13 +24,13 @@ public class ItemBreathableDiremsium extends ItemBreathableArmor
     @Override
     public Item getRepairItems()
     {
-        return ChalosItems.CHALOS_ITEM;
+        return ChalosItems.COMPRESSED_DIREMSIUM;
     }
 
     @Override
     public int getRepairItemsMetadata()
     {
-        return 2;
+        return -1;
     }
 
     @Override

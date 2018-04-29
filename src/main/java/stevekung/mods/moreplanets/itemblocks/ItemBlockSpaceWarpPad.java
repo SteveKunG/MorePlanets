@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
@@ -16,6 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemBlockSpaceWarpPad extends ItemBlock
 {
@@ -36,8 +36,8 @@ public class ItemBlockSpaceWarpPad extends ItemBlock
             }
             else
             {
-                list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(75 * 20)));
-                list.add(GCCoreUtil.translate("desc.shift_info.name"));
+                list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(75 * 20)));
+                list.add(LangUtils.translate("desc.shift_info.name"));
             }
         }
     }

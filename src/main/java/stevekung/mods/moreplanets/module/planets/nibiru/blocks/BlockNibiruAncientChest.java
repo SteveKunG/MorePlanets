@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
 import java.util.Iterator;
 
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +15,7 @@ import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruAncientChest;
 import stevekung.mods.moreplanets.util.blocks.BlockAncientChestMP;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlockNibiruAncientChest extends BlockAncientChestMP
 {
@@ -94,11 +94,11 @@ public class BlockNibiruAncientChest extends BlockAncientChestMP
                         {
                             if (enumfacing != EnumFacing.WEST && enumfacing != EnumFacing.NORTH)
                             {
-                                object = new InventoryLargeChest(GCCoreUtil.translate("container.nibiru.ancientchest.name"), (ILockableContainer)object, (TileEntityNibiruAncientChest)tileentity1);
+                                object = new InventoryLargeChest(LangUtils.translate("container.nibiru.ancientchest.name"), (ILockableContainer)object, (TileEntityNibiruAncientChest)tileentity1);
                             }
                             else
                             {
-                                object = new InventoryLargeChest(GCCoreUtil.translate("container.nibiru.ancientchest.name"), (TileEntityNibiruAncientChest)tileentity1, (ILockableContainer)object);
+                                object = new InventoryLargeChest(LangUtils.translate("container.nibiru.ancientchest.name"), (TileEntityNibiruAncientChest)tileentity1, (ILockableContainer)object);
                             }
                         }
                     }

@@ -4,6 +4,7 @@ import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -51,7 +52,7 @@ public class SlotBlackHoleStorageSchematic extends Slot
         case 7:
         case 8:
         case 9:
-            return itemStack.getItem() == DionaItems.DIONA_ITEM && itemStack.getItemDamage() == 7;
+            return itemStack.getItem() == DionaItems.GLOWING_IRON_INGOT;//TODO
         case 10:
         case 11:
         case 12:
@@ -61,12 +62,12 @@ public class SlotBlackHoleStorageSchematic extends Slot
         case 17:
         case 18:
         case 22:
-            return itemStack.getItem() == DionaItems.DIONA_ITEM && itemStack.getItemDamage() == 6;
+            return itemStack.getItem() == DionaItems.BLACK_HOLE_FRAGMENTS;//TODO
         case 14:
         case 16:
         case 19:
         case 21:
-            return itemStack.getItem() == DionaItems.TIER_4_ROCKET_PART && itemStack.getItemDamage() == 0;
+            return itemStack.getItem() == AsteroidsItems.basicItem && itemStack.getItemDamage() == 5;//TODO
         case 20:
             return itemStack.getItem() == Items.ENDER_EYE;
         }

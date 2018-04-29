@@ -208,14 +208,14 @@ public abstract class EntityFronosPet extends EntityTameable
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && itemStack.getItem() == FronosItems.FRONOS_FOOD && itemStack.getItemDamage() == 0;
+        return !itemStack.isEmpty() && itemStack.getItem() == FronosItems.CHOCOLATE_BAR;
     }
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
         ItemStack itemStack = player.getHeldItem(hand);
-        boolean isTamedItem = !itemStack.isEmpty() && itemStack.getItem() == FronosItems.FRONOS_FOOD && itemStack.getItemDamage() == 1;
+        boolean isTamedItem = !itemStack.isEmpty() && itemStack.getItem() == FronosItems.JELLY_BEANS;
 
         if (this.isTamed())
         {

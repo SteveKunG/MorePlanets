@@ -317,6 +317,6 @@ public class WorldProviderNibiru extends WorldProviderMP
     @Override
     public List<Block> getSurfaceBlocks()
     {
-        return Arrays.asList(NibiruBlocks.INFECTED_GRASS, NibiruBlocks.GREEN_VEIN_GRASS, NibiruBlocks.INFECTED_DIRT, NibiruBlocks.NIBIRU_BLOCK, NibiruBlocks.TERRASTONE);
+        return Arrays.asList(NibiruBlocks.INFECTED_GRASS_BLOCK, NibiruBlocks.GREEN_VEIN_GRASS_BLOCK, NibiruBlocks.INFECTED_DIRT, NibiruBlocks.NIBIRU_ROCK, NibiruBlocks.TERRASTONE);
     }
 }

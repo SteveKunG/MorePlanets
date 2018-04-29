@@ -47,6 +47,7 @@ import stevekung.mods.moreplanets.util.entity.EntitySlimeBaseMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP implements IMorePlanetsBoss
 {
@@ -276,7 +277,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
 
                 for (EntityPlayer player : playerWithin)
                 {
-                    player.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
+                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
                 }
                 this.setDead();
                 return;

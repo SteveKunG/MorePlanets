@@ -159,12 +159,6 @@ public class ItemSpaceBow extends ItemBaseMP
         return EnumSortCategoryItem.BOW;
     }
 
-    @Override
-    public String getName()
-    {
-        return "space_bow";
-    }
-
     private ItemStack findAmmo(EntityPlayer player)
     {
         if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND)))

@@ -1,10 +1,5 @@
 {
     "variants": {
-        "normal": [
-            { "model": "moreplanets:green_vein_grass" },
-            { "model": "moreplanets:green_vein_grass", "y": 90 },
-            { "model": "moreplanets:green_vein_grass", "y": 180 },
-            { "model": "moreplanets:green_vein_grass", "y": 270 }
-        ]
+        "normal": { "model": "moreplanets:green_vein_grass" }
     }
 }

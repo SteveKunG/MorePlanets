@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import mcp.mobius.waila.api.*;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,6 +27,7 @@ import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 @WailaPlugin
 public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlugin
@@ -78,7 +78,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
 
         if (nbt.hasKey("EnergyF") && !(block == MPBlocks.NWT_MIDDLE_DUMMY || block == MPBlocks.NWT_TOP_DUMMY))
         {
-            tooltip.add(TextFormatting.GREEN + GCCoreUtil.translate("gui.message.energy") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("EnergyF")));
+            tooltip.add(TextFormatting.GREEN + LangUtils.translate("gui.message.energy") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("EnergyF")));
         }
 
         // block
@@ -90,11 +90,11 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             if (destruct > 0)
             {
                 destruct = 600 - destruct;
-                tooltip.add(TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.destruct.name") + ": " + CommonUtils.ticksToElapsedTime(destruct));
+                tooltip.add(TextFormatting.DARK_RED + LangUtils.translate("gui.status.destruct.name") + ": " + CommonUtils.ticksToElapsedTime(destruct));
             }
             else
             {
-                tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
+                tooltip.add(LangUtils.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
             }
 
             if (process > 0 && process < 100)
@@ -108,9 +108,9 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             {
                 TileEntityDummy dummy = (TileEntityDummy) tile;
                 TileEntitySpaceWarpPadFull warp = (TileEntitySpaceWarpPadFull) accessor.getWorld().getTileEntity(dummy.mainBlockPosition);
-                String dimension = GCCoreUtil.translate("gui.status.unknown.name");
-                String name = GCCoreUtil.translate("gui.status.unknown.name");
-                String dest = GCCoreUtil.translate("gui.status.unknown.name");
+                String dimension = LangUtils.translate("gui.status.unknown.name");
+                String name = LangUtils.translate("gui.status.unknown.name");
+                String dest = LangUtils.translate("gui.status.unknown.name");
 
                 if (warp.hasWarpCore() && warp.containingItems.get(1).hasTagCompound())
                 {
@@ -119,22 +119,22 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                     name = WorldUtil.getProviderForDimensionClient(compound.getInteger("DimensionID")).getDimensionType().getName();
                     dest = compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
                 }
-                tooltip.add(GCCoreUtil.translate("gui.status.dimension.name") + ": " + dimension + " ");
-                tooltip.add(GCCoreUtil.translate("gui.status.name.name") + ": " + name);
-                tooltip.add(GCCoreUtil.translate("gui.status.destination.name") + ": " + dest);
+                tooltip.add(LangUtils.translate("gui.status.dimension.name") + ": " + dimension + " ");
+                tooltip.add(LangUtils.translate("gui.status.name.name") + ": " + name);
+                tooltip.add(LangUtils.translate("gui.status.destination.name") + ": " + dest);
             }
         }
         if (block == MPBlocks.SHIELD_GENERATOR_DUMMY)
         {
             int chargeCooldown = nbt.getInteger("ShieldChargeCooldown");
-            tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
-            tooltip.add(GCCoreUtil.translate("gui.status.shield_damage.name") + ": " + nbt.getInteger("ShieldDamage"));
-            tooltip.add(GCCoreUtil.translate("gui.status.shield_size.name") + ": " + nbt.getInteger("MaxShieldSize"));
-            tooltip.add(GCCoreUtil.translate("gui.status.shield_capacity.name") + ": " + nbt.getInteger("ShieldCapacity") + "/" + nbt.getInteger("MaxShieldCapacity"));
+            tooltip.add(LangUtils.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
+            tooltip.add(LangUtils.translate("gui.status.shield_damage.name") + ": " + nbt.getInteger("ShieldDamage"));
+            tooltip.add(LangUtils.translate("gui.status.shield_size.name") + ": " + nbt.getInteger("MaxShieldSize"));
+            tooltip.add(LangUtils.translate("gui.status.shield_capacity.name") + ": " + nbt.getInteger("ShieldCapacity") + "/" + nbt.getInteger("MaxShieldCapacity"));
 
             if (chargeCooldown > 0)
             {
-                tooltip.add(GCCoreUtil.translate("gui.status.shield_charge_cooldown.name") + ": " + chargeCooldown / 20);
+                tooltip.add(LangUtils.translate("gui.status.shield_charge_cooldown.name") + ": " + chargeCooldown / 20);
             }
         }
 
@@ -147,16 +147,16 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             if (destruct > 0)
             {
                 destruct = 600 - destruct;
-                tooltip.add(TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.destruct.name") + ": " + CommonUtils.ticksToElapsedTime(destruct));
+                tooltip.add(TextFormatting.DARK_RED + LangUtils.translate("gui.status.destruct.name") + ": " + CommonUtils.ticksToElapsedTime(destruct));
             }
             else
             {
-                tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
+                tooltip.add(LangUtils.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
             }
 
             if (process > 0 && process < 100)
             {
-                tooltip.add(GCCoreUtil.translate("gui.status.process.name") + ": " + process + "%");
+                tooltip.add(LangUtils.translate("gui.status.process.name") + ": " + process + "%");
             }
         }
         if (tile instanceof TileEntityDarkEnergyCore)
@@ -165,22 +165,22 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
 
             if (transform > 0)
             {
-                tooltip.add(GCCoreUtil.translate("gui.status.transform_time.name") + ": " + CommonUtils.ticksToElapsedTime(transform));
+                tooltip.add(LangUtils.translate("gui.status.transform_time.name") + ": " + CommonUtils.ticksToElapsedTime(transform));
             }
         }
         if (tile instanceof TileEntityDarkEnergyGenerator)
         {
             int generateWatts = nbt.getInteger("GenerateWatts");
             int fuel = nbt.getInteger("DarkEnergyFuel");
-            tooltip.add(GCCoreUtil.translate("gui.message.generating.name") + ": " + (generateWatts > 0 ? EnergyDisplayHelper.getEnergyDisplayS(generateWatts) + "/t" : GCCoreUtil.translate("gui.status.not_generating.name")));
-            tooltip.add(GCCoreUtil.translate("gui.status.dark_energy_fuel.name") + ": " + (fuel > 0 ? String.valueOf(fuel * 100 / 1000) + "%" : TextFormatting.GOLD + GCCoreUtil.translate("gui.status.empty.name")));
+            tooltip.add(LangUtils.translate("gui.message.generating.name") + ": " + (generateWatts > 0 ? EnergyDisplayHelper.getEnergyDisplayS(generateWatts) + "/t" : LangUtils.translate("gui.status.not_generating.name")));
+            tooltip.add(LangUtils.translate("gui.status.dark_energy_fuel.name") + ": " + (fuel > 0 ? String.valueOf(fuel * 100 / 1000) + "%" : TextFormatting.GOLD + LangUtils.translate("gui.status.empty.name")));
         }
         if (tile instanceof TileEntitySpaceWarpPadFull)
         {
             TileEntitySpaceWarpPadFull warp = (TileEntitySpaceWarpPadFull) tile;
-            String dimension = GCCoreUtil.translate("gui.status.unknown.name");
-            String name = GCCoreUtil.translate("gui.status.unknown.name");
-            String dest = GCCoreUtil.translate("gui.status.unknown.name");
+            String dimension = LangUtils.translate("gui.status.unknown.name");
+            String name = LangUtils.translate("gui.status.unknown.name");
+            String dest = LangUtils.translate("gui.status.unknown.name");
 
             if (warp.hasWarpCore() && warp.containingItems.get(1).hasTagCompound())
             {
@@ -189,18 +189,18 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 name = WorldUtil.getProviderForDimensionClient(compound.getInteger("DimensionID")).getDimensionType().getName();
                 dest = compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
             }
-            tooltip.add(GCCoreUtil.translate("gui.status.dimension.name") + ": " + dimension + " ");
-            tooltip.add(GCCoreUtil.translate("gui.status.name.name") + ": " + name);
-            tooltip.add(GCCoreUtil.translate("gui.status.destination.name") + ": " + dest);
+            tooltip.add(LangUtils.translate("gui.status.dimension.name") + ": " + dimension + " ");
+            tooltip.add(LangUtils.translate("gui.status.name.name") + ": " + name);
+            tooltip.add(LangUtils.translate("gui.status.destination.name") + ": " + dest);
         }
         if (tile instanceof TileEntityEnergyStorageClusterMP || tile instanceof TileEntityNuclearWasteGenerator)
         {
-            tooltip.add(TextFormatting.GREEN + GCCoreUtil.translate("gui.message.max_energy") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("MaxEnergy")));
-            tooltip.add(GCCoreUtil.translate("gui.max_output.desc") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("MaxOutput")) + "/t");
+            tooltip.add(TextFormatting.GREEN + LangUtils.translate("gui.message.max_energy") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("MaxEnergy")));
+            tooltip.add(LangUtils.translate("gui.max_output.desc") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("MaxOutput")) + "/t");
 
             if (nbt.hasKey("Status"))
             {
-                tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
+                tooltip.add(LangUtils.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
             }
         }
         if (tile instanceof TileEntityRocketCrusher)
@@ -209,13 +209,13 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
 
             if (scale > 0)
             {
-                tooltip.add(GCCoreUtil.translate("gui.electric_compressor.desc.0") + ": " + scale + "%");
+                tooltip.add(LangUtils.translate("gui.electric_compressor.desc.0") + ": " + scale + "%");
             }
         }
         if (tile instanceof TileEntityBlackHoleStorage)
         {
-            String owner = GCCoreUtil.translate("gui.status.unknown.name");
-            String collectMode = nbt.getString("CollectMode").equals("item") ? GCCoreUtil.translate("gui.status.collect_item.name") : nbt.getString("CollectMode").equals("item_and_xp") ? GCCoreUtil.translate("gui.status.collect_item_and_xp.name") : GCCoreUtil.translate("gui.status.collect_xp.name");
+            String owner = LangUtils.translate("gui.status.unknown.name");
+            String collectMode = nbt.getString("CollectMode").equals("item") ? LangUtils.translate("gui.status.collect_item.name") : nbt.getString("CollectMode").equals("item_and_xp") ? LangUtils.translate("gui.status.collect_item_and_xp.name") : LangUtils.translate("gui.status.collect_xp.name");
 
             try
             {
@@ -226,21 +226,21 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 owner = "";
             }
             int xp = nbt.hasKey("XpFluid", Constants.NBT.TAG_COMPOUND) ? nbt.getCompoundTag("XpFluid").getInteger("Amount") : 0;
-            tooltip.add(GCCoreUtil.translate("gui.status.owner.name") + ": " + owner);
-            tooltip.add(GCCoreUtil.translate("gui.status.mode.name") + ": " + collectMode);
-            tooltip.add(GCCoreUtil.translate("desc.bhs_xp.name") + ": " + xp + "/" + 1000000);
+            tooltip.add(LangUtils.translate("gui.status.owner.name") + ": " + owner);
+            tooltip.add(LangUtils.translate("gui.status.mode.name") + ": " + collectMode);
+            tooltip.add(LangUtils.translate("desc.bhs_xp.name") + ": " + xp + "/" + 1000000);
         }
         if (tile instanceof TileEntityShieldGenerator)
         {
             int chargeCooldown = nbt.getInteger("ShieldChargeCooldown");
-            tooltip.add(GCCoreUtil.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
-            tooltip.add(GCCoreUtil.translate("gui.status.shield_damage.name") + ": " + nbt.getInteger("ShieldDamage"));
-            tooltip.add(GCCoreUtil.translate("gui.status.shield_size.name") + ": " + nbt.getInteger("MaxShieldSize"));
-            tooltip.add(GCCoreUtil.translate("gui.status.shield_capacity.name") + ": " + nbt.getInteger("ShieldCapacity") + "/" + nbt.getInteger("MaxShieldCapacity"));
+            tooltip.add(LangUtils.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
+            tooltip.add(LangUtils.translate("gui.status.shield_damage.name") + ": " + nbt.getInteger("ShieldDamage"));
+            tooltip.add(LangUtils.translate("gui.status.shield_size.name") + ": " + nbt.getInteger("MaxShieldSize"));
+            tooltip.add(LangUtils.translate("gui.status.shield_capacity.name") + ": " + nbt.getInteger("ShieldCapacity") + "/" + nbt.getInteger("MaxShieldCapacity"));
 
             if (chargeCooldown > 0)
             {
-                tooltip.add(GCCoreUtil.translate("gui.status.shield_charge_cooldown.name") + ": " + chargeCooldown / 20);
+                tooltip.add(LangUtils.translate("gui.status.shield_charge_cooldown.name") + ": " + chargeCooldown / 20);
             }
         }
         return tooltip;
@@ -264,7 +264,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 }
                 else
                 {
-                    tooltip.add(GCCoreUtil.translate("desc.shift_info.name"));
+                    tooltip.add(LangUtils.translate("desc.shift_info.name"));
                 }
             }
             // block
@@ -282,7 +282,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                     }
                     else
                     {
-                        tooltip.add(GCCoreUtil.translate("desc.shift_info.name"));
+                        tooltip.add(LangUtils.translate("desc.shift_info.name"));
                     }
                 }
             }

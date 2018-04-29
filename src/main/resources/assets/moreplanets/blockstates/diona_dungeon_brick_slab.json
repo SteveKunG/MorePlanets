@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom": { "model": "moreplanets:diona_dungeon_brick_slab_bottom" },
+        "half=top": { "model": "moreplanets:diona_dungeon_brick_slab_top" }
+    }
+}

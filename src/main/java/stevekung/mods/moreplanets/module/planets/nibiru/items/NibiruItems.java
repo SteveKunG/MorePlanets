@@ -12,9 +12,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.items.armor.ItemArmorMul
 import stevekung.mods.moreplanets.module.planets.nibiru.items.armor.ItemBreathableMultalicCrystal;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.tools.*;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.ItemArrowMP;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
-import stevekung.mods.moreplanets.util.items.ItemDoorMP;
+import stevekung.mods.moreplanets.util.items.*;
 import stevekung.mods.moreplanets.util.items.tools.*;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
@@ -22,24 +20,42 @@ import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
 public class NibiruItems
 {
+    public static Item INFERUMITE_CRYSTAL;
+    public static Item MULTALIC_CRYSTAL_PIECES;
+    public static Item INFECTED_COAL;
+    public static Item SHLIME_TAIL;
+    public static Item INFECTED_CHARCOAL;
+
+    public static Item INFECTED_APPLE;
+    public static Item INFECTED_GOLDEN_APPLE;
+    public static Item ENCHANTED_INFECTED_GOLDEN_APPLE;
+    public static Item INFECTED_MELON;
+    public static Item ALIEN_BERRY;
+    public static Item GOLDEN_ALIEN_BERRY;
+    public static Item TERRABERRY;
+
+    public static Item INFECTED_PRISMARINE_SHARD;
+    public static Item INFECTED_PRISMARINE_CRYSTALS;
+
+    public static Item RAW_SHLIME_MEAT;
+    public static Item COOKED_SHLIME_MEAT;
+
     // Base
-    public static Item NIBIRU_ITEM;
     public static Item INFECTED_WHEAT_SEEDS;
     public static Item INFECTED_DOOR;
     public static Item INFECTED_DEAD_OAK_DOOR;
     public static Item ALIEN_BERRY_OAK_DOOR;
-    public static Item NIBIRU_FRUITS;
     public static Item INFECTED_WHEAT;
     public static Item INFECTED_CLAY_BALL;
     public static Item INFECTED_SNOWBALL;
     public static Item NIBIRU_DUNGEON_KEY;
+    public static Item NIBIRU_DUNGEON_KEY_BOW;
+    public static Item NIBIRU_DUNGEON_KEY_BLADE;
     public static Item INFECTED_SUGAR_CANE;
-    public static Item INFECTED_PRISMARINE;
     public static Item INFECTED_EGG;
     public static Item INFECTED_ARROW;
     public static Item INFECTED_MELON_SEEDS;
     public static Item VEIN_EYE;
-    public static Item NIBIRU_FOOD;
     public static Item WASTE_ROD_PICKER;
     public static Item NUCLEAR_WASTE_ROD;
 
@@ -82,23 +98,41 @@ public class NibiruItems
         /**********************INITIAL BASE STUFF**********************/
         /**************************************************************/
 
-        NibiruItems.NIBIRU_ITEM = new ItemNibiru("nibiru_item");
+        NibiruItems.INFERUMITE_CRYSTAL = new ItemBaseMP("inferumite_crystal");
+        NibiruItems.MULTALIC_CRYSTAL_PIECES = new ItemBeaconPayment("multalic_crystal_pieces");
+        NibiruItems.INFECTED_COAL = new ItemBaseMP("infected_coal");
+        NibiruItems.SHLIME_TAIL = new ItemBaseMP("shlime_tail");
+        NibiruItems.INFECTED_CHARCOAL = new ItemBaseMP("infected_charcoal");
+
+        NibiruItems.INFECTED_APPLE = new ItemAllFood("infected_apple", ItemAllFood.ItemType.INFECTED_APPLE);
+        NibiruItems.INFECTED_GOLDEN_APPLE = new ItemAllFood("infected_golden_apple", ItemAllFood.ItemType.INFECTED_GOLDEN_APPLE);
+        NibiruItems.ENCHANTED_INFECTED_GOLDEN_APPLE = new ItemAllFood("enchanted_infected_golden_apple", ItemAllFood.ItemType.ENCHANTED_INFECTED_GOLDEN_APPLE);
+        NibiruItems.INFECTED_MELON = new ItemAllFood("infected_melon", ItemAllFood.ItemType.INFECTED_MELON);
+        NibiruItems.ALIEN_BERRY = new ItemAllFood("alien_berry", ItemAllFood.ItemType.ALIEN_BERRY);
+        NibiruItems.GOLDEN_ALIEN_BERRY = new ItemAllFood("golden_alien_berry", ItemAllFood.ItemType.GOLDEN_ALIEN_BERRY);
+        NibiruItems.TERRABERRY = new ItemAllFood("terraberry", ItemAllFood.ItemType.TERRABERRY);
+
+        NibiruItems.INFECTED_PRISMARINE_SHARD = new ItemBaseMP("infected_prismarine_shard");
+        NibiruItems.INFECTED_PRISMARINE_CRYSTALS = new ItemBaseMP("infected_prismarine_crystals");
+
+        NibiruItems.RAW_SHLIME_MEAT = new ItemAllFood("raw_shlime_meat", ItemAllFood.ItemType.RAW_SHLIME_MEAT);
+        NibiruItems.COOKED_SHLIME_MEAT = new ItemAllFood("cooked_shlime_meat", ItemAllFood.ItemType.COOKED_SHLIME_MEAT);
+
         NibiruItems.INFECTED_WHEAT_SEEDS = new ItemInfectedWheatSeeds("infected_wheat_seeds");
         NibiruItems.INFECTED_DOOR = new ItemDoorMP("infected_door", NibiruBlocks.INFECTED_DOOR_BLOCK);
         NibiruItems.INFECTED_DEAD_OAK_DOOR = new ItemDoorMP("infected_dead_oak_door", NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK);
         NibiruItems.ALIEN_BERRY_OAK_DOOR = new ItemDoorMP("alien_berry_oak_door", NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK);
-        NibiruItems.NIBIRU_FRUITS = new ItemNibiruFruits("nibiru_fruits");
         NibiruItems.INFECTED_WHEAT = new ItemBaseMP("infected_wheat");
         NibiruItems.INFECTED_CLAY_BALL = new ItemBaseMP("infected_clay_ball");
         NibiruItems.INFECTED_SNOWBALL = new ItemInfectedSnowball("infected_snowball");
-        NibiruItems.NIBIRU_DUNGEON_KEY = new ItemNibiruDungeonKey("nibiru_dungeon_key");
+        NibiruItems.NIBIRU_DUNGEON_KEY = new ItemDungeonKeyMP("nibiru_dungeon_key", 6);
+        NibiruItems.NIBIRU_DUNGEON_KEY_BOW = new ItemBaseMP("nibiru_dungeon_key_bow").setSortCategory(EnumSortCategoryItem.DUNGEON_KEY);
+        NibiruItems.NIBIRU_DUNGEON_KEY_BLADE = new ItemBaseMP("nibiru_dungeon_key_blade").setSortCategory(EnumSortCategoryItem.DUNGEON_KEY);
         NibiruItems.INFECTED_SUGAR_CANE = new ItemInfectedSugarCane("infected_sugar_cane");
-        NibiruItems.INFECTED_PRISMARINE = new ItemInfectedPrismarine("infected_prismarine_item");
         NibiruItems.INFECTED_EGG = new ItemInfectedEgg("infected_egg");
         NibiruItems.INFECTED_ARROW = new ItemArrowMP("infected_arrow", ItemArrowMP.ArrowType.INFECTED);
         NibiruItems.INFECTED_MELON_SEEDS = new ItemInfectedMelonSeeds("infected_melon_seeds");
         NibiruItems.VEIN_EYE = new ItemVeinEye("vein_eye");
-        NibiruItems.NIBIRU_FOOD = new ItemNibiruFood("nibiru_food");
         NibiruItems.WASTE_ROD_PICKER = new ItemWasteRodPicker("waste_rod_picker");
         NibiruItems.NUCLEAR_WASTE_ROD = new ItemBaseMP("nuclear_waste_rod");
 
@@ -121,11 +155,11 @@ public class NibiruItems
         NibiruItems.NIBIRU_STONE_PICKAXE = new ItemNibiruStonePickaxe("nibiru_stone_pickaxe", ToolMaterial.STONE);
         NibiruItems.NIBIRU_STONE_AXE = new ItemNibiruStoneAxe("nibiru_stone_axe", ToolMaterial.STONE);
         NibiruItems.NIBIRU_STONE_HOE = new ItemNibiruStoneHoe("nibiru_stone_hoe", ToolMaterial.STONE);
-        NibiruItems.MULTALIC_CRYSTAL_SWORD = new ItemSwordMP("multalic_crystal_sword", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1);
-        NibiruItems.MULTALIC_CRYSTAL_SHOVEL = new ItemShovelMP("multalic_crystal_shovel", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1);
-        NibiruItems.MULTALIC_CRYSTAL_PICKAXE = new ItemPickaxeMP("multalic_crystal_pickaxe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1);
-        NibiruItems.MULTALIC_CRYSTAL_AXE = new ItemAxeMP("multalic_crystal_axe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1, EnumToolSpeed.COMMON);
-        NibiruItems.MULTALIC_CRYSTAL_HOE = new ItemHoeMP("multalic_crystal_hoe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.NIBIRU_ITEM, 1);
+        NibiruItems.MULTALIC_CRYSTAL_SWORD = new ItemSwordMP("multalic_crystal_sword", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.MULTALIC_CRYSTAL_PIECES);
+        NibiruItems.MULTALIC_CRYSTAL_SHOVEL = new ItemShovelMP("multalic_crystal_shovel", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.MULTALIC_CRYSTAL_PIECES);
+        NibiruItems.MULTALIC_CRYSTAL_PICKAXE = new ItemPickaxeMP("multalic_crystal_pickaxe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.MULTALIC_CRYSTAL_PIECES);
+        NibiruItems.MULTALIC_CRYSTAL_AXE = new ItemAxeMP("multalic_crystal_axe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.MULTALIC_CRYSTAL_PIECES, EnumToolSpeed.COMMON);
+        NibiruItems.MULTALIC_CRYSTAL_HOE = new ItemHoeMP("multalic_crystal_hoe", NibiruItems.MULTALIC_CRYSTAL_TOOL, NibiruItems.MULTALIC_CRYSTAL_PIECES);
 
         /**************************************************************/
         /*********************INITIAL ARMOR STUFF**********************/
@@ -141,23 +175,41 @@ public class NibiruItems
         /**********************REGISTER STUFF**************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerItem(NibiruItems.NIBIRU_ITEM);
+        CommonRegisterHelper.registerItem(NibiruItems.INFERUMITE_CRYSTAL);
+        CommonRegisterHelper.registerItem(NibiruItems.MULTALIC_CRYSTAL_PIECES);
+        CommonRegisterHelper.registerItem(NibiruItems.INFECTED_COAL);
+        CommonRegisterHelper.registerItem(NibiruItems.SHLIME_TAIL);
+        CommonRegisterHelper.registerItem(NibiruItems.INFECTED_CHARCOAL);
+
+        CommonRegisterHelper.registerItem(NibiruItems.INFECTED_APPLE);
+        CommonRegisterHelper.registerItem(NibiruItems.INFECTED_GOLDEN_APPLE);
+        CommonRegisterHelper.registerItem(NibiruItems.ENCHANTED_INFECTED_GOLDEN_APPLE);
+        CommonRegisterHelper.registerItem(NibiruItems.INFECTED_MELON);
+        CommonRegisterHelper.registerItem(NibiruItems.ALIEN_BERRY);
+        CommonRegisterHelper.registerItem(NibiruItems.GOLDEN_ALIEN_BERRY);
+        CommonRegisterHelper.registerItem(NibiruItems.TERRABERRY);
+
+        CommonRegisterHelper.registerItem(NibiruItems.INFECTED_PRISMARINE_SHARD);
+        CommonRegisterHelper.registerItem(NibiruItems.INFECTED_PRISMARINE_CRYSTALS);
+
+        CommonRegisterHelper.registerItem(NibiruItems.RAW_SHLIME_MEAT);
+        CommonRegisterHelper.registerItem(NibiruItems.COOKED_SHLIME_MEAT);
+
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_WHEAT_SEEDS);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_DOOR);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_DEAD_OAK_DOOR);
         CommonRegisterHelper.registerItem(NibiruItems.ALIEN_BERRY_OAK_DOOR);
-        CommonRegisterHelper.registerItem(NibiruItems.NIBIRU_FRUITS);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_WHEAT);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_CLAY_BALL);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_SNOWBALL);
         CommonRegisterHelper.registerItem(NibiruItems.NIBIRU_DUNGEON_KEY);
+        CommonRegisterHelper.registerItem(NibiruItems.NIBIRU_DUNGEON_KEY_BOW);
+        CommonRegisterHelper.registerItem(NibiruItems.NIBIRU_DUNGEON_KEY_BLADE);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_SUGAR_CANE);
-        CommonRegisterHelper.registerItem(NibiruItems.INFECTED_PRISMARINE);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_EGG);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_ARROW);
         CommonRegisterHelper.registerItem(NibiruItems.INFECTED_MELON_SEEDS);
         CommonRegisterHelper.registerItem(NibiruItems.VEIN_EYE);
-        CommonRegisterHelper.registerItem(NibiruItems.NIBIRU_FOOD);
         CommonRegisterHelper.registerItem(NibiruItems.WASTE_ROD_PICKER);
         CommonRegisterHelper.registerItem(NibiruItems.NUCLEAR_WASTE_ROD);
 

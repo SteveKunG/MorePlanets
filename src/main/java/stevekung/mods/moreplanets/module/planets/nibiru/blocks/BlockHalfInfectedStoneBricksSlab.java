@@ -10,7 +10,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
-import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockSlabMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
@@ -117,12 +116,6 @@ public class BlockHalfInfectedStoneBricksSlab extends BlockSlabMP
         return NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB;
     }
 
-    @Override
-    public VariantsName getVariantsName()
-    {
-        return new VariantsName("bricks", "vein", "cracked", "terrastone");
-    }
-
     public static enum BlockType implements IStringSerializable
     {
         INFECTED_STONE_BRICKS_SLAB,
@@ -148,5 +141,11 @@ public class BlockHalfInfectedStoneBricksSlab extends BlockSlabMP
         {
             return this.name().toLowerCase();
         }
+    }
+
+    @Override
+    public String getName()
+    {
+        return BlockType.values.toString();
     }
 }

@@ -10,7 +10,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
-import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockSlabMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 
@@ -119,12 +118,6 @@ public class BlockHalfInfectedPrismarineSlab extends BlockSlabMP
         return NibiruBlocks.DOUBLE_INFECTED_PRISMARINE_SLAB;
     }
 
-    @Override
-    public VariantsName getVariantsName()
-    {
-        return new VariantsName("prismarine", "bricks", "dark");
-    }
-
     public static enum BlockType implements IStringSerializable
     {
         INFECTED_PRISMARINE_SLAB,
@@ -149,5 +142,11 @@ public class BlockHalfInfectedPrismarineSlab extends BlockSlabMP
         {
             return this.name().toLowerCase();
         }
+    }
+
+    @Override
+    public String getName()
+    {
+        return BlockType.values.toString();
     }
 }

@@ -5,16 +5,15 @@ import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruDoublePlant;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.util.blocks.BlockDoublePlantMP;
 
 public class WorldGenNibiruDoublePlant extends WorldGenerator
 {
-    private BlockNibiruDoublePlant.BlockType type;
+    private BlockDoublePlantMP block;
 
-    public WorldGenNibiruDoublePlant(BlockNibiruDoublePlant.BlockType type)
+    public WorldGenNibiruDoublePlant(BlockDoublePlantMP block)
     {
-        this.type = type;
+        this.block = block;
     }
 
     @Override
@@ -26,9 +25,9 @@ public class WorldGenNibiruDoublePlant extends WorldGenerator
         {
             BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(blockpos) && (!world.provider.isNether() || blockpos.getY() < 254) && NibiruBlocks.NIBIRU_DOUBLE_PLANT.canBlockStay(world, blockpos, NibiruBlocks.NIBIRU_DOUBLE_PLANT.getDefaultState().withProperty(BlockNibiruDoublePlant.VARIANT, this.type)))
+            if (world.isAirBlock(blockpos) && (!world.provider.isNether() || blockpos.getY() < 254) && this.block.canPlaceBlockAt(world, blockpos))
             {
-                NibiruBlocks.NIBIRU_DOUBLE_PLANT.placeAt(world, blockpos, this.type, 2);
+                this.block.placeAt(world, blockpos, this.block, 2);
                 flag = true;
             }
         }

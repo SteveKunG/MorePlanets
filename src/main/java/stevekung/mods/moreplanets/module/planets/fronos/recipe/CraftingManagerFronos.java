@@ -25,12 +25,12 @@ public class CraftingManagerFronos
 
         for (int i = 0; i < 8; i++)
         {
-            RecipeHelper.addRecipe(new ItemStack(FronosBlocks.JELLY_BLOCK, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(FronosItems.JELLY, 1, i) });
+            //            RecipeHelper.addRecipe(new ItemStack(FronosBlocks.JELLY_BLOCK, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(FronosItems.JELLY, 1, i) });
         }
         for (int i = 0; i < 4; i++)
         {
-            RecipeHelper.addRecipe(new ItemStack(FronosBlocks.CANDY_CANE_1, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(FronosItems.CANDY_CANE, 1, i) });
-            RecipeHelper.addRecipe(new ItemStack(FronosBlocks.CANDY_CANE_2, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(FronosItems.CANDY_CANE, 1, i + 4) });
+            //            RecipeHelper.addRecipe(new ItemStack(FronosBlocks.CANDY_CANE_1, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(FronosItems.CANDY_CANE, 1, i) });
+            //            RecipeHelper.addRecipe(new ItemStack(FronosBlocks.CANDY_CANE_2, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(FronosItems.CANDY_CANE, 1, i + 4) });
         }
 
         //        RecipeHelper.addRecipe(new ItemStack(FronosBlocks.CHALOS_COBBLESTONE_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', new ItemStack(FronosBlocks.CHALOS_BLOCK, 1, 1) });
@@ -44,12 +44,12 @@ public class CraftingManagerFronos
     {
         for (int i = 0; i < 8; i++)
         {
-            RecipeHelper.addShapelessRecipe(new ItemStack(FronosItems.JELLY, 9, i), new ItemStack(FronosBlocks.JELLY_BLOCK, 1, i));
+            //            RecipeHelper.addShapelessRecipe(new ItemStack(FronosItems.JELLY, 9, i), new ItemStack(FronosBlocks.JELLY_BLOCK, 1, i));
         }
         for (int i = 0; i < 4; i++)
         {
-            RecipeHelper.addShapelessRecipe(new ItemStack(FronosItems.CANDY_CANE, 9, i), new ItemStack(FronosBlocks.CANDY_CANE_1, 1, i));
-            RecipeHelper.addShapelessRecipe(new ItemStack(FronosItems.CANDY_CANE, 9, i + 4), new ItemStack(FronosBlocks.CANDY_CANE_2, 1, i));
+            //            RecipeHelper.addShapelessRecipe(new ItemStack(FronosItems.CANDY_CANE, 9, i), new ItemStack(FronosBlocks.CANDY_CANE_1, 1, i));
+            //            RecipeHelper.addShapelessRecipe(new ItemStack(FronosItems.CANDY_CANE, 9, i + 4), new ItemStack(FronosBlocks.CANDY_CANE_2, 1, i));
         }
 
         //        RecipeHelper.addShapelessRecipe(new ItemStack(ChalosItems.CHALOS_ITEM, 9, 1), new ItemStack(FronosBlocks.CHALOS_BLOCK, 1, 10));
@@ -95,7 +95,7 @@ public class CraftingManagerFronos
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 10), new ItemStack(Items.REDSTONE), 0.7F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 11), new ItemStack(GCItems.basicItem, 1, 2), 0.7F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 12), new ItemStack(Items.QUARTZ), 0.2F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 13), new ItemStack(FronosItems.FRONOS_ITEM, 1, 0), 1.0F);
-        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosItems.FRONOS_FOOD, 1, 2), new ItemStack(FronosItems.FRONOS_FOOD, 1, 3), 0.25F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosBlocks.FRONOS_ORE, 1, 13), new ItemStack(FronosItems.EXTRAILONITE_INGOT), 1.0F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(FronosItems.MARSHMALLOW), new ItemStack(FronosItems.COOKED_MARSHMALLOW), 0.25F);
     }
 }

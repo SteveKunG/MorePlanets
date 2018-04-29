@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom": { "model": "moreplanets:nibiru_dungeon_brick_slab_bottom" },
+        "half=top": { "model": "moreplanets:nibiru_dungeon_brick_slab_top" }
+    }
+}

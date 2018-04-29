@@ -9,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.entities.IBubbleProvider;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -52,6 +51,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider, IInventoryDefaults, ISidedInventory
 {
@@ -424,7 +424,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container.shield_generator.name");
+        return LangUtils.translate("container.shield_generator.name");
     }
 
     @Override
@@ -561,21 +561,21 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     {
         if (this.getEnergyStoredGC() == 0)
         {
-            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.missingpower.name");
+            return TextFormatting.DARK_RED + LangUtils.translate("gui.status.missingpower.name");
         }
         if (this.getDisabled(0))
         {
-            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.ready.name");
+            return TextFormatting.GOLD + LangUtils.translate("gui.status.ready.name");
         }
         if (this.getEnergyStoredGC() < this.storage.getMaxExtract())
         {
-            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.missingpower.name");
+            return TextFormatting.GOLD + LangUtils.translate("gui.status.missingpower.name");
         }
         if (this.needCharged)
         {
-            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.shield_charging.name");
+            return TextFormatting.DARK_RED + LangUtils.translate("gui.status.shield_charging.name");
         }
-        return TextFormatting.GREEN + GCCoreUtil.translate("gui.status.active.name");
+        return TextFormatting.GREEN + LangUtils.translate("gui.status.active.name");
     }
 
     private boolean isInRangeOfShield(BlockPos pos)

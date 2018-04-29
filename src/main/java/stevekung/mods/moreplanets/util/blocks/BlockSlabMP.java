@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +14,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
-public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlabBlock
+public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlabBlock, ISingleBlockRender
 {
     public BlockSlabMP(Material material)
     {
@@ -27,15 +28,21 @@ public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, I
     }
 
     @Override
-    public int quantityDropped(Random rand)
+    public IProperty<?> getVariantProperty()
     {
-        return this.isDouble() ? 2 : 1;
+        return null;
     }
 
     @Override
-    public int damageDropped(IBlockState state)
+    public Comparable<?> getTypeForItem(ItemStack stack)
     {
-        return this.getMetaFromState(state) & 7;
+        return null;
+    }
+
+    @Override
+    public int quantityDropped(Random rand)
+    {
+        return this.isDouble() ? 2 : 1;
     }
 
     @Override
@@ -47,7 +54,7 @@ public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, I
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, this.getMetaFromState(state) & 7);
+        return new ItemStack(this.getHalf());
     }
 
     @Override

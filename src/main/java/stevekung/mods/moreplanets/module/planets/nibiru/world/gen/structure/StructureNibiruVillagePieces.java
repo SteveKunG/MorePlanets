@@ -28,7 +28,6 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockHalfInfectedStoneBricksSlab;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;
 import stevekung.mods.moreplanets.util.blocks.BlockChestMP;
@@ -108,7 +107,7 @@ public class StructureNibiruVillagePieces
                 this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 12 - 1, 0);
             }
 
-            IBlockState iblockstate = NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1);
+            IBlockState iblockstate = NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState();
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST));
@@ -175,7 +174,7 @@ public class StructureNibiruVillagePieces
 
                 if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
                 {
-                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS.getDefaultState(), 2, -1, -1, box);
+                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 2, -1, -1, box);
                 }
             }
             for (int k = 0; k < 9; ++k)
@@ -408,7 +407,7 @@ public class StructureNibiruVillagePieces
                 this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 7 - 1, 0);
             }
 
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1));
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState());
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
@@ -479,7 +478,7 @@ public class StructureNibiruVillagePieces
 
                 if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
                 {
-                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS.getDefaultState(), 2, -1, -1, box);
+                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 2, -1, -1, box);
                 }
             }
 
@@ -532,7 +531,7 @@ public class StructureNibiruVillagePieces
                 this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 9 - 1, 0);
             }
 
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1));
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState());
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST));
@@ -609,7 +608,7 @@ public class StructureNibiruVillagePieces
 
                 if (this.getBlockStateFromPos(world, 1, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
                 {
-                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS.getDefaultState(), 1, -1, -1, box);
+                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 1, -1, -1, box);
                 }
             }
             for (int l = 0; l < 6; ++l)
@@ -672,7 +671,7 @@ public class StructureNibiruVillagePieces
                 this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 6 - 1, 0);
             }
 
-            IBlockState iblockstate = NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1);
+            IBlockState iblockstate = NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState();
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_PLANKS.getDefaultState());
@@ -728,7 +727,7 @@ public class StructureNibiruVillagePieces
 
                     if (this.getBlockStateFromPos(world, i, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
                     {
-                        this.setBlockState(world, NibiruBlocks.INFECTED_GRASS.getDefaultState(), i, -1, -1, box);
+                        this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), i, -1, -1, box);
                     }
                 }
             }
@@ -776,7 +775,7 @@ public class StructureNibiruVillagePieces
                 this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 7 - 1, 0);
             }
 
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1));
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState());
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST));
@@ -885,7 +884,7 @@ public class StructureNibiruVillagePieces
 
                 if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
                 {
-                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS.getDefaultState(), 2, -1, -1, box);
+                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 2, -1, -1, box);
                 }
             }
             for (int i1 = 0; i1 < 5; ++i1)
@@ -951,7 +950,7 @@ public class StructureNibiruVillagePieces
                 this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 6 - 1, 0);
             }
 
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1));
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState());
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_PLANKS.getDefaultState());
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
@@ -990,7 +989,7 @@ public class StructureNibiruVillagePieces
 
                 if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
                 {
-                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS.getDefaultState(), 2, -1, -1, box);
+                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 2, -1, -1, box);
                 }
             }
 
@@ -1175,7 +1174,7 @@ public class StructureNibiruVillagePieces
                         {
                             IBlockState iblockstate4 = world.getBlockState(blockpos);
 
-                            if (iblockstate4.getBlock() == NibiruBlocks.INFECTED_GRASS && world.isAirBlock(blockpos.up()))
+                            if (iblockstate4.getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK && world.isAirBlock(blockpos.up()))
                             {
                                 world.setBlockState(blockpos, iblockstate, 2);
                                 break;
@@ -1508,19 +1507,19 @@ public class StructureNibiruVillagePieces
             {
                 if (state.getBlock() == NibiruBlocks.NIBIRU_LOG)
                 {
-                    return NibiruBlocks.NIBIRU_SANDSTONE.getDefaultState();
+                    return NibiruBlocks.INFECTED_SANDSTONE.getDefaultState();
                 }
-                if (state == NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1))
+                if (state == NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState())
                 {
-                    return NibiruBlocks.NIBIRU_SANDSTONE.getDefaultState();
+                    return NibiruBlocks.INFECTED_SANDSTONE.getDefaultState();
                 }
-                if (state == NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(2))
+                if (state == NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState())
                 {
-                    return NibiruBlocks.NIBIRU_SANDSTONE.getStateFromMeta(1);
+                    return NibiruBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState();
                 }
                 if (state.getBlock() == NibiruBlocks.NIBIRU_PLANKS)
                 {
-                    return NibiruBlocks.NIBIRU_SANDSTONE.getStateFromMeta(2);
+                    return NibiruBlocks.INFECTED_CUT_SANDSTONE.getDefaultState();
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_OAK_STAIRS)
                 {
@@ -1532,12 +1531,12 @@ public class StructureNibiruVillagePieces
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_GRAVEL)
                 {
-                    return NibiruBlocks.NIBIRU_SANDSTONE.getDefaultState();
+                    return NibiruBlocks.INFECTED_SANDSTONE.getDefaultState();
                 }
             }
             else if (this.structureType == 2)
             {
-                if (state.getBlock() == NibiruBlocks.NIBIRU_BLOCK)
+                if (state.getBlock() == NibiruBlocks.NIBIRU_COBBLESTONE)
                 {
                     return NibiruBlocks.TERRASTONE.getDefaultState();
                 }
@@ -1906,7 +1905,7 @@ public class StructureNibiruVillagePieces
                 this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 3, 0);
             }
 
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1));
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState());
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
             this.fillWithBlocks(world, box, 1, 0, 1, 4, 12, 4, iblockstate, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), false);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 2, box);
@@ -1929,7 +1928,7 @@ public class StructureNibiruVillagePieces
                 {
                     if (j == 0 || j == 5 || i == 0 || i == 5)
                     {
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), j, 11, i, box);
+                        this.setBlockState(world, NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState(), j, 11, i, box);
                         this.clearCurrentPositionBlocksUpwards(world, j, 12, i, box);
                     }
                 }
@@ -1984,7 +1983,7 @@ public class StructureNibiruVillagePieces
                 this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 6 - 1, 0);
             }
 
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1));
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState());
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_LOG.getDefaultState());
             IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
@@ -2038,7 +2037,7 @@ public class StructureNibiruVillagePieces
 
                 if (this.getBlockStateFromPos(world, 1, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
                 {
-                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS.getDefaultState(), 1, -1, -1, box);
+                    this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 1, -1, -1, box);
                 }
             }
 
@@ -2080,11 +2079,11 @@ public class StructureNibiruVillagePieces
                 }
                 else if (f < 0.5F)
                 {
-                    this.blockstate = NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.NIBIRU_VEIN_COBBLESTONE);
+                    this.blockstate = NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState();
                 }
                 else
                 {
-                    this.blockstate = NibiruBlocks.NIBIRU_BLOCK.getDefaultState().withProperty(BlockNibiru.VARIANT, BlockNibiru.BlockType.NIBIRU_COBBLESTONE);
+                    this.blockstate = NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState();
                 }
             }
             else

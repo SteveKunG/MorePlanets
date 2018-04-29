@@ -1,8 +1,6 @@
 {
-    "parent": "block/cube_bottom_top",
+    "parent": "block/cross",
     "textures": {
-        "bottom": "moreplanets:blocks/infected_dirt",
-        "top": "moreplanets:blocks/infected_grass_top",
-        "side": "moreplanets:blocks/infected_grass_side"
+        "cross": "moreplanets:blocks/infected_grass"
     }
 }

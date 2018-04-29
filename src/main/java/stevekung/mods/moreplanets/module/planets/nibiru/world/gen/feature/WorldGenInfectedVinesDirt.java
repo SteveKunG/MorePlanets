@@ -16,7 +16,7 @@ public class WorldGenInfectedVinesDirt extends WorldGenerator
         {
             BlockPos blockpos1 = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(blockpos1) && world.getBlockState(blockpos1.down()).getBlock() == NibiruBlocks.INFECTED_GRASS)
+            if (world.isAirBlock(blockpos1) && world.getBlockState(blockpos1.down()).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK)
             {
                 world.setBlockState(blockpos1.down(), NibiruBlocks.INFECTED_VINES_DIRT.getDefaultState(), 2);
             }

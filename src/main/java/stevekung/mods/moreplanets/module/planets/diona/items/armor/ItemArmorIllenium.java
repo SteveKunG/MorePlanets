@@ -32,12 +32,12 @@ public class ItemArmorIllenium extends ItemArmorMP
     @Override
     public Item getRepairItems()
     {
-        return DionaItems.DIONA_ITEM;
+        return DionaItems.COMPRESSED_ILLENIUM;
     }
 
     @Override
     public int getRepairItemsMetadata()
     {
-        return 2;
+        return -1;
     }
 }

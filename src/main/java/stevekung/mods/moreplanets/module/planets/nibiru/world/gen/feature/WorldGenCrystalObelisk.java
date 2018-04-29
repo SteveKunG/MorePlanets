@@ -26,7 +26,7 @@ public class WorldGenCrystalObelisk extends WorldGenerator
                 {
                     Block block = world.getBlockState(pos.down()).getBlock();
 
-                    if ((block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_SAND || block == NibiruBlocks.GREEN_VEIN_GRASS) && world.isAirBlock(pos.add(x, height, z)))
+                    if ((block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_SAND || block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK) && world.isAirBlock(pos.add(x, height, z)))
                     {
                         world.setBlockState(pos.add(x, y, z), Blocks.OBSIDIAN.getDefaultState(), 2);
 

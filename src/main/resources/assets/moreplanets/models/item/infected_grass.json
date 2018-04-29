@@ -1,3 +1,6 @@
 {
-    "parent": "moreplanets:block/infected_grass"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "moreplanets:blocks/infected_grass"
+    }
 }

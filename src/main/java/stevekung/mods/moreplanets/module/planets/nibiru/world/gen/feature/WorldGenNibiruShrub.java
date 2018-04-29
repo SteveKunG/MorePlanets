@@ -29,7 +29,7 @@ public class WorldGenNibiruShrub extends WorldGenInfectedTrees
 
         IBlockState state = world.getBlockState(pos);
 
-        if (state.getBlock() == NibiruBlocks.INFECTED_GRASS || state.getBlock() == NibiruBlocks.INFECTED_DIRT || state.getBlock() == NibiruBlocks.INFECTED_FARMLAND)
+        if (state.getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK || state.getBlock() == NibiruBlocks.INFECTED_DIRT || state.getBlock() == NibiruBlocks.INFECTED_FARMLAND)
         {
             pos = pos.up();
             this.setBlockAndNotifyAdequately(world, pos, this.log);

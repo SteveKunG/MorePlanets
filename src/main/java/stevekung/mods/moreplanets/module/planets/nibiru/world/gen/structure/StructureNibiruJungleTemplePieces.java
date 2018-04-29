@@ -15,7 +15,6 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
 
@@ -305,7 +304,7 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 2, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 1, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 4, -3, 1, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 3, -3, 1, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 3, -3, 1, box);
 
                 if (!this.placedTrap1)
                 {
@@ -321,7 +320,7 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 8, -3, 6, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 9, -3, 6, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 9, -3, 5, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 9, -3, 4, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 9, -3, 4, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 9, -2, 4, box);
 
                 if (!this.placedTrap2)
@@ -337,27 +336,27 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                     this.placedMainChest = this.generateChest(world, box, rand, 8, -3, 3, MPLootTables.NIBIRU_JUNGLE_TEMPLE);
                 }
 
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 9, -3, 2, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 8, -3, 1, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 4, -3, 5, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 5, -2, 5, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 5, -1, 5, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 6, -3, 5, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 7, -2, 5, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 7, -1, 5, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 8, -3, 5, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 9, -3, 2, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 8, -3, 1, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 4, -3, 5, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, -2, 5, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, -1, 5, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 6, -3, 5, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 7, -2, 5, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 7, -1, 5, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 8, -3, 5, box);
                 this.fillWithRandomizedBlocks(world, box, 9, -1, 1, 9, -1, 5, false, rand, this.scatteredStones);
                 this.fillWithAir(world, box, 8, -3, 8, 10, -1, 10);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(BlockNibiru.BlockType.INFECTED_CHISELED_STONE_BRICKS.ordinal()), 8, -2, 11, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(BlockNibiru.BlockType.INFECTED_CHISELED_STONE_BRICKS.ordinal()), 9, -2, 11, box);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(BlockNibiru.BlockType.INFECTED_CHISELED_STONE_BRICKS.ordinal()), 10, -2, 11, box);
+                this.setBlockState(world, NibiruBlocks.INFECTED_CHISELED_STONE_BRICKS.getDefaultState(), 8, -2, 11, box);
+                this.setBlockState(world, NibiruBlocks.INFECTED_CHISELED_STONE_BRICKS.getDefaultState(), 9, -2, 11, box);
+                this.setBlockState(world, NibiruBlocks.INFECTED_CHISELED_STONE_BRICKS.getDefaultState(), 10, -2, 11, box);
                 IBlockState iblockstate4 = Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.NORTH);
                 this.setBlockState(world, iblockstate4, 8, -2, 12, box);
                 this.setBlockState(world, iblockstate4, 9, -2, 12, box);
                 this.setBlockState(world, iblockstate4, 10, -2, 12, box);
                 this.fillWithRandomizedBlocks(world, box, 8, -3, 8, 8, -3, 10, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 10, -3, 8, 10, -3, 10, false, rand, this.scatteredStones);
-                this.setBlockState(world, NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1), 10, -2, 9, box);
+                this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 10, -2, 9, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 8, -2, 9, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 8, -2, 10, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 10, -1, 9, box);
@@ -391,11 +390,11 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 }
                 else if (rand.nextFloat() < 0.4F)
                 {
-                    this.blockstate = NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(1);
+                    this.blockstate = NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState();
                 }
                 else
                 {
-                    this.blockstate = NibiruBlocks.NIBIRU_BLOCK.getStateFromMeta(2);
+                    this.blockstate = NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState();
                 }
             }
         }

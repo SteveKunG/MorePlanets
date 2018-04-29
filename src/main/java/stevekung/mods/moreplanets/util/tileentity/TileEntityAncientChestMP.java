@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -25,6 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import stevekung.mods.moreplanets.util.world.capability.DoubleAncientChestItemHandlerMP;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot implements ITickable, IInventoryDefaults
 {
@@ -76,7 +76,7 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container." + this.name + ".ancientchest.name");
+        return LangUtils.translate("container." + this.name + ".ancientchest.name");
     }
 
     @Override

@@ -1,3 +1,6 @@
 {
-    "parent": "moreplanets:block/green_vein_grass"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "moreplanets:blocks/green_vein_grass"
+    }
 }

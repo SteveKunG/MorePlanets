@@ -9,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockTileGC;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
@@ -22,6 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemBlockDarkEnergyGenerator extends ItemBlock
 {
@@ -52,7 +52,7 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
 
                         if (powerDrawn > 0)
                         {
-                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
+                            list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
                         }
                     }
                     if (te instanceof TileBaseUniversalElectrical)
@@ -60,7 +60,7 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
                         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
                         {
                             int power = (int)itemStack.getTagCompound().getFloat("EnergyStored");
-                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("desc.energy_stored.name", EnergyDisplayHelper.getEnergyDisplayS(power)));
+                            list.add(TextFormatting.GREEN + LangUtils.translate("desc.energy_stored.name", EnergyDisplayHelper.getEnergyDisplayS(power)));
                         }
                     }
                     if (te instanceof TileEntityDarkEnergyGenerator)
@@ -69,7 +69,7 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
                         {
                             int power = itemStack.getTagCompound().getInteger("DarkEnergyFuel");
                             power = power * 100 / 1000;
-                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("desc.dark_energy_fuel.name", power) + "%");
+                            list.add(TextFormatting.GREEN + LangUtils.translate("desc.dark_energy_fuel.name", power) + "%");
                         }
                     }
                 }
@@ -83,11 +83,11 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
 
                         if (powerDrawn > 0)
                         {
-                            list.add(TextFormatting.GREEN + GCCoreUtil.translateWithFormat("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
+                            list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
                         }
                     }
                 }
-                list.add(GCCoreUtil.translate("desc.shift_info.name"));
+                list.add(LangUtils.translate("desc.shift_info.name"));
             }
         }
     }

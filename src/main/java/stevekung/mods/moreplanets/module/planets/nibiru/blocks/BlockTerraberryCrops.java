@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -10,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -50,19 +50,13 @@ public class BlockTerraberryCrops extends BlockCropsMP
     @Override
     protected Item getCrop()
     {
-        return NibiruItems.NIBIRU_FRUITS;
+        return NibiruItems.TERRABERRY;
     }
 
     @Override
     protected Item getSeed()
     {
-        return NibiruItems.NIBIRU_FRUITS;
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return 6;
+        return NibiruItems.TERRABERRY;
     }
 
     @Override
@@ -73,9 +67,8 @@ public class BlockTerraberryCrops extends BlockCropsMP
     }
 
     @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
         int age = state.getValue(AGE).intValue();
         Random rand = world instanceof World ? ((World)world).rand : new Random();
 
@@ -85,11 +78,10 @@ public class BlockTerraberryCrops extends BlockCropsMP
             {
                 if (rand.nextInt(15) <= age)
                 {
-                    ret.add(new ItemStack(this.getCrop(), 1, 6));
+                    drops.add(new ItemStack(this.getCrop(), 1, 6));
                 }
             }
         }
-        return ret;
     }
 
     @Override

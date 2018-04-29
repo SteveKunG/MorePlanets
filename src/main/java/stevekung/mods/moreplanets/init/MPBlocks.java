@@ -7,7 +7,9 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import stevekung.mods.moreplanets.blocks.*;
-import stevekung.mods.moreplanets.blocks.decoration.*;
+import stevekung.mods.moreplanets.blocks.decoration.BlockAllDoubleSlab;
+import stevekung.mods.moreplanets.blocks.decoration.BlockAllHalfSlab;
+import stevekung.mods.moreplanets.blocks.decoration.BlockAllWall;
 import stevekung.mods.moreplanets.itemblocks.ItemBlockBlackHoleStorage;
 import stevekung.mods.moreplanets.itemblocks.ItemBlockDarkEnergyReceiver;
 import stevekung.mods.moreplanets.itemblocks.ItemBlockShieldGenerator;
@@ -19,11 +21,9 @@ import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.util.blocks.BlockSlabMP;
 import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
-import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
 import stevekung.mods.moreplanets.util.itemblocks.ItemBlockSlabMP;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
@@ -100,16 +100,35 @@ public class MPBlocks
     public static Block SHIELD_GENERATOR;
 
     // Slab
-    public static BlockSlabMP HALF_DUNGEON_BRICK_SLAB_1;
-    public static BlockSlabMP DOUBLE_DUNGEON_BRICK_SLAB_1;
-    public static BlockSlabMP HALF_COBBLESTONE_SLAB_1;
-    public static BlockSlabMP DOUBLE_COBBLESTONE_SLAB_1;
-    public static BlockSlabMP HALF_WOODEN_SLAB_1;
-    public static BlockSlabMP DOUBLE_WOODEN_SLAB_1;
+    public static BlockAllHalfSlab DIONA_COBBLESTONE_SLAB;
+    public static BlockAllHalfSlab CHALOS_COBBLESTONE_SLAB;
+    public static BlockAllHalfSlab NIBIRU_COBBLESTONE_SLAB;
+    public static BlockAllHalfSlab DIONA_DUNGEON_BRICK_SLAB;
+    public static BlockAllHalfSlab CHALOS_DUNGEON_BRICK_SLAB;
+    public static BlockAllHalfSlab NIBIRU_DUNGEON_BRICK_SLAB;
+
+    public static BlockAllHalfSlab CHEESE_SPORE_WOOD_SLAB;
+    public static BlockAllHalfSlab INFECTED_OAK_WOOD_SLAB;
+    public static BlockAllHalfSlab ALIEN_BERRY_OAK_WOOD_SLAB;
+
+    @Deprecated public static BlockAllHalfSlab DOUBLE_DIONA_COBBLESTONE_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_CHALOS_COBBLESTONE_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_NIBIRU_COBBLESTONE_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_DIONA_DUNGEON_BRICK_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_CHALOS_DUNGEON_BRICK_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB;
+
+    @Deprecated public static BlockAllHalfSlab DOUBLE_CHEESE_SPORE_WOOD_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_OAK_WOOD_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB;
 
     // Wall
-    public static Block COBBLESTONE_WALL;
-    public static Block DUNGEON_BRICK_WALL;
+    public static Block DIONA_COBBLESTONE_WALL;
+    public static Block CHALOS_COBBLESTONE_WALL;
+    public static Block NIBIRU_COBBLESTONE_WALL;
+    public static Block DIONA_DUNGEON_BRICK_WALL;
+    public static Block CHALOS_DUNGEON_BRICK_WALL;
+    public static Block NIBIRU_DUNGEON_BRICK_WALL;
 
     public static Fluid FLUID_XP;
 
@@ -141,6 +160,13 @@ public class MPBlocks
         // Polish
         MPBlocks.POLISHED_TIN_DECORATION_BLOCK = new BlockBaseMP("polished_tin_decoration_block", Material.ROCK).setHardness(1.5F);
         MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK = new BlockBaseMP("polished_aluminum_decoration_block", Material.ROCK).setHardness(1.5F);
+
+        MPBlocks.DIONA_COBBLESTONE_WALL = new BlockAllWall("diona_cobblestone_wall", BlockAllWall.BlockType.DIONA_COBBLESTONE_WALL);
+        MPBlocks.CHALOS_COBBLESTONE_WALL = new BlockAllWall("chalos_cobblestone_wall", BlockAllWall.BlockType.CHALOS_COBBLESTONE_WALL);
+        MPBlocks.NIBIRU_COBBLESTONE_WALL = new BlockAllWall("nibiru_cobblestone_wall", BlockAllWall.BlockType.NIBIRU_COBBLESTONE_WALL);
+        MPBlocks.DIONA_DUNGEON_BRICK_WALL = new BlockAllWall("diona_dungeon_brick_wall", BlockAllWall.BlockType.DIONA_DUNGEON_BRICK_WALL);
+        MPBlocks.CHALOS_DUNGEON_BRICK_WALL = new BlockAllWall("chalos_dungeon_brick_wall", BlockAllWall.BlockType.CHALOS_DUNGEON_BRICK_WALL);
+        MPBlocks.NIBIRU_DUNGEON_BRICK_WALL = new BlockAllWall("nibiru_dungeon_brick_wall", BlockAllWall.BlockType.NIBIRU_DUNGEON_BRICK_WALL);
 
         // Tinted Glass
         MPBlocks.WHITE_TINTED_GLASS = new BlockTintedGlass("white_tinted_glass", EnumDyeColor.WHITE);
@@ -178,19 +204,33 @@ public class MPBlocks
         MPBlocks.RED_TINTED_GLASS_PANE = new BlockTintedGlassPane("red_tinted_glass_pane", EnumDyeColor.RED);
         MPBlocks.BLACK_TINTED_GLASS_PANE = new BlockTintedGlassPane("black_tinted_glass_pane", EnumDyeColor.BLACK);
 
+        MPBlocks.DIONA_COBBLESTONE_SLAB = new BlockAllHalfSlab("diona_cobblestone_slab", BlockAllHalfSlab.BlockType.DIONA_COBBLESTONE_SLAB);
+        MPBlocks.CHALOS_COBBLESTONE_SLAB = new BlockAllHalfSlab("chalos_cobblestone_slab", BlockAllHalfSlab.BlockType.CHALOS_COBBLESTONE_SLAB);
+        MPBlocks.NIBIRU_COBBLESTONE_SLAB = new BlockAllHalfSlab("nibiru_cobblestone_slab", BlockAllHalfSlab.BlockType.NIBIRU_COBBLESTONE_SLAB);
+        MPBlocks.DIONA_DUNGEON_BRICK_SLAB = new BlockAllHalfSlab("diona_dungeon_brick_slab", BlockAllHalfSlab.BlockType.DIONA_DUNGEON_BRICK_SLAB);
+        MPBlocks.CHALOS_DUNGEON_BRICK_SLAB = new BlockAllHalfSlab("chalos_dungeon_brick_slab", BlockAllHalfSlab.BlockType.CHALOS_DUNGEON_BRICK_SLAB);
+        MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB = new BlockAllHalfSlab("nibiru_dungeon_brick_slab", BlockAllHalfSlab.BlockType.NIBIRU_DUNGEON_BRICK_SLAB);
+
+        MPBlocks.CHEESE_SPORE_WOOD_SLAB = new BlockAllHalfSlab("cheese_spore_wood_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_WOOD_SLAB, Material.WOOD);
+        MPBlocks.INFECTED_OAK_WOOD_SLAB = new BlockAllHalfSlab("infected_oak_wood_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_WOOD_SLAB, Material.WOOD);
+        MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB = new BlockAllHalfSlab("alien_berry_oak_wood_slab", BlockAllHalfSlab.BlockType.ALIEN_BERRY_OAK_WOOD_SLAB, Material.WOOD);
+
+        MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB = new BlockAllDoubleSlab("double_diona_cobblestone_slab", BlockAllHalfSlab.BlockType.DIONA_COBBLESTONE_SLAB);
+        MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB = new BlockAllDoubleSlab("double_chalos_cobblestone_slab", BlockAllHalfSlab.BlockType.CHALOS_COBBLESTONE_SLAB);
+        MPBlocks.DOUBLE_NIBIRU_COBBLESTONE_SLAB = new BlockAllDoubleSlab("double_nibiru_cobblestone_slab", BlockAllHalfSlab.BlockType.NIBIRU_COBBLESTONE_SLAB);
+        MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB = new BlockAllDoubleSlab("double_diona_dungeon_brick_slab", BlockAllHalfSlab.BlockType.DIONA_DUNGEON_BRICK_SLAB);
+        MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB = new BlockAllDoubleSlab("double_chalos_dungeon_brick_slab", BlockAllHalfSlab.BlockType.CHALOS_DUNGEON_BRICK_SLAB);
+        MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB = new BlockAllDoubleSlab("double_nibiru_dungeon_brick_slab", BlockAllHalfSlab.BlockType.NIBIRU_DUNGEON_BRICK_SLAB);
+
+        MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB = new BlockAllDoubleSlab("double_cheese_spore_wood_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_WOOD_SLAB, Material.WOOD);
+        MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB = new BlockAllDoubleSlab("double_infected_oak_wood_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_WOOD_SLAB, Material.WOOD);
+        MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB = new BlockAllDoubleSlab("double_alien_berry_oak_wood_slab", BlockAllHalfSlab.BlockType.ALIEN_BERRY_OAK_WOOD_SLAB, Material.WOOD);
+
         MPBlocks.SPACE_WARP_PAD = new BlockSpaceWarpPad("space_warp_pad");
         MPBlocks.SPACE_WARP_PAD_FULL = new BlockSpaceWarpPadFull("space_warp_pad_full");
         MPBlocks.ROCKET_CRUSHER = new BlockRocketCrusher("rocket_crusher");
         MPBlocks.DUNGEON_GLOWSTONE = new BlockBaseMP("dungeon_glowstone", Material.GLASS).setSoundType(SoundType.GLASS).setResistance(100.0F).setHardness(0.3F).setLightLevel(1.0F);
         MPBlocks.DARK_ENERGY_RECEIVER = new BlockDarkEnergyReceiver("dark_energy_receiver");
-        MPBlocks.HALF_DUNGEON_BRICK_SLAB_1 = new BlockHalfDungeonBrickSlab1("half_dungeon_brick_slab_1");
-        MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1 = new BlockDoubleDungeonBrickSlab1("double_dungeon_brick_slab_1");
-        MPBlocks.HALF_COBBLESTONE_SLAB_1 = new BlockHalfCobblestoneSlab1("half_cobblestone_slab_1");
-        MPBlocks.DOUBLE_COBBLESTONE_SLAB_1 = new BlockDoubleCobblestoneSlab1("double_cobblestone_slab_1");
-        MPBlocks.HALF_WOODEN_SLAB_1 = new BlockHalfWoodenSlab1("half_wooden_slab_1");
-        MPBlocks.DOUBLE_WOODEN_SLAB_1 = new BlockDoubleWoodenSlab1("double_wooden_slab_1");
-        MPBlocks.COBBLESTONE_WALL = new BlockCobblestoneWall("cobblestone_wall_mp");
-        MPBlocks.DUNGEON_BRICK_WALL = new BlockDungeonBrickWall("dungeon_brick_wall_mp");
         MPBlocks.SPACE_PORTAL = new BlockSpacePortal("space_portal");
         MPBlocks.BLACK_HOLE_STORAGE = new BlockBlackHoleStorage("black_hole_storage");
         MPBlocks.ALIEN_DEFENDER_BEACON = new BlockAlienDefenderBeacon("alien_defender_beacon");
@@ -265,20 +305,41 @@ public class MPBlocks
         CommonRegisterHelper.registerBlock(MPBlocks.RED_TINTED_GLASS_PANE);
         CommonRegisterHelper.registerBlock(MPBlocks.BLACK_TINTED_GLASS_PANE);
 
+        CommonRegisterHelper.registerBlock(MPBlocks.DIONA_COBBLESTONE_WALL);
+        CommonRegisterHelper.registerBlock(MPBlocks.CHALOS_COBBLESTONE_WALL);
+        CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_COBBLESTONE_WALL);
+        CommonRegisterHelper.registerBlock(MPBlocks.DIONA_DUNGEON_BRICK_WALL);
+        CommonRegisterHelper.registerBlock(MPBlocks.CHALOS_DUNGEON_BRICK_WALL);
+        CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_DUNGEON_BRICK_WALL);
+
+        CommonRegisterHelper.registerBlock(MPBlocks.DIONA_COBBLESTONE_SLAB, ItemBlockSlabMP::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.CHALOS_COBBLESTONE_SLAB, ItemBlockSlabMP::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_COBBLESTONE_SLAB, ItemBlockSlabMP::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.DIONA_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
+
+        CommonRegisterHelper.registerBlock(MPBlocks.CHEESE_SPORE_WOOD_SLAB, ItemBlockSlabMP::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.INFECTED_OAK_WOOD_SLAB, ItemBlockSlabMP::new);
+        CommonRegisterHelper.registerBlock(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB, ItemBlockSlabMP::new);
+
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB, null);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB, null);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_NIBIRU_COBBLESTONE_SLAB, null);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB, null);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB, null);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB, null);
+
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB, null);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB, null);
+        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB, null);
+
         CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad::new);
         CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL, null);
         CommonRegisterHelper.registerBlock(MPBlocks.ROCKET_CRUSHER, ItemBlockDescription::new);
         CommonRegisterHelper.registerBlock(MPBlocks.DUNGEON_GLOWSTONE);
         CommonRegisterHelper.registerBlock(MPBlocks.DARK_ENERGY_RECEIVER, ItemBlockDarkEnergyReceiver::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1, null);
 
-        CommonRegisterHelper.registerBlock(MPBlocks.HALF_COBBLESTONE_SLAB_1, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_COBBLESTONE_SLAB_1, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.HALF_WOODEN_SLAB_1, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_WOODEN_SLAB_1, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.COBBLESTONE_WALL, ItemBlockMultiVariant::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.DUNGEON_BRICK_WALL, ItemBlockMultiVariant::new);
         CommonRegisterHelper.registerBlock(MPBlocks.SPACE_PORTAL);
         CommonRegisterHelper.registerBlock(MPBlocks.BLACK_HOLE_STORAGE, ItemBlockBlackHoleStorage::new);
         CommonRegisterHelper.registerBlock(MPBlocks.ALIEN_DEFENDER_BEACON);
@@ -312,18 +373,69 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.POLISHED_TIN_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
 
-        BlockUtils.setBlockHarvestLevel(MPBlocks.HALF_WOODEN_SLAB_1, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_WOODEN_SLAB_1, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.HALF_COBBLESTONE_SLAB_1, EnumHarvestLevel.PICKAXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_COBBLESTONE_SLAB_1, EnumHarvestLevel.PICKAXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.DUNGEON_BRICK_WALL, EnumHarvestLevel.PICKAXE, 1);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.HALF_DUNGEON_BRICK_SLAB_1, EnumHarvestLevel.PICKAXE, 1);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_DUNGEON_BRICK_SLAB_1, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.NIBIRU_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
+
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_NIBIRU_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
+
+        BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
+
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
+
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.NIBIRU_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_DUNGEON_BRICK_WALL, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_DUNGEON_BRICK_WALL, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.NIBIRU_DUNGEON_BRICK_WALL, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.SPACE_WARP_PAD, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.SPACE_WARP_PAD_FULL, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ROCKET_CRUSHER, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_RECEIVER, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.SHIELD_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
+
+        MPBlocks.DIONA_COBBLESTONE_SLAB.setHalf(MPBlocks.DIONA_COBBLESTONE_SLAB);
+        MPBlocks.CHALOS_COBBLESTONE_SLAB.setHalf(MPBlocks.CHALOS_COBBLESTONE_SLAB);
+        MPBlocks.NIBIRU_COBBLESTONE_SLAB.setHalf(MPBlocks.NIBIRU_COBBLESTONE_SLAB);
+        MPBlocks.DIONA_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.DIONA_DUNGEON_BRICK_SLAB);
+        MPBlocks.CHALOS_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB);
+        MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB);
+        MPBlocks.DIONA_COBBLESTONE_SLAB.setDouble(MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB);
+        MPBlocks.CHALOS_COBBLESTONE_SLAB.setDouble(MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB);
+        MPBlocks.NIBIRU_COBBLESTONE_SLAB.setDouble(MPBlocks.DOUBLE_NIBIRU_COBBLESTONE_SLAB);
+        MPBlocks.DIONA_DUNGEON_BRICK_SLAB.setDouble(MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB);
+        MPBlocks.CHALOS_DUNGEON_BRICK_SLAB.setDouble(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB);
+        MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB.setDouble(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB);
+
+        MPBlocks.CHEESE_SPORE_WOOD_SLAB.setHalf(MPBlocks.CHEESE_SPORE_WOOD_SLAB);
+        MPBlocks.INFECTED_OAK_WOOD_SLAB.setHalf(MPBlocks.INFECTED_OAK_WOOD_SLAB);
+        MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB.setHalf(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB);
+        MPBlocks.CHEESE_SPORE_WOOD_SLAB.setDouble(MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB);
+        MPBlocks.INFECTED_OAK_WOOD_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB);
+        MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB.setDouble(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB);
+
+        MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB.setHalf(MPBlocks.DIONA_COBBLESTONE_SLAB);
+        MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB.setHalf(MPBlocks.CHALOS_COBBLESTONE_SLAB);
+        MPBlocks.DOUBLE_NIBIRU_COBBLESTONE_SLAB.setHalf(MPBlocks.NIBIRU_COBBLESTONE_SLAB);
+        MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.DIONA_DUNGEON_BRICK_SLAB);
+        MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB);
+        MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB);
+
+        MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB.setHalf(MPBlocks.CHEESE_SPORE_WOOD_SLAB);
+        MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB.setHalf(MPBlocks.INFECTED_OAK_WOOD_SLAB);
+        MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB.setHalf(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB);
     }
 }

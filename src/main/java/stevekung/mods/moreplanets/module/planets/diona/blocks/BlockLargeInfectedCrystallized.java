@@ -154,13 +154,7 @@ public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITile
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return DionaItems.DIONA_ITEM;
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return 4;
+        return DionaItems.INFECTED_CRYSTALLIZED_SHARD;
     }
 
     @Override

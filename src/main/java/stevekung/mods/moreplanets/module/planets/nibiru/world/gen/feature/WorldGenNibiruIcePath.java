@@ -25,7 +25,7 @@ public class WorldGenNibiruIcePath extends WorldGenerator
             pos = pos.down();
         }
 
-        if (world.getBlockState(pos).getBlock() != NibiruBlocks.INFECTED_GRASS)
+        if (world.getBlockState(pos).getBlock() != NibiruBlocks.INFECTED_GRASS_BLOCK)
         {
             return false;
         }
@@ -48,7 +48,7 @@ public class WorldGenNibiruIcePath extends WorldGenerator
                             BlockPos blockpos = new BlockPos(k, k1, l);
                             Block block = world.getBlockState(blockpos).getBlock();
 
-                            if (block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                            if (block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
                             {
                                 world.setBlockState(blockpos, NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState(), 2);
                             }

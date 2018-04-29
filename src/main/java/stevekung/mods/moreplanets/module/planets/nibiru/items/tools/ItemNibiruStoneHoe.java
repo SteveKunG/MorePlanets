@@ -51,7 +51,7 @@ public class ItemNibiruStoneHoe extends ItemHoeMP
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.NIBIRU_BLOCK) && repair.getItemDamage() == 0)
+        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.NIBIRU_ROCK))
         {
             return true;
         }

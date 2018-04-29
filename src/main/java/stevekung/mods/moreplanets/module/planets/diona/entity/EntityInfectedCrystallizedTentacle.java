@@ -184,7 +184,7 @@ public class EntityInfectedCrystallizedTentacle extends Entity
 
                     for (int k = 0; k < j; ++k)
                     {
-                        this.entityDropItem(new ItemStack(DionaItems.DIONA_ITEM, 1, 4), 0.0F);
+                        this.entityDropItem(new ItemStack(DionaItems.INFECTED_CRYSTALLIZED_SHARD), 0.0F);
                     }
                     for (EntityLivingBase living : list)
                     {

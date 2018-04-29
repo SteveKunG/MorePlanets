@@ -174,7 +174,7 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
 
         if (meta == 0)
         {
-            return NibiruItems.NIBIRU_ITEM;
+            return NibiruItems.INFECTED_COAL;
         }
         if (meta == 3)
         {
@@ -198,7 +198,7 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
         }
         if (meta == 11)
         {
-            return NibiruItems.NIBIRU_ITEM;
+            return NibiruItems.INFERUMITE_CRYSTAL;
         }
         return Item.getItemFromBlock(this);
     }

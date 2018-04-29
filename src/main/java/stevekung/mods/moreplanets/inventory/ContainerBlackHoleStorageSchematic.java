@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.inventory;
 
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.inventory.SlotRocketBenchResult;
+import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
@@ -128,8 +129,8 @@ public class ContainerBlackHoleStorageSchematic extends Container
             {
                 Item item = slotStack.getItem();
                 int meta = slotStack.getItemDamage();
-
-                if (item == DionaItems.DIONA_ITEM && meta == 6 || item == Items.ENDER_EYE || item == DionaItems.DIONA_ITEM && meta == 7 || item == GCItems.flagPole || item == DionaItems.TIER_4_ROCKET_PART && meta == 0)
+                                                                                                                                                               //heavy plate tier 3
+                if (item == DionaItems.GLOWING_IRON_INGOT || item == Items.ENDER_EYE || item == DionaItems.BLACK_HOLE_FRAGMENTS || item == GCItems.flagPole || item == AsteroidsItems.basicItem && meta == 5)
                 {
                     for (int i = 1; i < 23; i++)
                     {

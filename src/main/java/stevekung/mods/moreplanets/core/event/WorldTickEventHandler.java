@@ -54,7 +54,7 @@ public class WorldTickEventHandler
                 }
             }
         }
-        if (event.phase == Phase.END)
+        if (false&&event.phase == Phase.END)//TODO Fix this
         {
             World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionDiona);
 

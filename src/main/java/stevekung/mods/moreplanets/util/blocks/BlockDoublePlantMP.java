@@ -24,6 +24,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
+import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 
 public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShearable
 {
@@ -54,7 +56,7 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
         }
         else
         {
-            return this.type == BlockType.CHEESE_TALL_GRASS;
+            return this.type.isGrass();
         }
     }
 
@@ -82,6 +84,14 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
         if (this.type == BlockType.CHEESE_TALL_GRASS)
         {
             return block == ChalosBlocks.CHEESE_GRASS_BLOCK || block == ChalosBlocks.CHEESE_DIRT || block == ChalosBlocks.CHEESE_COARSE_DIRT || block == ChalosBlocks.CHEESE_FARMLAND;
+        }
+        else if (this.type == BlockType.GREEN_VEIN_TALL_GRASS)
+        {
+            return block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
+        }
+        else if (this.type == BlockType.INFECTED_ORANGE_ROSE_BUSH || this.type == BlockType.INFECTED_TALL_GRASS || this.type == BlockType.INFECTED_LARGE_FERN)
+        {
+            return block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
         }
         return super.validBlock(block);
     }
@@ -126,6 +136,10 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
             {
                 return rand.nextInt(8) == 0 ? ChalosItems.CHEESE_SPORE_SEED : Items.AIR;
             }
+            else if (this.type == BlockType.GREEN_VEIN_TALL_GRASS)
+            {
+                return rand.nextInt(8) == 0 ? NibiruItems.TERRABERRY : Items.AIR;
+            }
             else
             {
                 return super.getItemDropped(state, rand, fortune);
@@ -154,7 +168,7 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
                 {
                     IBlockState iblockstate = world.getBlockState(pos.down());
 
-                    if (this.type != BlockType.CHEESE_TALL_GRASS)
+                    if (this.type.isGrass())
                     {
                         world.destroyBlock(pos.down(), true);
                     }
@@ -189,7 +203,7 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return this.type != BlockType.CHEESE_TALL_GRASS;
+        return !this.type.isGrass();
     }
 
     @Override
@@ -232,7 +246,7 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
     public boolean isShearable(ItemStack itemStack, IBlockAccess world, BlockPos pos)
     {
         IBlockState state = world.getBlockState(pos);
-        return state.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.LOWER && this.type == BlockType.CHEESE_TALL_GRASS;
+        return state.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.LOWER && this.type.isGrass();
     }
 
     @Override
@@ -243,6 +257,18 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
         if (this.type == BlockType.CHEESE_TALL_GRASS)
         {
             ret.add(new ItemStack(ChalosBlocks.CHEESE_GRASS, 2));
+        }
+        if (this.type == BlockType.INFECTED_TALL_GRASS)
+        {
+            ret.add(new ItemStack(NibiruBlocks.INFECTED_GRASS, 2));
+        }
+        if (this.type == BlockType.INFECTED_LARGE_FERN)
+        {
+            ret.add(new ItemStack(NibiruBlocks.INFECTED_FERN, 2));
+        }
+        if (this.type == BlockType.GREEN_VEIN_TALL_GRASS)
+        {
+            ret.add(new ItemStack(NibiruBlocks.GREEN_VEIN_GRASS, 2));
         }
         return ret;
     }
@@ -255,7 +281,7 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
 
     private boolean onHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        if (this.type != BlockType.CHEESE_TALL_GRASS)
+        if (this.type.isGrass())
         {
             return false;
         }
@@ -268,12 +294,30 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
 
     public static enum BlockType
     {
-        CHEESE_TALL_GRASS;
+        CHEESE_TALL_GRASS(true),
+        INFECTED_ORANGE_ROSE_BUSH,
+        INFECTED_TALL_GRASS(true),
+        INFECTED_LARGE_FERN(true),
+        GREEN_VEIN_TALL_GRASS(true);
+
+        private boolean isGrass;
+
+        BlockType() {}
+
+        BlockType(boolean isGrass)
+        {
+            this.isGrass = isGrass;
+        }
 
         @Override
         public String toString()
         {
             return this.name().toLowerCase();
+        }
+
+        public boolean isGrass()
+        {
+            return this.isGrass;
         }
     }
 }

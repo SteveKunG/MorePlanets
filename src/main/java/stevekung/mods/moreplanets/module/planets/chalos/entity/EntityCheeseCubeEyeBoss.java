@@ -48,6 +48,7 @@ import stevekung.mods.moreplanets.util.entity.EntityFlyingBossMP;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEntityBreathable, IMorePlanetsBoss
 {
@@ -265,7 +266,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
                 for (EntityPlayer player2 : playerWithin)
                 {
-                    player2.sendMessage(JsonUtils.create(GCCoreUtil.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
+                    player2.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
                 }
                 this.setDead();
                 return;
@@ -406,7 +407,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         }
         for (int i = 0; i < this.rand.nextInt(3); ++i)
         {
-            this.entityDropItem(new ItemStack(ChalosItems.CHEESE_FOOD, 1), 0.0F);
+            this.entityDropItem(new ItemStack(ChalosItems.CHEESE_MILK_CURD, 1), 0.0F);
         }
     }
 

@@ -47,7 +47,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruTallGrass;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.ai.EntityAIShlimeEatGrass;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
@@ -57,7 +56,7 @@ import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
 
 public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob, IEntityBreathable
 {
-    private static DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(EntityShlime.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(EntityShlime.class, DataSerializers.BYTE);
 
     private InventoryCrafting inventoryCrafting = new InventoryCrafting(new Container()
     {
@@ -90,7 +89,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         this.tasks.addTask(1, new AIPanic(this, 1.33D));
         this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(NibiruItems.INFECTED_WHEAT)));
-        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(NibiruItems.NIBIRU_FRUITS, 1, 6)));
+        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(NibiruItems.TERRABERRY)));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(5, this.entityAIEatGrass);
         this.tasks.addTask(6, new EntityAIWander(this, 0.6D));
@@ -132,7 +131,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         int j = MathHelper.floor(this.getEntityBoundingBox().minY);
         int k = MathHelper.floor(this.posZ);
         BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getBlockState(blockpos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS && this.world.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
+        return this.world.getBlockState(blockpos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK && this.world.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
     }
 
     @Override
@@ -166,23 +165,23 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         if (this.sheepTimer > 0 && this.sheepTimer <= 40)
         {
             Block blockDown = this.world.getBlockState(this.getPosition().down()).getBlock();
-            IBlockState block = this.world.getBlockState(this.getPosition());
+            IBlockState state = this.world.getBlockState(this.getPosition());
 
-            if (blockDown == NibiruBlocks.INFECTED_GRASS)
+            if (blockDown == NibiruBlocks.INFECTED_GRASS_BLOCK)
+            {
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState())});
+            }
+            else if (blockDown == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK)
+            {
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.GREEN_VEIN_GRASS_BLOCK.getDefaultState())});
+            }
+            else if (state == NibiruBlocks.INFECTED_GRASS.getDefaultState())
             {
                 this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.INFECTED_GRASS.getDefaultState())});
             }
-            else if (blockDown == NibiruBlocks.GREEN_VEIN_GRASS)
+            else if (state == NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState())
             {
                 this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState())});
-            }
-            else if (block == NibiruBlocks.NIBIRU_TALL_GRASS.getDefaultState().withProperty(BlockNibiruTallGrass.VARIANT, BlockNibiruTallGrass.BlockType.INFECTED_TALL_GRASS))
-            {
-                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.NIBIRU_TALL_GRASS.getDefaultState().withProperty(BlockNibiruTallGrass.VARIANT, BlockNibiruTallGrass.BlockType.INFECTED_TALL_GRASS))});
-            }
-            else if (block == NibiruBlocks.NIBIRU_TALL_GRASS.getDefaultState().withProperty(BlockNibiruTallGrass.VARIANT, BlockNibiruTallGrass.BlockType.GREEN_VEIN_TALL_GRASS))
-            {
-                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.NIBIRU_TALL_GRASS.getDefaultState().withProperty(BlockNibiruTallGrass.VARIANT, BlockNibiruTallGrass.BlockType.GREEN_VEIN_TALL_GRASS))});
             }
         }
         this.alterSquishAmount();
@@ -370,7 +369,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && (itemStack.getItem() == NibiruItems.INFECTED_WHEAT || itemStack.getItem() == NibiruItems.NIBIRU_FRUITS && itemStack.getItemDamage() == 6);
+        return !itemStack.isEmpty() && (itemStack.getItem() == NibiruItems.INFECTED_WHEAT || itemStack.getItem() == NibiruItems.TERRABERRY);
     }
 
     @Override

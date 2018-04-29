@@ -44,12 +44,12 @@ public class ItemArmorMultalicCrystal extends ItemArmorMP
     @Override
     public Item getRepairItems()
     {
-        return NibiruItems.NIBIRU_ITEM;
+        return NibiruItems.MULTALIC_CRYSTAL_PIECES;
     }
 
     @Override
     public int getRepairItemsMetadata()
     {
-        return 1;
+        return -1;
     }
 }

@@ -24,13 +24,13 @@ public class ItemBreathableIllenium extends ItemBreathableArmor
     @Override
     public Item getRepairItems()
     {
-        return DionaItems.DIONA_ITEM;
+        return DionaItems.COMPRESSED_ILLENIUM;
     }
 
     @Override
     public int getRepairItemsMetadata()
     {
-        return 2;
+        return -1;
     }
 
     @Override

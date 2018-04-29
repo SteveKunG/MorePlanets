@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "moreplanets:green_vein_grass_block" },
+            { "model": "moreplanets:green_vein_grass_block", "y": 90 },
+            { "model": "moreplanets:green_vein_grass_block", "y": 180 },
+            { "model": "moreplanets:green_vein_grass_block", "y": 270 }
+        ]
+    }
+}

@@ -7,7 +7,6 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -28,6 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
 {
@@ -212,7 +212,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public String getName()
     {
-        return GCCoreUtil.translate("container.space_warp_pad.name");
+        return LangUtils.translate("container.space_warp_pad.name");
     }
 
     @Override
@@ -259,25 +259,25 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     {
         if (this.getEnergyStoredGC() == 0)
         {
-            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.missingpower.name");
+            return TextFormatting.DARK_RED + LangUtils.translate("gui.status.missingpower.name");
         }
         if (this.getDisabled(0))
         {
-            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.ready.name");
+            return TextFormatting.GOLD + LangUtils.translate("gui.status.ready.name");
         }
         if (this.getEnergyStoredGC() < this.storage.getMaxExtract())
         {
-            return TextFormatting.GOLD + GCCoreUtil.translate("gui.status.missingpower.name");
+            return TextFormatting.GOLD + LangUtils.translate("gui.status.missingpower.name");
         }
         if (!this.hasWarpCore())
         {
-            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.warp_core_required.name");
+            return TextFormatting.DARK_RED + LangUtils.translate("gui.status.warp_core_required.name");
         }
         if (this.hasWarpCore() && !this.containingItems.get(1).hasTagCompound())
         {
-            return TextFormatting.DARK_RED + GCCoreUtil.translate("gui.status.empty_dimension_data.name");
+            return TextFormatting.DARK_RED + LangUtils.translate("gui.status.empty_dimension_data.name");
         }
-        return TextFormatting.DARK_GREEN + GCCoreUtil.translate("gui.status.active.name");
+        return TextFormatting.DARK_GREEN + LangUtils.translate("gui.status.active.name");
     }
 
     public boolean hasWarpCore()

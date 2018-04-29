@@ -2,15 +2,40 @@ package stevekung.mods.moreplanets.module.planets.fronos.items;
 
 import net.minecraft.item.Item;
 import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.util.items.ItemAllFood;
+import stevekung.mods.moreplanets.util.items.ItemBaseMP;
 
 public class FronosItems
 {
-    // Base
-    public static Item FRONOS_ITEM;
-    public static Item FRONOS_FRUITS;
-    public static Item FRONOS_FOOD;
-    public static Item JELLY;
-    public static Item CANDY_CANE;
+    public static Item EXTRAILONITE_INGOT;
+    public static Item COMPRESSED_EXTRAILONITE;
+
+    public static Item STRAWBERRY;
+    public static Item GIANT_BLUEBERRY;
+
+    public static Item CHOCOLATE_BAR;
+    public static Item JELLY_BEANS;
+    public static Item MARSHMALLOW;
+    public static Item COOKED_MARSHMALLOW;
+
+    public static Item RED_CANDY_CANE_STICK;
+    public static Item GREEN_CANDY_CANE_STICK;
+    public static Item BLUE_CANDY_CANE_STICK;
+    public static Item ORANGE_CANDY_CANE_STICK;
+    public static Item PINK_CANDY_CANE_STICK;
+    public static Item YELLOW_CANDY_CANE_STICK;
+    public static Item PURPLE_CANDY_CANE_STICK;
+    public static Item RAINBOW_CANDY_CANE_STICK;
+
+    public static Item GRAPE_JELLY;
+    public static Item RASPBERRY_JELLY;
+    public static Item STRAWBERRY_JELLY;
+    public static Item BERRY_JELLY;
+    public static Item LIME_JELLY;
+    public static Item ORANGE_JELLY;
+    public static Item GREEN_JELLY;
+    public static Item LEMON_JELLY;
 
     //    // Tools
     //    public static Item ILLENIUM_SWORD;
@@ -36,11 +61,34 @@ public class FronosItems
         /**********************INITIAL BASE STUFF**********************/
         /**************************************************************/
 
-        FronosItems.FRONOS_ITEM = new ItemFronos("fronos_item");
-        FronosItems.FRONOS_FRUITS = new ItemFronosFruits("fronos_fruits");
-        FronosItems.FRONOS_FOOD = new ItemFronosFood("fronos_food");
-        FronosItems.JELLY = new ItemJelly("jelly");
-        FronosItems.CANDY_CANE = new ItemCandyCane("candy_cane");
+        FronosItems.EXTRAILONITE_INGOT = new ItemBaseMP("extrailonite_ingot").setSortCategory(EnumSortCategoryItem.INGOT);
+        FronosItems.COMPRESSED_EXTRAILONITE = new ItemBaseMP("compressed_extrailonite").setSortCategory(EnumSortCategoryItem.PLATE);
+
+        FronosItems.STRAWBERRY = new ItemAllFood("strawberry", ItemAllFood.ItemType.STRAWBERRY);
+        FronosItems.GIANT_BLUEBERRY = new ItemAllFood("giant_blueberry", ItemAllFood.ItemType.GIANT_BLUEBERRY);
+
+        FronosItems.CHOCOLATE_BAR = new ItemAllFood("chocolate_bar", ItemAllFood.ItemType.CHOCOLATE_BAR);
+        FronosItems.JELLY_BEANS = new ItemAllFood("jelly_beans", ItemAllFood.ItemType.JELLY_BEANS);
+        FronosItems.MARSHMALLOW = new ItemAllFood("marshmallow", ItemAllFood.ItemType.MARSHMALLOW);
+        FronosItems.COOKED_MARSHMALLOW = new ItemAllFood("cooked_marshmallow", ItemAllFood.ItemType.COOKED_MARSHMALLOW);
+
+        FronosItems.RED_CANDY_CANE_STICK = new ItemAllFood("red_candy_cane_stick", ItemAllFood.ItemType.RED_CANDY_CANE_STICK);
+        FronosItems.GREEN_CANDY_CANE_STICK = new ItemAllFood("green_candy_cane_stick", ItemAllFood.ItemType.GREEN_CANDY_CANE_STICK);
+        FronosItems.BLUE_CANDY_CANE_STICK = new ItemAllFood("blue_candy_cane_stick", ItemAllFood.ItemType.BLUE_CANDY_CANE_STICK);
+        FronosItems.ORANGE_CANDY_CANE_STICK = new ItemAllFood("orange_candy_cane_stick", ItemAllFood.ItemType.ORANGE_CANDY_CANE_STICK);
+        FronosItems.PINK_CANDY_CANE_STICK = new ItemAllFood("pink_candy_cane_stick", ItemAllFood.ItemType.PINK_CANDY_CANE_STICK);
+        FronosItems.YELLOW_CANDY_CANE_STICK = new ItemAllFood("yellow_candy_cane_stick", ItemAllFood.ItemType.YELLOW_CANDY_CANE_STICK);
+        FronosItems.PURPLE_CANDY_CANE_STICK = new ItemAllFood("purple_candy_cane_stick", ItemAllFood.ItemType.PURPLE_CANDY_CANE_STICK);
+        FronosItems.RAINBOW_CANDY_CANE_STICK = new ItemAllFood("rainbow_candy_cane_stick", ItemAllFood.ItemType.RAINBOW_CANDY_CANE_STICK);
+
+        FronosItems.GRAPE_JELLY = new ItemAllFood("grape_jelly", ItemAllFood.ItemType.GRAPE_JELLY);
+        FronosItems.RASPBERRY_JELLY = new ItemAllFood("raspberry_jelly", ItemAllFood.ItemType.RASPBERRY_JELLY);
+        FronosItems.STRAWBERRY_JELLY = new ItemAllFood("strawberry_jelly", ItemAllFood.ItemType.STRAWBERRY_JELLY);
+        FronosItems.BERRY_JELLY = new ItemAllFood("berry_jelly", ItemAllFood.ItemType.BERRY_JELLY);
+        FronosItems.LIME_JELLY = new ItemAllFood("lime_jelly", ItemAllFood.ItemType.LIME_JELLY);
+        FronosItems.ORANGE_JELLY = new ItemAllFood("orange_jelly", ItemAllFood.ItemType.ORANGE_JELLY);
+        FronosItems.GREEN_JELLY = new ItemAllFood("green_jelly", ItemAllFood.ItemType.GREEN_JELLY);
+        FronosItems.LEMON_JELLY = new ItemAllFood("lemon_jelly", ItemAllFood.ItemType.LEMON_JELLY);
 
         /**************************************************************/
         /**********************INITIAL TOOL STUFF**********************/
@@ -66,11 +114,34 @@ public class FronosItems
         /**********************REGISTER STUFF**************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerItem(FronosItems.FRONOS_ITEM);
-        CommonRegisterHelper.registerItem(FronosItems.FRONOS_FRUITS);
-        CommonRegisterHelper.registerItem(FronosItems.FRONOS_FOOD);
-        CommonRegisterHelper.registerItem(FronosItems.JELLY);
-        CommonRegisterHelper.registerItem(FronosItems.CANDY_CANE);
+        CommonRegisterHelper.registerItem(FronosItems.EXTRAILONITE_INGOT);
+        CommonRegisterHelper.registerItem(FronosItems.COMPRESSED_EXTRAILONITE);
+
+        CommonRegisterHelper.registerItem(FronosItems.STRAWBERRY);
+        CommonRegisterHelper.registerItem(FronosItems.GIANT_BLUEBERRY);
+
+        CommonRegisterHelper.registerItem(FronosItems.CHOCOLATE_BAR);
+        CommonRegisterHelper.registerItem(FronosItems.JELLY_BEANS);
+        CommonRegisterHelper.registerItem(FronosItems.MARSHMALLOW);
+        CommonRegisterHelper.registerItem(FronosItems.COOKED_MARSHMALLOW);
+
+        CommonRegisterHelper.registerItem(FronosItems.RED_CANDY_CANE_STICK);
+        CommonRegisterHelper.registerItem(FronosItems.GREEN_CANDY_CANE_STICK);
+        CommonRegisterHelper.registerItem(FronosItems.BLUE_CANDY_CANE_STICK);
+        CommonRegisterHelper.registerItem(FronosItems.ORANGE_CANDY_CANE_STICK);
+        CommonRegisterHelper.registerItem(FronosItems.PINK_CANDY_CANE_STICK);
+        CommonRegisterHelper.registerItem(FronosItems.YELLOW_CANDY_CANE_STICK);
+        CommonRegisterHelper.registerItem(FronosItems.PURPLE_CANDY_CANE_STICK);
+        CommonRegisterHelper.registerItem(FronosItems.RAINBOW_CANDY_CANE_STICK);
+
+        CommonRegisterHelper.registerItem(FronosItems.GRAPE_JELLY);
+        CommonRegisterHelper.registerItem(FronosItems.RASPBERRY_JELLY);
+        CommonRegisterHelper.registerItem(FronosItems.STRAWBERRY_JELLY);
+        CommonRegisterHelper.registerItem(FronosItems.BERRY_JELLY);
+        CommonRegisterHelper.registerItem(FronosItems.LIME_JELLY);
+        CommonRegisterHelper.registerItem(FronosItems.ORANGE_JELLY);
+        CommonRegisterHelper.registerItem(FronosItems.GREEN_JELLY);
+        CommonRegisterHelper.registerItem(FronosItems.LEMON_JELLY);
 
         //        CommonRegisterHelper.registerItem(FronosItems.ILLENIUM_SWORD);
         //        CommonRegisterHelper.registerItem(FronosItems.ILLENIUM_SHOVEL);

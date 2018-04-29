@@ -25,8 +25,8 @@ import stevekung.mods.stevekunglib.utils.BlockUtils;
 
 public class BlockInfectedCactus extends BlockBushMP
 {
-    protected static AxisAlignedBB CACTUS_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
-    protected static AxisAlignedBB CACTUS_COLLISION_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D);
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
+    private static final AxisAlignedBB COLLISION_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D);
 
     public BlockInfectedCactus(String name)
     {
@@ -70,14 +70,14 @@ public class BlockInfectedCactus extends BlockBushMP
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return CACTUS_AABB;
+        return BlockInfectedCactus.AABB;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        return CACTUS_COLLISION_AABB.offset(pos);
+        return BlockInfectedCactus.COLLISION_AABB.offset(pos);
     }
 
     @Override
@@ -90,6 +90,12 @@ public class BlockInfectedCactus extends BlockBushMP
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
+    }
+
+    @Override
+    public boolean validBlock(Block block)
+    {
+        return block == NibiruBlocks.INFECTED_SAND || block == this;
     }
 
     @Override
@@ -111,9 +117,9 @@ public class BlockInfectedCactus extends BlockBushMP
     @Override
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
-        for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+        for (EnumFacing facing : EnumFacing.Plane.HORIZONTAL)
         {
-            if (world.getBlockState(pos.offset(enumfacing)).getMaterial().isSolid())
+            if (world.getBlockState(pos.offset(facing)).getMaterial().isSolid())
             {
                 return false;
             }

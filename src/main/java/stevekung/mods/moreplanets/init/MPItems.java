@@ -18,14 +18,21 @@ public class MPItems
     public static Item INFECTED_SPORE_PROTECTION_CAPSULE;
     public static Item DARK_ENERGY_PROTECTION_CAPSULE;
 
+    public static Item LASER_BULLET;
+    public static Item INFECTED_CRYSTALLIZED_LASER_BULLET;
+
+    public static Item ION_CANNON_SCHEMATIC;
+    public static Item BLACK_HOLE_STORAGE_SCHEMATIC;
+
+    public static Item ZELIUS_FISH;
+    public static Item GLOWING_ALIEN_FISH;
+    public static Item CHEESE_FISH;
+
     public static Item SPACE_WARPER_CORE;
     public static Item SPACE_BOW;
     public static Item SPACE_FISHING_ROD;
     public static Item DYE;
-    public static Item LASER_BULLET;
     public static Item LASER_GUN;
-    public static Item SPACE_FISH;
-    public static Item SPECIAL_SCHEMATIC;
     public static Item ALIEN_DEFENDER_REINFORCEMENT;
     public static Item CREATIVE_SPACE_KIT;
     public static Item VEIN_FLOATER_DISC;
@@ -47,14 +54,21 @@ public class MPItems
         MPItems.INFECTED_SPORE_PROTECTION_CAPSULE = new ItemCapsule("infected_spore_protection_capsule", ItemCapsule.CapsuleType.INFECTED_SPORE);
         MPItems.DARK_ENERGY_PROTECTION_CAPSULE = new ItemCapsule("dark_energy_protection_capsule", ItemCapsule.CapsuleType.DARK_ENERGY);
 
+        MPItems.LASER_BULLET = new ItemBaseMP("laser_bullet").setSortCategory(EnumSortCategoryItem.PROJECTILE);
+        MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET = new ItemBaseMP("infected_crystallized_laser_bullet").setSortCategory(EnumSortCategoryItem.PROJECTILE);
+
+        MPItems.ION_CANNON_SCHEMATIC = new ItemIonCannonSchematic("ion_cannon_schematic");
+        MPItems.BLACK_HOLE_STORAGE_SCHEMATIC = new ItemBlackHoleStorageSchematic("black_hole_storage_schematic");
+
+        MPItems.ZELIUS_FISH = new ItemSpaceFish("zelius_fish", ItemSpaceFish.ItemType.ZELIUS_FISH);
+        MPItems.GLOWING_ALIEN_FISH = new ItemSpaceFish("glowing_alien_fish", ItemSpaceFish.ItemType.GLOWING_ALIEN_FISH);
+        MPItems.CHEESE_FISH = new ItemSpaceFish("cheese_fish", ItemSpaceFish.ItemType.CHEESE_FISH);
+
         MPItems.SPACE_WARPER_CORE = new ItemSpaceWarperCore("space_warper_core");
         MPItems.SPACE_BOW = new ItemSpaceBow("space_bow");
         MPItems.SPACE_FISHING_ROD = new ItemSpaceFishingRod("space_fishing_rod");
         MPItems.DYE = new ItemDyeMP("dye_mp");
-        MPItems.LASER_BULLET = new ItemLaserBullet("laser_bullet");
         MPItems.LASER_GUN = new ItemLaserGun("laser_gun");
-        MPItems.SPACE_FISH = new ItemSpaceFish("space_fish");
-        MPItems.SPECIAL_SCHEMATIC = new ItemSpecialSchematic("special_schematic");
         MPItems.ALIEN_DEFENDER_REINFORCEMENT = new ItemAlienDefenderReinforcement("alien_defender_reinforcement");
         MPItems.CREATIVE_SPACE_KIT = new ItemCreativeSpaceKit("creative_space_kit");
         MPItems.VEIN_FLOATER_DISC = new ItemRecordMP("vein_floater_disc", "a_planet_to_conquer", MPSounds.A_PLANET_TO_CONQUER);
@@ -74,14 +88,20 @@ public class MPItems
         CommonRegisterHelper.registerItem(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE);
         CommonRegisterHelper.registerItem(MPItems.DARK_ENERGY_PROTECTION_CAPSULE);
 
+        CommonRegisterHelper.registerItem(MPItems.ION_CANNON_SCHEMATIC);
+        CommonRegisterHelper.registerItem(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC);
+
+        CommonRegisterHelper.registerItem(MPItems.ZELIUS_FISH);
+        CommonRegisterHelper.registerItem(MPItems.GLOWING_ALIEN_FISH);
+        CommonRegisterHelper.registerItem(MPItems.CHEESE_FISH);
+
         CommonRegisterHelper.registerItem(MPItems.SPACE_WARPER_CORE);
         CommonRegisterHelper.registerItem(MPItems.SPACE_BOW);
         CommonRegisterHelper.registerItem(MPItems.SPACE_FISHING_ROD);
         CommonRegisterHelper.registerItem(MPItems.DYE);
         CommonRegisterHelper.registerItem(MPItems.LASER_BULLET);
+        CommonRegisterHelper.registerItem(MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET);
         CommonRegisterHelper.registerItem(MPItems.LASER_GUN);
-        CommonRegisterHelper.registerItem(MPItems.SPACE_FISH);
-        CommonRegisterHelper.registerItem(MPItems.SPECIAL_SCHEMATIC);
         CommonRegisterHelper.registerItem(MPItems.ALIEN_DEFENDER_REINFORCEMENT);
         CommonRegisterHelper.registerItem(MPItems.CREATIVE_SPACE_KIT);
         CommonRegisterHelper.registerItem(MPItems.VEIN_FLOATER_DISC);

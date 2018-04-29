@@ -77,7 +77,7 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
         BlockPos blockpos = pos.down();
         Block block = world.getBlockState(blockpos).getBlock();
 
-        if (block == NibiruBlocks.INFECTED_GRASS || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND && pos.getY() >= 2)
+        if (block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND && pos.getY() >= 2)
         {
             this.onPlantGrow(world, blockpos, pos);
             this.onPlantGrow(world, blockpos.east(), pos);

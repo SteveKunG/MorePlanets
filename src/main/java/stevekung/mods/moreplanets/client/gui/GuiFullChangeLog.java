@@ -10,7 +10,6 @@ import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.ForgeVersion;
@@ -20,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
 public class GuiFullChangeLog extends GuiScreen
@@ -46,7 +46,7 @@ public class GuiFullChangeLog extends GuiScreen
         List<String> debugText = new LinkedList<>();
         debugText.add("More Planets " + MorePlanetsMod.VERSION + " Change Log for Minecraft " + ForgeVersion.mcVersion);
         this.buttonList.clear();
-        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height - 45, I18n.format("gui.done")));
+        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height - 45, LangUtils.translate("gui.done")));
 
         if (this.stringList == null)
         {

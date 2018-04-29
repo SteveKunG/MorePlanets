@@ -107,7 +107,7 @@ public class BlockKoentus extends BlockBasicMP implements IDetectableResource, I
     {
         if (this.getMetaFromState(state) == 4)
         {
-            return DionaItems.DIONA_ITEM;
+            return DionaItems.ANTI_GRAVITY_FRAGMENTS;
         }
         return Item.getItemFromBlock(this);
     }

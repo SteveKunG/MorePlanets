@@ -6,12 +6,12 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.integration.jei.JEIRegistryHelper;
 import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class DarkEnergyTransformRecipeCategory implements IRecipeCategory
 {
@@ -24,7 +24,7 @@ public class DarkEnergyTransformRecipeCategory implements IRecipeCategory
     @Override
     public String getTitle()
     {
-        return GCCoreUtil.translate("gui.jei.dark_energy_transform");
+        return LangUtils.translate("gui.jei.dark_energy_transform");
     }
 
     @Override

@@ -17,7 +17,7 @@ public class MPOreDictionary
     public static void init()
     {
         BlockUtils.registerOreDictionary("glowstone", MPBlocks.DUNGEON_GLOWSTONE);
-        BlockUtils.registerOreDictionary("slabWood", new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 1, OreDictionary.WILDCARD_VALUE));
+        //        BlockUtils.registerOreDictionary("slabWood", new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 1, OreDictionary.WILDCARD_VALUE));
         //        BlockUtils.registerOreDictionary("blockGlass", new ItemStack(MPBlocks.TINTED_GLASS, 1, OreDictionary.WILDCARD_VALUE));
         //        BlockUtils.registerOreDictionary("paneGlass", new ItemStack(MPBlocks.TINTED_GLASS_PANE, 1, OreDictionary.WILDCARD_VALUE));
         BlockUtils.registerOreDictionary("plankWood", DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS);
@@ -47,11 +47,12 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("stairWood", NibiruBlocks.INFECTED_OAK_STAIRS);
         BlockUtils.registerOreDictionary("stairWood", NibiruBlocks.INFECTED_DEAD_OAK_STAIRS);
         BlockUtils.registerOreDictionary("stairWood", NibiruBlocks.ALIEN_BERRY_OAK_STAIRS);
-        BlockUtils.registerOreDictionary("grass", NibiruBlocks.INFECTED_GRASS);
-        BlockUtils.registerOreDictionary("grass", NibiruBlocks.GREEN_VEIN_GRASS);
-        BlockUtils.registerOreDictionary("dirt", new ItemStack(NibiruBlocks.INFECTED_DIRT, 1, 0));
-        BlockUtils.registerOreDictionary("stone", new ItemStack(NibiruBlocks.NIBIRU_BLOCK, 1, 0));
-        BlockUtils.registerOreDictionary("cobblestone", new ItemStack(NibiruBlocks.NIBIRU_BLOCK, 1, 1));
+        BlockUtils.registerOreDictionary("grass", NibiruBlocks.INFECTED_GRASS_BLOCK);
+        BlockUtils.registerOreDictionary("grass", NibiruBlocks.GREEN_VEIN_GRASS_BLOCK);
+        BlockUtils.registerOreDictionary("dirt", NibiruBlocks.INFECTED_DIRT);
+        BlockUtils.registerOreDictionary("stone", NibiruBlocks.NIBIRU_ROCK);
+        BlockUtils.registerOreDictionary("cobblestone", NibiruBlocks.NIBIRU_COBBLESTONE);
+        BlockUtils.registerOreDictionary("cobblestone", NibiruBlocks.NIBIRU_VEIN_COBBLESTONE);
         BlockUtils.registerOreDictionary("sand", NibiruBlocks.INFECTED_SAND);
         BlockUtils.registerOreDictionary("gravel", NibiruBlocks.INFECTED_GRAVEL);
         BlockUtils.registerOreDictionary("gravel", NibiruBlocks.PURIFY_GRAVEL);
@@ -75,8 +76,9 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("blockCactus", NibiruBlocks.INFECTED_CACTUS);
         BlockUtils.registerOreDictionary("vine", NibiruBlocks.INFECTED_VINES);
         BlockUtils.registerOreDictionary("torch", NibiruBlocks.INFECTED_TORCH);
-        BlockUtils.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 0));
-        BlockUtils.registerOreDictionary("nibiruSandstone", new ItemStack(NibiruBlocks.NIBIRU_SANDSTONE, 1, 1));
+        BlockUtils.registerOreDictionary("nibiruSandstone", NibiruBlocks.INFECTED_SANDSTONE);
+        BlockUtils.registerOreDictionary("nibiruSandstone", NibiruBlocks.INFECTED_CHISELED_SANDSTONE);
+        BlockUtils.registerOreDictionary("nibiruSandstone", NibiruBlocks.INFECTED_CUT_SANDSTONE);
         BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_1);
         BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_2);
         BlockUtils.registerOreDictionary("dyeBlue", MPItems.DYE);
@@ -84,8 +86,8 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("slimeball", ChalosItems.CHEESE_SLIMEBALL);
         BlockUtils.registerOreDictionary("cropWheat", NibiruItems.INFECTED_WHEAT);
         BlockUtils.registerOreDictionary("sugarcane", NibiruItems.INFECTED_SUGAR_CANE);
-        BlockUtils.registerOreDictionary("gemPrismarine", new ItemStack(NibiruItems.INFECTED_PRISMARINE, 1, 0));
-        BlockUtils.registerOreDictionary("dustPrismarine", new ItemStack(NibiruItems.INFECTED_PRISMARINE, 1, 1));
+        BlockUtils.registerOreDictionary("gemPrismarine", NibiruItems.INFECTED_PRISMARINE_SHARD);
+        BlockUtils.registerOreDictionary("dustPrismarine", NibiruItems.INFECTED_PRISMARINE_CRYSTALS);
         BlockUtils.registerOreDictionary("egg", NibiruItems.INFECTED_EGG);
         BlockUtils.registerOreDictionary("oreSetrorium", DionaBlocks.SETRORIUM_ORE);
         BlockUtils.registerOreDictionary("oreIllenium", DionaBlocks.ILLENIUM_ORE);
