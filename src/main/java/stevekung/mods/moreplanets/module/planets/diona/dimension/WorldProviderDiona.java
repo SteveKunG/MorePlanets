@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.client.sky.SkyProviderDiona;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.BiomeProviderDiona;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.ChunkProviderDiona;
-import stevekung.mods.moreplanets.util.dimension.WorldProviderMP;
+import stevekung.mods.moreplanets.utils.dimension.WorldProviderMP;
 
 public class WorldProviderDiona extends WorldProviderMP
 {

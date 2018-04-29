@@ -8,7 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiContainerMP;
 
 @SideOnly(Side.CLIENT)
 public class GuiCrashedAlienProbe extends GuiContainerMP

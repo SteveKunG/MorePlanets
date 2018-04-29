@@ -18,12 +18,12 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.blocks.BlockTileMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
+import stevekung.mods.moreplanets.utils.ItemDescription;
+import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
+import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
+import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 
 public class BlockNuclearWasteGenerator extends BlockTileMP implements IBlockDescription, ISingleBlockRender
 {

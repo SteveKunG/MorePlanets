@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.module.moons.koentus.itemblocks;
 import micdoodle8.mods.galacticraft.core.TransformerHooks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
-import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
+import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockMultiVariant;
 
 public class ItemBlockKoentus extends ItemBlockMultiVariant
 {

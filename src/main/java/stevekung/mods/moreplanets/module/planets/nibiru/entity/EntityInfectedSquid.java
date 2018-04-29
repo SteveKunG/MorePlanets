@@ -18,7 +18,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
 public class EntityInfectedSquid extends EntityWaterMob implements IEntityBreathable, ISpaceMob
 {

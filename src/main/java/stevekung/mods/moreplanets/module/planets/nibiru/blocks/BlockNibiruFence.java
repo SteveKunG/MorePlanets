@@ -13,9 +13,9 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import stevekung.mods.moreplanets.util.VariantsName;
-import stevekung.mods.moreplanets.util.blocks.BlockFenceMP;
-import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
+import stevekung.mods.moreplanets.utils.VariantsName;
+import stevekung.mods.moreplanets.utils.blocks.BlockFenceMP;
+import stevekung.mods.moreplanets.utils.blocks.IBlockVariants;
 
 public class BlockNibiruFence extends BlockFenceMP implements IBlockVariants
 {

@@ -9,11 +9,11 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.*;
-import stevekung.mods.moreplanets.util.EnumChestTexture;
-import stevekung.mods.moreplanets.util.client.renderer.tileentity.TileEntityAncientChestRendererMP;
-import stevekung.mods.moreplanets.util.client.renderer.tileentity.TileEntityChestRendererMP;
-import stevekung.mods.moreplanets.util.client.renderer.tileentity.TileEntityTreasureChestRendererMP;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.EnumChestTexture;
+import stevekung.mods.moreplanets.utils.client.renderer.tileentity.TileEntityAncientChestRendererMP;
+import stevekung.mods.moreplanets.utils.client.renderer.tileentity.TileEntityChestRendererMP;
+import stevekung.mods.moreplanets.utils.client.renderer.tileentity.TileEntityTreasureChestRendererMP;
+import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
 
 public class TileEntityRenderer
 {

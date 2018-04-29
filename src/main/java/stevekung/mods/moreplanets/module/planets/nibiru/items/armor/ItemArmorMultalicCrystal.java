@@ -9,8 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
-import stevekung.mods.moreplanets.util.items.armor.ItemArmorMP;
+import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.items.armor.ItemArmorMP;
 
 public class ItemArmorMultalicCrystal extends ItemArmorMP
 {

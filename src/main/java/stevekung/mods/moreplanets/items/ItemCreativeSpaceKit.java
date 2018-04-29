@@ -19,7 +19,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemCreativeSpaceKit extends ItemBaseMP

@@ -19,8 +19,8 @@ import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusCreeper;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusZombie;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityZeliusEgg;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
 {

@@ -7,7 +7,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
 public class ItemDyeMP extends ItemBaseMP
 {

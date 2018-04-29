@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedChicken;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 
 public class EntityInfectedEgg extends EntityThrowable
 {

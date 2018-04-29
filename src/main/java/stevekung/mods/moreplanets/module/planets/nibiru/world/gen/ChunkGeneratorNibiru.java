@@ -26,8 +26,8 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.dungeon.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.structure.*;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenSpaceDungeons;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
 import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorNibiru implements IChunkGenerator

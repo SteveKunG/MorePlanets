@@ -10,8 +10,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
-import stevekung.mods.moreplanets.util.blocks.BlockSlabMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.BlockSlabMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockHalfInfectedPrismarineSlab extends BlockSlabMP
 {

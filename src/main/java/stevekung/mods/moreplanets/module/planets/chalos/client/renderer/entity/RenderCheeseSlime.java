@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseSlime;
-import stevekung.mods.moreplanets.util.client.renderer.entity.layer.LayerBaseSlimeGel;
+import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerBaseSlimeGel;
 
 @SideOnly(Side.CLIENT)
 public class RenderCheeseSlime extends RenderLiving<EntityCheeseSlime>

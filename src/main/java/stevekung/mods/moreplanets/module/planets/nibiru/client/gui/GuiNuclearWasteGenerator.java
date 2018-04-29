@@ -20,8 +20,8 @@ import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.module.planets.nibiru.inventory.ContainerNuclearWasteGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
-import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
-import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBoxCallback

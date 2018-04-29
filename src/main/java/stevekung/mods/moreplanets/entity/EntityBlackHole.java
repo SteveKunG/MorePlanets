@@ -21,8 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.util.DamageSourceMP;
-import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.DamageSourceMP;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 
 public class EntityBlackHole extends Entity
 {

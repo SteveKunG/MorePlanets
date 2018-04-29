@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusSkelet
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusZombie;
 import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.*;
-import stevekung.mods.moreplanets.util.helper.CelestialRegisterHelper;
+import stevekung.mods.moreplanets.utils.helper.CelestialRegisterHelper;
 
 public class MPPlanets
 {

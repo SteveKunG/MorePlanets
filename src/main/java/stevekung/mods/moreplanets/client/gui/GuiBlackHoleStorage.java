@@ -18,9 +18,9 @@ import stevekung.mods.moreplanets.inventory.ContainerBlackHoleStorage;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
-import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
-import stevekung.mods.moreplanets.util.client.gui.GuiElementCheckboxMP;
-import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiElementCheckboxMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)

@@ -9,7 +9,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
+import stevekung.mods.moreplanets.utils.recipes.ShapedRecipesMP;
 
 public class RocketCrusherRecipes
 {

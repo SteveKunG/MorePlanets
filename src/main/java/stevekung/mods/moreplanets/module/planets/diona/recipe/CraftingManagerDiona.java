@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.module.planets.diona.recipe;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.util.helper.RecipeHelper;
+import stevekung.mods.moreplanets.utils.helper.RecipeHelper;
 
 public class CraftingManagerDiona
 {

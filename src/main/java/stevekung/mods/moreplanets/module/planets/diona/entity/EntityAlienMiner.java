@@ -36,8 +36,8 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
 public class EntityAlienMiner extends EntityMob implements IEntityBreathable, ISpaceMob
 {

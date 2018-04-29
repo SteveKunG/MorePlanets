@@ -9,7 +9,7 @@ import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelInfecte
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.layer.LayerInfectedCrystallizeSlimeBossDeath;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.layer.LayerInfectedCrystallizedSlimeBossBarrier;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizedSlimeBoss;
-import stevekung.mods.moreplanets.util.ClientRendererUtil;
+import stevekung.mods.moreplanets.utils.ClientRendererUtils;
 
 public class RenderInfectedCrystallizedSlimeBoss extends RenderLiving<EntityInfectedCrystallizedSlimeBoss>
 {
@@ -36,7 +36,7 @@ public class RenderInfectedCrystallizedSlimeBoss extends RenderLiving<EntityInfe
         if (entity.tentacle != null)
         {
             this.bindTexture(RenderDragon.ENDERCRYSTAL_BEAM_TEXTURES);
-            ClientRendererUtil.renderBeam(x, y + 1.0D, z, partialTicks, entity.posX + (entity.prevPosX - entity.posX) * (1.0F - partialTicks), entity.posY + (entity.prevPosY - entity.posY) * (1.0F - partialTicks), entity.posZ + (entity.prevPosZ - entity.posZ) * (1.0F - partialTicks), entity.ticksExisted, entity.tentacle.posX, entity.tentacle.posY, entity.tentacle.posZ);
+            ClientRendererUtils.renderBeam(x, y + 1.0D, z, partialTicks, entity.posX + (entity.prevPosX - entity.posX) * (1.0F - partialTicks), entity.posY + (entity.prevPosY - entity.posY) * (1.0F - partialTicks), entity.posZ + (entity.prevPosZ - entity.posZ) * (1.0F - partialTicks), entity.ticksExisted, entity.tentacle.posX, entity.tentacle.posY, entity.tentacle.posZ);
         }
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }

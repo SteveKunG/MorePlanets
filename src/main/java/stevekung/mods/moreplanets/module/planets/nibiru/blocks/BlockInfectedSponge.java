@@ -22,10 +22,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.VariantsName;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.VariantsName;
+import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.IBlockVariants;
 
 public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 {

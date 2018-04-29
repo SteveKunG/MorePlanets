@@ -9,7 +9,7 @@ import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.*;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
 
 public class VariantsRenderer
 {

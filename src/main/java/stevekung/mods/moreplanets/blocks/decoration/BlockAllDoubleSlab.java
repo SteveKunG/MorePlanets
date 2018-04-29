@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.util.blocks.BlockSlabMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockSlabMP;
 
 public class BlockAllDoubleSlab extends BlockAllHalfSlab
 {

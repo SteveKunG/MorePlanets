@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.helper.RecipeHelper;
+import stevekung.mods.moreplanets.utils.helper.RecipeHelper;
 
 public class CraftingManagerNibiru
 {

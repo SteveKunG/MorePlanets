@@ -14,7 +14,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityVeinBall;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
 public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreathable, ISpaceMob
 {

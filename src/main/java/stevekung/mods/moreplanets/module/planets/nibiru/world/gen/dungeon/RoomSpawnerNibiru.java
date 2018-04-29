@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
 public class RoomSpawnerNibiru extends RoomEmptyNibiru
 {

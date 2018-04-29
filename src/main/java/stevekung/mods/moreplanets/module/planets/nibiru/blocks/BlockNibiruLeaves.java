@@ -22,11 +22,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.VariantsName;
-import stevekung.mods.moreplanets.util.blocks.BlockLeavesMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.VariantsName;
+import stevekung.mods.moreplanets.utils.blocks.BlockLeavesMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.IBlockVariants;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockNibiruLeaves extends BlockLeavesMP implements IBlockVariants

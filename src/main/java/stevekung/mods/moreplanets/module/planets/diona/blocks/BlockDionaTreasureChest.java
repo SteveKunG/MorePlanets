@@ -10,7 +10,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaTreasureChest;
-import stevekung.mods.moreplanets.util.blocks.BlockTreasureChestMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockTreasureChestMP;
 
 public class BlockDionaTreasureChest extends BlockTreasureChestMP
 {

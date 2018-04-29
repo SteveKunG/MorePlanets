@@ -9,9 +9,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
-import stevekung.mods.moreplanets.util.VariantsName;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.util.blocks.IBlockVariants;
+import stevekung.mods.moreplanets.utils.VariantsName;
+import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.IBlockVariants;
 
 public class BlockNibiruPlanks extends BlockBaseMP implements IBlockVariants
 {

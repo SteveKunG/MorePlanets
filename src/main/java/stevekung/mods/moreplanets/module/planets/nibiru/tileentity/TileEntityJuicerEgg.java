@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.math.AxisAlignedBB;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 public class TileEntityJuicerEgg extends TileEntityRenderTickable
 {

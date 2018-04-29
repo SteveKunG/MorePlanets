@@ -50,9 +50,9 @@ import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.ai.EntityAIShlimeEatGrass;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.entity.ai.EntityAITemptMP;
-import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.entity.ai.EntityAITemptMP;
+import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob, IEntityBreathable
 {

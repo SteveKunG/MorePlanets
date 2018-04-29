@@ -18,7 +18,7 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implements IInventoryDefaults

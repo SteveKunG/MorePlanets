@@ -6,7 +6,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.items.ItemBlackHoleStorageSchematic;
 import stevekung.mods.moreplanets.items.ItemIonCannonSchematic;
 import stevekung.mods.moreplanets.schematic.BlackHoleStorageSchematic;
-import stevekung.mods.moreplanets.util.helper.RocketRegisterHelper;
+import stevekung.mods.moreplanets.utils.helper.RocketRegisterHelper;
 
 public class MPSchematics
 {

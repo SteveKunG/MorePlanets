@@ -5,8 +5,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import stevekung.mods.moreplanets.util.blocks.BlockSlabMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.BlockSlabMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockAllHalfSlab extends BlockSlabMP
 {

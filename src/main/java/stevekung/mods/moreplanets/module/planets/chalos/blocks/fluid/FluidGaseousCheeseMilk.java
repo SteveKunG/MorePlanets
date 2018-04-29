@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks.fluid;
 
-import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
+import stevekung.mods.moreplanets.utils.blocks.fluid.FluidMP;
 
 public class FluidGaseousCheeseMilk extends FluidMP
 {

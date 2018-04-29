@@ -7,8 +7,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlbetiusWorm;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockAlbetiusWormEgg extends BlockBaseMP
 {

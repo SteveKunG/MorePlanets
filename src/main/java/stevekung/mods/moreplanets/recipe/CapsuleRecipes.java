@@ -11,7 +11,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.helper.RecipeHelper;
+import stevekung.mods.moreplanets.utils.helper.RecipeHelper;
 
 public class CapsuleRecipes
 {

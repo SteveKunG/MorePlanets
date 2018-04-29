@@ -4,7 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityAncientChestMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityAncientChestMP;
 
 public class TileEntityChalosAncientChest extends TileEntityAncientChestMP
 {

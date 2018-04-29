@@ -11,7 +11,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.WorldServer;
 import stevekung.mods.moreplanets.recipe.DarkEnergyRecipeData;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
 {

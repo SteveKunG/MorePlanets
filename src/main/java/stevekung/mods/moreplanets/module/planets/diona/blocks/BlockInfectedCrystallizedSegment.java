@@ -23,10 +23,10 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityInfectedCrystallizedEnderCore;
-import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityNull;
+import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityNull;
 
 public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITileEntityProvider
 {

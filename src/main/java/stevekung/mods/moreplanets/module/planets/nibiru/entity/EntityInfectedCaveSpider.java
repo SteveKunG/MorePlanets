@@ -9,8 +9,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class EntityInfectedCaveSpider extends EntitySpider implements ISpaceMob, IEntityBreathable
 {

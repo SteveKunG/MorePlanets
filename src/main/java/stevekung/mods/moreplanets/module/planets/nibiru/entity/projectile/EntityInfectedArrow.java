@@ -9,8 +9,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.DamageSourceMP;
-import stevekung.mods.moreplanets.util.entity.EntityArrowMP;
+import stevekung.mods.moreplanets.utils.DamageSourceMP;
+import stevekung.mods.moreplanets.utils.entity.EntityArrowMP;
 
 public class EntityInfectedArrow extends EntityArrowMP
 {

@@ -10,7 +10,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosTreasureChest;
-import stevekung.mods.moreplanets.util.blocks.BlockTreasureChestMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockTreasureChestMP;
 
 public class BlockChalosTreasureChest extends BlockTreasureChestMP
 {

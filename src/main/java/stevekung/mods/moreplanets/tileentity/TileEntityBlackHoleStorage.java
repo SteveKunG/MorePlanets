@@ -39,8 +39,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
+import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityAdvancedMP;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 

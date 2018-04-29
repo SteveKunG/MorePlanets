@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosAncientChest;
-import stevekung.mods.moreplanets.util.blocks.BlockAncientChestMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockAncientChestMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlockChalosAncientChest extends BlockAncientChestMP

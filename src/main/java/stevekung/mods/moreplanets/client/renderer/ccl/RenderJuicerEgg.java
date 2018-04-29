@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.TileEntityJuicerEggRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityJuicerEgg;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
 
 public class RenderJuicerEgg extends CCLRenderBase
 {

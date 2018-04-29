@@ -6,8 +6,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.feature.WorldGenCheeseSporeTree;
-import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenFlowersMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeDecoratorChalos extends BiomeDecoratorMP

@@ -26,7 +26,7 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
 public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob, IEntityBreathable
 {

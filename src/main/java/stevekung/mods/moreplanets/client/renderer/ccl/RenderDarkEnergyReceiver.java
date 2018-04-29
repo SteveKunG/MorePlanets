@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
 
 public class RenderDarkEnergyReceiver extends CCLRenderBase
 {

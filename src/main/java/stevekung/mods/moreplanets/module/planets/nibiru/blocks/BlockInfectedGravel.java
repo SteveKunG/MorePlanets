@@ -8,7 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.blocks.BlockFallingMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockFallingMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockInfectedGravel extends BlockFallingMP

@@ -17,7 +17,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenMultalicCrystal;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenMinableMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenMinableMP;
 
 public class BiomeInfectedExtremeHills extends BiomeNibiru
 {

@@ -12,7 +12,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruDungeonSpawner;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
 public class RoomBossNibiru extends SizedPieceNibiru
 {

@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 
 public class EntityInfectedSnowball extends EntityThrowable
 {

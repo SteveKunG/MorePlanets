@@ -44,7 +44,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.util.blocks.IFireBlock;
+import stevekung.mods.moreplanets.utils.blocks.IFireBlock;
 import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 public class GeneralEventHandler

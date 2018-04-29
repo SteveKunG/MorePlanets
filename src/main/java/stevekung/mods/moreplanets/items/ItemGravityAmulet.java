@@ -9,8 +9,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
-import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
+import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = CompatibilityManagerMP.baublesModId, striprefs = true)
 public class ItemGravityAmulet extends ItemBaseMP implements IBauble

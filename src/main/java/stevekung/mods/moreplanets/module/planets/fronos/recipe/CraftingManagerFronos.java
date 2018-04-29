@@ -7,7 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
-import stevekung.mods.moreplanets.util.helper.RecipeHelper;
+import stevekung.mods.moreplanets.utils.helper.RecipeHelper;
 
 public class CraftingManagerFronos
 {

@@ -38,7 +38,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.SkyProviderNi
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.BiomeProviderNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.ChunkGeneratorNibiru;
-import stevekung.mods.moreplanets.util.dimension.WorldProviderMP;
+import stevekung.mods.moreplanets.utils.dimension.WorldProviderMP;
 
 public class WorldProviderNibiru extends WorldProviderMP
 {

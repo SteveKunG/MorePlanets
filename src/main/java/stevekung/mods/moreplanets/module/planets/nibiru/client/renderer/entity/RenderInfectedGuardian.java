@@ -15,7 +15,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
-import stevekung.mods.moreplanets.util.client.model.ModelGuardianMP;
+import stevekung.mods.moreplanets.utils.client.model.ModelGuardianMP;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedGuardian extends RenderLiving<EntityInfectedGuardian>

@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
-import stevekung.mods.moreplanets.util.blocks.BlockIceMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockIceMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockInfectedIce extends BlockIceMP

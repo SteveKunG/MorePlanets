@@ -20,7 +20,7 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
+import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public class EntityZeliusZombie extends EntityZombie implements IEntityBreathable
 {

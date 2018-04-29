@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizedSpider;
-import stevekung.mods.moreplanets.util.client.renderer.entity.layer.LayerGlowingTexture;
+import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCrystallizedSpider extends RenderLiving<EntityInfectedCrystallizedSpider>

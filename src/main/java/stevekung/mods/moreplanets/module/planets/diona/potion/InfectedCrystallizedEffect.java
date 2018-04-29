@@ -8,8 +8,8 @@ import net.minecraft.entity.ai.attributes.RangedAttribute;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.util.DamageSourceMP;
-import stevekung.mods.moreplanets.util.PotionMP;
+import stevekung.mods.moreplanets.utils.DamageSourceMP;
+import stevekung.mods.moreplanets.utils.PotionMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class InfectedCrystallizedEffect extends PotionMP

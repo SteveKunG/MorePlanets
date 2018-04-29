@@ -14,9 +14,9 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
+import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
 
 public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, ISingleBlockRender
 {

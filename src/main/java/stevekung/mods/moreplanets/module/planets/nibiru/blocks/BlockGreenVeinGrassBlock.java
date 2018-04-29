@@ -7,7 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.util.blocks.BlockGrassBlockMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
 public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrowable
 {

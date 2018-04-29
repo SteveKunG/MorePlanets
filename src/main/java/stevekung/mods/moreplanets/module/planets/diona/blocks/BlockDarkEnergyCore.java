@@ -15,11 +15,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyCore;
-import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
+import stevekung.mods.moreplanets.utils.ItemDescription;
+import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
+import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 
 public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvider, IBlockDescription
 {

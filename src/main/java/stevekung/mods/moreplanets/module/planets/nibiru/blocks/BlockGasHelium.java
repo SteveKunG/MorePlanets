@@ -10,8 +10,8 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
-import stevekung.mods.moreplanets.util.blocks.BlockFluidFiniteMP;
-import stevekung.mods.moreplanets.util.blocks.material.MaterialsBase;
+import stevekung.mods.moreplanets.utils.blocks.BlockFluidFiniteMP;
+import stevekung.mods.moreplanets.utils.blocks.material.MaterialsBase;
 
 public class BlockGasHelium extends BlockFluidFiniteMP
 {

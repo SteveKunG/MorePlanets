@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockInfectedClay extends BlockBaseMP
 {

@@ -8,7 +8,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.util.entity.EntityArrowMP;
+import stevekung.mods.moreplanets.utils.entity.EntityArrowMP;
 
 public class EntityAntiGravityArrow extends EntityArrowMP
 {

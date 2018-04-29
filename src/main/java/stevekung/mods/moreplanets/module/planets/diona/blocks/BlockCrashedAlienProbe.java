@@ -17,10 +17,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityCrashedAlienProbe;
-import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.util.blocks.BlockTileMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
+import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
 
 public class BlockCrashedAlienProbe extends BlockTileMP implements ISingleBlockRender
 {

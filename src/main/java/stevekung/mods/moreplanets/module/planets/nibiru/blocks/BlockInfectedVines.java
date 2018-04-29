@@ -10,11 +10,11 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.util.DamageSourceMP;
-import stevekung.mods.moreplanets.util.blocks.BlockVinesMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob.EnumMobType;
+import stevekung.mods.moreplanets.utils.DamageSourceMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockVinesMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob.EnumMobType;
 
 public class BlockInfectedVines extends BlockVinesMP
 {

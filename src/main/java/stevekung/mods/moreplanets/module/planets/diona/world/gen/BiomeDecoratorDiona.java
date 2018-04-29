@@ -7,9 +7,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.feature.WorldGenLargeInfectedCrystallized;
-import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
-import stevekung.mods.moreplanets.util.world.gen.feature.EnumOreGen;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenMinableMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.EnumOreGen;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenMinableMP;
 import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
 
 public class BiomeDecoratorDiona extends BiomeDecoratorMP

@@ -13,7 +13,7 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.*;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedGuardian;
-import stevekung.mods.moreplanets.util.MPLog;
+import stevekung.mods.moreplanets.utils.MPLog;
 
 public class MapGenNibiruOceanMonument extends MapGenStructure
 {

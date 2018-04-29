@@ -11,7 +11,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeCha
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosPlains;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeSlimelyWasteland;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.*;
-import stevekung.mods.moreplanets.util.world.gen.biome.BiomeBaseMP;
+import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeBaseMP;
 
 public class MPBiomes
 {

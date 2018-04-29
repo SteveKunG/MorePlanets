@@ -7,8 +7,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockInfectedSuga
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.client.renderer.StateMapperCTM;
-import stevekung.mods.moreplanets.util.client.renderer.StateMapperUtil;
+import stevekung.mods.moreplanets.utils.client.renderer.StateMapperCTM;
+import stevekung.mods.moreplanets.utils.client.renderer.StateMapperUtil;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 import stevekung.mods.stevekunglib.utils.EnumStateMapper;

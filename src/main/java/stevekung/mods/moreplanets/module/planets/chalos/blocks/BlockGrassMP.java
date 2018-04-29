@@ -18,7 +18,7 @@ import net.minecraftforge.common.IShearable;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 
 public class BlockGrassMP extends BlockBushMP implements IShearable, IGrowable
 {

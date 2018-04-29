@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.util.blocks.BlockCropsMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 
 public class BlockCheeseSporeBerryCrops extends BlockCropsMP
 {

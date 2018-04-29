@@ -14,7 +14,7 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.util.MPLog;
+import stevekung.mods.moreplanets.utils.MPLog;
 
 public class MapGenNibiruVillage extends MapGenStructure
 {

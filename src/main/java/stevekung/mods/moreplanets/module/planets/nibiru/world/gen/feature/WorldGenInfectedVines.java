@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.blocks.BlockVinesMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockVinesMP;
 
 public class WorldGenInfectedVines extends WorldGenerator
 {

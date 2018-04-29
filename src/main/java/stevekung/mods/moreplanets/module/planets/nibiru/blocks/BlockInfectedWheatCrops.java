@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.blocks.BlockCropsMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 
 public class BlockInfectedWheatCrops extends BlockCropsMP
 {

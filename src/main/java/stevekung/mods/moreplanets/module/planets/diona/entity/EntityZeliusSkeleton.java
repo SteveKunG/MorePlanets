@@ -24,7 +24,7 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
-import stevekung.mods.moreplanets.util.entity.ai.EntityAIAttackRangedBowMP;
+import stevekung.mods.moreplanets.utils.entity.ai.EntityAIAttackRangedBowMP;
 
 public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreathable
 {

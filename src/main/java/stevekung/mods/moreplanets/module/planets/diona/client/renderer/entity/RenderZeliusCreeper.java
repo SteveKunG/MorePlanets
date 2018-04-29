@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity.layer.LayerZeliusCreeperCharge;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusCreeper;
-import stevekung.mods.moreplanets.util.client.renderer.entity.layer.LayerGlowingTexture;
+import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
 
 @SideOnly(Side.CLIENT)
 public class RenderZeliusCreeper extends RenderLiving<EntityZeliusCreeper>

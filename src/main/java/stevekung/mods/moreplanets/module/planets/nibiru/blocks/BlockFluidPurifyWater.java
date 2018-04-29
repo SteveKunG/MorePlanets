@@ -18,9 +18,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.blocks.BlockFluidBaseMP;
-import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockFluidBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.IFishableLiquidBlock;
 
 public class BlockFluidPurifyWater extends BlockFluidBaseMP implements IFishableLiquidBlock
 {

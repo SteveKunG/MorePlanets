@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.diona.tileentity;
 
-import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 public class TileEntityInfectedCrystallizedEnderCore extends TileEntityRenderTickable
 {

@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityInfectedChest;
-import stevekung.mods.moreplanets.util.blocks.BlockChestMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockChestMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlockInfectedChest extends BlockChestMP

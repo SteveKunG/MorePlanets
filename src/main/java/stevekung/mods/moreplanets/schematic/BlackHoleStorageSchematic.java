@@ -11,7 +11,7 @@ import stevekung.mods.moreplanets.client.gui.GuiBlackHoleStorageSchematic;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.inventory.ContainerBlackHoleStorageSchematic;
-import stevekung.mods.moreplanets.util.schematic.SchematicMP;
+import stevekung.mods.moreplanets.utils.schematic.SchematicMP;
 
 public class BlackHoleStorageSchematic extends SchematicMP
 {

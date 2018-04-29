@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityLargeInfectedCrystallized;
-import stevekung.mods.moreplanets.util.client.model.ModelCrystal;
+import stevekung.mods.moreplanets.utils.client.model.ModelCrystal;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpecialRenderer<TileEntityLargeInfectedCrystallized>

@@ -6,10 +6,10 @@ import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
-import stevekung.mods.moreplanets.util.items.ItemRecordMP;
+import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.items.ItemRecordMP;
 
 public class MPItems
 {

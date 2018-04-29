@@ -2,7 +2,7 @@ package stevekung.mods.moreplanets.items.capsule_effect;
 
 import net.minecraft.entity.EntityLivingBase;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.util.PotionMP;
+import stevekung.mods.moreplanets.utils.PotionMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class DarkEnergyProtectionEffect extends PotionMP

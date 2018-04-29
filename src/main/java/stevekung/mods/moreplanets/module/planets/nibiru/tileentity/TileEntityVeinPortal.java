@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityVeinFloater;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityRenderTickable;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 public class TileEntityVeinPortal extends TileEntityRenderTickable
 {

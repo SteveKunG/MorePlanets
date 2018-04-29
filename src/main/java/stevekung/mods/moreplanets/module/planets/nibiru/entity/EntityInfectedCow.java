@@ -25,8 +25,8 @@ import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntityBreathable
 {

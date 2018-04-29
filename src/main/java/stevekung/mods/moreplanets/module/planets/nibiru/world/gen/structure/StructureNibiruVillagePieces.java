@@ -30,9 +30,9 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockHalfInfectedStoneBricksSlab;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;
-import stevekung.mods.moreplanets.util.blocks.BlockChestMP;
-import stevekung.mods.moreplanets.util.blocks.BlockCropsMP;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockChestMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class StructureNibiruVillagePieces
 {

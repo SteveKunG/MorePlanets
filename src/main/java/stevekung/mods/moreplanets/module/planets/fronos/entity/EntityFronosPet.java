@@ -24,7 +24,7 @@ import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFaceTe
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFronosPanic;
 import stevekung.mods.moreplanets.module.planets.fronos.entity.ai.EntityAIFronosTempt;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
-import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
+import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public abstract class EntityFronosPet extends EntityTameable
 {

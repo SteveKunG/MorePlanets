@@ -22,7 +22,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.client.sky.SkyProviderChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.BiomeProviderChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.ChunkGeneratorChalos;
-import stevekung.mods.moreplanets.util.dimension.WorldProviderMP;
+import stevekung.mods.moreplanets.utils.dimension.WorldProviderMP;
 
 public class WorldProviderChalos extends WorldProviderMP
 {

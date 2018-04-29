@@ -1,8 +1,8 @@
 package stevekung.mods.moreplanets.items;
 
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ItemFoodMP;
+import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.utils.items.ItemFoodMP;
 
 public class ItemSpaceFish extends ItemFoodMP
 {

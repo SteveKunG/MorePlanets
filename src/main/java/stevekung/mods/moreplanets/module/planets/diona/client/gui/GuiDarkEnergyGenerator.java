@@ -16,8 +16,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.module.planets.diona.inventory.ContainerDarkEnergyGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
-import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
-import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class GuiDarkEnergyGenerator extends GuiContainerMP

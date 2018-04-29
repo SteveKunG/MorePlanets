@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.blocks.BlockGrassBlockMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
 public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowable
 {

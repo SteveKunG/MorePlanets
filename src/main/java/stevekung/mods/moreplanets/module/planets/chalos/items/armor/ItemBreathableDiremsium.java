@@ -5,7 +5,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.util.items.armor.ItemBreathableArmor;
+import stevekung.mods.moreplanets.utils.items.armor.ItemBreathableArmor;
 
 public class ItemBreathableDiremsium extends ItemBreathableArmor
 {

@@ -24,7 +24,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.blocks.BlockRocketCrusher;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
-import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
+import stevekung.mods.moreplanets.utils.recipes.ShapedRecipesMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityRocketCrusher extends TileBaseElectricBlock implements IInventoryDefaults, ISidedInventory

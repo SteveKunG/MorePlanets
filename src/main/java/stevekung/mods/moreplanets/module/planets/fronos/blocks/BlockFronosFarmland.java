@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
 import net.minecraft.block.Block;
-import stevekung.mods.moreplanets.util.blocks.BlockFarmlandMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockFarmlandMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockFronosFarmland extends BlockFarmlandMP

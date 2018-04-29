@@ -5,7 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.util.helper.RecipeHelper;
+import stevekung.mods.moreplanets.utils.helper.RecipeHelper;
 
 public class CraftingManagerChalos
 {

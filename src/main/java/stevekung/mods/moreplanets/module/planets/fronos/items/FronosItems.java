@@ -1,10 +1,10 @@
 package stevekung.mods.moreplanets.module.planets.fronos.items;
 
 import net.minecraft.item.Item;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ItemAllFood;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.utils.items.ItemAllFood;
+import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
 public class FronosItems
 {

@@ -15,7 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.blocks.BlockGrassBlockMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
 public class BlockFronosGrass extends BlockGrassBlockMP
 {

@@ -24,8 +24,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class EntityZergius extends EntityFlying implements IMob, IEntityBreathable, ISpaceMob
 {

@@ -7,8 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.inventory.ContainerEnergyStorageCluster;
-import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)

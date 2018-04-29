@@ -29,8 +29,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
-import stevekung.mods.moreplanets.util.MPLog;
-import stevekung.mods.moreplanets.util.TeleportUtil;
+import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.TeleportUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -179,7 +179,7 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                                 if (warpPad.getEnergyStoredGC() >= 5000.0F)
                                 {
                                     warpPad.storage.setEnergyStored(warpPad.storage.getEnergyStoredGC() - 5000.0F);
-                                    TeleportUtil.teleportEntity(player, warpPad.getDimensionId(), warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getRotationPitch(), warpPad.getRotationYaw());
+                                    TeleportUtils.teleportEntity(player, warpPad.getDimensionId(), warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getRotationPitch(), warpPad.getRotationYaw());
                                     world.playSound(null, pos, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 0.75F, 1.0F);
                                     MPLog.debug("Teleport player to {} {} {} {} {}", warpPad.getDestinationPos().getX(), warpPad.getDestinationPos().getY(), warpPad.getDestinationPos().getZ(), warpPad.getDimensionId(), WorldUtil.getProviderForDimensionClient(warpPad.getDimensionId()).getDimensionType().getName());
                                     return true;

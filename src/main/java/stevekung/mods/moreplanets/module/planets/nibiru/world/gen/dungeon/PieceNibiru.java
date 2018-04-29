@@ -7,7 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
 public abstract class PieceNibiru extends StructureComponent
 {

@@ -7,8 +7,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.MapGenDungeonMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.MapGenDungeonMP;
 
 public class MapGenNibiruDungeon extends MapGenDungeonMP
 {

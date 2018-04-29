@@ -19,9 +19,9 @@ import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
-import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
-import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
-import stevekung.mods.moreplanets.util.client.gui.GuiNumberField;
+import stevekung.mods.moreplanets.utils.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiNumberField;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBoxCallback

@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.items;
 
-import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
 public class ItemWasteRodPicker extends ItemBaseMP
 {

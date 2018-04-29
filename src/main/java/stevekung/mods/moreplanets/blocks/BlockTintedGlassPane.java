@@ -20,9 +20,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
+import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
 
 public class BlockTintedGlassPane extends BlockPane implements IPartialSealableBlock, ISortableBlock, ISingleBlockRender
 {

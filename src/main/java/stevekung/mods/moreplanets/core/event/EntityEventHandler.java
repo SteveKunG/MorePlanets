@@ -34,10 +34,10 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedZom
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.util.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.util.MPLog;
-import stevekung.mods.moreplanets.util.TeleportUtil;
-import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
+import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
+import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.TeleportUtils;
+import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 import stevekung.mods.moreplanets.world.IMeteorType;
 
 public class EntityEventHandler
@@ -119,7 +119,7 @@ public class EntityEventHandler
             if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && !WorldTickEventHandler.startedDimensionData.startedDimension && !(startedPlanet.equals("planet.") || startedPlanet.equals("moon.") || startedPlanet.equals("satellite.")))
             {
                 MPLog.debug("Start teleporting player to dimension {}", startedPlanet);
-                TeleportUtil.startNewDimension(player);
+                TeleportUtils.startNewDimension(player);
                 WorldTickEventHandler.startedDimensionData.startedDimension = true;
                 WorldTickEventHandler.startedDimensionData.planetToBack = startedPlanet;
                 WorldTickEventHandler.startedDimensionData.setDirty(true);

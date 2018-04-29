@@ -10,7 +10,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
 public class EntityInfectedCreeper extends EntityCreeper implements IEntityBreathable, ISpaceMob
 {

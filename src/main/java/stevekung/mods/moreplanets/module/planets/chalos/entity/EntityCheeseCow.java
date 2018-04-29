@@ -24,8 +24,8 @@ import net.minecraftforge.fluids.FluidUtil;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.util.entity.ai.EntityAITemptMP;
-import stevekung.mods.moreplanets.util.entity.ai.PathNavigateGroundMP;
+import stevekung.mods.moreplanets.utils.entity.ai.EntityAITemptMP;
+import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
 {

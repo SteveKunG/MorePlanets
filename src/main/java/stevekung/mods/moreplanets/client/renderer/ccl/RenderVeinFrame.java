@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityVeinFrame;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
 
 public class RenderVeinFrame extends CCLRenderBase
 {

@@ -14,7 +14,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.BiomeDecoratorNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
-import stevekung.mods.moreplanets.util.world.gen.biome.BiomeBaseMP;
+import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeBaseMP;
 
 public class BiomeNibiru extends BiomeBaseMP
 {

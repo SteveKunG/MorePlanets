@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityMultalicCrystal;
-import stevekung.mods.moreplanets.util.client.model.ModelCrystal;
+import stevekung.mods.moreplanets.utils.client.model.ModelCrystal;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer<TileEntityMultalicCrystal>

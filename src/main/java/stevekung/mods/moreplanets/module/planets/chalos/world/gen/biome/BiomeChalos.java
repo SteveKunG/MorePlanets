@@ -10,7 +10,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.BiomeDecoratorChalos;
-import stevekung.mods.moreplanets.util.world.gen.biome.BiomeBaseMP;
+import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeBaseMP;
 
 public class BiomeChalos extends BiomeBaseMP
 {

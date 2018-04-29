@@ -19,7 +19,7 @@ import net.minecraft.world.WorldServer;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityVeinEye;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
 public class ItemVeinEye extends ItemBaseMP
 {

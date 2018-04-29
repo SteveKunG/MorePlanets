@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.*;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.*;
 
 public class RoomBossChalos extends RoomBossMP
 {

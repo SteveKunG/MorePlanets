@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.blocks.BlockCropsMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 
 public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
 {

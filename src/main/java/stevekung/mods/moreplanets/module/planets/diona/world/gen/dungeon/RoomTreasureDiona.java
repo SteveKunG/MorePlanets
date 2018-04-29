@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaTreasureChest;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.RoomTreasureMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.RoomTreasureMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class RoomTreasureDiona extends RoomTreasureMP

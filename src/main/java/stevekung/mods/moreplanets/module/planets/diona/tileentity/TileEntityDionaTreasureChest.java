@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.diona.tileentity;
 
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityTreasureChestMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
 
 public class TileEntityDionaTreasureChest extends TileEntityTreasureChestMP
 {

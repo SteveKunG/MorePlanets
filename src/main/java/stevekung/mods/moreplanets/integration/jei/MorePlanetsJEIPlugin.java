@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.recipe.BlackHoleStorageRecipes;
 import stevekung.mods.moreplanets.recipe.DarkEnergyRecipeData;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
-import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
+import stevekung.mods.moreplanets.utils.recipes.ShapedRecipesMP;
 
 @JEIPlugin
 public class MorePlanetsJEIPlugin implements IModPlugin

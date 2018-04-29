@@ -28,9 +28,9 @@ import stevekung.mods.moreplanets.module.planets.chalos.world.gen.dungeon.MapGen
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.dungeon.RoomBossChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.dungeon.RoomSpawnerChalos;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.dungeon.RoomTreasureChalos;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.RoomChestMP;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenSpaceDungeons;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.RoomChestMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
 import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorChalos implements IChunkGenerator

@@ -29,7 +29,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.util.DamageSourceMP;
+import stevekung.mods.moreplanets.utils.DamageSourceMP;
 
 public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdditionalSpawnData
 {

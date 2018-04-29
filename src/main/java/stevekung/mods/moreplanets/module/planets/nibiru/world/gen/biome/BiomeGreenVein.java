@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenAlienBerryTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenFlowersMP;
 
 public class BiomeGreenVein extends BiomeNibiru
 {

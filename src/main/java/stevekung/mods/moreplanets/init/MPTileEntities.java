@@ -8,8 +8,8 @@ import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChe
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.*;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityNull;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityNull;
 
 public class MPTileEntities
 {

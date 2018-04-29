@@ -18,8 +18,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.inventory.ContainerSpaceWarpPad;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
-import stevekung.mods.moreplanets.util.client.gui.GuiContainerMP;
-import stevekung.mods.moreplanets.util.client.gui.GuiElementInfoRegionMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiContainerMP;
+import stevekung.mods.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class GuiSpaceWarpPad extends GuiContainerMP

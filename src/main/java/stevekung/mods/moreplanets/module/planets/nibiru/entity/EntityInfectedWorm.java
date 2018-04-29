@@ -22,8 +22,8 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruInfested;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, ISpaceMob
 {

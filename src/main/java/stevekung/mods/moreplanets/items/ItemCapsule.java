@@ -11,7 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.util.items.ItemFoodMP;
+import stevekung.mods.moreplanets.utils.items.ItemFoodMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class ItemCapsule extends ItemFoodMP

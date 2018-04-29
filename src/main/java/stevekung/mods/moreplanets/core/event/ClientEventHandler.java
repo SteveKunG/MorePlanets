@@ -59,9 +59,9 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.NuclearWasteGeneratorMultiblockRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
-import stevekung.mods.moreplanets.util.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.util.MPLog;
-import stevekung.mods.moreplanets.util.client.gui.GuiGameOverMP;
+import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
+import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.client.gui.GuiGameOverMP;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.VersionChecker;
 

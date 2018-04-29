@@ -2,8 +2,8 @@ package stevekung.mods.moreplanets.module.planets.diona.potion;
 
 import net.minecraft.entity.EntityLivingBase;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.util.DamageSourceMP;
-import stevekung.mods.moreplanets.util.PotionMP;
+import stevekung.mods.moreplanets.utils.DamageSourceMP;
+import stevekung.mods.moreplanets.utils.PotionMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class DarkEnergyEffect extends PotionMP

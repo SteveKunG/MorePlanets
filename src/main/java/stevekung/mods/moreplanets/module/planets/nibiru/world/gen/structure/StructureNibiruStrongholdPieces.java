@@ -27,7 +27,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class StructureNibiruStrongholdPieces
 {

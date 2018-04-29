@@ -21,9 +21,9 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedArrow;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.entity.ai.EntityAIAttackRangedBowMP;
-import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.entity.ai.EntityAIAttackRangedBowMP;
+import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class EntityInfectedSkeleton extends EntitySkeleton implements IEntityBreathable, ISpaceMob
 {

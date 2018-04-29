@@ -10,8 +10,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizedBomb;
-import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
 public class ItemInfectedCrystallizedBomb extends ItemBaseMP
 {

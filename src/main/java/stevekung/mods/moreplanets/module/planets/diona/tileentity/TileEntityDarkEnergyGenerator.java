@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.util.dimension.IDarkEnergyProvider;
+import stevekung.mods.moreplanets.utils.dimension.IDarkEnergyProvider;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSource implements IDisableableMachine, ISidedInventory, IConnector, IInventoryDefaults

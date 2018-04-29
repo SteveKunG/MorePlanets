@@ -26,10 +26,10 @@ import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.util.TeleporterMP;
-import stevekung.mods.moreplanets.util.blocks.BlockBreakableMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
+import stevekung.mods.moreplanets.utils.TeleporterMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockBreakableMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
 
 public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRender
 {

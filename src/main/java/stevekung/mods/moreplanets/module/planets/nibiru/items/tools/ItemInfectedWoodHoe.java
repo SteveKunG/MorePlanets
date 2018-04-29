@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.items.tools.ItemHoeMP;
+import stevekung.mods.moreplanets.utils.items.tools.ItemHoeMP;
 
 public class ItemInfectedWoodHoe extends ItemHoeMP
 {

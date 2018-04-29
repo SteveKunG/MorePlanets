@@ -4,7 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class TileEntityInfectedChest extends TileEntityChestMP
 {

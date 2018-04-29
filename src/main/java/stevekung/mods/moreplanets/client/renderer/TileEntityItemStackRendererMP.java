@@ -29,7 +29,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.items.tools.ItemPickaxeMP;
+import stevekung.mods.moreplanets.utils.items.tools.ItemPickaxeMP;
 
 public class ItemNibiruStonePickaxe extends ItemPickaxeMP
 {

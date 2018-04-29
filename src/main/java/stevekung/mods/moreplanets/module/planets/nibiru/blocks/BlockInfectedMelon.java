@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockInfectedMelon extends BlockBaseMP
 {

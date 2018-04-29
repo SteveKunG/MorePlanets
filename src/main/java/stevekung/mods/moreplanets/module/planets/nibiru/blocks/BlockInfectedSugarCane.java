@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.blocks.BlockBushMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 
 public class BlockInfectedSugarCane extends BlockBushMP

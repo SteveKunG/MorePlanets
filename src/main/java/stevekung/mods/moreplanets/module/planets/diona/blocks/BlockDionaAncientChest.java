@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaAncientChest;
-import stevekung.mods.moreplanets.util.blocks.BlockAncientChestMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockAncientChestMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlockDionaAncientChest extends BlockAncientChestMP

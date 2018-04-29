@@ -22,11 +22,11 @@ import stevekung.mods.moreplanets.module.planets.diona.world.gen.dungeon.RoomSpa
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.dungeon.RoomTreasureDiona;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.feature.WorldGenCrashedAlienProbe;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.structure.MapGenDionaMineshaft;
-import stevekung.mods.moreplanets.util.world.gen.ChunkProviderBaseMP;
-import stevekung.mods.moreplanets.util.world.gen.MapGenCaveMP;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.DungeonConfigurationMP;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.RoomChestMP;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenSpaceDungeons;
+import stevekung.mods.moreplanets.utils.world.gen.ChunkProviderBaseMP;
+import stevekung.mods.moreplanets.utils.world.gen.MapGenCaveMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.RoomChestMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenSpaceDungeons;
 import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 
 public class ChunkProviderDiona extends ChunkProviderBaseMP

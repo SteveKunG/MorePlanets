@@ -25,10 +25,10 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.blocks.*;
-import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
+import stevekung.mods.moreplanets.utils.ItemDescription;
+import stevekung.mods.moreplanets.utils.blocks.*;
+import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 
 public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IBlockDescription, ISortableBlock, ISingleBlockRender
 {

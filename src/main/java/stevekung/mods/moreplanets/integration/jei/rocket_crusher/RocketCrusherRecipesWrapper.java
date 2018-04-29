@@ -9,7 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
+import stevekung.mods.moreplanets.utils.recipes.ShapedRecipesMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class RocketCrusherRecipesWrapper implements IRecipeWrapper

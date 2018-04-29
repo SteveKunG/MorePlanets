@@ -20,11 +20,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.blocks.ISortableBlock;
-import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
+import stevekung.mods.moreplanets.utils.ItemDescription;
+import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
+import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
+import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 
 public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartialSealableBlock, ITileEntityProvider, IBlockDescription, ISortableBlock
 {

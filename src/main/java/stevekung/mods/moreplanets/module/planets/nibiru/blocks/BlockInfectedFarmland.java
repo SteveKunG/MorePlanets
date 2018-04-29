@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedChicken;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
-import stevekung.mods.moreplanets.util.blocks.BlockFarmlandMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockFarmlandMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockInfectedFarmland extends BlockFarmlandMP

@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelInfectedCrystallizedSlimeBoss;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizedSlimeMinion;
-import stevekung.mods.moreplanets.util.client.renderer.entity.layer.LayerGlowingTexture;
+import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
 
 public class RenderInfectedCrystallizedSlimeMinion extends RenderLiving<EntityInfectedCrystallizedSlimeMinion>
 {

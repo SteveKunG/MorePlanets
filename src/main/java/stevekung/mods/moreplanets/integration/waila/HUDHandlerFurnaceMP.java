@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityFurnaceMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityFurnaceMP;
 
 public class HUDHandlerFurnaceMP implements IWailaDataProvider
 {

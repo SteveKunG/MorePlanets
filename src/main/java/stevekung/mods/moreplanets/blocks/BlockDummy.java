@@ -28,7 +28,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
-import stevekung.mods.moreplanets.util.blocks.BlockContainerMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockContainerMP;
 
 public class BlockDummy extends BlockContainerMP implements IPartialSealableBlock
 {

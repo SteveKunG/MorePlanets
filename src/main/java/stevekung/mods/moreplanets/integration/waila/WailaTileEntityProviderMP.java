@@ -22,9 +22,9 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDark
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.tileentity.*;
-import stevekung.mods.moreplanets.util.MPLog;
-import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
+import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;

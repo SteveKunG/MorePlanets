@@ -16,7 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.util.blocks.BlockIceMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockIceMP;
 
 public class BlockGlowingHardenedIce extends BlockIceMP
 {

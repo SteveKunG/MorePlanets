@@ -16,7 +16,7 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityChestMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public abstract class StructureNibiruJungleTemplePieces extends StructureComponent
 {

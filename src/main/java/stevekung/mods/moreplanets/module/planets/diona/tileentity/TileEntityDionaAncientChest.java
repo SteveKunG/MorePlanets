@@ -4,7 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityAncientChestMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityAncientChestMP;
 
 public class TileEntityDionaAncientChest extends TileEntityAncientChestMP
 {

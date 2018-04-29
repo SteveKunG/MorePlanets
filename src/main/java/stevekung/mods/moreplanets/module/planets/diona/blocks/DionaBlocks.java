@@ -6,11 +6,11 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.diona.itemblocks.ItemBlockDarkEnergyGenerator;
-import stevekung.mods.moreplanets.util.blocks.*;
-import stevekung.mods.moreplanets.util.blocks.BlockStairsMP.EnumStairsType;
-import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.itemblocks.ItemBlockDescription;
+import stevekung.mods.moreplanets.utils.blocks.*;
+import stevekung.mods.moreplanets.utils.blocks.BlockStairsMP.EnumStairsType;
+import stevekung.mods.moreplanets.utils.blocks.fluid.FluidMP;
+import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescription;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 

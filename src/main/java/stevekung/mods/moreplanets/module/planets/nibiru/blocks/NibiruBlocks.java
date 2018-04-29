@@ -12,11 +12,11 @@ import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockInfe
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockSporelily;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.blocks.*;
-import stevekung.mods.moreplanets.util.blocks.BlockStairsMP.EnumStairsType;
-import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.itemblocks.*;
+import stevekung.mods.moreplanets.utils.blocks.*;
+import stevekung.mods.moreplanets.utils.blocks.BlockStairsMP.EnumStairsType;
+import stevekung.mods.moreplanets.utils.blocks.fluid.FluidMP;
+import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.itemblocks.*;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 

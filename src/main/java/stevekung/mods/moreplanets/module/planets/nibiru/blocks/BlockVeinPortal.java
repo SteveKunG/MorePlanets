@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityVeinPortal;
-import stevekung.mods.moreplanets.util.blocks.BlockContainerMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockContainerMP;
 
 public class BlockVeinPortal extends BlockContainerMP
 {

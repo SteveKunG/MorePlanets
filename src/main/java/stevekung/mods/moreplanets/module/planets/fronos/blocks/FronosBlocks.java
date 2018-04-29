@@ -1,8 +1,8 @@
 package stevekung.mods.moreplanets.module.planets.fronos.blocks;
 
 import net.minecraft.block.Block;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.itemblocks.ItemBlockMultiVariant;
+import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockMultiVariant;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 

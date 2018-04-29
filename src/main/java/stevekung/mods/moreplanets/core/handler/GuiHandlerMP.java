@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.gui.GuiNuclearWas
 import stevekung.mods.moreplanets.module.planets.nibiru.inventory.ContainerNuclearWasteGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.tileentity.*;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityEnergyStorageClusterMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 
 public class GuiHandlerMP implements IGuiHandler

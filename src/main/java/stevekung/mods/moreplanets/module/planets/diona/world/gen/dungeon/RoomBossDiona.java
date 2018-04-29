@@ -11,7 +11,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
-import stevekung.mods.moreplanets.util.world.gen.dungeon.*;
+import stevekung.mods.moreplanets.utils.world.gen.dungeon.*;
 
 public class RoomBossDiona extends RoomBossMP
 {

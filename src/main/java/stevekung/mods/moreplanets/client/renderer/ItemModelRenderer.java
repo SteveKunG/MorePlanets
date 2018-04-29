@@ -24,9 +24,9 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityAli
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityInfectedChest;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruAncientChest;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
-import stevekung.mods.moreplanets.util.MPLog;
-import stevekung.mods.moreplanets.util.helper.ClientRegisterHelper;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
 
 public class ItemModelRenderer
 {

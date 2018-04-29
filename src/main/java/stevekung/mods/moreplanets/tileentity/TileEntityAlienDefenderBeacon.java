@@ -4,7 +4,7 @@ import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityAdvancedMP;
 
 public class TileEntityAlienDefenderBeacon extends TileEntityAdvancedMP
 {

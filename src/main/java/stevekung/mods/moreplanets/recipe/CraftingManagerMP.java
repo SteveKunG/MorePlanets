@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.recipe.CraftingManagerCh
 import stevekung.mods.moreplanets.module.planets.diona.recipe.CraftingManagerDiona;
 import stevekung.mods.moreplanets.module.planets.fronos.recipe.CraftingManagerFronos;
 import stevekung.mods.moreplanets.module.planets.nibiru.recipe.CraftingManagerNibiru;
-import stevekung.mods.moreplanets.util.helper.RecipeHelper;
+import stevekung.mods.moreplanets.utils.helper.RecipeHelper;
 
 public class CraftingManagerMP
 {

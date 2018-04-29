@@ -34,7 +34,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.*;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.client.renderer.entity.RenderSnowballMP;
+import stevekung.mods.moreplanets.utils.client.renderer.entity.RenderSnowballMP;
 import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 
 public class EntityRendererMP

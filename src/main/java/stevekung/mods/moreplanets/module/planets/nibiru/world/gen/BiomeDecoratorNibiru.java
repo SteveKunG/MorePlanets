@@ -11,8 +11,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruFlower
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruSeaweed;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.*;
-import stevekung.mods.moreplanets.util.world.gen.feature.BiomeDecoratorMP;
-import stevekung.mods.moreplanets.util.world.gen.feature.WorldGenFlowersMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenFlowersMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeDecoratorNibiru extends BiomeDecoratorMP

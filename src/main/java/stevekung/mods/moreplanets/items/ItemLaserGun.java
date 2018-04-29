@@ -28,11 +28,11 @@ import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet.EnumLaserType;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.util.helper.CommonRegisterHelper;
-import stevekung.mods.moreplanets.util.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.util.items.ISingleItemRender;
-import stevekung.mods.moreplanets.util.items.ISortableItem;
-import stevekung.mods.moreplanets.util.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
+import stevekung.mods.moreplanets.utils.items.ISingleItemRender;
+import stevekung.mods.moreplanets.utils.items.ISortableItem;
+import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
 public class ItemLaserGun extends ItemBaseMP implements ISortableItem, ISingleItemRender, IItemElectric
 {

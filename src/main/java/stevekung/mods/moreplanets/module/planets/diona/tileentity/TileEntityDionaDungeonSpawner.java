@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.diona.tileentity;
 
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizedSlimeBoss;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityDungeonSpawnerMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityDungeonSpawnerMP;
 
 public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawnerMP<EntityInfectedCrystallizedSlimeBoss>
 {

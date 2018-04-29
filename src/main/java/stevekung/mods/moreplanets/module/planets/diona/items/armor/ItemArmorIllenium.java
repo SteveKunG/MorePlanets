@@ -5,7 +5,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.util.items.armor.ItemArmorMP;
+import stevekung.mods.moreplanets.utils.items.armor.ItemArmorMP;
 
 public class ItemArmorIllenium extends ItemArmorMP
 {

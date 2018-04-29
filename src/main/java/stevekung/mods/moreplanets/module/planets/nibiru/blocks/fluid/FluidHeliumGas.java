@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.blocks.fluid;
 
-import stevekung.mods.moreplanets.util.blocks.fluid.FluidMP;
+import stevekung.mods.moreplanets.utils.blocks.fluid.FluidMP;
 
 public class FluidHeliumGas extends FluidMP
 {

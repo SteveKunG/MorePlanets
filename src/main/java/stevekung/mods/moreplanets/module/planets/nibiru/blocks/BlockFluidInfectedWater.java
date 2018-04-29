@@ -23,12 +23,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.blocks.BlockFluidBaseMP;
-import stevekung.mods.moreplanets.util.blocks.IFishableLiquidBlock;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob;
-import stevekung.mods.moreplanets.util.entity.ISpaceMob.EnumMobType;
-import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockFluidBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.IFishableLiquidBlock;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
+import stevekung.mods.moreplanets.utils.entity.ISpaceMob.EnumMobType;
+import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class BlockFluidInfectedWater extends BlockFluidBaseMP implements IFishableLiquidBlock
 {

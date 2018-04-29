@@ -1,9 +1,9 @@
 package stevekung.mods.moreplanets.module.planets.chalos.blocks;
 
-import stevekung.mods.moreplanets.util.ItemDescription;
-import stevekung.mods.moreplanets.util.blocks.BlockCakeMP;
-import stevekung.mods.moreplanets.util.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.util.helper.ItemDescriptionHelper;
+import stevekung.mods.moreplanets.utils.ItemDescription;
+import stevekung.mods.moreplanets.utils.blocks.BlockCakeMP;
+import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
+import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 
 public class BlockCheeseMilkCake extends BlockCakeMP implements IBlockDescription
 {

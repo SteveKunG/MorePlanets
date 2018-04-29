@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.nibiru.tileentity;
 
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockTerrastoneFurnace;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityFurnaceMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityFurnaceMP;
 
 public class TileEntityTerrastoneFurnace extends TileEntityFurnaceMP
 {

@@ -21,9 +21,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruFurnace;
-import stevekung.mods.moreplanets.util.blocks.BlockContainerMP;
-import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.util.blocks.ISingleBlockRender;
+import stevekung.mods.moreplanets.utils.blocks.BlockContainerMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlockRender

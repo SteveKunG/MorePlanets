@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.chalos.tileentity;
 
 import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCubeEyeBoss;
-import stevekung.mods.moreplanets.util.tileentity.TileEntityDungeonSpawnerMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityDungeonSpawnerMP;
 
 public class TileEntityChalosDungeonSpawner extends TileEntityDungeonSpawnerMP<EntityCheeseCubeEyeBoss>
 {
