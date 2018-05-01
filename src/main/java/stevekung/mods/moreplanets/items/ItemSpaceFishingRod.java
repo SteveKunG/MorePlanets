@@ -19,11 +19,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.utils.items.ISingleItemRender;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 
-public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem, ISingleItemRender
+public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem, IItemModelRender
 {
     public ItemSpaceFishingRod(String name)
     {
@@ -64,7 +64,7 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.FISHING_ROD;
     }

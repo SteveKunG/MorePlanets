@@ -11,6 +11,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedCow
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCow extends RenderLiving<EntityInfectedCow>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_cow.png");
+
     public RenderInfectedCow(RenderManager manager)
     {
         super(manager, new ModelCow(), 0.7F);
@@ -19,6 +21,6 @@ public class RenderInfectedCow extends RenderLiving<EntityInfectedCow>
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedCow entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_cow.png");
+        return RenderInfectedCow.TEXTURE;
     }
 }

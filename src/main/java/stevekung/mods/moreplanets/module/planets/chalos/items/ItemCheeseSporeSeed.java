@@ -39,7 +39,7 @@ public class ItemCheeseSporeSeed extends ItemBaseMP
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.PLANT_SEEDS;
     }

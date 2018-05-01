@@ -6,8 +6,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public class BlockStairsMP extends BlockStairs implements ISortableBlock, ISingleBlockRender
+public class BlockStairsMP extends BlockStairs implements ISortableBlock, IItemModelRender
 {
     private EnumSortCategoryBlock category;
     private String name;

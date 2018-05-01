@@ -12,8 +12,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class BlockTileMP extends BlockTileGC implements ISortableBlock, ISingleBlockRender
+public abstract class BlockTileMP extends BlockTileGC implements ISortableBlock, IItemModelRender
 {
     private String name;
 

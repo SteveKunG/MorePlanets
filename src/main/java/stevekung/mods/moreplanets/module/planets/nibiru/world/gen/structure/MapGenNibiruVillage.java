@@ -14,7 +14,7 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruVillage extends MapGenStructure
 {
@@ -96,7 +96,7 @@ public class MapGenNibiruVillage extends MapGenStructure
         public Start(World world, Random rand, int x, int z, int size)
         {
             super(x, z);
-            MPLog.debug("Generate village at x:{} z:{}", x * 16, z * 16);
+            LoggerMP.debug("Generate village at x:{} z:{}", x * 16, z * 16);
             List<StructureNibiruVillagePieces.PieceWeight> list = StructureNibiruVillagePieces.getStructureVillageWeightedPieceList(rand, size);
             StructureNibiruVillagePieces.Start start = new StructureNibiruVillagePieces.Start(world.getBiomeProvider(), rand, (x << 4) + 2, (z << 4) + 2, list, size);
             this.components.add(start);

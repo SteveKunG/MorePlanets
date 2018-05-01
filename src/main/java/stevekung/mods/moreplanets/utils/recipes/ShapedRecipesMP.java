@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
@@ -37,7 +38,7 @@ public class ShapedRecipesMP extends IForgeRegistryEntry.Impl<IRecipe> implement
         for (int i = 0; i < aitemstack.size(); ++i)
         {
             ItemStack itemstack = inv.getStackInSlot(i);
-            aitemstack.set(i, net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack));
+            aitemstack.set(i, ForgeHooks.getContainerItem(itemstack));
         }
         return aitemstack;
     }

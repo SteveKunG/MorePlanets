@@ -166,7 +166,7 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return this.type == BlockType.INFECTED_CRYSTALLIZED_ENDER_CORE ? new TileEntityInfectedCrystallizedEnderCore() : new TileEntityNull();
     }
@@ -175,13 +175,6 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
     public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
     {
         return BlockFaceShape.MIDDLE_POLE;
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     public static enum BlockType

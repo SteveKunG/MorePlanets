@@ -23,10 +23,9 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruFurnace;
 import stevekung.mods.moreplanets.utils.blocks.BlockContainerMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
-public class BlockNibiruFurnace extends BlockContainerMP implements ISingleBlockRender
+public class BlockNibiruFurnace extends BlockContainerMP
 {
     private boolean isBurning;
     private static boolean keepInventory;

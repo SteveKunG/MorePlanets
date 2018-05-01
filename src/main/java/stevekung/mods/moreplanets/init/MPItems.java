@@ -6,7 +6,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 import stevekung.mods.moreplanets.utils.items.ItemRecordMP;
@@ -84,33 +84,33 @@ public class MPItems
         /**************************************************************/
 
         // Capsule
-        CommonRegisterHelper.registerItem(MPItems.EMPTY_CAPSULE);
-        CommonRegisterHelper.registerItem(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE);
-        CommonRegisterHelper.registerItem(MPItems.DARK_ENERGY_PROTECTION_CAPSULE);
+        BlocksItemsRegistry.registerItem(MPItems.EMPTY_CAPSULE);
+        BlocksItemsRegistry.registerItem(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE);
+        BlocksItemsRegistry.registerItem(MPItems.DARK_ENERGY_PROTECTION_CAPSULE);
 
-        CommonRegisterHelper.registerItem(MPItems.ION_CANNON_SCHEMATIC);
-        CommonRegisterHelper.registerItem(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC);
+        BlocksItemsRegistry.registerItem(MPItems.ION_CANNON_SCHEMATIC);
+        BlocksItemsRegistry.registerItem(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC);
 
-        CommonRegisterHelper.registerItem(MPItems.ZELIUS_FISH);
-        CommonRegisterHelper.registerItem(MPItems.GLOWING_ALIEN_FISH);
-        CommonRegisterHelper.registerItem(MPItems.CHEESE_FISH);
+        BlocksItemsRegistry.registerItem(MPItems.ZELIUS_FISH);
+        BlocksItemsRegistry.registerItem(MPItems.GLOWING_ALIEN_FISH);
+        BlocksItemsRegistry.registerItem(MPItems.CHEESE_FISH);
 
-        CommonRegisterHelper.registerItem(MPItems.SPACE_WARPER_CORE);
-        CommonRegisterHelper.registerItem(MPItems.SPACE_BOW);
-        CommonRegisterHelper.registerItem(MPItems.SPACE_FISHING_ROD);
-        CommonRegisterHelper.registerItem(MPItems.DYE);
-        CommonRegisterHelper.registerItem(MPItems.LASER_BULLET);
-        CommonRegisterHelper.registerItem(MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET);
-        CommonRegisterHelper.registerItem(MPItems.LASER_GUN);
-        CommonRegisterHelper.registerItem(MPItems.ALIEN_DEFENDER_REINFORCEMENT);
-        CommonRegisterHelper.registerItem(MPItems.CREATIVE_SPACE_KIT);
-        CommonRegisterHelper.registerItem(MPItems.VEIN_FLOATER_DISC);
-        CommonRegisterHelper.registerItem(MPItems.UPGRADE_TEMPLATE);
-        CommonRegisterHelper.registerItem(MPItems.SHIELD_DAMAGE_UPGRADE);
-        CommonRegisterHelper.registerItem(MPItems.SHIELD_SIZE_UPGRADE);
-        CommonRegisterHelper.registerItem(MPItems.SHIELD_CAPACITY_UPGRADE);
-        CommonRegisterHelper.registerItem(MPItems.MACHINE_SPEED_UPGRADE);
-        CommonRegisterHelper.registerItem(MPItems.GRAVITY_AMULET);
+        BlocksItemsRegistry.registerItem(MPItems.SPACE_WARPER_CORE);
+        BlocksItemsRegistry.registerItem(MPItems.SPACE_BOW);
+        BlocksItemsRegistry.registerItem(MPItems.SPACE_FISHING_ROD);
+        BlocksItemsRegistry.registerItem(MPItems.DYE);
+        BlocksItemsRegistry.registerItem(MPItems.LASER_BULLET);
+        BlocksItemsRegistry.registerItem(MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET);
+        BlocksItemsRegistry.registerItem(MPItems.LASER_GUN);
+        BlocksItemsRegistry.registerItem(MPItems.ALIEN_DEFENDER_REINFORCEMENT);
+        BlocksItemsRegistry.registerItem(MPItems.CREATIVE_SPACE_KIT);
+        BlocksItemsRegistry.registerItem(MPItems.VEIN_FLOATER_DISC);
+        BlocksItemsRegistry.registerItem(MPItems.UPGRADE_TEMPLATE);
+        BlocksItemsRegistry.registerItem(MPItems.SHIELD_DAMAGE_UPGRADE);
+        BlocksItemsRegistry.registerItem(MPItems.SHIELD_SIZE_UPGRADE);
+        BlocksItemsRegistry.registerItem(MPItems.SHIELD_CAPACITY_UPGRADE);
+        BlocksItemsRegistry.registerItem(MPItems.MACHINE_SPEED_UPGRADE);
+        BlocksItemsRegistry.registerItem(MPItems.GRAVITY_AMULET);
 
         DionaItems.init();
         ChalosItems.init();

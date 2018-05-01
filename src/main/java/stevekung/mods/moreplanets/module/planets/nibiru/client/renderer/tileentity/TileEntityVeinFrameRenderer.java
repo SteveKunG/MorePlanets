@@ -11,9 +11,9 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityVei
 
 public class TileEntityVeinFrameRenderer extends TileEntitySpecialRenderer<TileEntityVeinFrame>
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/vein_frame.png");
-    private static ResourceLocation textureGlow = new ResourceLocation("moreplanets:textures/model/vein_frame_glow.png");
-    private ModelVeinFrame model = new ModelVeinFrame();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/vein_frame.png");
+    private static final ResourceLocation GLOW = new ResourceLocation("moreplanets:textures/model/vein_frame_glow.png");
+    private final ModelVeinFrame model = new ModelVeinFrame();
 
     @Override
     public void render(TileEntityVeinFrame tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -45,17 +45,17 @@ public class TileEntityVeinFrameRenderer extends TileEntitySpecialRenderer<TileE
             }
             if (tile.getWorld().getBlockState(tile.getPos()).getValue(BlockVeinFrame.EYE).booleanValue())
             {
-                this.bindTexture(TileEntityVeinFrameRenderer.texture);
+                this.bindTexture(TileEntityVeinFrameRenderer.TEXTURE);
                 this.model.renderEye();
             }
         }
 
-        this.bindTexture(TileEntityVeinFrameRenderer.texture);
+        this.bindTexture(TileEntityVeinFrameRenderer.TEXTURE);
         this.model.renderAll();
         GlStateManager.enableRescaleNormal();
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 150F, 150F);
         GlStateManager.disableLighting();
-        this.bindTexture(TileEntityVeinFrameRenderer.textureGlow);
+        this.bindTexture(TileEntityVeinFrameRenderer.GLOW);
         this.model.renderAll();
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

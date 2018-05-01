@@ -17,7 +17,7 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruJungleTemple extends MapGenStructure
 {
@@ -137,7 +137,7 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
         public Start(World world, Random rand, int chunkX, int chunkZ)
         {
             super(chunkX, chunkZ);
-            MPLog.debug("Generate jungle temple at x:{} z:{}", chunkX * 16, chunkZ * 16);
+            LoggerMP.debug("Generate jungle temple at x:{} z:{}", chunkX * 16, chunkZ * 16);
             Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8));
 
             if (biomegenbase == MPBiomes.INFECTED_JUNGLE)

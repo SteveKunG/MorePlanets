@@ -15,6 +15,8 @@ import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowin
 @SideOnly(Side.CLIENT)
 public class RenderZeliusCreeper extends RenderLiving<EntityZeliusCreeper>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/zelius_creeper.png");
+
     public RenderZeliusCreeper(RenderManager manager)
     {
         super(manager, new ModelCreeper(), 0.5F);
@@ -75,6 +77,6 @@ public class RenderZeliusCreeper extends RenderLiving<EntityZeliusCreeper>
     @Override
     protected ResourceLocation getEntityTexture(EntityZeliusCreeper entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/zelius_creeper.png");
+        return RenderZeliusCreeper.TEXTURE;
     }
 }

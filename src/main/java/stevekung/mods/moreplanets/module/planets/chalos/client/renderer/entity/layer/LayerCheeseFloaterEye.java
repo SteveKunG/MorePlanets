@@ -12,7 +12,8 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseFloat
 @SideOnly(Side.CLIENT)
 public class LayerCheeseFloaterEye implements LayerRenderer<EntityCheeseFloater>
 {
-    private RenderCheeseFloater render;
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/cheese_floater_eyes.png");
+    private final RenderCheeseFloater render;
 
     public LayerCheeseFloaterEye(RenderCheeseFloater render)
     {
@@ -24,7 +25,7 @@ public class LayerCheeseFloaterEye implements LayerRenderer<EntityCheeseFloater>
     {
         if (entity.isMinion())
         {
-            this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/cheese_floater_eyes.png"));
+            this.render.bindTexture(LayerCheeseFloaterEye.TEXTURE);
             GlStateManager.enableBlend();
             GlStateManager.disableAlpha();
             GlStateManager.blendFunc(1, 1);

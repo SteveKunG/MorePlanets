@@ -3,8 +3,9 @@ package stevekung.mods.moreplanets.utils.items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public class ItemBaseMP extends Item implements ISortableItem, ISingleItemRender
+public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender
 {
     private EnumSortCategoryItem category;
     private String name;
@@ -34,7 +35,7 @@ public class ItemBaseMP extends Item implements ISortableItem, ISingleItemRender
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return this.category == null ? EnumSortCategoryItem.GENERAL : this.category;
     }

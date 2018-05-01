@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.client.renderer.tileentity;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -10,13 +9,13 @@ import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 
 public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRenderer<TileEntitySpaceWarpPadFull>
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/space_warp_pad.png");
-    private static ResourceLocation textureLight1 = new ResourceLocation("moreplanets:textures/model/space_warp_pad_light1.png");
-    private static ResourceLocation textureLight2 = new ResourceLocation("moreplanets:textures/model/space_warp_pad_light2.png");
-    public ModelSpaceWarpPad model = new ModelSpaceWarpPad();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/space_warp_pad.png");
+    private static final ResourceLocation LIGHT0 = new ResourceLocation("moreplanets:textures/model/space_warp_pad_light1.png");
+    private static final ResourceLocation LIGHT1 = new ResourceLocation("moreplanets:textures/model/space_warp_pad_light2.png");
+    private final ModelSpaceWarpPad model = new ModelSpaceWarpPad();
 
     @Override
-    public void render(TileEntitySpaceWarpPadFull te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    public void render(TileEntitySpaceWarpPadFull tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
@@ -32,7 +31,7 @@ public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRendere
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.popMatrix();
 
-        if (Minecraft.getMinecraft().player.ticksExisted / 10 % 2 < 1)
+        if (tile.ticks / 10 % 2 < 1)
         {
             GlStateManager.color(0.15F, 0.15F, 0.15F);
         }
@@ -41,10 +40,10 @@ public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRendere
             GlStateManager.color(0.0F, 1.0F, 0.0F);
         }
 
-        this.bindTexture(TileEntitySpaceWarpPadFullRenderer.textureLight1);
+        this.bindTexture(TileEntitySpaceWarpPadFullRenderer.LIGHT0);
         this.model.renderLight();
 
-        if (Minecraft.getMinecraft().player.ticksExisted / 9 % 2 < 1)
+        if (tile.ticks / 9 % 2 < 1)
         {
             GlStateManager.color(0.0F, 0.25F, 1.0F);
         }
@@ -52,7 +51,7 @@ public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRendere
         {
             GlStateManager.color(1.0F, 1.0F, 1.0F);
         }
-        this.bindTexture(TileEntitySpaceWarpPadFullRenderer.textureLight2);
+        this.bindTexture(TileEntitySpaceWarpPadFullRenderer.LIGHT1);
         this.model.renderRod();
         GlStateManager.disableAlpha();
         GlStateManager.depthMask(false);
@@ -65,7 +64,7 @@ public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRendere
         GlStateManager.enableLighting();
         GlStateManager.depthMask(true);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
-        this.bindTexture(TileEntitySpaceWarpPadFullRenderer.texture);
+        this.bindTexture(TileEntitySpaceWarpPadFullRenderer.TEXTURE);
         this.model.render();
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();

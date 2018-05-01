@@ -9,9 +9,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class BlockFallingMP extends BlockFalling implements ISortableBlock, ISingleBlockRender
+public class BlockFallingMP extends BlockFalling implements ISortableBlock, IItemModelRender
 {
     private String name;
 

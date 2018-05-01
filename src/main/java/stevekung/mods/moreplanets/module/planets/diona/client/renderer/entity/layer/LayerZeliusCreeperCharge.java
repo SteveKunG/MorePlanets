@@ -14,7 +14,8 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusCreepe
 public class LayerZeliusCreeperCharge implements LayerRenderer<EntityZeliusCreeper>
 {
     private RenderZeliusCreeper render;
-    private ModelCreeper model = new ModelCreeper(2.0F);
+    private final ModelCreeper model = new ModelCreeper(2.0F);
+    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/creeper/creeper_armor.png");
 
     public LayerZeliusCreeperCharge(RenderZeliusCreeper render)
     {
@@ -28,7 +29,7 @@ public class LayerZeliusCreeperCharge implements LayerRenderer<EntityZeliusCreep
         {
             boolean flag = entity.isInvisible();
             GlStateManager.depthMask(!flag);
-            this.render.bindTexture(new ResourceLocation("textures/entity/creeper/creeper_armor.png"));
+            this.render.bindTexture(LayerZeliusCreeperCharge.TEXTURE);
             GlStateManager.matrixMode(5890);
             GlStateManager.loadIdentity();
             float f = entity.ticksExisted + partialTicks;

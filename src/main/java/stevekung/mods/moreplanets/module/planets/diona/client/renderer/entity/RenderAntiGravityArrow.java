@@ -15,9 +15,9 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityA
 @SideOnly(Side.CLIENT)
 public class RenderAntiGravityArrow extends Render<EntityAntiGravityArrow>
 {
-    private static final ResourceLocation texture0 = new ResourceLocation("moreplanets:textures/entity/anti_gravity_arrow_0.png");
-    private static final ResourceLocation texture1 = new ResourceLocation("moreplanets:textures/entity/anti_gravity_arrow_1.png");
-    private static final ResourceLocation texture2 = new ResourceLocation("moreplanets:textures/entity/anti_gravity_arrow_2.png");
+    private static final ResourceLocation TEXTURE0 = new ResourceLocation("moreplanets:textures/entity/anti_gravity_arrow_0.png");
+    private static final ResourceLocation TEXTURE1 = new ResourceLocation("moreplanets:textures/entity/anti_gravity_arrow_1.png");
+    private static final ResourceLocation TEXTURE2 = new ResourceLocation("moreplanets:textures/entity/anti_gravity_arrow_2.png");
 
     public RenderAntiGravityArrow(RenderManager manager)
     {
@@ -94,15 +94,15 @@ public class RenderAntiGravityArrow extends Render<EntityAntiGravityArrow>
 
         if (motion < 0.05F || entity.inGround)
         {
-            return RenderAntiGravityArrow.texture0;
+            return RenderAntiGravityArrow.TEXTURE0;
         }
         else if (motion < 0.25F)
         {
-            return RenderAntiGravityArrow.texture2;
+            return RenderAntiGravityArrow.TEXTURE2;
         }
         else
         {
-            return RenderAntiGravityArrow.texture1;
+            return RenderAntiGravityArrow.TEXTURE1;
         }
     }
 }

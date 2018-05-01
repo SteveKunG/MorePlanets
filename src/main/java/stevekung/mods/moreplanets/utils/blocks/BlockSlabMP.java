@@ -13,8 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlabBlock, ISingleBlockRender
+public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlabBlock, IItemModelRender
 {
     public BlockSlabMP(Material material)
     {

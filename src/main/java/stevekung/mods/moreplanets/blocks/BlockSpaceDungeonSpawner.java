@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -23,7 +24,7 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDion
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityNull;
 
-public class BlockSpaceDungeonSpawner extends BlockBaseMP
+public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntityProvider
 {
     private final DungeonType type;
 
@@ -87,7 +88,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         switch (this.type)
         {

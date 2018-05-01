@@ -19,10 +19,10 @@ import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.fluid.FluidMP;
-import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescription;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockSlabMP;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
@@ -247,103 +247,103 @@ public class MPBlocks
         /**************************************************************/
 
         // Dummy
-        CommonRegisterHelper.registerBlock(MPBlocks.WARP_PAD_DUMMY, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DER_SOLAR1_DUMMY, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DER_SOLAR2_DUMMY, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DER_SOLAR3_DUMMY, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DER_SOLAR4_DUMMY, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.NWT_MIDDLE_DUMMY, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.NWT_TOP_DUMMY, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.SHIELD_GENERATOR_DUMMY, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.WARP_PAD_DUMMY, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DER_SOLAR1_DUMMY, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DER_SOLAR2_DUMMY, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DER_SOLAR3_DUMMY, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DER_SOLAR4_DUMMY, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.NWT_MIDDLE_DUMMY, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.NWT_TOP_DUMMY, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.SHIELD_GENERATOR_DUMMY, null);
 
         // Boss Spawner
-        CommonRegisterHelper.registerBlock(MPBlocks.DIONA_DUNGEON_SPAWNER, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.CHALOS_DUNGEON_SPAWNER, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_DUNGEON_SPAWNER, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_DUNGEON_SPAWNER, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CHALOS_DUNGEON_SPAWNER, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.NIBIRU_DUNGEON_SPAWNER, null);
 
         // Energy Storage
-        CommonRegisterHelper.registerBlock(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER, ItemBlockDescription::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER, ItemBlockDescription::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER, ItemBlockDescription::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER, ItemBlockDescription::new);
 
         // Polish
-        CommonRegisterHelper.registerBlock(MPBlocks.POLISHED_TIN_DECORATION_BLOCK);
-        CommonRegisterHelper.registerBlock(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK);
+        BlocksItemsRegistry.registerBlock(MPBlocks.POLISHED_TIN_DECORATION_BLOCK);
+        BlocksItemsRegistry.registerBlock(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK);
 
         // Tinted Glass
-        CommonRegisterHelper.registerBlock(MPBlocks.WHITE_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.ORANGE_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.MAGENTA_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.LIGHT_BLUE_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.YELLOW_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.LIME_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.PINK_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.GRAY_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.SILVER_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.CYAN_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.PURPLE_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.BLUE_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.BROWN_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.GREEN_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.RED_TINTED_GLASS);
-        CommonRegisterHelper.registerBlock(MPBlocks.BLACK_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.WHITE_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ORANGE_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.MAGENTA_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.LIGHT_BLUE_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.YELLOW_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.LIME_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.PINK_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.GRAY_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.SILVER_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CYAN_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.PURPLE_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.BLUE_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.BROWN_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.GREEN_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.RED_TINTED_GLASS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.BLACK_TINTED_GLASS);
 
         // Tinted Glass Pane
-        CommonRegisterHelper.registerBlock(MPBlocks.WHITE_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.ORANGE_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.MAGENTA_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.LIGHT_BLUE_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.YELLOW_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.LIME_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.PINK_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.GRAY_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.SILVER_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.CYAN_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.PURPLE_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.BLUE_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.BROWN_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.GREEN_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.RED_TINTED_GLASS_PANE);
-        CommonRegisterHelper.registerBlock(MPBlocks.BLACK_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.WHITE_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ORANGE_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.MAGENTA_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.LIGHT_BLUE_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.YELLOW_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.LIME_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.PINK_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.GRAY_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.SILVER_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CYAN_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.PURPLE_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.BLUE_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.BROWN_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.GREEN_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.RED_TINTED_GLASS_PANE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.BLACK_TINTED_GLASS_PANE);
 
-        CommonRegisterHelper.registerBlock(MPBlocks.DIONA_COBBLESTONE_WALL);
-        CommonRegisterHelper.registerBlock(MPBlocks.CHALOS_COBBLESTONE_WALL);
-        CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_COBBLESTONE_WALL);
-        CommonRegisterHelper.registerBlock(MPBlocks.DIONA_DUNGEON_BRICK_WALL);
-        CommonRegisterHelper.registerBlock(MPBlocks.CHALOS_DUNGEON_BRICK_WALL);
-        CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_DUNGEON_BRICK_WALL);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_COBBLESTONE_WALL);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CHALOS_COBBLESTONE_WALL);
+        BlocksItemsRegistry.registerBlock(MPBlocks.NIBIRU_COBBLESTONE_WALL);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_DUNGEON_BRICK_WALL);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CHALOS_DUNGEON_BRICK_WALL);
+        BlocksItemsRegistry.registerBlock(MPBlocks.NIBIRU_DUNGEON_BRICK_WALL);
 
-        CommonRegisterHelper.registerBlock(MPBlocks.DIONA_COBBLESTONE_SLAB, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.CHALOS_COBBLESTONE_SLAB, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_COBBLESTONE_SLAB, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.DIONA_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_COBBLESTONE_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CHALOS_COBBLESTONE_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.NIBIRU_COBBLESTONE_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
 
-        CommonRegisterHelper.registerBlock(MPBlocks.CHEESE_SPORE_WOOD_SLAB, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.INFECTED_OAK_WOOD_SLAB, ItemBlockSlabMP::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_SPORE_WOOD_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_WOOD_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB, ItemBlockSlabMP::new);
 
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_NIBIRU_COBBLESTONE_SLAB, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_NIBIRU_COBBLESTONE_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB, null);
 
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB, null);
 
-        CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL, null);
-        CommonRegisterHelper.registerBlock(MPBlocks.ROCKET_CRUSHER, ItemBlockDescription::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.DUNGEON_GLOWSTONE);
-        CommonRegisterHelper.registerBlock(MPBlocks.DARK_ENERGY_RECEIVER, ItemBlockDarkEnergyReceiver::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ROCKET_CRUSHER, ItemBlockDescription::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DUNGEON_GLOWSTONE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_RECEIVER, ItemBlockDarkEnergyReceiver::new);
 
-        CommonRegisterHelper.registerBlock(MPBlocks.SPACE_PORTAL);
-        CommonRegisterHelper.registerBlock(MPBlocks.BLACK_HOLE_STORAGE, ItemBlockBlackHoleStorage::new);
-        CommonRegisterHelper.registerBlock(MPBlocks.ALIEN_DEFENDER_BEACON);
-        CommonRegisterHelper.registerBlock(MPBlocks.SHIELD_GENERATOR, ItemBlockShieldGenerator::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_PORTAL);
+        BlocksItemsRegistry.registerBlock(MPBlocks.BLACK_HOLE_STORAGE, ItemBlockBlackHoleStorage::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_DEFENDER_BEACON);
+        BlocksItemsRegistry.registerBlock(MPBlocks.SHIELD_GENERATOR, ItemBlockShieldGenerator::new);
 
         DionaBlocks.init();
         KoentusBlocks.init();

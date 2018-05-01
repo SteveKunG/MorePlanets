@@ -6,14 +6,24 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 
-public abstract class ItemArmorMP extends ItemArmor implements ISortableItem
+public abstract class ItemArmorMP extends ItemArmor implements ISortableItem, IItemModelRender
 {
+    private String name;
+
     public ItemArmorMP(ArmorMaterial material, EntityEquipmentSlot type)
     {
         super(material, -1, type);
+    }
+
+    @Override
+    public Item setUnlocalizedName(String name)
+    {
+        this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override
@@ -25,11 +35,11 @@ public abstract class ItemArmorMP extends ItemArmor implements ISortableItem
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (this.getRepairItems() == null && this.getRepairItemsMetadata() == -1)
+        if (this.getRepairItem() == null)
         {
             return false;
         }
-        if (repair.getItem() == this.getRepairItems() && repair.getItemDamage() == this.getRepairItemsMetadata())
+        if (repair.getItem() == this.getRepairItem())
         {
             return true;
         }
@@ -37,7 +47,7 @@ public abstract class ItemArmorMP extends ItemArmor implements ISortableItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         switch (this.armorType)
         {
@@ -53,6 +63,11 @@ public abstract class ItemArmorMP extends ItemArmor implements ISortableItem
         }
     }
 
-    protected abstract Item getRepairItems();
-    protected abstract int getRepairItemsMetadata();
+    @Override
+    public String getName()
+    {
+        return this.name;
+    }
+
+    protected abstract Item getRepairItem();
 }

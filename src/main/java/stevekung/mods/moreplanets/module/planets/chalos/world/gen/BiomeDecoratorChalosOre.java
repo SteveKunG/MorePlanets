@@ -8,9 +8,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
-import stevekung.mods.moreplanets.utils.world.gen.feature.EnumOreGen;
-import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenMinableMP;
+import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
 import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
+import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
 public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
 {
@@ -25,14 +25,14 @@ public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
 
     public BiomeDecoratorChalosOre()
     {
-        this.dirtGen = new WorldGenMinableMP(ChalosBlocks.CHEESE_DIRT.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.DIRT);
-        this.diremsiumGen = new WorldGenMinableMP(ChalosBlocks.DIREMSIUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 9);
-        this.zyptoriumGen = new WorldGenMinableMP(ChalosBlocks.ZYPTORIUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 9);
-        this.ironGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_IRON_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.IRON);
-        this.cheeseGen = new WorldGenMinableMP(ChalosBlocks.CHEESE_MILK_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 4);
-        this.tinGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_TIN_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.TIN);
-        this.copperGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_COPPER_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.COPPER);
-        this.aluminumGen = new WorldGenMinableMP(ChalosBlocks.CHALOS_ALUMINUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
+        this.dirtGen = new WorldGenMinableBase(ChalosBlocks.CHEESE_DIRT.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.DIRT);
+        this.diremsiumGen = new WorldGenMinableBase(ChalosBlocks.DIREMSIUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 9);
+        this.zyptoriumGen = new WorldGenMinableBase(ChalosBlocks.ZYPTORIUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 9);
+        this.ironGen = new WorldGenMinableBase(ChalosBlocks.CHALOS_IRON_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.IRON);
+        this.cheeseGen = new WorldGenMinableBase(ChalosBlocks.CHEESE_MILK_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 4);
+        this.tinGen = new WorldGenMinableBase(ChalosBlocks.CHALOS_TIN_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.TIN);
+        this.copperGen = new WorldGenMinableBase(ChalosBlocks.CHALOS_COPPER_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.COPPER);
+        this.aluminumGen = new WorldGenMinableBase(ChalosBlocks.CHALOS_ALUMINUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
     }
 
     @Override

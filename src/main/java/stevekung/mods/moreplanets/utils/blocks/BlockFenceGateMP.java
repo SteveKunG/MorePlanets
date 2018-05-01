@@ -6,8 +6,9 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.creativetab.CreativeTabs;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, ISingleBlockRender
+public class BlockFenceGateMP extends BlockFenceGate implements ISortableBlock, IItemModelRender
 {
     private String name;
 

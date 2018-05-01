@@ -15,7 +15,7 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpecialRenderer<TileEntityLargeInfectedCrystallized>
 {
-    private ModelCrystal model = new ModelCrystal();
+    private final ModelCrystal model = new ModelCrystal();
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/infected_crystallized_crystal.png");
     public static final TileEntityLargeInfectedCrystallizedRenderer INSTANCE = new TileEntityLargeInfectedCrystallizedRenderer();
 
@@ -116,7 +116,7 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
 
     public void render()
     {
-        Random rand = new Random(5);
+        Random rand = new Random(8);
 
         for (int i = 0; i < 6; i++)
         {

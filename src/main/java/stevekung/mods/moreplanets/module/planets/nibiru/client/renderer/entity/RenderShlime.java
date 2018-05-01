@@ -13,6 +13,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
 @SideOnly(Side.CLIENT)
 public class RenderShlime extends RenderLiving<EntityShlime>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/shlime.png");
+
     public RenderShlime(RenderManager manager)
     {
         super(manager, new ModelShlime(), 0.3F);
@@ -22,7 +24,7 @@ public class RenderShlime extends RenderLiving<EntityShlime>
     @Override
     protected ResourceLocation getEntityTexture(EntityShlime entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/shlime.png");
+        return RenderShlime.TEXTURE;
     }
 
     @Override

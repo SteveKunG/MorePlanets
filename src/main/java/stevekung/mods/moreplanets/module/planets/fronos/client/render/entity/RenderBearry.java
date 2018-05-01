@@ -11,6 +11,11 @@ import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityBearry;
 @SideOnly(Side.CLIENT)
 public class RenderBearry extends RenderLiving<EntityBearry>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/fronos_fruits/bearry.png");
+    private static final ResourceLocation CLOSE_EYE = new ResourceLocation("moreplanets:textures/entity/fronos_fruits/bearry_close_eye.png");
+    private static final ResourceLocation HUNGRY = new ResourceLocation("moreplanets:textures/entity/fronos_fruits/bearry_hungry.png");
+    private static final ResourceLocation PANIC = new ResourceLocation("moreplanets:textures/entity/fronos_fruits/bearry_panic.png");
+
     public RenderBearry(RenderManager manager)
     {
         super(manager, new ModelBearry(), 0.5F);
@@ -21,16 +26,16 @@ public class RenderBearry extends RenderLiving<EntityBearry>
     {
         if (entity.isCloseEye())
         {
-            return new ResourceLocation("moreplanets:textures/entity/fronos_fruits/bearry_close_eye.png");
+            return RenderBearry.CLOSE_EYE;
         }
         if (entity.isHungry())
         {
-            return new ResourceLocation("moreplanets:textures/entity/fronos_fruits/bearry_hungry.png");
+            return RenderBearry.HUNGRY;
         }
         if (entity.isPanic())
         {
-            return new ResourceLocation("moreplanets:textures/entity/fronos_fruits/bearry_panic.png");
+            return RenderBearry.PANIC;
         }
-        return new ResourceLocation("moreplanets:textures/entity/fronos_fruits/bearry.png");
+        return RenderBearry.TEXTURE;
     }
 }

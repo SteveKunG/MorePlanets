@@ -25,15 +25,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
-public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescription, ISingleBlockRender
+public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescription
 {
     public BlockDarkEnergyGenerator(String name)
     {
@@ -281,6 +280,6 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IBlockDescr
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockDarkEnergyGenerator.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockDarkEnergyGenerator.this.getUnlocalizedName() + ".description"));
     }
 }

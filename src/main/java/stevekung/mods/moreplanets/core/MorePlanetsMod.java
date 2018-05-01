@@ -28,15 +28,8 @@ import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
-import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.utils.CreativeTabsMP;
-import stevekung.mods.moreplanets.utils.MPLog;
-import stevekung.mods.moreplanets.utils.SmeltWithDataFunction;
-import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
-import stevekung.mods.stevekunglib.utils.ClientUtils;
-import stevekung.mods.stevekunglib.utils.CommonRegistryUtils;
-import stevekung.mods.stevekunglib.utils.CommonUtils;
-import stevekung.mods.stevekunglib.utils.VersionChecker;
+import stevekung.mods.moreplanets.utils.*;
+import stevekung.mods.stevekunglib.utils.*;
 
 @Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.DEPENDENCIES, certificateFingerprint = MorePlanetsMod.CERTIFICATE)
 public class MorePlanetsMod
@@ -67,6 +60,7 @@ public class MorePlanetsMod
     public static final VersionChecker checker = new VersionChecker(MOD_ID, VERSION, MAJOR_VERSION, MINOR_VERSION, BUILD_VERSION);
     public static final CreativeTabsMP BLOCK_TAB = new CreativeTabsMP("more_planets_blocks");
     public static final CreativeTabsMP ITEM_TAB = new CreativeTabsMP("more_planets_items");
+    public static final ClientRegistryUtils CLIENT_REGISTRY = new ClientRegistryUtils(MOD_ID);
     public static final CommonRegistryUtils COMMON_REGISTRY = new CommonRegistryUtils(MOD_ID);
 
     static
@@ -111,8 +105,8 @@ public class MorePlanetsMod
 
         if (ClientUtils.isClient())
         {
-            CommonRegisterHelper.postRegisteredSortBlock();
-            CommonRegisterHelper.postRegisteredSortItem();
+            BlocksItemsRegistry.postRegisteredSortBlock();
+            BlocksItemsRegistry.postRegisteredSortItem();
             CommonUtils.registerEventHandler(new ClientEventHandler());
             ClientCommandHandler.instance.registerCommand(new CommandChangeLog());
         }
@@ -150,7 +144,7 @@ public class MorePlanetsMod
     {
         if (MorePlanetsMod.isDevelopment)
         {
-            MPLog.info("Development environment detected! Ignore certificate check.");
+            LoggerMP.info("Development environment detected! Ignore certificate check.");
         }
         else
         {

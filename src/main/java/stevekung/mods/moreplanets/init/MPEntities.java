@@ -87,7 +87,7 @@ public class MPEntities
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityBlackHoleStorage.class, "black_hole_storage");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAntiGravityArrow.class, "anti_gravity_arrow", EnumEntityTrackerType.ARROW);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityFallingKoentusMeteor.class, "falling_koentus_meteor", 160, 20);
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAntiGravFallingBlock.class, "anti_gravity_falling_block", 160, 20);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAntiGravFallingBlock.class, "anti_gravity_falling_block", 80, 1);
 
         MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityAlienMiner.class, SpawnPlacementType.ON_GROUND);
         MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityZeliusZombie.class, SpawnPlacementType.ON_GROUND);

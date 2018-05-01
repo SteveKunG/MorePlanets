@@ -3,8 +3,8 @@ package stevekung.mods.moreplanets.utils.world.gen.feature;
 import java.util.Iterator;
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
@@ -14,30 +14,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockAncientChestMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityAncientChestMP;
 
 public class WorldGenSpaceDungeons extends WorldGenerator
 {
-    private Block chest;
-    private Block cobblestone;
-    private Block moss;
-    private int cobbleMeta;
-    private int mossMeta;
+    private IBlockState chest;
+    private IBlockState cobblestone;
+    private IBlockState moss;
 
-    public WorldGenSpaceDungeons(Block chest, Block cobblestone, Block moss, int cobbleMeta, int mossMeta)
+    public WorldGenSpaceDungeons(IBlockState chest, IBlockState cobblestone, IBlockState moss)
     {
         this.chest = chest;
         this.cobblestone = cobblestone;
-        this.cobbleMeta = cobbleMeta;
         this.moss = moss;
-        this.mossMeta = mossMeta;
-    }
-
-    public WorldGenSpaceDungeons(Block chest, Block cobblestone, Block moss, int mossMeta)
-    {
-        this(chest, cobblestone, moss, 3, mossMeta);
     }
 
     @Override
@@ -107,11 +98,11 @@ public class WorldGenSpaceDungeons extends WorldGenerator
                         {
                             if (i2 == -1 && rand.nextInt(4) != 0)
                             {
-                                world.setBlockState(blockpos1, this.moss.getStateFromMeta(this.mossMeta), 2);
+                                world.setBlockState(blockpos1, this.moss, 2);
                             }
                             else
                             {
-                                world.setBlockState(blockpos1, this.cobblestone.getStateFromMeta(this.cobbleMeta), 2);
+                                world.setBlockState(blockpos1, this.cobblestone, 2);
                             }
                         }
                     }
@@ -152,7 +143,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
 
                             if (k2 == 1)
                             {
-                                world.setBlockState(blockpos2, ((BlockAncientChestMP)this.chest).correctFacing(world, blockpos2, this.chest.getDefaultState()), 2);
+                                world.setBlockState(blockpos2, ((BlockAncientChestMP)this.chest).correctFacing(world, blockpos2, this.chest), 2);
                                 TileEntity tileentity1 = world.getTileEntity(blockpos2);
 
                                 if (tileentity1 instanceof TileEntityAncientChestMP)
@@ -180,9 +171,9 @@ public class WorldGenSpaceDungeons extends WorldGenerator
             }
             else
             {
-                MPLog.error("Failed to fetch mob spawner entity at x:{} y:{} z:{}", pos.getX(), pos.getY(), pos.getZ());
+                LoggerMP.error("Failed to fetch mob spawner entity at x:{} y:{} z:{}", pos.getX(), pos.getY(), pos.getZ());
             }
-            MPLog.debug("Generate {} spawner at: x:{} y:{} z:{}", ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().getEntityId().toString(), pos.getX(), pos.getY(), pos.getZ());
+            LoggerMP.debug("Generate {} spawner at: x:{} y:{} z:{}", ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().getEntityId().toString(), pos.getX(), pos.getY(), pos.getZ());
             return true;
         }
         else

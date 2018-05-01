@@ -49,8 +49,6 @@ public class BlockNibiruLog extends BlockLogMP implements IBlockVariants
         case 8:
             state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Z);
             break;
-        default:
-            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.NONE);
         }
         return state;
     }

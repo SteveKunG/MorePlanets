@@ -14,7 +14,7 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseFloat
 @SideOnly(Side.CLIENT)
 public class LayerCheeseFloaterSlime implements LayerRenderer<EntityCheeseFloater>
 {
-    private RenderCheeseFloater render;
+    private final RenderCheeseFloater render;
 
     public LayerCheeseFloaterSlime(RenderCheeseFloater render)
     {

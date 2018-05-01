@@ -29,9 +29,9 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.utils.TeleporterMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public class BlockSpacePortal extends BlockBreakableMP implements ISingleBlockRender
+public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRender
 {
     public BlockSpacePortal(String name)
     {

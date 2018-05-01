@@ -13,7 +13,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.entity.R
 public class LayerInfectedCreeperCharge implements LayerRenderer<EntityCreeper>
 {
     private final RenderInfectedCreeper render;
-    private final ModelInfectedCreeper creeperModel = new ModelInfectedCreeper(2.0F);
+    private final ModelInfectedCreeper model = new ModelInfectedCreeper(2.0F);
+    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/creeper/creeper_armor.png");
 
     public LayerInfectedCreeperCharge(RenderInfectedCreeper render)
     {
@@ -27,7 +28,7 @@ public class LayerInfectedCreeperCharge implements LayerRenderer<EntityCreeper>
         {
             boolean flag = entity.isInvisible();
             GlStateManager.depthMask(!flag);
-            this.render.bindTexture(new ResourceLocation("textures/entity/creeper/creeper_armor.png"));
+            this.render.bindTexture(LayerInfectedCreeperCharge.TEXTURE);
             GlStateManager.matrixMode(5890);
             GlStateManager.loadIdentity();
             float f = entity.ticksExisted + partialTicks;
@@ -38,8 +39,8 @@ public class LayerInfectedCreeperCharge implements LayerRenderer<EntityCreeper>
             GlStateManager.color(f1, f1, f1, 1.0F);
             GlStateManager.disableLighting();
             GlStateManager.blendFunc(1, 1);
-            this.creeperModel.setModelAttributes(this.render.getMainModel());
-            this.creeperModel.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+            this.model.setModelAttributes(this.render.getMainModel());
+            this.model.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
             GlStateManager.matrixMode(5890);
             GlStateManager.loadIdentity();
             GlStateManager.matrixMode(5888);

@@ -6,19 +6,19 @@ import net.minecraft.entity.Entity;
 
 public class ModelZergius extends ModelBase
 {
-    ModelRenderer body;
-    ModelRenderer body1;
-    ModelRenderer bodys1;
-    ModelRenderer bodys2;
-    ModelRenderer top;
-    ModelRenderer wing1;
-    ModelRenderer wing2;
-    ModelRenderer rod1;
-    ModelRenderer rod2;
-    ModelRenderer eye1;
-    ModelRenderer eye2;
-    ModelRenderer mouth1;
-    ModelRenderer mouth2;
+    private ModelRenderer body;
+    private ModelRenderer body1;
+    private ModelRenderer bodys1;
+    private ModelRenderer bodys2;
+    private ModelRenderer top;
+    private ModelRenderer wing1;
+    private ModelRenderer wing2;
+    private ModelRenderer rod1;
+    private ModelRenderer rod2;
+    private ModelRenderer eye1;
+    private ModelRenderer eye2;
+    private ModelRenderer mouth1;
+    private ModelRenderer mouth2;
 
     public ModelZergius()
     {

@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.module.planets.fronos.items;
 
 import net.minecraft.item.Item;
-import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ItemAllFood;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
@@ -114,34 +114,34 @@ public class FronosItems
         /**********************REGISTER STUFF**************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerItem(FronosItems.EXTRAILONITE_INGOT);
-        CommonRegisterHelper.registerItem(FronosItems.COMPRESSED_EXTRAILONITE);
+        BlocksItemsRegistry.registerItem(FronosItems.EXTRAILONITE_INGOT);
+        BlocksItemsRegistry.registerItem(FronosItems.COMPRESSED_EXTRAILONITE);
 
-        CommonRegisterHelper.registerItem(FronosItems.STRAWBERRY);
-        CommonRegisterHelper.registerItem(FronosItems.GIANT_BLUEBERRY);
+        BlocksItemsRegistry.registerItem(FronosItems.STRAWBERRY);
+        BlocksItemsRegistry.registerItem(FronosItems.GIANT_BLUEBERRY);
 
-        CommonRegisterHelper.registerItem(FronosItems.CHOCOLATE_BAR);
-        CommonRegisterHelper.registerItem(FronosItems.JELLY_BEANS);
-        CommonRegisterHelper.registerItem(FronosItems.MARSHMALLOW);
-        CommonRegisterHelper.registerItem(FronosItems.COOKED_MARSHMALLOW);
+        BlocksItemsRegistry.registerItem(FronosItems.CHOCOLATE_BAR);
+        BlocksItemsRegistry.registerItem(FronosItems.JELLY_BEANS);
+        BlocksItemsRegistry.registerItem(FronosItems.MARSHMALLOW);
+        BlocksItemsRegistry.registerItem(FronosItems.COOKED_MARSHMALLOW);
 
-        CommonRegisterHelper.registerItem(FronosItems.RED_CANDY_CANE_STICK);
-        CommonRegisterHelper.registerItem(FronosItems.GREEN_CANDY_CANE_STICK);
-        CommonRegisterHelper.registerItem(FronosItems.BLUE_CANDY_CANE_STICK);
-        CommonRegisterHelper.registerItem(FronosItems.ORANGE_CANDY_CANE_STICK);
-        CommonRegisterHelper.registerItem(FronosItems.PINK_CANDY_CANE_STICK);
-        CommonRegisterHelper.registerItem(FronosItems.YELLOW_CANDY_CANE_STICK);
-        CommonRegisterHelper.registerItem(FronosItems.PURPLE_CANDY_CANE_STICK);
-        CommonRegisterHelper.registerItem(FronosItems.RAINBOW_CANDY_CANE_STICK);
+        BlocksItemsRegistry.registerItem(FronosItems.RED_CANDY_CANE_STICK);
+        BlocksItemsRegistry.registerItem(FronosItems.GREEN_CANDY_CANE_STICK);
+        BlocksItemsRegistry.registerItem(FronosItems.BLUE_CANDY_CANE_STICK);
+        BlocksItemsRegistry.registerItem(FronosItems.ORANGE_CANDY_CANE_STICK);
+        BlocksItemsRegistry.registerItem(FronosItems.PINK_CANDY_CANE_STICK);
+        BlocksItemsRegistry.registerItem(FronosItems.YELLOW_CANDY_CANE_STICK);
+        BlocksItemsRegistry.registerItem(FronosItems.PURPLE_CANDY_CANE_STICK);
+        BlocksItemsRegistry.registerItem(FronosItems.RAINBOW_CANDY_CANE_STICK);
 
-        CommonRegisterHelper.registerItem(FronosItems.GRAPE_JELLY);
-        CommonRegisterHelper.registerItem(FronosItems.RASPBERRY_JELLY);
-        CommonRegisterHelper.registerItem(FronosItems.STRAWBERRY_JELLY);
-        CommonRegisterHelper.registerItem(FronosItems.BERRY_JELLY);
-        CommonRegisterHelper.registerItem(FronosItems.LIME_JELLY);
-        CommonRegisterHelper.registerItem(FronosItems.ORANGE_JELLY);
-        CommonRegisterHelper.registerItem(FronosItems.GREEN_JELLY);
-        CommonRegisterHelper.registerItem(FronosItems.LEMON_JELLY);
+        BlocksItemsRegistry.registerItem(FronosItems.GRAPE_JELLY);
+        BlocksItemsRegistry.registerItem(FronosItems.RASPBERRY_JELLY);
+        BlocksItemsRegistry.registerItem(FronosItems.STRAWBERRY_JELLY);
+        BlocksItemsRegistry.registerItem(FronosItems.BERRY_JELLY);
+        BlocksItemsRegistry.registerItem(FronosItems.LIME_JELLY);
+        BlocksItemsRegistry.registerItem(FronosItems.ORANGE_JELLY);
+        BlocksItemsRegistry.registerItem(FronosItems.GREEN_JELLY);
+        BlocksItemsRegistry.registerItem(FronosItems.LEMON_JELLY);
 
         //        CommonRegisterHelper.registerItem(FronosItems.ILLENIUM_SWORD);
         //        CommonRegisterHelper.registerItem(FronosItems.ILLENIUM_SHOVEL);

@@ -11,6 +11,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedSno
 @SideOnly(Side.CLIENT)
 public class RenderInfectedSnowman extends RenderLiving<EntityInfectedSnowman>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_snowman.png");
+
     public RenderInfectedSnowman(RenderManager manager)
     {
         super(manager, new ModelSnowMan(), 0.5F);
@@ -19,12 +21,6 @@ public class RenderInfectedSnowman extends RenderLiving<EntityInfectedSnowman>
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedSnowman entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_snowman.png");
-    }
-
-    @Override
-    public ModelSnowMan getMainModel()
-    {
-        return (ModelSnowMan)super.getMainModel();
+        return RenderInfectedSnowman.TEXTURE;
     }
 }

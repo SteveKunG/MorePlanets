@@ -13,12 +13,12 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVilla
 @SideOnly(Side.CLIENT)
 public class RenderNibiruVillager extends RenderLiving<EntityNibiruVillager>
 {
-    private ResourceLocation farmerTexture = new ResourceLocation("moreplanets:textures/entity/villager/farmer.png");
-    private ResourceLocation librarianTexture = new ResourceLocation("moreplanets:textures/entity/villager/librarian.png");
-    private ResourceLocation medicTexture = new ResourceLocation("moreplanets:textures/entity/villager/medic.png");
-    private ResourceLocation greenVeinFarmerTexture = new ResourceLocation("moreplanets:textures/entity/villager/green_vein_farmer.png");
-    private ResourceLocation greenVeinLibrarianTexture = new ResourceLocation("moreplanets:textures/entity/villager/green_vein_librarian.png");
-    private ResourceLocation greenVeinMedicTexture = new ResourceLocation("moreplanets:textures/entity/villager/green_vein_medic.png");
+    private static final ResourceLocation FARMER = new ResourceLocation("moreplanets:textures/entity/villager/farmer.png");
+    private static final ResourceLocation LIBRARIAN = new ResourceLocation("moreplanets:textures/entity/villager/librarian.png");
+    private static final ResourceLocation MEDIC = new ResourceLocation("moreplanets:textures/entity/villager/medic.png");
+    private static final ResourceLocation GREEN_VEIN_FARMER = new ResourceLocation("moreplanets:textures/entity/villager/green_vein_farmer.png");
+    private static final ResourceLocation GREEN_VEIN_LIBRARIAN = new ResourceLocation("moreplanets:textures/entity/villager/green_vein_librarian.png");
+    private static final ResourceLocation GREEN_VEIN_MEDIC = new ResourceLocation("moreplanets:textures/entity/villager/green_vein_medic.png");
 
     public RenderNibiruVillager(RenderManager manager)
     {
@@ -38,17 +38,17 @@ public class RenderNibiruVillager extends RenderLiving<EntityNibiruVillager>
         switch (entity.getProfession())
         {
         case 0:
-            return this.farmerTexture;
+            return RenderNibiruVillager.FARMER;
         case 1:
-            return this.librarianTexture;
+            return RenderNibiruVillager.LIBRARIAN;
         case 2:
-            return this.medicTexture;
+            return RenderNibiruVillager.MEDIC;
         case 3:
-            return this.greenVeinFarmerTexture;
+            return RenderNibiruVillager.GREEN_VEIN_FARMER;
         case 4:
-            return this.greenVeinLibrarianTexture;
+            return RenderNibiruVillager.GREEN_VEIN_LIBRARIAN;
         default:
-            return this.greenVeinMedicTexture;
+            return RenderNibiruVillager.GREEN_VEIN_MEDIC;
         }
     }
 

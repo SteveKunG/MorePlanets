@@ -22,7 +22,7 @@ public class ItemDungeonKeyMP extends ItemBaseMP implements IKeyItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.DUNGEON_KEY;
     }

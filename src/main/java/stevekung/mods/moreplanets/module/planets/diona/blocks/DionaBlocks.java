@@ -6,10 +6,10 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.diona.itemblocks.ItemBlockDarkEnergyGenerator;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.blocks.*;
 import stevekung.mods.moreplanets.utils.blocks.BlockStairsMP.EnumStairsType;
 import stevekung.mods.moreplanets.utils.blocks.fluid.FluidMP;
-import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescription;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
@@ -111,42 +111,42 @@ public class DionaBlocks
         /**************************************************************/
 
         // Diona Block
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_SURFACE_ROCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_SUB_SURFACE_ROCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_ROCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_COBBLESTONE);
-        CommonRegisterHelper.registerBlock(DionaBlocks.SETRORIUM_ORE);
-        CommonRegisterHelper.registerBlock(DionaBlocks.ILLENIUM_ORE);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_TIN_ORE);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_COPPER_ORE);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_ALUMINUM_ORE);
-        CommonRegisterHelper.registerBlock(DionaBlocks.SETRORIUM_BLOCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.ILLENIUM_BLOCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_DUNGEON_BRICK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_SURFACE_ROCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_SUB_SURFACE_ROCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_ROCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_COBBLESTONE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.SETRORIUM_ORE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.ILLENIUM_ORE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_TIN_ORE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_COPPER_ORE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_ALUMINUM_ORE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.SETRORIUM_BLOCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.ILLENIUM_BLOCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_DUNGEON_BRICK);
 
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT);
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE);
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE);
 
-        CommonRegisterHelper.registerBlock(DionaBlocks.ALBETIUS_WORM_EGG_ROCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS);
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_FENCE);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_ANCIENT_CHEST);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_TREASURE_CHEST);
-        CommonRegisterHelper.registerBlock(DionaBlocks.ZELIUS_EGG);
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_WEB);
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_TORCH);
-        CommonRegisterHelper.registerBlock(DionaBlocks.LARGE_INFECTED_CRYSTALLIZED);
-        CommonRegisterHelper.registerBlock(DionaBlocks.ALIEN_MINER_BLOOD);
-        CommonRegisterHelper.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_CORE, ItemBlockDescription::new);
-        CommonRegisterHelper.registerBlock(DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_COBBLESTONE_STAIRS);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DIONA_DUNGEON_BRICK_STAIRS);
-        CommonRegisterHelper.registerBlock(DionaBlocks.DARK_ENERGY_GENERATOR, ItemBlockDarkEnergyGenerator::new);
-        CommonRegisterHelper.registerBlock(DionaBlocks.GLOWING_IRON_BLOCK);
-        CommonRegisterHelper.registerBlock(DionaBlocks.CRASHED_ALIEN_PROBE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.ALBETIUS_WORM_EGG_ROCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_FENCE);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_ANCIENT_CHEST);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_TREASURE_CHEST);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.ZELIUS_EGG);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_WEB);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_TORCH);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.LARGE_INFECTED_CRYSTALLIZED);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.ALIEN_MINER_BLOOD);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DARK_ENERGY_CORE, ItemBlockDescription::new);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_COBBLESTONE_STAIRS);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DIONA_DUNGEON_BRICK_STAIRS);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.DARK_ENERGY_GENERATOR, ItemBlockDarkEnergyGenerator::new);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.GLOWING_IRON_BLOCK);
+        BlocksItemsRegistry.registerBlock(DionaBlocks.CRASHED_ALIEN_PROBE);
 
         /**************************************************************/
         /**********************HARVEST LEVEL STUFF*********************/

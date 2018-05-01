@@ -24,20 +24,18 @@ import stevekung.mods.moreplanets.init.MPBiomes;
 
 public class WeatherRendererNibiru extends IRenderHandler
 {
-    private ResourceLocation rainTexture = new ResourceLocation("moreplanets:textures/environment/infected_rain.png");
-    private ResourceLocation purifyRainTexture = new ResourceLocation("moreplanets:textures/environment/purify_rain.png");
-    private ResourceLocation snowTexture = new ResourceLocation("moreplanets:textures/environment/infected_snow.png");
-    private float[] rainXCoords = new float[1024];
-    private float[] rainYCoords = new float[1024];
+    private static final ResourceLocation RAIN = new ResourceLocation("moreplanets:textures/environment/infected_rain.png");
+    private static final ResourceLocation PURIFY_RAIN = new ResourceLocation("moreplanets:textures/environment/purify_rain.png");
+    private static final ResourceLocation SNOW = new ResourceLocation("moreplanets:textures/environment/infected_snow.png");
+    private final float[] rainXCoords = new float[1024];
+    private final float[] rainYCoords = new float[1024];
     private int rendererUpdateCount;
     private int rainSoundCounter;
-    private Random random = new Random();
-    public static WeatherRendererNibiru INSTANCE = new WeatherRendererNibiru();
+    private final Random rand = new Random();
+    public static final WeatherRendererNibiru INSTANCE = new WeatherRendererNibiru();
 
     public WeatherRendererNibiru()
     {
-        WeatherRendererNibiru.INSTANCE = this;
-
         for (int i = 0; i < 32; ++i)
         {
             for (int j = 0; j < 32; ++j)
@@ -131,7 +129,7 @@ public class WeatherRendererNibiru extends IRenderHandler
 
                         if (k2 != l2)
                         {
-                            this.random.setSeed(l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761);
+                            this.rand.setSeed(l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761);
                             blockpos$mutableblockpos.setPos(l1, k2, k1);
                             float f2 = biomegenbase.getTemperature(blockpos$mutableblockpos);
 
@@ -147,15 +145,15 @@ public class WeatherRendererNibiru extends IRenderHandler
 
                                     if (biomegenbase == MPBiomes.GREEN_VEIN)
                                     {
-                                        mc.getTextureManager().bindTexture(this.purifyRainTexture);
+                                        mc.getTextureManager().bindTexture(WeatherRendererNibiru.PURIFY_RAIN);
                                     }
                                     else
                                     {
-                                        mc.getTextureManager().bindTexture(this.rainTexture);
+                                        mc.getTextureManager().bindTexture(WeatherRendererNibiru.RAIN);
                                     }
                                     worldrenderer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
                                 }
-                                double d5 = ((double)(this.rendererUpdateCount + l1 * l1 * 3121 + l1 * 45238971 + k1 * k1 * 418711 + k1 * 13761 & 31) + (double)partialTicks) / 32.0D * (3.0D + this.random.nextDouble());
+                                double d5 = ((double)(this.rendererUpdateCount + l1 * l1 * 3121 + l1 * 45238971 + k1 * k1 * 418711 + k1 * 13761 & 31) + (double)partialTicks) / 32.0D * (3.0D + this.rand.nextDouble());
                                 double d6 = l1 + 0.5F - entity.posX;
                                 double d7 = k1 + 0.5F - entity.posZ;
                                 float f3 = MathHelper.sqrt(d6 * d6 + d7 * d7) / i1;
@@ -178,12 +176,12 @@ public class WeatherRendererNibiru extends IRenderHandler
                                         tessellator.draw();
                                     }
                                     j1 = 1;
-                                    mc.getTextureManager().bindTexture(this.snowTexture);
+                                    mc.getTextureManager().bindTexture(WeatherRendererNibiru.SNOW);
                                     worldrenderer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
                                 }
                                 double d8 = ((this.rendererUpdateCount & 511) + partialTicks) / 512.0F;
-                                double d9 = this.random.nextDouble() + f1 * 0.01D * (float)this.random.nextGaussian();
-                                double d10 = this.random.nextDouble() + f1 * (float)this.random.nextGaussian() * 0.001D;
+                                double d9 = this.rand.nextDouble() + f1 * 0.01D * (float)this.rand.nextGaussian();
+                                double d10 = this.rand.nextDouble() + f1 * (float)this.rand.nextGaussian() * 0.001D;
                                 double d11 = l1 + 0.5F - entity.posX;
                                 double d12 = k1 + 0.5F - entity.posZ;
                                 float f6 = MathHelper.sqrt(d11 * d11 + d12 * d12) / i1;
@@ -225,7 +223,7 @@ public class WeatherRendererNibiru extends IRenderHandler
 
         if (f != 0.0F)
         {
-            this.random.setSeed(this.rendererUpdateCount * 312987231L);
+            this.rand.setSeed(this.rendererUpdateCount * 312987231L);
             Entity entity = mc.getRenderViewEntity();
             World world = mc.world;
             BlockPos blockpos = new BlockPos(entity);
@@ -247,14 +245,14 @@ public class WeatherRendererNibiru extends IRenderHandler
 
             for (int l = 0; l < k; ++l)
             {
-                BlockPos blockpos1 = world.getPrecipitationHeight(blockpos.add(this.random.nextInt(i) - this.random.nextInt(i), 0, this.random.nextInt(i) - this.random.nextInt(i)));
+                BlockPos blockpos1 = world.getPrecipitationHeight(blockpos.add(this.rand.nextInt(i) - this.rand.nextInt(i), 0, this.rand.nextInt(i) - this.rand.nextInt(i)));
                 Biome biomegenbase = world.getBiome(blockpos1);
                 BlockPos blockpos2 = blockpos1.down();
 
                 if (blockpos1.getY() <= blockpos.getY() + i && blockpos1.getY() >= blockpos.getY() - i && biomegenbase.canRain() && biomegenbase.getTemperature(blockpos1) >= 0.15F)
                 {
-                    double d3 = this.random.nextDouble();
-                    double d4 = this.random.nextDouble();
+                    double d3 = this.rand.nextDouble();
+                    double d4 = this.rand.nextDouble();
                     AxisAlignedBB axisalignedbb = world.getBlockState(blockpos2).getBoundingBox(world, blockpos2);
 
                     if (world.getBlockState(blockpos2).getMaterial() == Material.LAVA)
@@ -265,7 +263,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                     {
                         ++j;
 
-                        if (this.random.nextInt(j) == 0)
+                        if (this.rand.nextInt(j) == 0)
                         {
                             d0 = blockpos2.getX() + d3;
                             d1 = blockpos2.getY() + 0.1F + axisalignedbb.maxY - 1.0D;
@@ -276,7 +274,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                 }
             }
 
-            if (j > 0 && this.random.nextInt(3) < this.rainSoundCounter++)
+            if (j > 0 && this.rand.nextInt(3) < this.rainSoundCounter++)
             {
                 this.rainSoundCounter = 0;
 

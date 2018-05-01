@@ -12,6 +12,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedSqu
 @SideOnly(Side.CLIENT)
 public class RenderInfectedSquid extends RenderLiving<EntityInfectedSquid>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_squid.png");
+
     public RenderInfectedSquid(RenderManager manager)
     {
         super(manager, new ModelSquid(), 0.7F);
@@ -20,7 +22,7 @@ public class RenderInfectedSquid extends RenderLiving<EntityInfectedSquid>
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedSquid entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_squid.png");
+        return RenderInfectedSquid.TEXTURE;
     }
 
     @Override

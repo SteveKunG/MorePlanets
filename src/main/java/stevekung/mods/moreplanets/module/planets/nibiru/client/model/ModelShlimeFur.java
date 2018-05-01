@@ -9,23 +9,23 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
 
 public class ModelShlimeFur extends ModelBase
 {
-    ModelRenderer body;
-    ModelRenderer bodyside1;
-    ModelRenderer bodyside2;
-    ModelRenderer wool;
-    ModelRenderer vein1;
-    ModelRenderer vein2;
-    ModelRenderer vein3;
-    ModelRenderer vein4;
-    ModelRenderer vein5;
-    ModelRenderer vein6;
-    ModelRenderer vein7;
-    ModelRenderer vein8;
-    ModelRenderer tail1;
-    ModelRenderer head;
-    ModelRenderer tail2;
-    ModelRenderer tail3;
-    ModelRenderer tail4;
+    private ModelRenderer body;
+    private ModelRenderer bodyside1;
+    private ModelRenderer bodyside2;
+    private ModelRenderer wool;
+    private ModelRenderer vein1;
+    private ModelRenderer vein2;
+    private ModelRenderer vein3;
+    private ModelRenderer vein4;
+    private ModelRenderer vein5;
+    private ModelRenderer vein6;
+    private ModelRenderer vein7;
+    private ModelRenderer vein8;
+    private ModelRenderer tail1;
+    private ModelRenderer head;
+    private ModelRenderer tail2;
+    private ModelRenderer tail3;
+    private ModelRenderer tail4;
     private float tailRotationAngleX;
 
     public ModelShlimeFur()

@@ -45,7 +45,7 @@ public class ItemInfectedEgg extends ItemBaseMP
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.PROJECTILE;
     }

@@ -6,20 +6,23 @@ import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.utils.ClientRendererUtils;
 import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
 public class BlockFronosGrass extends BlockGrassBlockMP
 {
-    public static PropertyEnum<BlockType> HAS_LAYER = PropertyEnum.create("layer", BlockType.class);
+    private static final PropertyEnum<BlockType> HAS_LAYER = PropertyEnum.create("layer", BlockType.class);
 
     public BlockFronosGrass(String name)
     {
@@ -76,6 +79,22 @@ public class BlockFronosGrass extends BlockGrassBlockMP
                 }
             }
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean addHitEffects(IBlockState state, World world, RayTraceResult target, ParticleManager manager)
+    {
+        ClientRendererUtils.addBlockHitEffects(world, target.getBlockPos(), target.sideHit, manager);
+        return true;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean addDestroyEffects(World world, BlockPos pos, ParticleManager manager)
+    {
+        ClientRendererUtils.addBlockDestroyEffects(world, pos, this.getDefaultState(), manager);
+        return true;
     }
 
     @Override

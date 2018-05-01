@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
-import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, IEntityBreathable
 {
@@ -93,7 +93,7 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
             if (flag)
             {
                 this.applyEnchantments(this, entity);
-                return EntityEffectHelper.addInfectedSpore(entity);
+                return EntityEffectUtils.addInfectedSpore(entity);
             }
             return flag;
         }

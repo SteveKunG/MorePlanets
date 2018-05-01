@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class PotionMP extends Potion
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/potion/icon.png");
     private int iconIndex;
 
     public PotionMP(String name, boolean badEffect, int color, int index)
@@ -39,7 +40,7 @@ public class PotionMP extends Potion
     @SideOnly(Side.CLIENT)
     private void render(int x, int y, float alpha)
     {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("moreplanets:textures/potion/icon.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(PotionMP.TEXTURE);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buf = tessellator.getBuffer();
         buf.begin(7, DefaultVertexFormats.POSITION_TEX);

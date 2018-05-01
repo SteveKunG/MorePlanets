@@ -9,8 +9,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fluids.BlockFluidFinite;
 import net.minecraftforge.fluids.Fluid;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements ISingleBlockRender
+public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IItemModelRender
 {
     private String name;
 

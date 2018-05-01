@@ -18,7 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -33,11 +33,11 @@ public class ItemBlockDescription extends ItemBlock
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, @Nullable World world, List<String> list, ITooltipFlag flag)
     {
-        if (this.getBlock() instanceof IBlockDescription)
+        if (this.getBlock() instanceof IDescription)
         {
             if (ClientUtils.isShiftKeyDown())
             {
-                ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
+                ((IDescription)this.block).getDescription().addDescription(itemStack, list);
             }
             else
             {

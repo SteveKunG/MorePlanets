@@ -15,6 +15,8 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityI
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCrystallizedArrow extends Render<EntityInfectedCrystallizedArrow>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_crystallized_arrow.png");
+
     public RenderInfectedCrystallizedArrow(RenderManager manager)
     {
         super(manager);
@@ -86,6 +88,6 @@ public class RenderInfectedCrystallizedArrow extends Render<EntityInfectedCrysta
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedCrystallizedArrow entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_crystallize_arrow.png");
+        return RenderInfectedCrystallizedArrow.TEXTURE;
     }
 }

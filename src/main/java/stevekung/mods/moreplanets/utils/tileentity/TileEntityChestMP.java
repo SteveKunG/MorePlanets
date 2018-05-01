@@ -369,6 +369,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
         return new ContainerChest(playerInventory, this, player);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {

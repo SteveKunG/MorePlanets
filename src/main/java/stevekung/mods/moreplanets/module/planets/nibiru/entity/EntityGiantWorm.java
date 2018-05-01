@@ -19,8 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
-import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class EntityGiantWorm extends EntityMob implements IEntityBreathable, ISpaceMob
 {
@@ -58,7 +58,7 @@ public class EntityGiantWorm extends EntityMob implements IEntityBreathable, ISp
     {
         if (super.attackEntityAsMob(entity))
         {
-            return EntityEffectHelper.addInfectedSpore(entity);
+            return EntityEffectUtils.addInfectedSpore(entity);
         }
         return false;
     }

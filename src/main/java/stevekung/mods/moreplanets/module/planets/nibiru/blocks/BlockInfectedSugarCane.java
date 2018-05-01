@@ -25,8 +25,8 @@ import stevekung.mods.stevekunglib.utils.BlockUtils;
 
 public class BlockInfectedSugarCane extends BlockBushMP
 {
-    public static PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
-    protected static AxisAlignedBB REED_AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 1.0D, 0.875D);
+    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 1.0D, 0.875D);
 
     protected BlockInfectedSugarCane(String name)
     {
@@ -38,7 +38,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return REED_AABB;
+        return BlockInfectedSugarCane.AABB;
     }
 
     @Override

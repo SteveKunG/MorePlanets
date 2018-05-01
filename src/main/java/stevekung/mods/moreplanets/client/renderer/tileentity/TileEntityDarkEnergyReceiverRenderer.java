@@ -16,8 +16,9 @@ import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 
 public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRenderer<TileEntityDarkEnergyReceiver>
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/dark_energy_receiver.png");
-    public ModelDarkEnergyReceiver model = new ModelDarkEnergyReceiver();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/dark_energy_receiver.png");
+    private static final ResourceLocation BEAM = new ResourceLocation("textures/entity/beacon_beam.png");
+    private final ModelDarkEnergyReceiver model = new ModelDarkEnergyReceiver();
 
     @Override
     public void render(TileEntityDarkEnergyReceiver tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -46,7 +47,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         }
         else
         {
-            this.bindTexture(TileEntityDarkEnergyReceiverRenderer.texture);
+            this.bindTexture(TileEntityDarkEnergyReceiverRenderer.TEXTURE);
         }
 
         GlStateManager.pushMatrix();
@@ -134,7 +135,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         {
             int height = tile.getWorld().getHeight();
             int k = i + height;
-            this.bindTexture(new ResourceLocation("textures/entity/beacon_beam.png"));
+            this.bindTexture(TileEntityDarkEnergyReceiverRenderer.BEAM);
             GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
             GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
             GlStateManager.disableLighting();

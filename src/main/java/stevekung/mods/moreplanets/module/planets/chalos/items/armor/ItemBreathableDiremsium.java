@@ -22,26 +22,8 @@ public class ItemBreathableDiremsium extends ItemBreathableArmor
     }
 
     @Override
-    public Item getRepairItems()
+    public Item getRepairItem()
     {
         return ChalosItems.COMPRESSED_DIREMSIUM;
-    }
-
-    @Override
-    public int getRepairItemsMetadata()
-    {
-        return -1;
-    }
-
-    @Override
-    public EnumGearType getGearType()
-    {
-        return EnumGearType.HELMET;
-    }
-
-    @Override
-    public Item getBreathableArmor()
-    {
-        return this;
     }
 }

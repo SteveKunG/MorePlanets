@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
-import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.ModelRegistryUtils;
 import stevekung.mods.moreplanets.utils.items.armor.ItemArmorMP;
 
 public class ItemArmorMultalicCrystal extends ItemArmorMP
@@ -38,18 +38,12 @@ public class ItemArmorMultalicCrystal extends ItemArmorMP
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entity, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
     {
-        return ClientRegisterHelper.getTranclucentArmorModel(armorSlot, defaultModel);
+        return ModelRegistryUtils.getTranclucentArmorModel(armorSlot, defaultModel);
     }
 
     @Override
-    public Item getRepairItems()
+    public Item getRepairItem()
     {
         return NibiruItems.MULTALIC_CRYSTAL_PIECES;
-    }
-
-    @Override
-    public int getRepairItemsMetadata()
-    {
-        return -1;
     }
 }

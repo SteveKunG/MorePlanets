@@ -7,9 +7,9 @@ import net.minecraft.util.math.MathHelper;
 
 public class ModelInfectedCreeper extends ModelCreeper
 {
-    public ModelRenderer tail1;
-    public ModelRenderer tail2;
-    public ModelRenderer tail3;
+    private ModelRenderer tail1;
+    private ModelRenderer tail2;
+    private ModelRenderer tail3;
 
     public ModelInfectedCreeper()
     {

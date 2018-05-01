@@ -30,6 +30,7 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.*;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -52,7 +53,7 @@ import stevekung.mods.moreplanets.utils.client.particle.ParticleBreakingMC;
 import stevekung.mods.moreplanets.utils.client.particle.ParticleFallingDustMP;
 import stevekung.mods.moreplanets.utils.client.particle.ParticleLavaMC;
 import stevekung.mods.moreplanets.utils.client.particle.ParticleLiquidDrip;
-import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 
@@ -91,16 +92,16 @@ public class ClientProxyMP extends ServerProxyMP
         ItemModelRenderer.init();
         TileEntityRenderer.init();
 
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> world != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(world, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D), FronosBlocks.FRONOS_GRASS);
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(120, 85, 190), DionaBlocks.LARGE_INFECTED_CRYSTALLIZED);
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL);
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
-        ClientRegisterHelper.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(143, 55, 33), NibiruBlocks.INFECTED_MELON_STEM);
+        ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> world != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(world, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D), FronosBlocks.FRONOS_GRASS);
+        ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(120, 85, 190), DionaBlocks.LARGE_INFECTED_CRYSTALLIZED);
+        ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL);
+        ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
+        ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(143, 55, 33), NibiruBlocks.INFECTED_MELON_STEM);
 
-        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> color.colorMultiplier(((ItemBlock)itemStack.getItem()).getBlock().getStateFromMeta(itemStack.getMetadata()), null, null, tintIndex), FronosBlocks.FRONOS_GRASS);
-        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> ColorUtils.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
-        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> tintIndex == 1 ? ItemCapsule.CapsuleType.INFECTED_SPORE.getColor() : -1, MPItems.INFECTED_SPORE_PROTECTION_CAPSULE);
-        ClientRegisterHelper.registerItemColor((itemStack, tintIndex) -> tintIndex == 1 ? ItemCapsule.CapsuleType.DARK_ENERGY.getColor() : -1, MPItems.DARK_ENERGY_PROTECTION_CAPSULE);
+        ClientRegistryUtils.registerItemColor((itemStack, tintIndex) -> color.colorMultiplier(((ItemBlock)itemStack.getItem()).getBlock().getStateFromMeta(itemStack.getMetadata()), null, null, tintIndex), FronosBlocks.FRONOS_GRASS);
+        ClientRegistryUtils.registerItemColor((itemStack, tintIndex) -> ColorUtils.rgbToDecimal(50, 101, 236), NibiruBlocks.MULTALIC_CRYSTAL_BLOCK);
+        ClientRegistryUtils.registerItemColor((itemStack, tintIndex) -> tintIndex == 1 ? ItemCapsule.CapsuleType.INFECTED_SPORE.getColor() : -1, MPItems.INFECTED_SPORE_PROTECTION_CAPSULE);
+        ClientRegistryUtils.registerItemColor((itemStack, tintIndex) -> tintIndex == 1 ? ItemCapsule.CapsuleType.DARK_ENERGY.getColor() : -1, MPItems.DARK_ENERGY_PROTECTION_CAPSULE);
     }
 
     @Override
@@ -113,11 +114,10 @@ public class ClientProxyMP extends ServerProxyMP
     @SideOnly(Side.CLIENT)
     public void onTexturesStitch(TextureStitchEvent.Pre event)
     {
-        ClientRegisterHelper.registerSpriteTexture(event, "blocks/infected_crystallized");
-        ClientRegisterHelper.registerSpriteTexture(event, "blocks/shield");
-        ClientRegisterHelper.registerSpriteTexture(event, "blocks/xpjuice_still");
-        ClientRegisterHelper.registerSpriteTexture(event, "blocks/xpjuice_flowing");
-        ClientRegisterHelper.registerSpriteTexture(event, "entity/space_capsule");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/infected_crystallized");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/shield");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/xpjuice_still");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/xpjuice_flowing");
     }
 
     @SubscribeEvent

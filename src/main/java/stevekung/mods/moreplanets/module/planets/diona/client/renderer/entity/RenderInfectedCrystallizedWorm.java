@@ -12,15 +12,17 @@ import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowin
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCrystallizedWorm extends RenderLiving<EntityInfectedCrystallizedWorm>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_crystallized_worm.png");
+
     public RenderInfectedCrystallizedWorm(RenderManager manager)
     {
         super(manager, new ModelInfectedCrystallizedWorm(), 0.4F);
-        this.addLayer(new LayerGlowingTexture(this, "infected_crystallize_worm_eyes", true));
+        this.addLayer(new LayerGlowingTexture(this, "infected_crystallized_worm_eyes", true));
     }
 
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedCrystallizedWorm entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_crystallize_worm.png");
+        return RenderInfectedCrystallizedWorm.TEXTURE;
     }
 }

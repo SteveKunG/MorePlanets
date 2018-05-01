@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 
 @SideOnly(Side.CLIENT)
 public class GuiListEntityFilter extends GuiListExtended
@@ -43,7 +43,7 @@ public class GuiListEntityFilter extends GuiListExtended
         }
         catch (Exception e)
         {
-            MPLog.error("Unable to collect entities name list!");
+            LoggerMP.error("Unable to collect entities name list!");
         }
 
         for (ResourceLocation name : list)

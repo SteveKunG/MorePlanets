@@ -11,6 +11,8 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.projectile.Entity
 
 public class RenderCheeseSpore extends Render<EntityCheeseSpore>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/cheese_spore.png");
+
     public RenderCheeseSpore(RenderManager manager)
     {
         super(manager);
@@ -19,7 +21,7 @@ public class RenderCheeseSpore extends Render<EntityCheeseSpore>
     @Override
     protected ResourceLocation getEntityTexture(EntityCheeseSpore entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/cheese_spore.png");
+        return RenderCheeseSpore.TEXTURE;
     }
 
     @Override

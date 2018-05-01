@@ -15,16 +15,16 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPad;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockAdvancedTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSealableBlock, IBlockDescription
+public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSealableBlock, IDescription
 {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D);
 
@@ -104,7 +104,7 @@ public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSe
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockSpaceWarpPad.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockSpaceWarpPad.this.getUnlocalizedName() + ".description"));
     }
 
     private boolean checkAxis(World world, BlockPos pos, EnumFacing facing)

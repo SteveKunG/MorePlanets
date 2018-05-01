@@ -15,7 +15,8 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer<TileEntityMultalicCrystal>
 {
-    private ModelCrystal model = new ModelCrystal();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/crystal.png");
+    private final ModelCrystal model = new ModelCrystal();
     public static final TileEntityMultalicCrystalRenderer INSTANCE = new TileEntityMultalicCrystalRenderer();
 
     @Override
@@ -75,7 +76,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightX / 1.0F, lightZ / 1.0F);
         }
         GlStateManager.color(r, g, b, 0.75F);
-        this.bindTexture(new ResourceLocation("moreplanets:textures/model/crystal.png"));
+        this.bindTexture(TileEntityMultalicCrystalRenderer.TEXTURE);
         this.model.render();
         GlStateManager.scale(1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();
@@ -121,7 +122,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
 
     public void render()
     {
-        Random rand = new Random(4);
+        Random rand = new Random(8);
 
         for (int i = 0; i < 4; i++)
         {
@@ -158,7 +159,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
         GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
         GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
         GlStateManager.color(r, g, b, 0.75F);
-        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/model/crystal.png"));
+        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityMultalicCrystalRenderer.TEXTURE);
         this.model.render();
         GlStateManager.scale(1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();

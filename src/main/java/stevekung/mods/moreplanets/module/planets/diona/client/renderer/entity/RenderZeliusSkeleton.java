@@ -15,6 +15,8 @@ import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowin
 @SideOnly(Side.CLIENT)
 public class RenderZeliusSkeleton extends RenderBiped<EntityZeliusSkeleton>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/zelius_skeleton.png");
+
     public RenderZeliusSkeleton(RenderManager manager)
     {
         super(manager, new ModelSkeleton(), 0.5F);
@@ -40,6 +42,6 @@ public class RenderZeliusSkeleton extends RenderBiped<EntityZeliusSkeleton>
     @Override
     protected ResourceLocation getEntityTexture(EntityZeliusSkeleton entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/zelius_skeleton.png");
+        return RenderZeliusSkeleton.TEXTURE;
     }
 }

@@ -15,13 +15,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyCore;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 
-public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvider, IBlockDescription
+public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvider, IDescription
 {
     public BlockDarkEnergyCore(String name)
     {
@@ -120,6 +120,6 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockDarkEnergyCore.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockDarkEnergyCore.this.getUnlocalizedName() + ".description"));
     }
 }

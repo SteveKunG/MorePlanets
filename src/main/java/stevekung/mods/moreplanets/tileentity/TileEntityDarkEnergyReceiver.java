@@ -36,7 +36,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
@@ -49,6 +48,7 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityDarkLightnin
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -335,7 +335,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         this.setDisabled(0, true);
                         this.activatedMessage = true;
                         this.successful = true;
-                        FMLClientHandler.instance().getClient().player.sendMessage(JsonUtils.create(LangUtils.translate("gui.status.dark_energy_core_created.name")).setStyle(JsonUtils.green()));
+                        ClientUtils.printClientMessage(JsonUtils.create(LangUtils.translate("gui.status.dark_energy_core_created.name")).setStyle(JsonUtils.green()));
                     }
                 }
 

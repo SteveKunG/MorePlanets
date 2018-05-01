@@ -16,7 +16,7 @@ import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureStart;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruPyramid extends MapGenStructure
 {
@@ -135,7 +135,7 @@ public class MapGenNibiruPyramid extends MapGenStructure
         public Start(World world, Random rand, int chunkX, int chunkZ)
         {
             super(chunkX, chunkZ);
-            MPLog.debug("Generate pyramid at x:{} z:{}", chunkX * 16, chunkZ * 16);
+            LoggerMP.debug("Generate pyramid at x:{} z:{}", chunkX * 16, chunkZ * 16);
             StructureNibiruPyramidPieces.NibiruPyramid componentscatteredfeaturepieces$desertpyramid = new StructureNibiruPyramidPieces.NibiruPyramid(rand, chunkX * 16, chunkZ * 16);
             this.components.add(componentscatteredfeaturepieces$desertpyramid);
             this.updateBoundingBox();

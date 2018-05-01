@@ -27,7 +27,7 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBoxCallback
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/nuclear_waste_generator.png");
-    private TileEntityNuclearWasteGenerator tile;
+    private final TileEntityNuclearWasteGenerator tile;
     private GuiButton buttonEnable;
     private GuiElementInfoRegionMP electricInfoRegion;
     private GuiElementCheckbox checkboxRender;
@@ -58,14 +58,14 @@ public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBo
         List<String> electricityDesc = new ArrayList<>();
         electricityDesc.add(LangUtils.translate("gui.energy_storage.desc.0"));
         electricityDesc.add(TextFormatting.YELLOW + LangUtils.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC())));
-        this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 46, (this.height - this.ySize) / 2 + 24, 56, 9, new ArrayList<>(), this.width, this.height, this);
-        this.infoRegions.add(this.electricInfoRegion);
-        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 121, (this.height - this.ySize) / 2 + 19, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 155, (this.height - this.ySize) / 2 + 87, 13, 13, Arrays.asList(LangUtils.translate("gui.multiblock_guide.desc")), this.width, this.height, this));
-        this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 36, this.height / 2 - 19, 72, 20, !this.tile.getDisabled(0) ? LangUtils.translate("gui.button.disable.name") : LangUtils.translate("gui.button.enable.name")));
-        this.buttonEnable.enabled = this.tile.disableCooldown == 0;
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
+        this.electricInfoRegion = new GuiElementInfoRegionMP(x + 46, y + 24, 56, 9, new ArrayList<>(), this.width, this);
+        this.infoRegions.add(this.electricInfoRegion);
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 121, y + 19, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 155, y + 87, 13, 13, Arrays.asList(LangUtils.translate("gui.multiblock_guide.desc")), this.width, this));
+        this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 36, this.height / 2 - 19, 72, 20, !this.tile.getDisabled(0) ? LangUtils.translate("gui.button.disable.name") : LangUtils.translate("gui.button.enable.name")));
+        this.buttonEnable.enabled = this.tile.disableCooldown == 0;
         this.checkboxRender = new GuiElementCheckbox(1, this, x + 155, y + 87, "");
         this.buttonList.add(this.checkboxRender);
     }

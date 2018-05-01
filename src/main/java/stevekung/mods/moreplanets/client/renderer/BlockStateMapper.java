@@ -3,12 +3,14 @@ package stevekung.mods.moreplanets.client.renderer;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockInfectedSugarCane;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.utils.blocks.BlockDropableLitOre;
 import stevekung.mods.moreplanets.utils.client.renderer.StateMapperCTM;
-import stevekung.mods.moreplanets.utils.client.renderer.StateMapperUtil;
+import stevekung.mods.moreplanets.utils.client.renderer.StateMapperType;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 import stevekung.mods.stevekunglib.utils.EnumStateMapper;
@@ -35,7 +37,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ELECTRICAL_FIRE, EnumStateMapper.FIRE);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK, BlockInfectedSugarCane.AGE);
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.NIBIRU_SEAWEED, EnumStateMapper.VANILLA_LEVEL);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_SEAWEED, EnumStateMapper.VANILLA_LEVEL);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.HELIUM_GAS_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.NUCLEAR_WASTE_TANK, BlockNuclearWasteTank.STATE);
@@ -43,10 +45,12 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.MULTALIC_CRYSTAL, BlockStateProperty.FACING_ALL);
+        ClientRegistryUtils.registerStateMapper(FronosBlocks.FRONOS_REDSTONE_ORE, BlockDropableLitOre.LIT);
 
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_MELON_STEM, new StateMapperUtil("stem"));
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_MELON_STEM, new StateMapperType("stem"));
 
         // CTM Integration
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.ALBETIUS_WORM_EGG_ROCK, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.ALIEN_MINER_BLOOD, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.CRASHED_ALIEN_PROBE, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.GLOWING_IRON_BLOCK, new StateMapperCTM());

@@ -7,8 +7,8 @@ import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.world.gen.feature.WorldGenCheeseSporeTree;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
-import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenFlowersMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
+import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeDecoratorChalos extends BiomeDecoratorMP
 {
@@ -24,11 +24,11 @@ public class BiomeDecoratorChalos extends BiomeDecoratorMP
 
         for (i = 0; i < this.cheeseSporeFlowerPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(ChalosBlocks.CHEESE_SPORE_FLOWER.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(ChalosBlocks.CHEESE_SPORE_FLOWER.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.cheeseTallGrassPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(ChalosBlocks.CHEESE_GRASS.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(ChalosBlocks.CHEESE_GRASS.getDefaultState()), world, rand, this.chunkPos);
         }
 
         int chance;

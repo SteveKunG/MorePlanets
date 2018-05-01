@@ -192,7 +192,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileEntityDummy();
     }

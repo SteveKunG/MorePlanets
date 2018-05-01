@@ -23,6 +23,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityVeinFloater
 @SideOnly(Side.CLIENT)
 public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/vein_floater.png");
+
     public RenderVeinFloater(RenderManager manager)
     {
         super(manager, new ModelVeinFloater(), 2.0F);
@@ -41,7 +43,7 @@ public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
             {
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder worldrenderer = tessellator.getBuffer();
-                this.bindTexture(new ResourceLocation("moreplanets:textures/blocks/infected_vines.png"));
+                this.bindTexture(new ResourceLocation("moreplanets:textures/blocks/infected_vines.png"));//TODO Remove this
                 GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
                 GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
                 GlStateManager.disableLighting();
@@ -124,7 +126,7 @@ public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
     @Override
     protected ResourceLocation getEntityTexture(EntityVeinFloater entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/vein_floater.png");
+        return RenderVeinFloater.TEXTURE;
     }
 
     @Override

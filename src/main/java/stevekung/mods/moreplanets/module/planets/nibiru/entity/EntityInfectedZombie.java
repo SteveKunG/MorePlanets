@@ -20,8 +20,8 @@ import net.minecraft.util.EntitySelectors;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
-import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class EntityInfectedZombie extends EntityZombie implements IEntityBreathable, ISpaceMob
 {
@@ -54,7 +54,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
     {
         if (super.attackEntityAsMob(entity))
         {
-            return EntityEffectHelper.addInfectedSpore(entity);
+            return EntityEffectUtils.addInfectedSpore(entity);
         }
         return false;
     }

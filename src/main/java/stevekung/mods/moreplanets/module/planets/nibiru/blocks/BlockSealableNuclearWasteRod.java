@@ -20,13 +20,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
 import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 
-public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartialSealableBlock, ITileEntityProvider, IBlockDescription, ISortableBlock
+public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartialSealableBlock, ITileEntityProvider, IDescription, ISortableBlock
 {
     public static PropertyBool UP = PropertyBool.create("up");
     public static PropertyBool DOWN = PropertyBool.create("down");
@@ -92,7 +92,7 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockSealableNuclearWasteRod.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockSealableNuclearWasteRod.this.getUnlocalizedName() + ".description"));
     }
 
     @Override

@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/alien_defender_beacon"
+        },
+        "model": "moreplanets:dummy"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:alien_defender_beacon" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

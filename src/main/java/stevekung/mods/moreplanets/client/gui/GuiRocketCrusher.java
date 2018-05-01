@@ -38,10 +38,12 @@ public class GuiRocketCrusher extends GuiContainerMP
     public void initGui()
     {
         super.initGui();
-        this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 6, (this.height - this.ySize) / 2 + 31, 9, 57, null, this.width, this.height, this);
-        this.batteryInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 18, (this.height - this.ySize) / 2 + 79, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this.height, this);
-        this.machineUpgradeInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 37, (this.height - this.ySize) / 2 + 79, 18, 18, Arrays.asList(LangUtils.translate("gui.machine_upgrade_slot.desc.0"), LangUtils.translate("gui.machine_upgrade_slot.desc.1")), this.width, this.height, this);
-        this.processInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 30, 52, 25, null, this.width, this.height, this);
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
+        this.electricInfoRegion = new GuiElementInfoRegionMP(x + 6, y + 31, 9, 57, null, this.width, this);
+        this.batteryInfoRegion = new GuiElementInfoRegionMP(x + 18, y + 79, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this);
+        this.machineUpgradeInfoRegion = new GuiElementInfoRegionMP(x + 37, y + 79, 18, 18, Arrays.asList(LangUtils.translate("gui.machine_upgrade_slot.desc.0"), LangUtils.translate("gui.machine_upgrade_slot.desc.1")), this.width, this);
+        this.processInfoRegion = new GuiElementInfoRegionMP(x + 77, y + 30, 52, 25, null, this.width, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.infoRegions.add(this.batteryInfoRegion);
         this.infoRegions.add(this.machineUpgradeInfoRegion);
@@ -77,12 +79,12 @@ public class GuiRocketCrusher extends GuiContainerMP
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
-        int width = (this.width - this.xSize) / 2;
-        int height = (this.height - this.ySize) / 2;
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
         int scale;
         this.mc.renderEngine.bindTexture(TEXTURE);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.drawTexturedModalRect(width, height, 0, 0, this.xSize, this.ySize);
+        this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
 
         List<String> electricityDesc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
@@ -92,25 +94,25 @@ public class GuiRocketCrusher extends GuiContainerMP
         if (this.tile.getEnergyStoredGC() > 0)
         {
             scale = this.tile.getScaledElecticalLevel(54);
-            this.drawTexturedModalRect(width + 7, height + 86 - scale, 176, 54 - scale + 40, 7, scale);
-            this.drawTexturedModalRect(width + 4, height + 88, 176, 30, 11, 10);
+            this.drawTexturedModalRect(x + 7, y + 86 - scale, 176, 54 - scale + 40, 7, scale);
+            this.drawTexturedModalRect(x + 4, y + 88, 176, 30, 11, 10);
         }
         if (this.tile.processTicks > 0)
         {
             scale = (int) ((double) this.tile.processTicks / (double) this.tile.processTimeRequired * 54);
-            this.drawTexturedModalRect(width + 80, height + 39, 176, 13, scale, 17);
+            this.drawTexturedModalRect(x + 80, y + 39, 176, 13, scale, 17);
         }
         if (this.tile.processTicks % 45 - speed >= 15 / speed)
         {
-            this.drawTexturedModalRect(width + 83, height + 30, 176, 0, 15, 13);
+            this.drawTexturedModalRect(x + 83, y + 30, 176, 0, 15, 13);
         }
         if (this.tile.processTicks % 45 - speed >= 25 / speed)
         {
-            this.drawTexturedModalRect(width + 96, height + 30, 176, 0, 15, 13);
+            this.drawTexturedModalRect(x + 96, y + 30, 176, 0, 15, 13);
         }
         if (this.tile.processTicks % 45 - speed >= 35 / speed)
         {
-            this.drawTexturedModalRect(width + 109, height + 30, 176, 0, 15, 13);
+            this.drawTexturedModalRect(x + 109, y + 30, 176, 0, 15, 13);
         }
     }
 }

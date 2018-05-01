@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.utils.EnumChestTexture;
 import stevekung.mods.moreplanets.utils.blocks.BlockAncientChestMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityAncientChestMP;
 import stevekung.mods.stevekunglib.utils.CalendarUtils;
@@ -16,21 +15,19 @@ import stevekung.mods.stevekunglib.utils.CalendarUtils;
 @SideOnly(Side.CLIENT)
 public class TileEntityAncientChestRendererMP extends TileEntitySpecialRenderer<TileEntityAncientChestMP>
 {
-    private ResourceLocation textureChristmasDouble;
-    private ResourceLocation textureChristmas;
+    private static final ResourceLocation CHRISTMAS_DOUBLE = new ResourceLocation("textures/entity/chest/christmas_double.png");
+    private static final ResourceLocation CHRISTMAS = new ResourceLocation("textures/entity/chest/christmas.png");
     private ResourceLocation textureNormalDouble;
     private ResourceLocation textureNormal;
     private ResourceLocation morePlanetsChestNormal;
     private ResourceLocation morePlanetsLargeChestNormal;
-    private ModelChest simpleChest = new ModelChest();
-    private ModelChest largeChest = new ModelLargeChest();
+    private final ModelChest simpleChest = new ModelChest();
+    private final ModelChest largeChest = new ModelLargeChest();
 
-    public TileEntityAncientChestRendererMP(EnumChestTexture texture)
+    public TileEntityAncientChestRendererMP(String texture)
     {
-        this.textureChristmasDouble = new ResourceLocation("textures/entity/chest/christmas_double.png");
-        this.textureChristmas = new ResourceLocation("textures/entity/chest/christmas.png");
-        this.textureNormalDouble = new ResourceLocation("moreplanets:textures/model/" + texture.toString() + "_ancient_chest_double.png");
-        this.textureNormal = new ResourceLocation("moreplanets:textures/model/" + texture.toString() + "_ancient_chest.png");
+        this.textureNormalDouble = new ResourceLocation("moreplanets:textures/model/" + texture + "_ancient_chest_double.png");
+        this.textureNormal = new ResourceLocation("moreplanets:textures/model/" + texture + "_ancient_chest.png");
         this.morePlanetsChestNormal = new ResourceLocation("moreplanets:textures/model/stevekung_chest.png");
         this.morePlanetsLargeChestNormal = new ResourceLocation("moreplanets:textures/model/stevekung_chest_double.png");
     }
@@ -76,7 +73,7 @@ public class TileEntityAncientChestRendererMP extends TileEntitySpecialRenderer<
                 }
                 else if (CalendarUtils.isChristmasDay())
                 {
-                    this.bindTexture(this.textureChristmas);
+                    this.bindTexture(TileEntityAncientChestRendererMP.CHRISTMAS);
                 }
                 else if (CalendarUtils.isMorePlanetsBirthDay())
                 {
@@ -102,7 +99,7 @@ public class TileEntityAncientChestRendererMP extends TileEntitySpecialRenderer<
                 }
                 else if (CalendarUtils.isChristmasDay())
                 {
-                    this.bindTexture(this.textureChristmasDouble);
+                    this.bindTexture(TileEntityAncientChestRendererMP.CHRISTMAS_DOUBLE);
                 }
                 else if (CalendarUtils.isMorePlanetsBirthDay())
                 {

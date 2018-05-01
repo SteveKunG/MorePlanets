@@ -15,8 +15,9 @@ import stevekung.mods.stevekunglib.utils.CachedEnum;
 @SideOnly(Side.CLIENT)
 public class LayerShlimeWool implements LayerRenderer<EntityShlime>
 {
-    private RenderShlime render;
-    private ModelShlimeFur sheepModel = new ModelShlimeFur();
+    private final RenderShlime render;
+    private final ModelShlimeFur sheepModel = new ModelShlimeFur();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/shlime_fur.png");
 
     public LayerShlimeWool(RenderShlime render)
     {
@@ -28,7 +29,7 @@ public class LayerShlimeWool implements LayerRenderer<EntityShlime>
     {
         if (!entity.getSheared() && !entity.isInvisible())
         {
-            this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/shlime_fur.png"));
+            this.render.bindTexture(LayerShlimeWool.TEXTURE);
 
             if (entity.hasCustomName() && "jeb_".equals(entity.getCustomNameTag()))
             {

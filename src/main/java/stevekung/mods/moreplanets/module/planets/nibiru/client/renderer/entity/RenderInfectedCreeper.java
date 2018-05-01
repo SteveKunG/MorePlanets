@@ -14,6 +14,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedCre
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCreeper extends RenderLiving<EntityInfectedCreeper>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_creeper.png");
+
     public RenderInfectedCreeper(RenderManager manager)
     {
         super(manager, new ModelInfectedCreeper(), 0.5F);
@@ -53,6 +55,6 @@ public class RenderInfectedCreeper extends RenderLiving<EntityInfectedCreeper>
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedCreeper entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_creeper.png");
+        return RenderInfectedCreeper.TEXTURE;
     }
 }

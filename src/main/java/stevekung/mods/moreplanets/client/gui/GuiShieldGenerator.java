@@ -57,11 +57,13 @@ public class GuiShieldGenerator extends GuiContainerMP
     public void initGui()
     {
         super.initGui();
-        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 151, (this.height - this.ySize) / 2 + 77, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 77, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this));
         List<String> electricityDesc = new ArrayList<>();
         electricityDesc.add(LangUtils.translate("gui.energy_storage.desc.0"));
         electricityDesc.add(TextFormatting.YELLOW + LangUtils.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC())));
-        this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 156, (this.height - this.ySize) / 2 + 21, 8, 43, electricityDesc, this.width, this.height, this);
+        this.electricInfoRegion = new GuiElementInfoRegionMP(x + 156, y + 21, 8, 43, electricityDesc, this.width, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, !this.tile.getDisabled(0) ? LangUtils.translate("gui.button.disable.name") : LangUtils.translate("gui.button.enable.name")));
         this.buttonList.add(this.buttonConfig = new GuiButton(1, this.width / 2 + 4, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.config.name")));
@@ -110,15 +112,15 @@ public class GuiShieldGenerator extends GuiContainerMP
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(GuiShieldGenerator.TEXTURE);
-        int width = (this.width - this.xSize) / 2;
-        int height = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(width, height + 5, 0, 0, this.xSize, this.ySize);
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(x, y + 5, 0, 0, this.xSize, this.ySize);
         int scale = this.tile.getScaledElecticalLevel(42);
-        this.drawTexturedModalRect(width + 156, height + 64 - scale, 176, 42 - scale + 10, 8, scale);
+        this.drawTexturedModalRect(x + 156, y + 64 - scale, 176, 42 - scale + 10, 8, scale);
 
         if (this.tile.getEnergyStoredGC() > 0)
         {
-            this.drawTexturedModalRect(width + 154, height + 66, 176, 0, 11, 10);
+            this.drawTexturedModalRect(x + 154, y + 66, 176, 0, 11, 10);
         }
 
         List<String> electricityDesc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));

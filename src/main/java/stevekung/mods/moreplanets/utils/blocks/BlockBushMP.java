@@ -75,8 +75,8 @@ public class BlockBushMP extends BlockBaseMP
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos.down()).getBlock();
-        return super.canPlaceBlockAt(world, pos) && this.validBlock(block);
+        Block blockDown = world.getBlockState(pos.down()).getBlock();
+        return super.canPlaceBlockAt(world, pos) && this.validBlock(blockDown);
     }
 
     protected void checkAndDropBlock(World world, BlockPos pos, IBlockState state)
@@ -84,19 +84,19 @@ public class BlockBushMP extends BlockBaseMP
         if (!this.canBlockStay(world, pos, state))
         {
             this.dropBlockAsItem(world, pos, state, 0);
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+            world.setBlockToAir(pos);
         }
     }
 
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
-        Block block = world.getBlockState(pos.down()).getBlock();
+        Block blockDown = world.getBlockState(pos.down()).getBlock();
 
         if (state.getBlock() == this)
         {
-            return this.validBlock(block);
+            return this.validBlock(blockDown);
         }
-        return this.validBlock(block);
+        return this.validBlock(blockDown);
     }
 
     protected boolean validBlock(Block block)

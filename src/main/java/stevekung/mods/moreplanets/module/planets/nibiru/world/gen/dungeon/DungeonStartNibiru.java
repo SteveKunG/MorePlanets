@@ -7,7 +7,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
 public class DungeonStartNibiru extends RoomEntranceNibiru
@@ -52,13 +52,13 @@ public class DungeonStartNibiru extends RoomEntranceNibiru
             attempts++;
         }
 
-        MPLog.debug("Dungeon generation took {} attempt(s)", attempts);
+        LoggerMP.debug("Dungeon generation took {} attempt(s)", attempts);
 
         if (!validAttempt)
         {
             int xPos = this.boundingBox.minX + (this.boundingBox.maxX - this.boundingBox.minX) / 2;
             int zPos = this.boundingBox.minZ + (this.boundingBox.maxZ - this.boundingBox.minZ) / 2;
-            MPLog.error("Could not find valid dungeon layout! This is a bug, please report it, including your world seed (/seed) and dungeon location x:{} z:{}", xPos, zPos);
+            LoggerMP.error("Could not find valid dungeon layout! This is a bug, please report it, including your world seed (/seed) and dungeon location x:{} z:{}", xPos, zPos);
         }
         super.buildComponent(component, listIn, rand);
     }

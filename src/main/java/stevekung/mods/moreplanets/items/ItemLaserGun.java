@@ -28,13 +28,13 @@ import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet.EnumLaserType;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.utils.items.ISingleItemRender;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
-public class ItemLaserGun extends ItemBaseMP implements ISortableItem, ISingleItemRender, IItemElectric
+public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemModelRender, IItemElectric
 {
     private float transferMax = 200.0F;
     private static final int DAMAGE_RANGE = 100;
@@ -115,7 +115,7 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, ISingleIt
     @Override
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        if (CommonRegisterHelper.isItemTab(creativeTabs))
+        if (BlocksItemsRegistry.isItemTab(creativeTabs))
         {
             list.add(ElectricItemHelper.getUncharged(new ItemStack(this)));
             list.add(ElectricItemHelper.getWithCharge(new ItemStack(this), this.getMaxElectricityStored(new ItemStack(this))));
@@ -295,7 +295,7 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, ISingleIt
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.OTHER_TOOL;
     }

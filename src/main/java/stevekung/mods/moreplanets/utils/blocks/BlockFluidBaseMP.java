@@ -17,8 +17,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class BlockFluidBaseMP extends BlockFluidClassic implements ISingleBlockRender
+public abstract class BlockFluidBaseMP extends BlockFluidClassic implements IItemModelRender
 {
     private String name;
 

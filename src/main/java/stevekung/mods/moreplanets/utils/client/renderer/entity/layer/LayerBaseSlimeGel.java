@@ -12,8 +12,8 @@ import stevekung.mods.moreplanets.utils.entity.EntitySlimeBaseMP;
 @SideOnly(Side.CLIENT)
 public class LayerBaseSlimeGel implements LayerRenderer<EntitySlimeBaseMP>
 {
-    private RenderLiving render;
-    private ModelBase model = new ModelSlime(0);
+    private final RenderLiving render;
+    private final ModelBase model = new ModelSlime(0);
 
     public LayerBaseSlimeGel(RenderLiving render)
     {

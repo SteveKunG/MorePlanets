@@ -99,6 +99,7 @@ public class OBJLoaderMP implements ICustomModelLoader
         return OBJLoaderMP.getModelFromOBJ(modelLocation, visibleGroups, TRSRTransformation.identity());
     }
 
+    @SuppressWarnings("deprecation")
     public static IBakedModel getModelFromOBJ(ResourceLocation modelLocation, List<String> visibleGroups, IModelState parentState) throws IOException
     {
         IModel model = OBJLoaderMP.INSTANCE.loadModel(modelLocation);

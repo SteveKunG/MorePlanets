@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.TileEntityJuicerEggRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityJuicerEgg;
-import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 
 public class RenderJuicerEgg extends CCLRenderBase
 {
@@ -19,7 +19,7 @@ public class RenderJuicerEgg extends CCLRenderBase
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
         TileEntityJuicerEggRenderer.renderItem(type, false);
-        ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityJuicerEgg());
+        ClientRegistryUtils.renderTESR(new TileEntityJuicerEgg());
     }
 
     @Override

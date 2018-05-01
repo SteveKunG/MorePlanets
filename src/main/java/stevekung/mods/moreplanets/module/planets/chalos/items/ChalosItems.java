@@ -10,7 +10,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemArmorDiremsium;
 import stevekung.mods.moreplanets.module.planets.chalos.items.armor.ItemBreathableDiremsium;
-import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.items.*;
 import stevekung.mods.moreplanets.utils.items.tools.*;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
@@ -110,38 +110,38 @@ public class ChalosItems
         /**********************REGISTER STUFF**************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_INGOT);
-        CommonRegisterHelper.registerItem(ChalosItems.ZYPTORIUM_INGOT);
-        CommonRegisterHelper.registerItem(ChalosItems.COMPRESSED_DIREMSIUM);
-        CommonRegisterHelper.registerItem(ChalosItems.COMPRESSED_ZYPTORIUM);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_INGOT);
+        BlocksItemsRegistry.registerItem(ChalosItems.ZYPTORIUM_INGOT);
+        BlocksItemsRegistry.registerItem(ChalosItems.COMPRESSED_DIREMSIUM);
+        BlocksItemsRegistry.registerItem(ChalosItems.COMPRESSED_ZYPTORIUM);
 
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_MILK_CURD);
-        CommonRegisterHelper.registerItem(ChalosItems.RAW_CHEESE_BEEF);
-        CommonRegisterHelper.registerItem(ChalosItems.COOKED_CHEESE_BEEF);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_BERRY);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_MILK_CURD);
+        BlocksItemsRegistry.registerItem(ChalosItems.RAW_CHEESE_BEEF);
+        BlocksItemsRegistry.registerItem(ChalosItems.COOKED_CHEESE_BEEF);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SPORE_BERRY);
 
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SLIMEBALL);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_SEED);
-        CommonRegisterHelper.registerItem(ChalosItems.CHALOS_DUNGEON_KEY);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_DOOR);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SLIMEBALL);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SPORE);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SPORE_SEED);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHALOS_DUNGEON_KEY);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SPORE_DOOR);
 
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_SWORD);
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_SHOVEL);
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_PICKAXE);
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_AXE);
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_HOE);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_WOOD_SWORD);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_WOOD_SHOVEL);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_WOOD_PICKAXE);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_WOOD_AXE);
-        CommonRegisterHelper.registerItem(ChalosItems.CHEESE_SPORE_WOOD_HOE);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_SWORD);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_SHOVEL);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_PICKAXE);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_AXE);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_HOE);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SPORE_WOOD_SWORD);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SPORE_WOOD_SHOVEL);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SPORE_WOOD_PICKAXE);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SPORE_WOOD_AXE);
+        BlocksItemsRegistry.registerItem(ChalosItems.CHEESE_SPORE_WOOD_HOE);
 
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_HELMET);
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_CHESTPLATE);
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_LEGGINGS);
-        CommonRegisterHelper.registerItem(ChalosItems.DIREMSIUM_BOOTS);
-        CommonRegisterHelper.registerItem(ChalosItems.BREATHABLE_DIREMSIUM_HELMET);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_HELMET);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_CHESTPLATE);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_LEGGINGS);
+        BlocksItemsRegistry.registerItem(ChalosItems.DIREMSIUM_BOOTS);
+        BlocksItemsRegistry.registerItem(ChalosItems.BREATHABLE_DIREMSIUM_HELMET);
 
         /**************************************************************/
         /********************HARVEST LEVEL STUFF***********************/

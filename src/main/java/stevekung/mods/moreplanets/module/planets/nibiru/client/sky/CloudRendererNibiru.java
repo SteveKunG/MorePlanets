@@ -13,14 +13,9 @@ import net.minecraftforge.client.IRenderHandler;
 
 public class CloudRendererNibiru extends IRenderHandler
 {
-    private static ResourceLocation locationCloudsPng = new ResourceLocation("textures/environment/clouds.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/environment/clouds.png");
     private int cloudTickCounter = 0;
-    public static CloudRendererNibiru INSTANCE = new CloudRendererNibiru();
-
-    public CloudRendererNibiru()
-    {
-        CloudRendererNibiru.INSTANCE = this;
-    }
+    public static final CloudRendererNibiru INSTANCE = new CloudRendererNibiru();
 
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc)
@@ -31,7 +26,7 @@ public class CloudRendererNibiru extends IRenderHandler
         BufferBuilder worldrenderer = tessellator.getBuffer();
         float f2 = 12.0F;
         float f3 = 4.0F;
-        mc.renderEngine.bindTexture(locationCloudsPng);
+        mc.renderEngine.bindTexture(CloudRendererNibiru.TEXTURE);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         byte b0 = 8;

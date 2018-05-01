@@ -6,23 +6,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.items.ItemBlackHoleStorageSchematic;
 import stevekung.mods.moreplanets.items.ItemIonCannonSchematic;
 import stevekung.mods.moreplanets.schematic.BlackHoleStorageSchematic;
-import stevekung.mods.moreplanets.utils.helper.RocketRegisterHelper;
+import stevekung.mods.moreplanets.utils.SchematicsRegistry;
 
 public class MPSchematics
 {
     public static void init()
     {
-        RocketRegisterHelper.registerSchematicRecipe(new BlackHoleStorageSchematic());
-        ItemBlackHoleStorageSchematic.SCHEMATIC_INDEX = RocketRegisterHelper.registerSchematicItem(new ItemStack(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC));
-        RocketRegisterHelper.registerSchematicItem(new ItemStack(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC));
-        ItemIonCannonSchematic.SCHEMATIC_INDEX = RocketRegisterHelper.registerSchematicItem(new ItemStack(MPItems.ION_CANNON_SCHEMATIC));
-        RocketRegisterHelper.registerSchematicItem(new ItemStack(MPItems.ION_CANNON_SCHEMATIC));
+        SchematicsRegistry.registerSchematicRecipe(new BlackHoleStorageSchematic());
+        ItemBlackHoleStorageSchematic.SCHEMATIC_INDEX = SchematicsRegistry.registerSchematicItem(new ItemStack(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC));
+        SchematicsRegistry.registerSchematicItem(new ItemStack(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC));
+        ItemIonCannonSchematic.SCHEMATIC_INDEX = SchematicsRegistry.registerSchematicItem(new ItemStack(MPItems.ION_CANNON_SCHEMATIC));
+        SchematicsRegistry.registerSchematicItem(new ItemStack(MPItems.ION_CANNON_SCHEMATIC));
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerSchematicTexture()
     {
-        RocketRegisterHelper.registerSchematicTexture("ion_cannon_schematic");
-        RocketRegisterHelper.registerSchematicTexture("black_hole_storage_schematic");
+        SchematicsRegistry.registerSchematicTexture("ion_cannon_schematic");
+        SchematicsRegistry.registerSchematicTexture("black_hole_storage_schematic");
     }
 }

@@ -4,8 +4,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class ItemFoodMP extends ItemFood implements ISortableItem, ISingleItemRender
+public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IItemModelRender
 {
     private String name;
 
@@ -28,7 +29,7 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, ISin
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.FOOD;
     }

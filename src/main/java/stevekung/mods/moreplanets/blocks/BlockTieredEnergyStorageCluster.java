@@ -25,12 +25,16 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
-import stevekung.mods.moreplanets.utils.blocks.*;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
+import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 
-public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IBlockDescription, ISortableBlock, ISingleBlockRender
+public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDescription, ISortableBlock, IItemModelRender
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     private static final PropertyInteger VALUE = PropertyInteger.create("value", 0, 16);
@@ -179,7 +183,7 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IBlo
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(this.type.toString() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.type.toString() + ".description"));
     }
 
     public static enum BlockType

@@ -57,7 +57,7 @@ public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.SCHEMATIC;
     }

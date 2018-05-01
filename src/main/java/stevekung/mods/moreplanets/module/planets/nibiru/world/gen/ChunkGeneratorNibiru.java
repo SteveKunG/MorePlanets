@@ -360,7 +360,7 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
 
         for (int i = 0; i < 8; ++i)
         {
-            new WorldGenSpaceDungeons(NibiruBlocks.NIBIRU_ANCIENT_CHEST, NibiruBlocks.NIBIRU_COBBLESTONE, NibiruBlocks.NIBIRU_VEIN_COBBLESTONE, 0, 0).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenSpaceDungeons(NibiruBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState()).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
 
         biomegenbase.decorate(this.worldObj, this.rand, blockpos);

@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/green_jelly_block"
+        },
+        "model": "moreplanets:slime"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

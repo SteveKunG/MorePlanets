@@ -15,6 +15,8 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseFloat
 @SideOnly(Side.CLIENT)
 public class RenderCheeseFloater extends RenderLiving<EntityCheeseFloater>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/cheese_floater.png");
+
     public RenderCheeseFloater(RenderManager manager)
     {
         super(manager, new ModelCheeseFloater(), 0.5F);
@@ -34,6 +36,6 @@ public class RenderCheeseFloater extends RenderLiving<EntityCheeseFloater>
     @Override
     protected ResourceLocation getEntityTexture(EntityCheeseFloater entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/cheese_floater.png");
+        return RenderCheeseFloater.TEXTURE;
     }
 }

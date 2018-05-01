@@ -5,8 +5,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRender
+public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRender
 {
     private EnumSortCategoryBlock category;
     private String name;
@@ -30,7 +31,7 @@ public class BlockBaseMP extends Block implements ISortableBlock, ISingleBlockRe
     }
 
     @Override
-    public BlockBaseMP setSoundType(SoundType sound)
+    public Block setSoundType(SoundType sound)
     {
         this.blockSoundType = sound;
         return this;

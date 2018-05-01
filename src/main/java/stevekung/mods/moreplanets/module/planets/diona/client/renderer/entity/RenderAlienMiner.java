@@ -19,6 +19,9 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
 @SideOnly(Side.CLIENT)
 public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/alien_miner.png");
+    private static final ResourceLocation BEAM = new ResourceLocation("moreplanets:textures/entity/alien_miner_beam.png");
+
     public RenderAlienMiner(RenderManager manager)
     {
         super(manager, new ModelAlienMiner(), 0.4F);
@@ -28,7 +31,7 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
     @Override
     protected ResourceLocation getEntityTexture(EntityAlienMiner entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/alien_miner.png");
+        return RenderAlienMiner.TEXTURE;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
         {
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder worldrenderer = tessellator.getBuffer();
-            this.bindTexture(new ResourceLocation("moreplanets:textures/entity/alien_miner_beam.png"));
+            this.bindTexture(RenderAlienMiner.BEAM);
             GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
             GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
             GlStateManager.disableLighting();

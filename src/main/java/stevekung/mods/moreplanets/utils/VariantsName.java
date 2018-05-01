@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.utils;
 
 import org.apache.commons.lang3.Validate;
 
+@Deprecated
 public class VariantsName
 {
     private String[] name;

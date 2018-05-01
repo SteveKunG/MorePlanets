@@ -10,14 +10,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyCore;
-import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 
 public class RenderDarkEnergyCore extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDarkEnergyCore());
+        ClientRegistryUtils.renderTESR(new TileEntityDarkEnergyCore());
     }
 
     @Override

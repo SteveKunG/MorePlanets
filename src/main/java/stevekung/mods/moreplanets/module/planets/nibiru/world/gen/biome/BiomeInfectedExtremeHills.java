@@ -17,7 +17,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenMultalicCrystal;
-import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenMinableMP;
+import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
 public class BiomeInfectedExtremeHills extends BiomeNibiru
 {
@@ -71,7 +71,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
             int j1 = rand.nextInt(16);
             int k1 = rand.nextInt(64);
             int l1 = rand.nextInt(16);
-            new WorldGenMinableMP(NibiruBlocks.INFESTED_NIBIRU_ROCK.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), 8).generate(world, rand, pos.add(j1, k1, l1));
+            new WorldGenMinableBase(NibiruBlocks.INFESTED_NIBIRU_ROCK.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), 8).generate(world, rand, pos.add(j1, k1, l1));
         }
         for (int i = 0; i < 24; i++)
         {

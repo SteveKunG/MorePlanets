@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "moreplanets:koentus_rock" },
+            { "model": "moreplanets:koentus_rock_mirrored" },
+            { "model": "moreplanets:koentus_rock", "y": 180 },
+            { "model": "moreplanets:koentus_rock_mirrored", "y": 180 }
+        ]
+    }
+}

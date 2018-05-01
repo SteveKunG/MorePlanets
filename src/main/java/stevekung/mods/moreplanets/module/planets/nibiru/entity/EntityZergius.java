@@ -24,8 +24,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
-import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class EntityZergius extends EntityFlying implements IMob, IEntityBreathable, ISpaceMob
 {
@@ -99,7 +99,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     public boolean attackEntityAsMob(Entity entity)
     {
         float f = (float)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-        return entity.attackEntityFrom(DamageSource.causeMobDamage(this), f) && EntityEffectHelper.addInfectedSpore(entity);
+        return entity.attackEntityFrom(DamageSource.causeMobDamage(this), f) && EntityEffectUtils.addInfectedSpore(entity);
     }
 
     @Override

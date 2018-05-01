@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.stevekunglib.utils.RenderUtils;
@@ -14,19 +14,18 @@ import stevekung.mods.stevekunglib.utils.RenderUtils;
 @SideOnly(Side.CLIENT)
 public class GuiElementInfoRegionMP extends Gui
 {
-    protected int width;
-    protected int height;
-    public int xPosition;
-    public int yPosition;
-    public boolean enabled;
-    public boolean drawRegion;
-    public boolean withinRegion;
+    private int width;
+    private int height;
+    private int xPosition;
+    private int yPosition;
+    private boolean enabled;
+    private boolean drawRegion;
+    private boolean withinRegion;
     public List<String> tooltipStrings;
-    public int parentWidth;
-    public int parentHeight;
-    public GuiContainerMP parentGui;
+    private int parentWidth;
+    private GuiContainerMP parentGui;
 
-    public GuiElementInfoRegionMP(int xPos, int yPos, int width, int height, List<String> tooltipStrings, int parentWidth, int parentHeight, GuiContainerMP parentGui)
+    public GuiElementInfoRegionMP(int xPos, int yPos, int width, int height, List<String> tooltipStrings, int parentWidth, GuiContainerMP parentGui)
     {
         this.width = 200;
         this.height = 20;
@@ -37,7 +36,6 @@ public class GuiElementInfoRegionMP extends Gui
         this.height = height;
         this.tooltipStrings = tooltipStrings;
         this.parentWidth = parentWidth;
-        this.parentHeight = parentHeight;
         this.parentGui = parentGui;
     }
 
@@ -64,7 +62,7 @@ public class GuiElementInfoRegionMP extends Gui
             while (iterator.hasNext())
             {
                 String s = iterator.next();
-                int l = FMLClientHandler.instance().getClient().fontRenderer.getStringWidth(s);
+                int l = Minecraft.getMinecraft().fontRenderer.getStringWidth(s);
 
                 if (l > k)
                 {
@@ -106,7 +104,7 @@ public class GuiElementInfoRegionMP extends Gui
             for (int k2 = 0; k2 < this.tooltipStrings.size(); ++k2)
             {
                 String s1 = this.tooltipStrings.get(k2);
-                FMLClientHandler.instance().getClient().fontRenderer.drawStringWithShadow(s1, i1, j1, -1);
+                Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(s1, i1, j1, -1);
                 j1 += 10;
             }
             this.zLevel = 0.0F;

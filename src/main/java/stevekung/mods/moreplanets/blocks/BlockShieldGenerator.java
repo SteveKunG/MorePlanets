@@ -22,14 +22,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockAdvancedTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
-public class BlockShieldGenerator extends BlockAdvancedTileMP implements IBlockDescription
+public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescription
 {
     public BlockShieldGenerator(String name)
     {
@@ -248,6 +248,6 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IBlockD
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockShieldGenerator.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockShieldGenerator.this.getUnlocalizedName() + ".description"));
     }
 }

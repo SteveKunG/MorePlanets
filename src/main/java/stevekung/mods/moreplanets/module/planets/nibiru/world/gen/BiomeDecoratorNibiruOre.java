@@ -8,9 +8,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
-import stevekung.mods.moreplanets.utils.world.gen.feature.EnumOreGen;
-import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenMinableMP;
+import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
 import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
+import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
 public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
 {
@@ -31,20 +31,20 @@ public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
 
     public BiomeDecoratorNibiruOre()
     {
-        this.dirtGen = new WorldGenMinableMP(NibiruBlocks.INFECTED_DIRT.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.DIRT);
-        this.ironGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(1), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.IRON);
-        this.coalGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(0), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.COAL);
-        this.aluminumGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(7), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
-        this.tinGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(9), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.TIN);
-        this.copperGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(8), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.COPPER);
-        this.lapisGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(5), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.LAPIS);
-        this.goldGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(2), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.GOLD);
-        this.diamondGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(3), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.DIAMOND);
-        this.siliconGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(10), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.SILICON);
-        this.inferumiteGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(11), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), 4);
-        this.redstoneGen = new WorldGenMinableMP(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(4), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.REDSTONE);
-        this.oilGen = new WorldGenMinableMP(NibiruBlocks.OIL_ORE.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), 4);
-        this.gravelGen = new WorldGenMinableMP(NibiruBlocks.INFECTED_GRAVEL.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.GRAVEL);
+        this.dirtGen = new WorldGenMinableBase(NibiruBlocks.INFECTED_DIRT.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.DIRT);
+        this.ironGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(1), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.IRON);
+        this.coalGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(0), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.COAL);
+        this.aluminumGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(7), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
+        this.tinGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(9), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.TIN);
+        this.copperGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(8), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.COPPER);
+        this.lapisGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(5), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.LAPIS);
+        this.goldGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(2), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.GOLD);
+        this.diamondGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(3), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.DIAMOND);
+        this.siliconGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(10), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.SILICON);
+        this.inferumiteGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(11), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), 4);
+        this.redstoneGen = new WorldGenMinableBase(NibiruBlocks.NIBIRU_ORE.getStateFromMeta(4), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.REDSTONE);
+        this.oilGen = new WorldGenMinableBase(NibiruBlocks.OIL_ORE.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), 4);
+        this.gravelGen = new WorldGenMinableBase(NibiruBlocks.INFECTED_GRAVEL.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.GRAVEL);
     }
 
     @Override

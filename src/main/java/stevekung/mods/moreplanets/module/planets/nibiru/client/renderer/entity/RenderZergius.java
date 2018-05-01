@@ -13,6 +13,8 @@ import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowin
 @SideOnly(Side.CLIENT)
 public class RenderZergius extends RenderLiving<EntityZergius>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/zergius.png");
+
     public RenderZergius(RenderManager manager)
     {
         super(manager, new ModelZergius(), 0.15F);
@@ -28,7 +30,7 @@ public class RenderZergius extends RenderLiving<EntityZergius>
     @Override
     protected ResourceLocation getEntityTexture(EntityZergius entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/zergius.png");
+        return RenderZergius.TEXTURE;
     }
 
     @Override

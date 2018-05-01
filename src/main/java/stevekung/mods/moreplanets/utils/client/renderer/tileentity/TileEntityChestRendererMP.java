@@ -15,19 +15,17 @@ import stevekung.mods.stevekunglib.utils.CalendarUtils;
 @SideOnly(Side.CLIENT)
 public class TileEntityChestRendererMP extends TileEntitySpecialRenderer<TileEntityChestMP>
 {
-    private ResourceLocation textureChristmasDouble;
-    private ResourceLocation textureChristmas;
+    private static final ResourceLocation CHRISTMAS_DOUBLE = new ResourceLocation("textures/entity/chest/christmas_double.png");
+    private static final ResourceLocation CHRISTMAS = new ResourceLocation("textures/entity/chest/christmas.png");
     private ResourceLocation textureNormalDouble;
     private ResourceLocation textureNormal;
     private ResourceLocation morePlanetsChestNormal;
     private ResourceLocation morePlanetsLargeChestNormal;
-    private ModelChest simpleChest = new ModelChest();
-    private ModelChest largeChest = new ModelLargeChest();
+    private final ModelChest simpleChest = new ModelChest();
+    private final ModelChest largeChest = new ModelLargeChest();
 
     public TileEntityChestRendererMP(String name)
     {
-        this.textureChristmasDouble = new ResourceLocation("textures/entity/chest/christmas_double.png");
-        this.textureChristmas = new ResourceLocation("textures/entity/chest/christmas.png");
         this.textureNormalDouble = new ResourceLocation("moreplanets:textures/model/" + name + "_chest_double.png");
         this.textureNormal = new ResourceLocation("moreplanets:textures/model/" + name + "_chest.png");
         this.morePlanetsChestNormal = new ResourceLocation("moreplanets:textures/model/stevekung_chest.png");
@@ -75,7 +73,7 @@ public class TileEntityChestRendererMP extends TileEntitySpecialRenderer<TileEnt
                 }
                 else if (CalendarUtils.isChristmasDay())
                 {
-                    this.bindTexture(this.textureChristmas);
+                    this.bindTexture(TileEntityChestRendererMP.CHRISTMAS);
                 }
                 else if (CalendarUtils.isMorePlanetsBirthDay())
                 {
@@ -101,7 +99,7 @@ public class TileEntityChestRendererMP extends TileEntitySpecialRenderer<TileEnt
                 }
                 else if (CalendarUtils.isChristmasDay())
                 {
-                    this.bindTexture(this.textureChristmasDouble);
+                    this.bindTexture(TileEntityChestRendererMP.CHRISTMAS_DOUBLE);
                 }
                 else if (CalendarUtils.isMorePlanetsBirthDay())
                 {

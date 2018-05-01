@@ -18,10 +18,4 @@ public class BlockFronosFarmland extends BlockFarmlandMP
     {
         return FronosBlocks.FRONOS_DIRT;
     }
-
-    @Override
-    protected Block getSourceBlock()
-    {
-        return null;
-    }
 }

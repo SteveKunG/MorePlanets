@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "moreplanets:fronos_stone" },
+            { "model": "moreplanets:fronos_stone_mirrored" },
+            { "model": "moreplanets:fronos_stone", "y": 180 },
+            { "model": "moreplanets:fronos_stone_mirrored", "y": 180 }
+        ]
+    }
+}

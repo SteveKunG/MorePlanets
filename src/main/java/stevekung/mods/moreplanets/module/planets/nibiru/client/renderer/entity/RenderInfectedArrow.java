@@ -15,6 +15,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.Entity
 @SideOnly(Side.CLIENT)
 public class RenderInfectedArrow extends Render<EntityInfectedArrow>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_arrow.png");
+
     public RenderInfectedArrow(RenderManager manager)
     {
         super(manager);
@@ -86,6 +88,6 @@ public class RenderInfectedArrow extends Render<EntityInfectedArrow>
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedArrow entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_arrow.png");
+        return RenderInfectedArrow.TEXTURE;
     }
 }

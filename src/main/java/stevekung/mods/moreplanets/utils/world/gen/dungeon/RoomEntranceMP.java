@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class RoomEntranceMP extends SizedPieceMP
 {
@@ -21,7 +21,7 @@ public class RoomEntranceMP extends SizedPieceMP
         super(configuration, rand.nextInt(4) + 6, rand.nextInt(2) + 5, rand.nextInt(4) + 6, EnumFacing.Plane.HORIZONTAL.random(rand));
         this.setCoordBaseMode(EnumFacing.SOUTH);
         this.boundingBox = new StructureBoundingBox(blockPosX - this.range, configuration.getYPosition(), blockPosZ - this.range, blockPosX + this.range, 150, blockPosZ + this.range);
-        MPLog.debug("Generating boss dungeon at x:{} y:{} z:{}", blockPosX, configuration.getYPosition() + 1, blockPosZ);
+        LoggerMP.debug("Generating boss dungeon at x:{} y:{} z:{}", blockPosX, configuration.getYPosition() + 1, blockPosZ);
     }
 
     @Override

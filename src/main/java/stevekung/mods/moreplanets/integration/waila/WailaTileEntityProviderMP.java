@@ -22,8 +22,8 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDark
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.tileentity.*;
-import stevekung.mods.moreplanets.utils.MPLog;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
+import stevekung.mods.moreplanets.utils.IDescription;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
@@ -40,7 +40,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
     @Override
     public void register(IWailaRegistrar register)
     {
-        MPLog.info("Waila Integration initialized");
+        LoggerMP.info("Waila Integration initialized");
         WailaUtil.register = register;
 
         HUDHandlerFurnaceMP.register(register);
@@ -53,7 +53,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         WailaUtil.register(TileEntityBlackHoleStorage.class, true, true, false, false, false);
         WailaUtil.register(TileEntityShieldGenerator.class, true, true, false, false, false);
         WailaUtil.register(TileEntityNuclearWasteGenerator.class, true, true, false, false, false);
-        WailaUtil.register(IBlockDescription.class, false, false, true, false, false);
+        WailaUtil.register(IDescription.class, false, false, true, false, false);
         WailaUtil.register(BlockDummy.class, true, true, true, false, false);
         WailaUtil.register(MPBlocks.DER_SOLAR1_DUMMY.getClass(), true, true, true, false, false);
         WailaUtil.register(MPBlocks.DER_SOLAR2_DUMMY.getClass(), true, true, true, false, false);
@@ -254,9 +254,9 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
 
         if (ConfigManagerMP.moreplanets_other.enableDescriptionInWaila)
         {
-            if (block instanceof IBlockDescription)
+            if (block instanceof IDescription)
             {
-                IBlockDescription desc = (IBlockDescription) block;
+                IDescription desc = (IDescription) block;
 
                 if (ClientUtils.isShiftKeyDown())
                 {
@@ -272,9 +272,9 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             {
                 TileEntityDummy dummy = (TileEntityDummy) tile;
 
-                if (accessor.getWorld().getBlockState(dummy.mainBlockPosition).getBlock() instanceof IBlockDescription)
+                if (accessor.getWorld().getBlockState(dummy.mainBlockPosition).getBlock() instanceof IDescription)
                 {
-                    IBlockDescription desc = (IBlockDescription) accessor.getWorld().getBlockState(dummy.mainBlockPosition).getBlock();
+                    IDescription desc = (IDescription) accessor.getWorld().getBlockState(dummy.mainBlockPosition).getBlock();
 
                     if (ClientUtils.isShiftKeyDown())
                     {

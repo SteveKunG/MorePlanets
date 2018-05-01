@@ -11,7 +11,7 @@ import stevekung.mods.moreplanets.utils.ClientRendererUtils;
 public class NuclearWasteGeneratorMultiblockRenderer
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/nuclear_waste_tank.png");
-    private static final ResourceLocation TEXTURE_GLOW = new ResourceLocation("moreplanets:textures/model/nuclear_waste_tank_glow.png");
+    private static final ResourceLocation GLOW = new ResourceLocation("moreplanets:textures/model/nuclear_waste_tank_glow.png");
     private static final ModelNuclearWasteTank MODEL = new ModelNuclearWasteTank();
 
     public static void render(double x, double y, double z)
@@ -82,7 +82,7 @@ public class NuclearWasteGeneratorMultiblockRenderer
         GlStateManager.pushMatrix();
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE_GLOW);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(GLOW);
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
         MODEL.renderWaste();

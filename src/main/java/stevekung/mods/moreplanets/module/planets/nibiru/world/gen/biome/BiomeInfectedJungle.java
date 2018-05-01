@@ -12,8 +12,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.*;
-import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenFlowersMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
+import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeInfectedJungle extends BiomeNibiru
 {
@@ -47,7 +47,7 @@ public class BiomeInfectedJungle extends BiomeNibiru
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
-        return rand.nextInt(4) == 0 ? new WorldGenFlowersMP(NibiruBlocks.INFECTED_FERN.getDefaultState()) : new WorldGenFlowersMP(NibiruBlocks.INFECTED_GRASS.getDefaultState());
+        return rand.nextInt(4) == 0 ? new WorldGenFlowersBase(NibiruBlocks.INFECTED_FERN.getDefaultState()) : new WorldGenFlowersBase(NibiruBlocks.INFECTED_GRASS.getDefaultState());
     }
 
     @Override

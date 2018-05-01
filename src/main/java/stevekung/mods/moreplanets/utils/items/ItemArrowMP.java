@@ -20,11 +20,12 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityA
 import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedArrow;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItemRender
+public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelRender
 {
     private ArrowType type;
     private String name;
@@ -43,7 +44,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.ARROW;
     }
@@ -72,7 +73,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, ISingleItem
         {
             if (ClientUtils.isShiftKeyDown())
             {
-                list.addAll(ItemDescriptionHelper.getDescription(this.getUnlocalizedName() + ".description"));
+                list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
             }
             else
             {

@@ -12,7 +12,8 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCubeE
 @SideOnly(Side.CLIENT)
 public class LayerCheeseCubeEyeBoss implements LayerRenderer<EntityCheeseCubeEyeBoss>
 {
-    private RenderCheeseCubeEyeBoss render;
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/cheese_cube_eye_boss_glow.png");
+    private final RenderCheeseCubeEyeBoss render;
 
     public LayerCheeseCubeEyeBoss(RenderCheeseCubeEyeBoss render)
     {
@@ -24,7 +25,7 @@ public class LayerCheeseCubeEyeBoss implements LayerRenderer<EntityCheeseCubeEye
     {
         if (entity.getHealth() <= entity.getMaxHealth() / 2.5F)
         {
-            this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/cheese_cube_eye_boss_glow.png"));
+            this.render.bindTexture(LayerCheeseCubeEyeBoss.TEXTURE);
             GlStateManager.enableBlend();
             GlStateManager.disableAlpha();
             GlStateManager.blendFunc(1, 1);

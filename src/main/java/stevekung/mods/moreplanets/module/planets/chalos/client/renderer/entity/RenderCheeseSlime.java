@@ -13,6 +13,8 @@ import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerBaseSl
 @SideOnly(Side.CLIENT)
 public class RenderCheeseSlime extends RenderLiving<EntityCheeseSlime>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/cheese_slime.png");
+
     public RenderCheeseSlime(RenderManager manager)
     {
         super(manager, new ModelSlime(16), 0.25F);
@@ -38,6 +40,6 @@ public class RenderCheeseSlime extends RenderLiving<EntityCheeseSlime>
     @Override
     protected ResourceLocation getEntityTexture(EntityCheeseSlime entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/cheese_slime.png");
+        return RenderCheeseSlime.TEXTURE;
     }
 }

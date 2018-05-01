@@ -9,8 +9,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
-import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 
 public class EntityInfectedCaveSpider extends EntitySpider implements ISpaceMob, IEntityBreathable
 {
@@ -50,7 +50,7 @@ public class EntityInfectedCaveSpider extends EntitySpider implements ISpaceMob,
     {
         if (super.attackEntityAsMob(entity))
         {
-            return EntityEffectHelper.addInfectedSpore(entity);
+            return EntityEffectUtils.addInfectedSpore(entity);
         }
         return false;
     }

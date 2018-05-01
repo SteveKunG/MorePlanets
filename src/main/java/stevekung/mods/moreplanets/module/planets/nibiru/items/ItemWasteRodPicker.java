@@ -14,7 +14,7 @@ public class ItemWasteRodPicker extends ItemBaseMP
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.OTHER_TOOL;
     }

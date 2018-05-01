@@ -13,6 +13,11 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
 @SideOnly(Side.CLIENT)
 public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
 {
+    private static final ResourceLocation TEXTURE0 = new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_0.png");
+    private static final ResourceLocation TEXTURE1 = new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_1.png");
+    private static final ResourceLocation TEXTURE2 = new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_2.png");
+    private static final ResourceLocation TEXTURE3 = new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_3.png");
+    private static final ResourceLocation TEXTURE4 = new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_4.png");
     private RenderAlienMiner render;
 
     public LayerGlowingAlienMiner(RenderAlienMiner render)
@@ -23,7 +28,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
     @Override
     public void doRenderLayer(EntityAlienMiner entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_0.png"));
+        this.render.bindTexture(LayerGlowingAlienMiner.TEXTURE0);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(1, 1);
@@ -38,7 +43,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
 
-        this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_1.png"));
+        this.render.bindTexture(LayerGlowingAlienMiner.TEXTURE1);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(1, 1);
@@ -55,7 +60,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
 
-        this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_2.png"));
+        this.render.bindTexture(LayerGlowingAlienMiner.TEXTURE2);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(1, 1);
@@ -72,7 +77,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
 
-        this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_3.png"));
+        this.render.bindTexture(LayerGlowingAlienMiner.TEXTURE3);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(1, 1);
@@ -87,7 +92,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
 
-        this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_4.png"));
+        this.render.bindTexture(LayerGlowingAlienMiner.TEXTURE4);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(1, 1);

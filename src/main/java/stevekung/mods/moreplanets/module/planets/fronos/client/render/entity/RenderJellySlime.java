@@ -13,14 +13,14 @@ import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerBaseSl
 @SideOnly(Side.CLIENT)
 public class RenderJellySlime extends RenderLiving<EntityJellySlime>
 {
-    private static final ResourceLocation strawberrySlimeTexture = new ResourceLocation("moreplanets:textures/entity/jelly_slime/strawberry.png");
-    private static final ResourceLocation berrySlimeTexture = new ResourceLocation("moreplanets:textures/entity/jelly_slime/berry.png");
-    private static final ResourceLocation raspberrySlimeTexture = new ResourceLocation("moreplanets:textures/entity/jelly_slime/raspberry.png");
-    private static final ResourceLocation orangeSlimeTexture = new ResourceLocation("moreplanets:textures/entity/jelly_slime/orange.png");
-    private static final ResourceLocation grapeSlimeTexture = new ResourceLocation("moreplanets:textures/entity/jelly_slime/grape.png");
-    private static final ResourceLocation limeSlimeTexture = new ResourceLocation("moreplanets:textures/entity/jelly_slime/lime.png");
-    private static final ResourceLocation greenSlimeTexture = new ResourceLocation("moreplanets:textures/entity/jelly_slime/green.png");
-    private static final ResourceLocation lemonSlimeTexture = new ResourceLocation("moreplanets:textures/entity/jelly_slime/lemon.png");
+    private static final ResourceLocation STRAWBERRY = new ResourceLocation("moreplanets:textures/entity/jelly_slime/strawberry.png");
+    private static final ResourceLocation BERRY = new ResourceLocation("moreplanets:textures/entity/jelly_slime/berry.png");
+    private static final ResourceLocation RASPBERRY = new ResourceLocation("moreplanets:textures/entity/jelly_slime/raspberry.png");
+    private static final ResourceLocation ORANGE = new ResourceLocation("moreplanets:textures/entity/jelly_slime/orange.png");
+    private static final ResourceLocation GRAPE = new ResourceLocation("moreplanets:textures/entity/jelly_slime/grape.png");
+    private static final ResourceLocation LIME = new ResourceLocation("moreplanets:textures/entity/jelly_slime/lime.png");
+    private static final ResourceLocation GREEN = new ResourceLocation("moreplanets:textures/entity/jelly_slime/green.png");
+    private static final ResourceLocation LEMON = new ResourceLocation("moreplanets:textures/entity/jelly_slime/lemon.png");
 
     public RenderJellySlime(RenderManager render)
     {
@@ -44,21 +44,21 @@ public class RenderJellySlime extends RenderLiving<EntityJellySlime>
         {
         case 0:
         default:
-            return RenderJellySlime.grapeSlimeTexture;
+            return RenderJellySlime.GRAPE;
         case 1:
-            return RenderJellySlime.raspberrySlimeTexture;
+            return RenderJellySlime.RASPBERRY;
         case 2:
-            return RenderJellySlime.strawberrySlimeTexture;
+            return RenderJellySlime.STRAWBERRY;
         case 3:
-            return RenderJellySlime.berrySlimeTexture;
+            return RenderJellySlime.BERRY;
         case 4:
-            return RenderJellySlime.limeSlimeTexture;
+            return RenderJellySlime.LIME;
         case 5:
-            return RenderJellySlime.orangeSlimeTexture;
+            return RenderJellySlime.ORANGE;
         case 6:
-            return RenderJellySlime.greenSlimeTexture;
+            return RenderJellySlime.GREEN;
         case 7:
-            return RenderJellySlime.lemonSlimeTexture;
+            return RenderJellySlime.LEMON;
         }
     }
 

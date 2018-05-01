@@ -35,9 +35,9 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.EntityEffectUtils;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.TeleportUtils;
-import stevekung.mods.moreplanets.utils.helper.EntityEffectHelper;
 import stevekung.mods.moreplanets.world.IMeteorType;
 
 public class EntityEventHandler
@@ -118,7 +118,7 @@ public class EntityEventHandler
 
             if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && !WorldTickEventHandler.startedDimensionData.startedDimension && !(startedPlanet.equals("planet.") || startedPlanet.equals("moon.") || startedPlanet.equals("satellite.")))
             {
-                MPLog.debug("Start teleporting player to dimension {}", startedPlanet);
+                LoggerMP.debug("Start teleporting player to dimension {}", startedPlanet);
                 TeleportUtils.startNewDimension(player);
                 WorldTickEventHandler.startedDimensionData.startedDimension = true;
                 WorldTickEventHandler.startedDimensionData.planetToBack = startedPlanet;
@@ -150,7 +150,7 @@ public class EntityEventHandler
         }
         if (world.provider instanceof WorldProviderNibiru)
         {
-            if (!(living instanceof EntityPlayer) && !EntityEffectHelper.isGalacticraftMob(living) && !(living instanceof EntityJuicer))
+            if (!(living instanceof EntityPlayer) && !EntityEffectUtils.isGalacticraftMob(living) && !(living instanceof EntityJuicer))
             {
                 if (living.ticksExisted % 128 == 0 && world.getBiome(living.getPosition()) != MPBiomes.GREEN_VEIN)
                 {
@@ -231,7 +231,7 @@ public class EntityEventHandler
                         if (!world.isRemote)
                         {
                             world.spawnEntity(meteorEntity);
-                            MPLog.debug("Spawn {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
+                            LoggerMP.debug("Spawn {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
                         }
                     }
                 }
@@ -251,7 +251,7 @@ public class EntityEventHandler
                         if (!world.isRemote)
                         {
                             world.spawnEntity(meteorEntity);
-                            MPLog.debug("Spawn {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
+                            LoggerMP.debug("Spawn {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
                         }
                     }
                 }

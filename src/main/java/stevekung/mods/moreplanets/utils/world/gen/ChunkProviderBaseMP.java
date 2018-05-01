@@ -7,6 +7,7 @@ import micdoodle8.mods.galacticraft.core.perlin.NoiseModule;
 import micdoodle8.mods.galacticraft.core.perlin.generator.Gradient;
 import micdoodle8.mods.galacticraft.core.world.gen.EnumCraterSize;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -74,7 +75,7 @@ public abstract class ChunkProviderBaseMP extends ChunkGeneratorOverworld
                 {
                     if (y < this.getTerrainHeight() + yDev)
                     {
-                        chunk.setBlockState(x, y, z, this.getBaseBlock().getStateFromMeta(this.getBlockMetadata()[2]));
+                        chunk.setBlockState(x, y, z, this.getStoneBlock());
                     }
                 }
             }
@@ -92,10 +93,8 @@ public abstract class ChunkProviderBaseMP extends ChunkGeneratorOverworld
             {
                 int noise = (int) (this.noiseGen4.getNoise(x + chunkX * 16, z * chunkZ * 16) / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
                 int var13 = -1;
-                Block topBlock = this.getBaseBlock();
-                int topBlockMeta = this.getBlockMetadata()[0];
-                Block fillBlock = this.getBaseBlock();
-                int fillBlockMeta = this.getBlockMetadata()[1];
+                IBlockState topBlock = this.getTopBlock();
+                IBlockState fillBlock = this.getSubBlock();
 
                 for (int y = 255; y >= 0; --y)
                 {
@@ -111,40 +110,35 @@ public abstract class ChunkProviderBaseMP extends ChunkGeneratorOverworld
                         {
                             var13 = -1;
                         }
-                        else if (block == this.getBaseBlock())
+                        else if (block == this.getTopBlock())
                         {
                             if (var13 == -1)
                             {
                                 if (noise <= 0)
                                 {
-                                    topBlock = Blocks.AIR;
-                                    topBlockMeta = 0;
-                                    fillBlock = this.getBaseBlock();
-                                    fillBlockMeta = this.getBlockMetadata()[1];
+                                    topBlock = Blocks.AIR.getDefaultState();
+                                    fillBlock = this.getSubBlock();
                                 }
                                 else if (y >= var5 - -16 && y <= var5 + 1)
                                 {
-                                    topBlock = this.getBaseBlock();
-                                    topBlockMeta = this.getBlockMetadata()[0];
-                                    topBlock = this.getBaseBlock();
-                                    topBlockMeta = this.getBlockMetadata()[1];
+                                    topBlock = this.getTopBlock();
                                 }
 
                                 var13 = noise;
 
                                 if (y >= var5 - 1)
                                 {
-                                    chunk.setBlockState(x, y, z, topBlock.getStateFromMeta(topBlockMeta));
+                                    chunk.setBlockState(x, y, z, topBlock);
                                 }
                                 else if (y < var5 - 1 && y >= var5 - 2)
                                 {
-                                    chunk.setBlockState(x, y, z, fillBlock.getStateFromMeta(fillBlockMeta));
+                                    chunk.setBlockState(x, y, z, fillBlock);
                                 }
                             }
                             else if (var13 > 0)
                             {
                                 --var13;
-                                chunk.setBlockState(x, y, z, fillBlock.getStateFromMeta(fillBlockMeta));
+                                chunk.setBlockState(x, y, z, fillBlock);
                             }
                         }
                     }
@@ -238,6 +232,7 @@ public abstract class ChunkProviderBaseMP extends ChunkGeneratorOverworld
         return 64;
     }
 
-    protected abstract Block getBaseBlock();
-    protected abstract int[] getBlockMetadata();
+    protected abstract IBlockState getTopBlock();
+    protected abstract IBlockState getSubBlock();
+    protected abstract IBlockState getStoneBlock();
 }

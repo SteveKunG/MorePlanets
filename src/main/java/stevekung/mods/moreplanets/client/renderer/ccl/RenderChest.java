@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.model.TRSRTransformation;
-import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 
 public class RenderChest extends CCLRenderBase
 {
@@ -24,7 +24,7 @@ public class RenderChest extends CCLRenderBase
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        ClientRegisterHelper.registerTileEntityItemStackRendering(this.tile);
+        ClientRegistryUtils.renderTESR(this.tile);
     }
 
     @Override

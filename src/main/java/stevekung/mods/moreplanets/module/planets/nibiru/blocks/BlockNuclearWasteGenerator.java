@@ -18,14 +18,13 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 
-public class BlockNuclearWasteGenerator extends BlockTileMP implements IBlockDescription, ISingleBlockRender
+public class BlockNuclearWasteGenerator extends BlockTileMP implements IDescription
 {
     public BlockNuclearWasteGenerator(String name)
     {
@@ -106,6 +105,6 @@ public class BlockNuclearWasteGenerator extends BlockTileMP implements IBlockDes
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockNuclearWasteGenerator.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockNuclearWasteGenerator.this.getUnlocalizedName() + ".description"));
     }
 }

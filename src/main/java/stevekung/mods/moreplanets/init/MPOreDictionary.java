@@ -79,8 +79,16 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("nibiruSandstone", NibiruBlocks.INFECTED_SANDSTONE);
         BlockUtils.registerOreDictionary("nibiruSandstone", NibiruBlocks.INFECTED_CHISELED_SANDSTONE);
         BlockUtils.registerOreDictionary("nibiruSandstone", NibiruBlocks.INFECTED_CUT_SANDSTONE);
-        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_1);
-        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.CANDY_CANE_2);
+
+        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.RED_CANDY_CANE);
+        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.GREEN_CANDY_CANE);
+        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.BLUE_CANDY_CANE);
+        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.ORANGE_CANDY_CANE);
+        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.PINK_CANDY_CANE);
+        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.YELLOW_CANDY_CANE);
+        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.PURPLE_CANDY_CANE);
+        BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.RAINBOW_CANDY_CANE);
+
         BlockUtils.registerOreDictionary("dyeBlue", MPItems.DYE);
         BlockUtils.registerOreDictionary("slimeball", DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
         BlockUtils.registerOreDictionary("slimeball", ChalosItems.CHEESE_SLIMEBALL);
@@ -111,27 +119,27 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("oreCopper", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 8));
         BlockUtils.registerOreDictionary("oreAluminum", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 7));
         BlockUtils.registerOreDictionary("oreAluminium", new ItemStack(NibiruBlocks.NIBIRU_ORE, 1, 7));
-        BlockUtils.registerOreDictionary("oreIron", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 0));
-        BlockUtils.registerOreDictionary("oreGold", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 1));
-        BlockUtils.registerOreDictionary("oreTin", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 2));
-        BlockUtils.registerOreDictionary("oreCopper", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 3));
-        BlockUtils.registerOreDictionary("oreAluminum", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 4));
-        BlockUtils.registerOreDictionary("oreAluminium", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 4));
-        BlockUtils.registerOreDictionary("oreLead", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 5));
-        BlockUtils.registerOreDictionary("oreCoal", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 6));
-        BlockUtils.registerOreDictionary("oreLapis", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 7));
-        BlockUtils.registerOreDictionary("oreDiamond", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 8));
-        BlockUtils.registerOreDictionary("oreEmerald", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 9));
-        BlockUtils.registerOreDictionary("oreRedstone", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 10));
-        BlockUtils.registerOreDictionary("oreSilicon", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 11));
-        BlockUtils.registerOreDictionary("oreQuartz", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 12));
-        BlockUtils.registerOreDictionary("oreExtrailonite", new ItemStack(FronosBlocks.FRONOS_ORE, 1, 13));
-        BlockUtils.registerOreDictionary("oreAntiGrav", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 4));
-        BlockUtils.registerOreDictionary("oreGoldenite", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 5));
-        BlockUtils.registerOreDictionary("oreTin", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 6));
-        BlockUtils.registerOreDictionary("oreCopper", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 7));
-        BlockUtils.registerOreDictionary("oreAluminum", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 8));
-        BlockUtils.registerOreDictionary("oreAluminium", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 8));
-        BlockUtils.registerOreDictionary("oreIron", new ItemStack(KoentusBlocks.KOENTUS_BLOCK, 1, 9));
+        BlockUtils.registerOreDictionary("oreIron", FronosBlocks.FRONOS_IRON_ORE);
+        BlockUtils.registerOreDictionary("oreGold", FronosBlocks.FRONOS_GOLD_ORE);
+        BlockUtils.registerOreDictionary("oreTin", FronosBlocks.FRONOS_TIN_ORE);
+        BlockUtils.registerOreDictionary("oreCopper", FronosBlocks.FRONOS_COPPER_ORE);
+        BlockUtils.registerOreDictionary("oreAluminum", FronosBlocks.FRONOS_ALUMINUM_ORE);
+        BlockUtils.registerOreDictionary("oreAluminium", FronosBlocks.FRONOS_ALUMINUM_ORE);
+        BlockUtils.registerOreDictionary("oreLead", FronosBlocks.FRONOS_LEAD_ORE);
+        BlockUtils.registerOreDictionary("oreCoal", FronosBlocks.FRONOS_COAL_ORE);
+        BlockUtils.registerOreDictionary("oreLapis", FronosBlocks.FRONOS_LAPIS_ORE);
+        BlockUtils.registerOreDictionary("oreDiamond", FronosBlocks.FRONOS_DIAMOND_ORE);
+        BlockUtils.registerOreDictionary("oreEmerald", FronosBlocks.FRONOS_EMERALD_ORE);
+        BlockUtils.registerOreDictionary("oreRedstone", FronosBlocks.FRONOS_REDSTONE_ORE);
+        BlockUtils.registerOreDictionary("oreSilicon", FronosBlocks.FRONOS_SILICON_ORE);
+        BlockUtils.registerOreDictionary("oreQuartz", FronosBlocks.FRONOS_QUARTZ_ORE);
+        BlockUtils.registerOreDictionary("oreExtrailonite", FronosBlocks.EXTRAILONITE_ORE);
+        BlockUtils.registerOreDictionary("oreAntiGrav", KoentusBlocks.ANTI_GRAVITY_ORE);
+        BlockUtils.registerOreDictionary("oreGoldenite", KoentusBlocks.GOLDENITE_CRYSTALS_ORE);
+        BlockUtils.registerOreDictionary("oreTin", KoentusBlocks.KOENTUS_TIN_ORE);
+        BlockUtils.registerOreDictionary("oreCopper", KoentusBlocks.KOENTUS_COPPER_ORE);
+        BlockUtils.registerOreDictionary("oreAluminum", KoentusBlocks.KOENTUS_ALUMINUM_ORE);
+        BlockUtils.registerOreDictionary("oreAluminium", KoentusBlocks.KOENTUS_ALUMINUM_ORE);
+        BlockUtils.registerOreDictionary("oreIron", KoentusBlocks.KOENTUS_IRON_ORE);
     }
 }

@@ -325,7 +325,7 @@ public class ChunkGeneratorChalos implements IChunkGenerator
 
         for (int i = 0; i < 8; ++i)
         {
-            new WorldGenSpaceDungeons(ChalosBlocks.CHALOS_ANCIENT_CHEST, ChalosBlocks.CHALOS_ROCK, ChalosBlocks.CHEESE_SLIME_BLOCK, 1, 0).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenSpaceDungeons(ChalosBlocks.CHALOS_ANCIENT_CHEST.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState()).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
         if (biomeGen != MPBiomes.SLIMELY_WASTELAND && this.rand.nextInt(8) == 0)
         {

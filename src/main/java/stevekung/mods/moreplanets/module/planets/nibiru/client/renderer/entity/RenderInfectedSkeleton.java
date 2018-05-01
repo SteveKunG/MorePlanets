@@ -14,6 +14,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedSke
 @SideOnly(Side.CLIENT)
 public class RenderInfectedSkeleton extends RenderBiped<EntityInfectedSkeleton>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_skeleton.png");
+
     public RenderInfectedSkeleton(RenderManager manager)
     {
         super(manager, new ModelInfectedSkeleton(), 0.5F);
@@ -38,6 +40,6 @@ public class RenderInfectedSkeleton extends RenderBiped<EntityInfectedSkeleton>
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedSkeleton entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_skeleton.png");
+        return RenderInfectedSkeleton.TEXTURE;
     }
 }

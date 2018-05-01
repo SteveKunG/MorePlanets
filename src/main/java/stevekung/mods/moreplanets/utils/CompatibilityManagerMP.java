@@ -25,7 +25,7 @@ public class CompatibilityManagerMP
     {
         if (CompatibilityManagerMP.isCTMLoaded)
         {
-            MPLog.info("Enabled CTM integrations");
+            LoggerMP.info("Enabled CTM integrations");
         }
         if (CompatibilityManagerMP.isBigReactorLoaded)
         {
@@ -44,7 +44,7 @@ public class CompatibilityManagerMP
 
     public static void registerExtremeReactorFluid(String name, float absorption, float heatEfficiency, float moderation, float heatConductivity)
     {
-        MPLog.info("Registering %s into reactor interior", name);
+        LoggerMP.info("Registering {} into reactor interior", name);
 
         try
         {
@@ -55,7 +55,7 @@ public class CompatibilityManagerMP
 
     private static void initBigReactorCompat()
     {
-        MPLog.info("Enabled Extreme Reactors integrations");
+        LoggerMP.info("Enabled Extreme Reactors integrations");
 
         try
         {

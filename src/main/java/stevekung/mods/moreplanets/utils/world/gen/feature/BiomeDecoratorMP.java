@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
 
 public abstract class BiomeDecoratorMP extends BiomeDecorator
 {

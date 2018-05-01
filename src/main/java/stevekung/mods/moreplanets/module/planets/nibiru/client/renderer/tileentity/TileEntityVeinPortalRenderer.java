@@ -19,13 +19,13 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityVei
 @SideOnly(Side.CLIENT)
 public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<TileEntityVeinPortal>
 {
-    private static ResourceLocation END_SKY_TEXTURE = new ResourceLocation("textures/environment/end_sky.png");
-    private static ResourceLocation END_PORTAL_TEXTURE = new ResourceLocation("textures/entity/end_portal.png");
-    private static ResourceLocation END_GATEWAY_BEAM_TEXTURE = new ResourceLocation("textures/entity/beacon_beam.png");
-    private static Random RANDOM = new Random(31100L);
-    private static FloatBuffer MODELVIEW = GLAllocation.createDirectFloatBuffer(16);
-    private static FloatBuffer PROJECTION = GLAllocation.createDirectFloatBuffer(16);
-    FloatBuffer buffer = GLAllocation.createDirectFloatBuffer(16);
+    private static final ResourceLocation END_SKY_TEXTURE = new ResourceLocation("textures/environment/end_sky.png");
+    private static final ResourceLocation END_PORTAL_TEXTURE = new ResourceLocation("textures/entity/end_portal.png");
+    private static final ResourceLocation END_GATEWAY_BEAM_TEXTURE = new ResourceLocation("textures/entity/beacon_beam.png");
+    private static final Random RANDOM = new Random(31100L);
+    private static final FloatBuffer MODELVIEW = GLAllocation.createDirectFloatBuffer(16);
+    private static final FloatBuffer PROJECTION = GLAllocation.createDirectFloatBuffer(16);
+    private final FloatBuffer buffer = GLAllocation.createDirectFloatBuffer(16);
 
     @Override
     public void render(TileEntityVeinPortal tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)

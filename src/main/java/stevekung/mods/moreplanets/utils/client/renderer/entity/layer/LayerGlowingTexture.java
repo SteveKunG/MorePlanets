@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
 {
-    private RenderLiving render;
-    private String textureToRender;
-    private boolean light;
+    private final RenderLiving render;
+    private final String textureToRender;
+    private final boolean light;
 
     public LayerGlowingTexture(RenderLiving render, String textureToRender, boolean light)
     {
@@ -24,6 +24,7 @@ public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
         this.light = light;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void doRenderLayer(EntityLiving entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {

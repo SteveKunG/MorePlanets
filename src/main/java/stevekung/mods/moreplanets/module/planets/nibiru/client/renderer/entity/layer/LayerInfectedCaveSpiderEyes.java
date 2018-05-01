@@ -12,7 +12,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedCav
 @SideOnly(Side.CLIENT)
 public class LayerInfectedCaveSpiderEyes implements LayerRenderer<EntityInfectedCaveSpider>
 {
-    private RenderInfectedCaveSpider render;
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_cave_spider_eyes.png");
+    private final RenderInfectedCaveSpider render;
 
     public LayerInfectedCaveSpiderEyes(RenderInfectedCaveSpider render)
     {
@@ -22,7 +23,7 @@ public class LayerInfectedCaveSpiderEyes implements LayerRenderer<EntityInfected
     @Override
     public void doRenderLayer(EntityInfectedCaveSpider entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/infected_cave_spider_eyes.png"));
+        this.render.bindTexture(LayerInfectedCaveSpiderEyes.TEXTURE);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(1, 1);

@@ -16,8 +16,8 @@ import stevekung.mods.stevekunglib.utils.RenderUtils;
 
 public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileEntityJuicerEgg>
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/juicer_egg.png");
-    private ModelJuicerEgg model = new ModelJuicerEgg();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/juicer_egg.png");
+    private final ModelJuicerEgg model = new ModelJuicerEgg();
 
     @Override
     public void render(TileEntityJuicerEgg tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -33,7 +33,7 @@ public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileE
             this.renderJuicer(partialTicks);
         }
 
-        this.bindTexture(TileEntityJuicerEggRenderer.texture);
+        this.bindTexture(TileEntityJuicerEggRenderer.TEXTURE);
         this.model.renderAll();
         GlStateManager.popMatrix();
     }

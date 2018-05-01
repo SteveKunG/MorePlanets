@@ -15,6 +15,8 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienBeam;
 @SideOnly(Side.CLIENT)
 public class RenderAlienBeam extends Render<EntityAlienBeam>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/beacon_beam.png");
+
     public RenderAlienBeam(RenderManager manager)
     {
         super(manager);
@@ -34,6 +36,6 @@ public class RenderAlienBeam extends Render<EntityAlienBeam>
     @Override
     protected ResourceLocation getEntityTexture(EntityAlienBeam entity)
     {
-        return new ResourceLocation("textures/entity/beacon_beam.png");
+        return RenderAlienBeam.TEXTURE;
     }
 }

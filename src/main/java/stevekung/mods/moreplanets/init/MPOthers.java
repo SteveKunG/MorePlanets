@@ -60,7 +60,14 @@ public class MPOthers
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.NIBIRU_GRASS_PATH);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.FRONOS_GRASS);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.FRONOS_DIRT);
-        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.CANDY_CANE_1);
-        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.CANDY_CANE_2);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.FRONOS_COARSE_DIRT);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.RED_CANDY_CANE);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.GREEN_CANDY_CANE);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.BLUE_CANDY_CANE);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.ORANGE_CANDY_CANE);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.PINK_CANDY_CANE);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.YELLOW_CANDY_CANE);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.PURPLE_CANDY_CANE);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.RAINBOW_CANDY_CANE);
     }
 }

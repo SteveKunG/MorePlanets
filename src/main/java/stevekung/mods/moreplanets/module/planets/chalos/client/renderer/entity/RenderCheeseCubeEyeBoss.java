@@ -11,6 +11,8 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCubeE
 
 public class RenderCheeseCubeEyeBoss extends RenderLiving<EntityCheeseCubeEyeBoss>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/cheese_cube_eye_boss.png");
+
     public RenderCheeseCubeEyeBoss(RenderManager manager)
     {
         super(manager, new ModelCheeseCubeEyeBoss(), 1.0F);
@@ -21,7 +23,7 @@ public class RenderCheeseCubeEyeBoss extends RenderLiving<EntityCheeseCubeEyeBos
     @Override
     protected ResourceLocation getEntityTexture(EntityCheeseCubeEyeBoss entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/cheese_cube_eye_boss.png");
+        return RenderCheeseCubeEyeBoss.TEXTURE;
     }
 
     @Override

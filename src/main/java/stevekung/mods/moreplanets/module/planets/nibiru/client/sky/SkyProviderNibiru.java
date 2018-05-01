@@ -13,9 +13,9 @@ import stevekung.mods.moreplanets.client.renderer.sky.SkyProviderBaseMP;
 
 public class SkyProviderNibiru extends SkyProviderBaseMP
 {
-    private ResourceLocation dionaTexture = new ResourceLocation("moreplanets:textures/gui/celestialbodies/diona.png");
-    private ResourceLocation chalosTexture = new ResourceLocation("moreplanets:textures/gui/celestialbodies/chalos.png");
-    private ResourceLocation lazendusTexture = new ResourceLocation("moreplanets:textures/gui/celestialbodies/lazendus.png");
+    private static final ResourceLocation DIONA = new ResourceLocation("moreplanets:textures/gui/celestialbodies/diona.png");
+    private static final ResourceLocation CHALOS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/chalos.png");
+    private static final ResourceLocation LAZENDUS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/lazendus.png");
 
     public SkyProviderNibiru(IGalacticraftWorldProvider provider)
     {
@@ -127,7 +127,7 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         GlStateManager.enableTexture2D();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F - (rainStrength - 0.1F));
         scale = this.sunSize + 3.5F;
-        mc.getTextureManager().bindTexture(this.lazendusTexture);
+        mc.getTextureManager().bindTexture(SkyProviderNibiru.LAZENDUS);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
         worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
@@ -141,7 +141,7 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         GlStateManager.rotate(80.0F, 0.0F, 0.0F, 1.0F);
         GlStateManager.rotate(200F, 1.0F, 0.0F, 0.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F - (rainStrength - 0.1F));
-        mc.getTextureManager().bindTexture(this.chalosTexture);
+        mc.getTextureManager().bindTexture(SkyProviderNibiru.CHALOS);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
         worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
@@ -157,7 +157,7 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         GlStateManager.rotate(40.0F, 0.0F, 0.0F, 1.0F);
         GlStateManager.rotate(0F, 1.0F, 0.0F, 0.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F - (rainStrength - 0.1F));
-        mc.getTextureManager().bindTexture(this.dionaTexture);
+        mc.getTextureManager().bindTexture(SkyProviderNibiru.DIONA);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
         worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();

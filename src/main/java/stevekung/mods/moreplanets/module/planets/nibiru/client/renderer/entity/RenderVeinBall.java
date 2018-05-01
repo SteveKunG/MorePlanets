@@ -11,6 +11,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.Entity
 
 public class RenderVeinBall extends Render<EntityVeinBall>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/vein_ball.png");
+
     public RenderVeinBall(RenderManager manager)
     {
         super(manager);
@@ -19,7 +21,7 @@ public class RenderVeinBall extends Render<EntityVeinBall>
     @Override
     protected ResourceLocation getEntityTexture(EntityVeinBall entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/vein_ball.png");
+        return RenderVeinBall.TEXTURE;
     }
 
     @Override

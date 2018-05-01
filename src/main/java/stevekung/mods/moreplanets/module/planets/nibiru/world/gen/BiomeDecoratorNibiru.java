@@ -8,12 +8,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruFlower;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruSeaweed;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.*;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
-import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenFlowersMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
+import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeDecoratorNibiru extends BiomeDecoratorMP
 {
@@ -40,39 +39,39 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
 
         for (i = 0; i < this.infectedTallGrassPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.INFECTED_GRASS.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.INFECTED_GRASS.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.pureHurbPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.PURE_HURB)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.PURE_HURB)), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.terrapuffHurbPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.TERRAPUFF_HURB)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.TERRAPUFF_HURB)), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.batasiaDandelionPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.BATASIA_DANDELION)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.BATASIA_DANDELION)), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.pyoloniaPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.PYOLONIA_FLOWER)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.PYOLONIA_FLOWER)), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.philipyPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.PHILIPY_FLOWER)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.PHILIPY_FLOWER)), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.whiteTailPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.WHITE_TAIL)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.WHITE_TAIL)), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.vealiumVinePerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.VEALIUM_VINE_FLOWER)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.VEALIUM_VINE_FLOWER)), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.seaweedPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenNibiruSeaweed(NibiruBlocks.NIBIRU_SEAWEED.getDefaultState().withProperty(BlockNibiruSeaweed.VARIANT, BlockNibiruSeaweed.BlockType.NIBIRU_SEAWEED)), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenNibiruSeaweed(NibiruBlocks.INFECTED_SEAWEED.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.infectedCactusPerChunk; ++i)
         {
@@ -88,7 +87,7 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
         }
         for (i = 0; i < this.greenVeinTallGrassPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersMP(NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.waterlilyPerChunk; ++i)
         {

@@ -76,6 +76,6 @@ public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRend
     @Override
     public boolean isGlobalRenderer(TileEntityAlienDefenderBeacon tile)
     {
-        return true;
+        return false;
     }
 }

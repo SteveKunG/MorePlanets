@@ -8,9 +8,9 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.feature.WorldGenLargeInfectedCrystallized;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
-import stevekung.mods.moreplanets.utils.world.gen.feature.EnumOreGen;
-import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenMinableMP;
+import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
 import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
+import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
 public class BiomeDecoratorDiona extends BiomeDecoratorMP
 {
@@ -24,13 +24,13 @@ public class BiomeDecoratorDiona extends BiomeDecoratorMP
 
     public BiomeDecoratorDiona()
     {
-        this.dirtGen = new WorldGenMinableMP(DionaBlocks.DIONA_SUB_SURFACE_ROCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.DIRT);
-        this.setroriumGen = new WorldGenMinableMP(DionaBlocks.SETRORIUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 9);
-        this.illeniumGen = new WorldGenMinableMP(DionaBlocks.ILLENIUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 4);
-        this.tinGen = new WorldGenMinableMP(DionaBlocks.DIONA_TIN_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.TIN);
-        this.copperGen = new WorldGenMinableMP(DionaBlocks.DIONA_COPPER_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.COPPER);
-        this.aluminumGen = new WorldGenMinableMP(DionaBlocks.DIONA_ALUMINUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
-        this.wormEggGen = new WorldGenMinableMP(DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 8);
+        this.dirtGen = new WorldGenMinableBase(DionaBlocks.DIONA_SUB_SURFACE_ROCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.DIRT);
+        this.setroriumGen = new WorldGenMinableBase(DionaBlocks.SETRORIUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 9);
+        this.illeniumGen = new WorldGenMinableBase(DionaBlocks.ILLENIUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 4);
+        this.tinGen = new WorldGenMinableBase(DionaBlocks.DIONA_TIN_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.TIN);
+        this.copperGen = new WorldGenMinableBase(DionaBlocks.DIONA_COPPER_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.COPPER);
+        this.aluminumGen = new WorldGenMinableBase(DionaBlocks.DIONA_ALUMINUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
+        this.wormEggGen = new WorldGenMinableBase(DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 8);
     }
 
     @Override

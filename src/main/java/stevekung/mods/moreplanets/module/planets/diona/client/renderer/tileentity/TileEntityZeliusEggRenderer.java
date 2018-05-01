@@ -11,9 +11,9 @@ import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class TileEntityZeliusEggRenderer extends TileEntitySpecialRenderer<TileEntityZeliusEgg>
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/zelius_egg.png");
-    private static ResourceLocation textureLight1 = new ResourceLocation("moreplanets:textures/model/zelius_egg_glow.png");
-    private ModelZeliusEgg model = new ModelZeliusEgg();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/zelius_egg.png");
+    private static final ResourceLocation LIGHT = new ResourceLocation("moreplanets:textures/model/zelius_egg_glow.png");
+    private final ModelZeliusEgg model = new ModelZeliusEgg();
 
     @Override
     public void render(TileEntityZeliusEgg tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -26,12 +26,12 @@ public class TileEntityZeliusEggRenderer extends TileEntitySpecialRenderer<TileE
         GlStateManager.enableRescaleNormal();
         GlStateManager.translate((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
-        this.bindTexture(TileEntityZeliusEggRenderer.texture);
+        this.bindTexture(TileEntityZeliusEggRenderer.TEXTURE);
         this.model.renderAll();
         GlStateManager.color(lightTime, lightTime, lightTime);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        this.bindTexture(TileEntityZeliusEggRenderer.textureLight1);
+        this.bindTexture(TileEntityZeliusEggRenderer.LIGHT);
         this.model.renderAll();
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

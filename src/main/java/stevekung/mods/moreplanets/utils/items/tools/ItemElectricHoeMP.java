@@ -35,7 +35,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 
@@ -248,7 +248,7 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
     @Override
     public void getSubItems(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
     {
-        if (CommonRegisterHelper.isItemTab(creativeTabs))
+        if (BlocksItemsRegistry.isItemTab(creativeTabs))
         {
             list.add(ElectricItemHelper.getWithCharge(new ItemStack(this), this.getMaxElectricityStored(new ItemStack(this))));
         }
@@ -267,7 +267,7 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.HOE;
     }

@@ -5,12 +5,11 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class BlockContainerMP extends BlockContainer implements ISortableBlock, ISingleBlockRender
+public abstract class BlockContainerMP extends BlockContainer implements ISortableBlock, IItemModelRender
 {
     private String name;
 
@@ -42,12 +41,6 @@ public abstract class BlockContainerMP extends BlockContainer implements ISortab
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return MorePlanetsMod.BLOCK_TAB;
-    }
-
-    @Override //TODO Remove 1.13
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return null;
     }
 
     @Override

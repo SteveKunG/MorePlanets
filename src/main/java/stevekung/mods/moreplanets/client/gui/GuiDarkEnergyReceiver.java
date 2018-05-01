@@ -55,19 +55,19 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
     public void initGui()
     {
         super.initGui();
-        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 31, (this.height - this.ySize) / 2 + 26, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 31, y + 26, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this));
 
         if (!this.tile.successful && !this.tile.activated)
         {
-            this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 155, (this.height - this.ySize) / 2 + 87, 13, 13, Arrays.asList(LangUtils.translate("gui.multiblock_guide.desc")), this.width, this.height, this));
+            this.infoRegions.add(new GuiElementInfoRegionMP(x + 155, y + 87, 13, 13, Arrays.asList(LangUtils.translate("gui.multiblock_guide.desc")), this.width, this));
         }
 
-        this.electricInfoRegion = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 107, (this.height - this.ySize) / 2 + 31, 56, 9, new ArrayList<>(), this.width, this.height, this);
+        this.electricInfoRegion = new GuiElementInfoRegionMP(x + 107, y + 31, 56, 9, new ArrayList<>(), this.width, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 36, this.height / 2 - 19, 72, 20, !this.tile.getDisabled(0) ? LangUtils.translate("gui.button.disable.name") : LangUtils.translate("gui.button.enable.name")));
         this.buttonEnable.enabled = this.tile.disableCooldown == 0 && !this.tile.successful;
-        int x = (this.width - this.xSize) / 2;
-        int y = (this.height - this.ySize) / 2;
         this.checkboxRender = new GuiElementCheckbox(1, this, x + 155, y + 87, "");
         this.checkboxRender.visible = !this.tile.successful && !this.tile.activated;
         this.buttonList.add(this.checkboxRender);

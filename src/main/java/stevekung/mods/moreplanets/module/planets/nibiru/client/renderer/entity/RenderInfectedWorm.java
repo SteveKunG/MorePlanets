@@ -11,6 +11,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedWor
 @SideOnly(Side.CLIENT)
 public class RenderInfectedWorm extends RenderLiving<EntityInfectedWorm>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_worm.png");
+
     public RenderInfectedWorm(RenderManager render)
     {
         super(render, new ModelSludgeling(), 0.2F);
@@ -19,6 +21,6 @@ public class RenderInfectedWorm extends RenderLiving<EntityInfectedWorm>
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedWorm entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_worm.png");
+        return RenderInfectedWorm.TEXTURE;
     }
 }

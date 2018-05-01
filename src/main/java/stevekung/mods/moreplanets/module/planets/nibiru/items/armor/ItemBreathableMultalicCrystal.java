@@ -22,26 +22,8 @@ public class ItemBreathableMultalicCrystal extends ItemBreathableArmor
     }
 
     @Override
-    public Item getRepairItems()
+    public Item getRepairItem()
     {
         return NibiruItems.MULTALIC_CRYSTAL_PIECES;
-    }
-
-    @Override
-    public int getRepairItemsMetadata()
-    {
-        return -1;
-    }
-
-    @Override
-    public EnumGearType getGearType()
-    {
-        return EnumGearType.HELMET;
-    }
-
-    @Override
-    public Item getBreathableArmor()
-    {
-        return this;
     }
 }

@@ -5,23 +5,23 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelNuclearWasteTank extends ModelBase
 {
-    ModelRenderer waste;
-    ModelRenderer base1;
-    ModelRenderer base2;
-    ModelRenderer top1;
-    ModelRenderer top2;
-    ModelRenderer glassrod1;
-    ModelRenderer glassrod2;
-    ModelRenderer glassrod3;
-    ModelRenderer glassrod4;
-    ModelRenderer glass1;
-    ModelRenderer glass2;
-    ModelRenderer glass3;
-    ModelRenderer glass4;
-    ModelRenderer glassr1;
-    ModelRenderer glassr2;
-    ModelRenderer glassr3;
-    ModelRenderer glassr4;
+    private ModelRenderer waste;
+    private ModelRenderer base1;
+    private ModelRenderer base2;
+    private ModelRenderer top1;
+    private ModelRenderer top2;
+    private ModelRenderer glassrod1;
+    private ModelRenderer glassrod2;
+    private ModelRenderer glassrod3;
+    private ModelRenderer glassrod4;
+    private ModelRenderer glass1;
+    private ModelRenderer glass2;
+    private ModelRenderer glass3;
+    private ModelRenderer glass4;
+    private ModelRenderer glassr1;
+    private ModelRenderer glassr2;
+    private ModelRenderer glassr3;
+    private ModelRenderer glassr4;
 
     public ModelNuclearWasteTank()
     {

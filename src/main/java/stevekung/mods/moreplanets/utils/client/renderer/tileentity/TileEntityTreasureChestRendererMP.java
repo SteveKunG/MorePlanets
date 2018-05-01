@@ -6,18 +6,19 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.utils.EnumChestTexture;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
+import stevekung.mods.stevekunglib.utils.CalendarUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityTreasureChestRendererMP extends TileEntitySpecialRenderer<TileEntityTreasureChestMP>
 {
+    private static final ResourceLocation CHRISTMAS = new ResourceLocation("textures/entity/chest/christmas.png");
     private ResourceLocation textureNormal;
-    private ModelTreasureChest simpleChest = new ModelTreasureChest();
+    private final ModelTreasureChest model = new ModelTreasureChest();
 
-    public TileEntityTreasureChestRendererMP(EnumChestTexture texture)
+    public TileEntityTreasureChestRendererMP(String texture)
     {
-        this.textureNormal = new ResourceLocation("moreplanets:textures/model/" + texture.toString() + "_treasure_chest.png");
+        this.textureNormal = new ResourceLocation("moreplanets:textures/model/" + texture + "_treasure_chest.png");
     }
 
     @Override
@@ -46,7 +47,14 @@ public class TileEntityTreasureChestRendererMP extends TileEntitySpecialRenderer
         }
         else
         {
-            this.bindTexture(this.textureNormal);
+            if (CalendarUtils.isChristmasDay())
+            {
+                this.bindTexture(TileEntityTreasureChestRendererMP.CHRISTMAS);
+            }
+            else
+            {
+                this.bindTexture(this.textureNormal);
+            }
         }
 
         GlStateManager.pushMatrix();
@@ -84,15 +92,15 @@ public class TileEntityTreasureChestRendererMP extends TileEntitySpecialRenderer
         float f1 = tile.prevLidAngle + (tile.lidAngle - tile.prevLidAngle) * partialTicks;
         f1 = 1.0F - f1;
         f1 = 1.0F - f1 * f1 * f1;
-        this.simpleChest.chestLid.rotateAngleX = -(f1 * (float)Math.PI / 2.0F);
+        this.model.chestLid.rotateAngleX = -(f1 * (float)Math.PI / 2.0F);
 
         if (tile.locked)
         {
-            this.simpleChest.renderAll(false);
+            this.model.renderAll(false);
         }
         else
         {
-            this.simpleChest.renderAll(true);
+            this.model.renderAll(true);
         }
 
         GlStateManager.disableRescaleNormal();

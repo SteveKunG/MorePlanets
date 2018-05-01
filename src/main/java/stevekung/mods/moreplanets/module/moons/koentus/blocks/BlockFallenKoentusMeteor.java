@@ -66,12 +66,6 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return 3;
-    }
-
-    @Override
     public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
         return true;
@@ -149,7 +143,7 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, 0);
+        return new ItemStack(this);
     }
 
     @Override

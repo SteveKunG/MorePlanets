@@ -29,16 +29,16 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityProvider, IBlockDescription
+public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityProvider, IDescription
 {
     public BlockBlackHoleStorage(String name)
     {
@@ -266,6 +266,6 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockBlackHoleStorage.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockBlackHoleStorage.this.getUnlocalizedName() + ".description"));
     }
 }

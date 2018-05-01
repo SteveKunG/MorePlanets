@@ -27,14 +27,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.tileentity.TileEntityRocketCrusher;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
-import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
-import stevekung.mods.moreplanets.utils.helper.ItemDescriptionHelper;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription, ISingleBlockRender
+public class BlockRocketCrusher extends BlockTileMP implements IDescription, IItemModelRender
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
@@ -104,7 +104,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileEntityRocketCrusher();
     }
@@ -118,7 +118,7 @@ public class BlockRocketCrusher extends BlockTileMP implements IBlockDescription
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(ItemDescriptionHelper.getDescription(BlockRocketCrusher.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockRocketCrusher.this.getUnlocalizedName() + ".description"));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.module.planets.diona.client.renderer.entity;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
@@ -15,7 +14,9 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrys
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCrystallizedTentacle extends Render<EntityInfectedCrystallizedTentacle>
 {
-    private ModelBase model = new ModelInfectedCrystallizedTentacle();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_crystallized_tentacle.png");
+    private static final ResourceLocation EYES = new ResourceLocation("moreplanets:textures/entity/infected_crystallized_tentacle_eyes.png");
+    private final ModelInfectedCrystallizedTentacle model = new ModelInfectedCrystallizedTentacle();
 
     public RenderInfectedCrystallizedTentacle(RenderManager manager)
     {
@@ -26,7 +27,7 @@ public class RenderInfectedCrystallizedTentacle extends Render<EntityInfectedCry
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedCrystallizedTentacle entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_crystallize_tentacle.png");
+        return RenderInfectedCrystallizedTentacle.TEXTURE;
     }
 
     @Override
@@ -47,7 +48,7 @@ public class RenderInfectedCrystallizedTentacle extends Render<EntityInfectedCry
         GlStateManager.color(sin, sin, sin, sin);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        this.bindTexture(new ResourceLocation("moreplanets:textures/entity/infected_crystallize_tentacle_eyes.png"));
+        this.bindTexture(RenderInfectedCrystallizedTentacle.EYES);
         this.model.render(entity, 0.0F, 0.0F, f3 * 0.2F, 0.0F, 0.0F, 0.0625F);
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

@@ -11,10 +11,10 @@ import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRenderer<TileEntityBlackHoleStorage>
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/black_hole_storage.png");
-    private static ResourceLocation textureGlow1 = new ResourceLocation("moreplanets:textures/model/black_hole_storage_glow1.png");
-    private static ResourceLocation textureGlow2 = new ResourceLocation("moreplanets:textures/model/black_hole_storage_glow2.png");
-    private ModelBlackHoleStorage model = new ModelBlackHoleStorage();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/black_hole_storage.png");
+    private static final ResourceLocation GLOW0 = new ResourceLocation("moreplanets:textures/model/black_hole_storage_glow1.png");
+    private static final ResourceLocation GLOW1 = new ResourceLocation("moreplanets:textures/model/black_hole_storage_glow2.png");
+    private final ModelBlackHoleStorage model = new ModelBlackHoleStorage();
 
     @Override
     public void render(TileEntityBlackHoleStorage tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -40,7 +40,7 @@ public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRendere
         }
         else
         {
-            this.bindTexture(TileEntityBlackHoleStorageRenderer.texture);
+            this.bindTexture(TileEntityBlackHoleStorageRenderer.TEXTURE);
         }
 
         this.model.renderBase();
@@ -50,13 +50,13 @@ public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRendere
 
         GlStateManager.color(lightTime, lightTime, lightTime);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
-        this.bindTexture(TileEntityBlackHoleStorageRenderer.textureGlow2);
+        this.bindTexture(TileEntityBlackHoleStorageRenderer.GLOW1);
         this.model.renderRod();
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        this.bindTexture(TileEntityBlackHoleStorageRenderer.textureGlow1);
+        this.bindTexture(TileEntityBlackHoleStorageRenderer.GLOW0);
         this.model.renderTop();
 
         GlStateManager.enableBlend();

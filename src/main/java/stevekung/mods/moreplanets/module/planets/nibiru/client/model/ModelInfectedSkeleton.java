@@ -7,9 +7,9 @@ import net.minecraft.util.math.MathHelper;
 
 public class ModelInfectedSkeleton extends ModelSkeleton
 {
-    ModelRenderer tail1;
-    ModelRenderer tail2;
-    ModelRenderer tail3;
+    private ModelRenderer tail1;
+    private ModelRenderer tail2;
+    private ModelRenderer tail3;
 
     public ModelInfectedSkeleton()
     {

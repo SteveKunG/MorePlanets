@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/albetius_worm_egg_rock",
+            "glow": "moreplanets:blocks/albetius_worm_egg_rock_glow"
+        },
+        "model": "moreplanets:cube_all_glow"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

@@ -6,36 +6,33 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
-public class ItemAxeMP extends ItemAxe implements ISortableItem
+public class ItemAxeMP extends ItemAxe implements ISortableItem, IItemModelRender
 {
     private Item repairItem;
-    private int repairItemMeta;
-
-    public ItemAxeMP(String name, ToolMaterial material, Item item, EnumToolSpeed speed)
-    {
-        this(name, material, item, -1, speed);
-    }
+    private String name;
 
     public ItemAxeMP(String name, ToolMaterial material, Block block, EnumToolSpeed speed)
     {
-        this(name, material, Item.getItemFromBlock(block), -1, speed);
+        this(name, material, Item.getItemFromBlock(block), speed);
     }
 
-    public ItemAxeMP(String name, ToolMaterial material, Block block, int meta, EnumToolSpeed speed)
-    {
-        this(name, material, Item.getItemFromBlock(block), meta, speed);
-    }
-
-    public ItemAxeMP(String name, ToolMaterial material, Item item, int meta, EnumToolSpeed speed)
+    public ItemAxeMP(String name, ToolMaterial material, Item item, EnumToolSpeed speed)
     {
         super(material, material.getAttackDamage(), speed.getSpeed());
         this.repairItem = item;
-        this.repairItemMeta = meta;
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public Item setUnlocalizedName(String name)
+    {
+        this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override
@@ -47,26 +44,22 @@ public class ItemAxeMP extends ItemAxe implements ISortableItem
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (this.repairItemMeta == -1)
+        if (repair.getItem() == this.repairItem)
         {
-            if (repair.getItem() == this.repairItem)
-            {
-                return true;
-            }
-        }
-        else
-        {
-            if (repair.getItem() == this.repairItem && repair.getItemDamage() == this.repairItemMeta)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.AXE;
+    }
+
+    @Override
+    public String getName()
+    {
+        return this.name;
     }
 }

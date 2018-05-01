@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.gen.structure.StructureComponent;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class DungeonConfigurationMP
 {
@@ -46,11 +46,8 @@ public class DungeonConfigurationMP
     public void writeToNBT(NBTTagCompound tagCompound)
     {
         tagCompound.setString("DungeonBrickBlock", Block.REGISTRY.getNameForObject(this.brickBlock.getBlock()).toString());
-        tagCompound.setInteger("DungeonBrickBlockMeta", this.brickBlock.getBlock().getMetaFromState(this.brickBlock));
         tagCompound.setString("GlowstoneBlock", Block.REGISTRY.getNameForObject(this.glowstoneBlock.getBlock()).toString());
-        tagCompound.setInteger("GlowstoneBlockMeta", this.glowstoneBlock.getBlock().getMetaFromState(this.glowstoneBlock));
         tagCompound.setString("WebBlock", Block.REGISTRY.getNameForObject(this.webBlock.getBlock()).toString());
-        tagCompound.setInteger("WebBlockMeta", this.webBlock.getBlock().getMetaFromState(this.webBlock));
         tagCompound.setString("TorchBlock", Block.REGISTRY.getNameForObject(this.torchBlock.getBlock()).toString());
         tagCompound.setString("AncientChestBlock", Block.REGISTRY.getNameForObject(this.ancientChestBlock.getBlock()).toString());
         tagCompound.setInteger("YPosition", this.yPosition);
@@ -64,13 +61,14 @@ public class DungeonConfigurationMP
         tagCompound.setString("ChestRoom", this.chestRoom.getName());
     }
 
+    @SuppressWarnings("unchecked")
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         try
         {
-            this.brickBlock = Block.getBlockFromName(tagCompound.getString("DungeonBrickBlock")).getStateFromMeta(tagCompound.getInteger("DungeonBrickBlockMeta"));
-            this.glowstoneBlock = Block.getBlockFromName(tagCompound.getString("GlowstoneBlock")).getStateFromMeta(tagCompound.getInteger("GlowstoneBlockMeta"));
-            this.webBlock = Block.getBlockFromName(tagCompound.getString("WebBlock")).getStateFromMeta(tagCompound.getInteger("WebBlockMeta"));
+            this.brickBlock = Block.getBlockFromName(tagCompound.getString("DungeonBrickBlock")).getDefaultState();
+            this.glowstoneBlock = Block.getBlockFromName(tagCompound.getString("GlowstoneBlock")).getDefaultState();
+            this.webBlock = Block.getBlockFromName(tagCompound.getString("WebBlock")).getDefaultState();
             this.torchBlock = Block.getBlockFromName(tagCompound.getString("TorchBlock")).getDefaultState();
             this.ancientChestBlock = Block.getBlockFromName(tagCompound.getString("AncientChestBlock")).getDefaultState();
             this.yPosition = tagCompound.getInteger("YPosition");
@@ -85,7 +83,7 @@ public class DungeonConfigurationMP
         }
         catch (Exception e)
         {
-            MPLog.error("Failed to read dungeon configuration from NBT");
+            LoggerMP.error("Failed to read dungeon configuration from NBT");
             e.printStackTrace();
         }
     }

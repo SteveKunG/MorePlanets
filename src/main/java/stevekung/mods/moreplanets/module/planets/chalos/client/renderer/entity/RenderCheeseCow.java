@@ -11,6 +11,8 @@ import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCow;
 @SideOnly(Side.CLIENT)
 public class RenderCheeseCow extends RenderLiving<EntityCheeseCow>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/cheese_cow.png");
+
     public RenderCheeseCow(RenderManager manager)
     {
         super(manager, new ModelCow(), 0.6F);
@@ -19,6 +21,6 @@ public class RenderCheeseCow extends RenderLiving<EntityCheeseCow>
     @Override
     protected ResourceLocation getEntityTexture(EntityCheeseCow entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/cheese_cow.png");
+        return RenderCheeseCow.TEXTURE;
     }
 }

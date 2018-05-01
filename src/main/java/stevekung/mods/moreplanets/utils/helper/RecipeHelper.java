@@ -7,6 +7,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
 import stevekung.mods.moreplanets.utils.debug.JSONRecipe;
 
+@Deprecated
 public class RecipeHelper
 {
     public static void addRecipe(ItemStack output, Object... obj)

@@ -60,7 +60,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.NuclearW
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.utils.MPLog;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.client.gui.GuiGameOverMP;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.VersionChecker;
@@ -111,6 +111,7 @@ public class ClientEventHandler
         }
     }
 
+    @SuppressWarnings("unchecked")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onClientTick(ClientTickEvent event)
@@ -157,7 +158,7 @@ public class ClientEventHandler
             {
                 if (--this.loadRendererTick == 0)
                 {
-                    MPLog.debug("Reload chunk renderer");
+                    LoggerMP.debug("Reload chunk renderer");
                     this.mc.renderGlobal.loadRenderers();
                     this.loadRendererTick = 30;
                     ClientEventHandler.loadRenderers = false;

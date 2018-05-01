@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public abstract class GuiContainerMP extends GuiContainer
 {
-    protected List<GuiElementInfoRegionMP> infoRegions = new ArrayList<GuiElementInfoRegionMP>();
+    protected List<GuiElementInfoRegionMP> infoRegions = new ArrayList<>();
     protected boolean renderInfo = true;
 
     public GuiContainerMP(Container container)
@@ -43,11 +43,10 @@ public abstract class GuiContainerMP extends GuiContainer
 
     protected void renderInfo(int mouseX, int mouseY)
     {
-        for (int i = 0; i < this.infoRegions.size(); ++i)
+        this.infoRegions.forEach(info ->
         {
-            GuiElementInfoRegionMP info = this.infoRegions.get(i);
             info.drawRegion(mouseX, mouseY);
-        }
+        });
     }
 
     public int getTooltipOffset(int mouseX, int mouseY)

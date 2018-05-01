@@ -20,6 +20,9 @@ import stevekung.mods.moreplanets.utils.client.model.ModelGuardianMP;
 @SideOnly(Side.CLIENT)
 public class RenderInfectedElderGuardian extends RenderLiving<EntityInfectedElderGuardian>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_elder_guardian.png");
+    private static final ResourceLocation BEAM = new ResourceLocation("textures/entity/guardian_beam.png");
+
     public RenderInfectedElderGuardian(RenderManager manager)
     {
         super(manager, new ModelGuardianMP(), 0.5F);
@@ -72,7 +75,7 @@ public class RenderInfectedElderGuardian extends RenderLiving<EntityInfectedElde
             float f = entity.getAttackAnimationScale(partialTicks);
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder worldrenderer = tessellator.getBuffer();
-            this.bindTexture(new ResourceLocation("textures/entity/guardian_beam.png"));
+            this.bindTexture(RenderInfectedElderGuardian.BEAM);
             GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
             GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
             GlStateManager.disableLighting();
@@ -162,6 +165,6 @@ public class RenderInfectedElderGuardian extends RenderLiving<EntityInfectedElde
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedElderGuardian entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_elder_guardian.png");
+        return RenderInfectedElderGuardian.TEXTURE;
     }
 }

@@ -30,14 +30,8 @@ public class ItemArmorDiremsium extends ItemArmorMP
     }
 
     @Override
-    public Item getRepairItems()
+    public Item getRepairItem()
     {
         return ChalosItems.COMPRESSED_DIREMSIUM;
-    }
-
-    @Override
-    public int getRepairItemsMetadata()
-    {
-        return -1;
     }
 }

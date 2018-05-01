@@ -13,6 +13,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedCav
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCaveSpider extends RenderLiving<EntityInfectedCaveSpider>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_cave_spider.png");
+
     public RenderInfectedCaveSpider(RenderManager manager)
     {
         super(manager, new ModelSpider(), 0.7F);
@@ -34,6 +36,6 @@ public class RenderInfectedCaveSpider extends RenderLiving<EntityInfectedCaveSpi
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedCaveSpider entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_cave_spider.png");
+        return RenderInfectedCaveSpider.TEXTURE;
     }
 }

@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.blocks;
 
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +18,7 @@ import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
-public class BlockAlienDefenderBeacon extends BlockBaseMP
+public class BlockAlienDefenderBeacon extends BlockBaseMP implements ITileEntityProvider
 {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
 
@@ -81,7 +82,7 @@ public class BlockAlienDefenderBeacon extends BlockBaseMP
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileEntityAlienDefenderBeacon();
     }

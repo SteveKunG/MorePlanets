@@ -13,7 +13,8 @@ import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 @SideOnly(Side.CLIENT)
 public class RenderLaserBullet extends Render<EntityLaserBullet>
 {
-    private ModelLaser model = new ModelLaser();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/laser.png");
+    private final ModelLaser model = new ModelLaser();
 
     public RenderLaserBullet(RenderManager manager)
     {
@@ -67,6 +68,6 @@ public class RenderLaserBullet extends Render<EntityLaserBullet>
     @Override
     protected ResourceLocation getEntityTexture(EntityLaserBullet entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/laser.png");
+        return RenderLaserBullet.TEXTURE;
     }
 }

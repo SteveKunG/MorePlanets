@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.blocks.BlockBlackHoleStorage;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
-import stevekung.mods.moreplanets.utils.blocks.IBlockDescription;
+import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescription;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
@@ -83,7 +83,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, @Nullable World world, List<String> list, ITooltipFlag flag)
     {
-        if (this.getBlock() instanceof IBlockDescription && this.getBlock() instanceof BlockBlackHoleStorage)
+        if (this.getBlock() instanceof IDescription && this.getBlock() instanceof BlockBlackHoleStorage)
         {
             TileEntity tile = ((BlockBlackHoleStorage) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
 
@@ -93,7 +93,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
 
                 if (ClientUtils.isShiftKeyDown())
                 {
-                    ((IBlockDescription)this.block).getDescription().addDescription(itemStack, list);
+                    ((IDescription)this.block).getDescription().addDescription(itemStack, list);
                 }
                 else if (ClientUtils.isControlKeyDown() && this.hasItemsKey(itemStack))
                 {

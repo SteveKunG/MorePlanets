@@ -5,9 +5,10 @@ import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class ItemRecordMP extends ItemRecord implements ISortableItem, ISingleItemRender
+public class ItemRecordMP extends ItemRecord implements ISortableItem, IItemModelRender
 {
     protected String name;
 
@@ -25,7 +26,7 @@ public class ItemRecordMP extends ItemRecord implements ISortableItem, ISingleIt
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.RECORD;
     }

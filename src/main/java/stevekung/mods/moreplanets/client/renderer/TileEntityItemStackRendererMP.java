@@ -29,7 +29,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
@@ -48,23 +48,23 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
 
         if (block == DionaBlocks.DIONA_ANCIENT_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDionaAncientChest());
+            ClientRegistryUtils.renderTESR(new TileEntityDionaAncientChest());
         }
         else if (block == DionaBlocks.DIONA_TREASURE_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDionaTreasureChest());
+            ClientRegistryUtils.renderTESR(new TileEntityDionaTreasureChest());
         }
         else if (block == ChalosBlocks.CHALOS_ANCIENT_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityChalosAncientChest());
+            ClientRegistryUtils.renderTESR(new TileEntityChalosAncientChest());
         }
         else if (block == ChalosBlocks.CHALOS_TREASURE_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityChalosTreasureChest());
+            ClientRegistryUtils.renderTESR(new TileEntityChalosTreasureChest());
         }
         else if (block == DionaBlocks.ZELIUS_EGG)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityZeliusEgg());
+            ClientRegistryUtils.renderTESR(new TileEntityZeliusEgg());
             GlStateManager.enableBlend();
         }
         else if (block == DionaBlocks.LARGE_INFECTED_CRYSTALLIZED)
@@ -73,7 +73,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == MPBlocks.DARK_ENERGY_RECEIVER)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDarkEnergyReceiver());
+            ClientRegistryUtils.renderTESR(new TileEntityDarkEnergyReceiver());
         }
         else if (itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZED_BOMB)
         {
@@ -81,19 +81,19 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == NibiruBlocks.NIBIRU_ANCIENT_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityNibiruAncientChest());
+            ClientRegistryUtils.renderTESR(new TileEntityNibiruAncientChest());
         }
         else if (block == NibiruBlocks.NIBIRU_TREASURE_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityNibiruTreasureChest());
+            ClientRegistryUtils.renderTESR(new TileEntityNibiruTreasureChest());
         }
         else if (block == ChalosBlocks.CHEESE_SPORE_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityCheeseSporeChest());
+            ClientRegistryUtils.renderTESR(new TileEntityCheeseSporeChest());
         }
         else if (block == NibiruBlocks.INFECTED_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityInfectedChest());
+            ClientRegistryUtils.renderTESR(new TileEntityInfectedChest());
         }
         else if (block == NibiruBlocks.MULTALIC_CRYSTAL)
         {
@@ -101,16 +101,16 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == DionaBlocks.DARK_ENERGY_CORE)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityDarkEnergyCore());
+            ClientRegistryUtils.renderTESR(new TileEntityDarkEnergyCore());
             GlStateManager.enableBlend();
         }
         else if (block == NibiruBlocks.ALIEN_BERRY_CHEST)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityAlienBerryChest());
+            ClientRegistryUtils.renderTESR(new TileEntityAlienBerryChest());
         }
         else if (block == NibiruBlocks.JUICER_EGG)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityJuicerEgg());
+            ClientRegistryUtils.renderTESR(new TileEntityJuicerEgg());
             TileEntityJuicerEggRenderer.renderItem(null, true);
         }
         else if (block == NibiruBlocks.NUCLEAR_WASTE_TANK)
@@ -119,7 +119,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == NibiruBlocks.VEIN_FRAME)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityVeinFrame());
+            ClientRegistryUtils.renderTESR(new TileEntityVeinFrame());
             GlStateManager.enableBlend();
         }
         else if (block == DionaBlocks.DARK_ENERGY_GENERATOR)
@@ -128,12 +128,12 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == MPBlocks.BLACK_HOLE_STORAGE)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityBlackHoleStorage());
+            ClientRegistryUtils.renderTESR(new TileEntityBlackHoleStorage());
             GlStateManager.enableBlend();
         }
         else if (block == MPBlocks.ALIEN_DEFENDER_BEACON)
         {
-            ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityAlienDefenderBeacon());
+            ClientRegistryUtils.renderTESR(new TileEntityAlienDefenderBeacon());
             GlStateManager.enableBlend();
             GlStateManager.enableCull();
         }

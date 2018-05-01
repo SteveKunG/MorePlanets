@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.client.gui.GuiContainerMP;
 import stevekung.mods.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
-import stevekung.mods.moreplanets.utils.client.gui.GuiNumberField;
+import stevekung.mods.stevekunglib.client.gui.GuiNumberField;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBoxCallback
@@ -72,13 +72,13 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         int y = (this.height - this.ySize) / 2;
         this.tempDamage = this.tile.shieldDamage;
         this.tempSize = this.tile.maxShieldSize;
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 77, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 59, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_capacity_upgrade.desc.0"), LangUtils.translate("gui.shield_capacity_upgrade.desc.1")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 41, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_size_upgrade.desc.0"), LangUtils.translate("gui.shield_size_upgrade.desc.1")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 23, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_damage_upgrade.desc.0"), LangUtils.translate("gui.shield_damage_upgrade.desc.1")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 60, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.shield_visible.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 80, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 100, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 77, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 59, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_capacity_upgrade.desc.0"), LangUtils.translate("gui.shield_capacity_upgrade.desc.1")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 41, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_size_upgrade.desc.0"), LangUtils.translate("gui.shield_size_upgrade.desc.1")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 23, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_damage_upgrade.desc.0"), LangUtils.translate("gui.shield_damage_upgrade.desc.1")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 60, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.shield_visible.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 80, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 100, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this));
         this.checkboxRenderShield = new GuiElementCheckbox(100, this, x + 60, y + 70, "");
         this.checkboxEnableShield = new GuiElementCheckbox(101, this, x + 80, y + 70, "");
         this.checkboxEnableDamage = new GuiElementCheckbox(102, this, x + 100, y + 70, "");

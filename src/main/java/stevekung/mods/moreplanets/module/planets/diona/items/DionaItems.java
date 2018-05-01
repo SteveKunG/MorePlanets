@@ -10,7 +10,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemArmorIllenium;
 import stevekung.mods.moreplanets.module.planets.diona.items.armor.ItemBreathableIllenium;
-import stevekung.mods.moreplanets.utils.helper.CommonRegisterHelper;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.items.*;
 import stevekung.mods.moreplanets.utils.items.tools.*;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
@@ -102,34 +102,34 @@ public class DionaItems
         /**********************REGISTER STUFF**************************/
         /**************************************************************/
 
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_INGOT);
-        CommonRegisterHelper.registerItem(DionaItems.SETRORIUM_SHARD);
-        CommonRegisterHelper.registerItem(DionaItems.COMPRESSED_ILLENIUM);
-        CommonRegisterHelper.registerItem(DionaItems.COMPRESSED_SETRORIUM);
-        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_SHARD);
-        CommonRegisterHelper.registerItem(DionaItems.ALIEN_MINER_PART);
-        CommonRegisterHelper.registerItem(DionaItems.GLOWING_IRON_INGOT);
-        CommonRegisterHelper.registerItem(DionaItems.BLACK_HOLE_FRAGMENTS);
-        CommonRegisterHelper.registerItem(DionaItems.ANTI_GRAVITY_FRAGMENTS);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_INGOT);
+        BlocksItemsRegistry.registerItem(DionaItems.SETRORIUM_SHARD);
+        BlocksItemsRegistry.registerItem(DionaItems.COMPRESSED_ILLENIUM);
+        BlocksItemsRegistry.registerItem(DionaItems.COMPRESSED_SETRORIUM);
+        BlocksItemsRegistry.registerItem(DionaItems.INFECTED_CRYSTALLIZED_SHARD);
+        BlocksItemsRegistry.registerItem(DionaItems.ALIEN_MINER_PART);
+        BlocksItemsRegistry.registerItem(DionaItems.GLOWING_IRON_INGOT);
+        BlocksItemsRegistry.registerItem(DionaItems.BLACK_HOLE_FRAGMENTS);
+        BlocksItemsRegistry.registerItem(DionaItems.ANTI_GRAVITY_FRAGMENTS);
 
-        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_BOMB);
-        CommonRegisterHelper.registerItem(DionaItems.DIONA_DUNGEON_KEY);
-        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
-        CommonRegisterHelper.registerItem(DionaItems.INFECTED_CRYSTALLIZED_ARROW);
-        CommonRegisterHelper.registerItem(DionaItems.DARK_ENERGY_PEARL);
-        CommonRegisterHelper.registerItem(DionaItems.ANTI_GRAVITY_ARROW);
+        BlocksItemsRegistry.registerItem(DionaItems.INFECTED_CRYSTALLIZED_BOMB);
+        BlocksItemsRegistry.registerItem(DionaItems.DIONA_DUNGEON_KEY);
+        BlocksItemsRegistry.registerItem(DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
+        BlocksItemsRegistry.registerItem(DionaItems.INFECTED_CRYSTALLIZED_ARROW);
+        BlocksItemsRegistry.registerItem(DionaItems.DARK_ENERGY_PEARL);
+        BlocksItemsRegistry.registerItem(DionaItems.ANTI_GRAVITY_ARROW);
 
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_SWORD);
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_SHOVEL);
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_PICKAXE);
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_AXE);
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_HOE);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_SWORD);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_SHOVEL);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_PICKAXE);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_AXE);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_HOE);
 
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_HELMET);
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_CHESTPLATE);
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_LEGGINGS);
-        CommonRegisterHelper.registerItem(DionaItems.ILLENIUM_BOOTS);
-        CommonRegisterHelper.registerItem(DionaItems.BREATHABLE_ILLENIUM_HELMET);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_HELMET);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_CHESTPLATE);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_LEGGINGS);
+        BlocksItemsRegistry.registerItem(DionaItems.ILLENIUM_BOOTS);
+        BlocksItemsRegistry.registerItem(DionaItems.BREATHABLE_ILLENIUM_HELMET);
 
         /**************************************************************/
         /********************HARVEST LEVEL STUFF***********************/

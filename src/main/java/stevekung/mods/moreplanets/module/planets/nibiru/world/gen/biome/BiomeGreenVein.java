@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldG
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenAlienBerryTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
-import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenFlowersMP;
+import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeGreenVein extends BiomeNibiru
 {
@@ -75,7 +75,7 @@ public class BiomeGreenVein extends BiomeNibiru
             int x = rand.nextInt(16) + 8;
             int z = rand.nextInt(16) + 8;
             BlockPos blockpos2 = world.getHeight(pos.add(x, 0, z));
-            new WorldGenFlowersMP(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.TERRASHROOM)).generate(world, rand, blockpos2);
+            new WorldGenFlowersBase(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.TERRASHROOM)).generate(world, rand, blockpos2);
         }
         super.decorate(world, rand, pos);
     }

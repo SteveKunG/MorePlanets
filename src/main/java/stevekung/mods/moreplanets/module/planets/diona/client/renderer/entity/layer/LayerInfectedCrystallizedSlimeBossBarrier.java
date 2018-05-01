@@ -16,8 +16,9 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrys
 public class LayerInfectedCrystallizedSlimeBossBarrier implements LayerRenderer<EntityInfectedCrystallizedSlimeBoss>
 {
     private RenderInfectedCrystallizedSlimeBoss render;
-    private ModelInfectedCrystallizedSlimeBoss model = new ModelInfectedCrystallizedSlimeBoss();
+    private final ModelInfectedCrystallizedSlimeBoss model = new ModelInfectedCrystallizedSlimeBoss();
     private static final ResourceLocation GLOW = new ResourceLocation("moreplanets:textures/entity/infected_crystallized_slime_boss_glow.png");
+    private static final ResourceLocation POWER = new ResourceLocation("galacticraftcore:textures/model/power.png");
 
     public LayerInfectedCrystallizedSlimeBossBarrier(RenderInfectedCrystallizedSlimeBoss render)
     {
@@ -50,7 +51,7 @@ public class LayerInfectedCrystallizedSlimeBossBarrier implements LayerRenderer<
 
             boolean flag = entity.isInvisible();
             GlStateManager.depthMask(!flag);
-            this.render.bindTexture(new ResourceLocation("galacticraftcore:textures/model/power.png"));
+            this.render.bindTexture(LayerInfectedCrystallizedSlimeBossBarrier.POWER);
             GlStateManager.matrixMode(5890);
             GlStateManager.loadIdentity();
             float f = entity.ticksExisted + partialTicks;

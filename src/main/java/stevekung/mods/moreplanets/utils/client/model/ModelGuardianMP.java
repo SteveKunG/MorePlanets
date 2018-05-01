@@ -10,10 +10,10 @@ import net.minecraft.util.math.Vec3d;
 
 public class ModelGuardianMP extends ModelBase
 {
-    ModelRenderer guardianBody;
-    ModelRenderer guardianEye;
-    ModelRenderer[] guardianSpines;
-    ModelRenderer[] guardianTail;
+    private ModelRenderer guardianBody;
+    private ModelRenderer guardianEye;
+    private ModelRenderer[] guardianSpines;
+    private ModelRenderer[] guardianTail;
 
     public ModelGuardianMP()
     {
@@ -85,15 +85,15 @@ public class ModelGuardianMP extends ModelBase
             }
 
             this.guardianEye.rotationPointZ = -8.25F;
-            Object object = Minecraft.getMinecraft().getRenderViewEntity();
+            Entity entityView = Minecraft.getMinecraft().getRenderViewEntity();
 
             if (entityguardian.hasTargetedEntity())
             {
-                object = entityguardian.getTargetedEntity();
+                entityView = entityguardian.getTargetedEntity();
             }
-            if (object != null)
+            if (entityView != null)
             {
-                Vec3d vec3 = ((Entity)object).getPositionEyes(0.0F);
+                Vec3d vec3 = entityView.getPositionEyes(0.0F);
                 Vec3d vec31 = entity.getPositionEyes(0.0F);
                 double d0 = vec3.y - vec31.y;
 

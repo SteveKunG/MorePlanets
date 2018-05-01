@@ -13,7 +13,7 @@ import net.minecraftforge.client.IRenderHandler;
 
 public class CloudRendererChalos extends IRenderHandler
 {
-    private static ResourceLocation locationCloudsPng = new ResourceLocation("textures/environment/clouds.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/environment/clouds.png");
     private int cloudTickCounter = 0;
 
     @Override
@@ -30,7 +30,7 @@ public class CloudRendererChalos extends IRenderHandler
         BufferBuilder worldrenderer = tessellator.getBuffer();
         float f2 = 12.0F;
         float f3 = 4.0F;
-        mc.renderEngine.bindTexture(locationCloudsPng);
+        mc.renderEngine.bindTexture(CloudRendererChalos.TEXTURE);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         byte b0 = 8;

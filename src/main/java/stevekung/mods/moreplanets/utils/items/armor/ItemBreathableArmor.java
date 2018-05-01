@@ -12,12 +12,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.moreplanets.utils.ModelRegistryUtils;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.utils.items.ISingleItemRender;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 
-public abstract class ItemBreathableArmor extends ItemArmor implements IBreathableArmor, ISortableItem, ISingleItemRender
+public abstract class ItemBreathableArmor extends ItemArmor implements IBreathableArmor, ISortableItem, IItemModelRender
 {
     private String name;
 
@@ -37,7 +37,7 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entity, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped defaultModel)
     {
-        return ClientRegisterHelper.getTranclucentArmorModel(armorSlot, defaultModel);
+        return ModelRegistryUtils.getTranclucentArmorModel(armorSlot, defaultModel);
     }
 
     @Override
@@ -49,21 +49,17 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     @Override
     public boolean canBreathe(ItemStack itemStack, EntityPlayer player, EnumGearType type)
     {
-        if (itemStack.getItem() == this.getBreathableArmor())
-        {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (this.getRepairItems() == null && this.getRepairItemsMetadata() == -1)
+        if (this.getRepairItem() == null)
         {
             return false;
         }
-        if (repair.getItem() == this.getRepairItems() && repair.getItemDamage() == this.getRepairItemsMetadata())
+        if (repair.getItem() == this.getRepairItem())
         {
             return true;
         }
@@ -73,15 +69,11 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     @Override
     public boolean handleGearType(EnumGearType type)
     {
-        if (type == this.getGearType())
-        {
-            return true;
-        }
-        return false;
+        return type == EnumGearType.HELMET;
     }
 
     @Override
-    public EnumSortCategoryItem getItemCategory(int meta)
+    public EnumSortCategoryItem getItemCategory()
     {
         return EnumSortCategoryItem.HELMET_BREATHABLE;
     }
@@ -92,8 +84,5 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
         return this.name;
     }
 
-    protected abstract Item getRepairItems();
-    protected abstract int getRepairItemsMetadata();
-    protected abstract EnumGearType getGearType();
-    protected abstract Item getBreathableArmor();
+    protected abstract Item getRepairItem();
 }

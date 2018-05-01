@@ -10,16 +10,18 @@ import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowin
 
 public class RenderInfectedCrystallizedSlimeMinion extends RenderLiving<EntityInfectedCrystallizedSlimeMinion>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_crystallized_slime_boss.png");
+
     public RenderInfectedCrystallizedSlimeMinion(RenderManager manager)
     {
         super(manager, new ModelInfectedCrystallizedSlimeBoss(), 1.0F);
-        this.addLayer(new LayerGlowingTexture(this, "infected_crystallize_slime_boss_glow", true));
+        this.addLayer(new LayerGlowingTexture(this, "infected_crystallized_slime_boss_glow", true));
     }
 
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedCrystallizedSlimeMinion entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_crystallize_slime_boss.png");
+        return RenderInfectedCrystallizedSlimeMinion.TEXTURE;
     }
 
     @Override

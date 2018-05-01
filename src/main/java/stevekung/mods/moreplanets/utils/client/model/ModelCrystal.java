@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelCrystal extends ModelBase
 {
-    ModelRenderer crystal;
+    private ModelRenderer crystal;
 
     public ModelCrystal()
     {

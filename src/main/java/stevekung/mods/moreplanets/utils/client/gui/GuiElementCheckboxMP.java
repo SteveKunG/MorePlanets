@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiElementCheckboxMP extends GuiElementCheckbox
 {
-    protected static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/gadget.png");
+    private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/gadget.png");
     public Boolean isSelected;
     private ICheckBoxCallback parentGui;
     private int textColor;

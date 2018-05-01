@@ -15,10 +15,10 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.ISingleBlockRender;
 import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, ISingleBlockRender
+public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, IItemModelRender
 {
     public BlockInfectedTorch(String name)
     {

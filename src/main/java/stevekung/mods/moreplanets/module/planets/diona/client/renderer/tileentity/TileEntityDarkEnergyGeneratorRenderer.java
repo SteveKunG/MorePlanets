@@ -13,10 +13,10 @@ import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityDarkEnergyGenerator>
 {
-    private static ResourceLocation texture = new ResourceLocation("moreplanets:textures/model/dark_energy_generator.png");
-    private static ResourceLocation textureGlow1 = new ResourceLocation("moreplanets:textures/model/dark_energy_generator_glow1.png");
-    private static ResourceLocation textureGlow2 = new ResourceLocation("moreplanets:textures/model/dark_energy_generator_glow2.png");
-    private ModelDarkEnergyGenerator model = new ModelDarkEnergyGenerator();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/dark_energy_generator.png");
+    private static final ResourceLocation GLOW0 = new ResourceLocation("moreplanets:textures/model/dark_energy_generator_glow1.png");
+    private static final ResourceLocation GLOW1 = new ResourceLocation("moreplanets:textures/model/dark_energy_generator_glow2.png");
+    private final ModelDarkEnergyGenerator model = new ModelDarkEnergyGenerator();
     public static final TileEntityDarkEnergyGeneratorRenderer INSTANCE = new TileEntityDarkEnergyGeneratorRenderer();
 
     @Override
@@ -44,12 +44,12 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.textureGlow1);
+        this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.GLOW0);
         this.model.renderBaseSide();
 
         GlStateManager.color(lightTime, lightTime, lightTime);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
-        this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.textureGlow2);
+        this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.GLOW1);
         this.model.renderRod();
 
         GlStateManager.enableBlend();
@@ -72,7 +72,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         }
         else
         {
-            this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.texture);
+            this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.TEXTURE);
         }
 
         GlStateManager.rotate(facing, 0.0F, 1.0F, 0.0F);
@@ -117,12 +117,12 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityDarkEnergyGeneratorRenderer.textureGlow1);
+        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityDarkEnergyGeneratorRenderer.GLOW0);
         this.model.renderBaseSide();
 
         GlStateManager.color(sinOfTheTime, sinOfTheTime, sinOfTheTime, 1.0F);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
-        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityDarkEnergyGeneratorRenderer.textureGlow2);
+        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityDarkEnergyGeneratorRenderer.GLOW1);
         this.model.renderRod();
 
         GlStateManager.enableBlend();
@@ -133,7 +133,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
 
-        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityDarkEnergyGeneratorRenderer.texture);
+        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityDarkEnergyGeneratorRenderer.TEXTURE);
         this.model.renderBase();
         ticks = MathHelper.sin(time / 12) / 10.0F + 0.75F;
         ticks = ticks * ticks + ticks;

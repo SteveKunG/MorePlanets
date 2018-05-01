@@ -9,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -38,7 +37,6 @@ import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.module.planets.fronos.blocks.BlockFronosDirt;
 import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
@@ -145,7 +143,7 @@ public class GeneralEventHandler
 
         if (this.isShears(player))
         {
-            if (block == FronosBlocks.CANDY_CANE_1 || block == FronosBlocks.CANDY_CANE_2)
+            if (block == FronosBlocks.RED_CANDY_CANE || block == FronosBlocks.GREEN_CANDY_CANE || block == FronosBlocks.BLUE_CANDY_CANE || block == FronosBlocks.ORANGE_CANDY_CANE || block == FronosBlocks.PINK_CANDY_CANE || block == FronosBlocks.YELLOW_CANDY_CANE || block == FronosBlocks.PURPLE_CANDY_CANE || block == FronosBlocks.RAINBOW_CANDY_CANE)
             {
                 event.setNewSpeed(7.5F);
             }
@@ -156,10 +154,10 @@ public class GeneralEventHandler
     public void onBlockBreak(BreakEvent event)
     {
         IBlockState sourceState = event.getState();
-        Block source = sourceState.getBlock();
+        Block sourceBlock = sourceState.getBlock();
         EntityPlayer player = event.getPlayer();
 
-        if (source == NibiruBlocks.INFECTED_FARMLAND && event.getWorld().getBiomeForCoordsBody(event.getPos()) == MPBiomes.GREEN_VEIN)
+        if (sourceBlock == NibiruBlocks.INFECTED_FARMLAND && event.getWorld().getBiomeForCoordsBody(event.getPos()) == MPBiomes.GREEN_VEIN)
         {
             return;
         }
@@ -168,15 +166,15 @@ public class GeneralEventHandler
         {
             Block block = data.getBlock();
 
-            if (source == block && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
+            if (sourceBlock == block && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
             {
                 player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
             }
         });
 
-        if (source.getRegistryName().toString().startsWith("moreplanets"))
+        if (sourceBlock.getRegistryName().toString().startsWith("moreplanets"))
         {
-            String sourceName = source.getUnlocalizedName().substring(5);
+            String sourceName = sourceBlock.getUnlocalizedName().substring(5);
 
             if (sourceName.contains("infected_crystallized"))
             {
@@ -195,7 +193,7 @@ public class GeneralEventHandler
         }
         if (this.isShears(player))
         {
-            if (source == FronosBlocks.CANDY_CANE_1 || source == FronosBlocks.CANDY_CANE_2)
+            if (sourceBlock == FronosBlocks.RED_CANDY_CANE || sourceBlock == FronosBlocks.GREEN_CANDY_CANE || sourceBlock == FronosBlocks.BLUE_CANDY_CANE || sourceBlock == FronosBlocks.ORANGE_CANDY_CANE || sourceBlock == FronosBlocks.PINK_CANDY_CANE || sourceBlock == FronosBlocks.YELLOW_CANDY_CANE || sourceBlock == FronosBlocks.PURPLE_CANDY_CANE || sourceBlock == FronosBlocks.RAINBOW_CANDY_CANE)
             {
                 player.getActiveItemStack().damageItem(1, player);
             }
@@ -254,10 +252,6 @@ public class GeneralEventHandler
             {
                 this.setFarmland(event, world, pos, state, ChalosBlocks.CHEESE_COARSE_DIRT, ChalosBlocks.CHEESE_DIRT, ChalosBlocks.CHEESE_FARMLAND);
             }
-            //            else if (block == ChalosBlocks.CHEESE_GRASS)
-            //            {
-            //                this.setFarmland(event, world, pos, ChalosBlocks.CHEESE_FARMLAND);
-            //            }
             else if (block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT)
             {
                 this.setFarmland(event, world, pos, state, NibiruBlocks.INFECTED_COARSE_DIRT, NibiruBlocks.INFECTED_DIRT, NibiruBlocks.INFECTED_FARMLAND);
@@ -266,13 +260,9 @@ public class GeneralEventHandler
             {
                 this.setFarmland(event, world, pos, NibiruBlocks.INFECTED_FARMLAND);
             }
-            else if (block == FronosBlocks.FRONOS_GRASS)
+            else if (block == FronosBlocks.FRONOS_GRASS || block == FronosBlocks.FRONOS_DIRT || block == FronosBlocks.FRONOS_COARSE_DIRT)
             {
-                this.setFarmland(event, world, pos, FronosBlocks.FRONOS_FARMLAND);
-            }
-            else if (block == FronosBlocks.FRONOS_DIRT)
-            {
-                this.setFarmland(event, world, pos, state, BlockFronosDirt.VARIANT, BlockFronosDirt.BlockType.FRONOS_COARSE_DIRT, FronosBlocks.FRONOS_DIRT, FronosBlocks.FRONOS_FARMLAND);
+                this.setFarmland(event, world, pos, state, FronosBlocks.FRONOS_COARSE_DIRT, FronosBlocks.FRONOS_DIRT, FronosBlocks.FRONOS_FARMLAND);
             }
         }
     }
@@ -297,28 +287,6 @@ public class GeneralEventHandler
         }
     }
 
-    @Deprecated //TODO Remove 1.13
-    private void setFarmland(UseHoeEvent event, World world, BlockPos pos, IBlockState state, IProperty<?> property, Object value, Block dirt, Block farmland)
-    {
-        if (state.getValue(property) == value)
-        {
-            world.setBlockState(pos, dirt.getDefaultState());
-        }
-        else
-        {
-            world.setBlockState(pos, farmland.getDefaultState());
-        }
-
-        event.setResult(Result.ALLOW);
-        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
-
-        for (EnumHand hand : CachedEnum.handValues)
-        {
-            event.getEntityPlayer().swingArm(hand);
-        }
-    }
-
-    @Deprecated //TODO Remove 1.13
     private void setFarmland(UseHoeEvent event, World world, BlockPos pos, Block farmland)
     {
         world.setBlockState(pos, farmland.getDefaultState());

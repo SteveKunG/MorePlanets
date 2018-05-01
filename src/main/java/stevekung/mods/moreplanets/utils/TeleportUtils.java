@@ -31,7 +31,6 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
-import stevekung.mods.moreplanets.utils.helper.WorldDimensionHelper;
 import stevekung.mods.moreplanets.world.IStartedDimension;
 
 public class TeleportUtils
@@ -190,7 +189,7 @@ public class TeleportUtils
 
                 if (worldServer == null)
                 {
-                    MPLog.error("Cannot Transfer Entity to Dimension: Could not get World for Dimension {}", dimID);
+                    LoggerMP.error("Cannot Transfer Entity to Dimension: Could not get World for Dimension {}", dimID);
                     return null;
                 }
                 return teleportEntity(worldServer, player, x, y, z, dimID, nether);
@@ -293,7 +292,7 @@ public class TeleportUtils
     public static void startNewDimension(EntityPlayerMP player)
     {
         WorldServer worldOld = (WorldServer) player.world;
-        WorldServer worldNew = WorldDimensionHelper.getStartWorld(worldOld);
+        WorldServer worldNew = PlanetSpawnerUtils.getStartWorld(worldOld);
         BlockPos blockpos = worldNew.getTopSolidOrLiquidBlock(worldNew.getSpawnPoint());
         boolean dimChange = player.world != worldNew;
         player.world.updateEntityWithOptionalForce(player, false);
@@ -332,20 +331,20 @@ public class TeleportUtils
 
             if (!(worldNew.provider instanceof IGalacticraftWorldProvider))
             {
-                MPLog.error("{} is not space world!", ConfigManagerMP.moreplanets_general.startedPlanet);
+                LoggerMP.error("{} is not space world!", ConfigManagerMP.moreplanets_general.startedPlanet);
                 throw new RuntimeException(ConfigManagerMP.moreplanets_general.startedPlanet + " is not space world!");
             }
 
             if (worldNew.provider instanceof IStartedDimension)
             {
                 IStartedDimension dimension = (IStartedDimension) worldNew.provider;
-                MPLog.debug("Setting up player gear");
+                LoggerMP.debug("Setting up player gear");
                 dimension.setup(player);
             }
             else
             {
                 GCPlayerStats stats = GCPlayerStats.get(player);
-                MPLog.debug("Setting up player gear for Non-IStartedDimension world");
+                LoggerMP.debug("Setting up player gear for Non-IStartedDimension world");
                 SchematicRegistry.unlockNewPage(player, new ItemStack(GCItems.schematic, 1, 1)); //Knows how to build T2 rocket
                 SchematicRegistry.unlockNewPage(player, new ItemStack(MarsItems.schematic, 1, 0)); //Knows how to build T3 rocket
                 stats.getExtendedInventory().setInventorySlotContents(0, new ItemStack(GCItems.oxMask, 1, 0));

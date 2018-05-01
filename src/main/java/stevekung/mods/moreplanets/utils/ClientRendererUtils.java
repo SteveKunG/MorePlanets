@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -14,13 +15,20 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.utils.client.particle.ParticleDiggingNoColor;
 import stevekung.mods.stevekunglib.utils.RenderUtils;
 
+@SideOnly(Side.CLIENT)
 public class ClientRendererUtils
 {
     public static void renderModel(IBlockState state)
@@ -126,5 +134,69 @@ public class ClientRendererUtils
         GlStateManager.shadeModel(7424);
         RenderUtils.enableLighting();
         GlStateManager.popMatrix();
+    }
+
+    public static void addBlockDestroyEffects(World world, BlockPos pos, IBlockState state, ParticleManager manager)
+    {
+        if (!state.getBlock().isAir(state, world, pos))
+        {
+            state = state.getActualState(world, pos);
+
+            for (int j = 0; j < 4; ++j)
+            {
+                for (int k = 0; k < 4; ++k)
+                {
+                    for (int l = 0; l < 4; ++l)
+                    {
+                        double d0 = (j + 0.5D) / 4.0D;
+                        double d1 = (k + 0.5D) / 4.0D;
+                        double d2 = (l + 0.5D) / 4.0D;
+                        manager.addEffect(new ParticleDiggingNoColor(world, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, d0 - 0.5D, d1 - 0.5D, d2 - 0.5D, state).setBlockPos(pos));
+                    }
+                }
+            }
+        }
+    }
+
+    public static void addBlockHitEffects(World world, BlockPos pos, EnumFacing side, ParticleManager manager)
+    {
+        IBlockState iblockstate = world.getBlockState(pos);
+
+        if (iblockstate.getRenderType() != EnumBlockRenderType.INVISIBLE)
+        {
+            int i = pos.getX();
+            int j = pos.getY();
+            int k = pos.getZ();
+            AxisAlignedBB axisalignedbb = iblockstate.getBoundingBox(world, pos);
+            double d0 = i + world.rand.nextDouble() * (axisalignedbb.maxX - axisalignedbb.minX - 0.20000000298023224D) + 0.10000000149011612D + axisalignedbb.minX;
+            double d1 = j + world.rand.nextDouble() * (axisalignedbb.maxY - axisalignedbb.minY - 0.20000000298023224D) + 0.10000000149011612D + axisalignedbb.minY;
+            double d2 = k + world.rand.nextDouble() * (axisalignedbb.maxZ - axisalignedbb.minZ - 0.20000000298023224D) + 0.10000000149011612D + axisalignedbb.minZ;
+
+            if (side == EnumFacing.DOWN)
+            {
+                d1 = j + axisalignedbb.minY - 0.10000000149011612D;
+            }
+            if (side == EnumFacing.UP)
+            {
+                d1 = j + axisalignedbb.maxY + 0.10000000149011612D;
+            }
+            if (side == EnumFacing.NORTH)
+            {
+                d2 = k + axisalignedbb.minZ - 0.10000000149011612D;
+            }
+            if (side == EnumFacing.SOUTH)
+            {
+                d2 = k + axisalignedbb.maxZ + 0.10000000149011612D;
+            }
+            if (side == EnumFacing.WEST)
+            {
+                d0 = i + axisalignedbb.minX - 0.10000000149011612D;
+            }
+            if (side == EnumFacing.EAST)
+            {
+                d0 = i + axisalignedbb.maxX + 0.10000000149011612D;
+            }
+            manager.addEffect(new ParticleDiggingNoColor(world, d0, d1, d2, 0.0D, 0.0D, 0.0D, iblockstate).setBlockPos(pos).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+        }
     }
 }

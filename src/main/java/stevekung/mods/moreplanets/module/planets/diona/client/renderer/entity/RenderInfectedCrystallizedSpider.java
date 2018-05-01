@@ -13,11 +13,13 @@ import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowin
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCrystallizedSpider extends RenderLiving<EntityInfectedCrystallizedSpider>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_crystallized_spider.png");
+
     public RenderInfectedCrystallizedSpider(RenderManager manager)
     {
         super(manager, new ModelSpider(), 1.0F);
         this.shadowSize *= 0.7F;
-        this.addLayer(new LayerGlowingTexture(this, "infected_crystallize_spider_eyes", true));
+        this.addLayer(new LayerGlowingTexture(this, "infected_crystallized_spider_eyes", true));
     }
 
     @Override
@@ -35,6 +37,6 @@ public class RenderInfectedCrystallizedSpider extends RenderLiving<EntityInfecte
     @Override
     protected ResourceLocation getEntityTexture(EntityInfectedCrystallizedSpider entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/infected_crystallize_spider.png");
+        return RenderInfectedCrystallizedSpider.TEXTURE;
     }
 }

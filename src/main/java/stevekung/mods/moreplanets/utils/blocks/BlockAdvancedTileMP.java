@@ -5,8 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class BlockAdvancedTileMP extends BlockAdvancedTile implements ISortableBlock, ISingleBlockRender
+public abstract class BlockAdvancedTileMP extends BlockAdvancedTile implements ISortableBlock, IItemModelRender
 {
     private String name;
 

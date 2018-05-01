@@ -46,15 +46,15 @@ public class GuiBlackHoleStorage extends GuiContainerMP implements ICheckBoxCall
     public void initGui()
     {
         super.initGui();
-        int width = (this.width - this.xSize) / 2;
-        int height = (this.height - this.ySize) / 2;
-        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 178, (this.height - this.ySize) / 2 + 192, 13, 13, Arrays.asList(LangUtils.translate("gui.disable_black_hole.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 198, (this.height - this.ySize) / 2 + 192, 13, 13, Arrays.asList(LangUtils.translate("gui.use_hopper.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 218, (this.height - this.ySize) / 2 + 192, 13, 13, Arrays.asList(LangUtils.translate("gui.collect_mode.desc")), this.width, this.height, this));
-        this.infoRegions.add(this.xpValueInfo = new GuiElementInfoRegionMP((this.width - this.xSize) / 2 + 238, (this.height - this.ySize) / 2 + 170, 5, 37, null, this.width, this.height, this));
-        this.disableBlackHoleCheckbox = new GuiElementCheckbox(0, this, width + 178, height + 192, "");
-        this.useHopperCheckbox = new GuiElementCheckbox(1, this, width + 198, height + 192, "");
-        this.collectModeCheckbox = new GuiElementCheckboxMP(2, this, width + 218, height + 192, "");
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 178, y + 192, 13, 13, Arrays.asList(LangUtils.translate("gui.disable_black_hole.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 198, y + 192, 13, 13, Arrays.asList(LangUtils.translate("gui.use_hopper.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 218, y + 192, 13, 13, Arrays.asList(LangUtils.translate("gui.collect_mode.desc")), this.width, this));
+        this.infoRegions.add(this.xpValueInfo = new GuiElementInfoRegionMP(x + 238, y + 170, 5, 37, null, this.width, this));
+        this.disableBlackHoleCheckbox = new GuiElementCheckbox(0, this, x + 178, y + 192, "");
+        this.useHopperCheckbox = new GuiElementCheckbox(1, this, x + 198, y + 192, "");
+        this.collectModeCheckbox = new GuiElementCheckboxMP(2, this, x + 218, y + 192, "");
         this.buttonList.add(this.disableBlackHoleCheckbox);
         this.buttonList.add(this.useHopperCheckbox);
         this.buttonList.add(this.collectModeCheckbox);

@@ -6,31 +6,23 @@ import java.util.Map;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.utils.VariantsName;
 import stevekung.mods.moreplanets.utils.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.IBlockVariants;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class BlockJelly extends BlockBreakableMP implements IBlockVariants
+public class BlockJelly extends BlockBreakableMP
 {
-    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
     private static final Map<BlockType, float[]> JELLY_RGB = new EnumMap<>(BlockType.class);
+    private BlockType type;
 
     static
     {
@@ -44,19 +36,19 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
         BlockJelly.JELLY_RGB.put(BlockType.LEMON_JELLY_BLOCK, ColorUtils.rgbToFloatArray(183, 221, 67));
     }
 
-    public BlockJelly(String name)
+    public BlockJelly(String name, BlockType type)
     {
         super(Material.CLOTH);
         this.setSoundType(MPSounds.SMALL_SLIME);
-        this.setDefaultState(this.getDefaultState().withProperty(VARIANT, BlockType.GRAPE_JELLY_BLOCK));
         this.setUnlocalizedName(name);
+        this.type = type;
     }
 
     @Override
     @Nullable
     public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
     {
-        return BlockJelly.JELLY_RGB.get(state.getValue(VARIANT));
+        return BlockJelly.JELLY_RGB.get(this.type);
     }
 
     @Override
@@ -127,45 +119,6 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
-    {
-        for (int i = 0; i < BlockType.valuesCached().length; ++i)
-        {
-            list.add(new ItemStack(this, 1, i));
-        }
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return this.getMetaFromState(state);
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, VARIANT);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta]);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(VARIANT).ordinal();
-    }
-
-    @Override
-    public VariantsName getVariantsName()
-    {
-        return new VariantsName("grape", "raspberry", "strawberry", "berry", "lime", "orange", "green", "lemon");
-    }
-
-    @Override
     protected boolean isTranslucent()
     {
         return true;
@@ -183,7 +136,7 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
         return true;
     }
 
-    public static enum BlockType implements IStringSerializable
+    public static enum BlockType
     {
         GRAPE_JELLY_BLOCK,
         RASPBERRY_JELLY_BLOCK,
@@ -194,21 +147,8 @@ public class BlockJelly extends BlockBreakableMP implements IBlockVariants
         GREEN_JELLY_BLOCK,
         LEMON_JELLY_BLOCK;
 
-        private static BlockType[] values = BlockType.values();
-
-        public static BlockType[] valuesCached()
-        {
-            return BlockType.values;
-        }
-
         @Override
         public String toString()
-        {
-            return this.name().toLowerCase();
-        }
-
-        @Override
-        public String getName()
         {
             return this.name().toLowerCase();
         }

@@ -13,8 +13,8 @@ import stevekung.mods.moreplanets.client.renderer.sky.SkyProviderBaseMP;
 
 public class SkyProviderChalos extends SkyProviderBaseMP
 {
-    private ResourceLocation siriusTexture = new ResourceLocation("moreplanets:textures/gui/celestialbodies/lazendus.png");
-    private ResourceLocation dionaTexture = new ResourceLocation("moreplanets:textures/gui/celestialbodies/diona.png");
+    private static final ResourceLocation SIRIUS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/lazendus.png");
+    private static final ResourceLocation DIONA = new ResourceLocation("moreplanets:textures/gui/celestialbodies/diona.png");
 
     public SkyProviderChalos(IGalacticraftWorldProvider provider)
     {
@@ -106,7 +106,7 @@ public class SkyProviderChalos extends SkyProviderBaseMP
         GlStateManager.enableTexture2D();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         scale = this.sunSize + 6.5F;
-        mc.getTextureManager().bindTexture(this.siriusTexture);
+        mc.getTextureManager().bindTexture(SkyProviderChalos.SIRIUS);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
         worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
@@ -120,7 +120,7 @@ public class SkyProviderChalos extends SkyProviderBaseMP
         GlStateManager.rotate(0.0F, 0.0F, 0.0F, 1.0F);
         GlStateManager.rotate(220F, 1.0F, -0.3F, 0.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1F);
-        mc.getTextureManager().bindTexture(this.dionaTexture);
+        mc.getTextureManager().bindTexture(SkyProviderChalos.DIONA);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
         worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();

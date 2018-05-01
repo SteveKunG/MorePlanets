@@ -4,14 +4,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityVeinFrame;
-import stevekung.mods.moreplanets.utils.helper.ClientRegisterHelper;
+import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 
 public class RenderVeinFrame extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        ClientRegisterHelper.registerTileEntityItemStackRendering(new TileEntityVeinFrame());
+        ClientRegistryUtils.renderTESR(new TileEntityVeinFrame());
         GlStateManager.enableBlend();
     }
 }

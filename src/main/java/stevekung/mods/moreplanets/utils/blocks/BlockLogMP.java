@@ -50,19 +50,18 @@ public class BlockLogMP extends BlockBaseMP
     {
         IBlockState state = this.getDefaultState();
 
-        switch (meta & 12)
+        switch (meta)
         {
         case 0:
-            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y);
-            break;
-        case 4:
             state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.X);
             break;
-        case 8:
+        default:
+        case 1:
+            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Y);
+            break;
+        case 2:
             state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.Z);
             break;
-        default:
-            state = state.withProperty(BlockStateProperty.AXIS, BlockStateProperty.EnumAxis.NONE);
         }
         return state;
     }
@@ -70,20 +69,18 @@ public class BlockLogMP extends BlockBaseMP
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        int i = 0;
-
-        switch (BlockStateProperty.SwitchEnumAxis.AXIS_LOOKUP[state.getValue(BlockStateProperty.AXIS).ordinal()])
+        if (state.getValue(BlockStateProperty.AXIS) == BlockStateProperty.EnumAxis.Y)
         {
-        case 1:
-            i |= 4;
-            break;
-        case 2:
-            i |= 8;
-            break;
-        case 3:
-            i |= 12;
+            return 1;
         }
-        return i;
+        else if (state.getValue(BlockStateProperty.AXIS) == BlockStateProperty.EnumAxis.Z)
+        {
+            return 2;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     @Override
@@ -101,21 +98,24 @@ public class BlockLogMP extends BlockBaseMP
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
-        byte b0 = 4;
-        int i = b0 + 1;
-
-        if (world.isAreaLoaded(pos.add(-i, -i, -i), pos.add(i, i, i)))
+        if (state.getMaterial() == Material.WOOD)
         {
-            Iterator iterator = BlockPos.getAllInBox(pos.add(-b0, -b0, -b0), pos.add(b0, b0, b0)).iterator();
+            byte b0 = 4;
+            int i = b0 + 1;
 
-            while (iterator.hasNext())
+            if (world.isAreaLoaded(pos.add(-i, -i, -i), pos.add(i, i, i)))
             {
-                BlockPos blockpos1 = (BlockPos)iterator.next();
-                IBlockState iblockstate1 = world.getBlockState(blockpos1);
+                Iterator iterator = BlockPos.getAllInBox(pos.add(-b0, -b0, -b0), pos.add(b0, b0, b0)).iterator();
 
-                if (iblockstate1.getBlock().isLeaves(iblockstate1, world, blockpos1))
+                while (iterator.hasNext())
                 {
-                    iblockstate1.getBlock().beginLeavesDecay(iblockstate1, world, blockpos1);
+                    BlockPos blockpos1 = (BlockPos)iterator.next();
+                    IBlockState iblockstate1 = world.getBlockState(blockpos1);
+
+                    if (iblockstate1.getBlock().isLeaves(iblockstate1, world, blockpos1))
+                    {
+                        iblockstate1.getBlock().beginLeavesDecay(iblockstate1, world, blockpos1);
+                    }
                 }
             }
         }

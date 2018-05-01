@@ -1,9 +1,7 @@
 package stevekung.mods.moreplanets.utils.debug;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
@@ -57,15 +55,12 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
     {
         super.initGui();
         Keyboard.enableRepeatEvents(true);
-        int width = (this.width - this.xSize) / 2;
-        int height = (this.height - this.ySize) / 2;
-        List<String> batterySlotDesc = new ArrayList<>();
-        batterySlotDesc.add(LangUtils.translate("gui.battery_slot.desc.0"));
-        batterySlotDesc.add(LangUtils.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 151, height + 77, 18, 18, batterySlotDesc, this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 60, height + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.shield_visible.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 80, height + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield.desc")), this.width, this.height, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(width + 100, height + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this.height, this));
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 77, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 60, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.shield_visible.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 80, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 100, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this));
         this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.back.name")));
         this.buttonList.add(this.buttonAdd = new GuiButton(1, this.width / 2 - 160, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.add.name")));
         this.buttonAdd.enabled = false;
@@ -111,9 +106,9 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(GuiShieldGeneratorEntityFilter.TEXTURE);
-        int width = (this.width - this.xSize) / 2;
-        int height = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(width, height + 5, 0, 0, this.xSize, this.ySize);
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(x, y + 5, 0, 0, this.xSize, this.ySize);
     }
 
     @Override

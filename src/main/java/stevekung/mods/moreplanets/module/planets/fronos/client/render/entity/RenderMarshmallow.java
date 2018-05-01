@@ -12,6 +12,11 @@ import stevekung.mods.moreplanets.module.planets.fronos.entity.EntityMarshmallow
 @SideOnly(Side.CLIENT)
 public class RenderMarshmallow extends RenderLiving<EntityMarshmallow>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/marshmallow/marshmallow.png");
+    private static final ResourceLocation CLOSE_EYE = new ResourceLocation("moreplanets:textures/entity/marshmallow/marshmallow_close_eye.png");
+    private static final ResourceLocation HUNGRY = new ResourceLocation("moreplanets:textures/entity/marshmallow/marshmallow_hungry.png");
+    private static final ResourceLocation PANIC = new ResourceLocation("moreplanets:textures/entity/marshmallow/marshmallow_panic.png");
+
     public RenderMarshmallow(RenderManager manager)
     {
         super(manager, new ModelMarshmallow(), 0.35F);
@@ -22,17 +27,17 @@ public class RenderMarshmallow extends RenderLiving<EntityMarshmallow>
     {
         if (entity.isCloseEye())
         {
-            return new ResourceLocation("moreplanets:textures/entity/marshmallow/marshmallow_close_eye.png");
+            return RenderMarshmallow.CLOSE_EYE;
         }
         if (entity.isHungry())
         {
-            return new ResourceLocation("moreplanets:textures/entity/marshmallow/marshmallow_hungry.png");
+            return RenderMarshmallow.HUNGRY;
         }
         if (entity.isPanic())
         {
-            return new ResourceLocation("moreplanets:textures/entity/marshmallow/marshmallow_panic.png");
+            return RenderMarshmallow.PANIC;
         }
-        return new ResourceLocation("moreplanets:textures/entity/marshmallow/marshmallow.png");
+        return RenderMarshmallow.TEXTURE;
     }
 
     @Override

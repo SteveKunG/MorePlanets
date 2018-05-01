@@ -12,6 +12,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityVeinFloater
 @SideOnly(Side.CLIENT)
 public class RenderVeinFloaterMinion extends RenderLiving<EntityVeinFloaterMinion>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/vein_floater.png");
+
     public RenderVeinFloaterMinion(RenderManager manager)
     {
         super(manager, new ModelVeinFloater(), 0.5F);
@@ -27,6 +29,6 @@ public class RenderVeinFloaterMinion extends RenderLiving<EntityVeinFloaterMinio
     @Override
     protected ResourceLocation getEntityTexture(EntityVeinFloaterMinion entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/vein_floater.png");
+        return RenderVeinFloaterMinion.TEXTURE;
     }
 }
