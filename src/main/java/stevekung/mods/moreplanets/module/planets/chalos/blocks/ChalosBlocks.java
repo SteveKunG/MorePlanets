@@ -54,7 +54,7 @@ public class ChalosBlocks
     public static Block CHEESE_SPORE_STAIRS;
     public static Block CHEESE_SPORE_FENCE;
     public static Block CHEESE_SPORE_FENCE_GATE;
-    public static BlockDoorMP CHEESE_SPORE_DOOR_BLOCK;
+    public static BlockDoorMP CHEESE_SPORE_DOOR;
 
     public static Fluid CHEESE_MILK_FLUID;
     public static Fluid GASEOUS_CHEESE_MILK;
@@ -101,7 +101,7 @@ public class ChalosBlocks
         ChalosBlocks.CHEESE_SPORE_STAIRS = new BlockStairsMP("cheese_spore_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
         ChalosBlocks.CHEESE_SPORE_FENCE = new BlockFenceMP("cheese_spore_fence");
         ChalosBlocks.CHEESE_SPORE_FENCE_GATE = new BlockFenceGateMP("cheese_spore_fence_gate");
-        ChalosBlocks.CHEESE_SPORE_DOOR_BLOCK = new BlockDoorMP("cheese_spore_door_block");
+        ChalosBlocks.CHEESE_SPORE_DOOR = new BlockDoorMP("cheese_spore_door");
 
         ChalosBlocks.CHEESE_MILK_FLUID = new FluidMP("cheese_milk_fluid").setBlock(ChalosBlocks.CHEESE_MILK_FLUID_BLOCK).setViscosity(1000);
         ChalosBlocks.GASEOUS_CHEESE_MILK = new FluidGaseousCheeseMilk("gaseous_cheese_milk", "moreplanets:blocks/gaseous_cheese_milk", "moreplanets:blocks/gaseous_cheese_milk").setBlock(ChalosBlocks.GASEOUS_CHEESE_MILK_BLOCK);
@@ -151,7 +151,7 @@ public class ChalosBlocks
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_STAIRS);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_FENCE);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_FENCE_GATE);
-        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_DOOR_BLOCK, null);
+        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_DOOR, null);
 
         /**************************************************************/
         /**********************HARVEST LEVEL STUFF*********************/
@@ -185,7 +185,7 @@ public class ChalosBlocks
         BlockUtils.setBlockHarvestLevel(ChalosBlocks.CHEESE_SPORE_STAIRS, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(ChalosBlocks.CHEESE_SPORE_FENCE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(ChalosBlocks.CHEESE_SPORE_FENCE_GATE, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(ChalosBlocks.CHEESE_SPORE_DOOR_BLOCK, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(ChalosBlocks.CHEESE_SPORE_DOOR, EnumHarvestLevel.AXE, 0);
 
         /**************************************************************/
         /************************FIRE BURN STUFF***********************/

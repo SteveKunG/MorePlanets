@@ -1,7 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/infected_prismarine"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "variant=infected_prismarine": { "model": "moreplanets:infected_prismarine" },
-        "variant=infected_prismarine_bricks": { "model": "moreplanets:infected_prismarine_bricks" },
-        "variant=infected_dark_prismarine": { "model": "moreplanets:infected_dark_prismarine" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

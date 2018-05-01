@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/diona_aluminum_ore"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:diona_aluminum_ore" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

@@ -27,7 +27,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_MILK_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(ChalosBlocks.GASEOUS_CHEESE_MILK_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_SPORE_FENCE_GATE, EnumStateMapper.FENCE_GATE);
-        ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_SPORE_DOOR_BLOCK, EnumStateMapper.DOOR);
+        ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_SPORE_DOOR, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_OAK_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_JUNGLE_LEAVES, EnumStateMapper.LEAVES);
@@ -44,14 +44,13 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.NUCLEAR_WASTE_TANK, BlockNuclearWasteTank.STATE);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.VEIN_FRAME, BlockVeinFrame.EYE, BlockVeinFrame.FACING);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.PURIFIED_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.MULTALIC_CRYSTAL, BlockStateProperty.FACING_ALL);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_REDSTONE_ORE, BlockDropableLitOre.LIT);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_OAK_SAPLING, BlockSaplingMP.STAGE);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_JUNGLE_SAPLING, BlockSaplingMP.STAGE);
         ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_SPORE_FLOWER, BlockSaplingMP.STAGE);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_SAPLING, BlockSaplingMP.STAGE);
-        
         ClientRegistryUtils.registerStateMapper(FronosBlocks.FRONOS_REDSTONE_ORE, BlockDropableLitOre.LIT);
 
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_MELON_STEM, new StateMapperType("stem"));

@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/nuclear_waste_tank"
+        },
+        "model": "moreplanets:dummy"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:nuclear_waste_tank" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

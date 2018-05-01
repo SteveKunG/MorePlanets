@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=bottom": { "model": "moreplanets:infected_oak_wood_slab_bottom" },
-        "half=top": { "model": "moreplanets:infected_oak_wood_slab_top" }
-    }
-}

@@ -219,7 +219,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
         Block blockUp = world.getBlockState(pos.up()).getBlock();
-        
+
         if (this.type == BlockType.TERRASHROOM)
         {
             return super.canBlockStay(world, pos, state) || world.getLight(pos) < 13 && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.DOWN);
@@ -252,7 +252,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         }
         else if (this.type == BlockType.TERRASHROOM)
         {
-            return block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.TERRASTONE || block == NibiruBlocks.PURIFY_GRAVEL;
+            return block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.TERRASTONE || block == NibiruBlocks.PURIFIED_GRAVEL;
         }
         return false;
     }

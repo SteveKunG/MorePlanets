@@ -79,7 +79,7 @@ public class ChalosItems
         ChalosItems.CHALOS_DUNGEON_KEY = new ItemDungeonKeyMP("chalos_dungeon_key", 5);
         ChalosItems.CHEESE_SPORE = new ItemCheeseSpore("cheese_spore_item");
         ChalosItems.CHEESE_SPORE_SEED = new ItemCheeseSporeSeed("cheese_spore_seed");
-        ChalosItems.CHEESE_SPORE_DOOR = new ItemDoorMP("cheese_spore_door", ChalosBlocks.CHEESE_SPORE_DOOR_BLOCK);
+        ChalosItems.CHEESE_SPORE_DOOR = new ItemDoorMP("cheese_spore_door", ChalosBlocks.CHEESE_SPORE_DOOR);
 
         /**************************************************************/
         /**********************INITIAL TOOL STUFF**********************/
@@ -162,6 +162,6 @@ public class ChalosItems
         /************************OTHER STUFF***************************/
         /**************************************************************/
 
-        ChalosBlocks.CHEESE_SPORE_DOOR_BLOCK.setDoorItem(ChalosItems.CHEESE_SPORE_DOOR);
+        ChalosBlocks.CHEESE_SPORE_DOOR.setDoorItem(ChalosItems.CHEESE_SPORE_DOOR);
     }
 }

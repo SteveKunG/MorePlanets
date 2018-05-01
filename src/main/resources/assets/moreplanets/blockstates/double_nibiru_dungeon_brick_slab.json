@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/nibiru_dungeon_brick"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:nibiru_dungeon_brick" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

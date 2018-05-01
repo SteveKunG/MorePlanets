@@ -61,7 +61,7 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("cobblestone", NibiruBlocks.NIBIRU_VEIN_COBBLESTONE);
         BlockUtils.registerOreDictionary("sand", NibiruBlocks.INFECTED_SAND);
         BlockUtils.registerOreDictionary("gravel", NibiruBlocks.INFECTED_GRAVEL);
-        BlockUtils.registerOreDictionary("gravel", NibiruBlocks.PURIFY_GRAVEL);
+        BlockUtils.registerOreDictionary("gravel", NibiruBlocks.PURIFIED_GRAVEL);
         BlockUtils.registerOreDictionary("blockPrismarine", NibiruBlocks.INFECTED_PRISMARINE);
         BlockUtils.registerOreDictionary("blockPrismarineBrick", NibiruBlocks.INFECTED_PRISMARINE_BRICKS);
         BlockUtils.registerOreDictionary("blockPrismarineDark", NibiruBlocks.INFECTED_DARK_PRISMARINE);

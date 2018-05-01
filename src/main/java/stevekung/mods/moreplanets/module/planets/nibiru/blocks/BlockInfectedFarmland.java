@@ -60,7 +60,7 @@ public class BlockInfectedFarmland extends BlockFarmlandMP
             }
             mutableblockpos = (MutableBlockPos)iterator.next();
         }
-        while (world.getBlockState(mutableblockpos).getBlock() != NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && world.getBlockState(mutableblockpos).getBlock() != NibiruBlocks.PURIFY_WATER_FLUID_BLOCK);
+        while (world.getBlockState(mutableblockpos).getBlock() != NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && world.getBlockState(mutableblockpos).getBlock() != NibiruBlocks.PURIFIED_WATER_FLUID_BLOCK);
         return true;
     }
 

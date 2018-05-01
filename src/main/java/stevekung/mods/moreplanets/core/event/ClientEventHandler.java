@@ -445,7 +445,7 @@ public class ClientEventHandler
             event.setGreen(0.7F);
             event.setBlue(0.05F);
         }
-        if (block == NibiruBlocks.PURIFY_WATER_FLUID_BLOCK)
+        if (block == NibiruBlocks.PURIFIED_WATER_FLUID_BLOCK)
         {
             event.setRed(0.4F);
             event.setGreen(0.625F);

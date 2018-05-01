@@ -1,8 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/infected_stone_bricks"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "variant=infected_stone_bricks_slab": { "model": "moreplanets:infected_stone_bricks" },
-        "variant=infected_vein_stone_bricks_slab": { "model": "moreplanets:infected_vein_stone_bricks" },
-        "variant=infected_cracked_stone_bricks_slab": { "model": "moreplanets:infected_cracked_stone_bricks" },
-        "variant=terrastone_slab": { "model": "moreplanets:terrastone" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

@@ -1,6 +1,19 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "bottom": "moreplanets:blocks/chalos_cobblestone",
+            "top": "moreplanets:blocks/chalos_cobblestone",
+            "side": "moreplanets:blocks/chalos_cobblestone"
+        },
+        "model": "half_slab"
+    },
     "variants": {
-        "half=bottom": { "model": "moreplanets:chalos_cobblestone_slab_bottom" },
-        "half=top": { "model": "moreplanets:chalos_cobblestone_slab_top" }
+        "normal": [{}],
+        "inventory": [{}],
+        "half" : {
+           "bottom": { "model": "half_slab" },
+           "top": { "model": "upper_slab" }
+        }
     }
 }

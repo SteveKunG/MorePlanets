@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.init;
 
-import net.minecraft.block.Block;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
@@ -64,7 +63,7 @@ public class MPOthers
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.VEALIUM_VINES);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.TERRASHROOM);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_VINES_DIRT);
-        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.PURIFY_GRAVEL);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.PURIFIED_GRAVEL);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_GRASS_PATH);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.GREEN_VEIN_GRASS_PATH);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.FRONOS_GRASS);

@@ -1,8 +1,19 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/diona_treasure_chest"
+        },
+        "model": "moreplanets:dummy"
+    },
     "variants": {
-        "facing=north": { "model": "moreplanets:diona_treasure_chest" },
-        "facing=east":  { "model": "moreplanets:diona_treasure_chest" },
-        "facing=west":  { "model": "moreplanets:diona_treasure_chest" },
-        "facing=south": { "model": "moreplanets:diona_treasure_chest" }
+        "facing" : {
+           "north": { },
+           "east": { },
+           "south": { },
+           "west": { }
+        },
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

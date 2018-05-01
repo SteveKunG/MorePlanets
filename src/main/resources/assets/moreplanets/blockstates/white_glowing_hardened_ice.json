@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/white_glowing_hardened_ice"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:white_glowing_hardened_ice" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

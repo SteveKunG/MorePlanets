@@ -26,7 +26,7 @@ public class BlockFluidPurifyWater extends BlockFluidBaseMP implements IFishable
 {
     public BlockFluidPurifyWater(String name)
     {
-        super(NibiruBlocks.PURIFY_WATER_FLUID);
+        super(NibiruBlocks.PURIFIED_WATER_FLUID);
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
         this.setUnlocalizedName(name);

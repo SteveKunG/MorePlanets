@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=bottom": { "model": "moreplanets:cheese_spore_wood_slab_bottom" },
-        "half=top": { "model": "moreplanets:cheese_spore_wood_slab_top" }
-    }
-}

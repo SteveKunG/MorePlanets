@@ -1,10 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/sporelily"
+        },
+        "model": "moreplanets:lilyplant"
+    },
     "variants": {
-        "normal": [
-            { "model": "moreplanets:sporelily" },
-            { "model": "moreplanets:sporelily", "y": 90 },
-            { "model": "moreplanets:sporelily", "y": 180 },
-            { "model": "moreplanets:sporelily", "y": 270 }
-        ]
+        "normal": [{ "y": 90 }, { "y": 180 }, { "y": 270 }],
+        "inventory": [{}]
     }
 }

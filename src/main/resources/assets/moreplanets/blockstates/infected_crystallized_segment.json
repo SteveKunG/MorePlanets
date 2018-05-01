@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "moreplanets:infected_crystallized_block" }
+        "normal": { "model": "moreplanets:infected_crystallized_segment" }
     }
 }

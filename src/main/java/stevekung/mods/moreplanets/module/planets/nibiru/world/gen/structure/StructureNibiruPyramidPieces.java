@@ -175,10 +175,10 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
                 }
             }
 
-            IBlockState iblockstate1 = NibiruBlocks.NIBIRU_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
-            IBlockState iblockstate2 = NibiruBlocks.NIBIRU_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
-            IBlockState iblockstate3 = NibiruBlocks.NIBIRU_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST);
-            IBlockState iblockstate = NibiruBlocks.NIBIRU_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST);
+            IBlockState iblockstate1 = NibiruBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
+            IBlockState iblockstate2 = NibiruBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
+            IBlockState iblockstate3 = NibiruBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST);
+            IBlockState iblockstate = NibiruBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST);
             int l = ~EnumDyeColor.ORANGE.getDyeDamage() & 15;
             int i1 = ~EnumDyeColor.RED.getDyeDamage() & 15;
             this.fillWithBlocks(world, box, 0, 0, 0, 4, 9, 4, NibiruBlocks.INFECTED_SANDSTONE.getDefaultState(), Blocks.AIR.getDefaultState(), false);
@@ -234,8 +234,8 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
             this.fillWithBlocks(world, box, this.scatteredFeatureSizeX - 3, 1, 3, this.scatteredFeatureSizeX - 2, 2, 3, NibiruBlocks.INFECTED_SANDSTONE.getDefaultState(), NibiruBlocks.INFECTED_SANDSTONE.getDefaultState(), false);
             this.setBlockState(world, NibiruBlocks.INFECTED_SANDSTONE.getDefaultState(), 1, 1, 2, box);
             this.setBlockState(world, NibiruBlocks.INFECTED_SANDSTONE.getDefaultState(), this.scatteredFeatureSizeX - 2, 1, 2, box);
-            this.setBlockState(world, NibiruBlocks.HALF_NIBIRU_SANDSTONE_SLAB.getDefaultState(), 1, 2, 2, box);
-            this.setBlockState(world, NibiruBlocks.HALF_NIBIRU_SANDSTONE_SLAB.getDefaultState(), this.scatteredFeatureSizeX - 2, 2, 2, box);
+            this.setBlockState(world, NibiruBlocks.INFECTED_SANDSTONE_SLAB.getDefaultState(), 1, 2, 2, box);
+            this.setBlockState(world, NibiruBlocks.INFECTED_SANDSTONE_SLAB.getDefaultState(), this.scatteredFeatureSizeX - 2, 2, 2, box);
             this.setBlockState(world, iblockstate, 2, 1, 2, box);
             this.setBlockState(world, iblockstate3, this.scatteredFeatureSizeX - 3, 1, 2, box);
             this.fillWithBlocks(world, box, 4, 3, 5, 4, 3, 18, NibiruBlocks.INFECTED_SANDSTONE.getDefaultState(), NibiruBlocks.INFECTED_SANDSTONE.getDefaultState(), false);

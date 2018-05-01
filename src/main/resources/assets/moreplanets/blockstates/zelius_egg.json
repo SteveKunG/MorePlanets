@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/zelius_egg"
+        },
+        "model": "moreplanets:dummy"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:zelius_egg" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

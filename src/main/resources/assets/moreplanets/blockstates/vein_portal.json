@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/vein_portal"
+        },
+        "model": "moreplanets:dummy"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:vein_portal" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

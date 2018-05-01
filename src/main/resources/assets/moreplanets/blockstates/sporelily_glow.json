@@ -1,10 +1,14 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/sporelily",
+            "glow": "moreplanets:blocks/sporelily_glow"
+        },
+        "model": "moreplanets:lilyplant_glow"
+    },
     "variants": {
-        "normal": [
-            { "model": "moreplanets:sporelily_glow" },
-            { "model": "moreplanets:sporelily_glow", "y": 90 },
-            { "model": "moreplanets:sporelily_glow", "y": 180 },
-            { "model": "moreplanets:sporelily_glow", "y": 270 }
-        ]
+        "normal": [{ "y": 90 }, { "y": 180 }, { "y": 270 }],
+        "inventory": [{}]
     }
 }

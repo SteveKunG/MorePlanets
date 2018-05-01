@@ -1,8 +1,19 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/nibiru_ancient_chest"
+        },
+        "model": "moreplanets:dummy"
+    },
     "variants": {
-        "facing=north": { "model": "moreplanets:nibiru_ancient_chest" },
-        "facing=east":  { "model": "moreplanets:nibiru_ancient_chest" },
-        "facing=west":  { "model": "moreplanets:nibiru_ancient_chest" },
-        "facing=south": { "model": "moreplanets:nibiru_ancient_chest" }
+        "facing" : {
+           "north": { },
+           "east": { },
+           "south": { },
+           "west": { }
+        },
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/goldenite_crystals_block"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:goldenite_crystals_block" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

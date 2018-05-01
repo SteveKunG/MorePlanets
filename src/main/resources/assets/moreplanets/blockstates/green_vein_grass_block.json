@@ -1,10 +1,15 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "bottom": "moreplanets:blocks/infected_dirt",
+            "top": "moreplanets:blocks/green_vein_grass_top",
+            "side": "moreplanets:blocks/green_vein_grass_side"
+        },
+        "model": "cube_bottom_top"
+    },
     "variants": {
-        "normal": [
-            { "model": "moreplanets:green_vein_grass_block" },
-            { "model": "moreplanets:green_vein_grass_block", "y": 90 },
-            { "model": "moreplanets:green_vein_grass_block", "y": 180 },
-            { "model": "moreplanets:green_vein_grass_block", "y": 270 }
-        ]
+        "normal": [{ "y": 90 }, { "y": 180 }, { "y": 270 }],
+        "inventory": [{}]
     }
 }

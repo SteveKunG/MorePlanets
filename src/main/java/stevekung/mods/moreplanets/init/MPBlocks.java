@@ -107,9 +107,9 @@ public class MPBlocks
     public static BlockAllHalfSlab CHALOS_DUNGEON_BRICK_SLAB;
     public static BlockAllHalfSlab NIBIRU_DUNGEON_BRICK_SLAB;
 
-    public static BlockAllHalfSlab CHEESE_SPORE_WOOD_SLAB;
-    public static BlockAllHalfSlab INFECTED_OAK_WOOD_SLAB;
-    public static BlockAllHalfSlab ALIEN_BERRY_OAK_WOOD_SLAB;
+    public static BlockAllHalfSlab CHEESE_SPORE_SLAB;
+    public static BlockAllHalfSlab INFECTED_OAK_SLAB;
+    public static BlockAllHalfSlab ALIEN_BERRY_OAK_SLAB;
 
     @Deprecated public static BlockAllHalfSlab DOUBLE_DIONA_COBBLESTONE_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_CHALOS_COBBLESTONE_SLAB;
@@ -118,9 +118,9 @@ public class MPBlocks
     @Deprecated public static BlockAllHalfSlab DOUBLE_CHALOS_DUNGEON_BRICK_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB;
 
-    @Deprecated public static BlockAllHalfSlab DOUBLE_CHEESE_SPORE_WOOD_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_OAK_WOOD_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_CHEESE_SPORE_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_OAK_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_ALIEN_BERRY_OAK_SLAB;
 
     // Wall
     public static Block DIONA_COBBLESTONE_WALL;
@@ -211,9 +211,9 @@ public class MPBlocks
         MPBlocks.CHALOS_DUNGEON_BRICK_SLAB = new BlockAllHalfSlab("chalos_dungeon_brick_slab", BlockAllHalfSlab.BlockType.CHALOS_DUNGEON_BRICK_SLAB);
         MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB = new BlockAllHalfSlab("nibiru_dungeon_brick_slab", BlockAllHalfSlab.BlockType.NIBIRU_DUNGEON_BRICK_SLAB);
 
-        MPBlocks.CHEESE_SPORE_WOOD_SLAB = new BlockAllHalfSlab("cheese_spore_wood_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_WOOD_SLAB, Material.WOOD);
-        MPBlocks.INFECTED_OAK_WOOD_SLAB = new BlockAllHalfSlab("infected_oak_wood_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_WOOD_SLAB, Material.WOOD);
-        MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB = new BlockAllHalfSlab("alien_berry_oak_wood_slab", BlockAllHalfSlab.BlockType.ALIEN_BERRY_OAK_WOOD_SLAB, Material.WOOD);
+        MPBlocks.CHEESE_SPORE_SLAB = new BlockAllHalfSlab("cheese_spore_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_SLAB, Material.WOOD);
+        MPBlocks.INFECTED_OAK_SLAB = new BlockAllHalfSlab("infected_oak_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_SLAB, Material.WOOD);
+        MPBlocks.ALIEN_BERRY_OAK_SLAB = new BlockAllHalfSlab("alien_berry_oak_slab", BlockAllHalfSlab.BlockType.ALIEN_BERRY_OAK_SLAB, Material.WOOD);
 
         MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB = new BlockAllDoubleSlab("double_diona_cobblestone_slab", BlockAllHalfSlab.BlockType.DIONA_COBBLESTONE_SLAB);
         MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB = new BlockAllDoubleSlab("double_chalos_cobblestone_slab", BlockAllHalfSlab.BlockType.CHALOS_COBBLESTONE_SLAB);
@@ -222,9 +222,9 @@ public class MPBlocks
         MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB = new BlockAllDoubleSlab("double_chalos_dungeon_brick_slab", BlockAllHalfSlab.BlockType.CHALOS_DUNGEON_BRICK_SLAB);
         MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB = new BlockAllDoubleSlab("double_nibiru_dungeon_brick_slab", BlockAllHalfSlab.BlockType.NIBIRU_DUNGEON_BRICK_SLAB);
 
-        MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB = new BlockAllDoubleSlab("double_cheese_spore_wood_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_WOOD_SLAB, Material.WOOD);
-        MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB = new BlockAllDoubleSlab("double_infected_oak_wood_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_WOOD_SLAB, Material.WOOD);
-        MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB = new BlockAllDoubleSlab("double_alien_berry_oak_wood_slab", BlockAllHalfSlab.BlockType.ALIEN_BERRY_OAK_WOOD_SLAB, Material.WOOD);
+        MPBlocks.DOUBLE_CHEESE_SPORE_SLAB = new BlockAllDoubleSlab("double_cheese_spore_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_SLAB, Material.WOOD);
+        MPBlocks.DOUBLE_INFECTED_OAK_SLAB = new BlockAllDoubleSlab("double_infected_oak_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_SLAB, Material.WOOD);
+        MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB = new BlockAllDoubleSlab("double_alien_berry_oak_slab", BlockAllHalfSlab.BlockType.ALIEN_BERRY_OAK_SLAB, Material.WOOD);
 
         MPBlocks.SPACE_WARP_PAD = new BlockSpaceWarpPad("space_warp_pad");
         MPBlocks.SPACE_WARP_PAD_FULL = new BlockSpaceWarpPadFull("space_warp_pad_full");
@@ -319,9 +319,9 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
 
-        BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_SPORE_WOOD_SLAB, ItemBlockSlabMP::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_WOOD_SLAB, ItemBlockSlabMP::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_SPORE_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_SLAB, ItemBlockSlabMP::new);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB, null);
@@ -330,9 +330,9 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB, null);
 
-        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB, null);
-        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB, null);
-        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHEESE_SPORE_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_OAK_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB, null);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL, null);
@@ -387,13 +387,13 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
 
-        BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_SLAB, EnumHarvestLevel.AXE, 0);
 
-        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHEESE_SPORE_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_OAK_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB, EnumHarvestLevel.AXE, 0);
 
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
@@ -420,12 +420,12 @@ public class MPBlocks
         MPBlocks.CHALOS_DUNGEON_BRICK_SLAB.setDouble(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB);
         MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB.setDouble(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB);
 
-        MPBlocks.CHEESE_SPORE_WOOD_SLAB.setHalf(MPBlocks.CHEESE_SPORE_WOOD_SLAB);
-        MPBlocks.INFECTED_OAK_WOOD_SLAB.setHalf(MPBlocks.INFECTED_OAK_WOOD_SLAB);
-        MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB.setHalf(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB);
-        MPBlocks.CHEESE_SPORE_WOOD_SLAB.setDouble(MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB);
-        MPBlocks.INFECTED_OAK_WOOD_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB);
-        MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB.setDouble(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB);
+        MPBlocks.CHEESE_SPORE_SLAB.setHalf(MPBlocks.CHEESE_SPORE_SLAB);
+        MPBlocks.INFECTED_OAK_SLAB.setHalf(MPBlocks.INFECTED_OAK_SLAB);
+        MPBlocks.ALIEN_BERRY_OAK_SLAB.setHalf(MPBlocks.ALIEN_BERRY_OAK_SLAB);
+        MPBlocks.CHEESE_SPORE_SLAB.setDouble(MPBlocks.DOUBLE_CHEESE_SPORE_SLAB);
+        MPBlocks.INFECTED_OAK_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_OAK_SLAB);
+        MPBlocks.ALIEN_BERRY_OAK_SLAB.setDouble(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB);
 
         MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB.setHalf(MPBlocks.DIONA_COBBLESTONE_SLAB);
         MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB.setHalf(MPBlocks.CHALOS_COBBLESTONE_SLAB);
@@ -434,8 +434,8 @@ public class MPBlocks
         MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB);
         MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB);
 
-        MPBlocks.DOUBLE_CHEESE_SPORE_WOOD_SLAB.setHalf(MPBlocks.CHEESE_SPORE_WOOD_SLAB);
-        MPBlocks.DOUBLE_INFECTED_OAK_WOOD_SLAB.setHalf(MPBlocks.INFECTED_OAK_WOOD_SLAB);
-        MPBlocks.DOUBLE_ALIEN_BERRY_OAK_WOOD_SLAB.setHalf(MPBlocks.ALIEN_BERRY_OAK_WOOD_SLAB);
+        MPBlocks.DOUBLE_CHEESE_SPORE_SLAB.setHalf(MPBlocks.CHEESE_SPORE_SLAB);
+        MPBlocks.DOUBLE_INFECTED_OAK_SLAB.setHalf(MPBlocks.INFECTED_OAK_SLAB);
+        MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB.setHalf(MPBlocks.ALIEN_BERRY_OAK_SLAB);
     }
 }

@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "bottom": "moreplanets:blocks/infected_dark_prismarine",
+            "top": "moreplanets:blocks/infected_dark_prismarine",
+            "side": "moreplanets:blocks/infected_dark_prismarine"
+        },
+        "model": "half_slab"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}],
+        "half" : {
+           "bottom": { "model": "half_slab" },
+           "top": { "model": "upper_slab" }
+        }
+    }
+}

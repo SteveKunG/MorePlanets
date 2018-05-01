@@ -1,8 +1,19 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/machine_blank"
+        },
+        "model": "moreplanets:dummy"
+    },
     "variants": {
-        "facing=north": { "model": "moreplanets:dark_machine_blank" },
-        "facing=east":  { "model": "moreplanets:dark_machine_blank" },
-        "facing=west":  { "model": "moreplanets:dark_machine_blank" },
-        "facing=south": { "model": "moreplanets:dark_machine_blank" }
+        "facing" : {
+           "north": { },
+           "east": { },
+           "south": { },
+           "west": { }
+        },
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

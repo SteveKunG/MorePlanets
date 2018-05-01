@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.utils.blocks.BlockFurnaceMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityFurnaceMP;
 
 public class HUDHandlerFurnaceMP implements IWailaDataProvider
@@ -29,7 +30,7 @@ public class HUDHandlerFurnaceMP implements IWailaDataProvider
 
         if (tile instanceof TileEntityFurnaceMP)
         {
-            if (!config.getConfig("vanilla.furnacedisplay") || accessor.getBlock() != NibiruBlocks.NIBIRU_LIT_FURNACE && accessor.getBlock() != NibiruBlocks.TERRASTONE_LIT_FURNACE)
+            if (!config.getConfig("vanilla.furnacedisplay") || accessor.getBlock() == NibiruBlocks.INFECTED_FURNACE && !accessor.getBlockState().getValue(BlockFurnaceMP.LIT) || accessor.getBlock() == NibiruBlocks.TERRASTONE_FURNACE && !accessor.getBlockState().getValue(BlockFurnaceMP.LIT))
             {
                 return tooltip;
             }

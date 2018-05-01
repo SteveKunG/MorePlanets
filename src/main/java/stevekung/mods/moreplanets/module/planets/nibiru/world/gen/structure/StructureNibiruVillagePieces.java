@@ -27,7 +27,6 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockHalfInfectedStoneBricksSlab;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;
 import stevekung.mods.moreplanets.utils.blocks.BlockChestMP;
@@ -680,7 +679,7 @@ public class StructureNibiruVillagePieces
             this.fillWithBlocks(world, box, 0, 1, 0, 9, 4, 6, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 9, 0, 6, false, rand, villageStones);
             this.fillWithRandomizedBlocks(world, box, 0, 4, 0, 9, 4, 6, false, rand, villageStones);
-            this.fillWithBlocks(world, box, 0, 5, 0, 9, 5, 6, NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
+            this.fillWithBlocks(world, box, 0, 5, 0, 9, 5, 6, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
             this.fillWithBlocks(world, box, 1, 5, 1, 8, 5, 5, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 1, 1, 0, 2, 3, 0, false, rand, villagePlanks);
             this.fillWithRandomizedBlocks(world, box, 0, 1, 0, 0, 4, 0, false, rand, villageLogs);
@@ -701,8 +700,8 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, Blocks.IRON_BARS.getDefaultState(), 9, 2, 4, box);
             this.fillWithBlocks(world, box, 7, 2, 4, 8, 2, 5, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.setBlockState(world, iblockstate, 6, 1, 3, box);
-            this.setBlockState(world, NibiruBlocks.NIBIRU_FURNACE.getDefaultState(), 6, 2, 3, box);
-            this.setBlockState(world, NibiruBlocks.NIBIRU_FURNACE.getDefaultState(), 6, 3, 3, box);
+            this.setBlockState(world, NibiruBlocks.INFECTED_FURNACE.getDefaultState(), 6, 2, 3, box);
+            this.setBlockState(world, NibiruBlocks.INFECTED_FURNACE.getDefaultState(), 6, 3, 3, box);
             this.setBlockState(world, NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 8, 1, 1, box);
             this.setBlockState(world, rand.nextInt(5) == 0 ? Blocks.AIR.getDefaultState() : Blocks.GLASS_PANE.getDefaultState(), 0, 2, 2, box);
             this.setBlockState(world, rand.nextInt(5) == 0 ? Blocks.AIR.getDefaultState() : Blocks.GLASS_PANE.getDefaultState(), 0, 2, 4, box);
@@ -1523,11 +1522,11 @@ public class StructureNibiruVillagePieces
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_OAK_STAIRS)
                 {
-                    return NibiruBlocks.NIBIRU_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, state.getValue(BlockStairs.FACING));
+                    return NibiruBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, state.getValue(BlockStairs.FACING));
                 }
                 if (state.getBlock() == NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS)
                 {
-                    return NibiruBlocks.NIBIRU_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, state.getValue(BlockStairs.FACING));
+                    return NibiruBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, state.getValue(BlockStairs.FACING));
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_GRAVEL)
                 {
@@ -1578,11 +1577,11 @@ public class StructureNibiruVillagePieces
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
-                    return NibiruBlocks.PURIFY_WATER_FLUID_BLOCK.getDefaultState();
+                    return NibiruBlocks.PURIFIED_WATER_FLUID_BLOCK.getDefaultState();
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_GRAVEL)
                 {
-                    return NibiruBlocks.PURIFY_GRAVEL.getDefaultState();
+                    return NibiruBlocks.PURIFIED_GRAVEL.getDefaultState();
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_PRISMARINE)
                 {
@@ -1592,15 +1591,15 @@ public class StructureNibiruVillagePieces
                 {
                     return NibiruBlocks.TERRASTONE.getDefaultState();
                 }
-                if (state.getBlock() == NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB)
+                if (state == NibiruBlocks.INFECTED_STONE_BRICKS_SLAB)
                 {
-                    return NibiruBlocks.HALF_INFECTED_STONE_BRICKS_SLAB.getDefaultState().withProperty(BlockHalfInfectedStoneBricksSlab.VARIANT, BlockHalfInfectedStoneBricksSlab.BlockType.TERRASTONE_SLAB);
+                    return NibiruBlocks.TERRASTONE_SLAB.getDefaultState();
                 }
-                if (state.getBlock() == NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB)
+                if (state == NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB)
                 {
-                    return NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState().withProperty(BlockHalfInfectedStoneBricksSlab.VARIANT, BlockHalfInfectedStoneBricksSlab.BlockType.TERRASTONE_SLAB);
+                    return NibiruBlocks.DOUBLE_TERRASTONE_SLAB.getDefaultState();
                 }
-                if (state.getBlock() == NibiruBlocks.NIBIRU_FURNACE)
+                if (state.getBlock() == NibiruBlocks.INFECTED_FURNACE)
                 {
                     return NibiruBlocks.TERRASTONE_FURNACE.getDefaultState();
                 }

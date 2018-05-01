@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/infected_coarse_dirt"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:infected_coarse_dirt" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

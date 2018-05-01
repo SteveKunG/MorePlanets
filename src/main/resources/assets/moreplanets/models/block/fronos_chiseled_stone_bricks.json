@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "moreplanets:blocks/fronos_chiseled_stone_bricks"
-    }
-}

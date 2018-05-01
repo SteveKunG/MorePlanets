@@ -1,10 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "meteor": "moreplanets:blocks/fallen_koentus_meteor"
+        },
+        "model": "moreplanets:fallen_meteor"
+    },
     "variants": {
-        "normal": [
-            { "model": "moreplanets:fallen_koentus_meteor" },
-            { "model": "moreplanets:fallen_koentus_meteor", "y": 90 },
-            { "model": "moreplanets:fallen_koentus_meteor", "y": 180 },
-            { "model": "moreplanets:fallen_koentus_meteor", "y": 270 }
-        ]
+        "normal": [{ "y": 90 }, { "y": 180 }, { "y": 270 }],
+        "inventory": [{}]
     }
 }

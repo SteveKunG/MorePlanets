@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/light_blue_tinted_glass_pane"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:light_blue_tinted_glass" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

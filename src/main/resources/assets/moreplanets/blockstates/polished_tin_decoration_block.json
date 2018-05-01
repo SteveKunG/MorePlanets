@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/polished_tin_decoration_block"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:polished_tin_decoration_block" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

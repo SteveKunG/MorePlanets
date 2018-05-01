@@ -346,7 +346,7 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
         }
         if (biomegenbase == MPBiomes.GREEN_VEIN && this.rand.nextInt(6) == 0)
         {
-            new WorldGenLiquidLake(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK.getDefaultState(), NibiruBlocks.TERRASTONE.getDefaultState(), true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenLiquidLake(NibiruBlocks.PURIFIED_WATER_FLUID_BLOCK.getDefaultState(), NibiruBlocks.TERRASTONE.getDefaultState(), true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
         if (this.rand.nextInt(8) == 0)
         {

@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "moreplanets:blocks/anti_gravity_fragments_block"
-    }
-}

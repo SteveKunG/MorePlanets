@@ -1,0 +1,7 @@
+{
+    "parent": "moreplanets:block/fluid_block",
+    "textures": {
+        "top": "moreplanets:blocks/purified_water_still",
+        "side": "moreplanets:blocks/purified_water_flowing"
+    }
+}

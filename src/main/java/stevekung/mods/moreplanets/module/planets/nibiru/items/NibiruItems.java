@@ -261,7 +261,7 @@ public class NibiruItems
         MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(NibiruBlocks.INFECTED_WATER_FLUID);
         MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(NibiruBlocks.HELIUM_GAS);
         MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(NibiruBlocks.NUCLEAR_WASTE_FLUID);
-        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(NibiruBlocks.PURIFY_WATER_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(NibiruBlocks.PURIFIED_WATER_FLUID);
 
         /**************************************************************/
         /************************OTHER STUFF***************************/

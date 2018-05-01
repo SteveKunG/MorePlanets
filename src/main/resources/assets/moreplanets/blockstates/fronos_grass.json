@@ -1,12 +1,40 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "moreplanets:blocks/fronos_dirt",
+            "bottom": "moreplanets:blocks/fronos_dirt",
+            "top": "moreplanets:blocks/fronos_grass_top",
+            "side": "moreplanets:blocks/fronos_grass_side",
+            "overlay": "moreplanets:blocks/fronos_grass_side_overlay"
+        },
+        "model": "grass"
+    },
     "variants": {
-        "layer=none": [
-            { "model": "moreplanets:fronos_grass" },
-            { "model": "moreplanets:fronos_grass", "y": 90 },
-            { "model": "moreplanets:fronos_grass", "y": 180 },
-            { "model": "moreplanets:fronos_grass", "y": 270 }
-        ],
-        "layer=snow":  { "model": "moreplanets:fronos_grass_snowed" },
-        "layer=cream":  { "model": "moreplanets:fronos_grass_snowed" }
+        "normal": [{ "y": 90 }, { "y": 180 }, { "y": 270 }],
+        "inventory": [{}],
+        "layer": {
+            "none": {
+                "model": "grass"
+            },
+            "snow": {
+                "model": "cube_bottom_top",
+                "textures": {
+                    "particle": "moreplanets:blocks/fronos_dirt",
+                    "bottom": "moreplanets:blocks/fronos_dirt",
+                    "top": "moreplanets:blocks/fronos_grass_top",
+                    "side": "moreplanets:blocks/fronos_grass_side_snowed"
+                }
+            },
+            "cream": {
+                "model": "cube_bottom_top",
+                "textures": {
+                    "particle": "moreplanets:blocks/fronos_dirt",
+                    "bottom": "moreplanets:blocks/fronos_dirt",
+                    "top": "moreplanets:blocks/fronos_grass_top",
+                    "side": "moreplanets:blocks/fronos_grass_side_snowed"
+                }
+            }
+        }
     }
 }

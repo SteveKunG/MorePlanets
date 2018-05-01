@@ -25,7 +25,7 @@ import stevekung.mods.moreplanets.init.MPBiomes;
 public class WeatherRendererNibiru extends IRenderHandler
 {
     private static final ResourceLocation RAIN = new ResourceLocation("moreplanets:textures/environment/infected_rain.png");
-    private static final ResourceLocation PURIFY_RAIN = new ResourceLocation("moreplanets:textures/environment/purify_rain.png");
+    private static final ResourceLocation PURIFIED_RAIN = new ResourceLocation("moreplanets:textures/environment/purified_rain.png");
     private static final ResourceLocation SNOW = new ResourceLocation("moreplanets:textures/environment/infected_snow.png");
     private final float[] rainXCoords = new float[1024];
     private final float[] rainYCoords = new float[1024];
@@ -145,7 +145,7 @@ public class WeatherRendererNibiru extends IRenderHandler
 
                                     if (biomegenbase == MPBiomes.GREEN_VEIN)
                                     {
-                                        mc.getTextureManager().bindTexture(WeatherRendererNibiru.PURIFY_RAIN);
+                                        mc.getTextureManager().bindTexture(WeatherRendererNibiru.PURIFIED_RAIN);
                                     }
                                     else
                                     {
