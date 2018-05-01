@@ -8,14 +8,9 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -23,27 +18,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.utils.VariantsName;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.utils.blocks.IBlockVariants;
 
-public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
+public class BlockInfectedSponge extends BlockBaseMP
 {
-    public static PropertyBool WET = PropertyBool.create("wet");
+    private boolean isWet;
 
-    public BlockInfectedSponge(String name)
+    public BlockInfectedSponge(String name, boolean isWet)
     {
         super(Material.SPONGE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(WET, Boolean.valueOf(false)));
         this.setHardness(0.6F);
         this.setSoundType(SoundType.PLANT);
         this.setUnlocalizedName(name);
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return state.getValue(WET).booleanValue() ? 1 : 0;
+        this.isWet = isWet;
     }
 
     @Override
@@ -60,9 +47,9 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
 
     private void tryAbsorb(World world, BlockPos pos, IBlockState state)
     {
-        if (!state.getValue(WET).booleanValue() && this.absorb(world, pos))
+        if (!this.isWet && this.absorb(world, pos))
         {
-            world.setBlockState(pos, state.withProperty(WET, Boolean.valueOf(true)), 2);
+            world.setBlockState(pos, NibiruBlocks.INFECTED_WET_SPONGE.getDefaultState(), 2);
             world.playEvent(2001, pos, Block.getIdFromBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK));
         }
     }
@@ -117,37 +104,10 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs creativeTabs, NonNullList<ItemStack> list)
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            list.add(new ItemStack(this, 1, i));
-        }
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(WET, Boolean.valueOf((meta & 1) == 1));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(WET).booleanValue() ? 1 : 0;
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, WET);
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        if (state.getValue(WET).booleanValue())
+        if (this.isWet)
         {
             EnumFacing enumfacing = EnumFacing.random(rand);
 
@@ -197,11 +157,5 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
                 MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_WATER_DRIP, d0, d1, d2);
             }
         }
-    }
-
-    @Override
-    public VariantsName getVariantsName()
-    {
-        return new VariantsName("infected_sponge", "infected_wet_sponge");
     }
 }

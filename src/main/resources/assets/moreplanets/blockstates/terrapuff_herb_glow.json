@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "cross": "moreplanets:blocks/terrapuff_herb",
+            "glow": "moreplanets:blocks/terrapuff_herb_glow"
+        },
+        "model": "moreplanets:cross_glow"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

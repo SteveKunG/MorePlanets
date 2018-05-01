@@ -258,7 +258,7 @@ public class MapGenNibiruCaves extends MapGenBase
         IBlockState top = biome.topBlock;
         IBlockState filler = biome.fillerBlock;
 
-        if (state.getBlock() == NibiruBlocks.NIBIRU_ROCK || state.getBlock() == NibiruBlocks.NIBIRU_ORE || state.getBlock() == NibiruBlocks.INFECTED_SANDSTONE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == NibiruBlocks.NIBIRU_ROCK || state.getBlock() == NibiruBlocks.INFECTED_SANDSTONE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y < 10)
             {

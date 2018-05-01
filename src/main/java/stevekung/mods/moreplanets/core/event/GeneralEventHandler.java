@@ -30,8 +30,6 @@ import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
@@ -62,7 +60,7 @@ public class GeneralEventHandler
         Item item = event.getItemStack().getItem();
         Block block = Block.getBlockFromItem(item);
 
-        if (block == ChalosBlocks.CHEESE_SPORE_FLOWER || block == NibiruBlocks.NIBIRU_SAPLING)
+        if (block == ChalosBlocks.CHEESE_SPORE_FLOWER || block == NibiruBlocks.INFECTED_OAK_SAPLING || block == NibiruBlocks.INFECTED_JUNGLE_SAPLING || block == NibiruBlocks.ALIEN_BERRY_OAK_SAPLING)
         {
             event.setBurnTime(100);
         }
@@ -116,7 +114,7 @@ public class GeneralEventHandler
                     if (!world.isRemote)
                     {
                         world.playSound(null, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                        world.setBlockState(pos, NibiruBlocks.NIBIRU_GRASS_PATH.getDefaultState(), 11);
+                        world.setBlockState(pos, NibiruBlocks.INFECTED_GRASS_PATH.getDefaultState(), 11);
                         heldItem.damageItem(1, player);
                     }
                     player.swingArm(event.getHand());
@@ -126,7 +124,7 @@ public class GeneralEventHandler
                     if (!world.isRemote)
                     {
                         world.playSound(null, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                        world.setBlockState(pos, NibiruBlocks.NIBIRU_GRASS_PATH.getStateFromMeta(1), 11);
+                        world.setBlockState(pos, NibiruBlocks.GREEN_VEIN_GRASS_PATH.getDefaultState(), 11);
                         heldItem.damageItem(1, player);
                     }
                     player.swingArm(event.getHand());
@@ -197,39 +195,6 @@ public class GeneralEventHandler
             {
                 player.getActiveItemStack().damageItem(1, player);
             }
-        }
-    }
-
-    @SubscribeEvent //TODO advancement
-    public void onPickupItem(ItemPickupEvent event)
-    {
-        ItemStack itemStack = event.getOriginalEntity().getItem();
-        Item item = itemStack.getItem();
-        Block block = Block.getBlockFromItem(item);
-
-        if (block == ChalosBlocks.CHEESE_SPORE_STEM || block == NibiruBlocks.NIBIRU_LOG)
-        {
-            //            event.player.addStat(AchievementList.MINE_WOOD);
-        }
-    }
-
-    @SubscribeEvent //TODO advancement
-    public void onCraftItem(ItemCraftedEvent event)
-    {
-        Item item = event.crafting.getItem();
-        Block block = Block.getBlockFromItem(item);
-
-        if (block == ChalosBlocks.CHEESE_SPORE_CRAFTING_TABLE || block == NibiruBlocks.NIBIRU_CRAFTING_TABLE)
-        {
-            //            event.player.addStat(AchievementList.BUILD_WORK_BENCH);
-        }
-        if (item == NibiruItems.NIBIRU_STONE_PICKAXE)
-        {
-            //            event.player.addStat(AchievementList.BUILD_BETTER_PICKAXE);
-        }
-        if (block == NibiruBlocks.NIBIRU_FURNACE || block == NibiruBlocks.TERRASTONE_FURNACE)
-        {
-            //            event.player.addStat(AchievementList.BUILD_FURNACE);
         }
     }
 

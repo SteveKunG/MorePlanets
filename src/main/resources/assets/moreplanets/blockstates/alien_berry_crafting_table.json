@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "moreplanets:blocks/alien_berry_crafting_table_front",
+            "down": "moreplanets:blocks/alien_berry_oak_planks",
+            "up": "moreplanets:blocks/alien_berry_crafting_table_top",
+            "north": "moreplanets:blocks/alien_berry_crafting_table_front",
+            "east": "moreplanets:blocks/alien_berry_crafting_table_side",
+            "south": "moreplanets:blocks/alien_berry_crafting_table_side",
+            "west": "moreplanets:blocks/alien_berry_crafting_table_front"
+        },
+        "model": "cube"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

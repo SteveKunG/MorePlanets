@@ -35,7 +35,7 @@ public class BiomeNibiru extends BiomeBaseMP
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0) : new WorldGenInfectedTrees(true, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
+        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.INFECTED_OAK_LOG, 0, NibiruBlocks.INFECTED_OAK_LEAVES, 0) : new WorldGenInfectedTrees(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
     }
 
     @Override

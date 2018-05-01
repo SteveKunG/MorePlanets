@@ -82,8 +82,8 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             new EmeraldForItems(new ItemStack(Items.PAPER), new PriceInfo(24, 36)),
             new ListEnchantedBookForEmeralds(),
             new EmeraldForItems(new ItemStack(Items.BOOK), new PriceInfo(8, 10)),
-            new ListItemForEmeralds(new ItemStack(NibiruBlocks.NIBIRU_BOOKSHELF, 1, 0), new PriceInfo(3, 4)),
-            new ListItemForEmeralds(new ItemStack(NibiruBlocks.NIBIRU_BOOKSHELF, 1, 1), new PriceInfo(3, 4)),
+            new ListItemForEmeralds(new ItemStack(NibiruBlocks.INFECTED_OAK_BOOKSHELF), new PriceInfo(3, 4)),
+            new ListItemForEmeralds(new ItemStack(NibiruBlocks.ALIEN_BERRY_OAK_BOOKSHELF), new PriceInfo(3, 4)),
             new ListEnchantedBookForEmeralds(),
             new ListEnchantedBookForEmeralds()
     };

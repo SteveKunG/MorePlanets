@@ -114,7 +114,7 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
 
                     if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos))
                     {
-                        this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(2));
+                        this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_JUNGLE_LEAVES.getDefaultState());
                     }
                 }
             }
@@ -138,7 +138,7 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
                     {
                         if (this.genLeaves)
                         {
-                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(2));
+                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_JUNGLE_LEAVES.getDefaultState());
                         }
                     }
                 }

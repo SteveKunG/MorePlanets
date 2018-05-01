@@ -21,11 +21,6 @@ public class BlockFenceMP extends BlockFence implements ISortableBlock, IItemMod
         this.setUnlocalizedName(name);
     }
 
-    public BlockFenceMP(Material material)
-    {
-        super(material, null);
-    }
-
     @Override
     public Block setUnlocalizedName(String name)
     {

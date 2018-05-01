@@ -45,7 +45,8 @@ public class MorePlanetsJEIPlugin implements IModPlugin
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(DionaBlocks.DARK_ENERGY_CORE), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.BLACK_HOLE_STORAGE), MPJEIRecipes.BLACK_HOLE_STORAGE);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
-        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(NibiruBlocks.NIBIRU_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(NibiruBlocks.INFECTED_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(NibiruBlocks.ALIEN_BERRY_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
     }
 
     @Override

@@ -1,62 +1,70 @@
 package stevekung.mods.moreplanets.utils.blocks;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
-public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
+public class BlockLeavesMP extends BlockBaseMP implements IShearable
 {
-    protected int[] surroundings;
+    private int[] surroundings;
+    private BlockType type;
 
-    public BlockLeavesMP()
+    public BlockLeavesMP(String name, BlockType type)
     {
         super(Material.LEAVES);
         this.setTickRandomly(true);
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setSoundType(SoundType.PLANT);
+        this.setUnlocalizedName(name);
     }
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
-        byte b0 = 1;
-        int i = b0 + 1;
-        int j = pos.getX();
-        int k = pos.getY();
-        int l = pos.getZ();
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
 
-        if (world.isAreaLoaded(new BlockPos(j - i, k - i, l - i), new BlockPos(j + i, k + i, l + i)))
+        if (world.isAreaLoaded(new BlockPos(x - 2, y - 2, z - 2), new BlockPos(x + 2, y + 2, z + 2)))
         {
-            for (int i1 = -b0; i1 <= b0; ++i1)
+            for (int j1 = -1; j1 <= 1; ++j1)
             {
-                for (int j1 = -b0; j1 <= b0; ++j1)
+                for (int k1 = -1; k1 <= 1; ++k1)
                 {
-                    for (int k1 = -b0; k1 <= b0; ++k1)
+                    for (int l1 = -1; l1 <= 1; ++l1)
                     {
-                        BlockPos blockpos1 = pos.add(i1, j1, k1);
-                        IBlockState iblockstate1 = world.getBlockState(blockpos1);
+                        BlockPos blockpos = pos.add(j1, k1, l1);
+                        IBlockState iblockstate = world.getBlockState(blockpos);
 
-                        if (iblockstate1.getBlock().isLeaves(iblockstate1, world, blockpos1))
+                        if (iblockstate.getBlock().isLeaves(iblockstate, world, blockpos))
                         {
-                            iblockstate1.getBlock().beginLeavesDecay(iblockstate1, world, blockpos1);
+                            iblockstate.getBlock().beginLeavesDecay(iblockstate, world, blockpos);
                         }
                     }
                 }
@@ -69,90 +77,85 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
     {
         if (!world.isRemote)
         {
-            if (state.getValue(BlockStateProperty.CHECK_DECAY).booleanValue() && state.getValue(BlockStateProperty.DECAYABLE).booleanValue())
+            if (state.getValue(BlockStateProperty.CHECK_DECAY) && state.getValue(BlockStateProperty.DECAYABLE))
             {
-                byte b0 = 4;
-                int i = b0 + 1;
-                int j = pos.getX();
-                int k = pos.getY();
-                int l = pos.getZ();
-                byte b1 = 32;
-                int i1 = b1 * b1;
-                int j1 = b1 / 2;
+                int x = pos.getX();
+                int y = pos.getY();
+                int z = pos.getZ();
 
                 if (this.surroundings == null)
                 {
-                    this.surroundings = new int[b1 * b1 * b1];
+                    this.surroundings = new int[32768];
                 }
-
-                int k1;
-
-                if (world.isAreaLoaded(new BlockPos(j - i, k - i, l - i), new BlockPos(j + i, k + i, l + i)))
+                if (!world.isAreaLoaded(pos, 1))
                 {
-                    int l1;
-                    int i2;
+                    return;
+                }
+                if (world.isAreaLoaded(pos, 6))
+                {
+                    BlockPos.MutableBlockPos mutableblockpos = new BlockPos.MutableBlockPos();
 
-                    for (k1 = -b0; k1 <= b0; ++k1)
+                    for (int i2 = -4; i2 <= 4; ++i2)
                     {
-                        for (l1 = -b0; l1 <= b0; ++l1)
+                        for (int j2 = -4; j2 <= 4; ++j2)
                         {
-                            for (i2 = -b0; i2 <= b0; ++i2)
+                            for (int k2 = -4; k2 <= 4; ++k2)
                             {
-                                BlockPos tmp = new BlockPos(j + k1, k + l1, l + i2);
-                                Block block = world.getBlockState(tmp).getBlock();
+                                IBlockState iblockstate = world.getBlockState(mutableblockpos.setPos(x + i2, y + j2, z + k2));
+                                Block block = iblockstate.getBlock();
 
-                                if (!block.canSustainLeaves(world.getBlockState(tmp), world, tmp))
+                                if (!block.canSustainLeaves(iblockstate, world, mutableblockpos.setPos(x + i2, y + j2, z + k2)))
                                 {
-                                    if (block.isLeaves(world.getBlockState(tmp), world, tmp))
+                                    if (block.isLeaves(iblockstate, world, mutableblockpos.setPos(x + i2, y + j2, z + k2)))
                                     {
-                                        this.surroundings[(k1 + j1) * i1 + (l1 + j1) * b1 + i2 + j1] = -2;
+                                        this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -2;
                                     }
                                     else
                                     {
-                                        this.surroundings[(k1 + j1) * i1 + (l1 + j1) * b1 + i2 + j1] = -1;
+                                        this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -1;
                                     }
                                 }
                                 else
                                 {
-                                    this.surroundings[(k1 + j1) * i1 + (l1 + j1) * b1 + i2 + j1] = 0;
+                                    this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = 0;
                                 }
                             }
                         }
                     }
 
-                    for (k1 = 1; k1 <= 4; ++k1)
+                    for (int i3 = 1; i3 <= 4; ++i3)
                     {
-                        for (l1 = -b0; l1 <= b0; ++l1)
+                        for (int j3 = -4; j3 <= 4; ++j3)
                         {
-                            for (i2 = -b0; i2 <= b0; ++i2)
+                            for (int k3 = -4; k3 <= 4; ++k3)
                             {
-                                for (int j2 = -b0; j2 <= b0; ++j2)
+                                for (int l3 = -4; l3 <= 4; ++l3)
                                 {
-                                    if (this.surroundings[(l1 + j1) * i1 + (i2 + j1) * b1 + j2 + j1] == k1 - 1)
+                                    if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16] == i3 - 1)
                                     {
-                                        if (this.surroundings[(l1 + j1 - 1) * i1 + (i2 + j1) * b1 + j2 + j1] == -2)
+                                        if (this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
                                         {
-                                            this.surroundings[(l1 + j1 - 1) * i1 + (i2 + j1) * b1 + j2 + j1] = k1;
+                                            this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
                                         }
-                                        if (this.surroundings[(l1 + j1 + 1) * i1 + (i2 + j1) * b1 + j2 + j1] == -2)
+                                        if (this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
                                         {
-                                            this.surroundings[(l1 + j1 + 1) * i1 + (i2 + j1) * b1 + j2 + j1] = k1;
+                                            this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
                                         }
-                                        if (this.surroundings[(l1 + j1) * i1 + (i2 + j1 - 1) * b1 + j2 + j1] == -2)
+                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] == -2)
                                         {
-                                            this.surroundings[(l1 + j1) * i1 + (i2 + j1 - 1) * b1 + j2 + j1] = k1;
+                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] = i3;
                                         }
-                                        if (this.surroundings[(l1 + j1) * i1 + (i2 + j1 + 1) * b1 + j2 + j1] == -2)
+                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] == -2)
                                         {
-                                            this.surroundings[(l1 + j1) * i1 + (i2 + j1 + 1) * b1 + j2 + j1] = k1;
+                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] = i3;
                                         }
-                                        if (this.surroundings[(l1 + j1) * i1 + (i2 + j1) * b1 + j2 + j1 - 1] == -2)
+                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 - 1] == -2)
                                         {
-                                            this.surroundings[(l1 + j1) * i1 + (i2 + j1) * b1 + j2 + j1 - 1] = k1;
+                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 - 1] = i3;
                                         }
-                                        if (this.surroundings[(l1 + j1) * i1 + (i2 + j1) * b1 + j2 + j1 + 1] == -2)
+                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] == -2)
                                         {
-                                            this.surroundings[(l1 + j1) * i1 + (i2 + j1) * b1 + j2 + j1 + 1] = k1;
+                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] = i3;
                                         }
                                     }
                                 }
@@ -161,11 +164,11 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
                     }
                 }
 
-                k1 = this.surroundings[j1 * i1 + j1 * b1 + j1];
+                int l2 = this.surroundings[16912];
 
-                if (k1 >= 0)
+                if (l2 >= 0)
                 {
-                    world.setBlockState(pos, state.withProperty(BlockStateProperty.CHECK_DECAY, Boolean.valueOf(false)), 4);
+                    world.setBlockState(pos, state.withProperty(BlockStateProperty.CHECK_DECAY, false), 4);
                 }
                 else
                 {
@@ -173,12 +176,6 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
                 }
             }
         }
-    }
-
-    protected void destroy(World world, BlockPos pos)
-    {
-        this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
-        world.setBlockToAir(pos);
     }
 
     @Override
@@ -222,15 +219,24 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
             double d0 = pos.getX() + rand.nextFloat();
             double d1 = pos.getY() - 0.05D;
             double d2 = pos.getZ() + rand.nextFloat();
-            world.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        }
+        if (this.type == BlockType.ALIEN_BERRY_OAK_LEAVES)
+        {
+            if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && rand.nextInt(10) == 0)
+            {
+                double d0 = pos.getX() + rand.nextFloat();
+                double d1 = pos.getY() - 0.05D;
+                double d2 = pos.getZ() + rand.nextFloat();
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_BERRY_LEAVES, d0, d1, d2);
+            }
         }
     }
 
     @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = new ArrayList<>();
-        Random rand = world instanceof World ? ((World)world).rand : new Random();
+        Random rand = world instanceof World ? ((World)world).rand : RANDOM;
         int chance = 20;
 
         if (fortune > 0)
@@ -245,7 +251,7 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
 
         if (rand.nextInt(chance) == 0)
         {
-            ret.add(new ItemStack(this.getItemDropped(state, rand, fortune), 1, this.damageDropped(state)));
+            drops.add(new ItemStack(this.getItemDropped(state, rand, fortune)));
         }
 
         chance = 200;
@@ -266,8 +272,7 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
         {
             this.dropFruits((World)world, pos, state, chance);
         }
-        ret.addAll(this.captureDrops(false));
-        return ret;
+        drops.addAll(this.captureDrops(false));
     }
 
     @Override
@@ -285,11 +290,109 @@ public abstract class BlockLeavesMP extends BlockBaseMP implements IShearable
     @Override
     public void beginLeavesDecay(IBlockState state, World world, BlockPos pos)
     {
-        if (!(Boolean)state.getValue(BlockStateProperty.CHECK_DECAY))
+        if (!state.getValue(BlockStateProperty.CHECK_DECAY))
         {
             world.setBlockState(pos, state.withProperty(BlockStateProperty.CHECK_DECAY, true), 4);
         }
     }
 
-    protected void dropFruits(World world, BlockPos pos, IBlockState state, int chance) {}
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        if (this.type == BlockType.INFECTED_OAK_LEAVES)
+        {
+            return Item.getItemFromBlock(NibiruBlocks.INFECTED_OAK_SAPLING);
+        }
+        else if (this.type == BlockType.INFECTED_JUNGLE_LEAVES)
+        {
+            return Item.getItemFromBlock(NibiruBlocks.INFECTED_JUNGLE_SAPLING);
+        }
+        else if (this.type == BlockType.ALIEN_BERRY_OAK_LEAVES)
+        {
+            return Item.getItemFromBlock(NibiruBlocks.ALIEN_BERRY_OAK_SAPLING);
+        }
+        return Item.getItemFromBlock(this);
+    }
+
+    @Override
+    public ArrayList<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
+    {
+        ArrayList<ItemStack> ret = new ArrayList<>();
+        ret.add(new ItemStack(this));
+        return ret;
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        return new ItemStack(this);
+    }
+
+    @Override
+    public EnumSortCategoryBlock getBlockCategory()
+    {
+        return EnumSortCategoryBlock.DECORATION_BLOCK;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, BlockStateProperty.DECAYABLE, BlockStateProperty.CHECK_DECAY);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return this.getDefaultState().withProperty(BlockStateProperty.DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(BlockStateProperty.CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        int i = 0;
+
+        if (!state.getValue(BlockStateProperty.DECAYABLE))
+        {
+            i |= 4;
+        }
+        if (state.getValue(BlockStateProperty.CHECK_DECAY))
+        {
+            i |= 8;
+        }
+        return i;
+    }
+
+    private void dropFruits(World world, BlockPos pos, IBlockState state, int chance)
+    {
+        if (world.rand.nextInt(chance) == 0)
+        {
+            if (this.type == BlockType.INFECTED_OAK_LEAVES)
+            {
+                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.INFECTED_APPLE));
+            }
+            else if (this.type == BlockType.ALIEN_BERRY_OAK_LEAVES)
+            {
+                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.ALIEN_BERRY));
+            }
+        }
+    }
+
+    private void destroy(World world, BlockPos pos)
+    {
+        this.getItemDropped(world.getBlockState(pos), world.rand, 0);
+        world.setBlockToAir(pos);
+    }
+
+    public static enum BlockType
+    {
+        INFECTED_OAK_LEAVES,
+        INFECTED_JUNGLE_LEAVES,
+        ALIEN_BERRY_OAK_LEAVES;
+
+        @Override
+        public String toString()
+        {
+            return this.name().toLowerCase();
+        }
+    }
 }

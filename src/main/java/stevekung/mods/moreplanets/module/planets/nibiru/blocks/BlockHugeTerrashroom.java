@@ -60,13 +60,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NibiruBlocks.NIBIRU_FLOWER);
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return 7;
+        return Item.getItemFromBlock(NibiruBlocks.TERRASHROOM);
     }
 
     @Override

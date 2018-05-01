@@ -93,7 +93,7 @@ public class WorldGenAlienBerryTree extends WorldGenAbstractTree
 
                                     if (block.isAir(world.getBlockState(blockpos), world, blockpos) || block.isLeaves(world.getBlockState(blockpos), world, blockpos) || world.getBlockState(blockpos).getMaterial() == Material.VINE)
                                     {
-                                        this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(3));
+                                        this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.ALIEN_BERRY_OAK_LEAVES.getDefaultState());
                                     }
                                 }
                             }
@@ -107,7 +107,7 @@ public class WorldGenAlienBerryTree extends WorldGenAbstractTree
 
                         if (block2.isAir(world.getBlockState(upN), world, upN) || block2.isLeaves(world.getBlockState(upN), world, upN) || world.getBlockState(upN).getMaterial() == Material.VINE)
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(j3), NibiruBlocks.NIBIRU_LOG.getStateFromMeta(3));
+                            this.setBlockAndNotifyAdequately(world, pos.up(j3), NibiruBlocks.ALIEN_BERRY_OAK_LOG.getDefaultState());
                         }
                     }
                     return true;

@@ -30,10 +30,10 @@ import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
 {
-    public static PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    public static PropertyBool EYE = PropertyBool.create("eye");
-    protected static AxisAlignedBB AABB_BLOCK = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
-    protected static AxisAlignedBB AABB_EYE = new AxisAlignedBB(0.3175D, 0.0D, 0.3175D, 0.6825D, 0.875D, 0.6825D);
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static final PropertyBool EYE = PropertyBool.create("eye");
+    private static final AxisAlignedBB AABB_BLOCK = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
+    private static final AxisAlignedBB AABB_EYE = new AxisAlignedBB(0.3175D, 0.0D, 0.3175D, 0.6825D, 0.875D, 0.6825D);
 
     public BlockVeinFrame(String name)
     {
@@ -75,7 +75,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     {
         Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BLOCK);
 
-        if (state.getValue(EYE).booleanValue())
+        if (state.getValue(EYE))
         {
             Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_EYE);
         }
@@ -102,7 +102,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     @Override
     public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
-        return world.getBlockState(pos).getValue(EYE).booleanValue() ? 15 : 0;
+        return world.getBlockState(pos).getValue(EYE) ? 15 : 0;
     }
 
     @Override
@@ -117,7 +117,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
         int i = 0;
         i = i | state.getValue(FACING).getHorizontalIndex();
 
-        if (state.getValue(EYE).booleanValue())
+        if (state.getValue(EYE))
         {
             i |= 4;
         }

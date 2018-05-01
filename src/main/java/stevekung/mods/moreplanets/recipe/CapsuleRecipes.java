@@ -19,8 +19,8 @@ public class CapsuleRecipes
     {
         RecipeHelper.addRecipe(new ItemStack(MPItems.EMPTY_CAPSULE), new Object[] { " C", "X ", 'C', new ItemStack(GCItems.canister, 1, 0), 'X', Items.IRON_INGOT });
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, new ItemStack(ChalosItems.CHEESE_SPORE_BERRY), ChalosBlocks.CHEESE_SPORE_FLOWER, Blocks.BROWN_MUSHROOM);
-        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, new ItemStack(NibiruBlocks.NIBIRU_FLOWER, 1, 0), new ItemStack(NibiruItems.INFERUMITE_CRYSTAL));
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, NibiruBlocks.PURE_HERB, new ItemStack(NibiruItems.INFERUMITE_CRYSTAL));
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.DARK_ENERGY_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, new ItemStack(DionaItems.INFECTED_CRYSTALLIZED_SHARD), new ItemStack(MarsItems.marsItemBasic, 1, 0));
-        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.DARK_ENERGY_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, new ItemStack(NibiruBlocks.NIBIRU_FLOWER, 1, 1), new ItemStack(NibiruItems.INFERUMITE_CRYSTAL), new ItemStack(MarsItems.marsItemBasic, 1, 0));
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.DARK_ENERGY_PROTECTION_CAPSULE), MPItems.EMPTY_CAPSULE, NibiruBlocks.TERRAPUFF_HERB, new ItemStack(NibiruItems.INFERUMITE_CRYSTAL), new ItemStack(MarsItems.marsItemBasic, 1, 0));
     }
 }

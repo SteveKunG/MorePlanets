@@ -11,7 +11,6 @@ import stevekung.mods.moreplanets.utils.blocks.*;
 import stevekung.mods.moreplanets.utils.blocks.BlockStairsMP.EnumStairsType;
 import stevekung.mods.moreplanets.utils.blocks.fluid.FluidMP;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescription;
-import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockFlower;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
 
@@ -86,13 +85,13 @@ public class ChalosBlocks
         ChalosBlocks.CHEESE_FARMLAND = new BlockCheeseFarmland("cheese_farmland");
         ChalosBlocks.CHEESE_SLIME_BLOCK = new BlockCheeseSlime("cheese_slime_block");
         ChalosBlocks.CHEESE_MILK_CAKE = new BlockCheeseMilkCake("cheese_milk_cake");
-        ChalosBlocks.CHEESE_SPORE_FLOWER = new BlockCheeseSporeFlower("cheese_spore_flower");
+        ChalosBlocks.CHEESE_SPORE_FLOWER = new BlockSaplingMP("cheese_spore_flower", BlockSaplingMP.BlockType.CHEESE_SPORE_FLOWER);
         ChalosBlocks.CHALOS_ANCIENT_CHEST = new BlockChalosAncientChest("chalos_ancient_chest");
         ChalosBlocks.CHALOS_TREASURE_CHEST = new BlockChalosTreasureChest("chalos_treasure_chest");
         ChalosBlocks.CHEESE_SPORE = new BlockCheeseSpore("cheese_spore_block");
         ChalosBlocks.CHEESE_SPORE_STEM = new BlockLogMP("cheese_spore_stem");
         ChalosBlocks.CHEESE_SPORE_PLANKS = new BlockBaseMP("cheese_spore_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
-        ChalosBlocks.CHEESE_GRASS = new BlockGrassMP("cheese_grass", BlockGrassMP.BlockType.CHEESE_GRASS);
+        ChalosBlocks.CHEESE_GRASS = new BlockPlaceableBushMP("cheese_grass", BlockPlaceableBushMP.BlockType.CHEESE_GRASS);
         ChalosBlocks.CHEESE_SPORE_BERRY_CROPS = new BlockCheeseSporeBerryCrops("cheese_spore_berry_crops");
         ChalosBlocks.CHEESE_TALL_GRASS = new BlockDoublePlantMP("cheese_tall_grass", BlockDoublePlantMP.BlockType.CHEESE_TALL_GRASS);
         ChalosBlocks.CHEESE_SPORE_CRAFTING_TABLE = new BlockCraftingTableMP("cheese_spore_crafting_table");
@@ -138,8 +137,8 @@ public class ChalosBlocks
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHALOS_ANCIENT_CHEST);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHALOS_TREASURE_CHEST);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_MILK_CAKE, ItemBlockDescription::new);
-        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_FLOWER, ItemBlockFlower::new);
-        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_GRASS, ItemBlockFlower::new);
+        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_FLOWER);
+        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_GRASS);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_FARMLAND);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_MILK_FLUID_BLOCK);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.GASEOUS_CHEESE_MILK_BLOCK);

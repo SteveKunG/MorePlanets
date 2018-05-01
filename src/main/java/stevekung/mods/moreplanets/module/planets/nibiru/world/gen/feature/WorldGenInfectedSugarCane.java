@@ -26,7 +26,7 @@ public class WorldGenInfectedSugarCane extends WorldGenerator
 
                     for (int k = 0; k < j; ++k)
                     {
-                        if (NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK.canBlockStay(world, blockpos, NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK.getDefaultState()))
+                        if (NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK.canPlaceBlockAt(world, blockpos))
                         {
                             world.setBlockState(blockpos.up(k), NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK.getDefaultState(), 2);
                         }

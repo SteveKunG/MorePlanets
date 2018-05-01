@@ -27,7 +27,7 @@ import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITerraformableBlock
 {
-    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D - 0.125D, 1.0D);
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
 
     public BlockOilOre(String name)
     {
@@ -105,7 +105,7 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
     @Override
     public boolean isTerraformable(World world, BlockPos pos)
     {
-        return true && !world.getBlockState(pos.up()).isOpaqueCube();
+        return !world.getBlockState(pos.up()).isOpaqueCube();
     }
 
     @Override

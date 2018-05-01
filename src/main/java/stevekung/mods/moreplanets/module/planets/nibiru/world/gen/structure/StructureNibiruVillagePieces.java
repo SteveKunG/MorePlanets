@@ -172,7 +172,7 @@ public class StructureNibiruVillagePieces
             {
                 this.setBlockState(world, iblockstate1, 2, 0, -1, box);
 
-                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
+                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.INFECTED_GRASS_PATH)
                 {
                     this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 2, -1, -1, box);
                 }
@@ -411,9 +411,9 @@ public class StructureNibiruVillagePieces
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
-            IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_PLANKS.getDefaultState());
-            IBlockState iblockstate5 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_LOG.getDefaultState());
-            IBlockState iblockstate6 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
+            IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState());
+            IBlockState iblockstate5 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_LOG.getDefaultState());
+            IBlockState iblockstate6 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState());
             this.fillWithBlocks(world, box, 1, 1, 1, 7, 4, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithBlocks(world, box, 2, 1, 6, 8, 4, 10, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 2, 0, 6, 8, 0, 10, false, rand, villageDirts);
@@ -476,7 +476,7 @@ public class StructureNibiruVillagePieces
             {
                 this.setBlockState(world, iblockstate7, 2, 0, -1, box);
 
-                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
+                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.INFECTED_GRASS_PATH)
                 {
                     this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 2, -1, -1, box);
                 }
@@ -535,9 +535,9 @@ public class StructureNibiruVillagePieces
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST));
-            IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_PLANKS.getDefaultState());
+            IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState());
             IBlockState iblockstate5 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
-            IBlockState iblockstate6 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
+            IBlockState iblockstate6 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState());
             this.fillWithBlocks(world, box, 1, 1, 1, 7, 5, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 8, 0, 5, false, rand, villageStones);
             this.fillWithRandomizedBlocks(world, box, 0, 5, 0, 8, 5, 5, false, rand, villageStones);
@@ -585,7 +585,7 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, rand.nextInt(5) == 0 ? Blocks.AIR.getDefaultState() : Blocks.GLASS_PANE.getDefaultState(), 6, 2, 5, box);
             this.fillWithRandomizedBlocks(world, box, 1, 4, 1, 7, 4, 1, false, rand, villagePlanks);
             this.fillWithRandomizedBlocks(world, box, 1, 4, 4, 7, 4, 4, false, rand, villagePlanks);
-            this.fillWithBlocks(world, box, 1, 3, 4, 7, 3, 4, NibiruBlocks.NIBIRU_BOOKSHELF.getDefaultState(), NibiruBlocks.NIBIRU_BOOKSHELF.getDefaultState(), false);
+            this.fillWithBlocks(world, box, 1, 3, 4, 7, 3, 4, NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
             this.setBlockState(world, iblockstate4, 7, 1, 4, box);
             this.setBlockState(world, iblockstate3, 7, 1, 3, box);
             this.setBlockState(world, iblockstate1, 6, 1, 4, box);
@@ -596,7 +596,7 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, Blocks.WOODEN_PRESSURE_PLATE.getDefaultState(), 6, 2, 3, box);
             this.setBlockState(world, iblockstate6, 4, 1, 3, box);
             this.setBlockState(world, Blocks.WOODEN_PRESSURE_PLATE.getDefaultState(), 4, 2, 3, box);
-            this.setBlockState(world, NibiruBlocks.NIBIRU_CRAFTING_TABLE.getDefaultState(), 7, 1, 1, box);
+            this.setBlockState(world, NibiruBlocks.INFECTED_CRAFTING_TABLE.getDefaultState(), 7, 1, 1, box);
             this.generateChest(world, box, rand, 7, 2, 1, MPLootTables.NIBIRU_VILLAGE_LIBRARY);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, 1, 0, box);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, 2, 0, box);
@@ -606,7 +606,7 @@ public class StructureNibiruVillagePieces
             {
                 this.setBlockState(world, iblockstate5, 1, 0, -1, box);
 
-                if (this.getBlockStateFromPos(world, 1, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
+                if (this.getBlockStateFromPos(world, 1, -1, -1, box).getBlock() == NibiruBlocks.INFECTED_GRASS_PATH)
                 {
                     this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 1, -1, -1, box);
                 }
@@ -674,9 +674,9 @@ public class StructureNibiruVillagePieces
             IBlockState iblockstate = NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState();
             IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
-            IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_PLANKS.getDefaultState());
+            IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState());
             IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
-            IBlockState iblockstate6 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
+            IBlockState iblockstate6 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState());
             this.fillWithBlocks(world, box, 0, 1, 0, 9, 4, 6, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 9, 0, 6, false, rand, villageStones);
             this.fillWithRandomizedBlocks(world, box, 0, 4, 0, 9, 4, 6, false, rand, villageStones);
@@ -725,7 +725,7 @@ public class StructureNibiruVillagePieces
                 {
                     this.setBlockState(world, iblockstate4, i, 0, -1, box);
 
-                    if (this.getBlockStateFromPos(world, i, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
+                    if (this.getBlockStateFromPos(world, i, -1, -1, box).getBlock() == NibiruBlocks.INFECTED_GRASS_PATH)
                     {
                         this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), i, -1, -1, box);
                     }
@@ -780,8 +780,8 @@ public class StructureNibiruVillagePieces
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
             IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST));
             IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
-            IBlockState iblockstate5 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_PLANKS.getDefaultState());
-            IBlockState iblockstate6 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_LOG.getDefaultState());
+            IBlockState iblockstate5 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState());
+            IBlockState iblockstate6 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_LOG.getDefaultState());
             this.fillWithBlocks(world, box, 1, 1, 1, 7, 4, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithBlocks(world, box, 2, 1, 6, 8, 4, 10, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 2, 0, 5, 8, 0, 10, false, rand, villagePlanks);
@@ -882,7 +882,7 @@ public class StructureNibiruVillagePieces
             {
                 this.setBlockState(world, iblockstate7, 2, 0, -1, box);
 
-                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
+                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.INFECTED_GRASS_PATH)
                 {
                     this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 2, -1, -1, box);
                 }
@@ -951,9 +951,9 @@ public class StructureNibiruVillagePieces
             }
 
             IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState());
-            IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_PLANKS.getDefaultState());
+            IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState());
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
-            IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
+            IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState());
             this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 4, 0, 4, false, rand, villageStones);
             this.fillWithRandomizedBlocks(world, box, 0, 4, 0, 4, 4, 4, false, rand, villageLogs);
             this.fillWithRandomizedBlocks(world, box, 1, 4, 1, 3, 4, 3, false, rand, villagePlanks);
@@ -987,7 +987,7 @@ public class StructureNibiruVillagePieces
             {
                 this.setBlockState(world, iblockstate2, 2, 0, -1, box);
 
-                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
+                if (this.getBlockStateFromPos(world, 2, -1, -1, box).getBlock() == NibiruBlocks.INFECTED_GRASS_PATH)
                 {
                     this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 2, -1, -1, box);
                 }
@@ -1152,8 +1152,8 @@ public class StructureNibiruVillagePieces
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox box)
         {
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_GRASS_PATH.getDefaultState());
-            IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_PLANKS.getDefaultState());
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_GRASS_PATH.getDefaultState());
+            IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState());
 
             for (int i = this.boundingBox.minX; i <= this.boundingBox.maxX; ++i)
             {
@@ -1292,7 +1292,7 @@ public class StructureNibiruVillagePieces
                 }
                 this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 4 - 1, 0);
             }
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
+            IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState());
             this.fillWithBlocks(world, box, 0, 0, 0, 2, 3, 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.setBlockState(world, iblockstate, 1, 0, 0, box);
             this.setBlockState(world, iblockstate, 1, 1, 0, box);
@@ -1505,7 +1505,7 @@ public class StructureNibiruVillagePieces
         {
             if (this.structureType == 1)
             {
-                if (state.getBlock() == NibiruBlocks.NIBIRU_LOG)
+                if (state.getBlock() == NibiruBlocks.INFECTED_OAK_LOG)
                 {
                     return NibiruBlocks.INFECTED_SANDSTONE.getDefaultState();
                 }
@@ -1517,7 +1517,7 @@ public class StructureNibiruVillagePieces
                 {
                     return NibiruBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState();
                 }
-                if (state.getBlock() == NibiruBlocks.NIBIRU_PLANKS)
+                if (state.getBlock() == NibiruBlocks.INFECTED_OAK_PLANKS)
                 {
                     return NibiruBlocks.INFECTED_CUT_SANDSTONE.getDefaultState();
                 }
@@ -1540,33 +1540,33 @@ public class StructureNibiruVillagePieces
                 {
                     return NibiruBlocks.TERRASTONE.getDefaultState();
                 }
-                if (state.getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
+                if (state.getBlock() == NibiruBlocks.INFECTED_GRASS_PATH)
                 {
-                    return NibiruBlocks.NIBIRU_GRASS_PATH.getStateFromMeta(1);
+                    return NibiruBlocks.GREEN_VEIN_GRASS_PATH.getDefaultState();
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_VINES)
                 {
                     return Blocks.AIR.getDefaultState();
                 }
-                if (state.getBlock() == NibiruBlocks.NIBIRU_LOG)
+                if (state.getBlock() == NibiruBlocks.INFECTED_OAK_LOG)
                 {
-                    return NibiruBlocks.NIBIRU_LOG.getStateFromMeta(3);
+                    return NibiruBlocks.ALIEN_BERRY_OAK_LOG.getDefaultState();
                 }
-                if (state.getBlock() == NibiruBlocks.NIBIRU_FENCE)
+                if (state.getBlock() == NibiruBlocks.INFECTED_OAK_FENCE)
                 {
-                    return NibiruBlocks.NIBIRU_FENCE.getStateFromMeta(2);
+                    return NibiruBlocks.INFECTED_OAK_FENCE.getStateFromMeta(2);
                 }
-                if (state.getBlock() == NibiruBlocks.NIBIRU_PLANKS)
+                if (state.getBlock() == NibiruBlocks.INFECTED_OAK_PLANKS)
                 {
-                    return NibiruBlocks.NIBIRU_PLANKS.getStateFromMeta(2);
+                    return NibiruBlocks.ALIEN_BERRY_OAK_PLANKS.getDefaultState();
                 }
-                if (state.getBlock() == NibiruBlocks.NIBIRU_BOOKSHELF)
+                if (state.getBlock() == NibiruBlocks.INFECTED_OAK_BOOKSHELF)
                 {
-                    return NibiruBlocks.NIBIRU_BOOKSHELF.getStateFromMeta(1);
+                    return NibiruBlocks.ALIEN_BERRY_OAK_BOOKSHELF.getDefaultState();
                 }
-                if (state.getBlock() == NibiruBlocks.NIBIRU_CRAFTING_TABLE)
+                if (state.getBlock() == NibiruBlocks.INFECTED_CRAFTING_TABLE)
                 {
-                    return NibiruBlocks.NIBIRU_CRAFTING_TABLE.getStateFromMeta(1);
+                    return NibiruBlocks.ALIEN_BERRY_CRAFTING_TABLE.getDefaultState();
                 }
                 if (state.getBlock() == NibiruBlocks.INFECTED_OAK_STAIRS)
                 {
@@ -1615,7 +1615,7 @@ public class StructureNibiruVillagePieces
             case 2:
                 return NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK;
             default:
-                return NibiruBlocks.INFECTED_DOOR_BLOCK;
+                return NibiruBlocks.INFECTED_OAK_DOOR_BLOCK;
             }
         }
 
@@ -1906,7 +1906,7 @@ public class StructureNibiruVillagePieces
             }
 
             IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState());
-            IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
+            IBlockState iblockstate1 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState());
             this.fillWithBlocks(world, box, 1, 0, 1, 4, 12, 4, iblockstate, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), false);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 2, box);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 3, 12, 2, box);
@@ -1985,8 +1985,8 @@ public class StructureNibiruVillagePieces
 
             IBlockState iblockstate = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState());
             IBlockState iblockstate2 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
-            IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_LOG.getDefaultState());
-            IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.NIBIRU_FENCE.getDefaultState());
+            IBlockState iblockstate3 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_LOG.getDefaultState());
+            IBlockState iblockstate4 = this.getBiomeSpecificBlockState(NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState());
             this.fillWithBlocks(world, box, 1, 1, 1, 3, 5, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 3, 0, 4, false, rand, villageStones);
             this.fillWithRandomizedBlocks(world, box, 1, 0, 1, 2, 0, 3, false, rand, villageDirts);
@@ -2035,7 +2035,7 @@ public class StructureNibiruVillagePieces
             {
                 this.setBlockState(world, iblockstate2, 1, 0, -1, box);
 
-                if (this.getBlockStateFromPos(world, 1, -1, -1, box).getBlock() == NibiruBlocks.NIBIRU_GRASS_PATH)
+                if (this.getBlockStateFromPos(world, 1, -1, -1, box).getBlock() == NibiruBlocks.INFECTED_GRASS_PATH)
                 {
                     this.setBlockState(world, NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState(), 1, -1, -1, box);
                 }
@@ -2118,11 +2118,11 @@ public class StructureNibiruVillagePieces
                 }
                 else if (f < 0.5F)
                 {
-                    this.blockstate = NibiruBlocks.NIBIRU_PLANKS.getDefaultState();
+                    this.blockstate = NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState();
                 }
                 else
                 {
-                    this.blockstate = NibiruBlocks.NIBIRU_PLANKS.getDefaultState();
+                    this.blockstate = NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState();
                 }
             }
             else
@@ -2157,11 +2157,11 @@ public class StructureNibiruVillagePieces
                 }
                 else if (f < 0.5F)
                 {
-                    this.blockstate = NibiruBlocks.NIBIRU_LOG.getDefaultState();
+                    this.blockstate = NibiruBlocks.INFECTED_OAK_LOG.getDefaultState();
                 }
                 else
                 {
-                    this.blockstate = NibiruBlocks.NIBIRU_LOG.getDefaultState();
+                    this.blockstate = NibiruBlocks.INFECTED_OAK_LOG.getDefaultState();
                 }
             }
             else

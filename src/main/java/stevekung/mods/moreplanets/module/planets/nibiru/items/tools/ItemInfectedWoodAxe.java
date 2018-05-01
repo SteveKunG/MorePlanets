@@ -14,7 +14,7 @@ public class ItemInfectedWoodAxe extends ItemAxeMP
 {
     public ItemInfectedWoodAxe(String name, ToolMaterial material)
     {
-        super(name, material, NibiruBlocks.NIBIRU_PLANKS, EnumToolSpeed.WOOD);
+        super(name, material, NibiruBlocks.INFECTED_OAK_PLANKS, EnumToolSpeed.WOOD);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ItemInfectedWoodAxe extends ItemAxeMP
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.NIBIRU_PLANKS) && repair.getItemDamage() <= 1)
+        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.INFECTED_OAK_PLANKS))
         {
             return true;
         }

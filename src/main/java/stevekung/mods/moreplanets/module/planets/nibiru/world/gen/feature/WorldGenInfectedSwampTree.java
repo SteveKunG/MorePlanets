@@ -107,7 +107,7 @@ public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
                                     {
                                         if (this.genLeaves)
                                         {
-                                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
+                                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
                                         }
                                     }
                                 }
@@ -122,7 +122,7 @@ public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
 
                         if (block2.isAir(world.getBlockState(upN), world, upN) || block2.isLeaves(world.getBlockState(upN), world, upN) || block2 == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(i2), NibiruBlocks.NIBIRU_LOG.getDefaultState());
+                            this.setBlockAndNotifyAdequately(world, pos.up(i2), NibiruBlocks.INFECTED_OAK_LOG.getDefaultState());
                         }
                     }
 

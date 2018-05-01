@@ -51,7 +51,7 @@ public class ItemInfectedWoodHoe extends ItemHoeMP
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.NIBIRU_PLANKS))
+        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.INFECTED_OAK_PLANKS))
         {
             return true;
         }

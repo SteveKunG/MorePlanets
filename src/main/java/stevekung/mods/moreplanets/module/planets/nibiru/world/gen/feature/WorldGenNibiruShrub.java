@@ -14,7 +14,7 @@ public class WorldGenNibiruShrub extends WorldGenInfectedTrees
 
     public WorldGenNibiruShrub(IBlockState log, IBlockState leaves)
     {
-        super(false, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
+        super(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         this.log = log;
         this.leaves = leaves;
     }

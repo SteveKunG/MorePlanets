@@ -14,6 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 
 public class BlockDropableOre extends BlockBasicMP implements IDetectableResource
 {
@@ -60,6 +61,14 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
         else if (this.type == BlockType.QUARTZ_ORE)
         {
             return Items.QUARTZ;
+        }
+        else if (this.type == BlockType.INFECTED_COAL_ORE)
+        {
+            return NibiruItems.INFECTED_COAL;
+        }
+        else if (this.type == BlockType.INFERUMITE_CRYSTAL_ORE)
+        {
+            return NibiruItems.INFERUMITE_CRYSTAL;
         }
         return Item.getItemFromBlock(this);
     }
@@ -117,6 +126,10 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
         {
             return MathHelper.getInt(RANDOM, 2, 5);
         }
+        else if (this.type == BlockType.INFERUMITE_CRYSTAL_ORE)
+        {
+            return 1 + RANDOM.nextInt(5);
+        }
         return MathHelper.getInt(RANDOM, 3, 7);
     }
 
@@ -128,15 +141,17 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
 
     public static enum BlockType
     {
-        SETRORIUM_ORE,
-        CHEESE_MILK_ORE,
-        GOLDENITE_CRYSTALS_ORE,
         COAL_ORE,
         LAPIS_ORE,
         DIAMOND_ORE,
         EMERALD_ORE,
         SILICON_ORE,
-        QUARTZ_ORE;
+        QUARTZ_ORE,
+        SETRORIUM_ORE,
+        CHEESE_MILK_ORE,
+        GOLDENITE_CRYSTALS_ORE,
+        INFECTED_COAL_ORE,
+        INFERUMITE_CRYSTAL_ORE;
 
         @Override
         public String toString()

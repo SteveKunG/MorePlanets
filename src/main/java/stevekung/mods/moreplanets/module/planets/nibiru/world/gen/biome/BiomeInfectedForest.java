@@ -53,15 +53,15 @@ public class BiomeInfectedForest extends BiomeNibiru
     {
         if (rand.nextInt(10) == 0)
         {
-            return new WorldGenInfectedBigTree(true, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0);
+            return new WorldGenInfectedBigTree(true, NibiruBlocks.INFECTED_OAK_LOG, 0, NibiruBlocks.INFECTED_OAK_LEAVES, 0);
         }
         else if (rand.nextInt(20) == 0)
         {
-            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0) : new WorldGenInfectedTrees(false, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
+            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, NibiruBlocks.INFECTED_OAK_LOG, 0, NibiruBlocks.INFECTED_OAK_LEAVES, 0) : new WorldGenInfectedTrees(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
         else
         {
-            return new WorldGenInfectedTrees(true, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
+            return new WorldGenInfectedTrees(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
     }
 }

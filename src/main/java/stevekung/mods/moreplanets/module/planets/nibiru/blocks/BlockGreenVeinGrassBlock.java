@@ -89,9 +89,9 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            if (NibiruBlocks.NIBIRU_FLOWER.canBlockStay(world, blockpos1, NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.TERRAPUFF_HURB)))
+                            if (NibiruBlocks.TERRAPUFF_HERB.canPlaceBlockAt(world, blockpos1))
                             {
-                                world.setBlockState(blockpos1, NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.TERRAPUFF_HURB), 3);
+                                world.setBlockState(blockpos1, NibiruBlocks.TERRAPUFF_HERB.getDefaultState(), 3);
                             }
                         }
                         else

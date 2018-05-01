@@ -37,6 +37,19 @@ public class BlockAllHalfSlab extends BlockSlabMP
             this.setResistance(5.0F);
             this.setSoundType(SoundType.WOOD);
         }
+        else if (type == BlockType.INFECTED_SANDSTONE_SLAB || type == BlockType.INFECTED_CUT_SANDSTONE_SLAB)
+        {
+            this.setHardness(0.8F);
+        }
+        else if (type == BlockType.INFECTED_PRISMARINE_SLAB || type == BlockType.INFECTED_PRISMARINE_BRICKS_SLAB || type == BlockType.INFECTED_DARK_PRISMARINE_SLAB)
+        {
+            this.setHardness(1.5F);
+            this.setResistance(10.0F);
+        }
+        else if (type == BlockType.INFECTED_STONE_BRICKS_SLAB || type == BlockType.INFECTED_VEIN_STONE_BRICKS_SLAB || type == BlockType.INFECTED_CRACKED_STONE_BRICKS_SLAB || type == BlockType.TERRASTONE_SLAB)
+        {
+            this.setHardness(1.5F);
+        }
         else
         {
             this.setHardness(2.0F);
@@ -113,7 +126,16 @@ public class BlockAllHalfSlab extends BlockSlabMP
         NIBIRU_DUNGEON_BRICK_SLAB(true, false),
         CHEESE_SPORE_WOOD_SLAB(false, true),
         INFECTED_OAK_WOOD_SLAB(false, true),
-        ALIEN_BERRY_OAK_WOOD_SLAB(false, true);
+        ALIEN_BERRY_OAK_WOOD_SLAB(false, true),
+        INFECTED_PRISMARINE_SLAB,
+        INFECTED_PRISMARINE_BRICKS_SLAB,
+        INFECTED_DARK_PRISMARINE_SLAB,
+        INFECTED_STONE_BRICKS_SLAB,
+        INFECTED_VEIN_STONE_BRICKS_SLAB,
+        INFECTED_CRACKED_STONE_BRICKS_SLAB,
+        TERRASTONE_SLAB,
+        INFECTED_SANDSTONE_SLAB,
+        INFECTED_CUT_SANDSTONE_SLAB;
 
         private boolean isDungeonBrick;
         private boolean isWood;

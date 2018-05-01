@@ -43,7 +43,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
         }
         else if (rand.nextInt(20) == 0)
         {
-            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, NibiruBlocks.NIBIRU_LOG, 0, NibiruBlocks.NIBIRU_LEAVES, 0) : new WorldGenInfectedTrees(false, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
+            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, NibiruBlocks.INFECTED_OAK_LOG, 0, NibiruBlocks.INFECTED_OAK_LEAVES, 0) : new WorldGenInfectedTrees(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
         else
         {
@@ -63,7 +63,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
 
             if (world.getBlockState(blockpos) == NibiruBlocks.NIBIRU_ROCK.getDefaultState())
             {
-                world.setBlockState(blockpos, NibiruBlocks.NIBIRU_ORE.getStateFromMeta(6), 2);
+                world.setBlockState(blockpos, NibiruBlocks.INFECTED_EMERALD_ORE.getDefaultState(), 2);
             }
         }
         for (int i = 0; i < 7; ++i)

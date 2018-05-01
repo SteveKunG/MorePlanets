@@ -121,9 +121,9 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            if (NibiruBlocks.NIBIRU_FLOWER.canBlockStay(world, blockpos1, NibiruBlocks.NIBIRU_FLOWER.getDefaultState()))
+                            if (NibiruBlocks.PURE_HERB.canPlaceBlockAt(world, blockpos1))
                             {
-                                world.setBlockState(blockpos1, NibiruBlocks.NIBIRU_FLOWER.getDefaultState(), 3);
+                                world.setBlockState(blockpos1, NibiruBlocks.PURE_HERB.getDefaultState(), 3);
                             }
                         }
                         else

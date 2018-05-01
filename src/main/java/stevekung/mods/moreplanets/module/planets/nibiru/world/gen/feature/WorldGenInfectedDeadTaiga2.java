@@ -101,7 +101,7 @@ public class WorldGenInfectedDeadTaiga2 extends WorldGenAbstractTree
                                     {
                                         if (this.genLeaves)
                                         {
-                                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(1));
+                                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_OAK_LEAVES.getStateFromMeta(1));//TODO
                                         }
                                     }
                                 }
@@ -134,7 +134,7 @@ public class WorldGenInfectedDeadTaiga2 extends WorldGenAbstractTree
 
                         if (block2.isAir(world.getBlockState(upN), world, upN) || block2.isLeaves(world.getBlockState(upN), world, upN))
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(k4), NibiruBlocks.NIBIRU_LOG.getStateFromMeta(1));
+                            this.setBlockAndNotifyAdequately(world, pos.up(k4), NibiruBlocks.INFECTED_OAK_LOG.getStateFromMeta(1));//TODO
                         }
                     }
                     return true;

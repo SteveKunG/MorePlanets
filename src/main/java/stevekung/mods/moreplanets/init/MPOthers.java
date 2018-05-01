@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.init;
 
+import net.minecraft.block.Block;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
@@ -54,10 +55,18 @@ public class MPOthers
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_MELON_BLOCK);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_SAND);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_CACTUS);
-        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.NIBIRU_FLOWER);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.PURE_HERB);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.TERRAPUFF_HERB);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.BATASIA_DANDELION);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.PYOLONIA);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.PHILIPY);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.WHITE_TAIL);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.VEALIUM_VINES);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.TERRASHROOM);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_VINES_DIRT);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.PURIFY_GRAVEL);
-        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.NIBIRU_GRASS_PATH);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.INFECTED_GRASS_PATH);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(NibiruBlocks.GREEN_VEIN_GRASS_PATH);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.FRONOS_GRASS);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.FRONOS_DIRT);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(FronosBlocks.FRONOS_COARSE_DIRT);

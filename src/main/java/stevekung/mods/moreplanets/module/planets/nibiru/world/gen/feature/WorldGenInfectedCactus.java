@@ -22,7 +22,7 @@ public class WorldGenInfectedCactus extends WorldGenerator
 
                 for (int i2 = 0; i2 < l1; ++i2)
                 {
-                    if (NibiruBlocks.INFECTED_CACTUS.canBlockStay(world, blockpos, NibiruBlocks.INFECTED_CACTUS.getDefaultState()))
+                    if (NibiruBlocks.INFECTED_CACTUS.canPlaceBlockAt(world, blockpos))
                     {
                         world.setBlockState(blockpos, NibiruBlocks.INFECTED_CACTUS.getDefaultState(), 2);
                     }

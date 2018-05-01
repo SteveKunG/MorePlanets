@@ -14,7 +14,7 @@ public class ItemNibiruStoneAxe extends ItemAxeMP
 {
     public ItemNibiruStoneAxe(String name, ToolMaterial material)
     {
-        super(name, material, NibiruBlocks.NIBIRU_PLANKS, EnumToolSpeed.WOOD);
+        super(name, material, NibiruBlocks.NIBIRU_COBBLESTONE, EnumToolSpeed.WOOD);
     }
 
     @Override

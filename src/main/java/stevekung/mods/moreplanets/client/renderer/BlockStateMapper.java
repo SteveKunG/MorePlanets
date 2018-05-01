@@ -9,6 +9,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWaste
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockDropableLitOre;
+import stevekung.mods.moreplanets.utils.blocks.BlockSaplingMP;
 import stevekung.mods.moreplanets.utils.client.renderer.StateMapperCTM;
 import stevekung.mods.moreplanets.utils.client.renderer.StateMapperType;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
@@ -28,12 +29,12 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_SPORE_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_SPORE_DOOR_BLOCK, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.NIBIRU_LEAVES, EnumStateMapper.LEAVES);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_OAK_LEAVES, EnumStateMapper.LEAVES);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_JUNGLE_LEAVES, EnumStateMapper.LEAVES);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_CACTUS, EnumStateMapper.PLANT_AGE);
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_FENCE_GATE, EnumStateMapper.FENCE_GATE);
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_DEAD_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_DOOR_BLOCK, EnumStateMapper.DOOR);
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK, EnumStateMapper.DOOR);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_OAK_DOOR_BLOCK, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ELECTRICAL_FIRE, EnumStateMapper.FIRE);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK, BlockInfectedSugarCane.AGE);
@@ -45,6 +46,12 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.PURIFY_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.MULTALIC_CRYSTAL, BlockStateProperty.FACING_ALL);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_REDSTONE_ORE, BlockDropableLitOre.LIT);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_OAK_SAPLING, BlockSaplingMP.STAGE);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_JUNGLE_SAPLING, BlockSaplingMP.STAGE);
+        ClientRegistryUtils.registerStateMapper(ChalosBlocks.CHEESE_SPORE_FLOWER, BlockSaplingMP.STAGE);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_SAPLING, BlockSaplingMP.STAGE);
+        
         ClientRegistryUtils.registerStateMapper(FronosBlocks.FRONOS_REDSTONE_ORE, BlockDropableLitOre.LIT);
 
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_MELON_STEM, new StateMapperType("stem"));
@@ -60,6 +67,6 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, new StateMapperCTM());
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.SPORELILY, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.NIBIRU_FLOWER, new StateMapperCTM());
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.TERRAPUFF_HERB, new StateMapperCTM());
     }
 }

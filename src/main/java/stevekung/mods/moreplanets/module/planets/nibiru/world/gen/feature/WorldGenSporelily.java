@@ -17,10 +17,11 @@ public class WorldGenSporelily extends WorldGenerator
             int j = pos.getX() + rand.nextInt(8) - rand.nextInt(8);
             int k = pos.getY() + rand.nextInt(4) - rand.nextInt(4);
             int l = pos.getZ() + rand.nextInt(8) - rand.nextInt(8);
+            BlockPos newPos = new BlockPos(j, k, l);
 
-            if (world.isAirBlock(new BlockPos(j, k, l)) && NibiruBlocks.SPORELILY.canBlockStay(world, new BlockPos(j, k, l), NibiruBlocks.SPORELILY.getDefaultState()))
+            if (world.isAirBlock(newPos) && NibiruBlocks.SPORELILY.canPlaceBlockAt(world, newPos))
             {
-                world.setBlockState(new BlockPos(j, k, l), NibiruBlocks.SPORELILY.getDefaultState(), 2);
+                world.setBlockState(newPos, NibiruBlocks.SPORELILY.getDefaultState(), 2);
             }
         }
         return true;

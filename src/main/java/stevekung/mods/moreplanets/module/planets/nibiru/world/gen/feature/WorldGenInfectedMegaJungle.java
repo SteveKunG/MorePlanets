@@ -40,7 +40,7 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
                 {
                     k = pos.getX() + (int)(1.5F + MathHelper.cos(f) * i1);
                     l = pos.getZ() + (int)(1.5F + MathHelper.sin(f) * i1);
-                    this.setBlockAndNotifyAdequately(world, new BlockPos(k, j - 3 + i1 / 2, l), NibiruBlocks.NIBIRU_LOG.getStateFromMeta(2));
+                    this.setBlockAndNotifyAdequately(world, new BlockPos(k, j - 3 + i1 / 2, l), NibiruBlocks.INFECTED_JUNGLE_LOG.getDefaultState());
                 }
 
                 int j2 = 1 + rand.nextInt(2);
@@ -59,7 +59,7 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
 
                 if (this.isAirLeaves(world, blockpos))
                 {
-                    this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LOG.getStateFromMeta(2));
+                    this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_JUNGLE_LOG.getDefaultState());
 
                     if (i2 > 0)
                     {
@@ -74,7 +74,7 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
 
                     if (this.isAirLeaves(world,blockpos1))
                     {
-                        this.setBlockAndNotifyAdequately(world, blockpos1, NibiruBlocks.NIBIRU_LOG.getStateFromMeta(2));
+                        this.setBlockAndNotifyAdequately(world, blockpos1, NibiruBlocks.INFECTED_JUNGLE_LOG.getDefaultState());
 
                         if (i2 > 0)
                         {
@@ -87,7 +87,7 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
 
                     if (this.isAirLeaves(world,blockpos2))
                     {
-                        this.setBlockAndNotifyAdequately(world, blockpos2, NibiruBlocks.NIBIRU_LOG.getStateFromMeta(2));
+                        this.setBlockAndNotifyAdequately(world, blockpos2, NibiruBlocks.INFECTED_JUNGLE_LOG.getDefaultState());
 
                         if (i2 > 0)
                         {
@@ -100,7 +100,7 @@ public class WorldGenInfectedMegaJungle extends WorldGenHugeTreesMP
 
                     if (this.isAirLeaves(world,blockpos3))
                     {
-                        this.setBlockAndNotifyAdequately(world, blockpos3, NibiruBlocks.NIBIRU_LOG.getStateFromMeta(2));
+                        this.setBlockAndNotifyAdequately(world, blockpos3, NibiruBlocks.INFECTED_JUNGLE_LOG.getDefaultState());
 
                         if (i2 > 0)
                         {

@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "cross": "moreplanets:blocks/infected_jungle_sapling"
+        },
+        "model": "cross"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

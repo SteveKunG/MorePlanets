@@ -485,12 +485,12 @@ public class StructureNibiruMineshaftPieces
 
         protected IBlockState getPlanks()
         {
-            return NibiruBlocks.NIBIRU_PLANKS.getDefaultState();
+            return NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState();
         }
 
         protected IBlockState getFence()
         {
-            return NibiruBlocks.NIBIRU_FENCE.getDefaultState();
+            return NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState();
         }
 
         protected boolean isSupportingBox(World world, StructureBoundingBox box, int xMin, int x, int y, int z)

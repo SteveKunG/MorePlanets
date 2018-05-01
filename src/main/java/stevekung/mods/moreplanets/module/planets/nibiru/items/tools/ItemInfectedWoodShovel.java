@@ -51,7 +51,7 @@ public class ItemInfectedWoodShovel extends ItemShovelMP
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.NIBIRU_PLANKS) && repair.getItemDamage() <= 1)
+        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.INFECTED_OAK_PLANKS))
         {
             return true;
         }

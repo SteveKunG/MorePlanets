@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "cross": "moreplanets:blocks/vealium_vines"
+        },
+        "model": "cross"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

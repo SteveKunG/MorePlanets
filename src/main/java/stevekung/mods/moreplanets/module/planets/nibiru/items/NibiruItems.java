@@ -42,8 +42,7 @@ public class NibiruItems
 
     // Base
     public static Item INFECTED_WHEAT_SEEDS;
-    public static Item INFECTED_DOOR;
-    public static Item INFECTED_DEAD_OAK_DOOR;
+    public static Item INFECTED_OAK_DOOR;
     public static Item ALIEN_BERRY_OAK_DOOR;
     public static Item INFECTED_WHEAT;
     public static Item INFECTED_CLAY_BALL;
@@ -119,8 +118,7 @@ public class NibiruItems
         NibiruItems.COOKED_SHLIME_MEAT = new ItemAllFood("cooked_shlime_meat", ItemAllFood.ItemType.COOKED_SHLIME_MEAT);
 
         NibiruItems.INFECTED_WHEAT_SEEDS = new ItemInfectedWheatSeeds("infected_wheat_seeds");
-        NibiruItems.INFECTED_DOOR = new ItemDoorMP("infected_door", NibiruBlocks.INFECTED_DOOR_BLOCK);
-        NibiruItems.INFECTED_DEAD_OAK_DOOR = new ItemDoorMP("infected_dead_oak_door", NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK);
+        NibiruItems.INFECTED_OAK_DOOR = new ItemDoorMP("infected_oak_door", NibiruBlocks.INFECTED_OAK_DOOR_BLOCK);
         NibiruItems.ALIEN_BERRY_OAK_DOOR = new ItemDoorMP("alien_berry_oak_door", NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK);
         NibiruItems.INFECTED_WHEAT = new ItemBaseMP("infected_wheat");
         NibiruItems.INFECTED_CLAY_BALL = new ItemBaseMP("infected_clay_ball");
@@ -145,11 +143,11 @@ public class NibiruItems
         NibiruItems.INFECTED_WOOD_PICKAXE = new ItemInfectedWoodPickaxe("infected_wood_pickaxe", ToolMaterial.WOOD);
         NibiruItems.INFECTED_WOOD_AXE = new ItemInfectedWoodAxe("infected_wood_axe", ToolMaterial.WOOD);
         NibiruItems.INFECTED_WOOD_HOE = new ItemInfectedWoodHoe("infected_wood_hoe", ToolMaterial.WOOD);
-        NibiruItems.ALIEN_BERRY_WOOD_SWORD = new ItemSwordMP("alien_berry_wood_sword", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS);
-        NibiruItems.ALIEN_BERRY_WOOD_SHOVEL = new ItemShovelMP("alien_berry_wood_shovel", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS);
-        NibiruItems.ALIEN_BERRY_WOOD_PICKAXE = new ItemPickaxeMP("alien_berry_wood_pickaxe", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS);
-        NibiruItems.ALIEN_BERRY_WOOD_AXE = new ItemAxeMP("alien_berry_wood_axe", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS, EnumToolSpeed.WOOD);
-        NibiruItems.ALIEN_BERRY_WOOD_HOE = new ItemHoeMP("alien_berry_wood_hoe", ToolMaterial.WOOD, NibiruBlocks.NIBIRU_PLANKS);
+        NibiruItems.ALIEN_BERRY_WOOD_SWORD = new ItemSwordMP("alien_berry_wood_sword", ToolMaterial.WOOD, NibiruBlocks.INFECTED_OAK_PLANKS);
+        NibiruItems.ALIEN_BERRY_WOOD_SHOVEL = new ItemShovelMP("alien_berry_wood_shovel", ToolMaterial.WOOD, NibiruBlocks.INFECTED_OAK_PLANKS);
+        NibiruItems.ALIEN_BERRY_WOOD_PICKAXE = new ItemPickaxeMP("alien_berry_wood_pickaxe", ToolMaterial.WOOD, NibiruBlocks.INFECTED_OAK_PLANKS);
+        NibiruItems.ALIEN_BERRY_WOOD_AXE = new ItemAxeMP("alien_berry_wood_axe", ToolMaterial.WOOD, NibiruBlocks.INFECTED_OAK_PLANKS, EnumToolSpeed.WOOD);
+        NibiruItems.ALIEN_BERRY_WOOD_HOE = new ItemHoeMP("alien_berry_wood_hoe", ToolMaterial.WOOD, NibiruBlocks.INFECTED_OAK_PLANKS);
         NibiruItems.NIBIRU_STONE_SWORD = new ItemNibiruStoneSword("nibiru_stone_sword", ToolMaterial.STONE);
         NibiruItems.NIBIRU_STONE_SHOVEL = new ItemNibiruStoneShovel("nibiru_stone_shovel", ToolMaterial.STONE);
         NibiruItems.NIBIRU_STONE_PICKAXE = new ItemNibiruStonePickaxe("nibiru_stone_pickaxe", ToolMaterial.STONE);
@@ -196,8 +194,7 @@ public class NibiruItems
         BlocksItemsRegistry.registerItem(NibiruItems.COOKED_SHLIME_MEAT);
 
         BlocksItemsRegistry.registerItem(NibiruItems.INFECTED_WHEAT_SEEDS);
-        BlocksItemsRegistry.registerItem(NibiruItems.INFECTED_DOOR);
-        BlocksItemsRegistry.registerItem(NibiruItems.INFECTED_DEAD_OAK_DOOR);
+        BlocksItemsRegistry.registerItem(NibiruItems.INFECTED_OAK_DOOR);
         BlocksItemsRegistry.registerItem(NibiruItems.ALIEN_BERRY_OAK_DOOR);
         BlocksItemsRegistry.registerItem(NibiruItems.INFECTED_WHEAT);
         BlocksItemsRegistry.registerItem(NibiruItems.INFECTED_CLAY_BALL);
@@ -270,8 +267,7 @@ public class NibiruItems
         /************************OTHER STUFF***************************/
         /**************************************************************/
 
-        NibiruBlocks.INFECTED_DOOR_BLOCK.setDoorItem(NibiruItems.INFECTED_DOOR);
-        NibiruBlocks.INFECTED_DEAD_OAK_DOOR_BLOCK.setDoorItem(NibiruItems.INFECTED_DEAD_OAK_DOOR);
+        NibiruBlocks.INFECTED_OAK_DOOR_BLOCK.setDoorItem(NibiruItems.INFECTED_OAK_DOOR);
         NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK.setDoorItem(NibiruItems.ALIEN_BERRY_OAK_DOOR);
     }
 }

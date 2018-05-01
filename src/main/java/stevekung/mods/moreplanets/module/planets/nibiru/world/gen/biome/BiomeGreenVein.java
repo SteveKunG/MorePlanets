@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNibiruFlower;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityTerrastoneGolem;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenAlienBerryBigTree;
@@ -75,7 +74,7 @@ public class BiomeGreenVein extends BiomeNibiru
             int x = rand.nextInt(16) + 8;
             int z = rand.nextInt(16) + 8;
             BlockPos blockpos2 = world.getHeight(pos.add(x, 0, z));
-            new WorldGenFlowersBase(NibiruBlocks.NIBIRU_FLOWER.getDefaultState().withProperty(BlockNibiruFlower.VARIANT, BlockNibiruFlower.BlockType.TERRASHROOM)).generate(world, rand, blockpos2);
+            new WorldGenFlowersBase(NibiruBlocks.TERRASHROOM.getDefaultState()).generate(world, rand, blockpos2);
         }
         super.decorate(world, rand, pos);
     }

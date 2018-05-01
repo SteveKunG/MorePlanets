@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "cross": "moreplanets:blocks/batasia_dandelion"
+        },
+        "model": "cross"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

@@ -43,7 +43,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
     {
         if (rand.nextInt(5) > 0)
         {
-            return new WorldGenInfectedTrees(false, NibiruBlocks.NIBIRU_LOG.getDefaultState(), NibiruBlocks.NIBIRU_LEAVES.getDefaultState());
+            return new WorldGenInfectedTrees(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
         else
         {

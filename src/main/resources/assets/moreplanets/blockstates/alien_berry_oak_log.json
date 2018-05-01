@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "end": "moreplanets:blocks/alien_berry_oak_log_top",
+            "side": "moreplanets:blocks/alien_berry_oak_log_side"
+        },
+        "model": "cube_column"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}],
+        "axis" : {
+           "x": { "x": 90, "y": 90 },
+           "y": { },
+           "z": { "x": 90 }
+        }
+    }
+}

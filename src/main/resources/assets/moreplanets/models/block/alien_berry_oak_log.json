@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "moreplanets:blocks/alien_berry_oak_log_top",
-        "side": "moreplanets:blocks/alien_berry_oak_log_side"
-    }
-}

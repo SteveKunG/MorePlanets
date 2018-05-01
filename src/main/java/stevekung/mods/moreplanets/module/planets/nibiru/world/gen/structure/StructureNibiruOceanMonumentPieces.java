@@ -1398,9 +1398,9 @@ public class StructureNibiruOceanMonumentPieces
 
     public abstract static class Piece extends StructureComponent
     {
-        protected IBlockState roughPrismarine = NibiruBlocks.INFECTED_PRISMARINE.getStateFromMeta(0);
-        protected IBlockState bricksPrismarine = NibiruBlocks.INFECTED_PRISMARINE.getStateFromMeta(1);
-        protected IBlockState darkPrismarine = NibiruBlocks.INFECTED_PRISMARINE.getStateFromMeta(2);
+        protected IBlockState roughPrismarine = NibiruBlocks.INFECTED_PRISMARINE.getDefaultState();
+        protected IBlockState bricksPrismarine = NibiruBlocks.INFECTED_PRISMARINE_BRICKS.getDefaultState();
+        protected IBlockState darkPrismarine = NibiruBlocks.INFECTED_DARK_PRISMARINE.getDefaultState();
         protected IBlockState seaLantern = NibiruBlocks.INFECTED_SEA_LANTERN.getDefaultState();
         protected IBlockState water = NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
         protected int gridroomSourceIndex = getRoomIndex(2, 0, 0);
@@ -1852,7 +1852,7 @@ public class StructureNibiruOceanMonumentPieces
                     if (rand.nextInt(3) != 0)
                     {
                         int k = 2 + (rand.nextInt(4) == 0 ? 0 : 1);
-                        this.fillWithBlocks(world, box, i, k, j, i, 3, j, NibiruBlocks.INFECTED_SPONGE.getStateFromMeta(1), NibiruBlocks.INFECTED_SPONGE.getStateFromMeta(1), false);
+                        this.fillWithBlocks(world, box, i, k, j, i, 3, j, NibiruBlocks.INFECTED_WET_SPONGE.getDefaultState(), NibiruBlocks.INFECTED_WET_SPONGE.getDefaultState(), false);
                     }
                 }
             }

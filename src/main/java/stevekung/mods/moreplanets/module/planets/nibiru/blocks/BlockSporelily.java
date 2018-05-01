@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockSporelily extends BlockBushMP
 {
-    protected static AxisAlignedBB LILY_PAD_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.09375D, 0.9375D);
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.09375D, 0.9375D);
 
     public BlockSporelily(String name)
     {
@@ -33,7 +33,7 @@ public class BlockSporelily extends BlockBushMP
     {
         if (!(entity instanceof EntityBoat))
         {
-            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, LILY_PAD_AABB);
+            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, BlockSporelily.AABB);
         }
     }
 
@@ -42,14 +42,20 @@ public class BlockSporelily extends BlockBushMP
     {
         if (entity instanceof EntityBoat)
         {
-            world.destroyBlock(new BlockPos(pos), true);
+            world.destroyBlock(pos, true);
         }
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return LILY_PAD_AABB;
+        return BlockSporelily.AABB;
+    }
+
+    @Override
+    public boolean validBlock(Block block)
+    {
+        return block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK;
     }
 
     @Override
@@ -58,7 +64,7 @@ public class BlockSporelily extends BlockBushMP
         if (pos.getY() >= 0 && pos.getY() < 256)
         {
             IBlockState iblockstate = world.getBlockState(pos.down());
-            return iblockstate.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && iblockstate.getValue(BlockFluidBase.LEVEL).intValue() == 0;
+            return iblockstate.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && iblockstate.getValue(BlockFluidBase.LEVEL) == 0;
         }
         else
         {

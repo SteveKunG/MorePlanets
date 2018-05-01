@@ -195,7 +195,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
     {
         if (this.canGrowInto(world.getBlockState(pos).getBlock()))
         {
-            this.setBlockAndNotifyAdequately(world, pos, NibiruBlocks.NIBIRU_LOG.getStateFromMeta(1));
+            this.setBlockAndNotifyAdequately(world, pos, NibiruBlocks.INFECTED_OAK_LOG.getStateFromMeta(1));//TODO
         }
     }
 
@@ -208,7 +208,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
 
             if (state.getBlock().isAir(state, world, blockpos))
             {
-                this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(1));
+                this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_OAK_LEAVES.getStateFromMeta(1));//TODO
             }
         }
     }

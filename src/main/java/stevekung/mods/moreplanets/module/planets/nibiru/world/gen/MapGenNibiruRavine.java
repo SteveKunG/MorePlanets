@@ -237,7 +237,7 @@ public class MapGenNibiruRavine extends MapGenBase
         IBlockState top = this.isExceptionBiome(biome) ? NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState() : biome.topBlock;
         IBlockState filler = this.isExceptionBiome(biome) ? NibiruBlocks.INFECTED_DIRT.getDefaultState() : biome.fillerBlock;
 
-        if (state.getBlock() == NibiruBlocks.NIBIRU_ROCK || state.getBlock() == NibiruBlocks.NIBIRU_ORE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == NibiruBlocks.NIBIRU_ROCK || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y < 10)
             {

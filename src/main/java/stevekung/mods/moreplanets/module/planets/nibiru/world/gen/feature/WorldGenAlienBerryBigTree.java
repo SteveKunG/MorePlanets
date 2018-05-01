@@ -143,7 +143,7 @@ public class WorldGenAlienBerryBigTree extends WorldGenAbstractTree
     {
         for (int i = 0; i < this.leafDistanceLimit; ++i)
         {
-            this.func_181631_a(pos.up(i), this.leafSize(i), NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(3).withProperty(BlockStateProperty.CHECK_DECAY, Boolean.valueOf(false)));
+            this.func_181631_a(pos.up(i), this.leafSize(i), NibiruBlocks.ALIEN_BERRY_OAK_LEAVES.getDefaultState().withProperty(BlockStateProperty.CHECK_DECAY, Boolean.valueOf(false)));
         }
     }
 
@@ -159,7 +159,7 @@ public class WorldGenAlienBerryBigTree extends WorldGenAbstractTree
         {
             BlockPos blockpos1 = p_175937_1_.add(0.5F + j * f, 0.5F + j * f1, 0.5F + j * f2);
             BlockStateProperty.EnumAxis blocklog$enumaxis = this.func_175938_b(p_175937_1_, blockpos1);
-            this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getStateFromMeta(3).withProperty(BlockStateProperty.AXIS, blocklog$enumaxis));
+            this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getDefaultState().withProperty(BlockStateProperty.AXIS, blocklog$enumaxis));
         }
     }
 
@@ -209,7 +209,7 @@ public class WorldGenAlienBerryBigTree extends WorldGenAbstractTree
     {
         BlockPos blockpos = this.basePos;
         BlockPos blockpos1 = this.basePos.up(this.height);
-        Block block = NibiruBlocks.NIBIRU_LOG;
+        Block block = NibiruBlocks.ALIEN_BERRY_OAK_LOG;
         this.func_175937_a(blockpos, blockpos1, block);
 
         if (this.trunkSize == 2)
@@ -229,7 +229,7 @@ public class WorldGenAlienBerryBigTree extends WorldGenAbstractTree
 
             if (!blockpos.equals(worldgenbigtree$foliagecoordinates) && this.leafNodeNeedsBase(i - this.basePos.getY()))
             {
-                this.func_175937_a(blockpos, worldgenbigtree$foliagecoordinates, NibiruBlocks.NIBIRU_LOG);
+                this.func_175937_a(blockpos, worldgenbigtree$foliagecoordinates, NibiruBlocks.ALIEN_BERRY_OAK_LOG);
             }
         }
     }

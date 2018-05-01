@@ -104,7 +104,7 @@ public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
                                     {
                                         if (this.genLeaves)
                                         {
-                                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.NIBIRU_LEAVES.getStateFromMeta(2));
+                                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_JUNGLE_LEAVES.getDefaultState());
                                         }
                                     }
                                 }
@@ -119,7 +119,7 @@ public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
 
                         if (block2.isAir(world.getBlockState(upN), world, upN) || block2.isLeaves(world.getBlockState(upN), world, upN) || world.getBlockState(upN).getMaterial() == Material.VINE)
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(j3), NibiruBlocks.NIBIRU_LOG.getStateFromMeta(2));
+                            this.setBlockAndNotifyAdequately(world, pos.up(j3), NibiruBlocks.INFECTED_JUNGLE_LOG.getDefaultState());
 
                             if (this.vinesGrow && j3 > 0)
                             {

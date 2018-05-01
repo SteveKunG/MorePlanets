@@ -198,7 +198,7 @@ public class WorldGenInfectedDeadSavannaTree extends WorldGenAbstractTree
 
     private void placeLogAt(World world, BlockPos pos)
     {
-        this.setBlockAndNotifyAdequately(world, pos, NibiruBlocks.NIBIRU_LOG.getStateFromMeta(1));
+        this.setBlockAndNotifyAdequately(world, pos, NibiruBlocks.INFECTED_OAK_LOG.getStateFromMeta(1));//TODO
     }
 
     private void placeLeafAt(World world, BlockPos pos)
