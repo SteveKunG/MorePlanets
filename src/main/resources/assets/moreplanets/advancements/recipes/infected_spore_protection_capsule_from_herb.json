@@ -1,0 +1,38 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "moreplanets:infected_spore_protection_capsule_from_herb"
+        ]
+    },
+    "criteria": {
+        "has_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "moreplanets:empty_capsule"
+                    },
+                    {
+                        "item": "moreplanets:pure_herb"
+                    },
+                    {
+                        "item": "moreplanets:inferumite_crystal"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "moreplanets:infected_spore_protection_capsule_from_herb"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
+        ]
+    ]
+}

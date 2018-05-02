@@ -1,0 +1,35 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "moreplanets:infected_sea_lantern"
+        ]
+    },
+    "criteria": {
+        "has_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "moreplanets:infected_prismarine_shard"
+                    },
+                    {
+                        "item": "moreplanets:infected_prismarine_crystals"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "moreplanets:infected_sea_lantern"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
+        ]
+    ]
+}

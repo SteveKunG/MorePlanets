@@ -1,0 +1,50 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "moreplanets:dark_energy_receiver"
+        ]
+    },
+    "criteria": {
+        "has_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "galacticraftplanets:item_basic_asteroids",
+                        "data": 5
+                    },
+                    {
+                        "item": "galacticraftcore:steel_pole"
+                    },
+                    {
+                        "item": "galacticraftcore:basic_item",
+                        "data": 1
+                    },
+                    {
+                        "item": "moreplanets:space_warper_core"
+                    },
+                    {
+                        "item": "minecraft:iron_ingot"
+                    },
+                    {
+                        "item": "galacticraftplanets:item_basic_asteroids",
+                        "data": 5
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "moreplanets:dark_energy_receiver"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
+        ]
+    ]
+}

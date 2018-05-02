@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "moreplanets:bread_from_infected_sugar_cane"
+        ]
+    },
+    "criteria": {
+        "has_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "moreplanets:infected_sugar_cane"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "moreplanets:bread_from_infected_sugar_cane"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
+        ]
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "moreplanets:dark_energy_protection_capsule_herb"
+        ]
+    },
+    "criteria": {
+        "has_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "moreplanets:empty_capsule"
+                    },
+                    {
+                        "item": "moreplanets:terrapuff_herb"
+                    },
+                    {
+                        "item": "moreplanets:inferumite_crystal"
+                    },
+                    {
+                        "item": "galacticraftplanets:item_basic_mars",
+                        "data": 0
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "moreplanets:dark_energy_protection_capsule_herb"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
+        ]
+    ]
+}

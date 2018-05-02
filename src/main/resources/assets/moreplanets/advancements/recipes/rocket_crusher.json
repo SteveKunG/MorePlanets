@@ -1,0 +1,48 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "moreplanets:rocket_crusher"
+        ]
+    },
+    "criteria": {
+        "has_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:piston"
+                    },
+                    {
+                        "item": "galacticraftplanets:item_basic_asteroids",
+                        "data": 5
+                    },
+                    {
+                        "item": "minecraft:anvil",
+                        "data": 0
+                    },
+                    {
+                        "item": "galacticraftcore:aluminum_wire",
+                        "data": 1
+                    },
+                    {
+                        "item": "galacticraftcore:basic_item",
+                        "data": 14
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "moreplanets:rocket_crusher"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
+        ]
+    ]
+}
