@@ -1,10 +1,19 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "moreplanets:blocks/koentus_regolith",
+            "down": "moreplanets:blocks/koentus_fine_regolith",
+            "up": "moreplanets:blocks/koentus_regolith",
+            "north": "moreplanets:blocks/koentus_regolith_side",
+            "east": "moreplanets:blocks/koentus_regolith_side",
+            "south": "moreplanets:blocks/koentus_regolith_side",
+            "west": "moreplanets:blocks/koentus_regolith_side"
+        },
+        "model": "cube"
+    },
     "variants": {
-        "normal": [
-            { "model": "moreplanets:koentus_regolith" },
-            { "model": "moreplanets:koentus_regolith", "y": 90 },
-            { "model": "moreplanets:koentus_regolith", "y": 180 },
-            { "model": "moreplanets:koentus_regolith", "y": 270 }
-        ]
+        "normal": [{ "y": 90 }, { "y": 180 }, { "y": 270 }],
+        "inventory": [{}]
     }
 }

@@ -1,5 +1,16 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "moreplanets:blocks/infected_crystallized_block",
+            "side": "moreplanets:blocks/infected_crystallized_block",
+            "up": "moreplanets:blocks/infected_crystallized_block",
+            "down": "moreplanets:blocks/infected_crystallized_block"
+        },
+        "model": "moreplanets:obelisk_part"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:infected_crystallized_segment" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

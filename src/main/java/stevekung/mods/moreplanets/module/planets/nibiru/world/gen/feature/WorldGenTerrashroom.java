@@ -122,7 +122,7 @@ public class WorldGenTerrashroom extends WorldGenerator
                                     j2 += 3;
                                 }
 
-                                BlockHugeTerrashroom.BlockType type = BlockHugeTerrashroom.BlockType.valuesCached()[j2];
+                                BlockHugeTerrashroom.BlockType type = BlockHugeTerrashroom.BlockType.values[j2];
 
                                 if (block == NibiruBlocks.HUGE_TERRASHROOM_BLOCK || l2 < pos.getY() + i)
                                 {

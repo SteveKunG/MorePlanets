@@ -28,7 +28,7 @@ public class ItemInfectedWheatSeeds extends ItemBaseMP
 
         if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == NibiruBlocks.INFECTED_FARMLAND && world.isAirBlock(pos.up()))
         {
-            world.setBlockState(pos.up(), NibiruBlocks.INFECTED_WHEAT_BLOCK.getDefaultState(), 11);
+            world.setBlockState(pos.up(), NibiruBlocks.INFECTED_WHEAT.getDefaultState(), 11);
             itemStack.shrink(1);
             return EnumActionResult.SUCCESS;
         }

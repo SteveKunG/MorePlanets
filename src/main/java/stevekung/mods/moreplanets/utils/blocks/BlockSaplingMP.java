@@ -112,7 +112,7 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
                 switch (this.type)
                 {
                 case INFECTED_OAK_SAPLING:
-                    worldGen = rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.INFECTED_OAK_LOG, 0, NibiruBlocks.INFECTED_OAK_LEAVES, 0) : new WorldGenInfectedTrees(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+                    worldGen = rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
                     break;
                 case INFECTED_JUNGLE_SAPLING:
                     label269:

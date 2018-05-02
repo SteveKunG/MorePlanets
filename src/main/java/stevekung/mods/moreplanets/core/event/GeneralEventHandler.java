@@ -225,7 +225,7 @@ public class GeneralEventHandler
             {
                 this.setFarmland(event, world, pos, NibiruBlocks.INFECTED_FARMLAND);
             }
-            else if (block == FronosBlocks.FRONOS_GRASS || block == FronosBlocks.FRONOS_DIRT || block == FronosBlocks.FRONOS_COARSE_DIRT)
+            else if (block == FronosBlocks.FRONOS_GRASS_BLOCK || block == FronosBlocks.FRONOS_DIRT || block == FronosBlocks.FRONOS_COARSE_DIRT)
             {
                 this.setFarmland(event, world, pos, state, FronosBlocks.FRONOS_COARSE_DIRT, FronosBlocks.FRONOS_DIRT, FronosBlocks.FRONOS_FARMLAND);
             }

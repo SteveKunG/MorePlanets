@@ -25,7 +25,7 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockHugeTerrashroom extends BlockBreakableMP
 {
-    public static PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
+    public static final PropertyEnum<BlockType> VARIANT = PropertyEnum.create("variant", BlockType.class);
 
     public BlockHugeTerrashroom(String name)
     {
@@ -72,13 +72,13 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta]);
+        return this.getDefaultState().withProperty(VARIANT, BlockType.values[meta]);
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, 0);
+        return new ItemStack(this);
     }
 
     @Override
@@ -222,7 +222,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
             case WEST:
             case EAST:
             default:
-                return super.withMirror(state, mirror);
+                return state;
             case SOUTH_WEST:
                 return state.withProperty(VARIANT, BlockType.NORTH_WEST);
             case SOUTH:
@@ -238,7 +238,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
             case NORTH:
             case SOUTH:
             default:
-                return super.withMirror(state, mirror);
+                return state;
             case NORTH_EAST:
                 return state.withProperty(VARIANT, BlockType.NORTH_WEST);
             case WEST:
@@ -251,7 +251,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
                 return state.withProperty(VARIANT, BlockType.SOUTH_WEST);
             }
         default:
-            return super.withMirror(state, mirror);
+            return state;
         }
     }
 
@@ -271,12 +271,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
         ALL_OUTSIDE,
         ALL_STEM;
 
-        private static BlockType[] values = BlockType.values();
-
-        public static BlockType[] valuesCached()
-        {
-            return BlockType.values;
-        }
+        public static final BlockType[] values = BlockType.values();
 
         @Override
         public String toString()

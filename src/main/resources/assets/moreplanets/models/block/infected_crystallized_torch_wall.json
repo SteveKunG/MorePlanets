@@ -1,6 +1,0 @@
-{
-    "parent": "block/torch_wall",
-    "textures": {
-        "torch": "moreplanets:blocks/infected_crystallized_torch"
-    }
-}

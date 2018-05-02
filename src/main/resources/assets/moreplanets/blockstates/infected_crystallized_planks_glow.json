@@ -1,5 +1,14 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/infected_crystallized_planks",
+            "glow": "moreplanets:blocks/infected_crystallized_planks_glow"
+        },
+        "model": "moreplanets:cube_all_glow"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:infected_crystallized_planks_glow" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

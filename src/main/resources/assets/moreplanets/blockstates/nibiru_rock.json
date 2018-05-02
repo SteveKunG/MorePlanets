@@ -1,10 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "moreplanets:blocks/nibiru_rock"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "normal": [
-            { "model": "moreplanets:nibiru_rock" },
-            { "model": "moreplanets:nibiru_rock_mirrored" },
-            { "model": "moreplanets:nibiru_rock", "y": 180 },
-            { "model": "moreplanets:nibiru_rock_mirrored", "y": 180 }
-        ]
+        "normal": [{ "model": "cube_mirrored_all", "textures": { "all": "moreplanets:blocks/nibiru_rock" } }, { "model": "cube_mirrored_all", "y": 180, "textures": { "all": "moreplanets:blocks/nibiru_rock" } }, { "model": "cube_mirrored_all", "y": 180, "textures": { "all": "moreplanets:blocks/nibiru_rock" } }],
+        "inventory": [{}]
     }
 }

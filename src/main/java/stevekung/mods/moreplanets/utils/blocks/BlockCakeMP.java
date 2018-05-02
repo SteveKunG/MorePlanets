@@ -9,6 +9,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -46,7 +47,7 @@ public abstract class BlockCakeMP extends BlockBaseMP
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        return state.getCollisionBoundingBox(world, pos);
+        return state.getCollisionBoundingBox(world, pos).offset(pos);
     }
 
     @Override
@@ -69,32 +70,6 @@ public abstract class BlockCakeMP extends BlockBaseMP
     }
 
     @Override
-    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
-    {
-        this.eatCake(world, pos, world.getBlockState(pos), player);
-    }
-
-    private void eatCake(World world, BlockPos pos, IBlockState state, EntityPlayer player)
-    {
-        if (!player.canEat(false))
-        {
-            return;
-        }
-
-        player.getFoodStats().addStats(this.getFoodAmount(), this.getSaturationAmount());
-        int i = state.getValue(BlockStateProperty.BITES).intValue();
-
-        if (i < 6)
-        {
-            world.setBlockState(pos, state.withProperty(BlockStateProperty.BITES, i + 1), 3);
-        }
-        else
-        {
-            world.setBlockToAir(pos);
-        }
-    }
-
-    @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
         if (super.canPlaceBlockAt(world, pos))
@@ -113,11 +88,6 @@ public abstract class BlockCakeMP extends BlockBaseMP
         }
     }
 
-    private boolean canBlockStay(World world, BlockPos pos)
-    {
-        return world.getBlockState(pos.down()).getMaterial().isSolid();
-    }
-
     @Override
     public int quantityDropped(Random rand)
     {
@@ -127,13 +97,13 @@ public abstract class BlockCakeMP extends BlockBaseMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return null;
+        return Items.AIR;
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, 0);
+        return new ItemStack(this);
     }
 
     @Override
@@ -183,6 +153,31 @@ public abstract class BlockCakeMP extends BlockBaseMP
     public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.CAKE;
+    }
+
+    private void eatCake(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        if (!player.canEat(false))
+        {
+            return;
+        }
+
+        player.getFoodStats().addStats(this.getFoodAmount(), this.getSaturationAmount());
+        int i = state.getValue(BlockStateProperty.BITES).intValue();
+
+        if (i < 6)
+        {
+            world.setBlockState(pos, state.withProperty(BlockStateProperty.BITES, i + 1), 3);
+        }
+        else
+        {
+            world.setBlockToAir(pos);
+        }
+    }
+
+    private boolean canBlockStay(World world, BlockPos pos)
+    {
+        return world.getBlockState(pos.down()).getMaterial().isSolid();
     }
 
     protected abstract int getFoodAmount();

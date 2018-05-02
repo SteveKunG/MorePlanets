@@ -1,6 +1,0 @@
-{
-    "parent": "block/leaves",
-    "textures": {
-        "all": "moreplanets:blocks/infected_jungle_leaves"
-    }
-}

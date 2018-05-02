@@ -1,5 +1,13 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "moreplanets:blocks/juicer_egg"
+        },
+        "model": "moreplanets:dummy"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:juicer_egg" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

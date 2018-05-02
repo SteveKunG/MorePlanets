@@ -237,7 +237,7 @@ public class StructureNibiruVillagePieces
 
         private Block getRandomCropType(Random rand)
         {
-            return this.structureType == 2 ? NibiruBlocks.TERRABERRY_BLOCK : NibiruBlocks.INFECTED_WHEAT_BLOCK;
+            return this.structureType == 2 ? NibiruBlocks.TERRABERRY : NibiruBlocks.INFECTED_WHEAT;
         }
 
         @Override
@@ -332,7 +332,7 @@ public class StructureNibiruVillagePieces
 
         private Block getRandomCropType(Random rand)
         {
-            return this.structureType == 2 ? NibiruBlocks.TERRABERRY_BLOCK : NibiruBlocks.INFECTED_WHEAT_BLOCK;
+            return this.structureType == 2 ? NibiruBlocks.TERRABERRY : NibiruBlocks.INFECTED_WHEAT;
         }
 
         @Override

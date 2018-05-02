@@ -59,6 +59,13 @@ public class BlockSporelily extends BlockBushMP
     }
 
     @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
+    {
+        IBlockState state = world.getBlockState(pos.down());
+        return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && state.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && state.getValue(BlockFluidBase.LEVEL) == 0;
+    }
+
+    @Override
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
         if (pos.getY() >= 0 && pos.getY() < 256)

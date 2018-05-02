@@ -73,7 +73,7 @@ public class BlockFronosGrass extends BlockGrassBlockMP
                     {
                         if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity(world, pos1.up()) <= 2)
                         {
-                            world.setBlockState(pos1, FronosBlocks.FRONOS_GRASS.getDefaultState());
+                            world.setBlockState(pos1, FronosBlocks.FRONOS_GRASS_BLOCK.getDefaultState());
                         }
                     }
                 }

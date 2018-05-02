@@ -42,7 +42,7 @@ public class FronosBlocks
     public static Block PURPLE_CANDY_CANE;
     public static Block RAINBOW_CANDY_CANE;
 
-    public static Block FRONOS_GRASS;
+    public static Block FRONOS_GRASS_BLOCK;
     public static Block FRONOS_DIRT;
     public static Block FRONOS_COARSE_DIRT;
     public static Block FRONOS_FARMLAND;
@@ -94,7 +94,7 @@ public class FronosBlocks
         FronosBlocks.PURPLE_CANDY_CANE = new BlockHorizontalMP("purple_candy_cane", Material.CLOTH).setSoundType(SoundType.CLOTH).setHardness(0.55F).setResistance(3.0F);
         FronosBlocks.RAINBOW_CANDY_CANE = new BlockHorizontalMP("rainbow_candy_cane", Material.CLOTH).setSoundType(SoundType.CLOTH).setHardness(0.55F).setResistance(3.0F);
 
-        FronosBlocks.FRONOS_GRASS = new BlockFronosGrass("fronos_grass");
+        FronosBlocks.FRONOS_GRASS_BLOCK = new BlockFronosGrass("fronos_grass_block");
         FronosBlocks.FRONOS_DIRT = new BlockTerraformable("fronos_dirt", Material.GROUND).setSoundType(SoundType.GROUND).setHardness(0.55F);
         FronosBlocks.FRONOS_COARSE_DIRT = new BlockTerraformable("fronos_coarse_dirt", Material.GROUND).setSoundType(SoundType.GROUND).setHardness(0.55F);
         FronosBlocks.FRONOS_FARMLAND = new BlockFronosFarmland("fronos_farmland");
@@ -144,7 +144,7 @@ public class FronosBlocks
         BlocksItemsRegistry.registerBlock(FronosBlocks.PURPLE_CANDY_CANE);
         BlocksItemsRegistry.registerBlock(FronosBlocks.RAINBOW_CANDY_CANE);
 
-        BlocksItemsRegistry.registerBlock(FronosBlocks.FRONOS_GRASS);
+        BlocksItemsRegistry.registerBlock(FronosBlocks.FRONOS_GRASS_BLOCK);
         BlocksItemsRegistry.registerBlock(FronosBlocks.FRONOS_DIRT);
         BlocksItemsRegistry.registerBlock(FronosBlocks.FRONOS_COARSE_DIRT);
         BlocksItemsRegistry.registerBlock(FronosBlocks.FRONOS_FARMLAND);
@@ -185,7 +185,7 @@ public class FronosBlocks
         BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_CHISELED_STONE_BRICKS, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_DUNGEON_BRICK, EnumHarvestLevel.PICKAXE, 1);
 
-        BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_GRASS, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_GRASS_BLOCK, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_DIRT, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_COARSE_DIRT, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(FronosBlocks.FRONOS_FARMLAND, EnumHarvestLevel.SHOVEL, 0);

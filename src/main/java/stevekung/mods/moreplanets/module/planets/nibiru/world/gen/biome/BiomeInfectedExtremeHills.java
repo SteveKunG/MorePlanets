@@ -43,7 +43,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
         }
         else if (rand.nextInt(20) == 0)
         {
-            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, NibiruBlocks.INFECTED_OAK_LOG, 0, NibiruBlocks.INFECTED_OAK_LEAVES, 0) : new WorldGenInfectedTrees(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
         else
         {

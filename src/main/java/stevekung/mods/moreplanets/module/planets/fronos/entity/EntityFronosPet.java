@@ -202,7 +202,7 @@ public abstract class EntityFronosPet extends EntityTameable
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.world.getBlockState(this.getPosition().down()).getBlock() == FronosBlocks.FRONOS_GRASS;
+        return this.world.getBlockState(this.getPosition().down()).getBlock() == FronosBlocks.FRONOS_GRASS_BLOCK;
     }
 
     @Override

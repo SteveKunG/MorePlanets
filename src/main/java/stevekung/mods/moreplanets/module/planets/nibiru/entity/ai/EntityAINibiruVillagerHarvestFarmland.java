@@ -78,12 +78,12 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
                     {
                         if (itemStack.getItem() == NibiruItems.INFECTED_WHEAT_SEEDS)
                         {
-                            world.setBlockState(blockpos, NibiruBlocks.INFECTED_WHEAT_BLOCK.getDefaultState(), 3);
+                            world.setBlockState(blockpos, NibiruBlocks.INFECTED_WHEAT.getDefaultState(), 3);
                             flag = true;
                         }
                         else if (itemStack.getItem() == NibiruItems.TERRABERRY)
                         {
-                            world.setBlockState(blockpos, NibiruBlocks.TERRABERRY_BLOCK.getDefaultState(), 3);
+                            world.setBlockState(blockpos, NibiruBlocks.TERRABERRY.getDefaultState(), 3);
                             flag = true;
                         }
                     }

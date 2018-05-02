@@ -619,7 +619,7 @@ public class StructureNibiruStrongholdPieces
                 this.fillWithBlocks(world, box, i1, 3, 15, i1, 4, 15, Blocks.IRON_BARS.getDefaultState(), Blocks.IRON_BARS.getDefaultState(), false);
             }
 
-            IBlockState iblockstate3 = NibiruBlocks.NIBIRU_STONE_BRICKS_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
+            IBlockState iblockstate3 = NibiruBlocks.INFECTED_STONE_BRICKS_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
             this.fillWithRandomizedBlocks(world, box, 4, 1, 5, 6, 1, 7, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 4, 2, 6, 6, 2, 7, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 4, 3, 7, 6, 3, 7, false, rand, STRONGHOLD_STONES);

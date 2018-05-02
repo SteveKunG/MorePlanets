@@ -106,10 +106,10 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
                         return -1.0F;
                     }
                 }
-                return world.getBlockState(mainBlockPosition).getBlock().getBlockHardness(state, world, mainBlockPosition);
+                return world.getBlockState(mainBlockPosition).getBlockHardness(world, mainBlockPosition);
             }
         }
-        return super.getBlockHardness(state, world, pos);
+        return this.blockHardness;
     }
 
     @Override
