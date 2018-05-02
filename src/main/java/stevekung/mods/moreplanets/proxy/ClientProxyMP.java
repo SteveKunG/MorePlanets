@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -74,11 +73,7 @@ public class ClientProxyMP extends ServerProxyMP
         ClientProxyMP.handleSpaceFishHookSpawning();
         CommonUtils.registerEventHandler(this);
 
-        if (!CompatibilityManagerMP.isCCLLoaded)
-        {
-            TileEntityItemStackRenderer.instance = new TileEntityItemStackRendererMP(TileEntityItemStackRenderer.instance);
-        }
-        else
+        if (CompatibilityManagerMP.isCCLLoaded)
         {
             ItemModelRenderer.registerCCLRenderer();
         }

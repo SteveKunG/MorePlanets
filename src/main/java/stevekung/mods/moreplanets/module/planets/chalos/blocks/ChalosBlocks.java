@@ -5,6 +5,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.fluid.FluidGaseousCheeseMilk;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.blocks.*;
@@ -134,8 +135,8 @@ public class ChalosBlocks
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_PLANKS);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SLIME_BLOCK);
-        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHALOS_ANCIENT_CHEST);
-        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHALOS_TREASURE_CHEST);
+        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHALOS_ANCIENT_CHEST, ItemBlockTESRMP::new);
+        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHALOS_TREASURE_CHEST, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_MILK_CAKE, ItemBlockDescription::new);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_FLOWER);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_GRASS);
@@ -145,7 +146,7 @@ public class ChalosBlocks
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_BERRY_CROPS, null);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_TALL_GRASS);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_CRAFTING_TABLE);
-        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_CHEST);
+        BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_CHEST, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHALOS_COBBLESTONE_STAIRS);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHALOS_DUNGEON_BRICK_STAIRS);
         BlocksItemsRegistry.registerBlock(ChalosBlocks.CHEESE_SPORE_STAIRS);

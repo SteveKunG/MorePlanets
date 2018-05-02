@@ -10,10 +10,7 @@ import stevekung.mods.moreplanets.blocks.*;
 import stevekung.mods.moreplanets.blocks.decoration.BlockAllDoubleSlab;
 import stevekung.mods.moreplanets.blocks.decoration.BlockAllHalfSlab;
 import stevekung.mods.moreplanets.blocks.decoration.BlockAllWall;
-import stevekung.mods.moreplanets.itemblocks.ItemBlockBlackHoleStorage;
-import stevekung.mods.moreplanets.itemblocks.ItemBlockDarkEnergyReceiver;
-import stevekung.mods.moreplanets.itemblocks.ItemBlockShieldGenerator;
-import stevekung.mods.moreplanets.itemblocks.ItemBlockSpaceWarpPad;
+import stevekung.mods.moreplanets.itemblocks.*;
 import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
@@ -342,7 +339,7 @@ public class MPBlocks
 
         BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_PORTAL);
         BlocksItemsRegistry.registerBlock(MPBlocks.BLACK_HOLE_STORAGE, ItemBlockBlackHoleStorage::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_DEFENDER_BEACON);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_DEFENDER_BEACON, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.SHIELD_GENERATOR, ItemBlockShieldGenerator::new);
 
         DionaBlocks.init();

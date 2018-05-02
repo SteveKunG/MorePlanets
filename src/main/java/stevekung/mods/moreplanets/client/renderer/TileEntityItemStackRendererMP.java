@@ -29,21 +29,22 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
+import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
 {
-    private TileEntityItemStackRenderer old;
-
-    public TileEntityItemStackRendererMP(TileEntityItemStackRenderer old)
-    {
-        this.old = old;
-    }
+    public static final TileEntityItemStackRendererMP INSTANCE = new TileEntityItemStackRendererMP();
 
     @Override
     public void renderByItem(ItemStack itemStack)
     {
+        if (CompatibilityManagerMP.isCCLLoaded)
+        {
+            return;
+        }
+
         Block block = Block.getBlockFromItem(itemStack.getItem());
 
         if (block == DionaBlocks.DIONA_ANCIENT_CHEST)
@@ -140,10 +141,6 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         else if (block == MPBlocks.SHIELD_GENERATOR)
         {
             TileEntityShieldGeneratorRenderer.INSTANCE.render();
-        }
-        else
-        {
-            this.old.renderByItem(itemStack);
         }
     }
 }
