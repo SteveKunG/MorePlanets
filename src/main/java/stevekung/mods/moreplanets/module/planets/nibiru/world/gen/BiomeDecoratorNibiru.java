@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenDeadBush;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.*;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
@@ -172,7 +173,7 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
                 {
                     int y = rand.nextInt(world.getHeight(this.chunkPos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)).getY() + 32);
 
-                    if (new WorldGenNibiruDoublePlant(NibiruBlocks.INFECTED_ORANGE_ROSE_BUSH).generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
+                    if (new WorldGenDoublePlantMP(NibiruBlocks.INFECTED_ORANGE_ROSE_BUSH).generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
                     {
                         break;
                     }

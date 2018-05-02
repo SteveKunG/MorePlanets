@@ -1,26 +1,23 @@
-package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature;
+package stevekung.mods.stevekunglib.world.gen;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 
-public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
+public abstract class WorldGenAbstractHugeTrees extends WorldGenAbstractTree
 {
-    private boolean genLeaves;
-    private int baseHeight;
+    private final int baseHeight;
+    private final IBlockState leaves;
     private int extraRandomHeight;
 
-    public WorldGenHugeTreesMP(boolean genLeaves, int baseHeight, int extraRandomHeight)
+    public WorldGenAbstractHugeTrees(boolean notify, int baseHeight, int extraRandomHeight, IBlockState leaves)
     {
-        super(false);
-        this.genLeaves = genLeaves;
+        super(null, null);
         this.baseHeight = baseHeight;
         this.extraRandomHeight = extraRandomHeight;
+        this.leaves = leaves;
     }
 
     protected int getHeight(Random rand)
@@ -34,11 +31,11 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
         return i;
     }
 
-    private boolean isSpaceAt(World world, BlockPos pos, int height)
+    private boolean isSpaceAt(World world, BlockPos leavesPos, int height)
     {
         boolean flag = true;
 
-        if (pos.getY() >= 1 && pos.getY() + height + 1 <= 256)
+        if (leavesPos.getY() >= 1 && leavesPos.getY() + height + 1 <= 256)
         {
             for (int i = 0; i <= 1 + height; ++i)
             {
@@ -57,7 +54,7 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
                 {
                     for (int l = -j; l <= j && flag; ++l)
                     {
-                        if (pos.getY() + i < 0 || pos.getY() + i >= 256 || !this.isReplaceable(world, pos.add(k, i, l)))
+                        if (leavesPos.getY() + i < 0 || leavesPos.getY() + i >= 256 || !this.isReplaceable(world,leavesPos.add(k, i, l)))
                         {
                             flag = false;
                         }
@@ -75,9 +72,10 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
     private boolean ensureDirtsUnderneath(BlockPos pos, World world)
     {
         BlockPos blockpos = pos.down();
-        Block block = world.getBlockState(blockpos).getBlock();
+        IBlockState state = world.getBlockState(blockpos);
+        boolean isSoil = this.isSoil(state.getBlock());
 
-        if (block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND && pos.getY() >= 2)
+        if (isSoil && pos.getY() >= 2)
         {
             this.onPlantGrow(world, blockpos, pos);
             this.onPlantGrow(world, blockpos.east(), pos);
@@ -91,12 +89,12 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
         }
     }
 
-    protected boolean ensureGrowable(World world, BlockPos pos, int height)
+    protected boolean ensureGrowable(World world, Random rand, BlockPos treePos, int height)
     {
-        return this.isSpaceAt(world, pos, height) && this.ensureDirtsUnderneath(pos, world);
+        return this.isSpaceAt(world, treePos, height) && this.ensureDirtsUnderneath(treePos, world);
     }
 
-    protected void growLeavesLayerStrict(World world, BlockPos pos, int width)
+    protected void growLeavesLayerStrict(World world, BlockPos layerCenter, int width)
     {
         int i = width * width;
 
@@ -109,19 +107,19 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
 
                 if (j * j + k * k <= i || l * l + i1 * i1 <= i || j * j + i1 * i1 <= i || l * l + k * k <= i)
                 {
-                    BlockPos blockpos = pos.add(j, 0, k);
+                    BlockPos blockpos = layerCenter.add(j, 0, k);
                     IBlockState state = world.getBlockState(blockpos);
 
                     if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos))
                     {
-                        this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_JUNGLE_LEAVES.getDefaultState());
+                        this.setBlockAndNotifyAdequately(world, blockpos, this.leaves);
                     }
                 }
             }
         }
     }
 
-    protected void growLeavesLayer(World world, BlockPos pos, int width)
+    protected void growLeavesLayer(World worldIn, BlockPos layerCenter, int width)
     {
         int i = width * width;
 
@@ -131,15 +129,12 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
             {
                 if (j * j + k * k <= i)
                 {
-                    BlockPos blockpos = pos.add(j, 0, k);
-                    Block block = world.getBlockState(blockpos).getBlock();
+                    BlockPos blockpos = layerCenter.add(j, 0, k);
+                    IBlockState state = worldIn.getBlockState(blockpos);
 
-                    if (block.isAir(world.getBlockState(blockpos), world, blockpos) || block.isLeaves(world.getBlockState(blockpos), world, blockpos))
+                    if (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos))
                     {
-                        if (this.genLeaves)
-                        {
-                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_JUNGLE_LEAVES.getDefaultState());
-                        }
+                        this.setBlockAndNotifyAdequately(worldIn, blockpos, this.leaves);
                     }
                 }
             }
@@ -148,6 +143,7 @@ public abstract class WorldGenHugeTreesMP extends WorldGenAbstractTree
 
     private void onPlantGrow(World world, BlockPos pos, BlockPos source)
     {
-        world.getBlockState(pos).getBlock().onPlantGrow(world.getBlockState(pos), world, pos, source);
+        IBlockState state = world.getBlockState(pos);
+        state.getBlock().onPlantGrow(state, world, pos, source);
     }
 }

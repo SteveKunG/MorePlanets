@@ -16,8 +16,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityTerrastoneGolem;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenAlienBerryBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenAlienBerryTree;
-import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeGreenVein extends BiomeNibiru
@@ -60,7 +60,7 @@ public class BiomeGreenVein extends BiomeNibiru
                 int j = rand.nextInt(16) + 8;
                 int k = rand.nextInt(16) + 8;
                 int l = rand.nextInt(world.getHeight(pos.add(j, 0, k)).getY() + 32);
-                new WorldGenNibiruDoublePlant(NibiruBlocks.GREEN_VEIN_TALL_GRASS).generate(world, rand, pos.add(j, l, k));
+                new WorldGenDoublePlantMP(NibiruBlocks.GREEN_VEIN_TALL_GRASS).generate(world, rand, pos.add(j, l, k));
             }
         }
         if (rand.nextInt(15) == 0)

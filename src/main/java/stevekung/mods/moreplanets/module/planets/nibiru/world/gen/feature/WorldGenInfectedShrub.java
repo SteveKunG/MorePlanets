@@ -3,14 +3,13 @@ package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractBigTree;
+import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractShrub;
 
-public class WorldGenInfectedBigTree extends WorldGenAbstractBigTree
+public class WorldGenInfectedShrub extends WorldGenAbstractShrub
 {
-    public WorldGenInfectedBigTree(boolean genLeaves, IBlockState log, IBlockState leaves)
+    public WorldGenInfectedShrub(IBlockState log, IBlockState leaves)
     {
-        super(log, leaves);
-        this.genLeaves = genLeaves;
+        super(NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
     }
 
     @Override

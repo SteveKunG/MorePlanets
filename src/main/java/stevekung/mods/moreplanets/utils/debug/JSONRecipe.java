@@ -3,11 +3,17 @@ package stevekung.mods.moreplanets.utils.debug;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
+import java.lang.reflect.Type;
 import java.util.*;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonNull;
+import com.google.gson.internal.Streams;
+import com.google.gson.stream.JsonWriter;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -27,7 +33,6 @@ public class JSONRecipe
     //Credit 1: https://gist.github.com/P3pp3rF1y/ea85fa337c9082e95336b1b61d1c3cb5 - for NBT recipe support
     //Credit 2: https://gist.github.com/Draco18s/6398d3b94a4c07ded26eb641639a2ce2 - for Advancements (recipes unlocked)
 
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static File RECIPE_DIR = null;
     private static File ADVANCE_DIR = null;
     private static final Set<String> USED_OD_NAMES = new TreeSet<>();
@@ -127,7 +132,7 @@ public class JSONRecipe
 
         try (FileWriter writer = new FileWriter(file))
         {
-            GSON.toJson(json, writer);
+            toJson(json, writer);
         }
         catch (IOException e)
         {
@@ -176,7 +181,7 @@ public class JSONRecipe
 
         try (FileWriter writer = new FileWriter(file))
         {
-            GSON.toJson(json, writer);
+            toJson(json, writer);
         }
         catch (IOException e)
         {
@@ -282,12 +287,47 @@ public class JSONRecipe
 
         try (FileWriter w = new FileWriter(f))
         {
-            GSON.toJson(json, w);
+            toJson(json, w);
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
+    }
+
+    private static void toJson(Object src, Appendable writer) throws JsonIOException
+    {
+        if (src != null)
+        {
+            toJson(src, src.getClass(), writer);
+        }
+        else
+        {
+            toJson(JsonNull.INSTANCE, writer);
+        }
+    }
+
+    private static void toJson(Object src, Type typeOfSrc, Appendable writer) throws JsonIOException
+    {
+        try
+        {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            JsonWriter jsonWriter = newJsonWriter(Streams.writerForAppendable(writer));
+            gson.toJson(src, typeOfSrc, jsonWriter);
+        }
+        catch (IOException e)
+        {
+            throw new JsonIOException(e);
+        }
+    }
+
+    private static JsonWriter newJsonWriter(Writer writer) throws IOException
+    {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonWriter jsonWriter = new JsonWriter(writer);
+        jsonWriter.setIndent("    ");
+        jsonWriter.setSerializeNulls(gson.serializeNulls());
+        return jsonWriter;
     }
 
     // Call this after you are done generating
@@ -306,7 +346,7 @@ public class JSONRecipe
 
         try (FileWriter w = new FileWriter(new File(RECIPE_DIR, "_constants.json")))
         {
-            GSON.toJson(json, w);
+            toJson(json, w);
         }
         catch (IOException e)
         {
@@ -346,7 +386,7 @@ public class JSONRecipe
 
         try (FileWriter w = new FileWriter(f))
         {
-            GSON.toJson(json, w);
+            toJson(json, w);
         }
         catch (IOException e)
         {

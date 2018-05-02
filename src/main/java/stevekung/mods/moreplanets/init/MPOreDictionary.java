@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.init;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
@@ -17,9 +15,41 @@ public class MPOreDictionary
     public static void init()
     {
         BlockUtils.registerOreDictionary("glowstone", MPBlocks.DUNGEON_GLOWSTONE);
-        //        BlockUtils.registerOreDictionary("slabWood", new ItemStack(MPBlocks.HALF_WOODEN_SLAB_1, 1, OreDictionary.WILDCARD_VALUE));
-        //        BlockUtils.registerOreDictionary("blockGlass", new ItemStack(MPBlocks.TINTED_GLASS, 1, OreDictionary.WILDCARD_VALUE));
-        //        BlockUtils.registerOreDictionary("paneGlass", new ItemStack(MPBlocks.TINTED_GLASS_PANE, 1, OreDictionary.WILDCARD_VALUE));
+        BlockUtils.registerOreDictionary("slabWood", MPBlocks.CHEESE_SPORE_SLAB);
+        BlockUtils.registerOreDictionary("slabWood", MPBlocks.INFECTED_OAK_SLAB);
+        BlockUtils.registerOreDictionary("slabWood", MPBlocks.ALIEN_BERRY_OAK_SLAB);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.WHITE_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.ORANGE_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.MAGENTA_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.LIGHT_BLUE_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.YELLOW_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.LIME_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.PINK_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.GRAY_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.SILVER_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.CYAN_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.PURPLE_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.BLUE_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.BROWN_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.GREEN_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.RED_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.BLACK_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.WHITE_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.ORANGE_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.MAGENTA_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.LIGHT_BLUE_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.YELLOW_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.LIME_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.PINK_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.GRAY_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.SILVER_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.CYAN_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.PURPLE_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.BLUE_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.BROWN_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.GREEN_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.RED_TINTED_GLASS_PANE);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.BLACK_TINTED_GLASS_PANE);
         BlockUtils.registerOreDictionary("plankWood", DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS);
         BlockUtils.registerOreDictionary("stone", DionaBlocks.DIONA_ROCK);
         BlockUtils.registerOreDictionary("cobblestone", DionaBlocks.DIONA_COBBLESTONE);
@@ -27,9 +57,9 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("chestWood", DionaBlocks.DIONA_ANCIENT_CHEST);
         BlockUtils.registerOreDictionary("chest", DionaBlocks.DIONA_ANCIENT_CHEST);
         BlockUtils.registerOreDictionary("torch", DionaBlocks.INFECTED_CRYSTALLIZED_TORCH);
-        BlockUtils.registerOreDictionary("plankWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_PLANKS, 1, OreDictionary.WILDCARD_VALUE));
-        BlockUtils.registerOreDictionary("logWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_STEM, 1, OreDictionary.WILDCARD_VALUE));
-        BlockUtils.registerOreDictionary("stairWood", new ItemStack(ChalosBlocks.CHEESE_SPORE_STAIRS));
+        BlockUtils.registerOreDictionary("plankWood", ChalosBlocks.CHEESE_SPORE_PLANKS);
+        BlockUtils.registerOreDictionary("logWood", ChalosBlocks.CHEESE_SPORE_STEM);
+        BlockUtils.registerOreDictionary("stairWood", ChalosBlocks.CHEESE_SPORE_STAIRS);
         BlockUtils.registerOreDictionary("dirt", ChalosBlocks.CHEESE_DIRT);
         BlockUtils.registerOreDictionary("grass", ChalosBlocks.CHEESE_GRASS_BLOCK);
         BlockUtils.registerOreDictionary("stone", ChalosBlocks.CHALOS_ROCK);
@@ -86,7 +116,6 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("nibiruSandstone", NibiruBlocks.INFECTED_SANDSTONE);
         BlockUtils.registerOreDictionary("nibiruSandstone", NibiruBlocks.INFECTED_CHISELED_SANDSTONE);
         BlockUtils.registerOreDictionary("nibiruSandstone", NibiruBlocks.INFECTED_CUT_SANDSTONE);
-
         BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.RED_CANDY_CANE);
         BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.GREEN_CANDY_CANE);
         BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.BLUE_CANDY_CANE);
@@ -95,8 +124,7 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.YELLOW_CANDY_CANE);
         BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.PURPLE_CANDY_CANE);
         BlockUtils.registerOreDictionary("blockCandy", FronosBlocks.RAINBOW_CANDY_CANE);
-
-        BlockUtils.registerOreDictionary("dyeBlue", MPItems.DYE);
+        BlockUtils.registerOreDictionary("dyeBlue", MPItems.BLUE_DYE);
         BlockUtils.registerOreDictionary("slimeball", DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
         BlockUtils.registerOreDictionary("slimeball", ChalosItems.CHEESE_SLIMEBALL);
         BlockUtils.registerOreDictionary("cropWheat", NibiruItems.INFECTED_WHEAT);

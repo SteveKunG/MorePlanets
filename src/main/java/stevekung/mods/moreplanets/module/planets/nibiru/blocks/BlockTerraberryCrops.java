@@ -78,7 +78,7 @@ public class BlockTerraberryCrops extends BlockCropsMP
             {
                 if (rand.nextInt(15) <= age)
                 {
-                    drops.add(new ItemStack(this.getCrop(), 1, 6));
+                    drops.add(new ItemStack(this.getCrop()));
                 }
             }
         }
@@ -87,6 +87,6 @@ public class BlockTerraberryCrops extends BlockCropsMP
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this.getSeed(), 1, 6);
+        return new ItemStack(this.getSeed());
     }
 }

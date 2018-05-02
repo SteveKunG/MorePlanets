@@ -31,7 +31,7 @@ public class MPItems
     public static Item SPACE_WARPER_CORE;
     public static Item SPACE_BOW;
     public static Item SPACE_FISHING_ROD;
-    public static Item DYE;
+    public static Item BLUE_DYE;
     public static Item LASER_GUN;
     public static Item ALIEN_DEFENDER_REINFORCEMENT;
     public static Item CREATIVE_SPACE_KIT;
@@ -67,7 +67,7 @@ public class MPItems
         MPItems.SPACE_WARPER_CORE = new ItemSpaceWarperCore("space_warper_core");
         MPItems.SPACE_BOW = new ItemSpaceBow("space_bow");
         MPItems.SPACE_FISHING_ROD = new ItemSpaceFishingRod("space_fishing_rod");
-        MPItems.DYE = new ItemDyeMP("dye_mp");
+        MPItems.BLUE_DYE = new ItemDyeMP("blue_dye");
         MPItems.LASER_GUN = new ItemLaserGun("laser_gun");
         MPItems.ALIEN_DEFENDER_REINFORCEMENT = new ItemAlienDefenderReinforcement("alien_defender_reinforcement");
         MPItems.CREATIVE_SPACE_KIT = new ItemCreativeSpaceKit("creative_space_kit");
@@ -98,7 +98,7 @@ public class MPItems
         BlocksItemsRegistry.registerItem(MPItems.SPACE_WARPER_CORE);
         BlocksItemsRegistry.registerItem(MPItems.SPACE_BOW);
         BlocksItemsRegistry.registerItem(MPItems.SPACE_FISHING_ROD);
-        BlocksItemsRegistry.registerItem(MPItems.DYE);
+        BlocksItemsRegistry.registerItem(MPItems.BLUE_DYE);
         BlocksItemsRegistry.registerItem(MPItems.LASER_BULLET);
         BlocksItemsRegistry.registerItem(MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET);
         BlocksItemsRegistry.registerItem(MPItems.LASER_GUN);

@@ -40,7 +40,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.utils.blocks.IFireBlock;
+import stevekung.mods.moreplanets.utils.blocks.IFire;
 import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 public class GeneralEventHandler
@@ -90,7 +90,7 @@ public class GeneralEventHandler
     {
         BlockPos firePos = event.getPos().offset(event.getFace());
 
-        if (event.getWorld().getBlockState(firePos).getBlock() instanceof IFireBlock)
+        if (event.getWorld().getBlockState(firePos).getBlock() instanceof IFire)
         {
             GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FIRE_EXTINGUISH, GCCoreUtil.getDimensionID(event.getWorld()), firePos));
             event.setCanceled(true);

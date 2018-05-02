@@ -41,7 +41,7 @@ public class BiomeInfectedJungle extends BiomeNibiru
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(2) == 0 ? new WorldGenNibiruShrub(NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(3) == 0 ? new WorldGenInfectedMegaJungle(false, 10, 20) : new WorldGenInfectedJungleTrees(true, 4 + rand.nextInt(7), true);
+        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(2) == 0 ? new WorldGenInfectedShrub(NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(3) == 0 ? new WorldGenInfectedMegaJungleTree() : new WorldGenInfectedJungleTrees(true, 4 + rand.nextInt(7), true);
     }
 
     @Override

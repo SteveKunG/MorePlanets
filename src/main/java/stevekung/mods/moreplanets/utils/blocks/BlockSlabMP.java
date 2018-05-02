@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlabBlock, IItemModelRender
+public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlab, IItemModelRender
 {
     public BlockSlabMP(Material material)
     {

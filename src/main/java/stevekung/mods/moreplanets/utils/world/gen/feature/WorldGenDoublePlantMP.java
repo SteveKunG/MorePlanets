@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature;
+package stevekung.mods.moreplanets.utils.world.gen.feature;
 
 import java.util.Random;
 
@@ -7,11 +7,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.utils.blocks.BlockDoublePlantMP;
 
-public class WorldGenNibiruDoublePlant extends WorldGenerator
+public class WorldGenDoublePlantMP extends WorldGenerator
 {
     private BlockDoublePlantMP block;
 
-    public WorldGenNibiruDoublePlant(BlockDoublePlantMP block)
+    public WorldGenDoublePlantMP(BlockDoublePlantMP block)
     {
         this.block = block;
     }

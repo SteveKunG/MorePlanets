@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
@@ -22,12 +21,6 @@ public class BlockUtils
         block.setHarvestLevel(harvestLevel.toString(), level);
     }
 
-    @Deprecated
-    public static void setBlockHarvestLevel(Block block, EnumHarvestLevel harvestLevel, int level, int meta) //TODO Remove 1.13
-    {
-        block.setHarvestLevel(harvestLevel.toString(), level, block.getStateFromMeta(meta));
-    }
-
     public static void setToolHarvestLevel(Item item, EnumHarvestLevel harvestLevel, int level)
     {
         item.setHarvestLevel(harvestLevel.toString(), level);
@@ -38,18 +31,13 @@ public class BlockUtils
         return world.getBlockState(pos).getBlock() instanceof BlockLiquid || world.getBlockState(pos).getBlock() instanceof BlockFluidBase;
     }
 
-    public static void registerOreDictionary(String name, Block block)//TODO Remove 1.13
+    public static void registerOreDictionary(String name, Block block)
     {
         OreDictionary.registerOre(name, block);
     }
 
-    public static void registerOreDictionary(String name, Item item)//TODO Remove 1.13
+    public static void registerOreDictionary(String name, Item item)
     {
         OreDictionary.registerOre(name, item);
-    }
-
-    public static void registerOreDictionary(String name, ItemStack itemStack)//TODO Remove 1.13
-    {
-        OreDictionary.registerOre(name, itemStack);
     }
 }

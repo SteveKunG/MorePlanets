@@ -122,7 +122,7 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
                             {
                                 if (this.isTwoByTwoOfType(world, pos, i, j))
                                 {
-                                    worldGen = new WorldGenInfectedMegaJungle(true, 10, 20);
+                                    worldGen = new WorldGenInfectedMegaJungleTree();
                                     flag = true;
                                     break label269;
                                 }

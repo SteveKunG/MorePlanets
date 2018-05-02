@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
-import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedPlains extends BiomeNibiru
@@ -52,7 +52,7 @@ public class BiomeInfectedPlains extends BiomeNibiru
 
             for (int i = 0; i < 7; ++i)
             {
-                new WorldGenNibiruDoublePlant(NibiruBlocks.INFECTED_TALL_GRASS).generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+                new WorldGenDoublePlantMP(NibiruBlocks.INFECTED_TALL_GRASS).generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
             }
         }
         super.decorate(world, rand, pos);

@@ -13,19 +13,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ParticleBreakingMC extends Particle
 {
-    public ParticleBreakingMC(World world, double posXIn, double posYIn, double posZIn, Item itemIn)
-    {
-        this(world, posXIn, posYIn, posZIn, itemIn, 0);
-    }
-
     public ParticleBreakingMC(World world, double posXIn, double posYIn, double posZIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, Item itemIn)
     {
-        this(world, posXIn, posYIn, posZIn, xSpeedIn, ySpeedIn, zSpeedIn, itemIn, 0);
-    }
-
-    public ParticleBreakingMC(World world, double posXIn, double posYIn, double posZIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, Item itemIn, int meta)
-    {
-        this(world, posXIn, posYIn, posZIn, itemIn, meta);
+        this(world, posXIn, posYIn, posZIn, itemIn);
         this.motionX *= 0.10000000149011612D;
         this.motionY *= 0.10000000149011612D;
         this.motionZ *= 0.10000000149011612D;
@@ -34,10 +24,10 @@ public class ParticleBreakingMC extends Particle
         this.motionZ += zSpeedIn;
     }
 
-    public ParticleBreakingMC(World world, double posXIn, double posYIn, double posZIn, Item itemIn, int meta)
+    public ParticleBreakingMC(World world, double posXIn, double posYIn, double posZIn, Item item)
     {
         super(world, posXIn, posYIn, posZIn, 0.0D, 0.0D, 0.0D);
-        this.setParticleTexture(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(itemIn, meta));
+        this.setParticleTexture(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(item, 0));
         this.particleRed = 1.0F;
         this.particleGreen = 1.0F;
         this.particleBlue = 1.0F;

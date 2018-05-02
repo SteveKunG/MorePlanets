@@ -19,11 +19,11 @@ public class WorldGenInfectedVines extends WorldGenerator
         {
             if (world.isAirBlock(pos))
             {
-                for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL.facings())
+                for (EnumFacing facing : EnumFacing.Plane.HORIZONTAL.facings())
                 {
-                    if (NibiruBlocks.INFECTED_VINES.canPlaceBlockOnSide(world, pos, enumfacing))
+                    if (NibiruBlocks.INFECTED_VINES.canPlaceBlockOnSide(world, pos, facing))
                     {
-                        IBlockState iblockstate = NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVinesMP.NORTH, Boolean.valueOf(enumfacing == EnumFacing.NORTH)).withProperty(BlockVinesMP.EAST, Boolean.valueOf(enumfacing == EnumFacing.EAST)).withProperty(BlockVinesMP.SOUTH, Boolean.valueOf(enumfacing == EnumFacing.SOUTH)).withProperty(BlockVinesMP.WEST, Boolean.valueOf(enumfacing == EnumFacing.WEST));
+                        IBlockState iblockstate = NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVinesMP.NORTH, facing == EnumFacing.NORTH).withProperty(BlockVinesMP.EAST, facing == EnumFacing.EAST).withProperty(BlockVinesMP.SOUTH, facing == EnumFacing.SOUTH).withProperty(BlockVinesMP.WEST, facing == EnumFacing.WEST);
                         world.setBlockState(pos, iblockstate, 2);
                         break;
                     }

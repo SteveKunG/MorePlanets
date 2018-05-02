@@ -211,10 +211,6 @@ public class ClientProxyMP extends ServerProxyMP
             {
                 particle = new ParticleBreakingMC(mc.world, x, y, z, (Item) data[0]);
             }
-            else if (type == EnumParticleTypesMP.CUSTOM_BREAKING_META)
-            {
-                particle = new ParticleBreakingMC(mc.world, x, y, z, (Item) data[0], (int) data[1]);
-            }
             else if (type == EnumParticleTypesMP.CUSTOM_BREAKING_MOTION)
             {
                 particle = new ParticleBreakingMC(mc.world, x, y, z, motionX, motionY, motionZ, (Item) data[0]);

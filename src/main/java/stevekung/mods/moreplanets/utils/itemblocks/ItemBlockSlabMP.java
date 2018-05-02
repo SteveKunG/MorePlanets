@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.blocks.BlockSlabMP;
-import stevekung.mods.moreplanets.utils.blocks.ISlabBlock;
+import stevekung.mods.moreplanets.utils.blocks.ISlab;
 
 public class ItemBlockSlabMP extends ItemBlock
 {
@@ -32,9 +32,9 @@ public class ItemBlockSlabMP extends ItemBlock
     {
         ItemStack itemStack = player.getHeldItem(hand);
 
-        if (this.block instanceof ISlabBlock)
+        if (this.block instanceof ISlab)
         {
-            ISlabBlock singleSlab = (ISlabBlock) this.block;
+            ISlab singleSlab = (ISlab) this.block;
 
             if (itemStack.getCount() != 0 && player.canPlayerEdit(pos.offset(facing), facing, itemStack))
             {
@@ -72,9 +72,9 @@ public class ItemBlockSlabMP extends ItemBlock
     @SideOnly(Side.CLIENT)
     public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack itemStack)
     {
-        if (this.block instanceof ISlabBlock)
+        if (this.block instanceof ISlab)
         {
-            ISlabBlock singleSlab = (ISlabBlock) this.block;
+            ISlab singleSlab = (ISlab) this.block;
             IBlockState state = world.getBlockState(pos);
 
             if (state.getBlock() == singleSlab.getHalf())

@@ -72,7 +72,7 @@ public class WorldGenTerrashroom extends WorldGenerator
             {
                 Block block1 = world.getBlockState(pos.down()).getBlock();
 
-                if (block1 != NibiruBlocks.GREEN_VEIN_GRASS_BLOCK && block1 != NibiruBlocks.NIBIRU_ROCK && block1 != NibiruBlocks.INFECTED_DIRT)
+                if (block1 != NibiruBlocks.GREEN_VEIN_GRASS_BLOCK && block1 != NibiruBlocks.TERRASTONE)
                 {
                     return false;
                 }

@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSavannaTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
-import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruDoublePlant;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedDeadSavanna extends BiomeNibiru
@@ -73,7 +73,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
             int x = rand.nextInt(16) + 8;
             int z = rand.nextInt(16) + 8;
             int y = rand.nextInt(world.getHeight(pos.add(x, 0, z)).getY() + 32);
-            new WorldGenNibiruDoublePlant(NibiruBlocks.INFECTED_TALL_GRASS).generate(world, rand, pos.add(x, y, z));
+            new WorldGenDoublePlantMP(NibiruBlocks.INFECTED_TALL_GRASS).generate(world, rand, pos.add(x, y, z));
         }
         super.decorate(world, rand, pos);
     }

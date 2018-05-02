@@ -303,17 +303,22 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         {
             TileEntityDummy dummy = (TileEntityDummy) tile;
 
-            if (world.getTileEntity(dummy.mainBlockPosition) instanceof TileEntityDarkEnergyReceiver)
+            if (dummy.mainBlockPosition != null)
             {
-                TileEntityDarkEnergyReceiver receiver = (TileEntityDarkEnergyReceiver) world.getTileEntity(dummy.mainBlockPosition);
-                nbt.setString("Status", receiver.getGuiStatusWaila());
-                return receiver.writeToNBT(nbt);
-            }
-            if (world.getTileEntity(dummy.mainBlockPosition) instanceof TileEntityShieldGenerator)
-            {
-                TileEntityShieldGenerator shield = (TileEntityShieldGenerator) world.getTileEntity(dummy.mainBlockPosition);
-                nbt.setString("Status", shield.getStatus());
-                return shield.writeToNBT(nbt);
+                BlockPos dummyPos = dummy.mainBlockPosition;
+
+                if (world.getTileEntity(dummyPos) instanceof TileEntityDarkEnergyReceiver)
+                {
+                    TileEntityDarkEnergyReceiver receiver = (TileEntityDarkEnergyReceiver) world.getTileEntity(dummy.mainBlockPosition);
+                    nbt.setString("Status", receiver.getGuiStatusWaila());
+                    return receiver.writeToNBT(nbt);
+                }
+                if (world.getTileEntity(dummyPos) instanceof TileEntityShieldGenerator)
+                {
+                    TileEntityShieldGenerator shield = (TileEntityShieldGenerator) world.getTileEntity(dummy.mainBlockPosition);
+                    nbt.setString("Status", shield.getStatus());
+                    return shield.writeToNBT(nbt);
+                }
             }
         }
         if (tile instanceof TileEntityDarkEnergyReceiver)

@@ -12,11 +12,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenFossils;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedSwampTree;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
+import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenNibiruFossils;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedSwampland extends BiomeNibiru
@@ -52,7 +52,7 @@ public class BiomeInfectedSwampland extends BiomeNibiru
         }
         if (rand.nextInt(64) == 0)
         {
-            new WorldGenFossils().generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));//TODO Reformat structure files
+            new WorldGenNibiruFossils().generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
         }
         super.decorate(world, rand, pos);
     }
