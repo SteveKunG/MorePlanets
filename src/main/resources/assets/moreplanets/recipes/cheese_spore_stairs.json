@@ -1,0 +1,18 @@
+{
+    "group": "wooden_stairs",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X  ",
+        "XX ",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:cheese_spore_planks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:cheese_spore_stairs",
+        "count": 4
+    }
+}

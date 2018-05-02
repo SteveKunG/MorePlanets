@@ -1,0 +1,22 @@
+{
+    "group": "tinted_glass",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "III",
+        "IDI",
+        "III"
+    ],
+    "key": {
+        "D": {
+            "item": "minecraft:dye",
+            "data": 12
+        },
+        "I": {
+            "item": "moreplanets:white_tinted_glass"
+        }
+    },
+    "result": {
+        "item": "moreplanets:light_blue_tinted_glass",
+        "count": 8
+    }
+}

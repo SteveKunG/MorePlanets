@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X X",
+        "XXX",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:multalic_crystal_pieces"
+        }
+    },
+    "result": {
+        "item": "moreplanets:multalic_crystal_chestplate"
+    }
+}

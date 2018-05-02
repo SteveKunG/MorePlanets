@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:illenium_block"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:illenium_ingot",
+        "count": 9
+    }
+}

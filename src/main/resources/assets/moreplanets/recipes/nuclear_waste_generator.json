@@ -1,0 +1,34 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "PXP",
+        "ATA",
+        "IWI"
+    ],
+    "key": {
+        "P": {
+            "item": "galacticraftplanets:item_basic_asteroids",
+            "data": 5
+        },
+        "A": {
+            "item": "moreplanets:alien_miner_part"
+        },
+        "T": {
+            "item": "moreplanets:nuclear_waste_tank"
+        },
+        "W": {
+            "item": "galacticraftcore:basic_item",
+            "data": 14
+        },
+        "X": {
+            "item": "moreplanets:multalic_crystal_pieces"
+        },
+        "I": {
+            "item": "galacticraftcore:aluminum_wire",
+            "data": 1
+        }
+    },
+    "result": {
+        "item": "moreplanets:nuclear_waste_generator"
+    }
+}

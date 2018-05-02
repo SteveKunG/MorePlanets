@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:inferumite_block"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:inferumite_crystal",
+        "count": 9
+    }
+}

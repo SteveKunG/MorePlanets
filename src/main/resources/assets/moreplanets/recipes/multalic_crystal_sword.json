@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "X",
+        "X",
+        "Y"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:multalic_crystal_pieces"
+        },
+        "Y": {
+            "item": "#STICKWOOD"
+        }
+    },
+    "result": {
+        "item": "moreplanets:multalic_crystal_sword"
+    }
+}

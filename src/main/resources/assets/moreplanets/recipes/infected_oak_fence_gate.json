@@ -1,0 +1,19 @@
+{
+    "group": "wooden_fence_gate",
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "SXS",
+        "SXS"
+    ],
+    "key": {
+        "S": {
+            "item": "#STICKWOOD"
+        },
+        "X": {
+            "item": "moreplanets:infected_oak_planks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_oak_fence_gate"
+    }
+}

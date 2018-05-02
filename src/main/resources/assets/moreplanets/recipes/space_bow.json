@@ -1,0 +1,20 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        " XS",
+        "X S",
+        " XS"
+    ],
+    "key": {
+        "S": {
+            "item": "#STRING"
+        },
+        "X": {
+            "item": "galacticraftplanets:item_basic_mars",
+            "data": 5
+        }
+    },
+    "result": {
+        "item": "moreplanets:space_bow"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:nibiru_cobblestone"
+        },
+        {
+            "item": "moreplanets:infected_vines"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:nibiru_vein_cobblestone"
+    }
+}

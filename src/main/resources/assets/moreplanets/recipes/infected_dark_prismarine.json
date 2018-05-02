@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SSS",
+        "SIS",
+        "SSS"
+    ],
+    "key": {
+        "S": {
+            "item": "moreplanets:infected_prismarine_shard"
+        },
+        "I": {
+            "item": "minecraft:dye",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_dark_prismarine"
+    }
+}

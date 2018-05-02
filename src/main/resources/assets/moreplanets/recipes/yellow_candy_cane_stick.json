@@ -1,0 +1,13 @@
+{
+    "group": "candy_cane_stick",
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:yellow_candy_cane"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:yellow_candy_cane_stick",
+        "count": 9
+    }
+}

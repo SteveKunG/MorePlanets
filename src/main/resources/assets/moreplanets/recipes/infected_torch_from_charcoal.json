@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "C",
+        "S"
+    ],
+    "key": {
+        "S": {
+            "item": "#STICKWOOD"
+        },
+        "C": {
+            "item": "moreplanets:infected_charcoal"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_torch",
+        "count": 4
+    }
+}

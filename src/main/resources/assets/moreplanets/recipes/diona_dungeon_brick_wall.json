@@ -1,0 +1,17 @@
+{
+    "group": "dungeon_brick_wall",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:diona_dungeon_brick"
+        }
+    },
+    "result": {
+        "item": "moreplanets:diona_dungeon_brick_wall",
+        "count": 6
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "group": "planks",
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:infected_oak_log"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:infected_oak_planks",
+        "count": 4
+    }
+}

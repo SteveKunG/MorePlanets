@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "WWW",
+        "BBB",
+        "WWW"
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:book"
+        },
+        "W": {
+            "item": "moreplanets:infected_oak_planks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_oak_bookshelf"
+    }
+}

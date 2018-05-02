@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "X",
+        "Y",
+        "Y"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:cheese_spore_planks"
+        },
+        "Y": {
+            "item": "#STICKWOOD"
+        }
+    },
+    "result": {
+        "item": "moreplanets:cheese_spore_wood_shovel"
+    }
+}

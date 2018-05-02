@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "TT",
+        "TT"
+    ],
+    "key": {
+        "T": {
+            "item": "galacticraftcore:basic_block_core",
+            "data": 4
+        }
+    },
+    "result": {
+        "item": "moreplanets:polished_tin_decoration_block",
+        "count": 4
+    }
+}

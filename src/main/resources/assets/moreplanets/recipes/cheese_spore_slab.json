@@ -1,0 +1,16 @@
+{
+    "group": "wooden_slab",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:cheese_spore_planks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:cheese_spore_slab",
+        "count": 6
+    }
+}

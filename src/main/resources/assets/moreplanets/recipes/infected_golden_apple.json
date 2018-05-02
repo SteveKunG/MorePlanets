@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "XXX",
+        "XAX",
+        "XXX"
+    ],
+    "key": {
+        "A": {
+            "item": "moreplanets:infected_apple"
+        },
+        "X": {
+            "item": "#INGOTGOLD"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_golden_apple"
+    }
+}

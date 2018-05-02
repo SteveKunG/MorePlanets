@@ -1,0 +1,17 @@
+{
+    "group": "jelly_block",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XXX",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:strawberry_jelly"
+        }
+    },
+    "result": {
+        "item": "moreplanets:strawberry_jelly_block"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "PDP",
+        "DED",
+        "PDP"
+    ],
+    "key": {
+        "P": {
+            "item": "galacticraftplanets:item_basic_mars",
+            "data": 5
+        },
+        "D": {
+            "item": "#GEMDIAMOND"
+        },
+        "E": {
+            "item": "minecraft:ender_eye"
+        }
+    },
+    "result": {
+        "item": "moreplanets:space_warper_core"
+    }
+}

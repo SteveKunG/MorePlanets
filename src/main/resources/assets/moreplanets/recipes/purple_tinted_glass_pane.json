@@ -1,0 +1,17 @@
+{
+    "group": "tinted_glass_pane",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "GGG",
+        "GGG"
+    ],
+    "key": {
+        "G": {
+            "item": "moreplanets:purple_tinted_glass"
+        }
+    },
+    "result": {
+        "item": "moreplanets:purple_tinted_glass_pane",
+        "count": 16
+    }
+}

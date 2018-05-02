@@ -1,0 +1,14 @@
+{
+    "type": "forge:ore_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:fronos_stone_bricks"
+        },
+        {
+            "item": "#VINE"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:fronos_mossy_stone_bricks"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "group": "crafting_table",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XX",
+        "XX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:infected_oak_planks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_crafting_table"
+    }
+}

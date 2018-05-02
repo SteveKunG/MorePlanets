@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:nibiru_dungeon_key_blade"
+        },
+        {
+            "item": "moreplanets:nibiru_dungeon_key_bow"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:nibiru_dungeon_key"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "group": "cobblestone_wall",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:diona_cobblestone"
+        }
+    },
+    "result": {
+        "item": "moreplanets:diona_cobblestone_wall",
+        "count": 6
+    }
+}

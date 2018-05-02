@@ -1,0 +1,16 @@
+{
+    "group": "crafting_table",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XX",
+        "XX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:alien_berry_oak_planks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:alien_berry_crafting_table"
+    }
+}

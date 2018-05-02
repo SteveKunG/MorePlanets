@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X  ",
+        "XX ",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:infected_stone_bricks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_stone_bricks_stairs",
+        "count": 4
+    }
+}

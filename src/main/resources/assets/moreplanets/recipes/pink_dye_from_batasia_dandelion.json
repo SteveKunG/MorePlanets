@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:batasia_dandelion"
+        }
+    ],
+    "result": {
+        "item": "minecraft:dye",
+        "data": 9
+    }
+}

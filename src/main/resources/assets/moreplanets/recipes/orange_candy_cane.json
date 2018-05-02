@@ -1,0 +1,17 @@
+{
+    "group": "candy_cane_block",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XXX",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:orange_candy_cane_stick"
+        }
+    },
+    "result": {
+        "item": "moreplanets:orange_candy_cane"
+    }
+}

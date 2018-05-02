@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X  ",
+        "XX ",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:infected_cut_sandstone"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_cut_sandstone_stairs",
+        "count": 4
+    }
+}

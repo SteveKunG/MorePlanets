@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "EAE",
+        "AWA",
+        "EAE"
+    ],
+    "key": {
+        "A": {
+            "item": "moreplanets:alien_miner_part"
+        },
+        "E": {
+            "item": "galacticraftcore:machine_tiered",
+            "data": 8
+        },
+        "W": {
+            "item": "galacticraftcore:basic_item",
+            "data": 14
+        }
+    },
+    "result": {
+        "item": "moreplanets:dark_energy_storage_cluster"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "OFO",
+        "OOO",
+        "OOO"
+    ],
+    "key": {
+        "F": {
+            "item": "minecraft:flint_and_steel"
+        },
+        "O": {
+            "item": "#OBSIDIAN"
+        }
+    },
+    "result": {
+        "item": "moreplanets:space_portal"
+    }
+}

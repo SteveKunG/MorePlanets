@@ -3,22 +3,16 @@ package stevekung.mods.moreplanets.utils.debug;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.lang.reflect.Type;
 import java.util.*;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonNull;
-import com.google.gson.internal.Streams;
-import com.google.gson.stream.JsonWriter;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 //You can include this in your mod/a pack/whatever you want, as long as that work follows the Mojang EULA.
 //The original source is viewable at https://gist.github.com/williewillus/a1a899ce5b0f0ba099078d46ae3dae6e
@@ -36,7 +30,7 @@ public class JSONRecipe
     private static File RECIPE_DIR = null;
     private static File ADVANCE_DIR = null;
     private static final Set<String> USED_OD_NAMES = new TreeSet<>();
-    private static final boolean ENABLE = true;
+    private static final boolean ENABLE = false;
 
     private static void setupDir()
     {
@@ -117,10 +111,7 @@ public class JSONRecipe
                 {
                     isOreDict = true;
                 }
-                else
-                {
-                    ingredients.add(serializeItem(obj));
-                }
+                serializeItemAdv(obj);
                 key.put(Character.toString(Character.toUpperCase(curKey)), serializeItem(obj));
                 curKey = null;
             }
@@ -151,7 +142,7 @@ public class JSONRecipe
 
         try (FileWriter writer = new FileWriter(file))
         {
-            toJson(json, writer);
+            JsonUtils.toJson(json, writer);
         }
         catch (IOException e)
         {
@@ -188,10 +179,7 @@ public class JSONRecipe
             {
                 isOreDict = true;
             }
-            else
-            {
-                ingredients2.add(serializeItem(obj));
-            }
+            ingredients2.add(serializeItemAdv(obj));
             ingredients.add(serializeItem(obj));
         }
 
@@ -219,7 +207,7 @@ public class JSONRecipe
 
         try (FileWriter writer = new FileWriter(file))
         {
-            toJson(json, writer);
+            JsonUtils.toJson(json, writer);
         }
         catch (IOException e)
         {
@@ -269,6 +257,45 @@ public class JSONRecipe
             USED_OD_NAMES.add((String) obj);
             ret.put("item", "#" + ((String) obj).toUpperCase(Locale.ROOT));
             return ret;
+        }
+        throw new IllegalArgumentException("Not a Block, Item, ItemStack, or OreDictionary Name: " + obj + " " + obj.getClass());
+    }
+
+    private static Map<String, Object> serializeItemAdv(Object obj)
+    {
+        if (obj instanceof Item)
+        {
+            return serializeItem(new ItemStack((Item) obj));
+        }
+        if (obj instanceof Block)
+        {
+            return serializeItem(new ItemStack((Block) obj));
+        }
+        if (obj instanceof ItemStack)
+        {
+            ItemStack itemStack = (ItemStack) obj;
+            Map<String, Object> ret = new LinkedHashMap<>();
+
+            ret.put("item", itemStack.getItem().getRegistryName().toString());
+
+            if (itemStack.getItem().getHasSubtypes() || itemStack.getItemDamage() != 0)
+            {
+                ret.put("data", itemStack.getItemDamage());
+            }
+            if (itemStack.getCount() > 1)
+            {
+                ret.put("count", itemStack.getCount());
+            }
+            return ret;
+        }
+        if (obj instanceof String)
+        {
+            if (OreDictionary.getOres((String) obj).isEmpty())
+            {
+                return null;
+            }
+            Item item = OreDictionary.getOres((String) obj).get(0).getItem();
+            return serializeItem(new ItemStack(item));
         }
         throw new IllegalArgumentException("Not a Block, Item, ItemStack, or OreDictionary Name: " + obj + " " + obj.getClass());
     }
@@ -325,7 +352,7 @@ public class JSONRecipe
 
         try (FileWriter w = new FileWriter(f))
         {
-            toJson(json, w);
+            JsonUtils.toJson(json, w);
         }
         catch (IOException e)
         {
@@ -333,44 +360,14 @@ public class JSONRecipe
         }
     }
 
-    private static void toJson(Object src, Appendable writer) throws JsonIOException
-    {
-        if (src != null)
-        {
-            toJson(src, src.getClass(), writer);
-        }
-        else
-        {
-            toJson(JsonNull.INSTANCE, writer);
-        }
-    }
-
-    private static void toJson(Object src, Type typeOfSrc, Appendable writer) throws JsonIOException
-    {
-        try
-        {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            JsonWriter jsonWriter = newJsonWriter(Streams.writerForAppendable(writer));
-            gson.toJson(src, typeOfSrc, jsonWriter);
-        }
-        catch (IOException e)
-        {
-            throw new JsonIOException(e);
-        }
-    }
-
-    private static JsonWriter newJsonWriter(Writer writer) throws IOException
-    {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonWriter jsonWriter = new JsonWriter(writer);
-        jsonWriter.setIndent("    ");
-        jsonWriter.setSerializeNulls(gson.serializeNulls());
-        return jsonWriter;
-    }
-
     // Call this after you are done generating
     public static void generateConstants()
     {
+        if (!ENABLE)
+        {
+            return;
+        }
+
         setupDir();
         List<Map<String, Object>> json = new ArrayList<>();
 
@@ -384,7 +381,7 @@ public class JSONRecipe
 
         try (FileWriter w = new FileWriter(new File(RECIPE_DIR, "_constants.json")))
         {
-            toJson(json, w);
+            JsonUtils.toJson(json, w);
         }
         catch (IOException e)
         {
@@ -424,12 +421,11 @@ public class JSONRecipe
 
         try (FileWriter w = new FileWriter(f))
         {
-            toJson(json, w);
+            JsonUtils.toJson(json, w);
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
     }
-
 }

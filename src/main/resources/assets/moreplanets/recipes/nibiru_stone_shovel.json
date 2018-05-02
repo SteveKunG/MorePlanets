@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "X",
+        "Y",
+        "Y"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:nibiru_cobblestone"
+        },
+        "Y": {
+            "item": "#STICKWOOD"
+        }
+    },
+    "result": {
+        "item": "moreplanets:nibiru_stone_shovel"
+    }
+}

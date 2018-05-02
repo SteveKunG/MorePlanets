@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SSS",
+        "SSS",
+        "SSS"
+    ],
+    "key": {
+        "S": {
+            "item": "moreplanets:glowing_iron_ingot"
+        }
+    },
+    "result": {
+        "item": "moreplanets:glowing_iron_block"
+    }
+}

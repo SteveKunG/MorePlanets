@@ -1,0 +1,16 @@
+{
+    "group": "crafting_table",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XX",
+        "XX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:cheese_spore_planks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:cheese_spore_crafting_table"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "group": "wooden_stairs",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X  ",
+        "XX ",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:infected_oak_planks"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_oak_stairs",
+        "count": 4
+    }
+}

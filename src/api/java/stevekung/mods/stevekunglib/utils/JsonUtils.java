@@ -1,6 +1,12 @@
 package stevekung.mods.stevekunglib.utils;
 
-import com.google.gson.JsonParseException;
+import java.io.IOException;
+import java.io.Writer;
+import java.lang.reflect.Type;
+
+import com.google.gson.*;
+import com.google.gson.internal.Streams;
+import com.google.gson.stream.JsonWriter;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.ITextComponent;
@@ -128,5 +134,40 @@ public class JsonUtils
     public static Style white()
     {
         return style().setColor(TextFormatting.WHITE);
+    }
+
+    public static void toJson(Object src, Appendable writer) throws JsonIOException
+    {
+        if (src != null)
+        {
+            toJson(src, src.getClass(), writer);
+        }
+        else
+        {
+            toJson(JsonNull.INSTANCE, writer);
+        }
+    }
+
+    private static void toJson(Object src, Type typeOfSrc, Appendable writer) throws JsonIOException
+    {
+        try
+        {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            JsonWriter jsonWriter = newJsonWriter(Streams.writerForAppendable(writer));
+            gson.toJson(src, typeOfSrc, jsonWriter);
+        }
+        catch (IOException e)
+        {
+            throw new JsonIOException(e);
+        }
+    }
+
+    private static JsonWriter newJsonWriter(Writer writer) throws IOException
+    {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonWriter jsonWriter = new JsonWriter(writer);
+        jsonWriter.setIndent("    ");
+        jsonWriter.setSerializeNulls(gson.serializeNulls());
+        return jsonWriter;
     }
 }

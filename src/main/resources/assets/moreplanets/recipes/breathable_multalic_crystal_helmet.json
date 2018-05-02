@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XYX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:multalic_crystal_pieces"
+        },
+        "Y": {
+            "item": "galacticraftcore:oxygen_mask"
+        }
+    },
+    "result": {
+        "item": "moreplanets:breathable_multalic_crystal_helmet"
+    }
+}

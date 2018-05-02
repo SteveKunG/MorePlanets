@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X  ",
+        "XX ",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:terrastone"
+        }
+    },
+    "result": {
+        "item": "moreplanets:terrastone_stairs",
+        "count": 4
+    }
+}

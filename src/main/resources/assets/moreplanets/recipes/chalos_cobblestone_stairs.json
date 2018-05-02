@@ -1,0 +1,18 @@
+{
+    "group": "cobblestone_stairs",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X  ",
+        "XX ",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:chalos_cobblestone"
+        }
+    },
+    "result": {
+        "item": "moreplanets:chalos_cobblestone_stairs",
+        "count": 4
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XYX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:compressed_illenium"
+        },
+        "Y": {
+            "item": "galacticraftcore:oxygen_mask"
+        }
+    },
+    "result": {
+        "item": "moreplanets:breathable_illenium_helmet"
+    }
+}

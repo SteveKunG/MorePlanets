@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "DG",
+        "GD"
+    ],
+    "key": {
+        "D": {
+            "item": "moreplanets:infected_dirt"
+        },
+        "G": {
+            "item": "#GRAVEL"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_coarse_dirt",
+        "count": 4
+    }
+}

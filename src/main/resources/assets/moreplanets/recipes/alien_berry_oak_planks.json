@@ -1,0 +1,13 @@
+{
+    "group": "planks",
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:alien_berry_oak_log"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:alien_berry_oak_planks",
+        "count": 4
+    }
+}

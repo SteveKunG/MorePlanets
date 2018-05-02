@@ -1,0 +1,20 @@
+{
+    "group": "laser_bullet",
+    "type": "forge:ore_shaped",
+    "pattern": [
+        " R",
+        "I "
+    ],
+    "key": {
+        "R": {
+            "item": "#DUSTREDSTONE"
+        },
+        "I": {
+            "item": "#INGOTIRON"
+        }
+    },
+    "result": {
+        "item": "moreplanets:laser_bullet",
+        "count": 8
+    }
+}

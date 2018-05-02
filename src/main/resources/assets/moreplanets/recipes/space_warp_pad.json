@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "PPP",
+        "MMM"
+    ],
+    "key": {
+        "P": {
+            "item": "galacticraftplanets:item_basic_asteroids",
+            "data": 5
+        },
+        "M": {
+            "item": "galacticraftcore:basic_block_core",
+            "data": 12
+        }
+    },
+    "result": {
+        "item": "moreplanets:space_warp_pad",
+        "count": 9
+    }
+}

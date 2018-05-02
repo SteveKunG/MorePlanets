@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "EAE",
+        "ANA",
+        "EAE"
+    ],
+    "key": {
+        "A": {
+            "item": "moreplanets:alien_miner_part"
+        },
+        "E": {
+            "item": "moreplanets:dark_energy_storage_cluster"
+        },
+        "N": {
+            "item": "moreplanets:nuclear_waste_tank"
+        }
+    },
+    "result": {
+        "item": "moreplanets:nuclear_waste_energy_storage_cluster"
+    }
+}

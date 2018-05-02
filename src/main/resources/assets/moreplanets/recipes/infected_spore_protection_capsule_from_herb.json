@@ -1,0 +1,18 @@
+{
+    "group": "capsule",
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:empty_capsule"
+        },
+        {
+            "item": "moreplanets:pure_herb"
+        },
+        {
+            "item": "moreplanets:inferumite_crystal"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:infected_spore_protection_capsule"
+    }
+}

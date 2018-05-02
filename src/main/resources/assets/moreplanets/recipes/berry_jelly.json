@@ -1,0 +1,13 @@
+{
+    "group": "jelly",
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "moreplanets:berry_jelly_block"
+        }
+    ],
+    "result": {
+        "item": "moreplanets:berry_jelly",
+        "count": 9
+    }
+}

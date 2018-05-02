@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "XX",
+        " Y",
+        " Y"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:infected_oak_planks"
+        },
+        "Y": {
+            "item": "#STICKWOOD"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_wood_hoe"
+    }
+}
