@@ -4,10 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
 import micdoodle8.mods.galacticraft.core.blocks.BlockTileGC;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
-import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -44,18 +42,9 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
             {
                 if (this.getBlock() instanceof BlockTileGC)
                 {
-                    TileEntity te = ((BlockTileGC) this.getBlock()).createTileEntity(null, this.getBlock().getStateFromMeta(itemStack.getItemDamage() & 12));
+                    TileEntity tile = ((BlockTileGC) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
 
-                    if (te instanceof TileBaseElectricBlock)
-                    {
-                        float powerDrawn = ((TileBaseElectricBlock) te).storage.getMaxExtract();
-
-                        if (powerDrawn > 0)
-                        {
-                            list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
-                        }
-                    }
-                    if (te instanceof TileBaseUniversalElectrical)
+                    if (tile instanceof TileBaseUniversalElectrical)
                     {
                         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
                         {
@@ -63,27 +52,13 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlock
                             list.add(TextFormatting.GREEN + LangUtils.translate("desc.energy_stored.name", EnergyDisplayHelper.getEnergyDisplayS(power)));
                         }
                     }
-                    if (te instanceof TileEntityDarkEnergyGenerator)
+                    if (tile instanceof TileEntityDarkEnergyGenerator)
                     {
                         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("DarkEnergyFuel"))
                         {
                             int power = itemStack.getTagCompound().getInteger("DarkEnergyFuel");
-                            power = power * 100 / 1000;
+                            power = power * 100 / 1000;//TODO More dark energy fuel
                             list.add(TextFormatting.GREEN + LangUtils.translate("desc.dark_energy_fuel.name", power) + "%");
-                        }
-                    }
-                }
-                else if (this.getBlock() instanceof BlockAdvancedTile)
-                {
-                    TileEntity te = ((BlockAdvancedTile) this.getBlock()).createTileEntity(world, this.getBlock().getStateFromMeta(itemStack.getItemDamage() & 12));
-
-                    if (te instanceof TileBaseElectricBlock)
-                    {
-                        float powerDrawn = ((TileBaseElectricBlock) te).storage.getMaxExtract();
-
-                        if (powerDrawn > 0)
-                        {
-                            list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
                         }
                     }
                 }

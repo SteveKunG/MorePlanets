@@ -7,7 +7,6 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
 import stevekung.mods.moreplanets.utils.debug.JSONRecipe;
 
-@Deprecated
 public class RecipeHelper
 {
     public static void addRecipe(ItemStack output, Object... obj)
@@ -15,6 +14,22 @@ public class RecipeHelper
         if (MorePlanetsMod.isDevelopment)
         {
             JSONRecipe.addShapedRecipe(output, obj);
+        }
+    }
+
+    public static void addRecipe(ItemStack output, String group, Object... obj)
+    {
+        if (MorePlanetsMod.isDevelopment)
+        {
+            JSONRecipe.addShapedRecipe(output, group, obj);
+        }
+    }
+
+    public static void addRecipe(ItemStack output, String group, String altName, Object... obj)
+    {
+        if (MorePlanetsMod.isDevelopment)
+        {
+            JSONRecipe.addShapedRecipe(output, group, altName, obj);
         }
     }
 
@@ -26,11 +41,35 @@ public class RecipeHelper
         }
     }
 
+    public static void addOreRecipe(ItemStack output, String group, Object... obj)
+    {
+        if (MorePlanetsMod.isDevelopment)
+        {
+            JSONRecipe.addShapedRecipe(output, group, obj);
+        }
+    }
+
     public static void addShapelessRecipe(ItemStack output, Object... obj)
     {
         if (MorePlanetsMod.isDevelopment)
         {
             JSONRecipe.addShapelessRecipe(output, obj);
+        }
+    }
+
+    public static void addShapelessRecipe(ItemStack output, String group, Object... obj)
+    {
+        if (MorePlanetsMod.isDevelopment)
+        {
+            JSONRecipe.addShapelessRecipe(output, group, obj);
+        }
+    }
+
+    public static void addShapelessRecipe(ItemStack output, String group, String altName, Object... obj)
+    {
+        if (MorePlanetsMod.isDevelopment)
+        {
+            JSONRecipe.addShapelessRecipe(output, group, altName, obj);
         }
     }
 

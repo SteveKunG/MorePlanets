@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.integration.jei.MorePlanetsJEIPlugin;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
@@ -26,6 +27,7 @@ public class ItemAxeMP extends ItemAxe implements ISortableItem, IItemModelRende
         super(material, material.getAttackDamage(), speed.getSpeed());
         this.repairItem = item;
         this.setUnlocalizedName(name);
+        MorePlanetsJEIPlugin.collectAnvilList(name, this, item);
     }
 
     @Override

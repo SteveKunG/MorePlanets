@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.integration.jei.MorePlanetsJEIPlugin;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
@@ -25,6 +26,7 @@ public class ItemPickaxeMP extends ItemPickaxe implements ISortableItem, IItemMo
         super(material);
         this.repairItem = item;
         this.setUnlocalizedName(name);
+        MorePlanetsJEIPlugin.collectAnvilList(name, this, item);
     }
 
     public ItemPickaxeMP(ToolMaterial material)

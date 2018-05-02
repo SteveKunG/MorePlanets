@@ -36,13 +36,13 @@ public class JSONRecipe
     private static File RECIPE_DIR = null;
     private static File ADVANCE_DIR = null;
     private static final Set<String> USED_OD_NAMES = new TreeSet<>();
-    private static final boolean ENABLE = false;
+    private static final boolean ENABLE = true;
 
     private static void setupDir()
     {
         if (RECIPE_DIR == null)
         {
-            RECIPE_DIR = Minecraft.getMinecraft().mcDataDir.toPath().resolve("../recipes/").toFile();
+            RECIPE_DIR = Minecraft.getMinecraft().mcDataDir.toPath().resolve("../src/main/resources/assets/moreplanets/recipes/").toFile();
         }
         if (!RECIPE_DIR.exists())
         {
@@ -54,7 +54,7 @@ public class JSONRecipe
     {
         if (ADVANCE_DIR == null)
         {
-            ADVANCE_DIR = Minecraft.getMinecraft().mcDataDir.toPath().resolve("../advancements/").toFile();
+            ADVANCE_DIR = Minecraft.getMinecraft().mcDataDir.toPath().resolve("../src/main/resources/assets/moreplanets/advancements/recipes/").toFile();
         }
         if (!ADVANCE_DIR.exists())
         {
@@ -63,6 +63,16 @@ public class JSONRecipe
     }
 
     public static void addShapedRecipe(ItemStack output, Object... components)
+    {
+        JSONRecipe.addShapedRecipe(output, null, null, components);
+    }
+
+    public static void addShapedRecipe(ItemStack output, String group, Object... components)
+    {
+        JSONRecipe.addShapedRecipe(output, group, null, components);
+    }
+
+    public static void addShapedRecipe(ItemStack output, String group, String altName, Object... components)
     {
         if (!ENABLE)
         {
@@ -83,6 +93,7 @@ public class JSONRecipe
         boolean isOreDict = false;
         Map<String, Map<String, Object>> key = new HashMap<>();
         Character curKey = null;
+        List<Map<String, Object>> ingredients = new ArrayList<>();
 
         for (; i < components.length; i++)
         {
@@ -106,11 +117,19 @@ public class JSONRecipe
                 {
                     isOreDict = true;
                 }
+                else
+                {
+                    ingredients.add(serializeItem(obj));
+                }
                 key.put(Character.toString(Character.toUpperCase(curKey)), serializeItem(obj));
                 curKey = null;
             }
         }
 
+        if (group != null)
+        {
+            json.put("group", group);
+        }
         json.put("type", isOreDict ? "forge:ore_shaped" : "minecraft:crafting_shaped");
         json.put("pattern", pattern);
         json.put("key", key);
@@ -120,15 +139,15 @@ public class JSONRecipe
         // repeatedly adds _alt if a file already exists
         // janky I know but it works
         String suffix = output.getItem().getHasSubtypes() ? "_" + output.getItemDamage() : "";
-        File file = new File(RECIPE_DIR, output.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+        String name = altName != null ? altName : output.getItem().getRegistryName().getResourcePath() + suffix;
+        File file = new File(RECIPE_DIR, name + ".json");
 
         while (file.exists())
         {
-            suffix += "_alt";
-            file = new File(RECIPE_DIR, output.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+            file = new File(RECIPE_DIR, name + "_alt" + ".json");
         }
 
-        writeAdvancements(output.getItem().getRegistryName().getResourcePath() + suffix);
+        writeAdvancements(name, ingredients);
 
         try (FileWriter writer = new FileWriter(file))
         {
@@ -142,6 +161,16 @@ public class JSONRecipe
 
     public static void addShapelessRecipe(ItemStack output, Object... components)
     {
+        JSONRecipe.addShapelessRecipe(output, null, null, components);
+    }
+
+    public static void addShapelessRecipe(ItemStack output, String group, Object... components)
+    {
+        JSONRecipe.addShapelessRecipe(output, group, null, components);
+    }
+
+    public static void addShapelessRecipe(ItemStack output, String group, String altName, Object... components)
+    {
         if (!ENABLE)
         {
             return;
@@ -151,6 +180,7 @@ public class JSONRecipe
         Map<String, Object> json = new LinkedHashMap<>();
         boolean isOreDict = false;
         List<Map<String, Object>> ingredients = new ArrayList<>();
+        List<Map<String, Object>> ingredients2 = new ArrayList<>();
 
         for (Object obj : components)
         {
@@ -158,9 +188,17 @@ public class JSONRecipe
             {
                 isOreDict = true;
             }
+            else
+            {
+                ingredients2.add(serializeItem(obj));
+            }
             ingredients.add(serializeItem(obj));
         }
 
+        if (group != null)
+        {
+            json.put("group", group);
+        }
         json.put("type", isOreDict ? "forge:ore_shapeless" : "minecraft:crafting_shapeless");
         json.put("ingredients", ingredients);
         json.put("result", serializeItem(output));
@@ -169,15 +207,15 @@ public class JSONRecipe
         // repeatedly adds _alt if a file already exists
         // janky I know but it works
         String suffix = output.getItem().getHasSubtypes() ? "_" + output.getItemDamage() : "";
-        File file = new File(RECIPE_DIR, output.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+        String name = altName != null ? altName : output.getItem().getRegistryName().getResourcePath() + suffix;
+        File file = new File(RECIPE_DIR, name + ".json");
 
         while (file.exists())
         {
-            suffix += "_alt";
-            file = new File(RECIPE_DIR, output.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+            file = new File(RECIPE_DIR, name + "_alt" + ".json");
         }
 
-        writeAdvancements(output.getItem().getRegistryName().getResourcePath() + suffix);
+        writeAdvancements(name, ingredients2);
 
         try (FileWriter writer = new FileWriter(file))
         {
@@ -232,10 +270,10 @@ public class JSONRecipe
             ret.put("item", "#" + ((String) obj).toUpperCase(Locale.ROOT));
             return ret;
         }
-        throw new IllegalArgumentException("Not a block, item, stack, or od name");
+        throw new IllegalArgumentException("Not a Block, Item, ItemStack, or OreDictionary Name: " + obj + " " + obj.getClass());
     }
 
-    public static void writeAdvancements(String result)
+    public static void writeAdvancements(String name, List<Map<String, Object>> ingredients)
     {
         if (!ENABLE)
         {
@@ -255,12 +293,12 @@ public class JSONRecipe
         LinkedList<String> reqs = new LinkedList<>();
 
         json.put("parent", "minecraft:recipes/root");
-        recipes.add("moreplanets:" + result);
+        recipes.add("moreplanets:" + name);
         rewards.put("recipes", recipes);
 
         has_item.put("trigger", "minecraft:inventory_changed");
-        conditions.put("items", new LinkedList<>());
-        conditions2.put("recipe", result);
+        conditions.put("items", ingredients);
+        conditions2.put("recipe", "moreplanets:" + name);
         has_the_recipe.put("trigger", "minecraft:recipe_unlocked");
         has_the_recipe.put("conditions", conditions2);
 
@@ -277,12 +315,12 @@ public class JSONRecipe
         json.put("requirements", requirements);
 
         String suffix = "";
-        File f = new File(ADVANCE_DIR, result + suffix + ".json");
+        File f = new File(ADVANCE_DIR, name + suffix + ".json");
 
         while (f.exists())
         {
             suffix += "_alt";
-            f = new File(ADVANCE_DIR, result + suffix + ".json");
+            f = new File(ADVANCE_DIR, name + suffix + ".json");
         }
 
         try (FileWriter w = new FileWriter(f))

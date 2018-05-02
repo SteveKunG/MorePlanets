@@ -129,7 +129,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
             {
                 Item item = slotStack.getItem();
                 int meta = slotStack.getItemDamage();
-                                                                                                                                                               //heavy plate tier 3
+
                 if (item == DionaItems.GLOWING_IRON_INGOT || item == Items.ENDER_EYE || item == DionaItems.BLACK_HOLE_FRAGMENTS || item == GCItems.flagPole || item == AsteroidsItems.basicItem && meta == 5)
                 {
                     for (int i = 1; i < 23; i++)

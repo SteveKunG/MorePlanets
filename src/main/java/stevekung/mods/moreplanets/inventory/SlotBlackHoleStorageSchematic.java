@@ -52,7 +52,7 @@ public class SlotBlackHoleStorageSchematic extends Slot
         case 7:
         case 8:
         case 9:
-            return itemStack.getItem() == DionaItems.GLOWING_IRON_INGOT;//TODO
+            return itemStack.getItem() == DionaItems.GLOWING_IRON_INGOT;
         case 10:
         case 11:
         case 12:
@@ -62,12 +62,12 @@ public class SlotBlackHoleStorageSchematic extends Slot
         case 17:
         case 18:
         case 22:
-            return itemStack.getItem() == DionaItems.BLACK_HOLE_FRAGMENTS;//TODO
+            return itemStack.getItem() == DionaItems.BLACK_HOLE_FRAGMENTS;
         case 14:
         case 16:
         case 19:
         case 21:
-            return itemStack.getItem() == AsteroidsItems.basicItem && itemStack.getItemDamage() == 5;//TODO
+            return itemStack.getItem() == AsteroidsItems.basicItem && itemStack.getItemDamage() == 5;
         case 20:
             return itemStack.getItem() == Items.ENDER_EYE;
         }

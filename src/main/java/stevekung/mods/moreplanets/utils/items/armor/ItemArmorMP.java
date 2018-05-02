@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.integration.jei.MorePlanetsJEIPlugin;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
@@ -23,6 +24,7 @@ public abstract class ItemArmorMP extends ItemArmor implements ISortableItem, II
     public Item setUnlocalizedName(String name)
     {
         this.name = name;
+        MorePlanetsJEIPlugin.collectAnvilList(name, this, this.getRepairItem());
         return super.setUnlocalizedName(name);
     }
 

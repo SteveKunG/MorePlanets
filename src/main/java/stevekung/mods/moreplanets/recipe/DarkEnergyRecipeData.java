@@ -11,7 +11,7 @@ public class DarkEnergyRecipeData
     private HashMap<Integer, ItemStack> input;
     private ItemStack output;
     private int timeMultiplier;
-    private static List<DarkEnergyRecipeData> recipes = new ArrayList<>();
+    private static final List<DarkEnergyRecipeData> RECIPES = new ArrayList<>();
 
     private DarkEnergyRecipeData(HashMap<Integer, ItemStack> input, ItemStack output, int timeMultiplier)
     {
@@ -37,11 +37,11 @@ public class DarkEnergyRecipeData
 
     public static void registerRecipe(HashMap<Integer, ItemStack> input, ItemStack output, int timeMultiplier)
     {
-        DarkEnergyRecipeData.recipes.add(new DarkEnergyRecipeData(input, output, timeMultiplier));
+        DarkEnergyRecipeData.RECIPES.add(new DarkEnergyRecipeData(input, output, timeMultiplier));
     }
 
     public static List<DarkEnergyRecipeData> getRecipeList()
     {
-        return DarkEnergyRecipeData.recipes;
+        return DarkEnergyRecipeData.RECIPES;
     }
 }

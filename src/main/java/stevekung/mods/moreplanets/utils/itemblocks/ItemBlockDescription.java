@@ -43,18 +43,18 @@ public class ItemBlockDescription extends ItemBlock
             {
                 if (this.getBlock() instanceof BlockTileGC)
                 {
-                    TileEntity te = ((BlockTileGC) this.getBlock()).createTileEntity(null, this.getBlock().getStateFromMeta(itemStack.getItemDamage() & 12));
+                    TileEntity tile = ((BlockTileGC) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
 
-                    if (te instanceof TileBaseElectricBlock)
+                    if (tile instanceof TileBaseElectricBlock)
                     {
-                        float powerDrawn = ((TileBaseElectricBlock) te).storage.getMaxExtract();
+                        float powerDrawn = ((TileBaseElectricBlock) tile).storage.getMaxExtract();
 
                         if (powerDrawn > 0)
                         {
                             list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(powerDrawn * 20)));
                         }
                     }
-                    if (te instanceof TileBaseUniversalElectrical)
+                    if (tile instanceof TileBaseUniversalElectrical)
                     {
                         if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("EnergyStored"))
                         {
@@ -65,11 +65,11 @@ public class ItemBlockDescription extends ItemBlock
                 }
                 else if (this.getBlock() instanceof BlockAdvancedTile)
                 {
-                    TileEntity te = ((BlockAdvancedTile) this.getBlock()).createTileEntity(world, this.getBlock().getStateFromMeta(itemStack.getItemDamage() & 12));
+                    TileEntity tile = ((BlockAdvancedTile) this.getBlock()).createTileEntity(world, this.getBlock().getDefaultState());
 
-                    if (te instanceof TileBaseElectricBlock)
+                    if (tile instanceof TileBaseElectricBlock)
                     {
-                        float powerDrawn = ((TileBaseElectricBlock) te).storage.getMaxExtract();
+                        float powerDrawn = ((TileBaseElectricBlock) tile).storage.getMaxExtract();
 
                         if (powerDrawn > 0)
                         {
