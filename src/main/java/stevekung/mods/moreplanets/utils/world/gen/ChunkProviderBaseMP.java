@@ -6,7 +6,7 @@ import java.util.Random;
 import micdoodle8.mods.galacticraft.core.perlin.NoiseModule;
 import micdoodle8.mods.galacticraft.core.perlin.generator.Gradient;
 import micdoodle8.mods.galacticraft.core.world.gen.EnumCraterSize;
-import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -85,14 +85,14 @@ public abstract class ChunkProviderBaseMP extends ChunkGeneratorOverworld
     @Override
     public void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer chunk, Biome[] biomeGen)
     {
-        int var5 = 20;
+        int seaLevel = 20;
 
         for (int x = 0; x < 16; ++x)
         {
             for (int z = 0; z < 16; ++z)
             {
                 int noise = (int) (this.noiseGen4.getNoise(x + chunkX * 16, z * chunkZ * 16) / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
-                int var13 = -1;
+                int j = -1;
                 IBlockState topBlock = this.getTopBlock();
                 IBlockState fillBlock = this.getSubBlock();
 
@@ -104,40 +104,41 @@ public abstract class ChunkProviderBaseMP extends ChunkGeneratorOverworld
                     }
                     else
                     {
-                        Block block = chunk.getBlockState(x, y, z).getBlock();
+                        IBlockState iblockstate2 = chunk.getBlockState(x, y, z);
 
-                        if (Blocks.AIR == block)
+                        if (iblockstate2.getMaterial() == Material.AIR)
                         {
-                            var13 = -1;
+                            j = -1;
                         }
-                        else if (block == this.getTopBlock())
+                        else if (iblockstate2.getBlock() == this.getStoneBlock().getBlock())
                         {
-                            if (var13 == -1)
+                            if (j == -1)
                             {
                                 if (noise <= 0)
                                 {
                                     topBlock = Blocks.AIR.getDefaultState();
-                                    fillBlock = this.getSubBlock();
+                                    fillBlock = this.getStoneBlock();
                                 }
-                                else if (y >= var5 - -16 && y <= var5 + 1)
+                                else if (y >= seaLevel - 4 && y <= seaLevel + 1)//-16
                                 {
                                     topBlock = this.getTopBlock();
+                                    fillBlock = this.getSubBlock();
                                 }
 
-                                var13 = noise;
+                                j = noise;
 
-                                if (y >= var5 - 1)
+                                if (y >= seaLevel - 1)
                                 {
                                     chunk.setBlockState(x, y, z, topBlock);
                                 }
-                                else if (y < var5 - 1 && y >= var5 - 2)
+                                else if (y < seaLevel - 1 && y >= seaLevel - 2)
                                 {
                                     chunk.setBlockState(x, y, z, fillBlock);
                                 }
                             }
-                            else if (var13 > 0)
+                            else if (j > 0)
                             {
-                                --var13;
+                                --j;
                                 chunk.setBlockState(x, y, z, fillBlock);
                             }
                         }

@@ -1,13 +1,13 @@
 package stevekung.mods.stevekunglib.world.gen;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import com.google.common.base.MoreObjects;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -20,11 +20,20 @@ public class MapGenCavesBase extends MapGenBase
 {
     private IBlockState top = Blocks.GRASS.getDefaultState();
     private IBlockState lava = Blocks.LAVA.getDefaultState();
+    private Set<Block> digBlock = new HashSet<>();
+    private Set<Block> fluidBlock = new HashSet<>();
 
-    public MapGenCavesBase(IBlockState top, IBlockState lava)
+    public MapGenCavesBase(IBlockState top, IBlockState lava, Set<Block> digBlock)
+    {
+        this(top, lava, digBlock, new HashSet<>());
+    }
+
+    public MapGenCavesBase(IBlockState top, IBlockState lava, Set<Block> digBlock, Set<Block> fluidBlock)
     {
         this.top = top;
         this.lava = lava;
+        this.digBlock = digBlock;
+        this.fluidBlock = fluidBlock;
     }
 
     @Override
@@ -239,72 +248,41 @@ public class MapGenCavesBase extends MapGenBase
 
     protected boolean canReplaceBlock(IBlockState state, IBlockState up)
     {
-        if (state.getBlock() == Blocks.STONE)
+        for (Block block : this.digBlock)
         {
-            return true;
+            if (state.getBlock().equals(block))
+            {
+                return true;
+            }
         }
-        else if (state.getBlock() == Blocks.DIRT)
-        {
-            return true;
-        }
-        else if (state.getBlock() == Blocks.GRASS)
-        {
-            return true;
-        }
-        else if (state.getBlock() == Blocks.HARDENED_CLAY)
-        {
-            return true;
-        }
-        else if (state.getBlock() == Blocks.STAINED_HARDENED_CLAY)
-        {
-            return true;
-        }
-        else if (state.getBlock() == Blocks.SANDSTONE)
-        {
-            return true;
-        }
-        else if (state.getBlock() == Blocks.RED_SANDSTONE)
-        {
-            return true;
-        }
-        else if (state.getBlock() == Blocks.MYCELIUM)
-        {
-            return true;
-        }
-        else if (state.getBlock() == Blocks.SNOW_LAYER)
-        {
-            return true;
-        }
-        else
-        {
-            return (state.getBlock() == Blocks.SAND || state.getBlock() == Blocks.GRAVEL) && up.getMaterial() != Material.WATER;
-        }
+        return state.getBlock() == this.top.getBlock();
     }
 
     protected boolean isOceanBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
         Block block = data.getBlockState(x, y, z).getBlock();
-        return block == Blocks.FLOWING_WATER || block == Blocks.WATER;
-    }
 
-    protected boolean isExceptionBiome(Biome biome)
-    {
-        if (biome == Biomes.BEACH)
+        if (this.fluidBlock.isEmpty())
         {
-            return true;
+            return false;
         }
-        if (biome == Biomes.DESERT)
+        else
         {
-            return true;
+            for (Block fluidBlock : this.fluidBlock)
+            {
+                if (fluidBlock.equals(block))
+                {
+                    return true;
+                }
+            }
         }
-        return false;
+        return block == Blocks.FLOWING_WATER || block == Blocks.WATER;
     }
 
     protected boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
-        Biome biome = this.world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
-        return this.isExceptionBiome(biome) ? state.getBlock() == this.top : state.getBlock() == biome.topBlock;
+        return state.getBlock() == this.top.getBlock();
     }
 
     protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop, IBlockState state, IBlockState up)

@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.module.planets.diona.world.gen;
 
 import java.util.List;
 
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -33,7 +35,7 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
 {
     private BiomeDecoratorDiona biomeDecorator = new BiomeDecoratorDiona();
     private Biome[] biomesForGeneration = { MPBiomes.DIONA };
-    private MapGenCavesBase caveGenerator = new MapGenCavesBase(DionaBlocks.DIONA_ROCK.getDefaultState(), DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState());
+    private MapGenCavesBase caveGenerator = new MapGenCavesBase(DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState(), DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), Sets.newHashSet(DionaBlocks.DIONA_SUB_SURFACE_ROCK, DionaBlocks.DIONA_ROCK));
     private MapGenDionaMineshaft mineshaftGenerator = new MapGenDionaMineshaft();
     private MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(DionaBlocks.DIONA_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), DionaBlocks.INFECTED_CRYSTALLIZED_WEB.getDefaultState(), DionaBlocks.INFECTED_CRYSTALLIZED_TORCH.getDefaultState(), DionaBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
 
