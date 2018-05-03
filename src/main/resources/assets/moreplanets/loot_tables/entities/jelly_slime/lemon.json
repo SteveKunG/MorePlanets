@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "moreplanets:jelly",
+                    "name": "moreplanets:lemon_jelly",
                     "weight": 1,
                     "functions": [
                         {
@@ -15,10 +15,6 @@
                                 "min": 0,
                                 "max": 2
                             }
-                        },
-                        {
-                            "function": "set_data",
-                            "data": 7
                         },
                         {
                             "function": "looting_enchant",

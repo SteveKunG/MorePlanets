@@ -76,13 +76,9 @@
                 },
                 {
                     "type": "item",
-                    "name": "moreplanets:diona_item",
+                    "name": "moreplanets:alien_miner_part",
                     "weight": 2,
                     "functions": [
-                        {
-                            "function": "minecraft:set_data",
-                            "data": 5
-                        },
                         {
                             "function": "minecraft:set_count",
                             "count": {

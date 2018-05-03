@@ -31,13 +31,7 @@
                 {
                     "entryName": "cheese_fish",
                     "type": "item",
-                    "name": "moreplanets:space_fish",
-                    "functions": [
-                        {
-                            "function": "set_data",
-                            "data": 2
-                        }
-                    ],
+                    "name": "moreplanets:cheese_fish",
                     "weight": 32
                 }
             ]

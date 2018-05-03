@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "moreplanets:fronos_food",
+                    "name": "moreplanets:marshmallow",
                     "weight": 1,
                     "functions": [
                         {
@@ -17,12 +17,7 @@
                             }
                         },
                         {
-                            "function": "set_data",
-                            "data": 2
-                        },
-                        {
-                            "function": "moreplanets:furnace_smelt_with_data",
-                            "data": 3,
+                            "function": "furnace_smelt",
                             "conditions": [
                                 {
                                     "condition": "entity_properties",

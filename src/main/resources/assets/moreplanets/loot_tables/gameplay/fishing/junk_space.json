@@ -54,7 +54,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "moreplanets:capsule",
+                    "name": "moreplanets:empty_capsule",
                     "weight": 3
                 },
                 {

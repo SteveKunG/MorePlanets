@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "moreplanets:fronos_fruits",
+                    "name": "moreplanets:strawberry",
                     "weight": 1,
                     "functions": [
                         {
@@ -15,10 +15,6 @@
                                 "min": 0,
                                 "max": 3
                             }
-                        },
-                        {
-                            "function": "set_data",
-                            "data": 0
                         },
                         {
                             "function": "looting_enchant",

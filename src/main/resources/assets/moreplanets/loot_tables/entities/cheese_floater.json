@@ -54,13 +54,13 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "moreplanets:cheese_food",
+                    "name": "moreplanets:cheese_milk_curd",
                     "weight": 1,
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
-                                "min": -1,
+                                "min": 0,
                                 "max": 2
                             }
                         },

@@ -31,25 +31,13 @@
                 {
                     "entryName": "zelius",
                     "type": "item",
-                    "name": "moreplanets:space_fish",
-                    "functions": [
-                        {
-                            "function": "set_data",
-                            "data": 0
-                        }
-                    ],
+                    "name": "moreplanets:zelius_fish",
                     "weight": 8
                 },
                 {
                     "entryName": "glowing_alien",
                     "type": "item",
-                    "name": "moreplanets:space_fish",
-                    "functions": [
-                        {
-                            "function": "set_data",
-                            "data": 1
-                        }
-                    ],
+                    "name": "moreplanets:glowing_alien_fish",
                     "weight": 1
                 }
             ]

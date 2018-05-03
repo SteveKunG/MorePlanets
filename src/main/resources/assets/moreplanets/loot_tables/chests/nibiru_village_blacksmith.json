@@ -51,7 +51,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "moreplanets:nibiru_item",
+                    "name": "moreplanets:multalic_crystal_pieces",
                     "functions": [
                         {
                             "function": "set_count",
@@ -59,10 +59,6 @@
                                 "min": 1,
                                 "max": 5
                             }
-                        },
-                        {
-                            "function": "set_data",
-                            "data": 1
                         }
                     ],
                     "weight": 3
@@ -87,7 +83,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "moreplanets:nibiru_fruits",
+                    "name": "moreplanets:terraberry",
                     "functions": [
                         {
                             "function": "set_count",
@@ -202,7 +198,7 @@
                 {
                     "entryName": "infected_oak",
                     "type": "item",
-                    "name": "moreplanets:nibiru_sapling",
+                    "name": "moreplanets:infected_oak_sapling",
                     "functions": [
                         {
                             "function": "set_count",
@@ -217,7 +213,7 @@
                 {
                     "entryName": "infected_jungle",
                     "type": "item",
-                    "name": "moreplanets:nibiru_sapling",
+                    "name": "moreplanets:infected_jungle_sapling",
                     "functions": [
                         {
                             "function": "set_count",
@@ -225,10 +221,6 @@
                                 "min": 3,
                                 "max": 7
                             }
-                        },
-                        {
-                            "function": "set_data",
-                            "data": 2
                         }
                     ],
                     "weight": 5
@@ -236,7 +228,7 @@
                 {
                     "entryName": "alien_berry",
                     "type": "item",
-                    "name": "moreplanets:nibiru_sapling",
+                    "name": "moreplanets:alien_berry_oak_sapling",
                     "functions": [
                         {
                             "function": "set_count",
@@ -244,10 +236,6 @@
                                 "min": 2,
                                 "max": 4
                             }
-                        },
-                        {
-                            "function": "set_data",
-                            "data": 2
                         }
                     ],
                     "weight": 5

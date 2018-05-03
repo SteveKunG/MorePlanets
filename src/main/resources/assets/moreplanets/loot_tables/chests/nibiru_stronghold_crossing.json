@@ -51,7 +51,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "moreplanets:nibiru_item",
+                    "name": "moreplanets:infected_coal",
                     "functions": [
                         {
                             "function": "set_count",
@@ -59,10 +59,6 @@
                                 "min": 3,
                                 "max": 8
                             }
-                        },
-                        {
-                            "function": "set_data",
-                            "data": 2
                         }
                     ],
                     "weight": 10
@@ -87,7 +83,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "moreplanets:nibiru_fruits",
+                    "name": "moreplanets:infected_apple",
                     "functions": [
                         {
                             "function": "set_count",

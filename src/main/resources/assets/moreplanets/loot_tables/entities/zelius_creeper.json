@@ -33,7 +33,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "moreplanets:diona_item",
+                    "name": "moreplanets:infected_crystallized_shard",
                     "weight": 1,
                     "functions": [
                         {
@@ -49,10 +49,6 @@
                                 "min": 0,
                                 "max": 1
                             }
-                        },
-                        {
-                            "function": "set_data",
-                            "data": 4
                         }
                     ]
                 }

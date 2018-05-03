@@ -89,7 +89,7 @@
                 {
                     "entryName": "apple",
                     "type": "item",
-                    "name": "moreplanets:nibiru_fruits",
+                    "name": "moreplanets:infected_apple",
                     "functions": [
                         {
                             "function": "set_count",
@@ -176,14 +176,8 @@
                 {
                     "entryName": "golden_apple",
                     "type": "item",
-                    "name": "moreplanets:nibiru_fruits",
-                    "weight": 1,
-                    "functions": [
-                        {
-                            "function": "set_data",
-                            "data": 1
-                        }
-                    ]
+                    "name": "moreplanets:infected_golden_apple",
+                    "weight": 1
                 },
                 {
                     "type": "item",
