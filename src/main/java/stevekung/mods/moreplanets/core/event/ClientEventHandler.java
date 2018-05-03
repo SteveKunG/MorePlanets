@@ -384,7 +384,7 @@ public class ClientEventHandler
     }
 
     @SubscribeEvent
-    @SideOnly(Side.CLIENT)//TODO testing
+    @SideOnly(Side.CLIENT)
     public void onRenderBlockOverlay(RenderBlockOverlayEvent event)
     {
         float partialTicks = event.getRenderPartialTicks();

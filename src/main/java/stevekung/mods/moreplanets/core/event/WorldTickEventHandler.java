@@ -12,6 +12,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
@@ -54,11 +55,11 @@ public class WorldTickEventHandler
                 }
             }
         }
-        if (false&&event.phase == Phase.END)//TODO Fix this
+        if (event.phase == Phase.END)//TODO Check entity spawning outside unloaded chunk
         {
-            World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionDiona);
+            World world = DimensionManager.getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionDiona);
 
-            if (world.provider instanceof WorldProviderDiona)
+            if (world != null && world.provider instanceof WorldProviderDiona)
             {
                 if (world instanceof WorldServer)
                 {
@@ -87,9 +88,9 @@ public class WorldTickEventHandler
                 }
             }
 
-            world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionNibiru);
+            world = DimensionManager.getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionNibiru);
 
-            if (world.provider instanceof WorldProviderNibiru)
+            if (world != null && world.provider instanceof WorldProviderNibiru)
             {
                 if (world instanceof WorldServer)
                 {
