@@ -143,7 +143,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
 
                             if (k2 == 1)
                             {
-                                world.setBlockState(blockpos2, ((BlockAncientChestMP)this.chest).correctFacing(world, blockpos2, this.chest), 2);
+                                world.setBlockState(blockpos2, ((BlockAncientChestMP)this.chest.getBlock()).correctFacing(world, blockpos2, this.chest), 2);
                                 TileEntity tileentity1 = world.getTileEntity(blockpos2);
 
                                 if (tileentity1 instanceof TileEntityAncientChestMP)
