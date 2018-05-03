@@ -20,6 +20,7 @@ public class EntityAlienBeam extends Entity
     {
         super(world);
         this.setSize(1.0F, 1.0F);
+        this.ignoreFrustumCheck = true;
         this.isImmuneToFire = true;
         this.lightningState = 2;
         this.boltVertex = this.rand.nextLong();
@@ -31,6 +32,7 @@ public class EntityAlienBeam extends Entity
         this(world);
         this.setSize(1.0F, 1.0F);
         this.setLocationAndAngles(x, y, z, 0.0F, 0.0F);
+        this.ignoreFrustumCheck = true;
         this.isImmuneToFire = true;
         this.lightningState = 2;
         this.boltVertex = this.rand.nextLong();

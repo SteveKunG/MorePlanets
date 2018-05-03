@@ -8,10 +8,12 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import stevekung.mods.stevekunglib.utils.RenderUtils;
 
 public class FakeAlienBeamRenderer
 {
     public static final FakeAlienBeamRenderer INSTANCE = new FakeAlienBeamRenderer();
+    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/beacon_beam.png");
     private float prevTime;
     private float time;
 
@@ -46,7 +48,7 @@ public class FakeAlienBeamRenderer
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder worldrenderer = tessellator.getBuffer();
         GlStateManager.disableFog();
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/entity/beacon_beam.png"));
+        RenderUtils.bindTexture(FakeAlienBeamRenderer.TEXTURE);
         GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
         GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
         GlStateManager.disableBlend();
