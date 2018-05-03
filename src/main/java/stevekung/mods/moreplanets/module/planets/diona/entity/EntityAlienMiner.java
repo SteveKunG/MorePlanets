@@ -41,7 +41,8 @@ import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
 public class EntityAlienMiner extends EntityMob implements IEntityBreathable, ISpaceMob
 {
-    private static DataParameter<Integer> TARGET_ENTITY = EntityDataManager.createKey(EntityAlienMiner.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> TARGET_ENTITY = EntityDataManager.createKey(EntityAlienMiner.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> HOVER = EntityDataManager.createKey(EntityAlienMiner.class, DataSerializers.BOOLEAN);
     private EntityLivingBase targetedEntity;
     private int chargedTime;
 
@@ -62,6 +63,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityGuardian.class, 12.0F, 0.01F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
+        this.tasks.addTask(9, new AISplashBlood(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 10, true, false, new AlienMinerTargetSelector(this)));
     }
@@ -99,6 +101,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     {
         super.entityInit();
         this.dataManager.register(TARGET_ENTITY, 0);
+        this.dataManager.register(HOVER, true);
     }
 
     @Override
@@ -196,6 +199,16 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         return this.dataManager.get(TARGET_ENTITY) != 0;
     }
 
+    public void setHovered(boolean hover)
+    {
+        this.dataManager.set(HOVER, hover);
+    }
+
+    private boolean getHovered()
+    {
+        return this.dataManager.get(HOVER);
+    }
+
     @Override
     @Nullable
     public ResourceLocation getLootTable()
@@ -257,6 +270,10 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     @SideOnly(Side.CLIENT)
     public float getHoverTick(float partialTicks)
     {
+        if (!this.getHovered())
+        {
+            return 0.0F;
+        }
         float partialTicksTime = this.ticksExisted + partialTicks;
         float hoverTime = MathHelper.sin(partialTicksTime / 12) / 30.0F + 0.5F;
         return hoverTime = hoverTime * hoverTime + hoverTime;
@@ -373,12 +390,12 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
             {
                 Random random = this.entity.getRNG();
 
-                if (random.nextInt(1000) == 0)
+                if (random.nextInt(500) == 0)
                 {
                     BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
                     IBlockState iblockstate = this.entity.world.getBlockState(blockpos.down());
 
-                    if (iblockstate == DionaBlocks.DIONA_SURFACE_ROCK)
+                    if (iblockstate == DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState())
                     {
                         this.findStone = true;
                         return true;
@@ -408,7 +425,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                 BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
                 IBlockState iblockstate = world.getBlockState(blockpos.down());
 
-                if (iblockstate == DionaBlocks.DIONA_SURFACE_ROCK)
+                if (iblockstate == DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState())
                 {
                     world.setBlockState(blockpos.down(), DionaBlocks.ALIEN_MINER_BLOOD.getDefaultState(), 3);
                 }
