@@ -126,7 +126,7 @@ public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITile
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, 0);
+        return new ItemStack(this);
     }
 
     @Override
@@ -197,8 +197,6 @@ public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITile
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
-        world.setBlockState(pos, this.getDefaultState(), 3);
-
         if (world.getTileEntity(pos) instanceof TileEntityLargeInfectedCrystallized)
         {
             ((TileEntityLargeInfectedCrystallized)world.getTileEntity(pos)).setFacing(EnumFacing.getFront(this.getMetaFromState(state)));

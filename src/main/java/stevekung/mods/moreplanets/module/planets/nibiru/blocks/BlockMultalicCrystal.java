@@ -15,7 +15,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -88,7 +87,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, 0);
+        return new ItemStack(this);
     }
 
     @Override
@@ -159,8 +158,6 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
-        world.setBlockState(pos, this.getDefaultState(), 3);
-
         if (world.getTileEntity(pos) instanceof TileEntityMultalicCrystal)
         {
             ((TileEntityMultalicCrystal)world.getTileEntity(pos)).setFacing(EnumFacing.getFront(this.getMetaFromState(state)));
@@ -168,7 +165,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     }
 
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.canPlaceBlock(world, pos, facing.getOpposite()) ? this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, facing) : this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, EnumFacing.DOWN);
     }
