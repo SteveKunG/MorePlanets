@@ -42,7 +42,7 @@ minecraft {
 
     replace '@FINGERPRINT@', keystore.sha1
     replace '4.0.1.-1', project.gc_require_version
-    replaceIn "MorePlanetsCore.java"
+    replaceIn "MorePlanetsMod.java"
 }
 
 repositories {
@@ -69,11 +69,11 @@ repositories {
 }
 
 dependencies {
-    provided "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
     compile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
     deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    provided "mezz.jei:jei_${mc_version}:${jei_version}"
     runtime "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
 }
 
@@ -98,7 +98,7 @@ lombok {
 
 ext.finalJar = "build/libs/" + "More-Planets-" + mcVersion + "-" + version + ".jar"
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
-ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'license.txt', 'META-INF/moreplanets_at.cfg']
+ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'license.txt', 'pack.mcmeta', 'META-INF/moreplanets_at.cfg']
 
 // signing jar first
 task buildJar(type: SignJar, dependsOn: "processJar") {
@@ -133,6 +133,10 @@ task copyModFiles(type: Copy, dependsOn: "reobfJar") {
     into 'temporary'
 }
 
+task deleteTemporary(type: Delete) {
+    delete 'temporary'
+}
+
 task buildDeobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'deobf'
@@ -140,10 +144,6 @@ task buildDeobfJar(type: Jar) {
         attributes.put("FMLAT", "moreplanets_at.cfg")
         attributes.put("FMLCorePluginContainsFMLMod", "true")
     }
-}
-
-task deleteTemporary(type: Delete) {
-    delete 'temporary'
 }
 
 buildJar.finalizedBy(deleteTemporary)
