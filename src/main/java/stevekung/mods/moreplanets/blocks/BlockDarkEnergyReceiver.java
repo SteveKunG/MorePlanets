@@ -38,12 +38,11 @@ import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription, IItemModelRender
+public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
 {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.225D, 0.0D, 0.225D, 0.775D, 0.7D, 0.775D);
 

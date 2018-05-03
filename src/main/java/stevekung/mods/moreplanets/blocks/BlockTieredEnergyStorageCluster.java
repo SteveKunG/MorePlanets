@@ -30,11 +30,9 @@ import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
-import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 
-public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDescription, ISortableBlock, IItemModelRender
+public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDescription
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     private static final PropertyInteger VALUE = PropertyInteger.create("value", 0, 16);

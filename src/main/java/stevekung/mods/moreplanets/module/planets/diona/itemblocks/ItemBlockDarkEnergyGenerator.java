@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import micdoodle8.mods.galacticraft.core.blocks.BlockTileGC;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
 import net.minecraft.block.Block;
@@ -18,6 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.moreplanets.utils.IDescription;
+import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -40,9 +40,9 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlockTESRMP
             }
             else
             {
-                if (this.getBlock() instanceof BlockTileGC)
+                if (this.getBlock() instanceof BlockTileMP)
                 {
-                    TileEntity tile = ((BlockTileGC) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
+                    TileEntity tile = ((BlockTileMP) this.getBlock()).createNewTileEntity(null, this.getBlock().getMetaFromState(this.getBlock().getDefaultState()));
 
                     if (tile instanceof TileBaseUniversalElectrical)
                     {

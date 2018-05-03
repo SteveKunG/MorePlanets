@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.blocks;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
-import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
@@ -31,10 +30,11 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.TeleportUtils;
+import stevekung.mods.moreplanets.utils.blocks.BlockAdvancedTileMP;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartialSealableBlock
+public class BlockSpaceWarpPadFull extends BlockAdvancedTileMP implements IPartialSealableBlock
 {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4D, 1.0D);
 
@@ -90,12 +90,6 @@ public class BlockSpaceWarpPadFull extends BlockAdvancedTile implements IPartial
                 }
             }
         }
-        return true;
-    }
-
-    @Override
-    public boolean hasTileEntity(IBlockState state)
-    {
         return true;
     }
 

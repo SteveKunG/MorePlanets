@@ -82,12 +82,6 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
     }
 
     @Override
-    public boolean hasTileEntity(IBlockState state)
-    {
-        return true;
-    }
-
-    @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
         switch (this.type)

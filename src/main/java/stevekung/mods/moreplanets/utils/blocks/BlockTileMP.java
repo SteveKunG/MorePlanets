@@ -1,33 +1,18 @@
 package stevekung.mods.moreplanets.utils.blocks;
 
-import micdoodle8.mods.galacticraft.core.blocks.BlockTileGC;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class BlockTileMP extends BlockTileGC implements ISortableBlock, IItemModelRender
+public abstract class BlockTileMP extends BlockAdvancedMP
 {
-    private String name;
-
     public BlockTileMP(Material material)
     {
         super(material);
-    }
-
-    @Override
-    public Block setUnlocalizedName(String name)
-    {
-        this.name = name;
-        return super.setUnlocalizedName(name);
     }
 
     @Override
@@ -39,22 +24,14 @@ public abstract class BlockTileMP extends BlockTileGC implements ISortableBlock,
         {
             InventoryHelper.dropInventoryItems(world, pos, (IInventory) tile);
         }
-
-        if (this.hasTileEntity(state) && !(world.getBlockState(pos).getBlock() instanceof BlockContainer))
-        {
-            world.removeTileEntity(pos);
-        }
+        super.breakBlock(world, pos, state);
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public boolean eventReceived(IBlockState state, World world, BlockPos pos, int eventID, int eventParam)
     {
-        return MorePlanetsMod.BLOCK_TAB;
-    }
-
-    @Override
-    public String getName()
-    {
-        return this.name;
+        super.eventReceived(state, world, pos, eventID, eventParam);
+        TileEntity tile = world.getTileEntity(pos);
+        return tile != null && tile.receiveClientEvent(eventID, eventParam);
     }
 }

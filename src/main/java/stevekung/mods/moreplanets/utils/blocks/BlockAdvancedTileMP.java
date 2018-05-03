@@ -1,13 +1,16 @@
 package stevekung.mods.moreplanets.utils.blocks;
 
-import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public abstract class BlockAdvancedTileMP extends BlockAdvancedTile implements ISortableBlock, IItemModelRender
+public abstract class BlockAdvancedTileMP extends BlockAdvancedMP
 {
     private String name;
 
@@ -17,21 +20,20 @@ public abstract class BlockAdvancedTileMP extends BlockAdvancedTile implements I
     }
 
     @Override
-    public Block setUnlocalizedName(String name)
-    {
-        this.name = name;
-        return super.setUnlocalizedName(name);
-    }
-
-    @Override
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
-    public String getName()
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
-        return this.name;
+        TileEntity tile = world.getTileEntity(pos);
+
+        if (tile instanceof IInventory)
+        {
+            InventoryHelper.dropInventoryItems(world, pos, (IInventory) tile);
+        }
+        super.breakBlock(world, pos, state);
     }
 }

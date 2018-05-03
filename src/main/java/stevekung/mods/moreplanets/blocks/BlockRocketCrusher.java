@@ -32,9 +32,8 @@ import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
-public class BlockRocketCrusher extends BlockTileMP implements IDescription, IItemModelRender
+public class BlockRocketCrusher extends BlockTileMP implements IDescription
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 

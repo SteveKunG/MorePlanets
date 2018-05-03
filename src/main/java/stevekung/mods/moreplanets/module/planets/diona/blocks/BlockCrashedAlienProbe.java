@@ -23,7 +23,7 @@ import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
 public class BlockCrashedAlienProbe extends BlockTileMP
 {
-    public static PropertyBool HAS_ALIEN = PropertyBool.create("has_alien");
+    public static final PropertyBool HAS_ALIEN = PropertyBool.create("has_alien");
 
     public BlockCrashedAlienProbe(String name)
     {

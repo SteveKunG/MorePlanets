@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
-import micdoodle8.mods.galacticraft.core.blocks.BlockTileGC;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
@@ -19,6 +17,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
 import stevekung.mods.moreplanets.utils.IDescription;
+import stevekung.mods.moreplanets.utils.blocks.BlockAdvancedTileMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -41,9 +41,9 @@ public class ItemBlockDescription extends ItemBlockTESRMP
             }
             else
             {
-                if (this.getBlock() instanceof BlockTileGC)
+                if (this.getBlock() instanceof BlockTileMP)
                 {
-                    TileEntity tile = ((BlockTileGC) this.getBlock()).createTileEntity(null, this.getBlock().getDefaultState());
+                    TileEntity tile = ((BlockTileMP) this.getBlock()).createNewTileEntity(null, this.getBlock().getMetaFromState(this.getBlock().getDefaultState()));
 
                     if (tile instanceof TileBaseElectricBlock)
                     {
@@ -63,9 +63,9 @@ public class ItemBlockDescription extends ItemBlockTESRMP
                         }
                     }
                 }
-                else if (this.getBlock() instanceof BlockAdvancedTile)
+                else if (this.getBlock() instanceof BlockAdvancedTileMP)
                 {
-                    TileEntity tile = ((BlockAdvancedTile) this.getBlock()).createTileEntity(world, this.getBlock().getDefaultState());
+                    TileEntity tile = ((BlockAdvancedTileMP) this.getBlock()).createNewTileEntity(null, this.getBlock().getMetaFromState(this.getBlock().getDefaultState()));
 
                     if (tile instanceof TileBaseElectricBlock)
                     {
