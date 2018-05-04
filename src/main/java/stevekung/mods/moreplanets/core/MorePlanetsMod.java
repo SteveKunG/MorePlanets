@@ -6,7 +6,6 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -28,7 +27,10 @@ import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
-import stevekung.mods.moreplanets.utils.*;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
+import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
+import stevekung.mods.moreplanets.utils.CreativeTabsMP;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.stevekunglib.utils.*;
 
 @Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.DEPENDENCIES, certificateFingerprint = MorePlanetsMod.CERTIFICATE)
@@ -101,7 +103,6 @@ public class MorePlanetsMod
         MorePlanetsMod.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
         MorePlanetsMod.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
         MorePlanetsMod.PROXY.init(event);
-        LootFunctionManager.registerFunction(new SmeltWithDataFunction.Serializer());
 
         if (ClientUtils.isClient())
         {
