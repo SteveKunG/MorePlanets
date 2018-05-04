@@ -214,7 +214,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
                     }
                     int slot = this.rand.nextInt(chest.getSizeInventory());
                     chest.setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, this.rand.nextLong());
-                    chest.setInventorySlotContents(slot, MPLootTables.getTieredKey(this.rand, 5));
+                    chest.setInventorySlotContents(slot, MPLootTables.getTieredKey(this.rand, 3));
                 }
             }
 
