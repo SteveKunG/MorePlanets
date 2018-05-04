@@ -43,14 +43,14 @@ public class BlockAlienMinerBlood extends BlockBaseMP
     {
         if (rand.nextInt(200) == 0)
         {
-            world.setBlockState(pos, DionaBlocks.DIONA_ROCK.getDefaultState());
+            world.setBlockState(pos, DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState());
         }
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(DionaBlocks.DIONA_ROCK);
+        return Item.getItemFromBlock(DionaBlocks.DIONA_SURFACE_ROCK);
     }
 
     @Override
