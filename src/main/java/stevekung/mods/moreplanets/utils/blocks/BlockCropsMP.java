@@ -56,6 +56,11 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
+        if (!world.isAreaLoaded(pos, 1))
+        {
+            return;
+        }
+
         super.updateTick(world, pos, state, rand);
 
         if (world.getLightFromNeighbors(pos.up()) >= 9)

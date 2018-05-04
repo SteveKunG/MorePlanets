@@ -59,6 +59,10 @@ public class BlockFronosGrass extends BlockGrassBlockMP
     {
         if (!world.isRemote)
         {
+            if (!world.isAreaLoaded(pos, 3))
+            {
+                return;
+            }
             if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockLightOpacity(pos.up()) > 2)
             {
                 world.setBlockState(pos, FronosBlocks.FRONOS_DIRT.getDefaultState());

@@ -192,7 +192,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     {
         if (!world.isRemote)
         {
-            if (world.rand.nextInt(4) == 0)
+            if (world.rand.nextInt(4) == 0 && world.isAreaLoaded(pos, 4))
             {
                 int i = 4;
                 int j = 5;

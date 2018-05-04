@@ -40,6 +40,11 @@ public class BlockInfectedCactus extends BlockBushMP
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
+        if (!world.isAreaLoaded(pos, 1))
+        {
+            return;
+        }
+
         BlockPos blockpos = pos.up();
 
         if (world.isAirBlock(blockpos))

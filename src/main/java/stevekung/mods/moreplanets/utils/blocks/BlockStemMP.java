@@ -73,6 +73,10 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     {
         super.updateTick(world, pos, state, rand);
 
+        if (!world.isAreaLoaded(pos, 1))
+        {
+            return;
+        }
         if (world.getLightFromNeighbors(pos.up()) >= 9)
         {
             float f = this.getGrowthChance(this, world, pos, state);

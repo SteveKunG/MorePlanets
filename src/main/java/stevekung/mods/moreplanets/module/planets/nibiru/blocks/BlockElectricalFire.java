@@ -45,6 +45,10 @@ public class BlockElectricalFire extends BlockFire implements IFire
     {
         if (world.getGameRules().getBoolean("doFireTick"))
         {
+            if (!world.isAreaLoaded(pos, 2))
+            {
+                return;
+            }
             if (!this.canPlaceBlockAt(world, pos))
             {
                 world.setBlockToAir(pos);
