@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockCheeseSporeBerryCrops extends BlockCropsMP
 {
@@ -30,13 +31,13 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return CARROT_AABB[state.getValue(BlockCropsMP.AGE).intValue()];
+        return BlockCheeseSporeBerryCrops.CARROT_AABB[state.getValue(BlockStateProperty.AGE_7).intValue()];
     }
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (state.getValue(AGE).intValue() == 7)
+        if (state.getValue(BlockStateProperty.AGE_7).intValue() == 7)
         {
             for (int i = 0; i < 2 + world.rand.nextInt(2); i++)
             {
@@ -46,7 +47,7 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
             {
                 Block.spawnAsEntity(world, pos, new ItemStack(this.getSeed()));
             }
-            world.setBlockState(pos, state.withProperty(AGE, 0));
+            world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, 0));
             return true;
         }
         return false;
@@ -73,7 +74,7 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        int age = state.getValue(AGE).intValue();
+        int age = state.getValue(BlockStateProperty.AGE_7).intValue();
         Random rand = world instanceof World ? ((World)world).rand : RANDOM;
 
         if (age >= 7)

@@ -21,7 +21,7 @@ public class BlockBasicMP extends BlockBaseMP
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(this, 1, this.getMetaFromState(state));
+        return new ItemStack(this);
     }
 
     @Override

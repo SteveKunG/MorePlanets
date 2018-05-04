@@ -55,18 +55,18 @@ public class BlockInfectedCactus extends BlockBushMP
 
             if (i < 3)
             {
-                int j = state.getValue(BlockStateProperty.AGE).intValue();
+                int j = state.getValue(BlockStateProperty.AGE_15).intValue();
 
                 if (j == 15)
                 {
                     world.setBlockState(blockpos, this.getDefaultState());
-                    IBlockState iblockstate = state.withProperty(BlockStateProperty.AGE, Integer.valueOf(0));
+                    IBlockState iblockstate = state.withProperty(BlockStateProperty.AGE_15, Integer.valueOf(0));
                     world.setBlockState(pos, iblockstate, 4);
                     iblockstate.neighborChanged(world, blockpos, this, pos);
                 }
                 else
                 {
-                    world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE, Integer.valueOf(j + 1)), 4);
+                    world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_15, Integer.valueOf(j + 1)), 4);
                 }
             }
         }
@@ -152,18 +152,18 @@ public class BlockInfectedCactus extends BlockBushMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateProperty.AGE, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(BlockStateProperty.AGE_15, Integer.valueOf(meta));
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(BlockStateProperty.AGE).intValue();
+        return state.getValue(BlockStateProperty.AGE_15).intValue();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockStateProperty.AGE);
+        return new BlockStateContainer(this, BlockStateProperty.AGE_15);
     }
 }

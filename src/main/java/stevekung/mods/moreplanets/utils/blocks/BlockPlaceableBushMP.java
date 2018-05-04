@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.module.planets.chalos.blocks;
+package stevekung.mods.moreplanets.utils.blocks;
 
 import java.util.Random;
 
@@ -17,12 +17,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
+import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 
 public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGrowable
 {

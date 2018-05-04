@@ -8,10 +8,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -23,17 +23,17 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockStemMP extends BlockBushMP implements IGrowable
 {
-    public static PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
-    public static PropertyDirection FACING = PropertyDirection.create("facing", facing -> facing != EnumFacing.DOWN);
-    private Block crop;
-    protected static AxisAlignedBB[] STEM_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.125D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.25D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.375D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.5D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.625D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.75D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.875D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D)};
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", facing -> facing != EnumFacing.DOWN);
+    private final Block crop;
+    private static final AxisAlignedBB[] STEM_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.125D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.25D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.375D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.5D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.625D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.75D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.875D, 0.625D), new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D)};
 
     public BlockStemMP(String name, Block crop)
     {
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)).withProperty(FACING, EnumFacing.UP));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, Integer.valueOf(0)).withProperty(FACING, EnumFacing.UP));
         this.crop = crop;
         this.setTickRandomly(true);
         this.setUnlocalizedName(name);
@@ -43,7 +43,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return STEM_AABB[state.getValue(AGE).intValue()];
+        return STEM_AABB[state.getValue(BlockStateProperty.AGE_7).intValue()];
     }
 
     @Override
@@ -83,11 +83,11 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
             if (rand.nextInt((int)(25.0F / f) + 1) == 0)
             {
-                int i = state.getValue(AGE).intValue();
+                int i = state.getValue(BlockStateProperty.AGE_7).intValue();
 
                 if (i < 7)
                 {
-                    state = state.withProperty(AGE, Integer.valueOf(i + 1));
+                    state = state.withProperty(BlockStateProperty.AGE_7, Integer.valueOf(i + 1));
                     world.setBlockState(pos, state, 2);
                 }
                 else
@@ -166,8 +166,8 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
     public void growStem(World world, BlockPos pos, IBlockState state)
     {
-        int i = state.getValue(AGE).intValue() + MathHelper.getInt(world.rand, 2, 5);
-        world.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(Math.min(7, i))), 2);
+        int i = state.getValue(BlockStateProperty.AGE_7).intValue() + MathHelper.getInt(world.rand, 2, 5);
+        world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, Integer.valueOf(Math.min(7, i))), 2);
     }
 
     @Override
@@ -179,7 +179,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
             if (item != null)
             {
-                int i = state.getValue(AGE).intValue();
+                int i = state.getValue(BlockStateProperty.AGE_7).intValue();
 
                 for (int j = 0; j < 3; ++j)
                 {
@@ -201,13 +201,13 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return null;
+        return Items.AIR;
     }
 
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return state.getValue(AGE).intValue() != 7;
+        return state.getValue(BlockStateProperty.AGE_7).intValue() != 7;
     }
 
     @Override
@@ -231,18 +231,18 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(BlockStateProperty.AGE_7, Integer.valueOf(meta));
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(AGE).intValue();
+        return state.getValue(BlockStateProperty.AGE_7).intValue();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, AGE, FACING);
+        return new BlockStateContainer(this, BlockStateProperty.AGE_7, FACING);
     }
 }

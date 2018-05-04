@@ -17,7 +17,7 @@ import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public abstract class BlockTreasureChestMP extends BlockContainerMP
 {
-    private static AxisAlignedBB CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
+    private static final AxisAlignedBB CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 
     public BlockTreasureChestMP()
     {

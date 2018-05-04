@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,21 +18,20 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 {
-    public static PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
-
     public BlockCropsMP()
     {
         super();
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, Integer.valueOf(0)));
     }
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (state.getValue(AGE).intValue() == 7)
+        if (state.getValue(BlockStateProperty.AGE_7).intValue() == 7)
         {
             Block.spawnAsEntity(world, pos, new ItemStack(this.getCrop()));
 
@@ -41,7 +39,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
             {
                 Block.spawnAsEntity(world, pos, new ItemStack(this.getSeed()));
             }
-            world.setBlockState(pos, state.withProperty(AGE, 0));
+            world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, 0));
             return true;
         }
         return false;
@@ -65,7 +63,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 
         if (world.getLightFromNeighbors(pos.up()) >= 9)
         {
-            int i = state.getValue(AGE).intValue();
+            int i = state.getValue(BlockStateProperty.AGE_7).intValue();
 
             if (i < 7)
             {
@@ -73,7 +71,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 
                 if (rand.nextInt((int)(25.0F / f) + 1) == 0)
                 {
-                    world.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
+                    world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, Integer.valueOf(i + 1)), 2);
                 }
             }
         }
@@ -95,13 +93,13 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return state.getValue(AGE).intValue() == 7 ? this.getCrop() : this.getSeed();
+        return state.getValue(BlockStateProperty.AGE_7).intValue() == 7 ? this.getCrop() : this.getSeed();
     }
 
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return state.getValue(AGE).intValue() < 7;
+        return state.getValue(BlockStateProperty.AGE_7).intValue() < 7;
     }
 
     @Override
@@ -125,25 +123,25 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(BlockStateProperty.AGE_7, Integer.valueOf(meta));
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(AGE).intValue();
+        return state.getValue(BlockStateProperty.AGE_7).intValue();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, AGE);
+        return new BlockStateContainer(this, BlockStateProperty.AGE_7);
     }
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        int age = state.getValue(AGE).intValue();
+        int age = state.getValue(BlockStateProperty.AGE_7).intValue();
         Random rand = world instanceof World ? ((World)world).rand : RANDOM;
 
         if (age >= 7)
@@ -165,13 +163,13 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 
     protected void grow(World world, BlockPos pos, IBlockState state)
     {
-        int i = state.getValue(AGE).intValue() + MathHelper.getInt(world.rand, 2, 5);
+        int i = state.getValue(BlockStateProperty.AGE_7).intValue() + MathHelper.getInt(world.rand, 2, 5);
 
         if (i > 7)
         {
             i = 7;
         }
-        world.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i)), 2);
+        world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, Integer.valueOf(i)), 2);
     }
 
     protected float getGrowthChance(Block block, World world, BlockPos pos, IBlockState state)

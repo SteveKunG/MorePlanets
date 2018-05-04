@@ -12,6 +12,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityNibiruVillager;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
 {
@@ -61,7 +62,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
             IBlockState iblockstate = world.getBlockState(blockpos);
             Block block = iblockstate.getBlock();
 
-            if (this.field_179501_f == 0 && block instanceof BlockCropsMP && iblockstate.getValue(BlockCropsMP.AGE).intValue() == 7)
+            if (this.field_179501_f == 0 && block instanceof BlockCropsMP && iblockstate.getValue(BlockStateProperty.AGE_7).intValue() == 7)
             {
                 world.destroyBlock(blockpos, true);
             }
@@ -116,7 +117,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
             IBlockState iblockstate = world.getBlockState(pos);
             block = iblockstate.getBlock();
 
-            if (block instanceof BlockCropsMP && iblockstate.getValue(BlockCropsMP.AGE).intValue() == 7 && this.field_179503_e && (this.field_179501_f == 0 || this.field_179501_f < 0))
+            if (block instanceof BlockCropsMP && iblockstate.getValue(BlockStateProperty.AGE_7).intValue() == 7 && this.field_179503_e && (this.field_179501_f == 0 || this.field_179501_f < 0))
             {
                 this.field_179501_f = 0;
                 return true;

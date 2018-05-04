@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockVine;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -26,22 +28,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockVinesMP extends BlockBaseMP implements IShearable
 {
-    public static PropertyBool UP = PropertyBool.create("up");
-    public static PropertyBool NORTH = PropertyBool.create("north");
-    public static PropertyBool EAST = PropertyBool.create("east");
-    public static PropertyBool SOUTH = PropertyBool.create("south");
-    public static PropertyBool WEST = PropertyBool.create("west");
-    public static PropertyBool[] ALL_FACES = new PropertyBool[] {UP, NORTH, SOUTH, WEST, EAST};
-    protected static AxisAlignedBB UP_AABB = new AxisAlignedBB(0.0D, 0.9375D, 0.0D, 1.0D, 1.0D, 1.0D);
-    protected static AxisAlignedBB WEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0625D, 1.0D, 1.0D);
-    protected static AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.9375D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-    protected static AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.0625D);
-    protected static AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.9375D, 1.0D, 1.0D, 1.0D);
+    private static final AxisAlignedBB UP_AABB = new AxisAlignedBB(0.0D, 0.9375D, 0.0D, 1.0D, 1.0D, 1.0D);
+    private static final AxisAlignedBB WEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0625D, 1.0D, 1.0D);
+    private static final AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.9375D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+    private static final AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.0625D);
+    private static final AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.9375D, 1.0D, 1.0D, 1.0D);
 
     public BlockVinesMP(String name)
     {
         super(Material.VINE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockVine.UP, false).withProperty(BlockVine.NORTH, false).withProperty(BlockVine.EAST, false).withProperty(BlockVine.SOUTH, false).withProperty(BlockVine.WEST, false));
         this.setTickRandomly(true);
         this.setSoundType(SoundType.PLANT);
         this.setHardness(0.2F);
@@ -51,7 +47,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     public BlockVinesMP()
     {
         super(Material.VINE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockVine.UP, false).withProperty(BlockVine.NORTH, false).withProperty(BlockVine.EAST, false).withProperty(BlockVine.SOUTH, false).withProperty(BlockVine.WEST, false));
         this.setTickRandomly(true);
         this.setSoundType(SoundType.PLANT);
         this.setHardness(0.2F);
@@ -60,7 +56,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return state.withProperty(UP, Boolean.valueOf(world.getBlockState(pos.up()).isBlockNormalCube()));
+        return state.withProperty(BlockVine.UP, world.getBlockState(pos.up()).isBlockNormalCube());
     }
 
     @Override
@@ -88,27 +84,27 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
         int i = 0;
         AxisAlignedBB axisalignedbb = FULL_BLOCK_AABB;
 
-        if (state.getValue(UP).booleanValue())
+        if (state.getValue(BlockVine.UP).booleanValue())
         {
             axisalignedbb = UP_AABB;
             ++i;
         }
-        if (state.getValue(NORTH).booleanValue())
+        if (state.getValue(BlockVine.NORTH).booleanValue())
         {
             axisalignedbb = NORTH_AABB;
             ++i;
         }
-        if (state.getValue(EAST).booleanValue())
+        if (state.getValue(BlockVine.EAST).booleanValue())
         {
             axisalignedbb = EAST_AABB;
             ++i;
         }
-        if (state.getValue(SOUTH).booleanValue())
+        if (state.getValue(BlockVine.SOUTH).booleanValue())
         {
             axisalignedbb = SOUTH_AABB;
             ++i;
         }
-        if (state.getValue(WEST).booleanValue())
+        if (state.getValue(BlockVine.WEST).booleanValue())
         {
             axisalignedbb = WEST_AABB;
             ++i;
@@ -158,7 +154,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
 
                 if (iblockstate1.getBlock() != this || !iblockstate1.getValue(propertybool).booleanValue())
                 {
-                    state = state.withProperty(propertybool, Boolean.valueOf(false));
+                    state = state.withProperty(propertybool, false);
                 }
             }
         }
@@ -232,11 +228,11 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
                         {
                             if (rand.nextBoolean() || !this.canAttachVineOn(world.getBlockState(blockpos1.offset(enumfacing3))))
                             {
-                                iblockstate2 = iblockstate2.withProperty(getPropertyFor(enumfacing3), Boolean.valueOf(false));
+                                iblockstate2 = iblockstate2.withProperty(getPropertyFor(enumfacing3), false);
                             }
                         }
 
-                        if (iblockstate2.getValue(NORTH).booleanValue() || iblockstate2.getValue(EAST).booleanValue() || iblockstate2.getValue(SOUTH).booleanValue() || iblockstate2.getValue(WEST).booleanValue())
+                        if (iblockstate2.getValue(BlockVine.NORTH).booleanValue() || iblockstate2.getValue(BlockVine.EAST).booleanValue() || iblockstate2.getValue(BlockVine.SOUTH).booleanValue() || iblockstate2.getValue(BlockVine.WEST).booleanValue())
                         {
                             world.setBlockState(blockpos1, iblockstate2, 2);
                         }
@@ -259,19 +255,19 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
 
                             if (flag1 && this.canAttachVineOn(world.getBlockState(blockpos4)))
                             {
-                                world.setBlockState(blockpos3, this.getDefaultState().withProperty(getPropertyFor(enumfacing2), Boolean.valueOf(true)), 2);
+                                world.setBlockState(blockpos3, this.getDefaultState().withProperty(getPropertyFor(enumfacing2), true), 2);
                             }
                             else if (flag2 && this.canAttachVineOn(world.getBlockState(blockpos)))
                             {
-                                world.setBlockState(blockpos3, this.getDefaultState().withProperty(getPropertyFor(enumfacing4), Boolean.valueOf(true)), 2);
+                                world.setBlockState(blockpos3, this.getDefaultState().withProperty(getPropertyFor(enumfacing4), true), 2);
                             }
                             else if (flag1 && world.isAirBlock(blockpos4) && this.canAttachVineOn(world.getBlockState(pos.offset(enumfacing2))))
                             {
-                                world.setBlockState(blockpos4, this.getDefaultState().withProperty(getPropertyFor(enumfacing1.getOpposite()), Boolean.valueOf(true)), 2);
+                                world.setBlockState(blockpos4, this.getDefaultState().withProperty(getPropertyFor(enumfacing1.getOpposite()), true), 2);
                             }
                             else if (flag2 && world.isAirBlock(blockpos) && this.canAttachVineOn(world.getBlockState(pos.offset(enumfacing4))))
                             {
-                                world.setBlockState(blockpos, this.getDefaultState().withProperty(getPropertyFor(enumfacing1.getOpposite()), Boolean.valueOf(true)), 2);
+                                world.setBlockState(blockpos, this.getDefaultState().withProperty(getPropertyFor(enumfacing1.getOpposite()), true), 2);
                             }
                             else if (this.canAttachVineOn(world.getBlockState(blockpos3.up())))
                             {
@@ -280,7 +276,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
                         }
                         else if (world.getBlockState(blockpos3).getMaterial().isOpaque() && world.getBlockState(blockpos3).isFullCube())
                         {
-                            world.setBlockState(pos, state.withProperty(getPropertyFor(enumfacing1), Boolean.valueOf(true)), 2);
+                            world.setBlockState(pos, state.withProperty(getPropertyFor(enumfacing1), true), 2);
                         }
                     }
                 }
@@ -300,11 +296,11 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
                             {
                                 if (rand.nextBoolean())
                                 {
-                                    iblockstate1 = iblockstate1.withProperty(getPropertyFor(enumfacing), Boolean.valueOf(false));
+                                    iblockstate1 = iblockstate1.withProperty(getPropertyFor(enumfacing), false);
                                 }
                             }
 
-                            if (iblockstate1.getValue(NORTH).booleanValue() || iblockstate1.getValue(EAST).booleanValue() || iblockstate1.getValue(SOUTH).booleanValue() || iblockstate1.getValue(WEST).booleanValue())
+                            if (iblockstate1.getValue(BlockVine.NORTH).booleanValue() || iblockstate1.getValue(BlockVine.EAST).booleanValue() || iblockstate1.getValue(BlockVine.SOUTH).booleanValue() || iblockstate1.getValue(BlockVine.WEST).booleanValue())
                             {
                                 world.setBlockState(blockpos2, iblockstate1, 2);
                             }
@@ -319,11 +315,11 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
 
                                 if (rand.nextBoolean() && state.getValue(propertybool).booleanValue())
                                 {
-                                    iblockstate3 = iblockstate3.withProperty(propertybool, Boolean.valueOf(true));
+                                    iblockstate3 = iblockstate3.withProperty(propertybool, true);
                                 }
                             }
 
-                            if (iblockstate3.getValue(NORTH).booleanValue() || iblockstate3.getValue(EAST).booleanValue() || iblockstate3.getValue(SOUTH).booleanValue() || iblockstate3.getValue(WEST).booleanValue())
+                            if (iblockstate3.getValue(BlockVine.NORTH).booleanValue() || iblockstate3.getValue(BlockVine.EAST).booleanValue() || iblockstate3.getValue(BlockVine.SOUTH).booleanValue() || iblockstate3.getValue(BlockVine.WEST).booleanValue())
                             {
                                 world.setBlockState(blockpos2, iblockstate3, 2);
                             }
@@ -337,14 +333,14 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
-        IBlockState iblockstate = this.getDefaultState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false));
-        return facing.getAxis().isHorizontal() ? iblockstate.withProperty(getPropertyFor(facing.getOpposite()), Boolean.valueOf(true)) : iblockstate;
+        IBlockState iblockstate = this.getDefaultState().withProperty(BlockVine.UP, false).withProperty(BlockVine.NORTH, false).withProperty(BlockVine.EAST, false).withProperty(BlockVine.SOUTH, false).withProperty(BlockVine.WEST, false);
+        return facing.getAxis().isHorizontal() ? iblockstate.withProperty(getPropertyFor(facing.getOpposite()), true) : iblockstate;
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return null;
+        return Items.AIR;
     }
 
     @Override
@@ -356,7 +352,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(SOUTH, Boolean.valueOf((meta & 1) > 0)).withProperty(WEST, Boolean.valueOf((meta & 2) > 0)).withProperty(NORTH, Boolean.valueOf((meta & 4) > 0)).withProperty(EAST, Boolean.valueOf((meta & 8) > 0));
+        return this.getDefaultState().withProperty(BlockVine.SOUTH, (meta & 1) > 0).withProperty(BlockVine.WEST, (meta & 2) > 0).withProperty(BlockVine.NORTH, (meta & 4) > 0).withProperty(BlockVine.EAST, (meta & 8) > 0);
     }
 
     @Override
@@ -371,19 +367,19 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     {
         int i = 0;
 
-        if (state.getValue(SOUTH).booleanValue())
+        if (state.getValue(BlockVine.SOUTH).booleanValue())
         {
             i |= 1;
         }
-        if (state.getValue(WEST).booleanValue())
+        if (state.getValue(BlockVine.WEST).booleanValue())
         {
             i |= 2;
         }
-        if (state.getValue(NORTH).booleanValue())
+        if (state.getValue(BlockVine.NORTH).booleanValue())
         {
             i |= 4;
         }
-        if (state.getValue(EAST).booleanValue())
+        if (state.getValue(BlockVine.EAST).booleanValue())
         {
             i |= 8;
         }
@@ -393,7 +389,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, UP, NORTH, EAST, SOUTH, WEST);
+        return new BlockStateContainer(this, BlockVine.UP, BlockVine.NORTH, BlockVine.EAST, BlockVine.SOUTH, BlockVine.WEST);
     }
 
     public static PropertyBool getPropertyFor(EnumFacing side)
@@ -401,15 +397,15 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
         switch (side)
         {
         case UP:
-            return UP;
+            return BlockVine.UP;
         case NORTH:
-            return NORTH;
+            return BlockVine.NORTH;
         case SOUTH:
-            return SOUTH;
+            return BlockVine.SOUTH;
         case EAST:
-            return EAST;
+            return BlockVine.EAST;
         case WEST:
-            return WEST;
+            return BlockVine.WEST;
         default:
             throw new IllegalArgumentException(side + " is an invalid choice");
         }
@@ -419,7 +415,7 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     {
         int i = 0;
 
-        for (PropertyBool propertybool : ALL_FACES)
+        for (PropertyBool propertybool : BlockVine.ALL_FACES)
         {
             if (state.getValue(propertybool).booleanValue())
             {

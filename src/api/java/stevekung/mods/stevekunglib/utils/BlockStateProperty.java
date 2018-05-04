@@ -34,7 +34,8 @@ public class BlockStateProperty
     public static final PropertyInteger LAYERS = PropertyInteger.create("layers", 1, 8);
 
     /** Used for Custom Plant with tickable */
-    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
+    public static final PropertyInteger AGE_7 = PropertyInteger.create("age", 0, 7);
+    public static final PropertyInteger AGE_15 = PropertyInteger.create("age", 0, 15);
 
     public static enum EnumAxis implements IStringSerializable
     {

@@ -7,6 +7,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -40,7 +41,7 @@ public class BlockDoorMP extends BlockDoor
         {
             return this.doorItem;
         }
-        return null;
+        return Items.AIR;
     }
 
     public void setDoorItem(Item item)

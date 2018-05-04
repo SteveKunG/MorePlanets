@@ -9,7 +9,6 @@ import stevekung.mods.moreplanets.blocks.decoration.BlockAllDoubleSlab;
 import stevekung.mods.moreplanets.blocks.decoration.BlockAllHalfSlab;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.BlockPlaceableBushMP;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.fluid.FluidHeliumGas;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockInfectedSnow;
 import stevekung.mods.moreplanets.module.planets.nibiru.itemblocks.ItemBlockNuclearWasteTank;

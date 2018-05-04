@@ -32,7 +32,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_OAK_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_JUNGLE_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_LEAVES, EnumStateMapper.LEAVES);
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_CACTUS, EnumStateMapper.PLANT_AGE);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_CACTUS, EnumStateMapper.PLANT_AGE_15);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_OAK_DOOR_BLOCK, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, EnumStateMapper.DOOR);

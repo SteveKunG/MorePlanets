@@ -12,6 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.blocks.BlockStemMP;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 @SideOnly(Side.CLIENT)
 public class StateMapperType extends StateMapperBase
@@ -32,7 +33,7 @@ public class StateMapperType extends StateMapperBase
 
             if (state.getValue(BlockStemMP.FACING) != EnumFacing.UP)
             {
-                map.remove(BlockStemMP.AGE);
+                map.remove(BlockStateProperty.AGE_7);
             }
             return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), this.getPropertyString(map));
         }

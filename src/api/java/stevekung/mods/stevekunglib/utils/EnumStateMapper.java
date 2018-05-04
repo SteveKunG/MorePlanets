@@ -16,7 +16,7 @@ public enum EnumStateMapper
     FIRE(BlockFire.AGE),
     TNT(BlockStateProperty.EXPLODE),
     LEAVES(BlockStateProperty.CHECK_DECAY, BlockStateProperty.DECAYABLE),
-    PLANT_AGE(BlockStateProperty.AGE);
+    PLANT_AGE_15(BlockStateProperty.AGE_15);
 
     private final IProperty[] property;
 
