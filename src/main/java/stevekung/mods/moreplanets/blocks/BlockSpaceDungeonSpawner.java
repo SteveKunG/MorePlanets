@@ -21,8 +21,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
+import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruDungeonSpawner;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
-import stevekung.mods.moreplanets.utils.tileentity.TileEntityNull;
 
 public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntityProvider
 {
@@ -90,8 +90,10 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
             return new TileEntityDionaDungeonSpawner();
         case CHALOS:
             return new TileEntityChalosDungeonSpawner();
+        case NIBIRU:
+            return new TileEntityNibiruDungeonSpawner();
         default:
-            return new TileEntityNull();
+            return null;
         }
     }
 
