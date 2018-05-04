@@ -14,14 +14,10 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.module.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.module.planets.chalos.recipe.CraftingManagerChalos;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.module.planets.diona.recipe.CraftingManagerDiona;
 import stevekung.mods.moreplanets.module.planets.fronos.items.FronosItems;
-import stevekung.mods.moreplanets.module.planets.fronos.recipe.CraftingManagerFronos;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.recipe.CraftingManagerNibiru;
 import stevekung.mods.moreplanets.utils.debug.JSONRecipe;
 import stevekung.mods.moreplanets.utils.helper.RecipeHelper;
 
@@ -29,19 +25,19 @@ public class CraftingManagerMP
 {
     public static void init()
     {
-        CraftingManagerMP.addBlockRecipe();
-        CraftingManagerMP.addItemRecipe();
+        //CraftingManagerMP.addBlockRecipe();
+        //CraftingManagerMP.addItemRecipe();
         CraftingManagerMP.addOtherRecipe();
-        CapsuleRecipes.init();
+        //CapsuleRecipes.init();
 
-        CraftingManagerDiona.init();
+        /*CraftingManagerDiona.init();
         CraftingManagerChalos.init();
         CraftingManagerNibiru.init();
-        CraftingManagerFronos.init();
+        CraftingManagerFronos.init();*/
         JSONRecipe.generateConstants();
     }
 
-    private static void addBlockRecipe()
+    protected static void addBlockRecipe()
     {
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_WARP_PAD, 9), new Object[] { "PPP", "MMM", 'P', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'M', new ItemStack(GCBlocks.basicBlock, 1, 12) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ROCKET_CRUSHER, 1), new Object[] { "PPP", "HAH", "WFW", 'P', Blocks.PISTON, 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'A', Blocks.ANVIL, 'W', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'F', new ItemStack(GCItems.basicItem, 1, 14) });
@@ -107,7 +103,7 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.BLACK_TINTED_GLASS_PANE, 16), "tinted_glass_pane", new Object[] {"GGG", "GGG", 'G', MPBlocks.BLACK_TINTED_GLASS});
     }
 
-    private static void addItemRecipe()
+    protected static void addItemRecipe()
     {
         RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_WARPER_CORE), new Object[] { "PDP", "DED", "PDP", 'P', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'D', "gemDiamond", 'E', Items.ENDER_EYE });
         RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_BOW), new Object[] { " XS", "X S", " XS", 'S', "string", 'X', new ItemStack(MarsItems.marsItemBasic, 1, 5) });

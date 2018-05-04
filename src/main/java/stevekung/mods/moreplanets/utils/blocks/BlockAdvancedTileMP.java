@@ -12,8 +12,6 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 public abstract class BlockAdvancedTileMP extends BlockAdvancedMP
 {
-    private String name;
-
     public BlockAdvancedTileMP(Material material)
     {
         super(material);
