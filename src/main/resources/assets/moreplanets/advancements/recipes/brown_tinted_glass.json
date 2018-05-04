@@ -11,7 +11,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "moreplanets:white_tinted_glass"
+                        "item": "moreplanets:tinted_glass"
                     },
                     {
                         "item": "minecraft:dye",

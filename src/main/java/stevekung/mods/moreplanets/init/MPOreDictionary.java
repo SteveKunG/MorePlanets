@@ -18,6 +18,7 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("slabWood", MPBlocks.CHEESE_SPORE_SLAB);
         BlockUtils.registerOreDictionary("slabWood", MPBlocks.INFECTED_OAK_SLAB);
         BlockUtils.registerOreDictionary("slabWood", MPBlocks.ALIEN_BERRY_OAK_SLAB);
+        BlockUtils.registerOreDictionary("blockGlass", MPBlocks.TINTED_GLASS);
         BlockUtils.registerOreDictionary("blockGlass", MPBlocks.WHITE_TINTED_GLASS);
         BlockUtils.registerOreDictionary("blockGlass", MPBlocks.ORANGE_TINTED_GLASS);
         BlockUtils.registerOreDictionary("blockGlass", MPBlocks.MAGENTA_TINTED_GLASS);
@@ -34,6 +35,7 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("blockGlass", MPBlocks.GREEN_TINTED_GLASS);
         BlockUtils.registerOreDictionary("blockGlass", MPBlocks.RED_TINTED_GLASS);
         BlockUtils.registerOreDictionary("blockGlass", MPBlocks.BLACK_TINTED_GLASS);
+        BlockUtils.registerOreDictionary("paneGlass", MPBlocks.TINTED_GLASS_PANE);
         BlockUtils.registerOreDictionary("paneGlass", MPBlocks.WHITE_TINTED_GLASS_PANE);
         BlockUtils.registerOreDictionary("paneGlass", MPBlocks.ORANGE_TINTED_GLASS_PANE);
         BlockUtils.registerOreDictionary("paneGlass", MPBlocks.MAGENTA_TINTED_GLASS_PANE);

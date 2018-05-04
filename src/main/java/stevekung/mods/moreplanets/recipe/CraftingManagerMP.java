@@ -45,7 +45,7 @@ public class CraftingManagerMP
     {
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_WARP_PAD, 9), new Object[] { "PPP", "MMM", 'P', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'M', new ItemStack(GCBlocks.basicBlock, 1, 12) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ROCKET_CRUSHER, 1), new Object[] { "PPP", "HAH", "WFW", 'P', Blocks.PISTON, 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'A', Blocks.ANVIL, 'W', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'F', new ItemStack(GCItems.basicItem, 1, 14) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.WHITE_TINTED_GLASS, 8), "tinted_glass", "tinted_glass_from_desh", new Object[] {"III", "IDI", "III", 'I', "glass", 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', "glass", 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5)});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_TIN_DECORATION_BLOCK, 4), new Object[] { "TT", "TT", 'T', new ItemStack(GCBlocks.basicBlock, 1, 4) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK, 8), new Object[] { "TTT", "TAT", "TTT", 'T', MPBlocks.POLISHED_TIN_DECORATION_BLOCK, 'A', new ItemStack(GCItems.basicItem, 1, 8) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.DARK_ENERGY_RECEIVER), new Object[] { "HPH", "SCS", "ITI", 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'P', GCItems.flagPole, 'S', new ItemStack(GCItems.basicItem, 1, 1), 'C', MPItems.SPACE_WARPER_CORE, 'I', "ingotIron", 'T', new ItemStack(AsteroidsItems.basicItem, 1, 5) });
@@ -71,23 +71,24 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_OAK_SLAB, 6), "wooden_slab", new Object[] { "XXX", 'X', NibiruBlocks.INFECTED_OAK_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_OAK_SLAB, 6), "wooden_slab", new Object[] { "XXX", 'X', NibiruBlocks.ALIEN_BERRY_OAK_PLANKS });
 
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.WHITE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 15)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.ORANGE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 14)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.MAGENTA_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 13)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.LIGHT_BLUE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 12)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.YELLOW_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 11)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.LIME_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 10)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.PINK_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 9)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.GRAY_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 8)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.SILVER_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 7)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.CYAN_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 6)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.PURPLE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 5)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.BLUE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 4)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.BROWN_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 3)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.GREEN_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 2)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.RED_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 1)});
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.BLACK_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.WHITE_TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 0)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.WHITE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 15)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.ORANGE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 14)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.MAGENTA_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 13)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.LIGHT_BLUE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 12)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.YELLOW_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 11)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.LIME_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 10)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.PINK_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 9)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.GRAY_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 8)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.SILVER_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 7)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.CYAN_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 6)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.PURPLE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 5)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.BLUE_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 4)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.BROWN_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 3)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.GREEN_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 2)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.RED_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 1)});
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.BLACK_TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', MPBlocks.TINTED_GLASS, 'D', new ItemStack(Items.DYE, 1, 0)});
 
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS_PANE, 16), "tinted_glass_pane", new Object[] {"GGG", "GGG", 'G', MPBlocks.TINTED_GLASS});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.WHITE_TINTED_GLASS_PANE, 16), "tinted_glass_pane", new Object[] {"GGG", "GGG", 'G', MPBlocks.WHITE_TINTED_GLASS});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ORANGE_TINTED_GLASS_PANE, 16), "tinted_glass_pane", new Object[] {"GGG", "GGG", 'G', MPBlocks.ORANGE_TINTED_GLASS});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.MAGENTA_TINTED_GLASS_PANE, 16), "tinted_glass_pane", new Object[] {"GGG", "GGG", 'G', MPBlocks.MAGENTA_TINTED_GLASS});

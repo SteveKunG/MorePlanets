@@ -2,7 +2,7 @@
     "parent": "minecraft:recipes/root",
     "rewards": {
         "recipes": [
-            "moreplanets:lime_tinted_glass"
+            "moreplanets:tinted_glass_pane"
         ]
     },
     "criteria": {
@@ -12,10 +12,6 @@
                 "items": [
                     {
                         "item": "moreplanets:tinted_glass"
-                    },
-                    {
-                        "item": "minecraft:dye",
-                        "data": 10
                     }
                 ]
             }
@@ -23,7 +19,7 @@
         "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-                "recipe": "moreplanets:lime_tinted_glass"
+                "recipe": "moreplanets:tinted_glass_pane"
             }
         }
     },

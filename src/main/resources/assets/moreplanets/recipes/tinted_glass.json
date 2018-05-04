@@ -1,6 +1,6 @@
 {
     "group": "tinted_glass",
-    "type": "minecraft:crafting_shaped",
+    "type": "forge:ore_shaped",
     "pattern": [
         "III",
         "IDI",
@@ -8,15 +8,15 @@
     ],
     "key": {
         "D": {
-            "item": "minecraft:dye",
-            "data": 9
+            "item": "galacticraftplanets:item_basic_mars",
+            "data": 5
         },
         "I": {
-            "item": "moreplanets:tinted_glass"
+            "item": "#GLASS"
         }
     },
     "result": {
-        "item": "moreplanets:pink_tinted_glass",
+        "item": "moreplanets:tinted_glass",
         "count": 8
     }
 }

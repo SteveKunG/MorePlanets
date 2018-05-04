@@ -111,7 +111,7 @@ public class JSONRecipe
                 {
                     isOreDict = true;
                 }
-                serializeItemAdv(obj);
+                ingredients.add(serializeItemAdv(obj));
                 key.put(Character.toString(Character.toUpperCase(curKey)), serializeItem(obj));
                 curKey = null;
             }

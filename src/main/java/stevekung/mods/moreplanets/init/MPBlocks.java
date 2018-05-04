@@ -51,6 +51,7 @@ public class MPBlocks
     public static Block POLISHED_ALUMINUM_DECORATION_BLOCK;
 
     // Tinted Glass
+    public static Block TINTED_GLASS;
     public static Block WHITE_TINTED_GLASS;
     public static Block ORANGE_TINTED_GLASS;
     public static Block MAGENTA_TINTED_GLASS;
@@ -69,6 +70,7 @@ public class MPBlocks
     public static Block BLACK_TINTED_GLASS;
 
     // Tinted Glass Pane
+    public static Block TINTED_GLASS_PANE;
     public static Block WHITE_TINTED_GLASS_PANE;
     public static Block ORANGE_TINTED_GLASS_PANE;
     public static Block MAGENTA_TINTED_GLASS_PANE;
@@ -166,6 +168,7 @@ public class MPBlocks
         MPBlocks.NIBIRU_DUNGEON_BRICK_WALL = new BlockAllWall("nibiru_dungeon_brick_wall", BlockAllWall.BlockType.NIBIRU_DUNGEON_BRICK_WALL);
 
         // Tinted Glass
+        MPBlocks.TINTED_GLASS = new BlockTintedGlass("tinted_glass", EnumDyeColor.WHITE);
         MPBlocks.WHITE_TINTED_GLASS = new BlockTintedGlass("white_tinted_glass", EnumDyeColor.WHITE);
         MPBlocks.ORANGE_TINTED_GLASS = new BlockTintedGlass("orange_tinted_glass", EnumDyeColor.ORANGE);
         MPBlocks.MAGENTA_TINTED_GLASS = new BlockTintedGlass("magenta_tinted_glass", EnumDyeColor.MAGENTA);
@@ -184,6 +187,7 @@ public class MPBlocks
         MPBlocks.BLACK_TINTED_GLASS = new BlockTintedGlass("black_tinted_glass", EnumDyeColor.BLACK);
 
         // Tinted Glass Pane
+        MPBlocks.TINTED_GLASS_PANE = new BlockTintedGlassPane("tinted_glass_pane", EnumDyeColor.WHITE);
         MPBlocks.WHITE_TINTED_GLASS_PANE = new BlockTintedGlassPane("white_tinted_glass_pane", EnumDyeColor.WHITE);
         MPBlocks.ORANGE_TINTED_GLASS_PANE = new BlockTintedGlassPane("orange_tinted_glass_pane", EnumDyeColor.ORANGE);
         MPBlocks.MAGENTA_TINTED_GLASS_PANE = new BlockTintedGlassPane("magenta_tinted_glass_pane", EnumDyeColor.MAGENTA);
@@ -267,6 +271,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK);
 
         // Tinted Glass
+        BlocksItemsRegistry.registerBlock(MPBlocks.TINTED_GLASS);
         BlocksItemsRegistry.registerBlock(MPBlocks.WHITE_TINTED_GLASS);
         BlocksItemsRegistry.registerBlock(MPBlocks.ORANGE_TINTED_GLASS);
         BlocksItemsRegistry.registerBlock(MPBlocks.MAGENTA_TINTED_GLASS);
@@ -285,6 +290,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.BLACK_TINTED_GLASS);
 
         // Tinted Glass Pane
+        BlocksItemsRegistry.registerBlock(MPBlocks.TINTED_GLASS_PANE);
         BlocksItemsRegistry.registerBlock(MPBlocks.WHITE_TINTED_GLASS_PANE);
         BlocksItemsRegistry.registerBlock(MPBlocks.ORANGE_TINTED_GLASS_PANE);
         BlocksItemsRegistry.registerBlock(MPBlocks.MAGENTA_TINTED_GLASS_PANE);

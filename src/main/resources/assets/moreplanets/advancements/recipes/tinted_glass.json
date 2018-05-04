@@ -2,7 +2,7 @@
     "parent": "minecraft:recipes/root",
     "rewards": {
         "recipes": [
-            "moreplanets:lime_tinted_glass"
+            "moreplanets:tinted_glass"
         ]
     },
     "criteria": {
@@ -10,12 +10,10 @@
             "trigger": "minecraft:inventory_changed",
             "conditions": {
                 "items": [
+                    null,
                     {
-                        "item": "moreplanets:tinted_glass"
-                    },
-                    {
-                        "item": "minecraft:dye",
-                        "data": 10
+                        "item": "galacticraftplanets:item_basic_mars",
+                        "data": 5
                     }
                 ]
             }
@@ -23,7 +21,7 @@
         "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-                "recipe": "moreplanets:lime_tinted_glass"
+                "recipe": "moreplanets:tinted_glass"
             }
         }
     },
