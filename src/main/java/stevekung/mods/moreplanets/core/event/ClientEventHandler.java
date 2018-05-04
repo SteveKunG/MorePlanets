@@ -452,14 +452,14 @@ public class ClientEventHandler
         if (this.mc.currentScreen instanceof GuiCelestialSelection)
         {
             GuiCelestialSelection gui = (GuiCelestialSelection) this.mc.currentScreen;
-            boolean enable = false;
+            boolean enable = true;
+            float partialTicks = stevekung.mods.stevekunglib.client.event.ClientEventHandler.ticks + this.mc.getRenderPartialTicks();
 
             if (event.celestialBody == GalacticraftCore.planetOverworld && enable)
             {
                 float size = GuiCelestialSelection.getWidthForCelestialBodyStatic(event.celestialBody) / 16.0F;
-                float orbitTick = MathHelper.sin(stevekung.mods.stevekunglib.client.event.ClientEventHandler.ticks * 0.2F) / 10.0F + 0.5F;
-                GlStateManager.rotate(stevekung.mods.stevekunglib.client.event.ClientEventHandler.ticks, 0.0F, 0.0F, 1.0F);
-                GlStateManager.translate(orbitTick + 5.0F, 5.0F, 0.0F);
+                float orbitTick = MathHelper.sin(partialTicks * 0.2F) / 10.0F + 0.5F;
+                GlStateManager.translate(6.0F, orbitTick + -6.5F, 0.0F);
                 this.mc.renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/gui/celestialbodies/ion_cannon.png"));
                 gui.drawTexturedModalRect(-7.5F * size, -1.75F * size, 2.0F, 2.0F, 0, 0, 32, 32, false, false, 32, 32);
             }
@@ -469,7 +469,7 @@ public class ClientEventHandler
     @SubscribeEvent
     public void onFOVUpdate(FOVUpdateEvent event)
     {
-        if (event.getEntity().isHandActive() && event.getEntity().getActiveItemStack() != null && event.getEntity().getActiveItemStack().getItem() == MPItems.SPACE_BOW)
+        if (event.getEntity().isHandActive() && !event.getEntity().getActiveItemStack().isEmpty() && event.getEntity().getActiveItemStack().getItem() == MPItems.SPACE_BOW)
         {
             int i = event.getEntity().getItemInUseMaxCount();
             float f1 = i / 20.0F;
