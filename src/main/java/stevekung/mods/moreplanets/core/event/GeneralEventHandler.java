@@ -92,8 +92,8 @@ public class GeneralEventHandler
 
         if (event.getWorld().getBlockState(firePos).getBlock() instanceof IFire)
         {
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FIRE_EXTINGUISH, GCCoreUtil.getDimensionID(event.getWorld()), firePos));
             event.setCanceled(true);
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FIRE_EXTINGUISH, GCCoreUtil.getDimensionID(event.getWorld()), firePos));
         }
     }
 
