@@ -12,11 +12,14 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.model.ModelShieldGenerator;
 import stevekung.mods.moreplanets.client.renderer.OBJLoaderMP;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer<TileEntityShieldGenerator>
 {
     private IBakedModel shield;

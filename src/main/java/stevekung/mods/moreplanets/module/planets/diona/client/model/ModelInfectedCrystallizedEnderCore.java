@@ -6,15 +6,15 @@ import net.minecraft.client.renderer.GlStateManager;
 
 public class ModelInfectedCrystallizedEnderCore extends ModelBase
 {
-    ModelRenderer rodBase1;
-    ModelRenderer rodBase2;
-    ModelRenderer rodBase3;
-    ModelRenderer rodBase4;
-    ModelRenderer rod1;
-    ModelRenderer rod2;
-    ModelRenderer rod3;
-    ModelRenderer rod4;
-    ModelRenderer enderCore;
+    private ModelRenderer rodBase1;
+    private ModelRenderer rodBase2;
+    private ModelRenderer rodBase3;
+    private ModelRenderer rodBase4;
+    private ModelRenderer rod1;
+    private ModelRenderer rod2;
+    private ModelRenderer rod3;
+    private ModelRenderer rod4;
+    private ModelRenderer enderCore;
 
     public ModelInfectedCrystallizedEnderCore()
     {

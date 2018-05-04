@@ -5,20 +5,20 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelZeliusEgg extends ModelBase
 {
-    ModelRenderer base1;
-    ModelRenderer base2;
-    ModelRenderer base3;
-    ModelRenderer base4;
-    ModelRenderer base5;
-    ModelRenderer base6;
-    ModelRenderer rod1;
-    ModelRenderer rod2;
-    ModelRenderer rod3;
-    ModelRenderer rod4;
-    ModelRenderer rod5;
-    ModelRenderer rod6;
-    ModelRenderer rod7;
-    ModelRenderer rod8;
+    private ModelRenderer base1;
+    private ModelRenderer base2;
+    private ModelRenderer base3;
+    private ModelRenderer base4;
+    private ModelRenderer base5;
+    private ModelRenderer base6;
+    private ModelRenderer rod1;
+    private ModelRenderer rod2;
+    private ModelRenderer rod3;
+    private ModelRenderer rod4;
+    private ModelRenderer rod5;
+    private ModelRenderer rod6;
+    private ModelRenderer rod7;
+    private ModelRenderer rod8;
 
     public ModelZeliusEgg()
     {

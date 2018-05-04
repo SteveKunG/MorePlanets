@@ -4,9 +4,12 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.model.ModelSpaceWarpPad;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 
+@SideOnly(Side.CLIENT)
 public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRenderer<TileEntitySpaceWarpPadFull>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/space_warp_pad.png");

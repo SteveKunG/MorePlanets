@@ -8,8 +8,11 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.stevekunglib.utils.RenderUtils;
 
+@SideOnly(Side.CLIENT)
 public class FakeAlienBeamRenderer
 {
     public static final FakeAlienBeamRenderer INSTANCE = new FakeAlienBeamRenderer();

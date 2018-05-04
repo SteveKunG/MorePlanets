@@ -4,10 +4,13 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelInfectedCrystallizedSlimeBoss;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityInfectedCrystallizedSlimeMinion;
 import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
 
+@SideOnly(Side.CLIENT)
 public class RenderInfectedCrystallizedSlimeMinion extends RenderLiving<EntityInfectedCrystallizedSlimeMinion>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/infected_crystallized_slime_boss.png");

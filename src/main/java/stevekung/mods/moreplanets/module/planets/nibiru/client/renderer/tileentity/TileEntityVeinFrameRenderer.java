@@ -5,10 +5,13 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.model.ModelVeinFrame;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityVeinFrame;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityVeinFrameRenderer extends TileEntitySpecialRenderer<TileEntityVeinFrame>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/vein_frame.png");

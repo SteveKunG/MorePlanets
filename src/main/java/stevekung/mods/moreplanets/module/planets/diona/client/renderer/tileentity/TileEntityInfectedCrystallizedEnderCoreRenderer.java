@@ -5,9 +5,12 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.diona.client.model.ModelInfectedCrystallizedEnderCore;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityInfectedCrystallizedEnderCore;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityInfectedCrystallizedEnderCoreRenderer extends TileEntitySpecialRenderer<TileEntityInfectedCrystallizedEnderCore>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/infected_crystallized_ender_core.png");

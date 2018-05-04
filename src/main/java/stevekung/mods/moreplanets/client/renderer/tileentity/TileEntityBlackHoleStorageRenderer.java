@@ -5,10 +5,13 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.model.ModelBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityBlackHoleStorageRenderer extends TileEntitySpecialRenderer<TileEntityBlackHoleStorage>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/black_hole_storage.png");

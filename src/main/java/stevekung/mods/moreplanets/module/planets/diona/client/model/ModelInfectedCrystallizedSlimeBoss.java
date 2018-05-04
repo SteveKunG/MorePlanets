@@ -7,13 +7,13 @@ import net.minecraft.entity.Entity;
 
 public class ModelInfectedCrystallizedSlimeBoss extends ModelBase
 {
-    ModelRenderer body1;
-    ModelRenderer body2;
-    ModelRenderer eye1;
-    ModelRenderer eye2;
-    ModelRenderer eye3;
-    ModelRenderer eye4;
-    ModelRenderer eye5;
+    private ModelRenderer body1;
+    private ModelRenderer body2;
+    private ModelRenderer eye1;
+    private ModelRenderer eye2;
+    private ModelRenderer eye3;
+    private ModelRenderer eye4;
+    private ModelRenderer eye5;
 
     public ModelInfectedCrystallizedSlimeBoss()
     {

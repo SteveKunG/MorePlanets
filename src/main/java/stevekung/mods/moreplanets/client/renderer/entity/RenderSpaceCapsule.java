@@ -13,9 +13,12 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.OBJLoaderMP;
 import stevekung.mods.moreplanets.entity.EntitySpaceCapsule;
 
+@SideOnly(Side.CLIENT)
 public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
 {
     private IBakedModel modelEntryPod;

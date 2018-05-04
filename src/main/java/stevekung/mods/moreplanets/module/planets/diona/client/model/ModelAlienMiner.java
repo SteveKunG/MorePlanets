@@ -6,33 +6,33 @@ import net.minecraft.entity.Entity;
 
 public class ModelAlienMiner extends ModelBase
 {
-    ModelRenderer head1;
-    ModelRenderer head2;
-    ModelRenderer head3;
-    ModelRenderer head4;
-    ModelRenderer head5;
-    ModelRenderer head6;
-    ModelRenderer top1;
-    ModelRenderer top2;
-    ModelRenderer top3;
-    ModelRenderer armp1;
-    ModelRenderer armp2;
-    ModelRenderer armp3;
-    ModelRenderer armp4;
-    ModelRenderer armp5;
-    ModelRenderer armp6;
-    ModelRenderer armpten1;
-    ModelRenderer armpten2;
-    ModelRenderer armpten3;
-    ModelRenderer armpten4;
-    ModelRenderer armpten5;
-    ModelRenderer armpten6;
-    ModelRenderer bottom1;
-    ModelRenderer bottom2;
-    ModelRenderer bottom3;
-    ModelRenderer tentacle1;
-    ModelRenderer tentacle2;
-    ModelRenderer tentacle3;
+    private ModelRenderer head1;
+    private ModelRenderer head2;
+    private ModelRenderer head3;
+    private ModelRenderer head4;
+    private ModelRenderer head5;
+    private ModelRenderer head6;
+    private ModelRenderer top1;
+    private ModelRenderer top2;
+    private ModelRenderer top3;
+    private ModelRenderer armp1;
+    private ModelRenderer armp2;
+    private ModelRenderer armp3;
+    private ModelRenderer armp4;
+    private ModelRenderer armp5;
+    private ModelRenderer armp6;
+    private ModelRenderer armpten1;
+    private ModelRenderer armpten2;
+    private ModelRenderer armpten3;
+    private ModelRenderer armpten4;
+    private ModelRenderer armpten5;
+    private ModelRenderer armpten6;
+    private ModelRenderer bottom1;
+    private ModelRenderer bottom2;
+    private ModelRenderer bottom3;
+    private ModelRenderer tentacle1;
+    private ModelRenderer tentacle2;
+    private ModelRenderer tentacle3;
 
     public ModelAlienMiner()
     {

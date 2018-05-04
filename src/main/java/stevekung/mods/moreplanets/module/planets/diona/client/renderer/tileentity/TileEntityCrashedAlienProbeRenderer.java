@@ -5,9 +5,12 @@ import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityCrashedAlienProbe;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityCrashedAlienProbeRenderer extends TileEntitySpecialRenderer<TileEntityCrashedAlienProbe>
 {
     @Override

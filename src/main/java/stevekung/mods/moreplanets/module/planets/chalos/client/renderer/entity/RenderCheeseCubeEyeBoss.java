@@ -4,11 +4,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.chalos.client.model.ModelCheeseCubeEyeBoss;
 import stevekung.mods.moreplanets.module.planets.chalos.client.renderer.entity.layer.LayerCheeseCubeEyeBoss;
 import stevekung.mods.moreplanets.module.planets.chalos.client.renderer.entity.layer.LayerCheeseCubeEyeBossDeath;
 import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCubeEyeBoss;
 
+@SideOnly(Side.CLIENT)
 public class RenderCheeseCubeEyeBoss extends RenderLiving<EntityCheeseCubeEyeBoss>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/cheese_cube_eye_boss.png");

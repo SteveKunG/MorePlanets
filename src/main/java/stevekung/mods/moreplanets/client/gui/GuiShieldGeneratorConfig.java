@@ -15,6 +15,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
@@ -24,6 +26,7 @@ import stevekung.mods.moreplanets.utils.client.gui.GuiElementInfoRegionMP;
 import stevekung.mods.stevekunglib.client.gui.GuiNumberField;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
+@SideOnly(Side.CLIENT)
 public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBoxCallback
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/shield_generator_config.png");

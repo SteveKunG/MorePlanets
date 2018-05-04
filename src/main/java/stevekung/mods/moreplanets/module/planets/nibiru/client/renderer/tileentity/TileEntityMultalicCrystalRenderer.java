@@ -9,10 +9,13 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import stevekung.mods.moreplanets.utils.client.model.ModelCrystal;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer<TileEntityMultalicCrystal>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/crystal.png");

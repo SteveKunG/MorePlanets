@@ -4,9 +4,12 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.model.ModelAlienDefenderBeacon;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRenderer<TileEntityAlienDefenderBeacon>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/alien_defender_beacon.png");

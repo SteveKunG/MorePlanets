@@ -9,10 +9,13 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityLargeInfectedCrystallized;
 import stevekung.mods.moreplanets.utils.client.model.ModelCrystal;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpecialRenderer<TileEntityLargeInfectedCrystallized>
 {
     private final ModelCrystal model = new ModelCrystal();

@@ -10,10 +10,13 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.model.ModelJuicerEgg;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityJuicerEgg;
 import stevekung.mods.stevekunglib.utils.RenderUtils;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileEntityJuicerEgg>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/juicer_egg.png");

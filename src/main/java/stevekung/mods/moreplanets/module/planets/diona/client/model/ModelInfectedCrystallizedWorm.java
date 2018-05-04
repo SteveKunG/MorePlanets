@@ -7,12 +7,12 @@ import net.minecraft.util.math.MathHelper;
 
 public class ModelInfectedCrystallizedWorm extends ModelBase
 {
-    ModelRenderer body1;
-    ModelRenderer body2;
-    ModelRenderer body3;
-    ModelRenderer body4;
-    ModelRenderer tentacle1;
-    ModelRenderer tentacle2;
+    private ModelRenderer body1;
+    private ModelRenderer body2;
+    private ModelRenderer body3;
+    private ModelRenderer body4;
+    private ModelRenderer tentacle1;
+    private ModelRenderer tentacle2;
 
     public ModelInfectedCrystallizedWorm()
     {
