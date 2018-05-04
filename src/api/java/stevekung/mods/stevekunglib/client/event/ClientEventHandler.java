@@ -10,6 +10,7 @@ public class ClientEventHandler
 {
     private Minecraft mc;
     public static int ticks;
+    public static int ticksPaused;
 
     public ClientEventHandler()
     {
@@ -22,11 +23,16 @@ public class ClientEventHandler
         if (this.mc.currentScreen instanceof GuiMainMenu)
         {
             ClientEventHandler.ticks = 0;
+            ClientEventHandler.ticksPaused = 0;
         }
         if (event.phase == Phase.START)
         {
             ClientEventHandler.ticks++;
-            ClientEventHandler.ticks %= 1200;
+
+            if (!this.mc.isGamePaused())
+            {
+                ClientEventHandler.ticksPaused++;
+            }
         }
     }
 }

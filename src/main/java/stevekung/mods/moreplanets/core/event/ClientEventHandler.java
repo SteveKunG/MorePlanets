@@ -57,8 +57,6 @@ import stevekung.mods.moreplanets.module.planets.diona.client.renderer.FakeAlien
 import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.NuclearWasteGeneratorMultiblockRenderer;
-import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.CloudRendererNibiru;
-import stevekung.mods.moreplanets.module.planets.nibiru.client.sky.WeatherRendererNibiru;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.client.gui.GuiGameOverMP;
@@ -71,7 +69,6 @@ public class ClientEventHandler
     private Minecraft mc;
     public static boolean loadRenderers;
     private int loadRendererTick = 30;
-    private int partialTicks;
     public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
     public static final List<BlockPos> wasteRenderPos = new ArrayList<>();
     public static final List<String> entityId = new ArrayList<>();
@@ -150,10 +147,6 @@ public class ClientEventHandler
         }
         if (event.phase == Phase.START)
         {
-            this.partialTicks++;
-            WeatherRendererNibiru.INSTANCE.runRenderTick();
-            CloudRendererNibiru.INSTANCE.runRenderTick();
-
             if (ClientEventHandler.loadRenderers)
             {
                 if (--this.loadRendererTick == 0)
@@ -464,8 +457,8 @@ public class ClientEventHandler
             if (event.celestialBody == GalacticraftCore.planetOverworld && enable)
             {
                 float size = GuiCelestialSelection.getWidthForCelestialBodyStatic(event.celestialBody) / 16.0F;
-                float orbitTick = MathHelper.sin(this.partialTicks * 0.2F) / 10.0F + 0.5F;
-                GlStateManager.rotate(this.partialTicks, 0.0F, 0.0F, 1.0F);
+                float orbitTick = MathHelper.sin(stevekung.mods.stevekunglib.client.event.ClientEventHandler.ticks * 0.2F) / 10.0F + 0.5F;
+                GlStateManager.rotate(stevekung.mods.stevekunglib.client.event.ClientEventHandler.ticks, 0.0F, 0.0F, 1.0F);
                 GlStateManager.translate(orbitTick + 5.0F, 5.0F, 0.0F);
                 this.mc.renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/gui/celestialbodies/ion_cannon.png"));
                 gui.drawTexturedModalRect(-7.5F * size, -1.75F * size, 2.0F, 2.0F, 0, 0, 32, 32, false, false, 32, 32);

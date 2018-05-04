@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class WeatherRendererNibiru extends IRenderHandler
 {
@@ -29,10 +30,8 @@ public class WeatherRendererNibiru extends IRenderHandler
     private static final ResourceLocation SNOW = new ResourceLocation("moreplanets:textures/environment/infected_snow.png");
     private final float[] rainXCoords = new float[1024];
     private final float[] rainYCoords = new float[1024];
-    private int rendererUpdateCount;
     private int rainSoundCounter;
     private final Random rand = new Random();
-    public static final WeatherRendererNibiru INSTANCE = new WeatherRendererNibiru();
 
     public WeatherRendererNibiru()
     {
@@ -52,13 +51,15 @@ public class WeatherRendererNibiru extends IRenderHandler
     @Override
     public void render(float partialTicks, WorldClient worldClient, Minecraft mc)
     {
+        int rendererUpdateCount = ClientEventHandler.ticksPaused;
+
         if (mc.player.posY > 256)
         {
             return;
         }
-        if (this.rendererUpdateCount == -1)//TODO Fix vanilla particles
+        if (rendererUpdateCount == -1)//TODO Fix vanilla particles
         {
-            this.addRainParticles(mc);
+            this.addRainParticles(mc, rendererUpdateCount);
         }
 
         float f = mc.world.getRainStrength(partialTicks);
@@ -90,7 +91,7 @@ public class WeatherRendererNibiru extends IRenderHandler
             }
 
             int j1 = -1;
-            float f1 = this.rendererUpdateCount + partialTicks;
+            float f1 = rendererUpdateCount + partialTicks;
             worldrenderer.setTranslation(-d0, -d1, -d2);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
@@ -153,7 +154,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                                     }
                                     worldrenderer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
                                 }
-                                double d5 = ((double)(this.rendererUpdateCount + l1 * l1 * 3121 + l1 * 45238971 + k1 * k1 * 418711 + k1 * 13761 & 31) + (double)partialTicks) / 32.0D * (3.0D + this.rand.nextDouble());
+                                double d5 = ((double)(rendererUpdateCount + l1 * l1 * 3121 + l1 * 45238971 + k1 * k1 * 418711 + k1 * 13761 & 31) + (double)partialTicks) / 32.0D * (3.0D + this.rand.nextDouble());
                                 double d6 = l1 + 0.5F - entity.posX;
                                 double d7 = k1 + 0.5F - entity.posZ;
                                 float f3 = MathHelper.sqrt(d6 * d6 + d7 * d7) / i1;
@@ -179,7 +180,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                                     mc.getTextureManager().bindTexture(WeatherRendererNibiru.SNOW);
                                     worldrenderer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
                                 }
-                                double d8 = ((this.rendererUpdateCount & 511) + partialTicks) / 512.0F;
+                                double d8 = ((rendererUpdateCount & 511) + partialTicks) / 512.0F;
                                 double d9 = this.rand.nextDouble() + f1 * 0.01D * (float)this.rand.nextGaussian();
                                 double d10 = this.rand.nextDouble() + f1 * (float)this.rand.nextGaussian() * 0.001D;
                                 double d11 = l1 + 0.5F - entity.posX;
@@ -212,7 +213,7 @@ public class WeatherRendererNibiru extends IRenderHandler
         }
     }
 
-    private void addRainParticles(Minecraft mc)
+    private void addRainParticles(Minecraft mc, int rendererUpdateCount)
     {
         float f = mc.world.getRainStrength(1.0F);
 
@@ -223,7 +224,7 @@ public class WeatherRendererNibiru extends IRenderHandler
 
         if (f != 0.0F)
         {
-            this.rand.setSeed(this.rendererUpdateCount * 312987231L);
+            this.rand.setSeed(rendererUpdateCount * 312987231L);
             Entity entity = mc.getRenderViewEntity();
             World world = mc.world;
             BlockPos blockpos = new BlockPos(entity);
@@ -285,26 +286,6 @@ public class WeatherRendererNibiru extends IRenderHandler
                 else
                 {
                     mc.world.playSound(d0, d1, d2, SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.2F, 1.0F, false);
-                }
-            }
-        }
-    }
-
-    public void runRenderTick()
-    {
-        Minecraft mc = Minecraft.getMinecraft();
-
-        if (!mc.isGamePaused())
-        {
-            if (mc.world != null)
-            {
-                if (mc.world.isThundering())
-                {
-                    this.rendererUpdateCount += 3;
-                }
-                else
-                {
-                    this.rendererUpdateCount++;
                 }
             }
         }

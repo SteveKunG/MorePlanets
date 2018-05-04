@@ -10,16 +10,16 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.IRenderHandler;
+import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class CloudRendererNibiru extends IRenderHandler
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation("textures/environment/clouds.png");
-    private int cloudTickCounter = 0;
-    public static final CloudRendererNibiru INSTANCE = new CloudRendererNibiru();
 
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc)
     {
+        int cloudTickCounter = ClientEventHandler.ticksPaused;
         GlStateManager.disableCull();
         float f1 = (float)(mc.getRenderViewEntity().lastTickPosY + (mc.getRenderViewEntity().posY - mc.getRenderViewEntity().lastTickPosY) * partialTicks);
         Tessellator tessellator = Tessellator.getInstance();
@@ -60,7 +60,7 @@ public class CloudRendererNibiru extends IRenderHandler
                     GlStateManager.colorMask(true, true, true, true);
                 }
 
-                double d0 = this.cloudTickCounter * (1.0F - count / 3.0F) + count / 5.0F * partialTicks + count * 300000;
+                double d0 = cloudTickCounter * (1.0F - count / 3.0F) + count / 5.0F * partialTicks + count * 300000;
                 double d1 = (mc.getRenderViewEntity().prevPosX + (mc.getRenderViewEntity().posX - mc.getRenderViewEntity().prevPosX) * partialTicks + d0 * 0.029999999329447746D) / f2;
                 double d2 = (mc.getRenderViewEntity().prevPosZ + (mc.getRenderViewEntity().posZ - mc.getRenderViewEntity().prevPosZ) * partialTicks) / f2 + 0.33000001311302185D;
                 float f4 = mc.world.provider.getCloudHeight() - f1 + 0.33F + count * 20.0F;
@@ -174,25 +174,5 @@ public class CloudRendererNibiru extends IRenderHandler
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();
         GlStateManager.enableCull();
-    }
-
-    public void runRenderTick()
-    {
-        Minecraft mc = Minecraft.getMinecraft();
-
-        if (!mc.isGamePaused())
-        {
-            if (mc.world != null)
-            {
-                if (mc.world.isThundering())
-                {
-                    this.cloudTickCounter += 6;
-                }
-                else
-                {
-                    this.cloudTickCounter += 4;
-                }
-            }
-        }
     }
 }
