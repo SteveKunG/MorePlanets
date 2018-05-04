@@ -18,17 +18,17 @@ import net.minecraftforge.common.ForgeVersion;
 
 public class VersionChecker implements Runnable
 {
-    private static boolean latest;
-    private static boolean noConnection;
-    private static String latestVersion;
-    private static String exceptionMessage;
-    private static List<String> announceMessage = new ArrayList<>();
+    private boolean latest;
+    private boolean noConnection;
+    private String latestVersion;
+    private String exceptionMessage;
+    private List<String> announceMessage = new ArrayList<>();
     private static VersionChecker instance;
-    private static String MOD_ID;
-    private static String MOD_VERSION;
-    private static int MAJOR_VERSION = 2;
-    private static int MINOR_VERSION = 0;
-    private static int BUILD_VERSION = 0;
+    private String MOD_ID;
+    private String MOD_VERSION;
+    private int MAJOR_VERSION = 2;
+    private int MINOR_VERSION = 0;
+    private int BUILD_VERSION = 0;
 
     static
     {
@@ -70,23 +70,23 @@ public class VersionChecker implements Runnable
         }
         catch (MalformedURLException e)
         {
-            VersionChecker.exceptionMessage = e.getClass().getName() + " " + e.getMessage();
+            this.exceptionMessage = e.getClass().getName() + " " + e.getMessage();
             e.printStackTrace();
         }
         catch (UnknownHostException e)
         {
-            VersionChecker.exceptionMessage = e.getClass().getName() + " " + e.getMessage();
+            this.exceptionMessage = e.getClass().getName() + " " + e.getMessage();
             e.printStackTrace();
         }
         catch (Exception e)
         {
-            VersionChecker.exceptionMessage = e.getClass().getName() + " " + e.getMessage();
+            this.exceptionMessage = e.getClass().getName() + " " + e.getMessage();
             e.printStackTrace();
         }
 
         if (version == null && desc == null)
         {
-            VersionChecker.noConnection = true;
+            this.noConnection = true;
             return;
         }
 
@@ -111,7 +111,7 @@ public class VersionChecker implements Runnable
 
         try
         {
-            VersionChecker.announceMessage = IOUtils.readLines(desc, StandardCharsets.UTF_8);
+            this.announceMessage = IOUtils.readLines(desc, StandardCharsets.UTF_8);
         }
         catch (Exception e) {}
         finally
@@ -135,33 +135,33 @@ public class VersionChecker implements Runnable
             }
         }
         String latestVersion = major + "." + minor + "." + build;
-        VersionChecker.latestVersion = latestVersion;
-        VersionChecker.latest = !MOD_VERSION.equals(latestVersion) && (major > MAJOR_VERSION || minor > MINOR_VERSION || build > BUILD_VERSION);
+        this.latestVersion = latestVersion;
+        this.latest = !MOD_VERSION.equals(latestVersion) && (major > MAJOR_VERSION || minor > MINOR_VERSION || build > BUILD_VERSION);
     }
 
     public boolean isLatestVersion()
     {
-        return VersionChecker.latest;
+        return this.latest;
     }
 
     public boolean noConnection()
     {
-        return VersionChecker.noConnection;
+        return this.noConnection;
     }
 
     public String getLatestVersion()
     {
-        return VersionChecker.latestVersion;
+        return this.latestVersion;
     }
 
     public String getExceptionMessage()
     {
-        return VersionChecker.exceptionMessage;
+        return this.exceptionMessage;
     }
 
     public List<String> getAnnounceMessage()
     {
-        return VersionChecker.announceMessage;
+        return this.announceMessage;
     }
 
     public static void createFoundLatestMessage(EntityPlayerSP player, String modName, String url)
