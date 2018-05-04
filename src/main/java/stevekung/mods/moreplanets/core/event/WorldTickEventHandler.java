@@ -12,12 +12,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import stevekung.mods.moreplanets.core.data.WorldDataStartedDimension;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDiona;
@@ -45,7 +44,7 @@ public class WorldTickEventHandler
         {
             if (WorldTickEventHandler.startedDimensionData == null)
             {
-                World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(0);
+                World world = server.getWorld(0);
                 WorldTickEventHandler.startedDimensionData = (WorldDataStartedDimension) world.getMapStorage().getOrLoadData(WorldDataStartedDimension.class, WorldDataStartedDimension.saveDataID);
 
                 if (WorldTickEventHandler.startedDimensionData == null)
@@ -55,94 +54,78 @@ public class WorldTickEventHandler
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onWorldTick(WorldTickEvent event)
+    {
+        World world = event.world;
+
         if (event.phase == Phase.END)//TODO Check entity spawning outside unloaded chunk
         {
-            World world = DimensionManager.getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionDiona);
-
-            if (world != null && world.provider instanceof WorldProviderDiona)
+            if (world != null && world instanceof WorldServer)
             {
-                if (world instanceof WorldServer)
+                WorldServer worldServer = (WorldServer) world;
+
+                for (Iterator<Chunk> iterator = worldServer.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext();)
                 {
-                    WorldServer worldServer = (WorldServer) world;
+                    Chunk chunk = iterator.next();
+                    int x = chunk.x * 16;
+                    int z = chunk.z * 16;
+                    this.updateLCG = this.updateLCG * 3 + 1013904223;
+                    int l = this.updateLCG >> 2;
+                    BlockPos pos = this.adjustPosToNearbyEntity(worldServer, new BlockPos(x + (l & 15), 0, z + (l >> 8 & 15)));
 
-                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext();)
+                    if (worldServer.provider instanceof WorldProviderDiona)
                     {
-                        Chunk chunk = iterator.next();
-                        int j = chunk.x * 16;
-                        int k = chunk.z * 16;
-
-                        if (world.rand.nextInt(75000) == 0)
+                        if (worldServer.rand.nextInt(75000) == 0)
                         {
-                            this.updateLCG = this.updateLCG * 3 + 1013904223;
-                            int l = this.updateLCG >> 2;
-                            BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
-
-                            if (this.canBeamStrike(world, blockpos))
+                            if (this.canBeamStrike(worldServer, pos))
                             {
-                                EntityAlienBeam beam = new EntityAlienBeam(world);
-                                beam.setLocationAndAngles(blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0.0F, 0.0F);
-                                world.spawnEntity(beam);
+                                EntityAlienBeam beam = new EntityAlienBeam(worldServer);
+                                beam.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0.0F, 0.0F);
+
+                                if (worldServer.isBlockLoaded(pos))
+                                {
+                                    worldServer.spawnEntity(beam);
+                                }
                             }
                         }
                     }
-                }
-            }
-
-            world = DimensionManager.getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionNibiru);
-
-            if (world != null && world.provider instanceof WorldProviderNibiru)
-            {
-                if (world instanceof WorldServer)
-                {
-                    WorldServer worldServer = (WorldServer) world;
-
-                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext();)
+                    if (worldServer.provider instanceof WorldProviderNibiru)
                     {
-                        Chunk chunk = iterator.next();
-                        int j = chunk.x * 16;
-                        int k = chunk.z * 16;
-                        boolean flag = world.isRaining();
-                        boolean flag1 = world.isThundering();
+                        boolean raining = worldServer.isRaining();
+                        boolean thunder = worldServer.isThundering();
 
-                        if (world.provider.canDoLightning(chunk) && flag && flag1 && world.rand.nextInt(1000) == 0)
+                        if (worldServer.provider.canDoLightning(chunk) && raining && thunder && worldServer.rand.nextInt(1000) == 0)
                         {
-                            this.updateLCG = this.updateLCG * 3 + 1013904223;
-                            int l = this.updateLCG >> 2;
-                            BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
-
-                            if (world.isRainingAt(blockpos))
+                            if (worldServer.isRainingAt(pos))
                             {
-                                world.spawnEntity(new EntityNibiruLightningBolt(world, blockpos.getX(), blockpos.getY(), blockpos.getZ(), true));
+                                worldServer.spawnEntity(new EntityNibiruLightningBolt(worldServer, pos.getX(), pos.getY(), pos.getZ(), true));
                             }
                         }
-                        if (world.rand.nextInt(16) == 0)
+                        if (worldServer.rand.nextInt(16) == 0)
                         {
-                            this.updateLCG = this.updateLCG * 3 + 1013904223;
-                            int j2 = this.updateLCG >> 2;
-                            BlockPos blockpos1 = world.getPrecipitationHeight(new BlockPos(j + (j2 & 15), 0, k + (j2 >> 8 & 15)));
-                            BlockPos blockpos2 = blockpos1.down();
+                            BlockPos pos1 = pos.down();
 
-                            if (world.canBlockFreezeNoWater(blockpos2))
+                            if (worldServer.canBlockFreezeNoWater(pos1))
                             {
-                                world.setBlockState(blockpos2, NibiruBlocks.INFECTED_ICE.getDefaultState());
+                                worldServer.setBlockState(pos1, NibiruBlocks.INFECTED_ICE.getDefaultState());
                             }
-                            if (flag && world.canSnowAt(blockpos1, true))
+                            if (raining && worldServer.canSnowAt(pos, true))
                             {
-                                world.setBlockState(blockpos1, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                                worldServer.setBlockState(pos, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                             }
-                            if (flag && world.getBiome(blockpos2).canRain())
+                            if (raining && worldServer.getBiome(pos1).canRain())
                             {
-                                world.getBlockState(blockpos2).getBlock().fillWithRain(world, blockpos2);
+                                worldServer.getBlockState(pos1).getBlock().fillWithRain(worldServer, pos1);
                             }
                         }
-                        if (world.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_DESERT || world.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_EXTREME_HILLS)
+                        if (worldServer.getBiome(pos) == MPBiomes.INFECTED_DESERT || worldServer.getBiome(pos) == MPBiomes.INFECTED_EXTREME_HILLS)
                         {
-                            if (world.rand.nextInt(250000) == 0)
+                            if (worldServer.rand.nextInt(250000) == 0)
                             {
-                                this.updateLCG = this.updateLCG * 3 + 1013904223;
-                                int l = this.updateLCG >> 2;
-                                BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
-                                world.spawnEntity(new EntityNibiruLightningBolt(world, blockpos.getX(), blockpos.getY(), blockpos.getZ(), false));
+                                worldServer.spawnEntity(new EntityNibiruLightningBolt(worldServer, pos.getX(), pos.getY(), pos.getZ(), false));
                             }
                         }
                     }
@@ -151,11 +134,11 @@ public class WorldTickEventHandler
         }
     }
 
-    private BlockPos adjustPosToNearbyEntity(World world, BlockPos pos)
+    private BlockPos adjustPosToNearbyEntity(WorldServer world, BlockPos pos)
     {
-        BlockPos blockpos = world.getPrecipitationHeight(pos);
-        AxisAlignedBB axisalignedbb = new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), world.getHeight(), blockpos.getZ()));
-        List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, living -> living != null && living.isEntityAlive() && world.canSeeSky(living.getPosition()));
+        BlockPos pos1 = world.getPrecipitationHeight(pos);
+        AxisAlignedBB aabb = new AxisAlignedBB(pos1, new BlockPos(pos1.getX(), world.getHeight(), pos1.getZ())).grow(3.0D);
+        List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, aabb, entity -> entity != null && entity.isEntityAlive() && world.canSeeSky(entity.getPosition()));
 
         if (!list.isEmpty())
         {
@@ -163,15 +146,15 @@ public class WorldTickEventHandler
         }
         else
         {
-            if (blockpos.getY() == -1)
+            if (pos1.getY() == -1)
             {
-                blockpos = blockpos.up(2);
+                pos1 = pos1.up(2);
             }
-            return blockpos;
+            return pos1;
         }
     }
 
-    private boolean canBeamStrike(World world, BlockPos strikePosition)
+    private boolean canBeamStrike(WorldServer world, BlockPos strikePosition)
     {
         if (!world.canSeeSky(strikePosition))
         {
@@ -187,7 +170,7 @@ public class WorldTickEventHandler
         }
     }
 
-    private float getSunBrightness(World world)
+    private float getSunBrightness(WorldServer world)
     {
         float partialTicks = 1.0F;
         float angle = world.getCelestialAngle(partialTicks);
