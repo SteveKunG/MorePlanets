@@ -1,0 +1,229 @@
+{
+    "pools": [
+        {
+            "name": "rare",
+            "rolls": {
+                "min": 1,
+                "max": 3
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "moreplanets:anti_gravity_fragments",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "moreplanets:black_hole_fragments",
+                    "weight": 2
+                },
+                {
+                    "type": "item",
+                    "name": "moreplanets:alien_miner_part",
+                    "weight": 8
+                },
+                {
+                    "type": "item",
+                    "entryName": "shard_1",
+                    "name": "galacticraftplanets:item_basic_asteroids",
+                    "weight": 15,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 3
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "entryName": "shard_2",
+                    "name": "galacticraftplanets:item_basic_asteroids",
+                    "weight": 15,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 4
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:book",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "enchant_randomly"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "uncommon",
+            "rolls": {
+                "min": 1,
+                "max": 4
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "moreplanets:glowing_iron_block",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 6
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "galacticraftcore:basic_block_moon",
+                    "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 4
+                            }
+                        },
+                        {
+                            "function": "set_data",
+                            "data": 6
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "galacticraftplanets:item_basic_mars",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 6
+                            }
+                        },
+                        {
+                            "function": "set_data",
+                            "data": 5
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "entryName": "plate_1",
+                    "name": "galacticraftplanets:item_basic_asteroids",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 6
+                            }
+                        },
+                        {
+                            "function": "set_data",
+                            "data": 6
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "entryName": "plate_2",
+                    "name": "galacticraftplanets:item_basic_asteroids",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 5
+                            }
+                        },
+                        {
+                            "function": "set_data",
+                            "data": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "common",
+            "rolls": 3,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "moreplanets:glowing_iron_ingot",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 8
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "galacticraftcore:meteoric_iron_raw",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 8
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "galacticraftcore:item_basic_moon",
+                    "weight": 7,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 4
+                            }
+                        },
+                        {
+                            "function": "set_data",
+                            "data": 2
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "galacticraftcore:basic_item",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 8
+                            }
+                        },
+                        {
+                            "function": "set_data",
+                            "data": 9
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

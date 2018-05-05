@@ -63,6 +63,13 @@ public class BlockAllHalfSlab extends BlockSlabMP
     }
 
     @Override
+    public BlockAllHalfSlab setSoundType(SoundType sound)
+    {
+        this.blockSoundType = sound;
+        return this;
+    }
+
+    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(HALF, meta == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
@@ -98,12 +105,6 @@ public class BlockAllHalfSlab extends BlockSlabMP
         return this.doubleSlab;
     }
 
-    @Override
-    public String getName()
-    {
-        return this.type.toString();
-    }
-
     public BlockSlabMP setHalf(BlockSlabMP halfSlab)
     {
         this.halfSlab = halfSlab;
@@ -135,7 +136,8 @@ public class BlockAllHalfSlab extends BlockSlabMP
         INFECTED_CRACKED_STONE_BRICKS_SLAB,
         TERRASTONE_SLAB,
         INFECTED_SANDSTONE_SLAB,
-        INFECTED_CUT_SANDSTONE_SLAB;
+        INFECTED_CUT_SANDSTONE_SLAB,
+        ALIEN_SHIP_SLAB;
 
         private boolean isDungeonBrick;
         private boolean isWood;

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFire;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -16,6 +17,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.utils.blocks.IFire;
 
 public class BlockElectricalFire extends BlockFire implements IFire
@@ -55,7 +58,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
             }
 
             Block block = world.getBlockState(pos.down()).getBlock();
-            boolean flag = block.isFireSource(world, pos.down(), EnumFacing.UP);
+            boolean flag = block.isFireSource(world, pos.down(), EnumFacing.UP) || block == DionaBlocks.GLOWING_IRON_BLOCK || block == MPBlocks.ALIEN_SHIP_DECORATION_0 || block == MPBlocks.ALIEN_SHIP_DECORATION_1 || block == MPBlocks.ALIEN_SHIP_BOOSTER || block == MPBlocks.ALIEN_SHIP_DECORATION_SLAB && world.getBlockState(pos.down()).getValue(BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP;
 
             if (!flag && world.isRaining() && this.canDie(world, pos))
             {

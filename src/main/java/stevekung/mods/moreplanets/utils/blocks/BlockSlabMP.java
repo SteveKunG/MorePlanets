@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.utils.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -17,9 +18,18 @@ import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
 public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, ISlab, IItemModelRender
 {
+    private String name;
+
     public BlockSlabMP(Material material)
     {
         super(material);
+    }
+
+    @Override
+    public Block setUnlocalizedName(String name)
+    {
+        this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override
@@ -62,5 +72,11 @@ public abstract class BlockSlabMP extends BlockSlab implements ISortableBlock, I
     public String getUnlocalizedName(int meta)
     {
         return super.getUnlocalizedName();
+    }
+
+    @Override
+    public String getName()
+    {
+        return this.name;
     }
 }

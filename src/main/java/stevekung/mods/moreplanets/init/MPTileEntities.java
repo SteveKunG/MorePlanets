@@ -25,6 +25,7 @@ public class MPTileEntities
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityBlackHoleStorage.class, "black_hole_storage");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityAlienDefenderBeacon.class, "alien_defender_beacon");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityShieldGenerator.class, "shield_generator");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityAlienChest.class, "alien_chest");
 
         // Diona
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDionaAncientChest.class, "diona_ancient_chest");

@@ -41,6 +41,11 @@ public abstract class BlockChestMP extends BlockContainerMP
         this.setSoundType(SoundType.WOOD);
     }
 
+    protected BlockChestMP(Material material)
+    {
+        super(material);
+    }
+
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {

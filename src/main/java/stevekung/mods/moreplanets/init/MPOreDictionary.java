@@ -72,6 +72,7 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("chestWood", ChalosBlocks.CHALOS_ANCIENT_CHEST);
         BlockUtils.registerOreDictionary("chest", ChalosBlocks.CHEESE_SPORE_CHEST);
         BlockUtils.registerOreDictionary("chest", ChalosBlocks.CHALOS_ANCIENT_CHEST);
+        BlockUtils.registerOreDictionary("chest", MPBlocks.ALIEN_CHEST);
         BlockUtils.registerOreDictionary("plankWood", NibiruBlocks.INFECTED_OAK_PLANKS);
         BlockUtils.registerOreDictionary("plankWood", NibiruBlocks.ALIEN_BERRY_OAK_PLANKS);
         BlockUtils.registerOreDictionary("logWood", NibiruBlocks.INFECTED_OAK_LOG);

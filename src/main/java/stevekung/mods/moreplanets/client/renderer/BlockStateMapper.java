@@ -56,16 +56,18 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(NibiruBlocks.INFECTED_MELON_STEM, new StateMapperType("stem"));
 
         // CTM Integration
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.ALBETIUS_WORM_EGG_ROCK, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.ALIEN_MINER_BLOOD, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.CRASHED_ALIEN_PROBE, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.GLOWING_IRON_BLOCK, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_FENCE, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_WEB, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.SPORELILY, new StateMapperCTM());
-        ClientRegistryUtils.registerStateMapper(NibiruBlocks.TERRAPUFF_HERB, new StateMapperCTM());
+        StateMapperCTM ctm = new StateMapperCTM();
+        ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_SHIP_BOOSTER, ctm);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.ALBETIUS_WORM_EGG_ROCK, ctm);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.ALIEN_MINER_BLOOD, ctm);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.CRASHED_ALIEN_PROBE, ctm);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.GLOWING_IRON_BLOCK, ctm);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_PLANKS, ctm);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_FENCE, ctm);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_WEB, ctm);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE, ctm);
+        ClientRegistryUtils.registerStateMapper(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, ctm);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.SPORELILY, ctm);
+        ClientRegistryUtils.registerStateMapper(NibiruBlocks.TERRAPUFF_HERB, ctm);
     }
 }

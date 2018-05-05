@@ -20,6 +20,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityAli
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityInfectedChest;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruAncientChest;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
+import stevekung.mods.moreplanets.tileentity.TileEntityAlienChest;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 
@@ -77,6 +78,7 @@ public class ItemModelRenderer
             ItemModelRenderer.registerCCLItemRenderer(NibiruBlocks.JUICER_EGG, new RenderJuicerEgg());
             ItemModelRenderer.registerCCLItemRenderer(NibiruBlocks.VEIN_FRAME, new RenderVeinFrame());
             ItemModelRenderer.registerCCLItemRenderer(DionaItems.INFECTED_CRYSTALLIZED_BOMB, new RenderInfectedCrystallizedBombCCL());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_CHEST, new RenderChest(new TileEntityAlienChest()));
 
             LoggerMP.info("Successfully registered CodeChickenCore item rendering for More Planets tile entities");
         }

@@ -19,6 +19,8 @@ import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockCTMGlowing;
+import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.blocks.fluid.FluidMP;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescription;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockSlabMP;
@@ -36,6 +38,11 @@ public class MPBlocks
     public static BlockDummy NWT_MIDDLE_DUMMY;
     public static BlockDummy NWT_TOP_DUMMY;
     public static BlockDummy SHIELD_GENERATOR_DUMMY;
+
+    public static Block ALIEN_SHIP_BOOSTER;
+    public static Block ALIEN_SHIP_DECORATION_0;
+    public static Block ALIEN_SHIP_DECORATION_1;
+    public static Block ALIEN_CHEST;
 
     // Boss Spawner
     public static Block DIONA_DUNGEON_SPAWNER;
@@ -104,6 +111,7 @@ public class MPBlocks
     public static BlockAllHalfSlab DIONA_DUNGEON_BRICK_SLAB;
     public static BlockAllHalfSlab CHALOS_DUNGEON_BRICK_SLAB;
     public static BlockAllHalfSlab NIBIRU_DUNGEON_BRICK_SLAB;
+    public static BlockAllHalfSlab ALIEN_SHIP_DECORATION_SLAB;
 
     public static BlockAllHalfSlab CHEESE_SPORE_SLAB;
     public static BlockAllHalfSlab INFECTED_OAK_SLAB;
@@ -115,6 +123,7 @@ public class MPBlocks
     @Deprecated public static BlockAllHalfSlab DOUBLE_DIONA_DUNGEON_BRICK_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_CHALOS_DUNGEON_BRICK_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_ALIEN_SHIP_DECORATION_SLAB;
 
     @Deprecated public static BlockAllHalfSlab DOUBLE_CHEESE_SPORE_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_OAK_SLAB;
@@ -158,6 +167,11 @@ public class MPBlocks
         // Polish
         MPBlocks.POLISHED_TIN_DECORATION_BLOCK = new BlockBaseMP("polished_tin_decoration_block", Material.ROCK).setHardness(1.5F);
         MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK = new BlockBaseMP("polished_aluminum_decoration_block", Material.ROCK).setHardness(1.5F);
+
+        MPBlocks.ALIEN_SHIP_BOOSTER = new BlockCTMGlowing("alien_ship_booster", Material.IRON).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_DECORATION_0 = new BlockBaseMP("alien_ship_decoration_0", Material.IRON).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_DECORATION_1 = new BlockBaseMP("alien_ship_decoration_1", Material.IRON).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_CHEST = new BlockAlienChest("alien_chest");
 
         MPBlocks.DIONA_COBBLESTONE_WALL = new BlockAllWall("diona_cobblestone_wall", BlockAllWall.BlockType.DIONA_COBBLESTONE_WALL);
         MPBlocks.CHALOS_COBBLESTONE_WALL = new BlockAllWall("chalos_cobblestone_wall", BlockAllWall.BlockType.CHALOS_COBBLESTONE_WALL);
@@ -210,6 +224,7 @@ public class MPBlocks
         MPBlocks.DIONA_DUNGEON_BRICK_SLAB = new BlockAllHalfSlab("diona_dungeon_brick_slab", BlockAllHalfSlab.BlockType.DIONA_DUNGEON_BRICK_SLAB);
         MPBlocks.CHALOS_DUNGEON_BRICK_SLAB = new BlockAllHalfSlab("chalos_dungeon_brick_slab", BlockAllHalfSlab.BlockType.CHALOS_DUNGEON_BRICK_SLAB);
         MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB = new BlockAllHalfSlab("nibiru_dungeon_brick_slab", BlockAllHalfSlab.BlockType.NIBIRU_DUNGEON_BRICK_SLAB);
+        MPBlocks.ALIEN_SHIP_DECORATION_SLAB = new BlockAllHalfSlab("alien_ship_decoration_slab", BlockAllHalfSlab.BlockType.ALIEN_SHIP_SLAB).setSoundType(SoundType.METAL);
 
         MPBlocks.CHEESE_SPORE_SLAB = new BlockAllHalfSlab("cheese_spore_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_SLAB, Material.WOOD);
         MPBlocks.INFECTED_OAK_SLAB = new BlockAllHalfSlab("infected_oak_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_SLAB, Material.WOOD);
@@ -221,6 +236,7 @@ public class MPBlocks
         MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB = new BlockAllDoubleSlab("double_diona_dungeon_brick_slab", BlockAllHalfSlab.BlockType.DIONA_DUNGEON_BRICK_SLAB);
         MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB = new BlockAllDoubleSlab("double_chalos_dungeon_brick_slab", BlockAllHalfSlab.BlockType.CHALOS_DUNGEON_BRICK_SLAB);
         MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB = new BlockAllDoubleSlab("double_nibiru_dungeon_brick_slab", BlockAllHalfSlab.BlockType.NIBIRU_DUNGEON_BRICK_SLAB);
+        MPBlocks.DOUBLE_ALIEN_SHIP_DECORATION_SLAB = new BlockAllDoubleSlab("double_alien_ship_decoration_slab", BlockAllHalfSlab.BlockType.ALIEN_SHIP_SLAB).setSoundType(SoundType.METAL);
 
         MPBlocks.DOUBLE_CHEESE_SPORE_SLAB = new BlockAllDoubleSlab("double_cheese_spore_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_SLAB, Material.WOOD);
         MPBlocks.DOUBLE_INFECTED_OAK_SLAB = new BlockAllDoubleSlab("double_infected_oak_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_SLAB, Material.WOOD);
@@ -267,6 +283,11 @@ public class MPBlocks
         // Polish
         BlocksItemsRegistry.registerBlock(MPBlocks.POLISHED_TIN_DECORATION_BLOCK);
         BlocksItemsRegistry.registerBlock(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK);
+
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_SHIP_BOOSTER);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_SHIP_DECORATION_0);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_SHIP_DECORATION_1);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_CHEST);
 
         // Tinted Glass
         BlocksItemsRegistry.registerBlock(MPBlocks.TINTED_GLASS);
@@ -319,6 +340,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_SHIP_DECORATION_SLAB, ItemBlockSlabMP::new);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_SPORE_SLAB, ItemBlockSlabMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_SLAB, ItemBlockSlabMP::new);
@@ -330,6 +352,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_ALIEN_SHIP_DECORATION_SLAB, null);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_CHEESE_SPORE_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_OAK_SLAB, null);
@@ -372,6 +395,7 @@ public class MPBlocks
         // Polish
         BlockUtils.setBlockHarvestLevel(MPBlocks.POLISHED_TIN_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_CHEST, EnumHarvestLevel.PICKAXE, 1);
 
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
@@ -379,6 +403,7 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_SHIP_DECORATION_SLAB, EnumHarvestLevel.PICKAXE, 1);
 
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
@@ -386,6 +411,7 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_ALIEN_SHIP_DECORATION_SLAB, EnumHarvestLevel.PICKAXE, 1);
 
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHEESE_SPORE_SLAB, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_SLAB, EnumHarvestLevel.AXE, 0);
@@ -412,12 +438,14 @@ public class MPBlocks
         MPBlocks.DIONA_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.DIONA_DUNGEON_BRICK_SLAB);
         MPBlocks.CHALOS_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB);
         MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB);
+        MPBlocks.ALIEN_SHIP_DECORATION_SLAB.setHalf(MPBlocks.ALIEN_SHIP_DECORATION_SLAB);
         MPBlocks.DIONA_COBBLESTONE_SLAB.setDouble(MPBlocks.DOUBLE_DIONA_COBBLESTONE_SLAB);
         MPBlocks.CHALOS_COBBLESTONE_SLAB.setDouble(MPBlocks.DOUBLE_CHALOS_COBBLESTONE_SLAB);
         MPBlocks.NIBIRU_COBBLESTONE_SLAB.setDouble(MPBlocks.DOUBLE_NIBIRU_COBBLESTONE_SLAB);
         MPBlocks.DIONA_DUNGEON_BRICK_SLAB.setDouble(MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB);
         MPBlocks.CHALOS_DUNGEON_BRICK_SLAB.setDouble(MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB);
         MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB.setDouble(MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB);
+        MPBlocks.ALIEN_SHIP_DECORATION_SLAB.setDouble(MPBlocks.DOUBLE_ALIEN_SHIP_DECORATION_SLAB);
 
         MPBlocks.CHEESE_SPORE_SLAB.setHalf(MPBlocks.CHEESE_SPORE_SLAB);
         MPBlocks.INFECTED_OAK_SLAB.setHalf(MPBlocks.INFECTED_OAK_SLAB);
@@ -432,6 +460,7 @@ public class MPBlocks
         MPBlocks.DOUBLE_DIONA_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.DIONA_DUNGEON_BRICK_SLAB);
         MPBlocks.DOUBLE_CHALOS_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.CHALOS_DUNGEON_BRICK_SLAB);
         MPBlocks.DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB.setHalf(MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB);
+        MPBlocks.DOUBLE_ALIEN_SHIP_DECORATION_SLAB.setHalf(MPBlocks.ALIEN_SHIP_DECORATION_SLAB);
 
         MPBlocks.DOUBLE_CHEESE_SPORE_SLAB.setHalf(MPBlocks.CHEESE_SPORE_SLAB);
         MPBlocks.DOUBLE_INFECTED_OAK_SLAB.setHalf(MPBlocks.INFECTED_OAK_SLAB);

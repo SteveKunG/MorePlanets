@@ -202,7 +202,7 @@ public class ClientEventHandler
 
         if (player != null)
         {
-            // prevent randomly NPE
+            // prevent rare NPE
             if (this.mc.player == player)
             {
                 this.runAlienBeamTick(player);

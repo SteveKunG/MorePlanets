@@ -1,0 +1,25 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "moreplanets:blocks/alien_ship_base_0",
+            "down": "moreplanets:blocks/alien_ship_base_4",
+            "up": "moreplanets:blocks/alien_ship_base_1",
+            "north": "moreplanets:blocks/alien_ship_base_2",
+            "east": "moreplanets:blocks/alien_ship_base_2",
+            "south": "moreplanets:blocks/alien_ship_base_2",
+            "west": "moreplanets:blocks/alien_ship_base_2",
+            "down_glow": "moreplanets:blocks/alien_ship_base_4_glow",
+            "up_glow": "moreplanets:blocks/alien_ship_base_1",
+            "north_glow": "moreplanets:blocks/alien_ship_base_2_glow",
+            "east_glow": "moreplanets:blocks/alien_ship_base_2_glow",
+            "south_glow": "moreplanets:blocks/alien_ship_base_2_glow",
+            "west_glow": "moreplanets:blocks/alien_ship_base_2_glow"
+        },
+        "model": "moreplanets:cube_glow"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

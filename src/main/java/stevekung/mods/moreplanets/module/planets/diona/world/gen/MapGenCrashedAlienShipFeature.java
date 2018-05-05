@@ -20,7 +20,7 @@ public class MapGenCrashedAlienShipFeature extends MapGenStructure
 
     public MapGenCrashedAlienShipFeature()
     {
-        this.maxDistanceBetweenScatteredFeatures = 24;
+        this.maxDistanceBetweenScatteredFeatures = 32;
     }
 
     @Override

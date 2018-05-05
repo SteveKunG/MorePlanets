@@ -26,6 +26,7 @@ import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileenti
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.TileEntityMultalicCrystalRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.TileEntityNuclearWasteTankRenderer;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
+import stevekung.mods.moreplanets.tileentity.TileEntityAlienChest;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
@@ -141,6 +142,10 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         else if (block == MPBlocks.SHIELD_GENERATOR)
         {
             TileEntityShieldGeneratorRenderer.INSTANCE.render();
+        }
+        else if (block == MPBlocks.ALIEN_CHEST)
+        {
+            ClientRegistryUtils.renderTESR(new TileEntityAlienChest());
         }
     }
 }

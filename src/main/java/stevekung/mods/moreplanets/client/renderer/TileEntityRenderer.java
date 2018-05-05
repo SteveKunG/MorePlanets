@@ -43,5 +43,6 @@ public class TileEntityRenderer
         ClientRegistryUtils.registerTileEntityRendering(TileEntityBlackHoleStorage.class, new TileEntityBlackHoleStorageRenderer());
         ClientRegistryUtils.registerTileEntityRendering(TileEntityAlienDefenderBeacon.class, new TileEntityAlienDefenderBeaconRenderer());
         ClientRegistryUtils.registerTileEntityRendering(TileEntityShieldGenerator.class, new TileEntityShieldGeneratorRenderer());
+        ClientRegistryUtils.registerTileEntityRendering(TileEntityAlienChest.class, new TileEntityChestRendererMP("alien"));
     }
 }

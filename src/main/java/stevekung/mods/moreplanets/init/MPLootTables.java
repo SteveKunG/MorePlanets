@@ -70,6 +70,7 @@ public class MPLootTables
     public static final ResourceLocation NIBIRU_STRONGHOLD_CROSSING = MorePlanetsMod.COMMON_REGISTRY.registerChestLoot("nibiru_stronghold_crossing");
     public static final ResourceLocation NIBIRU_VILLAGE_LIBRARY = MorePlanetsMod.COMMON_REGISTRY.registerChestLoot("nibiru_village_library");
     public static final ResourceLocation NIBIRU_VILLAGE_BLACKSMITH = MorePlanetsMod.COMMON_REGISTRY.registerChestLoot("nibiru_village_blacksmith");
+    public static final ResourceLocation CRASHED_ALIEN_SHIP = MorePlanetsMod.COMMON_REGISTRY.registerChestLoot("crashed_alien_ship");
 
     // Gameplay
     public static final ResourceLocation SPACE_FISHING = MorePlanetsMod.COMMON_REGISTRY.registerGameplayLoot("space_fishing");

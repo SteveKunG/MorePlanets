@@ -22,7 +22,9 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityCrashedAlienProbe;
+import stevekung.mods.moreplanets.tileentity.TileEntityAlienChest;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
@@ -122,7 +124,7 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
 
         public CrashedAlienShip(Random rand, int x, int z)
         {
-            super(rand, x, 64, z, 16, 7, 10);
+            super(rand, x, 64, z, 17, 9, 11);
         }
 
         @Override
@@ -143,7 +145,7 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
                 settings.setIntegrity(0.65F);
                 Template template = manager.getTemplate(server, ALIEN_SHIP_0);
                 template.addBlocksToWorldChunk(world, pos, settings);
-                System.out.println("generate at " + pos);
+                LoggerMP.debug("Generate Crashed Alien Ship at {} {} {}", pos.getX(), pos.getY(), pos.getZ());
                 Map<BlockPos, String> map = template.getDataBlocks(pos, settings);
 
                 for (Entry<BlockPos, String> entry : map.entrySet())
@@ -162,6 +164,18 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
                         if (tileDown instanceof TileEntityCrashedAlienProbe)
                         {
                             ((TileEntityCrashedAlienProbe)tileDown).setLootTable(MPLootTables.CRASHED_ALIEN_PROBE, rand.nextLong());
+                        }
+                    }
+                    if ("alien_chest_0".equals(entry.getValue()) || "alien_chest_1".equals(entry.getValue()))
+                    {
+                        BlockPos pos2 = entry.getKey();
+                        world.setBlockState(pos2, Blocks.AIR.getDefaultState(), 3);
+                        TileEntity tile = world.getTileEntity(pos2);
+                        TileEntity tileDown = world.getTileEntity(pos2.down());
+
+                        if (tileDown instanceof TileEntityAlienChest)
+                        {
+                            ((TileEntityAlienChest)tileDown).setLootTable(MPLootTables.CRASHED_ALIEN_SHIP, rand.nextLong());
                         }
                     }
                 }
