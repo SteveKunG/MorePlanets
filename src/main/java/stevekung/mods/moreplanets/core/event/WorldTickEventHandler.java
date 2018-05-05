@@ -19,11 +19,11 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import stevekung.mods.moreplanets.core.data.WorldDataStartedDimension;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDiona;
-import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienBeam;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
-import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
+import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
+import stevekung.mods.moreplanets.planets.diona.entity.EntityAlienBeam;
+import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
+import stevekung.mods.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 
 public class WorldTickEventHandler
 {

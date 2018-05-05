@@ -1,12 +1,12 @@
 package stevekung.mods.moreplanets.init;
 
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosAncientChest;
-import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
-import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosTreasureChest;
-import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityCheeseSporeChest;
-import stevekung.mods.moreplanets.module.planets.diona.tileentity.*;
-import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
+import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosAncientChest;
+import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
+import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosTreasureChest;
+import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
+import stevekung.mods.moreplanets.planets.diona.tileentity.*;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityNull;

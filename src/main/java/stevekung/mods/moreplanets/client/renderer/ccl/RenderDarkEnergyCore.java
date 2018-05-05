@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
-import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDarkEnergyCore;
+import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyCore;
 import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 
 public class RenderDarkEnergyCore extends CCLRenderBase

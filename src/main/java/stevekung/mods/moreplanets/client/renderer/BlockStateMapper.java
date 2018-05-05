@@ -1,13 +1,13 @@
 package stevekung.mods.moreplanets.client.renderer;
 
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.module.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.module.planets.fronos.blocks.FronosBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockInfectedSugarCane;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockNuclearWasteTank;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.BlockVeinFrame;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.planets.fronos.blocks.FronosBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockInfectedSugarCane;
+import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNuclearWasteTank;
+import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
+import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockDropableLitOre;
 import stevekung.mods.moreplanets.utils.blocks.BlockSaplingMP;
 import stevekung.mods.moreplanets.utils.client.renderer.StateMapperCTM;

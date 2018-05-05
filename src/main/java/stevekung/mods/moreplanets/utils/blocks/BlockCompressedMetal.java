@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.entity.EntityAntiGravFallingBlock;
-import stevekung.mods.moreplanets.module.moons.koentus.blocks.KoentusBlocks;
+import stevekung.mods.moreplanets.moons.koentus.blocks.KoentusBlocks;
 
 public class BlockCompressedMetal extends BlockBaseMP
 {

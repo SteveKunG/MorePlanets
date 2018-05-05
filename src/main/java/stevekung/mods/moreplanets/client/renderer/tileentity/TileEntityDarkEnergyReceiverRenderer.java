@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.model.ModelDarkEnergyReceiver;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 
 @SideOnly(Side.CLIENT)

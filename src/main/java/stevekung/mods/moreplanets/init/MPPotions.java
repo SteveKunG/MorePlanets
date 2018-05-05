@@ -4,9 +4,9 @@ import net.minecraft.potion.Potion;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.items.capsule_effect.DarkEnergyProtectionEffect;
 import stevekung.mods.moreplanets.items.capsule_effect.InfectedSporeProtectionEffect;
-import stevekung.mods.moreplanets.module.planets.diona.potion.DarkEnergyEffect;
-import stevekung.mods.moreplanets.module.planets.diona.potion.InfectedCrystallizedEffect;
-import stevekung.mods.moreplanets.module.planets.nibiru.potion.InfectedSporeEffect;
+import stevekung.mods.moreplanets.planets.diona.potion.DarkEnergyEffect;
+import stevekung.mods.moreplanets.planets.diona.potion.InfectedCrystallizedEffect;
+import stevekung.mods.moreplanets.planets.nibiru.potion.InfectedSporeEffect;
 
 public class MPPotions
 {

@@ -1,13 +1,13 @@
 package stevekung.mods.moreplanets.client.renderer;
 
 import stevekung.mods.moreplanets.client.renderer.tileentity.*;
-import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosAncientChest;
-import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosTreasureChest;
-import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityCheeseSporeChest;
-import stevekung.mods.moreplanets.module.planets.diona.client.renderer.tileentity.*;
-import stevekung.mods.moreplanets.module.planets.diona.tileentity.*;
-import stevekung.mods.moreplanets.module.planets.nibiru.client.renderer.tileentity.*;
-import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.*;
+import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosAncientChest;
+import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosTreasureChest;
+import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
+import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.*;
+import stevekung.mods.moreplanets.planets.diona.tileentity.*;
+import stevekung.mods.moreplanets.planets.nibiru.client.renderer.tileentity.*;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.utils.client.renderer.tileentity.TileEntityAncientChestRendererMP;
 import stevekung.mods.moreplanets.utils.client.renderer.tileentity.TileEntityChestRendererMP;

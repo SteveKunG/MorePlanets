@@ -23,9 +23,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
-import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruFurnace;
-import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityTerrastoneFurnace;
+import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNibiruFurnace;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityTerrastoneFurnace;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityFurnaceMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 

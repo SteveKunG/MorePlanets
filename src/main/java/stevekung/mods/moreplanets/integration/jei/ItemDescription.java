@@ -2,7 +2,7 @@ package stevekung.mods.moreplanets.integration.jei;
 
 import net.minecraft.util.text.TextFormatting;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 /***

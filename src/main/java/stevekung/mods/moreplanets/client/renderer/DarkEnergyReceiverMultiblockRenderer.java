@@ -3,9 +3,9 @@ package stevekung.mods.moreplanets.client.renderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityInfectedCrystallizedEnderCore;
-import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityZeliusEgg;
+import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCrystallizedEnderCore;
+import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
 import stevekung.mods.moreplanets.utils.ClientRendererUtils;
 
 public class DarkEnergyReceiverMultiblockRenderer

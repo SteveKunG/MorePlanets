@@ -4,8 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
-import stevekung.mods.moreplanets.module.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
-import stevekung.mods.moreplanets.module.planets.nibiru.entity.projectile.EntityInfectedArrow;
+import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
+import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
 
 public class DamageSourceMP extends DamageSource
 {

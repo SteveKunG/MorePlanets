@@ -7,10 +7,10 @@ import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosHills;
-import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeChalosPlains;
-import stevekung.mods.moreplanets.module.planets.chalos.world.gen.biome.BiomeSlimelyWasteland;
-import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.*;
+import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosHills;
+import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosPlains;
+import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeSlimelyWasteland;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.*;
 import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeBaseMP;
 
 public class MPBiomes

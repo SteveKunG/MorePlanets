@@ -8,17 +8,17 @@ import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
 import micdoodle8.mods.galacticraft.core.entities.*;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
-import stevekung.mods.moreplanets.module.planets.chalos.dimension.WorldProviderChalos;
-import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseCow;
-import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseFloater;
-import stevekung.mods.moreplanets.module.planets.chalos.entity.EntityCheeseSlime;
-import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDiona;
-import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienMiner;
-import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusCreeper;
-import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusSkeleton;
-import stevekung.mods.moreplanets.module.planets.diona.entity.EntityZeliusZombie;
-import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
-import stevekung.mods.moreplanets.module.planets.nibiru.entity.*;
+import stevekung.mods.moreplanets.planets.chalos.dimension.WorldProviderChalos;
+import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseCow;
+import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseFloater;
+import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseSlime;
+import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
+import stevekung.mods.moreplanets.planets.diona.entity.EntityAlienMiner;
+import stevekung.mods.moreplanets.planets.diona.entity.EntityZeliusCreeper;
+import stevekung.mods.moreplanets.planets.diona.entity.EntityZeliusSkeleton;
+import stevekung.mods.moreplanets.planets.diona.entity.EntityZeliusZombie;
+import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
+import stevekung.mods.moreplanets.planets.nibiru.entity.*;
 import stevekung.mods.moreplanets.utils.CelestialRegistryUtils;
 
 public class MPPlanets

@@ -12,7 +12,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 
 public class SlotBlackHoleStorageSchematic extends Slot
 {

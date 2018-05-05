@@ -19,9 +19,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.module.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
-import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
-import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNibiruDungeonSpawner;
+import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
+import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNibiruDungeonSpawner;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntityProvider
