@@ -7,7 +7,6 @@ import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.recipe.NasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -40,7 +39,6 @@ public class CraftingManagerMP
     protected static void addBlockRecipe()
     {
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_WARP_PAD, 9), new Object[] { "PPP", "MMM", 'P', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'M', new ItemStack(GCBlocks.basicBlock, 1, 12) });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.ROCKET_CRUSHER, 1), new Object[] { "PPP", "HAH", "WFW", 'P', Blocks.PISTON, 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'A', Blocks.ANVIL, 'W', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'F', new ItemStack(GCItems.basicItem, 1, 14) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.TINTED_GLASS, 8), "tinted_glass", new Object[] {"III", "IDI", "III", 'I', "glass", 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5)});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_TIN_DECORATION_BLOCK, 4), new Object[] { "TT", "TT", 'T', new ItemStack(GCBlocks.basicBlock, 1, 4) });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK, 8), new Object[] { "TTT", "TAT", "TTT", 'T', MPBlocks.POLISHED_TIN_DECORATION_BLOCK, 'A', new ItemStack(GCItems.basicItem, 1, 8) });
@@ -124,23 +122,6 @@ public class CraftingManagerMP
         RecipeHelper.addShapelessCompressorRecipe(new ItemStack(ChalosItems.COMPRESSED_DIREMSIUM), ChalosItems.DIREMSIUM_INGOT, ChalosItems.DIREMSIUM_INGOT);
         RecipeHelper.addShapelessCompressorRecipe(new ItemStack(ChalosItems.COMPRESSED_ZYPTORIUM), ChalosItems.ZYPTORIUM_INGOT, ChalosItems.ZYPTORIUM_INGOT);
         RecipeHelper.addShapelessCompressorRecipe(new ItemStack(FronosItems.COMPRESSED_EXTRAILONITE), FronosItems.EXTRAILONITE_INGOT, FronosItems.EXTRAILONITE_INGOT);
-
-        /*// rocket crusher
-                for (int i = 0; i < 4; i++)
-                {
-                    RecipeHelper.addRocketCrusherRecipe(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 21, 0), "DDD", "DRD", "DDD", 'D', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'R', new ItemStack(AsteroidsItems.tier3Rocket, 1, i));
-                    RecipeHelper.addRocketCrusherRecipe(new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 21, 0), "III", "DRD", "SSS", 'D', new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0), 'I', new ItemStack(DionaItems.DIONA_ITEM, 1, 2), 'S', new ItemStack(DionaItems.DIONA_ITEM, 1, 3), 'R', new ItemStack(DionaItems.TIER_4_ROCKET, 1, i));
-                    RecipeHelper.addRocketCrusherRecipe(new ItemStack(NibiruItems.NIBIRU_ITEM, 21, 4), "III", "DRD", "SSS", 'D', new ItemStack(ChalosItems.TIER_5_ROCKET_PART, 1, 0), 'I', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 2), 'S', new ItemStack(ChalosItems.CHALOS_ITEM, 1, 3), 'R', new ItemStack(ChalosItems.TIER_5_ROCKET, 1, i));
-                }*/
-
-        /*// deconstructor
-                TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 0)); //tier 3 plate
-                TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 2));
-                TileEntityDeconstructor.addSalvage(new ItemStack(DionaItems.TIER_4_ROCKET_PART, 1, 3));
-                TileEntityDeconstructor.addSalvage(new ItemStack(ChalosItems.TIER_5_ROCKET_PART)); //tier 4 plate
-                TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 4)); //tier 5 plate
-                TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 2));
-                TileEntityDeconstructor.addSalvage(new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 3));*/
 
         // dark energy transform
         input.put(0, new ItemStack(Items.ENDER_PEARL));

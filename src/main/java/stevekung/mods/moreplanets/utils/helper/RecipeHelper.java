@@ -4,7 +4,6 @@ import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
 import stevekung.mods.moreplanets.utils.debug.JSONRecipe;
 
 public class RecipeHelper
@@ -86,10 +85,5 @@ public class RecipeHelper
     public static void addShapelessCompressorRecipe(ItemStack output, Object... obj)
     {
         CompressorRecipes.addShapelessRecipe(output, obj);
-    }
-
-    public static void addRocketCrusherRecipe(ItemStack output, Object... obj)
-    {
-        RocketCrusherRecipes.addRecipe(output, obj);
     }
 }

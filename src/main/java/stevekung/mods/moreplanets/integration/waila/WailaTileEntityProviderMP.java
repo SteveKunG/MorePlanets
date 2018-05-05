@@ -47,7 +47,6 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         WailaUtil.register(TileEntityDarkEnergyReceiver.class, true, true, false, false, false);
         WailaUtil.register(TileEntityDarkEnergyCore.class, true, true, false, false, false);
         WailaUtil.register(TileEntitySpaceWarpPadFull.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityRocketCrusher.class, true, true, false, false, false);
         WailaUtil.register(TileEntityDarkEnergyGenerator.class, true, true, false, false, false);
         WailaUtil.register(TileEntityEnergyStorageClusterMP.class, true, true, false, false, false);
         WailaUtil.register(TileEntityBlackHoleStorage.class, true, true, false, false, false);
@@ -203,15 +202,6 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 tooltip.add(LangUtils.translate("gui.message.status.name") + ": " + nbt.getString("Status"));
             }
         }
-        if (tile instanceof TileEntityRocketCrusher)
-        {
-            int scale = (int) ((double) nbt.getInteger("ProcessTicks") / (double) nbt.getInteger("ProcessTime") * 100);
-
-            if (scale > 0)
-            {
-                tooltip.add(LangUtils.translate("gui.electric_compressor.desc.0") + ": " + scale + "%");
-            }
-        }
         if (tile instanceof TileEntityBlackHoleStorage)
         {
             String owner = LangUtils.translate("gui.status.unknown.name");
@@ -339,12 +329,6 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             nbt.setFloat("MaxEnergy", energy.getMaxEnergyStoredGC());
             nbt.setFloat("MaxOutput", energy.storage.getMaxExtract());
             return energy.writeToNBT(nbt);
-        }
-        if (tile instanceof TileEntityRocketCrusher)
-        {
-            TileEntityRocketCrusher crusher = (TileEntityRocketCrusher) tile;
-            nbt.setInteger("ProcessTime", crusher.processTimeRequired);
-            return crusher.writeToNBT(nbt);
         }
         if (tile instanceof TileEntityShieldGenerator)
         {

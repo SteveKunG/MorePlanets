@@ -8,9 +8,8 @@ import net.minecraft.item.ItemStack;
 
 public class MPJEIRecipes
 {
-    public static String ROCKET_CRUSHER = "moreplanets.rocket_crusher_recipes";
-    public static String DARK_ENERGY_TRANSFORM = "moreplanets.dark_energy_transform_recipes";
-    public static String BLACK_HOLE_STORAGE = "moreplanets.black_hole_storage_recipes";
+    public static final String DARK_ENERGY_TRANSFORM = "moreplanets.dark_energy_transform_recipes";
+    public static final String BLACK_HOLE_STORAGE = "moreplanets.black_hole_storage_recipes";
 
     public static int countChests(INasaWorkbenchRecipe recipe)
     {

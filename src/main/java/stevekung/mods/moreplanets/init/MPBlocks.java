@@ -90,7 +90,6 @@ public class MPBlocks
 
     public static Block SPACE_WARP_PAD;
     public static Block SPACE_WARP_PAD_FULL;
-    public static Block ROCKET_CRUSHER;
     public static Block DUNGEON_GLOWSTONE;
     public static Block DARK_ENERGY_RECEIVER;
     public static Block SPACE_PORTAL;
@@ -229,7 +228,6 @@ public class MPBlocks
 
         MPBlocks.SPACE_WARP_PAD = new BlockSpaceWarpPad("space_warp_pad");
         MPBlocks.SPACE_WARP_PAD_FULL = new BlockSpaceWarpPadFull("space_warp_pad_full");
-        MPBlocks.ROCKET_CRUSHER = new BlockRocketCrusher("rocket_crusher");
         MPBlocks.DUNGEON_GLOWSTONE = new BlockBaseMP("dungeon_glowstone", Material.GLASS).setSoundType(SoundType.GLASS).setResistance(100.0F).setHardness(0.3F).setLightLevel(1.0F);
         MPBlocks.DARK_ENERGY_RECEIVER = new BlockDarkEnergyReceiver("dark_energy_receiver");
         MPBlocks.SPACE_PORTAL = new BlockSpacePortal("space_portal");
@@ -339,7 +337,6 @@ public class MPBlocks
 
         BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL, null);
-        BlocksItemsRegistry.registerBlock(MPBlocks.ROCKET_CRUSHER, ItemBlockDescription::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.DUNGEON_GLOWSTONE);
         BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_RECEIVER, ItemBlockDarkEnergyReceiver::new);
 
@@ -406,7 +403,6 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.NIBIRU_DUNGEON_BRICK_WALL, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.SPACE_WARP_PAD, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.SPACE_WARP_PAD_FULL, EnumHarvestLevel.PICKAXE, 2);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.ROCKET_CRUSHER, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_RECEIVER, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.SHIELD_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
 

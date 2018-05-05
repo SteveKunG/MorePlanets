@@ -18,7 +18,10 @@ import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityDark
 import stevekung.mods.moreplanets.module.planets.nibiru.client.gui.GuiNuclearWasteGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.inventory.ContainerNuclearWasteGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
-import stevekung.mods.moreplanets.tileentity.*;
+import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
+import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
+import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
+import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 
@@ -33,11 +36,7 @@ public class GuiHandlerMP implements IGuiHandler
         {
             return null;
         }
-        if (tile instanceof TileEntityRocketCrusher)
-        {
-            return new ContainerRocketCrusher(player.inventory, (TileEntityRocketCrusher)tile);
-        }
-        else if (tile instanceof TileEntitySpaceWarpPadFull)
+        if (tile instanceof TileEntitySpaceWarpPadFull)
         {
             return new ContainerSpaceWarpPad(player.inventory, (TileEntitySpaceWarpPadFull)tile);
         }
@@ -82,11 +81,7 @@ public class GuiHandlerMP implements IGuiHandler
         {
             return null;
         }
-        if (tile instanceof TileEntityRocketCrusher)
-        {
-            return new GuiRocketCrusher(player.inventory, (TileEntityRocketCrusher)tile);
-        }
-        else if (tile instanceof TileEntitySpaceWarpPadFull)
+        if (tile instanceof TileEntitySpaceWarpPadFull)
         {
             return new GuiSpaceWarpPad(player.inventory, (TileEntitySpaceWarpPadFull)tile);
         }

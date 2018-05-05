@@ -19,7 +19,6 @@ public class MPTileEntities
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntitySpaceWarpPad.class, "space_warp_pad");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntitySpaceWarpPadFull.class, "space_warp_pad_full");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDummy.class, "tile_dummy_block");
-        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityRocketCrusher.class, "rocket_crusher");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDarkEnergyReceiver.class, "dark_energy_receiver");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNull.class, "dummy_null_mp");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityEnergyStorageClusterMP.class, "energy_storage_cluster_mp");
