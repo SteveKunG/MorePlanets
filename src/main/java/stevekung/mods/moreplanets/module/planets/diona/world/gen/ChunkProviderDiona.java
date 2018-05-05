@@ -15,7 +15,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.module.planets.diona.world.gen.dungeon.MapGenDionaDungeon;
@@ -34,10 +33,10 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 public class ChunkProviderDiona extends ChunkProviderBaseMP
 {
     private BiomeDecoratorDiona biomeDecorator = new BiomeDecoratorDiona();
-    private Biome[] biomesForGeneration = { MPBiomes.DIONA };
     private MapGenCavesBase caveGenerator = new MapGenCavesBase(DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState(), DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), Sets.newHashSet(DionaBlocks.DIONA_SUB_SURFACE_ROCK, DionaBlocks.DIONA_ROCK));
     private MapGenDionaMineshaft mineshaftGenerator = new MapGenDionaMineshaft();
     private MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(DionaBlocks.DIONA_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), DionaBlocks.INFECTED_CRYSTALLIZED_WEB.getDefaultState(), DionaBlocks.INFECTED_CRYSTALLIZED_TORCH.getDefaultState(), DionaBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
+    private MapGenCrashedAlienShipFeature alienShipFeatureGenerator = new MapGenCrashedAlienShipFeature();
 
     public ChunkProviderDiona(World world, long seed)
     {
@@ -50,12 +49,12 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
         ChunkPrimer primer = new ChunkPrimer();
         this.rand.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
         this.generateTerrain(chunkX, chunkZ, primer);
-        this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
         this.createCraters(chunkX, chunkZ, primer);
-        this.replaceBiomeBlocks(chunkX, chunkZ, primer, this.biomesForGeneration);
+        this.replaceBiomeBlocks(chunkX, chunkZ, primer, null);
         this.caveGenerator.generate(this.worldObj, chunkX, chunkZ, primer);
         this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, primer);
         this.dungeonGenerator.generate(this.worldObj, chunkX, chunkZ, primer);
+        this.alienShipFeatureGenerator.generate(this.worldObj, chunkX, chunkZ, primer);
         Chunk chunk = new Chunk(this.worldObj, primer, chunkX, chunkZ);
         chunk.generateSkylightMap();
         return chunk;
@@ -78,6 +77,7 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
         this.dungeonGenerator.generateStructure(this.worldObj, this.rand, chunkcoordintpair);
         this.biomeDecorator.decorate(this.worldObj, this.rand, biomegenbase, pos);
         this.mineshaftGenerator.generateStructure(this.worldObj, this.rand, chunkcoordintpair);
+        this.alienShipFeatureGenerator.generateStructure(this.worldObj, this.rand, chunkcoordintpair);
         int y = this.rand.nextInt(this.rand.nextInt(248) + 8);
 
         if (this.rand.nextInt(4) == 0)
@@ -117,8 +117,9 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
+        this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, null);
         this.dungeonGenerator.generate(this.worldObj, chunkX, chunkZ, null);
+        this.alienShipFeatureGenerator.generate(this.worldObj, chunkX, chunkZ, null);
     }
 
     @Override
