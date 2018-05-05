@@ -24,29 +24,20 @@ public class VersionChecker implements Runnable
     private String exceptionMessage;
     private List<String> announceMessage = new ArrayList<>();
     private static VersionChecker instance;
-    private String MOD_ID;
-    private String MOD_VERSION;
-    private int MAJOR_VERSION = 2;
-    private int MINOR_VERSION = 0;
-    private int BUILD_VERSION = 0;
-
-    static
-    {
-        if (instance == null)
-        {
-            instance = new VersionChecker();
-        }
-    }
-
-    private VersionChecker() {}
+    private String modId;
+    private String modVersion;
+    private int majorVersion;
+    private int minorVersion;
+    private int buildVersion;
 
     public VersionChecker(String modId, String modVersion, int major, int minor, int build)
     {
-        MOD_ID = modId;
-        MOD_VERSION = modVersion;
-        MAJOR_VERSION = major;
-        MINOR_VERSION = minor;
-        BUILD_VERSION = build;
+        this.modId = modId;
+        this.modVersion = modVersion;
+        this.majorVersion = major;
+        this.minorVersion = minor;
+        this.buildVersion = build;
+        VersionChecker.instance = this;
     }
 
     public void startCheck()
@@ -65,8 +56,8 @@ public class VersionChecker implements Runnable
 
         try
         {
-            version = new URL("https://raw.githubusercontent.com/SteveKunG/VersionCheckLibrary/master/" + MOD_ID + "/" + MOD_ID + "_version.txt").openStream();
-            desc = new URL("https://raw.githubusercontent.com/SteveKunG/VersionCheckLibrary/master/" + MOD_ID + "/" + MOD_ID + "_desc.txt").openStream();
+            version = new URL("https://raw.githubusercontent.com/SteveKunG/VersionCheckLibrary/master/" + this.modId + "/" + this.modId + "_version.txt").openStream();
+            desc = new URL("https://raw.githubusercontent.com/SteveKunG/VersionCheckLibrary/master/" + this.modId + "/" + this.modId + "_desc.txt").openStream();
         }
         catch (MalformedURLException e)
         {
@@ -136,7 +127,7 @@ public class VersionChecker implements Runnable
         }
         String latestVersion = major + "." + minor + "." + build;
         this.latestVersion = latestVersion;
-        this.latest = !MOD_VERSION.equals(latestVersion) && (major > MAJOR_VERSION || minor > MINOR_VERSION || build > BUILD_VERSION);
+        this.latest = !this.modVersion.equals(latestVersion) && (major > this.majorVersion || minor > this.minorVersion || build > this.buildVersion);
     }
 
     public boolean isLatestVersion()
