@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockInfectedSeaLantern extends BlockBaseMP
@@ -41,7 +41,7 @@ public class BlockInfectedSeaLantern extends BlockBaseMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return NibiruItems.INFECTED_PRISMARINE_CRYSTALS;
+        return MPItems.INFECTED_PRISMARINE_CRYSTALS;
     }
 
     @Override

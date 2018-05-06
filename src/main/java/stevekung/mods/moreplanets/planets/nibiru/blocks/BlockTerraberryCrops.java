@@ -16,7 +16,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -52,13 +52,13 @@ public class BlockTerraberryCrops extends BlockCropsMP
     @Override
     protected Item getCrop()
     {
-        return NibiruItems.TERRABERRY;
+        return MPItems.TERRABERRY;
     }
 
     @Override
     protected Item getSeed()
     {
-        return NibiruItems.TERRABERRY;
+        return MPItems.TERRABERRY;
     }
 
     @Override

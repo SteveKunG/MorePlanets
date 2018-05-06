@@ -26,8 +26,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityLargeInfectedCrystallized;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
@@ -154,7 +154,7 @@ public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITile
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return DionaItems.INFECTED_CRYSTALLIZED_SHARD;
+        return MPItems.INFECTED_CRYSTALLIZED_SHARD;
     }
 
     @Override

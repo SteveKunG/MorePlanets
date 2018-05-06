@@ -35,7 +35,6 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityVeinBall;
 import stevekung.mods.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
@@ -353,7 +352,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
                 this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, j));
             }
 
-            this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_DUNGEON_KEY_BLADE), 0.5F);
+            this.entityDropItem(new ItemStack(MPItems.NIBIRU_DUNGEON_KEY_BLADE), 0.5F);
             this.setDead();
 
             if (this.spawner != null)

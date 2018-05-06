@@ -44,12 +44,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.init.MPSounds;
+import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.planets.nibiru.entity.ai.EntityAIShlimeEatGrass;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 import stevekung.mods.moreplanets.utils.entity.ai.EntityAITemptMP;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
@@ -88,8 +84,8 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new AIPanic(this, 1.33D));
         this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
-        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(NibiruItems.INFECTED_WHEAT)));
-        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(NibiruItems.TERRABERRY)));
+        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(MPItems.INFECTED_WHEAT)));
+        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(MPItems.TERRABERRY)));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(5, this.entityAIEatGrass);
         this.tasks.addTask(6, new EntityAIWander(this, 0.6D));
@@ -369,7 +365,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && (itemStack.getItem() == NibiruItems.INFECTED_WHEAT || itemStack.getItem() == NibiruItems.TERRABERRY);
+        return !itemStack.isEmpty() && (itemStack.getItem() == MPItems.INFECTED_WHEAT || itemStack.getItem() == MPItems.TERRABERRY);
     }
 
     @Override

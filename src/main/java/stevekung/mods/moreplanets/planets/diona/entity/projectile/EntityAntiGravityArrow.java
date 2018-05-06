@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.entity.EntityArrowMP;
 
 public class EntityAntiGravityArrow extends EntityArrowMP
@@ -36,7 +36,7 @@ public class EntityAntiGravityArrow extends EntityArrowMP
         {
             boolean flag = this.pickupStatus == PickupStatus.ALLOWED || this.pickupStatus == PickupStatus.CREATIVE_ONLY && player.capabilities.isCreativeMode;
 
-            if (this.pickupStatus == PickupStatus.ALLOWED && !player.inventory.addItemStackToInventory(new ItemStack(DionaItems.ANTI_GRAVITY_ARROW, 1)))
+            if (this.pickupStatus == PickupStatus.ALLOWED && !player.inventory.addItemStackToInventory(new ItemStack(MPItems.ANTI_GRAVITY_ARROW, 1)))
             {
                 flag = false;
             }

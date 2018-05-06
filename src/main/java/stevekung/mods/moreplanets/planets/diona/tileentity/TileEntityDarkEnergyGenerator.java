@@ -24,8 +24,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.utils.dimension.IDarkEnergyProvider;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -312,7 +312,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     {
         if (slotID == 2)
         {
-            return itemStack.getItem() == DionaItems.DARK_ENERGY_PEARL;
+            return itemStack.getItem() == MPItems.DARK_ENERGY_PEARL;
         }
         return (slotID == 0 || slotID == 1) && ItemElectricBase.isElectricItem(itemStack.getItem());
     }

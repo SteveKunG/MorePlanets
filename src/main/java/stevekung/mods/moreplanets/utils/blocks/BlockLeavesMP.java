@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -368,11 +368,11 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         {
             if (this.type == BlockType.INFECTED_OAK_LEAVES)
             {
-                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.INFECTED_APPLE));
+                Block.spawnAsEntity(world, pos, new ItemStack(MPItems.INFECTED_APPLE));
             }
             else if (this.type == BlockType.ALIEN_BERRY_OAK_LEAVES)
             {
-                Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.ALIEN_BERRY));
+                Block.spawnAsEntity(world, pos, new ItemStack(MPItems.ALIEN_BERRY));
             }
         }
     }

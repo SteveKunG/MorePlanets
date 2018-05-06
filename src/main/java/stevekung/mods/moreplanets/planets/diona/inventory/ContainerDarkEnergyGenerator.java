@@ -8,7 +8,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 
 public class ContainerDarkEnergyGenerator extends Container
@@ -72,7 +72,7 @@ public class ContainerDarkEnergyGenerator extends Container
                     }
                     movedToMachineSlot = true;
                 }
-                else if (stack.getItem() == DionaItems.DARK_ENERGY_PEARL)
+                else if (stack.getItem() == MPItems.DARK_ENERGY_PEARL)
                 {
                     if (!this.mergeItemStack(stack, 2, 3, false))
                     {

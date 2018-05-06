@@ -16,9 +16,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityAntiGravityArrow;
 import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
@@ -85,7 +85,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     @Override
     public boolean onEntityItemUpdate(EntityItem entityItem)
     {
-        if (entityItem.getItem().getItem() == DionaItems.ANTI_GRAVITY_ARROW)
+        if (entityItem.getItem().getItem() == MPItems.ANTI_GRAVITY_ARROW)
         {
             entityItem.motionY += TransformerHooks.getItemGravity(entityItem);
         }

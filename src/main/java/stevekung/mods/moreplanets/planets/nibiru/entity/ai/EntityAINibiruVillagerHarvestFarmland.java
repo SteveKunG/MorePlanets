@@ -9,8 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -77,12 +77,12 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
 
                     if (!itemStack.isEmpty())
                     {
-                        if (itemStack.getItem() == NibiruItems.INFECTED_WHEAT_SEEDS)
+                        if (itemStack.getItem() == MPItems.INFECTED_WHEAT_SEEDS)
                         {
                             world.setBlockState(blockpos, MPBlocks.INFECTED_WHEAT.getDefaultState(), 3);
                             flag = true;
                         }
-                        else if (itemStack.getItem() == NibiruItems.TERRABERRY)
+                        else if (itemStack.getItem() == MPItems.TERRABERRY)
                         {
                             world.setBlockState(blockpos, MPBlocks.TERRABERRY.getDefaultState(), 3);
                             flag = true;

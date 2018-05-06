@@ -40,9 +40,9 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntityCheeseSpore;
-import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.entity.EntityFlyingBossMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
@@ -218,7 +218,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
                 }
             }
 
-            this.entityDropItem(new ItemStack(ChalosItems.CHALOS_DUNGEON_KEY, 1, 0), 0.5F);
+            this.entityDropItem(new ItemStack(MPItems.CHALOS_DUNGEON_KEY, 1, 0), 0.5F);
             super.setDead();
 
             if (this.spawner != null)
@@ -403,11 +403,11 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
         for (int i = 0; i < j; ++i)
         {
-            this.entityDropItem(new ItemStack(ChalosItems.CHEESE_SLIMEBALL, 1), 0.0F);
+            this.entityDropItem(new ItemStack(MPItems.CHEESE_SLIMEBALL, 1), 0.0F);
         }
         for (int i = 0; i < this.rand.nextInt(3); ++i)
         {
-            this.entityDropItem(new ItemStack(ChalosItems.CHEESE_MILK_CURD, 1), 0.0F);
+            this.entityDropItem(new ItemStack(MPItems.CHEESE_MILK_CURD, 1), 0.0F);
         }
     }
 

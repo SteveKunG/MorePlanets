@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.items.armor.ItemBreathableArmor;
 
 public class ItemBreathableDiremsium extends ItemBreathableArmor
@@ -24,6 +24,6 @@ public class ItemBreathableDiremsium extends ItemBreathableArmor
     @Override
     public Item getRepairItem()
     {
-        return ChalosItems.COMPRESSED_DIREMSIUM;
+        return MPItems.COMPRESSED_DIREMSIUM;
     }
 }

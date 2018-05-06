@@ -24,7 +24,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
@@ -116,7 +116,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return NibiruItems.MULTALIC_CRYSTAL_PIECES;
+        return MPItems.MULTALIC_CRYSTAL_PIECES;
     }
 
     @Override

@@ -14,7 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.recipe.BlackHoleStorageRecipes;
 
 public class ContainerBlackHoleStorageSchematic extends Container
@@ -130,7 +130,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
                 Item item = slotStack.getItem();
                 int meta = slotStack.getItemDamage();
 
-                if (item == DionaItems.GLOWING_IRON_INGOT || item == Items.ENDER_EYE || item == DionaItems.BLACK_HOLE_FRAGMENTS || item == GCItems.flagPole || item == AsteroidsItems.basicItem && meta == 5)
+                if (item == MPItems.GLOWING_IRON_INGOT || item == Items.ENDER_EYE || item == MPItems.BLACK_HOLE_FRAGMENTS || item == GCItems.flagPole || item == AsteroidsItems.basicItem && meta == 5)
                 {
                     for (int i = 1; i < 23; i++)
                     {

@@ -8,13 +8,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.tileentity.TileEntityShieldGeneratorRenderer;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosAncientChest;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosTreasureChest;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.entity.RenderInfectedCrystallizedBomb;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityDarkEnergyGeneratorRenderer;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityLargeInfectedCrystallizedRenderer;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyCore;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaAncientChest;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaTreasureChest;
@@ -74,7 +74,7 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         {
             ClientRegistryUtils.renderTESR(new TileEntityDarkEnergyReceiver());
         }
-        else if (itemStack.getItem() == DionaItems.INFECTED_CRYSTALLIZED_BOMB)
+        else if (itemStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_BOMB)
         {
             RenderInfectedCrystallizedBomb.INSTANCE.render();
         }

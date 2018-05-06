@@ -3,11 +3,9 @@ package stevekung.mods.moreplanets.init;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityInfectedCrystallizedBomb;
 import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedEgg;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedSnowball;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.stevekunglib.utils.BehaviorProjectileDispenseBase;
 
 public class MPOthers
@@ -20,11 +18,11 @@ public class MPOthers
 
     private static void registerDispenserObject()
     {
-        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(DionaItems.INFECTED_CRYSTALLIZED_BOMB, new BehaviorProjectileDispenseBase(EntityInfectedCrystallizedBomb.class));
-        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(NibiruItems.INFECTED_SNOWBALL, new BehaviorProjectileDispenseBase(EntityInfectedSnowball.class));
-        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(NibiruItems.INFECTED_EGG, new BehaviorProjectileDispenseBase(EntityInfectedEgg.class));
-        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(DionaItems.INFECTED_CRYSTALLIZED_ARROW, new BehaviorProjectileDispenseBase(EntityInfectedCrystallizedArrow.class, true));
-        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(NibiruItems.INFECTED_ARROW, new BehaviorProjectileDispenseBase(EntityInfectedArrow.class, true));
+        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_CRYSTALLIZED_BOMB, new BehaviorProjectileDispenseBase(EntityInfectedCrystallizedBomb.class));
+        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_SNOWBALL, new BehaviorProjectileDispenseBase(EntityInfectedSnowball.class));
+        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_EGG, new BehaviorProjectileDispenseBase(EntityInfectedEgg.class));
+        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_CRYSTALLIZED_ARROW, new BehaviorProjectileDispenseBase(EntityInfectedCrystallizedArrow.class, true));
+        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_ARROW, new BehaviorProjectileDispenseBase(EntityInfectedArrow.class, true));
     }
 
     private static void registerEndermanCarriableBlock()

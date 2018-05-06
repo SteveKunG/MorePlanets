@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.items.armor.ItemBreathableArmor;
 
 public class ItemBreathableMultalicCrystal extends ItemBreathableArmor
@@ -24,6 +24,6 @@ public class ItemBreathableMultalicCrystal extends ItemBreathableArmor
     @Override
     public Item getRepairItem()
     {
-        return NibiruItems.MULTALIC_CRYSTAL_PIECES;
+        return MPItems.MULTALIC_CRYSTAL_PIECES;
     }
 }

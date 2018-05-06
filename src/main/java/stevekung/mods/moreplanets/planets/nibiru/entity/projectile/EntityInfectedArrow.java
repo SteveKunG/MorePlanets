@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.DamageSourceMP;
 import stevekung.mods.moreplanets.utils.entity.EntityArrowMP;
 
@@ -45,7 +45,7 @@ public class EntityInfectedArrow extends EntityArrowMP
         {
             boolean flag = this.pickupStatus == PickupStatus.ALLOWED || this.pickupStatus == PickupStatus.CREATIVE_ONLY && player.capabilities.isCreativeMode;
 
-            if (this.pickupStatus == PickupStatus.ALLOWED && !player.inventory.addItemStackToInventory(new ItemStack(NibiruItems.INFECTED_ARROW, 1)))
+            if (this.pickupStatus == PickupStatus.ALLOWED && !player.inventory.addItemStackToInventory(new ItemStack(MPItems.INFECTED_ARROW, 1)))
             {
                 flag = false;
             }

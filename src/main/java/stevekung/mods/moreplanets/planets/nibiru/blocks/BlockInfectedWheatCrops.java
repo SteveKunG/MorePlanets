@@ -7,7 +7,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -36,12 +36,12 @@ public class BlockInfectedWheatCrops extends BlockCropsMP
     @Override
     protected Item getSeed()
     {
-        return NibiruItems.INFECTED_WHEAT_SEEDS;
+        return MPItems.INFECTED_WHEAT_SEEDS;
     }
 
     @Override
     protected Item getCrop()
     {
-        return NibiruItems.INFECTED_WHEAT;
+        return MPItems.INFECTED_WHEAT;
     }
 }

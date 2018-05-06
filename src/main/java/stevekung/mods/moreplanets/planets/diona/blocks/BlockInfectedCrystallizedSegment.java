@@ -21,8 +21,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCrystallizedEnderCore;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
@@ -125,7 +125,7 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
         {
             if (!heldItem.isEmpty())
             {
-                if (heldItem.getItem() == DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL)
+                if (heldItem.getItem() == MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL)
                 {
                     if (!player.capabilities.isCreativeMode)
                     {

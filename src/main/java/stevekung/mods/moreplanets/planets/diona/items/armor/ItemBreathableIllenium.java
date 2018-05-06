@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.items.armor.ItemBreathableArmor;
 
 public class ItemBreathableIllenium extends ItemBreathableArmor
@@ -24,6 +24,6 @@ public class ItemBreathableIllenium extends ItemBreathableArmor
     @Override
     public Item getRepairItem()
     {
-        return DionaItems.COMPRESSED_ILLENIUM;
+        return MPItems.COMPRESSED_ILLENIUM;
     }
 }

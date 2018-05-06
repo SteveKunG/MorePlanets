@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 
 public class EntityVeinEye extends Entity
 {
@@ -178,7 +178,7 @@ public class EntityVeinEye extends Entity
 
                 if (this.shatterOrDrop)
                 {
-                    this.world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(NibiruItems.VEIN_EYE)));
+                    this.world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(MPItems.VEIN_EYE)));
                 }
                 else
                 {
@@ -188,7 +188,7 @@ public class EntityVeinEye extends Entity
 
                     for (int j = 0; j < 8; ++j)
                     {
-                        this.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, d1, d2, this.rand.nextGaussian() * 0.15D, this.rand.nextDouble() * 0.2D, this.rand.nextGaussian() * 0.15D, new int[] {Item.getIdFromItem(NibiruItems.VEIN_EYE)});
+                        this.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, d1, d2, this.rand.nextGaussian() * 0.15D, this.rand.nextDouble() * 0.2D, this.rand.nextGaussian() * 0.15D, new int[] {Item.getIdFromItem(MPItems.VEIN_EYE)});
                     }
                     for (double d18 = 0.0D; d18 < Math.PI * 2D; d18 += 0.15707963267948966D)
                     {

@@ -27,9 +27,8 @@ public class BlockSnowLayerMP extends BlockBaseMP
 {
     private static final AxisAlignedBB[] SNOW_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
     private Item snowball;
-    private int meta;
 
-    public BlockSnowLayerMP(String name, Item snow, int meta)
+    public BlockSnowLayerMP(String name, Item snow)
     {
         super(Material.SNOW);
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.LAYERS, Integer.valueOf(1)));
@@ -38,7 +37,6 @@ public class BlockSnowLayerMP extends BlockBaseMP
         this.setHardness(0.1F);
         this.setUnlocalizedName(name);
         this.snowball = snow;
-        this.meta = meta;
     }
 
     @Override
@@ -120,13 +118,7 @@ public class BlockSnowLayerMP extends BlockBaseMP
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return this.meta;
-    }
-
-    @Override
-    public int quantityDropped(Random random)
+    public int quantityDropped(Random rand)
     {
         return 1;
     }

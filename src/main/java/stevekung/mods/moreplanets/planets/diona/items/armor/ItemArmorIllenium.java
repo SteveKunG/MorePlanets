@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.items.armor.ItemArmorMP;
 
 public class ItemArmorIllenium extends ItemArmorMP
@@ -18,11 +18,11 @@ public class ItemArmorIllenium extends ItemArmorMP
     @Override
     public String getArmorTexture(ItemStack itemStack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        if (itemStack.getItem() == DionaItems.ILLENIUM_HELMET || itemStack.getItem() == DionaItems.ILLENIUM_CHESTPLATE || itemStack.getItem() == DionaItems.ILLENIUM_BOOTS)
+        if (itemStack.getItem() == MPItems.ILLENIUM_HELMET || itemStack.getItem() == MPItems.ILLENIUM_CHESTPLATE || itemStack.getItem() == MPItems.ILLENIUM_BOOTS)
         {
             return "moreplanets:textures/model/armor/illenium_1.png";
         }
-        else if (itemStack.getItem() == DionaItems.ILLENIUM_LEGGINGS)
+        else if (itemStack.getItem() == MPItems.ILLENIUM_LEGGINGS)
         {
             return "moreplanets:textures/model/armor/illenium_2.png";
         }
@@ -32,6 +32,6 @@ public class ItemArmorIllenium extends ItemArmorMP
     @Override
     public Item getRepairItem()
     {
-        return DionaItems.COMPRESSED_ILLENIUM;
+        return MPItems.COMPRESSED_ILLENIUM;
     }
 }

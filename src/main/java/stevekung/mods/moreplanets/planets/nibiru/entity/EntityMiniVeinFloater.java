@@ -31,9 +31,9 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
@@ -281,7 +281,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
                 }
             }
 
-            this.entityDropItem(new ItemStack(NibiruItems.NIBIRU_DUNGEON_KEY_BOW), 0.5F);
+            this.entityDropItem(new ItemStack(MPItems.NIBIRU_DUNGEON_KEY_BOW), 0.5F);
             this.setDead();
 
             if (this.spawner != null)

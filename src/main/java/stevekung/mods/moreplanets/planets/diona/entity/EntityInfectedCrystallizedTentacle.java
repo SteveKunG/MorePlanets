@@ -23,9 +23,9 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 
 public class EntityInfectedCrystallizedTentacle extends Entity
 {
@@ -184,7 +184,7 @@ public class EntityInfectedCrystallizedTentacle extends Entity
 
                     for (int k = 0; k < j; ++k)
                     {
-                        this.entityDropItem(new ItemStack(DionaItems.INFECTED_CRYSTALLIZED_SHARD), 0.0F);
+                        this.entityDropItem(new ItemStack(MPItems.INFECTED_CRYSTALLIZED_SHARD), 0.0F);
                     }
                     for (EntityLivingBase living : list)
                     {

@@ -12,9 +12,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.entity.EntitySlimeBaseMP;
 
@@ -139,7 +139,7 @@ public class EntityInfectedCrystallizedSlimeMinion extends EntitySlimeBaseMP
             float f3 = MathHelper.cos(f) * i * 0.5F * f1;
             double d0 = this.posX + f2;
             double d1 = this.posZ + f3;
-            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, d0, this.getEntityBoundingBox().minY, d1, new Object[] { DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL });
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, d0, this.getEntityBoundingBox().minY, d1, new Object[] { MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL });
         }
     }
 

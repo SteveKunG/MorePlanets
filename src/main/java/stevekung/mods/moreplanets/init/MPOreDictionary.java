@@ -1,8 +1,5 @@
 package stevekung.mods.moreplanets.init;
 
-import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 
 public class MPOreDictionary
@@ -123,13 +120,13 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("blockCandy", MPBlocks.PURPLE_CANDY_CANE);
         BlockUtils.registerOreDictionary("blockCandy", MPBlocks.RAINBOW_CANDY_CANE);
         BlockUtils.registerOreDictionary("dyeBlue", MPItems.BLUE_DYE);
-        BlockUtils.registerOreDictionary("slimeball", DionaItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
-        BlockUtils.registerOreDictionary("slimeball", ChalosItems.CHEESE_SLIMEBALL);
-        BlockUtils.registerOreDictionary("cropWheat", NibiruItems.INFECTED_WHEAT);
-        BlockUtils.registerOreDictionary("sugarcane", NibiruItems.INFECTED_SUGAR_CANE);
-        BlockUtils.registerOreDictionary("gemPrismarine", NibiruItems.INFECTED_PRISMARINE_SHARD);
-        BlockUtils.registerOreDictionary("dustPrismarine", NibiruItems.INFECTED_PRISMARINE_CRYSTALS);
-        BlockUtils.registerOreDictionary("egg", NibiruItems.INFECTED_EGG);
+        BlockUtils.registerOreDictionary("slimeball", MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
+        BlockUtils.registerOreDictionary("slimeball", MPItems.CHEESE_SLIMEBALL);
+        BlockUtils.registerOreDictionary("cropWheat", MPItems.INFECTED_WHEAT);
+        BlockUtils.registerOreDictionary("sugarcane", MPItems.INFECTED_SUGAR_CANE);
+        BlockUtils.registerOreDictionary("gemPrismarine", MPItems.INFECTED_PRISMARINE_SHARD);
+        BlockUtils.registerOreDictionary("dustPrismarine", MPItems.INFECTED_PRISMARINE_CRYSTALS);
+        BlockUtils.registerOreDictionary("egg", MPItems.INFECTED_EGG);
         BlockUtils.registerOreDictionary("oreSetrorium", MPBlocks.SETRORIUM_ORE);
         BlockUtils.registerOreDictionary("oreIllenium", MPBlocks.ILLENIUM_ORE);
         BlockUtils.registerOreDictionary("oreTin", MPBlocks.DIONA_TIN_ORE);

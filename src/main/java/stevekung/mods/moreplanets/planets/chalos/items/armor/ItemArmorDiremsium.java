@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.items.armor.ItemArmorMP;
 
 public class ItemArmorDiremsium extends ItemArmorMP
@@ -18,11 +18,11 @@ public class ItemArmorDiremsium extends ItemArmorMP
     @Override
     public String getArmorTexture(ItemStack itemStack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        if (itemStack.getItem() == ChalosItems.DIREMSIUM_HELMET || itemStack.getItem() == ChalosItems.DIREMSIUM_CHESTPLATE || itemStack.getItem() == ChalosItems.DIREMSIUM_BOOTS)
+        if (itemStack.getItem() == MPItems.DIREMSIUM_HELMET || itemStack.getItem() == MPItems.DIREMSIUM_CHESTPLATE || itemStack.getItem() == MPItems.DIREMSIUM_BOOTS)
         {
             return "moreplanets:textures/model/armor/diremsium_1.png";
         }
-        else if (itemStack.getItem() == ChalosItems.DIREMSIUM_LEGGINGS)
+        else if (itemStack.getItem() == MPItems.DIREMSIUM_LEGGINGS)
         {
             return "moreplanets:textures/model/armor/diremsium_2.png";
         }
@@ -32,6 +32,6 @@ public class ItemArmorDiremsium extends ItemArmorMP
     @Override
     public Item getRepairItem()
     {
-        return ChalosItems.COMPRESSED_DIREMSIUM;
+        return MPItems.COMPRESSED_DIREMSIUM;
     }
 }

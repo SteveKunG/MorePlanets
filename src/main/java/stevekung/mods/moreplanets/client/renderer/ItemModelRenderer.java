@@ -7,10 +7,10 @@ import net.minecraft.item.Item;
 import stevekung.mods.moreplanets.client.renderer.ccl.*;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosAncientChest;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosTreasureChest;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaAncientChest;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaTreasureChest;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityAlienBerryChest;
@@ -74,7 +74,7 @@ public class ItemModelRenderer
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.MULTALIC_CRYSTAL, new RenderMultalicCrystal());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.JUICER_EGG, new RenderJuicerEgg());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.VEIN_FRAME, new RenderVeinFrame());
-            ItemModelRenderer.registerCCLItemRenderer(DionaItems.INFECTED_CRYSTALLIZED_BOMB, new RenderInfectedCrystallizedBombCCL());
+            ItemModelRenderer.registerCCLItemRenderer(MPItems.INFECTED_CRYSTALLIZED_BOMB, new RenderInfectedCrystallizedBombCCL());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_CHEST, new RenderChest(new TileEntityAlienChest()));
 
             LoggerMP.info("Successfully registered CodeChickenCore item rendering for More Planets tile entities");

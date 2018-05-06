@@ -19,7 +19,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
@@ -46,13 +46,13 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
         {
             if (state.getValue(STATE) == BlockType.NONE)
             {
-                if (itemStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
+                if (itemStack.getItem() == MPItems.WASTE_ROD_PICKER)
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
                         itemStack.damageItem(1, player);
                     }
-                    Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
+                    Block.spawnAsEntity(world, pos, new ItemStack(MPItems.NUCLEAR_WASTE_ROD));
                     world.setBlockState(pos, state.withProperty(STATE, BlockType.NO_ROD));
                     return true;
                 }

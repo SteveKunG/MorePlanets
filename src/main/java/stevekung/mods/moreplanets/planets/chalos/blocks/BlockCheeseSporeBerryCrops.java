@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -57,13 +57,13 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
     @Override
     protected Item getCrop()
     {
-        return ChalosItems.CHEESE_SPORE_BERRY;
+        return MPItems.CHEESE_SPORE_BERRY;
     }
 
     @Override
     protected Item getSeed()
     {
-        return ChalosItems.CHEESE_SPORE_SEED;
+        return MPItems.CHEESE_SPORE_SEED;
     }
 
     @Override

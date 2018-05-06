@@ -20,9 +20,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 
 public class EntityInfectedCrystallizedWorm extends EntityMob implements IEntityBreathable
 {
@@ -133,7 +133,7 @@ public class EntityInfectedCrystallizedWorm extends EntityMob implements IEntity
         }
         for (int k = 0; k < j; ++k)
         {
-            this.entityDropItem(new ItemStack(DionaItems.INFECTED_CRYSTALLIZED_SHARD), 0.0F);
+            this.entityDropItem(new ItemStack(MPItems.INFECTED_CRYSTALLIZED_SHARD), 0.0F);
         }
     }
 

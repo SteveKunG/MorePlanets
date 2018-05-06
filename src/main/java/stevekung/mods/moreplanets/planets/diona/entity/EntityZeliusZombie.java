@@ -16,10 +16,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public class EntityZeliusZombie extends EntityZombie implements IEntityBreathable
@@ -74,11 +74,11 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
 
             if (i == 0)
             {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(DionaItems.ILLENIUM_SWORD));
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(MPItems.ILLENIUM_SWORD));
             }
             else
             {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(DionaItems.ILLENIUM_PICKAXE));
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(MPItems.ILLENIUM_PICKAXE));
             }
         }
     }

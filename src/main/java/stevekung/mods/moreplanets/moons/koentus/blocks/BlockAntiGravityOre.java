@@ -13,7 +13,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.entity.EntityAntiGravFallingBlock;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockBasicMP;
 
 public class BlockAntiGravityOre extends BlockBasicMP implements IDetectableResource
@@ -28,7 +28,7 @@ public class BlockAntiGravityOre extends BlockBasicMP implements IDetectableReso
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return DionaItems.ANTI_GRAVITY_FRAGMENTS;
+        return MPItems.ANTI_GRAVITY_FRAGMENTS;
     }
 
     @Override

@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockFluidLavaBaseMP;
 
@@ -90,7 +90,7 @@ public class BlockFluidCrystallizedLava extends BlockFluidLavaBaseMP
 
                 if (world.rand.nextInt(500) == 0)
                 {
-                    Block.spawnAsEntity(world, pos.up(), new ItemStack(DionaItems.INFECTED_CRYSTALLIZED_SHARD));
+                    Block.spawnAsEntity(world, pos.up(), new ItemStack(MPItems.INFECTED_CRYSTALLIZED_SHARD));
                 }
                 return true;
             }

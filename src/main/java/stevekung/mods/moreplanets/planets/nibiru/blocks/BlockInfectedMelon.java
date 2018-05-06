@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockInfectedMelon extends BlockBaseMP
@@ -33,7 +33,7 @@ public class BlockInfectedMelon extends BlockBaseMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return NibiruItems.INFECTED_MELON;
+        return MPItems.INFECTED_MELON;
     }
 
     @Override

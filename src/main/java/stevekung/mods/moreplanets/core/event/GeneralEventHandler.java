@@ -32,11 +32,10 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.blocks.IFire;
 import stevekung.mods.stevekunglib.utils.CachedEnum;
 
@@ -61,11 +60,11 @@ public class GeneralEventHandler
         {
             event.setBurnTime(100);
         }
-        if (item == DionaItems.INFECTED_CRYSTALLIZED_SHARD)
+        if (item == MPItems.INFECTED_CRYSTALLIZED_SHARD)
         {
             event.setBurnTime(400);
         }
-        if (item == NibiruItems.INFECTED_COAL || item == NibiruItems.INFECTED_CHARCOAL)
+        if (item == MPItems.INFECTED_COAL || item == MPItems.INFECTED_CHARCOAL)
         {
             event.setBurnTime(1600);
         }

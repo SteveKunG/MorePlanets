@@ -18,8 +18,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 
@@ -148,16 +147,16 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         {
             if (this.type == BlockType.CHEESE_GRASS)
             {
-                drops.add(new ItemStack(ChalosItems.CHEESE_SPORE_SEED));
+                drops.add(new ItemStack(MPItems.CHEESE_SPORE_SEED));
             }
             else if (this.type == BlockType.INFECTED_GRASS || this.type == BlockType.INFECTED_FERN)
             {
-                drops.add(new ItemStack(NibiruItems.INFECTED_WHEAT_SEEDS));
+                drops.add(new ItemStack(MPItems.INFECTED_WHEAT_SEEDS));
             }
         }
         if (this.type == BlockType.GREEN_VEIN_GRASS && RANDOM.nextInt(24) == 0)
         {
-            drops.add(new ItemStack(NibiruItems.TERRABERRY));
+            drops.add(new ItemStack(MPItems.TERRABERRY));
         }
         if (this.type.isFlower())
         {

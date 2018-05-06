@@ -19,11 +19,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.planets.fronos.entity.ai.EntityAIFaceTexture;
 import stevekung.mods.moreplanets.planets.fronos.entity.ai.EntityAIFronosPanic;
 import stevekung.mods.moreplanets.planets.fronos.entity.ai.EntityAIFronosTempt;
-import stevekung.mods.moreplanets.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public abstract class EntityFronosPet extends EntityTameable
@@ -208,14 +208,14 @@ public abstract class EntityFronosPet extends EntityTameable
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && itemStack.getItem() == FronosItems.CHOCOLATE_BAR;
+        return !itemStack.isEmpty() && itemStack.getItem() == MPItems.CHOCOLATE_BAR;
     }
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
         ItemStack itemStack = player.getHeldItem(hand);
-        boolean isTamedItem = !itemStack.isEmpty() && itemStack.getItem() == FronosItems.JELLY_BEANS;
+        boolean isTamedItem = !itemStack.isEmpty() && itemStack.getItem() == MPItems.JELLY_BEANS;
 
         if (this.isTamed())
         {

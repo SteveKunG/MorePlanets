@@ -49,7 +49,6 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.planets.nibiru.entity.ai.*;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
@@ -71,12 +70,12 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     private boolean areAdditionalTasksSet;
     private InventoryBasic villagerInventory;
     private ITradeList[] farmerTradeList = new ITradeList[] {
-            new EmeraldForItems(new ItemStack(NibiruItems.INFECTED_WHEAT), new PriceInfo(18, 22)),
-            new EmeraldForItems(new ItemStack(NibiruItems.TERRABERRY), new PriceInfo(15, 19)),
+            new EmeraldForItems(new ItemStack(MPItems.INFECTED_WHEAT), new PriceInfo(18, 22)),
+            new EmeraldForItems(new ItemStack(MPItems.TERRABERRY), new PriceInfo(15, 19)),
             new ListItemForEmeralds(new ItemStack(Items.BREAD), new PriceInfo(-4, -2)),
             new EmeraldForItems(new ItemStack(MPBlocks.INFECTED_MELON_BLOCK), new PriceInfo(7, 12)),
-            new ListItemForEmeralds(new ItemStack(NibiruItems.INFECTED_APPLE), new PriceInfo(-5, -7)),
-            new ListItemForEmeralds(new ItemStack(NibiruItems.ALIEN_BERRY), new PriceInfo(-7, -9))
+            new ListItemForEmeralds(new ItemStack(MPItems.INFECTED_APPLE), new PriceInfo(-5, -7)),
+            new ListItemForEmeralds(new ItemStack(MPItems.ALIEN_BERRY), new PriceInfo(-7, -9))
     };
     private ITradeList[] librarianTradeList = new ITradeList[] {
             new EmeraldForItems(new ItemStack(Items.PAPER), new PriceInfo(24, 36)),
@@ -734,7 +733,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
                         flag = true;
                         this.villagerInventory.decrStackSize(i, 3);
                     }
-                    else if (itemStack.getItem() == NibiruItems.TERRABERRY && itemStack.getCount() >= 12)
+                    else if (itemStack.getItem() == MPItems.TERRABERRY && itemStack.getCount() >= 12)
                     {
                         flag = true;
                         this.villagerInventory.decrStackSize(i, 12);
@@ -806,7 +805,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
     private boolean canVillagerPickupItem(ItemStack itemStack)
     {
-        return itemStack.getItem() == NibiruItems.TERRABERRY || itemStack.getItem() == NibiruItems.INFECTED_WHEAT || itemStack.getItem() == NibiruItems.INFECTED_WHEAT_SEEDS;
+        return itemStack.getItem() == MPItems.TERRABERRY || itemStack.getItem() == MPItems.INFECTED_WHEAT || itemStack.getItem() == MPItems.INFECTED_WHEAT_SEEDS;
     }
 
     private boolean func_175553_cp()
@@ -835,11 +834,11 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
             if (!itemStack.isEmpty())
             {
-                if (itemStack.getItem() == Items.BREAD && itemStack.getCount() >= 3 * multiplier || itemStack.getItem() == NibiruItems.TERRABERRY && itemStack.getCount() >= 12 * multiplier)
+                if (itemStack.getItem() == Items.BREAD && itemStack.getCount() >= 3 * multiplier || itemStack.getItem() == MPItems.TERRABERRY && itemStack.getCount() >= 12 * multiplier)
                 {
                     return true;
                 }
-                if (flag && itemStack.getItem() == NibiruItems.INFECTED_WHEAT && itemStack.getCount() >= 9 * multiplier)
+                if (flag && itemStack.getItem() == MPItems.INFECTED_WHEAT && itemStack.getCount() >= 9 * multiplier)
                 {
                     return true;
                 }
@@ -854,7 +853,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         {
             ItemStack itemStack = this.villagerInventory.getStackInSlot(i);
 
-            if (!itemStack.isEmpty() && (itemStack.getItem() == NibiruItems.INFECTED_WHEAT || itemStack.getItem() == NibiruItems.TERRABERRY))
+            if (!itemStack.isEmpty() && (itemStack.getItem() == MPItems.INFECTED_WHEAT || itemStack.getItem() == MPItems.TERRABERRY))
             {
                 return true;
             }

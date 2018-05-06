@@ -14,8 +14,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.planets.fronos.items.FronosItems;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.entity.EntitySlimeBaseMP;
 
@@ -177,21 +177,21 @@ public class EntityJellySlime extends EntitySlimeBaseMP
             switch (this.getJellySlimeType())
             {
             case 0:
-                item = FronosItems.GRAPE_JELLY;
+                item = MPItems.GRAPE_JELLY;
             case 1:
-                item = FronosItems.RASPBERRY_JELLY;
+                item = MPItems.RASPBERRY_JELLY;
             case 2:
-                item = FronosItems.STRAWBERRY_JELLY;
+                item = MPItems.STRAWBERRY_JELLY;
             case 3:
-                item = FronosItems.BERRY_JELLY;
+                item = MPItems.BERRY_JELLY;
             case 4:
-                item = FronosItems.LIME_JELLY;
+                item = MPItems.LIME_JELLY;
             case 5:
-                item = FronosItems.ORANGE_JELLY;
+                item = MPItems.ORANGE_JELLY;
             case 6:
-                item = FronosItems.GREEN_JELLY;
+                item = MPItems.GREEN_JELLY;
             case 7:
-                item = FronosItems.LEMON_JELLY;
+                item = MPItems.LEMON_JELLY;
             }
             MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, d0, this.getEntityBoundingBox().minY, d1, new Object[] { item });
         }

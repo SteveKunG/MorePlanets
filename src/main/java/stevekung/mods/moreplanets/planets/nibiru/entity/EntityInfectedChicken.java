@@ -16,8 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
@@ -35,8 +35,8 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, NibiruItems.INFECTED_WHEAT_SEEDS, false));
-        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, NibiruItems.INFECTED_MELON_SEEDS, false));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, MPItems.INFECTED_WHEAT_SEEDS, false));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, MPItems.INFECTED_MELON_SEEDS, false));
         this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
@@ -103,7 +103,7 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
     @Override
     public EntityItem dropItem(Item item, int size)
     {
-        return this.dropItemWithOffset(NibiruItems.INFECTED_EGG, 1, 0.0F);
+        return this.dropItemWithOffset(MPItems.INFECTED_EGG, 1, 0.0F);
     }
 
     @Override
@@ -115,6 +115,6 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
     @Override
     public boolean isBreedingItem(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && itemStack.getItem() == NibiruItems.INFECTED_WHEAT_SEEDS;
+        return !itemStack.isEmpty() && itemStack.getItem() == MPItems.INFECTED_WHEAT_SEEDS;
     }
 }

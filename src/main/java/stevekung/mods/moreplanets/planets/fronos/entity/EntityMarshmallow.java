@@ -14,11 +14,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.planets.fronos.entity.ai.EntityAIFaceTexture;
 import stevekung.mods.moreplanets.planets.fronos.entity.ai.EntityAIFronosPanic;
 import stevekung.mods.moreplanets.planets.fronos.entity.ai.EntityAIFronosTempt;
-import stevekung.mods.moreplanets.planets.fronos.items.FronosItems;
 
 public class EntityMarshmallow extends EntityFronosPet
 {
@@ -37,7 +37,7 @@ public class EntityMarshmallow extends EntityFronosPet
         this.aiSit = new EntityAISit(this);
         this.aiTexture = new EntityAIFaceTexture(this);
         this.aiPanic = new EntityAIFronosPanic(this, 2.5D);
-        this.aiTempt = new EntityAIFronosTempt(this, 1.4D, new ItemStack(FronosItems.CHOCOLATE_BAR), false);
+        this.aiTempt = new EntityAIFronosTempt(this, 1.4D, new ItemStack(MPItems.CHOCOLATE_BAR), false);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(1, this.aiPanic);
         this.tasks.addTask(2, this.aiSit);

@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 
@@ -100,7 +100,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return NibiruItems.INFECTED_SUGAR_CANE;
+        return MPItems.INFECTED_SUGAR_CANE;
     }
 
     @Override
@@ -118,7 +118,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(NibiruItems.INFECTED_SUGAR_CANE);
+        return new ItemStack(MPItems.INFECTED_SUGAR_CANE);
     }
 
     @Override

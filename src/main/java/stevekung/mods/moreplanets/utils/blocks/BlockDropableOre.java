@@ -12,9 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
-import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 
 public class BlockDropableOre extends BlockBasicMP implements IDetectableResource
 {
@@ -32,11 +30,11 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
     {
         if (this.type == BlockType.SETRORIUM_ORE)
         {
-            return DionaItems.SETRORIUM_SHARD;
+            return MPItems.SETRORIUM_SHARD;
         }
         else if (this.type == BlockType.CHEESE_MILK_ORE)
         {
-            return ChalosItems.CHEESE_MILK_CURD;
+            return MPItems.CHEESE_MILK_CURD;
         }
         else if (this.type == BlockType.COAL_ORE)
         {
@@ -64,11 +62,11 @@ public class BlockDropableOre extends BlockBasicMP implements IDetectableResourc
         }
         else if (this.type == BlockType.INFECTED_COAL_ORE)
         {
-            return NibiruItems.INFECTED_COAL;
+            return MPItems.INFECTED_COAL;
         }
         else if (this.type == BlockType.INFERUMITE_CRYSTAL_ORE)
         {
-            return NibiruItems.INFERUMITE_CRYSTAL;
+            return MPItems.INFERUMITE_CRYSTAL;
         }
         return Item.getItemFromBlock(this);
     }

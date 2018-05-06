@@ -10,7 +10,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockCheeseSpore extends BlockBaseMP
@@ -47,7 +47,7 @@ public class BlockCheeseSpore extends BlockBaseMP
 
         if (rand.nextInt(chance) == 0)
         {
-            drops.add(new ItemStack(ChalosItems.CHEESE_SPORE, 1 + rand.nextInt(2)));
+            drops.add(new ItemStack(MPItems.CHEESE_SPORE, 1 + rand.nextInt(2)));
         }
         this.captureDrops(true);
         drops.addAll(this.captureDrops(false));

@@ -22,8 +22,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockFluidBaseMP;
@@ -68,7 +68,7 @@ public class BlockFluidInfectedWater extends BlockFluidBaseMP implements IFishab
 
             if (item.getItem().getItem() == Items.ARROW)
             {
-                item.setItem(new ItemStack(NibiruItems.INFECTED_ARROW, item.getItem().getCount()));
+                item.setItem(new ItemStack(MPItems.INFECTED_ARROW, item.getItem().getCount()));
             }
         }
     }

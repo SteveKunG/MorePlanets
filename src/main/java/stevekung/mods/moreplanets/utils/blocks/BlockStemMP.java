@@ -22,7 +22,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockStemMP extends BlockBushMP implements IGrowable
@@ -195,7 +195,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
     protected Item getSeedItem()
     {
-        return this.crop == MPBlocks.INFECTED_MELON_BLOCK ? NibiruItems.INFECTED_MELON_SEEDS : null;
+        return this.crop == MPBlocks.INFECTED_MELON_BLOCK ? MPItems.INFECTED_MELON_SEEDS : null;
     }
 
     @Override
@@ -219,7 +219,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(NibiruItems.INFECTED_MELON_SEEDS);
+        return new ItemStack(MPItems.INFECTED_MELON_SEEDS);
     }
 
     @Override

@@ -30,7 +30,6 @@ import stevekung.mods.moreplanets.planets.nibiru.blocks.fluid.FluidHeliumGas;
 import stevekung.mods.moreplanets.planets.nibiru.itemblocks.ItemBlockInfectedSnow;
 import stevekung.mods.moreplanets.planets.nibiru.itemblocks.ItemBlockNuclearWasteTank;
 import stevekung.mods.moreplanets.planets.nibiru.itemblocks.ItemBlockSporelily;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.*;
@@ -849,7 +848,7 @@ public class MPBlocks
         MPBlocks.INFECTED_SNOW = new BlockInfectedSnow("infected_snow");
         MPBlocks.INFECTED_ICE = new BlockInfectedIce("infected_ice");
         MPBlocks.INFECTED_PACKED_ICE = new BlockInfectedPackedIce("infected_packed_ice");
-        MPBlocks.INFECTED_SNOW_LAYER = new BlockSnowLayerMP("infected_snow_layer", NibiruItems.INFECTED_SNOWBALL, 0);
+        MPBlocks.INFECTED_SNOW_LAYER = new BlockSnowLayerMP("infected_snow_layer", MPItems.INFECTED_SNOWBALL);
         MPBlocks.GREEN_VEIN_GRASS_BLOCK = new BlockGreenVeinGrassBlock("green_vein_grass_block");
         MPBlocks.INFECTED_MELON_BLOCK = new BlockInfectedMelon("infected_melon_block");
         MPBlocks.INFECTED_WHEAT = new BlockInfectedWheatCrops("infected_wheat");

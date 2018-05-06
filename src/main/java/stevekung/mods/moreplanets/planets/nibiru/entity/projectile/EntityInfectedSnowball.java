@@ -8,8 +8,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 
 public class EntityInfectedSnowball extends EntityThrowable
@@ -49,7 +49,7 @@ public class EntityInfectedSnowball extends EntityThrowable
 
         for (int j = 0; j < 8; ++j)
         {
-            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, this.posX, this.posY, this.posZ, new Object[] { NibiruItems.INFECTED_SNOWBALL });
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, this.posX, this.posY, this.posZ, new Object[] { MPItems.INFECTED_SNOWBALL });
         }
         if (!this.world.isRemote)
         {
