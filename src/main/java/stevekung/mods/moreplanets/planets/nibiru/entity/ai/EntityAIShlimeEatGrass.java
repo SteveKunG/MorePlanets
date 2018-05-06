@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class EntityAIShlimeEatGrass extends EntityAIBase
 {
@@ -31,7 +31,7 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
         {
             BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
             Block blockDown = this.entityWorld.getBlockState(blockpos.down()).getBlock();
-            return blockDown == NibiruBlocks.INFECTED_GRASS_BLOCK || blockDown == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || this.entityWorld.getBlockState(blockpos) == NibiruBlocks.INFECTED_GRASS.getDefaultState() || this.entityWorld.getBlockState(blockpos) == NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState();
+            return blockDown == MPBlocks.INFECTED_GRASS_BLOCK || blockDown == MPBlocks.GREEN_VEIN_GRASS_BLOCK || this.entityWorld.getBlockState(blockpos) == MPBlocks.INFECTED_GRASS.getDefaultState() || this.entityWorld.getBlockState(blockpos) == MPBlocks.GREEN_VEIN_GRASS.getDefaultState();
         }
     }
 
@@ -69,7 +69,7 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
         {
             BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
 
-            if (this.entityWorld.getBlockState(blockpos) == NibiruBlocks.INFECTED_GRASS.getDefaultState() || this.entityWorld.getBlockState(blockpos) == NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState())
+            if (this.entityWorld.getBlockState(blockpos) == MPBlocks.INFECTED_GRASS.getDefaultState() || this.entityWorld.getBlockState(blockpos) == MPBlocks.GREEN_VEIN_GRASS.getDefaultState())
             {
                 if (this.entityWorld.getGameRules().getBoolean("mobGriefing"))
                 {
@@ -81,21 +81,21 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
             {
                 BlockPos blockpos1 = blockpos.down();
 
-                if (this.entityWorld.getBlockState(blockpos1).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK)
+                if (this.entityWorld.getBlockState(blockpos1).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
                 {
                     if (this.entityWorld.getGameRules().getBoolean("mobGriefing"))
                     {
-                        this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(NibiruBlocks.INFECTED_GRASS_BLOCK));
-                        this.entityWorld.setBlockState(blockpos1, NibiruBlocks.INFECTED_DIRT.getDefaultState(), 2);
+                        this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(MPBlocks.INFECTED_GRASS_BLOCK));
+                        this.entityWorld.setBlockState(blockpos1, MPBlocks.INFECTED_DIRT.getDefaultState(), 2);
                     }
                     this.grassEaterEntity.eatGrassBonus();
                 }
-                else if (this.entityWorld.getBlockState(blockpos1).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK)
+                else if (this.entityWorld.getBlockState(blockpos1).getBlock() == MPBlocks.GREEN_VEIN_GRASS_BLOCK)
                 {
                     if (this.entityWorld.getGameRules().getBoolean("mobGriefing"))
                     {
-                        this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(NibiruBlocks.GREEN_VEIN_GRASS_BLOCK));
-                        this.entityWorld.setBlockState(blockpos1, NibiruBlocks.INFECTED_DIRT.getDefaultState(), 2);
+                        this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(MPBlocks.GREEN_VEIN_GRASS_BLOCK));
+                        this.entityWorld.setBlockState(blockpos1, MPBlocks.INFECTED_DIRT.getDefaultState(), 2);
                     }
                     this.grassEaterEntity.eatGrassBonus();
                 }

@@ -12,7 +12,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 
 public class EntityVeinEye extends Entity
@@ -164,7 +164,7 @@ public class EntityVeinEye extends Entity
         }
         else
         {
-            this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX - this.motionX * f3 + this.rand.nextDouble() * 0.6D - 0.3D, this.posY - this.motionY * f3 - 0.5D, this.posZ - this.motionZ * f3 + this.rand.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[] { Block.getIdFromBlock(NibiruBlocks.INFECTED_VINES) });
+            this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX - this.motionX * f3 + this.rand.nextDouble() * 0.6D - 0.3D, this.posY - this.motionY * f3 - 0.5D, this.posZ - this.motionZ * f3 + this.rand.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[] { Block.getIdFromBlock(MPBlocks.INFECTED_VINES) });
         }
 
         if (!this.world.isRemote)
@@ -192,8 +192,8 @@ public class EntityVeinEye extends Entity
                     }
                     for (double d18 = 0.0D; d18 < Math.PI * 2D; d18 += 0.15707963267948966D)
                     {
-                        this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, d0 + Math.cos(d18) * 5.0D, d1 - 0.4D, d2 + Math.sin(d18) * 5.0D, Math.cos(d18) * -5.0D, 0.0D, Math.sin(d18) * -5.0D, new int[] { Block.getIdFromBlock(NibiruBlocks.INFECTED_VINES) });
-                        this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, d0 + Math.cos(d18) * 5.0D, d1 - 0.4D, d2 + Math.sin(d18) * 5.0D, Math.cos(d18) * -7.0D, 0.0D, Math.sin(d18) * -7.0D, new int[] { Block.getIdFromBlock(NibiruBlocks.INFECTED_VINES) });
+                        this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, d0 + Math.cos(d18) * 5.0D, d1 - 0.4D, d2 + Math.sin(d18) * 5.0D, Math.cos(d18) * -5.0D, 0.0D, Math.sin(d18) * -5.0D, new int[] { Block.getIdFromBlock(MPBlocks.INFECTED_VINES) });
+                        this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, d0 + Math.cos(d18) * 5.0D, d1 - 0.4D, d2 + Math.sin(d18) * 5.0D, Math.cos(d18) * -7.0D, 0.0D, Math.sin(d18) * -7.0D, new int[] { Block.getIdFromBlock(MPBlocks.INFECTED_VINES) });
                     }
                 }
             }

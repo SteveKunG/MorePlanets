@@ -10,6 +10,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockFluidFiniteMP;
 import stevekung.mods.moreplanets.utils.blocks.material.MaterialsBase;
 
@@ -17,7 +18,7 @@ public class BlockGasHelium extends BlockFluidFiniteMP
 {
     public BlockGasHelium(String name)
     {
-        super(NibiruBlocks.HELIUM_GAS, MaterialsBase.GAS);
+        super(MPBlocks.HELIUM_GAS, MaterialsBase.GAS);
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockFluidBase.LEVEL, 7));
         this.setLightOpacity(0);

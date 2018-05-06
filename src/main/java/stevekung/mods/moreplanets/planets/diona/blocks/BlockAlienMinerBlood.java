@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
@@ -43,14 +44,14 @@ public class BlockAlienMinerBlood extends BlockBaseMP
     {
         if (rand.nextInt(200) == 0)
         {
-            world.setBlockState(pos, DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState());
+            world.setBlockState(pos, MPBlocks.DIONA_SURFACE_ROCK.getDefaultState());
         }
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(DionaBlocks.DIONA_SURFACE_ROCK);
+        return Item.getItemFromBlock(MPBlocks.DIONA_SURFACE_ROCK);
     }
 
     @Override

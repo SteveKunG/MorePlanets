@@ -23,7 +23,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.dungeon.*;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.structure.*;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
@@ -53,7 +52,7 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
     private MapGenBase ravineGenerator = new MapGenNibiruRavine();
     private MapGenNibiruOceanMonument oceanMonumentGenerator = new MapGenNibiruOceanMonument();
     public BiomeDecoratorNibiruOre biomedecoratorplanet = new BiomeDecoratorNibiruOre();
-    private MapGenNibiruDungeon dungeonGenerator = new MapGenNibiruDungeon(new DungeonConfigurationMP(NibiruBlocks.NIBIRU_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), NibiruBlocks.INFECTED_TORCH.getDefaultState(), NibiruBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossNibiru.class, RoomTreasureNibiru.class, RoomSpawnerNibiru.class, RoomChestNibiru.class));
+    private MapGenNibiruDungeon dungeonGenerator = new MapGenNibiruDungeon(new DungeonConfigurationMP(MPBlocks.NIBIRU_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), MPBlocks.INFECTED_TORCH.getDefaultState(), MPBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossNibiru.class, RoomTreasureNibiru.class, RoomSpawnerNibiru.class, RoomChestNibiru.class));
     private Biome[] biomesForGeneration;
     double[] mainNoiseRegion;
     double[] minLimitRegion;
@@ -139,11 +138,11 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
                             {
                                 if ((lvt_45_1_ += d16) > 0.0D)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, NibiruBlocks.NIBIRU_ROCK.getDefaultState());
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, MPBlocks.NIBIRU_ROCK.getDefaultState());
                                 }
                                 else if (i2 * 8 + j2 < 63)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
                                 }
                             }
                             d10 += d12;
@@ -342,11 +341,11 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
         }
         if (biomegenbase != MPBiomes.INFECTED_DESERT && biomegenbase != MPBiomes.GREEN_VEIN && this.rand.nextInt(4) == 0)
         {
-            new WorldGenLiquidLake(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), false).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenLiquidLake(MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), false).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
         if (biomegenbase == MPBiomes.GREEN_VEIN && this.rand.nextInt(6) == 0)
         {
-            new WorldGenLiquidLake(NibiruBlocks.PURIFIED_WATER_FLUID_BLOCK.getDefaultState(), NibiruBlocks.TERRASTONE.getDefaultState(), true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenLiquidLake(MPBlocks.PURIFIED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.TERRASTONE.getDefaultState(), true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
         if (this.rand.nextInt(8) == 0)
         {
@@ -354,13 +353,13 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
 
             if (y < 63 || this.rand.nextInt(10) == 0)
             {
-                new WorldGenLiquidLake(Blocks.LAVA.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
+                new WorldGenLiquidLake(Blocks.LAVA.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), true).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
             }
         }
 
         for (int i = 0; i < 8; ++i)
         {
-            new WorldGenSpaceDungeons(NibiruBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState()).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenSpaceDungeons(MPBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), MPBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState()).generate(this.worldObj, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
 
         biomegenbase.decorate(this.worldObj, this.rand, blockpos);
@@ -377,11 +376,11 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
 
                 if (this.worldObj.canBlockFreezeWater(blockpos2))
                 {
-                    this.worldObj.setBlockState(blockpos2, NibiruBlocks.INFECTED_ICE.getDefaultState(), 2);
+                    this.worldObj.setBlockState(blockpos2, MPBlocks.INFECTED_ICE.getDefaultState(), 2);
                 }
                 if (this.worldObj.canSnowAt(blockpos1, true))
                 {
-                    this.worldObj.setBlockState(blockpos1, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState(), 2);
+                    this.worldObj.setBlockState(blockpos1, MPBlocks.INFECTED_SNOW_LAYER.getDefaultState(), 2);
                 }
             }
         }
@@ -487,7 +486,7 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
                             {
                                 continue;
                             }
-                            world.setBlockState(new BlockPos(bx + x, by + cy, bz + z), NibiruBlocks.HELIUM_GAS_BLOCK.getDefaultState(), 2);
+                            world.setBlockState(new BlockPos(bx + x, by + cy, bz + z), MPBlocks.HELIUM_GAS_BLOCK.getDefaultState(), 2);
                         }
                     }
                 }
@@ -523,7 +522,7 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
         {
             return true;
         }
-        return block instanceof BlockLiquid && block != NibiruBlocks.HELIUM_GAS_BLOCK;
+        return block instanceof BlockLiquid && block != MPBlocks.HELIUM_GAS_BLOCK;
     }
 
     private void generateOil(World world, Random rand, int xx, int zz)

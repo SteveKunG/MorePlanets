@@ -31,14 +31,11 @@ import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
-import stevekung.mods.moreplanets.planets.fronos.blocks.FronosBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.blocks.IFire;
 import stevekung.mods.stevekunglib.utils.CachedEnum;
@@ -49,9 +46,9 @@ public class GeneralEventHandler
 
     static
     {
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.JUICER_EGG));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.OIL_ORE));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(NibiruBlocks.SPORELILY));
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.JUICER_EGG));
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.OIL_ORE));
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.SPORELILY));
     }
 
     @SubscribeEvent
@@ -60,7 +57,7 @@ public class GeneralEventHandler
         Item item = event.getItemStack().getItem();
         Block block = Block.getBlockFromItem(item);
 
-        if (block == ChalosBlocks.CHEESE_SPORE_FLOWER || block == NibiruBlocks.INFECTED_OAK_SAPLING || block == NibiruBlocks.INFECTED_JUNGLE_SAPLING || block == NibiruBlocks.ALIEN_BERRY_OAK_SAPLING)
+        if (block == MPBlocks.CHEESE_SPORE_FLOWER || block == MPBlocks.INFECTED_OAK_SAPLING || block == MPBlocks.INFECTED_JUNGLE_SAPLING || block == MPBlocks.ALIEN_BERRY_OAK_SAPLING)
         {
             event.setBurnTime(100);
         }
@@ -79,7 +76,7 @@ public class GeneralEventHandler
     {
         Block block = event.getState().getBlock();
 
-        if (block == DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK || block == ChalosBlocks.CHEESE_MILK_FLUID_BLOCK || block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+        if (block == MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK || block == MPBlocks.CHEESE_MILK_FLUID_BLOCK || block == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
         {
             event.setResult(Result.ALLOW);
         }
@@ -109,22 +106,22 @@ public class GeneralEventHandler
         {
             if (event.getFace() != EnumFacing.DOWN && world.getBlockState(pos.up()).getMaterial() == Material.AIR)
             {
-                if (world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK)
+                if (world.getBlockState(pos).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
                 {
                     if (!world.isRemote)
                     {
                         world.playSound(null, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                        world.setBlockState(pos, NibiruBlocks.INFECTED_GRASS_PATH.getDefaultState(), 11);
+                        world.setBlockState(pos, MPBlocks.INFECTED_GRASS_PATH.getDefaultState(), 11);
                         heldItem.damageItem(1, player);
                     }
                     player.swingArm(event.getHand());
                 }
-                else if (world.getBlockState(pos).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK)
+                else if (world.getBlockState(pos).getBlock() == MPBlocks.GREEN_VEIN_GRASS_BLOCK)
                 {
                     if (!world.isRemote)
                     {
                         world.playSound(null, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                        world.setBlockState(pos, NibiruBlocks.GREEN_VEIN_GRASS_PATH.getDefaultState(), 11);
+                        world.setBlockState(pos, MPBlocks.GREEN_VEIN_GRASS_PATH.getDefaultState(), 11);
                         heldItem.damageItem(1, player);
                     }
                     player.swingArm(event.getHand());
@@ -141,7 +138,7 @@ public class GeneralEventHandler
 
         if (this.isShears(player))
         {
-            if (block == FronosBlocks.RED_CANDY_CANE || block == FronosBlocks.GREEN_CANDY_CANE || block == FronosBlocks.BLUE_CANDY_CANE || block == FronosBlocks.ORANGE_CANDY_CANE || block == FronosBlocks.PINK_CANDY_CANE || block == FronosBlocks.YELLOW_CANDY_CANE || block == FronosBlocks.PURPLE_CANDY_CANE || block == FronosBlocks.RAINBOW_CANDY_CANE)
+            if (block == MPBlocks.RED_CANDY_CANE || block == MPBlocks.GREEN_CANDY_CANE || block == MPBlocks.BLUE_CANDY_CANE || block == MPBlocks.ORANGE_CANDY_CANE || block == MPBlocks.PINK_CANDY_CANE || block == MPBlocks.YELLOW_CANDY_CANE || block == MPBlocks.PURPLE_CANDY_CANE || block == MPBlocks.RAINBOW_CANDY_CANE)
             {
                 event.setNewSpeed(7.5F);
             }
@@ -155,7 +152,7 @@ public class GeneralEventHandler
         Block sourceBlock = sourceState.getBlock();
         EntityPlayer player = event.getPlayer();
 
-        if (sourceBlock == NibiruBlocks.INFECTED_FARMLAND && event.getWorld().getBiomeForCoordsBody(event.getPos()) == MPBiomes.GREEN_VEIN)
+        if (sourceBlock == MPBlocks.INFECTED_FARMLAND && event.getWorld().getBiomeForCoordsBody(event.getPos()) == MPBiomes.GREEN_VEIN)
         {
             return;
         }
@@ -191,7 +188,7 @@ public class GeneralEventHandler
         }
         if (this.isShears(player))
         {
-            if (sourceBlock == FronosBlocks.RED_CANDY_CANE || sourceBlock == FronosBlocks.GREEN_CANDY_CANE || sourceBlock == FronosBlocks.BLUE_CANDY_CANE || sourceBlock == FronosBlocks.ORANGE_CANDY_CANE || sourceBlock == FronosBlocks.PINK_CANDY_CANE || sourceBlock == FronosBlocks.YELLOW_CANDY_CANE || sourceBlock == FronosBlocks.PURPLE_CANDY_CANE || sourceBlock == FronosBlocks.RAINBOW_CANDY_CANE)
+            if (sourceBlock == MPBlocks.RED_CANDY_CANE || sourceBlock == MPBlocks.GREEN_CANDY_CANE || sourceBlock == MPBlocks.BLUE_CANDY_CANE || sourceBlock == MPBlocks.ORANGE_CANDY_CANE || sourceBlock == MPBlocks.PINK_CANDY_CANE || sourceBlock == MPBlocks.YELLOW_CANDY_CANE || sourceBlock == MPBlocks.PURPLE_CANDY_CANE || sourceBlock == MPBlocks.RAINBOW_CANDY_CANE)
             {
                 player.getActiveItemStack().damageItem(1, player);
             }
@@ -213,21 +210,21 @@ public class GeneralEventHandler
 
         if (world.isAirBlock(pos.up()))
         {
-            if (block == ChalosBlocks.CHEESE_DIRT || block == ChalosBlocks.CHEESE_COARSE_DIRT || block == ChalosBlocks.CHEESE_GRASS_BLOCK)
+            if (block == MPBlocks.CHEESE_DIRT || block == MPBlocks.CHEESE_COARSE_DIRT || block == MPBlocks.CHEESE_GRASS_BLOCK)
             {
-                this.setFarmland(event, world, pos, state, ChalosBlocks.CHEESE_COARSE_DIRT, ChalosBlocks.CHEESE_DIRT, ChalosBlocks.CHEESE_FARMLAND);
+                this.setFarmland(event, world, pos, state, MPBlocks.CHEESE_COARSE_DIRT, MPBlocks.CHEESE_DIRT, MPBlocks.CHEESE_FARMLAND);
             }
-            else if (block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT)
+            else if (block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT)
             {
-                this.setFarmland(event, world, pos, state, NibiruBlocks.INFECTED_COARSE_DIRT, NibiruBlocks.INFECTED_DIRT, NibiruBlocks.INFECTED_FARMLAND);
+                this.setFarmland(event, world, pos, state, MPBlocks.INFECTED_COARSE_DIRT, MPBlocks.INFECTED_DIRT, MPBlocks.INFECTED_FARMLAND);
             }
-            else if (block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK)
+            else if (block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.GREEN_VEIN_GRASS_BLOCK)
             {
-                this.setFarmland(event, world, pos, NibiruBlocks.INFECTED_FARMLAND);
+                this.setFarmland(event, world, pos, MPBlocks.INFECTED_FARMLAND);
             }
-            else if (block == FronosBlocks.FRONOS_GRASS_BLOCK || block == FronosBlocks.FRONOS_DIRT || block == FronosBlocks.FRONOS_COARSE_DIRT)
+            else if (block == MPBlocks.FRONOS_GRASS_BLOCK || block == MPBlocks.FRONOS_DIRT || block == MPBlocks.FRONOS_COARSE_DIRT)
             {
-                this.setFarmland(event, world, pos, state, FronosBlocks.FRONOS_COARSE_DIRT, FronosBlocks.FRONOS_DIRT, FronosBlocks.FRONOS_FARMLAND);
+                this.setFarmland(event, world, pos, state, MPBlocks.FRONOS_COARSE_DIRT, MPBlocks.FRONOS_DIRT, MPBlocks.FRONOS_FARMLAND);
             }
         }
     }

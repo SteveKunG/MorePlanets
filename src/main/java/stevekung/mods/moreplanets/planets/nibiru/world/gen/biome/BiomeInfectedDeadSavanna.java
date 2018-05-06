@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSavannaTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
@@ -21,9 +21,9 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
     public BiomeInfectedDeadSavanna(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 20;
         this.getBiomeDecorator().infectedTreesPerChunk = 1;
         this.getBiomeDecorator().philipyPerChunk = 4;
@@ -43,7 +43,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
     {
         if (rand.nextInt(5) > 0)
         {
-            return new WorldGenInfectedTrees(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+            return new WorldGenInfectedTrees(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
         else
         {
@@ -62,7 +62,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
             {
                 BlockPos newpos = WorldDecorateUtils.getSimplePos(world, pos, rand);
 
-                if (world.getBlockState(newpos).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK)
+                if (world.getBlockState(newpos).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
                 {
                     new WorldGenInfectedVinesDirt().generate(world, rand, newpos);
                 }
@@ -73,7 +73,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
             int x = rand.nextInt(16) + 8;
             int z = rand.nextInt(16) + 8;
             int y = rand.nextInt(world.getHeight(pos.add(x, 0, z)).getY() + 32);
-            new WorldGenDoublePlantMP(NibiruBlocks.INFECTED_TALL_GRASS).generate(world, rand, pos.add(x, y, z));
+            new WorldGenDoublePlantMP(MPBlocks.INFECTED_TALL_GRASS).generate(world, rand, pos.add(x, y, z));
         }
         super.decorate(world, rand, pos);
     }

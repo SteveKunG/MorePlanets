@@ -21,7 +21,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -65,7 +65,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     @Override
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
-        return world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_FARMLAND;
+        return world.getBlockState(pos.down()).getBlock() == MPBlocks.INFECTED_FARMLAND;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
                     pos = pos.offset(EnumFacing.Plane.HORIZONTAL.random(rand));
                     Block block = world.getBlockState(pos.down()).getBlock();
 
-                    if (world.isAirBlock(pos) && (block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND))
+                    if (world.isAirBlock(pos) && (block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_FARMLAND))
                     {
                         world.setBlockState(pos, this.crop.getDefaultState());
                     }
@@ -195,7 +195,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
     protected Item getSeedItem()
     {
-        return this.crop == NibiruBlocks.INFECTED_MELON_BLOCK ? NibiruItems.INFECTED_MELON_SEEDS : null;
+        return this.crop == MPBlocks.INFECTED_MELON_BLOCK ? NibiruItems.INFECTED_MELON_SEEDS : null;
     }
 
     @Override

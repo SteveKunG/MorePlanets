@@ -15,6 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 
@@ -40,7 +41,7 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     {
         if (world.getBlockState(pos.up()).getMaterial().isSolid())
         {
-            world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState());
+            world.setBlockState(pos, MPBlocks.INFECTED_DIRT.getDefaultState());
         }
     }
 
@@ -49,7 +50,7 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     {
         if (world.getBlockState(pos.up()).getMaterial().isSolid())
         {
-            world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState());
+            world.setBlockState(pos, MPBlocks.INFECTED_DIRT.getDefaultState());
         }
     }
 
@@ -75,7 +76,7 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NibiruBlocks.INFECTED_DIRT);
+        return Item.getItemFromBlock(MPBlocks.INFECTED_DIRT);
     }
 
     @Override

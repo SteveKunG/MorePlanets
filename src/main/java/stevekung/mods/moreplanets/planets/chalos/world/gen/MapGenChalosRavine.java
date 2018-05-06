@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class MapGenChalosRavine extends MapGenBase
 {
@@ -199,7 +199,7 @@ public class MapGenChalosRavine extends MapGenBase
     protected boolean isOceanBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
         Block block = data.getBlockState(x, y, z).getBlock();
-        return block == ChalosBlocks.CHEESE_MILK_FLUID_BLOCK;
+        return block == MPBlocks.CHEESE_MILK_FLUID_BLOCK;
     }
 
     private boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
@@ -216,7 +216,7 @@ public class MapGenChalosRavine extends MapGenBase
         IBlockState top = biome.topBlock;
         IBlockState filler = biome.fillerBlock;
 
-        if (state.getBlock() == ChalosBlocks.CHALOS_ROCK || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == MPBlocks.CHALOS_ROCK || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y < 10)
             {

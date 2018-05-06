@@ -48,14 +48,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.DarkEnergyReceiverMultiblockRenderer;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.client.renderer.NuclearWasteGeneratorMultiblockRenderer;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.LoggerMP;
@@ -331,11 +329,11 @@ public class ClientEventHandler
                     GlStateManager.depthMask(true);
                     GlStateManager.depthFunc(515);
                 }
-                if (this.isEntityInsideBlock(ChalosBlocks.GASEOUS_CHEESE_MILK_BLOCK))
+                if (this.isEntityInsideBlock(MPBlocks.GASEOUS_CHEESE_MILK_BLOCK))
                 {
                     this.renderOverlay("gaseous_cheese_milk", this.mc.player.getBrightness(), 0.75F, event.getPartialTicks(), -0.25D);
                 }
-                if (this.isEntityInsideBlock(NibiruBlocks.HELIUM_GAS_BLOCK))
+                if (this.isEntityInsideBlock(MPBlocks.HELIUM_GAS_BLOCK))
                 {
                     this.renderOverlay("helium_gas", this.mc.player.getBrightness(), 0.75F, event.getPartialTicks(), -0.25D);
                 }
@@ -384,17 +382,17 @@ public class ClientEventHandler
 
         if (event.getOverlayType() == OverlayType.WATER)
         {
-            if (this.checkInsideBlock(DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK))
+            if (this.checkInsideBlock(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("crystallized_water", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
-            if (this.checkInsideBlock(ChalosBlocks.CHEESE_MILK_FLUID_BLOCK))
+            if (this.checkInsideBlock(MPBlocks.CHEESE_MILK_FLUID_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("cheese_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
-            if (this.checkInsideBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK))
+            if (this.checkInsideBlock(MPBlocks.INFECTED_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("infected_water", this.mc.player.getBrightness(), 0.5F, partialTicks, -0.5D);
@@ -408,37 +406,37 @@ public class ClientEventHandler
     {
         Block block = ActiveRenderInfo.getBlockStateAtEntityViewpoint(this.mc.world, event.getEntity(), (float) event.getRenderPartialTicks()).getBlock();
 
-        if (block == DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK)
+        if (block == MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK)
         {
             event.setRed(0.5F);
             event.setGreen(0.375F);
             event.setBlue(0.8F);
         }
-        if (block == DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK)
+        if (block == MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK)
         {
             event.setRed(0.35F);
             event.setGreen(0.25F);
             event.setBlue(0.55F);
         }
-        if (block == ChalosBlocks.CHEESE_MILK_FLUID_BLOCK)
+        if (block == MPBlocks.CHEESE_MILK_FLUID_BLOCK)
         {
             event.setRed(0.85F);
             event.setGreen(0.8F);
             event.setBlue(0.6F);
         }
-        if (block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+        if (block == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
         {
             event.setRed(0.4F);
             event.setGreen(0.15F);
             event.setBlue(0.1F);
         }
-        if (block == NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK)
+        if (block == MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK)
         {
             event.setRed(0.25F);
             event.setGreen(0.7F);
             event.setBlue(0.05F);
         }
-        if (block == NibiruBlocks.PURIFIED_WATER_FLUID_BLOCK)
+        if (block == MPBlocks.PURIFIED_WATER_FLUID_BLOCK)
         {
             event.setRed(0.4F);
             event.setGreen(0.625F);

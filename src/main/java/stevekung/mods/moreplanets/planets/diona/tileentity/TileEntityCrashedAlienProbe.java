@@ -16,8 +16,8 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.blocks.BlockCrashedAlienProbe;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -35,7 +35,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     @Override
     public void update()
     {
-        if (this.world.getBlockState(this.getPos()) == DionaBlocks.CRASHED_ALIEN_PROBE.getDefaultState().withProperty(BlockCrashedAlienProbe.HAS_ALIEN, true))
+        if (this.world.getBlockState(this.getPos()) == MPBlocks.CRASHED_ALIEN_PROBE.getDefaultState().withProperty(BlockCrashedAlienProbe.HAS_ALIEN, true))
         {
             super.update();
         }

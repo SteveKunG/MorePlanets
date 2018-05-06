@@ -7,7 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
 public class CorridorNibiru extends SizedPieceNibiru
@@ -34,7 +34,7 @@ public class CorridorNibiru extends SizedPieceNibiru
                     {
                         if (i == 0 || i == this.boundingBox.getXSize() - 1)
                         {
-                            this.setBlockState(worldIn, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), i, j, k + 1, this.boundingBox);
+                            this.setBlockState(worldIn, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), i, j, k + 1, this.boundingBox);
                         }
                         else if (i == 1 || i == this.boundingBox.getXSize() - 2)
                         {
@@ -49,7 +49,7 @@ public class CorridorNibiru extends SizedPieceNibiru
                     {
                         if (k == 0 || k == this.boundingBox.getZSize() - 1)
                         {
-                            this.setBlockState(worldIn, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), i + 1, j, k, this.boundingBox);
+                            this.setBlockState(worldIn, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), i + 1, j, k, this.boundingBox);
                         }
                         else if (k == 1 || k == this.boundingBox.getZSize() - 2)
                         {
@@ -62,11 +62,11 @@ public class CorridorNibiru extends SizedPieceNibiru
                     }
                     else if (this.getDirection().getAxis() == EnumFacing.Axis.Z && (i == 1 || i == this.boundingBox.getXSize() - 2) || j == 0 || j == this.boundingBox.getYSize() - 1 || this.getDirection().getAxis() == EnumFacing.Axis.X && (k == 1 || k == this.boundingBox.getZSize() - 2))
                     {
-                        this.setBlockState(worldIn, j == 0 || j == this.boundingBox.getYSize() - 1 ? NibiruBlocks.MOSSY_NIBIRU_DUNGEON_BRICK.getDefaultState() : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
+                        this.setBlockState(worldIn, j == 0 || j == this.boundingBox.getYSize() - 1 ? MPBlocks.MOSSY_NIBIRU_DUNGEON_BRICK.getDefaultState() : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
                     }
                     else if (this.getDirection().getAxis() == EnumFacing.Axis.Z && (i == 0 || i == this.boundingBox.getXSize() - 1) || this.getDirection().getAxis() == EnumFacing.Axis.X && (k == 0 || k == this.boundingBox.getZSize() - 1))
                     {
-                        this.setBlockState(worldIn, j == 0 || j == this.boundingBox.getYSize() - 1 ? NibiruBlocks.MOSSY_NIBIRU_DUNGEON_BRICK.getDefaultState() : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
+                        this.setBlockState(worldIn, j == 0 || j == this.boundingBox.getYSize() - 1 ? MPBlocks.MOSSY_NIBIRU_DUNGEON_BRICK.getDefaultState() : this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
                     }
                     else
                     {

@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.BiomeDecoratorChalos;
 import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeBaseMP;
 
@@ -66,7 +66,7 @@ public class BiomeChalos extends BiomeBaseMP
                 {
                     j = -1;
                 }
-                else if (iblockstate2.getBlock() == ChalosBlocks.CHALOS_ROCK)
+                else if (iblockstate2.getBlock() == MPBlocks.CHALOS_ROCK)
                 {
                     if (this.stoneBlock != null)
                     {
@@ -77,7 +77,7 @@ public class BiomeChalos extends BiomeBaseMP
                         if (k <= 0)
                         {
                             iblockstate = null;
-                            iblockstate1 = ChalosBlocks.CHALOS_ROCK.getDefaultState();
+                            iblockstate1 = MPBlocks.CHALOS_ROCK.getDefaultState();
                         }
                         else if (j1 >= i - 4 && j1 <= i + 1)
                         {
@@ -87,7 +87,7 @@ public class BiomeChalos extends BiomeBaseMP
 
                         if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
                         {
-                            iblockstate = ChalosBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState();
+                            iblockstate = MPBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState();
                         }
 
                         j = k;
@@ -99,8 +99,8 @@ public class BiomeChalos extends BiomeBaseMP
                         else if (j1 < i - 7 - k)
                         {
                             iblockstate = null;
-                            iblockstate1 = ChalosBlocks.CHALOS_ROCK.getDefaultState();
-                            chunkPrimer.setBlockState(i1, j1, l, ChalosBlocks.CHALOS_ROCK.getDefaultState());//gravel
+                            iblockstate1 = MPBlocks.CHALOS_ROCK.getDefaultState();
+                            chunkPrimer.setBlockState(i1, j1, l, MPBlocks.CHALOS_ROCK.getDefaultState());//gravel
                         }
                         else
                         {

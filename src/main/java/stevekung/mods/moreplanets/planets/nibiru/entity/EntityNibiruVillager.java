@@ -45,9 +45,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.ai.*;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
@@ -74,7 +74,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             new EmeraldForItems(new ItemStack(NibiruItems.INFECTED_WHEAT), new PriceInfo(18, 22)),
             new EmeraldForItems(new ItemStack(NibiruItems.TERRABERRY), new PriceInfo(15, 19)),
             new ListItemForEmeralds(new ItemStack(Items.BREAD), new PriceInfo(-4, -2)),
-            new EmeraldForItems(new ItemStack(NibiruBlocks.INFECTED_MELON_BLOCK), new PriceInfo(7, 12)),
+            new EmeraldForItems(new ItemStack(MPBlocks.INFECTED_MELON_BLOCK), new PriceInfo(7, 12)),
             new ListItemForEmeralds(new ItemStack(NibiruItems.INFECTED_APPLE), new PriceInfo(-5, -7)),
             new ListItemForEmeralds(new ItemStack(NibiruItems.ALIEN_BERRY), new PriceInfo(-7, -9))
     };
@@ -82,8 +82,8 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             new EmeraldForItems(new ItemStack(Items.PAPER), new PriceInfo(24, 36)),
             new ListEnchantedBookForEmeralds(),
             new EmeraldForItems(new ItemStack(Items.BOOK), new PriceInfo(8, 10)),
-            new ListItemForEmeralds(new ItemStack(NibiruBlocks.INFECTED_OAK_BOOKSHELF), new PriceInfo(3, 4)),
-            new ListItemForEmeralds(new ItemStack(NibiruBlocks.ALIEN_BERRY_OAK_BOOKSHELF), new PriceInfo(3, 4)),
+            new ListItemForEmeralds(new ItemStack(MPBlocks.INFECTED_OAK_BOOKSHELF), new PriceInfo(3, 4)),
+            new ListItemForEmeralds(new ItemStack(MPBlocks.ALIEN_BERRY_OAK_BOOKSHELF), new PriceInfo(3, 4)),
             new ListEnchantedBookForEmeralds(),
             new ListEnchantedBookForEmeralds()
     };

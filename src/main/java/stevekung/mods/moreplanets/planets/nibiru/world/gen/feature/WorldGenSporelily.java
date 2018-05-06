@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenSporelily extends WorldGenerator
 {
@@ -19,9 +19,9 @@ public class WorldGenSporelily extends WorldGenerator
             int l = pos.getZ() + rand.nextInt(8) - rand.nextInt(8);
             BlockPos newPos = new BlockPos(j, k, l);
 
-            if (world.isAirBlock(newPos) && NibiruBlocks.SPORELILY.canPlaceBlockAt(world, newPos))
+            if (world.isAirBlock(newPos) && MPBlocks.SPORELILY.canPlaceBlockAt(world, newPos))
             {
-                world.setBlockState(newPos, NibiruBlocks.SPORELILY.getDefaultState(), 2);
+                world.setBlockState(newPos, MPBlocks.SPORELILY.getDefaultState(), 2);
             }
         }
         return true;

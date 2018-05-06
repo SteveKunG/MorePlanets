@@ -22,9 +22,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 
 public class EntityInfectedCrystallizedTentacle extends Entity
@@ -171,7 +171,7 @@ public class EntityInfectedCrystallizedTentacle extends Entity
                 {
                     for (int i = 0; i < 8; i++)
                     {
-                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + this.height / 1.5D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState())});
+                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + this.height / 1.5D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState())});
                     }
                 }
                 if (source.isCreativePlayer() || this.getDamage() > 2048.0F)

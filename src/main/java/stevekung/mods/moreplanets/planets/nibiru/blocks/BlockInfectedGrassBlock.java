@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
@@ -33,15 +34,15 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         Block block = world.getBlockState(pos.up()).getBlock();
-        return state.withProperty(SNOWY, Boolean.valueOf(block == NibiruBlocks.INFECTED_SNOW || block == NibiruBlocks.INFECTED_SNOW_LAYER));
+        return state.withProperty(SNOWY, Boolean.valueOf(block == MPBlocks.INFECTED_SNOW || block == MPBlocks.INFECTED_SNOW_LAYER));
     }
 
     @Override
     public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source)
     {
-        if (world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK)
+        if (world.getBlockState(pos).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
         {
-            world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState(), 2);
+            world.setBlockState(pos, MPBlocks.INFECTED_DIRT.getDefaultState(), 2);
         }
     }
 
@@ -56,7 +57,7 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
             }
             if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockLightOpacity(pos.up()) > 2)
             {
-                world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState());
+                world.setBlockState(pos, MPBlocks.INFECTED_DIRT.getDefaultState());
             }
             else if (world.getLightFromNeighbors(pos.up()) >= 9)
             {
@@ -64,7 +65,7 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
                 {
                     BlockPos pos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
 
-                    if (world.getBlockState(pos1) == NibiruBlocks.INFECTED_DIRT.getDefaultState())
+                    if (world.getBlockState(pos1) == MPBlocks.INFECTED_DIRT.getDefaultState())
                     {
                         if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity(world, pos1.up()) <= 2)
                         {
@@ -79,7 +80,7 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NibiruBlocks.INFECTED_DIRT);
+        return Item.getItemFromBlock(MPBlocks.INFECTED_DIRT);
     }
 
     @Override
@@ -125,16 +126,16 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            if (NibiruBlocks.PURE_HERB.canPlaceBlockAt(world, blockpos1))
+                            if (MPBlocks.PURE_HERB.canPlaceBlockAt(world, blockpos1))
                             {
-                                world.setBlockState(blockpos1, NibiruBlocks.PURE_HERB.getDefaultState(), 3);
+                                world.setBlockState(blockpos1, MPBlocks.PURE_HERB.getDefaultState(), 3);
                             }
                         }
                         else
                         {
-                            if (NibiruBlocks.INFECTED_GRASS.canPlaceBlockAt(world, blockpos1))
+                            if (MPBlocks.INFECTED_GRASS.canPlaceBlockAt(world, blockpos1))
                             {
-                                world.setBlockState(blockpos1, NibiruBlocks.INFECTED_GRASS.getDefaultState(), 3);
+                                world.setBlockState(blockpos1, MPBlocks.INFECTED_GRASS.getDefaultState(), 3);
                             }
                         }
                     }
@@ -143,7 +144,7 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(blockpos1.down()).getBlock() != NibiruBlocks.INFECTED_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
+                if (world.getBlockState(blockpos1.down()).getBlock() != MPBlocks.INFECTED_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
                 {
                     break;
                 }

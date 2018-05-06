@@ -23,7 +23,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNibiruFurnace;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityTerrastoneFurnace;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityFurnaceMP;
@@ -214,7 +214,7 @@ public class BlockFurnaceMP extends BlockContainerMP
     {
         IBlockState iblockstate = world.getBlockState(pos);
         TileEntity tileentity = world.getTileEntity(pos);
-        Block block = type == BlockType.INFECTED ? NibiruBlocks.INFECTED_FURNACE : NibiruBlocks.TERRASTONE_FURNACE;
+        Block block = type == BlockType.INFECTED ? MPBlocks.INFECTED_FURNACE : MPBlocks.TERRASTONE_FURNACE;
         keepInventory = true;
 
         if (active)

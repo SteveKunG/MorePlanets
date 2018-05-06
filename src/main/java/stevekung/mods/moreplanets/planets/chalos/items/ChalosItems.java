@@ -7,7 +7,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.chalos.items.armor.ItemArmorDiremsium;
 import stevekung.mods.moreplanets.planets.chalos.items.armor.ItemBreathableDiremsium;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
@@ -79,7 +79,7 @@ public class ChalosItems
         ChalosItems.CHALOS_DUNGEON_KEY = new ItemDungeonKeyMP("chalos_dungeon_key", 5);
         ChalosItems.CHEESE_SPORE = new ItemCheeseSpore("cheese_spore_item");
         ChalosItems.CHEESE_SPORE_SEED = new ItemCheeseSporeSeed("cheese_spore_seed");
-        ChalosItems.CHEESE_SPORE_DOOR = new ItemDoorMP("cheese_spore_door", ChalosBlocks.CHEESE_SPORE_DOOR);
+        ChalosItems.CHEESE_SPORE_DOOR = new ItemDoorMP("cheese_spore_door", MPBlocks.CHEESE_SPORE_DOOR);
 
         /**************************************************************/
         /**********************INITIAL TOOL STUFF**********************/
@@ -90,11 +90,11 @@ public class ChalosItems
         ChalosItems.DIREMSIUM_PICKAXE = new ItemPickaxeMP("diremsium_pickaxe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.COMPRESSED_DIREMSIUM);
         ChalosItems.DIREMSIUM_AXE = new ItemAxeMP("diremsium_axe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.COMPRESSED_DIREMSIUM, EnumToolSpeed.COMMON);
         ChalosItems.DIREMSIUM_HOE = new ItemHoeMP("diremsium_hoe", ChalosItems.DIREMSIUM_TOOL, ChalosItems.COMPRESSED_DIREMSIUM);
-        ChalosItems.CHEESE_SPORE_WOOD_SWORD = new ItemSwordMP("cheese_spore_wood_sword", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
-        ChalosItems.CHEESE_SPORE_WOOD_SHOVEL = new ItemShovelMP("cheese_spore_wood_shovel", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
-        ChalosItems.CHEESE_SPORE_WOOD_PICKAXE = new ItemPickaxeMP("cheese_spore_wood_pickaxe", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
-        ChalosItems.CHEESE_SPORE_WOOD_AXE = new ItemAxeMP("cheese_spore_wood_axe", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS, EnumToolSpeed.WOOD);
-        ChalosItems.CHEESE_SPORE_WOOD_HOE = new ItemHoeMP("cheese_spore_wood_hoe", ToolMaterial.WOOD, ChalosBlocks.CHEESE_SPORE_PLANKS);
+        ChalosItems.CHEESE_SPORE_WOOD_SWORD = new ItemSwordMP("cheese_spore_wood_sword", ToolMaterial.WOOD, MPBlocks.CHEESE_SPORE_PLANKS);
+        ChalosItems.CHEESE_SPORE_WOOD_SHOVEL = new ItemShovelMP("cheese_spore_wood_shovel", ToolMaterial.WOOD, MPBlocks.CHEESE_SPORE_PLANKS);
+        ChalosItems.CHEESE_SPORE_WOOD_PICKAXE = new ItemPickaxeMP("cheese_spore_wood_pickaxe", ToolMaterial.WOOD, MPBlocks.CHEESE_SPORE_PLANKS);
+        ChalosItems.CHEESE_SPORE_WOOD_AXE = new ItemAxeMP("cheese_spore_wood_axe", ToolMaterial.WOOD, MPBlocks.CHEESE_SPORE_PLANKS, EnumToolSpeed.WOOD);
+        ChalosItems.CHEESE_SPORE_WOOD_HOE = new ItemHoeMP("cheese_spore_wood_hoe", ToolMaterial.WOOD, MPBlocks.CHEESE_SPORE_PLANKS);
 
         /**************************************************************/
         /*********************INITIAL ARMOR STUFF**********************/
@@ -155,13 +155,13 @@ public class ChalosItems
         /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(ChalosBlocks.CHEESE_MILK_FLUID);
-        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(ChalosBlocks.GASEOUS_CHEESE_MILK);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.CHEESE_MILK_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.GASEOUS_CHEESE_MILK);
 
         /**************************************************************/
         /************************OTHER STUFF***************************/
         /**************************************************************/
 
-        ChalosBlocks.CHEESE_SPORE_DOOR.setDoorItem(ChalosItems.CHEESE_SPORE_DOOR);
+        MPBlocks.CHEESE_SPORE_DOOR.setDoorItem(ChalosItems.CHEESE_SPORE_DOOR);
     }
 }

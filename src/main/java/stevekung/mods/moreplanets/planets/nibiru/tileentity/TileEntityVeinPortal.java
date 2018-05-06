@@ -15,7 +15,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityVeinFloater;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
@@ -102,7 +102,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
 
                 if (attachedList.size() == 9)
                 {
-                    this.world.setBlockState(this.getPos(), NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
+                    this.world.setBlockState(this.getPos(), MPBlocks.VEIN_PORTAL.getDefaultState(), 3);
                     TileEntityVeinPortal portal = this;
                     this.isMiddle = true;
                     this.world.setTileEntity(this.getPos(), portal);
@@ -115,7 +115,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
 
                             if (!vecToAdd.equals(this.getPos()))
                             {
-                                this.world.setBlockState(vecToAdd, NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
+                                this.world.setBlockState(vecToAdd, MPBlocks.VEIN_PORTAL.getDefaultState(), 3);
                                 this.delayToTeleport = 120;
                             }
                         }
@@ -133,7 +133,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
                     for (int yRender = this.pos.getY(); yRender < 99; yRender++)
                     {
                         this.world.setBlockToAir(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ()));
-                        this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), NibiruBlocks.VEIN_PORTAL.getDefaultState(), 3);
+                        this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), MPBlocks.VEIN_PORTAL.getDefaultState(), 3);
                     }
                 }
             }

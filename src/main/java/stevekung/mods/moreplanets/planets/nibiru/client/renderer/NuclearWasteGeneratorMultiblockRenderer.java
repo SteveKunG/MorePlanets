@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.client.model.ModelNuclearWasteTank;
 import stevekung.mods.moreplanets.utils.ClientRendererUtils;
 
@@ -35,42 +35,42 @@ public class NuclearWasteGeneratorMultiblockRenderer
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 1, y - 1, z);
-        ClientRendererUtils.renderModel(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 1, y - 1, z + 1);
-        ClientRendererUtils.renderModel(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 1, y - 1, z + 2);
-        ClientRendererUtils.renderModel(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y - 1, z);
-        ClientRendererUtils.renderModel(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y - 1, z + 2);
-        ClientRendererUtils.renderModel(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 1, y - 1, z);
-        ClientRendererUtils.renderModel(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 1, y - 1, z + 1);
-        ClientRendererUtils.renderModel(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 1, y - 1, z + 2);
-        ClientRendererUtils.renderModel(NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
         GlStateManager.enableDepth();
     }

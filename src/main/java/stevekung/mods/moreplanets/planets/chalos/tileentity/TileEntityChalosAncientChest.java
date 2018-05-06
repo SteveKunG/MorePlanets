@@ -3,14 +3,14 @@ package stevekung.mods.moreplanets.planets.chalos.tileentity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityAncientChestMP;
 
 public class TileEntityChalosAncientChest extends TileEntityAncientChestMP
 {
     public TileEntityChalosAncientChest()
     {
-        super(ChalosBlocks.CHALOS_ANCIENT_CHEST, "chalos");
+        super(MPBlocks.CHALOS_ANCIENT_CHEST, "chalos");
     }
 
     @Override

@@ -6,7 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
 import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
@@ -25,14 +25,14 @@ public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
 
     public BiomeDecoratorChalosOre()
     {
-        this.dirtGen = new WorldGenMinableBase(ChalosBlocks.CHEESE_DIRT.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.DIRT);
-        this.diremsiumGen = new WorldGenMinableBase(ChalosBlocks.DIREMSIUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 9);
-        this.zyptoriumGen = new WorldGenMinableBase(ChalosBlocks.ZYPTORIUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 9);
-        this.ironGen = new WorldGenMinableBase(ChalosBlocks.CHALOS_IRON_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.IRON);
-        this.cheeseGen = new WorldGenMinableBase(ChalosBlocks.CHEESE_MILK_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), 4);
-        this.tinGen = new WorldGenMinableBase(ChalosBlocks.CHALOS_TIN_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.TIN);
-        this.copperGen = new WorldGenMinableBase(ChalosBlocks.CHALOS_COPPER_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.COPPER);
-        this.aluminumGen = new WorldGenMinableBase(ChalosBlocks.CHALOS_ALUMINUM_ORE.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
+        this.dirtGen = new WorldGenMinableBase(MPBlocks.CHEESE_DIRT.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.DIRT);
+        this.diremsiumGen = new WorldGenMinableBase(MPBlocks.DIREMSIUM_ORE.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState(), 9);
+        this.zyptoriumGen = new WorldGenMinableBase(MPBlocks.ZYPTORIUM_ORE.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState(), 9);
+        this.ironGen = new WorldGenMinableBase(MPBlocks.CHALOS_IRON_ORE.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.IRON);
+        this.cheeseGen = new WorldGenMinableBase(MPBlocks.CHEESE_MILK_ORE.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState(), 4);
+        this.tinGen = new WorldGenMinableBase(MPBlocks.CHALOS_TIN_ORE.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.TIN);
+        this.copperGen = new WorldGenMinableBase(MPBlocks.CHALOS_COPPER_ORE.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.COPPER);
+        this.aluminumGen = new WorldGenMinableBase(MPBlocks.CHALOS_ALUMINUM_ORE.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
     }
 
     @Override
@@ -53,12 +53,12 @@ public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
         for (int j = 0; j < 50; ++j)
         {
             int y = rand.nextInt(rand.nextInt(248) + 8);
-            new WorldGenCaveLiquid(ChalosBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(MPBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (int j = 0; j < 20; ++j)
         {
             int y = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
-            new WorldGenCaveLiquid(Blocks.FLOWING_LAVA.getDefaultState(), ChalosBlocks.CHALOS_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(Blocks.FLOWING_LAVA.getDefaultState(), MPBlocks.CHALOS_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
     }
 }

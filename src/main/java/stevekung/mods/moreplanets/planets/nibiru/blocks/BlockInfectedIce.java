@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockIceMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
@@ -74,7 +75,7 @@ public class BlockInfectedIce extends BlockIceMP
 
             if (material.blocksMovement() || material.isLiquid())
             {
-                world.setBlockState(pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
+                world.setBlockState(pos, MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
             }
         }
     }
@@ -91,7 +92,7 @@ public class BlockInfectedIce extends BlockIceMP
             else
             {
                 this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
-                world.setBlockState(pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
+                world.setBlockState(pos, MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
             }
         }
     }

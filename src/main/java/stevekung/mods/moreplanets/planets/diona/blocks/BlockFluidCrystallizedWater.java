@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockFluidBaseMP;
@@ -22,7 +23,7 @@ public class BlockFluidCrystallizedWater extends BlockFluidBaseMP implements IFi
 {
     public BlockFluidCrystallizedWater(String name)
     {
-        super(DionaBlocks.CRYSTALLIZED_WATER_FLUID);
+        super(MPBlocks.CRYSTALLIZED_WATER_FLUID);
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
         this.setUnlocalizedName(name);

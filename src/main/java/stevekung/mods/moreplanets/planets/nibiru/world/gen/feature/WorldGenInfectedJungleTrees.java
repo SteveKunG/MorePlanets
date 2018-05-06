@@ -9,7 +9,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
 {
@@ -76,7 +76,7 @@ public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
                 BlockPos down = pos.down();
                 Block block1 = world.getBlockState(down).getBlock();
 
-                if (block1 == NibiruBlocks.INFECTED_GRASS_BLOCK || block1 == NibiruBlocks.INFECTED_DIRT || block1 == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
+                if (block1 == MPBlocks.INFECTED_GRASS_BLOCK || block1 == MPBlocks.INFECTED_DIRT || block1 == MPBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
                 {
                     block1.onPlantGrow(world.getBlockState(down), world, down, pos);
                     int k2 = 3;
@@ -104,7 +104,7 @@ public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
                                     {
                                         if (this.genLeaves)
                                         {
-                                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_JUNGLE_LEAVES.getDefaultState());
+                                            this.setBlockAndNotifyAdequately(world, blockpos, MPBlocks.INFECTED_JUNGLE_LEAVES.getDefaultState());
                                         }
                                     }
                                 }
@@ -119,7 +119,7 @@ public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
 
                         if (block2.isAir(world.getBlockState(upN), world, upN) || block2.isLeaves(world.getBlockState(upN), world, upN) || world.getBlockState(upN).getMaterial() == Material.VINE)
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(j3), NibiruBlocks.INFECTED_JUNGLE_LOG.getDefaultState());
+                            this.setBlockAndNotifyAdequately(world, pos.up(j3), MPBlocks.INFECTED_JUNGLE_LOG.getDefaultState());
 
                             if (this.vinesGrow && j3 > 0)
                             {
@@ -201,7 +201,7 @@ public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
 
     private void addVine(World world, BlockPos pos, PropertyBool property)
     {
-        this.setBlockAndNotifyAdequately(world, pos, NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(property, Boolean.valueOf(true)));
+        this.setBlockAndNotifyAdequately(world, pos, MPBlocks.INFECTED_VINES.getDefaultState().withProperty(property, Boolean.valueOf(true)));
     }
 
     private void addHangingVine(World world, BlockPos pos, PropertyBool property)

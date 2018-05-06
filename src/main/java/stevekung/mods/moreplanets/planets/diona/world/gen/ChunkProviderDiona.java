@@ -16,7 +16,6 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.planets.diona.world.gen.dungeon.MapGenDionaDungeon;
 import stevekung.mods.moreplanets.planets.diona.world.gen.dungeon.RoomBossDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.dungeon.RoomSpawnerDiona;
@@ -33,9 +32,9 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 public class ChunkProviderDiona extends ChunkProviderBaseMP
 {
     private BiomeDecoratorDiona biomeDecorator = new BiomeDecoratorDiona();
-    private MapGenCavesBase caveGenerator = new MapGenCavesBase(DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState(), DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), Sets.newHashSet(DionaBlocks.DIONA_SUB_SURFACE_ROCK, DionaBlocks.DIONA_ROCK));
+    private MapGenCavesBase caveGenerator = new MapGenCavesBase(MPBlocks.DIONA_SURFACE_ROCK.getDefaultState(), MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), Sets.newHashSet(MPBlocks.DIONA_SUB_SURFACE_ROCK, MPBlocks.DIONA_ROCK));
     private MapGenDionaMineshaft mineshaftGenerator = new MapGenDionaMineshaft();
-    private MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(DionaBlocks.DIONA_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), DionaBlocks.INFECTED_CRYSTALLIZED_WEB.getDefaultState(), DionaBlocks.INFECTED_CRYSTALLIZED_TORCH.getDefaultState(), DionaBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
+    private MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(MPBlocks.DIONA_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), MPBlocks.INFECTED_CRYSTALLIZED_WEB.getDefaultState(), MPBlocks.INFECTED_CRYSTALLIZED_TORCH.getDefaultState(), MPBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
     private MapGenCrashedAlienShipFeature alienShipFeatureGenerator = new MapGenCrashedAlienShipFeature();
 
     public ChunkProviderDiona(World world, long seed)
@@ -84,19 +83,19 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
         {
             if (y < 48)
             {
-                new WorldGenLiquidLake(DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), false).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
+                new WorldGenLiquidLake(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), false).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
             }
         }
         if (this.rand.nextInt(8) == 0)
         {
             if (y < 48)
             {
-                new WorldGenLiquidLake(DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), true).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
+                new WorldGenLiquidLake(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), true).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
             }
         }
         for (int i = 0; i < 8; ++i)
         {
-            new WorldGenSpaceDungeons(DionaBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), DionaBlocks.DIONA_COBBLESTONE.getDefaultState(), DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState()).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+            new WorldGenSpaceDungeons(MPBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), MPBlocks.DIONA_COBBLESTONE.getDefaultState(), MPBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState()).generate(this.worldObj, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
         if (this.rand.nextInt(250) == 0)
         {
@@ -125,18 +124,18 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
     @Override
     protected IBlockState getTopBlock()
     {
-        return DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState();
+        return MPBlocks.DIONA_SURFACE_ROCK.getDefaultState();
     }
 
     @Override
     protected IBlockState getSubBlock()
     {
-        return DionaBlocks.DIONA_SUB_SURFACE_ROCK.getDefaultState();
+        return MPBlocks.DIONA_SUB_SURFACE_ROCK.getDefaultState();
     }
 
     @Override
     protected IBlockState getStoneBlock()
     {
-        return DionaBlocks.DIONA_ROCK.getDefaultState();
+        return MPBlocks.DIONA_ROCK.getDefaultState();
     }
 }

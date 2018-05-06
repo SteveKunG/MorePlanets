@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
@@ -49,8 +50,8 @@ public class BlockInfectedSponge extends BlockBaseMP
     {
         if (!this.isWet && this.absorb(world, pos))
         {
-            world.setBlockState(pos, NibiruBlocks.INFECTED_WET_SPONGE.getDefaultState(), 2);
-            world.playEvent(2001, pos, Block.getIdFromBlock(NibiruBlocks.INFECTED_WATER_FLUID_BLOCK));
+            world.setBlockState(pos, MPBlocks.INFECTED_WET_SPONGE.getDefaultState(), 2);
+            world.playEvent(2001, pos, Block.getIdFromBlock(MPBlocks.INFECTED_WATER_FLUID_BLOCK));
         }
     }
 
@@ -75,7 +76,7 @@ public class BlockInfectedSponge extends BlockBaseMP
                 EnumFacing enumfacing = aenumfacing[l];
                 BlockPos blockpos2 = blockpos1.offset(enumfacing);
 
-                if (world.getBlockState(blockpos2).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+                if (world.getBlockState(blockpos2).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
                     world.setBlockState(blockpos2, Blocks.AIR.getDefaultState(), 2);
                     arraylist.add(blockpos2);

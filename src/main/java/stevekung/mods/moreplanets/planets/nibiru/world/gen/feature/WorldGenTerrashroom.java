@@ -7,8 +7,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockHugeTerrashroom;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 
 public class WorldGenTerrashroom extends WorldGenerator
 {
@@ -20,7 +20,7 @@ public class WorldGenTerrashroom extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        Block block = NibiruBlocks.HUGE_TERRASHROOM_BLOCK;
+        Block block = MPBlocks.HUGE_TERRASHROOM_BLOCK;
         int i = rand.nextInt(3) + 6;
 
         if (rand.nextInt(12) == 0)
@@ -72,7 +72,7 @@ public class WorldGenTerrashroom extends WorldGenerator
             {
                 Block block1 = world.getBlockState(pos.down()).getBlock();
 
-                if (block1 != NibiruBlocks.GREEN_VEIN_GRASS_BLOCK && block1 != NibiruBlocks.TERRASTONE)
+                if (block1 != MPBlocks.GREEN_VEIN_GRASS_BLOCK && block1 != MPBlocks.TERRASTONE)
                 {
                     return false;
                 }
@@ -88,7 +88,7 @@ public class WorldGenTerrashroom extends WorldGenerator
                         {
                             ++j3;
                         }
-                        if (block == NibiruBlocks.HUGE_TERRASHROOM_BLOCK)
+                        if (block == MPBlocks.HUGE_TERRASHROOM_BLOCK)
                         {
                             j3 = 4;
                         }
@@ -124,7 +124,7 @@ public class WorldGenTerrashroom extends WorldGenerator
 
                                 BlockHugeTerrashroom.BlockType type = BlockHugeTerrashroom.BlockType.values[j2];
 
-                                if (block == NibiruBlocks.HUGE_TERRASHROOM_BLOCK || l2 < pos.getY() + i)
+                                if (block == MPBlocks.HUGE_TERRASHROOM_BLOCK || l2 < pos.getY() + i)
                                 {
                                     if ((l1 == k3 || l1 == l3) && (i2 == j1 || i2 == k1))
                                     {

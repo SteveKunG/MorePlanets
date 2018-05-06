@@ -7,7 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaTreasureChest;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.RoomTreasureMP;
@@ -89,7 +89,7 @@ public class RoomTreasureDiona extends RoomTreasureMP
                     }
                     else if (i == this.sizeX / 2 && j == 1 && k == this.sizeZ / 2)
                     {
-                        this.setBlockState(world, DionaBlocks.DIONA_TREASURE_CHEST.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, this.getDirection().getOpposite()), i, j, k, boundingBox);
+                        this.setBlockState(world, MPBlocks.DIONA_TREASURE_CHEST.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, this.getDirection().getOpposite()), i, j, k, boundingBox);
                         BlockPos blockpos = new BlockPos(this.getXWithOffset(i, k), this.getYWithOffset(j), this.getZWithOffset(i, k));
 
                         if (world.getTileEntity(blockpos) == null)

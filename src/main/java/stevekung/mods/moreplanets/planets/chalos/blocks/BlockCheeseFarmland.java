@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.planets.chalos.blocks;
 
 import net.minecraft.block.Block;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockFarmlandMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -16,12 +17,12 @@ public class BlockCheeseFarmland extends BlockFarmlandMP
     @Override
     protected Block getDirtBlock()
     {
-        return ChalosBlocks.CHEESE_DIRT;
+        return MPBlocks.CHEESE_DIRT;
     }
 
     @Override
     protected Block getSourceBlock()
     {
-        return ChalosBlocks.CHEESE_MILK_FLUID_BLOCK;
+        return MPBlocks.CHEESE_MILK_FLUID_BLOCK;
     }
 }

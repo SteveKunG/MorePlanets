@@ -18,12 +18,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.utils.blocks.IFire;
 
 public class BlockElectricalFire extends BlockFire implements IFire
 {
-    protected BlockElectricalFire(String name)
+    public BlockElectricalFire(String name)
     {
         super();
         this.setLightLevel(1.0F);
@@ -58,7 +57,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
             }
 
             Block block = world.getBlockState(pos.down()).getBlock();
-            boolean flag = block.isFireSource(world, pos.down(), EnumFacing.UP) || block == DionaBlocks.GLOWING_IRON_BLOCK || block == MPBlocks.ALIEN_SHIP_DECORATION_0 || block == MPBlocks.ALIEN_SHIP_DECORATION_1 || block == MPBlocks.ALIEN_SHIP_BOOSTER || block == MPBlocks.ALIEN_SHIP_DECORATION_SLAB && world.getBlockState(pos.down()).getValue(BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP;
+            boolean flag = block.isFireSource(world, pos.down(), EnumFacing.UP) || block == MPBlocks.GLOWING_IRON_BLOCK || block == MPBlocks.ALIEN_SHIP_DECORATION_0 || block == MPBlocks.ALIEN_SHIP_DECORATION_1 || block == MPBlocks.ALIEN_SHIP_BOOSTER || block == MPBlocks.ALIEN_SHIP_DECORATION_SLAB && world.getBlockState(pos.down()).getValue(BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP;
 
             if (!flag && world.isRaining() && this.canDie(world, pos))
             {
@@ -224,9 +223,9 @@ public class BlockElectricalFire extends BlockFire implements IFire
             world.playSound(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
         }
 
-        if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.down(), EnumFacing.UP))
+        if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !MPBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.down(), EnumFacing.UP))
         {
-            if (NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.west(), EnumFacing.EAST))
+            if (MPBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.west(), EnumFacing.EAST))
             {
                 for (int j = 0; j < 2; ++j)
                 {
@@ -236,7 +235,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
                     world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d3, d8, d13, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
             }
-            if (NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.east(), EnumFacing.WEST))
+            if (MPBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.east(), EnumFacing.WEST))
             {
                 for (int k = 0; k < 2; ++k)
                 {
@@ -246,7 +245,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
                     world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d4, d9, d14, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
             }
-            if (NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.north(), EnumFacing.SOUTH))
+            if (MPBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.north(), EnumFacing.SOUTH))
             {
                 for (int l = 0; l < 2; ++l)
                 {
@@ -256,7 +255,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
                     world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d5, d10, d15, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
             }
-            if (NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.south(), EnumFacing.NORTH))
+            if (MPBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.south(), EnumFacing.NORTH))
             {
                 for (int i1 = 0; i1 < 2; ++i1)
                 {
@@ -266,7 +265,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
                     world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d6, d11, d16, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
             }
-            if (NibiruBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.up(), EnumFacing.DOWN))
+            if (MPBlocks.ELECTRICAL_FIRE.canCatchFire(world, pos.up(), EnumFacing.DOWN))
             {
                 for (int j1 = 0; j1 < 2; ++j1)
                 {

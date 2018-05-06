@@ -14,7 +14,7 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedElderGuardian;
 
 public class StructureNibiruOceanMonumentPieces
@@ -1290,7 +1290,7 @@ public class StructureNibiruOceanMonumentPieces
 
             this.fillWithBlocks(world, box, 6, 3, 6, 9, 6, 9, this.darkPrismarine, this.darkPrismarine, false);
             boolean crystal = rand.nextInt(50) == 0;
-            this.fillWithBlocks(world, box, 7, 4, 7, 8, 5, 8, crystal ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.GOLD_BLOCK.getDefaultState(), crystal ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.GOLD_BLOCK.getDefaultState(), false);
+            this.fillWithBlocks(world, box, 7, 4, 7, 8, 5, 8, crystal ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.GOLD_BLOCK.getDefaultState(), crystal ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.GOLD_BLOCK.getDefaultState(), false);
 
             for (i = 3; i <= 6; i += 3)
             {
@@ -1398,11 +1398,11 @@ public class StructureNibiruOceanMonumentPieces
 
     public abstract static class Piece extends StructureComponent
     {
-        protected IBlockState roughPrismarine = NibiruBlocks.INFECTED_PRISMARINE.getDefaultState();
-        protected IBlockState bricksPrismarine = NibiruBlocks.INFECTED_PRISMARINE_BRICKS.getDefaultState();
-        protected IBlockState darkPrismarine = NibiruBlocks.INFECTED_DARK_PRISMARINE.getDefaultState();
-        protected IBlockState seaLantern = NibiruBlocks.INFECTED_SEA_LANTERN.getDefaultState();
-        protected IBlockState water = NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+        protected IBlockState roughPrismarine = MPBlocks.INFECTED_PRISMARINE.getDefaultState();
+        protected IBlockState bricksPrismarine = MPBlocks.INFECTED_PRISMARINE_BRICKS.getDefaultState();
+        protected IBlockState darkPrismarine = MPBlocks.INFECTED_DARK_PRISMARINE.getDefaultState();
+        protected IBlockState seaLantern = MPBlocks.INFECTED_SEA_LANTERN.getDefaultState();
+        protected IBlockState water = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
         protected int gridroomSourceIndex = getRoomIndex(2, 0, 0);
         protected int gridroomTopConnectIndex = getRoomIndex(2, 2, 0);
         protected int gridroomLeftwingConnectIndex = getRoomIndex(0, 1, 0);
@@ -1852,7 +1852,7 @@ public class StructureNibiruOceanMonumentPieces
                     if (rand.nextInt(3) != 0)
                     {
                         int k = 2 + (rand.nextInt(4) == 0 ? 0 : 1);
-                        this.fillWithBlocks(world, box, i, k, j, i, 3, j, NibiruBlocks.INFECTED_WET_SPONGE.getDefaultState(), NibiruBlocks.INFECTED_WET_SPONGE.getDefaultState(), false);
+                        this.fillWithBlocks(world, box, i, k, j, i, 3, j, MPBlocks.INFECTED_WET_SPONGE.getDefaultState(), MPBlocks.INFECTED_WET_SPONGE.getDefaultState(), false);
                     }
                 }
             }

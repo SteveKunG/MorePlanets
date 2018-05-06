@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.items.tools.ItemAxeMP;
 import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
 
@@ -14,7 +14,7 @@ public class ItemInfectedWoodAxe extends ItemAxeMP
 {
     public ItemInfectedWoodAxe(String name, ToolMaterial material)
     {
-        super(name, material, NibiruBlocks.INFECTED_OAK_PLANKS, EnumToolSpeed.WOOD);
+        super(name, material, MPBlocks.INFECTED_OAK_PLANKS, EnumToolSpeed.WOOD);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ItemInfectedWoodAxe extends ItemAxeMP
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.INFECTED_OAK_PLANKS))
+        if (repair.getItem() == Item.getItemFromBlock(MPBlocks.INFECTED_OAK_PLANKS))
         {
             return true;
         }

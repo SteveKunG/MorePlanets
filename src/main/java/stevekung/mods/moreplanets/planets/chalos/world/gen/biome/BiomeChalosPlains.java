@@ -8,17 +8,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.planets.chalos.world.gen.feature.WorldGenCheeseDoubleTallGrass;
+import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 
 public class BiomeChalosPlains extends BiomeChalos
 {
     public BiomeChalosPlains(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = ChalosBlocks.CHEESE_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = ChalosBlocks.CHEESE_DIRT.getDefaultState();
-        this.stoneBlock = ChalosBlocks.CHALOS_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.CHEESE_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.CHEESE_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.CHALOS_ROCK.getDefaultState();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class BiomeChalosPlains extends BiomeChalos
             int j = rand.nextInt(16) + 8;
             int k = rand.nextInt(16) + 8;
             int l = rand.nextInt(world.getHeight(pos.add(j, 0, k)).getY() + 32);
-            new WorldGenCheeseDoubleTallGrass().generate(world, rand, pos.add(j, l, k));
+            new WorldGenDoublePlantMP(MPBlocks.CHEESE_TALL_GRASS).generate(world, rand, pos.add(j, l, k));
         }
         super.decorate(world, rand, pos);
     }

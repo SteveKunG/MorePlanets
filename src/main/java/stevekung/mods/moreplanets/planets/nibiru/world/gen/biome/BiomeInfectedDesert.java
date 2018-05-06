@@ -9,16 +9,16 @@ import java.util.LinkedList;
 
 import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class BiomeInfectedDesert extends BiomeNibiru
 {
     public BiomeInfectedDesert(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_SAND.getDefaultState();
-        this.fillerBlock = NibiruBlocks.INFECTED_SAND.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.INFECTED_SAND.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_SAND.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedCactusPerChunk = 10;
         this.getBiomeDecorator().deadBushPerChunk = 2;
         this.getBiomeDecorator().batasiaDandelionPerChunk = 3;

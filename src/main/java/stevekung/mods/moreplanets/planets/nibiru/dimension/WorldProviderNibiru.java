@@ -28,11 +28,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.init.MPDimensions;
-import stevekung.mods.moreplanets.init.MPItems;
-import stevekung.mods.moreplanets.init.MPPlanets;
-import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.client.sky.SkyProviderNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.client.sky.WeatherRendererNibiru;
@@ -78,7 +74,7 @@ public class WorldProviderNibiru extends WorldProviderMP
             {
                 IBlockState iblockstate = this.world.getBlockState(pos);
 
-                if (iblockstate == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState())
+                if (iblockstate == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState())
                 {
                     if (!byWater)
                     {
@@ -99,7 +95,7 @@ public class WorldProviderNibiru extends WorldProviderMP
 
     private boolean isWater(BlockPos pos)
     {
-        return this.world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK;
+        return this.world.getBlockState(pos).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK;
     }
 
     @Override
@@ -122,7 +118,7 @@ public class WorldProviderNibiru extends WorldProviderMP
             {
                 Block block = this.world.getBlockState(pos).getBlock();
 
-                if (block.isAir(this.world.getBlockState(pos), this.world, pos) && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, pos))
+                if (block.isAir(this.world.getBlockState(pos), this.world, pos) && MPBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, pos))
                 {
                     return true;
                 }
@@ -317,6 +313,6 @@ public class WorldProviderNibiru extends WorldProviderMP
     @Override
     public List<Block> getSurfaceBlocks()
     {
-        return Arrays.asList(NibiruBlocks.INFECTED_GRASS_BLOCK, NibiruBlocks.GREEN_VEIN_GRASS_BLOCK, NibiruBlocks.INFECTED_DIRT, NibiruBlocks.NIBIRU_ROCK, NibiruBlocks.TERRASTONE);
+        return Arrays.asList(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK, MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.TERRASTONE);
     }
 }

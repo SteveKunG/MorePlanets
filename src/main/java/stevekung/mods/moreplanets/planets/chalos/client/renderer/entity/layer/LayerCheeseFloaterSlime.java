@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.chalos.client.renderer.entity.RenderCheeseFloater;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseFloater;
 
@@ -29,7 +29,7 @@ public class LayerCheeseFloaterSlime implements LayerRenderer<EntityCheeseFloate
             float partialTicksTime = entity.ticksExisted + partialTicks;
             float hoverTime = MathHelper.sin(partialTicksTime / 12) / 50.0F + 0.5F;
             hoverTime = hoverTime * hoverTime + hoverTime;
-            EntityItem item = new EntityItem(entity.world, 0.0D, 0.0D, 0.0D, new ItemStack(ChalosBlocks.CHEESE_SLIME_BLOCK));
+            EntityItem item = new EntityItem(entity.world, 0.0D, 0.0D, 0.0D, new ItemStack(MPBlocks.CHEESE_SLIME_BLOCK));
             item.hoverStart = 0.0F;
             GlStateManager.translate(0.0F, 1.615F - hoverTime, 0.0F);
             GlStateManager.rotate(180.0F, 1, 0, 0);

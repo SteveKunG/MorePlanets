@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.entity.EntityAntiGravFallingBlock;
-import stevekung.mods.moreplanets.moons.koentus.blocks.KoentusBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class BlockCompressedMetal extends BlockBaseMP
 {
@@ -43,7 +43,7 @@ public class BlockCompressedMetal extends BlockBaseMP
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        if (this == KoentusBlocks.ANTI_GRAVITY_FRAGMENTS_BLOCK)
+        if (this == MPBlocks.ANTI_GRAVITY_FRAGMENTS_BLOCK)
         {
             world.scheduleUpdate(pos, this, 2);
         }
@@ -52,7 +52,7 @@ public class BlockCompressedMetal extends BlockBaseMP
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
-        if (this == KoentusBlocks.ANTI_GRAVITY_FRAGMENTS_BLOCK)
+        if (this == MPBlocks.ANTI_GRAVITY_FRAGMENTS_BLOCK)
         {
             world.scheduleUpdate(pos, this, 2);
         }
@@ -61,7 +61,7 @@ public class BlockCompressedMetal extends BlockBaseMP
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if (!world.isRemote && this == KoentusBlocks.ANTI_GRAVITY_FRAGMENTS_BLOCK)
+        if (!world.isRemote && this == MPBlocks.ANTI_GRAVITY_FRAGMENTS_BLOCK)
         {
             this.checkFallable(world, pos);
         }

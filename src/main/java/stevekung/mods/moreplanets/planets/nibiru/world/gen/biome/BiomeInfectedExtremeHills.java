@@ -12,7 +12,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
@@ -24,7 +24,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     public BiomeInfectedExtremeHills(BiomeProperties properties)
     {
         super(properties);
-        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
     }
 
@@ -43,7 +43,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
         }
         else if (rand.nextInt(20) == 0)
         {
-            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
         else
         {
@@ -61,9 +61,9 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
         {
             BlockPos blockpos = pos.add(rand.nextInt(16), rand.nextInt(28) + 4, rand.nextInt(16));
 
-            if (world.getBlockState(blockpos) == NibiruBlocks.NIBIRU_ROCK.getDefaultState())
+            if (world.getBlockState(blockpos) == MPBlocks.NIBIRU_ROCK.getDefaultState())
             {
-                world.setBlockState(blockpos, NibiruBlocks.INFECTED_EMERALD_ORE.getDefaultState(), 2);
+                world.setBlockState(blockpos, MPBlocks.INFECTED_EMERALD_ORE.getDefaultState(), 2);
             }
         }
         for (int i = 0; i < 7; ++i)
@@ -71,7 +71,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
             int j1 = rand.nextInt(16);
             int k1 = rand.nextInt(64);
             int l1 = rand.nextInt(16);
-            new WorldGenMinableBase(NibiruBlocks.INFESTED_NIBIRU_ROCK.getDefaultState(), NibiruBlocks.NIBIRU_ROCK.getDefaultState(), 8).generate(world, rand, pos.add(j1, k1, l1));
+            new WorldGenMinableBase(MPBlocks.INFESTED_NIBIRU_ROCK.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), 8).generate(world, rand, pos.add(j1, k1, l1));
         }
         for (int i = 0; i < 24; i++)
         {
@@ -83,13 +83,13 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     @Override
     public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double noise)
     {
-        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
+        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
 
         if (noise > 1.0D)
         {
-            this.topBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
-            this.fillerBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+            this.topBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
+            this.fillerBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         }
         super.genTerrainBlocks(world, rand, chunkPrimer, chunkX, chunkZ, noise);
     }

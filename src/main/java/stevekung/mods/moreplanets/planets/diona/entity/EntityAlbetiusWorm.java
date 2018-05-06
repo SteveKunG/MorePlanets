@@ -17,7 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
 {
@@ -119,7 +119,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     @Override
     public float getBlockPathWeight(BlockPos pos)
     {
-        return this.world.getBlockState(pos.down()).getBlock() == DionaBlocks.DIONA_ROCK ? 10.0F : super.getBlockPathWeight(pos);
+        return this.world.getBlockState(pos.down()).getBlock() == MPBlocks.DIONA_ROCK ? 10.0F : super.getBlockPathWeight(pos);
     }
 
     @Override
@@ -188,7 +188,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
                     BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
                     IBlockState iblockstate = this.entity.world.getBlockState(blockpos);
 
-                    if (iblockstate == DionaBlocks.DIONA_ROCK.getDefaultState())
+                    if (iblockstate == MPBlocks.DIONA_ROCK.getDefaultState())
                     {
                         this.doMerge = true;
                         return true;
@@ -218,9 +218,9 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
                 BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
                 IBlockState iblockstate = world.getBlockState(blockpos);
 
-                if (iblockstate == DionaBlocks.DIONA_ROCK.getDefaultState())
+                if (iblockstate == MPBlocks.DIONA_ROCK.getDefaultState())
                 {
-                    world.setBlockState(blockpos, DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
+                    world.setBlockState(blockpos, MPBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
                     this.entity.spawnExplosionParticle();
                     this.entity.setDead();
                 }
@@ -272,7 +272,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
                             BlockPos blockpos1 = blockpos.add(j, i, k);
                             IBlockState iblockstate = world.getBlockState(blockpos1);
 
-                            if (iblockstate.getBlock() == DionaBlocks.ALBETIUS_WORM_EGG_ROCK)
+                            if (iblockstate.getBlock() == MPBlocks.ALBETIUS_WORM_EGG_ROCK)
                             {
                                 if (world.getGameRules().getBoolean("mobGriefing"))
                                 {
@@ -280,7 +280,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
                                 }
                                 else
                                 {
-                                    world.setBlockState(blockpos1, DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
+                                    world.setBlockState(blockpos1, MPBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
                                 }
 
                                 if (random.nextBoolean())

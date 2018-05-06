@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.client.renderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCrystallizedEnderCore;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
 import stevekung.mods.moreplanets.utils.ClientRendererUtils;
@@ -38,22 +37,22 @@ public class DarkEnergyReceiverMultiblockRenderer
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y - 2, z);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y - 2, z + 2);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 1, y - 2, z + 1);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 1, y - 2, z + 1);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
@@ -78,22 +77,22 @@ public class DarkEnergyReceiverMultiblockRenderer
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 3, y - 1, z + 4);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 3, y, z + 4);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 3, y + 1, z + 4);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 3, y + 2, z + 4);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
         GlStateManager.popMatrix();
 
         TileEntityRendererDispatcher.instance.render(new TileEntityInfectedCrystallizedEnderCore(), x + 3, y + 2, z + 3, 0.0F);
@@ -103,22 +102,22 @@ public class DarkEnergyReceiverMultiblockRenderer
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 3, y - 1, z + 4);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 3, y, z + 4);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 3, y + 1, z + 4);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 3, y + 2, z + 4);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
         GlStateManager.popMatrix();
 
         TileEntityRendererDispatcher.instance.render(new TileEntityInfectedCrystallizedEnderCore(), x - 3, y + 2, z + 3, 0.0F);
@@ -128,22 +127,22 @@ public class DarkEnergyReceiverMultiblockRenderer
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 3, y - 1, z - 2);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 3, y, z - 2);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 3, y + 1, z - 2);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x - 3, y + 2, z - 2);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
         GlStateManager.popMatrix();
 
         TileEntityRendererDispatcher.instance.render(new TileEntityInfectedCrystallizedEnderCore(), x - 3, y + 2, z - 3, 0.0F);
@@ -153,22 +152,22 @@ public class DarkEnergyReceiverMultiblockRenderer
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 3, y - 1, z - 2);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 3, y, z - 2);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 3, y + 1, z - 2);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT.getDefaultState());
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 3, y + 2, z - 2);
-        ClientRendererUtils.renderModel(DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
+        ClientRendererUtils.renderModel(MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
         GlStateManager.popMatrix();
 
         TileEntityRendererDispatcher.instance.render(new TileEntityInfectedCrystallizedEnderCore(), x + 3, y + 2, z - 3, 0.0F);

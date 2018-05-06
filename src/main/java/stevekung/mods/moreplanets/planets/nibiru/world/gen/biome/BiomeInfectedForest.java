@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
@@ -21,9 +21,9 @@ public class BiomeInfectedForest extends BiomeNibiru
     public BiomeInfectedForest(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
         this.getBiomeDecorator().infectedTreesPerChunk = 10;
         this.getBiomeDecorator().orangeBushPerChunk = 3;
@@ -53,15 +53,15 @@ public class BiomeInfectedForest extends BiomeNibiru
     {
         if (rand.nextInt(10) == 0)
         {
-            return new WorldGenInfectedBigTree(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+            return new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
         else if (rand.nextInt(20) == 0)
         {
-            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(false, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
         else
         {
-            return new WorldGenInfectedTrees(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+            return new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
     }
 }

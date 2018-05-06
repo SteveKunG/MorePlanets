@@ -6,7 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 
 public class WorldGenNibiruSeaweed extends WorldGenerator
@@ -25,7 +25,7 @@ public class WorldGenNibiruSeaweed extends WorldGenerator
         {
             BlockPos pos1 = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.getBlockState(pos1).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && pos1.getY() < 255 && ((BlockBushMP)this.flower.getBlock()).canBlockStay(world, pos1, this.flower))
+            if (world.getBlockState(pos1).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK && pos1.getY() < 255 && ((BlockBushMP)this.flower.getBlock()).canBlockStay(world, pos1, this.flower))
             {
                 world.setBlockState(pos1, this.flower, 2);
             }

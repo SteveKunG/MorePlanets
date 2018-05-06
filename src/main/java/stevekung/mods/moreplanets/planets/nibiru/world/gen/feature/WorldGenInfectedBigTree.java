@@ -2,7 +2,7 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.feature;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractBigTree;
 
 public class WorldGenInfectedBigTree extends WorldGenAbstractBigTree
@@ -16,6 +16,6 @@ public class WorldGenInfectedBigTree extends WorldGenAbstractBigTree
     @Override
     protected boolean isSoil(Block block)
     {
-        return block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
+        return block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
     }
 }

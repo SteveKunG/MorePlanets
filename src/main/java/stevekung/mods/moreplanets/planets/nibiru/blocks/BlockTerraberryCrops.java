@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
@@ -61,10 +62,9 @@ public class BlockTerraberryCrops extends BlockCropsMP
     }
 
     @Override
-    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    protected boolean validBlock(Block block)
     {
-        Block block = world.getBlockState(pos.down()).getBlock();
-        return super.canBlockStay(world, pos, state) && block == NibiruBlocks.INFECTED_FARMLAND;
+        return block == MPBlocks.INFECTED_FARMLAND;
     }
 
     @Override

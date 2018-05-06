@@ -14,7 +14,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class MapGenNibiruCaves extends MapGenBase
 {
@@ -233,7 +233,7 @@ public class MapGenNibiruCaves extends MapGenBase
     protected boolean isOceanBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
         Block block = data.getBlockState(x, y, z).getBlock();
-        return block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK;
+        return block == MPBlocks.INFECTED_WATER_FLUID_BLOCK;
     }
 
     private boolean isExceptionBiome(Biome biome)
@@ -249,7 +249,7 @@ public class MapGenNibiruCaves extends MapGenBase
     {
         Biome biome = this.world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState state = data.getBlockState(x, y, z);
-        return this.isExceptionBiome(biome) ? state.getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK : state.getBlock() == biome.topBlock;
+        return this.isExceptionBiome(biome) ? state.getBlock() == MPBlocks.INFECTED_GRASS_BLOCK : state.getBlock() == biome.topBlock;
     }
 
     protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop, IBlockState state, IBlockState up)
@@ -258,7 +258,7 @@ public class MapGenNibiruCaves extends MapGenBase
         IBlockState top = biome.topBlock;
         IBlockState filler = biome.fillerBlock;
 
-        if (state.getBlock() == NibiruBlocks.NIBIRU_ROCK || state.getBlock() == NibiruBlocks.INFECTED_SANDSTONE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == MPBlocks.NIBIRU_ROCK || state.getBlock() == MPBlocks.INFECTED_SANDSTONE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y < 10)
             {

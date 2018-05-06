@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityTerrastoneGolem;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenAlienBerryBigTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenAlienBerryTree;
@@ -25,9 +25,9 @@ public class BiomeGreenVein extends BiomeNibiru
     public BiomeGreenVein(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.GREEN_VEIN_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.GREEN_VEIN_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.spawnableCreatureList.add(new SpawnListEntry(EntityTerrastoneGolem.class, 8, 2, 4));
         this.getBiomeDecorator().pureHurbPerChunk = -999;
         this.getBiomeDecorator().terrapuffHurbPerChunk = 4;
@@ -60,7 +60,7 @@ public class BiomeGreenVein extends BiomeNibiru
                 int j = rand.nextInt(16) + 8;
                 int k = rand.nextInt(16) + 8;
                 int l = rand.nextInt(world.getHeight(pos.add(j, 0, k)).getY() + 32);
-                new WorldGenDoublePlantMP(NibiruBlocks.GREEN_VEIN_TALL_GRASS).generate(world, rand, pos.add(j, l, k));
+                new WorldGenDoublePlantMP(MPBlocks.GREEN_VEIN_TALL_GRASS).generate(world, rand, pos.add(j, l, k));
             }
         }
         if (rand.nextInt(15) == 0)
@@ -74,7 +74,7 @@ public class BiomeGreenVein extends BiomeNibiru
             int x = rand.nextInt(16) + 8;
             int z = rand.nextInt(16) + 8;
             BlockPos blockpos2 = world.getHeight(pos.add(x, 0, z));
-            new WorldGenFlowersBase(NibiruBlocks.TERRASHROOM.getDefaultState()).generate(world, rand, blockpos2);
+            new WorldGenFlowersBase(MPBlocks.TERRASHROOM.getDefaultState()).generate(world, rand, blockpos2);
         }
         super.decorate(world, rand, pos);
     }

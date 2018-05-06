@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.math.AxisAlignedBB;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 public class TileEntityJuicerEgg extends TileEntityRenderTickable
@@ -32,7 +32,7 @@ public class TileEntityJuicerEgg extends TileEntityRenderTickable
                     {
                         EntityArrow arrow = (EntityArrow) entity;
 
-                        if (arrow.inTile == NibiruBlocks.JUICER_EGG)
+                        if (arrow.inTile == MPBlocks.JUICER_EGG)
                         {
                             arrow.setDead();
                             this.world.destroyBlock(this.pos, false);

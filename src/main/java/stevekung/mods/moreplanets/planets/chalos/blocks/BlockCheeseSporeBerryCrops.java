@@ -14,6 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
@@ -68,7 +69,7 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
     @Override
     public boolean validBlock(Block block)
     {
-        return block == ChalosBlocks.CHEESE_FARMLAND;
+        return block == MPBlocks.CHEESE_FARMLAND;
     }
 
     @Override

@@ -32,10 +32,10 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
@@ -395,7 +395,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                     BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
                     IBlockState iblockstate = this.entity.world.getBlockState(blockpos.down());
 
-                    if (iblockstate == DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState())
+                    if (iblockstate == MPBlocks.DIONA_SURFACE_ROCK.getDefaultState())
                     {
                         this.findStone = true;
                         return true;
@@ -425,9 +425,9 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                 BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
                 IBlockState iblockstate = world.getBlockState(blockpos.down());
 
-                if (iblockstate == DionaBlocks.DIONA_SURFACE_ROCK.getDefaultState())
+                if (iblockstate == MPBlocks.DIONA_SURFACE_ROCK.getDefaultState())
                 {
-                    world.setBlockState(blockpos.down(), DionaBlocks.ALIEN_MINER_BLOOD.getDefaultState(), 3);
+                    world.setBlockState(blockpos.down(), MPBlocks.ALIEN_MINER_BLOOD.getDefaultState(), 3);
                 }
             }
         }

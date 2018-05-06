@@ -9,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaDungeonSpawner;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.*;
 
@@ -107,7 +106,7 @@ public class RoomBossDiona extends RoomBossMP
 
                         if (rand.nextInt(6) == 0)
                         {
-                            this.setBlockState(world, DionaBlocks.ZELIUS_EGG.getDefaultState(), i, j, k, boundingBox);
+                            this.setBlockState(world, MPBlocks.ZELIUS_EGG.getDefaultState(), i, j, k, boundingBox);
                         }
                         else
                         {

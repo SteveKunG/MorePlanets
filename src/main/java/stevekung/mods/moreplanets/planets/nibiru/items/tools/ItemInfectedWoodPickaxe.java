@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.items.tools.ItemPickaxeMP;
 
 public class ItemInfectedWoodPickaxe extends ItemPickaxeMP
@@ -51,7 +51,7 @@ public class ItemInfectedWoodPickaxe extends ItemPickaxeMP
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        if (repair.getItem() == Item.getItemFromBlock(NibiruBlocks.INFECTED_OAK_PLANKS))
+        if (repair.getItem() == Item.getItemFromBlock(MPBlocks.INFECTED_OAK_PLANKS))
         {
             return true;
         }

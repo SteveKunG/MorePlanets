@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.BlockFluidBase;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class ItemBlockSporelily extends ItemBlock
 {
@@ -49,10 +49,10 @@ public class ItemBlockSporelily extends ItemBlock
                 BlockPos pos1 = pos.up();
                 IBlockState state = world.getBlockState(pos);
 
-                if (state.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && state.getValue(BlockFluidBase.LEVEL) == 0 && world.isAirBlock(pos1))
+                if (state.getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK && state.getValue(BlockFluidBase.LEVEL) == 0 && world.isAirBlock(pos1))
                 {
                     BlockSnapshot blocksnapshot = BlockSnapshot.getBlockSnapshot(world, pos1);
-                    world.setBlockState(pos1, NibiruBlocks.SPORELILY.getDefaultState());
+                    world.setBlockState(pos1, MPBlocks.SPORELILY.getDefaultState());
 
                     if (ForgeEventFactory.onPlayerBlockPlace(player, blocksnapshot, EnumFacing.UP, hand).isCanceled())
                     {
@@ -60,7 +60,7 @@ public class ItemBlockSporelily extends ItemBlock
                         return new ActionResult<>(EnumActionResult.FAIL, itemStack);
                     }
 
-                    world.setBlockState(pos1, NibiruBlocks.SPORELILY.getDefaultState(), 11);
+                    world.setBlockState(pos1, MPBlocks.SPORELILY.getDefaultState(), 11);
 
                     if (player instanceof EntityPlayerMP)
                     {

@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedVines extends WorldGenerator
 {
@@ -21,9 +21,9 @@ public class WorldGenInfectedVines extends WorldGenerator
             {
                 for (EnumFacing facing : EnumFacing.Plane.HORIZONTAL.facings())
                 {
-                    if (NibiruBlocks.INFECTED_VINES.canPlaceBlockOnSide(world, pos, facing))
+                    if (MPBlocks.INFECTED_VINES.canPlaceBlockOnSide(world, pos, facing))
                     {
-                        IBlockState iblockstate = NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.NORTH, facing == EnumFacing.NORTH).withProperty(BlockVine.EAST, facing == EnumFacing.EAST).withProperty(BlockVine.SOUTH, facing == EnumFacing.SOUTH).withProperty(BlockVine.WEST, facing == EnumFacing.WEST);
+                        IBlockState iblockstate = MPBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.NORTH, facing == EnumFacing.NORTH).withProperty(BlockVine.EAST, facing == EnumFacing.EAST).withProperty(BlockVine.SOUTH, facing == EnumFacing.SOUTH).withProperty(BlockVine.WEST, facing == EnumFacing.WEST);
                         world.setBlockState(pos, iblockstate, 2);
                         break;
                     }

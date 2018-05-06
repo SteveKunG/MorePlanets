@@ -12,8 +12,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityVeinFloater;
 
 public class EntityNibiruLightningBolt extends Entity
@@ -74,9 +74,9 @@ public class EntityNibiruLightningBolt extends Entity
 
                 if (!this.world.isRemote && this.fire && this.world.getGameRules().getBoolean("doFireTick"))
                 {
-                    if (this.world.isAreaLoaded(blockpos, 10) && this.world.getBlockState(blockpos).getMaterial() == Material.AIR && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.world, blockpos))
+                    if (this.world.isAreaLoaded(blockpos, 10) && this.world.getBlockState(blockpos).getMaterial() == Material.AIR && MPBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.world, blockpos))
                     {
-                        this.world.setBlockState(blockpos, NibiruBlocks.ELECTRICAL_FIRE.getDefaultState());
+                        this.world.setBlockState(blockpos, MPBlocks.ELECTRICAL_FIRE.getDefaultState());
                     }
                     if (this.world.rand.nextInt(4) == 0)
                     {
@@ -84,9 +84,9 @@ public class EntityNibiruLightningBolt extends Entity
                         {
                             BlockPos blockpos1 = blockpos.add(this.rand.nextInt(3) - 1, this.rand.nextInt(3) - 1, this.rand.nextInt(3) - 1);
 
-                            if (this.world.getBlockState(blockpos1).getMaterial() == Material.AIR && NibiruBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.world, blockpos1))
+                            if (this.world.getBlockState(blockpos1).getMaterial() == Material.AIR && MPBlocks.ELECTRICAL_FIRE.canPlaceBlockAt(this.world, blockpos1))
                             {
-                                this.world.setBlockState(blockpos1, NibiruBlocks.ELECTRICAL_FIRE.getDefaultState());
+                                this.world.setBlockState(blockpos1, MPBlocks.ELECTRICAL_FIRE.getDefaultState());
                             }
                         }
                     }

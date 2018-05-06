@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockFluidLavaBaseMP;
 
@@ -20,7 +21,7 @@ public class BlockFluidNuclearWaste extends BlockFluidLavaBaseMP
 {
     public BlockFluidNuclearWaste(String name)
     {
-        super(NibiruBlocks.NUCLEAR_WASTE_FLUID);
+        super(MPBlocks.NUCLEAR_WASTE_FLUID);
         this.setUnlocalizedName(name);
     }
 

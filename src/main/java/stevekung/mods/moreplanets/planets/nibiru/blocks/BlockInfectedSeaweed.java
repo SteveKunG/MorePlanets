@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 
 public class BlockInfectedSeaweed extends BlockBushMP
@@ -74,7 +75,7 @@ public class BlockInfectedSeaweed extends BlockBushMP
 
             if (material.blocksMovement() || material.isLiquid() || player.isCreative())
             {
-                world.setBlockState(pos, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
+                world.setBlockState(pos, MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
             }
         }
     }
@@ -82,7 +83,7 @@ public class BlockInfectedSeaweed extends BlockBushMP
     @Override
     protected boolean validBlock(Block block)
     {
-        return block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT;
+        return block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT;
     }
 
     @Override
@@ -90,7 +91,7 @@ public class BlockInfectedSeaweed extends BlockBushMP
     {
         Block blockDown = world.getBlockState(pos.down()).getBlock();
         IBlockState blockUp = world.getBlockState(pos.up());
-        return super.canPlaceBlockAt(world, pos) && this.validBlock(blockDown) && blockUp == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+        return super.canPlaceBlockAt(world, pos) && this.validBlock(blockDown) && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
     }
 
     @Override
@@ -101,9 +102,9 @@ public class BlockInfectedSeaweed extends BlockBushMP
 
         if (state.getBlock() == this)
         {
-            return this.validBlock(blockDown) && blockUp == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+            return this.validBlock(blockDown) && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
         }
-        return this.validBlock(blockDown) && blockUp == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+        return this.validBlock(blockDown) && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
     }
 
     @Override

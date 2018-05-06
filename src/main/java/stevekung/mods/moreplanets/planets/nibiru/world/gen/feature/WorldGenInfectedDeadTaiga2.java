@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedDeadTaiga2 extends WorldGenAbstractTree
 {
@@ -74,7 +74,7 @@ public class WorldGenInfectedDeadTaiga2 extends WorldGenAbstractTree
                 BlockPos down = pos.down();
                 Block block1 = world.getBlockState(down).getBlock();
 
-                if (block1 == NibiruBlocks.INFECTED_GRASS_BLOCK || block1 == NibiruBlocks.INFECTED_DIRT || block1 == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
+                if (block1 == MPBlocks.INFECTED_GRASS_BLOCK || block1 == MPBlocks.INFECTED_DIRT || block1 == MPBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
                 {
                     block1.onPlantGrow(world.getBlockState(down), world, down, pos);
                     int i3 = rand.nextInt(2);
@@ -101,7 +101,7 @@ public class WorldGenInfectedDeadTaiga2 extends WorldGenAbstractTree
                                     {
                                         if (this.genLeaves)
                                         {
-                                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_OAK_LEAVES.getStateFromMeta(1));//TODO
+                                            this.setBlockAndNotifyAdequately(world, blockpos, MPBlocks.INFECTED_OAK_LEAVES.getStateFromMeta(1));//TODO
                                         }
                                     }
                                 }
@@ -134,7 +134,7 @@ public class WorldGenInfectedDeadTaiga2 extends WorldGenAbstractTree
 
                         if (block2.isAir(world.getBlockState(upN), world, upN) || block2.isLeaves(world.getBlockState(upN), world, upN))
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(k4), NibiruBlocks.INFECTED_OAK_LOG.getStateFromMeta(1));//TODO
+                            this.setBlockAndNotifyAdequately(world, pos.up(k4), MPBlocks.INFECTED_OAK_LOG.getStateFromMeta(1));//TODO
                         }
                     }
                     return true;

@@ -18,8 +18,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.fronos.blocks.FronosBlocks;
 import stevekung.mods.moreplanets.planets.fronos.entity.ai.EntityAIFaceTexture;
 import stevekung.mods.moreplanets.planets.fronos.entity.ai.EntityAIFronosPanic;
 import stevekung.mods.moreplanets.planets.fronos.entity.ai.EntityAIFronosTempt;
@@ -202,7 +202,7 @@ public abstract class EntityFronosPet extends EntityTameable
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.world.getBlockState(this.getPosition().down()).getBlock() == FronosBlocks.FRONOS_GRASS_BLOCK;
+        return this.world.getBlockState(this.getPosition().down()).getBlock() == MPBlocks.FRONOS_GRASS_BLOCK;
     }
 
     @Override

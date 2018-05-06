@@ -9,7 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.moons.koentus.blocks.KoentusBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class EntityFallingKoentusMeteor extends EntityFallingBlock
 {
@@ -26,7 +26,7 @@ public class EntityFallingKoentusMeteor extends EntityFallingBlock
     @Override
     public void onUpdate()
     {
-        Block block = KoentusBlocks.FALLEN_KOENTUS_METEOR;
+        Block block = MPBlocks.FALLEN_KOENTUS_METEOR;
 
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
@@ -60,7 +60,7 @@ public class EntityFallingKoentusMeteor extends EntityFallingBlock
                 this.motionX *= 0.699999988079071D;
                 this.motionZ *= 0.699999988079071D;
                 this.motionY *= -0.5D;
-                this.world.playEvent(2001, this.getPosition(), Block.getStateId(KoentusBlocks.FALLEN_KOENTUS_METEOR.getDefaultState()));
+                this.world.playEvent(2001, this.getPosition(), Block.getStateId(MPBlocks.FALLEN_KOENTUS_METEOR.getDefaultState()));
 
                 if (this.rand.nextInt(16) == 0)
                 {

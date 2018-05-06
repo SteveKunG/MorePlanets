@@ -7,7 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenNibiruSand extends WorldGenerator
 {
@@ -23,7 +23,7 @@ public class WorldGenNibiruSand extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if (world.getBlockState(pos).getBlock() != NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+        if (world.getBlockState(pos).getBlock() != MPBlocks.INFECTED_WATER_FLUID_BLOCK)
         {
             return false;
         }
@@ -46,7 +46,7 @@ public class WorldGenNibiruSand extends WorldGenerator
                             BlockPos blockpos = new BlockPos(k, k1, l);
                             Block block = world.getBlockState(blockpos).getBlock();
 
-                            if (block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_GRASS_BLOCK)
+                            if (block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_GRASS_BLOCK)
                             {
                                 world.setBlockState(blockpos, this.block, 2);
                             }

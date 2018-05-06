@@ -24,8 +24,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 
 public class EntityTerrastoneGolem extends EntityGolem
 {
@@ -132,7 +132,7 @@ public class EntityTerrastoneGolem extends EntityGolem
                 {
                     if (this.getHealth() > 0.0F && this.hurtTime == 0)
                     {
-                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 6.0F, 0.0D, this.width / 6.0F, 0.05D, new int[] {Block.getStateId(NibiruBlocks.TERRASTONE.getDefaultState())});
+                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 6.0F, 0.0D, this.width / 6.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.TERRASTONE.getDefaultState())});
                     }
                 }
             }

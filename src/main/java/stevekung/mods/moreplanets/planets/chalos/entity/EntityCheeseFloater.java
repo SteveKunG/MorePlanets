@@ -23,8 +23,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 
 public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
@@ -163,7 +163,7 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
                     {
                         if (this.getHealth() > 0.0F)
                         {
-                            ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
+                            ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
                         }
                     }
                 }

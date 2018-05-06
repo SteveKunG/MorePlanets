@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.*;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
@@ -39,39 +39,39 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
 
         for (i = 0; i < this.infectedTallGrassPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.INFECTED_GRASS.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.INFECTED_GRASS.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.pureHurbPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.PURE_HERB.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.PURE_HERB.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.terrapuffHurbPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.TERRAPUFF_HERB.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.TERRAPUFF_HERB.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.batasiaDandelionPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.BATASIA_DANDELION.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.BATASIA_DANDELION.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.pyoloniaPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.PYOLONIA.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.PYOLONIA.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.philipyPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.PHILIPY.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.PHILIPY.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.whiteTailPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.WHITE_TAIL.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.WHITE_TAIL.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.vealiumVinePerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.VEALIUM_VINES.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.VEALIUM_VINES.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.seaweedPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenNibiruSeaweed(NibiruBlocks.INFECTED_SEAWEED.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenNibiruSeaweed(MPBlocks.INFECTED_SEAWEED.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.infectedCactusPerChunk; ++i)
         {
@@ -87,7 +87,7 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
         }
         for (i = 0; i < this.greenVeinTallGrassPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState()), world, rand, this.chunkPos);
+            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.GREEN_VEIN_GRASS.getDefaultState()), world, rand, this.chunkPos);
         }
         for (i = 0; i < this.waterlilyPerChunk; ++i)
         {
@@ -127,13 +127,13 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
         {
             int j = rand.nextInt(16) + 8;
             int k = rand.nextInt(16) + 8;
-            new WorldGenNibiruSand(NibiruBlocks.INFECTED_SAND.getDefaultState(), 7).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
+            new WorldGenNibiruSand(MPBlocks.INFECTED_SAND.getDefaultState(), 7).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
         }
         for (i = 0; i < this.gravelPatchesPerChunk; ++i)
         {
             int i2 = rand.nextInt(16) + 8;
             int j6 = rand.nextInt(16) + 8;
-            new WorldGenNibiruSand(NibiruBlocks.INFECTED_GRAVEL.getDefaultState(), 6).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
+            new WorldGenNibiruSand(MPBlocks.INFECTED_GRAVEL.getDefaultState(), 6).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
         }
 
         int treesPerChunk = this.infectedTreesPerChunk;
@@ -172,8 +172,9 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
                 for (int i2 = 0; i2 < 5; ++i2)
                 {
                     int y = rand.nextInt(world.getHeight(this.chunkPos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)).getY() + 32);
+                    WorldGenDoublePlantMP worldgen = new WorldGenDoublePlantMP(MPBlocks.INFECTED_ORANGE_ROSE_BUSH);
 
-                    if (new WorldGenDoublePlantMP(NibiruBlocks.INFECTED_ORANGE_ROSE_BUSH).generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
+                    if (worldgen.generate(world, rand, new BlockPos(this.chunkPos.getX() + rand.nextInt(16) + 8, y, this.chunkPos.getZ() + rand.nextInt(16) + 8)))
                     {
                         break;
                     }

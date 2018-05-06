@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
@@ -25,9 +25,9 @@ public class ItemInfectedMelonSeeds extends ItemBaseMP
         ItemStack itemStack = player.getHeldItem(hand);
         IBlockState state = world.getBlockState(pos);
 
-        if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == NibiruBlocks.INFECTED_FARMLAND && world.isAirBlock(pos.up()))
+        if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == MPBlocks.INFECTED_FARMLAND && world.isAirBlock(pos.up()))
         {
-            world.setBlockState(pos.up(), NibiruBlocks.INFECTED_MELON_STEM.getDefaultState(), 11);
+            world.setBlockState(pos.up(), MPBlocks.INFECTED_MELON_STEM.getDefaultState(), 11);
             itemStack.shrink(1);
             return EnumActionResult.SUCCESS;
         }

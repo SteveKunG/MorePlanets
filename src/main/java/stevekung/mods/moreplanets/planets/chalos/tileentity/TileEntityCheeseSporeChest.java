@@ -3,14 +3,14 @@ package stevekung.mods.moreplanets.planets.chalos.tileentity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class TileEntityCheeseSporeChest extends TileEntityChestMP
 {
     public TileEntityCheeseSporeChest()
     {
-        super(ChalosBlocks.CHEESE_SPORE_CHEST);
+        super(MPBlocks.CHEESE_SPORE_CHEST);
     }
 
     @Override

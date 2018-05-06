@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.BiomeDecoratorNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
@@ -35,7 +35,7 @@ public class BiomeNibiru extends BiomeBaseMP
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
     }
 
     @Override
@@ -80,7 +80,7 @@ public class BiomeNibiru extends BiomeBaseMP
                 {
                     j = -1;
                 }
-                else if (iblockstate2.getBlock() == NibiruBlocks.NIBIRU_ROCK)
+                else if (iblockstate2.getBlock() == MPBlocks.NIBIRU_ROCK)
                 {
                     if (this.stoneBlock != null)
                     {
@@ -91,7 +91,7 @@ public class BiomeNibiru extends BiomeBaseMP
                         if (k <= 0)
                         {
                             iblockstate = null;
-                            iblockstate1 = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+                            iblockstate1 = MPBlocks.NIBIRU_ROCK.getDefaultState();
                         }
                         else if (j1 >= i - 4 && j1 <= i + 1)
                         {
@@ -103,11 +103,11 @@ public class BiomeNibiru extends BiomeBaseMP
                         {
                             if (this.getTemperature(blockpos$mutableblockpos.setPos(chunkX, j1, chunkZ)) < 0.15F)
                             {
-                                iblockstate = NibiruBlocks.INFECTED_ICE.getDefaultState();
+                                iblockstate = MPBlocks.INFECTED_ICE.getDefaultState();
                             }
                             else
                             {
-                                iblockstate = NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+                                iblockstate = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
                             }
                         }
 
@@ -120,8 +120,8 @@ public class BiomeNibiru extends BiomeBaseMP
                         else if (j1 < i - 7 - k)
                         {
                             iblockstate = null;
-                            iblockstate1 = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
-                            chunkPrimer.setBlockState(i1, j1, l, NibiruBlocks.INFECTED_GRAVEL.getDefaultState());
+                            iblockstate1 = MPBlocks.NIBIRU_ROCK.getDefaultState();
+                            chunkPrimer.setBlockState(i1, j1, l, MPBlocks.INFECTED_GRAVEL.getDefaultState());
                         }
                         else
                         {
@@ -133,10 +133,10 @@ public class BiomeNibiru extends BiomeBaseMP
                         --j;
                         chunkPrimer.setBlockState(i1, j1, l, iblockstate1);
 
-                        if (j == 0 && iblockstate1.getBlock() == NibiruBlocks.INFECTED_SAND)
+                        if (j == 0 && iblockstate1.getBlock() == MPBlocks.INFECTED_SAND)
                         {
                             j = rand.nextInt(4) + Math.max(0, j1 - 63);
-                            iblockstate1 = NibiruBlocks.INFECTED_SANDSTONE.getDefaultState();
+                            iblockstate1 = MPBlocks.INFECTED_SANDSTONE.getDefaultState();
                         }
                     }
                 }

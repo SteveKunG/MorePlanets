@@ -16,9 +16,9 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.planets.chalos.client.sky.SkyProviderChalos;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.BiomeProviderChalos;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.ChunkGeneratorChalos;
@@ -183,6 +183,6 @@ public class WorldProviderChalos extends WorldProviderMP
     @Override
     public List<Block> getSurfaceBlocks()
     {
-        return Arrays.asList(ChalosBlocks.CHEESE_GRASS_BLOCK, ChalosBlocks.CHEESE_DIRT, ChalosBlocks.CHEESE_COARSE_DIRT, ChalosBlocks.CHALOS_ROCK);
+        return Arrays.asList(MPBlocks.CHEESE_GRASS_BLOCK, MPBlocks.CHEESE_DIRT, MPBlocks.CHEESE_COARSE_DIRT, MPBlocks.CHALOS_ROCK);
     }
 }

@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
@@ -55,14 +56,14 @@ public class BlockSporelily extends BlockBushMP
     @Override
     public boolean validBlock(Block block)
     {
-        return block == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK;
+        return block == MPBlocks.INFECTED_WATER_FLUID_BLOCK;
     }
 
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
         IBlockState state = world.getBlockState(pos.down());
-        return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && state.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && state.getValue(BlockFluidBase.LEVEL) == 0;
+        return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && state.getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK && state.getValue(BlockFluidBase.LEVEL) == 0;
     }
 
     @Override
@@ -71,7 +72,7 @@ public class BlockSporelily extends BlockBushMP
         if (pos.getY() >= 0 && pos.getY() < 256)
         {
             IBlockState iblockstate = world.getBlockState(pos.down());
-            return iblockstate.getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && iblockstate.getValue(BlockFluidBase.LEVEL) == 0;
+            return iblockstate.getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK && iblockstate.getValue(BlockFluidBase.LEVEL) == 0;
         }
         else
         {

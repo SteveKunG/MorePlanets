@@ -23,6 +23,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
@@ -271,7 +272,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     private boolean canPlaceBlock(World world, BlockPos pos, EnumFacing facing)
     {
         BlockPos blockpos = pos.offset(facing);
-        return world.getBlockState(blockpos).isSideSolid(world, blockpos, facing.getOpposite()) || world.getBlockState(blockpos).getBlock() == NibiruBlocks.MULTALIC_CRYSTAL_BLOCK;
+        return world.getBlockState(blockpos).isSideSolid(world, blockpos, facing.getOpposite()) || world.getBlockState(blockpos).getBlock() == MPBlocks.MULTALIC_CRYSTAL_BLOCK;
     }
 
     private boolean checkForDrop(World world, BlockPos pos)

@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
@@ -28,7 +29,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 1.0D, 0.875D);
 
-    protected BlockInfectedSugarCane(String name)
+    public BlockInfectedSugarCane(String name)
     {
         super(Material.PLANTS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
@@ -44,7 +45,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if (world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK || this.canBlockStay(world, pos, state))
+        if (world.getBlockState(pos.down()).getBlock() == MPBlocks.INFECTED_SUGAR_CANE_BLOCK || this.canBlockStay(world, pos, state))
         {
             if (world.isAirBlock(pos.up()))
             {
@@ -87,7 +88,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
         {
             for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
             {
-                if ((block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_SAND) && world.getBlockState(pos.offset(enumfacing).down()).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+                if ((block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_SAND) && world.getBlockState(pos.offset(enumfacing).down()).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
                     return true;
                 }

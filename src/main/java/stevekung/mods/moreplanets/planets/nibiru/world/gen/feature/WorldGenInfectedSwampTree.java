@@ -9,7 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
 {
@@ -25,7 +25,7 @@ public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
     public boolean generate(World world, Random rand, BlockPos pos)
     {
         int i;
-        for (i = rand.nextInt(4) + 5; world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK; pos = pos.down()) {}
+        for (i = rand.nextInt(4) + 5; world.getBlockState(pos.down()).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK; pos = pos.down()) {}
         boolean flag = true;
 
         if (pos.getY() >= 1 && pos.getY() + i + 1 <= 256)
@@ -55,7 +55,7 @@ public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
 
                             if (!block.isAir(world.getBlockState(blockpos$mutableblockpos.setPos(l, j, i1)), world, blockpos$mutableblockpos.setPos(l, j, i1)) && !block.isLeaves(world.getBlockState(blockpos$mutableblockpos.setPos(l, j, i1)), world, blockpos$mutableblockpos.setPos(l, j, i1)))
                             {
-                                if (block != NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+                                if (block != MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                                 {
                                     flag = false;
                                 }
@@ -82,7 +82,7 @@ public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
                 BlockPos down = pos.down();
                 Block block1 = world.getBlockState(down).getBlock();
 
-                if (block1 == NibiruBlocks.INFECTED_GRASS_BLOCK || block1 == NibiruBlocks.INFECTED_DIRT || block1 == NibiruBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
+                if (block1 == MPBlocks.INFECTED_GRASS_BLOCK || block1 == MPBlocks.INFECTED_DIRT || block1 == MPBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
                 {
                     block1.onPlantGrow(world.getBlockState(down), world, pos.down(),pos);
 
@@ -107,7 +107,7 @@ public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
                                     {
                                         if (this.genLeaves)
                                         {
-                                            this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+                                            this.setBlockAndNotifyAdequately(world, blockpos, MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
                                         }
                                     }
                                 }
@@ -120,9 +120,9 @@ public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
                         BlockPos upN = pos.up(i2);
                         Block block2 = world.getBlockState(upN).getBlock();
 
-                        if (block2.isAir(world.getBlockState(upN), world, upN) || block2.isLeaves(world.getBlockState(upN), world, upN) || block2 == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+                        if (block2.isAir(world.getBlockState(upN), world, upN) || block2.isLeaves(world.getBlockState(upN), world, upN) || block2 == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(i2), NibiruBlocks.INFECTED_OAK_LOG.getDefaultState());
+                            this.setBlockAndNotifyAdequately(world, pos.up(i2), MPBlocks.INFECTED_OAK_LOG.getDefaultState());
                         }
                     }
 
@@ -181,7 +181,7 @@ public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
 
     private void addVine(World world, BlockPos pos, PropertyBool property)
     {
-        IBlockState iblockstate = NibiruBlocks.INFECTED_VINES.getDefaultState().withProperty(property, Boolean.valueOf(true));
+        IBlockState iblockstate = MPBlocks.INFECTED_VINES.getDefaultState().withProperty(property, Boolean.valueOf(true));
         this.setBlockAndNotifyAdequately(world, pos, iblockstate);
         int i = 4;
 

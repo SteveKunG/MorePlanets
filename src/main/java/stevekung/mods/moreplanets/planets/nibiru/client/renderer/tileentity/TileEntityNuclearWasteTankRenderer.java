@@ -16,8 +16,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNuclearWasteTank;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.client.model.ModelNuclearWasteTank;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 
@@ -41,7 +41,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
 
-        if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD))
+        if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD))
         {
             int count = 3;//tile.getWorld().getBlockState(tile.getPos()).getValue(BlockNuclearWasteTank.FLUID_COUNT);
 
@@ -114,7 +114,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
             GlStateManager.rotate(rand.nextInt(180), 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(rand.nextInt(8), 1.0F, 0.0F, 1.0F);
         }
-        if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) != NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.DEPLETE))
+        if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) != MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.DEPLETE))
         {
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         }
@@ -126,7 +126,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         GlStateManager.disableLighting();
         this.bindTexture(TileEntityNuclearWasteTankRenderer.GLOW);
 
-        if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) != NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD))
+        if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) != MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD))
         {
             this.model.renderWaste();
         }

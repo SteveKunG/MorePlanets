@@ -7,7 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCrystal;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -18,7 +18,7 @@ public class WorldGenMultalicCrystal extends WorldGenerator
     {
         for (EnumFacing facing : EnumFacing.VALUES)
         {
-            Block block = NibiruBlocks.MULTALIC_CRYSTAL;
+            Block block = MPBlocks.MULTALIC_CRYSTAL;
 
             if (world.isAirBlock(pos) && block.canPlaceBlockOnSide(world, pos, facing))
             {

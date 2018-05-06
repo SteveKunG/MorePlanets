@@ -3,14 +3,14 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.feature;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractTree;
 
 public class WorldGenAlienBerryTree extends WorldGenAbstractTree
 {
     public WorldGenAlienBerryTree()
     {
-        super(NibiruBlocks.ALIEN_BERRY_OAK_LOG.getDefaultState(), NibiruBlocks.ALIEN_BERRY_OAK_LEAVES.getDefaultState());
+        super(MPBlocks.ALIEN_BERRY_OAK_LOG.getDefaultState(), MPBlocks.ALIEN_BERRY_OAK_LEAVES.getDefaultState());
     }
 
     @Override
@@ -22,6 +22,6 @@ public class WorldGenAlienBerryTree extends WorldGenAbstractTree
     @Override
     protected boolean isSoil(Block block)
     {
-        return block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK;
+        return block == MPBlocks.GREEN_VEIN_GRASS_BLOCK;
     }
 }

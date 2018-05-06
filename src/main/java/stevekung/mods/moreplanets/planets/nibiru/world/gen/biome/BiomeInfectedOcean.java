@@ -5,16 +5,16 @@ import static net.minecraftforge.common.BiomeDictionary.Type.OCEAN;
 
 import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class BiomeInfectedOcean extends BiomeNibiru
 {
     public BiomeInfectedOcean(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().seaweedPerChunk = 4;
         this.decorator.treesPerChunk = -999;
     }

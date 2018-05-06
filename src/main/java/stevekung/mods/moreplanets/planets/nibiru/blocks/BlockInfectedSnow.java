@@ -14,7 +14,7 @@ import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockInfectedSnow extends BlockBaseMP
 {
-    protected BlockInfectedSnow(String name)
+    public BlockInfectedSnow(String name)
     {
         super(Material.CRAFTED_SNOW);
         this.setTickRandomly(true);

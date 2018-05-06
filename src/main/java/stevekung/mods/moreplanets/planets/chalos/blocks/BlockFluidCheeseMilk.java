@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockFluidBaseMP;
@@ -26,7 +27,7 @@ public class BlockFluidCheeseMilk extends BlockFluidBaseMP implements IFishableL
 {
     public BlockFluidCheeseMilk(String name)
     {
-        super(ChalosBlocks.CHEESE_MILK_FLUID);
+        super(MPBlocks.CHEESE_MILK_FLUID);
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
         this.setUnlocalizedName(name);

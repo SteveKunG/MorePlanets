@@ -23,8 +23,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNuclearWasteTank;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
@@ -144,7 +144,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         {
             return false;
         }
-        if (this.type == BlockType.NUCLEAR_WASTE_TANK_MIDDLE && world.getBlockState(pos.down()) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
+        if (this.type == BlockType.NUCLEAR_WASTE_TANK_MIDDLE && world.getBlockState(pos.down()) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
             if (!heldStack.isEmpty() && heldStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
             {
@@ -153,11 +153,11 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
                     heldStack.damageItem(1, player);
                 }
                 Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
-                world.setBlockState(pos.down(), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
+                world.setBlockState(pos.down(), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
                 return true;
             }
         }
-        if (this.type == BlockType.NUCLEAR_WASTE_TANK_TOP && world.getBlockState(pos.down(2)) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
+        if (this.type == BlockType.NUCLEAR_WASTE_TANK_TOP && world.getBlockState(pos.down(2)) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
         {
             if (!heldStack.isEmpty() && heldStack.getItem() == NibiruItems.WASTE_ROD_PICKER)
             {
@@ -166,7 +166,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
                     heldStack.damageItem(1, player);
                 }
                 Block.spawnAsEntity(world, pos, new ItemStack(NibiruItems.NUCLEAR_WASTE_ROD));
-                world.setBlockState(pos.down(2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
+                world.setBlockState(pos.down(2), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
                 return true;
             }
         }

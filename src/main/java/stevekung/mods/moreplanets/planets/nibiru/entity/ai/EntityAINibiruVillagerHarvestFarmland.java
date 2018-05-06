@@ -8,7 +8,7 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
@@ -79,12 +79,12 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
                     {
                         if (itemStack.getItem() == NibiruItems.INFECTED_WHEAT_SEEDS)
                         {
-                            world.setBlockState(blockpos, NibiruBlocks.INFECTED_WHEAT.getDefaultState(), 3);
+                            world.setBlockState(blockpos, MPBlocks.INFECTED_WHEAT.getDefaultState(), 3);
                             flag = true;
                         }
                         else if (itemStack.getItem() == NibiruItems.TERRABERRY)
                         {
-                            world.setBlockState(blockpos, NibiruBlocks.TERRABERRY.getDefaultState(), 3);
+                            world.setBlockState(blockpos, MPBlocks.TERRABERRY.getDefaultState(), 3);
                             flag = true;
                         }
                     }
@@ -111,7 +111,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
     {
         Block block = world.getBlockState(pos).getBlock();
 
-        if (block == NibiruBlocks.INFECTED_FARMLAND)
+        if (block == MPBlocks.INFECTED_FARMLAND)
         {
             pos = pos.up();
             IBlockState iblockstate = world.getBlockState(pos);

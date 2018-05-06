@@ -16,7 +16,7 @@ import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockInfectedMelon extends BlockBaseMP
 {
-    protected BlockInfectedMelon(String name)
+    public BlockInfectedMelon(String name)
     {
         super(Material.GOURD);
         this.setUnlocalizedName(name);

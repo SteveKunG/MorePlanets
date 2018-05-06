@@ -3,14 +3,14 @@ package stevekung.mods.moreplanets.planets.diona.tileentity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityAncientChestMP;
 
 public class TileEntityDionaAncientChest extends TileEntityAncientChestMP
 {
     public TileEntityDionaAncientChest()
     {
-        super(DionaBlocks.DIONA_ANCIENT_CHEST, "diona");
+        super(MPBlocks.DIONA_ANCIENT_CHEST, "diona");
     }
 
     @Override

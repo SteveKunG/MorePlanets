@@ -21,9 +21,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedSnowball;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
@@ -95,9 +95,9 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
                 k = MathHelper.floor(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
                 BlockPos blockpos = new BlockPos(i, j, k);
 
-                if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(new BlockPos(i, 0, k)).getTemperature(blockpos) < 0.8F && NibiruBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, blockpos))
+                if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(new BlockPos(i, 0, k)).getTemperature(blockpos) < 0.8F && MPBlocks.INFECTED_SNOW_LAYER.canPlaceBlockAt(this.world, blockpos))
                 {
-                    this.world.setBlockState(blockpos, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                    this.world.setBlockState(blockpos, MPBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                 }
             }
         }

@@ -44,10 +44,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.ai.EntityAIShlimeEatGrass;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
@@ -131,7 +131,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         int j = MathHelper.floor(this.getEntityBoundingBox().minY);
         int k = MathHelper.floor(this.posZ);
         BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getBlockState(blockpos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK && this.world.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
+        return this.world.getBlockState(blockpos.down()).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK && this.world.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
     }
 
     @Override
@@ -167,21 +167,21 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
             Block blockDown = this.world.getBlockState(this.getPosition().down()).getBlock();
             IBlockState state = this.world.getBlockState(this.getPosition());
 
-            if (blockDown == NibiruBlocks.INFECTED_GRASS_BLOCK)
+            if (blockDown == MPBlocks.INFECTED_GRASS_BLOCK)
             {
-                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState())});
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState())});
             }
-            else if (blockDown == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK)
+            else if (blockDown == MPBlocks.GREEN_VEIN_GRASS_BLOCK)
             {
-                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.GREEN_VEIN_GRASS_BLOCK.getDefaultState())});
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(MPBlocks.GREEN_VEIN_GRASS_BLOCK.getDefaultState())});
             }
-            else if (state == NibiruBlocks.INFECTED_GRASS.getDefaultState())
+            else if (state == MPBlocks.INFECTED_GRASS.getDefaultState())
             {
-                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.INFECTED_GRASS.getDefaultState())});
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(MPBlocks.INFECTED_GRASS.getDefaultState())});
             }
-            else if (state == NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState())
+            else if (state == MPBlocks.GREEN_VEIN_GRASS.getDefaultState())
             {
-                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState())});
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(MPBlocks.GREEN_VEIN_GRASS.getDefaultState())});
             }
         }
         this.alterSquishAmount();

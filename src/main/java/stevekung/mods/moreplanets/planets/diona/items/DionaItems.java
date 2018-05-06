@@ -7,7 +7,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.items.armor.ItemArmorIllenium;
 import stevekung.mods.moreplanets.planets.diona.items.armor.ItemBreathableIllenium;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
@@ -143,7 +143,7 @@ public class DionaItems
         /************************FLUID STUFF***************************/
         /**************************************************************/
 
-        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(DionaBlocks.CRYSTALLIZED_WATER_FLUID);
-        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(DionaBlocks.CRYSTALLIZED_LAVA_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.CRYSTALLIZED_WATER_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.CRYSTALLIZED_LAVA_FLUID);
     }
 }

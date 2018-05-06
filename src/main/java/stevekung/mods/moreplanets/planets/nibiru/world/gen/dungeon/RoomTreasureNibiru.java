@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNibiruTreasureChest;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
@@ -92,7 +92,7 @@ public class RoomTreasureNibiru extends SizedPieceNibiru
                     }
                     else if (i == this.sizeX / 2 && j == 1 && k == this.sizeZ / 2)
                     {
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_TREASURE_CHEST.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, this.getDirection().getOpposite()), i, j, k, boundingBox);
+                        this.setBlockState(world, MPBlocks.NIBIRU_TREASURE_CHEST.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, this.getDirection().getOpposite()), i, j, k, boundingBox);
                         BlockPos blockpos = new BlockPos(this.getXWithOffset(i, k), this.getYWithOffset(j), this.getZWithOffset(i, k));
 
                         if (world.getTileEntity(blockpos) == null)

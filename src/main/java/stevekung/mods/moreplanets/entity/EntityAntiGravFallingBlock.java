@@ -18,7 +18,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.moons.koentus.blocks.KoentusBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
@@ -131,7 +131,7 @@ public class EntityAntiGravFallingBlock extends Entity
                     double z = (float)this.posZ - 0.5D + this.rand.nextFloat();
                     int color = this.rand.nextInt(4) == 0 ? ColorUtils.rgbToDecimal(47, 66, 87) : this.rand.nextInt(2) == 0 ? ColorUtils.rgbToDecimal(38, 53, 70) : ColorUtils.rgbToDecimal(47, 62, 79);
 
-                    if (state.getBlock() == KoentusBlocks.ANTI_GRAVITY_FRAGMENTS_BLOCK)
+                    if (state.getBlock() == MPBlocks.ANTI_GRAVITY_FRAGMENTS_BLOCK)
                     {
                         color = this.rand.nextInt(3) == 0 ? ColorUtils.rgbToDecimal(88, 88, 88) : this.rand.nextInt(2) == 0 ? ColorUtils.rgbToDecimal(206, 105, 10) : ColorUtils.rgbToDecimal(16, 136, 207);
                     }

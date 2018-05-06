@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class MapGenChalosCave extends MapGenBase
 {
@@ -159,7 +159,7 @@ public class MapGenChalosCave extends MapGenBase
                                         {
                                             IBlockState state = chunk.getBlockState(k2, j3, j4);
 
-                                            if (state.getBlock() == ChalosBlocks.CHEESE_DIRT || state.getBlock() == ChalosBlocks.CHEESE_COARSE_DIRT || state.getBlock() == ChalosBlocks.CHEESE_SLIME_BLOCK || state.getBlock() == ChalosBlocks.CHALOS_ROCK)
+                                            if (state.getBlock() == MPBlocks.CHEESE_DIRT || state.getBlock() == MPBlocks.CHEESE_COARSE_DIRT || state.getBlock() == MPBlocks.CHEESE_SLIME_BLOCK || state.getBlock() == MPBlocks.CHALOS_ROCK)
                                             {
                                                 if (j3 < 10)
                                                 {
@@ -170,7 +170,7 @@ public class MapGenChalosCave extends MapGenBase
                                                     chunk.setBlockState(k2, j3, j4, Blocks.AIR.getDefaultState());
                                                 }
                                             }
-                                            else if (state.getBlock() == ChalosBlocks.CHEESE_GRASS_BLOCK || state.getBlock() == ChalosBlocks.CHEESE_SLIME_BLOCK)
+                                            else if (state.getBlock() == MPBlocks.CHEESE_GRASS_BLOCK || state.getBlock() == MPBlocks.CHEESE_SLIME_BLOCK)
                                             {
                                                 chunk.setBlockState(k2, j3, j4, Blocks.AIR.getDefaultState());
                                             }

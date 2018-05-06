@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenNibiruIceSpike extends WorldGenerator
 {
@@ -20,7 +20,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
             pos = pos.down();
         }
 
-        if (world.getBlockState(pos).getBlock() != NibiruBlocks.INFECTED_GRASS_BLOCK)
+        if (world.getBlockState(pos).getBlock() != MPBlocks.INFECTED_GRASS_BLOCK)
         {
             return false;
         }
@@ -52,18 +52,18 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                         {
                             Block block = world.getBlockState(pos.add(i1, k, j1)).getBlock();
 
-                            if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                            if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_ICE)
                             {
-                                this.setBlockAndNotifyAdequately(world, pos.add(i1, k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
+                                this.setBlockAndNotifyAdequately(world, pos.add(i1, k, j1), MPBlocks.INFECTED_PACKED_ICE.getDefaultState());
                             }
 
                             if (k != 0 && l > 1)
                             {
                                 block = world.getBlockState(pos.add(i1, -k, j1)).getBlock();
 
-                                if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                                if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_ICE)
                                 {
-                                    this.setBlockAndNotifyAdequately(world, pos.add(i1, -k, j1), NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
+                                    this.setBlockAndNotifyAdequately(world, pos.add(i1, -k, j1), MPBlocks.INFECTED_PACKED_ICE.getDefaultState());
                                 }
                             }
                         }
@@ -98,12 +98,12 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                     {
                         Block block1 = world.getBlockState(blockpos).getBlock();
 
-                        if (world.getBlockState(blockpos).getMaterial() != Material.AIR && block1 != NibiruBlocks.INFECTED_GRASS_BLOCK && block1 != NibiruBlocks.INFECTED_DIRT && block1 != NibiruBlocks.INFECTED_ICE && block1 != NibiruBlocks.INFECTED_PACKED_ICE)
+                        if (world.getBlockState(blockpos).getMaterial() != Material.AIR && block1 != MPBlocks.INFECTED_GRASS_BLOCK && block1 != MPBlocks.INFECTED_DIRT && block1 != MPBlocks.INFECTED_ICE && block1 != MPBlocks.INFECTED_PACKED_ICE)
                         {
                             break;
                         }
 
-                        this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState());
+                        this.setBlockAndNotifyAdequately(world, blockpos, MPBlocks.INFECTED_PACKED_ICE.getDefaultState());
                         blockpos = blockpos.down();
                         --j2;
 

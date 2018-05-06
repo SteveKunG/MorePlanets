@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenNibiruMelon extends WorldGenerator
 {
@@ -16,9 +16,9 @@ public class WorldGenNibiruMelon extends WorldGenerator
         {
             BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (NibiruBlocks.INFECTED_MELON_BLOCK.canPlaceBlockAt(world, blockpos) && world.getBlockState(blockpos.down()).getBlock() == NibiruBlocks.INFECTED_GRASS_BLOCK)
+            if (MPBlocks.INFECTED_MELON_BLOCK.canPlaceBlockAt(world, blockpos) && world.getBlockState(blockpos.down()).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
             {
-                world.setBlockState(blockpos, NibiruBlocks.INFECTED_MELON_BLOCK.getDefaultState(), 2);
+                world.setBlockState(blockpos, MPBlocks.INFECTED_MELON_BLOCK.getDefaultState(), 2);
             }
         }
         return true;

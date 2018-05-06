@@ -17,7 +17,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.moons.koentus.blocks.KoentusBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
 
 @SideOnly(Side.CLIENT)
@@ -32,7 +32,7 @@ public class RenderFallingKoentusMeteor extends Render<EntityFallingKoentusMeteo
     @Override
     public void doRender(EntityFallingKoentusMeteor entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        IBlockState state = KoentusBlocks.FALLEN_KOENTUS_METEOR.getDefaultState();
+        IBlockState state = MPBlocks.FALLEN_KOENTUS_METEOR.getDefaultState();
 
         if (state.getRenderType() == EnumBlockRenderType.MODEL)
         {

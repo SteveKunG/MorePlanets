@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
@@ -26,9 +26,9 @@ public class ItemCheeseSporeSeed extends ItemBaseMP
         ItemStack itemStack = player.getHeldItem(hand);
         IBlockState state = world.getBlockState(pos);
 
-        if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == ChalosBlocks.CHEESE_FARMLAND && world.isAirBlock(pos.up()))
+        if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == MPBlocks.CHEESE_FARMLAND && world.isAirBlock(pos.up()))
         {
-            world.setBlockState(pos.up(), ChalosBlocks.CHEESE_SPORE_BERRY_CROPS.getDefaultState(), 11);
+            world.setBlockState(pos.up(), MPBlocks.CHEESE_SPORE_BERRY_CROPS.getDefaultState(), 11);
             itemStack.shrink(1);
             return EnumActionResult.SUCCESS;
         }

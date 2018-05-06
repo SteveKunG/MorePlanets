@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.client.model.ModelDarkEnergyGenerator;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
@@ -31,7 +31,7 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 0.5F) / 2F + 0.1F;
         int facing = 0;
 
-        if (tile != null && tile.hasWorld() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == DionaBlocks.DARK_ENERGY_GENERATOR)
+        if (tile != null && tile.hasWorld() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == MPBlocks.DARK_ENERGY_GENERATOR)
         {
             facing = tile.facing;
         }

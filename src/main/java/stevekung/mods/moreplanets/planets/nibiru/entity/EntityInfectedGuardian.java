@@ -22,10 +22,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityAlienMiner;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
 public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob, IEntityBreathable
@@ -156,7 +156,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     @Override
     public float getBlockPathWeight(BlockPos pos)
     {
-        return this.world.getBlockState(pos).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK ? 10.0F + this.world.getLightBrightness(pos) - 0.5F : 0.5F - this.world.getLightBrightness(pos);
+        return this.world.getBlockState(pos).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK ? 10.0F + this.world.getLightBrightness(pos) - 0.5F : 0.5F - this.world.getLightBrightness(pos);
     }
 
     @Override

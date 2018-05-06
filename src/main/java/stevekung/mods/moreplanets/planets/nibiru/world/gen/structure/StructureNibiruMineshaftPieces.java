@@ -25,8 +25,8 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.entity.EntitySpaceMinecartChest;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class StructureNibiruMineshaftPieces
@@ -202,7 +202,7 @@ public class StructureNibiruMineshaftPieces
                 this.setBlockState(world, iblockstate, x, y, z, structurebb);
                 EntitySpaceMinecartChest entityminecartchest = new EntitySpaceMinecartChest(world, blockpos.getX() + 0.5F, blockpos.getY() + 0.5F, blockpos.getZ() + 0.5F);
                 entityminecartchest.setLootTable(loot, rand.nextLong());
-                entityminecartchest.setDisplayTile(NibiruBlocks.INFECTED_CHEST.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
+                entityminecartchest.setDisplayTile(MPBlocks.INFECTED_CHEST.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
                 entityminecartchest.setDisplayTileOffset(8);
                 world.spawnEntity(entityminecartchest);
                 return true;
@@ -321,8 +321,8 @@ public class StructureNibiruMineshaftPieces
                 else
                 {
                     this.fillWithBlocks(world, box, par3, par6, par5, par7, par6, par5, iblockstate, iblockstate2, false);
-                    this.randomlyPlaceBlock(world, box, rand, 0.05F, par3 + 1, par6, par5 - 1, NibiruBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.NORTH));
-                    this.randomlyPlaceBlock(world, box, rand, 0.05F, par3 + 1, par6, par5 + 1, NibiruBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.SOUTH));
+                    this.randomlyPlaceBlock(world, box, rand, 0.05F, par3 + 1, par6, par5 - 1, MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.NORTH));
+                    this.randomlyPlaceBlock(world, box, rand, 0.05F, par3 + 1, par6, par5 + 1, MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.SOUTH));
                 }
             }
         }
@@ -485,12 +485,12 @@ public class StructureNibiruMineshaftPieces
 
         protected IBlockState getPlanks()
         {
-            return NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState();
+            return MPBlocks.INFECTED_OAK_PLANKS.getDefaultState();
         }
 
         protected IBlockState getFence()
         {
-            return NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState();
+            return MPBlocks.INFECTED_OAK_FENCE.getDefaultState();
         }
 
         protected boolean isSupportingBox(World world, StructureBoundingBox box, int xMin, int x, int y, int z)
@@ -766,7 +766,7 @@ public class StructureNibiruMineshaftPieces
             }
             else
             {
-                this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.minY, this.boundingBox.maxZ, NibiruBlocks.INFECTED_DIRT.getDefaultState(), Blocks.AIR.getDefaultState(), true);
+                this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.minY, this.boundingBox.maxZ, MPBlocks.INFECTED_DIRT.getDefaultState(), Blocks.AIR.getDefaultState(), true);
                 this.fillWithBlocks(world, box, this.boundingBox.minX, this.boundingBox.minY + 1, this.boundingBox.minZ, this.boundingBox.maxX, Math.min(this.boundingBox.minY + 3, this.boundingBox.maxY), this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
                 for (StructureBoundingBox room : this.roomsLinkedToTheRoom)

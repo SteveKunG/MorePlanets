@@ -39,8 +39,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
@@ -350,7 +350,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
                 {
                     for (int i = 0; i < 16; i++)
                     {
-                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.0D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
+                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.0D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
                     }
                 }
             }

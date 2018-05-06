@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty.EnumAxis;
 
@@ -76,7 +76,7 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
                 BlockPos down = pos.down();
                 Block blockSoil = world.getBlockState(down).getBlock();
 
-                if (blockSoil != ChalosBlocks.CHEESE_GRASS_BLOCK && blockSoil != ChalosBlocks.CHEESE_DIRT && blockSoil != ChalosBlocks.CHEESE_COARSE_DIRT)
+                if (blockSoil != MPBlocks.CHEESE_GRASS_BLOCK && blockSoil != MPBlocks.CHEESE_DIRT && blockSoil != MPBlocks.CHEESE_COARSE_DIRT)
                 {
                     return false;
                 }
@@ -88,7 +88,7 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
                     {
                         if (this.isReplaceable(world, new BlockPos(x, y + b, z)))
                         {
-                            this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + b, z), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState());
+                            this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + b, z), MPBlocks.CHEESE_SPORE_STEM.getDefaultState());
                         }
                     }
 
@@ -96,38 +96,38 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
                     {
                         if (this.isReplaceable(world, new BlockPos(x, y + this.blockMaxHigh, z)))
                         {
-                            this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh, z), ChalosBlocks.CHEESE_SPORE.getDefaultState());
+                            this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh, z), MPBlocks.CHEESE_SPORE.getDefaultState());
                         }
                     }
                     if (this.isReplaceable(world, new BlockPos(x + 1, y, z)))
                     {
                         blockSoil.onPlantGrow(world.getBlockState(new BlockPos(x + 1, y - 1, z)), world, new BlockPos(x + 1, y - 1, z), pos);
-                        this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y, z), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.X));
+                        this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y, z), MPBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.X));
                     }
                     if (this.isReplaceable(world, new BlockPos(x - 1, y, z)))
                     {
                         blockSoil.onPlantGrow(world.getBlockState(new BlockPos(x - 1, y - 1, z)), world, new BlockPos(x - 1, y - 1, z), pos);
-                        this.setBlockAndNotifyAdequately(world, new BlockPos(x - 1, y, z), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.X));
+                        this.setBlockAndNotifyAdequately(world, new BlockPos(x - 1, y, z), MPBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.X));
                     }
                     if (this.isReplaceable(world, new BlockPos(x, y, z + 1)))
                     {
                         blockSoil.onPlantGrow(world.getBlockState(new BlockPos(x, y - 1, z + 1)), world, new BlockPos(x, y - 1, z + 1), pos);
-                        this.setBlockAndNotifyAdequately(world, new BlockPos(x, y, z + 1), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.Z));
+                        this.setBlockAndNotifyAdequately(world, new BlockPos(x, y, z + 1), MPBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.Z));
                     }
                     if (this.isReplaceable(world, new BlockPos(x, y, z - 1)))
                     {
                         blockSoil.onPlantGrow(world.getBlockState(new BlockPos(x, y - 1, z - 1)), world, new BlockPos(x, y - 1, z - 1), pos);
-                        this.setBlockAndNotifyAdequately(world, new BlockPos(x, y, z - 1), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.Z));
+                        this.setBlockAndNotifyAdequately(world, new BlockPos(x, y, z - 1), MPBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.Z));
                     }
 
-                    this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y + this.blockMaxHigh, z), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.X));
-                    this.setBlockAndNotifyAdequately(world, new BlockPos(x - 1, y + this.blockMaxHigh, z), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.X));
-                    this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh, z + 1), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.Z));
-                    this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh, z - 1), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.Z));
-                    this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y + this.blockMaxHigh + 1, z), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState());
-                    this.setBlockAndNotifyAdequately(world, new BlockPos(x - 2, y + this.blockMaxHigh + 1, z), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState());
-                    this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh + 1, z + 2), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState());
-                    this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh + 1, z - 2), ChalosBlocks.CHEESE_SPORE_STEM.getDefaultState());
+                    this.setBlockAndNotifyAdequately(world, new BlockPos(x + 1, y + this.blockMaxHigh, z), MPBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.X));
+                    this.setBlockAndNotifyAdequately(world, new BlockPos(x - 1, y + this.blockMaxHigh, z), MPBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.X));
+                    this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh, z + 1), MPBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.Z));
+                    this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh, z - 1), MPBlocks.CHEESE_SPORE_STEM.getDefaultState().withProperty(BlockStateProperty.AXIS, EnumAxis.Z));
+                    this.setBlockAndNotifyAdequately(world, new BlockPos(x + 2, y + this.blockMaxHigh + 1, z), MPBlocks.CHEESE_SPORE_STEM.getDefaultState());
+                    this.setBlockAndNotifyAdequately(world, new BlockPos(x - 2, y + this.blockMaxHigh + 1, z), MPBlocks.CHEESE_SPORE_STEM.getDefaultState());
+                    this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh + 1, z + 2), MPBlocks.CHEESE_SPORE_STEM.getDefaultState());
+                    this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + this.blockMaxHigh + 1, z - 2), MPBlocks.CHEESE_SPORE_STEM.getDefaultState());
 
                     int i4 = 3;
                     int i5 = 4;
@@ -149,7 +149,7 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
                                 {
                                     if (Math.abs(j2) != l1 || Math.abs(l2) != l1 || rand.nextInt(4) != 0 && i3 != 0)
                                     {
-                                        this.setBlockAndNotifyAdequately(world, new BlockPos(i2, this.blockMaxHigh + k1 + 1, k2), ChalosBlocks.CHEESE_SPORE.getDefaultState());
+                                        this.setBlockAndNotifyAdequately(world, new BlockPos(i2, this.blockMaxHigh + k1 + 1, k2), MPBlocks.CHEESE_SPORE.getDefaultState());
                                     }
                                     if (Math.abs(j2) != l1 || Math.abs(l2) != l1)
                                     {
@@ -157,7 +157,7 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
 
                                         if (block1.isAir(world.getBlockState(new BlockPos(i2, this.blockMaxHigh + k1, k2)), world, new BlockPos(i2, this.blockMaxHigh + k1, k2)))
                                         {
-                                            this.setBlockAndNotifyAdequately(world, new BlockPos(i2, this.blockMaxHigh + k1, k2), ChalosBlocks.CHEESE_SPORE.getDefaultState());
+                                            this.setBlockAndNotifyAdequately(world, new BlockPos(i2, this.blockMaxHigh + k1, k2), MPBlocks.CHEESE_SPORE.getDefaultState());
                                         }
                                     }
                                 }

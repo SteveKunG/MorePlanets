@@ -7,16 +7,16 @@ import java.util.LinkedList;
 
 import net.minecraft.world.biome.Biome;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class BiomeSlimelyWasteland extends BiomeChalos
 {
     public BiomeSlimelyWasteland(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState();
-        this.fillerBlock = ChalosBlocks.CHEESE_SLIME_BLOCK.getDefaultState();
-        this.stoneBlock = ChalosBlocks.CHALOS_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState();
+        this.stoneBlock = MPBlocks.CHALOS_ROCK.getDefaultState();
     }
 
     @Override

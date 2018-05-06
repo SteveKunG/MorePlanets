@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedChicken;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.utils.blocks.BlockFarmlandMP;
@@ -43,7 +44,7 @@ public class BlockInfectedFarmland extends BlockFarmlandMP
     @Override
     protected Block getDirtBlock()
     {
-        return NibiruBlocks.INFECTED_DIRT;
+        return MPBlocks.INFECTED_DIRT;
     }
 
     @Override
@@ -60,7 +61,7 @@ public class BlockInfectedFarmland extends BlockFarmlandMP
             }
             mutableblockpos = (MutableBlockPos)iterator.next();
         }
-        while (world.getBlockState(mutableblockpos).getBlock() != NibiruBlocks.INFECTED_WATER_FLUID_BLOCK && world.getBlockState(mutableblockpos).getBlock() != NibiruBlocks.PURIFIED_WATER_FLUID_BLOCK);
+        while (world.getBlockState(mutableblockpos).getBlock() != MPBlocks.INFECTED_WATER_FLUID_BLOCK && world.getBlockState(mutableblockpos).getBlock() != MPBlocks.PURIFIED_WATER_FLUID_BLOCK);
         return true;
     }
 

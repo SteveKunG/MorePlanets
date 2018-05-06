@@ -21,8 +21,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
 import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
 import stevekung.mods.moreplanets.utils.entity.ai.EntityAITemptMP;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
@@ -57,7 +57,7 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.world.getBlockState(this.getPosition().down()).getBlock() == ChalosBlocks.CHEESE_GRASS_BLOCK;
+        return this.world.getBlockState(this.getPosition().down()).getBlock() == MPBlocks.CHEESE_GRASS_BLOCK;
     }
 
     @Override
@@ -122,11 +122,11 @@ public class EntityCheeseCow extends EntityAnimal implements IEntityBreathable
 
             if (itemStack.isEmpty())
             {
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidUtil.getFilledBucket(new FluidStack(ChalosBlocks.CHEESE_MILK_FLUID, 1000)));
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidUtil.getFilledBucket(new FluidStack(MPBlocks.CHEESE_MILK_FLUID, 1000)));
             }
-            else if (!player.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(ChalosBlocks.CHEESE_MILK_FLUID, 1000))))
+            else if (!player.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.CHEESE_MILK_FLUID, 1000))))
             {
-                player.dropItem(FluidUtil.getFilledBucket(new FluidStack(ChalosBlocks.CHEESE_MILK_FLUID, 1000)), false);
+                player.dropItem(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.CHEESE_MILK_FLUID, 1000)), false);
             }
             return true;
         }

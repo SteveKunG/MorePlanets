@@ -17,6 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.ClientRendererUtils;
 import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
@@ -65,7 +66,7 @@ public class BlockFronosGrass extends BlockGrassBlockMP
             }
             if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockLightOpacity(pos.up()) > 2)
             {
-                world.setBlockState(pos, FronosBlocks.FRONOS_DIRT.getDefaultState());
+                world.setBlockState(pos, MPBlocks.FRONOS_DIRT.getDefaultState());
             }
             else if (world.getLightFromNeighbors(pos.up()) >= 9)
             {
@@ -73,11 +74,11 @@ public class BlockFronosGrass extends BlockGrassBlockMP
                 {
                     BlockPos pos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
 
-                    if (world.getBlockState(pos1) == FronosBlocks.FRONOS_DIRT.getDefaultState())
+                    if (world.getBlockState(pos1) == MPBlocks.FRONOS_DIRT.getDefaultState())
                     {
                         if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity(world, pos1.up()) <= 2)
                         {
-                            world.setBlockState(pos1, FronosBlocks.FRONOS_GRASS_BLOCK.getDefaultState());
+                            world.setBlockState(pos1, MPBlocks.FRONOS_GRASS_BLOCK.getDefaultState());
                         }
                     }
                 }
@@ -104,7 +105,7 @@ public class BlockFronosGrass extends BlockGrassBlockMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(FronosBlocks.FRONOS_DIRT);
+        return Item.getItemFromBlock(MPBlocks.FRONOS_DIRT);
     }
 
     @Override

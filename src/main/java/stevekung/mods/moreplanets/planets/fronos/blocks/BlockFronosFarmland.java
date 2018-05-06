@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.planets.fronos.blocks;
 
 import net.minecraft.block.Block;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockFarmlandMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -16,6 +17,6 @@ public class BlockFronosFarmland extends BlockFarmlandMP
     @Override
     protected Block getDirtBlock()
     {
-        return FronosBlocks.FRONOS_DIRT;
+        return MPBlocks.FRONOS_DIRT;
     }
 }

@@ -3,14 +3,14 @@ package stevekung.mods.moreplanets.planets.nibiru.tileentity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class TileEntityAlienBerryChest extends TileEntityChestMP
 {
     public TileEntityAlienBerryChest()
     {
-        super(NibiruBlocks.ALIEN_BERRY_CHEST);
+        super(MPBlocks.ALIEN_BERRY_CHEST);
     }
 
     @Override

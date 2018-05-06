@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class WorldGenCrystalObelisk extends WorldGenerator
@@ -26,7 +26,7 @@ public class WorldGenCrystalObelisk extends WorldGenerator
                 {
                     Block block = world.getBlockState(pos.down()).getBlock();
 
-                    if ((block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_SAND || block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK) && world.isAirBlock(pos.add(x, height, z)))
+                    if ((block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_SAND || block == MPBlocks.GREEN_VEIN_GRASS_BLOCK) && world.isAirBlock(pos.add(x, height, z)))
                     {
                         world.setBlockState(pos.add(x, y, z), Blocks.OBSIDIAN.getDefaultState(), 2);
 
@@ -35,22 +35,22 @@ public class WorldGenCrystalObelisk extends WorldGenerator
                         case 0:
                         default:
                             world.setBlockState(pos.add(0, y + 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
-                            world.setBlockState(pos.add(0, y + 2, 0), rand.nextInt(5) == 0 ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
+                            world.setBlockState(pos.add(0, y + 2, 0), rand.nextInt(5) == 0 ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
                             this.genCrystal(world, pos.add(0, y + 3, 0));
                             break;
                         case 1:
                             world.setBlockState(pos.add(x, y + 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
-                            world.setBlockState(pos.add(x, y + 2, 0), rand.nextInt(5) == 0 ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
+                            world.setBlockState(pos.add(x, y + 2, 0), rand.nextInt(5) == 0 ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
                             this.genCrystal(world, pos.add(x, y + 3, 0));
                             break;
                         case 2:
                             world.setBlockState(pos.add(1, y + 1, 0), Blocks.OBSIDIAN.getDefaultState(), 2);
-                            world.setBlockState(pos.add(1, y + 2, 0), rand.nextInt(5) == 0 ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
+                            world.setBlockState(pos.add(1, y + 2, 0), rand.nextInt(5) == 0 ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
                             this.genCrystal(world, pos.add(1, y + 3, 0));
                             break;
                         case 3:
                             world.setBlockState(pos.add(x, y + 1, 1), Blocks.OBSIDIAN.getDefaultState(), 2);
-                            world.setBlockState(pos.add(x, y + 2, 1), rand.nextInt(5) == 0 ? NibiruBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
+                            world.setBlockState(pos.add(x, y + 2, 1), rand.nextInt(5) == 0 ? MPBlocks.MULTALIC_CRYSTAL_BLOCK.getDefaultState() : Blocks.LAPIS_BLOCK.getDefaultState(), 2);
                             this.genCrystal(world, pos.add(x, y + 3, 1));
                             break;
                         }
@@ -65,7 +65,7 @@ public class WorldGenCrystalObelisk extends WorldGenerator
     {
         for (EnumFacing facing : EnumFacing.VALUES)
         {
-            Block block = NibiruBlocks.MULTALIC_CRYSTAL;
+            Block block = MPBlocks.MULTALIC_CRYSTAL;
 
             if (world.isAirBlock(pos) && block.canPlaceBlockOnSide(world, pos, facing))
             {

@@ -19,9 +19,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNibiruInfested;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
@@ -141,7 +141,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
     @Override
     public float getBlockPathWeight(BlockPos pos)
     {
-        return this.world.getBlockState(pos.down()) == NibiruBlocks.INFESTED_NIBIRU_ROCK.getDefaultState() ? 10.0F : super.getBlockPathWeight(pos);
+        return this.world.getBlockState(pos.down()) == MPBlocks.INFESTED_NIBIRU_ROCK.getDefaultState() ? 10.0F : super.getBlockPathWeight(pos);
     }
 
     @Override
@@ -184,7 +184,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
 
     private boolean canContainSilverfish(IBlockState state)
     {
-        return state == NibiruBlocks.NIBIRU_ROCK.getDefaultState() || state == NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState() || state == NibiruBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState() || state == NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState() || state == NibiruBlocks.INFECTED_VEIN_STONE_BRICKS.getDefaultState() || state == NibiruBlocks.INFECTED_CRACKED_STONE_BRICKS.getDefaultState() || state == NibiruBlocks.INFECTED_CHISELED_STONE_BRICKS.getDefaultState();
+        return state == MPBlocks.NIBIRU_ROCK.getDefaultState() || state == MPBlocks.NIBIRU_COBBLESTONE.getDefaultState() || state == MPBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState() || state == MPBlocks.INFECTED_STONE_BRICKS.getDefaultState() || state == MPBlocks.INFECTED_VEIN_STONE_BRICKS.getDefaultState() || state == MPBlocks.INFECTED_CRACKED_STONE_BRICKS.getDefaultState() || state == MPBlocks.INFECTED_CHISELED_STONE_BRICKS.getDefaultState();
     }
 
     static class AIHideInStone extends EntityAIWander

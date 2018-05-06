@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedSugarCane extends WorldGenerator
 {
@@ -20,15 +20,15 @@ public class WorldGenInfectedSugarCane extends WorldGenerator
             {
                 BlockPos blockpos1 = blockpos.down();
 
-                if (world.getBlockState(blockpos1.west()).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK || world.getBlockState(blockpos1.east()).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK || world.getBlockState(blockpos1.north()).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK || world.getBlockState(blockpos1.south()).getBlock() == NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+                if (world.getBlockState(blockpos1.west()).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK || world.getBlockState(blockpos1.east()).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK || world.getBlockState(blockpos1.north()).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK || world.getBlockState(blockpos1.south()).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
                     int j = 2 + rand.nextInt(rand.nextInt(3) + 1);
 
                     for (int k = 0; k < j; ++k)
                     {
-                        if (NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK.canPlaceBlockAt(world, blockpos))
+                        if (MPBlocks.INFECTED_SUGAR_CANE_BLOCK.canPlaceBlockAt(world, blockpos))
                         {
-                            world.setBlockState(blockpos.up(k), NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK.getDefaultState(), 2);
+                            world.setBlockState(blockpos.up(k), MPBlocks.INFECTED_SUGAR_CANE_BLOCK.getDefaultState(), 2);
                         }
                     }
                 }

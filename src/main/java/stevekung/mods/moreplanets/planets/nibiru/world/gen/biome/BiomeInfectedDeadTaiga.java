@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga1;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
@@ -23,9 +23,9 @@ public class BiomeInfectedDeadTaiga extends BiomeNibiru
     public BiomeInfectedDeadTaiga(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTreesPerChunk = 10;
         this.getBiomeDecorator().infectedTallGrassPerChunk = 7;
     }
@@ -48,7 +48,7 @@ public class BiomeInfectedDeadTaiga extends BiomeNibiru
             int x = rand.nextInt(16) + 8;
             int z = rand.nextInt(16) + 8;
             int y = rand.nextInt(world.getHeight(pos.add(x, 0, z)).getY() + 32);
-            new WorldGenDoublePlantMP(NibiruBlocks.INFECTED_LARGE_FERN).generate(world, rand, pos.add(x, y, z));
+            new WorldGenDoublePlantMP(MPBlocks.INFECTED_LARGE_FERN).generate(world, rand, pos.add(x, y, z));
         }
         super.decorate(world, rand, pos);
     }

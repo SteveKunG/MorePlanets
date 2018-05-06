@@ -7,9 +7,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.planets.diona.blocks.BlockCrashedAlienProbe;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityAlienMiner;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityCrashedAlienProbe;
 
@@ -42,9 +42,9 @@ public class WorldGenCrashedAlienProbe extends WorldGenerator
                     {
                         world.setBlockState(posnew, Blocks.AIR.getDefaultState(), 2);
                     }
-                    else if ((block == DionaBlocks.DIONA_SURFACE_ROCK || block == DionaBlocks.DIONA_SUB_SURFACE_ROCK || block == DionaBlocks.DIONA_ROCK) && poolY < 0 && rand.nextInt(4) == 0)
+                    else if ((block == MPBlocks.DIONA_SURFACE_ROCK || block == MPBlocks.DIONA_SUB_SURFACE_ROCK || block == MPBlocks.DIONA_ROCK) && poolY < 0 && rand.nextInt(4) == 0)
                     {
-                        world.setBlockState(posnew, DionaBlocks.GLOWING_IRON_BLOCK.getDefaultState(), 2);
+                        world.setBlockState(posnew, MPBlocks.GLOWING_IRON_BLOCK.getDefaultState(), 2);
                     }
                 }
             }
@@ -71,7 +71,7 @@ public class WorldGenCrashedAlienProbe extends WorldGenerator
 
         boolean alien = rand.nextInt(5) == 0;
         BlockPos tilepos = blockpos.down();
-        world.setBlockState(tilepos, DionaBlocks.CRASHED_ALIEN_PROBE.getDefaultState().withProperty(BlockCrashedAlienProbe.HAS_ALIEN, alien), 3);
+        world.setBlockState(tilepos, MPBlocks.CRASHED_ALIEN_PROBE.getDefaultState().withProperty(BlockCrashedAlienProbe.HAS_ALIEN, alien), 3);
         TileEntityCrashedAlienProbe probe = (TileEntityCrashedAlienProbe) world.getTileEntity(tilepos);
 
         if (probe != null)

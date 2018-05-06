@@ -13,7 +13,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class ItemBlockInfectedSnow extends ItemBlock
@@ -83,6 +83,6 @@ public class ItemBlockInfectedSnow extends ItemBlock
     public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack)
     {
         IBlockState state = world.getBlockState(pos);
-        return state.getBlock() != NibiruBlocks.INFECTED_SNOW_LAYER || state.getValue(BlockStateProperty.LAYERS) > 7 ? super.canPlaceBlockOnSide(world, pos, side, player, stack) : true;
+        return state.getBlock() != MPBlocks.INFECTED_SNOW_LAYER || state.getValue(BlockStateProperty.LAYERS) > 7 ? super.canPlaceBlockOnSide(world, pos, side, player, stack) : true;
     }
 }

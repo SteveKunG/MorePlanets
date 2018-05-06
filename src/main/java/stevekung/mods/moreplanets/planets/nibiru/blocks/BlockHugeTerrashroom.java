@@ -20,6 +20,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockBreakableMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
@@ -60,7 +61,7 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NibiruBlocks.TERRASHROOM);
+        return Item.getItemFromBlock(MPBlocks.TERRASHROOM);
     }
 
     @Override

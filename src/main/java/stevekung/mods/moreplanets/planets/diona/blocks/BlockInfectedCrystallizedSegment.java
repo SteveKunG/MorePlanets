@@ -20,6 +20,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCrystallizedEnderCore;
@@ -112,7 +113,7 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return this.type != BlockType.INFECTED_CRYSTALLIZED_SEGMENT ? Item.getItemFromBlock(DionaBlocks.INFECTED_CRYSTALLIZED_SEGMENT) : Item.getItemFromBlock(this);
+        return this.type != BlockType.INFECTED_CRYSTALLIZED_SEGMENT ? Item.getItemFromBlock(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT) : Item.getItemFromBlock(this);
     }
 
     @Override
@@ -130,7 +131,7 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
                     {
                         heldItem.shrink(1);
                     }
-                    world.setBlockState(pos, DionaBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
+                    world.setBlockState(pos, MPBlocks.INFECTED_CRYSTALLIZED_EYE_CORE.getDefaultState());
                     return true;
                 }
                 else if (heldItem.getItem() == Items.ENDER_EYE)
@@ -139,7 +140,7 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
                     {
                         heldItem.shrink(1);
                     }
-                    world.setBlockState(pos, DionaBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
+                    world.setBlockState(pos, MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE.getDefaultState());
                     return true;
                 }
             }

@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.world.gen.feature.WorldGenLargeInfectedCrystallized;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
@@ -24,13 +24,13 @@ public class BiomeDecoratorDiona extends BiomeDecoratorMP
 
     public BiomeDecoratorDiona()
     {
-        this.dirtGen = new WorldGenMinableBase(DionaBlocks.DIONA_SUB_SURFACE_ROCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.DIRT);
-        this.setroriumGen = new WorldGenMinableBase(DionaBlocks.SETRORIUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 9);
-        this.illeniumGen = new WorldGenMinableBase(DionaBlocks.ILLENIUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 4);
-        this.tinGen = new WorldGenMinableBase(DionaBlocks.DIONA_TIN_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.TIN);
-        this.copperGen = new WorldGenMinableBase(DionaBlocks.DIONA_COPPER_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.COPPER);
-        this.aluminumGen = new WorldGenMinableBase(DionaBlocks.DIONA_ALUMINUM_ORE.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
-        this.wormEggGen = new WorldGenMinableBase(DionaBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState(), 8);
+        this.dirtGen = new WorldGenMinableBase(MPBlocks.DIONA_SUB_SURFACE_ROCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.DIRT);
+        this.setroriumGen = new WorldGenMinableBase(MPBlocks.SETRORIUM_ORE.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), 9);
+        this.illeniumGen = new WorldGenMinableBase(MPBlocks.ILLENIUM_ORE.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), 4);
+        this.tinGen = new WorldGenMinableBase(MPBlocks.DIONA_TIN_ORE.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.TIN);
+        this.copperGen = new WorldGenMinableBase(MPBlocks.DIONA_COPPER_ORE.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.COPPER);
+        this.aluminumGen = new WorldGenMinableBase(MPBlocks.DIONA_ALUMINUM_ORE.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), EnumOreGen.ALUMINUM);
+        this.wormEggGen = new WorldGenMinableBase(MPBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), 8);
     }
 
     @Override
@@ -50,12 +50,12 @@ public class BiomeDecoratorDiona extends BiomeDecoratorMP
         for (int i = 0; i < 50; ++i)
         {
             int y = rand.nextInt(rand.nextInt(248) + 8);
-            new WorldGenCaveLiquid(DionaBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (int i = 0; i < 20; ++i)
         {
             int y = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
-            new WorldGenCaveLiquid(DionaBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), DionaBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (int i = 0; i < 16; ++i)
         {

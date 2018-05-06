@@ -7,6 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
 public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrowable
@@ -20,9 +21,9 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
     @Override
     public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source)
     {
-        if (world.getBlockState(pos).getBlock() == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK)
+        if (world.getBlockState(pos).getBlock() == MPBlocks.GREEN_VEIN_GRASS_BLOCK)
         {
-            world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState(), 2);
+            world.setBlockState(pos, MPBlocks.INFECTED_DIRT.getDefaultState(), 2);
         }
     }
 
@@ -37,7 +38,7 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
             }
             if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockLightOpacity(pos.up()) > 2)
             {
-                world.setBlockState(pos, NibiruBlocks.INFECTED_DIRT.getDefaultState());
+                world.setBlockState(pos, MPBlocks.INFECTED_DIRT.getDefaultState());
             }
             else if (world.getLightFromNeighbors(pos.up()) >= 9)
             {
@@ -45,7 +46,7 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
                 {
                     BlockPos pos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
 
-                    if (world.getBlockState(pos1) == NibiruBlocks.INFECTED_DIRT.getDefaultState())
+                    if (world.getBlockState(pos1) == MPBlocks.INFECTED_DIRT.getDefaultState())
                     {
                         if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity(world, pos1.up()) <= 2)
                         {
@@ -60,7 +61,7 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NibiruBlocks.INFECTED_DIRT);
+        return Item.getItemFromBlock(MPBlocks.INFECTED_DIRT);
     }
 
     @Override
@@ -93,16 +94,16 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            if (NibiruBlocks.TERRAPUFF_HERB.canPlaceBlockAt(world, blockpos1))
+                            if (MPBlocks.TERRAPUFF_HERB.canPlaceBlockAt(world, blockpos1))
                             {
-                                world.setBlockState(blockpos1, NibiruBlocks.TERRAPUFF_HERB.getDefaultState(), 3);
+                                world.setBlockState(blockpos1, MPBlocks.TERRAPUFF_HERB.getDefaultState(), 3);
                             }
                         }
                         else
                         {
-                            if (NibiruBlocks.GREEN_VEIN_GRASS.canPlaceBlockAt(world, blockpos1))
+                            if (MPBlocks.GREEN_VEIN_GRASS.canPlaceBlockAt(world, blockpos1))
                             {
-                                world.setBlockState(blockpos1, NibiruBlocks.GREEN_VEIN_GRASS.getDefaultState(), 3);
+                                world.setBlockState(blockpos1, MPBlocks.GREEN_VEIN_GRASS.getDefaultState(), 3);
                             }
                         }
                     }
@@ -111,7 +112,7 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(blockpos1.down()).getBlock() != NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
+                if (world.getBlockState(blockpos1.down()).getBlock() != MPBlocks.GREEN_VEIN_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
                 {
                     break;
                 }

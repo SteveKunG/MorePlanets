@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
 {
@@ -34,7 +34,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
             IBlockState state = world.getBlockState(blockpos);
             Block block = state.getBlock();
 
-            if (!(block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND) && pos.getY() < 256 - i - 1)
+            if (!(block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_FARMLAND) && pos.getY() < 256 - i - 1)
             {
                 return false;
             }
@@ -195,7 +195,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
     {
         if (this.canGrowInto(world.getBlockState(pos).getBlock()))
         {
-            this.setBlockAndNotifyAdequately(world, pos, NibiruBlocks.INFECTED_OAK_LOG.getStateFromMeta(1));//TODO
+            this.setBlockAndNotifyAdequately(world, pos, MPBlocks.INFECTED_OAK_LOG.getStateFromMeta(1));//TODO
         }
     }
 
@@ -208,7 +208,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
 
             if (state.getBlock().isAir(state, world, blockpos))
             {
-                this.setBlockAndNotifyAdequately(world, blockpos, NibiruBlocks.INFECTED_OAK_LEAVES.getStateFromMeta(1));//TODO
+                this.setBlockAndNotifyAdequately(world, blockpos, MPBlocks.INFECTED_OAK_LEAVES.getStateFromMeta(1));//TODO
             }
         }
     }

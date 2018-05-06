@@ -25,7 +25,6 @@ import stevekung.mods.moreplanets.core.event.*;
 import stevekung.mods.moreplanets.core.handler.GuiHandlerMP;
 import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
@@ -101,7 +100,7 @@ public class MorePlanetsMod
         MPOreDictionary.init();
         MPPlanets.register();
         GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.moreplanets_general.idNetworkHandler, PacketSimpleMP.class);
-        MorePlanetsMod.BLOCK_TAB.setDisplayItemStack(new ItemStack(DionaBlocks.CRASHED_ALIEN_PROBE));
+        MorePlanetsMod.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.CRASHED_ALIEN_PROBE));
         MorePlanetsMod.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
         MorePlanetsMod.PROXY.init(event);
 

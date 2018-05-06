@@ -16,8 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityVeinEye;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
@@ -34,7 +34,7 @@ public class ItemVeinEye extends ItemBaseMP
         ItemStack itemStack = player.getHeldItem(hand);
         IBlockState iblockstate = world.getBlockState(pos);
 
-        if (player.canPlayerEdit(pos.offset(facing), facing, itemStack) && iblockstate.getBlock() == NibiruBlocks.VEIN_FRAME && !iblockstate.getValue(BlockVeinFrame.EYE).booleanValue())
+        if (player.canPlayerEdit(pos.offset(facing), facing, itemStack) && iblockstate.getBlock() == MPBlocks.VEIN_FRAME && !iblockstate.getValue(BlockVeinFrame.EYE).booleanValue())
         {
             if (world.isRemote)
             {
@@ -50,7 +50,7 @@ public class ItemVeinEye extends ItemBaseMP
             else
             {
                 world.setBlockState(pos, iblockstate.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(true)), 2);
-                world.updateComparatorOutputLevel(pos, NibiruBlocks.VEIN_FRAME);
+                world.updateComparatorOutputLevel(pos, MPBlocks.VEIN_FRAME);
                 itemStack.shrink(1);
                 BlockPattern.PatternHelper blockpattern$patternhelper = this.getOrCreatePortalShape().match(world, pos);
 
@@ -62,7 +62,7 @@ public class ItemVeinEye extends ItemBaseMP
                     {
                         for (int k = 0; k < 3; ++k)
                         {
-                            world.setBlockState(blockpos.add(j, 0, k), NibiruBlocks.VEIN_PORTAL.getDefaultState(), 2);
+                            world.setBlockState(blockpos.add(j, 0, k), MPBlocks.VEIN_PORTAL.getDefaultState(), 2);
                         }
                     }
                 }
@@ -81,7 +81,7 @@ public class ItemVeinEye extends ItemBaseMP
         ItemStack itemStack = player.getHeldItem(hand);
         RayTraceResult raytraceresult = this.rayTrace(world, player, false);
 
-        if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(raytraceresult.getBlockPos()).getBlock() == NibiruBlocks.VEIN_FRAME && !world.getBlockState(raytraceresult.getBlockPos()).getValue(BlockVeinFrame.EYE).booleanValue())
+        if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && world.getBlockState(raytraceresult.getBlockPos()).getBlock() == MPBlocks.VEIN_FRAME && !world.getBlockState(raytraceresult.getBlockPos()).getValue(BlockVeinFrame.EYE).booleanValue())
         {
             return new ActionResult<>(EnumActionResult.PASS, itemStack);
         }
@@ -113,6 +113,6 @@ public class ItemVeinEye extends ItemBaseMP
 
     private BlockPattern getOrCreatePortalShape()
     {
-        return FactoryBlockPattern.start().aisle(new String[] {"?vvv?", ">???<", ">???<", ">???<", "?^^^?"}).where('?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where('^', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.SOUTH)))).where('>', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.WEST)))).where('v', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.NORTH)))).where('<', BlockWorldState.hasState(BlockStateMatcher.forBlock(NibiruBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.EAST)))).build();
+        return FactoryBlockPattern.start().aisle(new String[] {"?vvv?", ">???<", ">???<", ">???<", "?^^^?"}).where('?', BlockWorldState.hasState(BlockStateMatcher.ANY)).where('^', BlockWorldState.hasState(BlockStateMatcher.forBlock(MPBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.SOUTH)))).where('>', BlockWorldState.hasState(BlockStateMatcher.forBlock(MPBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.WEST)))).where('v', BlockWorldState.hasState(BlockStateMatcher.forBlock(MPBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.NORTH)))).where('<', BlockWorldState.hasState(BlockStateMatcher.forBlock(MPBlocks.VEIN_FRAME).where(BlockVeinFrame.EYE, Predicates.equalTo(Boolean.valueOf(true))).where(BlockVeinFrame.FACING, Predicates.equalTo(EnumFacing.EAST)))).build();
     }
 }

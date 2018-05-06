@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
 public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowable
@@ -23,9 +24,9 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
     @Override
     public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source)
     {
-        if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS_BLOCK)
+        if (world.getBlockState(pos).getBlock() == MPBlocks.CHEESE_GRASS_BLOCK)
         {
-            world.setBlockState(pos, ChalosBlocks.CHEESE_DIRT.getDefaultState(), 2);
+            world.setBlockState(pos, MPBlocks.CHEESE_DIRT.getDefaultState(), 2);
         }
     }
 
@@ -36,7 +37,7 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
         {
             if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockLightOpacity(pos.up()) > 2)
             {
-                world.setBlockState(pos, ChalosBlocks.CHEESE_DIRT.getDefaultState());
+                world.setBlockState(pos, MPBlocks.CHEESE_DIRT.getDefaultState());
             }
             else if (world.getLightFromNeighbors(pos.up()) >= 9)
             {
@@ -44,7 +45,7 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
                 {
                     BlockPos pos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
 
-                    if (world.getBlockState(pos1) == ChalosBlocks.CHEESE_DIRT.getDefaultState())
+                    if (world.getBlockState(pos1) == MPBlocks.CHEESE_DIRT.getDefaultState())
                     {
                         if (world.getLightFromNeighbors(pos1.up()) >= 4 && world.getBlockState(pos1.up()).getLightOpacity(world, pos1) <= 2)
                         {
@@ -59,7 +60,7 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(ChalosBlocks.CHEESE_DIRT);
+        return Item.getItemFromBlock(MPBlocks.CHEESE_DIRT);
     }
 
     @Override
@@ -100,9 +101,9 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
                 {
                     if (world.isAirBlock(blockpos1))
                     {
-                        IBlockState iblockstate1 = ChalosBlocks.CHEESE_GRASS.getDefaultState();
+                        IBlockState iblockstate1 = MPBlocks.CHEESE_GRASS.getDefaultState();
 
-                        if (ChalosBlocks.CHEESE_GRASS.canBlockStay(world, blockpos1, iblockstate1))
+                        if (iblockstate1.getBlock().canPlaceBlockAt(world, blockpos1))
                         {
                             world.setBlockState(blockpos1, iblockstate1, 3);
                         }
@@ -112,7 +113,7 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(blockpos1.down()).getBlock() != ChalosBlocks.CHEESE_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
+                if (world.getBlockState(blockpos1.down()).getBlock() != MPBlocks.CHEESE_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
                 {
                     break;
                 }

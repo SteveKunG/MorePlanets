@@ -24,7 +24,6 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
@@ -128,15 +127,15 @@ public class StructureNibiruStrongholdPieces
                 this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 4, 4, 6, true, rand, STRONGHOLD_STONES);
                 this.placeDoor(world, box, this.entryDoor, 1, 1, 0);
                 this.placeDoor(world, box, Door.OPENING, 1, 1, 6);
-                this.fillWithBlocks(world, box, 3, 1, 2, 3, 1, 4, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), false);
-                this.setBlockState(world, NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 1, 1, box);
-                this.setBlockState(world, NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 1, 5, box);
-                this.setBlockState(world, NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 2, 2, box);
-                this.setBlockState(world, NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 2, 4, box);
+                this.fillWithBlocks(world, box, 3, 1, 2, 3, 1, 4, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), false);
+                this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 1, 1, box);
+                this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 1, 5, box);
+                this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 2, 2, box);
+                this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 2, 4, box);
 
                 for (int i = 2; i <= 4; ++i)
                 {
-                    this.setBlockState(world, NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 2, 1, i, box);
+                    this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 2, 1, i, box);
                 }
                 if (!this.hasMadeChest && box.isVecInside(new BlockPos(this.getXWithOffset(3, 3), this.getYWithOffset(2), this.getZWithOffset(3, 3))))
                 {
@@ -187,25 +186,25 @@ public class StructureNibiruStrongholdPieces
             {
                 for (int i = 0; i < this.steps; ++i)
                 {
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 0, 0, i, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 0, i, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 0, i, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 0, i, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 4, 0, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 0, 0, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 0, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 0, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 0, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 4, 0, i, box);
 
                     for (int j = 1; j <= 3; ++j)
                     {
-                        this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 0, j, i, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 0, j, i, box);
                         this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, j, i, box);
                         this.setBlockState(world, Blocks.AIR.getDefaultState(), 2, j, i, box);
                         this.setBlockState(world, Blocks.AIR.getDefaultState(), 3, j, i, box);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 4, j, i, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 4, j, i, box);
                     }
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 0, 4, i, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 4, i, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 4, i, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 4, i, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 4, 4, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 0, 4, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 4, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 4, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 4, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 4, 4, i, box);
                 }
                 return true;
             }
@@ -318,15 +317,15 @@ public class StructureNibiruStrongholdPieces
                 this.fillWithRandomizedBlocks(world, box, 8, 1, 5, 8, 4, 9, false, rand, STRONGHOLD_STONES);
                 this.fillWithRandomizedBlocks(world, box, 1, 4, 7, 3, 4, 9, false, rand, STRONGHOLD_STONES);
                 this.fillWithRandomizedBlocks(world, box, 1, 3, 5, 3, 3, 6, false, rand, STRONGHOLD_STONES);
-                this.fillWithBlocks(world, box, 1, 3, 4, 3, 3, 4, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
-                this.fillWithBlocks(world, box, 1, 4, 6, 3, 4, 6, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 1, 3, 4, 3, 3, 4, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 1, 4, 6, 3, 4, 6, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
                 this.fillWithRandomizedBlocks(world, box, 5, 1, 7, 7, 1, 8, false, rand, STRONGHOLD_STONES);
-                this.fillWithBlocks(world, box, 5, 1, 9, 7, 1, 9, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
-                this.fillWithBlocks(world, box, 5, 2, 7, 7, 2, 7, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
-                this.fillWithBlocks(world, box, 4, 5, 7, 4, 5, 9, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
-                this.fillWithBlocks(world, box, 8, 5, 7, 8, 5, 9, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
-                this.fillWithBlocks(world, box, 5, 5, 7, 7, 5, 9, NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), NibiruBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
-                this.setBlockState(world, NibiruBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.SOUTH), 6, 5, 6, box);
+                this.fillWithBlocks(world, box, 5, 1, 9, 7, 1, 9, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 5, 2, 7, 7, 2, 7, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 4, 5, 7, 4, 5, 9, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 8, 5, 7, 8, 5, 9, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 5, 5, 7, 7, 5, 9, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), false);
+                this.setBlockState(world, MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.SOUTH), 6, 5, 6, box);
                 return true;
             }
         }
@@ -438,52 +437,52 @@ public class StructureNibiruStrongholdPieces
                 {
                     if ((l - 1) % 4 == 0)
                     {
-                        this.fillWithBlocks(world, box, 1, 1, l, 1, 4, l, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
-                        this.fillWithBlocks(world, box, 12, 1, l, 12, 4, l, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.EAST), 2, 3, l, box);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.WEST), 11, 3, l, box);
+                        this.fillWithBlocks(world, box, 1, 1, l, 1, 4, l, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
+                        this.fillWithBlocks(world, box, 12, 1, l, 12, 4, l, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
+                        this.setBlockState(world, MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.EAST), 2, 3, l, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.WEST), 11, 3, l, box);
 
                         if (this.isLargeRoom)
                         {
-                            this.fillWithBlocks(world, box, 1, 6, l, 1, 9, l, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
-                            this.fillWithBlocks(world, box, 12, 6, l, 12, 9, l, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
+                            this.fillWithBlocks(world, box, 1, 6, l, 1, 9, l, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
+                            this.fillWithBlocks(world, box, 12, 6, l, 12, 9, l, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
                         }
                     }
                     else
                     {
-                        this.fillWithBlocks(world, box, 1, 1, l, 1, 4, l, NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
-                        this.fillWithBlocks(world, box, 12, 1, l, 12, 4, l, NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
+                        this.fillWithBlocks(world, box, 1, 1, l, 1, 4, l, MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
+                        this.fillWithBlocks(world, box, 12, 1, l, 12, 4, l, MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
 
                         if (this.isLargeRoom)
                         {
-                            this.fillWithBlocks(world, box, 1, 6, l, 1, 9, l, NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
-                            this.fillWithBlocks(world, box, 12, 6, l, 12, 9, l, NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
+                            this.fillWithBlocks(world, box, 1, 6, l, 1, 9, l, MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
+                            this.fillWithBlocks(world, box, 12, 6, l, 12, 9, l, MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
                         }
                     }
                 }
                 for (int k1 = 3; k1 < 12; k1 += 2)
                 {
-                    this.fillWithBlocks(world, box, 3, 1, k1, 4, 3, k1, NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, 6, 1, k1, 7, 3, k1, NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, 9, 1, k1, 10, 3, k1, NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), NibiruBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 3, 1, k1, 4, 3, k1, MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 6, 1, k1, 7, 3, k1, MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 9, 1, k1, 10, 3, k1, MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
                 }
 
                 if (this.isLargeRoom)
                 {
-                    this.fillWithBlocks(world, box, 1, 5, 1, 3, 5, 13, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, 10, 5, 1, 12, 5, 13, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, 4, 5, 1, 9, 5, 2, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, 4, 5, 12, 9, 5, 13, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 9, 5, 11, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 8, 5, 11, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 9, 5, 10, box);
-                    this.fillWithBlocks(world, box, 3, 6, 2, 3, 6, 12, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, 10, 6, 2, 10, 6, 10, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, 4, 6, 2, 9, 6, 2, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), false);
-                    this.fillWithBlocks(world, box, 4, 6, 12, 8, 6, 12, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), false);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 9, 6, 11, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 8, 6, 11, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 9, 6, 10, box);
+                    this.fillWithBlocks(world, box, 1, 5, 1, 3, 5, 13, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 10, 5, 1, 12, 5, 13, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 4, 5, 1, 9, 5, 2, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 4, 5, 12, 9, 5, 13, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), false);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 9, 5, 11, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 8, 5, 11, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 9, 5, 10, box);
+                    this.fillWithBlocks(world, box, 3, 6, 2, 3, 6, 12, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 10, 6, 2, 10, 6, 10, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 4, 6, 2, 9, 6, 2, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), false);
+                    this.fillWithBlocks(world, box, 4, 6, 12, 8, 6, 12, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), false);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 9, 6, 11, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 8, 6, 11, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 9, 6, 10, box);
                     IBlockState iblockstate1 = Blocks.LADDER.getDefaultState().withProperty(BlockLadder.FACING, EnumFacing.SOUTH);
                     this.setBlockState(world, iblockstate1, 10, 1, 13, box);
                     this.setBlockState(world, iblockstate1, 10, 2, 13, box);
@@ -492,19 +491,19 @@ public class StructureNibiruStrongholdPieces
                     this.setBlockState(world, iblockstate1, 10, 5, 13, box);
                     this.setBlockState(world, iblockstate1, 10, 6, 13, box);
                     this.setBlockState(world, iblockstate1, 10, 7, 13, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 9, 7, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 9, 7, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 8, 7, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 8, 7, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 7, 7, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 7, 7, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 5, 7, 7, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 8, 7, 7, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 7, 6, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 7, 8, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 7, 6, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 7, 8, box);
-                    IBlockState iblockstate = NibiruBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.UP);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 9, 7, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 9, 7, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 8, 7, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 8, 7, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 7, 7, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 7, 7, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 5, 7, 7, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 8, 7, 7, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 7, 6, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 6, 7, 8, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 7, 6, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_OAK_FENCE.getDefaultState(), 7, 7, 8, box);
+                    IBlockState iblockstate = MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.UP);
                     this.setBlockState(world, iblockstate, 5, 8, 7, box);
                     this.setBlockState(world, iblockstate, 8, 8, 7, box);
                     this.setBlockState(world, iblockstate, 6, 8, 6, box);
@@ -598,10 +597,10 @@ public class StructureNibiruStrongholdPieces
             this.fillWithRandomizedBlocks(world, box, 2, i, 14, 8, i, 14, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 1, 1, 1, 2, 1, 4, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 8, 1, 1, 9, 1, 4, false, rand, STRONGHOLD_STONES);
-            this.fillWithBlocks(world, box, 1, 1, 1, 1, 1, 3, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
-            this.fillWithBlocks(world, box, 9, 1, 1, 9, 1, 3, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
+            this.fillWithBlocks(world, box, 1, 1, 1, 1, 1, 3, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
+            this.fillWithBlocks(world, box, 9, 1, 1, 9, 1, 3, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
             this.fillWithRandomizedBlocks(world, box, 3, 1, 8, 7, 1, 12, false, rand, STRONGHOLD_STONES);
-            this.fillWithBlocks(world, box, 4, 1, 9, 6, 1, 11, NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
+            this.fillWithBlocks(world, box, 4, 1, 9, 6, 1, 11, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
             this.createWasteTank(new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(1), this.getZWithOffset(1, 1)), world, rand, box);
             this.createWasteTank(new BlockPos(this.getXWithOffset(1, 2), this.getYWithOffset(1), this.getZWithOffset(1, 2)), world, rand, box);
             this.createWasteTank(new BlockPos(this.getXWithOffset(9, 1), this.getYWithOffset(1), this.getZWithOffset(9, 1)), world, rand, box);
@@ -619,7 +618,7 @@ public class StructureNibiruStrongholdPieces
                 this.fillWithBlocks(world, box, i1, 3, 15, i1, 4, 15, Blocks.IRON_BARS.getDefaultState(), Blocks.IRON_BARS.getDefaultState(), false);
             }
 
-            IBlockState iblockstate3 = NibiruBlocks.INFECTED_STONE_BRICKS_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
+            IBlockState iblockstate3 = MPBlocks.INFECTED_STONE_BRICKS_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
             this.fillWithRandomizedBlocks(world, box, 4, 1, 5, 6, 1, 7, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 4, 2, 6, 6, 2, 7, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 4, 3, 7, 6, 3, 7, false, rand, STRONGHOLD_STONES);
@@ -631,10 +630,10 @@ public class StructureNibiruStrongholdPieces
                 this.setBlockState(world, iblockstate3, k, 3, 6, box);
             }
 
-            IBlockState iblockstate4 = NibiruBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.NORTH);
-            IBlockState iblockstate = NibiruBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.SOUTH);
-            IBlockState iblockstate1 = NibiruBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.EAST);
-            IBlockState iblockstate2 = NibiruBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.WEST);
+            IBlockState iblockstate4 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.NORTH);
+            IBlockState iblockstate = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.SOUTH);
+            IBlockState iblockstate1 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.EAST);
+            IBlockState iblockstate2 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.WEST);
             boolean flag = true;
             boolean[] aboolean = new boolean[12];
 
@@ -846,71 +845,71 @@ public class StructureNibiruStrongholdPieces
                 {
                 case 0:
                     this.createWasteTank(new BlockPos(this.getXWithOffset(5, 5), this.getYWithOffset(1), this.getZWithOffset(5, 5)), world, rand, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 4, 1, 4, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 4, 1, 5, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 4, 1, 6, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 4, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 5, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 6, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 5, 1, 4, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 5, 1, 6, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 4, 1, 4, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 4, 1, 5, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 4, 1, 6, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 4, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 5, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 6, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 5, 1, 4, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 5, 1, 6, box);
                     break;
                 case 1:
                     for (int i1 = 0; i1 < 5; ++i1)
                     {
-                        this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 1, 3 + i1, box);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 7, 1, 3 + i1, box);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3 + i1, 1, 3, box);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3 + i1, 1, 7, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 1, 3 + i1, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 7, 1, 3 + i1, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3 + i1, 1, 3, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3 + i1, 1, 7, box);
                     }
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 5, 1, 5, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 5, 2, 5, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 5, 3, 5, box);
-                    this.setBlockState(world, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), 5, 4, 5, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 5, 1, 5, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 5, 2, 5, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 5, 3, 5, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), 5, 4, 5, box);
                     break;
                 case 2:
                     for (int i = 1; i <= 9; ++i)
                     {
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 1, 3, i, box);
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 9, 3, i, box);
+                        this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 1, 3, i, box);
+                        this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 9, 3, i, box);
                     }
                     for (int j = 1; j <= 9; ++j)
                     {
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), j, 3, 1, box);
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), j, 3, 9, box);
+                        this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), j, 3, 1, box);
+                        this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), j, 3, 9, box);
                     }
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 1, 4, box);
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 1, 6, box);
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 3, 4, box);
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 3, 6, box);
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 4, 1, 5, box);
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 6, 1, 5, box);
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 4, 3, 5, box);
-                    this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 6, 3, 5, box);
+                    this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 1, 4, box);
+                    this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 1, 6, box);
+                    this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 3, 4, box);
+                    this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 3, 6, box);
+                    this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 4, 1, 5, box);
+                    this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 6, 1, 5, box);
+                    this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 4, 3, 5, box);
+                    this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 6, 3, 5, box);
 
                     for (int k = 1; k <= 3; ++k)
                     {
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 4, k, 4, box);
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 6, k, 4, box);
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 4, k, 6, box);
-                        this.setBlockState(world, NibiruBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 6, k, 6, box);
+                        this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 4, k, 4, box);
+                        this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 6, k, 4, box);
+                        this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 4, k, 6, box);
+                        this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 6, k, 6, box);
                     }
 
-                    this.setBlockState(world, NibiruBlocks.INFECTED_TORCH.getDefaultState(), 5, 3, 5, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_TORCH.getDefaultState(), 5, 3, 5, box);
 
                     for (int l = 2; l <= 8; ++l)
                     {
-                        this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 2, 3, l, box);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 3, 3, l, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 2, 3, l, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 3, 3, l, box);
 
                         if (l <= 3 || l >= 7)
                         {
-                            this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 4, 3, l, box);
-                            this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 5, 3, l, box);
-                            this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 6, 3, l, box);
+                            this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 4, 3, l, box);
+                            this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 5, 3, l, box);
+                            this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 6, 3, l, box);
                         }
-                        this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 7, 3, l, box);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 8, 3, l, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 7, 3, l, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 8, 3, l, box);
                     }
                     IBlockState iblockstate = Blocks.LADDER.getDefaultState().withProperty(BlockLadder.FACING, EnumFacing.WEST);
                     this.setBlockState(world, iblockstate, 9, 1, 3, box);
@@ -991,23 +990,23 @@ public class StructureNibiruStrongholdPieces
                 this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 4, 10, 4, true, rand, STRONGHOLD_STONES);
                 this.placeDoor(world, box, this.entryDoor, 1, 7, 0);
                 this.placeDoor(world, box, Door.OPENING, 1, 1, 4);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 6, 1, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 5, 1, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 6, 1, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 5, 2, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 4, 3, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 5, 3, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 4, 3, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 3, 3, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 3, 4, 3, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 3, 2, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 2, 1, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 3, 3, 1, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 2, 1, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 1, 1, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 2, 1, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 1, 2, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 1, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 6, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 5, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 6, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 5, 2, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 4, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 5, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 4, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 3, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 3, 4, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 3, 2, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 2, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 3, 3, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 2, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 1, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 2, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 1, 2, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 1, 3, box);
                 return true;
             }
         }
@@ -1057,7 +1056,7 @@ public class StructureNibiruStrongholdPieces
                 this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 4, 10, 7, true, rand, STRONGHOLD_STONES);
                 this.placeDoor(world, box, this.entryDoor, 1, 7, 0);
                 this.placeDoor(world, box, Door.OPENING, 1, 1, 7);
-                IBlockState iblockstate = NibiruBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
+                IBlockState iblockstate = MPBlocks.NIBIRU_COBBLESTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
 
                 for (int i = 0; i < 6; ++i)
                 {
@@ -1067,9 +1066,9 @@ public class StructureNibiruStrongholdPieces
 
                     if (i < 5)
                     {
-                        this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 5 - i, 1 + i, box);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 5 - i, 1 + i, box);
-                        this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 5 - i, 1 + i, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 5 - i, 1 + i, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 5 - i, 1 + i, box);
+                        this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 5 - i, 1 + i, box);
                     }
                 }
                 return true;
@@ -1090,19 +1089,19 @@ public class StructureNibiruStrongholdPieces
 
                 if (f < 0.2F)
                 {
-                    this.blockstate = NibiruBlocks.INFECTED_CRACKED_STONE_BRICKS.getDefaultState();
+                    this.blockstate = MPBlocks.INFECTED_CRACKED_STONE_BRICKS.getDefaultState();
                 }
                 else if (f < 0.5F)
                 {
-                    this.blockstate = NibiruBlocks.INFECTED_VEIN_STONE_BRICKS.getDefaultState();
+                    this.blockstate = MPBlocks.INFECTED_VEIN_STONE_BRICKS.getDefaultState();
                 }
                 else if (f < 0.55F)
                 {
-                    this.blockstate = NibiruBlocks.INFESTED_INFECTED_VEIN_STONE_BRICKS.getDefaultState();
+                    this.blockstate = MPBlocks.INFESTED_INFECTED_VEIN_STONE_BRICKS.getDefaultState();
                 }
                 else
                 {
-                    this.blockstate = NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState();
+                    this.blockstate = MPBlocks.INFECTED_STONE_BRICKS.getDefaultState();
                 }
             }
             else
@@ -1172,8 +1171,8 @@ public class StructureNibiruStrongholdPieces
                 this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 4, 4, 6, true, rand, STRONGHOLD_STONES);
                 this.placeDoor(world, box, this.entryDoor, 1, 1, 0);
                 this.placeDoor(world, box, Door.OPENING, 1, 1, 6);
-                IBlockState iblockstate = NibiruBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.EAST);
-                IBlockState iblockstate1 = NibiruBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.WEST);
+                IBlockState iblockstate = MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.EAST);
+                IBlockState iblockstate1 = MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.WEST);
                 this.randomlyPlaceBlock(world, box, rand, 0.1F, 1, 2, 1, iblockstate);
                 this.randomlyPlaceBlock(world, box, rand, 0.1F, 3, 2, 1, iblockstate1);
                 this.randomlyPlaceBlock(world, box, rand, 0.1F, 1, 2, 5, iblockstate);
@@ -1223,15 +1222,15 @@ public class StructureNibiruStrongholdPieces
                 this.fillWithBlocks(world, box, x, y, z, x + 3 - 1, y + 3 - 1, z, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 break;
             case WOOD_DOOR:
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y + 1, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y + 2, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 1, y + 2, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 2, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 1, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_OAK_DOOR_BLOCK.getDefaultState(), x + 1, y, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_OAK_DOOR_BLOCK.getDefaultState().withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), x + 1, y + 1, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y + 1, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y + 2, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 1, y + 2, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 2, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 1, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_OAK_DOOR_BLOCK.getDefaultState(), x + 1, y, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_OAK_DOOR_BLOCK.getDefaultState().withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), x + 1, y + 1, z, box);
                 break;
             case GRATES:
                 this.setBlockState(world, Blocks.AIR.getDefaultState(), x + 1, y, z, box);
@@ -1245,13 +1244,13 @@ public class StructureNibiruStrongholdPieces
                 this.setBlockState(world, Blocks.IRON_BARS.getDefaultState(), x + 2, y, z, box);
                 break;
             case IRON_DOOR:
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y + 1, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y + 2, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 1, y + 2, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 2, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 1, z, box);
-                this.setBlockState(world, NibiruBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y + 1, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x, y + 2, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 1, y + 2, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 2, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 1, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y, z, box);
                 this.setBlockState(world, Blocks.IRON_DOOR.getDefaultState(), x + 1, y, z, box);
                 this.setBlockState(world, Blocks.IRON_DOOR.getDefaultState().withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), x + 1, y + 1, z, box);
                 this.setBlockState(world, Blocks.STONE_BUTTON.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH), x + 2, y + 1, z + 1, box);
@@ -1606,7 +1605,7 @@ public class StructureNibiruStrongholdPieces
         {
             if (box.isVecInside(pos))
             {
-                world.setBlockState(pos, NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, Boolean.valueOf(rand.nextFloat() > 0.9F) ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE), 2);
+                world.setBlockState(pos, MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, Boolean.valueOf(rand.nextFloat() > 0.9F) ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE), 2);
                 world.setBlockState(pos.up(), MPBlocks.NWT_MIDDLE_DUMMY.getDefaultState(), 2);
                 world.setBlockState(pos.up(2), MPBlocks.NWT_TOP_DUMMY.getDefaultState(), 2);
                 TileEntity tile = world.getTileEntity(pos);
@@ -1633,10 +1632,10 @@ public class StructureNibiruStrongholdPieces
         {
             BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
-            if (box.isVecInside(blockpos) && world.getBlockState(blockpos).getBlock() != NibiruBlocks.INFECTED_CHEST)
+            if (box.isVecInside(blockpos) && world.getBlockState(blockpos).getBlock() != MPBlocks.INFECTED_CHEST)
             {
-                IBlockState iblockstate = NibiruBlocks.INFECTED_CHEST.getDefaultState();
-                world.setBlockState(blockpos, NibiruBlocks.INFECTED_CHEST.correctFacing(world, blockpos, iblockstate), 2);
+                IBlockState iblockstate = MPBlocks.INFECTED_CHEST.getDefaultState();
+                world.setBlockState(blockpos, MPBlocks.INFECTED_CHEST.correctFacing(world, blockpos, iblockstate), 2);
                 TileEntity tileentity = world.getTileEntity(blockpos);
 
                 if (tileentity instanceof TileEntityChestMP)

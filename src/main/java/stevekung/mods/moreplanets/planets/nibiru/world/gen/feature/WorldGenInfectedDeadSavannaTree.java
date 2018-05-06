@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedDeadSavannaTree extends WorldGenAbstractTree
 {
@@ -69,7 +69,7 @@ public class WorldGenInfectedDeadSavannaTree extends WorldGenAbstractTree
                 BlockPos down = pos.down();
                 Block block = world.getBlockState(down).getBlock();
 
-                if ((block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_FARMLAND) && pos.getY() < 256 - i - 1)
+                if ((block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_FARMLAND) && pos.getY() < 256 - i - 1)
                 {
                     block.onPlantGrow(world.getBlockState(down), world, down, pos);
                     EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
@@ -198,7 +198,7 @@ public class WorldGenInfectedDeadSavannaTree extends WorldGenAbstractTree
 
     private void placeLogAt(World world, BlockPos pos)
     {
-        this.setBlockAndNotifyAdequately(world, pos, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState());
+        this.setBlockAndNotifyAdequately(world, pos, MPBlocks.INFECTED_OAK_LOG.getDefaultState());
     }
 
     private void placeLeafAt(World world, BlockPos pos)

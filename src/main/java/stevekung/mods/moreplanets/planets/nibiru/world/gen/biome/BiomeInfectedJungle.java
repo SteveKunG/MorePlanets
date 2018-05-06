@@ -10,7 +10,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.*;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
@@ -20,9 +20,9 @@ public class BiomeInfectedJungle extends BiomeNibiru
     public BiomeInfectedJungle(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTallGrassPerChunk = 25;
         this.getBiomeDecorator().vealiumVinePerChunk = 4;
         this.getBiomeDecorator().pyoloniaPerChunk = 4;
@@ -41,13 +41,13 @@ public class BiomeInfectedJungle extends BiomeNibiru
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(2) == 0 ? new WorldGenInfectedShrub(NibiruBlocks.INFECTED_OAK_LOG.getDefaultState(), NibiruBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(3) == 0 ? new WorldGenInfectedMegaJungleTree() : new WorldGenInfectedJungleTrees(true, 4 + rand.nextInt(7), true);
+        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(2) == 0 ? new WorldGenInfectedShrub(MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(3) == 0 ? new WorldGenInfectedMegaJungleTree() : new WorldGenInfectedJungleTrees(true, 4 + rand.nextInt(7), true);
     }
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
-        return rand.nextInt(4) == 0 ? new WorldGenFlowersBase(NibiruBlocks.INFECTED_FERN.getDefaultState()) : new WorldGenFlowersBase(NibiruBlocks.INFECTED_GRASS.getDefaultState());
+        return rand.nextInt(4) == 0 ? new WorldGenFlowersBase(MPBlocks.INFECTED_FERN.getDefaultState()) : new WorldGenFlowersBase(MPBlocks.INFECTED_GRASS.getDefaultState());
     }
 
     @Override

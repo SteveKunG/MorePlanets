@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenInfectedCactus extends WorldGenerator
 {
@@ -22,9 +22,9 @@ public class WorldGenInfectedCactus extends WorldGenerator
 
                 for (int i2 = 0; i2 < l1; ++i2)
                 {
-                    if (NibiruBlocks.INFECTED_CACTUS.canPlaceBlockAt(world, blockpos))
+                    if (MPBlocks.INFECTED_CACTUS.canPlaceBlockAt(world, blockpos))
                     {
-                        world.setBlockState(blockpos, NibiruBlocks.INFECTED_CACTUS.getDefaultState(), 2);
+                        world.setBlockState(blockpos, MPBlocks.INFECTED_CACTUS.getDefaultState(), 2);
                     }
                 }
             }

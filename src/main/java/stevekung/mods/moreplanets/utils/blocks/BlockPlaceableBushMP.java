@@ -17,9 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
@@ -203,7 +202,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
 
         if (this.type == BlockType.VEALIUM_VINES)
         {
-            return blockUp == NibiruBlocks.INFECTED_JUNGLE_LEAVES || blockUp == this;
+            return blockUp == MPBlocks.INFECTED_JUNGLE_LEAVES || blockUp == this;
         }
         else if (this.type == BlockType.TERRASHROOM)
         {
@@ -226,7 +225,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         }
         else if (this.type == BlockType.VEALIUM_VINES)
         {
-            return blockUp == NibiruBlocks.INFECTED_JUNGLE_LEAVES || blockUp == this;
+            return blockUp == MPBlocks.INFECTED_JUNGLE_LEAVES || blockUp == this;
         }
         return super.canBlockStay(world, pos, state);
     }
@@ -236,23 +235,23 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
     {
         if (this.type == BlockType.CHEESE_GRASS)
         {
-            return block == ChalosBlocks.CHEESE_GRASS_BLOCK || block == ChalosBlocks.CHEESE_DIRT || block == ChalosBlocks.CHEESE_COARSE_DIRT || block == ChalosBlocks.CHEESE_FARMLAND;
+            return block == MPBlocks.CHEESE_GRASS_BLOCK || block == MPBlocks.CHEESE_DIRT || block == MPBlocks.CHEESE_COARSE_DIRT || block == MPBlocks.CHEESE_FARMLAND;
         }
         else if (this.type == BlockType.GREEN_VEIN_GRASS || this.type == BlockType.TERRAPUFF_HERB)
         {
-            return block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
+            return block == MPBlocks.GREEN_VEIN_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
         }
         else if (this.type == BlockType.INFECTED_GRASS || this.type == BlockType.INFECTED_FERN || this.type == BlockType.PURE_HERB || this.type == BlockType.PYOLONIA || this.type == BlockType.PHILIPY || this.type == BlockType.WHITE_TAIL)
         {
-            return block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
+            return block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
         }
         else if (this.type == BlockType.BATASIA_DANDELION)
         {
-            return block == NibiruBlocks.INFECTED_SAND;
+            return block == MPBlocks.INFECTED_SAND;
         }
         else if (this.type == BlockType.TERRASHROOM)
         {
-            return block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.TERRASTONE || block == NibiruBlocks.PURIFIED_GRAVEL;
+            return block == MPBlocks.GREEN_VEIN_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.TERRASTONE || block == MPBlocks.PURIFIED_GRAVEL;
         }
         return false;
     }
@@ -262,19 +261,19 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
     {
         if (this.type == BlockType.CHEESE_GRASS)
         {
-            return ChalosBlocks.CHEESE_TALL_GRASS.canPlaceBlockAt(world, pos);
+            return MPBlocks.CHEESE_TALL_GRASS.canPlaceBlockAt(world, pos);
         }
         else if (this.type == BlockType.INFECTED_GRASS)
         {
-            return NibiruBlocks.INFECTED_TALL_GRASS.canPlaceBlockAt(world, pos);
+            return MPBlocks.INFECTED_TALL_GRASS.canPlaceBlockAt(world, pos);
         }
         else if (this.type == BlockType.INFECTED_FERN)
         {
-            return NibiruBlocks.INFECTED_LARGE_FERN.canPlaceBlockAt(world, pos);
+            return MPBlocks.INFECTED_LARGE_FERN.canPlaceBlockAt(world, pos);
         }
         else if (this.type == BlockType.GREEN_VEIN_GRASS)
         {
-            return NibiruBlocks.GREEN_VEIN_TALL_GRASS.canPlaceBlockAt(world, pos);
+            return MPBlocks.GREEN_VEIN_TALL_GRASS.canPlaceBlockAt(world, pos);
         }
         return this.type == BlockType.TERRASHROOM;
     }
@@ -284,19 +283,19 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
     {
         if (this.type == BlockType.CHEESE_GRASS)
         {
-            return ChalosBlocks.CHEESE_TALL_GRASS.canPlaceBlockAt(world, pos);
+            return MPBlocks.CHEESE_TALL_GRASS.canPlaceBlockAt(world, pos);
         }
         else if (this.type == BlockType.INFECTED_GRASS)
         {
-            return NibiruBlocks.INFECTED_TALL_GRASS.canPlaceBlockAt(world, pos);
+            return MPBlocks.INFECTED_TALL_GRASS.canPlaceBlockAt(world, pos);
         }
         else if (this.type == BlockType.INFECTED_FERN)
         {
-            return NibiruBlocks.INFECTED_LARGE_FERN.canPlaceBlockAt(world, pos);
+            return MPBlocks.INFECTED_LARGE_FERN.canPlaceBlockAt(world, pos);
         }
         else if (this.type == BlockType.GREEN_VEIN_GRASS)
         {
-            return NibiruBlocks.GREEN_VEIN_TALL_GRASS.canPlaceBlockAt(world, pos);
+            return MPBlocks.GREEN_VEIN_TALL_GRASS.canPlaceBlockAt(world, pos);
         }
         return this.type == BlockType.TERRASHROOM && rand.nextFloat() < 0.4D;
     }
@@ -306,30 +305,30 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
     {
         if (this.type == BlockType.CHEESE_GRASS)
         {
-            if (ChalosBlocks.CHEESE_TALL_GRASS.canPlaceBlockAt(world, pos))
+            if (MPBlocks.CHEESE_TALL_GRASS.canPlaceBlockAt(world, pos))
             {
-                ChalosBlocks.CHEESE_TALL_GRASS.placeAt(world, pos, ChalosBlocks.CHEESE_TALL_GRASS, 2);
+                MPBlocks.CHEESE_TALL_GRASS.placeAt(world, pos, MPBlocks.CHEESE_TALL_GRASS, 2);
             }
         }
         else if (this.type == BlockType.INFECTED_GRASS)
         {
-            if (NibiruBlocks.INFECTED_TALL_GRASS.canPlaceBlockAt(world, pos))
+            if (MPBlocks.INFECTED_TALL_GRASS.canPlaceBlockAt(world, pos))
             {
-                NibiruBlocks.INFECTED_TALL_GRASS.placeAt(world, pos, NibiruBlocks.INFECTED_TALL_GRASS, 2);
+                MPBlocks.INFECTED_TALL_GRASS.placeAt(world, pos, MPBlocks.INFECTED_TALL_GRASS, 2);
             }
         }
         else if (this.type == BlockType.INFECTED_FERN)
         {
-            if (NibiruBlocks.INFECTED_LARGE_FERN.canPlaceBlockAt(world, pos))
+            if (MPBlocks.INFECTED_LARGE_FERN.canPlaceBlockAt(world, pos))
             {
-                NibiruBlocks.INFECTED_LARGE_FERN.placeAt(world, pos, NibiruBlocks.INFECTED_LARGE_FERN, 2);
+                MPBlocks.INFECTED_LARGE_FERN.placeAt(world, pos, MPBlocks.INFECTED_LARGE_FERN, 2);
             }
         }
         else if (this.type == BlockType.GREEN_VEIN_GRASS)
         {
-            if (NibiruBlocks.GREEN_VEIN_TALL_GRASS.canPlaceBlockAt(world, pos))
+            if (MPBlocks.GREEN_VEIN_TALL_GRASS.canPlaceBlockAt(world, pos))
             {
-                NibiruBlocks.GREEN_VEIN_TALL_GRASS.placeAt(world, pos, NibiruBlocks.GREEN_VEIN_TALL_GRASS, 2);
+                MPBlocks.GREEN_VEIN_TALL_GRASS.placeAt(world, pos, MPBlocks.GREEN_VEIN_TALL_GRASS, 2);
             }
         }
         else if (this.type == BlockType.TERRASHROOM)

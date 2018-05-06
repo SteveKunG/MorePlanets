@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemAllFood extends ItemFoodMP
@@ -114,9 +114,9 @@ public class ItemAllFood extends ItemFoodMP
 
         if (this.type == ItemType.TERRABERRY)
         {
-            if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == NibiruBlocks.INFECTED_FARMLAND && world.isAirBlock(pos.up()))
+            if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == MPBlocks.INFECTED_FARMLAND && world.isAirBlock(pos.up()))
             {
-                world.setBlockState(pos.up(), NibiruBlocks.TERRABERRY.getDefaultState(), 11);
+                world.setBlockState(pos.up(), MPBlocks.TERRABERRY.getDefaultState(), 11);
                 itemStack.shrink(1);
                 return EnumActionResult.SUCCESS;
             }

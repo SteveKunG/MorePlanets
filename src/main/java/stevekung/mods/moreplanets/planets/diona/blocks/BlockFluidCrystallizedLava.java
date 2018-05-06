@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockFluidLavaBaseMP;
@@ -23,7 +24,7 @@ public class BlockFluidCrystallizedLava extends BlockFluidLavaBaseMP
 {
     public BlockFluidCrystallizedLava(String name)
     {
-        super(DionaBlocks.CRYSTALLIZED_LAVA_FLUID);
+        super(MPBlocks.CRYSTALLIZED_LAVA_FLUID);
         this.setUnlocalizedName(name);
     }
 
@@ -106,7 +107,7 @@ public class BlockFluidCrystallizedLava extends BlockFluidLavaBaseMP
     @Override
     protected IBlockState getBlockFromWaterTo()
     {
-        return DionaBlocks.DIONA_ROCK.getDefaultState();
+        return MPBlocks.DIONA_ROCK.getDefaultState();
     }
 
     @Override
@@ -118,7 +119,7 @@ public class BlockFluidCrystallizedLava extends BlockFluidLavaBaseMP
     @Override
     protected IBlockState getCobblestoneBlock()
     {
-        return DionaBlocks.DIONA_COBBLESTONE.getDefaultState();
+        return MPBlocks.DIONA_COBBLESTONE.getDefaultState();
     }
 
     @Override

@@ -4,14 +4,14 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.world.gen.WorldGenAbstractMegaJungle;
 
 public class WorldGenInfectedMegaJungleTree extends WorldGenAbstractMegaJungle
 {
     public WorldGenInfectedMegaJungleTree()
     {
-        super(10, 20, NibiruBlocks.INFECTED_JUNGLE_LOG.getDefaultState(), NibiruBlocks.INFECTED_JUNGLE_LEAVES.getDefaultState());
+        super(10, 20, MPBlocks.INFECTED_JUNGLE_LOG.getDefaultState(), MPBlocks.INFECTED_JUNGLE_LEAVES.getDefaultState());
     }
 
     @Override
@@ -23,12 +23,12 @@ public class WorldGenInfectedMegaJungleTree extends WorldGenAbstractMegaJungle
     @Override
     protected boolean isSoil(Block block)
     {
-        return block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
+        return block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
     }
 
     @Override
     protected IBlockState getVine()
     {
-        return NibiruBlocks.INFECTED_VINES.getDefaultState();
+        return MPBlocks.INFECTED_VINES.getDefaultState();
     }
 }

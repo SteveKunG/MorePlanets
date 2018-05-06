@@ -19,9 +19,9 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import stevekung.mods.moreplanets.core.data.WorldDataStartedDimension;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityAlienBeam;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 
@@ -110,11 +110,11 @@ public class WorldTickEventHandler
 
                             if (worldServer.canBlockFreezeNoWater(pos1))
                             {
-                                worldServer.setBlockState(pos1, NibiruBlocks.INFECTED_ICE.getDefaultState());
+                                worldServer.setBlockState(pos1, MPBlocks.INFECTED_ICE.getDefaultState());
                             }
                             if (raining && worldServer.canSnowAt(pos, true))
                             {
-                                worldServer.setBlockState(pos, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                                worldServer.setBlockState(pos, MPBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                             }
                             if (raining && worldServer.getBiome(pos1).canRain())
                             {

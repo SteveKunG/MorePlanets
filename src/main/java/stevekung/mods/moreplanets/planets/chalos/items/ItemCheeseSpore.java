@@ -10,7 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
 public class ItemCheeseSpore extends ItemBaseMP
@@ -32,7 +32,7 @@ public class ItemCheeseSpore extends ItemBaseMP
         }
         else
         {
-            if (world.getBlockState(pos).getBlock() == ChalosBlocks.CHEESE_GRASS_BLOCK && !world.getBlockState(pos).isSideSolid(world, pos.up(), EnumFacing.UP) || world.getBlockState(pos.up()).getBlock() == ChalosBlocks.CHEESE_SPORE_FLOWER)
+            if (world.getBlockState(pos).getBlock() == MPBlocks.CHEESE_GRASS_BLOCK && !world.getBlockState(pos).isSideSolid(world, pos.up(), EnumFacing.UP) || world.getBlockState(pos.up()).getBlock() == MPBlocks.CHEESE_SPORE_FLOWER)
             {
                 this.growCheeseSporeFlower(world, pos, world.rand);
                 itemStack.shrink(1);
@@ -59,11 +59,11 @@ public class ItemCheeseSpore extends ItemBaseMP
                     {
                         if (world.isAirBlock(blockpos1))
                         {
-                            IBlockState iblockstate1 = ChalosBlocks.CHEESE_SPORE_FLOWER.getDefaultState();
+                            IBlockState iblockstate1 = MPBlocks.CHEESE_SPORE_FLOWER.getDefaultState();
 
                             if (rand.nextInt(5) == 0)
                             {
-                                if (ChalosBlocks.CHEESE_SPORE_FLOWER.canBlockStay(world, blockpos1, iblockstate1))
+                                if (iblockstate1.getBlock().canPlaceBlockAt(world, blockpos1))
                                 {
                                     world.playEvent(2005, blockpos1, 0);
                                     world.setBlockState(blockpos1, iblockstate1, 3);
@@ -80,7 +80,7 @@ public class ItemCheeseSpore extends ItemBaseMP
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(blockpos1.down()).getBlock() != ChalosBlocks.CHEESE_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
+                if (world.getBlockState(blockpos1.down()).getBlock() != MPBlocks.CHEESE_GRASS_BLOCK || world.getBlockState(blockpos1).isNormalCube())
                 {
                     break;
                 }

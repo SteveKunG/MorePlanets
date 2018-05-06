@@ -7,7 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityLargeInfectedCrystallized;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -20,7 +20,7 @@ public class WorldGenLargeInfectedCrystallized extends WorldGenerator
         {
             for (EnumFacing facing : EnumFacing.VALUES)
             {
-                Block block = DionaBlocks.LARGE_INFECTED_CRYSTALLIZED;
+                Block block = MPBlocks.LARGE_INFECTED_CRYSTALLIZED;
 
                 if (world.isAirBlock(pos) && block.canPlaceBlockOnSide(world, pos, facing))
                 {

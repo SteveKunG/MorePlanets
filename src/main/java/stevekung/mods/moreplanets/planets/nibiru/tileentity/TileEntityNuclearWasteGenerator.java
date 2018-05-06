@@ -26,9 +26,9 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNuclearWasteTank;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectricalSource implements IConnector, IDisableableMachine, ISidedInventory, IInventoryDefaults
@@ -50,25 +50,25 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
     static
     {
-        multiBlockLists.put(new BlockPos(1, -1, 0), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(1, -1, 1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(1, -1, -1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(-1, -1, -1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(-1, -1, 1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(-1, -1, 0), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(0, -1, 1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
-        multiBlockLists.put(new BlockPos(0, -1, -1), NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(1, -1, 0), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(1, -1, 1), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(1, -1, -1), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-1, -1, -1), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-1, -1, 1), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-1, -1, 0), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(0, -1, 1), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
+        multiBlockLists.put(new BlockPos(0, -1, -1), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState());
 
-        multiBlockLists.put(new BlockPos(3, 0, 0), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
-        multiBlockLists.put(new BlockPos(2, 0, 2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
-        multiBlockLists.put(new BlockPos(2, 0, -2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(3, 0, 0), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(2, 0, 2), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(2, 0, -2), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
 
-        multiBlockLists.put(new BlockPos(-3, 0, 0), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
-        multiBlockLists.put(new BlockPos(-2, 0, -2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
-        multiBlockLists.put(new BlockPos(-2, 0, 2), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-3, 0, 0), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-2, 0, -2), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(-2, 0, 2), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
 
-        multiBlockLists.put(new BlockPos(0, 0, 3), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
-        multiBlockLists.put(new BlockPos(0, 0, -3), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(0, 0, 3), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+        multiBlockLists.put(new BlockPos(0, 0, -3), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
     }
 
     public TileEntityNuclearWasteGenerator()
@@ -117,7 +117,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
                         {
                             if (this.getTank(this.getPos().add(x, 0, z)))
                             {
-                                this.world.setBlockState(this.getPos().add(x, 0, z), NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, this.world.rand.nextInt(5000000) == 0 ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE));
+                                this.world.setBlockState(this.getPos().add(x, 0, z), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, this.world.rand.nextInt(5000000) == 0 ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE));
                             }
                         }
                     }
@@ -197,7 +197,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
     private boolean getWaste(BlockPos pos)
     {
-        if (this.world.getBlockState(pos) == NibiruBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState())
+        if (this.world.getBlockState(pos) == MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState())
         {
             return true;
         }
@@ -209,7 +209,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
     private boolean getTank(BlockPos pos)
     {
-        if (this.world.getBlockState(pos) == NibiruBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, this.world.rand.nextFloat() == 0.99F ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE))
+        if (this.world.getBlockState(pos) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, this.world.rand.nextFloat() == 0.99F ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE))
         {
             return true;
         }

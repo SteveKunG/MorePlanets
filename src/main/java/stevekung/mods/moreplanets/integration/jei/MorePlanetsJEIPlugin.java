@@ -18,9 +18,6 @@ import stevekung.mods.moreplanets.integration.jei.black_hole_storage.BlackHoleSt
 import stevekung.mods.moreplanets.integration.jei.black_hole_storage.BlackHoleStorageRecipeWrapper;
 import stevekung.mods.moreplanets.integration.jei.dark_energy_transform.DarkEnergyTransformRecipeCategory;
 import stevekung.mods.moreplanets.integration.jei.dark_energy_transform.DarkEnergyTransformRecipeWrapper;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.recipe.BlackHoleStorageRecipes;
 import stevekung.mods.moreplanets.recipe.DarkEnergyRecipeData;
 
@@ -47,11 +44,11 @@ public class MorePlanetsJEIPlugin implements IModPlugin
         JEIRegistryHelper.registerRecipeHandlers(INasaWorkbenchRecipe.class, BlackHoleStorageRecipeWrapper::new, MPJEIRecipes.BLACK_HOLE_STORAGE);
         JEIRegistryHelper.registerRecipe(DarkEnergyRecipeData.getRecipeList(), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
         JEIRegistryHelper.registerRecipe(BlackHoleStorageRecipes.getRecipesList(), MPJEIRecipes.BLACK_HOLE_STORAGE);
-        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(DionaBlocks.DARK_ENERGY_CORE), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.DARK_ENERGY_CORE), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.BLACK_HOLE_STORAGE), MPJEIRecipes.BLACK_HOLE_STORAGE);
-        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(ChalosBlocks.CHEESE_SPORE_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
-        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(NibiruBlocks.INFECTED_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
-        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(NibiruBlocks.ALIEN_BERRY_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.CHEESE_SPORE_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.INFECTED_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
 
         Item item = MorePlanetsJEIPlugin.ILLENIUM.values().iterator().next();
         List<ItemStack> list = new ArrayList<>(MorePlanetsJEIPlugin.ILLENIUM.keySet());

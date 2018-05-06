@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenNibiruIcePath extends WorldGenerator
 {
@@ -25,7 +25,7 @@ public class WorldGenNibiruIcePath extends WorldGenerator
             pos = pos.down();
         }
 
-        if (world.getBlockState(pos).getBlock() != NibiruBlocks.INFECTED_GRASS_BLOCK)
+        if (world.getBlockState(pos).getBlock() != MPBlocks.INFECTED_GRASS_BLOCK)
         {
             return false;
         }
@@ -48,9 +48,9 @@ public class WorldGenNibiruIcePath extends WorldGenerator
                             BlockPos blockpos = new BlockPos(k, k1, l);
                             Block block = world.getBlockState(blockpos).getBlock();
 
-                            if (block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_ICE)
+                            if (block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_ICE)
                             {
-                                world.setBlockState(blockpos, NibiruBlocks.INFECTED_PACKED_ICE.getDefaultState(), 2);
+                                world.setBlockState(blockpos, MPBlocks.INFECTED_PACKED_ICE.getDefaultState(), 2);
                             }
                         }
                     }

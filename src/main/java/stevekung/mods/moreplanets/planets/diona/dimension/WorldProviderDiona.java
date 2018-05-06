@@ -13,9 +13,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.planets.diona.client.sky.SkyProviderDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.BiomeProviderDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.ChunkProviderDiona;
@@ -158,6 +158,6 @@ public class WorldProviderDiona extends WorldProviderMP
     @Override
     public List<Block> getSurfaceBlocks()
     {
-        return Arrays.asList(DionaBlocks.DIONA_SURFACE_ROCK, DionaBlocks.DIONA_SUB_SURFACE_ROCK);
+        return Arrays.asList(MPBlocks.DIONA_SURFACE_ROCK, MPBlocks.DIONA_SUB_SURFACE_ROCK);
     }
 }

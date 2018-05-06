@@ -22,9 +22,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import stevekung.mods.moreplanets.planets.chalos.blocks.ChalosBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.chalos.items.ChalosItems;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.items.NibiruItems;
 
 public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShearable
@@ -83,15 +82,15 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
     {
         if (this.type == BlockType.CHEESE_TALL_GRASS)
         {
-            return block == ChalosBlocks.CHEESE_GRASS_BLOCK || block == ChalosBlocks.CHEESE_DIRT || block == ChalosBlocks.CHEESE_COARSE_DIRT || block == ChalosBlocks.CHEESE_FARMLAND;
+            return block == MPBlocks.CHEESE_GRASS_BLOCK || block == MPBlocks.CHEESE_DIRT || block == MPBlocks.CHEESE_COARSE_DIRT || block == MPBlocks.CHEESE_FARMLAND;
         }
         else if (this.type == BlockType.GREEN_VEIN_TALL_GRASS)
         {
-            return block == NibiruBlocks.GREEN_VEIN_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
+            return block == MPBlocks.GREEN_VEIN_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
         }
         else if (this.type == BlockType.INFECTED_ORANGE_ROSE_BUSH || this.type == BlockType.INFECTED_TALL_GRASS || this.type == BlockType.INFECTED_LARGE_FERN)
         {
-            return block == NibiruBlocks.INFECTED_GRASS_BLOCK || block == NibiruBlocks.INFECTED_DIRT || block == NibiruBlocks.INFECTED_COARSE_DIRT || block == NibiruBlocks.INFECTED_FARMLAND;
+            return block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
         }
         return super.validBlock(block);    }
     @Override    protected void checkAndDropBlock(World world, BlockPos pos, IBlockState state)    {        if (!this.canBlockStay(world, pos, state))        {            boolean flag = state.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.UPPER;            BlockPos blockpos = flag ? pos : pos.up();            BlockPos blockpos1 = flag ? pos.down() : pos;            Block block = flag ? this : world.getBlockState(blockpos).getBlock();            Block block1 = flag ? world.getBlockState(blockpos1).getBlock() : this;
@@ -117,7 +116,7 @@ public class BlockDoublePlantMP extends BlockBushMP implements IGrowable, IShear
     @Override    public EnumOffsetType getOffsetType()    {        return EnumOffsetType.XZ;    }
     @Override    public boolean isShearable(ItemStack itemStack, IBlockAccess world, BlockPos pos)    {        IBlockState state = world.getBlockState(pos);        return state.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.LOWER && this.type.isGrass();    }
     @Override    public List<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)    {        List<ItemStack> ret = new ArrayList<>();
-        if (this.type == BlockType.CHEESE_TALL_GRASS)        {            ret.add(new ItemStack(ChalosBlocks.CHEESE_GRASS, 2));        }        if (this.type == BlockType.INFECTED_TALL_GRASS)        {            ret.add(new ItemStack(NibiruBlocks.INFECTED_GRASS, 2));        }        if (this.type == BlockType.INFECTED_LARGE_FERN)        {            ret.add(new ItemStack(NibiruBlocks.INFECTED_FERN, 2));        }        if (this.type == BlockType.GREEN_VEIN_TALL_GRASS)        {            ret.add(new ItemStack(NibiruBlocks.GREEN_VEIN_GRASS, 2));        }        return ret;    }
+        if (this.type == BlockType.CHEESE_TALL_GRASS)        {            ret.add(new ItemStack(MPBlocks.CHEESE_GRASS, 2));        }        if (this.type == BlockType.INFECTED_TALL_GRASS)        {            ret.add(new ItemStack(MPBlocks.INFECTED_GRASS, 2));        }        if (this.type == BlockType.INFECTED_LARGE_FERN)        {            ret.add(new ItemStack(MPBlocks.INFECTED_FERN, 2));        }        if (this.type == BlockType.GREEN_VEIN_TALL_GRASS)        {            ret.add(new ItemStack(MPBlocks.GREEN_VEIN_GRASS, 2));        }        return ret;    }
     public void placeAt(World world, BlockPos lowerPos, Block block, int flags)    {        world.setBlockState(lowerPos, block.getDefaultState().withProperty(BlockDoublePlant.HALF, BlockDoublePlant.EnumBlockHalf.LOWER), flags);        world.setBlockState(lowerPos.up(), block.getDefaultState().withProperty(BlockDoublePlant.HALF, BlockDoublePlant.EnumBlockHalf.UPPER), flags);    }
     private boolean onHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)    {        if (this.type.isGrass())        {            return false;        }        else        {            player.addStat(StatList.getBlockStats(this));            return true;        }    }
     public static enum BlockType    {        CHEESE_TALL_GRASS(true),        INFECTED_ORANGE_ROSE_BUSH(false),        INFECTED_TALL_GRASS(true),        INFECTED_LARGE_FERN(true),        GREEN_VEIN_TALL_GRASS(true);

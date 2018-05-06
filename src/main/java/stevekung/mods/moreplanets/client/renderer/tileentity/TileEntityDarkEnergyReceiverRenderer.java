@@ -13,7 +13,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.model.ModelDarkEnergyReceiver;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.diona.blocks.DionaBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 
 @SideOnly(Side.CLIENT)
@@ -119,7 +118,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         {
             IBlockState state = tile.getWorld().getBlockState(new BlockPos(tile.getPos().getX(), yRender, tile.getPos().getZ()));
 
-            if (state.isOpaqueCube() && state.getBlock() != DionaBlocks.DARK_ENERGY_CORE || !tile.isActivated())
+            if (state.isOpaqueCube() && state.getBlock() != MPBlocks.DARK_ENERGY_CORE || !tile.isActivated())
             {
                 return;
             }

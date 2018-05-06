@@ -17,6 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.DamageSourceMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
@@ -100,7 +101,7 @@ public class BlockInfectedCactus extends BlockBushMP
     @Override
     public boolean validBlock(Block block)
     {
-        return block == NibiruBlocks.INFECTED_SAND || block == this;
+        return block == MPBlocks.INFECTED_SAND || block == this;
     }
 
     @Override
@@ -133,7 +134,7 @@ public class BlockInfectedCactus extends BlockBushMP
         {
             return false;
         }
-        return world.getBlockState(pos.down()).getBlock() == NibiruBlocks.INFECTED_SAND || world.getBlockState(pos.down()).getBlock() == this;
+        return world.getBlockState(pos.down()).getBlock() == MPBlocks.INFECTED_SAND || world.getBlockState(pos.down()).getBlock() == this;
     }
 
     @Override

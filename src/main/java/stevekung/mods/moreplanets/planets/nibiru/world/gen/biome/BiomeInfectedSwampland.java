@@ -13,7 +13,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedSwampTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruFossils;
@@ -24,9 +24,9 @@ public class BiomeInfectedSwampland extends BiomeNibiru
     public BiomeInfectedSwampland(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = NibiruBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = NibiruBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = NibiruBlocks.NIBIRU_ROCK.getDefaultState();
+        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.getBiomeDecorator().infectedTreesPerChunk = 2;
         this.getBiomeDecorator().infectedTallGrassPerChunk = 5;
         this.getBiomeDecorator().waterlilyPerChunk = 4;
@@ -77,13 +77,13 @@ public class BiomeInfectedSwampland extends BiomeNibiru
             {
                 if (chunkPrimer.getBlockState(j, k, i).getMaterial() != Material.AIR)
                 {
-                    if (k == 62 && chunkPrimer.getBlockState(j, k, i).getBlock() != NibiruBlocks.INFECTED_WATER_FLUID_BLOCK)
+                    if (k == 62 && chunkPrimer.getBlockState(j, k, i).getBlock() != MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                     {
-                        chunkPrimer.setBlockState(j, k, i, NibiruBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
+                        chunkPrimer.setBlockState(j, k, i, MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState());
 
                         if (d0 < 0.12D)
                         {
-                            chunkPrimer.setBlockState(j, k + 1, i, NibiruBlocks.SPORELILY.getDefaultState());
+                            chunkPrimer.setBlockState(j, k + 1, i, MPBlocks.SPORELILY.getDefaultState());
                         }
                     }
                     break;

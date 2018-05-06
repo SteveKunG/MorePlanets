@@ -15,7 +15,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
@@ -34,9 +34,9 @@ public class ItemInfectedSugarCane extends ItemBaseMP
         ItemStack itemStack = player.getHeldItem(hand);
         IBlockState iblockstate = world.getBlockState(pos);
         Block block = iblockstate.getBlock();
-        Block cane = NibiruBlocks.INFECTED_SUGAR_CANE_BLOCK;
+        Block cane = MPBlocks.INFECTED_SUGAR_CANE_BLOCK;
 
-        if (block == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1 || block == NibiruBlocks.INFECTED_SNOW_LAYER && iblockstate.getValue(BlockStateProperty.LAYERS).intValue() < 1)
+        if (block == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1 || block == MPBlocks.INFECTED_SNOW_LAYER && iblockstate.getValue(BlockStateProperty.LAYERS).intValue() < 1)
         {
             facing = EnumFacing.UP;
         }
