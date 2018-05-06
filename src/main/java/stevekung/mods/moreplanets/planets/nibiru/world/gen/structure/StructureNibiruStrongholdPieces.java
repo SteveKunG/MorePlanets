@@ -30,7 +30,7 @@ import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class StructureNibiruStrongholdPieces
 {
-    private static PieceWeight[] PIECE_WEIGHTS = new PieceWeight[] {new PieceWeight(Straight.class, 40, 0), new PieceWeight(Prison.class, 5, 5), new PieceWeight(LeftTurn.class, 20, 0), new PieceWeight(RightTurn.class, 20, 0), new PieceWeight(RoomCrossing.class, 10, 6), new PieceWeight(StairsStraight.class, 5, 5), new PieceWeight(Stairs.class, 5, 5), new PieceWeight(Crossing.class, 5, 4), new PieceWeight(ChestCorridor.class, 5, 4), new PieceWeight(Library.class, 10, 2)
+    private static final PieceWeight[] PIECE_WEIGHTS = new PieceWeight[] {new PieceWeight(Straight.class, 40, 0), new PieceWeight(Prison.class, 5, 5), new PieceWeight(LeftTurn.class, 20, 0), new PieceWeight(RightTurn.class, 20, 0), new PieceWeight(RoomCrossing.class, 10, 6), new PieceWeight(StairsStraight.class, 5, 5), new PieceWeight(Stairs.class, 5, 5), new PieceWeight(Crossing.class, 5, 4), new PieceWeight(ChestCorridor.class, 5, 4), new PieceWeight(Library.class, 10, 2)
     {
         @Override
         public boolean canSpawnMoreStructuresOfType(int count)
@@ -50,7 +50,7 @@ public class StructureNibiruStrongholdPieces
     private static List<PieceWeight> structurePieceList;
     private static Class<? extends Stronghold> strongComponentType;
     private static int totalWeight;
-    private static Stones STRONGHOLD_STONES = new Stones();
+    private static final Stones STRONGHOLD_STONES = new Stones();
 
     public static void registerStrongholdPieces()
     {
@@ -992,21 +992,21 @@ public class StructureNibiruStrongholdPieces
                 this.placeDoor(world, box, Door.OPENING, 1, 1, 4);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 6, 1, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 5, 1, box);
-                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 6, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 1, 6, 1, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 5, 2, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 4, 3, box);
-                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 5, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 1, 5, 3, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 4, 3, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 3, 3, box);
-                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 3, 4, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 4, 3, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 3, 2, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3, 2, 1, box);
-                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 3, 3, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 3, 1, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 2, 2, 1, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 1, 1, box);
-                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 2, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 1, 2, 1, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 1, 1, 2, box);
-                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getStateFromMeta(1), 1, 1, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 1, 1, 3, box);
                 return true;
             }
         }

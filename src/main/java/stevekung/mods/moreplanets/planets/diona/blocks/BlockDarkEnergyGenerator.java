@@ -223,12 +223,6 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return this.getMetaFromState(state) & 12;
-    }
-
-    @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this);

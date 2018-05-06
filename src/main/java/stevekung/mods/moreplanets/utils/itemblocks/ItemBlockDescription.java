@@ -43,7 +43,7 @@ public class ItemBlockDescription extends ItemBlockTESRMP
             {
                 if (this.getBlock() instanceof BlockTileMP)
                 {
-                    TileEntity tile = ((BlockTileMP) this.getBlock()).createNewTileEntity(null, this.getBlock().getMetaFromState(this.getBlock().getDefaultState()));
+                    TileEntity tile = ((BlockTileMP) this.getBlock()).createNewTileEntity(null, 0);
 
                     if (tile instanceof TileBaseElectricBlock)
                     {
@@ -65,7 +65,7 @@ public class ItemBlockDescription extends ItemBlockTESRMP
                 }
                 else if (this.getBlock() instanceof BlockAdvancedTileMP)
                 {
-                    TileEntity tile = ((BlockAdvancedTileMP) this.getBlock()).createNewTileEntity(null, this.getBlock().getMetaFromState(this.getBlock().getDefaultState()));
+                    TileEntity tile = ((BlockAdvancedTileMP) this.getBlock()).createNewTileEntity(null, 0);
 
                     if (tile instanceof TileBaseElectricBlock)
                     {
