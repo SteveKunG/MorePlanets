@@ -89,7 +89,6 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        // backward compatibility
         String owner = null;
 
         try

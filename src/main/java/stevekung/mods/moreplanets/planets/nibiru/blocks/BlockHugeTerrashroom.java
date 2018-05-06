@@ -123,12 +123,6 @@ public class BlockHugeTerrashroom extends BlockBreakableMP
     }
 
     @Override
-    public String getName()
-    {
-        return "huge_terrashroom_block";
-    }
-
-    @Override
     public IBlockState withRotation(IBlockState state, Rotation rotation)
     {
         switch (rotation)

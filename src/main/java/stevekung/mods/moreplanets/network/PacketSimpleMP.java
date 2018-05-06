@@ -80,7 +80,7 @@ public class PacketSimpleMP extends PacketBase
     public void decodeInto(ByteBuf buffer)
     {
         super.decodeInto(buffer);
-        this.type = EnumSimplePacketMP.valuesCached()[buffer.readInt()];
+        this.type = EnumSimplePacketMP.values[buffer.readInt()];
 
         if (this.type.getDecodeClasses().length > 0)
         {
@@ -285,7 +285,7 @@ public class PacketSimpleMP extends PacketBase
 
         private Side targetSide;
         private Class[] decodeAs;
-        private static EnumSimplePacketMP[] values = EnumSimplePacketMP.values();
+        public static final EnumSimplePacketMP[] values = EnumSimplePacketMP.values();
 
         private EnumSimplePacketMP(Side targetSide, Class... decodeAs)
         {
@@ -301,11 +301,6 @@ public class PacketSimpleMP extends PacketBase
         public Class[] getDecodeClasses()
         {
             return this.decodeAs;
-        }
-
-        public static EnumSimplePacketMP[] valuesCached()
-        {
-            return EnumSimplePacketMP.values;
         }
     }
 

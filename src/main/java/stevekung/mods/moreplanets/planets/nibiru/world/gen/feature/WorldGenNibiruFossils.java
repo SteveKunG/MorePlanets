@@ -14,6 +14,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 public class WorldGenNibiruFossils extends WorldGenerator
 {
@@ -41,7 +42,7 @@ public class WorldGenNibiruFossils extends WorldGenerator
     {
         rand = world.getChunkFromBlockCoords(pos).getRandomWithSeed(987234911L);
         MinecraftServer minecraftserver = world.getMinecraftServer();
-        Rotation[] arotation = Rotation.values();
+        Rotation[] arotation = CachedEnum.rotationValues;
         Rotation rotation = arotation[rand.nextInt(arotation.length)];
         int i = rand.nextInt(FOSSILS.length);
         TemplateManager templatemanager = world.getSaveHandler().getStructureTemplateManager();
