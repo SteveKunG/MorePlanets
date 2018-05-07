@@ -13,7 +13,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
@@ -29,11 +28,6 @@ import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
 {
-    static
-    {
-        MapGenStructureIO.registerStructureComponent(ComponentCrashedAlienShipPieces.CrashedAlienShip.class, "CrashedAlienShip");
-    }
-
     protected int width;
     protected int height;
     protected int depth;
@@ -137,7 +131,7 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
             else
             {
                 StructureBoundingBox box1 = this.getBoundingBox();
-                BlockPos pos = new BlockPos(box1.minX, box1.minY, box1.minZ).down(4);
+                BlockPos pos = new BlockPos(box1.minX, box1.minY, box1.minZ).add(0, -4, 0);
                 Rotation[] arotation = CachedEnum.rotationValues;
                 MinecraftServer server = world.getMinecraftServer();
                 TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
