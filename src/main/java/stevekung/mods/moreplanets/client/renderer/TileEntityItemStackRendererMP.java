@@ -27,7 +27,6 @@ import stevekung.mods.moreplanets.tileentity.TileEntityAlienChest;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 
 @SideOnly(Side.CLIENT)
@@ -38,11 +37,6 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
     @Override
     public void renderByItem(ItemStack itemStack)
     {
-        if (CompatibilityManagerMP.isCCLLoaded)
-        {
-            return;
-        }
-
         Block block = Block.getBlockFromItem(itemStack.getItem());
 
         if (block == MPBlocks.DIONA_ANCIENT_CHEST)

@@ -19,6 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public abstract class BlockAncientChestMP extends BlockContainerMP
@@ -48,6 +50,13 @@ public abstract class BlockAncientChestMP extends BlockContainerMP
     public boolean isFullCube(IBlockState state)
     {
         return false;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean hasCustomBreakingProgress(IBlockState state)
+    {
+        return true;
     }
 
     @Override
