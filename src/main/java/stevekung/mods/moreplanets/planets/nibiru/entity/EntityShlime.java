@@ -47,7 +47,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.planets.nibiru.entity.ai.EntityAIShlimeEatGrass;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
-import stevekung.mods.moreplanets.utils.entity.ai.EntityAITemptMP;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob, IEntityBreathable
@@ -84,8 +83,8 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new AIPanic(this, 1.33D));
         this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
-        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(MPItems.INFECTED_WHEAT)));
-        this.tasks.addTask(3, new EntityAITemptMP(this, 1.0D, false, new ItemStack(MPItems.TERRABERRY)));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, MPItems.INFECTED_WHEAT, false));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, MPItems.TERRABERRY, false));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(5, this.entityAIEatGrass);
         this.tasks.addTask(6, new EntityAIWander(this, 0.6D));
