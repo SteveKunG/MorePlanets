@@ -2,7 +2,7 @@
     "parent": "minecraft:recipes/root",
     "rewards": {
         "recipes": [
-            "moreplanets:gray_tinted_glass"
+            "moreplanets:upgrade_template"
         ]
     },
     "criteria": {
@@ -11,10 +11,11 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "moreplanets:tinted_glass"
+                        "item": "galacticraftplanets:item_basic_mars",
+                        "data": 0
                     },
                     {
-                        "item": "minecraft:dye",
+                        "item": "galacticraftplanets:item_basic_asteroids",
                         "data": 0
                     }
                 ]
@@ -23,7 +24,7 @@
         "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-                "recipe": "moreplanets:gray_tinted_glass"
+                "recipe": "moreplanets:upgrade_template"
             }
         }
     },

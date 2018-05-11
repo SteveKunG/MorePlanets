@@ -1,11 +1,11 @@
 {
-    "type": "minecraft:crafting_shaped",
+    "type": "forge:ore_shaped",
     "pattern": [
         "XXX"
     ],
     "key": {
         "X": {
-            "item": "moreplanets:infected_sandstone"
+            "item": "#SANDSTONENIBIRU"
         }
     },
     "result": {

@@ -5,7 +5,6 @@ import micdoodle8.mods.galacticraft.core.inventory.SlotRocketBenchResult;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
@@ -14,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.recipe.BlackHoleStorageRecipes;
 
@@ -130,7 +130,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
                 Item item = slotStack.getItem();
                 int meta = slotStack.getItemDamage();
 
-                if (item == MPItems.GLOWING_IRON_INGOT || item == Items.ENDER_EYE || item == MPItems.BLACK_HOLE_FRAGMENTS || item == GCItems.flagPole || item == AsteroidsItems.basicItem && meta == 5)
+                if (item == MPItems.GLOWING_IRON_INGOT || item == Item.getItemFromBlock(MPBlocks.ALIEN_CHEST) || item == MPItems.BLACK_HOLE_FRAGMENTS || item == GCItems.flagPole || item == AsteroidsItems.basicItem && meta == 5)
                 {
                     for (int i = 1; i < 23; i++)
                     {

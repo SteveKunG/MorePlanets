@@ -1,0 +1,21 @@
+{
+    "group": "upgrade",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "FFF",
+        "FTF",
+        "FFF"
+    ],
+    "key": {
+        "T": {
+            "item": "moreplanets:upgrade_template"
+        },
+        "F": {
+            "item": "minecraft:fish",
+            "data": 3
+        }
+    },
+    "result": {
+        "item": "moreplanets:shield_size_upgrade"
+    }
+}

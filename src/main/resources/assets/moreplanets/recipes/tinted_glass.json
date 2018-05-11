@@ -8,8 +8,7 @@
     ],
     "key": {
         "D": {
-            "item": "galacticraftplanets:item_basic_mars",
-            "data": 5
+            "item": "#COMPRESSEDDESH"
         },
         "I": {
             "item": "#GLASS"

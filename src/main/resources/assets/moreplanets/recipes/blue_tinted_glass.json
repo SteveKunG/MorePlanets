@@ -1,6 +1,6 @@
 {
     "group": "tinted_glass",
-    "type": "minecraft:crafting_shaped",
+    "type": "forge:ore_shaped",
     "pattern": [
         "III",
         "IDI",
@@ -8,8 +8,7 @@
     ],
     "key": {
         "D": {
-            "item": "minecraft:dye",
-            "data": 4
+            "item": "#DYEBLUE"
         },
         "I": {
             "item": "moreplanets:tinted_glass"

@@ -1,0 +1,25 @@
+{
+    "group": "upgrade",
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "RSR",
+        "STS",
+        "RSR"
+    ],
+    "key": {
+        "R": {
+            "item": "#BLOCKREDSTONE"
+        },
+        "S": {
+            "type": "minecraft:item_nbt",
+            "item": "minecraft:potion",
+            "nbt": "{Potion:\"minecraft:strong_swiftness\"}"
+        },
+        "T": {
+            "item": "moreplanets:upgrade_template"
+        }
+    },
+    "result": {
+        "item": "moreplanets:machine_speed_upgrade"
+    }
+}

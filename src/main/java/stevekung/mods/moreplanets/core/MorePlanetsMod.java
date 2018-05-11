@@ -27,6 +27,7 @@ import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
+import stevekung.mods.moreplanets.recipe.SmeltingManagerMP;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.CreativeTabsMP;
@@ -130,6 +131,7 @@ public class MorePlanetsMod
 
         CommonUtils.registerGuiHandler(this, new GuiHandlerMP());
         CraftingManagerMP.init();
+        SmeltingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
     }

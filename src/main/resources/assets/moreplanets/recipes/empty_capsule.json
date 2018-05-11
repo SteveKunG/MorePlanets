@@ -1,6 +1,6 @@
 {
     "group": "capsule",
-    "type": "minecraft:crafting_shaped",
+    "type": "forge:ore_shaped",
     "pattern": [
         " C",
         "X "
@@ -11,7 +11,7 @@
             "data": 0
         },
         "X": {
-            "item": "minecraft:iron_ingot"
+            "item": "#INGOTIRON"
         }
     },
     "result": {

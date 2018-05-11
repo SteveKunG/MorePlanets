@@ -1,4 +1,5 @@
 {
+    "group": "coarse_dirt",
     "type": "forge:ore_shaped",
     "pattern": [
         "DG",

@@ -32,22 +32,6 @@ public class RecipeHelper
         }
     }
 
-    public static void addOreRecipe(ItemStack output, Object... obj)
-    {
-        if (MorePlanetsMod.isDevelopment)
-        {
-            JSONRecipe.addShapedRecipe(output, obj);
-        }
-    }
-
-    public static void addOreRecipe(ItemStack output, String group, Object... obj)
-    {
-        if (MorePlanetsMod.isDevelopment)
-        {
-            JSONRecipe.addShapedRecipe(output, group, obj);
-        }
-    }
-
     public static void addShapelessRecipe(ItemStack output, Object... obj)
     {
         if (MorePlanetsMod.isDevelopment)

@@ -10,8 +10,7 @@
             "item": "#STRING"
         },
         "X": {
-            "item": "galacticraftplanets:item_basic_mars",
-            "data": 5
+            "item": "#COMPRESSEDDESH"
         }
     },
     "result": {

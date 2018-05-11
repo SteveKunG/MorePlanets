@@ -1,15 +1,12 @@
 {
+    "group": "upgrade",
     "type": "forge:ore_shaped",
     "pattern": [
-        "C  ",
-        " DT",
-        "  D"
+        " D ",
+        "DTD",
+        " D "
     ],
     "key": {
-        "C": {
-            "item": "galacticraftplanets:item_basic_asteroids",
-            "data": 8
-        },
         "D": {
             "item": "#COMPRESSEDDESH"
         },
@@ -18,6 +15,6 @@
         }
     },
     "result": {
-        "item": "moreplanets:laser_gun"
+        "item": "moreplanets:upgrade_template"
     }
 }

@@ -7,11 +7,12 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 
 public class SlotBlackHoleStorageSchematic extends Slot
@@ -69,7 +70,7 @@ public class SlotBlackHoleStorageSchematic extends Slot
         case 21:
             return itemStack.getItem() == AsteroidsItems.basicItem && itemStack.getItemDamage() == 5;
         case 20:
-            return itemStack.getItem() == Items.ENDER_EYE;
+            return itemStack.getItem() == Item.getItemFromBlock(MPBlocks.ALIEN_CHEST);
         }
         return false;
     }

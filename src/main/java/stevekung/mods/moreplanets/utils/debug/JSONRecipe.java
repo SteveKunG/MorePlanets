@@ -30,7 +30,7 @@ public class JSONRecipe
     private static File RECIPE_DIR = null;
     private static File ADVANCE_DIR = null;
     private static final Set<String> USED_OD_NAMES = new TreeSet<>();
-    private static final boolean ENABLE = false;
+    public static final boolean ENABLE = false;
 
     private static void setupDir()
     {

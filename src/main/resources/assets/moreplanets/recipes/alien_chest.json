@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "X X",
+        "XXX"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:alien_ship_decoration_1"
+        }
+    },
+    "result": {
+        "item": "moreplanets:alien_chest"
+    }
+}

@@ -16,9 +16,142 @@
     {
         "ingredient": {
             "type": "forge:ore_dict",
+            "ore": "blockRedstone"
+        },
+        "name": "BLOCKREDSTONE"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "compressedDesh"
+        },
+        "name": "COMPRESSEDDESH"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "compressedTitanium"
+        },
+        "name": "COMPRESSEDTITANIUM"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
             "ore": "dustRedstone"
         },
         "name": "DUSTREDSTONE"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeBlack"
+        },
+        "name": "DYEBLACK"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeBlue"
+        },
+        "name": "DYEBLUE"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeBrown"
+        },
+        "name": "DYEBROWN"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeCyan"
+        },
+        "name": "DYECYAN"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeGray"
+        },
+        "name": "DYEGRAY"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeGreen"
+        },
+        "name": "DYEGREEN"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeLightBlue"
+        },
+        "name": "DYELIGHTBLUE"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeLightGray"
+        },
+        "name": "DYELIGHTGRAY"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeLime"
+        },
+        "name": "DYELIME"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeMagenta"
+        },
+        "name": "DYEMAGENTA"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeOrange"
+        },
+        "name": "DYEORANGE"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyePink"
+        },
+        "name": "DYEPINK"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyePurple"
+        },
+        "name": "DYEPURPLE"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeRed"
+        },
+        "name": "DYERED"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeWhite"
+        },
+        "name": "DYEWHITE"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "dyeYellow"
+        },
+        "name": "DYEYELLOW"
     },
     {
         "ingredient": {
@@ -72,9 +205,9 @@
     {
         "ingredient": {
             "type": "forge:ore_dict",
-            "ore": "nibiruSandstone"
+            "ore": "netherStar"
         },
-        "name": "NIBIRUSANDSTONE"
+        "name": "NETHERSTAR"
     },
     {
         "ingredient": {
@@ -82,6 +215,13 @@
             "ore": "obsidian"
         },
         "name": "OBSIDIAN"
+    },
+    {
+        "ingredient": {
+            "type": "forge:ore_dict",
+            "ore": "sandstoneNibiru"
+        },
+        "name": "SANDSTONENIBIRU"
     },
     {
         "ingredient": {

@@ -2,7 +2,7 @@
     "parent": "minecraft:recipes/root",
     "rewards": {
         "recipes": [
-            "moreplanets:gray_tinted_glass"
+            "moreplanets:shield_capacity_upgrade"
         ]
     },
     "criteria": {
@@ -11,11 +11,13 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "moreplanets:tinted_glass"
+                        "item": "galacticraftplanets:atomic_battery"
                     },
                     {
-                        "item": "minecraft:dye",
-                        "data": 0
+                        "item": "minecraft:nether_star"
+                    },
+                    {
+                        "item": "moreplanets:upgrade_template"
                     }
                 ]
             }
@@ -23,7 +25,7 @@
         "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-                "recipe": "moreplanets:gray_tinted_glass"
+                "recipe": "moreplanets:shield_capacity_upgrade"
             }
         }
     },

@@ -7,8 +7,7 @@
     ],
     "key": {
         "S": {
-            "item": "galacticraftplanets:item_basic_mars",
-            "data": 5
+            "item": "#COMPRESSEDDESH"
         },
         "X": {
             "item": "#STRING"

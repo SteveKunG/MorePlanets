@@ -7,14 +7,14 @@
     ],
     "key": {
         "D": {
-            "item": "moreplanets:cheese_dirt"
+            "item": "moreplanets:fronos_dirt"
         },
         "G": {
             "item": "#GRAVEL"
         }
     },
     "result": {
-        "item": "moreplanets:cheese_coarse_dirt",
+        "item": "moreplanets:fronos_coarse_dirt",
         "count": 4
     }
 }

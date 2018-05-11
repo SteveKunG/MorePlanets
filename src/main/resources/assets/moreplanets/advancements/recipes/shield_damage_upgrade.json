@@ -2,7 +2,7 @@
     "parent": "minecraft:recipes/root",
     "rewards": {
         "recipes": [
-            "moreplanets:gray_tinted_glass"
+            "moreplanets:shield_damage_upgrade"
         ]
     },
     "criteria": {
@@ -11,11 +11,10 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "moreplanets:tinted_glass"
+                        "item": "minecraft:diamond_sword"
                     },
                     {
-                        "item": "minecraft:dye",
-                        "data": 0
+                        "item": "moreplanets:upgrade_template"
                     }
                 ]
             }
@@ -23,7 +22,7 @@
         "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-                "recipe": "moreplanets:gray_tinted_glass"
+                "recipe": "moreplanets:shield_damage_upgrade"
             }
         }
     },
