@@ -36,7 +36,7 @@ public class DarkEnergyTransformRecipeCategory implements IRecipeCategory
     @Override
     public void drawExtras(Minecraft mc)
     {
-        JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/dark_energy_transform.png"), 0, 0, 71, 46).draw(mc, 24, 0);
+        JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/dark_energy_transform.png"), 0, 0, 71, 36).draw(mc, 24, 0);
     }
 
     @Override
