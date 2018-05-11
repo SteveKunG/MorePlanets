@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.items;
 
 import javax.annotation.Nullable;
 
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -163,6 +164,12 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
             player.addStat(StatList.getObjectUseStats(this));
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
+    }
+
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
+    {
+        return repair.getItem() == MarsItems.marsItemBasic && repair.getItemDamage() == 5;
     }
 
     @Override

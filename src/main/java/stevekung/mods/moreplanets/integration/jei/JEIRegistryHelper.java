@@ -60,6 +60,24 @@ public class JEIRegistryHelper
             JEIRegistryHelper.registerRecipe(recipes, VanillaRecipeCategoryUid.ANVIL);
         }
     }
+    
+    @Deprecated
+    public static void registerAnvilRecipe(ItemStack repairItem, List<ItemStack> toolList)
+    {
+        for (ItemStack ingredient : toolList)
+        {
+            ItemStack damaged1 = ingredient.copy();
+            damaged1.setItemDamage(damaged1.getMaxDamage());
+            ItemStack damaged2 = ingredient.copy();
+            damaged2.setItemDamage(damaged2.getMaxDamage() * 3 / 4);
+            ItemStack damaged3 = ingredient.copy();
+            damaged3.setItemDamage(damaged3.getMaxDamage() * 2 / 4);
+            List<IRecipeWrapper> recipes = new ArrayList<>();
+            recipes.add(JEIRegistryHelper.vanillaRecipe.createAnvilRecipe(damaged1, Collections.singletonList(repairItem), Collections.singletonList(damaged2)));
+            recipes.add(JEIRegistryHelper.vanillaRecipe.createAnvilRecipe(damaged2, Collections.singletonList(damaged2), Collections.singletonList(damaged3)));
+            JEIRegistryHelper.registerRecipe(recipes, VanillaRecipeCategoryUid.ANVIL);
+        }
+    }
 
     public static void addInfo(Block block, String... desc)
     {

@@ -209,7 +209,7 @@ public class ItemSpaceBow extends ItemBaseMP
         }
 
         itemStack.damageItem(1, player);
-        world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + duration * 0.5F);
+        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + duration * 0.5F);
 
         if (flag)
         {

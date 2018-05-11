@@ -11,9 +11,11 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.integration.jei.black_hole_storage.BlackHoleStorageRecipeCategory;
 import stevekung.mods.moreplanets.integration.jei.black_hole_storage.BlackHoleStorageRecipeWrapper;
 import stevekung.mods.moreplanets.integration.jei.dark_energy_transform.DarkEnergyTransformRecipeCategory;
@@ -73,6 +75,18 @@ public class MorePlanetsJEIPlugin implements IModPlugin
         item = MorePlanetsJEIPlugin.NIBIRU_STONE.values().iterator().next();
         list = new ArrayList<>(MorePlanetsJEIPlugin.NIBIRU_STONE.keySet());
         JEIRegistryHelper.registerAnvilRecipe(item, list);
+
+        Map<ItemStack, ItemStack> spaceFishingRod = new HashMap<>();
+        spaceFishingRod.put(new ItemStack(MPItems.SPACE_FISHING_ROD), new ItemStack(MarsItems.marsItemBasic, 1, 5));
+        ItemStack stack = spaceFishingRod.values().iterator().next();
+        list = new ArrayList<>(spaceFishingRod.keySet());
+        JEIRegistryHelper.registerAnvilRecipe(stack, list);
+
+        Map<ItemStack, ItemStack> spaceBow = new HashMap<>();
+        spaceBow.put(new ItemStack(MPItems.SPACE_BOW), new ItemStack(MarsItems.marsItemBasic, 1, 5));
+        stack = spaceBow.values().iterator().next();
+        list = new ArrayList<>(spaceBow.keySet());
+        JEIRegistryHelper.registerAnvilRecipe(stack, list);
     }
 
     @Override
