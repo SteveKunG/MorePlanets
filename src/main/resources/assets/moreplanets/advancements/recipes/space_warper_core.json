@@ -12,7 +12,7 @@
                 "items": [
                     {
                         "item": "galacticraftplanets:item_basic_mars",
-                        "data": 0
+                        "data": 5
                     },
                     {
                         "item": "minecraft:diamond"

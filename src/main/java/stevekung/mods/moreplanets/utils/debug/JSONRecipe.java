@@ -133,11 +133,6 @@ public class JSONRecipe
         String name = altName != null ? altName : output.getItem().getRegistryName().getResourcePath() + suffix;
         File file = new File(RECIPE_DIR, name + ".json");
 
-        while (file.exists())
-        {
-            file = new File(RECIPE_DIR, name + "_alt" + ".json");
-        }
-
         writeAdvancements(name, ingredients);
 
         try (FileWriter writer = new FileWriter(file))
@@ -197,11 +192,6 @@ public class JSONRecipe
         String suffix = output.getItem().getHasSubtypes() ? "_" + output.getItemDamage() : "";
         String name = altName != null ? altName : output.getItem().getRegistryName().getResourcePath() + suffix;
         File file = new File(RECIPE_DIR, name + ".json");
-
-        while (file.exists())
-        {
-            file = new File(RECIPE_DIR, name + "_alt" + ".json");
-        }
 
         writeAdvancements(name, ingredients2);
 
@@ -265,11 +255,11 @@ public class JSONRecipe
     {
         if (obj instanceof Item)
         {
-            return serializeItem(new ItemStack((Item) obj));
+            return serializeItemAdv(new ItemStack((Item) obj));
         }
         if (obj instanceof Block)
         {
-            return serializeItem(new ItemStack((Block) obj));
+            return serializeItemAdv(new ItemStack((Block) obj));
         }
         if (obj instanceof ItemStack)
         {
@@ -281,6 +271,10 @@ public class JSONRecipe
             if (itemStack.getItem().getHasSubtypes() || itemStack.getItemDamage() != 0)
             {
                 ret.put("data", itemStack.getItemDamage());
+            }
+            if (itemStack.hasTagCompound())
+            {
+                ret.put("nbt", itemStack.getTagCompound().toString());
             }
             if (itemStack.getCount() > 1)
             {
@@ -294,8 +288,8 @@ public class JSONRecipe
             {
                 return null;
             }
-            Item item = OreDictionary.getOres((String) obj).get(0).getItem();
-            return serializeItem(new ItemStack(item));
+            ItemStack itemStack = OreDictionary.getOres((String) obj).get(0);
+            return serializeItemAdv(itemStack);
         }
         throw new IllegalArgumentException("Not a Block, Item, ItemStack, or OreDictionary Name: " + obj + " " + obj.getClass());
     }
@@ -341,18 +335,11 @@ public class JSONRecipe
         json.put("criteria", criteria);
         json.put("requirements", requirements);
 
-        String suffix = "";
-        File f = new File(ADVANCE_DIR, name + suffix + ".json");
+        File file = new File(ADVANCE_DIR, name + ".json");
 
-        while (f.exists())
+        try (FileWriter writer = new FileWriter(file))
         {
-            suffix += "_alt";
-            f = new File(ADVANCE_DIR, name + suffix + ".json");
-        }
-
-        try (FileWriter w = new FileWriter(f))
-        {
-            JsonUtils.toJson(json, w);
+            JsonUtils.toJson(json, writer);
         }
         catch (IOException e)
         {
@@ -411,17 +398,11 @@ public class JSONRecipe
         // repeatedly adds _alt if a file already exists
         // janky I know but it works
         String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
-        File f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
+        File file = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
 
-        while (f.exists())
+        try (FileWriter writer = new FileWriter(file))
         {
-            suffix += "_alt";
-            f = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
-        }
-
-        try (FileWriter w = new FileWriter(f))
-        {
-            JsonUtils.toJson(json, w);
+            JsonUtils.toJson(json, writer);
         }
         catch (IOException e)
         {

@@ -12,11 +12,11 @@
                 "items": [
                     {
                         "item": "galacticraftplanets:item_basic_mars",
-                        "data": 0
+                        "data": 5
                     },
                     {
                         "item": "galacticraftplanets:item_basic_asteroids",
-                        "data": 0
+                        "data": 6
                     }
                 ]
             }

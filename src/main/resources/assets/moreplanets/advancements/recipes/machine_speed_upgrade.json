@@ -14,7 +14,8 @@
                         "item": "minecraft:redstone_block"
                     },
                     {
-                        "item": "minecraft:potion"
+                        "item": "minecraft:potion",
+                        "nbt": "{Potion:\"minecraft:strong_swiftness\"}"
                     },
                     {
                         "item": "moreplanets:upgrade_template"

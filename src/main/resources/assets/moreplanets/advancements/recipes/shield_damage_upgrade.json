@@ -11,7 +11,8 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "minecraft:diamond_sword"
+                        "item": "minecraft:diamond_sword",
+                        "nbt": "{ench:[{lvl:5s,id:16s}],RepairCost:1}"
                     },
                     {
                         "item": "moreplanets:upgrade_template"

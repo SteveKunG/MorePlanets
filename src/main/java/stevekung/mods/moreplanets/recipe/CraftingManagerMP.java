@@ -336,10 +336,11 @@ public class CraftingManagerMP
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.ORANGE_JELLY, 9), "jelly", MPBlocks.ORANGE_JELLY_BLOCK);
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.GREEN_JELLY, 9), "jelly", MPBlocks.GREEN_JELLY_BLOCK);
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.LEMON_JELLY, 9), "jelly", MPBlocks.LEMON_JELLY_BLOCK);
-        
+
         RecipeHelper.addRecipe(new ItemStack(MPItems.UPGRADE_TEMPLATE), "upgrade", new Object[] { " D ", "DTD", " D ", 'D', "compressedDesh", 'T', "compressedTitanium" });
         ItemStack diamondSword = new ItemStack(Items.DIAMOND_SWORD);
         diamondSword.addEnchantment(Enchantments.SHARPNESS, 5);
+        diamondSword.getTagCompound().setInteger("RepairCost", 1);
         RecipeHelper.addRecipe(new ItemStack(MPItems.SHIELD_DAMAGE_UPGRADE), "upgrade", new Object[] { " S ", "STS", " S ", 'S', diamondSword, 'T', MPItems.UPGRADE_TEMPLATE });
         RecipeHelper.addRecipe(new ItemStack(MPItems.SHIELD_SIZE_UPGRADE), "upgrade", new Object[] { "FFF", "FTF", "FFF", 'F', new ItemStack(Items.FISH, 1, 3), 'T', MPItems.UPGRADE_TEMPLATE });
         RecipeHelper.addRecipe(new ItemStack(MPItems.SHIELD_CAPACITY_UPGRADE), "upgrade", new Object[] { "SAS", "ATA", "SAS", 'A', VenusItems.atomicBattery, 'S', "netherStar", 'T', MPItems.UPGRADE_TEMPLATE });

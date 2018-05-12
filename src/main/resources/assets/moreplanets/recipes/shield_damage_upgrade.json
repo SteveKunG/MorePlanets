@@ -10,7 +10,7 @@
         "S": {
             "type": "minecraft:item_nbt",
             "item": "minecraft:diamond_sword",
-            "nbt": "{ench:[{lvl:5s,id:16s}]}"
+            "nbt": "{ench:[{lvl:5s,id:16s}],RepairCost:1}"
         },
         "T": {
             "item": "moreplanets:upgrade_template"

@@ -14,7 +14,8 @@
                         "item": "moreplanets:cheese_milk_curd"
                     },
                     {
-                        "item": "forge:bucketfilled"
+                        "item": "forge:bucketfilled",
+                        "nbt": "{FluidName:\"cheese_milk_fluid\",Amount:1000}"
                     }
                 ]
             }
