@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
@@ -81,7 +82,7 @@ public class WorldProviderDiona extends WorldProviderMP
     @Override
     public boolean canSpaceshipTierPass(int tier)
     {
-        return tier >= 4;
+        return tier >= ConfigManagerMP.moreplanets_planet_settings.planetDionaTier;
     }
 
     @Override

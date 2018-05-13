@@ -199,7 +199,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
             if (chest == null)
             {
-                chest = TileEntityTreasureChestMP.findClosest(this, 5);
+                chest = TileEntityTreasureChestMP.findClosest(this, MPItems.CHALOS_DUNGEON_KEY);
             }
 
             if (chest != null)

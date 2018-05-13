@@ -28,6 +28,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.planets.nibiru.client.sky.CloudRendererNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.client.sky.SkyProviderNibiru;
@@ -205,7 +206,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     @Override
     public boolean canSpaceshipTierPass(int tier)
     {
-        return tier >= 6;
+        return tier >= ConfigManagerMP.moreplanets_planet_settings.planetNibiruTier;
     }
 
     @Override

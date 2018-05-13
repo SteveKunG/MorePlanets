@@ -6,6 +6,7 @@ import java.util.List;
 
 import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.network.NetworkUtil;
 import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -17,6 +18,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -32,6 +34,7 @@ import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.PlanetSpawnerUtils;
 import stevekung.mods.moreplanets.utils.TeleportUtils;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class PacketSimpleMP extends PacketBase
 {
@@ -142,6 +145,7 @@ public class PacketSimpleMP extends PacketBase
     public void handleServerSide(EntityPlayer player)
     {
         EntityPlayerMP playerMP = PlayerUtil.getPlayerBaseServerFromPlayer(player, false);
+        GCPlayerStats stats = GCPlayerStats.get(playerMP);
         World world = player.world;
         TileEntity tile;
         BlockPos pos;
@@ -258,6 +262,13 @@ public class PacketSimpleMP extends PacketBase
                 PacketSimpleMP.openShieldGeneratorConfig(playerMP, shield, isConfig);
             }
             break;
+        case S_FAILED_UNLOCK_CHEST:
+            if (stats.getChatCooldown() == 0)
+            {
+                player.sendMessage(new TextComponentString(LangUtils.translate("gui.valid_key.message", this.data.get(0))));
+                stats.setChatCooldown(100);
+            }
+            break;
         default:
             break;
         }
@@ -274,6 +285,7 @@ public class PacketSimpleMP extends PacketBase
         S_ENABLE_SHIELD_DAMAGE(Side.SERVER, BlockPos.class),
         S_SHIELD_GENERATOR_OPTION(Side.SERVER, BlockPos.class, Integer.class, String.class),
         S_SWITCH_SHIELD_GENERATOR_GUI(Side.SERVER, BlockPos.class, Boolean.class),
+        S_FAILED_UNLOCK_CHEST(Side.SERVER, String.class),
 
         // CLIENT
         C_ADD_ENTITY_ID(Side.CLIENT, String.class),

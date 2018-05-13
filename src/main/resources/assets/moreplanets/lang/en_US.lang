@@ -665,6 +665,7 @@ gui.target_too_far.message=Target is too far away by %s blocks!
 gui.not_air_block.message=Target is not an air block!
 gui.black_hole_disappear.message=Your Black Hole Storage has been destroyed by something!
 gui.missing_block.message=Missing Block %s at %s %s %s
+gui.valid_key.message=%s is valid Dungeon Key to unlock the chest!
 
 # GUI DESCRIPTION
 gui.multiblock_guide.desc=Multiblock Structure Guide
@@ -700,6 +701,7 @@ gui.config.mp.other=Others Configuration.
 moreplanets_general=General Config
 moreplanets_dimension=Dimensions Config
 moreplanets_addon_compat=GC-Addon Config
+moreplanets_planet_settings=Planets Config
 moreplanets_other=Others Config
 
 # GUI JEI

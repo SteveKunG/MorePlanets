@@ -262,7 +262,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
             }
             if (chest == null)
             {
-                chest = TileEntityTreasureChestMP.findClosest(this, 6);
+                chest = TileEntityTreasureChestMP.findClosest(this, MPItems.NIBIRU_DUNGEON_KEY);
             }
 
             if (chest != null)

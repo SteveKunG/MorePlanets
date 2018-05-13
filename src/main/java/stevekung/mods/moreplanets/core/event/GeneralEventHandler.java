@@ -17,6 +17,7 @@ import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -37,6 +38,9 @@ import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.utils.blocks.IFire;
+import stevekung.mods.moreplanets.utils.items.IDungeonKey;
+import stevekung.mods.moreplanets.utils.items.IDungeonKeyable;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
 import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 public class GeneralEventHandler
@@ -101,6 +105,12 @@ public class GeneralEventHandler
         BlockPos pos = event.getPos();
         ItemStack heldItem = event.getItemStack();
 
+        //Skip events triggered from Thaumcraft Golems and other non-players
+        if (player == null || pos == null || world == null)
+        {
+            return;
+        }
+
         if (!heldItem.isEmpty() && (heldItem.getItem() instanceof ItemSpade || heldItem.getItem().getToolClasses(heldItem) == Collections.singleton("shovel")))
         {
             if (event.getFace() != EnumFacing.DOWN && world.getBlockState(pos.up()).getMaterial() == Material.AIR)
@@ -124,6 +134,33 @@ public class GeneralEventHandler
                         heldItem.damageItem(1, player);
                     }
                     player.swingArm(event.getHand());
+                }
+            }
+        }
+
+        TileEntity tile = world.getTileEntity(pos);
+
+        if (tile != null && tile instanceof TileEntityTreasureChestMP && tile instanceof IDungeonKeyable)
+        {
+            TileEntityTreasureChestMP chest = (TileEntityTreasureChestMP) tile;
+            IDungeonKeyable keyable = (IDungeonKeyable) tile;
+
+            if (chest.locked)
+            {
+                if (!heldItem.isEmpty())
+                {
+                    if (heldItem.getItem() instanceof IDungeonKey)
+                    {
+                        event.setCanceled(keyable.onActivated(player, keyable.getDungeonKey(), true));
+                    }
+                    else if (!player.isSneaking())
+                    {
+                        event.setCanceled(keyable.onActivated(player, keyable.getDungeonKey(), false));
+                    }
+                }
+                else
+                {
+                    event.setCanceled(keyable.onActivated(player, keyable.getDungeonKey(), false));
                 }
             }
         }

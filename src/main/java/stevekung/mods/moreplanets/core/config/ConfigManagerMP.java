@@ -14,6 +14,10 @@ public class ConfigManagerMP
     @Config.Comment(value = "Planet or Moon Dimension IDs Configuration.")
     public static final Dimension moreplanets_dimension = new Dimension();
 
+    @Config.LangKey(value = "moreplanets_planet_settings")
+    @Config.Comment(value = "Planet Configuration.")
+    public static final PlanetSettings moreplanets_planet_settings = new PlanetSettings();
+
     @Config.LangKey(value = "moreplanets_other")
     @Config.Comment(value = "Others Configuration.")
     public static final Other moreplanets_other = new Other();
@@ -67,6 +71,22 @@ public class ConfigManagerMP
 
         @Config.Name(value = "Fronos Dimension ID")
         public int idDimensionFronos = -2545;
+    }
+
+    // Planet Settings
+    public static class PlanetSettings
+    {
+        @Config.Name(value = "Diona Planet Tier")
+        @Config.RequiresMcRestart
+        public int planetDionaTier = 3;
+
+        @Config.Name(value = "Chalos Planet Tier")
+        @Config.RequiresMcRestart
+        public int planetChalosTier = 3;
+
+        @Config.Name(value = "Nibiru Planet Tier")
+        @Config.RequiresMcRestart
+        public int planetNibiruTier = 3;
     }
 
     // Others

@@ -6,12 +6,9 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import micdoodle8.mods.galacticraft.api.item.IKeyable;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
-import micdoodle8.mods.galacticraft.core.network.PacketSimple;
-import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
@@ -21,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -38,9 +36,12 @@ import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import stevekung.mods.moreplanets.utils.items.IDungeonKeyable;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKeyable, IInteractionObject, ISidedInventory, IInventoryDefaults
+public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced implements IDungeonKeyable, IInteractionObject, ISidedInventory, IInventoryDefaults
 {
     private NonNullList<ItemStack> chestContents = NonNullList.withSize(27, ItemStack.EMPTY);
     public float lidAngle;
@@ -53,13 +54,10 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     private long lootTableSeed;
 
     @NetworkedField(targetSide = Side.CLIENT)
-    public int tier = 1;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean locked = true;
 
-    public TileEntityTreasureChestMP(int tier, String name, Block block)
+    public TileEntityTreasureChestMP(String name, Block block)
     {
-        this.tier = tier;
         this.name = name;
         this.block = block;
     }
@@ -140,8 +138,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     {
         super.readFromNBT(nbt);
         this.chestContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        this.locked = nbt.getBoolean("isLocked");
-        this.tier = nbt.getInteger("tier");
+        this.locked = nbt.getBoolean("Locked");
 
         if (!this.checkLootAndRead(nbt))
         {
@@ -153,8 +150,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setBoolean("isLocked", this.locked);
-        nbt.setInteger("tier", this.tier);
+        nbt.setBoolean("Locked", this.locked);
 
         if (!this.checkLootAndWrite(nbt))
         {
@@ -337,15 +333,9 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     }
 
     @Override
-    public int getTierOfKeyRequired()
+    public boolean onActivated(EntityPlayer player, Item item, boolean isKey)
     {
-        return this.tier;
-    }
-
-    @Override
-    public boolean onValidKeyActivated(EntityPlayer player, ItemStack key, EnumFacing facing)
-    {
-        if (this.locked)
+        if (isKey && this.locked)
         {
             this.locked = false;
 
@@ -363,26 +353,14 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
                 return true;
             }
         }
-        return false;
-    }
-
-    @Override
-    public boolean onActivatedWithoutKey(EntityPlayer player, EnumFacing facing)
-    {
-        if (this.locked)
+        else
         {
             if (player.world.isRemote)
             {
-                GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_ON_FAILED_CHEST_UNLOCK, GCCoreUtil.getDimensionID(this.world), new Object[] { this.getTierOfKeyRequired() }));
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FAILED_UNLOCK_CHEST, GCCoreUtil.getDimensionID(this.world), new Object[] { item.getItemStackDisplayName(item.getDefaultInstance()) }));
             }
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public boolean canBreak()
-    {
         return false;
     }
 
@@ -513,14 +491,14 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
         this.lootTableSeed = seed;
     }
 
-    public static TileEntityTreasureChestMP findClosest(Entity entity, int tier)
+    public static TileEntityTreasureChestMP findClosest(Entity entity, Item item)
     {
         double distance = Double.MAX_VALUE;
         TileEntityTreasureChestMP chest = null;
 
         for (TileEntity tile : entity.world.loadedTileEntityList)
         {
-            if (tile instanceof TileEntityTreasureChestMP && ((TileEntityTreasureChestMP) tile).getTierOfKeyRequired() == tier)
+            if (tile instanceof TileEntityTreasureChestMP && ((TileEntityTreasureChestMP) tile).getDungeonKey() == item)
             {
                 double dist = entity.getDistanceSq(tile.getPos().getX() + 0.5, tile.getPos().getY() + 0.5, tile.getPos().getZ() + 0.5);
 

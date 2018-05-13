@@ -205,7 +205,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
 
             if (chest == null)
             {
-                chest = TileEntityTreasureChestMP.findClosest(this, 4);
+                chest = TileEntityTreasureChestMP.findClosest(this, MPItems.DIONA_DUNGEON_KEY);
             }
             else
             {
