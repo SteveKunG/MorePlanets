@@ -307,7 +307,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         {
                             EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
                             bolt.setLocationAndAngles(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), 0.0F, 0.0F);
-                            this.world.playSound((EntityPlayer)null, this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
+                            this.world.playSound(null, this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
                             this.world.spawnEntity(bolt);
                             this.world.setBlockState(this.getPos().up(), MPBlocks.DARK_ENERGY_CORE.getDefaultState());
                         }

@@ -33,7 +33,7 @@ public class EntityJellySlime extends EntitySlimeBaseMP
     protected void entityInit()
     {
         super.entityInit();
-        this.dataManager.register(TYPE, Integer.valueOf(0));
+        this.dataManager.register(TYPE, 0);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class EntityJellySlime extends EntitySlimeBaseMP
 
     public void setJellySlimeType(int type)
     {
-        this.dataManager.set(TYPE, Integer.valueOf(type));
+        this.dataManager.set(TYPE, type);
     }
 
     @Override

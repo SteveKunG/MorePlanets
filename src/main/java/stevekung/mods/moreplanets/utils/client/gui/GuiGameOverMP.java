@@ -5,7 +5,6 @@ import java.io.IOException;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
@@ -62,7 +61,7 @@ public class GuiGameOverMP extends GuiScreen implements GuiYesNoCallback
         {
         case 0:
             GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_RESPAWN_PLAYER_NETHER, GCCoreUtil.getDimensionID(this.mc.world)));
-            this.mc.displayGuiScreen((GuiScreen)null);
+            this.mc.displayGuiScreen(null);
             break;
         case 1:
             if (this.mc.world.getWorldInfo().isHardcoreModeEnabled())
@@ -84,13 +83,13 @@ public class GuiGameOverMP extends GuiScreen implements GuiYesNoCallback
         if (result)
         {
             this.mc.world.sendQuittingDisconnectingPacket();
-            this.mc.loadWorld((WorldClient)null);
+            this.mc.loadWorld(null);
             this.mc.displayGuiScreen(new GuiMainMenu());
         }
         else
         {
             GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_RESPAWN_PLAYER_NETHER, GCCoreUtil.getDimensionID(this.mc.world)));
-            this.mc.displayGuiScreen((GuiScreen)null);
+            this.mc.displayGuiScreen(null);
         }
     }
 

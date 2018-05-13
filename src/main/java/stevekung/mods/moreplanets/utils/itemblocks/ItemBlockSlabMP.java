@@ -53,7 +53,7 @@ public class ItemBlockSlabMP extends ItemBlock
                         IBlockState state1 = singleSlab.getDouble().getDefaultState();
                         AxisAlignedBB axisalignedbb = state1.getCollisionBoundingBox(world, pos);
 
-                        if (axisalignedbb != Block.NULL_AABB && world.checkNoEntityCollision(axisalignedbb.offset(pos)) && world.setBlockState(pos, state1, 11))
+                        if (axisalignedbb != null && world.checkNoEntityCollision(axisalignedbb.offset(pos)) && world.setBlockState(pos, state1, 11))
                         {
                             SoundType sound = singleSlab.getDouble().getSoundType(state1, world, pos, player);
                             world.playSound(player, pos, sound.getPlaceSound(), SoundCategory.BLOCKS, (sound.getVolume() + 1.0F) / 2.0F, sound.getPitch() * 0.8F);
@@ -102,7 +102,7 @@ public class ItemBlockSlabMP extends ItemBlock
             IBlockState state1 = doubleSlab.getDefaultState();
             AxisAlignedBB axisalignedbb = state1.getCollisionBoundingBox(world, pos);
 
-            if (axisalignedbb != Block.NULL_AABB && world.checkNoEntityCollision(axisalignedbb.offset(pos)) && world.setBlockState(pos, state1, 11))
+            if (axisalignedbb != null && world.checkNoEntityCollision(axisalignedbb.offset(pos)) && world.setBlockState(pos, state1, 11))
             {
                 SoundType soundtype = doubleSlab.getSoundType(state1, world, pos, player);
                 world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);

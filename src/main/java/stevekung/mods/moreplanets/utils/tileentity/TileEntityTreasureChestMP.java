@@ -71,14 +71,14 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
         return this.getItems().get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
         ItemStack itemstack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
 
         if (!itemstack.isEmpty())
@@ -92,14 +92,14 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
         return ItemStackHelper.getAndRemove(this.getItems(), index);
     }
 
     @Override
     public void setInventorySlotContents(int index, @Nullable ItemStack stack)
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
         this.getItems().set(index, stack);
 
         if (stack.getCount() > this.getInventoryStackLimit())
@@ -216,7 +216,7 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
         {
             double d1 = i + 0.5D;
             d2 = k + 0.5D;
-            this.world.playSound((EntityPlayer)null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.provider instanceof IGalacticraftWorldProvider ? this.world.rand.nextFloat() * 0.1F + 0.6F : this.world.rand.nextFloat() * 0.1F + 0.9F);
+            this.world.playSound(null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.provider instanceof IGalacticraftWorldProvider ? this.world.rand.nextFloat() * 0.1F + 0.6F : this.world.rand.nextFloat() * 0.1F + 0.9F);
         }
 
         if ((this.numPlayersUsing == 0 || this.locked) && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F)
@@ -243,7 +243,7 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
             {
                 d2 = i + 0.5D;
                 double d0 = k + 0.5D;
-                this.world.playSound((EntityPlayer)null, d2, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.provider instanceof IGalacticraftWorldProvider ? this.world.rand.nextFloat() * 0.1F + 0.6F : this.world.rand.nextFloat() * 0.1F + 0.9F);
+                this.world.playSound(null, d2, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.provider instanceof IGalacticraftWorldProvider ? this.world.rand.nextFloat() * 0.1F + 0.6F : this.world.rand.nextFloat() * 0.1F + 0.9F);
             }
             if (this.lidAngle < 0.0F)
             {
@@ -328,7 +328,7 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
     @Override
     public void clear()
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
         this.getItems().clear();
     }
 

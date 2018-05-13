@@ -19,10 +19,10 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class TeleporterMP extends Teleporter
 {
-    private WorldServer worldServerInstance;
-    private Random random;
-    private Long2ObjectMap<PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<>(4096);
-    private List<Long> destinationCoordinateKeys = new ArrayList<>();
+    private final WorldServer worldServerInstance;
+    private final Random random;
+    private final Long2ObjectMap<PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<>(4096);
+    private final List<Long> destinationCoordinateKeys = new ArrayList<>();
 
     public TeleporterMP(WorldServer world)
     {
@@ -110,7 +110,7 @@ public class TeleporterMP extends Teleporter
             if (flag)
             {
                 this.destinationCoordinateCache.put(l, new TeleporterMP.PortalPosition(blockpos, this.worldServerInstance.getTotalWorldTime()));
-                this.destinationCoordinateKeys.add(Long.valueOf(l));
+                this.destinationCoordinateKeys.add(l);
             }
             double d5 = blockpos.getX() + 0.5D;
             double d6 = blockpos.getY() + 0.5D;

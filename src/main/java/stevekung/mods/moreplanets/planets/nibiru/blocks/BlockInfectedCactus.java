@@ -61,13 +61,13 @@ public class BlockInfectedCactus extends BlockBushMP
                 if (j == 15)
                 {
                     world.setBlockState(blockpos, this.getDefaultState());
-                    IBlockState iblockstate = state.withProperty(BlockStateProperty.AGE_15, Integer.valueOf(0));
+                    IBlockState iblockstate = state.withProperty(BlockStateProperty.AGE_15, 0);
                     world.setBlockState(pos, iblockstate, 4);
                     iblockstate.neighborChanged(world, blockpos, this, pos);
                 }
                 else
                 {
-                    world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_15, Integer.valueOf(j + 1)), 4);
+                    world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_15, j + 1), 4);
                 }
             }
         }
@@ -153,7 +153,7 @@ public class BlockInfectedCactus extends BlockBushMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateProperty.AGE_15, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(BlockStateProperty.AGE_15, meta);
     }
 
     @Override

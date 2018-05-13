@@ -78,7 +78,7 @@ public abstract class EntityFronosPet extends EntityTameable
     {
         super.onUpdate();
 
-        if (this.getLayItem() != null && !this.isChild() && !this.world.isRemote && --this.timeUntilToDropItem <= 0)
+        if (!this.getLayItem().isEmpty() && !this.isChild() && !this.world.isRemote && --this.timeUntilToDropItem <= 0)
         {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.entityDropItem(this.getLayItem(), 1.0F);

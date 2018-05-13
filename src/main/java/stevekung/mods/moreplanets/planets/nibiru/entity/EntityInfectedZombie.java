@@ -116,7 +116,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
                 {
                     EntityInfectedChicken entitychicken1 = new EntityInfectedChicken(this.world);
                     entitychicken1.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                    entitychicken1.onInitialSpawn(difficulty, (IEntityLivingData)null);
+                    entitychicken1.onInitialSpawn(difficulty, null);
                     entitychicken1.setChickenJockey(true);
                     this.world.spawnEntity(entitychicken1);
                     this.startRiding(entitychicken1);
@@ -128,7 +128,7 @@ public class EntityInfectedZombie extends EntityZombie implements IEntityBreatha
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setEnchantmentBasedOnDifficulty(difficulty);
 
-        if (this.getItemStackFromSlot(EntityEquipmentSlot.HEAD) == null)
+        if (this.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isEmpty())
         {
             Calendar calendar = this.world.getCurrentDate();
 

@@ -191,7 +191,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
 
     private void setTargetedEntity(int entityId)
     {
-        this.dataManager.set(TARGET_ENTITY, Integer.valueOf(entityId));
+        this.dataManager.set(TARGET_ENTITY, entityId);
     }
 
     public boolean hasTargetedEntity()
@@ -316,7 +316,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         public void resetTask()
         {
             this.entity.setTargetedEntity(0);
-            this.entity.setAttackTarget((EntityLivingBase)null);
+            this.entity.setAttackTarget(null);
         }
 
         @Override
@@ -328,7 +328,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
 
             if (!this.entity.canEntityBeSeen(entitylivingbase))
             {
-                this.entity.setAttackTarget((EntityLivingBase)null);
+                this.entity.setAttackTarget(null);
             }
             else
             {
@@ -351,7 +351,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                     entitylivingbase.attackEntityFrom(DamageSource.causeMobDamage(this.entity), (float)this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
                     this.entity.playSound(MPSounds.ALIEN_MINER_ATTACK, 1.0F + this.entity.getChargedTime(0.0F), 0.8F);
                     entitylivingbase.playSound(MPSounds.ALIEN_MINER_SHOCK, 1.0F + this.entity.getChargedTime(0.0F), 1.0F);
-                    this.entity.setAttackTarget((EntityLivingBase)null);
+                    this.entity.setAttackTarget(null);
 
                     if (entitylivingbase instanceof EntityPlayer)
                     {

@@ -21,7 +21,7 @@ public class TileEntityDarkEnergyCoreRenderer extends TileEntitySpecialRenderer<
     @Override
     public void render(TileEntityDarkEnergyCore tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        float renderPartialTicks = tile.getWorld() == null ? ClientEventHandler.ticks : tile.renderTicks + partialTicks;
+        float renderPartialTicks = !tile.hasWorld() ? ClientEventHandler.ticks : tile.renderTicks + partialTicks;
         float ticks = MathHelper.sin(renderPartialTicks / 8) / 10.0F + 1F;
         ticks = ticks * ticks + ticks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 4) + 1F) / 2F + 0.15F;
@@ -32,7 +32,7 @@ public class TileEntityDarkEnergyCoreRenderer extends TileEntitySpecialRenderer<
         GlStateManager.translate((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         this.bindTexture(TileEntityDarkEnergyCoreRenderer.TEXTURE);
-        this.model.renderAll(tile.getWorld() == null ? ticks * 0.225F : ticks * 0.2F);
+        this.model.renderAll(!tile.hasWorld() ? ticks * 0.225F : ticks * 0.2F);
         GlStateManager.color(lightTime, lightTime, lightTime);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();

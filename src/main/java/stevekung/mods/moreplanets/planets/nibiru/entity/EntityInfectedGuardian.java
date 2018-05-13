@@ -93,12 +93,12 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
 
     private void setMoving(boolean moving)
     {
-        this.dataManager.set(MOVING, Boolean.valueOf(moving));
+        this.dataManager.set(MOVING, moving);
     }
 
     private void setTargetedEntity(int entityId)
     {
-        this.dataManager.set(TARGET_ENTITY, Integer.valueOf(entityId));
+        this.dataManager.set(TARGET_ENTITY, entityId);
     }
 
     @Override
@@ -287,7 +287,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         public void resetTask()
         {
             this.entity.setTargetedEntity(0);
-            this.entity.setAttackTarget((EntityLivingBase)null);
+            this.entity.setAttackTarget(null);
             this.entity.wander.makeUpdate();
         }
 
@@ -300,7 +300,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
 
             if (!this.entity.canEntityBeSeen(entitylivingbase))
             {
-                this.entity.setAttackTarget((EntityLivingBase)null);
+                this.entity.setAttackTarget(null);
             }
             else
             {
@@ -323,7 +323,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                     entitylivingbase.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.entity, this.entity), f);
                     entitylivingbase.attackEntityFrom(DamageSource.causeMobDamage(this.entity), (float)this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
                     entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 0));
-                    this.entity.setAttackTarget((EntityLivingBase)null);
+                    this.entity.setAttackTarget(null);
                 }
                 super.updateTask();
             }

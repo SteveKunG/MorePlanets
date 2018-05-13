@@ -77,7 +77,7 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
                         }
                     }
 
-                    if (itemstack1 != null)
+                    if (!itemstack1.isEmpty())
                     {
                         double d0 = this.villager.posY - 0.30000001192092896D + this.villager.getEyeHeight();
                         EntityItem entityitem = new EntityItem(this.villager.world, this.villager.posX, d0, this.villager.posZ, itemstack1);

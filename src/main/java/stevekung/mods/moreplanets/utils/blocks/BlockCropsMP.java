@@ -25,7 +25,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     public BlockCropsMP()
     {
         super();
-        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, 0));
     }
 
     @Override
@@ -71,7 +71,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 
                 if (rand.nextInt((int)(25.0F / f) + 1) == 0)
                 {
-                    world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, Integer.valueOf(i + 1)), 2);
+                    world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, i + 1), 2);
                 }
             }
         }
@@ -123,7 +123,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateProperty.AGE_7, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(BlockStateProperty.AGE_7, meta);
     }
 
     @Override
@@ -169,7 +169,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
         {
             i = 7;
         }
-        world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, Integer.valueOf(i)), 2);
+        world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, i), 2);
     }
 
     protected float getGrowthChance(Block block, World world, BlockPos pos, IBlockState state)

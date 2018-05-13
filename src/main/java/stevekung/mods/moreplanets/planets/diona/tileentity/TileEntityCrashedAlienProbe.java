@@ -80,14 +80,14 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     @Override
     public ItemStack getStackInSlot(int slot)
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
         return this.containingItems.get(slot);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
         ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
 
         if (!itemStack.isEmpty())
@@ -100,7 +100,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
         ItemStack oldstack = ItemStackHelper.getAndRemove(this.containingItems, index);
 
         if (!oldstack.isEmpty())
@@ -113,7 +113,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     @Override
     public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
         this.containingItems.set(index, itemStack);
 
         if (itemStack.getCount() > this.getInventoryStackLimit())
@@ -126,7 +126,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     @Override
     public boolean isEmpty()
     {
-        this.fillWithLoot((EntityPlayer)null);
+        this.fillWithLoot(null);
 
         for (ItemStack itemStack : this.containingItems)
         {

@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.tileentity;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -41,6 +40,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityAdvancedMP;
+import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -98,13 +98,8 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
             });
             if (blackHoleList.isEmpty())
             {
-                EntityPlayer player = this.world.getPlayerEntityByUUID(UUID.fromString(this.ownerUUID));
                 this.destroyBlock();
-
-                if (player != null)
-                {
-                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.black_hole_disappear.message")).setStyle(JsonUtils.red()));
-                }
+                ClientUtils.printClientMessage(JsonUtils.create(LangUtils.translate("gui.black_hole_disappear.message")).setStyle(JsonUtils.red()));
             }
             this.xpTemp = this.fluidTank.getFluidAmount();
         }
@@ -141,15 +136,9 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     {
         super.writeToNBT(nbt);
         ItemStackHelper.saveAllItems(nbt, this.inventory);
+        nbt.setString("OwnerUUID", this.ownerUUID);
+        nbt.setString("CollectMode", this.collectMode);
 
-        if (this.ownerUUID != null)
-        {
-            nbt.setString("OwnerUUID", this.ownerUUID);
-        }
-        if (this.collectMode != null)
-        {
-            nbt.setString("CollectMode", this.collectMode);
-        }
         if (this.fluidTank.getFluid() != null)
         {
             nbt.setTag("XpFluid", this.fluidTank.writeToNBT(new NBTTagCompound()));

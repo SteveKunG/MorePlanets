@@ -145,10 +145,7 @@ public class EntityBlackHoleStorage extends Entity
         {
             nbt.setBoolean("DisableBlackHole", this.isDisable());
         }
-        if (this.getCollectMode() != null)
-        {
-            nbt.setString("CollectMode", this.getCollectMode());
-        }
+        nbt.setString("CollectMode", this.getCollectMode());
     }
 
     public void setTileEntityPos(BlockPos pos)

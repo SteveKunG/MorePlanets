@@ -47,10 +47,10 @@ public class ItemBlockInfectedSnow extends ItemBlock
 
                 if (i <= 7)
                 {
-                    IBlockState iblockstate1 = iblockstate.withProperty(BlockStateProperty.LAYERS, Integer.valueOf(i + 1));
+                    IBlockState iblockstate1 = iblockstate.withProperty(BlockStateProperty.LAYERS, i + 1);
                     AxisAlignedBB axisalignedbb = iblockstate1.getCollisionBoundingBox(world, blockpos);
 
-                    if (axisalignedbb != Block.NULL_AABB && world.checkNoEntityCollision(axisalignedbb.offset(blockpos)) && world.setBlockState(blockpos, iblockstate1, 10))
+                    if (axisalignedbb != null && world.checkNoEntityCollision(axisalignedbb.offset(blockpos)) && world.setBlockState(blockpos, iblockstate1, 10))
                     {
                         SoundType soundtype = this.block.getSoundType(iblockstate1, world, blockpos, player);
                         world.playSound(player, blockpos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);

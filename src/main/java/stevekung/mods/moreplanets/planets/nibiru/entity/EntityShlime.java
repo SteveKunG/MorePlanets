@@ -139,7 +139,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     protected void entityInit()
     {
         super.entityInit();
-        this.dataManager.register(DYE_COLOR, Byte.valueOf((byte)0));
+        this.dataManager.register(DYE_COLOR, (byte)0);
     }
 
     @Override
@@ -445,7 +445,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     public void setFleeceColor(EnumDyeColor color)
     {
         byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
-        this.dataManager.set(DYE_COLOR, Byte.valueOf((byte)(b0 & 240 | color.getMetadata() & 15)));
+        this.dataManager.set(DYE_COLOR, (byte)(b0 & 240 | color.getMetadata() & 15));
     }
 
     public boolean getSheared()
@@ -459,11 +459,11 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
 
         if (sheared)
         {
-            this.dataManager.set(DYE_COLOR, Byte.valueOf((byte)(b0 | 16)));
+            this.dataManager.set(DYE_COLOR, (byte)(b0 | 16));
         }
         else
         {
-            this.dataManager.set(DYE_COLOR, Byte.valueOf((byte)(b0 & -17)));
+            this.dataManager.set(DYE_COLOR, (byte)(b0 & -17));
         }
     }
 

@@ -32,7 +32,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     public BlockInfectedSugarCane(String name)
     {
         super(Material.PLANTS);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
         this.setUnlocalizedName(name);
     }
 
@@ -60,11 +60,11 @@ public class BlockInfectedSugarCane extends BlockBushMP
                     if (j == 15)
                     {
                         world.setBlockState(pos.up(), this.getDefaultState());
-                        world.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(0)), 4);
+                        world.setBlockState(pos, state.withProperty(AGE, 0), 4);
                     }
                     else
                     {
-                        world.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(j + 1)), 4);
+                        world.setBlockState(pos, state.withProperty(AGE, j + 1), 4);
                     }
                 }
             }
@@ -131,7 +131,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(AGE, meta);
     }
 
     @Override

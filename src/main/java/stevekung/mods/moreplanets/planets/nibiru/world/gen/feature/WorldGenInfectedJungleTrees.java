@@ -201,7 +201,7 @@ public class WorldGenInfectedJungleTrees extends WorldGenAbstractTree
 
     private void addVine(World world, BlockPos pos, PropertyBool property)
     {
-        this.setBlockAndNotifyAdequately(world, pos, MPBlocks.INFECTED_VINES.getDefaultState().withProperty(property, Boolean.valueOf(true)));
+        this.setBlockAndNotifyAdequately(world, pos, MPBlocks.INFECTED_VINES.getDefaultState().withProperty(property, true));
     }
 
     private void addHangingVine(World world, BlockPos pos, PropertyBool property)

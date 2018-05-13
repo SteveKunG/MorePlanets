@@ -203,7 +203,7 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
     @Override
     public void setElectricity(ItemStack itemStack, float joules)
     {
-        if (itemStack.getTagCompound() == null)
+        if (!itemStack.hasTagCompound())
         {
             itemStack.setTagCompound(new NBTTagCompound());
         }
@@ -221,7 +221,7 @@ public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortab
     @Override
     public float getElectricityStored(ItemStack itemStack)
     {
-        if (itemStack.getTagCompound() == null)
+        if (!itemStack.hasTagCompound())
         {
             itemStack.setTagCompound(new NBTTagCompound());
         }

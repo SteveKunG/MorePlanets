@@ -435,12 +435,12 @@ public class ChunkGeneratorNibiru implements IChunkGenerator
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.strongholdGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.pyramidGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.jungleTempleGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.oceanMonumentGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
-        this.villageGenerator.generate(this.worldObj, chunkX, chunkZ, (ChunkPrimer)null);
+        this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, null);
+        this.strongholdGenerator.generate(this.worldObj, chunkX, chunkZ, null);
+        this.pyramidGenerator.generate(this.worldObj, chunkX, chunkZ, null);
+        this.jungleTempleGenerator.generate(this.worldObj, chunkX, chunkZ, null);
+        this.oceanMonumentGenerator.generate(this.worldObj, chunkX, chunkZ, null);
+        this.villageGenerator.generate(this.worldObj, chunkX, chunkZ, null);
         this.dungeonGenerator.generate(this.worldObj, chunkX, chunkZ, null);
     }
 

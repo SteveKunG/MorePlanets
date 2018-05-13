@@ -32,7 +32,7 @@ public class BlockTintedGlassPane extends BlockPane implements IPartialSealableB
     public BlockTintedGlassPane(String name, EnumDyeColor type)
     {
         super(Material.GLASS, false);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
         this.setHardness(0.5F);
         this.setResistance(20.0F);
         this.setSoundType(SoundType.GLASS);

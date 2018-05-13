@@ -50,6 +50,6 @@ public class EntityAINibiruVillagerTradePlayer extends EntityAIBase
     @Override
     public void resetTask()
     {
-        this.villager.setCustomer((EntityPlayer)null);
+        this.villager.setCustomer(null);
     }
 }

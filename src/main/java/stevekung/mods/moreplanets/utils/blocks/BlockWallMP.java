@@ -84,7 +84,7 @@ public class BlockWallMP extends BlockBaseMP
         boolean flag2 = this.canConnectTo(world, pos.south());
         boolean flag3 = this.canConnectTo(world, pos.west());
         boolean flag4 = flag && !flag1 && flag2 && !flag3 || !flag && flag1 && !flag2 && flag3;
-        return state.withProperty(UP, Boolean.valueOf(!flag4 || !world.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(flag)).withProperty(EAST, Boolean.valueOf(flag1)).withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST, Boolean.valueOf(flag3));
+        return state.withProperty(UP, !flag4 || !world.isAirBlock(pos.up())).withProperty(NORTH, flag).withProperty(EAST, flag1).withProperty(SOUTH, flag2).withProperty(WEST, flag3);
     }
 
     private boolean canConnectTo(IBlockAccess world, BlockPos pos)

@@ -21,7 +21,7 @@ public class TileEntityZeliusEggRenderer extends TileEntitySpecialRenderer<TileE
     @Override
     public void render(TileEntityZeliusEgg tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        float renderPartialTicks = tile.getWorld() == null ? ClientEventHandler.ticks : tile.renderTicks + partialTicks;
+        float renderPartialTicks = !tile.hasWorld() ? ClientEventHandler.ticks : tile.renderTicks + partialTicks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 1F) / 2F + 0.15F;
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;

@@ -116,7 +116,7 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
         {
             TileEntity[] connectable = new TileEntity[6];
             connectable = EnergyUtil.getAdjacentPowerConnections(tileEntity);
-            return state.withProperty(DOWN, Boolean.valueOf(connectable[EnumFacing.DOWN.ordinal()] != null)).withProperty(UP, Boolean.valueOf(connectable[EnumFacing.UP.ordinal()] != null)).withProperty(NORTH, Boolean.valueOf(connectable[EnumFacing.NORTH.ordinal()] != null)).withProperty(EAST, Boolean.valueOf(connectable[EnumFacing.EAST.ordinal()] != null)).withProperty(SOUTH, Boolean.valueOf(connectable[EnumFacing.SOUTH.ordinal()] != null)).withProperty(WEST, Boolean.valueOf(connectable[EnumFacing.WEST.ordinal()] != null));
+            return state.withProperty(DOWN, connectable[EnumFacing.DOWN.ordinal()] != null).withProperty(UP, connectable[EnumFacing.UP.ordinal()] != null).withProperty(NORTH, connectable[EnumFacing.NORTH.ordinal()] != null).withProperty(EAST, connectable[EnumFacing.EAST.ordinal()] != null).withProperty(SOUTH, connectable[EnumFacing.SOUTH.ordinal()] != null).withProperty(WEST, connectable[EnumFacing.WEST.ordinal()] != null);
         }
         return state;
     }

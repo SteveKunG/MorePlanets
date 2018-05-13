@@ -126,7 +126,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
     @Override
     protected void entityInit()
     {
-        this.getDataManager().register(DATA_HOOKED_ENTITY, Integer.valueOf(0));
+        this.getDataManager().register(DATA_HOOKED_ENTITY, 0);
     }
 
     @Override
@@ -366,7 +366,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
 
     private void setHookedEntity()
     {
-        this.getDataManager().set(DATA_HOOKED_ENTITY, Integer.valueOf(this.caughtEntity.getEntityId() + 1));
+        this.getDataManager().set(DATA_HOOKED_ENTITY, this.caughtEntity.getEntityId() + 1);
     }
 
     private void catchingFish(BlockPos pos)

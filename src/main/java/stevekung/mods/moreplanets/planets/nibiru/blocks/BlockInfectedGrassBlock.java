@@ -26,7 +26,7 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
     public BlockInfectedGrassBlock(String name)
     {
         super();
-        this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, false));
         this.setUnlocalizedName(name);
     }
 
@@ -34,7 +34,7 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         Block block = world.getBlockState(pos.up()).getBlock();
-        return state.withProperty(SNOWY, Boolean.valueOf(block == MPBlocks.INFECTED_SNOW || block == MPBlocks.INFECTED_SNOW_LAYER));
+        return state.withProperty(SNOWY, block == MPBlocks.INFECTED_SNOW || block == MPBlocks.INFECTED_SNOW_LAYER);
     }
 
     @Override

@@ -50,7 +50,7 @@ public class BiomeProviderChalos extends BiomeProvider
     @Override
     public Biome getBiome(BlockPos pos)
     {
-        return this.getBiome(pos, (Biome)null);
+        return this.getBiome(pos, null);
     }
 
     @Override

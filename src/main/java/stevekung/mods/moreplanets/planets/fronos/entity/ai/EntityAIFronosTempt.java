@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.planets.fronos.entity.ai;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
@@ -17,15 +18,15 @@ public class EntityAIFronosTempt extends EntityAIBase
     private double rotationYaw;
     private EntityPlayer temptingPlayer;
     private int delayTemptCounter;
-    private ItemStack itemStack;
+    private Item item;
     private boolean scaredByPlayerMovement;
     int timer;
 
-    public EntityAIFronosTempt(EntityCreature entity, double speed, ItemStack itemStack, boolean scared)
+    public EntityAIFronosTempt(EntityCreature entity, double speed, Item item, boolean scared)
     {
         this.temptedEntity = entity;
         this.speed = speed;
-        this.itemStack = itemStack;
+        this.item = item;
         this.scaredByPlayerMovement = scared;
         this.setMutexBits(3);
 
@@ -53,8 +54,7 @@ public class EntityAIFronosTempt extends EntityAIBase
             }
             else
             {
-                ItemStack itemStack = this.temptingPlayer.getHeldItemMainhand();
-                return itemStack.isEmpty() ? false : itemStack.getItem() == this.itemStack.getItem() && itemStack.getItemDamage() == this.itemStack.getItemDamage();
+                return this.isTempting(this.temptingPlayer.getHeldItemMainhand()) || this.isTempting(this.temptingPlayer.getHeldItemOffhand());
             }
         }
     }
@@ -125,5 +125,10 @@ public class EntityAIFronosTempt extends EntityAIBase
     public int getTimer()
     {
         return this.timer;
+    }
+
+    private boolean isTempting(ItemStack stack)
+    {
+        return this.item == stack.getItem();
     }
 }

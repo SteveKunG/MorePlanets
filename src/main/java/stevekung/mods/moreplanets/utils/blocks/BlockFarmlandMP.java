@@ -69,7 +69,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
         {
             if (i == 1)
             {
-                world.setBlockState(pos, state.withProperty(BlockStateProperty.MOISTURE, Integer.valueOf(0)), 2);
+                world.setBlockState(pos, state.withProperty(BlockStateProperty.MOISTURE, 0), 2);
             }
             else if (!this.hasCrops(world, pos))
             {
@@ -78,7 +78,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
         }
         else if (i == 0)
         {
-            world.setBlockState(pos, state.withProperty(BlockStateProperty.MOISTURE, Integer.valueOf(1)), 2);
+            world.setBlockState(pos, state.withProperty(BlockStateProperty.MOISTURE, 1), 2);
         }
     }
 
@@ -179,7 +179,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateProperty.MOISTURE, Integer.valueOf(meta & 1));
+        return this.getDefaultState().withProperty(BlockStateProperty.MOISTURE, meta & 1);
     }
 
     @Override

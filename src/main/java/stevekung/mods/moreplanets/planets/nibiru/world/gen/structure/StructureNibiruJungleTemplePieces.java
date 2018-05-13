@@ -292,10 +292,10 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                 this.fillWithRandomizedBlocks(world, box, 7, -2, 1, 9, -2, 1, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 6, -3, 1, 6, -3, 1, false, rand, this.scatteredStones);
                 this.fillWithRandomizedBlocks(world, box, 6, -1, 1, 6, -1, 1, false, rand, this.scatteredStones);
-                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.EAST).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 1, -3, 8, box);
-                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.WEST).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 4, -3, 8, box);
-                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 2, -3, 8, box);
-                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 3, -3, 8, box);
+                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.EAST).withProperty(BlockTripWireHook.ATTACHED, true), 1, -3, 8, box);
+                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.WEST).withProperty(BlockTripWireHook.ATTACHED, true), 4, -3, 8, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, true), 2, -3, 8, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, true), 3, -3, 8, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 7, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 6, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 5, -3, 5, box);
@@ -311,12 +311,12 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                     this.placedTrap1 = this.createDispenser(world, box, rand, 3, -2, 1, EnumFacing.NORTH, MPLootTables.NIBIRU_JUNGLE_TEMPLE_DISPENSER);
                 }
 
-                this.setBlockState(world, MPBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.SOUTH, Boolean.valueOf(true)), 3, -2, 2, box);
-                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.NORTH).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 7, -3, 1, box);
-                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.SOUTH).withProperty(BlockTripWireHook.ATTACHED, Boolean.valueOf(true)), 7, -3, 5, box);
-                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 7, -3, 2, box);
-                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 7, -3, 3, box);
-                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, Boolean.valueOf(true)), 7, -3, 4, box);
+                this.setBlockState(world, MPBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.SOUTH, true), 3, -2, 2, box);
+                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.NORTH).withProperty(BlockTripWireHook.ATTACHED, true), 7, -3, 1, box);
+                this.setBlockState(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, EnumFacing.SOUTH).withProperty(BlockTripWireHook.ATTACHED, true), 7, -3, 5, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, true), 7, -3, 2, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, true), 7, -3, 3, box);
+                this.setBlockState(world, Blocks.TRIPWIRE.getDefaultState().withProperty(BlockTripWire.ATTACHED, true), 7, -3, 4, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 8, -3, 6, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 9, -3, 6, box);
                 this.setBlockState(world, Blocks.REDSTONE_WIRE.getDefaultState(), 9, -3, 5, box);
@@ -328,8 +328,8 @@ public abstract class StructureNibiruJungleTemplePieces extends StructureCompone
                     this.placedTrap2 = this.createDispenser(world, box, rand, 9, -2, 3, EnumFacing.WEST, MPLootTables.NIBIRU_JUNGLE_TEMPLE_DISPENSER);
                 }
 
-                this.setBlockState(world, MPBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.EAST, Boolean.valueOf(true)), 8, -1, 3, box);
-                this.setBlockState(world, MPBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.EAST, Boolean.valueOf(true)), 8, -2, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.EAST, true), 8, -1, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_VINES.getDefaultState().withProperty(BlockVine.EAST, true), 8, -2, 3, box);
 
                 if (!this.placedMainChest)
                 {

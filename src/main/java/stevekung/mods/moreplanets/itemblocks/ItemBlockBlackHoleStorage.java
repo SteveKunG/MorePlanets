@@ -117,7 +117,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescription
                     }
                     if (j - i > 0)
                     {
-                        list.add(TextFormatting.ITALIC + LangUtils.translate("desc.bhs_more.name", Integer.valueOf(j - i)));
+                        list.add(TextFormatting.ITALIC + LangUtils.translate("desc.bhs_more.name", j - i));
                     }
                 }
                 else

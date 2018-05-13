@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
@@ -45,7 +44,7 @@ public class ItemInfectedSugarCane extends ItemBaseMP
             pos = pos.offset(facing);
         }
 
-        if (player.canPlayerEdit(pos, facing, itemStack) && itemStack.getCount() != 0 && world.mayPlace(cane, pos, false, facing, (Entity)null))
+        if (player.canPlayerEdit(pos, facing, itemStack) && itemStack.getCount() != 0 && world.mayPlace(cane, pos, false, facing, null))
         {
             IBlockState iblockstate1 = cane.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, 0, player, hand);
 

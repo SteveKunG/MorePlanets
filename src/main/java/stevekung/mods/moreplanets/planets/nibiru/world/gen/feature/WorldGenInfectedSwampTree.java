@@ -181,7 +181,7 @@ public class WorldGenInfectedSwampTree extends WorldGenAbstractTree
 
     private void addVine(World world, BlockPos pos, PropertyBool property)
     {
-        IBlockState iblockstate = MPBlocks.INFECTED_VINES.getDefaultState().withProperty(property, Boolean.valueOf(true));
+        IBlockState iblockstate = MPBlocks.INFECTED_VINES.getDefaultState().withProperty(property, true);
         this.setBlockAndNotifyAdequately(world, pos, iblockstate);
         int i = 4;
 

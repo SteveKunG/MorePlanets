@@ -254,7 +254,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     protected void entityInit()
     {
         super.entityInit();
-        this.dataManager.register(PROFESSION, Integer.valueOf(0));
+        this.dataManager.register(PROFESSION, 0);
     }
 
     @Override
@@ -584,7 +584,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     public EntityNibiruVillager createChild(EntityAgeable ageable)
     {
         EntityNibiruVillager entityvillager = new EntityNibiruVillager(this.world);
-        entityvillager.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
+        entityvillager.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityvillager)), null);
         return entityvillager;
     }
 
@@ -613,7 +613,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         {
             EntityEvolvedWitch entitywitch = new EntityEvolvedWitch(this.world);
             entitywitch.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-            entitywitch.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entitywitch)), (IEntityLivingData)null);
+            entitywitch.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entitywitch)), null);
             entitywitch.setNoAI(this.isAIDisabled());
 
             if (this.hasCustomName())
@@ -683,7 +683,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
 
     public void setProfession(int professionId)
     {
-        this.dataManager.set(PROFESSION, Integer.valueOf(professionId));
+        this.dataManager.set(PROFESSION, professionId);
     }
 
     public int getProfession()
@@ -978,7 +978,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     {
         public PriceInfo(int min, int max)
         {
-            super(Integer.valueOf(min), Integer.valueOf(max));
+            super(min, max);
         }
 
         public int getPrice(Random rand)

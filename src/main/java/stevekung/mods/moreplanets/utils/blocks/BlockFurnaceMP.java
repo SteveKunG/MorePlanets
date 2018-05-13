@@ -188,7 +188,7 @@ public class BlockFurnaceMP extends BlockContainerMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(LIT, Boolean.valueOf((meta & 4) != 0)).withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.getHorizontal(meta & 3));
+        return this.getDefaultState().withProperty(LIT, (meta & 4) != 0).withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.getHorizontal(meta & 3));
     }
 
     @Override

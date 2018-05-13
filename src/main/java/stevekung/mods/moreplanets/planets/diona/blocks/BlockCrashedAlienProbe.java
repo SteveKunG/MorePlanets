@@ -28,7 +28,7 @@ public class BlockCrashedAlienProbe extends BlockTileMP
     public BlockCrashedAlienProbe(String name)
     {
         super(Material.IRON);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(HAS_ALIEN, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(HAS_ALIEN, false));
         this.setSoundType(SoundType.METAL);
         this.setHardness(5.0F);
         this.setResistance(12.0F);
@@ -79,7 +79,7 @@ public class BlockCrashedAlienProbe extends BlockTileMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(HAS_ALIEN, Boolean.valueOf((meta & 1) == 1));
+        return this.getDefaultState().withProperty(HAS_ALIEN, (meta & 1) == 1);
     }
 
     @Override

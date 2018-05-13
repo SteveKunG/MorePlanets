@@ -643,18 +643,18 @@ public class StructureNibiruStrongholdPieces
                 flag &= aboolean[l];
             }
 
-            this.setBlockState(world, iblockstate4.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[0])), 4, 3, 8, box);
-            this.setBlockState(world, iblockstate4.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[1])), 5, 3, 8, box);
-            this.setBlockState(world, iblockstate4.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[2])), 6, 3, 8, box);
-            this.setBlockState(world, iblockstate.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[3])), 4, 3, 12, box);
-            this.setBlockState(world, iblockstate.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[4])), 5, 3, 12, box);
-            this.setBlockState(world, iblockstate.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[5])), 6, 3, 12, box);
-            this.setBlockState(world, iblockstate1.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[6])), 3, 3, 9, box);
-            this.setBlockState(world, iblockstate1.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[7])), 3, 3, 10, box);
-            this.setBlockState(world, iblockstate1.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[8])), 3, 3, 11, box);
-            this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[9])), 7, 3, 9, box);
-            this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[10])), 7, 3, 10, box);
-            this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(aboolean[11])), 7, 3, 11, box);
+            this.setBlockState(world, iblockstate4.withProperty(BlockVeinFrame.EYE, aboolean[0]), 4, 3, 8, box);
+            this.setBlockState(world, iblockstate4.withProperty(BlockVeinFrame.EYE, aboolean[1]), 5, 3, 8, box);
+            this.setBlockState(world, iblockstate4.withProperty(BlockVeinFrame.EYE, aboolean[2]), 6, 3, 8, box);
+            this.setBlockState(world, iblockstate.withProperty(BlockVeinFrame.EYE, aboolean[3]), 4, 3, 12, box);
+            this.setBlockState(world, iblockstate.withProperty(BlockVeinFrame.EYE, aboolean[4]), 5, 3, 12, box);
+            this.setBlockState(world, iblockstate.withProperty(BlockVeinFrame.EYE, aboolean[5]), 6, 3, 12, box);
+            this.setBlockState(world, iblockstate1.withProperty(BlockVeinFrame.EYE, aboolean[6]), 3, 3, 9, box);
+            this.setBlockState(world, iblockstate1.withProperty(BlockVeinFrame.EYE, aboolean[7]), 3, 3, 10, box);
+            this.setBlockState(world, iblockstate1.withProperty(BlockVeinFrame.EYE, aboolean[8]), 3, 3, 11, box);
+            this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, aboolean[9]), 7, 3, 9, box);
+            this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, aboolean[10]), 7, 3, 10, box);
+            this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, aboolean[11]), 7, 3, 11, box);
 
             if (flag)
             {
@@ -1605,7 +1605,7 @@ public class StructureNibiruStrongholdPieces
         {
             if (box.isVecInside(pos))
             {
-                world.setBlockState(pos, MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, Boolean.valueOf(rand.nextFloat() > 0.9F) ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE), 2);
+                world.setBlockState(pos, MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, rand.nextFloat() > 0.9F ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE), 2);
                 world.setBlockState(pos.up(), MPBlocks.NWT_MIDDLE_DUMMY.getDefaultState(), 2);
                 world.setBlockState(pos.up(2), MPBlocks.NWT_TOP_DUMMY.getDefaultState(), 2);
                 TileEntity tile = world.getTileEntity(pos);

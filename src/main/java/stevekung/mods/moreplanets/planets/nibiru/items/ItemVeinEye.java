@@ -49,7 +49,7 @@ public class ItemVeinEye extends ItemBaseMP
             }
             else
             {
-                world.setBlockState(pos, iblockstate.withProperty(BlockVeinFrame.EYE, Boolean.valueOf(true)), 2);
+                world.setBlockState(pos, iblockstate.withProperty(BlockVeinFrame.EYE, true), 2);
                 world.updateComparatorOutputLevel(pos, MPBlocks.VEIN_FRAME);
                 itemStack.shrink(1);
                 BlockPattern.PatternHelper blockpattern$patternhelper = this.getOrCreatePortalShape().match(world, pos);
@@ -96,8 +96,8 @@ public class ItemVeinEye extends ItemBaseMP
                     EntityVeinEye entityendereye = new EntityVeinEye(world, player.posX, player.posY + player.height / 2.0F, player.posZ);
                     entityendereye.moveTowards(blockpos);
                     world.spawnEntity(entityendereye);
-                    world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDEREYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                    world.playEvent((EntityPlayer)null, 1003, new BlockPos(player), 0);
+                    world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDEREYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                    world.playEvent(null, 1003, new BlockPos(player), 0);
 
                     if (!player.capabilities.isCreativeMode)
                     {

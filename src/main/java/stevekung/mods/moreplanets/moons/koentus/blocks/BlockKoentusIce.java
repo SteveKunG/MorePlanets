@@ -50,7 +50,7 @@ public class BlockKoentusIce extends BlockIceMP
             List<ItemStack> items = new ArrayList<>();
             ItemStack itemstack = this.getSilkTouchDrop(state);
 
-            if (itemstack != null)
+            if (!itemstack.isEmpty())
             {
                 items.add(itemstack);
             }

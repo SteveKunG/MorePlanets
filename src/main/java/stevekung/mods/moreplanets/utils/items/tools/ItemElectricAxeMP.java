@@ -157,7 +157,7 @@ public class ItemElectricAxeMP extends ItemAxe implements IItemElectric, ISortab
     @Override
     public void setElectricity(ItemStack itemStack, float joules)
     {
-        if (itemStack.getTagCompound() == null)
+        if (!itemStack.hasTagCompound())
         {
             itemStack.setTagCompound(new NBTTagCompound());
         }
@@ -175,7 +175,7 @@ public class ItemElectricAxeMP extends ItemAxe implements IItemElectric, ISortab
     @Override
     public float getElectricityStored(ItemStack itemStack)
     {
-        if (itemStack.getTagCompound() == null)
+        if (!itemStack.hasTagCompound())
         {
             itemStack.setTagCompound(new NBTTagCompound());
         }

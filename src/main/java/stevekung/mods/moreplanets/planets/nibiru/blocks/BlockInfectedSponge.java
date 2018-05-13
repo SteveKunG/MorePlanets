@@ -59,7 +59,7 @@ public class BlockInfectedSponge extends BlockBaseMP
     {
         LinkedList<Tuple> linkedlist = new LinkedList<>();
         ArrayList<BlockPos> arraylist = new ArrayList<>();
-        linkedlist.add(new Tuple<>(pos, Integer.valueOf(0)));
+        linkedlist.add(new Tuple<>(pos, 0));
         int i = 0;
         BlockPos blockpos1;
 
@@ -84,7 +84,7 @@ public class BlockInfectedSponge extends BlockBaseMP
 
                     if (j < 6)
                     {
-                        linkedlist.add(new Tuple<>(blockpos2, Integer.valueOf(j + 1)));
+                        linkedlist.add(new Tuple<>(blockpos2, j + 1));
                     }
                 }
             }

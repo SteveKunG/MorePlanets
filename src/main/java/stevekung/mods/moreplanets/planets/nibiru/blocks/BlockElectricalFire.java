@@ -69,7 +69,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
 
                 if (i < 15)
                 {
-                    state = state.withProperty(AGE, Integer.valueOf(i + rand.nextInt(3) / 2));
+                    state = state.withProperty(AGE, i + rand.nextInt(3) / 2);
                     world.setBlockState(pos, state, 4);
                 }
 
@@ -143,7 +143,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
                                         {
                                             i2 = 15;
                                         }
-                                        world.setBlockState(blockpos, state.withProperty(AGE, Integer.valueOf(i2)), 3);
+                                        world.setBlockState(blockpos, state.withProperty(AGE, i2), 3);
                                     }
                                 }
                             }
@@ -170,7 +170,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
                 {
                     j = 15;
                 }
-                world.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(j)), 3);
+                world.setBlockState(pos, this.getDefaultState().withProperty(AGE, j), 3);
             }
             else
             {
@@ -179,7 +179,7 @@ public class BlockElectricalFire extends BlockFire implements IFire
 
             if (iblockstate.getBlock() == Blocks.TNT)
             {
-                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, Boolean.valueOf(true)));
+                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, true));
             }
         }
     }

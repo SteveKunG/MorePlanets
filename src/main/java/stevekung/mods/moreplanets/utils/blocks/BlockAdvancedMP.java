@@ -74,7 +74,7 @@ public abstract class BlockAdvancedMP extends BlockBaseMP implements ITileEntity
 
     public boolean isUsableWrench(EntityPlayer entityPlayer, ItemStack itemStack, BlockPos pos)
     {
-        if (entityPlayer != null && itemStack != null)
+        if (entityPlayer != null && !itemStack.isEmpty())
         {
             Item item = itemStack.getItem();
 

@@ -48,7 +48,7 @@ public class BiomeProviderNibiru extends BiomeProvider
     @Override
     public Biome getBiome(BlockPos pos)
     {
-        return this.getBiome(pos, (Biome)null);
+        return this.getBiome(pos, null);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
     public BlockStemMP(String name, Block crop)
     {
-        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, Integer.valueOf(0)).withProperty(FACING, EnumFacing.UP));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, 0).withProperty(FACING, EnumFacing.UP));
         this.crop = crop;
         this.setTickRandomly(true);
         this.setUnlocalizedName(name);
@@ -87,7 +87,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
                 if (i < 7)
                 {
-                    state = state.withProperty(BlockStateProperty.AGE_7, Integer.valueOf(i + 1));
+                    state = state.withProperty(BlockStateProperty.AGE_7, i + 1);
                     world.setBlockState(pos, state, 2);
                 }
                 else
@@ -167,7 +167,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     public void growStem(World world, BlockPos pos, IBlockState state)
     {
         int i = state.getValue(BlockStateProperty.AGE_7).intValue() + MathHelper.getInt(world.rand, 2, 5);
-        world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, Integer.valueOf(Math.min(7, i))), 2);
+        world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, Math.min(7, i)), 2);
     }
 
     @Override
@@ -231,7 +231,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateProperty.AGE_7, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(BlockStateProperty.AGE_7, meta);
     }
 
     @Override

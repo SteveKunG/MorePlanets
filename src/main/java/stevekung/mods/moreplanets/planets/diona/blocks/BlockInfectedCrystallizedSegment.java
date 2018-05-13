@@ -27,7 +27,6 @@ import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCry
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.tileentity.TileEntityNull;
 
 public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITileEntityProvider
 {
@@ -169,7 +168,7 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
-        return this.type == BlockType.INFECTED_CRYSTALLIZED_ENDER_CORE ? new TileEntityInfectedCrystallizedEnderCore() : new TileEntityNull();
+        return this.type == BlockType.INFECTED_CRYSTALLIZED_ENDER_CORE ? new TileEntityInfectedCrystallizedEnderCore() : null;
     }
 
     @Override

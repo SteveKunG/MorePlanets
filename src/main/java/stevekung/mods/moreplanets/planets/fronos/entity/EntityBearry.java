@@ -37,7 +37,7 @@ public class EntityBearry extends EntityFronosPet
         this.aiSit = new EntityAISit(this);
         this.aiTexture = new EntityAIFaceTexture(this);
         this.aiPanic = new EntityAIFronosPanic(this, 1.75D);
-        this.aiTempt = new EntityAIFronosTempt(this, 1.4D, new ItemStack(MPItems.CHOCOLATE_BAR), false);
+        this.aiTempt = new EntityAIFronosTempt(this, 1.4D, MPItems.CHOCOLATE_BAR, false);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(1, this.aiPanic);
         this.tasks.addTask(2, this.aiSit);
@@ -92,7 +92,7 @@ public class EntityBearry extends EntityFronosPet
         {
             EntityMarshmallow marshmallow = new EntityMarshmallow(this.world);
             marshmallow.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-            marshmallow.onInitialSpawn(difficulty, (IEntityLivingData)null);
+            marshmallow.onInitialSpawn(difficulty, null);
             marshmallow.setGrowingAge(-24000);
             this.world.spawnEntity(marshmallow);
             marshmallow.startRiding(this);

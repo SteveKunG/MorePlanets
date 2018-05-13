@@ -349,11 +349,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         nbt.setBoolean("EnableShield", this.enableShield);
         nbt.setBoolean("EnableDamage", this.enableDamage);
         ItemStackHelper.saveAllItems(nbt, this.containingItems);
-
-        if (this.ownerUUID != null)
-        {
-            nbt.setString("OwnerUUID", this.ownerUUID);
-        }
+        nbt.setString("OwnerUUID", this.ownerUUID);
         return nbt;
     }
 

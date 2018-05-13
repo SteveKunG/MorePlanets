@@ -343,7 +343,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateProperty.DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(BlockStateProperty.CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
+        return this.getDefaultState().withProperty(BlockStateProperty.DECAYABLE, (meta & 4) == 0).withProperty(BlockStateProperty.CHECK_DECAY, (meta & 8) > 0);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class BlockSnowLayerMP extends BlockBaseMP
     public BlockSnowLayerMP(String name, Item snow)
     {
         super(Material.SNOW);
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.LAYERS, Integer.valueOf(1)));
+        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.LAYERS, 1));
         this.setTickRandomly(true);
         this.setSoundType(SoundType.SNOW);
         this.setHardness(0.1F);
@@ -150,7 +150,7 @@ public class BlockSnowLayerMP extends BlockBaseMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(BlockStateProperty.LAYERS, Integer.valueOf((meta & 7) + 1));
+        return this.getDefaultState().withProperty(BlockStateProperty.LAYERS, (meta & 7) + 1);
     }
 
     @Override

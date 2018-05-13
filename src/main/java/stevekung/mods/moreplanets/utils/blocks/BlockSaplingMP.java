@@ -106,41 +106,38 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
             int j = 0;
             boolean flag = false;
 
-            if (worldGen == null)
+            switch (this.type)
             {
-                switch (this.type)
-                {
-                case INFECTED_OAK_SAPLING:
-                    worldGen = rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
-                    break;
-                case INFECTED_JUNGLE_SAPLING:
-                    label269:
-                        for (i = 0; i >= -1; --i)
+            case INFECTED_OAK_SAPLING:
+                worldGen = rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+                break;
+            case INFECTED_JUNGLE_SAPLING:
+                label269:
+                    for (i = 0; i >= -1; --i)
+                    {
+                        for (j = 0; j >= -1; --j)
                         {
-                            for (j = 0; j >= -1; --j)
+                            if (this.isTwoByTwoOfType(world, pos, i, j))
                             {
-                                if (this.isTwoByTwoOfType(world, pos, i, j))
-                                {
-                                    worldGen = new WorldGenInfectedMegaJungleTree();
-                                    flag = true;
-                                    break label269;
-                                }
+                                worldGen = new WorldGenInfectedMegaJungleTree();
+                                flag = true;
+                                break label269;
                             }
                         }
-                if (!flag)
-                {
-                    j = 0;
-                    i = 0;
-                    worldGen = new WorldGenInfectedJungleTrees(true, 4 + rand.nextInt(7), false);
-                }
+                    }
+            if (!flag)
+            {
+                j = 0;
+                i = 0;
+                worldGen = new WorldGenInfectedJungleTrees(true, 4 + rand.nextInt(7), false);
+            }
+            break;
+            case ALIEN_BERRY_OAK_SAPLING:
+                worldGen = rand.nextInt(10) == 0 ? new WorldGenAlienBerryBigTree() : new WorldGenAlienBerryTree();
                 break;
-                case ALIEN_BERRY_OAK_SAPLING:
-                    worldGen = rand.nextInt(10) == 0 ? new WorldGenAlienBerryBigTree() : new WorldGenAlienBerryTree();
-                    break;
-                case CHEESE_SPORE_FLOWER:
-                    worldGen = new WorldGenCheeseSporeTree(6 + rand.nextInt(4), true);
-                    break;
-                }
+            case CHEESE_SPORE_FLOWER:
+                worldGen = new WorldGenCheeseSporeTree(6 + rand.nextInt(4), true);
+                break;
             }
 
             if (worldGen != null)
