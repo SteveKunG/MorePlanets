@@ -127,7 +127,6 @@ public class JSONRecipe
         json.put("result", serializeItem(output));
 
         // names the json the same name as the output's registry name
-        // repeatedly adds _alt if a file already exists
         // janky I know but it works
         String suffix = output.getItem().getHasSubtypes() ? "_" + output.getItemDamage() : "";
         String name = altName != null ? altName : output.getItem().getRegistryName().getResourcePath() + suffix;
@@ -187,7 +186,6 @@ public class JSONRecipe
         json.put("result", serializeItem(output));
 
         // names the json the same name as the output's registry name
-        // repeatedly adds _alt if a file already exists
         // janky I know but it works
         String suffix = output.getItem().getHasSubtypes() ? "_" + output.getItemDamage() : "";
         String name = altName != null ? altName : output.getItem().getRegistryName().getResourcePath() + suffix;
@@ -395,7 +393,6 @@ public class JSONRecipe
         json.put("cookingtime", cookTime);
 
         // names the json the same name as the output's registry name
-        // repeatedly adds _alt if a file already exists
         // janky I know but it works
         String suffix = result.getItem().getHasSubtypes() ? "_" + result.getItemDamage() : "";
         File file = new File(RECIPE_DIR, result.getItem().getRegistryName().getResourcePath() + suffix + ".json");
