@@ -17,7 +17,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
@@ -51,31 +50,6 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescri
     public boolean onUseWrench(World world, BlockPos pos, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         int change = world.getBlockState(pos).getValue(BlockStateProperty.FACING_HORIZON).rotateY().getHorizontalIndex();
-        TileEntity tile = world.getTileEntity(pos);
-
-        if (tile instanceof TileEntityShieldGenerator)
-        {
-            int direction = 0;
-
-            if (change == 0)
-            {
-                direction = 180;
-            }
-            if (change == 1)
-            {
-                direction = -90;
-            }
-            if (change == 2)
-            {
-                direction = 0;
-            }
-            if (change == 3)
-            {
-                direction = 90;
-            }
-            TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
-            shield.setFacing(direction);
-        }
         world.setBlockState(pos, this.getStateFromMeta(change), 3);
         return true;
     }
@@ -83,34 +57,12 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescri
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
-        int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
-        int direction = 0;
-
-        if (change == 0)
-        {
-            direction = 180;
-        }
-        if (change == 1)
-        {
-            direction = -90;
-        }
-        if (change == 2)
-        {
-            direction = 0;
-        }
-        if (change == 3)
-        {
-            direction = 90;
-        }
-
         world.setBlockState(pos, this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()));
         TileEntity tile = world.getTileEntity(pos);
 
         if (tile instanceof TileEntityShieldGenerator)
         {
             TileEntityShieldGenerator shield = (TileEntityShieldGenerator) tile;
-            shield.setFacing(direction);
             shield.onCreate(world, pos);
 
             if (itemStack.hasTagCompound())

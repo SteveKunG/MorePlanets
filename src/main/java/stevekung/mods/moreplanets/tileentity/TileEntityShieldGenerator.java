@@ -55,8 +55,6 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider, IInventoryDefaults, ISidedInventory
 {
-    @NetworkedField(targetSide = Side.CLIENT)
-    public int facing;
     public int renderTicks;
     public int solarRotate;
     public NonNullList<ItemStack> containingItems = NonNullList.withSize(4, ItemStack.EMPTY);
@@ -330,7 +328,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         this.needCharged = nbt.getBoolean("NeedCharged");
         this.enableShield = nbt.getBoolean("EnableShield");
         this.enableDamage = nbt.getBoolean("EnableDamage");
-        this.facing = nbt.getInteger("Facing");
         this.ownerUUID = nbt.getString("OwnerUUID");
         this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, this.containingItems);
@@ -351,7 +348,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         nbt.setBoolean("NeedCharged", this.needCharged);
         nbt.setBoolean("EnableShield", this.enableShield);
         nbt.setBoolean("EnableDamage", this.enableDamage);
-        nbt.setInteger("Facing", this.facing);
         ItemStackHelper.saveAllItems(nbt, this.containingItems);
 
         if (this.ownerUUID != null)
@@ -550,11 +546,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public EnumBlockMultiType getMultiType()
     {
         return null;
-    }
-
-    public void setFacing(int facing)
-    {
-        this.facing = facing;
     }
 
     public String getStatus()

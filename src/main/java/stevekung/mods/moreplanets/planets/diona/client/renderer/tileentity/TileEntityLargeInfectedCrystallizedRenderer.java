@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,9 +26,15 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
     @Override
     public void render(TileEntityLargeInfectedCrystallized tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        if (tile.facing == null)
+        int meta;
+
+        if (!tile.hasWorld())
         {
-            return;
+            meta = 0;
+        }
+        else
+        {
+            meta = tile.getBlockMetadata();
         }
 
         Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
@@ -40,12 +47,12 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
             {
                 int angle1 = rand.nextInt(32) + 72 * spike;
                 int angle2 = 16 + rand.nextInt(16);
-                this.drawCrystal(tile, (float)x, (float)y, (float)z, angle1, angle2, rand, colorList[i], 1.15F);
+                this.drawCrystal(tile, (float)x, (float)y, (float)z, angle1, angle2, rand, colorList[i], 1.15F, meta);
             }
         }
     }
 
-    private void drawCrystal(TileEntityLargeInfectedCrystallized tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size)
+    private void drawCrystal(TileEntityLargeInfectedCrystallized tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size, int facing)
     {
         float shade = MathHelper.sin((tile.renderTicks + rand.nextInt(20)) / (16.0F + rand.nextFloat())) * 0.075F + 0.925F;
         Color c = new Color(color);
@@ -64,7 +71,7 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
         GlStateManager.enableNormalize();
         GlStateManager.blendFunc(770, 771);
         GlStateManager.translate(x + 0.5F, y, z + 0.5F);
-        this.translateFromDirection(tile);
+        this.translateFromDirection(facing);
         GlStateManager.rotate(angle1, 0.1F, 1.0F, 0.0F);
         GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
         GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
@@ -86,9 +93,9 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
     }
 
-    private void translateFromDirection(TileEntityLargeInfectedCrystallized tile)
+    private void translateFromDirection(int facing)
     {
-        switch (tile.facing)
+        switch (EnumFacing.getFront(facing))
         {
         case WEST:
             GlStateManager.translate(0.0F, 0.5F, 0.7F);

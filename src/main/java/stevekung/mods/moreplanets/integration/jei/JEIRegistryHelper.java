@@ -60,7 +60,7 @@ public class JEIRegistryHelper
             JEIRegistryHelper.registerRecipe(recipes, VanillaRecipeCategoryUid.ANVIL);
         }
     }
-    
+
     @Deprecated
     public static void registerAnvilRecipe(ItemStack repairItem, List<ItemStack> toolList)
     {

@@ -25,18 +25,18 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
     @Override
     public void render(TileEntityDarkEnergyReceiver tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        if (tile == null)
+        int meta;
+
+        if (!tile.hasWorld())
         {
-            return;
+            meta = 0;
+        }
+        else
+        {
+            meta = tile.getBlockMetadata();
         }
 
-        int facing = 0;
         float solarRotate = tile.solarRotate;
-
-        if (tile != null && tile.hasWorld() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == MPBlocks.DARK_ENERGY_RECEIVER)
-        {
-            facing = tile.getFacing();
-        }
 
         if (destroyStage >= 0)
         {
@@ -58,7 +58,22 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
         GlStateManager.translate((float)x, (float)y, (float)z);
         GlStateManager.translate(0.5F, 1.5F, 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
-        GlStateManager.rotate(facing, 0.0F, 1.0F, 0.0F);
+
+        switch (meta)
+        {
+        case 0:
+            GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 1:
+            GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 2:
+            GlStateManager.rotate(-360.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 3:
+            GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        }
 
         if (destroyStage < 0)
         {

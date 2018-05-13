@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,9 +26,15 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
     @Override
     public void render(TileEntityMultalicCrystal tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        if (tile.facing == null)
+        int meta;
+
+        if (!tile.hasWorld())
         {
-            return;
+            meta = 0;
+        }
+        else
+        {
+            meta = tile.getBlockMetadata();
         }
 
         Random rand = new Random(tile.getPos().getX() + tile.getPos().getY() * tile.getPos().getZ());
@@ -40,18 +47,18 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
             {
                 int angle1 = rand.nextInt(16) + 160 * spike;
                 int angle2 = 8 + rand.nextInt(16);
-                this.drawCrystal(tile, (float)x, (float)y, (float)z, angle1, angle2, rand, colorList[i], 1.15F);
+                this.drawCrystal(tile, (float)x, (float)y, (float)z, angle1, angle2, rand, colorList[i], 1.15F, meta);
             }
             for (int spike = 0; spike < 2; spike++)
             {
                 int angle1 = rand.nextInt(74) + 232 * spike;
                 int angle2 = 3 + rand.nextInt(24);
-                this.drawCrystal(tile, (float)x, (float)y, (float)z, angle1, angle2, rand, colorList[i], 1.15F);
+                this.drawCrystal(tile, (float)x, (float)y, (float)z, angle1, angle2, rand, colorList[i], 1.15F, meta);
             }
         }
     }
 
-    private void drawCrystal(TileEntityMultalicCrystal tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size)
+    private void drawCrystal(TileEntityMultalicCrystal tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size, int facing)
     {
         float shade = MathHelper.sin((tile.renderTicks + rand.nextInt(1)) / (8.0F + rand.nextFloat())) * 0.2F + 1.0F;
         Color c = new Color(color);
@@ -70,7 +77,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
         GlStateManager.enableNormalize();
         GlStateManager.blendFunc(770, 771);
         GlStateManager.translate(x + 0.5F, y, z + 0.5F);
-        this.translateFromDirection(tile);
+        this.translateFromDirection(facing);
         GlStateManager.rotate(angle1, 0.1F, 1.0F, 0.0F);
         GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
         GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
@@ -92,9 +99,9 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
     }
 
-    private void translateFromDirection(TileEntityMultalicCrystal tile)
+    private void translateFromDirection(int facing)
     {
-        switch (tile.facing)
+        switch (EnumFacing.getFront(facing))
         {
         case WEST:
             GlStateManager.translate(0.0F, 0.5F, 0.7F);

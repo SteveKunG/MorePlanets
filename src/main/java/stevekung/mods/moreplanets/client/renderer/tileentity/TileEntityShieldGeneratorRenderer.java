@@ -48,6 +48,17 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
     @Override
     public void render(TileEntityShieldGenerator tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
+        int meta;
+
+        if (!tile.hasWorld())
+        {
+            meta = 0;
+        }
+        else
+        {
+            meta = tile.getBlockMetadata();
+        }
+
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
         float renderPartialTicks = tile.renderTicks + partialTicks;
@@ -58,7 +69,22 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
         GlStateManager.enableRescaleNormal();
         GlStateManager.translate((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
-        GlStateManager.rotate(tile.facing, 0.0F, 1.0F, 0.0F);
+
+        switch (meta)
+        {
+        case 0:
+            GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 1:
+            GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 2:
+            GlStateManager.rotate(-360.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 3:
+            GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        }
 
         if (tile.getBubbleVisible())
         {

@@ -55,8 +55,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 {
     private NonNullList<ItemStack> containingItems = NonNullList.withSize(1, ItemStack.EMPTY);
     @NetworkedField(targetSide = Side.CLIENT)
-    public int facing;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean activated;
     @NetworkedField(targetSide = Side.CLIENT)
     public int activatedTick;
@@ -140,6 +138,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public void update()
     {
         super.update();
+        this.markDirty();
 
         if (!this.world.isRemote)
         {
@@ -260,41 +259,40 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 for (int yRender = this.pos.getY(); yRender < 256; yRender++)
                 {
                     IBlockState state = this.world.getBlockState(new BlockPos(this.pos.getX(), yRender, this.pos.getZ()));
-                    Block block = state.getBlock();
 
-                    if (state.isOpaqueCube() && block != MPBlocks.DARK_ENERGY_CORE)
+                    if (state.isOpaqueCube() && state.getBlock() != MPBlocks.DARK_ENERGY_CORE)
                     {
                         this.failed = true;
                     }
 
-                    if (this.facing == 0 || this.facing == 180)
+                    if (this.getBlockMetadata() == 0 || this.getBlockMetadata() == 2)
                     {
-                        block = this.world.getBlockState(new BlockPos(this.pos.getX() + 1, yRender + 1, this.pos.getZ())).getBlock();
+                        state = this.world.getBlockState(new BlockPos(this.pos.getX() + 1, yRender + 1, this.pos.getZ()));
 
-                        if (state.isOpaqueCube() && block != MPBlocks.DARK_ENERGY_CORE)
+                        if (state.isOpaqueCube() && state.getBlock() != MPBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
 
-                        block = this.world.getBlockState(new BlockPos(this.pos.getX() - 1, yRender + 1, this.pos.getZ())).getBlock();
+                        state = this.world.getBlockState(new BlockPos(this.pos.getX() - 1, yRender + 1, this.pos.getZ()));
 
-                        if (state.isOpaqueCube() && block != MPBlocks.DARK_ENERGY_CORE)
+                        if (state.isOpaqueCube() && state.getBlock() != MPBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
                     }
-                    if (this.facing == -90 || this.facing == 90)
+                    else
                     {
-                        block = this.world.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() + 1)).getBlock();
+                        state = this.world.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() + 1));
 
-                        if (state.isOpaqueCube() && block != MPBlocks.DARK_ENERGY_CORE)
+                        if (state.isOpaqueCube() && state.getBlock() != MPBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
 
-                        block = this.world.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() - 1)).getBlock();
+                        state = this.world.getBlockState(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ() - 1));
 
-                        if (state.isOpaqueCube() && block != MPBlocks.DARK_ENERGY_CORE)
+                        if (state.isOpaqueCube() && state.getBlock() != MPBlocks.DARK_ENERGY_CORE)
                         {
                             this.failed = true;
                         }
@@ -385,7 +383,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        this.facing = nbt.getInteger("Facing");
         this.activated = nbt.getBoolean("Activated");
         this.activatedMessage = nbt.getBoolean("ActivatedMessage");
         this.successful = nbt.getBoolean("Successful");
@@ -402,7 +399,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setInteger("Facing", this.facing);
         nbt.setBoolean("Activated", this.activated);
         nbt.setBoolean("ActivatedMessage", this.activatedMessage);
         nbt.setBoolean("Successful", this.successful);
@@ -419,7 +415,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger("Facing", this.facing);
         nbt.setBoolean("Activated", this.activated);
         nbt.setBoolean("ActivatedMessage", this.activatedMessage);
         nbt.setBoolean("Successful", this.successful);
@@ -437,7 +432,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         if (pkt.getTileEntityType() == -1)
         {
             NBTTagCompound nbt = pkt.getNbtCompound();
-            this.facing = nbt.getInteger("Facing");
             this.activated = nbt.getBoolean("Activated");
             this.activatedMessage = nbt.getBoolean("ActivatedMessage");
             this.successful = nbt.getBoolean("Successful");
@@ -470,7 +464,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         BlockPos thisBlock = this.getPos();
         this.destroyBlock(thisBlock, true);
 
-        if (this.getFacing() == 0 || this.getFacing() == 180)
+        if (this.getBlockMetadata() == 0 || this.getBlockMetadata() == 2)
         {
             for (int i = -1; i < 2; i++)
             {
@@ -487,7 +481,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 this.world.destroyBlock(this.getPos(), true);
             }
         }
-        if (this.getFacing() == 90 || this.getFacing() == -90)
+        else
         {
             for (int i = -1; i < 2; i++)
             {
@@ -668,16 +662,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         this.activated = activated;
         this.rendered = true;
         GalacticraftCore.packetPipeline.sendToDimension(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_GUIDE_POS, this.world.provider.getDimension(), this.getPos()), this.world.provider.getDimension());
-    }
-
-    public void setFacing(int facing)
-    {
-        this.facing = facing;
-    }
-
-    public int getFacing()
-    {
-        return this.facing;
     }
 
     public int getSuccessfulTick()

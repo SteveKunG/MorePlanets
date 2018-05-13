@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +23,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -38,6 +38,7 @@ import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
@@ -51,39 +52,19 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
         super(Material.IRON);
         this.setSoundType(SoundType.METAL);
         this.setUnlocalizedName(name);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH));
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack heldStack)
     {
-        int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
-        int direction = 0;
-
-        if (change == 0)
-        {
-            direction = 180;
-        }
-        if (change == 1)
-        {
-            direction = -90;
-        }
-        if (change == 2)
-        {
-            direction = 0;
-        }
-        if (change == 3)
-        {
-            direction = 90;
-        }
-
         TileEntity tile = world.getTileEntity(pos);
+        world.setBlockState(pos, this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()));
 
         if (tile instanceof TileEntityDarkEnergyReceiver)
         {
             TileEntityDarkEnergyReceiver energy = (TileEntityDarkEnergyReceiver) world.getTileEntity(pos);
             energy.onCreate(world, pos);
-            energy.setFacing(direction);
 
             if (heldStack.hasTagCompound() && heldStack.getTagCompound().hasKey("EnergyStored"))
             {
@@ -384,5 +365,24 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
     public ItemDescription getDescription()
     {
         return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockDarkEnergyReceiver.this.getUnlocalizedName() + ".description"));
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        EnumFacing facing = EnumFacing.getHorizontal(meta % 4);
+        return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, facing);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(BlockStateProperty.FACING_HORIZON).getHorizontalIndex();
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, BlockStateProperty.FACING_HORIZON);
     }
 }

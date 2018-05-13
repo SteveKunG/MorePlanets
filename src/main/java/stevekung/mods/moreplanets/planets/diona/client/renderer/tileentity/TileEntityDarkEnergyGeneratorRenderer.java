@@ -8,7 +8,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.client.model.ModelDarkEnergyGenerator;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
@@ -25,17 +24,21 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
     @Override
     public void render(TileEntityDarkEnergyGenerator tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
+        int meta;
+
+        if (!tile.hasWorld())
+        {
+            meta = 0;
+        }
+        else
+        {
+            meta = tile.getBlockMetadata();
+        }
+
         float renderPartialTicks = tile.renderTicks + partialTicks;
         float ticks = MathHelper.sin(renderPartialTicks / 12) / 10.0F + 0.75F;
         ticks = ticks * ticks + ticks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 0.5F) / 2F + 0.1F;
-        int facing = 0;
-
-        if (tile != null && tile.hasWorld() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == MPBlocks.DARK_ENERGY_GENERATOR)
-        {
-            facing = tile.facing;
-        }
-
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
         GlStateManager.pushMatrix();
@@ -43,7 +46,22 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
-        GlStateManager.rotate(facing, 0.0F, 1.0F, 0.0F);
+
+        switch (meta)
+        {
+        case 0:
+            GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 1:
+            GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 2:
+            GlStateManager.rotate(-360.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 3:
+            GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        }
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
@@ -78,7 +96,22 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
             this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.TEXTURE);
         }
 
-        GlStateManager.rotate(facing, 0.0F, 1.0F, 0.0F);
+        switch (meta)
+        {
+        case 0:
+            GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 1:
+            GlStateManager.rotate(0.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 2:
+            GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        case 3:
+            GlStateManager.rotate(-180.0F, 0.0F, 1.0F, 0.0F);
+            break;
+        }
+
         this.model.renderBase();
 
         if (tile.darkEnergyFuel > 0)

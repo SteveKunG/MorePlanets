@@ -195,15 +195,6 @@ public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITile
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
-    {
-        if (world.getTileEntity(pos) instanceof TileEntityLargeInfectedCrystallized)
-        {
-            ((TileEntityLargeInfectedCrystallized)world.getTileEntity(pos)).setFacing(EnumFacing.getFront(this.getMetaFromState(state)));
-        }
-    }
-
-    @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.canPlaceBlock(world, pos, facing.getOpposite()) ? this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, facing) : this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, EnumFacing.DOWN);

@@ -14,8 +14,6 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
@@ -41,8 +39,6 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     public int darkEnergyFuel = 0;
     @NetworkedField(targetSide = Side.CLIENT)
     public int prevDarkEnergyFuel = 0;
-    @NetworkedField(targetSide = Side.CLIENT)
-    public int facing;
     public NonNullList<ItemStack> containingItems = NonNullList.withSize(3, ItemStack.EMPTY);
     public int renderTicks;
     private boolean initialize = true;
@@ -52,11 +48,6 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         this.storage.setMaxExtract(2500);
         this.storage.setMaxReceive(2500);
         this.storage.setCapacity(500000);
-    }
-
-    public void setFacing(int facing)
-    {
-        this.facing = facing;
     }
 
     @Override
@@ -133,7 +124,6 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         this.storage.setCapacity(nbt.getFloat("MaxEnergy"));
         this.setDisabled(0, nbt.getBoolean("Disabled"));
         this.disableCooldown = nbt.getInteger("DisabledCooldown");
-        this.facing = nbt.getInteger("Facing");
         this.darkEnergyFuel = nbt.getInteger("DarkEnergyFuel");
         this.prevDarkEnergyFuel = nbt.getInteger("PrevDarkEnergyFuel");
         this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
@@ -147,29 +137,10 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         nbt.setFloat("MaxEnergy", this.getMaxEnergyStoredGC());
         nbt.setInteger("DisabledCooldown", this.disableCooldown);
         nbt.setBoolean("Disabled", this.getDisabled(0));
-        nbt.setInteger("Facing", this.facing);
         nbt.setInteger("DarkEnergyFuel", this.darkEnergyFuel);
         nbt.setInteger("PrevDarkEnergyFuel", this.prevDarkEnergyFuel);
         ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger("Facing", this.facing);
-        return new SPacketUpdateTileEntity(this.pos, -1, nbt);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        if (pkt.getTileEntityType() == -1)
-        {
-            NBTTagCompound nbt = pkt.getNbtCompound();
-            this.facing = nbt.getInteger("Facing");
-        }
     }
 
     @Override

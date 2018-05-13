@@ -17,7 +17,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -86,7 +85,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
             {
                 for (int i = 0; i < 16; i++)
                 {
-                    if (tileEntity.facing == 90 || tileEntity.facing == -90)
+                    if (state.getValue(BlockStateProperty.FACING_HORIZON) == EnumFacing.NORTH || state.getValue(BlockStateProperty.FACING_HORIZON) == EnumFacing.SOUTH)
                     {
                         world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, particlePosX + particleSize0, particlePosY, particlePosZ + particleSize1, 0.0D, 0.0D, 0.0D);
                         world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, particlePosX - particleSize0, particlePosY, particlePosZ + particleSize1, 0.0D, 0.0D, 0.0D);
@@ -104,34 +103,12 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack itemStack)
     {
-        int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
-        int direction = 0;
-
-        if (change == 0)
-        {
-            direction = 90;
-        }
-        if (change == 1)
-        {
-            direction = 0;
-        }
-        if (change == 2)
-        {
-            direction = -90;
-        }
-        if (change == 3)
-        {
-            direction = -180;
-        }
-
         world.setBlockState(pos, this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()));
         TileEntity tile = world.getTileEntity(pos);
 
         if (tile instanceof TileEntityDarkEnergyGenerator)
         {
             TileEntityDarkEnergyGenerator energy = (TileEntityDarkEnergyGenerator) world.getTileEntity(pos);
-            energy.setFacing(direction);
 
             if (itemStack.hasTagCompound())
             {
@@ -171,31 +148,6 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
     public boolean onUseWrench(World world, BlockPos pos, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         int change = world.getBlockState(pos).getValue(BlockStateProperty.FACING_HORIZON).rotateY().getHorizontalIndex();
-        TileEntity tile = world.getTileEntity(pos);
-
-        if (tile instanceof TileEntityDarkEnergyGenerator)
-        {
-            int direction = 0;
-
-            if (change == 0)
-            {
-                direction = 90;
-            }
-            if (change == 1)
-            {
-                direction = 0;
-            }
-            if (change == 2)
-            {
-                direction = -90;
-            }
-            if (change == 3)
-            {
-                direction = -180;
-            }
-            TileEntityDarkEnergyGenerator energy = (TileEntityDarkEnergyGenerator) tile;
-            energy.setFacing(direction);
-        }
         world.setBlockState(pos, this.getStateFromMeta(change), 3);
         return true;
     }
