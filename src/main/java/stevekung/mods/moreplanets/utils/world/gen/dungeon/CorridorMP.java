@@ -45,7 +45,7 @@ public class CorridorMP extends SizedPieceMP
                             }
                             else if (this.getDirection().getAxis() == EnumFacing.Axis.X && (i + 1) % 4 == 0 && (k == 1 || k == this.boundingBox.getZSize() - 2))
                             {
-                                this.setBlockState(world, this.configuration.getTorchBlock().withProperty(BlockTorch.FACING, k == 1 ? EnumFacing.NORTH.getOpposite() : EnumFacing.SOUTH.getOpposite()), i, j, k, this.boundingBox);
+                                this.setBlockState(world, this.configuration.getTorchBlock().withProperty(BlockTorch.FACING, k == 1 ? EnumFacing.SOUTH.getOpposite() : EnumFacing.NORTH.getOpposite()), i, j, k, this.boundingBox);
                                 continue;
                             }
                         }

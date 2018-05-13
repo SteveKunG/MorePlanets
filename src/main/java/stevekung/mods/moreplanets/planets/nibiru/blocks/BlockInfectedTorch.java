@@ -4,34 +4,23 @@ import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
-import net.minecraft.block.BlockTorch;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
-import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
-import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.blocks.BlockTorchMP;
 
-public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, IItemModelRender
+public class BlockInfectedTorch extends BlockTorchMP
 {
     public BlockInfectedTorch(String name)
     {
+        super();
         this.setUnlocalizedName(name);
-        this.setHardness(0.0F);
         this.setLightLevel(0.9375F);
         this.setSoundType(SoundType.WOOD);
-    }
-
-    @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
-    {
-        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
@@ -45,12 +34,6 @@ public class BlockInfectedTorch extends BlockTorch implements ISortableBlock, II
         {
             world.setBlockState(pos, Blocks.TORCH.getStateFromMeta(this.getMetaFromState(state)));
         }
-    }
-
-    @Override
-    public EnumSortCategoryBlock getBlockCategory()
-    {
-        return EnumSortCategoryBlock.TORCH;
     }
 
     @Override

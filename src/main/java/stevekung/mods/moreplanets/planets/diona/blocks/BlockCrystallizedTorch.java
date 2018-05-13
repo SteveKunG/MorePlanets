@@ -2,10 +2,8 @@ package stevekung.mods.moreplanets.planets.diona.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockTorch;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -15,25 +13,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
-import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.blocks.BlockTorchMP;
 
-public class BlockCrystallizedTorch extends BlockTorch implements ISortableBlock, IItemModelRender
+public class BlockCrystallizedTorch extends BlockTorchMP
 {
     public BlockCrystallizedTorch(String name)
     {
         super();
-        this.setTickRandomly(true);
-        this.setLightLevel(1.0F);
+        this.setLightLevel(0.9375F);
         this.setSoundType(SoundType.WOOD);
         this.setUnlocalizedName(name);
-    }
-
-    @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
-    {
-        return MorePlanetsMod.BLOCK_TAB;
     }
 
     @Override
@@ -58,12 +47,6 @@ public class BlockCrystallizedTorch extends BlockTorch implements ISortableBlock
             world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CRYSTALLIZED_FLAME, d0, d1, d2);
         }
-    }
-
-    @Override
-    public EnumSortCategoryBlock getBlockCategory()
-    {
-        return EnumSortCategoryBlock.TORCH;
     }
 
     @Override
