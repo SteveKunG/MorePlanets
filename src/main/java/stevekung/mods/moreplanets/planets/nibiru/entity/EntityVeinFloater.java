@@ -32,7 +32,6 @@ import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
-import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityVeinBall;
 import stevekung.mods.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
@@ -257,10 +256,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     public void fall(float distance, float damageMultiplier) {}
 
     @Override
-    public boolean isPotionApplicable(PotionEffect potion)
-    {
-        return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
-    }
+    public void addPotionEffect(PotionEffect effect) {}
 
     @Override
     public boolean isInWater()

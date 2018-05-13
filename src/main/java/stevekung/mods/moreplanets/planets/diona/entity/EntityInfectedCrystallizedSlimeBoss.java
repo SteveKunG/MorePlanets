@@ -429,10 +429,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
     }
 
     @Override
-    public boolean isPotionApplicable(PotionEffect potion)
-    {
-        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZED ? false : super.isPotionApplicable(potion);
-    }
+    public void addPotionEffect(PotionEffect effect) {}
 
     @Override
     protected double getDetectRange()
