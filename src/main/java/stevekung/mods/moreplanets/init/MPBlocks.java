@@ -1366,7 +1366,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_SHIP_BOOSTER);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_SHIP_DECORATION_0);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_SHIP_DECORATION_1);
-        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_CHEST);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_CHEST, ItemBlockTESRMP::new);
 
         // Tinted Glass
         BlocksItemsRegistry.registerBlock(MPBlocks.TINTED_GLASS);
