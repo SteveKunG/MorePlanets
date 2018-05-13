@@ -22,22 +22,14 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
     {
         super(fluid, Material.LAVA);
         this.setQuantaPerBlock(4);
-        this.setHardness(100.0F);
         this.setResistance(100.0F);
-        this.setLightLevel(1.0F);
         this.setTickRandomly(true);
     }
 
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos).getBlock();
-
-        if (block != this)
-        {
-            return block.getLightValue(state, world, pos);
-        }
-        return super.getLightValue(state, world, pos);
+        return 15;
     }
 
     @Override
