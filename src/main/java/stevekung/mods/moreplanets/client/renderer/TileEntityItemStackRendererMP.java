@@ -108,7 +108,17 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
         }
         else if (block == MPBlocks.NUCLEAR_WASTE_TANK)
         {
-            TileEntityNuclearWasteTankRenderer.INSTANCE.render();
+            boolean hasRod = true;
+            boolean createRod = false;
+            int amount = 0;
+
+            if (itemStack.hasTagCompound())
+            {
+                hasRod = itemStack.getTagCompound().getBoolean("HasRod");
+                createRod = itemStack.getTagCompound().getBoolean("CreateRod");
+                amount = itemStack.getTagCompound().hasKey("FluidTank") ? itemStack.getTagCompound().getCompoundTag("FluidTank").getInteger("Amount") : 0;
+            }
+            TileEntityNuclearWasteTankRenderer.INSTANCE.render(hasRod, createRod, amount);
         }
         else if (block == MPBlocks.VEIN_FRAME)
         {

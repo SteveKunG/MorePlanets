@@ -16,7 +16,17 @@ public class RenderNuclearWasteTank extends CCLRenderBase
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        TileEntityNuclearWasteTankRenderer.INSTANCE.render();
+        boolean hasRod = true;
+        boolean createRod = false;
+        int amount = 0;
+
+        if (itemStack.hasTagCompound())
+        {
+            hasRod = itemStack.getTagCompound().getBoolean("HasRod");
+            createRod = itemStack.getTagCompound().getBoolean("CreateRod");
+            amount = itemStack.getTagCompound().hasKey("FluidTank") ? itemStack.getTagCompound().getCompoundTag("FluidTank").getInteger("Amount") : 0;
+        }
+        TileEntityNuclearWasteTankRenderer.INSTANCE.render(hasRod, createRod, amount);
     }
 
     @Override

@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.blocks;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
+import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,11 +22,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNuclearWasteTank;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
 import stevekung.mods.moreplanets.utils.blocks.BlockContainerMP;
@@ -144,30 +147,80 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         {
             return false;
         }
-        if (this.type == BlockType.NUCLEAR_WASTE_TANK_MIDDLE && world.getBlockState(pos.down()) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
+        if (this.type == BlockType.NUCLEAR_WASTE_TANK_MIDDLE && world.getTileEntity(pos.down()) instanceof TileEntityNuclearWasteTank && world.getBlockState(pos.down()) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState())
         {
-            if (!heldStack.isEmpty() && heldStack.getItem() == MPItems.WASTE_ROD_PICKER)
+            TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) world.getTileEntity(pos.down());
+
+            if (!heldStack.isEmpty())
             {
-                if (!player.capabilities.isCreativeMode)
+                if (tank.hasRod && !tank.createRod)
                 {
-                    heldStack.damageItem(1, player);
+                    if (heldStack.getItem() == MPItems.WASTE_ROD_PICKER)
+                    {
+                        if (!player.capabilities.isCreativeMode)
+                        {
+                            heldStack.damageItem(1, player);
+                        }
+                        Block.spawnAsEntity(world, pos, new ItemStack(MPItems.NUCLEAR_WASTE_ROD));
+                        tank.hasRod = false;
+                        return true;
+                    }
                 }
-                Block.spawnAsEntity(world, pos, new ItemStack(MPItems.NUCLEAR_WASTE_ROD));
-                world.setBlockState(pos.down(), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
-                return true;
+                else
+                {
+                    int slot = player.inventory.currentItem;
+                    FluidActionResult result = FluidUtil.interactWithFluidHandler(player.inventory.getCurrentItem(), tank.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null), player);
+                    tank.createRod = true;
+
+                    if (result.isSuccess())
+                    {
+                        player.inventory.setInventorySlotContents(slot, result.result);
+
+                        if (player.inventoryContainer != null)
+                        {
+                            player.inventoryContainer.detectAndSendChanges();
+                        }
+                        return true;
+                    }
+                }
             }
         }
-        if (this.type == BlockType.NUCLEAR_WASTE_TANK_TOP && world.getBlockState(pos.down(2)) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NONE))
+        if (this.type == BlockType.NUCLEAR_WASTE_TANK_TOP && world.getTileEntity(pos.down(2)) instanceof TileEntityNuclearWasteTank && world.getBlockState(pos.down(2)) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState())
         {
-            if (!heldStack.isEmpty() && heldStack.getItem() == MPItems.WASTE_ROD_PICKER)
+            TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) world.getTileEntity(pos.down(2));
+
+            if (!heldStack.isEmpty())
             {
-                if (!player.capabilities.isCreativeMode)
+                if (tank.hasRod && !tank.createRod)
                 {
-                    heldStack.damageItem(1, player);
+                    if (heldStack.getItem() == MPItems.WASTE_ROD_PICKER)
+                    {
+                        if (!player.capabilities.isCreativeMode)
+                        {
+                            heldStack.damageItem(1, player);
+                        }
+                        Block.spawnAsEntity(world, pos, new ItemStack(MPItems.NUCLEAR_WASTE_ROD));
+                        tank.hasRod = false;
+                        return true;
+                    }
                 }
-                Block.spawnAsEntity(world, pos, new ItemStack(MPItems.NUCLEAR_WASTE_ROD));
-                world.setBlockState(pos.down(2), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD));
-                return true;
+                else
+                {
+                    int slot = player.inventory.currentItem;
+                    FluidActionResult result = FluidUtil.interactWithFluidHandler(player.inventory.getCurrentItem(), tank.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null), player);
+                    tank.createRod = true;
+
+                    if (result.isSuccess())
+                    {
+                        player.inventory.setInventorySlotContents(slot, result.result);
+
+                        if (player.inventoryContainer != null)
+                        {
+                            player.inventoryContainer.detectAndSendChanges();
+                        }
+                        return true;
+                    }
+                }
             }
         }
         return tileEntity.onBlockActivated(world, pos, player);

@@ -28,12 +28,11 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectricalSource implements IConnector, IDisableableMachine, ISidedInventory, IInventoryDefaults
 {
-    public int maxGenerate = 10000;
+    public int maxGenerate = 50000;
     private NonNullList<ItemStack> containingItems = NonNullList.withSize(1, ItemStack.EMPTY);
     @NetworkedField(targetSide = Side.CLIENT)
     public float generateTick;
@@ -117,7 +116,13 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
                         {
                             if (this.getTank(this.getPos().add(x, 0, z)))
                             {
-                                this.world.setBlockState(this.getPos().add(x, 0, z), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, this.world.rand.nextInt(5000000) == 0 ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE));
+                                this.world.setBlockState(this.getPos().add(x, 0, z), MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState());
+
+                                if (this.world.getTileEntity(this.getPos().add(x, 0, z)) instanceof TileEntityNuclearWasteTank)
+                                {
+                                    TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) this.world.getTileEntity(this.getPos().add(x, 0, z));
+                                    tank.hasRod = this.world.rand.nextInt(5000000) != 0;
+                                }
                             }
                         }
                     }
@@ -209,9 +214,9 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
     private boolean getTank(BlockPos pos)
     {
-        if (this.world.getBlockState(pos) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, this.world.rand.nextFloat() == 0.99F ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE))
+        if (this.world.getBlockState(pos) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState())
         {
-            return true;
+            return this.world.getTileEntity(pos) instanceof TileEntityNuclearWasteTank && ((TileEntityNuclearWasteTank)this.world.getTileEntity(pos)).hasRod;
         }
         else
         {

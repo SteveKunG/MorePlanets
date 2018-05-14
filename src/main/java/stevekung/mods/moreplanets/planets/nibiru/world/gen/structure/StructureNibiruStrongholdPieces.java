@@ -22,7 +22,6 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
@@ -1605,7 +1604,7 @@ public class StructureNibiruStrongholdPieces
         {
             if (box.isVecInside(pos))
             {
-                world.setBlockState(pos, MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, rand.nextFloat() > 0.9F ? BlockNuclearWasteTank.BlockType.DEPLETE : BlockNuclearWasteTank.BlockType.NONE), 2);
+                world.setBlockState(pos, MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState(), 2);
                 world.setBlockState(pos.up(), MPBlocks.NWT_MIDDLE_DUMMY.getDefaultState(), 2);
                 world.setBlockState(pos.up(2), MPBlocks.NWT_TOP_DUMMY.getDefaultState(), 2);
                 TileEntity tile = world.getTileEntity(pos);
@@ -1622,6 +1621,7 @@ public class StructureNibiruStrongholdPieces
                 if (tile instanceof TileEntityNuclearWasteTank)
                 {
                     TileEntityNuclearWasteTank waste = (TileEntityNuclearWasteTank) tile;
+                    waste.hasRod = rand.nextFloat() < 0.9F;
                     waste.onCreate(world, pos);
                 }
             }

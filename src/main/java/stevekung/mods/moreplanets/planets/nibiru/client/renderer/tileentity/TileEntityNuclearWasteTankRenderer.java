@@ -16,8 +16,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockNuclearWasteTank;
 import stevekung.mods.moreplanets.planets.nibiru.client.model.ModelNuclearWasteTank;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 
@@ -41,9 +39,9 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
 
-        if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD))
+        if (tile.isCreateRod())
         {
-            int count = 3;//tile.getWorld().getBlockState(tile.getPos()).getValue(BlockNuclearWasteTank.FLUID_COUNT);
+            int count = tile.getAmount() / 1000;
 
             for (int i = 0; i < count; i++)
             {
@@ -52,6 +50,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 GlStateManager.disableLighting();
                 GlStateManager.enableBlend();
                 GlStateManager.blendFunc(770, 771);
+                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
                 this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
                 FluidStack tankFluid = FluidRegistry.getFluidStack("nuclear_waste_fluid", 0);
                 TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(tankFluid.getFluid().getStill().toString());
@@ -114,7 +113,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
             GlStateManager.rotate(rand.nextInt(180), 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(rand.nextInt(8), 1.0F, 0.0F, 1.0F);
         }
-        if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) != MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.DEPLETE))
+        if (tile.hasRod)
         {
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         }
@@ -126,7 +125,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         GlStateManager.disableLighting();
         this.bindTexture(TileEntityNuclearWasteTankRenderer.GLOW);
 
-        if (tile.getWorld() != null && tile.getWorld().getBlockState(tile.getPos()) != MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState().withProperty(BlockNuclearWasteTank.STATE, BlockNuclearWasteTank.BlockType.NO_ROD))
+        if (tile.hasRod)
         {
             this.model.renderWaste();
         }
@@ -174,7 +173,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         return true;
     }
 
-    public void render()
+    public void render(boolean hasRod, boolean createRod, int amount)
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
@@ -183,10 +182,85 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
+
+        if (createRod)
+        {
+            int count = amount / 1000;
+
+            for (int i = 0; i < count; i++)
+            {
+                GlStateManager.pushMatrix();
+                GlStateManager.translate(0.0F, 0.5F - i, 0.0F);
+                GlStateManager.disableLighting();
+                GlStateManager.enableBlend();
+                GlStateManager.blendFunc(770, 771);
+                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
+                Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+                FluidStack tankFluid = FluidRegistry.getFluidStack("nuclear_waste_fluid", 0);
+                TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(tankFluid.getFluid().getStill().toString());
+                double uMin = sprite.getMinU();
+                double uMax = sprite.getMaxU();
+                double vMin = sprite.getMinV();
+                double vMax = sprite.getMaxV();
+                Tessellator tess = Tessellator.getInstance();
+                BufferBuilder worldRenderer = tess.getBuffer();
+                float level = 1.0F;
+                float levelInv = 0.0F;
+
+                // North
+                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.pos(-0.4, levelInv, -0.399).tex(uMin, vMin).endVertex();
+                worldRenderer.pos(-0.4, 1.0, -0.399).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
+                worldRenderer.pos(0.4, 1.0, -0.399).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
+                worldRenderer.pos(0.4, levelInv, -0.399).tex(uMax, vMin).endVertex();
+                tess.draw();
+
+                // South
+                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.pos(0.4, levelInv, 0.399).tex(uMax, vMin).endVertex();
+                worldRenderer.pos(0.4, 1.0, 0.399).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
+                worldRenderer.pos(-0.4, 1.0, 0.399).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
+                worldRenderer.pos(-0.4, levelInv, 0.399).tex(uMin, vMin).endVertex();
+                tess.draw();
+
+                // West
+                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.pos(-0.399, 1.0, -0.4).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
+                worldRenderer.pos(-0.399, levelInv, -0.4).tex(uMin, vMin).endVertex();
+                worldRenderer.pos(-0.399, levelInv, 0.4).tex(uMax, vMin).endVertex();
+                worldRenderer.pos(-0.399, 1.0, 0.4).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
+                tess.draw();
+
+                // East
+                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.pos(0.399, 1.0, 0.4).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
+                worldRenderer.pos(0.399, levelInv, 0.4).tex(uMax, vMin).endVertex();
+                worldRenderer.pos(0.399, levelInv, -0.4).tex(uMin, vMin).endVertex();
+                worldRenderer.pos(0.399, 1.0, -0.4).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
+                tess.draw();
+
+                // Top
+                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.pos(0.4, 0.01 + levelInv, 0.4).tex(uMax, vMax).endVertex();
+                worldRenderer.pos(-0.4, 0.01 + levelInv, 0.4).tex(uMax, vMin).endVertex();
+                worldRenderer.pos(-0.4, 0.01 + levelInv, -0.4).tex(uMin, vMin).endVertex();
+                worldRenderer.pos(0.4, 0.01 + levelInv, -0.4).tex(uMin, vMax).endVertex();
+                tess.draw();
+                GlStateManager.enableLighting();
+                GlStateManager.disableBlend();
+                GlStateManager.popMatrix();
+            }
+        }
+
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
-        Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityNuclearWasteTankRenderer.GLOW);
-        this.model.renderWaste();
+
+        if (hasRod)
+        {
+            Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityNuclearWasteTankRenderer.GLOW);
+            this.model.renderWaste();
+        }
+
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();
