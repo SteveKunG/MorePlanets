@@ -114,6 +114,10 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
         {
             this.time = 1200 + this.world.rand.nextInt(1200);
 
+            if (this.rodCreateTime > this.time)
+            {
+                this.rodCreateTime = this.time;
+            }
             if (this.fluidTank.getFluidAmount() == 3000 && this.rodCreateTime < this.time)
             {
                 this.rodCreateTime++;
