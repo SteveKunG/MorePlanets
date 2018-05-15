@@ -164,7 +164,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
                 this.triggerMixEffects(world, pos);
                 block.dropBlockAsItem(world, pos, state, 0);
             }
-            return true;
+            return super.displaceIfPossible(world, pos);
         }
 
         if (this.density > density)
