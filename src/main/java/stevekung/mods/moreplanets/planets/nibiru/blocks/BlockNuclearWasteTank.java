@@ -55,6 +55,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
                         }
                         Block.spawnAsEntity(world, pos, new ItemStack(MPItems.NUCLEAR_WASTE_ROD));
                         tank.hasRod = false;
+                        tank.createRod = false;
                         return true;
                     }
                 }
@@ -62,10 +63,10 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
                 {
                     int slot = player.inventory.currentItem;
                     FluidActionResult result = FluidUtil.interactWithFluidHandler(player.inventory.getCurrentItem(), tank.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null), player);
-                    tank.createRod = true;
 
                     if (result.isSuccess())
                     {
+                        tank.createRod = true;
                         player.inventory.setInventorySlotContents(slot, result.result);
 
                         if (player.inventoryContainer != null)

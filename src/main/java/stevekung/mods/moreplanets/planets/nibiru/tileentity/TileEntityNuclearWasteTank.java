@@ -113,6 +113,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
                 if (this.rodCreateTime == 200)
                 {
                     this.createRod = false;
+                    this.rodCreateTime = 0;
                     this.hasRod = true;
                     this.drain(null, 3000, true);
                 }
