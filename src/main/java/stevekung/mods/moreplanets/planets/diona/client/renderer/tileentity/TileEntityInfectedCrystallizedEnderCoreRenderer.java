@@ -9,6 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.planets.diona.client.model.ModelInfectedCrystallizedEnderCore;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCrystallizedEnderCore;
+import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityInfectedCrystallizedEnderCoreRenderer extends TileEntitySpecialRenderer<TileEntityInfectedCrystallizedEnderCore>
@@ -20,7 +21,7 @@ public class TileEntityInfectedCrystallizedEnderCoreRenderer extends TileEntityS
     @Override
     public void render(TileEntityInfectedCrystallizedEnderCore tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        float renderPartialTicks = tile.renderTicks + partialTicks;
+        float renderPartialTicks = !tile.hasWorld() ? ClientEventHandler.renderPartialTicks : tile.renderTicks + partialTicks;
         float ticks = MathHelper.sin(renderPartialTicks / 8) / 10.0F + 0.75F;
         ticks = ticks * ticks + ticks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 3) + 1F) / 2F + 0.15F;

@@ -19,30 +19,38 @@ public class MultiblockRendererUtils
 
     public static void renderBlock(double x, double y, double z, BlockPos pos, IBlockState state)
     {
+        GlStateManager.pushMatrix();
         GlStateManager.disableDepth();
         GlStateManager.enableBlend();
+        GlStateManager.disableLighting();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
-        GlStateManager.pushMatrix();
         GlStateManager.translate(x + pos.getX(), y + pos.getY(), z + pos.getZ() + 1);
         ClientRendererUtils.renderModel(state);
-        GlStateManager.popMatrix();
         GlStateManager.enableDepth();
+        GlStateManager.enableLighting();
+        GlStateManager.popMatrix();
     }
 
     public static void renderTile(double x, double y, double z, BlockPos pos, TileEntity tile)
     {
+        GlStateManager.pushMatrix();
         GlStateManager.disableDepth();
         GlStateManager.enableBlend();
+        GlStateManager.disableLighting();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.4F);
         TileEntityRendererDispatcher.instance.render(tile, x + pos.getX(), y + pos.getY(), z + pos.getZ(), 0.0F);
         GlStateManager.enableDepth();
+        GlStateManager.enableLighting();
+        GlStateManager.popMatrix();
     }
 
     public static void renderTankTile(double x, double y, double z, BlockPos pos)
     {
+        GlStateManager.pushMatrix();
         GlStateManager.disableDepth();
         MultiblockRendererUtils.renderTank(x + pos.getX(), y + pos.getY(), z + pos.getZ());
         GlStateManager.enableDepth();
+        GlStateManager.popMatrix();
     }
 
     private static void renderTank(double x, double y, double z)

@@ -11,6 +11,7 @@ public class ClientEventHandler
     private Minecraft mc;
     public static int ticks;
     public static int ticksPaused;
+    public static float renderPartialTicks;
 
     public ClientEventHandler()
     {
@@ -28,6 +29,7 @@ public class ClientEventHandler
         if (event.phase == Phase.START)
         {
             ClientEventHandler.ticks++;
+            ClientEventHandler.renderPartialTicks = ClientEventHandler.ticks + this.mc.getRenderPartialTicks();
 
             if (!this.mc.isGamePaused())
             {

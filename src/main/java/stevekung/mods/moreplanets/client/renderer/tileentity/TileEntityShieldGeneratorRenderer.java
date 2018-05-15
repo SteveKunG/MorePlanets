@@ -154,7 +154,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
     {
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
-        float renderPartialTicks = ClientEventHandler.ticks;
+        float renderPartialTicks = ClientEventHandler.renderPartialTicks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 16) + 1F) / 2F + 0.15F;
 
         GlStateManager.pushMatrix();

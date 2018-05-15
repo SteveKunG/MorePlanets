@@ -492,7 +492,7 @@ public class ClientEventHandler
         {
             GuiCelestialSelection gui = (GuiCelestialSelection) this.mc.currentScreen;
             boolean enable = true;
-            float partialTicks = stevekung.mods.stevekunglib.client.event.ClientEventHandler.ticks + this.mc.getRenderPartialTicks();
+            float partialTicks = stevekung.mods.stevekunglib.client.event.ClientEventHandler.renderPartialTicks;
 
             if (event.celestialBody == GalacticraftCore.planetOverworld && enable)
             {

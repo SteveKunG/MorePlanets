@@ -21,7 +21,7 @@ public class TileEntityDarkEnergyCoreRenderer extends TileEntitySpecialRenderer<
     @Override
     public void render(TileEntityDarkEnergyCore tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        float renderPartialTicks = !tile.hasWorld() ? ClientEventHandler.ticks : tile.renderTicks + partialTicks;
+        float renderPartialTicks = !tile.hasWorld() ? ClientEventHandler.renderPartialTicks : tile.renderTicks + partialTicks;
         float ticks = MathHelper.sin(renderPartialTicks / 8) / 10.0F + 1F;
         ticks = ticks * ticks + ticks;
         float lightTime = (MathHelper.sin(renderPartialTicks / 4) + 1F) / 2F + 0.15F;

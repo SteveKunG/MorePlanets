@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityLargeInfectedCrystallized;
 import stevekung.mods.moreplanets.utils.client.model.ModelCrystal;
+import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 @SideOnly(Side.CLIENT)
@@ -134,6 +135,7 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
 
             for (int spike = 0; spike < 6; spike++)
             {
+                float shade = MathHelper.sin((ClientEventHandler.renderPartialTicks + rand.nextInt(1)) / (16.0F + rand.nextFloat())) * 0.075F + 0.925F;
                 int angle1 = rand.nextInt(32) + 72 * spike;
                 int angle2 = 16 + rand.nextInt(16);
                 float size = 1.15F;
@@ -141,6 +143,11 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
                 float r = c.getRed() / 220.0F;
                 float g = c.getGreen() / 200.0F;
                 float b = c.getBlue() / 200.0F;
+                int shadeLight = (int)(243.0F * shade);
+                int lightX = shadeLight % 65536;
+                int lightZ = shadeLight / 65536;
+                float lightMapSaveX = OpenGlHelper.lastBrightnessX;
+                float lightMapSaveY = OpenGlHelper.lastBrightnessY;
                 GlStateManager.pushMatrix();
                 GlStateManager.enableRescaleNormal();
                 GlStateManager.enableBlend();
@@ -150,6 +157,7 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
                 GlStateManager.rotate(angle1, 0.1F, 1.0F, 0.0F);
                 GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);
                 GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
+                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightX / 1.0F, lightZ / 1.0F);
                 GlStateManager.color(r, g, b, 1.0F);
                 Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityLargeInfectedCrystallizedRenderer.TEXTURE);
                 this.model.render();
@@ -161,6 +169,7 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 GlStateManager.disableBlend();
                 GlStateManager.enableLighting();
+                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
                 GlStateManager.enableBlend();
             }
         }
