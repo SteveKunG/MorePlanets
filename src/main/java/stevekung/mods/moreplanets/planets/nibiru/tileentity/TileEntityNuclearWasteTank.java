@@ -41,6 +41,8 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     @NetworkedField(targetSide = Side.CLIENT)
     public int rodCreateTime = 0;
     @NetworkedField(targetSide = Side.CLIENT)
+    public int time = 0;
+    @NetworkedField(targetSide = Side.CLIENT)
     public boolean hasRod = true;
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean createRod = false;
@@ -52,6 +54,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     {
         super.readFromNBT(nbt);
         this.rodCreateTime = nbt.getInteger("RodCreateTime");
+        this.time = nbt.getInteger("Time");
         this.hasRod = nbt.getBoolean("HasRod");
         this.createRod = nbt.getBoolean("CreateRod");
         this.fluidTank.readFromNBT(nbt.getCompoundTag("FluidTank"));
@@ -62,6 +65,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     {
         super.writeToNBT(nbt);
         nbt.setInteger("RodCreateTime", this.rodCreateTime);
+        nbt.setInteger("Time", this.time);
         nbt.setBoolean("HasRod", this.hasRod);
         nbt.setBoolean("CreateRod", this.createRod);
 
@@ -77,6 +81,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("RodCreateTime", this.rodCreateTime);
+        nbt.setInteger("Time", this.time);
         nbt.setBoolean("HasRod", this.hasRod);
         nbt.setBoolean("CreateRod", this.createRod);
 
@@ -93,6 +98,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     {
         NBTTagCompound nbt = pkt.getNbtCompound();
         this.rodCreateTime = nbt.getInteger("RodCreateTime");
+        this.time = nbt.getInteger("Time");
         this.hasRod = nbt.getBoolean("HasRod");
         this.createRod = nbt.getBoolean("CreateRod");
         this.fluidTank.readFromNBT(nbt.getCompoundTag("FluidTank"));
@@ -106,11 +112,13 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
 
         if (!this.world.isRemote)
         {
-            if (this.fluidTank.getFluidAmount() == 3000 && this.rodCreateTime < 200)
+            this.time = 1200 + this.world.rand.nextInt(1200);
+
+            if (this.fluidTank.getFluidAmount() == 3000 && this.rodCreateTime < this.time)
             {
                 this.rodCreateTime++;
 
-                if (this.rodCreateTime == 200)
+                if (this.rodCreateTime == this.time)
                 {
                     this.createRod = false;
                     this.rodCreateTime = 0;
