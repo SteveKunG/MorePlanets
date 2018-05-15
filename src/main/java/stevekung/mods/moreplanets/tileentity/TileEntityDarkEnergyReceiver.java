@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
@@ -151,14 +150,16 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
         if (this.initMultiBlock)
         {
-            this.multiTileClientLists.put(new BlockPos(1, -1, 0), new TileEntityZeliusEgg());
-            this.multiTileClientLists.put(new BlockPos(0, -1, 1), new TileEntityZeliusEgg());
-            this.multiTileClientLists.put(new BlockPos(-1, -1, 0), new TileEntityZeliusEgg());
-            this.multiTileClientLists.put(new BlockPos(0, -1, -1), new TileEntityZeliusEgg());
-            this.multiTileClientLists.put(new BlockPos(3, 2, 3), new TileEntityInfectedCrystallizedEnderCore());
-            this.multiTileClientLists.put(new BlockPos(-3, 2, 3), new TileEntityInfectedCrystallizedEnderCore());
-            this.multiTileClientLists.put(new BlockPos(3, 2, -3), new TileEntityInfectedCrystallizedEnderCore());
-            this.multiTileClientLists.put(new BlockPos(-3, 2, -3), new TileEntityInfectedCrystallizedEnderCore());
+            TileEntityZeliusEgg egg = new TileEntityZeliusEgg();
+            TileEntityInfectedCrystallizedEnderCore core = new TileEntityInfectedCrystallizedEnderCore();
+            this.multiTileClientLists.put(new BlockPos(1, -1, 0), egg);
+            this.multiTileClientLists.put(new BlockPos(0, -1, 1), egg);
+            this.multiTileClientLists.put(new BlockPos(-1, -1, 0), egg);
+            this.multiTileClientLists.put(new BlockPos(0, -1, -1), egg);
+            this.multiTileClientLists.put(new BlockPos(3, 2, 3), core);
+            this.multiTileClientLists.put(new BlockPos(-3, 2, 3), core);
+            this.multiTileClientLists.put(new BlockPos(3, 2, -3), core);
+            this.multiTileClientLists.put(new BlockPos(-3, 2, -3), core);
             this.multiBlockClientLists.putAll(multiBlockLists);
             this.initMultiBlock = false;
         }
@@ -169,9 +170,9 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
             {
                 if (this.pos.equals(renderPos))
                 {
-                    for (Iterator<Entry<BlockPos, IBlockState>> iterator = this.multiBlockClientLists.entrySet().iterator(); iterator.hasNext();)
+                    for (Iterator<Map.Entry<BlockPos, IBlockState>> iterator = this.multiBlockClientLists.entrySet().iterator(); iterator.hasNext();)
                     {
-                        Entry<BlockPos, IBlockState> entry = iterator.next();
+                        Map.Entry<BlockPos, IBlockState> entry = iterator.next();
                         BlockPos pos = entry.getKey();
                         IBlockState state = entry.getValue();
 
@@ -180,9 +181,9 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                             iterator.remove();
                         }
                     }
-                    for (Iterator<Entry<BlockPos, TileEntity>> iterator = this.multiTileClientLists.entrySet().iterator(); iterator.hasNext();)
+                    for (Iterator<Map.Entry<BlockPos, TileEntity>> iterator = this.multiTileClientLists.entrySet().iterator(); iterator.hasNext();)
                     {
-                        Entry<BlockPos, TileEntity> entry = iterator.next();
+                        Map.Entry<BlockPos, TileEntity> entry = iterator.next();
                         BlockPos pos = entry.getKey();
                         TileEntity tile = entry.getValue();
 

@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.planets.nibiru.tileentity;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 import micdoodle8.mods.galacticraft.api.tile.IDisableableMachine;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
@@ -113,9 +112,9 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
             {
                 if (this.pos.equals(renderPos))
                 {
-                    for (Iterator<Entry<BlockPos, IBlockState>> iterator = this.multiBlockClientLists.entrySet().iterator(); iterator.hasNext();)
+                    for (Iterator<Map.Entry<BlockPos, IBlockState>> iterator = this.multiBlockClientLists.entrySet().iterator(); iterator.hasNext();)
                     {
-                        Entry<BlockPos, IBlockState> entry = iterator.next();
+                        Map.Entry<BlockPos, IBlockState> entry = iterator.next();
                         BlockPos pos = entry.getKey();
                         IBlockState state = entry.getValue();
 

@@ -136,9 +136,8 @@ public class ClientEventHandler
                             MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state);
 
                         });
-                        generator.multiTileClientLists.forEach(entry ->
+                        generator.multiTileClientLists.forEach(pos ->
                         {
-                            BlockPos pos = entry;
                             MultiblockRendererUtils.renderTankTile(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos);
                         });
                     }
