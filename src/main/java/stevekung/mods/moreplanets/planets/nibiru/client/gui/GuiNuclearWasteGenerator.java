@@ -113,6 +113,9 @@ public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBo
     {
         if (ClientEventHandler.wasteRenderPos.contains(this.tile.getPos()))
         {
+            this.tile.initMultiBlock = true;
+            this.tile.multiTileClientLists.clear();
+            this.tile.multiBlockClientLists.clear();
             ClientEventHandler.wasteRenderPos.remove(this.tile.getPos());
         }
         else

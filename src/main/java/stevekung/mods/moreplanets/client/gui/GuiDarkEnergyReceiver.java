@@ -117,6 +117,9 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
     {
         if (ClientEventHandler.receiverRenderPos.contains(this.tile.getPos()))
         {
+            this.tile.initMultiBlock = true;
+            this.tile.multiTileClientLists.clear();
+            this.tile.multiBlockClientLists.clear();
             ClientEventHandler.receiverRenderPos.remove(this.tile.getPos());
         }
         else

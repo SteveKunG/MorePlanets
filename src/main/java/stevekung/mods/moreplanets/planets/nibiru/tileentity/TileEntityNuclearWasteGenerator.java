@@ -1,8 +1,7 @@
 package stevekung.mods.moreplanets.planets.nibiru.tileentity;
 
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.Map.Entry;
 
 import micdoodle8.mods.galacticraft.api.tile.IDisableableMachine;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
@@ -26,6 +25,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
+import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.stevekunglib.utils.LangUtils;
@@ -46,6 +46,9 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     public boolean missingWaste;
     private int alertTick;
     public static final Map<BlockPos, IBlockState> multiBlockLists = new HashMap<>();
+    public List<BlockPos> multiTileClientLists = new ArrayList<>();
+    public Map<BlockPos, IBlockState> multiBlockClientLists = new HashMap<>();
+    public boolean initMultiBlock;
 
     static
     {
@@ -72,6 +75,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
     public TileEntityNuclearWasteGenerator()
     {
+        this.initMultiBlock = true;
         this.setTierGC(4);
         this.storage.setCapacity(100000000.0F);
         this.storage.setMaxExtract(this.maxGenerate);
@@ -88,6 +92,50 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     {
         super.update();
         this.alertTick++;
+
+        if (this.initMultiBlock)
+        {
+            this.multiTileClientLists.add(new BlockPos(3, 0, 0));
+            this.multiTileClientLists.add(new BlockPos(2, 0, 2));
+            this.multiTileClientLists.add(new BlockPos(2, 0, -2));
+            this.multiTileClientLists.add(new BlockPos(-3, 0, 0));
+            this.multiTileClientLists.add(new BlockPos(-2, 0, -2));
+            this.multiTileClientLists.add(new BlockPos(-2, 0, 2));
+            this.multiTileClientLists.add(new BlockPos(0, 0, 3));
+            this.multiTileClientLists.add(new BlockPos(0, 0, -3));
+            this.multiBlockClientLists.putAll(multiBlockLists);
+            this.initMultiBlock = false;
+        }
+
+        if (this.world.isRemote)
+        {
+            ClientEventHandler.wasteRenderPos.forEach(renderPos ->
+            {
+                if (this.pos.equals(renderPos))
+                {
+                    for (Iterator<Entry<BlockPos, IBlockState>> iterator = this.multiBlockClientLists.entrySet().iterator(); iterator.hasNext();)
+                    {
+                        Entry<BlockPos, IBlockState> entry = iterator.next();
+                        BlockPos pos = entry.getKey();
+                        IBlockState state = entry.getValue();
+
+                        if (this.world.getBlockState(this.pos.add(pos)) == state)
+                        {
+                            iterator.remove();
+                        }
+                    }
+                    for (Iterator<BlockPos> iterator = this.multiTileClientLists.iterator(); iterator.hasNext();)
+                    {
+                        BlockPos pos = iterator.next();
+
+                        if (this.world.isRemote && this.world.getTileEntity(this.pos.add(pos)) != null && this.world.getTileEntity(this.pos.add(pos)).getClass().equals(TileEntityNuclearWasteTank.class))
+                        {
+                            iterator.remove();
+                        }
+                    }
+                }
+            });
+        }
 
         if (!this.world.isRemote)
         {

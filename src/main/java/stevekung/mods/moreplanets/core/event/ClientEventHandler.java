@@ -28,6 +28,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -45,7 +46,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.client.renderer.DarkEnergyReceiverMultiblockRenderer;
+import stevekung.mods.moreplanets.client.renderer.MultiblockRendererUtils;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -54,7 +55,8 @@ import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
-import stevekung.mods.moreplanets.planets.nibiru.client.renderer.NuclearWasteGeneratorMultiblockRenderer;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
+import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.client.gui.GuiGameOverMP;
@@ -84,25 +86,65 @@ public class ClientEventHandler
     {
         RenderManager manager = this.mc.getRenderManager();
 
-        if (!ClientEventHandler.receiverRenderPos.isEmpty())
+        if (this.mc.world != null)
         {
-            ClientEventHandler.receiverRenderPos.forEach(renderPos ->
+            if (!ClientEventHandler.receiverRenderPos.isEmpty())
             {
-                GlStateManager.pushMatrix();
-                GlStateManager.blendFunc(770, 771);
-                DarkEnergyReceiverMultiblockRenderer.render(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ);
+                ClientEventHandler.receiverRenderPos.forEach(renderPos ->
+                {
+                    TileEntity tile = this.mc.world.getTileEntity(renderPos);
+                    GlStateManager.pushMatrix();
+                    GlStateManager.blendFunc(770, 771);
+
+                    if (tile != null && tile instanceof TileEntityDarkEnergyReceiver)
+                    {
+                        TileEntityDarkEnergyReceiver der = (TileEntityDarkEnergyReceiver) tile;
+
+                        der.multiBlockClientLists.entrySet().forEach(entry ->
+                        {
+                            BlockPos pos = entry.getKey();
+                            IBlockState state = entry.getValue();
+                            MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state);
+
+                        });
+                        der.multiTileClientLists.entrySet().forEach(entry ->
+                        {
+                            BlockPos pos = entry.getKey();
+                            TileEntity tile2 = entry.getValue();
+                            MultiblockRendererUtils.renderTile(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, tile2);
+                        });
+                    }
+                });
                 GlStateManager.popMatrix();
-            });
-        }
-        if (!ClientEventHandler.wasteRenderPos.isEmpty())
-        {
-            ClientEventHandler.wasteRenderPos.forEach(renderPos ->
+            }
+            if (!ClientEventHandler.wasteRenderPos.isEmpty())
             {
-                GlStateManager.pushMatrix();
-                GlStateManager.blendFunc(770, 771);
-                NuclearWasteGeneratorMultiblockRenderer.render(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ);
-                GlStateManager.popMatrix();
-            });
+                ClientEventHandler.wasteRenderPos.forEach(renderPos ->
+                {
+                    TileEntity tile = this.mc.world.getTileEntity(renderPos);
+                    GlStateManager.pushMatrix();
+                    GlStateManager.blendFunc(770, 771);
+
+                    if (tile != null && tile instanceof TileEntityNuclearWasteGenerator)
+                    {
+                        TileEntityNuclearWasteGenerator generator = (TileEntityNuclearWasteGenerator) tile;
+
+                        generator.multiBlockClientLists.entrySet().forEach(entry ->
+                        {
+                            BlockPos pos = entry.getKey();
+                            IBlockState state = entry.getValue();
+                            MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state);
+
+                        });
+                        generator.multiTileClientLists.forEach(entry ->
+                        {
+                            BlockPos pos = entry;
+                            MultiblockRendererUtils.renderTankTile(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos);
+                        });
+                    }
+                    GlStateManager.popMatrix();
+                });
+            }
         }
     }
 

@@ -1,8 +1,10 @@
 package stevekung.mods.moreplanets.tileentity;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
@@ -39,6 +41,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.entity.EntityBlackHole;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -46,6 +49,8 @@ import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityDarkLightningBolt;
+import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCrystallizedEnderCore;
+import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
@@ -73,6 +78,9 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public float solarRotate;
     public float rodUp;
     public static final Map<BlockPos, IBlockState> multiBlockLists = new HashMap<>();
+    public Map<BlockPos, TileEntity> multiTileClientLists = new HashMap<>();
+    public Map<BlockPos, IBlockState> multiBlockClientLists = new HashMap<>();
+    public boolean initMultiBlock;
 
     static
     {
@@ -114,6 +122,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
     public TileEntityDarkEnergyReceiver()
     {
+        this.initMultiBlock = true;
         this.storage.setMaxExtract(1000);
         this.storage.setCapacity(250000.0F);
     }
@@ -139,6 +148,52 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     {
         super.update();
         this.markDirty();
+
+        if (this.initMultiBlock)
+        {
+            this.multiTileClientLists.put(new BlockPos(1, -1, 0), new TileEntityZeliusEgg());
+            this.multiTileClientLists.put(new BlockPos(0, -1, 1), new TileEntityZeliusEgg());
+            this.multiTileClientLists.put(new BlockPos(-1, -1, 0), new TileEntityZeliusEgg());
+            this.multiTileClientLists.put(new BlockPos(0, -1, -1), new TileEntityZeliusEgg());
+            this.multiTileClientLists.put(new BlockPos(3, 2, 3), new TileEntityInfectedCrystallizedEnderCore());
+            this.multiTileClientLists.put(new BlockPos(-3, 2, 3), new TileEntityInfectedCrystallizedEnderCore());
+            this.multiTileClientLists.put(new BlockPos(3, 2, -3), new TileEntityInfectedCrystallizedEnderCore());
+            this.multiTileClientLists.put(new BlockPos(-3, 2, -3), new TileEntityInfectedCrystallizedEnderCore());
+            this.multiBlockClientLists.putAll(multiBlockLists);
+            this.initMultiBlock = false;
+        }
+
+        if (this.world.isRemote)
+        {
+            ClientEventHandler.receiverRenderPos.forEach(renderPos ->
+            {
+                if (this.pos.equals(renderPos))
+                {
+                    for (Iterator<Entry<BlockPos, IBlockState>> iterator = this.multiBlockClientLists.entrySet().iterator(); iterator.hasNext();)
+                    {
+                        Entry<BlockPos, IBlockState> entry = iterator.next();
+                        BlockPos pos = entry.getKey();
+                        IBlockState state = entry.getValue();
+
+                        if (this.world.getBlockState(this.pos.add(pos)) == state)
+                        {
+                            iterator.remove();
+                        }
+                    }
+                    for (Iterator<Entry<BlockPos, TileEntity>> iterator = this.multiTileClientLists.entrySet().iterator(); iterator.hasNext();)
+                    {
+                        Entry<BlockPos, TileEntity> entry = iterator.next();
+                        BlockPos pos = entry.getKey();
+                        TileEntity tile = entry.getValue();
+
+                        if (this.world.isRemote && this.world.getTileEntity(this.pos.add(pos)) != null && this.world.getTileEntity(this.pos.add(pos)).getClass().equals(tile.getClass()))
+                        {
+                            iterator.remove();
+                        }
+                    }
+                }
+            });
+        }
 
         if (!this.world.isRemote)
         {
