@@ -45,7 +45,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if (world.getBlockState(pos.down()).getBlock() == MPBlocks.INFECTED_SUGAR_CANE_BLOCK || this.canBlockStay(world, pos, state))
+        if (world.getBlockState(pos.down()).getBlock() == MPBlocks.INFECTED_SUGAR_CANE || this.canBlockStay(world, pos, state))
         {
             if (world.isAirBlock(pos.up()))
             {

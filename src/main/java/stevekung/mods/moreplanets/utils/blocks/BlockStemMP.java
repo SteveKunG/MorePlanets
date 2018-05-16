@@ -195,7 +195,7 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
 
     protected Item getSeedItem()
     {
-        return this.crop == MPBlocks.INFECTED_MELON_BLOCK ? MPItems.INFECTED_MELON_SEEDS : null;
+        return this.crop == MPBlocks.INFECTED_MELON ? MPItems.INFECTED_MELON_SEEDS : null;
     }
 
     @Override

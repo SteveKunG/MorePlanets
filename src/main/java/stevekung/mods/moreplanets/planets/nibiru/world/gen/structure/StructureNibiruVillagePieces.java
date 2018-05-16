@@ -1612,9 +1612,9 @@ public class StructureNibiruVillagePieces
             switch (this.structureType)
             {
             case 2:
-                return MPBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK;
+                return MPBlocks.ALIEN_BERRY_OAK_DOOR;
             default:
-                return MPBlocks.INFECTED_OAK_DOOR_BLOCK;
+                return MPBlocks.INFECTED_OAK_DOOR;
             }
         }
 

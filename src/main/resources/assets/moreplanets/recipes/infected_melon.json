@@ -7,10 +7,10 @@
     ],
     "key": {
         "X": {
-            "item": "moreplanets:infected_melon"
+            "item": "moreplanets:infected_melon_slice"
         }
     },
     "result": {
-        "item": "moreplanets:infected_melon_block"
+        "item": "moreplanets:infected_melon"
     }
 }

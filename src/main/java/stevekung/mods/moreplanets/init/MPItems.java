@@ -119,7 +119,7 @@ public class MPItems
     public static Item INFECTED_APPLE;
     public static Item INFECTED_GOLDEN_APPLE;
     public static Item ENCHANTED_INFECTED_GOLDEN_APPLE;
-    public static Item INFECTED_MELON;
+    public static Item INFECTED_MELON_SLICE;
     public static Item ALIEN_BERRY;
     public static Item GOLDEN_ALIEN_BERRY;
     public static Item TERRABERRY;
@@ -342,7 +342,7 @@ public class MPItems
         MPItems.INFECTED_APPLE = new ItemAllFood("infected_apple", ItemAllFood.ItemType.INFECTED_APPLE);
         MPItems.INFECTED_GOLDEN_APPLE = new ItemAllFood("infected_golden_apple", ItemAllFood.ItemType.INFECTED_GOLDEN_APPLE);
         MPItems.ENCHANTED_INFECTED_GOLDEN_APPLE = new ItemAllFood("enchanted_infected_golden_apple", ItemAllFood.ItemType.ENCHANTED_INFECTED_GOLDEN_APPLE);
-        MPItems.INFECTED_MELON = new ItemAllFood("infected_melon", ItemAllFood.ItemType.INFECTED_MELON);
+        MPItems.INFECTED_MELON_SLICE = new ItemAllFood("infected_melon_slice", ItemAllFood.ItemType.INFECTED_MELON_SLICE);
         MPItems.ALIEN_BERRY = new ItemAllFood("alien_berry", ItemAllFood.ItemType.ALIEN_BERRY);
         MPItems.GOLDEN_ALIEN_BERRY = new ItemAllFood("golden_alien_berry", ItemAllFood.ItemType.GOLDEN_ALIEN_BERRY);
         MPItems.TERRABERRY = new ItemAllFood("terraberry", ItemAllFood.ItemType.TERRABERRY);
@@ -351,8 +351,8 @@ public class MPItems
 
         // Other
         MPItems.INFECTED_WHEAT_SEEDS = new ItemInfectedWheatSeeds("infected_wheat_seeds");
-        MPItems.INFECTED_OAK_DOOR = new ItemDoorMP("infected_oak_door", MPBlocks.INFECTED_OAK_DOOR_BLOCK);
-        MPItems.ALIEN_BERRY_OAK_DOOR = new ItemDoorMP("alien_berry_oak_door", MPBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK);
+        MPItems.INFECTED_OAK_DOOR = new ItemDoorMP("infected_oak_door", MPBlocks.INFECTED_OAK_DOOR);
+        MPItems.ALIEN_BERRY_OAK_DOOR = new ItemDoorMP("alien_berry_oak_door", MPBlocks.ALIEN_BERRY_OAK_DOOR);
         MPItems.INFECTED_WHEAT = new ItemBaseMP("infected_wheat");
         MPItems.INFECTED_CLAY_BALL = new ItemBaseMP("infected_clay_ball");
         MPItems.INFECTED_SNOWBALL = new ItemInfectedSnowball("infected_snowball");
@@ -567,7 +567,7 @@ public class MPItems
         BlocksItemsRegistry.registerItem(MPItems.INFECTED_APPLE);
         BlocksItemsRegistry.registerItem(MPItems.INFECTED_GOLDEN_APPLE);
         BlocksItemsRegistry.registerItem(MPItems.ENCHANTED_INFECTED_GOLDEN_APPLE);
-        BlocksItemsRegistry.registerItem(MPItems.INFECTED_MELON);
+        BlocksItemsRegistry.registerItem(MPItems.INFECTED_MELON_SLICE);
         BlocksItemsRegistry.registerItem(MPItems.ALIEN_BERRY);
         BlocksItemsRegistry.registerItem(MPItems.GOLDEN_ALIEN_BERRY);
         BlocksItemsRegistry.registerItem(MPItems.TERRABERRY);
@@ -699,7 +699,7 @@ public class MPItems
         MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.PURIFIED_WATER_FLUID);
 
         MPBlocks.CHEESE_SPORE_DOOR.setDoorItem(MPItems.CHEESE_SPORE_DOOR);
-        MPBlocks.INFECTED_OAK_DOOR_BLOCK.setDoorItem(MPItems.INFECTED_OAK_DOOR);
-        MPBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK.setDoorItem(MPItems.ALIEN_BERRY_OAK_DOOR);
+        MPBlocks.INFECTED_OAK_DOOR.setDoorItem(MPItems.INFECTED_OAK_DOOR);
+        MPBlocks.ALIEN_BERRY_OAK_DOOR.setDoorItem(MPItems.ALIEN_BERRY_OAK_DOOR);
     }
 }

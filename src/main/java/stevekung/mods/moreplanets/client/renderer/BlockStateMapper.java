@@ -29,10 +29,10 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CACTUS, EnumStateMapper.PLANT_AGE_15);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_DOOR_BLOCK, EnumStateMapper.DOOR);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, EnumStateMapper.DOOR);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_DOOR, EnumStateMapper.DOOR);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_DOOR, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ELECTRICAL_FIRE, EnumStateMapper.FIRE);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SUGAR_CANE_BLOCK, BlockInfectedSugarCane.AGE);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SUGAR_CANE, BlockInfectedSugarCane.AGE);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SEAWEED, EnumStateMapper.VANILLA_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.HELIUM_GAS_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);

@@ -141,7 +141,7 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_OAK_BOOKSHELF), new Object[] { "WWW", "BBB", "WWW", 'W', MPBlocks.INFECTED_OAK_PLANKS, 'B', Items.BOOK });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_OAK_BOOKSHELF), new Object[] { "WWW", "BBB", "WWW", 'W', MPBlocks.ALIEN_BERRY_OAK_PLANKS, 'B', Items.BOOK });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_SNOW), new Object[] { "XX", "XX", 'X', MPItems.INFECTED_SNOWBALL });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_MELON_BLOCK), new Object[] { "XXX", "XXX", "XXX", 'X', MPItems.INFECTED_MELON });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_MELON), new Object[] { "XXX", "XXX", "XXX", 'X', MPItems.INFECTED_MELON_SLICE });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CLAY), new Object[] { "XX", "XX", 'X', MPItems.INFECTED_CLAY_BALL });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE, 4), new Object[] { "SS", "SS", 'S', MPItems.INFECTED_PRISMARINE_SHARD });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE_BRICKS, 1), new Object[] { "SSS", "SSS", "SSS", 'S', MPItems.INFECTED_PRISMARINE_SHARD });

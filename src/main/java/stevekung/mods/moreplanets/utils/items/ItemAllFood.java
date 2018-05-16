@@ -149,7 +149,7 @@ public class ItemAllFood extends ItemFoodMP
         INFECTED_APPLE(4, 0.3F),
         INFECTED_GOLDEN_APPLE(4, 1.2F),
         ENCHANTED_INFECTED_GOLDEN_APPLE(4, 1.5F),
-        INFECTED_MELON(3, 0.4F),
+        INFECTED_MELON_SLICE(3, 0.4F),
         ALIEN_BERRY(4, 1.0F),
         GOLDEN_ALIEN_BERRY(5, 1.25F),
         TERRABERRY(6, 1.5F),

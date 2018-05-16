@@ -16,9 +16,9 @@ public class WorldGenNibiruMelon extends WorldGenerator
         {
             BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (MPBlocks.INFECTED_MELON_BLOCK.canPlaceBlockAt(world, blockpos) && world.getBlockState(blockpos.down()).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
+            if (MPBlocks.INFECTED_MELON.canPlaceBlockAt(world, blockpos) && world.getBlockState(blockpos.down()).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
             {
-                world.setBlockState(blockpos, MPBlocks.INFECTED_MELON_BLOCK.getDefaultState(), 2);
+                world.setBlockState(blockpos, MPBlocks.INFECTED_MELON.getDefaultState(), 2);
             }
         }
         return true;

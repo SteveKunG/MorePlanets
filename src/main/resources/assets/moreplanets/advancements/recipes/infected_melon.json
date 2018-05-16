@@ -2,7 +2,7 @@
     "parent": "minecraft:recipes/root",
     "rewards": {
         "recipes": [
-            "moreplanets:infected_melon_block"
+            "moreplanets:infected_melon"
         ]
     },
     "criteria": {
@@ -11,7 +11,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "moreplanets:infected_melon"
+                        "item": "moreplanets:infected_melon_slice"
                     }
                 ]
             }
@@ -19,7 +19,7 @@
         "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-                "recipe": "moreplanets:infected_melon_block"
+                "recipe": "moreplanets:infected_melon"
             }
         }
     },

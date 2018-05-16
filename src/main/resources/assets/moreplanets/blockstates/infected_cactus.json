@@ -1,5 +1,16 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "moreplanets:blocks/infected_cactus_side",
+            "bottom": "moreplanets:blocks/infected_cactus_bottom",
+            "top": "moreplanets:blocks/infected_cactus_top",
+            "side": "moreplanets:blocks/infected_cactus_side"
+        },
+        "model": "cactus"
+    },
     "variants": {
-        "normal": { "model": "moreplanets:infected_cactus" }
+        "normal": [{}],
+        "inventory": [{}]
     }
 }

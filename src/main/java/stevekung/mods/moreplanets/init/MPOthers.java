@@ -45,7 +45,7 @@ public class MPOthers
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.INFECTED_SNOW);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.INFECTED_SNOW_LAYER);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.GREEN_VEIN_GRASS_BLOCK);
-        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.INFECTED_MELON_BLOCK);
+        MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.INFECTED_MELON);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.INFECTED_SAND);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.INFECTED_CACTUS);
         MorePlanetsMod.COMMON_REGISTRY.registerCarriable(MPBlocks.PURE_HERB);

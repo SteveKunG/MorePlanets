@@ -26,9 +26,9 @@ public class WorldGenInfectedSugarCane extends WorldGenerator
 
                     for (int k = 0; k < j; ++k)
                     {
-                        if (MPBlocks.INFECTED_SUGAR_CANE_BLOCK.canPlaceBlockAt(world, blockpos))
+                        if (MPBlocks.INFECTED_SUGAR_CANE.canPlaceBlockAt(world, blockpos))
                         {
-                            world.setBlockState(blockpos.up(k), MPBlocks.INFECTED_SUGAR_CANE_BLOCK.getDefaultState(), 2);
+                            world.setBlockState(blockpos.up(k), MPBlocks.INFECTED_SUGAR_CANE.getDefaultState(), 2);
                         }
                     }
                 }

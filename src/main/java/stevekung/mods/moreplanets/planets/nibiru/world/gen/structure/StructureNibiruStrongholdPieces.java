@@ -1228,8 +1228,8 @@ public class StructureNibiruStrongholdPieces
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 2, z, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y + 1, z, box);
                 this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), x + 2, y, z, box);
-                this.setBlockState(world, MPBlocks.INFECTED_OAK_DOOR_BLOCK.getDefaultState(), x + 1, y, z, box);
-                this.setBlockState(world, MPBlocks.INFECTED_OAK_DOOR_BLOCK.getDefaultState().withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), x + 1, y + 1, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_OAK_DOOR.getDefaultState(), x + 1, y, z, box);
+                this.setBlockState(world, MPBlocks.INFECTED_OAK_DOOR.getDefaultState().withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), x + 1, y + 1, z, box);
                 break;
             case GRATES:
                 this.setBlockState(world, Blocks.AIR.getDefaultState(), x + 1, y, z, box);

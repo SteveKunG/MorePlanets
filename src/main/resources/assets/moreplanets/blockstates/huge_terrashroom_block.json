@@ -1,17 +1,126 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "moreplanets:blocks/terrashroom_block",
+            "all": "moreplanets:blocks/terrashroom_block"
+        },
+        "model": "cube_all"
+    },
     "variants": {
-        "variant=north_west": { "model": "moreplanets:terrashroom_block_nw" },
-        "variant=north": { "model": "moreplanets:terrashroom_block_n" },
-        "variant=north_east": { "model": "moreplanets:terrashroom_block_ne" },
-        "variant=west": { "model": "moreplanets:terrashroom_block_w" },
-        "variant=center": { "model": "moreplanets:terrashroom_block_c" },
-        "variant=east": { "model": "moreplanets:terrashroom_block_e" },
-        "variant=south_west": { "model": "moreplanets:terrashroom_block_sw" },
-        "variant=south": { "model": "moreplanets:terrashroom_block_s" },
-        "variant=south_east": { "model": "moreplanets:terrashroom_block_se" },
-        "variant=stem": { "model": "moreplanets:terrashroom_block_stem" },
-        "variant=all_stem": { "model": "moreplanets:terrashroom_block_stem_all" },
-        "variant=all_outside": { "model": "moreplanets:terrashroom_block_cap_all" },
-        "variant=all_inside": { "model": "moreplanets:terrashroom_block_inside_all" }
+        "normal": [{}],
+        "inventory": [{}],
+        "variant" : {
+            "north_west": {
+                "model": "cube",
+                "textures": {
+                    "down": "moreplanets:blocks/terrashroom_inside",
+                    "up": "moreplanets:blocks/terrashroom_block",
+                    "north": "moreplanets:blocks/terrashroom_block",
+                    "east": "moreplanets:blocks/terrashroom_inside",
+                    "south": "moreplanets:blocks/terrashroom_inside",
+                    "west": "moreplanets:blocks/terrashroom_block"
+                }
+            },
+            "north": {
+                "model": "cube",
+                "textures": {
+                    "down": "moreplanets:blocks/terrashroom_inside",
+                    "up": "moreplanets:blocks/terrashroom_block",
+                    "north": "moreplanets:blocks/terrashroom_block",
+                    "east": "moreplanets:blocks/terrashroom_inside",
+                    "south": "moreplanets:blocks/terrashroom_inside",
+                    "west": "moreplanets:blocks/terrashroom_inside"
+                }
+            },
+            "north_east": {
+                "model": "cube",
+                "textures": {
+                    "down": "moreplanets:blocks/terrashroom_inside",
+                    "up": "moreplanets:blocks/terrashroom_block",
+                    "north": "moreplanets:blocks/terrashroom_block",
+                    "east": "moreplanets:blocks/terrashroom_block",
+                    "south": "moreplanets:blocks/terrashroom_inside",
+                    "west": "moreplanets:blocks/terrashroom_inside"
+                }
+            },
+            "west": {
+                "model": "cube",
+                "textures": {
+                    "down": "moreplanets:blocks/terrashroom_inside",
+                    "up": "moreplanets:blocks/terrashroom_block",
+                    "north": "moreplanets:blocks/terrashroom_inside",
+                    "east": "moreplanets:blocks/terrashroom_inside",
+                    "south": "moreplanets:blocks/terrashroom_inside",
+                    "west": "moreplanets:blocks/terrashroom_block"
+                }
+            },
+            "center": {
+                "model": "cube",
+                "textures": {
+                    "down": "moreplanets:blocks/terrashroom_inside",
+                    "up": "moreplanets:blocks/terrashroom_block",
+                    "north": "moreplanets:blocks/terrashroom_inside",
+                    "east": "moreplanets:blocks/terrashroom_inside",
+                    "south": "moreplanets:blocks/terrashroom_inside",
+                    "west": "moreplanets:blocks/terrashroom_inside"
+                }
+            },
+            "east": {
+                "model": "cube",
+                "textures": {
+                    "down": "moreplanets:blocks/terrashroom_inside",
+                    "up": "moreplanets:blocks/terrashroom_block",
+                    "north": "moreplanets:blocks/terrashroom_inside",
+                    "east": "moreplanets:blocks/terrashroom_block",
+                    "south": "moreplanets:blocks/terrashroom_inside",
+                    "west": "moreplanets:blocks/terrashroom_inside"
+                }
+            },
+            "south_west": {
+                "model": "cube",
+                "textures": {
+                    "down": "moreplanets:blocks/terrashroom_inside",
+                    "up": "moreplanets:blocks/terrashroom_block",
+                    "north": "moreplanets:blocks/terrashroom_inside",
+                    "east": "moreplanets:blocks/terrashroom_inside",
+                    "south": "moreplanets:blocks/terrashroom_block",
+                    "west": "moreplanets:blocks/terrashroom_block"
+                }
+            },
+            "south": {
+                "model": "cube",
+                "textures": {
+                    "down": "moreplanets:blocks/terrashroom_inside",
+                    "up": "moreplanets:blocks/terrashroom_block",
+                    "north": "moreplanets:blocks/terrashroom_inside",
+                    "east": "moreplanets:blocks/terrashroom_inside",
+                    "south": "moreplanets:blocks/terrashroom_block",
+                    "west": "moreplanets:blocks/terrashroom_inside"
+                }
+            },
+            "south_east": {
+                "model": "cube",
+                "textures": {
+                    "down": "moreplanets:blocks/terrashroom_inside",
+                    "up": "moreplanets:blocks/terrashroom_block",
+                    "north": "moreplanets:blocks/terrashroom_inside",
+                    "east": "moreplanets:blocks/terrashroom_block",
+                    "south": "moreplanets:blocks/terrashroom_block",
+                    "west": "moreplanets:blocks/terrashroom_inside"
+                }
+            },
+            "stem": {
+                "model": "cube_column",
+                "textures": {
+                    "particle": "moreplanets:blocks/terrashroom_stem",
+                    "side": "moreplanets:blocks/terrashroom_stem",
+                    "end": "moreplanets:blocks/terrashroom_inside"
+                }
+            },
+            "all_stem": { "textures": { "particle": "moreplanets:blocks/terrashroom_stem", "all": "moreplanets:blocks/terrashroom_stem" } },
+            "all_outside": { "textures": { "particle": "moreplanets:blocks/terrashroom_block", "all": "moreplanets:blocks/terrashroom_block" } },
+            "all_inside": { "textures": { "particle": "moreplanets:blocks/terrashroom_inside", "all": "moreplanets:blocks/terrashroom_inside" } }
+        }
     }
 }

@@ -402,8 +402,8 @@ public class MPBlocks
     public static Block INFECTED_VINES;
     public static Block SPORELILY;
     public static Block INFECTED_OAK_FENCE_GATE;
-    public static BlockDoorMP INFECTED_OAK_DOOR_BLOCK;
-    public static BlockDoorMP ALIEN_BERRY_OAK_DOOR_BLOCK;
+    public static BlockDoorMP INFECTED_OAK_DOOR;
+    public static BlockDoorMP ALIEN_BERRY_OAK_DOOR;
     public static Block NIBIRU_COBBLESTONE_STAIRS;
     public static Block INFECTED_STONE_BRICKS_STAIRS;
     public static Block NIBIRU_ANCIENT_CHEST;
@@ -413,7 +413,7 @@ public class MPBlocks
     public static Block INFECTED_SNOW;
     public static Block INFECTED_SNOW_LAYER;
     public static Block GREEN_VEIN_GRASS_BLOCK;
-    public static Block INFECTED_MELON_BLOCK;
+    public static Block INFECTED_MELON;
     public static Block INFECTED_WHEAT;
     public static Block INFECTED_GRAVEL;
     public static Block INFECTED_CLAY;
@@ -421,7 +421,7 @@ public class MPBlocks
     public static Block NIBIRU_TREASURE_CHEST;
     public static BlockChestMP INFECTED_CHEST;
     public static Block MULTALIC_CRYSTAL;
-    public static Block INFECTED_SUGAR_CANE_BLOCK;
+    public static Block INFECTED_SUGAR_CANE;
     public static Block INFECTED_PRISMARINE;
     public static Block INFECTED_PRISMARINE_BRICKS;
     public static Block INFECTED_DARK_PRISMARINE;
@@ -839,8 +839,8 @@ public class MPBlocks
         MPBlocks.INFECTED_VINES = new BlockInfectedVines("infected_vines");
         MPBlocks.SPORELILY = new BlockSporelily("sporelily");
         MPBlocks.INFECTED_OAK_FENCE_GATE = new BlockFenceGateMP("infected_oak_fence_gate");
-        MPBlocks.INFECTED_OAK_DOOR_BLOCK = new BlockDoorMP("infected_oak_door");
-        MPBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK = new BlockDoorMP("alien_berry_oak_door_block");
+        MPBlocks.INFECTED_OAK_DOOR = new BlockDoorMP("infected_oak_door");
+        MPBlocks.ALIEN_BERRY_OAK_DOOR = new BlockDoorMP("alien_berry_oak_door");
         MPBlocks.NIBIRU_COBBLESTONE_STAIRS = new BlockStairsMP("nibiru_cobblestone_stairs", EnumStairsType.COBBLESTONE);
         MPBlocks.INFECTED_STONE_BRICKS_STAIRS = new BlockStairsMP("infected_stone_bricks_stairs", EnumStairsType.STONE_BRICK);
         MPBlocks.NIBIRU_ANCIENT_CHEST = new BlockNibiruAncientChest("nibiru_ancient_chest");
@@ -850,7 +850,7 @@ public class MPBlocks
         MPBlocks.INFECTED_PACKED_ICE = new BlockInfectedPackedIce("infected_packed_ice");
         MPBlocks.INFECTED_SNOW_LAYER = new BlockSnowLayerMP("infected_snow_layer", MPItems.INFECTED_SNOWBALL);
         MPBlocks.GREEN_VEIN_GRASS_BLOCK = new BlockGreenVeinGrassBlock("green_vein_grass_block");
-        MPBlocks.INFECTED_MELON_BLOCK = new BlockInfectedMelon("infected_melon_block");
+        MPBlocks.INFECTED_MELON = new BlockInfectedMelon("infected_melon");
         MPBlocks.INFECTED_WHEAT = new BlockInfectedWheat("infected_wheat");
         MPBlocks.INFECTED_GRAVEL = new BlockInfectedGravel("infected_gravel");
         MPBlocks.INFECTED_CLAY = new BlockInfectedClay("infected_clay");
@@ -858,7 +858,7 @@ public class MPBlocks
         MPBlocks.NIBIRU_TREASURE_CHEST = new BlockNibiruTreasureChest("nibiru_treasure_chest");
         MPBlocks.INFECTED_CHEST = new BlockInfectedChest("infected_chest");
         MPBlocks.MULTALIC_CRYSTAL = new BlockMultalicCrystal("multalic_crystal");
-        MPBlocks.INFECTED_SUGAR_CANE_BLOCK = new BlockInfectedSugarCane("infected_sugar_cane_block");
+        MPBlocks.INFECTED_SUGAR_CANE = new BlockInfectedSugarCane("infected_sugar_cane");
         MPBlocks.INFECTED_PRISMARINE = new BlockBaseMP("infected_prismarine", Material.ROCK).setHardness(1.5F).setResistance(10.0F);
         MPBlocks.INFECTED_PRISMARINE_BRICKS = new BlockBaseMP("infected_prismarine_bricks", Material.ROCK).setHardness(1.5F).setResistance(10.0F);
         MPBlocks.INFECTED_DARK_PRISMARINE = new BlockBaseMP("infected_dark_prismarine", Material.ROCK).setHardness(1.5F).setResistance(10.0F);
@@ -872,7 +872,7 @@ public class MPBlocks
         MPBlocks.INFECTED_TORCH = new BlockInfectedTorch("infected_torch");
         MPBlocks.INFECTED_FURNACE = new BlockFurnaceMP("infected_furnace", BlockFurnaceMP.BlockType.INFECTED);
         MPBlocks.JUICER_EGG = new BlockJuicerEgg("juicer_egg");
-        MPBlocks.INFECTED_MELON_STEM = new BlockStemMP("infected_melon_stem", MPBlocks.INFECTED_MELON_BLOCK);
+        MPBlocks.INFECTED_MELON_STEM = new BlockStemMP("infected_melon_stem", MPBlocks.INFECTED_MELON);
         MPBlocks.NUCLEAR_WASTE_TANK = new BlockNuclearWasteTank("nuclear_waste_tank");
         MPBlocks.VEIN_FRAME = new BlockVeinFrame("vein_frame");
         MPBlocks.VEIN_PORTAL = new BlockVeinPortal("vein_portal");
@@ -1222,15 +1222,15 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_VINES);
         BlocksItemsRegistry.registerBlock(MPBlocks.SPORELILY, ItemBlockSporelily::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_FENCE_GATE);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_DOOR_BLOCK, null);
-        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_DOOR, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_DOOR, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.NIBIRU_ANCIENT_CHEST, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SNOW);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_ICE);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PACKED_ICE);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SNOW_LAYER, ItemBlockInfectedSnow::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.GREEN_VEIN_GRASS_BLOCK);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_MELON_BLOCK);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_MELON);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_WHEAT, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_GRAVEL);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CLAY);
@@ -1239,7 +1239,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CHEST, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_CHEST, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.MULTALIC_CRYSTAL, ItemBlockTESRMP::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SUGAR_CANE_BLOCK, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SUGAR_CANE, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PRISMARINE);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PRISMARINE_BRICKS);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_DARK_PRISMARINE);
@@ -1665,10 +1665,10 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_FENCE_GATE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_FENCE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_FENCE, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_DOOR_BLOCK, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_DOOR_BLOCK, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_DOOR, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_DOOR, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.NIBIRU_ANCIENT_CHEST, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_MELON_BLOCK, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_MELON, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CHEST, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_CHEST, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_STAIRS, EnumHarvestLevel.AXE, 0);

@@ -33,7 +33,7 @@ public class BlockInfectedMelon extends BlockBaseMP
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return MPItems.INFECTED_MELON;
+        return MPItems.INFECTED_MELON_SLICE;
     }
 
     @Override

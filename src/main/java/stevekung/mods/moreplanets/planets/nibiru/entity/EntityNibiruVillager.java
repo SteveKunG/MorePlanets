@@ -73,7 +73,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
             new EmeraldForItems(new ItemStack(MPItems.INFECTED_WHEAT), new PriceInfo(18, 22)),
             new EmeraldForItems(new ItemStack(MPItems.TERRABERRY), new PriceInfo(15, 19)),
             new ListItemForEmeralds(new ItemStack(Items.BREAD), new PriceInfo(-4, -2)),
-            new EmeraldForItems(new ItemStack(MPBlocks.INFECTED_MELON_BLOCK), new PriceInfo(7, 12)),
+            new EmeraldForItems(new ItemStack(MPBlocks.INFECTED_MELON), new PriceInfo(7, 12)),
             new ListItemForEmeralds(new ItemStack(MPItems.INFECTED_APPLE), new PriceInfo(-5, -7)),
             new ListItemForEmeralds(new ItemStack(MPItems.ALIEN_BERRY), new PriceInfo(-7, -9))
     };
