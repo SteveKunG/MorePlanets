@@ -175,6 +175,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
                     if (result.isSuccess())
                     {
                         tank.createRod = true;
+                        tank.setTime();
                         player.inventory.setInventorySlotContents(slot, result.result);
 
                         if (player.inventoryContainer != null)
@@ -209,10 +210,11 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
                 {
                     int slot = player.inventory.currentItem;
                     FluidActionResult result = FluidUtil.interactWithFluidHandler(player.inventory.getCurrentItem(), tank.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null), player);
-                    tank.createRod = true;
 
                     if (result.isSuccess())
                     {
+                        tank.createRod = true;
+                        tank.setTime();
                         player.inventory.setInventorySlotContents(slot, result.result);
 
                         if (player.inventoryContainer != null)

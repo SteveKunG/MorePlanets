@@ -110,14 +110,8 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
         super.update();
         this.renderTicks++;
 
-        if (!this.world.isRemote)
+        if (!this.world.isRemote && this.createRod)
         {
-            this.time = 1200 + this.world.rand.nextInt(1200);
-
-            if (this.rodCreateTime > this.time)
-            {
-                this.rodCreateTime = this.time;
-            }
             if (this.fluidTank.getFluidAmount() == 3000 && this.rodCreateTime < this.time)
             {
                 this.rodCreateTime++;
@@ -125,8 +119,9 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
                 if (this.rodCreateTime == this.time)
                 {
                     this.createRod = false;
-                    this.rodCreateTime = 0;
                     this.hasRod = true;
+                    this.rodCreateTime = 0;
+                    this.time = 0;
                     this.drain(null, 3000, true);
                 }
             }
@@ -253,6 +248,11 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
     public int getAmount()
     {
         return this.fluidTank.getFluidAmount();
+    }
+
+    public void setTime()
+    {
+        this.time = 1200 + this.world.rand.nextInt(1200);
     }
 
     private boolean destroyBlock(BlockPos pos, boolean dropBlock)

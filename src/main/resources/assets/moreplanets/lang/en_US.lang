@@ -641,6 +641,11 @@ gui.status.settings.name=Settings
 gui.status.config_save.name=Configuration saved!
 gui.status.owner.name=Owner
 gui.status.mode.name=Mode
+gui.status.rod_cooldown.name=Creating rod cooldown
+gui.status.waste_fluid_amount=Waste Amount
+gui.status.no_waste_rod=Status: No Waste Rod
+gui.status.rod_processing=Status: Processing
+gui.status.has_waste=Status: Has Waste Fluid
 
 # GUI BUTTON
 gui.button.config.name=Config

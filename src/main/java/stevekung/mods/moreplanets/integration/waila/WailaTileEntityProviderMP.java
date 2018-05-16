@@ -21,6 +21,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyCore;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.LoggerMP;
@@ -52,6 +53,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         WailaUtil.register(TileEntityBlackHoleStorage.class, true, true, false, false, false);
         WailaUtil.register(TileEntityShieldGenerator.class, true, true, false, false, false);
         WailaUtil.register(TileEntityNuclearWasteGenerator.class, true, true, false, false, false);
+        WailaUtil.register(TileEntityNuclearWasteTank.class, true, true, false, false, false);
         WailaUtil.register(IDescription.class, false, false, true, false, false);
         WailaUtil.register(BlockDummy.class, true, true, true, false, false);
         WailaUtil.register(MPBlocks.DER_SOLAR1_DUMMY.getClass(), true, true, true, false, false);
@@ -75,7 +77,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
         Block block = accessor.getBlock();
         NBTTagCompound nbt = accessor.getNBTData();
 
-        if (nbt.hasKey("EnergyF") && !(block == MPBlocks.NWT_MIDDLE_DUMMY || block == MPBlocks.NWT_TOP_DUMMY))
+        if (nbt.hasKey("EnergyF") && !(block == MPBlocks.NWT_MIDDLE_DUMMY || block == MPBlocks.NWT_TOP_DUMMY) && !(tile instanceof TileEntityNuclearWasteTank))
         {
             tooltip.add(TextFormatting.GREEN + LangUtils.translate("gui.message.energy") + ": " + EnergyDisplayHelper.getEnergyDisplayS(nbt.getFloat("EnergyF")));
         }
@@ -134,6 +136,25 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             if (chargeCooldown > 0)
             {
                 tooltip.add(LangUtils.translate("gui.status.shield_charge_cooldown.name") + ": " + chargeCooldown / 20);
+            }
+        }
+        if (block == MPBlocks.NWT_MIDDLE_DUMMY || block == MPBlocks.NWT_TOP_DUMMY)
+        {
+            if (!nbt.getBoolean("HasRod") && !nbt.getBoolean("CreateRod"))
+            {
+                tooltip.add(LangUtils.translate("gui.status.no_waste_rod"));
+            }
+            if (nbt.getCompoundTag("FluidTank").getInteger("Amount") > 0 && nbt.getCompoundTag("FluidTank").getInteger("Amount") < 3000)
+            {
+                int amount = nbt.getCompoundTag("FluidTank").getInteger("Amount") * 100 / 3000;
+                tooltip.add(LangUtils.translate("gui.status.has_waste"));
+                tooltip.add(LangUtils.translate("gui.status.waste_fluid_amount") + ": " + amount + "%");
+            }
+            if (nbt.getInteger("Time") > 0 && nbt.getCompoundTag("FluidTank").getInteger("Amount") == 3000)
+            {
+                int cooldown = nbt.getInteger("RodCreateTime") * 100 / nbt.getInteger("Time");
+                tooltip.add(LangUtils.translate("gui.status.rod_processing"));
+                tooltip.add(LangUtils.translate("gui.status.rod_cooldown.name") + ": " + cooldown + "%");
             }
         }
 
@@ -233,6 +254,25 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 tooltip.add(LangUtils.translate("gui.status.shield_charge_cooldown.name") + ": " + chargeCooldown / 20);
             }
         }
+        if (tile instanceof TileEntityNuclearWasteTank)
+        {
+            if (!nbt.getBoolean("HasRod") && !nbt.getBoolean("CreateRod"))
+            {
+                tooltip.add(LangUtils.translate("gui.status.no_waste_rod"));
+            }
+            if (nbt.getCompoundTag("FluidTank").getInteger("Amount") > 0 && nbt.getCompoundTag("FluidTank").getInteger("Amount") < 3000)
+            {
+                int amount = nbt.getCompoundTag("FluidTank").getInteger("Amount") * 100 / 3000;
+                tooltip.add(LangUtils.translate("gui.status.has_waste"));
+                tooltip.add(LangUtils.translate("gui.status.waste_fluid_amount") + ": " + amount + "%");
+            }
+            if (nbt.getInteger("Time") > 0 && nbt.getCompoundTag("FluidTank").getInteger("Amount") == 3000)
+            {
+                int cooldown = nbt.getInteger("RodCreateTime") * 100 / nbt.getInteger("Time");
+                tooltip.add(LangUtils.translate("gui.status.rod_processing"));
+                tooltip.add(LangUtils.translate("gui.status.rod_cooldown.name") + ": " + cooldown + "%");
+            }
+        }
         return tooltip;
     }
 
@@ -309,6 +349,11 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                     nbt.setString("Status", shield.getStatus());
                     return shield.writeToNBT(nbt);
                 }
+                if (world.getTileEntity(dummyPos) instanceof TileEntityNuclearWasteTank)
+                {
+                    TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) world.getTileEntity(dummy.mainBlockPosition);
+                    return tank.writeToNBT(nbt);
+                }
             }
         }
         if (tile instanceof TileEntityDarkEnergyReceiver)
@@ -343,6 +388,11 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             nbt.setFloat("MaxEnergy", generator.getMaxEnergyStoredGC());
             nbt.setFloat("MaxOutput", generator.storage.getMaxExtract());
             return generator.writeToNBT(nbt);
+        }
+        if (tile instanceof TileEntityNuclearWasteTank)
+        {
+            TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) tile;
+            return tank.writeToNBT(nbt);
         }
         return tile.writeToNBT(nbt);
     }

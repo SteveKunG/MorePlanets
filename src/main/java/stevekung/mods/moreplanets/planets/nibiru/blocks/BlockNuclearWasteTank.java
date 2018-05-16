@@ -67,6 +67,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
                     if (result.isSuccess())
                     {
                         tank.createRod = true;
+                        tank.setTime();
                         player.inventory.setInventorySlotContents(slot, result.result);
 
                         if (player.inventoryContainer != null)
