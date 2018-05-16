@@ -154,7 +154,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             {
                 int cooldown = nbt.getInteger("RodCreateTime") * 100 / nbt.getInteger("Time");
                 tooltip.add(LangUtils.translate("gui.status.rod_processing"));
-                tooltip.add(LangUtils.translate("gui.status.rod_cooldown.name") + ": " + cooldown + "%");
+                tooltip.add(LangUtils.translate("gui.status.create_rod_progress.name") + ": " + cooldown + "%");
             }
         }
 
@@ -270,7 +270,7 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             {
                 int cooldown = nbt.getInteger("RodCreateTime") * 100 / nbt.getInteger("Time");
                 tooltip.add(LangUtils.translate("gui.status.rod_processing"));
-                tooltip.add(LangUtils.translate("gui.status.rod_cooldown.name") + ": " + cooldown + "%");
+                tooltip.add(LangUtils.translate("gui.status.create_rod_progress.name") + ": " + cooldown + "%");
             }
         }
         return tooltip;

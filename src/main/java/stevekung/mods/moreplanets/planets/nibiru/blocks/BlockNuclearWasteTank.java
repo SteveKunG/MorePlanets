@@ -145,6 +145,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
             {
                 NBTTagCompound nbt = itemStack.getTagCompound();
                 tank.rodCreateTime = nbt.getInteger("RodCreateTime");
+                tank.time = nbt.getInteger("Time");
                 tank.hasRod = nbt.getBoolean("HasRod");
                 tank.createRod = nbt.getBoolean("CreateRod");
                 tank.fluidTank.readFromNBT(nbt.getCompoundTag("FluidTank"));
@@ -163,6 +164,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
             TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) tile;
             NBTTagCompound nbt = new NBTTagCompound();
             nbt.setInteger("RodCreateTime", tank.rodCreateTime);
+            nbt.setInteger("Time", tank.time);
             nbt.setBoolean("HasRod", tank.hasRod);
             nbt.setBoolean("CreateRod", tank.createRod);
 

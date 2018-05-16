@@ -274,6 +274,7 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
                 {
                     itemStack.setTagCompound(new NBTTagCompound());
                     itemStack.getTagCompound().setInteger("RodCreateTime", this.rodCreateTime);
+                    itemStack.getTagCompound().setInteger("Time", this.time);
                     itemStack.getTagCompound().setBoolean("HasRod", this.hasRod);
                     itemStack.getTagCompound().setBoolean("CreateRod", this.createRod);
 
