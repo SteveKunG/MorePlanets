@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.planets.chalos.blocks;
+package stevekung.mods.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
@@ -12,6 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -19,11 +20,9 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
-public class BlockCheeseSporeBerryCrops extends BlockCropsMP
+public class BlockTerraberry extends BlockCropsMP
 {
-    private static final AxisAlignedBB[] CARROT_AABB = { new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5625D, 1.0D) };
-
-    public BlockCheeseSporeBerryCrops(String name)
+    public BlockTerraberry(String name)
     {
         super();
         this.setUnlocalizedName(name);
@@ -32,7 +31,7 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return BlockCheeseSporeBerryCrops.CARROT_AABB[state.getValue(BlockStateProperty.AGE_7).intValue()];
+        return new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.95D, 0.9D);
     }
 
     @Override
@@ -42,11 +41,7 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
         {
             for (int i = 0; i < 2 + world.rand.nextInt(2); i++)
             {
-                Block.spawnAsEntity(world, pos, new ItemStack(this.getCrop(), 1, 3));
-            }
-            for (int i = 0; i < 1 + world.rand.nextInt(2); i++)
-            {
-                Block.spawnAsEntity(world, pos, new ItemStack(this.getSeed()));
+                Block.spawnAsEntity(world, pos, new ItemStack(this.getCrop()));
             }
             world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_7, 0));
             return true;
@@ -57,40 +52,42 @@ public class BlockCheeseSporeBerryCrops extends BlockCropsMP
     @Override
     protected Item getCrop()
     {
-        return MPItems.CHEESE_SPORE_BERRY;
+        return MPItems.TERRABERRY;
     }
 
     @Override
     protected Item getSeed()
     {
-        return MPItems.CHEESE_SPORE_SEED;
+        return MPItems.TERRABERRY;
     }
 
     @Override
-    public boolean validBlock(Block block)
+    protected boolean validBlock(Block block)
     {
-        return block == MPBlocks.CHEESE_FARMLAND;
+        return block == MPBlocks.INFECTED_FARMLAND;
     }
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         int age = state.getValue(BlockStateProperty.AGE_7).intValue();
-        Random rand = world instanceof World ? ((World)world).rand : RANDOM;
+        Random rand = world instanceof World ? ((World)world).rand : new Random();
 
         if (age >= 7)
         {
-            for (int i = 0; i < 3 + fortune; ++i)
+            for (int i = 0; i < 2 + rand.nextInt(2); ++i)
             {
                 if (rand.nextInt(15) <= age)
                 {
-                    drops.add(new ItemStack(this.getCrop(), 1, 3));
+                    drops.add(new ItemStack(this.getCrop()));
                 }
             }
-            for (int i = 0; i < 2 + fortune; i++)
-            {
-                drops.add(new ItemStack(this.getSeed()));
-            }
         }
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        return new ItemStack(this.getSeed());
     }
 }

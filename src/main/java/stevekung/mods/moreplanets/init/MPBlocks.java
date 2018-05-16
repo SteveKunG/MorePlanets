@@ -295,7 +295,7 @@ public class MPBlocks
     public static Block CHEESE_SPORE_STEM;
     public static Block CHEESE_SPORE_PLANKS;
     public static Block CHEESE_GRASS;
-    public static Block CHEESE_SPORE_BERRY_CROPS;
+    public static Block CHEESE_SPORE_BERRY;
     public static BlockDoublePlantMP CHEESE_TALL_GRASS;
     public static Block CHEESE_SPORE_CRAFTING_TABLE;
     public static Block CHEESE_SPORE_CHEST;
@@ -735,7 +735,7 @@ public class MPBlocks
         MPBlocks.CHEESE_SPORE_STEM = new BlockLogMP("cheese_spore_stem");
         MPBlocks.CHEESE_SPORE_PLANKS = new BlockBaseMP("cheese_spore_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         MPBlocks.CHEESE_GRASS = new BlockPlaceableBushMP("cheese_grass", BlockPlaceableBushMP.BlockType.CHEESE_GRASS);
-        MPBlocks.CHEESE_SPORE_BERRY_CROPS = new BlockCheeseSporeBerryCrops("cheese_spore_berry_crops");
+        MPBlocks.CHEESE_SPORE_BERRY = new BlockCheeseSporeBerry("cheese_spore_berry");
         MPBlocks.CHEESE_TALL_GRASS = new BlockDoublePlantMP("cheese_tall_grass", BlockDoublePlantMP.BlockType.CHEESE_TALL_GRASS);
         MPBlocks.CHEESE_SPORE_CRAFTING_TABLE = new BlockCraftingTableMP("cheese_spore_crafting_table");
         MPBlocks.CHEESE_SPORE_CHEST = new BlockCheeseSporeChest("cheese_spore_chest");
@@ -851,7 +851,7 @@ public class MPBlocks
         MPBlocks.INFECTED_SNOW_LAYER = new BlockSnowLayerMP("infected_snow_layer", MPItems.INFECTED_SNOWBALL);
         MPBlocks.GREEN_VEIN_GRASS_BLOCK = new BlockGreenVeinGrassBlock("green_vein_grass_block");
         MPBlocks.INFECTED_MELON_BLOCK = new BlockInfectedMelon("infected_melon_block");
-        MPBlocks.INFECTED_WHEAT = new BlockInfectedWheatCrops("infected_wheat");
+        MPBlocks.INFECTED_WHEAT = new BlockInfectedWheat("infected_wheat");
         MPBlocks.INFECTED_GRAVEL = new BlockInfectedGravel("infected_gravel");
         MPBlocks.INFECTED_CLAY = new BlockInfectedClay("infected_clay");
         MPBlocks.ELECTRICAL_FIRE = new BlockElectricalFire("electrical_fire");
@@ -881,7 +881,7 @@ public class MPBlocks
         MPBlocks.MULTALIC_CRYSTAL_BLOCK = new BlockMultalicCrystalBlock("multalic_crystal_block");
         MPBlocks.TERRASTONE = new BlockBaseMP("terrastone", Material.ROCK).setHardness(1.5F).setResistance(10.0F);
         MPBlocks.PURIFIED_GRAVEL = new BlockPurifiedGravel("purified_gravel");
-        MPBlocks.TERRABERRY = new BlockTerraberryCrops("terraberry");
+        MPBlocks.TERRABERRY = new BlockTerraberry("terraberry");
         MPBlocks.HUGE_TERRASHROOM_BLOCK = new BlockHugeTerrashroom("huge_terrashroom_block");
         MPBlocks.TERRASTONE_STAIRS = new BlockStairsMP("terrastone_stairs", EnumStairsType.STONE_BRICK);
         MPBlocks.TERRASTONE_FURNACE = new BlockFurnaceMP("terrastone_furnace", BlockFurnaceMP.BlockType.TERRASTONE);
@@ -1117,7 +1117,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_FARMLAND);
         BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_MILK_FLUID_BLOCK);
         BlocksItemsRegistry.registerBlock(MPBlocks.GASEOUS_CHEESE_MILK_BLOCK);
-        BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_SPORE_BERRY_CROPS, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_SPORE_BERRY, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_TALL_GRASS);
         BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_SPORE_CRAFTING_TABLE);
         BlocksItemsRegistry.registerBlock(MPBlocks.CHEESE_SPORE_CHEST, ItemBlockTESRMP::new);

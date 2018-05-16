@@ -11,11 +11,11 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockCropsMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
-public class BlockInfectedWheatCrops extends BlockCropsMP
+public class BlockInfectedWheat extends BlockCropsMP
 {
     private static final AxisAlignedBB[] CROPS_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
 
-    public BlockInfectedWheatCrops(String name)
+    public BlockInfectedWheat(String name)
     {
         super();
         this.setUnlocalizedName(name);
@@ -24,7 +24,7 @@ public class BlockInfectedWheatCrops extends BlockCropsMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return BlockInfectedWheatCrops.CROPS_AABB[state.getValue(BlockStateProperty.AGE_7).intValue()];
+        return BlockInfectedWheat.CROPS_AABB[state.getValue(BlockStateProperty.AGE_7).intValue()];
     }
 
     @Override

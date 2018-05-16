@@ -28,7 +28,7 @@ public class ItemCheeseSporeSeed extends ItemBaseMP
 
         if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemStack) && state.getBlock() == MPBlocks.CHEESE_FARMLAND && world.isAirBlock(pos.up()))
         {
-            world.setBlockState(pos.up(), MPBlocks.CHEESE_SPORE_BERRY_CROPS.getDefaultState(), 11);
+            world.setBlockState(pos.up(), MPBlocks.CHEESE_SPORE_BERRY.getDefaultState(), 11);
             itemStack.shrink(1);
             return EnumActionResult.SUCCESS;
         }
