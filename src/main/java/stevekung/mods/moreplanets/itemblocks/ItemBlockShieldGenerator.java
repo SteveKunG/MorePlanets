@@ -35,6 +35,14 @@ public class ItemBlockShieldGenerator extends ItemBlockDescription
             }
             return false;
         }
+        else if (vecToAdd.getY() > 255)
+        {
+            if (world.isRemote)
+            {
+                ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
+            }
+            return false;
+        }
         else
         {
             if (!vecToAdd.equals(pos))
