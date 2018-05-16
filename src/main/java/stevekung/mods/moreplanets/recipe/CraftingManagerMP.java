@@ -158,7 +158,7 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_TORCH, 4), null, "infected_torch_from_charcoal", new Object[] { "C", "S", 'S', "stickWood", 'C', MPItems.INFECTED_CHARCOAL});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_FURNACE), new Object[] { "XXX", "X X", "XXX", 'X', MPBlocks.NIBIRU_COBBLESTONE});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE_SLAB, 6), new Object[] { "XXX", 'X', MPBlocks.INFECTED_PRISMARINE });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE_BRICKS_SLAB, 6), new Object[] { "XXX", 'X', MPBlocks.INFECTED_PRISMARINE_BRICKS });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB, 6), new Object[] { "XXX", 'X', MPBlocks.INFECTED_PRISMARINE_BRICKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_DARK_PRISMARINE_SLAB, 6), new Object[] { "XXX", 'X', MPBlocks.INFECTED_DARK_PRISMARINE });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_STONE_BRICKS_SLAB, 6), new Object[] { "XXX", 'X', MPBlocks.INFECTED_STONE_BRICKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_VEIN_STONE_BRICKS_SLAB, 6), new Object[] { "XXX", 'X', MPBlocks.INFECTED_VEIN_STONE_BRICKS });
@@ -178,7 +178,7 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_OAK_STAIRS, 4), "wooden_stairs", new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.INFECTED_OAK_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_OAK_STAIRS, 4), "wooden_stairs", new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.ALIEN_BERRY_OAK_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.INFECTED_PRISMARINE });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE_BRICKS_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.INFECTED_PRISMARINE_BRICKS });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE_BRICK_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.INFECTED_PRISMARINE_BRICKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_DARK_PRISMARINE_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.INFECTED_DARK_PRISMARINE });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_VEIN_STONE_BRICKS_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.INFECTED_VEIN_STONE_BRICKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.CRACKED_INFECTED_STONE_BRICKS_STAIRS, 4), new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.INFECTED_CRACKED_STONE_BRICKS });

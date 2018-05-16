@@ -2,7 +2,7 @@
     "parent": "minecraft:recipes/root",
     "rewards": {
         "recipes": [
-            "moreplanets:infected_prismarine_bricks_stairs"
+            "moreplanets:infected_prismarine_brick_slab"
         ]
     },
     "criteria": {
@@ -19,7 +19,7 @@
         "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-                "recipe": "moreplanets:infected_prismarine_bricks_stairs"
+                "recipe": "moreplanets:infected_prismarine_brick_slab"
             }
         }
     },

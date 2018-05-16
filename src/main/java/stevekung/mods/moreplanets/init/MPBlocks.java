@@ -67,7 +67,7 @@ public class MPBlocks
     public static BlockAllHalfSlab NIBIRU_DUNGEON_BRICK_SLAB;
     public static BlockAllHalfSlab ALIEN_SHIP_DECORATION_SLAB;
     public static BlockAllHalfSlab INFECTED_PRISMARINE_SLAB;
-    public static BlockAllHalfSlab INFECTED_PRISMARINE_BRICKS_SLAB;
+    public static BlockAllHalfSlab INFECTED_PRISMARINE_BRICK_SLAB;
     public static BlockAllHalfSlab INFECTED_DARK_PRISMARINE_SLAB;
     public static BlockAllHalfSlab INFECTED_STONE_BRICKS_SLAB;
     public static BlockAllHalfSlab INFECTED_VEIN_STONE_BRICKS_SLAB;
@@ -89,7 +89,7 @@ public class MPBlocks
     @Deprecated public static BlockAllHalfSlab DOUBLE_NIBIRU_DUNGEON_BRICK_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_ALIEN_SHIP_DECORATION_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_PRISMARINE_SLAB;
-    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_PRISMARINE_BRICKS_SLAB;
+    @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_PRISMARINE_BRICK_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_DARK_PRISMARINE_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_STONE_BRICKS_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_VEIN_STONE_BRICKS_SLAB;
@@ -457,7 +457,7 @@ public class MPBlocks
     public static Block INFECTED_OAK_STAIRS;
     public static Block ALIEN_BERRY_OAK_STAIRS;
     public static Block INFECTED_PRISMARINE_STAIRS;
-    public static Block INFECTED_PRISMARINE_BRICKS_STAIRS;
+    public static Block INFECTED_PRISMARINE_BRICK_STAIRS;
     public static Block INFECTED_DARK_PRISMARINE_STAIRS;
     public static Block INFECTED_VEIN_STONE_BRICKS_STAIRS;
     public static Block CRACKED_INFECTED_STONE_BRICKS_STAIRS;
@@ -894,7 +894,7 @@ public class MPBlocks
         MPBlocks.INFECTED_OAK_STAIRS = new BlockStairsMP("infected_oak_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
         MPBlocks.ALIEN_BERRY_OAK_STAIRS = new BlockStairsMP("alien_berry_oak_stairs", EnumStairsType.WOODEN).setSortCategory(EnumSortCategoryBlock.STAIRS_WOODEN);
         MPBlocks.INFECTED_PRISMARINE_STAIRS = new BlockStairsMP("infected_prismarine_stairs", EnumStairsType.STONE_BRICK);
-        MPBlocks.INFECTED_PRISMARINE_BRICKS_STAIRS = new BlockStairsMP("infected_prismarine_bricks_stairs", EnumStairsType.STONE_BRICK);
+        MPBlocks.INFECTED_PRISMARINE_BRICK_STAIRS = new BlockStairsMP("infected_prismarine_brick_stairs", EnumStairsType.STONE_BRICK);
         MPBlocks.INFECTED_DARK_PRISMARINE_STAIRS = new BlockStairsMP("infected_dark_prismarine_stairs", EnumStairsType.STONE_BRICK);
         MPBlocks.INFECTED_VEIN_STONE_BRICKS_STAIRS = new BlockStairsMP("infected_vein_stone_bricks_stairs", EnumStairsType.STONE_BRICK);
         MPBlocks.CRACKED_INFECTED_STONE_BRICKS_STAIRS = new BlockStairsMP("cracked_infected_stone_bricks_stairs", EnumStairsType.STONE_BRICK);
@@ -902,7 +902,7 @@ public class MPBlocks
 
         // Slab
         MPBlocks.INFECTED_PRISMARINE_SLAB = new BlockAllHalfSlab("infected_prismarine_slab", BlockAllHalfSlab.BlockType.INFECTED_PRISMARINE_SLAB);
-        MPBlocks.INFECTED_PRISMARINE_BRICKS_SLAB = new BlockAllHalfSlab("infected_prismarine_bricks_slab", BlockAllHalfSlab.BlockType.INFECTED_PRISMARINE_BRICKS_SLAB);
+        MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB = new BlockAllHalfSlab("infected_prismarine_brick_slab", BlockAllHalfSlab.BlockType.INFECTED_PRISMARINE_BRICKS_SLAB);
         MPBlocks.INFECTED_DARK_PRISMARINE_SLAB = new BlockAllHalfSlab("infected_dark_prismarine_slab", BlockAllHalfSlab.BlockType.INFECTED_DARK_PRISMARINE_SLAB);
         MPBlocks.INFECTED_STONE_BRICKS_SLAB = new BlockAllHalfSlab("infected_stone_bricks_slab", BlockAllHalfSlab.BlockType.INFECTED_STONE_BRICKS_SLAB);
         MPBlocks.INFECTED_VEIN_STONE_BRICKS_SLAB = new BlockAllHalfSlab("infected_vein_stone_bricks_slab", BlockAllHalfSlab.BlockType.INFECTED_VEIN_STONE_BRICKS_SLAB);
@@ -912,7 +912,7 @@ public class MPBlocks
         MPBlocks.INFECTED_CUT_SANDSTONE_SLAB = new BlockAllHalfSlab("infected_cut_sandstone_slab", BlockAllHalfSlab.BlockType.INFECTED_CUT_SANDSTONE_SLAB);
 
         MPBlocks.DOUBLE_INFECTED_PRISMARINE_SLAB = new BlockAllDoubleSlab("double_infected_prismarine_slab", BlockAllHalfSlab.BlockType.INFECTED_PRISMARINE_SLAB);
-        MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICKS_SLAB = new BlockAllDoubleSlab("double_infected_prismarine_bricks_slab", BlockAllHalfSlab.BlockType.INFECTED_PRISMARINE_BRICKS_SLAB);
+        MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICK_SLAB = new BlockAllDoubleSlab("double_infected_prismarine_brick_slab", BlockAllHalfSlab.BlockType.INFECTED_PRISMARINE_BRICKS_SLAB);
         MPBlocks.DOUBLE_INFECTED_DARK_PRISMARINE_SLAB = new BlockAllDoubleSlab("double_infected_dark_prismarine_slab", BlockAllHalfSlab.BlockType.INFECTED_DARK_PRISMARINE_SLAB);
         MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB = new BlockAllDoubleSlab("double_infected_stone_bricks_slab", BlockAllHalfSlab.BlockType.INFECTED_STONE_BRICKS_SLAB);
         MPBlocks.DOUBLE_INFECTED_VEIN_STONE_BRICKS_SLAB = new BlockAllDoubleSlab("double_infected_vein_stone_bricks_slab", BlockAllHalfSlab.BlockType.INFECTED_VEIN_STONE_BRICKS_SLAB);
@@ -1274,7 +1274,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_STAIRS);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_STAIRS);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PRISMARINE_STAIRS);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PRISMARINE_BRICKS_STAIRS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PRISMARINE_BRICK_STAIRS);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_DARK_PRISMARINE_STAIRS);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_VEIN_STONE_BRICKS_STAIRS);
         BlocksItemsRegistry.registerBlock(MPBlocks.CRACKED_INFECTED_STONE_BRICKS_STAIRS);
@@ -1286,7 +1286,7 @@ public class MPBlocks
 
         // Slab
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PRISMARINE_SLAB, ItemBlockSlabMP::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PRISMARINE_BRICKS_SLAB, ItemBlockSlabMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB, ItemBlockSlabMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_DARK_PRISMARINE_SLAB, ItemBlockSlabMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_STONE_BRICKS_SLAB, ItemBlockSlabMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_VEIN_STONE_BRICKS_SLAB, ItemBlockSlabMP::new);
@@ -1296,7 +1296,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CUT_SANDSTONE_SLAB, ItemBlockSlabMP::new);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_PRISMARINE_SLAB, null);
-        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICKS_SLAB, null);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICK_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_DARK_PRISMARINE_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_VEIN_STONE_BRICKS_SLAB, null);
@@ -1621,13 +1621,13 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_FURNACE, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.OIL_ORE, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PRISMARINE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PRISMARINE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PRISMARINE_BRICK_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_DARK_PRISMARINE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_VEIN_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CRACKED_INFECTED_STONE_BRICKS_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CUT_SANDSTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PRISMARINE_SLAB, EnumHarvestLevel.PICKAXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PRISMARINE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_DARK_PRISMARINE_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_STONE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_VEIN_STONE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
@@ -1636,7 +1636,7 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_SANDSTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CUT_SANDSTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_PRISMARINE_SLAB, EnumHarvestLevel.PICKAXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICK_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_DARK_PRISMARINE_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_VEIN_STONE_BRICKS_SLAB, EnumHarvestLevel.PICKAXE, 0);
@@ -1758,7 +1758,7 @@ public class MPBlocks
         MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB.setHalf(MPBlocks.ALIEN_BERRY_OAK_SLAB);
 
         MPBlocks.INFECTED_PRISMARINE_SLAB.setHalf(MPBlocks.INFECTED_PRISMARINE_SLAB);
-        MPBlocks.INFECTED_PRISMARINE_BRICKS_SLAB.setHalf(MPBlocks.INFECTED_PRISMARINE_BRICKS_SLAB);
+        MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB.setHalf(MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB);
         MPBlocks.INFECTED_DARK_PRISMARINE_SLAB.setHalf(MPBlocks.INFECTED_DARK_PRISMARINE_SLAB);
         MPBlocks.INFECTED_STONE_BRICKS_SLAB.setHalf(MPBlocks.INFECTED_STONE_BRICKS_SLAB);
         MPBlocks.INFECTED_VEIN_STONE_BRICKS_SLAB.setHalf(MPBlocks.INFECTED_VEIN_STONE_BRICKS_SLAB);
@@ -1768,7 +1768,7 @@ public class MPBlocks
         MPBlocks.INFECTED_CUT_SANDSTONE_SLAB.setHalf(MPBlocks.INFECTED_CUT_SANDSTONE_SLAB);
 
         MPBlocks.INFECTED_PRISMARINE_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_PRISMARINE_SLAB);
-        MPBlocks.INFECTED_PRISMARINE_BRICKS_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICKS_SLAB);
+        MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICK_SLAB);
         MPBlocks.INFECTED_DARK_PRISMARINE_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_DARK_PRISMARINE_SLAB);
         MPBlocks.INFECTED_STONE_BRICKS_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB);
         MPBlocks.INFECTED_VEIN_STONE_BRICKS_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_VEIN_STONE_BRICKS_SLAB);
@@ -1778,7 +1778,7 @@ public class MPBlocks
         MPBlocks.INFECTED_CUT_SANDSTONE_SLAB.setDouble(MPBlocks.DOUBLE_INFECTED_CUT_SANDSTONE_SLAB);
 
         MPBlocks.DOUBLE_INFECTED_PRISMARINE_SLAB.setHalf(MPBlocks.INFECTED_PRISMARINE_SLAB);
-        MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICKS_SLAB.setHalf(MPBlocks.INFECTED_PRISMARINE_BRICKS_SLAB);
+        MPBlocks.DOUBLE_INFECTED_PRISMARINE_BRICK_SLAB.setHalf(MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB);
         MPBlocks.DOUBLE_INFECTED_DARK_PRISMARINE_SLAB.setHalf(MPBlocks.INFECTED_DARK_PRISMARINE_SLAB);
         MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.setHalf(MPBlocks.INFECTED_STONE_BRICKS_SLAB);
         MPBlocks.DOUBLE_INFECTED_VEIN_STONE_BRICKS_SLAB.setHalf(MPBlocks.INFECTED_VEIN_STONE_BRICKS_SLAB);

@@ -1,8 +1,6 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "X  ",
-        "XX ",
         "XXX"
     ],
     "key": {
@@ -11,7 +9,7 @@
         }
     },
     "result": {
-        "item": "moreplanets:infected_prismarine_bricks_stairs",
-        "count": 4
+        "item": "moreplanets:infected_prismarine_brick_slab",
+        "count": 6
     }
 }
