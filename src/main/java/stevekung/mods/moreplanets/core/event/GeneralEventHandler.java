@@ -29,6 +29,8 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.init.MPBiomes;
@@ -71,6 +73,14 @@ public class GeneralEventHandler
         if (item == MPItems.INFECTED_COAL || item == MPItems.INFECTED_CHARCOAL)
         {
             event.setBurnTime(1600);
+        }
+        if (ItemStack.areItemStackTagsEqual(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.CRYSTALLIZED_LAVA_FLUID, 1000)), event.getItemStack()))
+        {
+            event.setBurnTime(25000);
+        }
+        if (ItemStack.areItemStackTagsEqual(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.NUCLEAR_WASTE_FLUID, 1000)), event.getItemStack()))
+        {
+            event.setBurnTime(60000);
         }
     }
 
