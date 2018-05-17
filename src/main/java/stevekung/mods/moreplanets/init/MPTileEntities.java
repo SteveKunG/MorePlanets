@@ -15,19 +15,16 @@ public class MPTileEntities
 {
     public static void init()
     {
-        // Main
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntitySpaceWarpPad.class, "space_warp_pad");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntitySpaceWarpPadFull.class, "space_warp_pad_full");
-        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDummy.class, "tile_dummy_block");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDummy.class, "dummy");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDarkEnergyReceiver.class, "dark_energy_receiver");
-        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNull.class, "dummy_null_mp");
-        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityEnergyStorageClusterMP.class, "energy_storage_cluster_mp");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNull.class, "null");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityEnergyStorageClusterMP.class, "energy_storage_cluster");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityBlackHoleStorage.class, "black_hole_storage");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityAlienDefenderBeacon.class, "alien_defender_beacon");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityShieldGenerator.class, "shield_generator");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityAlienChest.class, "alien_chest");
-
-        // Diona
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDionaAncientChest.class, "diona_ancient_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDionaTreasureChest.class, "diona_treasure_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDionaDungeonSpawner.class, "diona_dungeon_spawner");
@@ -37,20 +34,16 @@ public class MPTileEntities
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDarkEnergyCore.class, "dark_energy_core");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDarkEnergyGenerator.class, "dark_energy_generator");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityCrashedAlienProbe.class, "crashed_alien_probe");
-
-        // Chalos
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityChalosAncientChest.class, "chalos_ancient_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityChalosTreasureChest.class, "chalos_treasure_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityChalosDungeonSpawner.class, "chalos_dungeon_spawner");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityCheeseSporeChest.class, "cheese_spore_chest");
-
-        // Nibiru
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNibiruAncientChest.class, "nibiru_ancient_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNibiruTreasureChest.class, "nibiru_treasure_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityInfectedChest.class, "infected_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityAlienBerryChest.class, "alien_berry_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityMultalicCrystal.class, "multalic_crystal");
-        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNibiruFurnace.class, "nibiru_furnace");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityInfectedFurnace.class, "infected_furnace");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityJuicerEgg.class, "juicer_egg");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNuclearWasteTank.class, "nuclear_waste_tank");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityVeinFrame.class, "vein_frame");

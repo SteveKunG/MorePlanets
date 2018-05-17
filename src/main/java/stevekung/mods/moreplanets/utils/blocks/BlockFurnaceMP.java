@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNibiruFurnace;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityInfectedFurnace;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityTerrastoneFurnace;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityFurnaceMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
@@ -126,7 +126,7 @@ public class BlockFurnaceMP extends BlockContainerMP
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
-        return this.type == BlockType.INFECTED ? new TileEntityNibiruFurnace() : new TileEntityTerrastoneFurnace();
+        return this.type == BlockType.INFECTED ? new TileEntityInfectedFurnace() : new TileEntityTerrastoneFurnace();
     }
 
     @Override

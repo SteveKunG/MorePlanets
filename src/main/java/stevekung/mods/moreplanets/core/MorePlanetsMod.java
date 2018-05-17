@@ -45,7 +45,7 @@ public class MorePlanetsMod
     public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
-    public static final String FORGE_VERSION = "after:forge@[14.23.3.2673,);";
+    public static final String FORGE_VERSION = "after:forge@[14.23.3.2698,);";
     public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION;
     public static final String CERTIFICATE = "@FINGERPRINT@";
     public static final String URL = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";

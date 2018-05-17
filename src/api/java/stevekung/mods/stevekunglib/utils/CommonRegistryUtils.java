@@ -71,7 +71,7 @@ public class CommonRegistryUtils
 
     public void registerTileEntity(Class<? extends TileEntity> tile, String name)
     {
-        GameRegistry.registerTileEntity(tile, name);
+        GameRegistry.registerTileEntity(tile, new ResourceLocation(this.resourcePath + ":" + name));
     }
 
     public void registerPotion(Potion potion, String name)
