@@ -130,7 +130,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
             this.world.spawnEntity(tentacle4);
             this.tentacleSpawning = false;
         }
-        this.setSlimeSize(5);
+        this.setSlimeSize(5, true);
         return data;
     }
 
@@ -346,7 +346,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
                 {
                     entityslime.enablePersistence();
                 }
-                entityslime.setSlimeSize(i / 2);
+                entityslime.setSlimeSize(i / 2, true);
                 entityslime.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
                 this.world.spawnEntity(entityslime);
             }

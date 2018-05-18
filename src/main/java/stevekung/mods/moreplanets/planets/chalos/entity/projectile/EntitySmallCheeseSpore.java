@@ -188,7 +188,7 @@ public class EntitySmallCheeseSpore extends EntityFireball
                 {
                     EntityCheeseSlime slime = new EntityCheeseSlime(this.world);
                     slime.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                    slime.setSlimeSize(1);
+                    slime.setSlimeSize(1, true);
                     slime.setAbsorptionAmount(2.0F);
                     this.world.spawnEntity(slime);
                 }

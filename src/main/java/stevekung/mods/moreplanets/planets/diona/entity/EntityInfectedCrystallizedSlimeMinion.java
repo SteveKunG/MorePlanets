@@ -70,7 +70,7 @@ public class EntityInfectedCrystallizedSlimeMinion extends EntitySlimeBaseMP
                 {
                     entityslime.enablePersistence();
                 }
-                entityslime.setSlimeSize(i / 2);
+                entityslime.setSlimeSize(i / 2, true);
                 entityslime.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
                 this.world.spawnEntity(entityslime);
             }
@@ -98,7 +98,7 @@ public class EntityInfectedCrystallizedSlimeMinion extends EntitySlimeBaseMP
             ++i;
         }
         int j = 1 << i;
-        this.setSlimeSize(j);
+        this.setSlimeSize(j, true);
         return super.onInitialSpawn(difficulty, livingdata);
     }
 

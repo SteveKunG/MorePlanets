@@ -9,6 +9,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 @SideOnly(Side.CLIENT)
 public class ParticleLiquidDrip extends Particle
@@ -16,15 +17,15 @@ public class ParticleLiquidDrip extends Particle
     private int bobTimer;
     private boolean isLavaDrip;
 
-    public ParticleLiquidDrip(World world, double x, double y, double z, float r, float g, float b, float alpha, boolean isLavaDrip)
+    public ParticleLiquidDrip(World world, double x, double y, double z, ColorUtils.RGB rgb, boolean isLavaDrip)
     {
         super(world, x, y, z);
         this.setParticleTextureIndex(113);
         this.setSize(0.01F, 0.01F);
-        this.particleRed = r;
-        this.particleGreen = g;
-        this.particleBlue = b;
-        this.particleAlpha = alpha;
+        this.particleRed = rgb.floatRed();
+        this.particleGreen = rgb.floatGreen();
+        this.particleBlue = rgb.floatBlue();
+        this.particleAlpha = rgb.floatAlpha();
         this.isLavaDrip = isLavaDrip;
         this.particleGravity = 0.06F;
         this.bobTimer = 40;
@@ -87,16 +88,16 @@ public class ParticleLiquidDrip extends Particle
 
         if (material.isLiquid() || material.isSolid())
         {
-            double d0 = 0.0D;
+            double percent = 0.0D;
 
             if (state.getBlock() instanceof BlockLiquid)
             {
-                d0 = BlockLiquid.getLiquidHeightPercent(state.getValue(BlockLiquid.LEVEL).intValue());
+                percent = BlockLiquid.getLiquidHeightPercent(state.getValue(BlockLiquid.LEVEL).intValue());
             }
 
-            double d1 = MathHelper.floor(this.posY) + 1 - d0;
+            double posUnder = MathHelper.floor(this.posY) + 1 - percent;
 
-            if (this.posY < d1)
+            if (this.posY < posUnder)
             {
                 this.setExpired();
             }

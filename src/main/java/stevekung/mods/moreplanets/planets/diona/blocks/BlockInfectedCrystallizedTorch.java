@@ -15,9 +15,9 @@ import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockTorchMP;
 
-public class BlockCrystallizedTorch extends BlockTorchMP
+public class BlockInfectedCrystallizedTorch extends BlockTorchMP
 {
-    public BlockCrystallizedTorch(String name)
+    public BlockInfectedCrystallizedTorch(String name)
     {
         super();
         this.setLightLevel(0.9375F);
@@ -29,18 +29,16 @@ public class BlockCrystallizedTorch extends BlockTorchMP
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        EnumFacing enumfacing = state.getValue(FACING);
+        EnumFacing facing = state.getValue(FACING);
         double d0 = pos.getX() + 0.5D;
         double d1 = pos.getY() + 0.7D;
         double d2 = pos.getZ() + 0.5D;
-        double d3 = 0.22D;
-        double d4 = 0.27D;
 
-        if (enumfacing.getAxis().isHorizontal())
+        if (facing.getAxis().isHorizontal())
         {
-            EnumFacing enumfacing1 = enumfacing.getOpposite();
-            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4 * enumfacing1.getFrontOffsetX(), d1 + d3, d2 + d4 * enumfacing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
-            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CRYSTALLIZED_FLAME, d0 + d4 * enumfacing1.getFrontOffsetX(), d1 + d3, d2 + d4 * enumfacing1.getFrontOffsetZ());
+            EnumFacing facing1 = facing.getOpposite();
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.27D * facing1.getFrontOffsetX(), d1 + 0.22D, d2 + 0.27D * facing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CRYSTALLIZED_FLAME, d0 + 0.27D * facing1.getFrontOffsetX(), d1 + 0.22D, d2 + 0.27D * facing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
         }
         else
         {

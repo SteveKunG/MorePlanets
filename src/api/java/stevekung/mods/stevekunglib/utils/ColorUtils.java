@@ -33,6 +33,11 @@ public class ColorUtils
         return ColorUtils.stringToRGB(color, false, null);
     }
 
+    public static RGB intToRGB(int red, int green, int blue, int alpha)
+    {
+        return new RGB(red, green, blue, alpha);
+    }
+
     public static RGB stringToRGB(String color, boolean printException, String optionName)
     {
         try

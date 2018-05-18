@@ -656,7 +656,7 @@ public class MPBlocks
         MPBlocks.INFECTED_CRYSTALLIZED_PLANKS = new BlockInfectedCrystallizedPlanks("infected_crystallized_planks");
         MPBlocks.INFECTED_CRYSTALLIZED_FENCE = new BlockFenceMP("infected_crystallized_fence");
         MPBlocks.INFECTED_CRYSTALLIZED_WEB = new BlockInfectedCrystallizedWeb("infected_crystallized_web");
-        MPBlocks.INFECTED_CRYSTALLIZED_TORCH = new BlockCrystallizedTorch("infected_crystallized_torch");
+        MPBlocks.INFECTED_CRYSTALLIZED_TORCH = new BlockInfectedCrystallizedTorch("infected_crystallized_torch");
         MPBlocks.ZELIUS_EGG = new BlockZeliusEgg("zelius_egg");
         MPBlocks.LARGE_INFECTED_CRYSTALLIZED = new BlockLargeInfectedCrystallized("large_infected_crystallized");
         MPBlocks.ALIEN_MINER_BLOOD = new BlockAlienMinerBlood("alien_miner_blood");

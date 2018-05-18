@@ -29,19 +29,9 @@ public class BlockFluidNuclearWaste extends BlockFluidLavaBaseMP
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        if (this.blockMaterial == Material.LAVA && world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube())
+        if (rand.nextInt(1000) == 0)
         {
-            if (rand.nextInt(50) == 0)
-            {
-                double d5 = pos.getX() + rand.nextFloat();
-                double d6 = pos.getY() + state.getBoundingBox(world, pos).maxY;
-                double d7 = pos.getZ() + rand.nextFloat();
-                world.playSound(d5, d6, d7, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
-            }
-            if (rand.nextInt(200) == 0)
-            {
-                world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
-            }
+            world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, rand.nextFloat() * 0.25F + 0.75F, 0.00001F + rand.nextFloat() * 0.5F, false);
         }
         if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP))
         {
@@ -85,5 +75,11 @@ public class BlockFluidNuclearWaste extends BlockFluidLavaBaseMP
     protected boolean enableFire()
     {
         return false;
+    }
+
+    @Override
+    protected EnumParticleTypesMP getDripParticle()
+    {
+        return null;
     }
 }

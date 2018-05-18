@@ -1,15 +1,13 @@
 package stevekung.mods.moreplanets.planets.diona.client.particle;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.stevekunglib.utils.RenderUtils;
 
 @SideOnly(Side.CLIENT)
 public class ParticleCrystallizedFlame extends Particle
@@ -18,15 +16,22 @@ public class ParticleCrystallizedFlame extends Particle
 
     public ParticleCrystallizedFlame(World world, double x, double y, double z)
     {
-        super(world, x, y, z);
-        this.motionX = this.motionX * 0.009999999776482582D + this.motionX;
-        this.motionY = this.motionY * 0.009999999776482582D + this.motionY;
-        this.motionZ = this.motionZ * 0.009999999776482582D + this.motionZ;
-        x += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F;
-        y += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F;
-        z += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F;
+        super(world, x, y, z, 0.0D, 0.0D, 0.0D);
+        this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("moreplanets:particle/crystallized_flame"));
+        this.motionX = this.motionX * 0.009999999776482582D;
+        this.motionY = this.motionY * 0.009999999776482582D;
+        this.motionZ = this.motionZ * 0.009999999776482582D;
+        this.posX += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F;
+        this.posY += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F;
+        this.posZ += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F;
         this.flameScale = this.particleScale;
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
+    }
+
+    @Override
+    public int getFXLayer()
+    {
+        return 1;
     }
 
     @Override
@@ -37,29 +42,14 @@ public class ParticleCrystallizedFlame extends Particle
     }
 
     @Override
-    public void renderParticle(BufferBuilder worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+    public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
-        Tessellator tessellator = Tessellator.getInstance();
         float f = (this.particleAge + partialTicks) / this.particleMaxAge;
-        this.particleScale = this.flameScale * (1.0F - f * f * 1.0F);
-        super.renderParticle(worldrenderer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
-        tessellator.draw();
-        RenderUtils.bindTexture("moreplanets:textures/particle/crystallized_flame.png");
-        float sizeFactor = 0.1F * this.particleScale;
-        float var13 = (float)(this.prevPosX + (this.posX - this.prevPosX) * partialTicks - Particle.interpPosX);
-        float var14 = (float)(this.prevPosY + (this.posY - this.prevPosY) * partialTicks - Particle.interpPosY);
-        float var15 = (float)(this.prevPosZ + (this.posZ - this.prevPosZ) * partialTicks - Particle.interpPosZ);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
-        worldrenderer.pos(var13 - rotationX * sizeFactor - rotationXY * sizeFactor, var14 - rotationZ * sizeFactor, var15 - rotationYZ * sizeFactor - rotationXZ * sizeFactor).tex(0.0D, 1.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
-        worldrenderer.pos(var13 - rotationX * sizeFactor + rotationXY * sizeFactor, var14 + rotationZ * sizeFactor, var15 - rotationYZ * sizeFactor + rotationXZ * sizeFactor).tex(1.0D, 1.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
-        worldrenderer.pos(var13 + rotationX * sizeFactor + rotationXY * sizeFactor, var14 + rotationZ * sizeFactor, var15 + rotationYZ * sizeFactor + rotationXZ * sizeFactor).tex(1.0D, 0.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
-        worldrenderer.pos(var13 + rotationX * sizeFactor - rotationXY * sizeFactor, var14 - rotationZ * sizeFactor, var15 + rotationYZ * sizeFactor - rotationXZ * sizeFactor).tex(0.0D, 0.0D).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 255).endVertex();
-        tessellator.draw();
-        RenderUtils.drawDefaultParticlesTexture(worldrenderer);
+        this.particleScale = this.flameScale * (1.0F - f * f * 0.5F);
+        super.renderParticle(buffer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public int getBrightnessForRender(float partialTicks)
     {
         float f = (this.particleAge + partialTicks) / this.particleMaxAge;

@@ -26,7 +26,7 @@ import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IEntityBreathable
 {
-    private static DataParameter<Integer> SLIME_SIZE = EntityDataManager.createKey(EntitySlimeBaseMP.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SLIME_SIZE = EntityDataManager.createKey(EntitySlimeBaseMP.class, DataSerializers.VARINT);
     public float squishAmount;
     public float squishFactor;
     public float prevSquishFactor;
@@ -62,7 +62,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         this.dataManager.register(SLIME_SIZE, 1);
     }
 
-    public void setSlimeSize(int size)
+    public void setSlimeSize(int size, boolean resetHealth)
     {
         this.dataManager.set(SLIME_SIZE, size);
         float slimeSize = this.getSizeBased() * size;
@@ -70,7 +70,11 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         this.setPosition(this.posX, this.posY, this.posZ);
         this.overrideHealth();
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F + 0.1F * size);
-        this.setHealth(this.getMaxHealth());
+
+        if (resetHealth)
+        {
+            this.setHealth(this.getMaxHealth());
+        }
         this.experienceValue = size;
     }
 
@@ -97,7 +101,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         {
             i = 0;
         }
-        this.setSlimeSize(i + 1);
+        this.setSlimeSize(i + 1, false);
         this.wasOnGround = tagCompund.getBoolean("wasOnGround");
     }
 
@@ -182,7 +186,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
                 {
                     entityslime.enablePersistence();
                 }
-                entityslime.setSlimeSize(i / 2);
+                entityslime.setSlimeSize(i / 2, true);
                 entityslime.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
                 this.world.spawnEntity(entityslime);
             }
@@ -292,7 +296,7 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
             ++i;
         }
         int j = 1 << i;
-        this.setSlimeSize(j);
+        this.setSlimeSize(j, true);
         return super.onInitialSpawn(difficulty, livingdata);
     }
 

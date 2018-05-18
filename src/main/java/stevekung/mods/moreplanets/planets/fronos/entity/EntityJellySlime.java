@@ -74,7 +74,7 @@ public class EntityJellySlime extends EntitySlimeBaseMP
                     entityslime.enablePersistence();
                 }
                 entityslime.setJellySlimeType(this.getJellySlimeType());
-                entityslime.setSlimeSize(i / 2);
+                entityslime.setSlimeSize(i / 2, true);
                 entityslime.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
                 this.world.spawnEntity(entityslime);
             }
@@ -137,7 +137,7 @@ public class EntityJellySlime extends EntitySlimeBaseMP
             ++i;
         }
         int j = 1 << i;
-        this.setSlimeSize(j);
+        this.setSlimeSize(j, true);
         return data;
     }
 
@@ -178,20 +178,28 @@ public class EntityJellySlime extends EntitySlimeBaseMP
             {
             case 0:
                 item = MPItems.GRAPE_JELLY;
+                break;
             case 1:
                 item = MPItems.RASPBERRY_JELLY;
+                break;
             case 2:
                 item = MPItems.STRAWBERRY_JELLY;
+                break;
             case 3:
                 item = MPItems.BERRY_JELLY;
+                break;
             case 4:
                 item = MPItems.LIME_JELLY;
+                break;
             case 5:
                 item = MPItems.ORANGE_JELLY;
+                break;
             case 6:
                 item = MPItems.GREEN_JELLY;
+                break;
             case 7:
                 item = MPItems.LEMON_JELLY;
+                break;
             }
             MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.CUSTOM_BREAKING, d0, this.getEntityBoundingBox().minY, d1, new Object[] { item });
         }

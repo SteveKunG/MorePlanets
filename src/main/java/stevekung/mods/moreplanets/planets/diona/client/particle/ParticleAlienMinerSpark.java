@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.planets.diona.client.particle;
 
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -34,11 +33,9 @@ public class ParticleAlienMinerSpark extends Particle
     @Override
     public void renderParticle(BufferBuilder worldrenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
-        GlStateManager.depthMask(false);
         float f = (this.particleAge + partialTicks) / this.particleMaxAge * 32.0F;
         f = MathHelper.clamp(f, 0.0F, 1.0F);
         this.particleScale = this.reddustParticleScale * f;
-        GlStateManager.depthMask(true);
         super.renderParticle(worldrenderer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
     }
 

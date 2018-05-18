@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ModelBakeEvent;
@@ -40,7 +39,7 @@ import stevekung.mods.moreplanets.moons.koentus.client.particle.ParticleKoentusM
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleAlienMinerSpark;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleCrystallizedFlame;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleDarkPortal;
-import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleAlienBerry;
+import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleAlienBerryLeavesSpark;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedSpore;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
@@ -111,6 +110,9 @@ public class ClientProxyMP extends ServerProxyMP
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/shield");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/xpjuice_still");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/xpjuice_flowing");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/crystallized_lava");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/alien_berry_leaves_spark");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/crystallized_flame");
     }
 
     @SubscribeEvent
@@ -178,7 +180,7 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.CHEESE_MILK_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, 1.0F, 0.85F, 0.5F, 0.4F, false);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(255, 236, 182, 210), false);
             }
             else if (type == EnumParticleTypesMP.INFECTED_SPORE)
             {
@@ -196,9 +198,9 @@ public class ClientProxyMP extends ServerProxyMP
             {
                 particle = new ParticleDarkPortal(mc.world, x, y, z, motionX, motionY, motionZ);
             }
-            else if (type == EnumParticleTypesMP.ALIEN_BERRY_LEAVES)
+            else if (type == EnumParticleTypesMP.ALIEN_BERRY_LEAVES_SPARK)
             {
-                particle = new ParticleAlienBerry(mc.world, x, y, z);
+                particle = new ParticleAlienBerryLeavesSpark(mc.world, x, y, z);
             }
             else if (type == EnumParticleTypesMP.CUSTOM_BREAKING)
             {
@@ -210,31 +212,27 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.INFECTED_WATER_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.95F, 0.4F, 0.3F, 0.6F, false);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 51, 31, 204), false);
             }
             else if (type == EnumParticleTypesMP.CRYSTALLIZED_WATER_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.6F, 0.2F, 0.8F, 0.6F, false);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 102, 194, 150), false);
             }
             else if (type == EnumParticleTypesMP.CRYSTALLIZED_LAVA_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.6F, 0.2F, 0.8F, 1.0F, true);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(153, 127, 204, 255), true);
             }
             else if (type == EnumParticleTypesMP.CRYSTALLIZED_LAVA)
             {
                 particle = new ParticleLavaMC(mc.world, x, y, z, "crystallized_lava");
             }
-            else if (type == EnumParticleTypesMP.MC_SMOKE_LARGE)
-            {
-                mc.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y, z, 0.0D, 0.0D, 0.0D);
-            }
             else if (type == EnumParticleTypesMP.NUCLEAR_WASTE_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.4F, 0.8F, 0.1F, 1.0F, true);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(145, 242, 88, 255), true);
             }
             else if (type == EnumParticleTypesMP.PURIFY_WATER_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, 0.45F, 0.8F, 1.0F, 0.6F, false);
+                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(147, 209, 255, 130), false);
             }
             else if (type == EnumParticleTypesMP.KOENTUS_METEOR_SMOKE)
             {

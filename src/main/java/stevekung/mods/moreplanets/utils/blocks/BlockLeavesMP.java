@@ -42,6 +42,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         this.setLightOpacity(1);
         this.setSoundType(SoundType.PLANT);
         this.setUnlocalizedName(name);
+        this.type = type;
     }
 
     @Override
@@ -223,12 +224,12 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         }
         if (this.type == BlockType.ALIEN_BERRY_OAK_LEAVES)
         {
-            if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && rand.nextInt(10) == 0)
+            if (world.isAirBlock(pos.down()) && rand.nextInt(10) == 0)
             {
                 double d0 = pos.getX() + rand.nextFloat();
                 double d1 = pos.getY() - 0.05D;
                 double d2 = pos.getZ() + rand.nextFloat();
-                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_BERRY_LEAVES, d0, d1, d2);
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_BERRY_LEAVES_SPARK, d0, d1, d2);
             }
         }
     }
