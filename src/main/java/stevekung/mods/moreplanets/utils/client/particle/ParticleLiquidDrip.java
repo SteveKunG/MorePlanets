@@ -15,10 +15,6 @@ public class ParticleLiquidDrip extends Particle
 {
     private int bobTimer;
     private boolean isLavaDrip;
-    private float newRed;
-    private float newGreen;
-    private float newBlue;
-    private float newAlpha;
 
     public ParticleLiquidDrip(World world, double x, double y, double z, float r, float g, float b, float alpha, boolean isLavaDrip)
     {
@@ -29,10 +25,6 @@ public class ParticleLiquidDrip extends Particle
         this.particleGreen = g;
         this.particleBlue = b;
         this.particleAlpha = alpha;
-        this.newRed = r;
-        this.newGreen = g;
-        this.newBlue = b;
-        this.newAlpha = alpha;
         this.isLavaDrip = isLavaDrip;
         this.particleGravity = 0.06F;
         this.bobTimer = 40;
@@ -52,10 +44,6 @@ public class ParticleLiquidDrip extends Particle
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
-        this.particleRed = this.newRed;
-        this.particleGreen = this.newGreen;
-        this.particleBlue = this.newBlue;
-        this.particleAlpha = this.newAlpha;
         this.motionY -= this.particleGravity;
 
         if (this.bobTimer-- > 0)
@@ -79,7 +67,7 @@ public class ParticleLiquidDrip extends Particle
         {
             this.setExpired();
         }
-        if (this.canCollide)
+        if (this.onGround)
         {
             if (!this.isLavaDrip)
             {
