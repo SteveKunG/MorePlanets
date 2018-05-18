@@ -85,7 +85,6 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
         {
             this.markDirty();
         }
-
         return itemstack;
     }
 

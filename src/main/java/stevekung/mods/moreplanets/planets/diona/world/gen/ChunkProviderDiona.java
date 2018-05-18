@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.planets.diona.world.gen;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.Sets;
 
 import net.minecraft.block.BlockFalling;
@@ -119,6 +121,33 @@ public class ChunkProviderDiona extends ChunkProviderBaseMP
         this.mineshaftGenerator.generate(this.worldObj, chunkX, chunkZ, null);
         this.dungeonGenerator.generate(this.worldObj, chunkX, chunkZ, null);
         this.alienShipFeatureGenerator.generate(this.worldObj, chunkX, chunkZ, null);
+    }
+
+    @Override
+    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
+    {
+        if ("DionaMineshaft".equals(structureName) && this.mineshaftGenerator != null)
+        {
+            return this.mineshaftGenerator.isInsideStructure(pos);
+        }
+        else
+        {
+            return "AlienShip".equals(structureName) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.isInsideStructure(pos) : false;
+        }
+    }
+
+    @Override
+    @Nullable
+    public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
+    {
+        if ("DionaMineshaft".equals(structureName) && this.mineshaftGenerator != null)
+        {
+            return this.mineshaftGenerator.getNearestStructurePos(worldIn, position, findUnexplored);
+        }
+        else
+        {
+            return "AlienShip".equals(structureName) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.getNearestStructurePos(worldIn, position, findUnexplored) : null;
+        }
     }
 
     @Override

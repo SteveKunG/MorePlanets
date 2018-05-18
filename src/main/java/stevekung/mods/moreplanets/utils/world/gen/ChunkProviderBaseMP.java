@@ -119,7 +119,7 @@ public abstract class ChunkProviderBaseMP extends ChunkGeneratorOverworld
                                     topBlock = Blocks.AIR.getDefaultState();
                                     fillBlock = this.getStoneBlock();
                                 }
-                                else if (y >= seaLevel - 4 && y <= seaLevel + 1)//-16
+                                else if (y >= seaLevel - 4 && y <= seaLevel + 1)
                                 {
                                     topBlock = this.getTopBlock();
                                     fillBlock = this.getSubBlock();
