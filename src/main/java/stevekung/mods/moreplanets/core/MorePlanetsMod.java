@@ -100,7 +100,7 @@ public class MorePlanetsMod
         MPTileEntities.init();
         MPOreDictionary.init();
         MPPlanets.register();
-        GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.moreplanets_general.idNetworkHandler, PacketSimpleMP.class);
+        GalacticraftCore.packetPipeline.addDiscriminator(1999, PacketSimpleMP.class);
         MorePlanetsMod.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.CRASHED_ALIEN_PROBE));
         MorePlanetsMod.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
         MorePlanetsMod.PROXY.init(event);

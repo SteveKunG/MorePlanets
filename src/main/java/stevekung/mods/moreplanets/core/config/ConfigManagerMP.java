@@ -51,10 +51,6 @@ public class ConfigManagerMP
         @Config.Name(value = "Use 3D Item Model for Torch")
         @Config.RequiresMcRestart
         public boolean use3DTorchItemModel = true;
-
-        @Config.Name(value = "Network Handler ID")
-        @Config.RequiresMcRestart
-        public int idNetworkHandler = 2542;
     }
 
     // Dimensions
