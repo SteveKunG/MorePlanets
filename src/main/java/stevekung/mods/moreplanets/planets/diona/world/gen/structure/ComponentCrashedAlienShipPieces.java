@@ -112,7 +112,7 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
 
     public static class CrashedAlienShip extends ComponentCrashedAlienShipPieces
     {
-        private static final ResourceLocation ALIEN_SHIP_0 = new ResourceLocation("moreplanets:crashed_alien_ship/crashed_alien_ship_0");
+        private static final ResourceLocation ALIEN_SHIP = new ResourceLocation("moreplanets:crashed_alien_ship");
 
         public CrashedAlienShip() {}
 
@@ -137,7 +137,7 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
                 TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
                 PlacementSettings settings = new PlacementSettings().setRotation(arotation[rand.nextInt(arotation.length)]).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(box1);
                 settings.setIntegrity(0.65F);
-                Template template = manager.getTemplate(server, ALIEN_SHIP_0);
+                Template template = manager.getTemplate(server, CrashedAlienShip.ALIEN_SHIP);
                 template.addBlocksToWorldChunk(world, pos, settings);
                 LoggerMP.debug("Generate Crashed Alien Ship at {} {} {}", pos.getX(), pos.getY(), pos.getZ());
                 Map<BlockPos, String> map = template.getDataBlocks(pos, settings);
