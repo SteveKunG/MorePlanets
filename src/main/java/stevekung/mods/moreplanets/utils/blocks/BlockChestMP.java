@@ -21,6 +21,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
@@ -56,6 +58,13 @@ public abstract class BlockChestMP extends BlockContainerMP
     public boolean isFullCube(IBlockState state)
     {
         return false;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean hasCustomBreakingProgress(IBlockState state)
+    {
+        return true;
     }
 
     @Override

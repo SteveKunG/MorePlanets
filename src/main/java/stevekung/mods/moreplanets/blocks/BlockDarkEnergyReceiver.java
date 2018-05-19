@@ -56,6 +56,13 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public boolean hasCustomBreakingProgress(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack heldStack)
     {
         TileEntity tile = world.getTileEntity(pos);

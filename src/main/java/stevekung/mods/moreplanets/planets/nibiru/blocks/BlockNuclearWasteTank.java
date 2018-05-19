@@ -18,6 +18,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
@@ -31,6 +33,13 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
         this.setHardness(5.0F);
         this.setUnlocalizedName(name);
         this.setSoundType(SoundType.METAL);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean hasCustomBreakingProgress(IBlockState state)
+    {
+        return true;
     }
 
     @Override

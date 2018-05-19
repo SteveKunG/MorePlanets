@@ -26,20 +26,7 @@ public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRend
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
-
-        if (destroyStage >= 0)
-        {
-            this.bindTexture(DESTROY_STAGES[destroyStage]);
-            GlStateManager.matrixMode(5890);
-            GlStateManager.pushMatrix();
-            GlStateManager.scale(4.0F, 4.0F, 1.0F);
-            GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
-            GlStateManager.matrixMode(5888);
-        }
-        else
-        {
-            this.bindTexture(TileEntityAlienDefenderBeaconRenderer.TEXTURE);
-        }
+        this.bindTexture(TileEntityAlienDefenderBeaconRenderer.TEXTURE);
 
         this.model.renderBase();
         GlStateManager.popMatrix();
@@ -67,13 +54,6 @@ public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRend
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
-
-        if (destroyStage >= 0)
-        {
-            GlStateManager.matrixMode(5890);
-            GlStateManager.popMatrix();
-            GlStateManager.matrixMode(5888);
-        }
     }
 
     @Override

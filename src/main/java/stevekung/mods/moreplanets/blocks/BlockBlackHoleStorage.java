@@ -50,6 +50,13 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
 
     @Override
     @SideOnly(Side.CLIENT)
+    public boolean hasCustomBreakingProgress(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         TileEntity tile = world.getTileEntity(pos);

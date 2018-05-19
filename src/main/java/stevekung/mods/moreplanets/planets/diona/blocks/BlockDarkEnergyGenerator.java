@@ -33,6 +33,8 @@ import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescription
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.75D, 0.9D);
+
     public BlockDarkEnergyGenerator(String name)
     {
         super(Material.IRON);
@@ -43,9 +45,16 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public boolean hasCustomBreakingProgress(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.75D, 0.9D);
+        return BlockDarkEnergyGenerator.AABB;
     }
 
     @Override
