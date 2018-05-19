@@ -160,7 +160,7 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
                             ((TileEntityCrashedAlienProbe)tileDown).setLootTable(MPLootTables.CRASHED_ALIEN_PROBE, rand.nextLong());
                         }
                     }
-                    if ("alien_chest_0".equals(entry.getValue()) || "alien_chest_1".equals(entry.getValue()))
+                    if ("alien_chest".equals(entry.getValue()))
                     {
                         BlockPos pos2 = entry.getKey();
                         world.setBlockState(pos2, Blocks.AIR.getDefaultState(), 3);
