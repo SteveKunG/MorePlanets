@@ -18,7 +18,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGameOver;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -32,7 +31,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
@@ -370,14 +368,6 @@ public class ClientEventHandler
                     GlStateManager.depthMask(true);
                     GlStateManager.depthFunc(515);
                 }
-                if (this.isEntityInsideBlock(MPBlocks.GASEOUS_CHEESE_MILK_BLOCK))
-                {
-                    this.renderOverlay("gaseous_cheese_milk", this.mc.player.getBrightness(), 0.75F, event.getPartialTicks(), -0.25D);
-                }
-                if (this.isEntityInsideBlock(MPBlocks.HELIUM_GAS_BLOCK))
-                {
-                    this.renderOverlay("helium_gas", this.mc.player.getBrightness(), 0.75F, event.getPartialTicks(), -0.25D);
-                }
             }
         }
     }
@@ -420,23 +410,34 @@ public class ClientEventHandler
     public void onRenderBlockOverlay(RenderBlockOverlayEvent event)
     {
         float partialTicks = event.getRenderPartialTicks();
+        EntityPlayer player = this.mc.player;
 
         if (event.getOverlayType() == OverlayType.WATER)
         {
-            if (this.checkInsideBlock(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK))
+            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("crystallized_water", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
-            if (this.checkInsideBlock(MPBlocks.CHEESE_MILK_FLUID_BLOCK))
+            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("cheese_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
-            if (this.checkInsideBlock(MPBlocks.INFECTED_WATER_FLUID_BLOCK))
+            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("infected_water", this.mc.player.getBrightness(), 0.5F, partialTicks, -0.5D);
+            }
+            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.GASEOUS_CHEESE_MILK_BLOCK))
+            {
+                event.setCanceled(true);
+                this.renderOverlay("gaseous_cheese_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.25D);
+            }
+            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.HELIUM_GAS_BLOCK))
+            {
+                event.setCanceled(true);
+                this.renderOverlay("helium_gas", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.25D);
             }
         }
     }
@@ -445,39 +446,39 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onRenderFog(FogColors event)
     {
-        Block block = ActiveRenderInfo.getBlockStateAtEntityViewpoint(this.mc.world, event.getEntity(), (float) event.getRenderPartialTicks()).getBlock();
+        EntityPlayer player = this.mc.player;
 
-        if (block == MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK)
+        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK))
         {
             event.setRed(0.5F);
             event.setGreen(0.375F);
             event.setBlue(0.8F);
         }
-        if (block == MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK)
+        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK))
         {
             event.setRed(0.35F);
             event.setGreen(0.25F);
             event.setBlue(0.55F);
         }
-        if (block == MPBlocks.CHEESE_MILK_FLUID_BLOCK)
+        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
         {
             event.setRed(0.85F);
             event.setGreen(0.8F);
             event.setBlue(0.6F);
         }
-        if (block == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
+        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
         {
             event.setRed(0.4F);
             event.setGreen(0.15F);
             event.setBlue(0.1F);
         }
-        if (block == MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK)
+        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK))
         {
             event.setRed(0.25F);
             event.setGreen(0.7F);
             event.setBlue(0.05F);
         }
-        if (block == MPBlocks.PURIFIED_WATER_FLUID_BLOCK)
+        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.PURIFIED_WATER_FLUID_BLOCK))
         {
             event.setRed(0.4F);
             event.setGreen(0.625F);
@@ -525,16 +526,17 @@ public class ClientEventHandler
         }
     }
 
-    private boolean checkInsideBlock(Block blockInside)
+    @Deprecated //TODO Remove 1.13
+    public static boolean checkInsideBlock(EntityPlayer player, Block blockInside)
     {
-        double eyeHeight = this.mc.player.posY + this.mc.player.getEyeHeight();
-        BlockPos blockpos = new BlockPos(this.mc.player.posX, eyeHeight, this.mc.player.posZ);
-        IBlockState iblockstate = this.mc.player.world.getBlockState(blockpos);
+        double eyeHeight = player.posY + player.getEyeHeight();
+        BlockPos blockpos = new BlockPos(player.posX, eyeHeight, player.posZ);
+        IBlockState iblockstate = player.world.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
 
         if (block == blockInside)
         {
-            return this.isInsideLiquid(blockpos);
+            return ClientEventHandler.isInsideLiquid(player, blockpos);
         }
         else
         {
@@ -542,60 +544,30 @@ public class ClientEventHandler
         }
     }
 
-    private boolean isInsideLiquid(BlockPos pos)
+    @Deprecated //TODO Remove 1.13
+    private static boolean isInsideLiquid(EntityPlayer player, BlockPos pos)
     {
-        IBlockState state = this.mc.player.world.getBlockState(pos);
+        IBlockState state = player.world.getBlockState(pos);
         Block block = state.getBlock();
-        double eyes = this.mc.player.posY + this.mc.player.getEyeHeight();
-        double filled = 1.0f;
+        double eyes = player.posY + player.getEyeHeight();
+        double filled = 1.0F;
 
         if (block instanceof IFluidBlock)
         {
-            filled = ((IFluidBlock)block).getFilledPercentage(this.mc.player.world, pos);
+            filled = ((IFluidBlock)block).getFilledPercentage(player.world, pos);
         }
         else if (block instanceof BlockLiquid)
         {
-            filled = BlockLiquid.getLiquidHeightPercent(block.getMetaFromState(state));
+            filled = 1.0F - (BlockLiquid.getLiquidHeightPercent(block.getMetaFromState(state)) - 1.0F / 9.0F);
         }
 
-        if (filled < 0)
+        if (filled < 0.0F)
         {
-            filled *= -1;
-            return eyes > pos.getY() + 1 + (1 - filled);
-        }
-        else
-        {
-            return eyes < pos.getY() + 1 + filled;
-        }
-    }
-
-    private boolean isEntityInsideBlock(Block block)
-    {
-        if (this.mc.player.noClip)
-        {
-            return false;
+            return eyes > pos.getY() + (filled + 1.0F);
         }
         else
         {
-            MutableBlockPos mutableblockpos = new MutableBlockPos(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
-
-            for (int i = 0; i < 8; ++i)
-            {
-                int j = MathHelper.floor(this.mc.player.posY + ((i >> 0) % 2 - 0.5F) * 0.1F + this.mc.player.getEyeHeight());
-                int k = MathHelper.floor(this.mc.player.posX + ((i >> 1) % 2 - 0.5F) * this.mc.player.width * 0.8F);
-                int l = MathHelper.floor(this.mc.player.posZ + ((i >> 2) % 2 - 0.5F) * this.mc.player.width * 0.8F);
-
-                if (mutableblockpos.getX() != k || mutableblockpos.getY() != j || mutableblockpos.getZ() != l)
-                {
-                    mutableblockpos.setPos(k, j, l);
-
-                    if (this.mc.player.world.getBlockState(mutableblockpos).getBlock() == block)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return eyes < pos.getY() + filled;
         }
     }
 
