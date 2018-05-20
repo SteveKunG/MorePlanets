@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.GCItems;
@@ -289,7 +288,6 @@ public class WorldProviderNibiru extends WorldProviderMP
     @Override
     public Class<? extends BiomeProvider> getBiomeProviderClass()
     {
-        BiomeAdaptive.setBodyMultiBiome(this.getCelestialBody());
         return BiomeProviderNibiru.class;
     }
 

@@ -1,58 +1,43 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 
-import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
-import static net.minecraftforge.common.BiomeDictionary.Type.PLAINS;
-
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedPlains extends BiomeNibiru
 {
-    public BiomeInfectedPlains(BiomeProperties properties)
-    {
-        super(properties);
-        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
-        this.getBiomeDecorator().infectedTallGrassPerChunk = 10;
-        this.getBiomeDecorator().extraTreeChance = 0.05F;
-        this.getBiomeDecorator().infectedTreesPerChunk = 0;
-        this.getBiomeDecorator().reedsPerChunk = 10;
-        this.decorator.treesPerChunk = -999;
-    }
+    private static final WorldGenDoublePlantMP TALL_GRASS = new WorldGenDoublePlantMP(MPBlocks.INFECTED_TALL_GRASS);
 
-    @Override
-    public void registerTypes(Biome biome)
+    public BiomeInfectedPlains(BiomeProperties prop)
     {
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, PLAINS, DEAD);
+        super(prop);
+        this.decorator.infectedTallGrassPerChunk = 10;
+        this.decorator.extraTreeChance = 0.05F;
+        this.decorator.infectedTreesPerChunk = 0;
+        this.decorator.reedsPerChunk = 10;
     }
 
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
-        double d0 = GRASS_COLOR_NOISE.getValue((pos.getX() + 8) / 200.0D, (pos.getZ() + 8) / 200.0D);
+        double grassColorNoise = GRASS_COLOR_NOISE.getValue((pos.getX() + 8) / 200.0D, (pos.getZ() + 8) / 200.0D);
 
-        if (d0 < -0.8D)
+        if (grassColorNoise < -0.8D)
         {
-            this.getBiomeDecorator().infectedTallGrassPerChunk = 86;
+            this.decorator.infectedTallGrassPerChunk = 86;
         }
         else
         {
-            this.getBiomeDecorator().infectedTallGrassPerChunk = 128;
+            this.decorator.infectedTallGrassPerChunk = 128;
 
             for (int i = 0; i < 7; ++i)
             {
-                new WorldGenDoublePlantMP(MPBlocks.INFECTED_TALL_GRASS).generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+                BiomeInfectedPlains.TALL_GRASS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
             }
         }
         super.decorate(world, rand, pos);
@@ -61,6 +46,6 @@ public class BiomeInfectedPlains extends BiomeNibiru
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(3) == 0 ? new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+        return rand.nextInt(3) == 0 ? BiomeNibiru.BIG_TREE : BiomeNibiru.TREE;
     }
 }

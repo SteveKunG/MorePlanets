@@ -43,7 +43,7 @@ public class GenLayerNibiruCompanionBiomes extends GenLayer
                 }
                 else if (this.isKey(Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS), center, right, left, up, down))
                 {
-                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN);
+                    output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS);
                 }
                 else
                 {

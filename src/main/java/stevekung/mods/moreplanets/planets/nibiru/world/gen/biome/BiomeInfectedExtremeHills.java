@@ -1,37 +1,25 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 
-import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
-import static net.minecraftforge.common.BiomeDictionary.Type.HILLS;
-import static net.minecraftforge.common.BiomeDictionary.Type.MOUNTAIN;
-
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenMultalicCrystal;
 import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
 public class BiomeInfectedExtremeHills extends BiomeNibiru
 {
-    public BiomeInfectedExtremeHills(BiomeProperties properties)
-    {
-        super(properties);
-        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
-        this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
-    }
+    private static final WorldGenMultalicCrystal CRYSTAL = new WorldGenMultalicCrystal();
+    private static final WorldGenMinableBase INFESTED_ROCK = new WorldGenMinableBase(MPBlocks.INFESTED_NIBIRU_ROCK.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), 8);
 
-    @Override
-    public void registerTypes(Biome biome)
+    public BiomeInfectedExtremeHills(BiomeProperties prop)
     {
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, MOUNTAIN, HILLS, DEAD);
+        super(prop);
+        this.decorator.infectedTallGrassPerChunk = 2;
     }
 
     @Override
@@ -43,7 +31,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
         }
         else if (rand.nextInt(20) == 0)
         {
-            return rand.nextInt(5) == 0 ? new WorldGenInfectedBigTree(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+            return rand.nextInt(5) == 0 ? BiomeNibiru.BIG_TREE_NO_LEAVES : BiomeNibiru.TREE_NO_LEAVES;
         }
         else
         {
@@ -68,29 +56,25 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
         }
         for (int i = 0; i < 7; ++i)
         {
-            int j1 = rand.nextInt(16);
-            int k1 = rand.nextInt(64);
-            int l1 = rand.nextInt(16);
-            new WorldGenMinableBase(MPBlocks.INFESTED_NIBIRU_ROCK.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), 8).generate(world, rand, pos.add(j1, k1, l1));
+            BiomeInfectedExtremeHills.INFESTED_ROCK.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(64), rand.nextInt(16)));
         }
         for (int i = 0; i < 24; i++)
         {
-            BlockPos blockpos = pos.add(rand.nextInt(16), rand.nextInt(28) + 4, rand.nextInt(16));
-            new WorldGenMultalicCrystal().generate(world, rand, blockpos);
+            BiomeInfectedExtremeHills.CRYSTAL.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(28) + 4, rand.nextInt(16)));
         }
     }
 
     @Override
-    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double noise)
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int chunkX, int chunkZ, double noiseVal)
     {
         this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
         this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
 
-        if (noise > 1.0D)
+        if (noiseVal > 1.0D)
         {
             this.topBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
             this.fillerBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         }
-        super.genTerrainBlocks(world, rand, chunkPrimer, chunkX, chunkZ, noise);
+        super.genTerrainBlocks(world, rand, primer, chunkX, chunkZ, noiseVal);
     }
 }

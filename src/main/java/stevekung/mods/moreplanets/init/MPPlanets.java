@@ -58,7 +58,7 @@ public class MPPlanets
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.CHALOS, EnumAtmosphericGas.HYDROGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.CO2);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.CHALOS, false, false, false, 0.0F, 0.65F, 28.0F);
         CelestialRegistryUtils.setChecklistKeys(MPPlanets.CHALOS, "equipOxygenSuit");
-        CelestialRegistryUtils.setBiomeInfo(MPPlanets.CHALOS, MPBiomes.CHALOS_PLAINS, MPBiomes.CHALOS_HILLS, MPBiomes.SLIMELY_WASTELAND);
+        CelestialRegistryUtils.setBiomeInfo(MPPlanets.CHALOS, MPBiomes.CHALOS_PLAINS, MPBiomes.CHALOS_MOUTAINS, MPBiomes.SLIMELY_STREAM);
         CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedZombie.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedSpider.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedSkeleton.class, 100, 4, 4);
@@ -72,7 +72,7 @@ public class MPPlanets
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.NIBIRU, EnumAtmosphericGas.WATER, EnumAtmosphericGas.HELIUM, EnumAtmosphericGas.CO2, EnumAtmosphericGas.ARGON);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.NIBIRU, false, true, true, 0.0F, 1.25F, 46.5F);
         CelestialRegistryUtils.setChecklistKeys(MPPlanets.NIBIRU, "equipOxygenSuit", "thermalPaddingT2", "craftInfectedProtectionCapsule");
-        CelestialRegistryUtils.setBiomeInfo(MPPlanets.NIBIRU, MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_RIVER, MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_DEAD_ROOFED_FOREST, MPBiomes.INFECTED_EXTREME_HILLS, MPBiomes.INFECTED_SWAMPLAND, MPBiomes.INFECTED_DEAD_TAIGA, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_ICE_PLAINS, MPBiomes.GREEN_VEIN);
+        CelestialRegistryUtils.setBiomeInfo(MPPlanets.NIBIRU, MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_RIVER, MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_DEAD_ROOFED_FOREST, MPBiomes.INFECTED_EXTREME_HILLS, MPBiomes.INFECTED_SWAMP, MPBiomes.INFECTED_DEAD_TAIGA, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_ICE_PLAINS, MPBiomes.GREEN_VEIN_BADLANDS);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedZombie.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedSpider.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedSkeleton.class, 100, 4, 4);

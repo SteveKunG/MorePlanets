@@ -84,11 +84,6 @@ public class CommonRegistryUtils
         ForgeRegistries.BIOMES.register(biome.setRegistryName(this.resourcePath + ":" + name));
     }
 
-    public void registerBiome(Biome biome)
-    {
-        ForgeRegistries.BIOMES.register(biome);
-    }
-
     public void registerBiomeType(Biome biome, @Nonnull BiomeDictionary.Type... biomeType)
     {
         BiomeDictionary.addTypes(biome, biomeType);

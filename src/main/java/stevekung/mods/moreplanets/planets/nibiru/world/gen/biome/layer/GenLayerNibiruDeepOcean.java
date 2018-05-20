@@ -37,11 +37,11 @@ public class GenLayerNibiruDeepOcean extends GenLayer
                 int dr = input[dx + 0 + (dz + 2) * nwidth];
                 int dl = input[dx + 2 + (dz + 2) * nwidth];
 
-                if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_SWAMPLAND), center, right, left, up, down))
+                if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_SWAMP), center, right, left, up, down))
                 {
                     output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_DEEP_OCEAN);
                 }
-                else if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_SWAMPLAND), center, ur, ul, dr, dl))
+                else if (this.onBorder(Biome.getIdForBiome(MPBiomes.INFECTED_SWAMP), center, ur, ul, dr, dl))
                 {
                     output[dx + dz * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
                 }

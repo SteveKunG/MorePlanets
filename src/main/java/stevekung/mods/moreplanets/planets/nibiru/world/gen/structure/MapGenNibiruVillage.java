@@ -18,7 +18,7 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruVillage extends MapGenStructure
 {
-    public static List<Biome> VILLAGE_SPAWN_BIOMES = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.GREEN_VEIN));
+    public static List<Biome> VILLAGE_SPAWN_BIOMES = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.GREEN_VEIN_BADLANDS));
     private int size;
     private int distance;
 

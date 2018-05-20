@@ -81,7 +81,7 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
         Block block = world.getBlockState(pos.down()).getBlock();
-        return this.validBlock(block) && world.getLight(pos) >= 8 || world.canSeeSky(pos);
+        return this.validBlock(block) && world.getLight(pos) >= 8 && world.canSeeSky(pos);
     }
 
     @Override

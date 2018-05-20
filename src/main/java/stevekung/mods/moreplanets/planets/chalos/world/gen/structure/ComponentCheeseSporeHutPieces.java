@@ -148,7 +148,6 @@ public abstract class ComponentCheeseSporeHutPieces extends StructureComponent
                     {
                         BlockPos pos2 = entry.getKey();
                         world.setBlockState(pos2, Blocks.AIR.getDefaultState(), 3);
-                        TileEntity tile = world.getTileEntity(pos2);
                         TileEntity tileDown = world.getTileEntity(pos2.down());
 
                         if (tileDown instanceof TileEntityChestMP)//TODO
@@ -174,7 +173,7 @@ public abstract class ComponentCheeseSporeHutPieces extends StructureComponent
                     if ("cheese_cake".equals(entry.getValue()))
                     {
                         BlockPos pos2 = entry.getKey();
-                        world.setBlockState(pos2, MPBlocks.CHEESE_MILK_CAKE.getDefaultState().withProperty(BlockStateProperty.BITES, 2 + rand.nextInt(4)), 3);
+                        world.setBlockState(pos2, MPBlocks.CHEESE_MILK_CAKE.getDefaultState().withProperty(BlockStateProperty.BITES, 1 + rand.nextInt(4)), 3);
                     }
                 }
                 return true;

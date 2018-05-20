@@ -7,7 +7,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
@@ -15,12 +15,11 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.init.MPPlanets;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.layer.GenLayerChalos;
 
 public class BiomeProviderChalos extends BiomeProvider
 {
-    public static ArrayList<Biome> allowedBiomes = new ArrayList<>(Arrays.asList(MPBiomes.CHALOS_PLAINS, MPBiomes.CHALOS_HILLS));
+    public static ArrayList<Biome> allowedBiomes = new ArrayList<>(Arrays.asList(MPBiomes.CHALOS_PLAINS, MPBiomes.CHALOS_MOUTAINS));
     private BiomeCache biomeCache;
     private List<Biome> biomesToSpawn;
     private GenLayer zoomedBiomes;
@@ -56,14 +55,12 @@ public class BiomeProviderChalos extends BiomeProvider
     @Override
     public Biome getBiome(BlockPos pos, Biome biome)
     {
-        BiomeAdaptive.setBodyMultiBiome(MPPlanets.CHALOS);
         return this.biomeCache.getBiome(pos.getX(), pos.getZ(), biome);
     }
 
     @Override
     public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height)
     {
-        BiomeAdaptive.setBodyMultiBiome(MPPlanets.CHALOS);
         IntCache.resetIntCache();
 
         if (biomes == null || biomes.length < width * height)
@@ -75,7 +72,7 @@ public class BiomeProviderChalos extends BiomeProvider
 
         for (int i = 0; i < width * height; ++i)
         {
-            biomes[i] = Biome.getBiome(aint[i], BiomeAdaptive.biomeDefault);
+            biomes[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
         }
         return biomes;
     }
@@ -89,7 +86,6 @@ public class BiomeProviderChalos extends BiomeProvider
     @Override
     public Biome[] getBiomes(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
     {
-        BiomeAdaptive.setBodyMultiBiome(MPPlanets.CHALOS);
         IntCache.resetIntCache();
 
         if (listToReuse == null || listToReuse.length < width * length)
@@ -109,7 +105,7 @@ public class BiomeProviderChalos extends BiomeProvider
 
             for (int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = Biome.getBiome(aint[i], BiomeAdaptive.biomeDefault);
+                listToReuse[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
             }
             return listToReuse;
         }

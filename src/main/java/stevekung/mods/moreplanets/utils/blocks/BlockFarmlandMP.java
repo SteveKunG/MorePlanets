@@ -171,6 +171,15 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     }
 
     @Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+        if (world.getBlockState(pos.up()).getMaterial().isSolid())
+        {
+            world.setBlockState(pos, this.getDirtBlock().getDefaultState());
+        }
+    }
+
+    @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(this.getDirtBlock());

@@ -127,14 +127,14 @@ public class StructureNibiruStrongholdPieces
                 this.placeDoor(world, box, this.entryDoor, 1, 1, 0);
                 this.placeDoor(world, box, Door.OPENING, 1, 1, 6);
                 this.fillWithBlocks(world, box, 3, 1, 2, 3, 1, 4, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), false);
-                this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 1, 1, box);
-                this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 1, 5, box);
-                this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 2, 2, box);
-                this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 2, 4, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 1, 1, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 1, 5, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 2, 2, box);
+                this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 3, 2, 4, box);
 
                 for (int i = 2; i <= 4; ++i)
                 {
-                    this.setBlockState(world, MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 2, 1, i, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 2, 1, i, box);
                 }
                 if (!this.hasMadeChest && box.isVecInside(new BlockPos(this.getXWithOffset(3, 3), this.getYWithOffset(2), this.getZWithOffset(3, 3))))
                 {
@@ -596,16 +596,23 @@ public class StructureNibiruStrongholdPieces
             this.fillWithRandomizedBlocks(world, box, 2, i, 14, 8, i, 14, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 1, 1, 1, 2, 1, 4, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 8, 1, 1, 9, 1, 4, false, rand, STRONGHOLD_STONES);
-            this.fillWithBlocks(world, box, 1, 1, 1, 1, 1, 3, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
-            this.fillWithBlocks(world, box, 9, 1, 1, 9, 1, 3, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
-            this.fillWithRandomizedBlocks(world, box, 3, 1, 8, 7, 1, 12, false, rand, STRONGHOLD_STONES);
-            this.fillWithBlocks(world, box, 4, 1, 9, 6, 1, 11, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
-            this.createWasteTank(new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(1), this.getZWithOffset(1, 1)), world, rand, box);
-            this.createWasteTank(new BlockPos(this.getXWithOffset(1, 2), this.getYWithOffset(1), this.getZWithOffset(1, 2)), world, rand, box);
-            this.createWasteTank(new BlockPos(this.getXWithOffset(9, 1), this.getYWithOffset(1), this.getZWithOffset(9, 1)), world, rand, box);
-            this.createWasteTank(new BlockPos(this.getXWithOffset(9, 2), this.getYWithOffset(1), this.getZWithOffset(9, 2)), world, rand, box);
-            this.createWasteTank(new BlockPos(this.getXWithOffset(1, 14), this.getYWithOffset(1), this.getZWithOffset(1, 14)), world, rand, box);
-            this.createWasteTank(new BlockPos(this.getXWithOffset(9, 14), this.getYWithOffset(1), this.getZWithOffset(9, 14)), world, rand, box);
+
+            if (rand.nextInt(50) == 0)
+            {
+                this.createWasteTank(new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(1), this.getZWithOffset(1, 1)), world, rand, box);
+                this.createWasteTank(new BlockPos(this.getXWithOffset(1, 2), this.getYWithOffset(1), this.getZWithOffset(1, 2)), world, rand, box);
+                this.createWasteTank(new BlockPos(this.getXWithOffset(9, 1), this.getYWithOffset(1), this.getZWithOffset(9, 1)), world, rand, box);
+                this.createWasteTank(new BlockPos(this.getXWithOffset(9, 2), this.getYWithOffset(1), this.getZWithOffset(9, 2)), world, rand, box);
+                this.createWasteTank(new BlockPos(this.getXWithOffset(1, 14), this.getYWithOffset(1), this.getZWithOffset(1, 14)), world, rand, box);
+                this.createWasteTank(new BlockPos(this.getXWithOffset(9, 14), this.getYWithOffset(1), this.getZWithOffset(9, 14)), world, rand, box);
+            }
+            else
+            {
+                this.fillWithBlocks(world, box, 1, 1, 1, 1, 1, 3, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
+                this.fillWithBlocks(world, box, 9, 1, 1, 9, 1, 3, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
+                this.fillWithRandomizedBlocks(world, box, 3, 1, 8, 7, 1, 12, false, rand, STRONGHOLD_STONES);
+                this.fillWithBlocks(world, box, 4, 1, 9, 6, 1, 11, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
+            }
 
             for (int j = 3; j < 14; j += 2)
             {

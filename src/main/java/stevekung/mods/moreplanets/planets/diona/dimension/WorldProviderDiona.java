@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
 import stevekung.mods.moreplanets.planets.diona.client.sky.SkyProviderDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.BiomeProviderDiona;
-import stevekung.mods.moreplanets.planets.diona.world.gen.ChunkProviderDiona;
+import stevekung.mods.moreplanets.planets.diona.world.gen.ChunkGeneratorDiona;
 import stevekung.mods.moreplanets.utils.dimension.WorldProviderMP;
 
 public class WorldProviderDiona extends WorldProviderMP
@@ -147,7 +147,7 @@ public class WorldProviderDiona extends WorldProviderMP
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderDiona(this.world, this.world.getSeed());
+        return new ChunkGeneratorDiona(this.world, this.world.getSeed());
     }
 
     @Override

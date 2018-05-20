@@ -212,7 +212,7 @@ public class MapGenNibiruRavine extends MapGenBase
 
     private boolean isExceptionBiome(Biome biome)
     {
-        if (biome == MPBiomes.GREEN_VEIN)
+        if (biome == MPBiomes.GREEN_VEIN_BADLANDS)
         {
             return true;
         }

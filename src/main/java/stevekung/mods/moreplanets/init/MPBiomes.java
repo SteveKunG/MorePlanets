@@ -1,60 +1,77 @@
 package stevekung.mods.moreplanets.init;
 
-import java.util.LinkedList;
-import java.util.List;
+import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
-import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosHills;
+import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosMoutains;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosPlains;
-import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeSlimelyWasteland;
+import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeSlimelyStream;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.*;
-import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeBaseMP;
+import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 
 public class MPBiomes
 {
-    public static final List<BiomeGenBaseGC> biomeList = new LinkedList<>();
-
-    public static Biome DIONA = new BiomeBaseMP("diona", new BiomeProperties("Diona").setRainfall(0.0F));
-    public static Biome CHALOS_PLAINS = new BiomeChalosPlains(new BiomeProperties("Chalos Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F));
-    public static Biome CHALOS_HILLS = new BiomeChalosHills(new BiomeProperties("Chalos Hills").setTemperature(0.2F).setRainfall(0.3F).setBaseHeight(1.0F).setHeightVariation(0.5F));
-    public static Biome SLIMELY_WASTELAND = new BiomeSlimelyWasteland(new BiomeProperties("Slimely Wasteland").setBaseHeight(0.2F).setHeightVariation(0.2F));
-    public static Biome INFECTED_PLAINS = new BiomeInfectedPlains(new BiomeProperties("Infected Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F));
-    public static Biome INFECTED_DEAD_SAVANNA = new BiomeInfectedDeadSavanna(new BiomeProperties("Infected Dead Savanna").setRainDisabled().setRainfall(0.0F).setTemperature(1.2F).setBaseHeight(0.125F).setHeightVariation(0.05F));
-    public static Biome INFECTED_DESERT = new BiomeInfectedDesert(new BiomeProperties("Infected Desert").setRainDisabled().setRainfall(0.0F).setTemperature(2.0F).setBaseHeight(0.125F).setHeightVariation(0.05F));
-    public static Biome INFECTED_RIVER = new BiomeInfectedRiver(new BiomeProperties("Infected River").setBaseHeight(-0.5F).setHeightVariation(0.0F));
-    public static Biome INFECTED_OCEAN = new BiomeInfectedOcean(new BiomeProperties("Infected Ocean").setBaseHeight(-1.0F).setHeightVariation(0.1F));
-    public static Biome INFECTED_FOREST = new BiomeInfectedForest(new BiomeProperties("Infected Forest").setTemperature(0.7F).setRainfall(0.8F));
-    public static Biome INFECTED_DEEP_OCEAN = new BiomeInfectedDeepOcean(new BiomeProperties("Infected Deep Ocean").setBaseHeight(-1.8F).setHeightVariation(0.1F));
-    public static Biome INFECTED_DEAD_ROOFED_FOREST = new BiomeInfectedDeadRoofedForest(new BiomeProperties("Infected Dead Roofed Forest").setTemperature(0.7F).setRainfall(0.8F));
-    public static Biome INFECTED_EXTREME_HILLS = new BiomeInfectedExtremeHills(new BiomeProperties("Infected Extreme Hills").setTemperature(0.2F).setRainfall(0.3F).setBaseHeight(1.0F).setHeightVariation(0.5F));
-    public static Biome INFECTED_SWAMPLAND = new BiomeInfectedSwampland(new BiomeProperties("Infected Swampland").setTemperature(0.8F).setRainfall(0.9F).setBaseHeight(-0.2F).setHeightVariation(0.1F));
-    public static Biome INFECTED_DEAD_TAIGA = new BiomeInfectedDeadTaiga(new BiomeProperties("Infected Dead Taiga").setBaseHeight(0.2F).setHeightVariation(0.2F).setTemperature(0.25F).setRainfall(0.8F));
-    public static Biome INFECTED_JUNGLE = new BiomeInfectedJungle(new BiomeProperties("Infected Jungle").setTemperature(0.95F).setRainfall(0.9F));
-    public static Biome INFECTED_ICE_PLAINS = new BiomeInfectedIcePlains(new BiomeProperties("Infected Ice Plains").setSnowEnabled().setTemperature(0.0F).setRainfall(0.5F).setBaseHeight(0.125F).setHeightVariation(0.05F));
-    public static Biome GREEN_VEIN = new BiomeGreenVein(new BiomeProperties("Green Vein").setTemperature(0.9F).setRainfall(1.0F).setBaseHeight(0.125F).setHeightVariation(0.05F));
+    public static Biome DIONA = new BiomeMP(new Biome.BiomeProperties("Diona").setRainfall(0.0F));
+    public static Biome CHALOS_PLAINS = new BiomeChalosPlains(new Biome.BiomeProperties("Chalos Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F));
+    public static Biome CHALOS_MOUTAINS = new BiomeChalosMoutains(new Biome.BiomeProperties("Chalos Moutains").setTemperature(0.2F).setRainfall(0.3F).setBaseHeight(1.0F).setHeightVariation(0.5F));
+    public static Biome SLIMELY_STREAM = new BiomeSlimelyStream(new Biome.BiomeProperties("Slimely Stream").setBaseHeight(0.2F).setHeightVariation(0.2F));
+    public static Biome INFECTED_PLAINS = new BiomeInfectedPlains(new Biome.BiomeProperties("Infected Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F));
+    @Deprecated public static Biome INFECTED_DEAD_SAVANNA = new BiomeInfectedDeadSavanna(new Biome.BiomeProperties("Infected Dead Savanna").setRainDisabled().setRainfall(0.0F).setTemperature(1.2F).setBaseHeight(0.125F).setHeightVariation(0.05F));
+    public static Biome INFECTED_DESERT = new BiomeInfectedDesert(new Biome.BiomeProperties("Infected Desert").setRainDisabled().setRainfall(0.0F).setTemperature(2.0F).setBaseHeight(0.125F).setHeightVariation(0.05F));
+    public static Biome INFECTED_RIVER = new BiomeInfectedRiver(new Biome.BiomeProperties("Infected River").setBaseHeight(-0.5F).setHeightVariation(0.0F));
+    public static Biome INFECTED_OCEAN = new BiomeInfectedOcean(new Biome.BiomeProperties("Infected Ocean").setBaseHeight(-1.0F).setHeightVariation(0.1F));
+    public static Biome INFECTED_FOREST = new BiomeInfectedForest(new Biome.BiomeProperties("Infected Forest").setTemperature(0.7F).setRainfall(0.8F));
+    public static Biome INFECTED_DEEP_OCEAN = new BiomeInfectedDeepOcean(new Biome.BiomeProperties("Infected Deep Ocean").setBaseHeight(-1.8F).setHeightVariation(0.1F));
+    @Deprecated public static Biome INFECTED_DEAD_ROOFED_FOREST = new BiomeInfectedDeadRoofedForest(new Biome.BiomeProperties("Infected Dead Roofed Forest").setTemperature(0.7F).setRainfall(0.8F));
+    public static Biome INFECTED_EXTREME_HILLS = new BiomeInfectedExtremeHills(new Biome.BiomeProperties("Infected Extreme Hills").setTemperature(0.2F).setRainfall(0.3F).setBaseHeight(1.0F).setHeightVariation(0.5F));
+    public static Biome INFECTED_SWAMP = new BiomeInfectedSwamp(new Biome.BiomeProperties("Infected Swamp").setTemperature(0.8F).setRainfall(0.9F).setBaseHeight(-0.2F).setHeightVariation(0.1F));
+    @Deprecated public static Biome INFECTED_DEAD_TAIGA = new BiomeInfectedDeadTaiga(new Biome.BiomeProperties("Infected Dead Taiga").setBaseHeight(0.2F).setHeightVariation(0.2F).setTemperature(0.25F).setRainfall(0.8F));
+    public static Biome INFECTED_JUNGLE = new BiomeInfectedJungle(new Biome.BiomeProperties("Infected Jungle").setTemperature(0.95F).setRainfall(0.9F));
+    public static Biome INFECTED_ICE_PLAINS = new BiomeInfectedIcePlains(new Biome.BiomeProperties("Infected Ice Plains").setSnowEnabled().setTemperature(0.0F).setRainfall(0.5F).setBaseHeight(0.125F).setHeightVariation(0.05F));
+    public static Biome GREEN_VEIN_BADLANDS = new BiomeGreenVeinBadlands(new Biome.BiomeProperties("Green Vein Badlands").setTemperature(0.9F).setRainfall(1.0F).setBaseHeight(0.125F).setHeightVariation(0.05F));
 
     public static void init()
     {
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.DIONA);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.CHALOS_PLAINS);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.CHALOS_HILLS);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.SLIMELY_WASTELAND);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_PLAINS);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEAD_SAVANNA);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DESERT);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_RIVER);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_OCEAN);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_FOREST);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEEP_OCEAN);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEAD_ROOFED_FOREST);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_EXTREME_HILLS);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_SWAMPLAND);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEAD_TAIGA);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_JUNGLE);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_ICE_PLAINS);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.GREEN_VEIN);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.DIONA, "diona");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.CHALOS_PLAINS, "chalos_plains");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.CHALOS_MOUTAINS, "chalos_moutains");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.SLIMELY_STREAM, "slimely_stream");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_PLAINS, "infected_plains");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEAD_SAVANNA, "infected_dead_savanna");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DESERT, "infected_desert");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_RIVER, "infected_river");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_OCEAN, "infected_ocean");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_FOREST, "infected_forest");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEEP_OCEAN, "infected_deep_ocean");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEAD_ROOFED_FOREST, "infected_dead_roofed_forest");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_EXTREME_HILLS, "infected_extreme_hills");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_SWAMP, "infected_swampland");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_DEAD_TAIGA, "infected_dead_taiga");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_JUNGLE, "infected_jungle");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_ICE_PLAINS, "infected_ice_plains");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.GREEN_VEIN_BADLANDS, "green_vein_badlands");
+    }
+
+    public static void registerTypes()
+    {
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.DIONA, COLD, DEAD, DRY);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.CHALOS_PLAINS, PLAINS, DRY);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.CHALOS_MOUTAINS, MOUNTAIN, HILLS, DRY);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.SLIMELY_STREAM, WASTELAND, DRY);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_PLAINS, PLAINS, DEAD, DRY);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_DEAD_SAVANNA, HOT, SAVANNA, PLAINS, SPARSE, DRY, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_DESERT, HOT, DRY, SANDY, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_RIVER, RIVER, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_OCEAN, OCEAN, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_FOREST, FOREST, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_DEEP_OCEAN, OCEAN, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_DEAD_ROOFED_FOREST, SPOOKY, DENSE, FOREST, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_EXTREME_HILLS, MOUNTAIN, HILLS, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_SWAMP, WET, SWAMP, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_DEAD_TAIGA, COLD, CONIFEROUS, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_JUNGLE, HOT, WET, DENSE, JUNGLE, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_ICE_PLAINS, COLD, SNOWY, WASTELAND, DEAD);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.GREEN_VEIN_BADLANDS, FOREST, RARE, MAGICAL);
     }
 }

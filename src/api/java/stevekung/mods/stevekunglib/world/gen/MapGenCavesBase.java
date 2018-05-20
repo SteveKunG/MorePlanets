@@ -20,8 +20,17 @@ public class MapGenCavesBase extends MapGenBase
 {
     private IBlockState top = Blocks.GRASS.getDefaultState();
     private IBlockState lava = Blocks.LAVA.getDefaultState();
+    private Set<Block> topBlock = new HashSet<>();
     private Set<Block> digBlock = new HashSet<>();
     private Set<Block> fluidBlock = new HashSet<>();
+
+    public MapGenCavesBase(Set<Block> topBlock, IBlockState lava, Set<Block> digBlock, Set<Block> fluidBlock)
+    {
+        this.topBlock = topBlock;
+        this.lava = lava;
+        this.digBlock = digBlock;
+        this.fluidBlock = fluidBlock;
+    }
 
     public MapGenCavesBase(IBlockState top, IBlockState lava, Set<Block> digBlock)
     {
@@ -37,7 +46,7 @@ public class MapGenCavesBase extends MapGenBase
     }
 
     @Override
-    protected void recursiveGenerate(World world, int chunkX, int chunkZ, int originalX, int originalZ, ChunkPrimer chunkPrimer)
+    protected void recursiveGenerate(World world, int chunkX, int chunkZ, int originalX, int originalZ, ChunkPrimer primer)
     {
         int i = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(15) + 1) + 1);
 
@@ -55,7 +64,7 @@ public class MapGenCavesBase extends MapGenBase
 
             if (this.rand.nextInt(4) == 0)
             {
-                this.addRoom(this.rand.nextLong(), originalX, originalZ, chunkPrimer, d0, d1, d2);
+                this.addRoom(this.rand.nextLong(), originalX, originalZ, primer, d0, d1, d2);
                 k += this.rand.nextInt(4);
             }
             for (int l = 0; l < k; ++l)
@@ -68,17 +77,17 @@ public class MapGenCavesBase extends MapGenBase
                 {
                     f2 *= this.rand.nextFloat() * this.rand.nextFloat() * 3.0F + 1.0F;
                 }
-                this.addTunnel(this.rand.nextLong(), originalX, originalZ, chunkPrimer, d0, d1, d2, f2, f, f1, 0, 0, 1.0D);
+                this.addTunnel(this.rand.nextLong(), originalX, originalZ, primer, d0, d1, d2, f2, f, f1, 0, 0, 1.0D);
             }
         }
     }
 
-    protected void addRoom(long seed, int originalX, int originalZ, ChunkPrimer chunkPrimer, double x, double y, double z)
+    private void addRoom(long seed, int originalX, int originalZ, ChunkPrimer primer, double x, double y, double z)
     {
-        this.addTunnel(seed, originalX, originalZ, chunkPrimer, x, y, z, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D);
+        this.addTunnel(seed, originalX, originalZ, primer, x, y, z, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D);
     }
 
-    protected void addTunnel(long seed, int originalX, int originalZ, ChunkPrimer chunkPrimer, double x, double y, double z, float p_180702_12_, float p_180702_13_, float p_180702_14_, int p_180702_15_, int p_180702_16_, double p_180702_17_)
+    private void addTunnel(long seed, int originalX, int originalZ, ChunkPrimer primer, double x, double y, double z, float p_180702_12_, float p_180702_13_, float p_180702_14_, int p_180702_15_, int p_180702_16_, double p_180702_17_)
     {
         double d0 = originalX * 16 + 8;
         double d1 = originalZ * 16 + 8;
@@ -130,8 +139,8 @@ public class MapGenCavesBase extends MapGenBase
 
             if (!flag2 && p_180702_15_ == j && p_180702_12_ > 1.0F && p_180702_16_ > 0)
             {
-                this.addTunnel(rand.nextLong(), originalX, originalZ, chunkPrimer, x, y, z, rand.nextFloat() * 0.5F + 0.5F, p_180702_13_ - (float)Math.PI / 2F, p_180702_14_ / 3.0F, p_180702_15_, p_180702_16_, 1.0D);
-                this.addTunnel(rand.nextLong(), originalX, originalZ, chunkPrimer, x, y, z, rand.nextFloat() * 0.5F + 0.5F, p_180702_13_ + (float)Math.PI / 2F, p_180702_14_ / 3.0F, p_180702_15_, p_180702_16_, 1.0D);
+                this.addTunnel(rand.nextLong(), originalX, originalZ, primer, x, y, z, rand.nextFloat() * 0.5F + 0.5F, p_180702_13_ - (float)Math.PI / 2F, p_180702_14_ / 3.0F, p_180702_15_, p_180702_16_, 1.0D);
+                this.addTunnel(rand.nextLong(), originalX, originalZ, primer, x, y, z, rand.nextFloat() * 0.5F + 0.5F, p_180702_13_ + (float)Math.PI / 2F, p_180702_14_ / 3.0F, p_180702_15_, p_180702_16_, 1.0D);
                 return;
             }
 
@@ -191,7 +200,7 @@ public class MapGenCavesBase extends MapGenBase
                             {
                                 if (l1 >= 0 && l1 < 256)
                                 {
-                                    if (this.isOceanBlock(chunkPrimer, j1, l1, k1, originalX, originalZ))
+                                    if (this.isOceanBlock(primer, j1, l1, k1, originalX, originalZ))
                                     {
                                         flag3 = true;
                                     }
@@ -223,14 +232,14 @@ public class MapGenCavesBase extends MapGenBase
 
                                         if (d9 > -0.7D && d10 * d10 + d9 * d9 + d8 * d8 < 1.0D)
                                         {
-                                            IBlockState iblockstate1 = chunkPrimer.getBlockState(j3, j2, i2);
-                                            IBlockState iblockstate2 = MoreObjects.firstNonNull(chunkPrimer.getBlockState(j3, j2 + 1, i2), Blocks.AIR.getDefaultState());
+                                            IBlockState iblockstate1 = primer.getBlockState(j3, j2, i2);
+                                            IBlockState iblockstate2 = MoreObjects.firstNonNull(primer.getBlockState(j3, j2 + 1, i2), Blocks.AIR.getDefaultState());
 
-                                            if (this.isTopBlock(chunkPrimer, j3, j2, i2, originalX, originalZ))
+                                            if (this.isTopBlock(primer, j3, j2, i2, originalX, originalZ))
                                             {
                                                 flag1 = true;
                                             }
-                                            this.digBlock(chunkPrimer, j3, j2, i2, originalX, originalZ, flag1, iblockstate1, iblockstate2);
+                                            this.digBlock(primer, j3, j2, i2, originalX, originalZ, flag1, iblockstate1, iblockstate2);
                                         }
                                     }
                                 }
@@ -246,7 +255,7 @@ public class MapGenCavesBase extends MapGenBase
         }
     }
 
-    protected boolean canReplaceBlock(IBlockState state, IBlockState up)
+    private boolean canReplaceBlock(IBlockState state, IBlockState up)
     {
         for (Block block : this.digBlock)
         {
@@ -258,9 +267,9 @@ public class MapGenCavesBase extends MapGenBase
         return state.getBlock() == this.top.getBlock();
     }
 
-    protected boolean isOceanBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
+    private boolean isOceanBlock(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ)
     {
-        Block block = data.getBlockState(x, y, z).getBlock();
+        Block block = primer.getBlockState(x, y, z).getBlock();
 
         if (this.fluidBlock.isEmpty())
         {
@@ -279,13 +288,28 @@ public class MapGenCavesBase extends MapGenBase
         return block == Blocks.FLOWING_WATER || block == Blocks.WATER;
     }
 
-    protected boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
+    private boolean isTopBlock(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ)
     {
-        IBlockState state = data.getBlockState(x, y, z);
+        IBlockState state = primer.getBlockState(x, y, z);
+
+        if (this.topBlock.isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            for (Block topBlock : this.topBlock)
+            {
+                if (topBlock.equals(state.getBlock()))
+                {
+                    return true;
+                }
+            }
+        }
         return state.getBlock() == this.top.getBlock();
     }
 
-    protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop, IBlockState state, IBlockState up)
+    private void digBlock(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop, IBlockState state, IBlockState up)
     {
         Biome biome = this.world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
         IBlockState top = biome.topBlock;
@@ -295,15 +319,15 @@ public class MapGenCavesBase extends MapGenBase
         {
             if (y - 1 < 10)
             {
-                data.setBlockState(x, y, z, this.lava);
+                primer.setBlockState(x, y, z, this.lava);
             }
             else
             {
-                data.setBlockState(x, y, z, Blocks.AIR.getDefaultState());
+                primer.setBlockState(x, y, z, Blocks.AIR.getDefaultState());
 
-                if (foundTop && data.getBlockState(x, y - 1, z).getBlock() == filler.getBlock())
+                if (foundTop && primer.getBlockState(x, y - 1, z).getBlock() == filler.getBlock())
                 {
-                    data.setBlockState(x, y - 1, z, top.getBlock().getDefaultState());
+                    primer.setBlockState(x, y - 1, z, top.getBlock().getDefaultState());
                 }
             }
         }

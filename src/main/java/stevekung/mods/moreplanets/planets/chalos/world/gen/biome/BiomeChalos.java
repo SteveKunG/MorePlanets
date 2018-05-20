@@ -5,112 +5,103 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.BiomeDecoratorChalos;
-import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeBaseMP;
+import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 
-public class BiomeChalos extends BiomeBaseMP
+public class BiomeChalos extends BiomeMP
 {
     protected IBlockState stoneBlock;
-    protected BiomeDecoratorChalos decorator = this.getBiomeDecorator();
+    protected BiomeDecoratorChalos decorator = new BiomeDecoratorChalos();
 
-    public BiomeChalos(BiomeProperties properties)
+    public BiomeChalos(BiomeProperties prop)
     {
-        super(properties);
+        super(prop);
+        this.topBlock = MPBlocks.CHEESE_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.CHEESE_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.CHALOS_ROCK.getDefaultState();
         this.decorator.treesPerChunk = -999;
         this.decorator.flowersPerChunk = -999;
         this.decorator.grassPerChunk = -999;
     }
 
     @Override
-    public BiomeDecorator createBiomeDecorator()
+    public void decorate(World world, Random rand, BlockPos pos)
     {
-        return new BiomeDecoratorChalos();
-    }
-
-    private BiomeDecoratorChalos getBiomeDecorator()
-    {
-        return new BiomeDecoratorChalos();
+        this.decorator.decorate(world, rand, this, pos);
     }
 
     @Override
-    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int x, int z, double stoneNoise)
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int chunkX, int chunkZ, double noiseVal)
     {
-        this.genChalosBiomeTerrain(world, rand, chunkPrimer, x, z, stoneNoise);
-    }
-
-    protected void genChalosBiomeTerrain(World world, Random rand, ChunkPrimer chunkPrimer, int x, int z, double stoneNoise)
-    {
-        int i = world.getSeaLevel();
-        IBlockState iblockstate = this.topBlock;
-        IBlockState iblockstate1 = this.fillerBlock;
+        int seaLevel = world.getSeaLevel();
+        IBlockState topState = this.topBlock;
+        IBlockState fillerState = this.fillerBlock;
         int j = -1;
-        int k = (int)(stoneNoise / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
-        int l = x & 15;
-        int i1 = z & 15;
+        int k = (int)(noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+        int x = chunkZ & 15;// WTF??
+        int z = chunkX & 15;// WTF??
 
-        for (int j1 = 255; j1 >= 0; --j1)
+        for (int y = 255; y >= 0; --y)
         {
-            if (j1 <= rand.nextInt(5))
+            if (y <= rand.nextInt(5))
             {
-                chunkPrimer.setBlockState(i1, j1, l, Blocks.BEDROCK.getDefaultState());
+                primer.setBlockState(x, y, z, Blocks.BEDROCK.getDefaultState());
             }
             else
             {
-                IBlockState iblockstate2 = chunkPrimer.getBlockState(i1, j1, l);
+                IBlockState stoneState = primer.getBlockState(x, y, z);
 
-                if (iblockstate2.getMaterial() == Material.AIR)
+                if (stoneState.getMaterial() == Material.AIR)
                 {
                     j = -1;
                 }
-                else if (iblockstate2.getBlock() == MPBlocks.CHALOS_ROCK)
+                else if (stoneState.getBlock() == MPBlocks.CHALOS_ROCK)
                 {
-                    if (this.stoneBlock != null)
-                    {
-                        chunkPrimer.setBlockState(i1, j1, l, this.stoneBlock);
-                    }
+                    primer.setBlockState(x, y, z, this.stoneBlock);
+
                     if (j == -1)
                     {
                         if (k <= 0)
                         {
-                            iblockstate = null;
-                            iblockstate1 = MPBlocks.CHALOS_ROCK.getDefaultState();
+                            topState = null;
+                            fillerState = MPBlocks.CHALOS_ROCK.getDefaultState();
                         }
-                        else if (j1 >= i - 4 && j1 <= i + 1)
+                        else if (y >= seaLevel - 4 && y <= seaLevel + 1)
                         {
-                            iblockstate = this.topBlock;
-                            iblockstate1 = this.fillerBlock;
+                            topState = this.topBlock;
+                            fillerState = this.fillerBlock;
                         }
 
-                        if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
+                        if (y < seaLevel && (topState == null || topState.getMaterial() == Material.AIR))
                         {
-                            iblockstate = MPBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState();
+                            topState = MPBlocks.CHEESE_MILK_FLUID_BLOCK.getDefaultState();
                         }
 
                         j = k;
 
-                        if (j1 >= i - 1)
+                        if (y >= seaLevel - 1)
                         {
-                            chunkPrimer.setBlockState(i1, j1, l, iblockstate);
+                            primer.setBlockState(x, y, z, topState);
                         }
-                        else if (j1 < i - 7 - k)
+                        else if (y < seaLevel - 7 - k)
                         {
-                            iblockstate = null;
-                            iblockstate1 = MPBlocks.CHALOS_ROCK.getDefaultState();
-                            chunkPrimer.setBlockState(i1, j1, l, MPBlocks.CHALOS_ROCK.getDefaultState());//gravel
+                            topState = null;
+                            fillerState = MPBlocks.CHALOS_ROCK.getDefaultState();
+                            primer.setBlockState(x, y, z, MPBlocks.CHALOS_ROCK.getDefaultState());
                         }
                         else
                         {
-                            chunkPrimer.setBlockState(i1, j1, l, iblockstate1);
+                            primer.setBlockState(x, y, z, fillerState);
                         }
                     }
                     else if (j > 0)
                     {
                         --j;
-                        chunkPrimer.setBlockState(i1, j1, l, iblockstate1);
+                        primer.setBlockState(x, y, z, fillerState);
                     }
                 }
             }

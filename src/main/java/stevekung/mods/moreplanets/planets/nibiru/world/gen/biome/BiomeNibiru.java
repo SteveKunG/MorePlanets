@@ -7,136 +7,135 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.BiomeDecoratorNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
-import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeBaseMP;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruFossils;
+import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 
-public class BiomeNibiru extends BiomeBaseMP
+public class BiomeNibiru extends BiomeMP
 {
     protected IBlockState stoneBlock;
+    protected BiomeDecoratorNibiru decorator = new BiomeDecoratorNibiru();
+    protected static final WorldGenInfectedBigTree BIG_TREE = new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+    protected static final WorldGenInfectedBigTree BIG_TREE_NO_LEAVES = new WorldGenInfectedBigTree(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+    protected static final WorldGenInfectedTrees TREE = new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+    protected static final WorldGenInfectedTrees TREE_NO_LEAVES = new WorldGenInfectedTrees(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+    protected static final WorldGenInfectedVinesDirt SCATTERED_DIRT = new WorldGenInfectedVinesDirt();
+    protected static final WorldGenNibiruFossils FOSSILS = new WorldGenNibiruFossils();
 
-    public BiomeNibiru(BiomeProperties properties)
+    public BiomeNibiru(BiomeProperties prop)
     {
-        super(properties);
-        this.getBiomeDecorator().clayPerChunk = 1;
-        this.getBiomeDecorator().gravelPatchesPerChunk = 1;
-        this.getBiomeDecorator().sandPatchesPerChunk = 3;
-        this.getBiomeDecorator().pureHurbPerChunk = 4;
+        super(prop);
+        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
+        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
+        this.decorator.clayPerChunk = 1;
+        this.decorator.gravelPatchesPerChunk = 1;
+        this.decorator.sandPatchesPerChunk = 3;
+        this.decorator.pureHurbPerChunk = 4;
         this.decorator.treesPerChunk = -999;
         this.decorator.flowersPerChunk = -999;
         this.decorator.grassPerChunk = -999;
     }
 
     @Override
+    public void decorate(World world, Random rand, BlockPos pos)
+    {
+        this.decorator.decorate(world, rand, this, pos);
+    }
+
+    @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+        return rand.nextInt(10) == 0 ? BiomeNibiru.BIG_TREE : BiomeNibiru.TREE;
     }
 
     @Override
-    public BiomeDecorator createBiomeDecorator()
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int chunkX, int chunkZ, double noiseVal)
     {
-        return new BiomeDecoratorNibiru();
-    }
-
-    protected BiomeDecoratorNibiru getBiomeDecorator()
-    {
-        return (BiomeDecoratorNibiru)this.decorator;
-    }
-
-    @Override
-    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double noise)
-    {
-        this.genPlanetTerrain(world, rand, chunkPrimer, chunkX, chunkZ, noise);
-    }
-
-    protected void genPlanetTerrain(World world, Random rand, ChunkPrimer chunkPrimer, int chunkX, int chunkZ, double noise)
-    {
-        int i = world.getSeaLevel();
-        IBlockState iblockstate = this.topBlock;
-        IBlockState iblockstate1 = this.fillerBlock;
+        int seaLevel = world.getSeaLevel();
+        IBlockState topState = this.topBlock;
+        IBlockState fillerState = this.fillerBlock;
         int j = -1;
-        int k = (int)(noise / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
-        int l = chunkX & 15;
-        int i1 = chunkZ & 15;
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        int k = (int)(noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+        int x = chunkZ & 15;// WTF??
+        int z = chunkX & 15;// WTF??
+        BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
-        for (int j1 = 255; j1 >= 0; --j1)
+        for (int y = 255; y >= 0; --y)
         {
-            if (j1 <= rand.nextInt(5))
+            if (y <= rand.nextInt(5))
             {
-                chunkPrimer.setBlockState(i1, j1, l, Blocks.BEDROCK.getDefaultState());
+                primer.setBlockState(x, y, z, Blocks.BEDROCK.getDefaultState());
             }
             else
             {
-                IBlockState iblockstate2 = chunkPrimer.getBlockState(i1, j1, l);
+                IBlockState stoneState = primer.getBlockState(x, y, z);
 
-                if (iblockstate2.getMaterial() == Material.AIR)
+                if (stoneState.getMaterial() == Material.AIR)
                 {
                     j = -1;
                 }
-                else if (iblockstate2.getBlock() == MPBlocks.NIBIRU_ROCK)
+                else if (stoneState.getBlock() == MPBlocks.NIBIRU_ROCK)
                 {
-                    if (this.stoneBlock != null)
-                    {
-                        chunkPrimer.setBlockState(i1, j1, l, this.stoneBlock);
-                    }
+                    primer.setBlockState(x, y, z, this.stoneBlock);
+
                     if (j == -1)
                     {
                         if (k <= 0)
                         {
-                            iblockstate = null;
-                            iblockstate1 = MPBlocks.NIBIRU_ROCK.getDefaultState();
+                            topState = null;
+                            fillerState = MPBlocks.NIBIRU_ROCK.getDefaultState();
                         }
-                        else if (j1 >= i - 4 && j1 <= i + 1)
+                        else if (y >= seaLevel - 4 && y <= seaLevel + 1)
                         {
-                            iblockstate = this.topBlock;
-                            iblockstate1 = this.fillerBlock;
+                            topState = this.topBlock;
+                            fillerState = this.fillerBlock;
                         }
 
-                        if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
+                        if (y < seaLevel && (topState == null || topState.getMaterial() == Material.AIR))
                         {
-                            if (this.getTemperature(blockpos$mutableblockpos.setPos(chunkX, j1, chunkZ)) < 0.15F)
+                            if (this.getTemperature(mutablePos.setPos(chunkX, y, chunkZ)) < 0.15F)
                             {
-                                iblockstate = MPBlocks.INFECTED_ICE.getDefaultState();
+                                topState = MPBlocks.INFECTED_ICE.getDefaultState();
                             }
                             else
                             {
-                                iblockstate = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+                                topState = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
                             }
                         }
 
                         j = k;
 
-                        if (j1 >= i - 1)
+                        if (y >= seaLevel - 1)
                         {
-                            chunkPrimer.setBlockState(i1, j1, l, iblockstate);
+                            primer.setBlockState(x, y, z, topState);
                         }
-                        else if (j1 < i - 7 - k)
+                        else if (y < seaLevel - 7 - k)
                         {
-                            iblockstate = null;
-                            iblockstate1 = MPBlocks.NIBIRU_ROCK.getDefaultState();
-                            chunkPrimer.setBlockState(i1, j1, l, MPBlocks.INFECTED_GRAVEL.getDefaultState());
+                            topState = null;
+                            fillerState = MPBlocks.NIBIRU_ROCK.getDefaultState();
+                            primer.setBlockState(x, y, z, MPBlocks.INFECTED_GRAVEL.getDefaultState());
                         }
                         else
                         {
-                            chunkPrimer.setBlockState(i1, j1, l, iblockstate1);
+                            primer.setBlockState(x, y, z, fillerState);
                         }
                     }
                     else if (j > 0)
                     {
                         --j;
-                        chunkPrimer.setBlockState(i1, j1, l, iblockstate1);
+                        primer.setBlockState(x, y, z, fillerState);
 
-                        if (j == 0 && iblockstate1.getBlock() == MPBlocks.INFECTED_SAND)
+                        if (j == 0 && fillerState.getBlock() == MPBlocks.INFECTED_SAND)
                         {
-                            j = rand.nextInt(4) + Math.max(0, j1 - 63);
-                            iblockstate1 = MPBlocks.INFECTED_SANDSTONE.getDefaultState();
+                            j = rand.nextInt(4) + Math.max(0, y - 63);
+                            fillerState = MPBlocks.INFECTED_SANDSTONE.getDefaultState();
                         }
                     }
                 }

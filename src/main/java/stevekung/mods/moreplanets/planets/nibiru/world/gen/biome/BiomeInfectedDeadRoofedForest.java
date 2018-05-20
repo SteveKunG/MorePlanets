@@ -1,42 +1,22 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 
-import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
-import static net.minecraftforge.common.BiomeDictionary.Type.DENSE;
-import static net.minecraftforge.common.BiomeDictionary.Type.FOREST;
-import static net.minecraftforge.common.BiomeDictionary.Type.SPOOKY;
-
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedCanopyTree;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
 {
-    public BiomeInfectedDeadRoofedForest(BiomeProperties properties)
+    public BiomeInfectedDeadRoofedForest(BiomeProperties prop)
     {
-        super(properties);
-        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
-        this.getBiomeDecorator().infectedTreesPerChunk = -999;
-        this.getBiomeDecorator().infectedTallGrassPerChunk = 2;
-        this.getBiomeDecorator().orangeBushPerChunk = 3;
-        this.getBiomeDecorator().reedsPerChunk = 10;
-        this.decorator.treesPerChunk = -999;
-    }
-
-    @Override
-    public void registerTypes(Biome biome)
-    {
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, SPOOKY, DENSE, FOREST, DEAD);
+        super(prop);
+        this.decorator.infectedTreesPerChunk = -999;
+        this.decorator.infectedTallGrassPerChunk = 2;
+        this.decorator.orangeBushPerChunk = 3;
+        this.decorator.reedsPerChunk = 10;
     }
 
     @Override
@@ -44,15 +24,15 @@ public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
     {
         if (rand.nextInt(8) < 1)
         {
-            return new WorldGenInfectedCanopyTree(false);
+            return new WorldGenInfectedCanopyTree(false);//TODO
         }
         else if (rand.nextInt(20) == 0)
         {
-            return rand.nextInt(5) == 0 ? new WorldGenInfectedCanopyTree(true) : new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+            return rand.nextInt(5) == 0 ? new WorldGenInfectedCanopyTree(true) : BiomeNibiru.TREE;//TODO
         }
         else
         {
-            return new WorldGenInfectedTrees(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+            return BiomeNibiru.TREE_NO_LEAVES;
         }
     }
 
@@ -63,20 +43,20 @@ public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
         {
             for (int j = 0; j < 4; ++j)
             {
-                int k = i * 4 + 1 + 8 + rand.nextInt(3);
-                int l = j * 4 + 1 + 8 + rand.nextInt(3);
-                BlockPos blockpos = world.getHeight(pos.add(k, 0, l));
-                WorldGenAbstractTree worldgenabstracttree = this.getRandomTreeFeature(rand);
+                int x = i * 4 + 1 + 8 + rand.nextInt(3);
+                int z = j * 4 + 1 + 8 + rand.nextInt(3);
+                BlockPos blockPos = world.getHeight(pos.add(x, 0, z));
+                WorldGenAbstractTree tree = this.getRandomTreeFeature(rand);
 
-                if (worldgenabstracttree.generate(world, rand, blockpos))
+                if (tree.generate(world, rand, blockPos))
                 {
-                    worldgenabstracttree.generateSaplings(world, rand, blockpos);
+                    tree.generateSaplings(world, rand, blockPos);
                 }
             }
         }
         if (rand.nextInt(25) == 0)
         {
-            new WorldGenInfectedVinesDirt().generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            BiomeNibiru.SCATTERED_DIRT.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
         }
         super.decorate(world, rand, pos);
     }

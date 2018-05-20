@@ -1,15 +1,11 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 
-import static net.minecraftforge.common.BiomeDictionary.Type.*;
-
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.*;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
@@ -17,55 +13,57 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeInfectedJungle extends BiomeNibiru
 {
-    public BiomeInfectedJungle(BiomeProperties properties)
-    {
-        super(properties);
-        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
-        this.getBiomeDecorator().infectedTallGrassPerChunk = 25;
-        this.getBiomeDecorator().vealiumVinePerChunk = 4;
-        this.getBiomeDecorator().pyoloniaPerChunk = 4;
-        this.getBiomeDecorator().infectedTreesPerChunk = 50;
-        this.getBiomeDecorator().infectedFernPerChunk = 25;
-        this.getBiomeDecorator().pureHurbPerChunk = 4;
-        this.decorator.treesPerChunk = -999;
-    }
+    private static final WorldGenFlowersBase GRASS = new WorldGenFlowersBase(MPBlocks.INFECTED_GRASS.getDefaultState());
+    private static final WorldGenFlowersBase FERN = new WorldGenFlowersBase(MPBlocks.INFECTED_FERN.getDefaultState());
+    private static final WorldGenNibiruMelon MELON = new WorldGenNibiruMelon();
+    private static final WorldGenInfectedVines VINES = new WorldGenInfectedVines();
+    private static final WorldGenInfectedMegaJungleTree MEGA_JUNGLE_TREE = new WorldGenInfectedMegaJungleTree();
+    private static final WorldGenInfectedShrub SHRUB = new WorldGenInfectedShrub(MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
 
-    @Override
-    public void registerTypes(Biome biome)
+    public BiomeInfectedJungle(BiomeProperties prop)
     {
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, HOT, WET, DENSE, JUNGLE, DEAD);
+        super(prop);
+        this.decorator.infectedTallGrassPerChunk = 25;
+        this.decorator.vealiumVinePerChunk = 4;
+        this.decorator.pyoloniaPerChunk = 4;
+        this.decorator.infectedTreesPerChunk = 50;
+        this.decorator.infectedFernPerChunk = 25;
+        this.decorator.pureHurbPerChunk = 4;
     }
 
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(2) == 0 ? new WorldGenInfectedShrub(MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : rand.nextInt(3) == 0 ? new WorldGenInfectedMegaJungleTree() : new WorldGenInfectedJungleTrees(true, 4 + rand.nextInt(7), true);
+        WorldGenInfectedJungleTrees jungleTree = new WorldGenInfectedJungleTrees(true, 4 + rand.nextInt(7), true);
+        return rand.nextInt(10) == 0 ? BiomeNibiru.BIG_TREE : rand.nextInt(2) == 0 ? BiomeInfectedJungle.SHRUB : rand.nextInt(3) == 0 ? BiomeInfectedJungle.MEGA_JUNGLE_TREE : jungleTree;
     }
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
-        return rand.nextInt(4) == 0 ? new WorldGenFlowersBase(MPBlocks.INFECTED_FERN.getDefaultState()) : new WorldGenFlowersBase(MPBlocks.INFECTED_GRASS.getDefaultState());
+        return rand.nextInt(4) == 0 ? BiomeInfectedJungle.FERN : BiomeInfectedJungle.GRASS;
     }
 
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
         super.decorate(world, rand, pos);
-        int i = rand.nextInt(16) + 8;
-        int j = rand.nextInt(16) + 8;
-        new WorldGenNibiruMelon().generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
-        WorldGenInfectedVines worldgenvines = new WorldGenInfectedVines();
+        int height = world.getHeight(pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)).getY() * 2;
 
-        for (j = 0; j < 50; ++j)
+        if (height < 1)
         {
-            worldgenvines.generate(world, rand, pos.add(i, 128, j));
+            height = 1;
+        }
+
+        BiomeInfectedJungle.MELON.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(height), rand.nextInt(16) + 8));
+
+        for (int i = 0; i < 50; ++i)
+        {
+            BiomeInfectedJungle.VINES.generate(world, rand, pos.add(rand.nextInt(16) + 8, 128, rand.nextInt(16) + 8));
         }
         if (rand.nextInt(25) == 0)
         {
-            new WorldGenInfectedVinesDirt().generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            BiomeNibiru.SCATTERED_DIRT.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
         }
     }
 }

@@ -34,7 +34,7 @@ public class WorldDecorateUtils
     {
         int x = rand.nextInt(16) + 8;
         int z = rand.nextInt(16) + 8;
-        int y = world.getHeight(pos.add(x, 0, z)).getY() * 2;
+        int y = rand.nextInt(world.getHeight(pos.add(x, 0, z)).getY() + 32);
         return pos.add(x, y, z);
     }
 }

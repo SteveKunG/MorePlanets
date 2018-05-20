@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.utils.blocks;
 
 import net.minecraft.block.BlockTorch;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.EnumFacing;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
@@ -10,6 +11,7 @@ public abstract class BlockTorchMP extends BlockTorch implements ISortableBlock,
     public BlockTorchMP()
     {
         super();
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
         this.setHardness(0.0F);
         this.setTickRandomly(true);
     }

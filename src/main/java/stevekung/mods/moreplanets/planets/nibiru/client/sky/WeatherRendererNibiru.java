@@ -144,7 +144,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                                     }
                                     j1 = 0;
 
-                                    if (biomegenbase == MPBiomes.GREEN_VEIN)
+                                    if (biomegenbase == MPBiomes.GREEN_VEIN_BADLANDS)
                                     {
                                         mc.getTextureManager().bindTexture(WeatherRendererNibiru.PURIFIED_RAIN);
                                     }

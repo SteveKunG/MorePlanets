@@ -83,6 +83,7 @@ public class BlockTerraberry extends BlockCropsMP
                 }
             }
         }
+        drops.add(new ItemStack(this.getCrop()));
     }
 
     @Override

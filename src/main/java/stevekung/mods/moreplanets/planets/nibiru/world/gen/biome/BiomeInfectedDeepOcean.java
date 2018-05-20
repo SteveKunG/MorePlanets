@@ -1,30 +1,15 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 
-import static net.minecraftforge.common.BiomeDictionary.Type.DEAD;
-import static net.minecraftforge.common.BiomeDictionary.Type.OCEAN;
-
 import java.util.LinkedList;
 
 import net.minecraft.world.biome.Biome;
-import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class BiomeInfectedDeepOcean extends BiomeNibiru
 {
-    public BiomeInfectedDeepOcean(BiomeProperties properties)
+    public BiomeInfectedDeepOcean(BiomeProperties prop)
     {
-        super(properties);
-        this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
-        this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
-        this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
-        this.getBiomeDecorator().seaweedPerChunk = 4;
-        this.decorator.treesPerChunk = -999;
-    }
-
-    @Override
-    public void registerTypes(Biome biome)
-    {
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(biome, OCEAN, DEAD);
+        super(prop);
+        this.decorator.seaweedPerChunk = 4;
     }
 
     @Override
@@ -34,7 +19,7 @@ public class BiomeInfectedDeepOcean extends BiomeNibiru
     }
 
     @Override
-    public void initialiseMobLists(LinkedList<SpawnListEntry> mobInfo)
+    public void initialiseMobLists(LinkedList<Biome.SpawnListEntry> mobInfo)
     {
         super.initialiseMobLists(mobInfo);
         this.spawnableCreatureList.clear();

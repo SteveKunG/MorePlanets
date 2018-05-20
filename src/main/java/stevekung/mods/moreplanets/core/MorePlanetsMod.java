@@ -167,10 +167,7 @@ public class MorePlanetsMod
     @SubscribeEvent
     public void onBiomeRegister(RegistryEvent.Register<Biome> event)
     {
-        MPBiomes.biomeList.forEach(biome ->
-        {
-            biome.registerTypes(biome);
-        });
+        MPBiomes.registerTypes();
     }
 
     private static void initModInfo(ModMetadata info)

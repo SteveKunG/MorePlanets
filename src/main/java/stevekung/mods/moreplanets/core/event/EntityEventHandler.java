@@ -134,11 +134,11 @@ public class EntityEventHandler
             }
             if (world.provider instanceof WorldProviderNibiru)
             {
-                if (world.isRainingAt(player.getPosition()) && !this.isGodPlayer(player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiome(player.getPosition()) != MPBiomes.GREEN_VEIN)
+                if (world.isRainingAt(player.getPosition()) && !this.isGodPlayer(player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiome(player.getPosition()) != MPBiomes.GREEN_VEIN_BADLANDS)
                 {
                     player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
                 }
-                if (player.ticksExisted % 128 == 0 && !this.isGodPlayer(player) && !this.isInOxygen(world, player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiome(player.getPosition()) != MPBiomes.GREEN_VEIN)
+                if (player.ticksExisted % 128 == 0 && !this.isGodPlayer(player) && !this.isInOxygen(world, player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiome(player.getPosition()) != MPBiomes.GREEN_VEIN_BADLANDS)
                 {
                     player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
                 }
@@ -152,11 +152,11 @@ public class EntityEventHandler
         {
             if (!(living instanceof EntityPlayer) && !EntityEffectUtils.isGalacticraftMob(living) && !(living instanceof EntityJuicer))
             {
-                if (living.ticksExisted % 128 == 0 && world.getBiome(living.getPosition()) != MPBiomes.GREEN_VEIN)
+                if (living.ticksExisted % 128 == 0 && world.getBiome(living.getPosition()) != MPBiomes.GREEN_VEIN_BADLANDS)
                 {
                     living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
                 }
-                if (world.isRainingAt(living.getPosition()) && world.getBiome(living.getPosition()) != MPBiomes.GREEN_VEIN)
+                if (world.isRainingAt(living.getPosition()) && world.getBiome(living.getPosition()) != MPBiomes.GREEN_VEIN_BADLANDS)
                 {
                     living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
                 }
