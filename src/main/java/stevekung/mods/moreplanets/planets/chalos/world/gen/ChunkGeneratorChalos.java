@@ -3,6 +3,8 @@ package stevekung.mods.moreplanets.planets.chalos.world.gen;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import net.minecraft.block.Block;
@@ -49,6 +51,7 @@ public class ChunkGeneratorChalos implements IChunkGenerator
     private MapGenBase caveGenerator = new MapGenChalosCave();
     private MapGenBase ravineGenerator = new MapGenChalosRavine();
     public BiomeDecoratorChalosOre biomedecoratorplanet = new BiomeDecoratorChalosOre();
+    private MapGenCheeseSporeHutFeature cheeseSporeHutFeatureGenerator = new MapGenCheeseSporeHutFeature();
     private Biome[] biomesForGeneration;
     double[] mainNoiseRegion;
     double[] minLimitRegion;
@@ -182,6 +185,7 @@ public class ChunkGeneratorChalos implements IChunkGenerator
         this.replaceBlocksForBiome(chunkX, chunkZ, chunkprimer, this.biomesForGeneration);
         this.caveGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
         this.ravineGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
+        this.cheeseSporeHutFeatureGenerator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
 
         Chunk chunk = new Chunk(this.worldObj, chunkprimer, chunkX, chunkZ);
         byte[] abyte = chunk.getBiomeArray();
@@ -321,6 +325,7 @@ public class ChunkGeneratorChalos implements IChunkGenerator
         int worldZ = chunkZ << 4;
         this.generateGas(this.worldObj, this.rand, worldX + 15, worldZ + 15);
         this.dungeonGenerator.generateStructure(this.worldObj, this.rand, new ChunkPos(chunkX, chunkZ));
+        this.cheeseSporeHutFeatureGenerator.generateStructure(this.worldObj, this.rand, new ChunkPos(chunkX, chunkZ));
 
         for (int i = 0; i < 8; ++i)
         {
@@ -337,6 +342,7 @@ public class ChunkGeneratorChalos implements IChunkGenerator
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         this.dungeonGenerator.generate(this.worldObj, chunkX, chunkZ, null);
+        this.cheeseSporeHutFeatureGenerator.generate(this.worldObj, chunkX, chunkZ, null);
     }
 
     @Override
@@ -346,15 +352,16 @@ public class ChunkGeneratorChalos implements IChunkGenerator
     }
 
     @Override
-    public BlockPos getNearestStructurePos(World world, String structureName, BlockPos position, boolean findUnexplored)
+    public boolean isInsideStructure(World world, String structureName, BlockPos pos)
     {
-        return null;
+        return "CheeseSporeHut".equals(structureName) && this.cheeseSporeHutFeatureGenerator != null ? this.cheeseSporeHutFeatureGenerator.isInsideStructure(pos) : false;
     }
 
     @Override
-    public boolean isInsideStructure(World world, String structureName, BlockPos pos)
+    @Nullable
+    public BlockPos getNearestStructurePos(World world, String structureName, BlockPos position, boolean findUnexplored)
     {
-        return false;
+        return "CheeseSporeHut".equals(structureName) && this.cheeseSporeHutFeatureGenerator != null ? this.cheeseSporeHutFeatureGenerator.getNearestStructurePos(world, position, findUnexplored) : null;
     }
 
     @Override
