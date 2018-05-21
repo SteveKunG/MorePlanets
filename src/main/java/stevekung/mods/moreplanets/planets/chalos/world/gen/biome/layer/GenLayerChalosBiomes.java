@@ -7,13 +7,14 @@ import com.google.common.collect.ImmutableList;
 
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.stevekunglib.utils.CachedEnum;
 
-public class GenLayerChalosBiomes extends GenLayerChalos
+public class GenLayerChalosBiomes extends GenLayer
 {
     private final List<BiomeEntry>[] biomes = new ArrayList[CachedEnum.biomeValues.length];
     private final ArrayList<BiomeEntry>[] biomesList = this.setupBiomes();
