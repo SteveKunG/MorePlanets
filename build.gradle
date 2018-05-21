@@ -35,7 +35,7 @@ archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.12.2-14.23.3.2701"
+    version = "1.12.2-14.23.3.2702"
     runDir = "run"
     mappings = "snapshot_20171003"
     makeObfSourceJar = false
@@ -73,7 +73,7 @@ dependencies {
     compile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
     deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
-    provided "mezz.jei:jei_${mc_version}:${jei_version}"
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
     runtime "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
 }
 
