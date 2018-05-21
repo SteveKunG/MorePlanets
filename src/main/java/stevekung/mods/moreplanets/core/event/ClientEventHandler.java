@@ -145,7 +145,6 @@ public class ClientEventHandler
         }
     }
 
-    @SuppressWarnings("unchecked")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onClientTick(ClientTickEvent event)

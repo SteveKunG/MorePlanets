@@ -297,7 +297,6 @@ public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot im
         return true;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {

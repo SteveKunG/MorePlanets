@@ -229,7 +229,6 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
     {

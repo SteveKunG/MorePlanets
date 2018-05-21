@@ -15,7 +15,6 @@ import stevekung.mods.stevekunglib.utils.CachedEnum;
 
 public class GenLayerChalosBiomes extends GenLayerChalos
 {
-    @SuppressWarnings("unchecked")
     private final List<BiomeEntry>[] biomes = new ArrayList[CachedEnum.biomeValues.length];
     private final ArrayList<BiomeEntry>[] biomesList = this.setupBiomes();
 
@@ -57,7 +56,6 @@ public class GenLayerChalosBiomes extends GenLayerChalos
 
     private ArrayList<BiomeEntry>[] setupBiomes()
     {
-        @SuppressWarnings("unchecked")
         ArrayList<BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.biomeValues.length];
         List<BiomeEntry> list = new ArrayList<>();
         list.add(new BiomeEntry(MPBiomes.CHALOS_PLAINS, 30));

@@ -24,7 +24,6 @@ public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
         this.light = light;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void doRenderLayer(EntityLiving entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {

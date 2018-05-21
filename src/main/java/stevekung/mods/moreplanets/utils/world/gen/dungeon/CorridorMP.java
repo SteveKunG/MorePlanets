@@ -57,7 +57,6 @@ public class CorridorMP extends SizedPieceMP
         return true;
     }
 
-    @SuppressWarnings("unchecked")
     private <T extends SizedPieceMP> T getRoom(Class<? extends StructureComponent> clazz, DungeonStartMP startPiece, Random rand)
     {
         try
