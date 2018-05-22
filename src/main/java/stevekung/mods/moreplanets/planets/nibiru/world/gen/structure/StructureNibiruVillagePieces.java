@@ -1246,7 +1246,7 @@ public class StructureNibiruVillagePieces
             this.biomeProvider = biomeProvider;
             this.structureVillageWeightedPieceList = list;
             this.terrainType = type;
-            Biome biome = biomeProvider.getBiome(new BlockPos(x, 0, z), Biomes.DEFAULT);
+            Biome biome = biomeProvider.getBiome(new BlockPos(x, 0, z), MPBiomes.INFECTED_OCEAN);
             this.biome = biome;
             this.startPiece = this;
 

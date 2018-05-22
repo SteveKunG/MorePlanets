@@ -33,11 +33,11 @@ public class BiomeProviderChalos extends BiomeProvider
         biomesLayer = new GenLayerZoom(1005L, biomesLayer);
         GenLayer riverLayer = new GenLayerSlimelyStream(1L, biomesLayer);
         riverLayer = new GenLayerSmooth(7000L, riverLayer);
-        biomesLayer = new GenLayerSlimelyStreamMix(100L, biomesLayer, riverLayer);
-        GenLayer veronoiZoom = new GenLayerVoronoiZoom(10L, biomesLayer);
-        biomesLayer.initWorldGenSeed(seed);
+        GenLayer riverMix = new GenLayerSlimelyStreamMix(100L, biomesLayer, riverLayer);
+        GenLayer veronoiZoom = new GenLayerVoronoiZoom(10L, riverMix);
+        riverMix.initWorldGenSeed(seed);
         veronoiZoom.initWorldGenSeed(seed);
-        this.genBiomes = biomesLayer;
+        this.genBiomes = riverMix;
         this.biomeIndexLayer = veronoiZoom;
     }
 }

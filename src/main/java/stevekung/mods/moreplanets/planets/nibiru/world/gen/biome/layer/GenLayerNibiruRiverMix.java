@@ -7,42 +7,60 @@ import stevekung.mods.moreplanets.init.MPBiomes;
 
 public class GenLayerNibiruRiverMix extends GenLayer
 {
-    private GenLayer biomeLayer;
-    private GenLayer riverLayer;
+    private final GenLayer biomePatternGeneratorChain;
+    private final GenLayer riverPatternGeneratorChain;
 
     public GenLayerNibiruRiverMix(long seed, GenLayer biomeLayer, GenLayer riverLayer)
     {
         super(seed);
-        this.biomeLayer = biomeLayer;
-        this.riverLayer = riverLayer;
+        this.biomePatternGeneratorChain = biomeLayer;
+        this.riverPatternGeneratorChain = riverLayer;
     }
 
     @Override
     public void initWorldGenSeed(long seed)
     {
-        this.biomeLayer.initWorldGenSeed(seed);
-        this.riverLayer.initWorldGenSeed(seed);
+        this.biomePatternGeneratorChain.initWorldGenSeed(seed);
+        this.riverPatternGeneratorChain.initWorldGenSeed(seed);
         super.initWorldGenSeed(seed);
     }
 
     @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
-        int[] biomeInputs = this.biomeLayer.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] riverInputs = this.riverLayer.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] outputs = IntCache.getIntCache(areaWidth * areaHeight);
+        int[] aint = this.biomePatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
+        int[] aint1 = this.riverPatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
+        int[] aint2 = IntCache.getIntCache(areaWidth * areaHeight);
 
         for (int i = 0; i < areaWidth * areaHeight; ++i)
         {
-            if (riverInputs[i] == Biome.getIdForBiome(MPBiomes.INFECTED_RIVER))
+            if (aint[i] != Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN) && aint[i] != Biome.getIdForBiome(MPBiomes.INFECTED_DEEP_OCEAN))
             {
-                outputs[i] = riverInputs[i] & 255;
+                if (aint1[i] == Biome.getIdForBiome(MPBiomes.INFECTED_RIVER))
+                {
+                    if (aint[i] == Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS))
+                    {
+                        aint2[i] = Biome.getIdForBiome(MPBiomes.INFECTED_FROZEN_RIVER);
+                    }
+                    else if (aint[i] != Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS) && aint[i] != Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS_SHORE))
+                    {
+                        aint2[i] = aint1[i] & 255;
+                    }
+                    else
+                    {
+                        aint2[i] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS_SHORE);
+                    }
+                }
+                else
+                {
+                    aint2[i] = aint[i];
+                }
             }
             else
             {
-                outputs[i] = biomeInputs[i];
+                aint2[i] = aint[i];
             }
         }
-        return outputs;
+        return aint2;
     }
 }

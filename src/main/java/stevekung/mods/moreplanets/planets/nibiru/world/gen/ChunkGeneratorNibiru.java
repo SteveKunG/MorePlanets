@@ -51,82 +51,82 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
     @Override
     protected void generateChunk(ChunkPrimer primer, int chunkX, int chunkZ)
     {
-        this.caveGenerator.generate(this.world, chunkX, chunkZ, primer);
-        this.ravineGenerator.generate(this.world, chunkX, chunkZ, primer);
-        this.mineshaftGenerator.generate(this.world, chunkX, chunkZ, primer);
-        this.strongholdGenerator.generate(this.world, chunkX, chunkZ, primer);
-        this.pyramidGenerator.generate(this.world, chunkX, chunkZ, primer);
-        this.jungleTempleGenerator.generate(this.world, chunkX, chunkZ, primer);
+//        this.caveGenerator.generate(this.world, chunkX, chunkZ, primer);
+//        this.ravineGenerator.generate(this.world, chunkX, chunkZ, primer);
+//        this.mineshaftGenerator.generate(this.world, chunkX, chunkZ, primer);
+//        this.strongholdGenerator.generate(this.world, chunkX, chunkZ, primer);
+//        this.pyramidGenerator.generate(this.world, chunkX, chunkZ, primer);
+//        this.jungleTempleGenerator.generate(this.world, chunkX, chunkZ, primer);
         this.oceanMonumentGenerator.generate(this.world, chunkX, chunkZ, primer);
-        this.villageGenerator.generate(this.world, chunkX, chunkZ, primer);
-        this.dungeonGenerator.generate(this.world, chunkX, chunkZ, primer);
+//        this.villageGenerator.generate(this.world, chunkX, chunkZ, primer);
+//        this.dungeonGenerator.generate(this.world, chunkX, chunkZ, primer);
     }
 
     @Override
     protected void populate(BlockPos pos, ChunkPos chunkpos, Biome biome, int chunkX, int chunkZ, int x, int z)
     {
-        this.decorator.decorate(this.world, this.rand, biome, pos);
-        this.mineshaftGenerator.generateStructure(this.world, this.rand, chunkpos);
-        this.strongholdGenerator.generateStructure(this.world, this.rand, chunkpos);
-        this.pyramidGenerator.generateStructure(this.world, this.rand, chunkpos);
-        this.jungleTempleGenerator.generateStructure(this.world, this.rand, chunkpos);
+//        this.decorator.decorate(this.world, this.rand, biome, pos);
+//        this.mineshaftGenerator.generateStructure(this.world, this.rand, chunkpos);
+//        this.strongholdGenerator.generateStructure(this.world, this.rand, chunkpos);
+//        this.pyramidGenerator.generateStructure(this.world, this.rand, chunkpos);
+//        this.jungleTempleGenerator.generateStructure(this.world, this.rand, chunkpos);
         this.oceanMonumentGenerator.generateStructure(this.world, this.rand, chunkpos);
-        this.villageGenerator.generateStructure(this.world, this.rand, chunkpos);
-        this.dungeonGenerator.generateStructure(this.world, this.rand, chunkpos);
+//        this.villageGenerator.generateStructure(this.world, this.rand, chunkpos);
+//        this.dungeonGenerator.generateStructure(this.world, this.rand, chunkpos);
 
-        int worldX = chunkX << 4;
-        int worldZ = chunkZ << 4;
-        this.generatePocket(this.world, this.rand, worldX + 15, worldZ + 15, GCBlocks.crudeOil.getDefaultState(), Sets.newHashSet(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
-
-        if (this.rand.nextInt(10) == 0)
-        {
-            this.generatePocket(this.world, this.rand, worldX + 15, worldZ + 15, MPBlocks.HELIUM_GAS_BLOCK.getDefaultState(), Sets.newHashSet(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
-        }
-        if (biome != MPBiomes.INFECTED_DESERT && biome != MPBiomes.GREEN_VEIN_BADLANDS && this.rand.nextInt(4) == 0)
-        {
-            new WorldGenLiquidLake(MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), false).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
-        }
-        if (biome == MPBiomes.GREEN_VEIN_BADLANDS && this.rand.nextInt(6) == 0)
-        {
-            new WorldGenLiquidLake(MPBlocks.PURIFIED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.TERRASTONE.getDefaultState(), true).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
-        }
-        if (this.rand.nextInt(8) == 0)
-        {
-            int y = this.rand.nextInt(this.rand.nextInt(248) + 8);
-
-            if (y < 63 || this.rand.nextInt(10) == 0)
-            {
-                new WorldGenLiquidLake(Blocks.LAVA.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), true).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
-            }
-        }
-
-        for (int i = 0; i < 8; ++i)
-        {
-            new WorldGenSpaceDungeons(MPBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), MPBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState()).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
-        }
-
-        biome.decorate(this.world, this.rand, pos);
-        WorldEntitySpawner.performWorldGenSpawning(this.world, biome, x + 8, z + 8, 16, 16, this.rand);
-
-        pos = pos.add(8, 0, 8);
-
-        for (int snowX = 0; snowX < 16; ++snowX)
-        {
-            for (int snowZ = 0; snowZ < 16; ++snowZ)
-            {
-                BlockPos blockpos1 = this.world.getPrecipitationHeight(pos.add(snowX, 0, snowZ));
-                BlockPos blockpos2 = blockpos1.down();
-
-                if (this.world.canBlockFreezeWater(blockpos2))
-                {
-                    this.world.setBlockState(blockpos2, MPBlocks.INFECTED_ICE.getDefaultState(), 2);
-                }
-                if (this.world.canSnowAt(blockpos1, true))
-                {
-                    this.world.setBlockState(blockpos1, MPBlocks.INFECTED_SNOW_LAYER.getDefaultState(), 2);
-                }
-            }
-        }
+//        int worldX = chunkX << 4;
+//        int worldZ = chunkZ << 4;
+//        //this.generatePocket(this.world, this.rand, worldX + 15, worldZ + 15, GCBlocks.crudeOil.getDefaultState(), Sets.newHashSet(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
+//
+//        if (this.rand.nextInt(10) == 0)
+//        {
+//            //this.generatePocket(this.world, this.rand, worldX + 15, worldZ + 15, MPBlocks.HELIUM_GAS_BLOCK.getDefaultState(), Sets.newHashSet(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
+//        }
+//        if (biome != MPBiomes.INFECTED_DESERT && biome != MPBiomes.GREEN_VEIN_BADLANDS && this.rand.nextInt(4) == 0)
+//        {
+//            new WorldGenLiquidLake(MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), false).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+//        }
+//        if (biome == MPBiomes.GREEN_VEIN_BADLANDS && this.rand.nextInt(6) == 0)
+//        {
+//            new WorldGenLiquidLake(MPBlocks.PURIFIED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.TERRASTONE.getDefaultState(), true).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+//        }
+//        if (this.rand.nextInt(8) == 0)
+//        {
+//            int y = this.rand.nextInt(this.rand.nextInt(248) + 8);
+//
+//            if (y < 63 || this.rand.nextInt(10) == 0)
+//            {
+//                new WorldGenLiquidLake(Blocks.LAVA.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), true).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
+//            }
+//        }
+//
+//        for (int i = 0; i < 8; ++i)
+//        {
+//            new WorldGenSpaceDungeons(MPBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), MPBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState()).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
+//        }
+//
+//        biome.decorate(this.world, this.rand, pos);
+//        WorldEntitySpawner.performWorldGenSpawning(this.world, biome, x + 8, z + 8, 16, 16, this.rand);
+//
+//        pos = pos.add(8, 0, 8);
+//
+//        for (int snowX = 0; snowX < 16; ++snowX)
+//        {
+//            for (int snowZ = 0; snowZ < 16; ++snowZ)
+//            {
+//                BlockPos blockpos1 = this.world.getPrecipitationHeight(pos.add(snowX, 0, snowZ));
+//                BlockPos blockpos2 = blockpos1.down();
+//
+//                if (this.world.canBlockFreezeWater(blockpos2))
+//                {
+//                    this.world.setBlockState(blockpos2, MPBlocks.INFECTED_ICE.getDefaultState(), 2);
+//                }
+//                if (this.world.canSnowAt(blockpos1, true))
+//                {
+//                    this.world.setBlockState(blockpos1, MPBlocks.INFECTED_SNOW_LAYER.getDefaultState(), 2);
+//                }
+//            }
+//        }
     }
 
     @Override

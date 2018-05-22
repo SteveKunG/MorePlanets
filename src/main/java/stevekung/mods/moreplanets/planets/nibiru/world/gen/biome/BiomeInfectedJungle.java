@@ -1,12 +1,15 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedChicken;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.*;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
@@ -19,23 +22,53 @@ public class BiomeInfectedJungle extends BiomeNibiru
     private static final WorldGenInfectedVines VINES = new WorldGenInfectedVines();
     private static final WorldGenInfectedMegaJungleTree MEGA_JUNGLE_TREE = new WorldGenInfectedMegaJungleTree();
     private static final WorldGenInfectedShrub SHRUB = new WorldGenInfectedShrub(MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
+    private boolean isEdge;
 
-    public BiomeInfectedJungle(BiomeProperties prop)
+    public BiomeInfectedJungle(BiomeProperties prop, boolean isEdge)
     {
         super(prop);
+        this.isEdge = isEdge;
+
+        if (isEdge)
+        {
+            this.decorator.infectedTreesPerChunk = 2;
+        }
+        else
+        {
+            this.decorator.infectedTreesPerChunk = 50;
+        }
+
         this.decorator.infectedTallGrassPerChunk = 25;
         this.decorator.vealiumVinePerChunk = 4;
         this.decorator.pyoloniaPerChunk = 4;
-        this.decorator.infectedTreesPerChunk = 50;
         this.decorator.infectedFernPerChunk = 25;
         this.decorator.pureHurbPerChunk = 4;
+    }
+
+    @Override
+    public void initialiseMobLists(LinkedList<Biome.SpawnListEntry> mobInfo)
+    {
+        super.initialiseMobLists(mobInfo);
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityInfectedChicken.class, 10, 4, 4));
     }
 
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         WorldGenInfectedJungleTrees jungleTree = new WorldGenInfectedJungleTrees(true, 4 + rand.nextInt(7), true);
-        return rand.nextInt(10) == 0 ? BiomeNibiru.BIG_TREE : rand.nextInt(2) == 0 ? BiomeInfectedJungle.SHRUB : rand.nextInt(3) == 0 ? BiomeInfectedJungle.MEGA_JUNGLE_TREE : jungleTree;
+
+        if (rand.nextInt(10) == 0)
+        {
+            return BiomeNibiru.BIG_TREE;
+        }
+        else if (rand.nextInt(2) == 0)
+        {
+            return BiomeInfectedJungle.SHRUB;
+        }
+        else
+        {
+            return !this.isEdge && rand.nextInt(3) == 0 ? BiomeInfectedJungle.MEGA_JUNGLE_TREE : jungleTree;
+        }
     }
 
     @Override
