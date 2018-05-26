@@ -18,7 +18,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
 import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
-public class BiomeInfectedMesa extends BiomeNibiru
+public class BiomeInfectedBadlands extends BiomeNibiru
 {
     private IBlockState[] clayBands;
     private long seed;
@@ -29,7 +29,7 @@ public class BiomeInfectedMesa extends BiomeNibiru
     private final boolean hasForest;
     private WorldGenerator goldGen;
 
-    public BiomeInfectedMesa(BiomeProperties prop, boolean brycePillars, boolean hasForest)
+    public BiomeInfectedBadlands(BiomeProperties prop, boolean brycePillars, boolean hasForest)
     {
         super(prop);
         this.brycePillars = brycePillars;
@@ -62,7 +62,7 @@ public class BiomeInfectedMesa extends BiomeNibiru
     }
 
     @Override
-    public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int x, int z, double noiseVal)
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int chunkX, int chunkZ, double noiseVal)
     {
         if (this.clayBands == null || this.seed != world.getSeed())
         {
@@ -80,8 +80,8 @@ public class BiomeInfectedMesa extends BiomeNibiru
 
         if (this.brycePillars)
         {
-            int i = (x & -16) + (z & 15);
-            int j = (z & -16) + (x & 15);
+            int i = (chunkX & -16) + (chunkZ & 15);
+            int j = (chunkZ & -16) + (chunkX & 15);
             double d0 = Math.min(Math.abs(noiseVal), this.pillarNoise.getValue(i * 0.25D, j * 0.25D));
 
             if (d0 > 0.0D)
@@ -98,8 +98,8 @@ public class BiomeInfectedMesa extends BiomeNibiru
             }
         }
 
-        int k1 = x & 15;
-        int l1 = z & 15;
+        int k1 = chunkX & 15;
+        int l1 = chunkZ & 15;
         int i2 = world.getSeaLevel();
         IBlockState iblockstate = Blocks.STAINED_HARDENED_CLAY.getDefaultState();
         IBlockState iblockstate3 = this.fillerBlock;
@@ -128,7 +128,7 @@ public class BiomeInfectedMesa extends BiomeNibiru
                 {
                     l = -1;
                 }
-                else if (iblockstate1.getBlock() == MPBlocks.NIBIRU_ROCK.getDefaultState())
+                else if (iblockstate1.getBlock() == MPBlocks.NIBIRU_ROCK)
                 {
                     if (l == -1)
                     {
@@ -177,7 +177,7 @@ public class BiomeInfectedMesa extends BiomeNibiru
                                     }
                                     else
                                     {
-                                        iblockstate2 = this.getBand(x, j1, z);
+                                        iblockstate2 = this.getBand(chunkX, j1, chunkZ);
                                     }
                                 }
                                 else
@@ -212,7 +212,7 @@ public class BiomeInfectedMesa extends BiomeNibiru
                         }
                         else
                         {
-                            primer.setBlockState(l1, j1, k1, this.getBand(x, j1, z));
+                            primer.setBlockState(l1, j1, k1, this.getBand(chunkX, j1, chunkZ));
                         }
                     }
                     ++i1;
@@ -302,7 +302,7 @@ public class BiomeInfectedMesa extends BiomeNibiru
 
     private IBlockState getBand(int x, int y, int z)
     {
-        int i = (int)Math.round(this.clayBandsOffsetNoise.getValue(x / 512.0D, x / 512.0D) * 2.0D);//TODO
+        int i = (int)Math.round(this.clayBandsOffsetNoise.getValue(x / 512.0D, z / 512.0D) * 2.0D);
         return this.clayBands[(y + i + 64) % 64];
     }
 }

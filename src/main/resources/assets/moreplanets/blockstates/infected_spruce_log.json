@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "end": "moreplanets:blocks/infected_spruce_log_top",
+            "side": "moreplanets:blocks/infected_spruce_log_side"
+        },
+        "model": "cube_column"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}],
+        "axis" : {
+           "x": { "x": 90, "y": 90 },
+           "y": { },
+           "z": { "x": 90 }
+        }
+    }
+}

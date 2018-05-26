@@ -4,8 +4,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedBadlands;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedJungle;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedMesa;
 
 public class GenLayerNibiruShore extends GenLayer
 {
@@ -68,13 +68,13 @@ public class GenLayerNibiruShore extends GenLayer
                         aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE_EDGE);
                     }
                 }
-                else if (k != Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS) && k != Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS_WITH_TREES) && k != Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS_EDGE))
+                else if (k != Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS) && k != Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_MOUNTAINS) && k != Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS_EDGE))
                 {
                     if (biome != null && biome.isSnowyBiome())
                     {
-                        this.replaceIfNeighborOcean(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_COLD_BEACHES));
+                        this.replaceIfNeighborOcean(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_BEACH));
                     }
-                    else if (k != Biome.getIdForBiome(MPBiomes.INFECTED_MESA) && k != Biome.getIdForBiome(MPBiomes.INFECTED_MESA_FOREST))
+                    else if (k != Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS) && k != Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU))
                     {
                         if (k != Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN) && k != Biome.getIdForBiome(MPBiomes.INFECTED_DEEP_OCEAN) && k != Biome.getIdForBiome(MPBiomes.INFECTED_RIVER) && k != Biome.getIdForBiome(MPBiomes.INFECTED_SWAMP))
                         {
@@ -123,7 +123,7 @@ public class GenLayerNibiruShore extends GenLayer
                 }
                 else
                 {
-                    this.replaceIfNeighborOcean(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_STONE_BEACHES));
+                    this.replaceIfNeighborOcean(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_STONE_SHORE));
                 }
             }
         }
@@ -168,7 +168,7 @@ public class GenLayerNibiruShore extends GenLayer
 
     private boolean isMesa(int id)
     {
-        return Biome.getBiome(id) instanceof BiomeInfectedMesa;
+        return Biome.getBiome(id) instanceof BiomeInfectedBadlands;
     }
 
     private boolean isOcean(int id)

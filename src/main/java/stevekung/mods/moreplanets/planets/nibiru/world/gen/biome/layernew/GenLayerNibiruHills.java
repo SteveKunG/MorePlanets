@@ -54,19 +54,19 @@ public class GenLayerNibiruHills extends GenLayer
                     }
                     else if (biome == MPBiomes.INFECTED_FOREST)
                     {
-                        biome1 = MPBiomes.INFECTED_FOREST_HILLS;
+                        biome1 = MPBiomes.INFECTED_WOODED_HILLS;
                     }
                     else if (biome == Biomes.BIRCH_FOREST)
                     {
                         biome1 = Biomes.BIRCH_FOREST_HILLS;
                     }
-                    else if (biome == MPBiomes.INFECTED_DEAD_ROOFED_FOREST)
+                    else if (biome == MPBiomes.INFECTED_DEAD_DARK_FOREST)
                     {
                         biome1 = MPBiomes.INFECTED_PLAINS;
                     }
                     else if (biome == MPBiomes.INFECTED_TAIGA)
                     {
-                        biome1 = Biomes.TAIGA_HILLS;
+                        biome1 = MPBiomes.INFECTED_TAIGA_HILLS;
                     }
                     else if (biome == Biomes.REDWOOD_TAIGA)
                     {
@@ -80,16 +80,16 @@ public class GenLayerNibiruHills extends GenLayer
                     {
                         if (this.nextInt(3) == 0)
                         {
-                            biome1 = MPBiomes.INFECTED_FOREST_HILLS;
+                            biome1 = MPBiomes.INFECTED_WOODED_HILLS;
                         }
                         else
                         {
                             biome1 = MPBiomes.INFECTED_FOREST;
                         }
                     }
-                    else if (biome == MPBiomes.INFECTED_ICE_PLAINS)
+                    else if (biome == MPBiomes.INFECTED_SNOWY_TUNDRA)
                     {
-                        biome1 = MPBiomes.INFECTED_ICE_MOUNTAINS;
+                        biome1 = MPBiomes.INFECTED_SNOWY_MOUNTAINS;
                     }
                     else if (biome == MPBiomes.INFECTED_JUNGLE)
                     {
@@ -99,17 +99,17 @@ public class GenLayerNibiruHills extends GenLayer
                     {
                         biome1 = MPBiomes.INFECTED_DEEP_OCEAN;
                     }
-                    else if (biome == MPBiomes.INFECTED_EXTREME_HILLS)
+                    else if (biome == MPBiomes.INFECTED_MOUNTAINS)
                     {
-                        biome1 = MPBiomes.INFECTED_EXTREME_HILLS_WITH_TREES;
+                        biome1 = MPBiomes.INFECTED_WOODED_MOUNTAINS;
                     }
                     else if (biome == MPBiomes.INFECTED_DEAD_SAVANNA)
                     {
-                        biome1 = Biomes.SAVANNA_PLATEAU;
+                        biome1 = MPBiomes.INFECTED_DEAD_SAVANNA_PLATEAU;
                     }
-                    else if (this.isOrMesaPlateau(k, Biome.getIdForBiome(MPBiomes.INFECTED_MESA_FOREST)))
+                    else if (this.isOrMesaPlateau(k, Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU)))
                     {
-                        biome1 = MPBiomes.INFECTED_MESA;
+                        biome1 = MPBiomes.INFECTED_BADLANDS;
                     }
                     else if (biome == MPBiomes.INFECTED_DEEP_OCEAN && this.nextInt(3) == 0)
                     {
@@ -190,13 +190,13 @@ public class GenLayerNibiruHills extends GenLayer
 
             if (biome != null && biome1 != null)
             {
-                if (biome != MPBiomes.INFECTED_MESA_FOREST && biome != MPBiomes.INFECTED_MESA_PLATEAU)
+                if (biome != MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU && biome != MPBiomes.INFECTED_BADLANDS_PLATEAU)
                 {
                     return biome == biome1 || biome.getBiomeClass() == biome1.getBiomeClass();
                 }
                 else
                 {
-                    return biome1 == MPBiomes.INFECTED_MESA_FOREST || biome1 == MPBiomes.INFECTED_MESA_PLATEAU;
+                    return biome1 == MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU || biome1 == MPBiomes.INFECTED_BADLANDS_PLATEAU;
                 }
             }
             else

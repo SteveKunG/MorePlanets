@@ -6,10 +6,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
-import net.minecraft.world.gen.feature.WorldGenTaiga1;
-import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadPine;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSpruce;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedMegaPineTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruBlockBlob;
 import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
@@ -18,6 +18,14 @@ public class BiomeInfectedTaiga extends BiomeNibiru
 {
     private static final WorldGenNibiruBlockBlob MOSSY_ROCK = new WorldGenNibiruBlockBlob(MPBlocks.NIBIRU_VEIN_COBBLESTONE.getDefaultState(), 0);
     private static final WorldGenDoublePlantMP LARGE_FERN = new WorldGenDoublePlantMP(MPBlocks.INFECTED_LARGE_FERN);
+    private static final WorldGenInfectedDeadPine DEAD_PINE = new WorldGenInfectedDeadPine(true);
+    private static final WorldGenInfectedDeadPine DEAD_PINE_NO_LEAVES = new WorldGenInfectedDeadPine(false);
+    private static final WorldGenInfectedDeadSpruce DEAD_SPRUCE = new WorldGenInfectedDeadSpruce(true);
+    private static final WorldGenInfectedDeadSpruce DEAD_SPRUCE_NO_LEAVES = new WorldGenInfectedDeadSpruce(false);
+    private static final WorldGenInfectedMegaPineTree MEGA_PINE = new WorldGenInfectedMegaPineTree(true, false);
+    private static final WorldGenInfectedMegaPineTree MEGA_PINE_BASE_HEIGHT = new WorldGenInfectedMegaPineTree(true, true);
+    private static final WorldGenInfectedMegaPineTree MEGA_PINE_NO_LEAVES = new WorldGenInfectedMegaPineTree(false, false);
+    private static final WorldGenInfectedMegaPineTree MEGA_PINE_BASE_HEIGHT_NO_LEAVES = new WorldGenInfectedMegaPineTree(false, true);
     private Type type;
 
     public BiomeInfectedTaiga(BiomeProperties prop, Type type)
@@ -65,25 +73,27 @@ public class BiomeInfectedTaiga extends BiomeNibiru
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        //        if (rand.nextInt(20) == 0)
-        //        {
-        //            return rand.nextInt(3) == 0 ? new WorldGenInfectedDeadTaiga1(false) : new WorldGenInfectedDeadTaiga2(false);//TODO
-        //        }
-        //        else
-        //        {
-        //            return rand.nextInt(3) == 0 ? new WorldGenInfectedDeadTaiga1(true) : new WorldGenInfectedDeadTaiga2(true);//TODO
-        //        }
-        //        private static final WorldGenTaiga1 PINE_GENERATOR = new WorldGenTaiga1();
-        //        private static final WorldGenTaiga2 SPRUCE_GENERATOR = new WorldGenTaiga2(false);
-        //        private static final WorldGenMegaPineTree MEGA_PINE_GENERATOR = new WorldGenMegaPineTree(false, false);
-        //        private static final WorldGenMegaPineTree MEGA_SPRUCE_GENERATOR = new WorldGenMegaPineTree(false, true);
         if ((this.type == Type.MEGA || this.type == Type.MEGA_SPRUCE) && rand.nextInt(3) == 0)
         {
-            return this.type != Type.MEGA_SPRUCE && rand.nextInt(13) != 0 ? new WorldGenMegaPineTree(false, false) : new WorldGenMegaPineTree(false, true);
+            if (rand.nextInt(20) == 0)
+            {
+                return this.type != Type.MEGA_SPRUCE && rand.nextInt(13) != 0 ? BiomeInfectedTaiga.MEGA_PINE_NO_LEAVES : BiomeInfectedTaiga.MEGA_PINE_BASE_HEIGHT_NO_LEAVES;
+            }
+            else
+            {
+                return this.type != Type.MEGA_SPRUCE && rand.nextInt(13) != 0 ? BiomeInfectedTaiga.MEGA_PINE : BiomeInfectedTaiga.MEGA_PINE_BASE_HEIGHT;
+            }
         }
         else
         {
-            return rand.nextInt(3) == 0 ? new WorldGenTaiga1() : new WorldGenTaiga2(false);
+            if (rand.nextInt(20) == 0)
+            {
+                return rand.nextInt(3) == 0 ? BiomeInfectedTaiga.DEAD_PINE_NO_LEAVES : BiomeInfectedTaiga.DEAD_SPRUCE_NO_LEAVES;
+            }
+            else
+            {
+                return rand.nextInt(3) == 0 ? BiomeInfectedTaiga.DEAD_PINE : BiomeInfectedTaiga.DEAD_SPRUCE;
+            }
         }
     }
 

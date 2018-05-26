@@ -387,6 +387,7 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
     public static enum BlockType
     {
         INFECTED_OAK_LEAVES,
+        INFECTED_SPRUCE_LEAVES,
         INFECTED_JUNGLE_LEAVES,
         ALIEN_BERRY_OAK_LEAVES;
 

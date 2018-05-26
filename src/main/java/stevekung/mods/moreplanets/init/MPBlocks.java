@@ -364,13 +364,16 @@ public class MPBlocks
     // Log Planks Leaves Sapling
     public static Block INFECTED_OAK_LOG;
     public static Block INFECTED_DEADWOOD_LOG;
+    public static Block INFECTED_SPRUCE_LOG;
     public static Block INFECTED_JUNGLE_LOG;
     public static Block ALIEN_BERRY_OAK_LOG;
 
     public static Block INFECTED_OAK_PLANKS;
+    public static Block INFECTED_SPRUCE_PLANKS;
     public static Block ALIEN_BERRY_OAK_PLANKS;
 
     public static Block INFECTED_OAK_LEAVES;
+    public static Block INFECTED_SPRUCE_LEAVES;
     public static Block INFECTED_JUNGLE_LEAVES;
     public static Block ALIEN_BERRY_OAK_LEAVES;
 
@@ -806,13 +809,16 @@ public class MPBlocks
         // Log Planks Leaves Sapling
         MPBlocks.INFECTED_OAK_LOG = new BlockLogMP("infected_oak_log");
         MPBlocks.INFECTED_DEADWOOD_LOG = new BlockLogMP("infected_deadwood_log");
+        MPBlocks.INFECTED_SPRUCE_LOG = new BlockLogMP("infected_spruce_log");
         MPBlocks.INFECTED_JUNGLE_LOG = new BlockLogMP("infected_jungle_log");
         MPBlocks.ALIEN_BERRY_OAK_LOG = new BlockLogMP("alien_berry_oak_log");
 
         MPBlocks.INFECTED_OAK_PLANKS = new BlockBaseMP("infected_oak_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
+        MPBlocks.INFECTED_SPRUCE_PLANKS = new BlockBaseMP("infected_spruce_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         MPBlocks.ALIEN_BERRY_OAK_PLANKS = new BlockBaseMP("alien_berry_oak_planks", Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
 
         MPBlocks.INFECTED_OAK_LEAVES = new BlockLeavesMP("infected_oak_leaves", BlockLeavesMP.BlockType.INFECTED_OAK_LEAVES);
+        MPBlocks.INFECTED_SPRUCE_LEAVES = new BlockLeavesMP("infected_spruce_leaves", BlockLeavesMP.BlockType.INFECTED_SPRUCE_LEAVES);
         MPBlocks.INFECTED_JUNGLE_LEAVES = new BlockLeavesMP("infected_jungle_leaves", BlockLeavesMP.BlockType.INFECTED_JUNGLE_LEAVES);
         MPBlocks.ALIEN_BERRY_OAK_LEAVES = new BlockLeavesMP("alien_berry_oak_leaves", BlockLeavesMP.BlockType.ALIEN_BERRY_OAK_LEAVES);
 
@@ -1188,13 +1194,16 @@ public class MPBlocks
         // Log Planks Leaves Sapling
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_LOG);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_DEADWOOD_LOG);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SPRUCE_LOG);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_JUNGLE_LOG);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_LOG);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_PLANKS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SPRUCE_PLANKS);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_PLANKS);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_LEAVES, ItemBlockSingleLeaves::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SPRUCE_LEAVES, ItemBlockSingleLeaves::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_JUNGLE_LEAVES, ItemBlockSingleLeaves::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_LEAVES, ItemBlockSingleLeaves::new);
 

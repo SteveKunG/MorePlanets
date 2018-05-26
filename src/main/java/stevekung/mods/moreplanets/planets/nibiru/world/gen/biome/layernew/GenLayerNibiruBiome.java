@@ -74,11 +74,11 @@ public class GenLayerNibiruBiome extends GenLayer
                 {
                     if (this.nextInt(3) == 0)
                     {
-                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_MESA_PLATEAU);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS_PLATEAU);
                     }
                     else
                     {
-                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_MESA_FOREST);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU);
                     }
                 }
                 else
@@ -126,20 +126,20 @@ public class GenLayerNibiruBiome extends GenLayer
         ArrayList<BiomeManager.BiomeEntry>[] currentBiomes = new ArrayList[BiomeManager.BiomeType.values().length];
         List<BiomeManager.BiomeEntry> list = new ArrayList<>();
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_FOREST, 10));
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_DEAD_ROOFED_FOREST, 10));
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_EXTREME_HILLS, 10));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_DEAD_DARK_FOREST, 10));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_MOUNTAINS, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_PLAINS, 10));
         list.add(new BiomeManager.BiomeEntry(Biomes.BIRCH_FOREST, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_SWAMP, 10));
         currentBiomes[BiomeManager.BiomeType.WARM.ordinal()] = new ArrayList<>(list);
         list.clear();
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_FOREST, 10));
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_EXTREME_HILLS, 10));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_MOUNTAINS, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_TAIGA, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_PLAINS, 10));
         currentBiomes[BiomeManager.BiomeType.COOL.ordinal()] = new ArrayList<>(list);
         list.clear();
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_ICE_PLAINS, 30));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_SNOWY_TUNDRA, 30));
         list.add(new BiomeManager.BiomeEntry(Biomes.COLD_TAIGA, 10));
         currentBiomes[BiomeManager.BiomeType.ICY.ordinal()] = new ArrayList<>(list);
         list.clear();

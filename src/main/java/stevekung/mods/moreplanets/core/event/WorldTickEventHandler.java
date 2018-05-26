@@ -121,7 +121,7 @@ public class WorldTickEventHandler
                                 worldServer.getBlockState(pos1).getBlock().fillWithRain(worldServer, pos1);
                             }
                         }
-                        if (worldServer.getBiome(pos) == MPBiomes.INFECTED_DESERT || worldServer.getBiome(pos) == MPBiomes.INFECTED_EXTREME_HILLS)
+                        if (worldServer.getBiome(pos) == MPBiomes.INFECTED_DESERT || worldServer.getBiome(pos) == MPBiomes.INFECTED_MOUNTAINS)
                         {
                             if (worldServer.rand.nextInt(250000) == 0)
                             {

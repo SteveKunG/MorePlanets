@@ -27,7 +27,7 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
                 this.initChunkSeed(j + areaX, i + areaY);
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
 
-                if (!this.replaceBiomeEdgeIfNecessary(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS), Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS_EDGE)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_MESA_FOREST), Biome.getIdForBiome(MPBiomes.INFECTED_MESA)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_MESA_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_MESA)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.REDWOOD_TAIGA), Biome.getIdForBiome(MPBiomes.INFECTED_TAIGA)))
+                if (!this.replaceBiomeEdgeIfNecessary(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS), Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS_EDGE)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.REDWOOD_TAIGA), Biome.getIdForBiome(MPBiomes.INFECTED_TAIGA)))
                 {
                     if (k == Biome.getIdForBiome(MPBiomes.INFECTED_DESERT))
                     {
@@ -36,13 +36,13 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
                         int j2 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
                         int k2 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-                        if (l1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS) && i2 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS) && j2 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS) && k2 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS))
+                        if (l1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && i2 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && j2 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && k2 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA))
                         {
                             aint1[j + i * areaWidth] = k;
                         }
                         else
                         {
-                            aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS_WITH_TREES);
+                            aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_MOUNTAINS);
                         }
                     }
                     else if (k == Biome.getIdForBiome(MPBiomes.INFECTED_SWAMP))
@@ -52,7 +52,7 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
                         int j1 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
                         int k1 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-                        if (l != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && l != Biome.getIdForBiome(Biomes.COLD_TAIGA) && i1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && j1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && k1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && l != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS))
+                        if (l != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && l != Biome.getIdForBiome(Biomes.COLD_TAIGA) && i1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && j1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && k1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && l != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA))
                         {
                             if (l != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE))
                             {
@@ -165,13 +165,13 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
 
             if (biome != null && biome1 != null)
             {
-                if (biome != MPBiomes.INFECTED_MESA_FOREST && biome != MPBiomes.INFECTED_MESA_PLATEAU)
+                if (biome != MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU && biome != MPBiomes.INFECTED_BADLANDS_PLATEAU)
                 {
                     return biome == biome1 || biome.getBiomeClass() == biome1.getBiomeClass();
                 }
                 else
                 {
-                    return biome1 == MPBiomes.INFECTED_MESA_FOREST || biome1 == MPBiomes.INFECTED_MESA_PLATEAU;
+                    return biome1 == MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU || biome1 == MPBiomes.INFECTED_BADLANDS_PLATEAU;
                 }
             }
             else

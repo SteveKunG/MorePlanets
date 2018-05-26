@@ -132,7 +132,7 @@ public class CraftingManagerMP
         RecipeHelper.addShapelessRecipe(new ItemStack(MPBlocks.CHEESE_SPORE_PLANKS, 4), "planks", MPBlocks.CHEESE_SPORE_STEM );
 
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFERUMITE_BLOCK), new Object[] { "XXX", "XXX", "XXX", 'X', MPItems.INFERUMITE_CRYSTAL });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CRAFTING_TABLE), "crafting_table", new Object[] { "XX", "XX", 'X', MPBlocks.INFECTED_OAK_PLANKS });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CRAFTING_TABLE), "crafting_table", new Object[] { "XX", "XX", 'X', "infectedPlank" });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_CRAFTING_TABLE), "crafting_table", new Object[] { "XX", "XX", 'X', MPBlocks.ALIEN_BERRY_OAK_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_COARSE_DIRT, 4), "coarse_dirt", new Object[] { "DG", "GD", 'D', MPBlocks.INFECTED_DIRT, 'G', "gravel" });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_STONE_BRICKS, 4), new Object[] { "XX", "XX", 'X', MPBlocks.NIBIRU_ROCK });

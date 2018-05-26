@@ -25,6 +25,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.CHEESE_SPORE_DOOR, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_LEAVES, EnumStateMapper.LEAVES);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SPRUCE_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_JUNGLE_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_LEAVES, EnumStateMapper.LEAVES);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CACTUS, EnumStateMapper.PLANT_AGE_15);

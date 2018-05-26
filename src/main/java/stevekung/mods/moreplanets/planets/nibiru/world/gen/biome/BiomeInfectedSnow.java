@@ -9,7 +9,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedSnowman;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSpruce;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedIcePath;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedIceSpike;
 
@@ -18,6 +18,8 @@ public class BiomeInfectedSnow extends BiomeNibiru
     private final boolean superIcy;
     private static final WorldGenInfectedIceSpike ICE_SPIKE = new WorldGenInfectedIceSpike();
     private static final WorldGenInfectedIcePath ICE_PATH = new WorldGenInfectedIcePath(4);
+    private static final WorldGenInfectedDeadSpruce DEAD_SPRUCE = new WorldGenInfectedDeadSpruce(true);
+    private static final WorldGenInfectedDeadSpruce DEAD_SPRUCE_NO_LEAVES = new WorldGenInfectedDeadSpruce(false);
 
     public BiomeInfectedSnow(BiomeProperties prop, boolean superIcy)
     {
@@ -67,6 +69,6 @@ public class BiomeInfectedSnow extends BiomeNibiru
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(20) == 0 ? new WorldGenInfectedDeadTaiga2(false) : new WorldGenInfectedDeadTaiga2(true);//TODO
+        return rand.nextInt(20) == 0 ? BiomeInfectedSnow.DEAD_SPRUCE_NO_LEAVES : BiomeInfectedSnow.DEAD_SPRUCE;
     }
 }

@@ -8,11 +8,11 @@ import net.minecraft.world.World;
 
 public abstract class WorldGenAbstractHugeTrees extends WorldGenAbstractTree
 {
-    private final int baseHeight;
+    protected final int baseHeight;
     private final IBlockState leaves;
     private int extraRandomHeight;
 
-    public WorldGenAbstractHugeTrees(boolean notify, int baseHeight, int extraRandomHeight, IBlockState leaves)
+    public WorldGenAbstractHugeTrees(int baseHeight, int extraRandomHeight, IBlockState leaves)
     {
         super(null, null);
         this.baseHeight = baseHeight;
@@ -119,7 +119,7 @@ public abstract class WorldGenAbstractHugeTrees extends WorldGenAbstractTree
         }
     }
 
-    protected void growLeavesLayer(World worldIn, BlockPos layerCenter, int width)
+    protected void growLeavesLayer(World world, BlockPos layerCenter, int width)
     {
         int i = width * width;
 
@@ -130,11 +130,11 @@ public abstract class WorldGenAbstractHugeTrees extends WorldGenAbstractTree
                 if (j * j + k * k <= i)
                 {
                     BlockPos blockpos = layerCenter.add(j, 0, k);
-                    IBlockState state = worldIn.getBlockState(blockpos);
+                    IBlockState state = world.getBlockState(blockpos);
 
-                    if (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos))
+                    if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos))
                     {
-                        this.setBlockAndNotifyAdequately(worldIn, blockpos, this.leaves);
+                        this.setBlockAndNotifyAdequately(world, blockpos, this.leaves);
                     }
                 }
             }

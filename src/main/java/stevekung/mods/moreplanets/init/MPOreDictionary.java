@@ -99,7 +99,10 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("chest", MPBlocks.CHEESE_SPORE_CHEST);
         BlockUtils.registerOreDictionary("chest", MPBlocks.CHALOS_ANCIENT_CHEST);
         BlockUtils.registerOreDictionary("chest", MPBlocks.ALIEN_CHEST);
+        BlockUtils.registerOreDictionary("infectedPlank", MPBlocks.INFECTED_OAK_PLANKS);
+        BlockUtils.registerOreDictionary("infectedPlank", MPBlocks.INFECTED_SPRUCE_PLANKS);
         BlockUtils.registerOreDictionary("plankWood", MPBlocks.INFECTED_OAK_PLANKS);
+        BlockUtils.registerOreDictionary("plankWood", MPBlocks.INFECTED_SPRUCE_PLANKS);
         BlockUtils.registerOreDictionary("plankWood", MPBlocks.ALIEN_BERRY_OAK_PLANKS);
         BlockUtils.registerOreDictionary("fenceWood", MPBlocks.ALIEN_BERRY_OAK_FENCE);
         BlockUtils.registerOreDictionary("fenceWood", MPBlocks.CHEESE_SPORE_FENCE);
@@ -110,9 +113,11 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("fenceGateWood", MPBlocks.INFECTED_OAK_FENCE_GATE);
         BlockUtils.registerOreDictionary("logWood", MPBlocks.INFECTED_OAK_LOG);
         BlockUtils.registerOreDictionary("logWood", MPBlocks.INFECTED_DEADWOOD_LOG);
+        BlockUtils.registerOreDictionary("logWood", MPBlocks.INFECTED_SPRUCE_LOG);
         BlockUtils.registerOreDictionary("logWood", MPBlocks.INFECTED_JUNGLE_LOG);
         BlockUtils.registerOreDictionary("logWood", MPBlocks.ALIEN_BERRY_OAK_LOG);
         BlockUtils.registerOreDictionary("treeLeaves", MPBlocks.INFECTED_OAK_LEAVES);
+        BlockUtils.registerOreDictionary("treeLeaves", MPBlocks.INFECTED_SPRUCE_LEAVES);
         BlockUtils.registerOreDictionary("treeLeaves", MPBlocks.INFECTED_JUNGLE_LEAVES);
         BlockUtils.registerOreDictionary("treeLeaves", MPBlocks.ALIEN_BERRY_OAK_LEAVES);
         BlockUtils.registerOreDictionary("treeSapling", MPBlocks.INFECTED_OAK_SAPLING);

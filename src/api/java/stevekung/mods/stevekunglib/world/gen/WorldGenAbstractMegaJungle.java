@@ -15,7 +15,7 @@ public abstract class WorldGenAbstractMegaJungle extends WorldGenAbstractHugeTre
 
     public WorldGenAbstractMegaJungle(int baseHeight, int extraRandomHeight, IBlockState log, IBlockState leaves)
     {
-        super(false, baseHeight, extraRandomHeight, leaves);
+        super(baseHeight, extraRandomHeight, leaves);
         this.log = log;
     }
 

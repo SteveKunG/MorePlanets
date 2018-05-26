@@ -23,7 +23,7 @@ public class ParticleLavaMC extends Particle
         this.motionZ *= 0.800000011920929D;
         this.motionY = this.rand.nextFloat() * 0.4F + 0.05F;
         this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
-        this.particleScale *= this.rand.nextFloat() * 2.0F + 0.2F;
+        this.particleScale *= this.rand.nextFloat() * 1.8F + 0.2F;
         this.lavaParticleScale = this.particleScale;
         this.particleMaxAge = (int)(16.0D / (Math.random() * 0.8D + 0.2D));
     }
@@ -47,7 +47,7 @@ public class ParticleLavaMC extends Particle
     public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         float scale = (this.particleAge + partialTicks) / this.particleMaxAge;
-        this.particleScale = this.lavaParticleScale * (1.0F - scale * scale);
+        this.particleScale = this.lavaParticleScale * (0.8F - scale * scale);
         super.renderParticle(buffer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
     }
 

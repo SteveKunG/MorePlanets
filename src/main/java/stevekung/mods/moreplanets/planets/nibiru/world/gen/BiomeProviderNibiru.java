@@ -30,8 +30,8 @@ public class BiomeProviderNibiru extends BiomeProvider
         this.getBiomesToSpawnIn().add(MPBiomes.INFECTED_PLAINS);
         this.getBiomesToSpawnIn().add(MPBiomes.INFECTED_FOREST);
         this.getBiomesToSpawnIn().add(MPBiomes.INFECTED_TAIGA);
-        this.getBiomesToSpawnIn().add(MPBiomes.INFECTED_EXTREME_HILLS);
-        this.getBiomesToSpawnIn().add(MPBiomes.INFECTED_ICE_PLAINS);
+        this.getBiomesToSpawnIn().add(MPBiomes.INFECTED_MOUNTAINS);
+        this.getBiomesToSpawnIn().add(MPBiomes.INFECTED_SNOWY_TUNDRA);
         this.getBiomesToSpawnIn().add(MPBiomes.INFECTED_JUNGLE);
         this.getBiomesToSpawnIn().add(MPBiomes.INFECTED_SWAMP);
         this.getBiomesToSpawnIn().add(MPBiomes.GREEN_VEIN_BADLANDS);
@@ -53,7 +53,6 @@ public class BiomeProviderNibiru extends BiomeProvider
     @Override
     public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height)
     {
-//                return super.getBiomesForGeneration(biomes, x, z, width, height);
         IntCache.resetIntCache();
 
         if (biomes == null || biomes.length < width * height)
@@ -93,7 +92,6 @@ public class BiomeProviderNibiru extends BiomeProvider
     @Override
     public Biome[] getBiomes(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
     {
-//                return super.getBiomes(listToReuse, x, z, width, length, cacheFlag);
         IntCache.resetIntCache();
 
         if (listToReuse == null || listToReuse.length < width * length)

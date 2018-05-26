@@ -8,12 +8,12 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedRoofedTree;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
-public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
+public class BiomeInfectedDeadDarkForest extends BiomeNibiru
 {
     private static final WorldGenInfectedRoofedTree ROOFED_TREE = new WorldGenInfectedRoofedTree(true);
     private static final WorldGenInfectedRoofedTree ROOFED_TREE_NO_LEAVES = new WorldGenInfectedRoofedTree(false);
 
-    public BiomeInfectedDeadRoofedForest(BiomeProperties prop)
+    public BiomeInfectedDeadDarkForest(BiomeProperties prop)
     {
         super(prop);
         this.decorator.infectedTreesPerChunk = -999;
@@ -27,11 +27,11 @@ public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
     {
         if (rand.nextInt(8) < 1)
         {
-            return BiomeInfectedDeadRoofedForest.ROOFED_TREE_NO_LEAVES;
+            return BiomeInfectedDeadDarkForest.ROOFED_TREE_NO_LEAVES;
         }
         else if (rand.nextInt(20) == 0)
         {
-            return rand.nextInt(5) == 0 ? BiomeInfectedDeadRoofedForest.ROOFED_TREE : BiomeNibiru.TREE;
+            return rand.nextInt(5) == 0 ? BiomeInfectedDeadDarkForest.ROOFED_TREE : BiomeNibiru.TREE;
         }
         else
         {

@@ -45,7 +45,7 @@ public class ParticleCrystallizedFlame extends Particle
     public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         float f = (this.particleAge + partialTicks) / this.particleMaxAge;
-        this.particleScale = this.flameScale * (1.0F - f * f * 0.5F);
+        this.particleScale = this.flameScale * (0.8F - f * f * 0.5F);
         super.renderParticle(buffer, entity, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
     }
 

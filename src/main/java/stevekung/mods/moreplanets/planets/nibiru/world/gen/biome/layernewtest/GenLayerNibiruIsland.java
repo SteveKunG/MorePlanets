@@ -22,17 +22,17 @@ public class GenLayerNibiruIsland extends GenLayer
             for (int j = 0; j < areaWidth; ++j)
             {
                 this.initChunkSeed(areaX + j, areaY + i);
-//                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? Biome.getIdForBiome(MPBiomes.INFECTED_PLAINS) : Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
+                //                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? Biome.getIdForBiome(MPBiomes.INFECTED_PLAINS) : Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
                 aint[j + i * areaWidth] = this.nextInt(10) == 0 ? Biome.getIdForBiome(MPBiomes.INFECTED_PLAINS) : 0;
-//                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? 1 : Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
-//                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? 1 : 0;
+                //                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? 1 : Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
+                //                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? 1 : 0;
             }
         }
 
         if (areaX > -areaWidth && areaX <= 0 && areaY > -areaHeight && areaY <= 0)
         {
             aint[-areaX + -areaY * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_PLAINS);
-//            aint[-areaX + -areaY * areaWidth] = 1;
+            //            aint[-areaX + -areaY * areaWidth] = 1;
         }
         return aint;
     }

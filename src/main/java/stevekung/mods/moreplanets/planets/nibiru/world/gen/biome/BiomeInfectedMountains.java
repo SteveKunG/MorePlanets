@@ -9,18 +9,18 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadSpruce;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenMultalicCrystal;
 import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
-public class BiomeInfectedExtremeHills extends BiomeNibiru
+public class BiomeInfectedMountains extends BiomeNibiru
 {
     private static final WorldGenEmerald EMERALD = new WorldGenEmerald();
     private static final WorldGenMultalicCrystal CRYSTAL = new WorldGenMultalicCrystal();
     private static final WorldGenMinableBase INFESTED_ROCK = new WorldGenMinableBase(MPBlocks.INFESTED_NIBIRU_ROCK.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), 8);
     private Type type;
 
-    public BiomeInfectedExtremeHills(BiomeProperties prop, Type type)
+    public BiomeInfectedMountains(BiomeProperties prop, Type type)
     {
         super(prop);
 
@@ -37,7 +37,7 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     {
         if (rand.nextInt(3) > 0)
         {
-            return new WorldGenInfectedDeadTaiga2(true);
+            return new WorldGenInfectedDeadSpruce(true);
         }
         else if (rand.nextInt(20) == 0)
         {
@@ -53,15 +53,15 @@ public class BiomeInfectedExtremeHills extends BiomeNibiru
     public void decorate(World world, Random rand, BlockPos pos)
     {
         super.decorate(world, rand, pos);
-        BiomeInfectedExtremeHills.EMERALD.generate(world, rand, pos);
+        BiomeInfectedMountains.EMERALD.generate(world, rand, pos);
 
         for (int i = 0; i < 7; ++i)
         {
-            BiomeInfectedExtremeHills.INFESTED_ROCK.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(64), rand.nextInt(16)));
+            BiomeInfectedMountains.INFESTED_ROCK.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(64), rand.nextInt(16)));
         }
         for (int i = 0; i < 24; i++)
         {
-            BiomeInfectedExtremeHills.CRYSTAL.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(28) + 4, rand.nextInt(16)));
+            BiomeInfectedMountains.CRYSTAL.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(28) + 4, rand.nextInt(16)));
         }
     }
 

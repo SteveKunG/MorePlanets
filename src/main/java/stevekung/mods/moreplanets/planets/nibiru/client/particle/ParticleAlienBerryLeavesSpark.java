@@ -19,7 +19,7 @@ public class ParticleAlienBerryLeavesSpark extends Particle
     {
         super(world, x, y, z);
         this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("moreplanets:particle/alien_berry_leaves_spark"));
-        this.particleScale *= this.rand.nextFloat() * 0.6F + 0.5F;
+        this.particleScale *= this.rand.nextFloat() * 0.4F + 0.5F;
         this.motionX *= 0.01999999955296516D;
         this.motionY *= 0.01999999955296516D;
         this.motionZ *= 0.01999999955296516D;

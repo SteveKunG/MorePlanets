@@ -3,16 +3,17 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.feature;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.init.MPBlocks;
 
-public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
+public class WorldGenInfectedDeadPine extends WorldGenAbstractTree
 {
     private boolean genLeaves;
 
-    public WorldGenInfectedDeadTaiga1(boolean genLeaves)
+    public WorldGenInfectedDeadPine(boolean genLeaves)
     {
         super(false);
         this.genLeaves = genLeaves;
@@ -25,10 +26,11 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
         int j = i - rand.nextInt(2) - 3;
         int k = i - j;
         int l = 1 + rand.nextInt(k + 1);
-        boolean flag = true;
 
         if (pos.getY() >= 1 && pos.getY() + i + 1 <= 256)
         {
+            boolean flag = true;
+
             for (int i1 = pos.getY(); i1 <= pos.getY() + 1 + i && flag; ++i1)
             {
                 int j1 = 1;
@@ -42,7 +44,7 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
                     j1 = l;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
                 for (int k1 = pos.getX() - j1; k1 <= pos.getX() + j1 && flag; ++k1)
                 {
@@ -50,7 +52,7 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
-                            if (!this.isReplaceable(world,blockpos$mutableblockpos.setPos(k1, i1, l1)))
+                            if (!this.isReplaceable(world, mutablePos.setPos(k1, i1, l1)))
                             {
                                 flag = false;
                             }
@@ -70,32 +72,35 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
             else
             {
                 BlockPos down = pos.down();
-                Block block = world.getBlockState(down).getBlock();
+                IBlockState state = world.getBlockState(down);
+                Block block = state.getBlock();
+                boolean isSoil = block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
 
-                if (block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_FARMLAND && pos.getY() < 256 - i - 1)
+                if (isSoil && pos.getY() < 256 - i - 1)
                 {
-                    block.onPlantGrow(world.getBlockState(down), world, down, pos);
+                    block.onPlantGrow(state, world, down, pos);
                     int k2 = 0;
 
                     for (int l2 = pos.getY() + i; l2 >= pos.getY() + j; --l2)
                     {
-                        for (int j3 = pos.getX() - k2; j3 <= pos.getX() + k2; ++j3)
+                        if (this.genLeaves)
                         {
-                            int k3 = j3 - pos.getX();
-
-                            for (int i2 = pos.getZ() - k2; i2 <= pos.getZ() + k2; ++i2)
+                            for (int j3 = pos.getX() - k2; j3 <= pos.getX() + k2; ++j3)
                             {
-                                int j2 = i2 - pos.getZ();
+                                int k3 = j3 - pos.getX();
 
-                                if (Math.abs(k3) != k2 || Math.abs(j2) != k2 || k2 <= 0)
+                                for (int i2 = pos.getZ() - k2; i2 <= pos.getZ() + k2; ++i2)
                                 {
-                                    BlockPos blockpos = new BlockPos(j3, l2, i2);
+                                    int j2 = i2 - pos.getZ();
 
-                                    if (world.getBlockState(blockpos).getBlock().canBeReplacedByLeaves(world.getBlockState(blockpos), world, blockpos))
+                                    if (Math.abs(k3) != k2 || Math.abs(j2) != k2 || k2 <= 0)
                                     {
-                                        if (this.genLeaves)
+                                        BlockPos blockpos = new BlockPos(j3, l2, i2);
+                                        state = world.getBlockState(blockpos);
+
+                                        if (state.getBlock().canBeReplacedByLeaves(state, world, blockpos))
                                         {
-                                            this.setBlockAndNotifyAdequately(world, blockpos, MPBlocks.INFECTED_OAK_LEAVES.getStateFromMeta(1));//TODO
+                                            this.setBlockAndNotifyAdequately(world, blockpos, MPBlocks.INFECTED_SPRUCE_LEAVES.getDefaultState());
                                         }
                                     }
                                 }
@@ -115,11 +120,11 @@ public class WorldGenInfectedDeadTaiga1 extends WorldGenAbstractTree
                     for (int i3 = 0; i3 < i - 1; ++i3)
                     {
                         BlockPos upN = pos.up(i3);
-                        Block block1 = world.getBlockState(upN).getBlock();
+                        state = world.getBlockState(upN);
 
-                        if (block1.isAir(world.getBlockState(upN), world, upN) || block1.isLeaves(world.getBlockState(upN), world, upN))
+                        if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN))
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(i3), MPBlocks.INFECTED_OAK_LOG.getStateFromMeta(1));//TODO
+                            this.setBlockAndNotifyAdequately(world, pos.up(i3), MPBlocks.INFECTED_SPRUCE_LOG.getDefaultState());
                         }
                     }
                     return true;

@@ -29,7 +29,7 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
 {
     private MapGenCavesBase caveGenerator = new MapGenCavesBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
-    private MapGenRavineBase ravineGenerator = new MapGenRavineBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
+    private MapGenRavineBase ravineGenerator = new MapGenRavineBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.INFECTED_SANDSTONE), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
     private MapGenNibiruStronghold strongholdGenerator = new MapGenNibiruStronghold();
     private MapGenNibiruVillage villageGenerator = new MapGenNibiruVillage();
     private MapGenNibiruMineshaft mineshaftGenerator = new MapGenNibiruMineshaft();
@@ -76,11 +76,11 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
 
         int worldX = chunkX << 4;
         int worldZ = chunkZ << 4;
-        this.generatePocket(this.world, this.rand, worldX + 15, worldZ + 15, GCBlocks.crudeOil.getDefaultState(), Sets.newHashSet(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
+        ChunkGeneratorBaseMP.generatePocket(this.world, this.rand, worldX + 15, worldZ + 15, GCBlocks.crudeOil.getDefaultState(), Sets.newHashSet(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
 
         if (this.rand.nextInt(10) == 0)
         {
-            this.generatePocket(this.world, this.rand, worldX + 15, worldZ + 15, MPBlocks.HELIUM_GAS_BLOCK.getDefaultState(), Sets.newHashSet(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER), 10 + this.rand.nextInt(10), 2 + this.rand.nextInt(2));
+            ChunkGeneratorBaseMP.generatePocket(this.world, this.rand, worldX + 15, worldZ + 15, MPBlocks.HELIUM_GAS_BLOCK.getDefaultState(), Sets.newHashSet(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER), 10 + this.rand.nextInt(10), 2 + this.rand.nextInt(2));
         }
         if (biome != MPBiomes.INFECTED_DESERT && biome != MPBiomes.GREEN_VEIN_BADLANDS && this.rand.nextInt(4) == 0)
         {

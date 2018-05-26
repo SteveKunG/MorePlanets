@@ -38,7 +38,7 @@ public class GenLayerNibiruRiverMix extends GenLayer
             {
                 if (aint1[i] == Biome.getIdForBiome(MPBiomes.INFECTED_RIVER))
                 {
-                    if (aint[i] == Biome.getIdForBiome(MPBiomes.INFECTED_ICE_PLAINS))
+                    if (aint[i] == Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA))
                     {
                         aint2[i] = Biome.getIdForBiome(MPBiomes.INFECTED_FROZEN_RIVER);
                     }
