@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class EntityAIFleeNibiruThunder extends EntityAIBase
 {
-    private final EntityCreature creature;
+    private final EntityCreature entity;
     private double shelterX;
     private double shelterY;
     private double shelterZ;
@@ -21,7 +21,7 @@ public class EntityAIFleeNibiruThunder extends EntityAIBase
 
     public EntityAIFleeNibiruThunder(EntityCreature entity, double movementSpeed)
     {
-        this.creature = entity;
+        this.entity = entity;
         this.movementSpeed = movementSpeed;
         this.world = entity.world;
         this.setMutexBits(1);
@@ -34,7 +34,7 @@ public class EntityAIFleeNibiruThunder extends EntityAIBase
         {
             return false;
         }
-        else if (!this.world.canSeeSky(new BlockPos(this.creature.posX, this.creature.getEntityBoundingBox().minY, this.creature.posZ)))
+        else if (!this.world.canSeeSky(new BlockPos(this.entity.posX, this.entity.getEntityBoundingBox().minY, this.entity.posZ)))
         {
             return false;
         }
@@ -59,26 +59,26 @@ public class EntityAIFleeNibiruThunder extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return !this.creature.getNavigator().noPath();
+        return !this.entity.getNavigator().noPath();
     }
 
     @Override
     public void startExecuting()
     {
-        this.creature.getNavigator().tryMoveToXYZ(this.shelterX, this.shelterY, this.shelterZ, this.movementSpeed);
+        this.entity.getNavigator().tryMoveToXYZ(this.shelterX, this.shelterY, this.shelterZ, this.movementSpeed);
     }
 
     @Nullable
     private Vec3d findPossibleShelter()
     {
-        Random rand = this.creature.getRNG();
-        BlockPos pos = new BlockPos(this.creature.posX, this.creature.getEntityBoundingBox().minY, this.creature.posZ);
+        Random rand = this.entity.getRNG();
+        BlockPos pos = new BlockPos(this.entity.posX, this.entity.getEntityBoundingBox().minY, this.entity.posZ);
 
         for (int i = 0; i < 10; ++i)
         {
             BlockPos pos1 = pos.add(rand.nextInt(20) - 10, rand.nextInt(6) - 3, rand.nextInt(20) - 10);
 
-            if (!this.world.canSeeSky(pos1) && this.creature.getBlockPathWeight(pos1) < 0.0F)
+            if (!this.world.canSeeSky(pos1) && this.entity.getBlockPathWeight(pos1) < 0.0F)
             {
                 return new Vec3d(pos1.getX(), pos1.getY(), pos1.getZ());
             }

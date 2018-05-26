@@ -5,7 +5,6 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.PathPoint;
@@ -24,12 +23,12 @@ public class WalkNodeProcessorMP extends WalkNodeProcessor
         if (this.getCanSwim() && this.entity.isInWater())
         {
             i = (int)this.entity.getEntityBoundingBox().minY;
-            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ));
+            BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ));
 
-            for (Block block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock(); block == Blocks.FLOWING_WATER || block == Blocks.WATER || block instanceof BlockFluidBase; block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock())
+            for (Block block = this.blockaccess.getBlockState(mutablePos).getBlock(); block == Blocks.FLOWING_WATER || block == Blocks.WATER || block instanceof BlockFluidBase; block = this.blockaccess.getBlockState(mutablePos).getBlock())
             {
                 ++i;
-                blockpos$mutableblockpos.setPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ));
+                mutablePos.setPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ));
             }
         }
         else if (this.entity.onGround)
@@ -38,9 +37,9 @@ public class WalkNodeProcessorMP extends WalkNodeProcessor
         }
         else
         {
-            BlockPos blockpos;
-            for (blockpos = new BlockPos(this.entity); (this.blockaccess.getBlockState(blockpos).getMaterial() == Material.AIR || this.blockaccess.getBlockState(blockpos).getBlock().isPassable(this.blockaccess, blockpos)) && blockpos.getY() > 0; blockpos = blockpos.down()) {}
-            i = blockpos.up().getY();
+            BlockPos pos;
+            for (pos = new BlockPos(this.entity); (this.blockaccess.getBlockState(pos).getMaterial() == Material.AIR || this.blockaccess.getBlockState(pos).getBlock().isPassable(this.blockaccess, pos)) && pos.getY() > 0; pos = pos.down()) {}
+            i = pos.up().getY();
         }
 
         BlockPos blockpos2 = new BlockPos(this.entity);
@@ -56,24 +55,14 @@ public class WalkNodeProcessorMP extends WalkNodeProcessor
 
             for (BlockPos blockpos1 : set)
             {
-                PathNodeType pathnodetype = this.getPathNodeType(this.entity, blockpos1);
+                PathNodeType type = this.getPathNodeType(this.entity, blockpos1);
 
-                if (this.entity.getPathPriority(pathnodetype) >= 0.0F)
+                if (this.entity.getPathPriority(type) >= 0.0F)
                 {
                     return this.openPoint(blockpos1.getX(), blockpos1.getY(), blockpos1.getZ());
                 }
             }
         }
         return this.openPoint(blockpos2.getX(), i, blockpos2.getZ());
-    }
-
-    private PathNodeType getPathNodeType(EntityLiving entitylivingIn, BlockPos pos)
-    {
-        return this.getPathNodeType(entitylivingIn, pos.getX(), pos.getY(), pos.getZ());
-    }
-
-    private PathNodeType getPathNodeType(EntityLiving entitylivingIn, int x, int y, int z)
-    {
-        return this.getPathNodeType(this.blockaccess, x, y, z, entitylivingIn, this.entitySizeX, this.entitySizeY, this.entitySizeZ, this.getCanOpenDoors(), this.getCanEnterDoors());
     }
 }

@@ -8,31 +8,31 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
 {
-    private EntityNibiruVillager theVillager;
-    private EntityIronGolem theGolem;
+    private EntityNibiruVillager entity;
+    private EntityIronGolem golem;
     private int takeGolemRoseTick;
     private boolean tookGolemRose;
 
-    public EntityAINibiruVillagerFollowGolem(EntityNibiruVillager theVillager)
+    public EntityAINibiruVillagerFollowGolem(EntityNibiruVillager entity)
     {
-        this.theVillager = theVillager;
+        this.entity = entity;
         this.setMutexBits(3);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if (this.theVillager.getGrowingAge() >= 0)
+        if (this.entity.getGrowingAge() >= 0)
         {
             return false;
         }
-        else if (!this.theVillager.world.isDaytime())
+        else if (!this.entity.world.isDaytime())
         {
             return false;
         }
         else
         {
-            List<EntityIronGolem> list = this.theVillager.world.<EntityIronGolem>getEntitiesWithinAABB(EntityIronGolem.class, this.theVillager.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
+            List<EntityIronGolem> list = this.entity.world.getEntitiesWithinAABB(EntityIronGolem.class, this.entity.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
 
             if (list.isEmpty())
             {
@@ -40,15 +40,15 @@ public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
             }
             else
             {
-                for (EntityIronGolem entityirongolem : list)
+                for (EntityIronGolem golem : list)
                 {
-                    if (entityirongolem.getHoldRoseTick() > 0)
+                    if (golem.getHoldRoseTick() > 0)
                     {
-                        this.theGolem = entityirongolem;
+                        this.golem = golem;
                         break;
                     }
                 }
-                return this.theGolem != null;
+                return this.golem != null;
             }
         }
     }
@@ -56,38 +56,38 @@ public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return this.theGolem.getHoldRoseTick() > 0;
+        return this.golem.getHoldRoseTick() > 0;
     }
 
     @Override
     public void startExecuting()
     {
-        this.takeGolemRoseTick = this.theVillager.getRNG().nextInt(320);
+        this.takeGolemRoseTick = this.entity.getRNG().nextInt(320);
         this.tookGolemRose = false;
-        this.theGolem.getNavigator().clearPath();
+        this.golem.getNavigator().clearPath();
     }
 
     @Override
     public void resetTask()
     {
-        this.theGolem = null;
-        this.theVillager.getNavigator().clearPath();
+        this.golem = null;
+        this.entity.getNavigator().clearPath();
     }
 
     @Override
     public void updateTask()
     {
-        this.theVillager.getLookHelper().setLookPositionWithEntity(this.theGolem, 30.0F, 30.0F);
+        this.entity.getLookHelper().setLookPositionWithEntity(this.golem, 30.0F, 30.0F);
 
-        if (this.theGolem.getHoldRoseTick() == this.takeGolemRoseTick)
+        if (this.golem.getHoldRoseTick() == this.takeGolemRoseTick)
         {
-            this.theVillager.getNavigator().tryMoveToEntityLiving(this.theGolem, 0.5D);
+            this.entity.getNavigator().tryMoveToEntityLiving(this.golem, 0.5D);
             this.tookGolemRose = true;
         }
-        if (this.tookGolemRose && this.theVillager.getDistanceSq(this.theGolem) < 4.0D)
+        if (this.tookGolemRose && this.entity.getDistanceSq(this.golem) < 4.0D)
         {
-            this.theGolem.setHoldingRose(false);
-            this.theVillager.getNavigator().clearPath();
+            this.golem.setHoldingRose(false);
+            this.entity.getNavigator().clearPath();
         }
     }
 }

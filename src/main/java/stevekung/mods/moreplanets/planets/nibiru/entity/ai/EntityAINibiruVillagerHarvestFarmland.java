@@ -16,15 +16,15 @@ import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
 {
-    private EntityNibiruVillager theVillager;
+    private EntityNibiruVillager entity;
     private boolean hasFarmItem;
-    private boolean field_179503_e;
-    private int field_179501_f;
+    private boolean wantsToReapStuff;
+    private int currentTask;
 
-    public EntityAINibiruVillagerHarvestFarmland(EntityNibiruVillager theVillagerIn, double speedIn)
+    public EntityAINibiruVillagerHarvestFarmland(EntityNibiruVillager entity, double speed)
     {
-        super(theVillagerIn, speedIn, 16);
-        this.theVillager = theVillagerIn;
+        super(entity, speed, 16);
+        this.entity = entity;
     }
 
     @Override
@@ -32,13 +32,13 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
     {
         if (this.runDelay <= 0)
         {
-            if (!this.theVillager.world.getGameRules().getBoolean("mobGriefing"))
+            if (!this.entity.world.getGameRules().getBoolean("mobGriefing"))
             {
                 return false;
             }
-            this.field_179501_f = -1;
-            this.hasFarmItem = this.theVillager.isFarmItemInInventory();
-            this.field_179503_e = this.theVillager.func_175557_cr();
+            this.currentTask = -1;
+            this.hasFarmItem = this.entity.isFarmItemInInventory();
+            this.wantsToReapStuff = this.entity.func_175557_cr();
         }
         return super.shouldExecute();
     }
@@ -46,29 +46,29 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
     @Override
     public boolean shouldContinueExecuting()
     {
-        return this.field_179501_f >= 0 && super.shouldContinueExecuting();
+        return this.currentTask >= 0 && super.shouldContinueExecuting();
     }
 
     @Override
     public void updateTask()
     {
         super.updateTask();
-        this.theVillager.getLookHelper().setLookPosition(this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 1, this.destinationBlock.getZ() + 0.5D, 10.0F, this.theVillager.getVerticalFaceSpeed());
+        this.entity.getLookHelper().setLookPosition(this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 1, this.destinationBlock.getZ() + 0.5D, 10.0F, this.entity.getVerticalFaceSpeed());
 
         if (this.getIsAboveDestination())
         {
-            World world = this.theVillager.world;
+            World world = this.entity.world;
             BlockPos blockpos = this.destinationBlock.up();
             IBlockState iblockstate = world.getBlockState(blockpos);
             Block block = iblockstate.getBlock();
 
-            if (this.field_179501_f == 0 && block instanceof BlockCropsMP && iblockstate.getValue(BlockStateProperty.AGE_7).intValue() == 7)
+            if (this.currentTask == 0 && block instanceof BlockCropsMP && iblockstate.getValue(BlockStateProperty.AGE_7).intValue() == 7)
             {
                 world.destroyBlock(blockpos, true);
             }
-            else if (this.field_179501_f == 1 && block == Blocks.AIR)
+            else if (this.currentTask == 1 && block == Blocks.AIR)
             {
-                InventoryBasic inventorybasic = this.theVillager.getVillagerInventory();
+                InventoryBasic inventorybasic = this.entity.getVillagerInventory();
 
                 for (int i = 0; i < inventorybasic.getSizeInventory(); ++i)
                 {
@@ -101,7 +101,7 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
                     }
                 }
             }
-            this.field_179501_f = -1;
+            this.currentTask = -1;
             this.runDelay = 10;
         }
     }
@@ -117,14 +117,14 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
             IBlockState iblockstate = world.getBlockState(pos);
             block = iblockstate.getBlock();
 
-            if (block instanceof BlockCropsMP && iblockstate.getValue(BlockStateProperty.AGE_7).intValue() == 7 && this.field_179503_e && (this.field_179501_f == 0 || this.field_179501_f < 0))
+            if (block instanceof BlockCropsMP && iblockstate.getValue(BlockStateProperty.AGE_7).intValue() == 7 && this.wantsToReapStuff && (this.currentTask == 0 || this.currentTask < 0))
             {
-                this.field_179501_f = 0;
+                this.currentTask = 0;
                 return true;
             }
-            if (block == Blocks.AIR && this.hasFarmItem && (this.field_179501_f == 1 || this.field_179501_f < 0))
+            if (block == Blocks.AIR && this.hasFarmItem && (this.currentTask == 1 || this.currentTask < 0))
             {
-                this.field_179501_f = 1;
+                this.currentTask = 1;
                 return true;
             }
         }

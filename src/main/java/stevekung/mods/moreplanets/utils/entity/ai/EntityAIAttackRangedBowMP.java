@@ -19,29 +19,19 @@ public class EntityAIAttackRangedBowMP extends EntityAIBase
     private boolean strafingBackwards;
     private int strafingTime = -1;
 
-    public EntityAIAttackRangedBowMP(EntitySkeleton skeleton, double speedAmplifier, int delay, float maxDistance)
+    public EntityAIAttackRangedBowMP(EntitySkeleton entity, double speedAmplifier, int delay, float maxDistance)
     {
-        this.entity = skeleton;
+        this.entity = entity;
         this.moveSpeedAmp = speedAmplifier;
         this.attackCooldown = delay;
         this.maxAttackDistance = maxDistance * maxDistance;
         this.setMutexBits(3);
     }
 
-    public void setAttackCooldown(int cooldown)
-    {
-        this.attackCooldown = cooldown;
-    }
-
     @Override
     public boolean shouldExecute()
     {
         return this.entity.getAttackTarget() == null ? false : this.isBowInMainhand();
-    }
-
-    protected boolean isBowInMainhand()
-    {
-        return this.entity.getHeldItemMainhand() != null && this.entity.getHeldItemMainhand().getItem() == MPItems.SPACE_BOW;
     }
 
     @Override
@@ -157,5 +147,15 @@ public class EntityAIAttackRangedBowMP extends EntityAIBase
                 this.entity.setActiveHand(EnumHand.MAIN_HAND);
             }
         }
+    }
+
+    public void setAttackCooldown(int cooldown)
+    {
+        this.attackCooldown = cooldown;
+    }
+
+    private boolean isBowInMainhand()
+    {
+        return this.entity.getHeldItemMainhand() != null && this.entity.getHeldItemMainhand().getItem() == MPItems.SPACE_BOW;
     }
 }

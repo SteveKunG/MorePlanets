@@ -10,39 +10,39 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerPlay extends EntityAIBase
 {
-    private EntityNibiruVillager villagerObj;
+    private EntityNibiruVillager entity;
     private EntityLivingBase targetVillager;
     private double speed;
     private int playTime;
 
-    public EntityAINibiruVillagerPlay(EntityNibiruVillager villagerObjIn, double speedIn)
+    public EntityAINibiruVillagerPlay(EntityNibiruVillager entity, double speed)
     {
-        this.villagerObj = villagerObjIn;
-        this.speed = speedIn;
+        this.entity = entity;
+        this.speed = speed;
         this.setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if (this.villagerObj.getGrowingAge() >= 0)
+        if (this.entity.getGrowingAge() >= 0)
         {
             return false;
         }
-        else if (this.villagerObj.getRNG().nextInt(400) != 0)
+        else if (this.entity.getRNG().nextInt(400) != 0)
         {
             return false;
         }
         else
         {
-            List<EntityNibiruVillager> list = this.villagerObj.world.getEntitiesWithinAABB(EntityNibiruVillager.class, this.villagerObj.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
+            List<EntityNibiruVillager> list = this.entity.world.getEntitiesWithinAABB(EntityNibiruVillager.class, this.entity.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
             double d0 = Double.MAX_VALUE;
 
             for (EntityNibiruVillager entityvillager : list)
             {
-                if (entityvillager != this.villagerObj && !entityvillager.isPlaying() && entityvillager.getGrowingAge() < 0)
+                if (entityvillager != this.entity && !entityvillager.isPlaying() && entityvillager.getGrowingAge() < 0)
                 {
-                    double d1 = entityvillager.getDistanceSq(this.villagerObj);
+                    double d1 = entityvillager.getDistanceSq(this.entity);
 
                     if (d1 <= d0)
                     {
@@ -54,7 +54,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
 
             if (this.targetVillager == null)
             {
-                Vec3d vec3 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
+                Vec3d vec3 = RandomPositionGenerator.findRandomTarget(this.entity, 16, 3);
 
                 if (vec3 == null)
                 {
@@ -76,7 +76,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
     {
         if (this.targetVillager != null)
         {
-            this.villagerObj.setPlaying(true);
+            this.entity.setPlaying(true);
         }
         this.playTime = 1000;
     }
@@ -84,7 +84,7 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
     @Override
     public void resetTask()
     {
-        this.villagerObj.setPlaying(false);
+        this.entity.setPlaying(false);
         this.targetVillager = null;
     }
 
@@ -95,20 +95,20 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
 
         if (this.targetVillager != null)
         {
-            if (this.villagerObj.getDistanceSq(this.targetVillager) > 4.0D)
+            if (this.entity.getDistanceSq(this.targetVillager) > 4.0D)
             {
-                this.villagerObj.getNavigator().tryMoveToEntityLiving(this.targetVillager, this.speed);
+                this.entity.getNavigator().tryMoveToEntityLiving(this.targetVillager, this.speed);
             }
         }
-        else if (this.villagerObj.getNavigator().noPath())
+        else if (this.entity.getNavigator().noPath())
         {
-            Vec3d vec3 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
+            Vec3d vec3 = RandomPositionGenerator.findRandomTarget(this.entity, 16, 3);
 
             if (vec3 == null)
             {
                 return;
             }
-            this.villagerObj.getNavigator().tryMoveToXYZ(vec3.x, vec3.y, vec3.z, this.speed);
+            this.entity.getNavigator().tryMoveToXYZ(vec3.x, vec3.y, vec3.z, this.speed);
         }
     }
 }

@@ -9,41 +9,41 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerMate extends EntityAIBase
 {
-    private EntityNibiruVillager villagerObj;
+    private EntityNibiruVillager entity;
     private EntityNibiruVillager mate;
-    private World worldObj;
+    private World world;
     private int matingTimeout;
-    Village villageObj;
+    private Village village;
 
-    public EntityAINibiruVillagerMate(EntityNibiruVillager villager)
+    public EntityAINibiruVillagerMate(EntityNibiruVillager entity)
     {
-        this.villagerObj = villager;
-        this.worldObj = villager.world;
+        this.entity = entity;
+        this.world = entity.world;
         this.setMutexBits(3);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if (this.villagerObj.getGrowingAge() != 0)
+        if (this.entity.getGrowingAge() != 0)
         {
             return false;
         }
-        else if (this.villagerObj.getRNG().nextInt(500) != 0)
+        else if (this.entity.getRNG().nextInt(500) != 0)
         {
             return false;
         }
         else
         {
-            this.villageObj = this.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this.villagerObj), 0);
+            this.village = this.world.getVillageCollection().getNearestVillage(new BlockPos(this.entity), 0);
 
-            if (this.villageObj == null)
+            if (this.village == null)
             {
                 return false;
             }
-            else if (this.checkSufficientDoorsPresentForNewVillager() && this.villagerObj.getIsWillingToMate(true))
+            else if (this.checkSufficientDoorsPresentForNewVillager() && this.entity.getIsWillingToMate(true))
             {
-                Entity entity = this.worldObj.findNearestEntityWithinAABB(EntityNibiruVillager.class, this.villagerObj.getEntityBoundingBox().expand(8.0D, 3.0D, 8.0D), this.villagerObj);
+                Entity entity = this.world.findNearestEntityWithinAABB(EntityNibiruVillager.class, this.entity.getEntityBoundingBox().expand(8.0D, 3.0D, 8.0D), this.entity);
 
                 if (entity == null)
                 {
@@ -66,66 +66,66 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
     public void startExecuting()
     {
         this.matingTimeout = 300;
-        this.villagerObj.setMating(true);
+        this.entity.setMating(true);
     }
 
     @Override
     public void resetTask()
     {
-        this.villageObj = null;
+        this.village = null;
         this.mate = null;
-        this.villagerObj.setMating(false);
+        this.entity.setMating(false);
     }
 
     @Override
     public boolean shouldContinueExecuting()
     {
-        return this.matingTimeout >= 0 && this.checkSufficientDoorsPresentForNewVillager() && this.villagerObj.getGrowingAge() == 0 && this.villagerObj.getIsWillingToMate(false);
+        return this.matingTimeout >= 0 && this.checkSufficientDoorsPresentForNewVillager() && this.entity.getGrowingAge() == 0 && this.entity.getIsWillingToMate(false);
     }
 
     @Override
     public void updateTask()
     {
         --this.matingTimeout;
-        this.villagerObj.getLookHelper().setLookPositionWithEntity(this.mate, 10.0F, 30.0F);
+        this.entity.getLookHelper().setLookPositionWithEntity(this.mate, 10.0F, 30.0F);
 
-        if (this.villagerObj.getDistanceSq(this.mate) > 2.25D)
+        if (this.entity.getDistanceSq(this.mate) > 2.25D)
         {
-            this.villagerObj.getNavigator().tryMoveToEntityLiving(this.mate, 0.25D);
+            this.entity.getNavigator().tryMoveToEntityLiving(this.mate, 0.25D);
         }
         else if (this.matingTimeout == 0 && this.mate.isMating())
         {
             this.giveBirth();
         }
-        if (this.villagerObj.getRNG().nextInt(35) == 0)
+        if (this.entity.getRNG().nextInt(35) == 0)
         {
-            this.worldObj.setEntityState(this.villagerObj, (byte)12);
+            this.world.setEntityState(this.entity, (byte)12);
         }
     }
 
     private boolean checkSufficientDoorsPresentForNewVillager()
     {
-        if (!this.villageObj.isMatingSeason())
+        if (!this.village.isMatingSeason())
         {
             return false;
         }
         else
         {
-            int i = (int)(this.villageObj.getNumVillageDoors() * 0.35D);
-            return this.villageObj.getNumVillagers() < i;
+            int i = (int)(this.village.getNumVillageDoors() * 0.35D);
+            return this.village.getNumVillagers() < i;
         }
     }
 
     private void giveBirth()
     {
-        EntityNibiruVillager entityvillager = this.villagerObj.createChild(this.mate);
+        EntityNibiruVillager entityvillager = this.entity.createChild(this.mate);
         this.mate.setGrowingAge(6000);
-        this.villagerObj.setGrowingAge(6000);
+        this.entity.setGrowingAge(6000);
         this.mate.setIsWillingToMate(false);
-        this.villagerObj.setIsWillingToMate(false);
+        this.entity.setIsWillingToMate(false);
         entityvillager.setGrowingAge(-24000);
-        entityvillager.setLocationAndAngles(this.villagerObj.posX, this.villagerObj.posY, this.villagerObj.posZ, 0.0F, 0.0F);
-        this.worldObj.spawnEntity(entityvillager);
-        this.worldObj.setEntityState(entityvillager, (byte)12);
+        entityvillager.setLocationAndAngles(this.entity.posX, this.entity.posY, this.entity.posZ, 0.0F, 0.0F);
+        this.world.spawnEntity(entityvillager);
+        this.world.setEntityState(entityvillager, (byte)12);
     }
 }

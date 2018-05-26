@@ -6,7 +6,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathFinder;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -15,7 +14,7 @@ import net.minecraftforge.fluids.BlockFluidBase;
 
 public class PathNavigateGroundMP extends PathNavigateGround
 {
-    protected WalkNodeProcessorMP nodeProcessor;
+    private WalkNodeProcessorMP nodeProcessor;
 
     public PathNavigateGroundMP(EntityLiving entity, World world)
     {
@@ -112,36 +111,6 @@ public class PathNavigateGroundMP extends PathNavigateGround
         return new Vec3d(this.entity.posX, this.getPathablePosY(), this.entity.posZ);
     }
 
-    @Override
-    public void setBreakDoors(boolean canBreakDoors)
-    {
-        this.nodeProcessor.setCanOpenDoors(canBreakDoors);
-    }
-
-    @Override
-    public void setEnterDoors(boolean enterDoors)
-    {
-        this.nodeProcessor.setCanEnterDoors(enterDoors);
-    }
-
-    @Override
-    public boolean getEnterDoors()
-    {
-        return this.nodeProcessor.getCanEnterDoors();
-    }
-
-    @Override
-    public void setCanSwim(boolean canSwim)
-    {
-        this.nodeProcessor.setCanSwim(canSwim);
-    }
-
-    @Override
-    public boolean getCanSwim()
-    {
-        return this.nodeProcessor.getCanSwim();
-    }
-
     private int getPathablePosY()
     {
         if (this.entity.isInWater() && this.getCanSwim())
@@ -167,78 +136,5 @@ public class PathNavigateGroundMP extends PathNavigateGround
         {
             return (int)(this.entity.getEntityBoundingBox().minY + 0.5D);
         }
-    }
-
-    private boolean isSafeToStandAt(int x, int y, int z, int sizeX, int sizeY, int sizeZ, Vec3d vec31, double xx, double zz)
-    {
-        int i = x - sizeX / 2;
-        int j = z - sizeZ / 2;
-
-        if (!this.isPositionClear(i, y, j, sizeX, sizeY, sizeZ, vec31, xx, zz))
-        {
-            return false;
-        }
-        else
-        {
-            for (int k = i; k < i + sizeX; ++k)
-            {
-                for (int l = j; l < j + sizeZ; ++l)
-                {
-                    double d0 = k + 0.5D - vec31.x;
-                    double d1 = l + 0.5D - vec31.z;
-
-                    if (d0 * xx + d1 * zz >= 0.0D)
-                    {
-                        PathNodeType pathnodetype = this.nodeProcessor.getPathNodeType(this.world, k, y - 1, l, this.entity, sizeX, sizeY, sizeZ, true, true);
-
-                        if (pathnodetype == PathNodeType.WATER)
-                        {
-                            return false;
-                        }
-                        if (pathnodetype == PathNodeType.LAVA)
-                        {
-                            return false;
-                        }
-                        if (pathnodetype == PathNodeType.OPEN)
-                        {
-                            return false;
-                        }
-
-                        pathnodetype = this.nodeProcessor.getPathNodeType(this.world, k, y, l, this.entity, sizeX, sizeY, sizeZ, true, true);
-                        float f = this.entity.getPathPriority(pathnodetype);
-
-                        if (f < 0.0F || f >= 8.0F)
-                        {
-                            return false;
-                        }
-                        if (pathnodetype == PathNodeType.DAMAGE_FIRE || pathnodetype == PathNodeType.DANGER_FIRE || pathnodetype == PathNodeType.DAMAGE_OTHER)
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-    }
-
-    private boolean isPositionClear(int x, int y, int z, int maxX, int maxY, int maxZ, Vec3d vec, double xx, double zz)
-    {
-        for (BlockPos blockpos : BlockPos.getAllInBox(new BlockPos(x, y, z), new BlockPos(x + maxX - 1, y + maxY - 1, z + maxZ - 1)))
-        {
-            double d0 = blockpos.getX() + 0.5D - vec.x;
-            double d1 = blockpos.getZ() + 0.5D - vec.z;
-
-            if (d0 * xx + d1 * zz >= 0.0D)
-            {
-                Block block = this.world.getBlockState(blockpos).getBlock();
-
-                if (!block.isPassable(this.world, blockpos))
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

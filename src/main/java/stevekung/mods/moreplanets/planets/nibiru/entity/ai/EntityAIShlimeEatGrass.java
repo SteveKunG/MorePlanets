@@ -9,29 +9,30 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class EntityAIShlimeEatGrass extends EntityAIBase
 {
-    private EntityLiving grassEaterEntity;
-    private World entityWorld;
+    private EntityLiving entity;
+    private World world;
     int eatingGrassTimer;
 
-    public EntityAIShlimeEatGrass(EntityLiving grassEaterEntity)
+    public EntityAIShlimeEatGrass(EntityLiving entity)
     {
-        this.grassEaterEntity = grassEaterEntity;
-        this.entityWorld = grassEaterEntity.world;
+        this.entity = entity;
+        this.world = entity.world;
         this.setMutexBits(7);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if (this.grassEaterEntity.getRNG().nextInt(this.grassEaterEntity.isChild() ? 50 : 1000) != 0)
+        if (this.entity.getRNG().nextInt(this.entity.isChild() ? 50 : 1000) != 0)
         {
             return false;
         }
         else
         {
-            BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
-            Block blockDown = this.entityWorld.getBlockState(blockpos.down()).getBlock();
-            return blockDown == MPBlocks.INFECTED_GRASS_BLOCK || blockDown == MPBlocks.GREEN_VEIN_GRASS_BLOCK || this.entityWorld.getBlockState(blockpos) == MPBlocks.INFECTED_GRASS.getDefaultState() || this.entityWorld.getBlockState(blockpos) == MPBlocks.GREEN_VEIN_GRASS.getDefaultState();
+            BlockPos pos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
+            Block block = this.world.getBlockState(pos).getBlock();
+            Block blockDown = this.world.getBlockState(pos.down()).getBlock();
+            return blockDown == MPBlocks.INFECTED_GRASS_BLOCK || blockDown == MPBlocks.GREEN_VEIN_GRASS_BLOCK || block == MPBlocks.INFECTED_GRASS || block == MPBlocks.GREEN_VEIN_GRASS;
         }
     }
 
@@ -39,8 +40,8 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
     public void startExecuting()
     {
         this.eatingGrassTimer = 40;
-        this.entityWorld.setEntityState(this.grassEaterEntity, (byte)10);
-        this.grassEaterEntity.getNavigator().clearPath();
+        this.world.setEntityState(this.entity, (byte)10);
+        this.entity.getNavigator().clearPath();
     }
 
     @Override
@@ -55,11 +56,6 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
         return this.eatingGrassTimer > 0;
     }
 
-    public int getEatingGrassTimer()
-    {
-        return this.eatingGrassTimer;
-    }
-
     @Override
     public void updateTask()
     {
@@ -67,39 +63,44 @@ public class EntityAIShlimeEatGrass extends EntityAIBase
 
         if (this.eatingGrassTimer == 4)
         {
-            BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
+            BlockPos pos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
 
-            if (this.entityWorld.getBlockState(blockpos) == MPBlocks.INFECTED_GRASS.getDefaultState() || this.entityWorld.getBlockState(blockpos) == MPBlocks.GREEN_VEIN_GRASS.getDefaultState())
+            if (this.world.getBlockState(pos) == MPBlocks.INFECTED_GRASS.getDefaultState() || this.world.getBlockState(pos) == MPBlocks.GREEN_VEIN_GRASS.getDefaultState())
             {
-                if (this.entityWorld.getGameRules().getBoolean("mobGriefing"))
+                if (this.world.getGameRules().getBoolean("mobGriefing"))
                 {
-                    this.entityWorld.destroyBlock(blockpos, false);
+                    this.world.destroyBlock(pos, false);
                 }
-                this.grassEaterEntity.eatGrassBonus();
+                this.entity.eatGrassBonus();
             }
             else
             {
-                BlockPos blockpos1 = blockpos.down();
+                BlockPos pos1 = pos.down();
 
-                if (this.entityWorld.getBlockState(blockpos1).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
+                if (this.world.getBlockState(pos1).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
                 {
-                    if (this.entityWorld.getGameRules().getBoolean("mobGriefing"))
+                    if (this.world.getGameRules().getBoolean("mobGriefing"))
                     {
-                        this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(MPBlocks.INFECTED_GRASS_BLOCK));
-                        this.entityWorld.setBlockState(blockpos1, MPBlocks.INFECTED_DIRT.getDefaultState(), 2);
+                        this.world.playEvent(2001, pos1, Block.getIdFromBlock(MPBlocks.INFECTED_GRASS_BLOCK));
+                        this.world.setBlockState(pos1, MPBlocks.INFECTED_DIRT.getDefaultState(), 2);
                     }
-                    this.grassEaterEntity.eatGrassBonus();
+                    this.entity.eatGrassBonus();
                 }
-                else if (this.entityWorld.getBlockState(blockpos1).getBlock() == MPBlocks.GREEN_VEIN_GRASS_BLOCK)
+                else if (this.world.getBlockState(pos1).getBlock() == MPBlocks.GREEN_VEIN_GRASS_BLOCK)
                 {
-                    if (this.entityWorld.getGameRules().getBoolean("mobGriefing"))
+                    if (this.world.getGameRules().getBoolean("mobGriefing"))
                     {
-                        this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(MPBlocks.GREEN_VEIN_GRASS_BLOCK));
-                        this.entityWorld.setBlockState(blockpos1, MPBlocks.INFECTED_DIRT.getDefaultState(), 2);
+                        this.world.playEvent(2001, pos1, Block.getIdFromBlock(MPBlocks.GREEN_VEIN_GRASS_BLOCK));
+                        this.world.setBlockState(pos1, MPBlocks.INFECTED_DIRT.getDefaultState(), 2);
                     }
-                    this.grassEaterEntity.eatGrassBonus();
+                    this.entity.eatGrassBonus();
                 }
             }
         }
+    }
+
+    public int getEatingGrassTimer()
+    {
+        return this.eatingGrassTimer;
     }
 }

@@ -6,20 +6,20 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerLookAtTradePlayer extends EntityAIWatchClosest
 {
-    private EntityNibiruVillager theMerchant;
+    private EntityNibiruVillager entity;
 
-    public EntityAINibiruVillagerLookAtTradePlayer(EntityNibiruVillager theMerchant)
+    public EntityAINibiruVillagerLookAtTradePlayer(EntityNibiruVillager entity)
     {
-        super(theMerchant, EntityPlayer.class, 8.0F);
-        this.theMerchant = theMerchant;
+        super(entity, EntityPlayer.class, 8.0F);
+        this.entity = entity;
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if (this.theMerchant.isTrading())
+        if (this.entity.isTrading())
         {
-            this.closestEntity = this.theMerchant.getCustomer();
+            this.closestEntity = this.entity.getCustomer();
             return true;
         }
         else

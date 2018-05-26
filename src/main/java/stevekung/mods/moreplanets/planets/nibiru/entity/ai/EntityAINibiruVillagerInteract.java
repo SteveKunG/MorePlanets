@@ -7,17 +7,18 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
 {
     private int interactionDelay;
-    private EntityNibiruVillager villager;
+    private EntityNibiruVillager entity;
 
-    public EntityAINibiruVillagerInteract(EntityNibiruVillager villager)
+    public EntityAINibiruVillagerInteract(EntityNibiruVillager entity)
     {
-        super(villager, EntityNibiruVillager.class, 3.0F, 0.02F);
-        this.villager = villager;
+        super(entity, EntityNibiruVillager.class, 3.0F, 0.02F);
+        this.entity = entity;
     }
 
     @Override
@@ -25,7 +26,7 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
     {
         super.startExecuting();
 
-        if (this.villager.canAbondonItems() && this.closestEntity instanceof EntityNibiruVillager && ((EntityNibiruVillager)this.closestEntity).func_175557_cr())
+        if (this.entity.canAbondonItems() && this.closestEntity instanceof EntityNibiruVillager && ((EntityNibiruVillager)this.closestEntity).func_175557_cr())
         {
             this.interactionDelay = 10;
         }
@@ -46,7 +47,7 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
 
             if (this.interactionDelay == 0)
             {
-                InventoryBasic inventorybasic = this.villager.getVillagerInventory();
+                InventoryBasic inventorybasic = this.entity.getVillagerInventory();
 
                 for (int i = 0; i < inventorybasic.getSizeInventory(); ++i)
                 {
@@ -57,13 +58,13 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
                     {
                         Item item = itemstack.getItem();
 
-                        if ((item == Items.BREAD || item == Items.POTATO || item == Items.CARROT) && itemstack.getCount() > 3)
+                        if ((item == Items.BREAD || item == MPItems.TERRABERRY) && itemstack.getCount() > 3)
                         {
                             int l = itemstack.getCount() / 2;
                             itemstack.shrink(l);
                             itemstack1 = new ItemStack(item, l, itemstack.getMetadata());
                         }
-                        else if (item == Items.WHEAT && itemstack.getCount() > 5)
+                        else if (item == MPItems.INFECTED_WHEAT && itemstack.getCount() > 5)
                         {
                             int j = itemstack.getCount() / 2 / 3 * 3;
                             int k = j / 3;
@@ -79,16 +80,16 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
 
                     if (!itemstack1.isEmpty())
                     {
-                        double d0 = this.villager.posY - 0.30000001192092896D + this.villager.getEyeHeight();
-                        EntityItem entityitem = new EntityItem(this.villager.world, this.villager.posX, d0, this.villager.posZ, itemstack1);
+                        double d0 = this.entity.posY - 0.30000001192092896D + this.entity.getEyeHeight();
+                        EntityItem entityitem = new EntityItem(this.entity.world, this.entity.posX, d0, this.entity.posZ, itemstack1);
                         float f = 0.3F;
-                        float f1 = this.villager.rotationYawHead;
-                        float f2 = this.villager.rotationPitch;
+                        float f1 = this.entity.rotationYawHead;
+                        float f2 = this.entity.rotationPitch;
                         entityitem.motionX = -MathHelper.sin(f1 / 180.0F * (float)Math.PI) * MathHelper.cos(f2 / 180.0F * (float)Math.PI) * f;
                         entityitem.motionZ = MathHelper.cos(f1 / 180.0F * (float)Math.PI) * MathHelper.cos(f2 / 180.0F * (float)Math.PI) * f;
                         entityitem.motionY = -MathHelper.sin(f2 / 180.0F * (float)Math.PI) * f + 0.1F;
                         entityitem.setDefaultPickupDelay();
-                        this.villager.world.spawnEntity(entityitem);
+                        this.entity.world.spawnEntity(entityitem);
                         break;
                     }
                 }

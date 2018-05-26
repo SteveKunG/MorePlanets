@@ -7,49 +7,49 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerTradePlayer extends EntityAIBase
 {
-    private EntityNibiruVillager villager;
+    private EntityNibiruVillager entity;
 
-    public EntityAINibiruVillagerTradePlayer(EntityNibiruVillager villager)
+    public EntityAINibiruVillagerTradePlayer(EntityNibiruVillager entity)
     {
-        this.villager = villager;
+        this.entity = entity;
         this.setMutexBits(5);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if (!this.villager.isEntityAlive())
+        if (!this.entity.isEntityAlive())
         {
             return false;
         }
-        else if (this.villager.isInWater())
+        else if (this.entity.isInWater())
         {
             return false;
         }
-        else if (!this.villager.onGround)
+        else if (!this.entity.onGround)
         {
             return false;
         }
-        else if (this.villager.velocityChanged)
+        else if (this.entity.velocityChanged)
         {
             return false;
         }
         else
         {
-            EntityPlayer entityplayer = this.villager.getCustomer();
-            return entityplayer == null ? false : this.villager.getDistanceSq(entityplayer) > 16.0D ? false : entityplayer.openContainer instanceof Container;
+            EntityPlayer player = this.entity.getCustomer();
+            return player == null ? false : this.entity.getDistanceSq(player) > 16.0D ? false : player.openContainer instanceof Container;
         }
     }
 
     @Override
     public void startExecuting()
     {
-        this.villager.getNavigator().clearPath();
+        this.entity.getNavigator().clearPath();
     }
 
     @Override
     public void resetTask()
     {
-        this.villager.setCustomer(null);
+        this.entity.setCustomer(null);
     }
 }
