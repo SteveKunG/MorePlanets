@@ -26,6 +26,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
+import stevekung.mods.moreplanets.planets.nibiru.entity.ai.EntityAIFleeNibiruThunder;
 
 public class EntityTerrastoneGolem extends EntityGolem
 {
@@ -46,6 +47,7 @@ public class EntityTerrastoneGolem extends EntityGolem
         this.tasks.addTask(6, new EntityAIWander(this, 0.6D));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.tasks.addTask(8, new EntityAIFleeNibiruThunder(this, 1.5D));
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityLiving.class, 10, false, true, entity -> entity != null && IMob.VISIBLE_MOB_SELECTOR.apply(entity)));
     }

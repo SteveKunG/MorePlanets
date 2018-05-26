@@ -25,6 +25,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.planets.nibiru.entity.ai.EntityAIFleeNibiruThunder;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
@@ -47,6 +48,7 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
+        this.tasks.addTask(7, new EntityAIFleeNibiruThunder(this, 1.5D));
     }
 
     @Override

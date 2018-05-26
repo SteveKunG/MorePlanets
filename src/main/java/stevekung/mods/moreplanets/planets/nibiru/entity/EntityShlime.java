@@ -45,6 +45,7 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.*;
+import stevekung.mods.moreplanets.planets.nibiru.entity.ai.EntityAIFleeNibiruThunder;
 import stevekung.mods.moreplanets.planets.nibiru.entity.ai.EntityAIShlimeEatGrass;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
@@ -90,6 +91,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         this.tasks.addTask(6, new EntityAIWander(this, 0.6D));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.tasks.addTask(8, new EntityAIFleeNibiruThunder(this, 1.5D));
         this.inventoryCrafting.setInventorySlotContents(0, new ItemStack(Items.DYE, 1, 0));
         this.inventoryCrafting.setInventorySlotContents(1, new ItemStack(Items.DYE, 1, 0));
         this.setMovementSpeed(0.0D);
