@@ -64,7 +64,7 @@ public class GenLayerNibiruBiome extends GenLayer
             {
                 aint1[j + i * areaWidth] = k;
             }
-            else if (k == Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS))
+            else if (k == Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS))
             {
                 aint1[j + i * areaWidth] = k;
             }
@@ -114,7 +114,7 @@ public class GenLayerNibiruBiome extends GenLayer
             }
             else
             {
-                aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS);
+                aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS);
             }
             }
         }

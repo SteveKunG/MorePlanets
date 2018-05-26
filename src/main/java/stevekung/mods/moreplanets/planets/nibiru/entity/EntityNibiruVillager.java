@@ -563,7 +563,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data)
     {
-        if (this.world.getBiome(this.getPosition()) == MPBiomes.GREEN_VEIN_BADLANDS)
+        if (this.world.getBiome(this.getPosition()) == MPBiomes.GREEN_VEIN_FIELDS)
         {
             this.setProfession(3 + this.rand.nextInt(3));
         }

@@ -87,6 +87,11 @@ public class CommonRegistryUtils
     public void registerBiomeType(Biome biome, @Nonnull BiomeDictionary.Type... biomeType)
     {
         BiomeDictionary.addTypes(biome, biomeType);
+
+        if (biome.isMutation()) // should put to mutation after registered biomes
+        {
+            Biome.MUTATION_TO_BASE_ID_MAP.put(biome, Biome.getIdForBiome(ForgeRegistries.BIOMES.getValue(new ResourceLocation(this.resourcePath + ":" + biome.baseBiomeRegName))));
+        }
     }
 
     public void registerEntity(Class<? extends Entity> entity, String name, int backgroundColor, int foregroundColor)

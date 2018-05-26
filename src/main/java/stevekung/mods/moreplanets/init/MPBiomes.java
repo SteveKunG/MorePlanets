@@ -2,7 +2,9 @@ package stevekung.mods.moreplanets.init;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosMoutains;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosPlains;
@@ -17,7 +19,7 @@ public class MPBiomes
     public static Biome CHALOS_MOUTAINS = new BiomeChalosMoutains(new Biome.BiomeProperties("Chalos Moutains").setTemperature(0.2F).setRainfall(0.3F).setBaseHeight(1.0F).setHeightVariation(0.5F));
     public static Biome SLIMELY_STREAM = new BiomeSlimelyStream(new Biome.BiomeProperties("Slimely Stream").setBaseHeight(0.2F).setHeightVariation(0.2F));
     public static Biome INFECTED_PLAINS = new BiomeInfectedPlains(new Biome.BiomeProperties("Infected Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F), false);
-    public static Biome INFECTED_INFESTED_PLAINS = new BiomeInfectedPlains(new Biome.BiomeProperties("Infected Infested Plains").setBaseBiome("moreplanets:infected_plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.025F).setHeightVariation(0.025F), true);
+    public static Biome INFECTED_INFESTED_PLAINS = new BiomeInfectedPlains(new Biome.BiomeProperties("Infected Infested Plains").setBaseBiome("infected_plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.025F).setHeightVariation(0.025F), true);
     public static Biome INFECTED_DEAD_SAVANNA = new BiomeInfectedDeadSavanna(new Biome.BiomeProperties("Infected Dead Savanna").setRainDisabled().setRainfall(0.0F).setTemperature(1.2F).setBaseHeight(0.125F).setHeightVariation(0.05F));
     public static Biome INFECTED_DEAD_SAVANNA_PLATEAU = new BiomeInfectedDeadSavanna(new Biome.BiomeProperties("Infected Dead Savanna Plateau").setBaseHeight(1.5F).setHeightVariation(0.025F).setTemperature(1.0F).setRainfall(0.0F).setRainDisabled());
     public static Biome INFECTED_DESERT = new BiomeInfectedDesert(new Biome.BiomeProperties("Infected Desert").setRainDisabled().setRainfall(0.0F).setTemperature(2.0F).setBaseHeight(0.125F).setHeightVariation(0.05F));
@@ -40,8 +42,8 @@ public class MPBiomes
     public static Biome INFECTED_JUNGLE_EDGE = new BiomeInfectedJungle(new Biome.BiomeProperties("Infected Jungle Edge").setTemperature(0.95F).setRainfall(0.8F), true);
     public static Biome INFECTED_SNOWY_TUNDRA = new BiomeInfectedSnow(new Biome.BiomeProperties("Infected Snowy Tundra").setSnowEnabled().setTemperature(0.0F).setRainfall(0.5F).setBaseHeight(0.125F).setHeightVariation(0.05F), false);
     public static Biome INFECTED_SNOWY_MOUNTAINS = new BiomeInfectedSnow(new Biome.BiomeProperties("Infected Snowy Mountains").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.0F).setRainfall(0.5F).setSnowEnabled(), false);
-    public static Biome GREEN_VEIN_BADLANDS = new BiomeGreenVeinBadlands(new Biome.BiomeProperties("Green Vein Badlands").setTemperature(0.9F).setRainfall(1.0F).setBaseHeight(0.125F).setHeightVariation(0.05F));
-    public static Biome GREEN_VEIN_BADLANDS_SHORE = new BiomeGreenVeinBadlands(new Biome.BiomeProperties("Green Vein Badlands Shore").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.9F).setRainfall(1.0F));
+    public static Biome GREEN_VEIN_FIELDS = new BiomeGreenVeinFields(new Biome.BiomeProperties("Green Vein Fields").setTemperature(0.9F).setRainfall(1.0F).setBaseHeight(0.125F).setHeightVariation(0.05F));
+    public static Biome GREEN_VEIN_FIELD_SHORE = new BiomeGreenVeinFields(new Biome.BiomeProperties("Green Vein Field Shore").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.9F).setRainfall(1.0F));
     public static Biome INFECTED_BEACHES = new BiomeInfectedBeach(new Biome.BiomeProperties("Infected Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F), false);
     public static Biome INFECTED_STONE_SHORE = new BiomeInfectedBeach(new Biome.BiomeProperties("Infected Stone Shore").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F), true);
     public static Biome INFECTED_SNOWY_BEACH = new BiomeInfectedBeach(new Biome.BiomeProperties("Infected Snowy Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.05F).setRainfall(0.3F).setSnowEnabled(), false);
@@ -79,8 +81,8 @@ public class MPBiomes
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_JUNGLE_EDGE, "infected_jungle_edge");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_SNOWY_TUNDRA, "infected_snowy_tundra");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_SNOWY_MOUNTAINS, "infected_snowy_mountains");
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.GREEN_VEIN_BADLANDS, "green_vein_badlands");
-        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.GREEN_VEIN_BADLANDS_SHORE, "green_vein_badlands_shore");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.GREEN_VEIN_FIELDS, "green_vein_fields");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.GREEN_VEIN_FIELD_SHORE, "green_vein_field_shore");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_BEACHES, "infected_beaches");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_STONE_SHORE, "infected_stone_shore");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_SNOWY_BEACH, "infected_snowy_beach");
@@ -119,8 +121,8 @@ public class MPBiomes
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_JUNGLE_EDGE, HOT, WET, RARE, JUNGLE, FOREST, DEAD);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_SNOWY_TUNDRA, COLD, SNOWY, DEAD);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_SNOWY_MOUNTAINS, COLD, SNOWY, DEAD, MOUNTAIN);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.GREEN_VEIN_BADLANDS, FOREST, RARE, MAGICAL);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.GREEN_VEIN_BADLANDS_SHORE, FOREST, RARE, MAGICAL, BEACH);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.GREEN_VEIN_FIELDS, FOREST, RARE, MAGICAL);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.GREEN_VEIN_FIELD_SHORE, FOREST, RARE, MAGICAL, BEACH);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_BEACHES, BEACH, DEAD);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_STONE_SHORE, BEACH, DEAD);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_SNOWY_BEACH, BEACH, DEAD, COLD, SNOWY);

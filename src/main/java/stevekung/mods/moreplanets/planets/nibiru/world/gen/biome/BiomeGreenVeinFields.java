@@ -17,7 +17,7 @@ import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
-public class BiomeGreenVeinBadlands extends BiomeNibiru
+public class BiomeGreenVeinFields extends BiomeNibiru
 {
     private static final WorldGenDoublePlantMP TALL_GRASS = new WorldGenDoublePlantMP(MPBlocks.GREEN_VEIN_TALL_GRASS);
     private static final WorldGenTerrashroom TERRASHROOM = new WorldGenTerrashroom();
@@ -25,7 +25,7 @@ public class BiomeGreenVeinBadlands extends BiomeNibiru
     private static final WorldGenAlienBerryTree TREE = new WorldGenAlienBerryTree();
     private static final WorldGenAlienBerryBigTree BIG_TREE = new WorldGenAlienBerryBigTree();
 
-    public BiomeGreenVeinBadlands(BiomeProperties prop)
+    public BiomeGreenVeinFields(BiomeProperties prop)
     {
         super(prop);
         this.topBlock = MPBlocks.GREEN_VEIN_GRASS_BLOCK.getDefaultState();
@@ -52,16 +52,16 @@ public class BiomeGreenVeinBadlands extends BiomeNibiru
         {
             for (int i = 0; i < 7; ++i)
             {
-                BiomeGreenVeinBadlands.TALL_GRASS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+                BiomeGreenVeinFields.TALL_GRASS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
             }
         }
         if (rand.nextInt(15) == 0)
         {
-            BiomeGreenVeinBadlands.TERRASHROOM.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            BiomeGreenVeinFields.TERRASHROOM.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
         }
         if (rand.nextInt(4) == 0)
         {
-            BiomeGreenVeinBadlands.TERRASHROOM_FLOWER.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            BiomeGreenVeinFields.TERRASHROOM_FLOWER.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
         }
         super.decorate(world, rand, pos);
     }
@@ -69,7 +69,7 @@ public class BiomeGreenVeinBadlands extends BiomeNibiru
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(3) == 0 ? BiomeGreenVeinBadlands.BIG_TREE : BiomeGreenVeinBadlands.TREE;
+        return rand.nextInt(3) == 0 ? BiomeGreenVeinFields.BIG_TREE : BiomeGreenVeinFields.TREE;
     }
 
     @Override

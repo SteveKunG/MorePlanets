@@ -1253,7 +1253,7 @@ public class StructureNibiruVillagePieces
             {
                 this.structureType = 1;
             }
-            else if (biome == MPBiomes.GREEN_VEIN_BADLANDS)
+            else if (biome == MPBiomes.GREEN_VEIN_FIELDS)
             {
                 this.structureType = 2;
             }

@@ -82,11 +82,11 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
         {
             ChunkGeneratorBaseMP.generatePocket(this.world, this.rand, worldX + 15, worldZ + 15, MPBlocks.HELIUM_GAS_BLOCK.getDefaultState(), Sets.newHashSet(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER), 10 + this.rand.nextInt(10), 2 + this.rand.nextInt(2));
         }
-        if (biome != MPBiomes.INFECTED_DESERT && biome != MPBiomes.GREEN_VEIN_BADLANDS && this.rand.nextInt(4) == 0)
+        if (biome != MPBiomes.INFECTED_DESERT && biome != MPBiomes.GREEN_VEIN_FIELDS && this.rand.nextInt(4) == 0)
         {
             new WorldGenLiquidLake(MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), false).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }
-        if (biome == MPBiomes.GREEN_VEIN_BADLANDS && this.rand.nextInt(6) == 0)
+        if (biome == MPBiomes.GREEN_VEIN_FIELDS && this.rand.nextInt(6) == 0)
         {
             new WorldGenLiquidLake(MPBlocks.PURIFIED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.TERRASTONE.getDefaultState(), true).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));
         }

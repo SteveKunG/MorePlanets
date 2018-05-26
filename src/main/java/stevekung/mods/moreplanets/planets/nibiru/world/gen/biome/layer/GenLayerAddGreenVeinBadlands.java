@@ -36,7 +36,7 @@ public class GenLayerAddGreenVeinBadlands extends GenLayer
 
                 if (k2 == 0 && k1 == 0 && l1 == 0 && i2 == 0 && j2 == 0 && this.nextInt(100) == 0)
                 {
-                    aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS);
+                    aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS);
                 }
                 else
                 {

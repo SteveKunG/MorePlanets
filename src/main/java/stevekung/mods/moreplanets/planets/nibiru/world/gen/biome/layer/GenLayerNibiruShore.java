@@ -29,7 +29,7 @@ public class GenLayerNibiruShore extends GenLayer
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
                 Biome biome = Biome.getBiome(k);
 
-                if (k == Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS))
+                if (k == Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS))
                 {
                     int j2 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                     int i3 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
@@ -42,7 +42,7 @@ public class GenLayerNibiruShore extends GenLayer
                     }
                     else
                     {
-                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS_SHORE);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELD_SHORE);
                     }
                 }
                 else if (biome != null && biome.getBiomeClass() == BiomeInfectedJungle.class)

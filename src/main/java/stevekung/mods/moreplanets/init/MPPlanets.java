@@ -72,7 +72,7 @@ public class MPPlanets
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.NIBIRU, EnumAtmosphericGas.WATER, EnumAtmosphericGas.HELIUM, EnumAtmosphericGas.CO2, EnumAtmosphericGas.ARGON);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.NIBIRU, false, true, true, 0.0F, 1.25F, 46.5F);
         CelestialRegistryUtils.setChecklistKeys(MPPlanets.NIBIRU, "equipOxygenSuit", "thermalPaddingT2", "craftInfectedProtectionCapsule");
-        CelestialRegistryUtils.setBiomeInfo(MPPlanets.NIBIRU, MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_RIVER, MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_DEAD_DARK_FOREST, MPBiomes.INFECTED_MOUNTAINS, MPBiomes.INFECTED_SWAMP, MPBiomes.INFECTED_TAIGA, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_SNOWY_TUNDRA, MPBiomes.GREEN_VEIN_BADLANDS);
+        CelestialRegistryUtils.setBiomeInfo(MPPlanets.NIBIRU, MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_RIVER, MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_DEAD_DARK_FOREST, MPBiomes.INFECTED_MOUNTAINS, MPBiomes.INFECTED_SWAMP, MPBiomes.INFECTED_TAIGA, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_SNOWY_TUNDRA, MPBiomes.GREEN_VEIN_FIELDS);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedZombie.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedSpider.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedSkeleton.class, 100, 4, 4);

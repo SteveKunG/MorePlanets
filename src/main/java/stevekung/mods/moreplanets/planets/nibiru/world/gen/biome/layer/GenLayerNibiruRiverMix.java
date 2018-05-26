@@ -42,13 +42,13 @@ public class GenLayerNibiruRiverMix extends GenLayer
                     {
                         aint2[i] = Biome.getIdForBiome(MPBiomes.INFECTED_FROZEN_RIVER);
                     }
-                    else if (aint[i] != Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS) && aint[i] != Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS_SHORE))
+                    else if (aint[i] != Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS) && aint[i] != Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELD_SHORE))
                     {
                         aint2[i] = aint1[i] & 255;
                     }
                     else
                     {
-                        aint2[i] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_BADLANDS_SHORE);
+                        aint2[i] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELD_SHORE);
                     }
                 }
                 else
