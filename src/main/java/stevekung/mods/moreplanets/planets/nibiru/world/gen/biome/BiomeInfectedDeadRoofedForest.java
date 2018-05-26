@@ -5,11 +5,14 @@ import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedCanopyTree;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedRoofedTree;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
 {
+    private static final WorldGenInfectedRoofedTree ROOFED_TREE = new WorldGenInfectedRoofedTree(true);
+    private static final WorldGenInfectedRoofedTree ROOFED_TREE_NO_LEAVES = new WorldGenInfectedRoofedTree(false);
+
     public BiomeInfectedDeadRoofedForest(BiomeProperties prop)
     {
         super(prop);
@@ -24,11 +27,11 @@ public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
     {
         if (rand.nextInt(8) < 1)
         {
-            return new WorldGenInfectedCanopyTree(false);//TODO
+            return BiomeInfectedDeadRoofedForest.ROOFED_TREE_NO_LEAVES;
         }
         else if (rand.nextInt(20) == 0)
         {
-            return rand.nextInt(5) == 0 ? new WorldGenInfectedCanopyTree(true) : BiomeNibiru.TREE;//TODO
+            return rand.nextInt(5) == 0 ? BiomeInfectedDeadRoofedForest.ROOFED_TREE : BiomeNibiru.TREE;
         }
         else
         {
@@ -39,21 +42,6 @@ public class BiomeInfectedDeadRoofedForest extends BiomeNibiru
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
-        for (int i = 0; i < 4; ++i)
-        {
-            for (int j = 0; j < 4; ++j)
-            {
-                int x = i * 4 + 1 + 8 + rand.nextInt(3);
-                int z = j * 4 + 1 + 8 + rand.nextInt(3);
-                BlockPos blockPos = world.getHeight(pos.add(x, 0, z));
-                WorldGenAbstractTree tree = this.getRandomTreeFeature(rand);
-
-                if (tree.generate(world, rand, blockPos))
-                {
-                    tree.generateSaplings(world, rand, blockPos);
-                }
-            }
-        }
         if (rand.nextInt(25) == 0)
         {
             BiomeNibiru.SCATTERED_DIRT.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));

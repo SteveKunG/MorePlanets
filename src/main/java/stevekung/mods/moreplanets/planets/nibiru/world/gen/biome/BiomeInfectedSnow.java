@@ -7,23 +7,31 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedSnowman;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedDeadTaiga2;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruIcePath;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruIceSpike;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedIcePath;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedIceSpike;
 
-public class BiomeInfectedIcePlains extends BiomeNibiru
+public class BiomeInfectedSnow extends BiomeNibiru
 {
-    private static final WorldGenNibiruIceSpike ICE_SPIKE = new WorldGenNibiruIceSpike();
-    private static final WorldGenNibiruIcePath ICE_PATH = new WorldGenNibiruIcePath(4);
+    private final boolean superIcy;
+    private static final WorldGenInfectedIceSpike ICE_SPIKE = new WorldGenInfectedIceSpike();
+    private static final WorldGenInfectedIcePath ICE_PATH = new WorldGenInfectedIcePath(4);
 
-    public BiomeInfectedIcePlains(BiomeProperties prop)
+    public BiomeInfectedSnow(BiomeProperties prop, boolean superIcy)
     {
         super(prop);
         this.decorator.infectedTallGrassPerChunk = 1;
         this.decorator.philipyPerChunk = 2;
         this.decorator.pureHurbPerChunk = 2;
         this.decorator.infectedTreesPerChunk = 0;
+        this.superIcy = superIcy;
+
+        if (superIcy)
+        {
+            this.topBlock = MPBlocks.INFECTED_SNOW.getDefaultState();
+        }
     }
 
     @Override
@@ -42,15 +50,15 @@ public class BiomeInfectedIcePlains extends BiomeNibiru
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
-        if (rand.nextInt(100) == 0)
+        if (this.superIcy && rand.nextInt(100) == 0)
         {
             for (int i = 0; i < 3; ++i)
             {
-                BiomeInfectedIcePlains.ICE_SPIKE.generate(world, rand, world.getHeight(pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)));
+                BiomeInfectedSnow.ICE_SPIKE.generate(world, rand, world.getHeight(pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)));
             }
             for (int l = 0; l < 2; ++l)
             {
-                BiomeInfectedIcePlains.ICE_PATH.generate(world, rand, world.getHeight(pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)));
+                BiomeInfectedSnow.ICE_PATH.generate(world, rand, world.getHeight(pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8)));
             }
         }
         super.decorate(world, rand, pos);

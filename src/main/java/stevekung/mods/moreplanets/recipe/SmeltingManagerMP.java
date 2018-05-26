@@ -61,6 +61,7 @@ public class SmeltingManagerMP
         RecipeHelper.addSmeltingRecipe(new ItemStack(MPBlocks.INFECTED_CACTUS), new ItemStack(Items.DYE, 1, EnumDyeColor.GREEN.getDyeDamage()), 0.2F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(MPItems.INFECTED_CLAY_BALL), new ItemStack(Items.BRICK), 0.3F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(MPBlocks.INFECTED_OAK_LOG), new ItemStack(MPItems.INFECTED_CHARCOAL), 0.15F);
+        RecipeHelper.addSmeltingRecipe(new ItemStack(MPBlocks.INFECTED_DEADWOOD_LOG), new ItemStack(MPItems.INFECTED_CHARCOAL), 0.15F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(MPBlocks.INFECTED_JUNGLE_LOG), new ItemStack(MPItems.INFECTED_CHARCOAL), 0.15F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_OAK_LOG), new ItemStack(Items.COAL, 1, 1), 0.15F);
         RecipeHelper.addSmeltingRecipe(new ItemStack(MPItems.RAW_SHLIME_MEAT), new ItemStack(MPItems.COOKED_SHLIME_MEAT), 0.35F);

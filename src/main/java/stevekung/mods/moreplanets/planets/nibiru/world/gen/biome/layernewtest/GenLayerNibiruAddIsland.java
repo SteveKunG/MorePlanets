@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernew;
+package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernewtest;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -42,11 +42,13 @@ public class GenLayerNibiruAddIsland extends GenLayer
                         {
                             if (k2 == 4)
                             {
+//                                aint1[j1 + i1 * areaWidth] = 4;
                                 aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_FOREST);
                             }
                             else
                             {
-                                aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
+                                aint1[j1 + i1 * areaWidth] = 0;
+//                                aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
                             }
                         }
                         else
@@ -87,11 +89,13 @@ public class GenLayerNibiruAddIsland extends GenLayer
                     }
                     else if (i3 == 4)
                     {
+//                        aint1[j1 + i1 * areaWidth] = 4;
                         aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_FOREST);
                     }
                     else
                     {
-                        aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
+                        aint1[j1 + i1 * areaWidth] = 0;
+//                        aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
                     }
                 }
             }

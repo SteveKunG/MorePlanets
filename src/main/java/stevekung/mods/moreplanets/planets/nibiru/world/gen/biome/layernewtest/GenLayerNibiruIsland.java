@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernew;
+package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernewtest;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -22,7 +22,9 @@ public class GenLayerNibiruIsland extends GenLayer
             for (int j = 0; j < areaWidth; ++j)
             {
                 this.initChunkSeed(areaX + j, areaY + i);
-                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? Biome.getIdForBiome(MPBiomes.INFECTED_PLAINS) : Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
+//                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? Biome.getIdForBiome(MPBiomes.INFECTED_PLAINS) : Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
+                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? Biome.getIdForBiome(MPBiomes.INFECTED_PLAINS) : 0;
+//                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? 1 : Biome.getIdForBiome(MPBiomes.INFECTED_OCEAN);
 //                aint[j + i * areaWidth] = this.nextInt(10) == 0 ? 1 : 0;
             }
         }

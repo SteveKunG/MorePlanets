@@ -312,6 +312,7 @@ public class MPBlocks
     public static Block INFECTED_GRASS_BLOCK;
     public static Block INFECTED_DIRT;
     public static Block INFECTED_COARSE_DIRT;
+    public static Block INFECTED_PODZOL;
     public static Block INFECTED_GRASS;
     public static Block INFECTED_FERN;
     public static Block GREEN_VEIN_GRASS;
@@ -362,6 +363,7 @@ public class MPBlocks
 
     // Log Planks Leaves Sapling
     public static Block INFECTED_OAK_LOG;
+    public static Block INFECTED_DEADWOOD_LOG;
     public static Block INFECTED_JUNGLE_LOG;
     public static Block ALIEN_BERRY_OAK_LOG;
 
@@ -752,6 +754,7 @@ public class MPBlocks
         MPBlocks.INFECTED_GRASS_BLOCK = new BlockInfectedGrassBlock("infected_grass_block");
         MPBlocks.INFECTED_DIRT = new BlockTerraformable("infected_dirt", Material.GROUND).setSoundType(SoundType.GROUND).setHardness(0.55F);
         MPBlocks.INFECTED_COARSE_DIRT = new BlockTerraformable("infected_coarse_dirt", Material.GROUND).setSoundType(SoundType.GROUND).setHardness(0.55F);
+        MPBlocks.INFECTED_PODZOL = new BlockInfectedPodzol("infected_podzol");
         MPBlocks.INFECTED_GRASS = new BlockPlaceableBushMP("infected_grass", BlockPlaceableBushMP.BlockType.INFECTED_GRASS);
         MPBlocks.INFECTED_FERN = new BlockPlaceableBushMP("infected_fern", BlockPlaceableBushMP.BlockType.INFECTED_FERN);
         MPBlocks.GREEN_VEIN_GRASS = new BlockPlaceableBushMP("green_vein_grass", BlockPlaceableBushMP.BlockType.GREEN_VEIN_GRASS);
@@ -802,6 +805,7 @@ public class MPBlocks
 
         // Log Planks Leaves Sapling
         MPBlocks.INFECTED_OAK_LOG = new BlockLogMP("infected_oak_log");
+        MPBlocks.INFECTED_DEADWOOD_LOG = new BlockLogMP("infected_deadwood_log");
         MPBlocks.INFECTED_JUNGLE_LOG = new BlockLogMP("infected_jungle_log");
         MPBlocks.ALIEN_BERRY_OAK_LOG = new BlockLogMP("alien_berry_oak_log");
 
@@ -1132,6 +1136,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_GRASS_BLOCK);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_DIRT);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_COARSE_DIRT);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PODZOL);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_GRASS);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_FERN);
         BlocksItemsRegistry.registerBlock(MPBlocks.GREEN_VEIN_GRASS);
@@ -1182,6 +1187,7 @@ public class MPBlocks
 
         // Log Planks Leaves Sapling
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_LOG);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_DEADWOOD_LOG);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_JUNGLE_LOG);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_LOG);
 
@@ -1598,6 +1604,7 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_GRASS_BLOCK, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_DIRT, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_COARSE_DIRT, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PODZOL, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_FARMLAND, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_SAND, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_SNOW, EnumHarvestLevel.SHOVEL, 0);
@@ -1654,6 +1661,7 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.NUCLEAR_WASTE_TANK, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.MULTALIC_CRYSTAL, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_LOG, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_DEADWOOD_LOG, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_JUNGLE_LOG, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_LOG, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_PLANKS, EnumHarvestLevel.AXE, 0);
@@ -1813,6 +1821,7 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.VEALIUM_VINES, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.TERRASHROOM, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_LOG, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.INFECTED_DEADWOOD_LOG, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_JUNGLE_LOG, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.ALIEN_BERRY_OAK_LOG, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_PLANKS, 5, 20);

@@ -27,7 +27,7 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
                 this.initChunkSeed(j + areaX, i + areaY);
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
 
-                if (!this.replaceBiomeEdgeIfNecessary(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS), Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS_EDGE)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.MESA_ROCK), Biome.getIdForBiome(Biomes.MESA)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.MESA_CLEAR_ROCK), Biome.getIdForBiome(Biomes.MESA)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.REDWOOD_TAIGA), Biome.getIdForBiome(MPBiomes.INFECTED_DEAD_TAIGA)))
+                if (!this.replaceBiomeEdgeIfNecessary(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS), Biome.getIdForBiome(MPBiomes.INFECTED_EXTREME_HILLS_EDGE)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_MESA_FOREST), Biome.getIdForBiome(MPBiomes.INFECTED_MESA)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_MESA_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_MESA)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.REDWOOD_TAIGA), Biome.getIdForBiome(MPBiomes.INFECTED_TAIGA)))
                 {
                     if (k == Biome.getIdForBiome(MPBiomes.INFECTED_DESERT))
                     {
@@ -165,13 +165,13 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
 
             if (biome != null && biome1 != null)
             {
-                if (biome != Biomes.MESA_ROCK && biome != Biomes.MESA_CLEAR_ROCK)
+                if (biome != MPBiomes.INFECTED_MESA_FOREST && biome != MPBiomes.INFECTED_MESA_PLATEAU)
                 {
                     return biome == biome1 || biome.getBiomeClass() == biome1.getBiomeClass();
                 }
                 else
                 {
-                    return biome1 == Biomes.MESA_ROCK || biome1 == Biomes.MESA_CLEAR_ROCK;
+                    return biome1 == MPBiomes.INFECTED_MESA_FOREST || biome1 == MPBiomes.INFECTED_MESA_PLATEAU;
                 }
             }
             else

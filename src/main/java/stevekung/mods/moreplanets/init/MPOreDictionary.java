@@ -109,6 +109,7 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("fenceGateWood", MPBlocks.CHEESE_SPORE_FENCE_GATE);
         BlockUtils.registerOreDictionary("fenceGateWood", MPBlocks.INFECTED_OAK_FENCE_GATE);
         BlockUtils.registerOreDictionary("logWood", MPBlocks.INFECTED_OAK_LOG);
+        BlockUtils.registerOreDictionary("logWood", MPBlocks.INFECTED_DEADWOOD_LOG);
         BlockUtils.registerOreDictionary("logWood", MPBlocks.INFECTED_JUNGLE_LOG);
         BlockUtils.registerOreDictionary("logWood", MPBlocks.ALIEN_BERRY_OAK_LOG);
         BlockUtils.registerOreDictionary("treeLeaves", MPBlocks.INFECTED_OAK_LEAVES);

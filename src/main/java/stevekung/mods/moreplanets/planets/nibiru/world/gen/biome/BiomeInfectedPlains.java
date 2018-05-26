@@ -11,15 +11,17 @@ import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedPlains extends BiomeNibiru
 {
+    private boolean infested;
     private static final WorldGenDoublePlantMP TALL_GRASS = new WorldGenDoublePlantMP(MPBlocks.INFECTED_TALL_GRASS);
 
-    public BiomeInfectedPlains(BiomeProperties prop)
+    public BiomeInfectedPlains(BiomeProperties prop, boolean infested)
     {
         super(prop);
         this.decorator.infectedTallGrassPerChunk = 10;
         this.decorator.extraTreeChance = 0.05F;
         this.decorator.infectedTreesPerChunk = 0;
         this.decorator.reedsPerChunk = 10;
+        this.infested = infested;
     }
 
     @Override
@@ -38,6 +40,18 @@ public class BiomeInfectedPlains extends BiomeNibiru
             for (int i = 0; i < 7; ++i)
             {
                 BiomeInfectedPlains.TALL_GRASS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            }
+        }
+        if (this.infested)
+        {
+            for (int i = 0; i < 16; ++i)
+            {
+                BlockPos blockPos = WorldDecorateUtils.getSimplePos(world, pos, rand);
+
+                if (world.getBlockState(blockPos).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK)
+                {
+                    BiomeNibiru.SCATTERED_DIRT.generate(world, rand, blockPos);
+                }
             }
         }
         super.decorate(world, rand, pos);

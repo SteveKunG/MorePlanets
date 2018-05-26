@@ -20,6 +20,7 @@ import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 public class BiomeNibiru extends BiomeMP
 {
     protected IBlockState stoneBlock;
+    protected IBlockState liquidBlock;
     protected BiomeDecoratorNibiru decorator = new BiomeDecoratorNibiru();
     protected static final WorldGenInfectedBigTree BIG_TREE = new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
     protected static final WorldGenInfectedBigTree BIG_TREE_NO_LEAVES = new WorldGenInfectedBigTree(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
@@ -34,6 +35,7 @@ public class BiomeNibiru extends BiomeMP
         this.topBlock = MPBlocks.INFECTED_GRASS_BLOCK.getDefaultState();
         this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
+        this.liquidBlock = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
         this.decorator.clayPerChunk = 1;
         this.decorator.gravelPatchesPerChunk = 1;
         this.decorator.sandPatchesPerChunk = 3;
@@ -106,7 +108,7 @@ public class BiomeNibiru extends BiomeMP
                             }
                             else
                             {
-                                topState = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+                                topState = this.liquidBlock;
                             }
                         }
 

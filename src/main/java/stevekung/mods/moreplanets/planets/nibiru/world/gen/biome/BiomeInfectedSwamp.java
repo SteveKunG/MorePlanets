@@ -38,7 +38,7 @@ public class BiomeInfectedSwamp extends BiomeNibiru
         }
         if (rand.nextInt(64) == 0)
         {
-            BiomeNibiru.FOSSILS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            BiomeNibiru.FOSSILS.generate(world, rand, pos);
         }
         super.decorate(world, rand, pos);
     }

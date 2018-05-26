@@ -74,11 +74,11 @@ public class GenLayerNibiruBiome extends GenLayer
                 {
                     if (this.nextInt(3) == 0)
                     {
-                        aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.MESA_CLEAR_ROCK);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_MESA_PLATEAU);
                     }
                     else
                     {
-                        aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.MESA_ROCK);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_MESA_FOREST);
                     }
                 }
                 else
@@ -135,7 +135,7 @@ public class GenLayerNibiruBiome extends GenLayer
         list.clear();
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_FOREST, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_EXTREME_HILLS, 10));
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_DEAD_TAIGA, 10));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_TAIGA, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_PLAINS, 10));
         currentBiomes[BiomeManager.BiomeType.COOL.ordinal()] = new ArrayList<>(list);
         list.clear();

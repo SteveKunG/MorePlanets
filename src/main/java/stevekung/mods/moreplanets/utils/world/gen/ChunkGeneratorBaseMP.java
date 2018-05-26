@@ -398,11 +398,9 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
                                     primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, this.getLiquidBlock());
                                 }
                             }
-
                             d10 += d12;
                             d11 += d13;
                         }
-
                         d1 += d5;
                         d2 += d6;
                         d3 += d7;
@@ -551,55 +549,59 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
 
     /** POCKET GEN **/
 
-    protected void generatePocket(World world, Random rand, int xx, int zz, IBlockState pocket, Set<Biome> ignoreBiomes)
+    protected static void generatePocket(World world, Random rand, int xx, int zz, IBlockState pocket, Set<Biome> ignoreBiomes)
+    {
+        ChunkGeneratorBaseMP.generatePocket(world, rand, xx, zz, pocket, ignoreBiomes, 17 + rand.nextInt(10) + rand.nextInt(5), 3 + rand.nextInt(5));
+    }
+
+    protected static void generatePocket(World world, Random rand, int xx, int zz, IBlockState pocket, Set<Biome> ignoreBiomes, int y, int radius)
     {
         BlockVec3 pos = new BlockVec3();
 
-        if (this.canGeneratePocket(world, rand, xx, zz, pos, ignoreBiomes))
+        if (ChunkGeneratorBaseMP.canGeneratePocket(world, rand, xx, zz, pos, ignoreBiomes, y))
         {
             int x = pos.x;
             int cy = pos.y;
             int z = pos.z;
-            int r = 3 + rand.nextInt(5);
 
-            if (this.checkPocketPresent(world, x, cy, z, r, pocket))
+            if (ChunkGeneratorBaseMP.checkPocketPresent(world, x, cy, z, radius, pocket))
             {
                 return;
             }
 
-            int r2 = r * r;
+            int r2 = radius * radius;
 
-            for (int bx = -r; bx <= r; bx++)
+            for (int bx = -radius; bx <= radius; bx++)
             {
-                for (int by = -r + 2; by <= r - 2; by++)
+                for (int by = -radius + 2; by <= radius - 2; by++)
                 {
                     int xySquared = bx * bx + by * by * 3;
 
-                    for (int bz = -r; bz <= r; bz++)
+                    for (int bz = -radius; bz <= radius; bz++)
                     {
                         if (xySquared + bz * bz <= r2)
                         {
-                            if (this.checkBlock(world, new BlockPos(bx + x - 1, by + cy, bz + z), pocket))
+                            if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x - 1, by + cy, bz + z), pocket))
                             {
                                 continue;
                             }
-                            if (this.checkBlock(world, new BlockPos(bx + x + 1, by + cy, bz + z), pocket))
+                            if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x + 1, by + cy, bz + z), pocket))
                             {
                                 continue;
                             }
-                            if (this.checkBlock(world, new BlockPos(bx + x, by + cy - 1, bz + z), pocket))
+                            if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x, by + cy - 1, bz + z), pocket))
                             {
                                 continue;
                             }
-                            if (this.checkBlock(world, new BlockPos(bx + x, by + cy, bz + z - 1), pocket))
+                            if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x, by + cy, bz + z - 1), pocket))
                             {
                                 continue;
                             }
-                            if (this.checkBlock(world, new BlockPos(bx + x, by + cy, bz + z + 1), pocket))
+                            if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x, by + cy, bz + z + 1), pocket))
                             {
                                 continue;
                             }
-                            if (this.checkBlockAbove(world, new BlockPos(bx + x, by + cy + 1, bz + z)))
+                            if (ChunkGeneratorBaseMP.checkBlockAbove(world, new BlockPos(bx + x, by + cy + 1, bz + z)))
                             {
                                 continue;
                             }
@@ -611,7 +613,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
         }
     }
 
-    private boolean canGeneratePocket(World world, Random rand, int x, int z, BlockVec3 pos, Set<Biome> ignoreBiomes)
+    private static boolean canGeneratePocket(World world, Random rand, int x, int z, BlockVec3 pos, Set<Biome> ignoreBiomes, int y)
     {
         Biome biome = world.getBiome(new BlockPos(x + 8, 0, z + 8));
 
@@ -647,7 +649,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
 
         if (flag1 || flag2)
         {
-            pos.y = 17 + rand.nextInt(10) + rand.nextInt(5);
+            pos.y = y;
             pos.x = x + 8 - rand.nextInt(16);
             pos.z = z + 8 - rand.nextInt(16);
             return true;
@@ -655,7 +657,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
         return false;
     }
 
-    private boolean checkBlock(World world, BlockPos pos, IBlockState pocket)
+    private static boolean checkBlock(World world, BlockPos pos, IBlockState pocket)
     {
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
@@ -667,7 +669,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
         return block instanceof BlockLiquid && block != pocket.getBlock();
     }
 
-    private boolean checkBlockAbove(World world, BlockPos pos)
+    private static boolean checkBlockAbove(World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos).getBlock();
 
@@ -678,7 +680,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
         return false;
     }
 
-    private boolean checkPocketPresent(World world, int x, int cy, int z, int r, IBlockState pocket)
+    private static boolean checkPocketPresent(World world, int x, int cy, int z, int r, IBlockState pocket)
     {
         int r2 = r * r;
 
@@ -692,27 +694,27 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
                 {
                     if (xySquared + bz * bz <= r2)
                     {
-                        if (this.checkBlock(world, new BlockPos(bx + x - 1, by + cy, bz + z), pocket))
+                        if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x - 1, by + cy, bz + z), pocket))
                         {
                             continue;
                         }
-                        if (this.checkBlock(world, new BlockPos(bx + x + 1, by + cy, bz + z), pocket))
+                        if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x + 1, by + cy, bz + z), pocket))
                         {
                             continue;
                         }
-                        if (this.checkBlock(world, new BlockPos(bx + x, by + cy - 1, bz + z), pocket))
+                        if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x, by + cy - 1, bz + z), pocket))
                         {
                             continue;
                         }
-                        if (this.checkBlock(world, new BlockPos(bx + x, by + cy, bz + z - 1), pocket))
+                        if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x, by + cy, bz + z - 1), pocket))
                         {
                             continue;
                         }
-                        if (this.checkBlock(world, new BlockPos(bx + x, by + cy, bz + z + 1), pocket))
+                        if (ChunkGeneratorBaseMP.checkBlock(world, new BlockPos(bx + x, by + cy, bz + z + 1), pocket))
                         {
                             continue;
                         }
-                        if (this.checkBlockAbove(world, new BlockPos(bx + x, by + cy + 1, bz + z)))
+                        if (ChunkGeneratorBaseMP.checkBlockAbove(world, new BlockPos(bx + x, by + cy + 1, bz + z)))
                         {
                             continue;
                         }

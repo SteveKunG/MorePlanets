@@ -8,11 +8,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
 
-public class WorldGenNibiruIcePath extends WorldGenerator
+public class WorldGenInfectedIcePath extends WorldGenerator
 {
-    private int basePathWidth;
+    private final int basePathWidth;
 
-    public WorldGenNibiruIcePath(int basePathWidth)
+    public WorldGenInfectedIcePath(int basePathWidth)
     {
         this.basePathWidth = basePathWidth;
     }
@@ -24,16 +24,13 @@ public class WorldGenNibiruIcePath extends WorldGenerator
         {
             pos = pos.down();
         }
-
-        if (world.getBlockState(pos).getBlock() != MPBlocks.INFECTED_GRASS_BLOCK)
+        if (world.getBlockState(pos).getBlock() != MPBlocks.INFECTED_SNOW)
         {
             return false;
         }
         else
         {
             int i = rand.nextInt(this.basePathWidth - 2) + 2;
-            int j = 1;
-
             for (int k = pos.getX() - i; k <= pos.getX() + i; ++k)
             {
                 for (int l = pos.getZ() - i; l <= pos.getZ() + i; ++l)
@@ -43,12 +40,12 @@ public class WorldGenNibiruIcePath extends WorldGenerator
 
                     if (i1 * i1 + j1 * j1 <= i * i)
                     {
-                        for (int k1 = pos.getY() - j; k1 <= pos.getY() + j; ++k1)
+                        for (int k1 = pos.getY() - 1; k1 <= pos.getY() + 1; ++k1)
                         {
                             BlockPos blockpos = new BlockPos(k, k1, l);
                             Block block = world.getBlockState(blockpos).getBlock();
 
-                            if (block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_ICE)
+                            if (block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_SNOW || block == MPBlocks.INFECTED_ICE)
                             {
                                 world.setBlockState(blockpos, MPBlocks.INFECTED_PACKED_ICE.getDefaultState(), 2);
                             }

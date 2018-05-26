@@ -3,14 +3,14 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.feature;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
 
-public class WorldGenNibiruIceSpike extends WorldGenerator
+public class WorldGenInfectedIceSpike extends WorldGenerator
 {
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
@@ -20,7 +20,7 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
             pos = pos.down();
         }
 
-        if (world.getBlockState(pos).getBlock() != MPBlocks.INFECTED_GRASS_BLOCK)
+        if (world.getBlockState(pos).getBlock() != MPBlocks.INFECTED_SNOW)
         {
             return false;
         }
@@ -50,18 +50,20 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
 
                         if ((i1 == 0 && j1 == 0 || f1 * f1 + f2 * f2 <= f * f) && (i1 != -l && i1 != l && j1 != -l && j1 != l || rand.nextFloat() <= 0.75F))
                         {
-                            Block block = world.getBlockState(pos.add(i1, k, j1)).getBlock();
+                            IBlockState iblockstate = world.getBlockState(pos.add(i1, k, j1));
+                            Block block = iblockstate.getBlock();
 
-                            if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_ICE)
+                            if (iblockstate.getBlock().isAir(iblockstate, world, pos.add(i1, k, j1)) || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_SNOW || block == MPBlocks.INFECTED_ICE)
                             {
                                 this.setBlockAndNotifyAdequately(world, pos.add(i1, k, j1), MPBlocks.INFECTED_PACKED_ICE.getDefaultState());
                             }
 
                             if (k != 0 && l > 1)
                             {
-                                block = world.getBlockState(pos.add(i1, -k, j1)).getBlock();
+                                iblockstate = world.getBlockState(pos.add(i1, -k, j1));
+                                block = iblockstate.getBlock();
 
-                                if (world.getBlockState(pos.add(i1, k, j1)).getMaterial() == Material.AIR || block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_ICE)
+                                if (iblockstate.getBlock().isAir(iblockstate, world, pos.add(i1, -k, j1)) || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_SNOW || block == MPBlocks.INFECTED_ICE)
                                 {
                                     this.setBlockAndNotifyAdequately(world, pos.add(i1, -k, j1), MPBlocks.INFECTED_PACKED_ICE.getDefaultState());
                                 }
@@ -93,12 +95,12 @@ public class WorldGenNibiruIceSpike extends WorldGenerator
                     {
                         j2 = rand.nextInt(5);
                     }
-
                     while (blockpos.getY() > 50)
                     {
-                        Block block1 = world.getBlockState(blockpos).getBlock();
+                        IBlockState iblockstate1 = world.getBlockState(blockpos);
+                        Block block1 = iblockstate1.getBlock();
 
-                        if (world.getBlockState(blockpos).getMaterial() != Material.AIR && block1 != MPBlocks.INFECTED_GRASS_BLOCK && block1 != MPBlocks.INFECTED_DIRT && block1 != MPBlocks.INFECTED_ICE && block1 != MPBlocks.INFECTED_PACKED_ICE)
+                        if (!iblockstate1.getBlock().isAir(iblockstate1, world, blockpos) && block1 != MPBlocks.INFECTED_DIRT && block1 != MPBlocks.INFECTED_SNOW && block1 != MPBlocks.INFECTED_ICE && block1 != MPBlocks.INFECTED_PACKED_ICE)
                         {
                             break;
                         }

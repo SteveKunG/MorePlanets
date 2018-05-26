@@ -6,6 +6,7 @@ import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityTerrastoneGolem;
@@ -69,5 +70,12 @@ public class BiomeGreenVeinBadlands extends BiomeNibiru
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         return rand.nextInt(3) == 0 ? BiomeGreenVeinBadlands.BIG_TREE : BiomeGreenVeinBadlands.TREE;
+    }
+
+    @Override
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int chunkX, int chunkZ, double noiseVal)
+    {
+        this.liquidBlock = MPBlocks.PURIFIED_WATER_FLUID_BLOCK.getDefaultState();
+        super.genTerrainBlocks(world, rand, primer, chunkX, chunkZ, noiseVal);
     }
 }

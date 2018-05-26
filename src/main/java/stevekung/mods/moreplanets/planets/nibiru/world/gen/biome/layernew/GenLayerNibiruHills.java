@@ -5,7 +5,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import stevekung.mods.moreplanets.init.MPBiomes;
-import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class GenLayerNibiruHills extends GenLayer
 {
@@ -33,12 +32,6 @@ public class GenLayerNibiruHills extends GenLayer
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
                 int l = aint1[j + 1 + (i + 1) * (areaWidth + 2)];
                 boolean flag = (l - 2) % 29 == 0;
-
-                if (k > 255)
-                {
-                    LoggerMP.debug("old! {}", k);
-                }
-
                 Biome biome = Biome.getBiomeForId(k);
                 boolean flag1 = biome != null && biome.isMutation();
 
@@ -57,11 +50,11 @@ public class GenLayerNibiruHills extends GenLayer
 
                     if (biome == MPBiomes.INFECTED_DESERT)
                     {
-                        biome1 = Biomes.DESERT_HILLS;
+                        biome1 = MPBiomes.INFECTED_DESERT_HILLS;
                     }
                     else if (biome == MPBiomes.INFECTED_FOREST)
                     {
-                        biome1 = Biomes.FOREST_HILLS;
+                        biome1 = MPBiomes.INFECTED_FOREST_HILLS;
                     }
                     else if (biome == Biomes.BIRCH_FOREST)
                     {
@@ -71,7 +64,7 @@ public class GenLayerNibiruHills extends GenLayer
                     {
                         biome1 = MPBiomes.INFECTED_PLAINS;
                     }
-                    else if (biome == MPBiomes.INFECTED_DEAD_TAIGA)
+                    else if (biome == MPBiomes.INFECTED_TAIGA)
                     {
                         biome1 = Biomes.TAIGA_HILLS;
                     }
@@ -87,7 +80,7 @@ public class GenLayerNibiruHills extends GenLayer
                     {
                         if (this.nextInt(3) == 0)
                         {
-                            biome1 = Biomes.FOREST_HILLS;
+                            biome1 = MPBiomes.INFECTED_FOREST_HILLS;
                         }
                         else
                         {
@@ -96,11 +89,11 @@ public class GenLayerNibiruHills extends GenLayer
                     }
                     else if (biome == MPBiomes.INFECTED_ICE_PLAINS)
                     {
-                        biome1 = Biomes.ICE_MOUNTAINS;
+                        biome1 = MPBiomes.INFECTED_ICE_MOUNTAINS;
                     }
                     else if (biome == MPBiomes.INFECTED_JUNGLE)
                     {
-                        biome1 = Biomes.JUNGLE_HILLS;
+                        biome1 = MPBiomes.INFECTED_JUNGLE_HILLS;
                     }
                     else if (biome == MPBiomes.INFECTED_OCEAN)
                     {
@@ -114,9 +107,9 @@ public class GenLayerNibiruHills extends GenLayer
                     {
                         biome1 = Biomes.SAVANNA_PLATEAU;
                     }
-                    else if (this.isOrMesaPlateau(k, Biome.getIdForBiome(Biomes.MESA_ROCK)))
+                    else if (this.isOrMesaPlateau(k, Biome.getIdForBiome(MPBiomes.INFECTED_MESA_FOREST)))
                     {
-                        biome1 = Biomes.MESA;
+                        biome1 = MPBiomes.INFECTED_MESA;
                     }
                     else if (biome == MPBiomes.INFECTED_DEEP_OCEAN && this.nextInt(3) == 0)
                     {
@@ -197,13 +190,13 @@ public class GenLayerNibiruHills extends GenLayer
 
             if (biome != null && biome1 != null)
             {
-                if (biome != Biomes.MESA_ROCK && biome != Biomes.MESA_CLEAR_ROCK)
+                if (biome != MPBiomes.INFECTED_MESA_FOREST && biome != MPBiomes.INFECTED_MESA_PLATEAU)
                 {
                     return biome == biome1 || biome.getBiomeClass() == biome1.getBiomeClass();
                 }
                 else
                 {
-                    return biome1 == Biomes.MESA_ROCK || biome1 == Biomes.MESA_CLEAR_ROCK;
+                    return biome1 == MPBiomes.INFECTED_MESA_FOREST || biome1 == MPBiomes.INFECTED_MESA_PLATEAU;
                 }
             }
             else

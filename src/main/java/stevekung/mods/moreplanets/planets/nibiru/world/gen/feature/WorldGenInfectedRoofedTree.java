@@ -10,11 +10,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import stevekung.mods.moreplanets.init.MPBlocks;
 
-public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
+public class WorldGenInfectedRoofedTree extends WorldGenAbstractTree
 {
     private boolean genLeaves;
 
-    public WorldGenInfectedCanopyTree(boolean genLeaves)
+    public WorldGenInfectedRoofedTree(boolean genLeaves)
     {
         super(false);
         this.genLeaves = genLeaves;
@@ -33,8 +33,9 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
             BlockPos blockpos = pos.down();
             IBlockState state = world.getBlockState(blockpos);
             Block block = state.getBlock();
+            boolean isSoil = block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
 
-            if (!(block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_FARMLAND) && pos.getY() < 256 - i - 1)
+            if (!(isSoil && pos.getY() < world.getHeight() - i - 1))
             {
                 return false;
             }
@@ -116,6 +117,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
                         }
                     }
                 }
+
                 for (int k3 = -1; k3 <= 2; ++k3)
                 {
                     for (int j4 = -1; j4 <= 2; ++j4)
@@ -162,7 +164,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
         int i = pos.getX();
         int j = pos.getY();
         int k = pos.getZ();
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
         for (int l = 0; l <= height + 1; ++l)
         {
@@ -181,7 +183,7 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
             {
                 for (int k1 = -i1; k1 <= i1; ++k1)
                 {
-                    if (!this.isReplaceable(world, blockpos$mutableblockpos.setPos(i + j1, j + l, k + k1)))
+                    if (!this.isReplaceable(world, mutablePos.setPos(i + j1, j + l, k + k1)))
                     {
                         return false;
                     }
@@ -195,26 +197,28 @@ public class WorldGenInfectedCanopyTree extends WorldGenAbstractTree
     {
         if (this.canGrowInto(world.getBlockState(pos).getBlock()))
         {
-            this.setBlockAndNotifyAdequately(world, pos, MPBlocks.INFECTED_OAK_LOG.getStateFromMeta(1));//TODO
+            this.setBlockAndNotifyAdequately(world, pos, this.genLeaves ? MPBlocks.INFECTED_OAK_LOG.getDefaultState() : MPBlocks.INFECTED_DEADWOOD_LOG.getDefaultState());
         }
     }
 
     private void placeLeafAt(World world, int x, int y, int z)
     {
-        if (this.genLeaves)
+        if (!this.genLeaves)
         {
-            BlockPos blockpos = new BlockPos(x, y, z);
-            IBlockState state = world.getBlockState(blockpos);
+            return;
+        }
+        BlockPos blockpos = new BlockPos(x, y, z);
+        IBlockState state = world.getBlockState(blockpos);
 
-            if (state.getBlock().isAir(state, world, blockpos))
-            {
-                this.setBlockAndNotifyAdequately(world, blockpos, MPBlocks.INFECTED_OAK_LEAVES.getStateFromMeta(1));//TODO
-            }
+        if (state.getBlock().isAir(state, world, blockpos))
+        {
+            this.setBlockAndNotifyAdequately(world, blockpos, MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
         }
     }
 
     private void onPlantGrow(World world, BlockPos pos, BlockPos source)
     {
-        world.getBlockState(pos).getBlock().onPlantGrow(world.getBlockState(pos), world, pos, source);
+        IBlockState state = world.getBlockState(pos);
+        state.getBlock().onPlantGrow(state, world, pos, source);
     }
 }

@@ -1,6 +1,5 @@
-package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernew;
+package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layer;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
@@ -31,7 +30,7 @@ public class GenLayerNibiruRareBiome extends GenLayer
                 {
                     if (k == Biome.getIdForBiome(MPBiomes.INFECTED_PLAINS))
                     {
-                        aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.MUTATED_PLAINS);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_INFESTED_PLAINS);
                     }
                     else
                     {

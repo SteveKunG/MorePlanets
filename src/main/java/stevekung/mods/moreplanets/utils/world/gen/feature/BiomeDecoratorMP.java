@@ -25,7 +25,7 @@ public abstract class BiomeDecoratorMP extends BiomeDecorator
         this.generateOre(generator, oreGen.getBlockCount(), oreGen.getMinHeight(), oreGen.getMaxHeight(), world, rand);
     }
 
-    protected void generateOre(WorldGenerator generator, int blockCount, int minHeight, int maxHeight, World world, Random rand)
+    public void generateOre(WorldGenerator generator, int blockCount, int minHeight, int maxHeight, World world, Random rand)
     {
         if (maxHeight < minHeight)
         {
