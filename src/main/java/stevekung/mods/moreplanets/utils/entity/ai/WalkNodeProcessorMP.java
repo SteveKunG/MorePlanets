@@ -5,6 +5,7 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.PathPoint;
@@ -64,5 +65,15 @@ public class WalkNodeProcessorMP extends WalkNodeProcessor
             }
         }
         return this.openPoint(blockpos2.getX(), i, blockpos2.getZ());
+    }
+
+    private PathNodeType getPathNodeType(EntityLiving entity, BlockPos pos)
+    {
+        return this.getPathNodeType(entity, pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    private PathNodeType getPathNodeType(EntityLiving entity, int x, int y, int z)
+    {
+        return this.getPathNodeType(this.blockaccess, x, y, z, entity, this.entitySizeX, this.entitySizeY, this.entitySizeZ, this.getCanOpenDoors(), this.getCanEnterDoors());
     }
 }
