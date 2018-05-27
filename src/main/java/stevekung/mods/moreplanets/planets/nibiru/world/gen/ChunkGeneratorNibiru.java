@@ -189,13 +189,67 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
     @Override
     public BlockPos getNearestStructurePos(World world, String name, BlockPos pos, boolean findUnexplored)
     {
-        return "NibiruStronghold".equals(name) && this.strongholdGenerator != null ? this.strongholdGenerator.getNearestStructurePos(world, pos, false) : null;
+        if ("NibiruStronghold".equals(name) && this.strongholdGenerator != null)
+        {
+            return this.strongholdGenerator.getNearestStructurePos(world, pos, findUnexplored);
+        }
+        else if ("NibiruOceanMonument".equals(name) && this.oceanMonumentGenerator != null)
+        {
+            return this.oceanMonumentGenerator.getNearestStructurePos(world, pos, findUnexplored);
+        }
+        else if ("NibiruVillage".equals(name) && this.villageGenerator != null)
+        {
+            return this.villageGenerator.getNearestStructurePos(world, pos, findUnexplored);
+        }
+        else if ("NibiruMineshaft".equals(name) && this.mineshaftGenerator != null)
+        {
+            return this.mineshaftGenerator.getNearestStructurePos(world, pos, findUnexplored);
+        }
+        else if ("NibiruBossDungeon".equals(name) && this.dungeonGenerator != null)
+        {
+            return this.dungeonGenerator.getNearestStructurePos(world, pos, findUnexplored);
+        }
+        else if ("NibiruPyramid".equals(name) && this.pyramidGenerator != null)
+        {
+            return this.pyramidGenerator.getNearestStructurePos(world, pos, findUnexplored);
+        }
+        else
+        {
+            return "NibiruJungleTemple".equals(name) && this.jungleTempleGenerator != null ? this.jungleTempleGenerator.getNearestStructurePos(world, pos, findUnexplored) : null;
+        }
     }
 
     @Override
     public boolean isInsideStructure(World world, String name, BlockPos pos)
     {
-        return false;
+        if ("NibiruStronghold".equals(name) && this.strongholdGenerator != null)
+        {
+            return this.strongholdGenerator.isInsideStructure(pos);
+        }
+        else if ("NibiruOceanMonument".equals(name) && this.oceanMonumentGenerator != null)
+        {
+            return this.oceanMonumentGenerator.isInsideStructure(pos);
+        }
+        else if ("NibiruVillage".equals(name) && this.villageGenerator != null)
+        {
+            return this.villageGenerator.isInsideStructure(pos);
+        }
+        else if ("NibiruMineshaft".equals(name) && this.mineshaftGenerator != null)
+        {
+            return this.mineshaftGenerator.isInsideStructure(pos);
+        }
+        else if ("NibiruBossDungeon".equals(name) && this.dungeonGenerator != null)
+        {
+            return this.dungeonGenerator.isInsideStructure(pos);
+        }
+        else if ("NibiruPyramid".equals(name) && this.pyramidGenerator != null)
+        {
+            return this.pyramidGenerator.isInsideStructure(pos);
+        }
+        else
+        {
+            return "NibiruJungleTemple".equals(name) && this.jungleTempleGenerator != null ? this.jungleTempleGenerator.isInsideStructure(pos) : false;
+        }
     }
 
     @Override
