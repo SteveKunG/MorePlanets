@@ -55,12 +55,6 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     }
 
     @Override
-    public PathNavigate getNavigator()
-    {
-        return new PathNavigateGroundMP(this, this.world);
-    }
-
-    @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
         return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);

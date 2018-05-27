@@ -48,12 +48,6 @@ public abstract class EntityFronosPet extends EntityTameable
     }
 
     @Override
-    public PathNavigate getNavigator()
-    {
-        return new PathNavigateGroundMP(this, this.world);
-    }
-
-    @Override
     protected void updateAITasks()
     {
         super.updateAITasks();

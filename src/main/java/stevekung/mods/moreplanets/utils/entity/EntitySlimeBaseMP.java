@@ -56,12 +56,6 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
     }
 
     @Override
-    public PathNavigate getNavigator()
-    {
-        return new PathNavigateGroundMP(this, this.world);
-    }
-
-    @Override
     protected void entityInit()
     {
         super.entityInit();

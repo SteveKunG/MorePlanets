@@ -58,12 +58,6 @@ public class EntityInfectedCow extends EntityAnimal implements ISpaceMob, IEntit
     }
 
     @Override
-    public PathNavigate getNavigator()
-    {
-        return new PathNavigateGroundMP(this, this.world);
-    }
-
-    @Override
     public boolean getCanSpawnHere()
     {
         int i = MathHelper.floor(this.posX);
