@@ -111,7 +111,7 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
         this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityInfectedZombie.class, 8.0F, 0.6D, 0.6D));
         this.tasks.addTask(1, new EntityAINibiruVillagerTradePlayer(this));
         this.tasks.addTask(1, new EntityAINibiruVillagerLookAtTradePlayer(this));
-        this.tasks.addTask(2, new EntityAIMoveIndoors(this));
+        this.tasks.addTask(2, new EntityAINibiruVillagerMoveIndoors(this));
         this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
@@ -128,6 +128,12 @@ public class EntityNibiruVillager extends EntityAgeable implements IMerchant, IN
     public boolean isPotionApplicable(PotionEffect potion)
     {
         return potion.getPotion() == MPPotions.INFECTED_SPORE ? false : super.isPotionApplicable(potion);
+    }
+
+    @Override
+    public PathNavigate getNavigator()
+    {
+        return new PathNavigateGroundMP(this, this.world);
     }
 
     @Override

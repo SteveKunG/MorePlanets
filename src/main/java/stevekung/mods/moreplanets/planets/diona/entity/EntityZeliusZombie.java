@@ -37,6 +37,12 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     }
 
     @Override
+    public PathNavigate getNavigator()
+    {
+        return new PathNavigateGroundMP(this, this.world);
+    }
+
+    @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
