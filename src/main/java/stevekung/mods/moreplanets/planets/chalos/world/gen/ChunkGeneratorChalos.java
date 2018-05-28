@@ -61,7 +61,7 @@ public class ChunkGeneratorChalos extends ChunkGeneratorBaseMP
         WorldEntitySpawner.performWorldGenSpawning(this.world, biome, x + 8, z + 8, 16, 16, this.rand);
         int pocketX = chunkX << 4;
         int pocketZ = chunkZ << 4;
-        ChunkGeneratorBaseMP.generatePocket(this.world, this.rand, pocketX + 15, pocketZ + 15, MPBlocks.GASEOUS_CHEESE_MILK_BLOCK.getDefaultState(), Sets.newHashSet(MPBiomes.SLIMELY_STREAM));
+        ChunkGeneratorBaseMP.generatePocket(this.world, this.rand, pocketX + 15, pocketZ + 15, MPBlocks.GASEOUS_CHEESE_MILK_BLOCK.getDefaultState(), Sets.newHashSet(MPBiomes.SLIMELY_STREAM), 16 + this.rand.nextInt(16), 3 + this.rand.nextInt(2));
         this.dungeonGenerator.generateStructure(this.world, this.rand, new ChunkPos(chunkX, chunkZ));
         this.cheeseSporeHutFeatureGenerator.generateStructure(this.world, this.rand, new ChunkPos(chunkX, chunkZ));
 
