@@ -79,7 +79,7 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
     private boolean areAdditionalTasksSet;
     private final InventoryBasic villagerInventory;
 
-    private EntityVillager.ITradeList[][][][] DEFAULT_TRADE_LIST_MAP = //XXX static final
+    private static final EntityVillager.ITradeList[][][][] DEFAULT_TRADE_LIST_MAP =
         {
                 // profession infected farmer
                 {
@@ -962,7 +962,7 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
 
     private void populateBuyingList()
     {
-        EntityVillager.ITradeList[][][] tradelist = this.DEFAULT_TRADE_LIST_MAP[this.getProfession()];
+        EntityVillager.ITradeList[][][] tradelist = EntityNibiruVillager.DEFAULT_TRADE_LIST_MAP[this.getProfession()];
 
         if (this.careerId != 0 && this.careerLevel != 0)
         {
