@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
 {
     private int interactionDelay;
-    private EntityNibiruVillager entity;
+    private final EntityNibiruVillager entity;
 
     public EntityAINibiruVillagerInteract(EntityNibiruVillager entity)
     {
@@ -26,7 +26,7 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
     {
         super.startExecuting();
 
-        if (this.entity.canAbondonItems() && this.closestEntity instanceof EntityNibiruVillager && ((EntityNibiruVillager)this.closestEntity).func_175557_cr())
+        if (this.entity.canAbondonItems() && this.closestEntity instanceof EntityNibiruVillager && ((EntityNibiruVillager)this.closestEntity).wantsMoreFood())
         {
             this.interactionDelay = 10;
         }
@@ -47,49 +47,48 @@ public class EntityAINibiruVillagerInteract extends EntityAIWatchClosest2
 
             if (this.interactionDelay == 0)
             {
-                InventoryBasic inventorybasic = this.entity.getVillagerInventory();
+                InventoryBasic inv = this.entity.getVillagerInventory();
 
-                for (int i = 0; i < inventorybasic.getSizeInventory(); ++i)
+                for (int i = 0; i < inv.getSizeInventory(); ++i)
                 {
-                    ItemStack itemstack = inventorybasic.getStackInSlot(i);
-                    ItemStack itemstack1 = ItemStack.EMPTY;
+                    ItemStack itemStack = inv.getStackInSlot(i);
+                    ItemStack itemStack1 = ItemStack.EMPTY;
 
-                    if (!itemstack.isEmpty())
+                    if (!itemStack.isEmpty())
                     {
-                        Item item = itemstack.getItem();
+                        Item item = itemStack.getItem();
 
-                        if ((item == Items.BREAD || item == MPItems.TERRABERRY) && itemstack.getCount() > 3)
+                        if ((item == Items.BREAD || item == MPItems.TERRABERRY) && itemStack.getCount() > 3)
                         {
-                            int l = itemstack.getCount() / 2;
-                            itemstack.shrink(l);
-                            itemstack1 = new ItemStack(item, l, itemstack.getMetadata());
+                            int l = itemStack.getCount() / 2;
+                            itemStack.shrink(l);
+                            itemStack1 = new ItemStack(item, l, itemStack.getMetadata());
                         }
-                        else if (item == MPItems.INFECTED_WHEAT && itemstack.getCount() > 5)
+                        else if (item == MPItems.INFECTED_WHEAT && itemStack.getCount() > 5)
                         {
-                            int j = itemstack.getCount() / 2 / 3 * 3;
+                            int j = itemStack.getCount() / 2 / 3 * 3;
                             int k = j / 3;
-                            itemstack.shrink(j);
-                            itemstack1 = new ItemStack(Items.BREAD, k, 0);
+                            itemStack.shrink(j);
+                            itemStack1 = new ItemStack(Items.BREAD, k, 0);
                         }
 
-                        if (itemstack.getCount() <= 0)
+                        if (itemStack.isEmpty())
                         {
-                            inventorybasic.setInventorySlotContents(i, ItemStack.EMPTY);
+                            inv.setInventorySlotContents(i, ItemStack.EMPTY);
                         }
                     }
 
-                    if (!itemstack1.isEmpty())
+                    if (!itemStack1.isEmpty())
                     {
                         double d0 = this.entity.posY - 0.30000001192092896D + this.entity.getEyeHeight();
-                        EntityItem entityitem = new EntityItem(this.entity.world, this.entity.posX, d0, this.entity.posZ, itemstack1);
-                        float f = 0.3F;
+                        EntityItem item = new EntityItem(this.entity.world, this.entity.posX, d0, this.entity.posZ, itemStack1);
                         float f1 = this.entity.rotationYawHead;
                         float f2 = this.entity.rotationPitch;
-                        entityitem.motionX = -MathHelper.sin(f1 / 180.0F * (float)Math.PI) * MathHelper.cos(f2 / 180.0F * (float)Math.PI) * f;
-                        entityitem.motionZ = MathHelper.cos(f1 / 180.0F * (float)Math.PI) * MathHelper.cos(f2 / 180.0F * (float)Math.PI) * f;
-                        entityitem.motionY = -MathHelper.sin(f2 / 180.0F * (float)Math.PI) * f + 0.1F;
-                        entityitem.setDefaultPickupDelay();
-                        this.entity.world.spawnEntity(entityitem);
+                        item.motionX = -MathHelper.sin(f1 * 0.017453292F) * MathHelper.cos(f2 * 0.017453292F) * 0.3F;
+                        item.motionZ = MathHelper.cos(f1 * 0.017453292F) * MathHelper.cos(f2 * 0.017453292F) * 0.3F;
+                        item.motionY = -MathHelper.sin(f2 * 0.017453292F) * 0.3F + 0.1F;
+                        item.setDefaultPickupDelay();
+                        this.entity.world.spawnEntity(item);
                         break;
                     }
                 }

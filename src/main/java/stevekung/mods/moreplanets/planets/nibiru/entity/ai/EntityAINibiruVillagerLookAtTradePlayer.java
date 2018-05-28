@@ -6,7 +6,7 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerLookAtTradePlayer extends EntityAIWatchClosest
 {
-    private EntityNibiruVillager entity;
+    private final EntityNibiruVillager entity;
 
     public EntityAINibiruVillagerLookAtTradePlayer(EntityNibiruVillager entity)
     {

@@ -2,12 +2,11 @@ package stevekung.mods.moreplanets.planets.nibiru.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerTradePlayer extends EntityAIBase
 {
-    private EntityNibiruVillager entity;
+    private final EntityNibiruVillager entity;
 
     public EntityAINibiruVillagerTradePlayer(EntityNibiruVillager entity)
     {
@@ -37,7 +36,19 @@ public class EntityAINibiruVillagerTradePlayer extends EntityAIBase
         else
         {
             EntityPlayer player = this.entity.getCustomer();
-            return player == null ? false : this.entity.getDistanceSq(player) > 16.0D ? false : player.openContainer instanceof Container;
+
+            if (player == null)
+            {
+                return false;
+            }
+            else if (this.entity.getDistanceSq(player) > 16.0D)
+            {
+                return false;
+            }
+            else
+            {
+                return player.openContainer != null;
+            }
         }
     }
 

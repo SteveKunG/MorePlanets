@@ -1,17 +1,20 @@
 package stevekung.mods.moreplanets.planets.nibiru.entity.ai;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.Village;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerMate extends EntityAIBase
 {
-    private EntityNibiruVillager entity;
+    private final EntityNibiruVillager entity;
+    private final World world;
     private EntityNibiruVillager mate;
-    private World world;
     private int matingTimeout;
     private Village village;
 
@@ -43,7 +46,7 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
             }
             else if (this.checkSufficientDoorsPresentForNewVillager() && this.entity.getIsWillingToMate(true))
             {
-                Entity entity = this.world.findNearestEntityWithinAABB(EntityNibiruVillager.class, this.entity.getEntityBoundingBox().expand(8.0D, 3.0D, 8.0D), this.entity);
+                Entity entity = this.world.findNearestEntityWithinAABB(EntityNibiruVillager.class, this.entity.getEntityBoundingBox().grow(8.0D, 3.0D, 8.0D), this.entity);
 
                 if (entity == null)
                 {
@@ -97,6 +100,7 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
         {
             this.giveBirth();
         }
+
         if (this.entity.getRNG().nextInt(35) == 0)
         {
             this.world.setEntityState(this.entity, (byte)12);
@@ -118,14 +122,21 @@ public class EntityAINibiruVillagerMate extends EntityAIBase
 
     private void giveBirth()
     {
-        EntityNibiruVillager entityvillager = this.entity.createChild(this.mate);
+        EntityAgeable entity = this.entity.createChild(this.mate);
         this.mate.setGrowingAge(6000);
         this.entity.setGrowingAge(6000);
         this.mate.setIsWillingToMate(false);
         this.entity.setIsWillingToMate(false);
-        entityvillager.setGrowingAge(-24000);
-        entityvillager.setLocationAndAngles(this.entity.posX, this.entity.posY, this.entity.posZ, 0.0F, 0.0F);
-        this.world.spawnEntity(entityvillager);
-        this.world.setEntityState(entityvillager, (byte)12);
+        BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this.entity, this.mate, entity);
+
+        if (MinecraftForge.EVENT_BUS.post(event) || event.getChild() == null)
+        {
+            return;
+        }
+        entity = event.getChild();
+        entity.setGrowingAge(-24000);
+        entity.setLocationAndAngles(this.entity.posX, this.entity.posY, this.entity.posZ, 0.0F, 0.0F);
+        this.world.spawnEntity(entity);
+        this.world.setEntityState(entity, (byte)12);
     }
 }

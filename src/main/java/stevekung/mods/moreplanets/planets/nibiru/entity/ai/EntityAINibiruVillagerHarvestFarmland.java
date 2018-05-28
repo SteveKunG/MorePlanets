@@ -1,13 +1,14 @@
 package stevekung.mods.moreplanets.planets.nibiru.entity.ai;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.ai.EntityAIMoveToBlock;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
@@ -16,7 +17,7 @@ import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
 {
-    private EntityNibiruVillager entity;
+    private final EntityNibiruVillager entity;
     private boolean hasFarmItem;
     private boolean wantsToReapStuff;
     private int currentTask;
@@ -32,13 +33,13 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
     {
         if (this.runDelay <= 0)
         {
-            if (!this.entity.world.getGameRules().getBoolean("mobGriefing"))
+            if (!ForgeEventFactory.getMobGriefingEvent(this.entity.world, this.entity))
             {
                 return false;
             }
             this.currentTask = -1;
             this.hasFarmItem = this.entity.isFarmItemInInventory();
-            this.wantsToReapStuff = this.entity.func_175557_cr();
+            this.wantsToReapStuff = this.entity.wantsMoreFood();
         }
         return super.shouldExecute();
     }
@@ -58,33 +59,33 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
         if (this.getIsAboveDestination())
         {
             World world = this.entity.world;
-            BlockPos blockpos = this.destinationBlock.up();
-            IBlockState iblockstate = world.getBlockState(blockpos);
-            Block block = iblockstate.getBlock();
+            BlockPos pos = this.destinationBlock.up();
+            IBlockState state = world.getBlockState(pos);
+            Block block = state.getBlock();
 
-            if (this.currentTask == 0 && block instanceof BlockCropsMP && iblockstate.getValue(BlockStateProperty.AGE_7).intValue() == 7)
+            if (this.currentTask == 0 && block instanceof BlockCropsMP && state.getValue(BlockStateProperty.AGE_7) == 7)
             {
-                world.destroyBlock(blockpos, true);
+                world.destroyBlock(pos, true);
             }
-            else if (this.currentTask == 1 && block == Blocks.AIR)
+            else if (this.currentTask == 1 && state.getMaterial() == Material.AIR)
             {
-                InventoryBasic inventorybasic = this.entity.getVillagerInventory();
+                InventoryBasic inv = this.entity.getVillagerInventory();
 
-                for (int i = 0; i < inventorybasic.getSizeInventory(); ++i)
+                for (int i = 0; i < inv.getSizeInventory(); ++i)
                 {
-                    ItemStack itemStack = inventorybasic.getStackInSlot(i);
+                    ItemStack itemStack = inv.getStackInSlot(i);
                     boolean flag = false;
 
                     if (!itemStack.isEmpty())
                     {
                         if (itemStack.getItem() == MPItems.INFECTED_WHEAT_SEEDS)
                         {
-                            world.setBlockState(blockpos, MPBlocks.INFECTED_WHEAT.getDefaultState(), 3);
+                            world.setBlockState(pos, MPBlocks.INFECTED_WHEAT.getDefaultState(), 3);
                             flag = true;
                         }
                         else if (itemStack.getItem() == MPItems.TERRABERRY)
                         {
-                            world.setBlockState(blockpos, MPBlocks.TERRABERRY.getDefaultState(), 3);
+                            world.setBlockState(pos, MPBlocks.TERRABERRY.getDefaultState(), 3);
                             flag = true;
                         }
                     }
@@ -93,9 +94,9 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
                     {
                         itemStack.shrink(1);
 
-                        if (itemStack.getCount() <= 0)
+                        if (itemStack.isEmpty())
                         {
-                            inventorybasic.setInventorySlotContents(i, ItemStack.EMPTY);
+                            inv.setInventorySlotContents(i, ItemStack.EMPTY);
                         }
                         break;
                     }
@@ -114,15 +115,15 @@ public class EntityAINibiruVillagerHarvestFarmland extends EntityAIMoveToBlock
         if (block == MPBlocks.INFECTED_FARMLAND)
         {
             pos = pos.up();
-            IBlockState iblockstate = world.getBlockState(pos);
-            block = iblockstate.getBlock();
+            IBlockState state = world.getBlockState(pos);
+            block = state.getBlock();
 
-            if (block instanceof BlockCropsMP && iblockstate.getValue(BlockStateProperty.AGE_7).intValue() == 7 && this.wantsToReapStuff && (this.currentTask == 0 || this.currentTask < 0))
+            if (block instanceof BlockCropsMP && state.getValue(BlockStateProperty.AGE_7).intValue() == 7 && this.wantsToReapStuff && (this.currentTask == 0 || this.currentTask < 0))
             {
                 this.currentTask = 0;
                 return true;
             }
-            if (block == Blocks.AIR && this.hasFarmItem && (this.currentTask == 1 || this.currentTask < 0))
+            if (state.getMaterial() == Material.AIR && this.hasFarmItem && (this.currentTask == 1 || this.currentTask < 0))
             {
                 this.currentTask = 1;
                 return true;

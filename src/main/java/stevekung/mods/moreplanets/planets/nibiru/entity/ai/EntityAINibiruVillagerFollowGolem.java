@@ -3,15 +3,13 @@ package stevekung.mods.moreplanets.planets.nibiru.entity.ai;
 import java.util.List;
 
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.monster.EntityIronGolem;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
+import stevekung.mods.moreplanets.planets.nibiru.entity.EntityTerrastoneGolem;
 
 public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
 {
-    private EntityNibiruVillager entity;
-    private EntityIronGolem golem;
-    private int takeGolemRoseTick;
-    private boolean tookGolemRose;
+    private final EntityNibiruVillager entity;
+    private EntityTerrastoneGolem ironGolem;
 
     public EntityAINibiruVillagerFollowGolem(EntityNibiruVillager entity)
     {
@@ -32,7 +30,7 @@ public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
         }
         else
         {
-            List<EntityIronGolem> list = this.entity.world.getEntitiesWithinAABB(EntityIronGolem.class, this.entity.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
+            List<EntityTerrastoneGolem> list = this.entity.world.getEntitiesWithinAABB(EntityTerrastoneGolem.class, this.entity.getEntityBoundingBox().grow(6.0D, 2.0D, 6.0D));
 
             if (list.isEmpty())
             {
@@ -40,15 +38,7 @@ public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
             }
             else
             {
-                for (EntityIronGolem golem : list)
-                {
-                    if (golem.getHoldRoseTick() > 0)
-                    {
-                        this.golem = golem;
-                        break;
-                    }
-                }
-                return this.golem != null;
+                return this.ironGolem != null;
             }
         }
     }
@@ -56,38 +46,25 @@ public class EntityAINibiruVillagerFollowGolem extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return this.golem.getHoldRoseTick() > 0;
+        return this.ironGolem != null;
     }
 
     @Override
     public void startExecuting()
     {
-        this.takeGolemRoseTick = this.entity.getRNG().nextInt(320);
-        this.tookGolemRose = false;
-        this.golem.getNavigator().clearPath();
+        this.ironGolem.getNavigator().clearPath();
     }
 
     @Override
     public void resetTask()
     {
-        this.golem = null;
+        this.ironGolem = null;
         this.entity.getNavigator().clearPath();
     }
 
     @Override
     public void updateTask()
     {
-        this.entity.getLookHelper().setLookPositionWithEntity(this.golem, 30.0F, 30.0F);
-
-        if (this.golem.getHoldRoseTick() == this.takeGolemRoseTick)
-        {
-            this.entity.getNavigator().tryMoveToEntityLiving(this.golem, 0.5D);
-            this.tookGolemRose = true;
-        }
-        if (this.tookGolemRose && this.entity.getDistanceSq(this.golem) < 4.0D)
-        {
-            this.golem.setHoldingRose(false);
-            this.entity.getNavigator().clearPath();
-        }
+        this.entity.getLookHelper().setLookPositionWithEntity(this.ironGolem, 30.0F, 30.0F);
     }
 }

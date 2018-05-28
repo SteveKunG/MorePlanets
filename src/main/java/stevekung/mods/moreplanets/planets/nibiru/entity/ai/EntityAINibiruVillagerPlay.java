@@ -10,9 +10,9 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityNibiruVillager;
 
 public class EntityAINibiruVillagerPlay extends EntityAIBase
 {
-    private EntityNibiruVillager entity;
+    private final EntityNibiruVillager entity;
     private EntityLivingBase targetVillager;
-    private double speed;
+    private final double speed;
     private int playTime;
 
     public EntityAINibiruVillagerPlay(EntityNibiruVillager entity, double speed)
@@ -35,28 +35,28 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
         }
         else
         {
-            List<EntityNibiruVillager> list = this.entity.world.getEntitiesWithinAABB(EntityNibiruVillager.class, this.entity.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
+            List<EntityNibiruVillager> list = this.entity.world.getEntitiesWithinAABB(EntityNibiruVillager.class, this.entity.getEntityBoundingBox().grow(6.0D, 3.0D, 6.0D));
             double d0 = Double.MAX_VALUE;
 
-            for (EntityNibiruVillager entityvillager : list)
+            for (EntityNibiruVillager villager : list)
             {
-                if (entityvillager != this.entity && !entityvillager.isPlaying() && entityvillager.getGrowingAge() < 0)
+                if (villager != this.entity && !villager.isPlaying() && villager.getGrowingAge() < 0)
                 {
-                    double d1 = entityvillager.getDistanceSq(this.entity);
+                    double d1 = villager.getDistanceSq(this.entity);
 
                     if (d1 <= d0)
                     {
                         d0 = d1;
-                        this.targetVillager = entityvillager;
+                        this.targetVillager = villager;
                     }
                 }
             }
 
             if (this.targetVillager == null)
             {
-                Vec3d vec3 = RandomPositionGenerator.findRandomTarget(this.entity, 16, 3);
+                Vec3d vec3d = RandomPositionGenerator.findRandomTarget(this.entity, 16, 3);
 
-                if (vec3 == null)
+                if (vec3d == null)
                 {
                     return false;
                 }
@@ -102,13 +102,13 @@ public class EntityAINibiruVillagerPlay extends EntityAIBase
         }
         else if (this.entity.getNavigator().noPath())
         {
-            Vec3d vec3 = RandomPositionGenerator.findRandomTarget(this.entity, 16, 3);
+            Vec3d vec3d = RandomPositionGenerator.findRandomTarget(this.entity, 16, 3);
 
-            if (vec3 == null)
+            if (vec3d == null)
             {
                 return;
             }
-            this.entity.getNavigator().tryMoveToXYZ(vec3.x, vec3.y, vec3.z, this.speed);
+            this.entity.getNavigator().tryMoveToXYZ(vec3d.x, vec3d.y, vec3d.z, this.speed);
         }
     }
 }

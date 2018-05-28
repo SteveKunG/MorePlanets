@@ -10,7 +10,6 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockUnlitTorch;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -35,10 +34,10 @@ import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class StructureNibiruVillagePieces
 {
-    private static Stones villageStones = new Stones();
-    private static Planks villagePlanks = new Planks();
-    private static Logs villageLogs = new Logs();
-    private static Dirts villageDirts = new Dirts();
+    private static final Stones villageStones = new Stones();
+    private static final Planks villagePlanks = new Planks();
+    private static final Logs villageLogs = new Logs();
+    private static final Dirts villageDirts = new Dirts();
 
     public static void registerVillagePieces()
     {
@@ -191,7 +190,7 @@ public class StructureNibiruVillagePieces
         @Override
         protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession)
         {
-            return 2;
+            return this.structureType == 2 ? 5 : 2;
         }
     }
 
@@ -501,7 +500,7 @@ public class StructureNibiruVillagePieces
         @Override
         protected int chooseProfession(int villagersSpawned, int currentVillagerProfession)
         {
-            return villagersSpawned == 0 ? 4 : super.chooseProfession(villagersSpawned, currentVillagerProfession);
+            return villagersSpawned == 0 ? this.structureType == 2 ? 4 : 2 : super.chooseProfession(villagersSpawned, currentVillagerProfession);
         }
     }
 
@@ -625,7 +624,7 @@ public class StructureNibiruVillagePieces
         @Override
         protected int chooseProfession(int villagersSpawned, int currentVillagerProfession)
         {
-            return 1;
+            return this.structureType == 2 ? 4 : 1;
         }
     }
 
@@ -745,7 +744,7 @@ public class StructureNibiruVillagePieces
         @Override
         protected int chooseProfession(int villagersSpawned, int currentVillagerProfession)
         {
-            return 3;
+            return this.structureType == 2 ? 3 : 0;
         }
     }
 
@@ -1173,7 +1172,7 @@ public class StructureNibiruVillagePieces
                         {
                             IBlockState iblockstate4 = world.getBlockState(blockpos);
 
-                            if (iblockstate4.getBlock() == MPBlocks.INFECTED_GRASS_BLOCK && world.isAirBlock(blockpos.up()))
+                            if ((iblockstate4.getBlock() == MPBlocks.INFECTED_GRASS_BLOCK || iblockstate4.getBlock() == MPBlocks.GREEN_VEIN_GRASS_BLOCK) && world.isAirBlock(blockpos.up()))
                             {
                                 world.setBlockState(blockpos, iblockstate, 2);
                                 break;
@@ -1486,9 +1485,9 @@ public class StructureNibiruVillagePieces
                         break;
                     }
                     ++this.villagersSpawned;
-                    EntityNibiruVillager villager = new EntityNibiruVillager(world);//TODO
+                    EntityNibiruVillager villager = new EntityNibiruVillager(world);
                     villager.setLocationAndAngles(j + 0.5D, k, l + 0.5D, 0.0F, 0.0F);
-                    villager.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(villager)), (IEntityLivingData)null);
+                    villager.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(villager)), null);
                     villager.setProfession(this.chooseProfession(i, villager.getProfession()));
                     world.spawnEntity(villager);
                 }
