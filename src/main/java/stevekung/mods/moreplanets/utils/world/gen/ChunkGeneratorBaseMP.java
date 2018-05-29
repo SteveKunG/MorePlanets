@@ -118,7 +118,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
         this.generateChunk(primer, chunkX, chunkZ);
         Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
 
-        if (this.isSingleBiomePlanet)
+        if (!this.isSingleBiomePlanet)
         {
             this.initBiomesArray(chunk);
         }
