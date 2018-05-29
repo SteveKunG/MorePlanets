@@ -458,7 +458,7 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, rand.nextInt(5) == 0 ? Blocks.AIR.getDefaultState() : Blocks.GLASS_PANE.getDefaultState(), 5, 2, 0, box);
             this.setBlockState(world, rand.nextInt(5) == 0 ? Blocks.AIR.getDefaultState() : Blocks.GLASS_PANE.getDefaultState(), 6, 2, 5, box);
             this.setBlockState(world, iblockstate6, 2, 1, 3, box);
-            this.setBlockState(world, Blocks.WOODEN_PRESSURE_PLATE.getDefaultState(), 2, 2, 3, box);
+            this.setBlockState(world, MPBlocks.INFECTED_OAK_PRESSURE_PLATE.getDefaultState(), 2, 2, 3, box);
             this.setBlockState(world, iblockstate4, 1, 1, 4, box);
             this.setBlockState(world, iblockstate7, 2, 1, 4, box);
             this.setBlockState(world, iblockstate3, 1, 1, 3, box);
@@ -591,9 +591,9 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, iblockstate1, 4, 1, 4, box);
             this.setBlockState(world, iblockstate1, 3, 1, 4, box);
             this.setBlockState(world, iblockstate6, 6, 1, 3, box);
-            this.setBlockState(world, Blocks.WOODEN_PRESSURE_PLATE.getDefaultState(), 6, 2, 3, box);
+            this.setBlockState(world, MPBlocks.INFECTED_OAK_PRESSURE_PLATE.getDefaultState(), 6, 2, 3, box);
             this.setBlockState(world, iblockstate6, 4, 1, 3, box);
-            this.setBlockState(world, Blocks.WOODEN_PRESSURE_PLATE.getDefaultState(), 4, 2, 3, box);
+            this.setBlockState(world, MPBlocks.INFECTED_OAK_PRESSURE_PLATE.getDefaultState(), 4, 2, 3, box);
             this.setBlockState(world, MPBlocks.INFECTED_CRAFTING_TABLE.getDefaultState(), 7, 1, 1, box);
             this.generateChest(world, box, rand, 7, 2, 1, MPLootTables.NIBIRU_VILLAGE_LIBRARY);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, 1, 0, box);
@@ -707,7 +707,7 @@ public class StructureNibiruVillagePieces
             this.setBlockState(world, rand.nextInt(5) == 0 ? Blocks.AIR.getDefaultState() : Blocks.GLASS_PANE.getDefaultState(), 2, 2, 6, box);
             this.setBlockState(world, rand.nextInt(5) == 0 ? Blocks.AIR.getDefaultState() : Blocks.GLASS_PANE.getDefaultState(), 4, 2, 6, box);
             this.setBlockState(world, iblockstate6, 2, 1, 4, box);
-            this.setBlockState(world, Blocks.WOODEN_PRESSURE_PLATE.getDefaultState(), 2, 2, 4, box);
+            this.setBlockState(world, MPBlocks.INFECTED_OAK_PRESSURE_PLATE.getDefaultState(), 2, 2, 4, box);
             this.setBlockState(world, iblockstate3, 1, 1, 5, box);
             this.setBlockState(world, iblockstate1, 2, 1, 5, box);
             this.setBlockState(world, iblockstate2, 1, 1, 4, box);
@@ -1509,15 +1509,15 @@ public class StructureNibiruVillagePieces
                 {
                     return MPBlocks.INFECTED_SANDSTONE.getDefaultState();
                 }
-                if (block == MPBlocks.NIBIRU_VEIN_COBBLESTONE)
+                else if (block == MPBlocks.NIBIRU_VEIN_COBBLESTONE)
                 {
                     return MPBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_OAK_PLANKS)
+                else if (block == MPBlocks.INFECTED_OAK_PLANKS)
                 {
                     return MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_OAK_STAIRS || block == MPBlocks.NIBIRU_COBBLESTONE_STAIRS)
+                else if (block == MPBlocks.INFECTED_OAK_STAIRS || block == MPBlocks.NIBIRU_COBBLESTONE_STAIRS)
                 {
                     return MPBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, state.getValue(BlockStairs.FACING));
                 }
@@ -1528,59 +1528,63 @@ public class StructureNibiruVillagePieces
                 {
                     return MPBlocks.TERRASTONE.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_GRASS_PATH)
+                else if (block == MPBlocks.INFECTED_OAK_PRESSURE_PLATE)
+                {
+                    return MPBlocks.ALIEN_BERRY_OAK_PRESSURE_PLATE.getDefaultState();
+                }
+                else if (block == MPBlocks.INFECTED_GRASS_PATH)
                 {
                     return MPBlocks.GREEN_VEIN_GRASS_PATH.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_VINES)
+                else if (block == MPBlocks.INFECTED_VINES)
                 {
                     return Blocks.AIR.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_OAK_LOG)
+                else if (block == MPBlocks.INFECTED_OAK_LOG)
                 {
                     return MPBlocks.ALIEN_BERRY_OAK_LOG.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_OAK_FENCE)
+                else if (block == MPBlocks.INFECTED_OAK_FENCE)
                 {
                     return MPBlocks.ALIEN_BERRY_OAK_FENCE.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_OAK_PLANKS)
+                else if (block == MPBlocks.INFECTED_OAK_PLANKS)
                 {
                     return MPBlocks.ALIEN_BERRY_OAK_PLANKS.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_OAK_BOOKSHELF)
+                else if (block == MPBlocks.INFECTED_OAK_BOOKSHELF)
                 {
                     return MPBlocks.ALIEN_BERRY_OAK_BOOKSHELF.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_CRAFTING_TABLE)
+                else if (block == MPBlocks.INFECTED_CRAFTING_TABLE)
                 {
                     return MPBlocks.ALIEN_BERRY_CRAFTING_TABLE.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_OAK_STAIRS)
+                else if (block == MPBlocks.INFECTED_OAK_STAIRS)
                 {
                     return MPBlocks.ALIEN_BERRY_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, state.getValue(BlockStairs.FACING));
                 }
-                if (block == MPBlocks.NIBIRU_COBBLESTONE_STAIRS)
+                else if (block == MPBlocks.NIBIRU_COBBLESTONE_STAIRS)
                 {
                     return MPBlocks.TERRASTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, state.getValue(BlockStairs.FACING));
                 }
-                if (block == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
+                else if (block == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
                     return MPBlocks.PURIFIED_WATER_FLUID_BLOCK.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_GRAVEL)
+                else if (block == MPBlocks.INFECTED_GRAVEL)
                 {
                     return MPBlocks.PURIFIED_GRAVEL.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_STONE_BRICKS_SLAB)
+                else if (block == MPBlocks.INFECTED_STONE_BRICKS_SLAB)
                 {
                     return MPBlocks.TERRASTONE_SLAB.getDefaultState();
                 }
-                if (block == MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB)
+                else if (block == MPBlocks.DOUBLE_INFECTED_STONE_BRICKS_SLAB)
                 {
                     return MPBlocks.DOUBLE_TERRASTONE_SLAB.getDefaultState();
                 }
-                if (block == MPBlocks.INFECTED_FURNACE)
+                else if (block == MPBlocks.INFECTED_FURNACE)
                 {
                     return MPBlocks.TERRASTONE_FURNACE.getDefaultState();
                 }
@@ -2004,7 +2008,7 @@ public class StructureNibiruVillagePieces
             if (this.tablePosition > 0)
             {
                 this.setBlockState(world, iblockstate4, this.tablePosition, 1, 3, box);
-                this.setBlockState(world, Blocks.WOODEN_PRESSURE_PLATE.getDefaultState(), this.tablePosition, 2, 3, box);
+                this.setBlockState(world, MPBlocks.INFECTED_OAK_PRESSURE_PLATE.getDefaultState(), this.tablePosition, 2, 3, box);
             }
 
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 1, 1, 0, box);

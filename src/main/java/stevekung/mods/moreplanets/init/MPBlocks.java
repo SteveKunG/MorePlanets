@@ -102,6 +102,10 @@ public class MPBlocks
     @Deprecated public static BlockAllHalfSlab DOUBLE_INFECTED_OAK_SLAB;
     @Deprecated public static BlockAllHalfSlab DOUBLE_ALIEN_BERRY_OAK_SLAB;
 
+    // Pressure Plate
+    public static Block INFECTED_OAK_PRESSURE_PLATE;
+    public static Block ALIEN_BERRY_OAK_PRESSURE_PLATE;
+
     // Energy Storage
     public static Block DARK_ENERGY_STORAGE_CLUSTER;
     public static Block NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER;
@@ -562,6 +566,10 @@ public class MPBlocks
         MPBlocks.DOUBLE_CHEESE_SPORE_SLAB = new BlockAllDoubleSlab("double_cheese_spore_slab", BlockAllHalfSlab.BlockType.CHEESE_SPORE_SLAB, Material.WOOD);
         MPBlocks.DOUBLE_INFECTED_OAK_SLAB = new BlockAllDoubleSlab("double_infected_oak_slab", BlockAllHalfSlab.BlockType.INFECTED_OAK_SLAB, Material.WOOD);
         MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB = new BlockAllDoubleSlab("double_alien_berry_oak_slab", BlockAllHalfSlab.BlockType.ALIEN_BERRY_OAK_SLAB, Material.WOOD);
+
+        // Pressure Plate
+        MPBlocks.INFECTED_OAK_PRESSURE_PLATE = new BlockPressurePlateMP("infected_oak_pressure_plate");
+        MPBlocks.ALIEN_BERRY_OAK_PRESSURE_PLATE = new BlockPressurePlateMP("alien_berry_oak_pressure_plate");
 
         // Energy Storage
         MPBlocks.DARK_ENERGY_STORAGE_CLUSTER = new BlockTieredEnergyStorageCluster("dark_energy_storage_cluster", BlockTieredEnergyStorageCluster.BlockType.DARK_ENERGY_STORAGE_CLUSTER);
@@ -1364,6 +1372,10 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_INFECTED_OAK_SLAB, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB, null);
 
+        // Pressure Plate
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_PRESSURE_PLATE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_PRESSURE_PLATE);
+
         // Energy Storage
         BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_STORAGE_CLUSTER, ItemBlockDescription::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER, ItemBlockDescription::new);
@@ -1519,6 +1531,8 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_CHEESE_SPORE_SLAB, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_INFECTED_OAK_SLAB, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DOUBLE_ALIEN_BERRY_OAK_SLAB, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_OAK_PRESSURE_PLATE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_BERRY_OAK_PRESSURE_PLATE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.NIBIRU_COBBLESTONE_WALL, EnumHarvestLevel.PICKAXE, 0);

@@ -313,6 +313,8 @@ tile.nuclear_waste_fluid.name=Nuclear Waste
 tile.purified_water_fluid.name=Purified Water
 tile.infected_grass_path.name=Infected Grass Path
 tile.green_vein_grass_path.name=Green Vein Grass Path
+tile.infected_oak_pressure_plate.name=Infected Oak Pressure Plate
+tile.alien_berry_oak_pressure_plate.name=Alien Berry Oak Pressure Plate
 
 # BLOCKS - FRONOS
 tile.fronos_grass_block.name=Fronos Grass Block
