@@ -49,7 +49,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     protected void initEntityAI()
     {
         EntityAIMoveTowardsRestriction entityaimovetowardsrestriction = new EntityAIMoveTowardsRestriction(this, 1.0D);
-        this.wander = new EntityAIWander(this, 1.0D, 80);
+        this.wander = new EntityAIWanderAvoidWater(this, 1.0D, 80);
         this.tasks.addTask(4, new AIGuardianAttack(this));
         this.tasks.addTask(5, entityaimovetowardsrestriction);
         this.tasks.addTask(7, this.wander);
@@ -89,16 +89,6 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     public boolean isMoving()
     {
         return this.dataManager.get(MOVING).booleanValue();
-    }
-
-    private void setMoving(boolean moving)
-    {
-        this.dataManager.set(MOVING, moving);
-    }
-
-    private void setTargetedEntity(int entityId)
-    {
-        this.dataManager.set(TARGET_ENTITY, entityId);
     }
 
     @Override
@@ -250,9 +240,19 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         return EnumMobType.NIBIRU;
     }
 
+    private void setMoving(boolean moving)
+    {
+        this.dataManager.set(MOVING, moving);
+    }
+
+    private void setTargetedEntity(int entityId)
+    {
+        this.dataManager.set(TARGET_ENTITY, entityId);
+    }
+
     static class AIGuardianAttack extends EntityAIBase
     {
-        private EntityInfectedGuardian entity;
+        private final EntityInfectedGuardian entity;
         private int tickCounter;
 
         public AIGuardianAttack(EntityInfectedGuardian entity)
@@ -264,8 +264,8 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         @Override
         public boolean shouldExecute()
         {
-            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
-            return entitylivingbase != null && entitylivingbase.isEntityAlive();
+            EntityLivingBase entity = this.entity.getAttackTarget();
+            return entity != null && entity.isEntityAlive();
         }
 
         @Override
@@ -294,11 +294,11 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
         @Override
         public void updateTask()
         {
-            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
+            EntityLivingBase entity = this.entity.getAttackTarget();
             this.entity.getNavigator().clearPath();
-            this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 90.0F, 90.0F);
+            this.entity.getLookHelper().setLookPositionWithEntity(entity, 90.0F, 90.0F);
 
-            if (!this.entity.canEntityBeSeen(entitylivingbase))
+            if (!this.entity.canEntityBeSeen(entity))
             {
                 this.entity.setAttackTarget(null);
             }
@@ -319,10 +319,9 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
                     {
                         f += 2.0F;
                     }
-
-                    entitylivingbase.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.entity, this.entity), f);
-                    entitylivingbase.attackEntityFrom(DamageSource.causeMobDamage(this.entity), (float)this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
-                    entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 0));
+                    entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.entity, this.entity), f);
+                    entity.attackEntityFrom(DamageSource.causeMobDamage(this.entity), (float)this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
+                    entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 0));
                     this.entity.setAttackTarget(null);
                 }
                 super.updateTask();
@@ -332,7 +331,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
 
     static class GuardianMoveHelper extends EntityMoveHelper
     {
-        private EntityInfectedGuardian entity;
+        private final EntityInfectedGuardian entity;
 
         public GuardianMoveHelper(EntityInfectedGuardian entity)
         {
@@ -391,7 +390,7 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
 
     static class GuardianTargetSelector implements Predicate<EntityLivingBase>
     {
-        private EntityInfectedGuardian entity;
+        private final EntityInfectedGuardian entity;
 
         public GuardianTargetSelector(EntityInfectedGuardian entity)
         {

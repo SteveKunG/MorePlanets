@@ -68,26 +68,26 @@ public class MPEntities
 
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySpaceMinecartChest.class, "space_minecart_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedCrystallizedTentacle.class, "infected_crystallized_tentacle");
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityCheeseSpore.class, "cheese_spore", EnumEntityTrackerType.THROWABLE);
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySmallCheeseSpore.class, "small_cheese_spore", EnumEntityTrackerType.THROWABLE);
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedCrystallizedBomb.class, "infected_crystallized_bomb", EnumEntityTrackerType.THROWABLE);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityCheeseSpore.class, "cheese_spore", 256, 1, true);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySmallCheeseSpore.class, "small_cheese_spore", 256, 1, true);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedCrystallizedBomb.class, "infected_crystallized_bomb", EnumEntityTrackerType.THROWABLE_LARGE);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityNibiruLightningBolt.class, "nibiru_lightning_bolt");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityDarkLightningBolt.class, "dark_lightning_bolt");
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedSnowball.class, "infected_snowball", EnumEntityTrackerType.THROWABLE);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedSnowball.class, "infected_snowball", EnumEntityTrackerType.THROWABLE_LARGE);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityBlackHole.class, "black_hole");
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedEgg.class, "infected_egg", EnumEntityTrackerType.THROWABLE);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedEgg.class, "infected_egg", EnumEntityTrackerType.THROWABLE_LARGE);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedCrystallizedArrow.class, "infected_crystallized_arrow", EnumEntityTrackerType.ARROW);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedArrow.class, "infected_arrow", EnumEntityTrackerType.ARROW);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySpaceFishHook.class, "space_fish_hook", EnumEntityTrackerType.FISHING_HOOK);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAlienBeam.class, "alien_beam");
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityVeinEye.class, "vein_eye", 64, 4);
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityLaserBullet.class, "laser_bullet", EnumEntityTrackerType.ARROW);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityVeinEye.class, "vein_eye", 64, 4, true);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityLaserBullet.class, "laser_bullet", 60, 10, true);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySpaceCapsule.class, "space_capsule");
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityVeinBall.class, "vein_ball", EnumEntityTrackerType.THROWABLE);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityVeinBall.class, "vein_ball", EnumEntityTrackerType.THROWABLE_LARGE);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityBlackHoleStorage.class, "black_hole_storage");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAntiGravityArrow.class, "anti_gravity_arrow", EnumEntityTrackerType.ARROW);
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityFallingKoentusMeteor.class, "falling_koentus_meteor", 160, 20);
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAntiGravFallingBlock.class, "anti_gravity_falling_block", 80, 1);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityFallingKoentusMeteor.class, "falling_koentus_meteor", 160, 20, true);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAntiGravFallingBlock.class, "anti_gravity_falling_block", 80, 1, true);
 
         MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityAlienMiner.class, SpawnPlacementType.ON_GROUND);
         MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityZeliusZombie.class, SpawnPlacementType.ON_GROUND);

@@ -40,7 +40,7 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
         this.tasks.addTask(3, new EntityAITempt(this, 1.0D, MPItems.INFECTED_MELON_SEEDS, false));
         this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
-        this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.tasks.addTask(7, new EntityAIFleeNibiruThunder(this, 1.5D));

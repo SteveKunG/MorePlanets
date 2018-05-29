@@ -82,16 +82,6 @@ public class EntityJellySlime extends EntitySlimeBaseMP
         this.isDead = true;
     }
 
-    public int getJellySlimeType()
-    {
-        return this.dataManager.get(TYPE);
-    }
-
-    public void setJellySlimeType(int type)
-    {
-        this.dataManager.set(TYPE, type);
-    }
-
     @Override
     @Nullable
     public ResourceLocation getLootTable()
@@ -148,7 +138,7 @@ public class EntityJellySlime extends EntitySlimeBaseMP
     }
 
     @Override
-    public int getJumpDelay()
+    protected int getJumpDelay()
     {
         return this.rand.nextInt(50) + 50;
     }
@@ -209,5 +199,15 @@ public class EntityJellySlime extends EntitySlimeBaseMP
     protected void overrideHealth()
     {
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getSlimeSize() * this.getSlimeSize());
+    }
+    
+    public int getJellySlimeType()
+    {
+        return this.dataManager.get(TYPE);
+    }
+
+    public void setJellySlimeType(int type)
+    {
+        this.dataManager.set(TYPE, type);
     }
 }

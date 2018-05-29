@@ -27,10 +27,10 @@ import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IEntityBreathable
 {
     private static final DataParameter<Integer> SLIME_SIZE = EntityDataManager.createKey(EntitySlimeBaseMP.class, DataSerializers.VARINT);
-    public float squishAmount;
+    protected float squishAmount;
     public float squishFactor;
     public float prevSquishFactor;
-    public boolean wasOnGround;
+    private boolean wasOnGround;
 
     public EntitySlimeBaseMP(World world)
     {
@@ -62,27 +62,6 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         this.dataManager.register(SLIME_SIZE, 1);
     }
 
-    public void setSlimeSize(int size, boolean resetHealth)
-    {
-        this.dataManager.set(SLIME_SIZE, size);
-        float slimeSize = this.getSizeBased() * size;
-        this.setSize(slimeSize, slimeSize);
-        this.setPosition(this.posX, this.posY, this.posZ);
-        this.overrideHealth();
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F + 0.1F * size);
-
-        if (resetHealth)
-        {
-            this.setHealth(this.getMaxHealth());
-        }
-        this.experienceValue = size;
-    }
-
-    public int getSlimeSize()
-    {
-        return this.dataManager.get(SLIME_SIZE);
-    }
-
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
@@ -103,11 +82,6 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         }
         this.setSlimeSize(i + 1, false);
         this.wasOnGround = tagCompund.getBoolean("wasOnGround");
-    }
-
-    protected SoundEvent getSquishSound()
-    {
-        return this.isSmallSlime() ? SoundEvents.ENTITY_SMALL_SLIME_SQUISH : SoundEvents.ENTITY_SLIME_SQUISH;
     }
 
     @Override
@@ -138,11 +112,6 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         }
         this.wasOnGround = this.onGround;
         this.alterSquishAmount();
-    }
-
-    protected void alterSquishAmount()
-    {
-        this.squishAmount *= 0.6F;
     }
 
     @Override
@@ -214,35 +183,10 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         }
     }
 
-    protected void dealDamage(EntityLivingBase entity)
-    {
-        int i = this.getSlimeSize();
-
-        if (this.canEntityBeSeen(entity) && this.getDistanceSq(entity) < this.getDetectRange() * i * this.getDetectRange() * i && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
-        {
-            this.applyEnchantments(this, entity);
-        }
-    }
-
     @Override
     public float getEyeHeight()
     {
         return 0.625F * this.height;
-    }
-
-    protected boolean canDamagePlayer()
-    {
-        return this.getSlimeSize() > 1 && !this.isAIDisabled();
-    }
-
-    protected int getAttackStrength()
-    {
-        return this.getSlimeSize();
-    }
-
-    protected boolean isSmallSlime()
-    {
-        return this.getSlimeSize() <= 1;
     }
 
     @Override
@@ -267,16 +211,6 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
     public int getVerticalFaceSpeed()
     {
         return 0;
-    }
-
-    protected boolean makesSoundOnJump()
-    {
-        return this.getSlimeSize() > 0;
-    }
-
-    protected boolean makesSoundOnLand()
-    {
-        return this.getSlimeSize() > 2;
     }
 
     @Override
@@ -306,18 +240,84 @@ public abstract class EntitySlimeBaseMP extends EntityLiving implements IMob, IE
         return true;
     }
 
+    public void setSlimeSize(int size, boolean resetHealth)
+    {
+        this.dataManager.set(SLIME_SIZE, size);
+        float slimeSize = this.getSizeBased() * size;
+        this.setSize(slimeSize, slimeSize);
+        this.setPosition(this.posX, this.posY, this.posZ);
+        this.overrideHealth();
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F + 0.1F * size);
+
+        if (resetHealth)
+        {
+            this.setHealth(this.getMaxHealth());
+        }
+        this.experienceValue = size;
+    }
+
+    public int getSlimeSize()
+    {
+        return this.dataManager.get(SLIME_SIZE);
+    }
+
+    protected void alterSquishAmount()
+    {
+        this.squishAmount *= 0.6F;
+    }
+
+    protected void dealDamage(EntityLivingBase entity)
+    {
+        int i = this.getSlimeSize();
+
+        if (this.canEntityBeSeen(entity) && this.getDistanceSq(entity) < this.getDetectRange() * i * this.getDetectRange() * i && entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength()))
+        {
+            this.applyEnchantments(this, entity);
+        }
+    }
+
+    protected boolean canDamagePlayer()
+    {
+        return this.getSlimeSize() > 1 && !this.isAIDisabled();
+    }
+
+    protected int getAttackStrength()
+    {
+        return this.getSlimeSize();
+    }
+
     protected float getSizeBased()
     {
         return 0.51000005F;
     }
 
-    protected SoundEvent getJumpSound()
+    private SoundEvent getSquishSound()
+    {
+        return this.isSmallSlime() ? SoundEvents.ENTITY_SMALL_SLIME_SQUISH : SoundEvents.ENTITY_SLIME_SQUISH;
+    }
+
+    private boolean isSmallSlime()
+    {
+        return this.getSlimeSize() <= 1;
+    }
+
+    private boolean makesSoundOnJump()
+    {
+        return this.getSlimeSize() > 0;
+    }
+
+    private boolean makesSoundOnLand()
+    {
+        return this.getSlimeSize() > 2;
+    }
+
+    private SoundEvent getJumpSound()
     {
         return this.isSmallSlime() ? MPSounds.SMALL_SLIME_JUMP : SoundEvents.ENTITY_SLIME_JUMP;
     }
 
     protected abstract double getDetectRange();
-    public abstract int getJumpDelay();
+    protected abstract int getJumpDelay();
     protected abstract EntitySlimeBaseMP createInstance();
     protected abstract void createParticles();
     protected abstract void overrideHealth();

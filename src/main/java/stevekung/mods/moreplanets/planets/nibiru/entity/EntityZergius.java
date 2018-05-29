@@ -33,19 +33,19 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     public float destPos;
     public float oFlapSpeed;
     public float oFlap;
-    public float wingRotDelta = 1.0F;
+    private float wingRotDelta = 1.0F;
 
     public EntityZergius(World world)
     {
         super(world);
         this.setSize(0.7F, 0.7F);
+        this.moveHelper = new ZergiusMoveHelper(this);
         this.experienceValue = 5;
     }
 
     @Override
     protected void initEntityAI()
     {
-        this.moveHelper = new ZergiusMoveHelper();
         this.tasks.addTask(3, new AIZergiusRandomFly());
         this.tasks.addTask(4, new AIZergiusAttackTarget());
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
@@ -132,10 +132,9 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
         return EnumMobType.NIBIRU;
     }
 
-    private class FlyingMoveTargetPosition
+    class FlyingMoveTargetPosition
     {
-        private EntityZergius entity = EntityZergius.this;
-
+        private final EntityZergius entity = EntityZergius.this;
         public double posX;
         public double posY;
         public double posZ;
@@ -149,12 +148,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
 
         public FlyingMoveTargetPosition()
         {
-            this(0, 0, 0);
-        }
-
-        public FlyingMoveTargetPosition(double posX, double posY, double posZ)
-        {
-            this.setTarget(posX, posY, posZ);
+            this.setTarget(0, 0, 0);
         }
 
         public void setTarget(double posX, double posY, double posZ)
@@ -186,11 +180,6 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
             }
         }
 
-        public boolean isBoxBlocked(AxisAlignedBB box)
-        {
-            return !this.entity.world.getCollisionBoxes(this.entity, box).isEmpty();
-        }
-
         public boolean isPathClear(double howFar)
         {
             howFar = Math.min(howFar, this.dist);
@@ -203,24 +192,25 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
                     return false;
                 }
             }
-            if (this.isBoxBlocked(box.offset(this.aimX * howFar, this.aimY * howFar, this.aimZ * howFar)))
-            {
-                return false;
-            }
-            return true;
+            return !this.isBoxBlocked(box.offset(this.aimX * howFar, this.aimY * howFar, this.aimZ * howFar));
+        }
+
+        private boolean isBoxBlocked(AxisAlignedBB box)
+        {
+            return !this.entity.world.getCollisionBoxes(this.entity, box).isEmpty();
         }
     }
 
-    private class ZergiusMoveHelper extends EntityMoveHelper
+    class ZergiusMoveHelper extends EntityMoveHelper
     {
-        private EntityZergius entity = EntityZergius.this;
+        private final EntityZergius entity = EntityZergius.this;
+        private final FlyingMoveTargetPosition targetPos = new FlyingMoveTargetPosition();
         private int courseChangeCooldown = 0;
         private double closeEnough = 0.3D;
-        private FlyingMoveTargetPosition targetPos = new FlyingMoveTargetPosition();
 
-        public ZergiusMoveHelper()
+        public ZergiusMoveHelper(EntityZergius entity)
         {
-            super(EntityZergius.this);
+            super(entity);
         }
 
         @Override
@@ -269,8 +259,8 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
 
     class AIZergiusRandomFly extends EntityAIBase
     {
-        private EntityZergius entity = EntityZergius.this;
-        private FlyingMoveTargetPosition targetPos = new FlyingMoveTargetPosition();
+        private final EntityZergius entity = EntityZergius.this;
+        private final FlyingMoveTargetPosition targetPos = new FlyingMoveTargetPosition();
 
         public AIZergiusRandomFly()
         {
@@ -308,11 +298,14 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
 
             for (EnumFacing facing : directions)
             {
-                if (this.tryGoingAlongAxis(rand, facing, 1.0D)) {return;}
+                if (this.tryGoingAlongAxis(rand, facing, 1.0D))
+                {
+                    return;
+                }
             }
         }
 
-        public boolean tryGoingRandomDirection(Random rand, double maxDistance)
+        private boolean tryGoingRandomDirection(Random rand, double maxDistance)
         {
             double dirX = (rand.nextDouble() * 2.0D - 1.0D) * maxDistance;
             double dirY = (rand.nextDouble() * 2.0D - 1.1D) * maxDistance;
@@ -320,7 +313,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
             return this.tryGoing(dirX, dirY, dirZ);
         }
 
-        public boolean tryGoingAlongAxis(Random rand, EnumFacing facing, double maxDistance)
+        private boolean tryGoingAlongAxis(Random rand, EnumFacing facing, double maxDistance)
         {
             double dirX = 0.0D;
             double dirY = 0.0D;
@@ -340,7 +333,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
             return this.tryGoing(dirX, dirY, dirZ);
         }
 
-        public boolean tryGoing(double dirX, double dirY, double dirZ)
+        private boolean tryGoing(double dirX, double dirY, double dirZ)
         {
             this.targetPos.setTarget(this.entity.posX + dirX, this.entity.posY + dirY, this.entity.posZ + dirZ);
             boolean result = this.targetPos.isPathClear(1.0D);
@@ -355,19 +348,13 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
 
     private class AIZergiusAttackTarget extends EntityAIBase
     {
-        private EntityZergius wasp = EntityZergius.this;
+        private final EntityZergius entity = EntityZergius.this;
+        private final FlyingMoveTargetPosition targetPos = new FlyingMoveTargetPosition();
         private int attackTick = 0;
-        private FlyingMoveTargetPosition targetPos = new FlyingMoveTargetPosition();
 
         public AIZergiusAttackTarget()
         {
             this.setMutexBits(2);
-        }
-
-        public boolean attackTargetExists()
-        {
-            EntityLivingBase attackTarget = this.wasp.getAttackTarget();
-            return attackTarget != null && attackTarget.isEntityAlive();
         }
 
         @Override
@@ -387,28 +374,31 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
             {
                 --this.attackTick;
             }
-
             if (!this.attackTargetExists())
             {
                 return false;
             }
 
-            EntityLivingBase attackTarget = this.wasp.getAttackTarget();
+            EntityLivingBase attackTarget = this.entity.getAttackTarget();
             this.targetPos.setTarget(attackTarget.posX, attackTarget.posY, attackTarget.posZ);
-
-            double damageRange = this.wasp.width + attackTarget.width;
+            double damageRange = this.entity.width + attackTarget.width;
 
             if (this.attackTick <= 0 && this.targetPos.dist < damageRange)
             {
-                this.wasp.attackEntityAsMob(attackTarget);
+                this.entity.attackEntityAsMob(attackTarget);
                 this.attackTick = 16;
             }
-
             if (this.targetPos.isPathClear(1.0D))
             {
-                this.wasp.getMoveHelper().setMoveTo(attackTarget.posX, attackTarget.posY, attackTarget.posZ, 1.0D);
+                this.entity.getMoveHelper().setMoveTo(attackTarget.posX, attackTarget.posY, attackTarget.posZ, 1.5D);
             }
             return true;
+        }
+
+        private boolean attackTargetExists()
+        {
+            EntityLivingBase attackTarget = this.entity.getAttackTarget();
+            return attackTarget != null && attackTarget.isEntityAlive();
         }
     }
 }

@@ -44,10 +44,10 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
 {
     private TileEntityDungeonSpawner<?> spawner;
     public int deathTicks = 0;
-    public int entitiesWithin;
-    public int entitiesWithinLast;
+    private int entitiesWithin;
+    private int entitiesWithinLast;
     private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityMiniVeinFloater.class, DataSerializers.BOOLEAN);
-    private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
 
     public EntityMiniVeinFloater(World world)
     {

@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -59,7 +58,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     {
         this.tasks.addTask(4, new AILaserBeamAttack(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityGuardian.class, 12.0F, 0.01F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
@@ -151,11 +150,11 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                 }
 
                 MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.ALIEN_MINER_SPARK, this.posX, this.posY + 0.85D + this.getHoverTick(FMLClientHandler.instance().getClient().getRenderPartialTicks()), this.posZ, new Object[] { -this.getChargedTime(0.0F) });
-                EntityLivingBase entitylivingbase = this.getTargetedEntity();
+                EntityLivingBase entity = this.getTargetedEntity();
 
-                if (entitylivingbase != null)
+                if (entity != null)
                 {
-                    this.getLookHelper().setLookPositionWithEntity(entitylivingbase, 90.0F, 90.0F);
+                    this.getLookHelper().setLookPositionWithEntity(entity, 90.0F, 90.0F);
                     this.getLookHelper().onUpdateLook();
                 }
             }
@@ -175,39 +174,14 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     }
 
     @Override
-    public boolean isPotionApplicable(PotionEffect potion)
+    public boolean isPotionApplicable(PotionEffect effect)
     {
-        Potion potionEff = potion.getPotion();
-        return potionEff != MobEffects.POISON && potionEff != MobEffects.INSTANT_DAMAGE && potionEff != MobEffects.WITHER && potionEff != MPPotions.INFECTED_CRYSTALLIZED && potionEff != MPPotions.INFECTED_SPORE;
+        Potion potion = effect.getPotion();
+        return potion != MobEffects.POISON && potion != MobEffects.INSTANT_DAMAGE && potion != MobEffects.WITHER && potion != MPPotions.INFECTED_CRYSTALLIZED && potion != MPPotions.INFECTED_SPORE;
     }
 
     @Override
     public void fall(float distance, float damageMultiplier) {}
-
-    public float getChargedTime(float time)
-    {
-        return (this.chargedTime + time) / 80;
-    }
-
-    private void setTargetedEntity(int entityId)
-    {
-        this.dataManager.set(TARGET_ENTITY, entityId);
-    }
-
-    public boolean hasTargetedEntity()
-    {
-        return this.dataManager.get(TARGET_ENTITY) != 0;
-    }
-
-    public void setHovered(boolean hover)
-    {
-        this.dataManager.set(HOVER, hover);
-    }
-
-    private boolean getHovered()
-    {
-        return this.dataManager.get(HOVER);
-    }
 
     @Override
     @Nullable
@@ -232,6 +206,21 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     public EnumMobType getMobType()
     {
         return EnumMobType.ROBOT;
+    }
+
+    public float getChargedTime(float time)
+    {
+        return (this.chargedTime + time) / 80;
+    }
+
+    public boolean hasTargetedEntity()
+    {
+        return this.dataManager.get(TARGET_ENTITY) != 0;
+    }
+
+    public void setHovered(boolean hover)
+    {
+        this.dataManager.set(HOVER, hover);
     }
 
     public EntityLivingBase getTargetedEntity()
@@ -279,9 +268,19 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         return hoverTime = hoverTime * hoverTime + hoverTime;
     }
 
+    private void setTargetedEntity(int entityId)
+    {
+        this.dataManager.set(TARGET_ENTITY, entityId);
+    }
+
+    private boolean getHovered()
+    {
+        return this.dataManager.get(HOVER);
+    }
+
     static class AILaserBeamAttack extends EntityAIBase
     {
-        private EntityAlienMiner entity;
+        private final EntityAlienMiner entity;
         private int tickCounter;
 
         public AILaserBeamAttack(EntityAlienMiner entity)
@@ -293,8 +292,8 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         @Override
         public boolean shouldExecute()
         {
-            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
-            return entitylivingbase != null && entitylivingbase.isEntityAlive();
+            EntityLivingBase entity = this.entity.getAttackTarget();
+            return entity != null && entity.isEntityAlive();
         }
 
         @Override
@@ -322,11 +321,11 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
         @Override
         public void updateTask()
         {
-            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
+            EntityLivingBase entity = this.entity.getAttackTarget();
             this.entity.getNavigator().clearPath();
-            this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 90.0F, 90.0F);
+            this.entity.getLookHelper().setLookPositionWithEntity(entity, 90.0F, 90.0F);
 
-            if (!this.entity.canEntityBeSeen(entitylivingbase))
+            if (!this.entity.canEntityBeSeen(entity))
             {
                 this.entity.setAttackTarget(null);
             }
@@ -347,15 +346,15 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
                     {
                         f += 2.0F;
                     }
-                    entitylivingbase.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.entity, this.entity), f);
-                    entitylivingbase.attackEntityFrom(DamageSource.causeMobDamage(this.entity), (float)this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
+                    entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.entity, this.entity), f);
+                    entity.attackEntityFrom(DamageSource.causeMobDamage(this.entity), (float)this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
                     this.entity.playSound(MPSounds.ALIEN_MINER_ATTACK, 1.0F + this.entity.getChargedTime(0.0F), 0.8F);
-                    entitylivingbase.playSound(MPSounds.ALIEN_MINER_SHOCK, 1.0F + this.entity.getChargedTime(0.0F), 1.0F);
+                    entity.playSound(MPSounds.ALIEN_MINER_SHOCK, 1.0F + this.entity.getChargedTime(0.0F), 1.0F);
                     this.entity.setAttackTarget(null);
 
-                    if (entitylivingbase instanceof EntityPlayer)
+                    if (entity instanceof EntityPlayer)
                     {
-                        MorePlanetsMod.PROXY.resetFloatingTick((EntityPlayer) entitylivingbase);
+                        MorePlanetsMod.PROXY.resetFloatingTick((EntityPlayer) entity);
                     }
                 }
                 super.updateTask();
@@ -365,13 +364,11 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
 
     static class AISplashBlood extends EntityAIWander
     {
-        private EntityAlienMiner entity;
         private boolean findStone;
 
         public AISplashBlood(EntityAlienMiner entity)
         {
             super(entity, 1.0D, 10);
-            this.entity = entity;
             this.setMutexBits(1);
         }
 
@@ -388,14 +385,13 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
             }
             else
             {
-                Random random = this.entity.getRNG();
+                Random rand = this.entity.getRNG();
 
-                if (random.nextInt(500) == 0)
+                if (rand.nextInt(500) == 0)
                 {
-                    BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
-                    IBlockState iblockstate = this.entity.world.getBlockState(blockpos.down());
+                    BlockPos pos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
 
-                    if (iblockstate == MPBlocks.DIONA_SURFACE_ROCK.getDefaultState())
+                    if (this.entity.world.getBlockState(pos.down()).getBlock() == MPBlocks.DIONA_SURFACE_ROCK)
                     {
                         this.findStone = true;
                         return true;
@@ -422,12 +418,11 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
             else
             {
                 World world = this.entity.world;
-                BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
-                IBlockState iblockstate = world.getBlockState(blockpos.down());
+                BlockPos pos = new BlockPos(this.entity.posX, this.entity.posY, this.entity.posZ);
 
-                if (iblockstate == MPBlocks.DIONA_SURFACE_ROCK.getDefaultState())
+                if (world.getBlockState(pos.down()).getBlock() == MPBlocks.DIONA_SURFACE_ROCK)
                 {
-                    world.setBlockState(blockpos.down(), MPBlocks.ALIEN_MINER_BLOOD.getDefaultState(), 3);
+                    world.setBlockState(pos.down(), MPBlocks.ALIEN_MINER_BLOOD.getDefaultState(), 3);
                 }
             }
         }
@@ -435,7 +430,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
 
     static class AlienMinerTargetSelector implements Predicate<EntityLivingBase>
     {
-        private EntityAlienMiner entity;
+        private final EntityAlienMiner entity;
 
         public AlienMinerTargetSelector(EntityAlienMiner entity)
         {

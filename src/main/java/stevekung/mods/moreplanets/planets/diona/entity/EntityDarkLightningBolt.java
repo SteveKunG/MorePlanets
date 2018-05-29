@@ -25,6 +25,7 @@ public class EntityDarkLightningBolt extends Entity
         super(world);
         this.setSize(1.0F, 1.0F);
         this.isImmuneToFire = true;
+        this.ignoreFrustumCheck = true;
         this.lightningState = 2;
         this.boltVertex = this.rand.nextLong();
         this.boltLivingTime = this.rand.nextInt(3) + 1;
@@ -36,6 +37,7 @@ public class EntityDarkLightningBolt extends Entity
         this.setSize(1.0F, 1.0F);
         this.setLocationAndAngles(x, y, z, 0.0F, 0.0F);
         this.isImmuneToFire = true;
+        this.ignoreFrustumCheck = true;
         this.lightningState = 2;
         this.boltVertex = this.rand.nextLong();
         this.boltLivingTime = this.rand.nextInt(3) + 1;
@@ -78,10 +80,8 @@ public class EntityDarkLightningBolt extends Entity
                 double d0 = 1.0D;
                 List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
 
-                for (int i = 0; i < list.size(); ++i)
+                for (Entity entity : list)
                 {
-                    Entity entity = list.get(i);
-
                     if (entity instanceof EntityPlayer && ((EntityPlayer)entity).capabilities.isCreativeMode)
                     {
                         return;

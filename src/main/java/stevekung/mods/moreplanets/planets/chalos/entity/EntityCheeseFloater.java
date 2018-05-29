@@ -15,10 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -29,7 +26,7 @@ import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntitySmallCh
 
 public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
 {
-    private static DataParameter<Boolean> MINION = EntityDataManager.createKey(EntityCheeseFloater.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> MINION = EntityDataManager.createKey(EntityCheeseFloater.class, DataSerializers.BOOLEAN);
     private float heightOffset = 0.25F;
     private int heightOffsetUpdateTime;
 
@@ -45,7 +42,7 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     {
         this.tasks.addTask(4, new AICheeseSporeAttack(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1.0D, 0.0F));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
@@ -73,16 +70,6 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     {
         super.entityInit();
         this.dataManager.register(EntityCheeseFloater.MINION, false);
-    }
-
-    public void setMinion(boolean isMinion)
-    {
-        this.dataManager.set(EntityCheeseFloater.MINION, isMinion);
-    }
-
-    public boolean isMinion()
-    {
-        return this.dataManager.get(EntityCheeseFloater.MINION);
     }
 
     @Override
@@ -130,9 +117,9 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
             this.heightOffset = 0.5F + (float)this.rand.nextGaussian() * 2.5F;
         }
 
-        EntityLivingBase entitylivingbase = this.getAttackTarget();
+        EntityLivingBase entity = this.getAttackTarget();
 
-        if (entitylivingbase != null && entitylivingbase.posY + entitylivingbase.getEyeHeight() > this.posY + this.getEyeHeight() + this.heightOffset)
+        if (entity != null && entity.posY + entity.getEyeHeight() > this.posY + this.getEyeHeight() + this.heightOffset)
         {
             this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
             this.isAirBorne = true;
@@ -155,16 +142,13 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     {
         if (!(damageSource.getImmediateSource() instanceof EntitySmallCheeseSpore))
         {
-            if (!this.world.isRemote)
+            if (!this.world.isRemote && this.world instanceof WorldServer)
             {
-                if (this.world instanceof WorldServer)
+                for (int i = 0; i < 8; i++)
                 {
-                    for (int i = 0; i < 8; i++)
+                    if (this.getHealth() > 0.0F)
                     {
-                        if (this.getHealth() > 0.0F)
-                        {
-                            ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
-                        }
+                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
                     }
                 }
             }
@@ -220,9 +204,19 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
         return true;
     }
 
+    public void setMinion(boolean isMinion)
+    {
+        this.dataManager.set(EntityCheeseFloater.MINION, isMinion);
+    }
+
+    public boolean isMinion()
+    {
+        return this.dataManager.get(EntityCheeseFloater.MINION);
+    }
+
     class AICheeseSporeAttack extends EntityAIBase
     {
-        private EntityCheeseFloater entity;
+        private final EntityCheeseFloater entity;
         private int attackStep;
         private int attackTime;
 
@@ -235,8 +229,8 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
         @Override
         public boolean shouldExecute()
         {
-            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
-            return entitylivingbase != null && entitylivingbase.isEntityAlive();
+            EntityLivingBase entity = this.entity.getAttackTarget();
+            return entity != null && entity.isEntityAlive();
         }
 
         @Override
@@ -252,23 +246,23 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
         public void updateTask()
         {
             --this.attackTime;
-            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
-            double d0 = this.entity.getDistanceSq(entitylivingbase);
+            EntityLivingBase entity = this.entity.getAttackTarget();
+            double distance = this.entity.getDistanceSq(entity);
 
-            if (d0 < 1.5D)
+            if (distance < 1.5D)
             {
                 if (this.attackTime <= 0)
                 {
                     this.attackTime = 20;
-                    this.entity.attackEntityAsMob(entitylivingbase);
+                    this.entity.attackEntityAsMob(entity);
                 }
-                this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+                this.entity.getMoveHelper().setMoveTo(entity.posX, entity.posY, entity.posZ, 1.0D);
             }
-            else if (d0 < 30.0D)
+            else if (distance < 30.0D)
             {
-                double d1 = entitylivingbase.posX - this.entity.posX;
-                double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.entity.posY + this.entity.height / 2.0F);
-                double d3 = entitylivingbase.posZ - this.entity.posZ;
+                double d1 = entity.posX - this.entity.posX;
+                double d2 = entity.getEntityBoundingBox().minY + entity.height / 2.0F - (this.entity.posY + this.entity.height / 2.0F);
+                double d3 = entity.posZ - this.entity.posZ;
 
                 if (this.attackTime <= 0)
                 {
@@ -290,22 +284,23 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
 
                     if (this.attackStep > 1)
                     {
-                        float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
+                        float f = MathHelper.sqrt(MathHelper.sqrt(distance)) * 0.5F;
 
                         for (int i = 0; i < 1; ++i)
                         {
                             EntitySmallCheeseSpore cheeseSpore = new EntitySmallCheeseSpore(this.entity.world, this.entity, d1 + this.entity.getRNG().nextGaussian() * f, d2, d3 + this.entity.getRNG().nextGaussian() * f);
                             cheeseSpore.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
+                            this.entity.world.playSound(null, this.entity.getPosition(), SoundEvents.ENTITY_SLIME_JUMP, SoundCategory.HOSTILE, 1.0F, 2.0F);
                             this.entity.world.spawnEntity(cheeseSpore);
                         }
                     }
                 }
-                this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
+                this.entity.getLookHelper().setLookPositionWithEntity(entity, 10.0F, 10.0F);
             }
             else
             {
                 this.entity.getNavigator().clearPath();
-                this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+                this.entity.getMoveHelper().setMoveTo(entity.posX, entity.posY, entity.posZ, 1.0D);
             }
             super.updateTask();
         }

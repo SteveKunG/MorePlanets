@@ -46,7 +46,7 @@ public class EntityBearry extends EntityFronosPet
         this.tasks.addTask(5, this.aiTempt);
         this.tasks.addTask(9, this.aiTexture);
         this.tasks.addTask(7, new EntityAIMate(this, 1.0D));
-        this.tasks.addTask(8, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(8, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
     }

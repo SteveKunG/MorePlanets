@@ -9,7 +9,7 @@ import stevekung.mods.moreplanets.init.MPItems;
 
 public class EntityAIAttackRangedBowMP extends EntityAIBase
 {
-    private EntitySkeleton entity;
+    private final EntitySkeleton entity;
     private double moveSpeedAmp;
     private int attackCooldown;
     private float maxAttackDistance;

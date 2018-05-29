@@ -139,6 +139,13 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
     }
 
     @Override
+    public void setRenderYawOffset(float offset)
+    {
+        this.rotationYaw = offset;
+        super.setRenderYawOffset(offset);
+    }
+
+    @Override
     public float getBlockPathWeight(BlockPos pos)
     {
         return this.world.getBlockState(pos.down()) == MPBlocks.INFESTED_NIBIRU_ROCK.getDefaultState() ? 10.0F : super.getBlockPathWeight(pos);
@@ -189,14 +196,12 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
 
     static class AIHideInStone extends EntityAIWander
     {
-        private EntityInfectedWorm entity;
         private EnumFacing facing;
         private boolean doMerge;
 
         public AIHideInStone(EntityInfectedWorm entity)
         {
             super(entity, 1.0D, 10);
-            this.entity = entity;
             this.setMutexBits(1);
         }
 
@@ -221,7 +226,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
                     BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
                     IBlockState iblockstate = this.entity.world.getBlockState(blockpos);
 
-                    if (this.entity.canContainSilverfish(iblockstate))
+                    if (((EntityInfectedWorm)this.entity).canContainSilverfish(iblockstate))
                     {
                         this.doMerge = true;
                         return true;
@@ -251,7 +256,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
                 BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
                 IBlockState state = world.getBlockState(blockpos);
 
-                if (this.entity.canContainSilverfish(state))
+                if (((EntityInfectedWorm)this.entity).canContainSilverfish(state))
                 {
                     world.setBlockState(blockpos, BlockNibiruInfested.getInfested(state.getBlock()).getDefaultState(), 3);
                     this.entity.spawnExplosionParticle();
@@ -263,20 +268,12 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
 
     static class AISummonWorm extends EntityAIBase
     {
-        private EntityInfectedWorm entity;
+        private final EntityInfectedWorm entity;
         private int lookForFriends;
 
         public AISummonWorm(EntityInfectedWorm entity)
         {
             this.entity = entity;
-        }
-
-        public void notifyHurt()
-        {
-            if (this.lookForFriends == 0)
-            {
-                this.lookForFriends = 20;
-            }
         }
 
         @Override
@@ -324,6 +321,14 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
                         }
                     }
                 }
+            }
+        }
+
+        public void notifyHurt()
+        {
+            if (this.lookForFriends == 0)
+            {
+                this.lookForFriends = 20;
             }
         }
     }

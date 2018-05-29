@@ -29,15 +29,14 @@ import stevekung.mods.moreplanets.init.MPSounds;
 
 public class EntityInfectedCrystallizedTentacle extends Entity
 {
-    private static DataParameter<Float> DAMAGE = EntityDataManager.createKey(EntityInfectedCrystallizedTentacle.class, DataSerializers.FLOAT);
+    private static final DataParameter<Float> DAMAGE = EntityDataManager.createKey(EntityInfectedCrystallizedTentacle.class, DataSerializers.FLOAT);
     public int innerRotation;
-    public int tentacleRod;
 
     public EntityInfectedCrystallizedTentacle(World world)
     {
         super(world);
-        this.preventEntitySpawning = true;
         this.setSize(0.55F, 2.0F);
+        this.preventEntitySpawning = true;
         this.innerRotation = this.rand.nextInt(50000);
     }
 
@@ -130,16 +129,6 @@ public class EntityInfectedCrystallizedTentacle extends Entity
         }
     }
 
-    public void setDamage(float damage)
-    {
-        this.dataManager.set(DAMAGE, damage);
-    }
-
-    public float getDamage()
-    {
-        return this.dataManager.get(DAMAGE);
-    }
-
     @Override
     protected void writeEntityToNBT(NBTTagCompound nbt) {}
 
@@ -194,5 +183,15 @@ public class EntityInfectedCrystallizedTentacle extends Entity
             }
             return true;
         }
+    }
+
+    public void setDamage(float damage)
+    {
+        this.dataManager.set(DAMAGE, damage);
+    }
+
+    public float getDamage()
+    {
+        return this.dataManager.get(DAMAGE);
     }
 }

@@ -28,9 +28,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BossInfo;
@@ -55,18 +55,16 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     private TileEntityDungeonSpawner<?> spawner;
     private Entity targetedEntity;
     public int deathTicks = 0;
-    public int attackCounter;
-    public int prevAttackCounter;
-    public int entitiesWithin;
-    public int entitiesWithinLast;
+    private int entitiesWithin;
+    private int entitiesWithinLast;
     private int spawnCount = 10;
-    private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
 
     public EntityCheeseCubeEyeBoss(World world)
     {
         super(world);
         this.setSize(1.8F, 2.0F);
-        this.moveHelper = new GhastMoveHelper(this);
+        this.moveHelper = new FlyingMoveHelper(this);
     }
 
     @Override
@@ -112,7 +110,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     }
 
     @Override
-    public void knockBack(Entity entity, float strength, double x, double z) {}
+    public void knockBack(Entity entity, float strength, double xRatio, double zRatio) {}
 
     @Override
     public boolean canBePushed()
@@ -342,16 +340,13 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     @Override
     public boolean attackEntityFrom(DamageSource source, float damage)
     {
-        if (source.getDamageType().contains("arrow"))
+        if (source.getDamageType().toLowerCase().contains("arrow"))
         {
-            if (!this.world.isRemote)
+            if (!this.world.isRemote && this.world instanceof WorldServer)
             {
-                if (this.world instanceof WorldServer)
+                for (int i = 0; i < 16; i++)
                 {
-                    for (int i = 0; i < 16; i++)
-                    {
-                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.0D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
-                    }
+                    ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.0D, this.posZ, 10, this.width / 4.0F, this.height / 4.0F, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
                 }
             }
 
@@ -447,20 +442,20 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         return ColorUtils.rgbToDecimal(246, 220, 160);
     }
 
-    private static class AICheeseSporeAttack extends EntityAIBase
+    static class AICheeseSporeAttack extends EntityAIBase
     {
-        private EntityCheeseCubeEyeBoss parentEntity;
-        public int attackTimer;
+        private final EntityCheeseCubeEyeBoss entity;
+        private int attackTimer;
 
-        public AICheeseSporeAttack(EntityCheeseCubeEyeBoss ghast)
+        public AICheeseSporeAttack(EntityCheeseCubeEyeBoss entity)
         {
-            this.parentEntity = ghast;
+            this.entity = entity;
         }
 
         @Override
         public boolean shouldExecute()
         {
-            return this.parentEntity.getAttackTarget() != null;
+            return this.entity.getAttackTarget() != null;
         }
 
         @Override
@@ -475,23 +470,24 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         @Override
         public void updateTask()
         {
-            EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
-            if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
+            EntityLivingBase entity = this.entity.getAttackTarget();
+
+            if (entity.getDistanceSq(this.entity) < 4096.0D && this.entity.canEntityBeSeen(entity))
             {
-                World world = this.parentEntity.world;
+                World world = this.entity.world;
                 ++this.attackTimer;
 
                 if (this.attackTimer == 20)
                 {
-                    Vec3d vec3d = this.parentEntity.getLook(1.0F);
-                    double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
-                    double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (0.5D + this.parentEntity.posY + this.parentEntity.height / 2.0F);
-                    double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
-                    world.playEvent(null, 1016, new BlockPos(this.parentEntity), 0);
-                    EntityCheeseSpore cheeseSpore = new EntityCheeseSpore(world, this.parentEntity, d2, d3, d4);
-                    cheeseSpore.posX = this.parentEntity.posX + vec3d.x * 4.0D;
-                    cheeseSpore.posY = this.parentEntity.posY + this.parentEntity.height / 2.0F + 0.5D;
-                    cheeseSpore.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
+                    Vec3d vec3d = this.entity.getLook(1.0F);
+                    double d2 = entity.posX - (this.entity.posX + vec3d.x * 2.0D);
+                    double d3 = entity.getEntityBoundingBox().minY + entity.height / 1.0F - (0.5D + this.entity.posY + this.entity.height / 1.0F);
+                    double d4 = entity.posZ - (this.entity.posZ + vec3d.z * 2.0D);
+                    this.entity.world.playSound(null, this.entity.getPosition(), SoundEvents.ENTITY_SLIME_JUMP, SoundCategory.HOSTILE, 1.0F, 0.3F);
+                    EntityCheeseSpore cheeseSpore = new EntityCheeseSpore(world, this.entity, d2, d3, d4);
+                    cheeseSpore.posX = this.entity.posX + vec3d.x * 2.0D;
+                    cheeseSpore.posY = this.entity.posY + this.entity.height / 1.0F - 0.5D;
+                    cheeseSpore.posZ = this.entity.posZ + vec3d.z * 2.0D;
                     world.spawnEntity(cheeseSpore);
                     this.attackTimer = -40;
                 }
@@ -503,9 +499,9 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         }
     }
 
-    private static class AILookAround extends EntityAIBase
+    static class AILookAround extends EntityAIBase
     {
-        private EntityCheeseCubeEyeBoss entity;
+        private final EntityCheeseCubeEyeBoss entity;
 
         public AILookAround(EntityCheeseCubeEyeBoss entity)
         {
@@ -542,9 +538,9 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         }
     }
 
-    private static class AIRandomFly extends EntityAIBase
+    static class AIRandomFly extends EntityAIBase
     {
-        private EntityCheeseCubeEyeBoss entity;
+        private final EntityCheeseCubeEyeBoss entity;
 
         public AIRandomFly(EntityCheeseCubeEyeBoss entity)
         {
@@ -555,17 +551,17 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         @Override
         public boolean shouldExecute()
         {
-            EntityMoveHelper entitymovehelper = this.entity.getMoveHelper();
+            EntityMoveHelper helper = this.entity.getMoveHelper();
 
-            if (!entitymovehelper.isUpdating())
+            if (!helper.isUpdating())
             {
                 return true;
             }
             else
             {
-                double d0 = entitymovehelper.getX() - this.entity.posX;
-                double d1 = entitymovehelper.getY() - this.entity.posY;
-                double d2 = entitymovehelper.getZ() - this.entity.posZ;
+                double d0 = helper.getX() - this.entity.posX;
+                double d1 = helper.getY() - this.entity.posY;
+                double d2 = helper.getZ() - this.entity.posZ;
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
                 return d3 < 1.0D || d3 > 3600.0D;
             }
@@ -580,20 +576,20 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
         @Override
         public void startExecuting()
         {
-            Random random = this.entity.getRNG();
-            double d0 = this.entity.posX + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
-            double d1 = this.entity.posY + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
-            double d2 = this.entity.posZ + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            Random rand = this.entity.getRNG();
+            double d0 = this.entity.posX + (rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            double d1 = this.entity.posY + (rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            double d2 = this.entity.posZ + (rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
             this.entity.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
         }
     }
 
-    private static class GhastMoveHelper extends EntityMoveHelper
+    static class FlyingMoveHelper extends EntityMoveHelper
     {
-        private EntityCheeseCubeEyeBoss entity;
+        private final EntityCheeseCubeEyeBoss entity;
         private int courseChangeCooldown;
 
-        public GhastMoveHelper(EntityCheeseCubeEyeBoss entity)
+        public FlyingMoveHelper(EntityCheeseCubeEyeBoss entity)
         {
             super(entity);
             this.entity = entity;

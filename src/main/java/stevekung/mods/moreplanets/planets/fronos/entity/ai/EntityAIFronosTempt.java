@@ -20,7 +20,7 @@ public class EntityAIFronosTempt extends EntityAIBase
     private int delayTemptCounter;
     private Item item;
     private boolean scaredByPlayerMovement;
-    int timer;
+    private int timer;
 
     public EntityAIFronosTempt(EntityCreature entity, double speed, Item item, boolean scared)
     {

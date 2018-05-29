@@ -8,7 +8,7 @@ public class EntityAIFaceTexture extends EntityAIBase
 {
     private EntityLiving entity;
     private World world;
-    int timer;
+    private int timer;
 
     public EntityAIFaceTexture(EntityLiving entity)
     {
@@ -50,14 +50,14 @@ public class EntityAIFaceTexture extends EntityAIBase
         return this.timer > 0;
     }
 
-    public int getTimer()
-    {
-        return this.timer;
-    }
-
     @Override
     public void updateTask()
     {
         this.timer = Math.max(0, this.timer - 1);
+    }
+
+    public int getTimer()
+    {
+        return this.timer;
     }
 }

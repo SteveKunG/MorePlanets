@@ -36,6 +36,8 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
 import stevekung.mods.moreplanets.items.ItemCapsule;
 import stevekung.mods.moreplanets.moons.koentus.client.particle.ParticleKoentusMeteor;
+import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntityCheeseSpore;
+import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleAlienMinerSpark;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleCrystallizedFlame;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleDarkPortal;
@@ -67,7 +69,7 @@ public class ClientProxyMP extends ServerProxyMP
     {
         ModelLoaderRegistry.registerLoader(OBJLoaderMP.INSTANCE);
         EntityRendererMP.init();
-        ClientProxyMP.handleSpaceFishHookSpawning();
+        ClientProxyMP.handleCustomSpawning();
         CommonUtils.registerEventHandler(this);
 
         if (CompatibilityManagerMP.isCCLLoaded)
@@ -262,7 +264,7 @@ public class ClientProxyMP extends ServerProxyMP
         ClientEventHandler.bossList.remove(boss);
     }
 
-    private static void handleSpaceFishHookSpawning()
+    private static void handleCustomSpawning()
     {
         EntityRegistration entityRegistration = EntityRegistry.instance().lookupModSpawn(EntitySpaceFishHook.class, false);
 
@@ -294,6 +296,64 @@ public class ClientProxyMP extends ServerProxyMP
                 return entity;
             }
             return null;
+        };
+        entityRegistration.setCustomSpawning(handler, false);
+        entityRegistration = EntityRegistry.instance().lookupModSpawn(EntityCheeseSpore.class, false);
+
+        handler = input ->
+        {
+            double posX = 0;
+            double posY = 0;
+            double posZ = 0;
+            double speedScaledX = 0;
+            double speedScaledY = 0;
+            double speedScaledZ = 0;
+            WorldClient world = FMLClientHandler.instance().getWorldClient();
+
+            try
+            {
+                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
+                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
+                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
+                speedScaledX = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledX").getDouble(input);
+                speedScaledY = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledY").getDouble(input);
+                speedScaledZ = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            Entity entity = new EntityCheeseSpore(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
+            return entity;
+        };
+        entityRegistration.setCustomSpawning(handler, false);
+        entityRegistration = EntityRegistry.instance().lookupModSpawn(EntitySmallCheeseSpore.class, false);
+
+        handler = input ->
+        {
+            double posX = 0;
+            double posY = 0;
+            double posZ = 0;
+            double speedScaledX = 0;
+            double speedScaledY = 0;
+            double speedScaledZ = 0;
+            WorldClient world = FMLClientHandler.instance().getWorldClient();
+
+            try
+            {
+                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
+                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
+                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
+                speedScaledX = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledX").getDouble(input);
+                speedScaledY = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledY").getDouble(input);
+                speedScaledZ = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            Entity entity = new EntitySmallCheeseSpore(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
+            return entity;
         };
         entityRegistration.setCustomSpawning(handler, false);
     }

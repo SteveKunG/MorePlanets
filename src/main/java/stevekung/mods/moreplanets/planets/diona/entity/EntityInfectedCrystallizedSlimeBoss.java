@@ -53,11 +53,11 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
 {
     private TileEntityDungeonSpawner<?> spawner;
     public int deathTicks = 0;
-    public int entitiesWithin;
-    public int entitiesWithinLast;
+    private int entitiesWithin;
+    private int entitiesWithinLast;
     private static final DataParameter<Boolean> BARRIER = EntityDataManager.createKey(EntityInfectedCrystallizedSlimeBoss.class, DataSerializers.BOOLEAN);
     public EntityInfectedCrystallizedTentacle tentacle;
-    private BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
     private boolean tentacleSpawning = true;
 
     public EntityInfectedCrystallizedSlimeBoss(World world)
@@ -288,35 +288,6 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
         super.onLivingUpdate();
     }
 
-    private void updateTentacle()
-    {
-        if (this.tentacle != null)
-        {
-            if (this.tentacle.isDead)
-            {
-                this.tentacle = null;
-            }
-        }
-
-        List<EntityInfectedCrystallizedTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizedTentacle.class, this.getEntityBoundingBox().grow(32.0F, 32.0F, 32.0F));
-        EntityInfectedCrystallizedTentacle tentacle = null;
-        double distance1 = Double.MAX_VALUE;
-        Iterator iterator = list.iterator();
-
-        while (iterator.hasNext())
-        {
-            EntityInfectedCrystallizedTentacle tentacle1 = (EntityInfectedCrystallizedTentacle)iterator.next();
-            double distance = tentacle1.getDistanceSq(this);
-
-            if (distance < distance1)
-            {
-                distance1 = distance;
-                tentacle = tentacle1;
-            }
-            this.tentacle = tentacle;
-        }
-    }
-
     @Override
     public void setDead()
     {
@@ -438,7 +409,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
     }
 
     @Override
-    public int getJumpDelay()
+    protected int getJumpDelay()
     {
         return this.rand.nextInt(2) + 3;
     }
@@ -517,5 +488,34 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
     public boolean getBarrier()
     {
         return this.dataManager.get(BARRIER);
+    }
+
+    private void updateTentacle()
+    {
+        if (this.tentacle != null)
+        {
+            if (this.tentacle.isDead)
+            {
+                this.tentacle = null;
+            }
+        }
+
+        List<EntityInfectedCrystallizedTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizedTentacle.class, this.getEntityBoundingBox().grow(32.0F, 32.0F, 32.0F));
+        EntityInfectedCrystallizedTentacle tentacle = null;
+        double distance1 = Double.MAX_VALUE;
+        Iterator iterator = list.iterator();
+
+        while (iterator.hasNext())
+        {
+            EntityInfectedCrystallizedTentacle tentacle1 = (EntityInfectedCrystallizedTentacle)iterator.next();
+            double distance = tentacle1.getDistanceSq(this);
+
+            if (distance < distance1)
+            {
+                distance1 = distance;
+                tentacle = tentacle1;
+            }
+            this.tentacle = tentacle;
+        }
     }
 }

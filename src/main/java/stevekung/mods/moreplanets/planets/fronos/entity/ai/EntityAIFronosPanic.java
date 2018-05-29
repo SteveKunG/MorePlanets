@@ -8,11 +8,11 @@ import net.minecraft.util.math.Vec3d;
 public class EntityAIFronosPanic extends EntityAIBase
 {
     private EntityCreature entity;
-    protected double speed;
+    private double speed;
     private double randPosX;
     private double randPosY;
     private double randPosZ;
-    int timer;
+    private int timer;
 
     public EntityAIFronosPanic(EntityCreature entity, double speed)
     {

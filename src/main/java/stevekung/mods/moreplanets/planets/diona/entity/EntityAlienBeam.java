@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.init.MPSounds;
 public class EntityAlienBeam extends Entity
 {
     private int lightningState;
-    public long boltVertex;
+    private long boltVertex;
     private int boltLivingTime;
 
     public EntityAlienBeam(World world)
@@ -72,9 +72,8 @@ public class EntityAlienBeam extends Entity
                 double d0 = 1.0D;
                 List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
 
-                for (int i = 0; i < list.size(); ++i)
+                for (Entity entity : list)
                 {
-                    Entity entity = list.get(i);
                     entity.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 10.0F);
                 }
             }

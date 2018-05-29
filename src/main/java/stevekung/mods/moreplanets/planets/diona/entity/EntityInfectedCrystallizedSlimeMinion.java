@@ -115,7 +115,7 @@ public class EntityInfectedCrystallizedSlimeMinion extends EntitySlimeBaseMP
     }
 
     @Override
-    public int getJumpDelay()
+    protected int getJumpDelay()
     {
         return this.rand.nextInt(2) + 3;
     }

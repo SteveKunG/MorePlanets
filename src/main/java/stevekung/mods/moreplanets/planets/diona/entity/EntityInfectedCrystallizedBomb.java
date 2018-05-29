@@ -30,11 +30,11 @@ public class EntityInfectedCrystallizedBomb extends EntityThrowable
     }
 
     @Override
-    protected void onImpact(RayTraceResult moving)
+    protected void onImpact(RayTraceResult result)
     {
-        if (moving.entityHit != null)
+        if (result.entityHit != null)
         {
-            moving.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 5.0F);
+            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 5.0F);
         }
 
         if (!this.world.isRemote)

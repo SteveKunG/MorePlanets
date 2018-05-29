@@ -17,6 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
@@ -117,6 +118,13 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     }
 
     @Override
+    public void setRenderYawOffset(float offset)
+    {
+        this.rotationYaw = offset;
+        super.setRenderYawOffset(offset);
+    }
+
+    @Override
     public float getBlockPathWeight(BlockPos pos)
     {
         return this.world.getBlockState(pos.down()).getBlock() == MPBlocks.DIONA_ROCK ? 10.0F : super.getBlockPathWeight(pos);
@@ -133,8 +141,8 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     {
         if (super.getCanSpawnHere())
         {
-            EntityPlayer entityplayer = this.world.getClosestPlayerToEntity(this, 5.0D);
-            return entityplayer == null;
+            EntityPlayer player = this.world.getNearestPlayerNotCreative(this, 5.0D);
+            return player == null;
         }
         else
         {
@@ -156,14 +164,12 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
 
     static class AIHideInStone extends EntityAIWander
     {
-        private EntityAlbetiusWorm entity;
         private EnumFacing facing;
         private boolean doMerge;
 
         public AIHideInStone(EntityAlbetiusWorm entity)
         {
             super(entity, 1.0D, 10);
-            this.entity = entity;
             this.setMutexBits(1);
         }
 
@@ -180,11 +186,11 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
             }
             else
             {
-                Random random = this.entity.getRNG();
+                Random rand = this.entity.getRNG();
 
-                if (random.nextInt(10) == 0)
+                if (ForgeEventFactory.getMobGriefingEvent(this.entity.world, this.entity) && rand.nextInt(10) == 0)
                 {
-                    this.facing = EnumFacing.random(random);
+                    this.facing = EnumFacing.random(rand);
                     BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
                     IBlockState iblockstate = this.entity.world.getBlockState(blockpos);
 
@@ -215,12 +221,11 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
             else
             {
                 World world = this.entity.world;
-                BlockPos blockpos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
-                IBlockState iblockstate = world.getBlockState(blockpos);
+                BlockPos pos = new BlockPos(this.entity.posX, this.entity.posY + 0.5D, this.entity.posZ).offset(this.facing);
 
-                if (iblockstate == MPBlocks.DIONA_ROCK.getDefaultState())
+                if (world.getBlockState(pos).getBlock() == MPBlocks.DIONA_ROCK)
                 {
-                    world.setBlockState(blockpos, MPBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
+                    world.setBlockState(pos, MPBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
                     this.entity.spawnExplosionParticle();
                     this.entity.setDead();
                 }
@@ -230,20 +235,12 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
 
     static class AISummonReinforcement extends EntityAIBase
     {
-        private EntityAlbetiusWorm entity;
+        private final EntityAlbetiusWorm entity;
         private int lookForFriends;
 
         public AISummonReinforcement(EntityAlbetiusWorm entity)
         {
             this.entity = entity;
-        }
-
-        public void notifyHurt()
-        {
-            if (this.lookForFriends == 0)
-            {
-                this.lookForFriends = 20;
-            }
         }
 
         @Override
@@ -260,8 +257,8 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
             if (this.lookForFriends <= 0)
             {
                 World world = this.entity.world;
-                Random random = this.entity.getRNG();
-                BlockPos blockpos = new BlockPos(this.entity);
+                Random rand = this.entity.getRNG();
+                BlockPos pos = new BlockPos(this.entity);
 
                 for (int i = 0; i <= 5 && i >= -5; i = i <= 0 ? 1 - i : 0 - i)
                 {
@@ -269,21 +266,21 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
                     {
                         for (int k = 0; k <= 10 && k >= -10; k = k <= 0 ? 1 - k : 0 - k)
                         {
-                            BlockPos blockpos1 = blockpos.add(j, i, k);
-                            IBlockState iblockstate = world.getBlockState(blockpos1);
+                            BlockPos pos1 = pos.add(j, i, k);
+                            IBlockState iblockstate = world.getBlockState(pos1);
 
                             if (iblockstate.getBlock() == MPBlocks.ALBETIUS_WORM_EGG_ROCK)
                             {
-                                if (world.getGameRules().getBoolean("mobGriefing"))
+                                if (ForgeEventFactory.getMobGriefingEvent(world, this.entity))
                                 {
-                                    world.destroyBlock(blockpos1, true);
+                                    world.destroyBlock(pos1, true);
                                 }
                                 else
                                 {
-                                    world.setBlockState(blockpos1, MPBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
+                                    world.setBlockState(pos1, MPBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState(), 3);
                                 }
 
-                                if (random.nextBoolean())
+                                if (rand.nextBoolean())
                                 {
                                     return;
                                 }
@@ -291,6 +288,14 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
                         }
                     }
                 }
+            }
+        }
+
+        public void notifyHurt()
+        {
+            if (this.lookForFriends == 0)
+            {
+                this.lookForFriends = 20;
             }
         }
     }

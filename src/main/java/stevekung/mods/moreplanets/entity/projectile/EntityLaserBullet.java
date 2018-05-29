@@ -33,10 +33,10 @@ import stevekung.mods.moreplanets.utils.DamageSourceMP;
 
 public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdditionalSpawnData
 {
-    private static DataParameter<Integer> LASER_TYPE = EntityDataManager.createKey(EntityLaserBullet.class, DataSerializers.VARINT);
-    public Entity shootingEntity;
-    public int ticksInAir;
-    public double damage;
+    private static final DataParameter<Integer> LASER_TYPE = EntityDataManager.createKey(EntityLaserBullet.class, DataSerializers.VARINT);
+    private Entity shootingEntity;
+    private int ticksInAir;
+    private double damage;
 
     public EntityLaserBullet(World world)
     {
@@ -395,14 +395,14 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         return this.dataManager.get(EntityLaserBullet.LASER_TYPE);
     }
 
-    private void setLaserType(int type)
-    {
-        this.dataManager.set(EntityLaserBullet.LASER_TYPE, type);
-    }
-
     public void setLaserType(EnumLaserType type)
     {
         this.setLaserType(type.ordinal());
+    }
+
+    private void setLaserType(int type)
+    {
+        this.dataManager.set(EntityLaserBullet.LASER_TYPE, type);
     }
 
     public static enum EnumLaserType

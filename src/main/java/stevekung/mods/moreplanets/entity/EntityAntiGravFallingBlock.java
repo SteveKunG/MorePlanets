@@ -171,6 +171,12 @@ public class EntityAntiGravFallingBlock extends Entity
         return Block.getBlockFromName(this.dataManager.get(BLOCK_NAME)).getDefaultState();
     }
 
+    @SideOnly(Side.CLIENT)
+    public BlockPos getOrigin()
+    {
+        return this.dataManager.get(ORIGIN);
+    }
+
     private void setBlockState(IBlockState state)
     {
         this.dataManager.set(BLOCK_NAME, Block.REGISTRY.getNameForObject(state.getBlock()).toString());
@@ -179,11 +185,5 @@ public class EntityAntiGravFallingBlock extends Entity
     private void setOrigin(BlockPos pos)
     {
         this.dataManager.set(ORIGIN, pos);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public BlockPos getOrigin()
-    {
-        return this.dataManager.get(ORIGIN);
     }
 }

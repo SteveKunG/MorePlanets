@@ -28,8 +28,8 @@ import stevekung.mods.moreplanets.utils.entity.ai.EntityAIAttackRangedBowMP;
 
 public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreathable
 {
-    private EntityAIAttackRangedBowMP aiArrowAttack = new EntityAIAttackRangedBowMP(this, 1.0D, 20, 15.0F);
-    private EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
+    private final EntityAIAttackRangedBowMP aiArrowAttack = new EntityAIAttackRangedBowMP(this, 1.0D, 20, 15.0F);
+    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
     {
         @Override
         public void resetTask()
@@ -109,25 +109,14 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distance)
     {
-        EntityInfectedCrystallizedArrow entityarrow = new EntityInfectedCrystallizedArrow(this.world, this);
+        EntityInfectedCrystallizedArrow arrow = new EntityInfectedCrystallizedArrow(this.world, this);
         double d0 = target.posX - this.posX;
-        double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - entityarrow.posY;
+        double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - arrow.posY;
         double d2 = target.posZ - this.posZ;
         double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-        entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, 14 - this.world.getDifficulty().getDifficultyId() * 4);
+        arrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, 14 - this.world.getDifficulty().getDifficultyId() * 4);
         this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-        this.world.spawnEntity(entityarrow);
-    }
-
-    @Override
-    public void setItemStackToSlot(EntityEquipmentSlot slot, ItemStack itemStack)
-    {
-        super.setItemStackToSlot(slot, itemStack);
-
-        if (!this.world.isRemote && slot == EntityEquipmentSlot.MAINHAND)
-        {
-            this.setCombatTask();
-        }
+        this.world.spawnEntity(arrow);
     }
 
     @Override
@@ -135,18 +124,6 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
     public ResourceLocation getLootTable()
     {
         return MPLootTables.ZELIUS_SKELETON;
-    }
-
-    @Override
-    public float getEyeHeight()
-    {
-        return 1.74F;
-    }
-
-    @Override
-    public double getYOffset()
-    {
-        return this.isChild() ? 0.0D : -0.35D;
     }
 
     @Override

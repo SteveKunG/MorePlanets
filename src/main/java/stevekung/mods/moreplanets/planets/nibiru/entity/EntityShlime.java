@@ -6,6 +6,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.Sets;
+
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -54,7 +56,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
 {
     private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(EntityShlime.class, DataSerializers.BYTE);
 
-    private InventoryCrafting inventoryCrafting = new InventoryCrafting(new Container()
+    private final InventoryCrafting inventoryCrafting = new InventoryCrafting(new Container()
     {
         @Override
         public boolean canInteractWith(EntityPlayer player)
@@ -63,15 +65,13 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         }
     }, 2, 1);
 
-    private int jumpTicks = 0;
-    private int jumpDuration = 0;
-    private boolean wasJumping = false;
-    private boolean wasOnGround = false;
-    private int currentMoveTypeDuration = 0;
-    private EnumMoveType moveType = EnumMoveType.HOP;
+    private int jumpTicks;
+    private int jumpDuration;
+    private boolean wasOnGround;
+    private int currentMoveTypeDuration;
+    private final EntityAIShlimeEatGrass entityAIEatGrass = new EntityAIShlimeEatGrass(this);
     private int sheepTimer;
-    private EntityAIShlimeEatGrass entityAIEatGrass = new EntityAIShlimeEatGrass(this);
-    public float squishAmount;
+    private float squishAmount;
     public float squishFactor;
     public float prevSquishFactor;
 
@@ -81,20 +81,22 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         this.setSize(0.675F, 0.75F);
         this.jumpHelper = new ShlimeJumpHelper(this);
         this.moveHelper = new ShlimeMoveHelper(this);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new AIPanic(this, 1.33D));
-        this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
-        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, MPItems.INFECTED_WHEAT, false));
-        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, MPItems.TERRABERRY, false));
-        this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
-        this.tasks.addTask(5, this.entityAIEatGrass);
-        this.tasks.addTask(6, new EntityAIWander(this, 0.6D));
-        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
-        this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.tasks.addTask(8, new EntityAIFleeNibiruThunder(this, 1.5D));
         this.inventoryCrafting.setInventorySlotContents(0, new ItemStack(Items.DYE, 1, 0));
         this.inventoryCrafting.setInventorySlotContents(1, new ItemStack(Items.DYE, 1, 0));
         this.setMovementSpeed(0.0D);
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(1, new AIPanic(this, 2.2D));
+        this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
+        this.tasks.addTask(3, new EntityAITempt(this, 0.6D, false, Sets.newHashSet(MPItems.INFECTED_WHEAT, MPItems.TERRABERRY)));
+        this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 0.6D));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.tasks.addTask(8, new EntityAIFleeNibiruThunder(this, 2.2D));
     }
 
     @Override
@@ -124,17 +126,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     @Override
     public boolean getCanSpawnHere()
     {
-        int i = MathHelper.floor(this.posX);
-        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
-        int k = MathHelper.floor(this.posZ);
-        BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getBlockState(blockpos.down()).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK && this.world.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
-    }
-
-    @Override
-    protected float getJumpUpwardsMotion()
-    {
-        return this.moveHelper.isUpdating() && this.moveHelper.getY() > this.posY + 0.5D ? 0.5F : this.moveType.getJumpHeight();
+        return this.world.getBlockState(this.getPosition().down()).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK && this.world.getLight(this.getPosition()) > 8 && this.getBlockPathWeight(this.getPosition()) >= 0.0F;
     }
 
     @Override
@@ -185,51 +177,94 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     }
 
     @Override
-    public void updateAITasks()
+    protected float getJumpUpwardsMotion()
     {
-        if (this.moveHelper.getSpeed() > 0.8D)
+        if (!this.collidedHorizontally && (!this.moveHelper.isUpdating() || this.moveHelper.getY() <= this.posY + 0.5D))
         {
-            this.setMoveType(EnumMoveType.SPRINT);
+            Path path = this.navigator.getPath();
+
+            if (path != null && path.getCurrentPathIndex() < path.getCurrentPathLength())
+            {
+                Vec3d vec3d = path.getPosition(this);
+
+                if (vec3d.y > this.posY + 0.5D)
+                {
+                    return 0.7F;
+                }
+            }
+            return this.moveHelper.getSpeed() <= 0.6D ? 0.4F : 0.7F;
         }
         else
         {
-            this.setMoveType(EnumMoveType.HOP);
+            return 0.7F;
         }
+    }
 
+    @Override
+    protected void jump()
+    {
+        super.jump();
+        double d0 = this.moveHelper.getSpeed();
+
+        if (d0 > 0.0D)
+        {
+            double d1 = this.motionX * this.motionX + this.motionZ * this.motionZ;
+
+            if (d1 < 0.010000000000000002D)
+            {
+                this.moveRelative(0.0F, 0.0F, 1.0F, 0.2F);
+            }
+        }
+        if (!this.world.isRemote)
+        {
+            this.world.setEntityState(this, (byte)1);
+        }
+    }
+
+    @Override
+    public void setJumping(boolean jumping)
+    {
+        super.setJumping(jumping);
+
+        if (jumping)
+        {
+            this.playSound(SoundEvents.ENTITY_SMALL_SLIME_HURT, 0.3F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 0.6F) * 0.8F);
+        }
+    }
+
+    @Override
+    public void updateAITasks()
+    {
         if (this.currentMoveTypeDuration > 0)
         {
             --this.currentMoveTypeDuration;
         }
-
-        this.sheepTimer = this.entityAIEatGrass.getEatingGrassTimer();
-        super.updateAITasks();
-
         if (this.onGround)
         {
             if (!this.wasOnGround)
             {
-                this.setJumping(false, EnumMoveType.NONE);
+                this.setJumping(false);
                 this.checkLandingDelay();
             }
 
-            ShlimeJumpHelper jump = (ShlimeJumpHelper)this.jumpHelper;
+            ShlimeJumpHelper helper = (ShlimeJumpHelper)this.jumpHelper;
 
-            if (!jump.getIsJumping())
+            if (!helper.getIsJumping())
             {
                 if (this.moveHelper.isUpdating() && this.currentMoveTypeDuration == 0)
                 {
-                    Path pathentity = this.navigator.getPath();
-                    Vec3d vec3 = new Vec3d(this.moveHelper.getX(), this.moveHelper.getY(), this.moveHelper.getZ());
+                    Path path = this.navigator.getPath();
+                    Vec3d vec3d = new Vec3d(this.moveHelper.getX(), this.moveHelper.getY(), this.moveHelper.getZ());
 
-                    if (pathentity != null && pathentity.getCurrentPathIndex() < pathentity.getCurrentPathLength())
+                    if (path != null && path.getCurrentPathIndex() < path.getCurrentPathLength())
                     {
-                        vec3 = pathentity.getPosition(this);
+                        vec3d = path.getPosition(this);
                     }
-                    this.calculateRotationYaw(vec3.x, vec3.z);
-                    this.doMovementAction(this.moveType);
+                    this.calculateRotationYaw(vec3d.x, vec3d.z);
+                    this.startJumping();
                 }
             }
-            else if (!jump.canJump())
+            else if (!helper.canJump())
             {
                 this.enableJumpControl();
             }
@@ -242,22 +277,15 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     {
         super.onLivingUpdate();
 
-        if (this.world.isRemote)
-        {
-            this.sheepTimer = Math.max(0, this.sheepTimer - 1);
-        }
         if (this.jumpTicks != this.jumpDuration)
         {
-            if (this.jumpTicks == 0 && !this.world.isRemote)
-            {
-                this.world.setEntityState(this, (byte)1);
-            }
             ++this.jumpTicks;
         }
         else if (this.jumpDuration != 0)
         {
             this.jumpTicks = 0;
             this.jumpDuration = 0;
+            this.setJumping(false);
         }
     }
 
@@ -339,10 +367,10 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     @Override
     public EntityShlime createChild(EntityAgeable ageable)
     {
-        EntityShlime entitysheep = (EntityShlime)ageable;
-        EntityShlime entitysheep1 = new EntityShlime(this.world);
-        entitysheep1.setFleeceColor(this.getDyeColorMixFromParents(this, entitysheep));
-        return entitysheep1;
+        EntityShlime parent = (EntityShlime)ageable;
+        EntityShlime child = new EntityShlime(this.world);
+        child.setFleeceColor(this.getDyeColorMixFromParents(this, parent));
+        return child;
     }
 
     @Override
@@ -412,7 +440,8 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     {
         if (id == 1)
         {
-            this.jumpDuration = 5;
+            this.createRunningParticles();
+            this.jumpDuration = 10;
             this.jumpTicks = 0;
         }
         else if (id == 10)
@@ -455,6 +484,19 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         return (this.dataManager.get(DYE_COLOR).byteValue() & 16) != 0;
     }
 
+    private void setMovementSpeed(double newSpeed)
+    {
+        this.getNavigator().setSpeed(newSpeed);
+        this.moveHelper.setMoveTo(this.moveHelper.getX(), this.moveHelper.getY(), this.moveHelper.getZ(), newSpeed);
+    }
+
+    private void startJumping()
+    {
+        this.setJumping(true);
+        this.jumpDuration = 10;
+        this.jumpTicks = 0;
+    }
+
     private void setSheared(boolean sheared)
     {
         byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
@@ -467,75 +509,6 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         {
             this.dataManager.set(DYE_COLOR, (byte)(b0 & -17));
         }
-    }
-
-    private int getMoveTypeDuration()
-    {
-        return this.moveType.getDuration();
-    }
-
-    private void setMoveType(EnumMoveType type)
-    {
-        this.moveType = type;
-    }
-
-    private void setMovementSpeed(double newSpeed)
-    {
-        this.getNavigator().setSpeed(newSpeed);
-        this.moveHelper.setMoveTo(this.moveHelper.getX(), this.moveHelper.getY(), this.moveHelper.getZ(), newSpeed);
-    }
-
-    private void setJumping(boolean jump, EnumMoveType moveType)
-    {
-        super.setJumping(jump);
-
-        if (!jump)
-        {
-            this.moveType = EnumMoveType.STEP;
-        }
-        else
-        {
-            this.setMovementSpeed(1.5D * moveType.getSpeed());
-        }
-        this.wasJumping = jump;
-    }
-
-    private void doMovementAction(EnumMoveType movetype)
-    {
-        this.setJumping(true, movetype);
-        this.jumpDuration = movetype.getJumpDuration();
-        this.jumpTicks = 0;
-    }
-
-    private boolean isWasJumping()
-    {
-        return this.wasJumping;
-    }
-
-    private void calculateRotationYaw(double x, double z)
-    {
-        this.rotationYaw = (float)(MathHelper.atan2(z - this.posZ, x - this.posX) * 180.0D / Math.PI) - 90.0F;
-    }
-
-    private void enableJumpControl()
-    {
-        ((ShlimeJumpHelper)this.jumpHelper).setCanJump(true);
-    }
-
-    private void disableJumpControl()
-    {
-        ((ShlimeJumpHelper)this.jumpHelper).setCanJump(false);
-    }
-
-    private void updateMoveTypeDuration()
-    {
-        this.currentMoveTypeDuration = this.getMoveTypeDuration();
-    }
-
-    private void checkLandingDelay()
-    {
-        this.updateMoveTypeDuration();
-        this.disableJumpControl();
     }
 
     private EnumDyeColor getRandomSheepColor(Random random)
@@ -569,56 +542,58 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
         this.squishAmount *= 0.6F;
     }
 
-    static enum EnumMoveType
+    private void calculateRotationYaw(double x, double z)
     {
-        NONE(0.0F, 0.0F, 10, 1),
-        HOP(0.8F, 0.375F, 9, 6),
-        STEP(1.0F, 0.45F, 7, 8),
-        SPRINT(1.75F, 0.4F, 1, 4);
+        this.rotationYaw = (float)(MathHelper.atan2(z - this.posZ, x - this.posX) * (180D / Math.PI)) - 90.0F;
+    }
 
-        private float speed;
-        private float jumpHeight;
-        private int duration;
-        private int jumpDuration;
+    private void enableJumpControl()
+    {
+        ((ShlimeJumpHelper)this.jumpHelper).setCanJump(true);
+    }
 
-        private EnumMoveType(float typeSpeed, float jumpHeight, int typeDuration, int jumpDuration)
+    private void disableJumpControl()
+    {
+        ((ShlimeJumpHelper)this.jumpHelper).setCanJump(false);
+    }
+
+    private void updateMoveTypeDuration()
+    {
+        if (this.moveHelper.getSpeed() < 2.2D)
         {
-            this.speed = typeSpeed;
-            this.jumpHeight = jumpHeight;
-            this.duration = typeDuration;
-            this.jumpDuration = jumpDuration;
+            this.currentMoveTypeDuration = 10;
         }
-
-        public float getSpeed()
+        else
         {
-            return this.speed;
-        }
-
-        public float getJumpHeight()
-        {
-            return this.jumpHeight;
-        }
-
-        public int getDuration()
-        {
-            return this.duration;
-        }
-
-        public int getJumpDuration()
-        {
-            return this.jumpDuration;
+            this.currentMoveTypeDuration = 1;
         }
     }
 
-    public class ShlimeJumpHelper extends EntityJumpHelper
+    private void checkLandingDelay()
     {
-        private EntityShlime theEntity;
-        private boolean canJump = false;
+        this.updateMoveTypeDuration();
+        this.disableJumpControl();
+    }
 
-        public ShlimeJumpHelper(EntityShlime theEntity)
+    static class ShlimeJumpHelper extends EntityJumpHelper
+    {
+        private final EntityShlime entity;
+        private boolean canJump;
+
+        public ShlimeJumpHelper(EntityShlime entity)
         {
-            super(theEntity);
-            this.theEntity = theEntity;
+            super(entity);
+            this.entity = entity;
+        }
+
+        @Override
+        public void doJump()
+        {
+            if (this.isJumping)
+            {
+                this.entity.startJumping();
+                this.isJumping = false;
+            }
         }
 
         public boolean getIsJumping()
@@ -631,58 +606,69 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
             return this.canJump;
         }
 
-        public void setCanJump(boolean canJump)
+        public void setCanJump(boolean canJumpIn)
         {
-            this.canJump = canJump;
-        }
-
-        @Override
-        public void doJump()
-        {
-            if (this.isJumping)
-            {
-                this.theEntity.doMovementAction(EnumMoveType.STEP);
-                this.isJumping = false;
-            }
+            this.canJump = canJumpIn;
         }
     }
 
     static class ShlimeMoveHelper extends EntityMoveHelper
     {
-        private EntityShlime sheep;
+        private final EntityShlime entity;
+        private double nextJumpSpeed;
 
-        public ShlimeMoveHelper(EntityShlime sheep)
+        public ShlimeMoveHelper(EntityShlime entity)
         {
-            super(sheep);
-            this.sheep = sheep;
+            super(entity);
+            this.entity = entity;
         }
 
         @Override
         public void onUpdateMoveHelper()
         {
-            if (this.sheep.onGround && !this.sheep.isWasJumping())
+            if (this.entity.onGround && !this.entity.isJumping && !((ShlimeJumpHelper)this.entity.jumpHelper).getIsJumping())
             {
-                this.sheep.setMovementSpeed(0.0D);
+                this.entity.setMovementSpeed(0.0D);
+            }
+            else if (this.isUpdating())
+            {
+                this.entity.setMovementSpeed(this.nextJumpSpeed);
             }
             super.onUpdateMoveHelper();
+        }
+
+        @Override
+        public void setMoveTo(double x, double y, double z, double speed)
+        {
+            if (this.entity.isInWater())
+            {
+                speed = 1.5D;
+            }
+
+            super.setMoveTo(x, y, z, speed);
+
+            if (speed > 0.0D)
+            {
+                this.nextJumpSpeed = speed;
+            }
         }
     }
 
     static class AIPanic extends EntityAIPanic
     {
-        private EntityShlime theEntity;
+        private final EntityShlime entity;
 
-        public AIPanic(EntityShlime theEntity, double speed)
+        public AIPanic(EntityShlime entity, double speed)
         {
-            super(theEntity, speed);
-            this.theEntity = theEntity;
+            super(entity, speed);
+            this.entity = entity;
         }
 
         @Override
         public void updateTask()
         {
             super.updateTask();
-            this.theEntity.setMovementSpeed(this.speed);
+            this.entity.setMovementSpeed(this.speed);
         }
     }
 }

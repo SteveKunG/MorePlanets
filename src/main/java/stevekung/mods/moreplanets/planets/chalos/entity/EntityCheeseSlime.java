@@ -34,7 +34,7 @@ public class EntityCheeseSlime extends EntitySlimeBaseMP
     }
 
     @Override
-    public int getJumpDelay()
+    protected int getJumpDelay()
     {
         return this.rand.nextInt(50) + 25;
     }

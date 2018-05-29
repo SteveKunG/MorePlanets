@@ -194,12 +194,9 @@ public class EntityInfectedCrystallizedWorm extends EntityMob implements IEntity
 
     static class AIRandomMovement extends EntityAIWander
     {
-        private EntityInfectedCrystallizedWorm entity;
-
         public AIRandomMovement(EntityInfectedCrystallizedWorm entity)
         {
             super(entity, 1.0D, 10);
-            this.entity = entity;
             this.setMutexBits(1);
         }
 

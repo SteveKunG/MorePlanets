@@ -101,6 +101,13 @@ public class EntityGiantWorm extends EntityMob implements IEntityBreathable, ISp
     }
 
     @Override
+    public void setRenderYawOffset(float offset)
+    {
+        this.rotationYaw = offset;
+        super.setRenderYawOffset(offset);
+    }
+
+    @Override
     protected boolean isValidLightLevel()
     {
         return true;

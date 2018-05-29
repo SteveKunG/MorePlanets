@@ -33,7 +33,7 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
     {
         this.tasks.addTask(4, new AIVeinballAttack(this));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
@@ -148,9 +148,9 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
         return EnumMobType.NIBIRU;
     }
 
-    class AIVeinballAttack extends EntityAIBase
+    static class AIVeinballAttack extends EntityAIBase
     {
-        private EntityVeinFloaterMinion entity;
+        private final EntityVeinFloaterMinion entity;
         private int attackStep;
         private int attackTime;
 
@@ -163,8 +163,8 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
         @Override
         public boolean shouldExecute()
         {
-            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
-            return entitylivingbase != null && entitylivingbase.isEntityAlive();
+            EntityLivingBase entity = this.entity.getAttackTarget();
+            return entity != null && entity.isEntityAlive();
         }
 
         @Override
@@ -180,23 +180,23 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
         public void updateTask()
         {
             --this.attackTime;
-            EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
-            double d0 = this.entity.getDistanceSq(entitylivingbase);
+            EntityLivingBase entity = this.entity.getAttackTarget();
+            double d0 = this.entity.getDistanceSq(entity);
 
             if (d0 < 1.5D)
             {
                 if (this.attackTime <= 0)
                 {
                     this.attackTime = 20;
-                    this.entity.attackEntityAsMob(entitylivingbase);
+                    this.entity.attackEntityAsMob(entity);
                 }
-                this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+                this.entity.getMoveHelper().setMoveTo(entity.posX, entity.posY, entity.posZ, 1.0D);
             }
             else if (d0 < 30.0D)
             {
-                double d1 = entitylivingbase.posX - this.entity.posX;
-                double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.entity.posY + this.entity.height / 2.0F);
-                double d3 = entitylivingbase.posZ - this.entity.posZ;
+                double d1 = entity.posX - this.entity.posX;
+                double d2 = entity.getEntityBoundingBox().minY + entity.height / 2.0F - (this.entity.posY + this.entity.height / 2.0F);
+                double d3 = entity.posZ - this.entity.posZ;
 
                 if (this.attackTime <= 0)
                 {
@@ -222,18 +222,18 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
 
                         for (int i = 0; i < 1; ++i)
                         {
-                            EntityVeinBall entitysmallfireball = new EntityVeinBall(this.entity.world, this.entity, d1 + this.entity.getRNG().nextGaussian() * f, d2, d3 + this.entity.getRNG().nextGaussian() * f);
-                            entitysmallfireball.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
-                            this.entity.world.spawnEntity(entitysmallfireball);
+                            EntityVeinBall ball = new EntityVeinBall(this.entity.world, this.entity, d1 + this.entity.getRNG().nextGaussian() * f, d2, d3 + this.entity.getRNG().nextGaussian() * f);
+                            ball.posY = this.entity.posY + this.entity.height / 2.0F + 0.5D;
+                            this.entity.world.spawnEntity(ball);
                         }
                     }
                 }
-                this.entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
+                this.entity.getLookHelper().setLookPositionWithEntity(entity, 10.0F, 10.0F);
             }
             else
             {
                 this.entity.getNavigator().clearPath();
-                this.entity.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
+                this.entity.getMoveHelper().setMoveTo(entity.posX, entity.posY, entity.posZ, 1.0D);
             }
             super.updateTask();
         }

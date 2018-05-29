@@ -57,13 +57,6 @@ public class EntityInfectedElderGuardian extends EntityInfectedGuardian
         return 60;
     }
 
-    @SideOnly(Side.CLIENT)
-    public void setGhost()
-    {
-        this.clientSideSpikesAnimation = 1.0F;
-        this.clientSideSpikesAnimationO = this.clientSideSpikesAnimation;
-    }
-
     @Override
     protected SoundEvent getAmbientSound()
     {
@@ -95,25 +88,31 @@ public class EntityInfectedElderGuardian extends EntityInfectedGuardian
         {
             Potion potion = MobEffects.MINING_FATIGUE;
 
-            for (EntityPlayerMP entityplayermp : this.world.getPlayers(EntityPlayerMP.class, entity -> this.getDistanceSq(entity) < 2500.0D && entity.interactionManager.survivalOrAdventure()))
+            for (EntityPlayerMP player : this.world.getPlayers(EntityPlayerMP.class, entity -> this.getDistanceSq(entity) < 2500.0D && entity.interactionManager.survivalOrAdventure()))
             {
-                if (!entityplayermp.isPotionActive(potion) || entityplayermp.getActivePotionEffect(potion).getAmplifier() < 2 || entityplayermp.getActivePotionEffect(potion).getDuration() < 1200)
+                if (!player.isPotionActive(potion) || player.getActivePotionEffect(potion).getAmplifier() < 2 || player.getActivePotionEffect(potion).getDuration() < 1200)
                 {
-                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ);
-                    entityplayermp.world.playSound(entityplayermp, entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                    entityplayermp.addPotionEffect(new PotionEffect(potion, 6000, 2));
+                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE, player.posX, player.posY, player.posZ);
+                    player.world.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                    player.addPotionEffect(new PotionEffect(potion, 6000, 2));
 
-                    if (!entityplayermp.capabilities.isCreativeMode && !entityplayermp.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION))
+                    if (!player.capabilities.isCreativeMode && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION))
                     {
-                        entityplayermp.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 2));
+                        player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80, 2));
                     }
                 }
             }
         }
-
         if (!this.hasHome())
         {
             this.setHomePosAndDistance(new BlockPos(this), 16);
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setGhost()
+    {
+        this.clientSideSpikesAnimation = 1.0F;
+        this.clientSideSpikesAnimationO = this.clientSideSpikesAnimation;
     }
 }
