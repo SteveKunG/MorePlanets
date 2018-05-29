@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "moreplanets:blocks/infected_spruce_sapling"
+    }
+}

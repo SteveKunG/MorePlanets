@@ -45,7 +45,7 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
         {
             return block == MPBlocks.GREEN_VEIN_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
         }
-        else if (this.type == BlockType.INFECTED_OAK_SAPLING || this.type == BlockType.INFECTED_JUNGLE_SAPLING)
+        else if (this.type == BlockType.INFECTED_OAK_SAPLING || this.type == BlockType.INFECTED_JUNGLE_SAPLING || this.type == BlockType.INFECTED_SPRUCE_SAPLING)
         {
             return block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_FARMLAND;
         }
@@ -111,13 +111,34 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
             case INFECTED_OAK_SAPLING:
                 worldGen = rand.nextInt(10) == 0 ? new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState()) : new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
                 break;
+            case INFECTED_SPRUCE_SAPLING:
+                label68:
+                    for (i = 0; i >= -1; --i)
+                    {
+                        for (j = 0; j >= -1; --j)
+                        {
+                            if (this.isTwoByTwoOfType(world, pos, i, j, BlockType.INFECTED_SPRUCE_SAPLING))
+                            {
+                                worldGen = new WorldGenInfectedMegaPineTree(true, rand.nextBoolean());
+                                flag = true;
+                                break label68;
+                            }
+                        }
+                    }
+            if (!flag)
+            {
+                i = 0;
+                j = 0;
+                worldGen = new WorldGenInfectedDeadSpruce(true);
+            }
+            break;
             case INFECTED_JUNGLE_SAPLING:
                 label269:
                     for (i = 0; i >= -1; --i)
                     {
                         for (j = 0; j >= -1; --j)
                         {
-                            if (this.isTwoByTwoOfType(world, pos, i, j))
+                            if (this.isTwoByTwoOfType(world, pos, i, j, BlockType.INFECTED_JUNGLE_SAPLING))
                             {
                                 worldGen = new WorldGenInfectedMegaJungleTree();
                                 flag = true;
@@ -198,21 +219,22 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
         return new BlockStateContainer(this, STAGE);
     }
 
-    private boolean isTwoByTwoOfType(World world, BlockPos pos, int x, int z)
+    private boolean isTwoByTwoOfType(World world, BlockPos pos, int x, int z, BlockType type)
     {
-        return this.isTypeAt(world, pos.add(x, 0, z)) && this.isTypeAt(world, pos.add(x + 1, 0, z)) && this.isTypeAt(world, pos.add(x, 0, z + 1)) && this.isTypeAt(world, pos.add(x + 1, 0, z + 1));
+        return this.isTypeAt(world, pos.add(x, 0, z), type) && this.isTypeAt(world, pos.add(x + 1, 0, z), type) && this.isTypeAt(world, pos.add(x, 0, z + 1), type) && this.isTypeAt(world, pos.add(x + 1, 0, z + 1), type);
     }
 
-    private boolean isTypeAt(World world, BlockPos pos)
+    private boolean isTypeAt(World world, BlockPos pos, BlockType type)
     {
         IBlockState iblockstate = world.getBlockState(pos);
-        return iblockstate.getBlock() == this && this.type == BlockType.INFECTED_JUNGLE_SAPLING;
+        return iblockstate.getBlock() == this && this.type == type;
     }
 
     public static enum BlockType
     {
         CHEESE_SPORE_FLOWER,
         INFECTED_OAK_SAPLING,
+        INFECTED_SPRUCE_SAPLING,
         INFECTED_JUNGLE_SAPLING,
         ALIEN_BERRY_OAK_SAPLING;
 

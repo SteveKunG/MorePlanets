@@ -121,6 +121,7 @@ public class MPOreDictionary
         BlockUtils.registerOreDictionary("treeLeaves", MPBlocks.INFECTED_JUNGLE_LEAVES);
         BlockUtils.registerOreDictionary("treeLeaves", MPBlocks.ALIEN_BERRY_OAK_LEAVES);
         BlockUtils.registerOreDictionary("treeSapling", MPBlocks.INFECTED_OAK_SAPLING);
+        BlockUtils.registerOreDictionary("treeSapling", MPBlocks.INFECTED_SPRUCE_SAPLING);
         BlockUtils.registerOreDictionary("treeSapling", MPBlocks.INFECTED_JUNGLE_SAPLING);
         BlockUtils.registerOreDictionary("treeSapling", MPBlocks.ALIEN_BERRY_OAK_SAPLING);
         BlockUtils.registerOreDictionary("stairWood", MPBlocks.INFECTED_OAK_STAIRS);

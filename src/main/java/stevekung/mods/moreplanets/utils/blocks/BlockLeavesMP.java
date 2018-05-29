@@ -308,6 +308,10 @@ public class BlockLeavesMP extends BlockBaseMP implements IShearable
         {
             return Item.getItemFromBlock(MPBlocks.INFECTED_JUNGLE_SAPLING);
         }
+        else if (this.type == BlockType.INFECTED_SPRUCE_LEAVES)
+        {
+            return Item.getItemFromBlock(MPBlocks.INFECTED_SPRUCE_SAPLING);
+        }
         else if (this.type == BlockType.ALIEN_BERRY_OAK_LEAVES)
         {
             return Item.getItemFromBlock(MPBlocks.ALIEN_BERRY_OAK_SAPLING);

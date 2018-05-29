@@ -382,6 +382,7 @@ public class MPBlocks
     public static Block ALIEN_BERRY_OAK_LEAVES;
 
     public static Block INFECTED_OAK_SAPLING;
+    public static Block INFECTED_SPRUCE_SAPLING;
     public static Block INFECTED_JUNGLE_SAPLING;
     public static Block ALIEN_BERRY_OAK_SAPLING;
 
@@ -831,6 +832,7 @@ public class MPBlocks
         MPBlocks.ALIEN_BERRY_OAK_LEAVES = new BlockLeavesMP("alien_berry_oak_leaves", BlockLeavesMP.BlockType.ALIEN_BERRY_OAK_LEAVES);
 
         MPBlocks.INFECTED_OAK_SAPLING = new BlockSaplingMP("infected_oak_sapling", BlockSaplingMP.BlockType.INFECTED_OAK_SAPLING);
+        MPBlocks.INFECTED_SPRUCE_SAPLING = new BlockSaplingMP("infected_spruce_sapling", BlockSaplingMP.BlockType.INFECTED_SPRUCE_SAPLING);
         MPBlocks.INFECTED_JUNGLE_SAPLING = new BlockSaplingMP("infected_jungle_sapling", BlockSaplingMP.BlockType.INFECTED_JUNGLE_SAPLING);
         MPBlocks.ALIEN_BERRY_OAK_SAPLING = new BlockSaplingMP("alien_berry_oak_sapling", BlockSaplingMP.BlockType.ALIEN_BERRY_OAK_SAPLING);
 
@@ -1216,6 +1218,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_LEAVES, ItemBlockSingleLeaves::new);
 
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_OAK_SAPLING);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_SPRUCE_SAPLING);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_JUNGLE_SAPLING);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_BERRY_OAK_SAPLING);
 
@@ -1833,6 +1836,7 @@ public class MPBlocks
         BlockUtils.setFireBurn(MPBlocks.INFECTED_FERN, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.GREEN_VEIN_GRASS, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_OAK_SAPLING, 60, 100);
+        BlockUtils.setFireBurn(MPBlocks.INFECTED_SPRUCE_SAPLING, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.INFECTED_JUNGLE_SAPLING, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.ALIEN_BERRY_OAK_SAPLING, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.PURE_HERB, 60, 100);

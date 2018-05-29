@@ -218,6 +218,7 @@ tile.infected_spruce_leaves.name=Infected Spruce Leaves
 tile.infected_jungle_leaves.name=Infected Jungle Leaves
 tile.alien_berry_oak_leaves.name=Alien Berry Oak Leaves
 tile.infected_oak_sapling.name=Infected Oak Sapling
+tile.infected_spruce_sapling.name=Infected Spruce Sapling
 tile.infected_jungle_sapling.name=Infected Jungle Sapling
 tile.alien_berry_oak_sapling.name=Alien Berry Oak Sapling
 tile.infected_vines.name=Infected Vines

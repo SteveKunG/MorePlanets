@@ -43,6 +43,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.MULTALIC_CRYSTAL, BlockStateProperty.FACING_ALL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_REDSTONE_ORE, BlockDropableLitOre.LIT);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_SAPLING, BlockSaplingMP.STAGE);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SPRUCE_SAPLING, BlockSaplingMP.STAGE);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_JUNGLE_SAPLING, BlockSaplingMP.STAGE);
         ClientRegistryUtils.registerStateMapper(MPBlocks.CHEESE_SPORE_FLOWER, BlockSaplingMP.STAGE);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_SAPLING, BlockSaplingMP.STAGE);
