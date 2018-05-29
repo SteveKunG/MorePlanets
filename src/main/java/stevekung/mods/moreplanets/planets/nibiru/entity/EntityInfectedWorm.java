@@ -168,7 +168,7 @@ public class EntityInfectedWorm extends EntityMob implements IEntityBreathable, 
     {
         if (super.getCanSpawnHere())
         {
-            EntityPlayer entityplayer = this.world.getClosestPlayerToEntity(this, 5.0D);
+            EntityPlayer entityplayer = this.world.getNearestPlayerNotCreative(this, 5.0D);
             return entityplayer == null;
         }
         else

@@ -136,7 +136,7 @@ public class EntityFishBasic extends EntityWaterMob
 
     protected Entity findEntityToAttack()
     {
-        EntityPlayer player = this.world.getClosestPlayerToEntity(this, 16.0D);
+        EntityPlayer player = this.world.getNearestPlayerNotCreative(this, 16.0D);
         return player != null && this.canEntityBeSeen(player) ? player : null;
     }
 
