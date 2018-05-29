@@ -2,9 +2,7 @@ package stevekung.mods.moreplanets.init;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosMoutains;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosPlains;

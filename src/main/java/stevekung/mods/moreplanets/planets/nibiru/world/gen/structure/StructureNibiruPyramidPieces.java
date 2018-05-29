@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.structure;
 
 import java.util.Random;
 
+import net.minecraft.block.BlockStainedHardenedClay;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -175,12 +176,11 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
                 }
             }
 
+            IBlockState orangeClay = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.ORANGE);
             IBlockState iblockstate1 = MPBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
             IBlockState iblockstate2 = MPBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
             IBlockState iblockstate3 = MPBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST);
             IBlockState iblockstate = MPBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST);
-            int l = ~EnumDyeColor.ORANGE.getDyeDamage() & 15;
-            int i1 = ~EnumDyeColor.RED.getDyeDamage() & 15;
             this.fillWithBlocks(world, box, 0, 0, 0, 4, 9, 4, MPBlocks.INFECTED_SANDSTONE.getDefaultState(), Blocks.AIR.getDefaultState(), false);
             this.fillWithBlocks(world, box, 1, 10, 1, 3, 10, 3, MPBlocks.INFECTED_SANDSTONE.getDefaultState(), MPBlocks.INFECTED_SANDSTONE.getDefaultState(), false);
             this.setBlockState(world, iblockstate1, 2, 10, 0, box);
@@ -251,40 +251,40 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
                 this.setBlockState(world, MPBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState(), this.scatteredFeatureSizeX - 5, 2, j1, box);
             }
 
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 10, 0, 7, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 10, 0, 8, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 9, 0, 9, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 11, 0, 9, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 8, 0, 10, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 12, 0, 10, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 7, 0, 10, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 13, 0, 10, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 9, 0, 11, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 11, 0, 11, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 10, 0, 12, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 10, 0, 13, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(i1), 10, 0, 10, box);
+            this.setBlockState(world, orangeClay, 10, 0, 7, box);
+            this.setBlockState(world, orangeClay, 10, 0, 8, box);
+            this.setBlockState(world, orangeClay, 9, 0, 9, box);
+            this.setBlockState(world, orangeClay, 11, 0, 9, box);
+            this.setBlockState(world, orangeClay, 8, 0, 10, box);
+            this.setBlockState(world, orangeClay, 12, 0, 10, box);
+            this.setBlockState(world, orangeClay, 7, 0, 10, box);
+            this.setBlockState(world, orangeClay, 13, 0, 10, box);
+            this.setBlockState(world, orangeClay, 9, 0, 11, box);
+            this.setBlockState(world, orangeClay, 11, 0, 11, box);
+            this.setBlockState(world, orangeClay, 10, 0, 12, box);
+            this.setBlockState(world, orangeClay, 10, 0, 13, box);
+            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.RED), 10, 0, 10, box);
 
             for (int j2 = 0; j2 <= this.scatteredFeatureSizeX - 1; j2 += this.scatteredFeatureSizeX - 1)
             {
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), j2, 2, 1, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 2, 2, box);
+                this.setBlockState(world, orangeClay, j2, 2, 2, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), j2, 2, 3, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), j2, 3, 1, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 3, 2, box);
+                this.setBlockState(world, orangeClay, j2, 3, 2, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), j2, 3, 3, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 4, 1, box);
+                this.setBlockState(world, orangeClay, j2, 4, 1, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState(), j2, 4, 2, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 4, 3, box);
+                this.setBlockState(world, orangeClay, j2, 4, 3, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), j2, 5, 1, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 5, 2, box);
+                this.setBlockState(world, orangeClay, j2, 5, 2, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), j2, 5, 3, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 6, 1, box);
+                this.setBlockState(world, orangeClay, j2, 6, 1, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState(), j2, 6, 2, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 6, 3, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 7, 1, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 7, 2, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), j2, 7, 3, box);
+                this.setBlockState(world, orangeClay, j2, 6, 3, box);
+                this.setBlockState(world, orangeClay, j2, 7, 1, box);
+                this.setBlockState(world, orangeClay, j2, 7, 2, box);
+                this.setBlockState(world, orangeClay, j2, 7, 3, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), j2, 8, 1, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), j2, 8, 2, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), j2, 8, 3, box);
@@ -293,23 +293,23 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
             for (int k2 = 2; k2 <= this.scatteredFeatureSizeX - 3; k2 += this.scatteredFeatureSizeX - 3 - 2)
             {
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), k2 - 1, 2, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2, 2, 0, box);
+                this.setBlockState(world, orangeClay, k2, 2, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), k2 + 1, 2, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), k2 - 1, 3, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2, 3, 0, box);
+                this.setBlockState(world, orangeClay, k2, 3, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), k2 + 1, 3, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2 - 1, 4, 0, box);
+                this.setBlockState(world, orangeClay, k2 - 1, 4, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState(), k2, 4, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2 + 1, 4, 0, box);
+                this.setBlockState(world, orangeClay, k2 + 1, 4, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), k2 - 1, 5, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2, 5, 0, box);
+                this.setBlockState(world, orangeClay, k2, 5, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), k2 + 1, 5, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2 - 1, 6, 0, box);
+                this.setBlockState(world, orangeClay, k2 - 1, 6, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState(), k2, 6, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2 + 1, 6, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2 - 1, 7, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2, 7, 0, box);
-                this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), k2 + 1, 7, 0, box);
+                this.setBlockState(world, orangeClay, k2 + 1, 6, 0, box);
+                this.setBlockState(world, orangeClay, k2 - 1, 7, 0, box);
+                this.setBlockState(world, orangeClay, k2, 7, 0, box);
+                this.setBlockState(world, orangeClay, k2 + 1, 7, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), k2 - 1, 8, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), k2, 8, 0, box);
                 this.setBlockState(world, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), k2 + 1, 8, 0, box);
@@ -318,9 +318,9 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
             this.fillWithBlocks(world, box, 8, 4, 0, 12, 6, 0, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), false);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 8, 6, 0, box);
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 12, 6, 0, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 9, 5, 0, box);
+            this.setBlockState(world, orangeClay, 9, 5, 0, box);
             this.setBlockState(world, MPBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState(), 10, 5, 0, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(l), 11, 5, 0, box);
+            this.setBlockState(world, orangeClay, 11, 5, 0, box);
             this.fillWithBlocks(world, box, 8, -14, 8, 12, -11, 12, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), false);
             this.fillWithBlocks(world, box, 8, -10, 8, 12, -10, 12, MPBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState(), MPBlocks.INFECTED_CHISELED_SANDSTONE.getDefaultState(), false);
             this.fillWithBlocks(world, box, 8, -9, 8, 12, -9, 12, MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), MPBlocks.INFECTED_CUT_SANDSTONE.getDefaultState(), false);

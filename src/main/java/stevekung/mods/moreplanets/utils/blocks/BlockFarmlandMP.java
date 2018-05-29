@@ -27,6 +27,8 @@ import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public abstract class BlockFarmlandMP extends BlockBaseMP
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
+
     public BlockFarmlandMP()
     {
         super(Material.GROUND);
@@ -45,7 +47,7 @@ public abstract class BlockFarmlandMP extends BlockBaseMP
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
+        return BlockFarmlandMP.AABB;
     }
 
     @Override

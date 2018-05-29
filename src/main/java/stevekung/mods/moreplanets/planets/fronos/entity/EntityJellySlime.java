@@ -200,7 +200,7 @@ public class EntityJellySlime extends EntitySlimeBaseMP
     {
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getSlimeSize() * this.getSlimeSize());
     }
-    
+
     public int getJellySlimeType()
     {
         return this.dataManager.get(TYPE);
