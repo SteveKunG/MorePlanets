@@ -344,10 +344,9 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
             }
             else
             {
-                if (!player.capabilities.isCreativeMode && player.inventory.getCurrentItem().getCount() == 0)
+                if (!player.capabilities.isCreativeMode)
                 {
                     player.inventory.getCurrentItem().shrink(1);
-                    player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
                 }
                 return true;
             }
