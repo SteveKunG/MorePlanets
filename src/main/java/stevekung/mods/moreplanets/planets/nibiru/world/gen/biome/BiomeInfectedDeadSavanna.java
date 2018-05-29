@@ -20,7 +20,7 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
     public BiomeInfectedDeadSavanna(BiomeProperties prop)
     {
         super(prop);
-        this.decorator.infectedTallGrassPerChunk = 20;
+        this.decorator.infectedTallGrassPerChunk = 86;
         this.decorator.infectedTreesPerChunk = 1;
         this.decorator.philipyPerChunk = 4;
         this.decorator.reedsPerChunk = 10;

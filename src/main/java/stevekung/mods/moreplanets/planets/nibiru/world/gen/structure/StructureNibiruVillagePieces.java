@@ -1524,7 +1524,7 @@ public class StructureNibiruVillagePieces
             }
             else if (this.structureType == 2)
             {
-                if (block == MPBlocks.NIBIRU_COBBLESTONE || block == MPBlocks.NIBIRU_VEIN_COBBLESTONE || block == MPBlocks.INFECTED_PRISMARINE || block == MPBlocks.INFECTED_VINES_DIRT)
+                if (block == MPBlocks.NIBIRU_COBBLESTONE || block == MPBlocks.NIBIRU_VEIN_COBBLESTONE || block == MPBlocks.INFECTED_PRISMARINE || block == MPBlocks.INFECTED_VINES_DIRT || block == MPBlocks.INFECTED_DARK_PRISMARINE)
                 {
                     return MPBlocks.TERRASTONE.getDefaultState();
                 }

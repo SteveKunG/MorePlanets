@@ -36,11 +36,11 @@ public class BiomeInfectedTaiga extends BiomeNibiru
 
         if (type != Type.MEGA && type != Type.MEGA_SPRUCE)
         {
-            this.decorator.infectedTallGrassPerChunk = 1;
+            this.decorator.infectedTallGrassPerChunk = 20;
         }
         else
         {
-            this.decorator.infectedTallGrassPerChunk = 7;
+            this.decorator.infectedTallGrassPerChunk = 32;
             this.decorator.deadBushPerChunk = 1;
         }
     }

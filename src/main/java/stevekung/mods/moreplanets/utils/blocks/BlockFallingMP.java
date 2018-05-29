@@ -5,6 +5,11 @@ import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
@@ -48,6 +53,18 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, IIte
     public int getDustColor(IBlockState state)
     {
         return state.getBlock() == MPBlocks.INFECTED_SAND ? ColorUtils.rgbToDecimal(141, 54, 32) : super.getDustColor(state);
+    }
+
+    @Override
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing, IPlantable plantable)
+    {
+        IBlockState plantState = plantable.getPlant(world, pos.offset(facing));
+
+        if (this == MPBlocks.INFECTED_SAND && plantState.getBlock() == Blocks.DEADBUSH)
+        {
+            return true;
+        }
+        return false;
     }
 
     @Override

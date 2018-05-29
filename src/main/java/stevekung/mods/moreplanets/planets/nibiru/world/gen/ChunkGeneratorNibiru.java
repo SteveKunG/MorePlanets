@@ -28,8 +28,8 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
 {
-    private MapGenCavesBase caveGenerator = new MapGenCavesBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
-    private MapGenRavineBase ravineGenerator = new MapGenRavineBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.INFECTED_SANDSTONE), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
+    private MapGenCavesBase caveGenerator = new MapGenCavesBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.INFECTED_SANDSTONE, Blocks.STAINED_HARDENED_CLAY), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
+    private MapGenRavineBase ravineGenerator = new MapGenRavineBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.INFECTED_SANDSTONE, Blocks.STAINED_HARDENED_CLAY), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
     private MapGenNibiruStronghold strongholdGenerator = new MapGenNibiruStronghold();
     private MapGenNibiruVillage villageGenerator = new MapGenNibiruVillage();
     private MapGenNibiruMineshaft mineshaftGenerator = new MapGenNibiruMineshaft();

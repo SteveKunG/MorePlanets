@@ -40,6 +40,7 @@ public class BiomeInfectedBadlands extends BiomeNibiru
         this.decorator.deadBushPerChunk = 20;
         this.decorator.reedsPerChunk = 3;
         this.decorator.infectedCactusPerChunk = 5;
+        this.decorator.infectedTallGrassPerChunk = 10;
         this.goldGen = new WorldGenMinableBase(MPBlocks.INFECTED_GOLD_ORE.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.GOLD);
 
         if (hasForest)

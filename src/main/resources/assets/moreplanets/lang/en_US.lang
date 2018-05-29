@@ -597,6 +597,11 @@ entity.moreplanets.space_fish_hook.name=Space Fish Hook
 entity.moreplanets.alien_beam.name=Alien Beam
 entity.moreplanets.vein_eye.name=Vein Eye
 entity.moreplanets.laser_bullet.name=Laser Bullet
+entity.moreplanets.vein_ball.name=Vein Ball
+entity.moreplanets.black_hole_storage.name=Black Hole Storage
+entity.moreplanets.anti_gravity_arrow.name=Anti Gravity Arrow
+entity.moreplanets.falling_koentus_meteor.name=Falling Koentus Meteor
+entity.moreplanets.anti_gravity_falling_block.name=Anti Gravity Falling Block
 
 # POTIONS
 potion.infected_crystallized=Crystal Infection

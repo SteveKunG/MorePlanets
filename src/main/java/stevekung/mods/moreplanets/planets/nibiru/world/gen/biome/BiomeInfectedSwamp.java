@@ -20,7 +20,7 @@ public class BiomeInfectedSwamp extends BiomeNibiru
     {
         super(prop);
         this.decorator.infectedTreesPerChunk = 2;
-        this.decorator.infectedTallGrassPerChunk = 5;
+        this.decorator.infectedTallGrassPerChunk = 30;
         this.decorator.waterlilyPerChunk = 4;
         this.decorator.whiteTailPerChunk = 4;
         this.decorator.clayPerChunk = 1;

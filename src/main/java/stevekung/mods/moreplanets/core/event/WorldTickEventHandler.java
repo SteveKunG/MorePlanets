@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -18,12 +19,14 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import stevekung.mods.moreplanets.core.data.WorldDataStartedDimension;
-import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityAlienBeam;
 import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedBadlands;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedDesert;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedMountains;
 
 public class WorldTickEventHandler
 {
@@ -96,6 +99,7 @@ public class WorldTickEventHandler
                     {
                         boolean raining = worldServer.isRaining();
                         boolean thunder = worldServer.isThundering();
+                        Biome biome = worldServer.getBiome(pos);
 
                         if (worldServer.provider.canDoLightning(chunk) && raining && thunder && worldServer.rand.nextInt(1000) == 0)
                         {
@@ -121,7 +125,7 @@ public class WorldTickEventHandler
                                 worldServer.getBlockState(pos1).getBlock().fillWithRain(worldServer, pos1);
                             }
                         }
-                        if (worldServer.getBiome(pos) == MPBiomes.INFECTED_DESERT || worldServer.getBiome(pos) == MPBiomes.INFECTED_MOUNTAINS)
+                        if (biome instanceof BiomeInfectedDesert || biome instanceof BiomeInfectedMountains || biome instanceof BiomeInfectedBadlands)
                         {
                             if (worldServer.rand.nextInt(250000) == 0)
                             {

@@ -121,7 +121,7 @@ public class CommonRegistryUtils
 
     public void registerNonMobEntity(Class<? extends Entity> entity, String name, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
     {
-        EntityRegistry.registerModEntity(new ResourceLocation(this.resourcePath + ":" + name), entity, name, ID++, this.resourcePath, trackingRange, updateFrequency, sendsVelocityUpdates);
+        EntityRegistry.registerModEntity(new ResourceLocation(this.resourcePath + ":" + name), entity, this.resourcePath + "." + name, ID++, this.resourcePath, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 
     public void registerEntityPlacement(Class<? extends Entity> entity, SpawnPlacementType type)

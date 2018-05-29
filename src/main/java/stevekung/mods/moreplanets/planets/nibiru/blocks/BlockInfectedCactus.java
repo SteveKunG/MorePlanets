@@ -99,6 +99,12 @@ public class BlockInfectedCactus extends BlockBushMP
     }
 
     @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
+    {
+        return super.canPlaceBlockAt(world, pos) ? this.canBlockStay(world, pos, this.getDefaultState()) : false;
+    }
+
+    @Override
     public boolean validBlock(Block block)
     {
         return block == MPBlocks.INFECTED_SAND || block == this;
