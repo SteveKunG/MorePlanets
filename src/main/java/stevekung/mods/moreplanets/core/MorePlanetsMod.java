@@ -34,33 +34,29 @@ import stevekung.mods.moreplanets.utils.CreativeTabsMP;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.stevekunglib.utils.*;
 
-@Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.DEPENDENCIES, certificateFingerprint = MorePlanetsMod.CERTIFICATE)
+@Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.DEPENDENCIES, updateJSON = MorePlanetsMod.JSON_URL, certificateFingerprint = MorePlanetsMod.CERTIFICATE)
 public class MorePlanetsMod
 {
     public static final String NAME = "More Planets";
     public static final String MOD_ID = "moreplanets";
-    public static final int MAJOR_VERSION = 3;
-    public static final int MINOR_VERSION = 0;
-    public static final int BUILD_VERSION = 0;
+    private static final int MAJOR_VERSION = 3;
+    private static final int MINOR_VERSION = 0;
+    private static final int BUILD_VERSION = 0;
     public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
-    public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
-    public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
-    public static final String FORGE_VERSION = "after:forge@[14.23.4.2705,);";
-    public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION;
-    public static final String CERTIFICATE = "@FINGERPRINT@";
+    private static final String FORGE_VERSION = "after:forge@[14.23.4.2705,);";
+    protected static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION;
+    protected static final String CERTIFICATE = "@FINGERPRINT@";
     public static final String URL = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
+    protected static final String JSON_URL = "https://raw.githubusercontent.com/SteveKunG/VersionCheckLibrary/master/more_planets_version.json";
     public static boolean isDevelopment;
 
-    @SidedProxy(clientSide = MorePlanetsMod.CLIENT_CLASS, serverSide = MorePlanetsMod.SERVER_CLASS)
+    @SidedProxy(clientSide = "stevekung.mods.moreplanets.proxy.ClientProxyMP", serverSide = "stevekung.mods.moreplanets.proxy.ServerProxyMP")
     public static ServerProxyMP PROXY;
 
     @Instance(MorePlanetsMod.MOD_ID)
     public static MorePlanetsMod INSTANCE;
 
-    public static boolean noConnection;
-    public static boolean foundLatest;
-    public static boolean showAnnounceMessage;
-    public static final VersionChecker checker = new VersionChecker(MOD_ID, VERSION, MAJOR_VERSION, MINOR_VERSION, BUILD_VERSION);
+    public static VersionChecker CHECKER;
     public static final CreativeTabsMP BLOCK_TAB = new CreativeTabsMP("more_planets_blocks");
     public static final CreativeTabsMP ITEM_TAB = new CreativeTabsMP("more_planets_items");
     public static final ClientRegistryUtils CLIENT_REGISTRY = new ClientRegistryUtils(MOD_ID);
@@ -92,6 +88,12 @@ public class MorePlanetsMod
         MPBiomes.init();
         MPOthers.init();
         MorePlanetsMod.PROXY.preInit(event);
+        MorePlanetsMod.CHECKER = new VersionChecker(MorePlanetsMod.INSTANCE, MorePlanetsMod.NAME, MorePlanetsMod.URL, "mpchangelog");
+
+        if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
+        {
+            MorePlanetsMod.CHECKER.startCheck();
+        }
     }
 
     @EventHandler
@@ -123,17 +125,16 @@ public class MorePlanetsMod
     public void postInit(FMLPostInitializationEvent event)
     {
         MorePlanetsMod.PROXY.postInit(event);
-
-        if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
-        {
-            MorePlanetsMod.checker.startCheck();
-        }
-
         CommonUtils.registerGuiHandler(this, new GuiHandlerMP());
         CraftingManagerMP.init();
         SmeltingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
+
+        if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
+        {
+            MorePlanetsMod.CHECKER.startCheckIfFailed();
+        }
     }
 
     @EventHandler

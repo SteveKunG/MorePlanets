@@ -33,7 +33,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.event.ClickEvent;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
@@ -58,8 +57,6 @@ import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.client.gui.GuiGameOverMP;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.VersionChecker;
 
 public class ClientEventHandler
 {
@@ -67,6 +64,7 @@ public class ClientEventHandler
     private Minecraft mc;
     public static boolean loadRenderers;
     private int loadRendererTick = 30;
+    private boolean initVersionCheck;
     public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
     public static final List<BlockPos> wasteRenderPos = new ArrayList<>();
     public static final List<String> entityId = new ArrayList<>();
@@ -199,32 +197,17 @@ public class ClientEventHandler
                 {
                     this.mc.displayGuiScreen(new GuiGameOverMP());
                 }
-
-                if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
+                if (!this.initVersionCheck)
                 {
-                    if (!MorePlanetsMod.noConnection && MorePlanetsMod.checker.noConnection())
+                    if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
                     {
-                        VersionChecker.createFailedToCheckMessage(this.mc.player, MorePlanetsMod.checker.getExceptionMessage());
-                        MorePlanetsMod.noConnection = true;
-                        return;
+                        MorePlanetsMod.CHECKER.printInfo(this.mc.player);
                     }
-                    if (!MorePlanetsMod.foundLatest && !MorePlanetsMod.noConnection && MorePlanetsMod.checker.isLatestVersion())
+                    if (ConfigManagerMP.moreplanets_general.enableChangeLogInGame)
                     {
-                        VersionChecker.createFoundLatestMessage(this.mc.player, MorePlanetsMod.NAME, MorePlanetsMod.URL);
-                        MorePlanetsMod.foundLatest = true;
+                        MorePlanetsMod.CHECKER.printChangeLog(this.mc.player);
                     }
-                }
-                if (ConfigManagerMP.moreplanets_general.enableChangeLogInGame)
-                {
-                    if (!MorePlanetsMod.showAnnounceMessage && !MorePlanetsMod.noConnection)
-                    {
-                        MorePlanetsMod.checker.getAnnounceMessage().forEach(log ->
-                        {
-                            this.mc.player.sendMessage(JsonUtils.create(log).setStyle(JsonUtils.gray()));
-                        });
-                        this.mc.player.sendMessage(JsonUtils.create("To read More Planets full change log. Use /mpchangelog command!").setStyle(JsonUtils.gray().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
-                    }
-                    MorePlanetsMod.showAnnounceMessage = true;
+                    this.initVersionCheck = true;
                 }
             }
         }
