@@ -130,11 +130,6 @@ public class MorePlanetsMod
         SmeltingManagerMP.init();
         MPSchematics.init();
         MPDimensions.init();
-
-        if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
-        {
-            MorePlanetsMod.CHECKER.startCheckIfFailed();
-        }
     }
 
     @EventHandler

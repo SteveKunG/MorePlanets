@@ -199,6 +199,8 @@ public class ClientEventHandler
                 }
                 if (!this.initVersionCheck)
                 {
+                    MorePlanetsMod.CHECKER.startCheckIfFailed();
+
                     if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
                     {
                         MorePlanetsMod.CHECKER.printInfo(this.mc.player);

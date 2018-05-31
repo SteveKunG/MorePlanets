@@ -46,14 +46,15 @@ public class VersionChecker
 
     public void startCheckIfFailed()
     {
-        this.failed = this.changeLog == null;
+        ForgeVersion.CheckResult result = ForgeVersion.getResult(Loader.instance().getModObjectList().inverse().get(this.mod));
+        this.failed = result.status == ForgeVersion.Status.FAILED || result.status == ForgeVersion.Status.PENDING;
     }
 
     public void printInfo(EntityPlayerSP player)
     {
         if (this.failed)
         {
-            player.sendMessage(JsonUtils.create("Unable to check latest version, Please check your internet connection").setStyle(JsonUtils.red().setBold(true)));
+            player.sendMessage(JsonUtils.create("Unable to check latest version of " + this.formatText(TextFormatting.DARK_RED, this.modName + "!") + "!, Please check your internet connection.").setStyle(JsonUtils.red().setBold(true)));
             return;
         }
         if (this.latestVersion != null)
