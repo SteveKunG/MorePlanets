@@ -1,9 +1,12 @@
 package stevekung.mods.moreplanets.core.event;
 
+import org.lwjgl.input.Keyboard;
+
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,6 +27,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import stevekung.mods.moreplanets.client.gui.GuiCelestialSelection;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -37,7 +41,6 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.LoggerMP;
-import stevekung.mods.moreplanets.utils.TeleportUtils;
 import stevekung.mods.moreplanets.world.IMeteorType;
 
 public class EntityEventHandler
@@ -115,11 +118,15 @@ public class EntityEventHandler
         {
             EntityPlayerMP player = (EntityPlayerMP)living;
             String startedPlanet = ConfigManagerMP.moreplanets_general.startedPlanet;
+            
+            if (Keyboard.isKeyDown(Keyboard.KEY_F9))
+            Minecraft.getMinecraft().displayGuiScreen(new GuiCelestialSelection());
 
             if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && !WorldTickEventHandler.startedDimensionData.startedDimension && !(startedPlanet.equals("planet.") || startedPlanet.equals("moon.") || startedPlanet.equals("satellite.")))
             {
                 LoggerMP.debug("Start teleporting player to dimension {}", startedPlanet);
-                TeleportUtils.startNewDimension(player);
+                
+//                TeleportUtils.startNewDimension(player);
                 WorldTickEventHandler.startedDimensionData.startedDimension = true;
                 WorldTickEventHandler.startedDimensionData.planetToBack = startedPlanet;
                 WorldTickEventHandler.startedDimensionData.setDirty(true);
