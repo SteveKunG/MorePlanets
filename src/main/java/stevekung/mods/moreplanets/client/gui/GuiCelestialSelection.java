@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
@@ -44,6 +45,9 @@ public class GuiCelestialSelection extends GuiScreen
     }
 
     @Override
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {}
+
+    @Override
     protected void actionPerformed(GuiButton button) throws IOException
     {
         if (button.enabled)
@@ -53,6 +57,7 @@ public class GuiCelestialSelection extends GuiScreen
             if (button.id == 0 && entry != null)
             {
                 entry.teleport();
+                this.mc.displayGuiScreen(null);
             }
         }
     }
@@ -150,6 +155,11 @@ public class GuiCelestialSelection extends GuiScreen
                                 }
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar System:", planet.getParentSolarSystem().getLocalizedName()));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Galaxy:", planet.getParentSolarSystem().getLocalizedParentGalaxyName()));
+
+                                if (!GalaxyRegistry.getMoonsForPlanet(planet).isEmpty())
+                                {
+                                    infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Number of Moons:", String.valueOf(GalaxyRegistry.getMoonsForPlanet(planet).size())));
+                                }
                             }
                             else if (celestial instanceof Moon)
                             {
@@ -196,12 +206,6 @@ public class GuiCelestialSelection extends GuiScreen
     {
         super.mouseReleased(mouseX, mouseY, state);
         this.selectionList.mouseReleased(mouseX, mouseY, state);
-    }
-
-    @Override
-    public boolean doesGuiPauseGame()
-    {
-        return false;
     }
 
     public void selectCelestial(@Nullable GuiListCelestialSelectionEntry entry)

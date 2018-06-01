@@ -19,6 +19,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -35,6 +36,7 @@ import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.PlanetSpawnerUtils;
 import stevekung.mods.moreplanets.utils.TeleportUtils;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class PacketSimpleMP extends PacketBase
@@ -140,6 +142,10 @@ public class PacketSimpleMP extends PacketBase
         case C_OPEN_SURVIVAL_PLANET_GUI:
             GuiCelestialSelection gui = new GuiCelestialSelection();
             FMLClientHandler.instance().getClient().displayGuiScreen(gui);
+            break;
+        case C_MESSAGE_SURVIVAL_PLANET:
+            String name = (String)this.data.get(0);
+            player.sendMessage(JsonUtils.create("You select " + TextFormatting.AQUA + name + TextFormatting.RESET + " as survival planet, Good Luck!"));
             break;
         default:
             break;
@@ -305,7 +311,8 @@ public class PacketSimpleMP extends PacketBase
         C_RELOAD_RENDERER(Side.CLIENT),
         C_SWITCH_SHIELD_GENERATOR_GUI(Side.CLIENT, BlockPos.class, Integer.class, Boolean.class),
         C_REMOVE_GENERATOR_GUIDE_POS(Side.CLIENT, BlockPos.class),
-        C_OPEN_SURVIVAL_PLANET_GUI(Side.CLIENT);
+        C_OPEN_SURVIVAL_PLANET_GUI(Side.CLIENT),
+        C_MESSAGE_SURVIVAL_PLANET(Side.CLIENT, String.class);
 
         private Side targetSide;
         private Class[] decodeAs;

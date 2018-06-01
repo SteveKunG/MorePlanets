@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GuiListExtended;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
@@ -41,7 +42,7 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
     public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected, float partialTicks)
     {
         String name = this.celestial.getLocalizedName();
-        String reach = this.celestial.getReachable() ? "Reachable" : "Unreachable";
+        String reach = this.celestial.getReachable() ? TextFormatting.DARK_GREEN + "Reachable" : TextFormatting.DARK_RED + "Unreachable";
         this.mc.fontRenderer.drawString(name, x + 32 + 3, y + 1, 16777215);
         this.mc.fontRenderer.drawString(reach, x + 32 + 3, y + this.mc.fontRenderer.FONT_HEIGHT + 3, 8421504);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -63,7 +64,10 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
         }
         else if (Minecraft.getSystemTime() - this.lastClickTime < 250L)
         {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+            if (this.isReachable())
+            {
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+            }
             this.teleport();
             return true;
         }
@@ -86,6 +90,8 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
         {
             return;
         }
+
+        this.mc.displayGuiScreen(null);
 
         if (!WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
         {

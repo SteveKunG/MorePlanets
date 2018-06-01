@@ -13,6 +13,7 @@ import micdoodle8.mods.galacticraft.core.dimension.WorldProviderMoon;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.inventory.InventoryExtended;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.dimension.WorldProviderAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
@@ -502,6 +503,7 @@ public class TeleportUtils
             player.setSpawnChunk(spawnChunkPos, true, GCCoreUtil.getDimensionID(player.world));
         }
         GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, player.dimension), player);
+        GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_MESSAGE_SURVIVAL_PLANET, player.dimension, new Object[] { WorldUtil.getProviderForDimensionClient(targetDim).getDimensionType().getName() }), player);
         return player;
     }
 }
