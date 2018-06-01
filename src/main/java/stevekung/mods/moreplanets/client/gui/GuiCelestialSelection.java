@@ -161,7 +161,7 @@ public class GuiCelestialSelection extends GuiScreen
                                 }
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar System:", moon.getParentPlanet().getParentSolarSystem().getLocalizedName()));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Galaxy:", moon.getParentPlanet().getParentSolarSystem().getLocalizedParentGalaxyName()));
-                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Parent Planet:", moon.getParentPlanet().getParentSolarSystem().getLocalizedParentGalaxyName()));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Parent Planet:", moon.getParentPlanet().getLocalizedName()));
                             }
                         }
                         else
