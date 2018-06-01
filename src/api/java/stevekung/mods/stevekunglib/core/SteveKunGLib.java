@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 import stevekung.mods.stevekunglib.utils.ClientUtils;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 
 @Mod(modid = SteveKunGLib.MOD_ID, name = SteveKunGLib.NAME, version = SteveKunGLib.VERSION, dependencies = SteveKunGLib.FORGE_VERSION, updateJSON = SteveKunGLib.JSON_URL, acceptableRemoteVersions = "*")
@@ -56,7 +57,7 @@ public class SteveKunGLib
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-
+        ColorUtils.init();
     }
 
     private static void init(ModMetadata info)

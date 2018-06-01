@@ -19,9 +19,9 @@ public class ColoredFontRenderer extends FontRenderer
     private int green;
     private int blue;
 
-    public ColoredFontRenderer(GameSettings gameSettings, ResourceLocation location, TextureManager textureManager, boolean unicode)
+    public ColoredFontRenderer(GameSettings gameSettings, ResourceLocation location, TextureManager textureManager)
     {
-        super(gameSettings, location, textureManager, unicode);
+        super(gameSettings, location, textureManager, false);
         ModLogger.info("Loading {} for fancy colored text!", this.getClass().getName());
     }
 

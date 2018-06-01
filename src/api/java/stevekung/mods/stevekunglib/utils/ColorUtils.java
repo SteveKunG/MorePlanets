@@ -1,10 +1,21 @@
 package stevekung.mods.stevekunglib.utils;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.util.ResourceLocation;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 import stevekung.mods.stevekunglib.utils.client.ColoredFontRenderer;
 
 public class ColorUtils
 {
+    public static ColoredFontRenderer coloredFontRenderer;
+
+    public static void init()
+    {
+        ColorUtils.coloredFontRenderer = new ColoredFontRenderer(Minecraft.getMinecraft().gameSettings, new ResourceLocation("textures/font/ascii.png"), Minecraft.getMinecraft().renderEngine);
+        ((IReloadableResourceManager)Minecraft.getMinecraft().getResourceManager()).registerReloadListener(ColorUtils.coloredFontRenderer);
+    }
+
     public static int rgbToDecimal(int r, int g, int b)
     {
         return b + 256 * g + 65536 * r;
