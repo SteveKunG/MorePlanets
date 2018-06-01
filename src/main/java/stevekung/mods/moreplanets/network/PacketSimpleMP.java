@@ -24,6 +24,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.client.gui.GuiCelestialSelection;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGenerator;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGeneratorConfig;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
@@ -136,6 +137,10 @@ public class PacketSimpleMP extends PacketBase
             pos = (BlockPos) this.data.get(0);
             ClientEventHandler.wasteRenderPos.remove(pos);
             break;
+        case C_OPEN_SURVIVAL_PLANET_GUI:
+            GuiCelestialSelection gui = new GuiCelestialSelection();
+            FMLClientHandler.instance().getClient().displayGuiScreen(gui);
+            break;
         default:
             break;
         }
@@ -164,7 +169,7 @@ public class PacketSimpleMP extends PacketBase
                 WorldServer worldOld = (WorldServer) world;
                 WorldServer worldNew = PlanetSpawnerUtils.getStartWorld(worldOld);
                 BlockPos spawnPos = worldNew.getTopSolidOrLiquidBlock(worldNew.getSpawnPoint());
-                TeleportUtils.setWarpDimension(playerMP, worldNew, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimension(), true);
+                TeleportUtils.setWarpDimension(playerMP, worldNew, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), WorldUtil.getProviderForNameServer(WorldTickEventHandler.survivalPlanetData.survivalPlanetName).getDimension(), true);
                 player.respawnPlayer();
                 player.closeScreen();
             }
@@ -269,6 +274,11 @@ public class PacketSimpleMP extends PacketBase
                 stats.setChatCooldown(100);
             }
             break;
+        case S_START_SURVIVAL_PLANET:
+            int sourceDimId = (int)this.data.get(0);
+            int targetDimId = (int)this.data.get(1);
+            TeleportUtils.teleportPlayerToPlanet(playerMP, playerMP.getServer(), sourceDimId, targetDimId);
+            break;
         default:
             break;
         }
@@ -286,6 +296,7 @@ public class PacketSimpleMP extends PacketBase
         S_SHIELD_GENERATOR_OPTION(Side.SERVER, BlockPos.class, Integer.class, String.class),
         S_SWITCH_SHIELD_GENERATOR_GUI(Side.SERVER, BlockPos.class, Boolean.class),
         S_FAILED_UNLOCK_CHEST(Side.SERVER, String.class),
+        S_START_SURVIVAL_PLANET(Side.SERVER, Integer.class, Integer.class),
 
         // CLIENT
         C_ADD_ENTITY_ID(Side.CLIENT, String.class),
@@ -293,7 +304,8 @@ public class PacketSimpleMP extends PacketBase
         C_REMOVE_GUIDE_POS(Side.CLIENT, BlockPos.class),
         C_RELOAD_RENDERER(Side.CLIENT),
         C_SWITCH_SHIELD_GENERATOR_GUI(Side.CLIENT, BlockPos.class, Integer.class, Boolean.class),
-        C_REMOVE_GENERATOR_GUIDE_POS(Side.CLIENT, BlockPos.class);
+        C_REMOVE_GENERATOR_GUIDE_POS(Side.CLIENT, BlockPos.class),
+        C_OPEN_SURVIVAL_PLANET_GUI(Side.CLIENT);
 
         private Side targetSide;
         private Class[] decodeAs;

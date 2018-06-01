@@ -193,7 +193,7 @@ public class ClientEventHandler
             }
             if (this.mc.player != null)
             {
-                if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && this.mc.player.dimension == -1 && this.mc.currentScreen instanceof GuiGameOver && !(this.mc.currentScreen instanceof GuiGameOverMP))
+                if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && this.mc.player.dimension == -1 && this.mc.currentScreen instanceof GuiGameOver && !(this.mc.currentScreen instanceof GuiGameOverMP))
                 {
                     this.mc.displayGuiScreen(new GuiGameOverMP());
                 }

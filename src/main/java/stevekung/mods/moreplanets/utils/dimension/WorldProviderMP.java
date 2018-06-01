@@ -90,12 +90,6 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
     }
 
     @Override
-    public float getArrowGravity()
-    {
-        return 0.005F;
-    }
-
-    @Override
     public int getDungeonSpacing()
     {
         return 704;

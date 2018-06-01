@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
-import stevekung.mods.moreplanets.core.data.WorldDataStartedDimension;
+import stevekung.mods.moreplanets.core.data.WorldDataSurvivalPlanet;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityAlienBeam;
@@ -31,7 +31,7 @@ import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeInfectedMo
 public class WorldTickEventHandler
 {
     private int updateLCG = new Random().nextInt();
-    public static WorldDataStartedDimension startedDimensionData = null;
+    public static WorldDataSurvivalPlanet survivalPlanetData = null;
 
     @SubscribeEvent
     public void onServerTick(ServerTickEvent event)
@@ -45,15 +45,15 @@ public class WorldTickEventHandler
 
         if (event.phase == Phase.START)
         {
-            if (WorldTickEventHandler.startedDimensionData == null)
+            if (WorldTickEventHandler.survivalPlanetData == null)
             {
                 World world = server.getWorld(0);
-                WorldTickEventHandler.startedDimensionData = (WorldDataStartedDimension) world.getMapStorage().getOrLoadData(WorldDataStartedDimension.class, WorldDataStartedDimension.saveDataID);
+                WorldTickEventHandler.survivalPlanetData = (WorldDataSurvivalPlanet) world.getMapStorage().getOrLoadData(WorldDataSurvivalPlanet.class, WorldDataSurvivalPlanet.saveDataID);
 
-                if (WorldTickEventHandler.startedDimensionData == null)
+                if (WorldTickEventHandler.survivalPlanetData == null)
                 {
-                    WorldTickEventHandler.startedDimensionData = new WorldDataStartedDimension(WorldDataStartedDimension.saveDataID);
-                    world.getMapStorage().setData(WorldDataStartedDimension.saveDataID, WorldTickEventHandler.startedDimensionData);
+                    WorldTickEventHandler.survivalPlanetData = new WorldDataSurvivalPlanet(WorldDataSurvivalPlanet.saveDataID);
+                    world.getMapStorage().setData(WorldDataSurvivalPlanet.saveDataID, WorldTickEventHandler.survivalPlanetData);
                 }
             }
         }

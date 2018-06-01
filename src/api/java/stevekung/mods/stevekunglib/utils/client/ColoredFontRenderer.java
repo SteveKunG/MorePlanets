@@ -114,37 +114,42 @@ public class ColoredFontRenderer extends FontRenderer
         return defaultValue;
     }
 
+    private boolean isFormatColor(char colorChar)
+    {
+        return colorChar >= '0' && colorChar <= '9' || colorChar >= 'a' && colorChar <= 'f' || colorChar >= 'A' && colorChar <= 'F';
+    }
+
+    private boolean isFormatSpecial(char formatChar)
+    {
+        return formatChar >= 'k' && formatChar <= 'o' || formatChar >= 'K' && formatChar <= 'O' || formatChar == 'r' || formatChar == 'R';
+    }
+
     private String getCustomFormatFromString(String text)
     {
         String s = "";
-        int i = 0;
+        int i = -1;
         int j = text.length();
 
-        while (i < j - 1)
+        while ((i = text.indexOf(167, i + 1)) != -1)
         {
-            char c = text.charAt(i);
-
-            if (c == 167)
+            if (i < j - 1)
             {
                 char c0 = text.charAt(i + 1);
 
-                if (c0 >= 48 && c0 <= 57 || c0 >= 97 && c0 <= 102 || c0 >= 65 && c0 <= 70)
+                if (this.isFormatColor(c0))
                 {
                     s = "\u00a7" + c0;
-                    i++;
                 }
-                else if (c0 >= 107 && c0 <= 111 || c0 >= 75 && c0 <= 79 || c0 == 114 || c0 == 82)
+                else if (this.isFormatSpecial(c0))
                 {
                     s = s + "\u00a7" + c0;
-                    i++;
+                }
+                else if (c0 >= ColoredFontRenderer.MARKER && c0 <= ColoredFontRenderer.MARKER + 255)
+                {
+                    s = String.format("%s%s%s", c0, text.charAt(i + 1), text.charAt(i + 2));
+                    i += 2;
                 }
             }
-            else if (c >= ColoredFontRenderer.MARKER && c <= ColoredFontRenderer.MARKER + 255)
-            {
-                s = String.format("%s%s%s", c, text.charAt(i + 1), text.charAt(i + 2));
-                i += 2;
-            }
-            i++;
         }
         return s;
     }

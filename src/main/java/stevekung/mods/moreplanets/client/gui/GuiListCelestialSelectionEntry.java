@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.client.gui;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.client.Minecraft;
@@ -14,6 +13,10 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 
 @SideOnly(Side.CLIENT)
 public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListEntry
@@ -55,12 +58,13 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
 
         if (relativeX <= 32 && relativeX < 32)
         {
-            this.teleportToPlanet();
+            this.teleport();
             return true;
         }
         else if (Minecraft.getSystemTime() - this.lastClickTime < 250L)
         {
-            this.teleportToPlanet();
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+            this.teleport();
             return true;
         }
         else
@@ -76,14 +80,22 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
     @Override
     public void updatePosition(int slotIndex, int x, int y, float partialTicks) {}
 
-    public void teleportToPlanet()
+    public void teleport()
     {
         if (!this.isReachable())
         {
             return;
         }
-        this.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-        GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(PacketSimple.EnumSimplePacket.S_TELEPORT_ENTITY, GCCoreUtil.getDimensionID(this.mc.world), new Object[] { WorldUtil.getDimensionName(WorldUtil.getProviderForDimensionClient(this.celestial.getDimensionID())) }));
+
+        if (!WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
+        {
+            String celestialName = this.celestial.getUnlocalizedName();
+            LoggerMP.info("Start survival planet at: {}, Dimension: {}", celestialName, WorldUtil.getProviderForNameClient(celestialName).getDimension());
+            WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData = true;
+            WorldTickEventHandler.survivalPlanetData.survivalPlanetName = celestialName;
+            WorldTickEventHandler.survivalPlanetData.setDirty(true);
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_START_SURVIVAL_PLANET, GCCoreUtil.getDimensionID(this.mc.world), new Object[] { this.mc.world.provider.getDimension(), WorldUtil.getProviderForNameServer(celestialName).getDimension() }));
+        }
     }
 
     public boolean isReachable()

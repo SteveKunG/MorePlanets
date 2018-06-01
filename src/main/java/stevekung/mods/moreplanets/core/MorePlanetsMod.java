@@ -135,7 +135,7 @@ public class MorePlanetsMod
     @EventHandler
     public void serverAboutToStart(FMLServerAboutToStartEvent event)
     {
-        WorldTickEventHandler.startedDimensionData = null;
+        WorldTickEventHandler.survivalPlanetData = null;
     }
 
     @EventHandler

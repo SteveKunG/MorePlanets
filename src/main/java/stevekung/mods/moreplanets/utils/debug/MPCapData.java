@@ -1,11 +1,10 @@
 package stevekung.mods.moreplanets.utils.debug;
 
 import net.minecraft.nbt.NBTTagCompound;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 
 public class MPCapData implements MorePlanetsCapabilityData
 {
-    private String startedCelestial = ConfigManagerMP.moreplanets_general.startedPlanet;
+    private String startedCelestial = "";
 
     @Override
     public void writeNBT(NBTTagCompound nbt)

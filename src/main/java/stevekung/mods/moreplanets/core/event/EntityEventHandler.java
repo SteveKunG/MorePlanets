@@ -1,12 +1,10 @@
 package stevekung.mods.moreplanets.core.event;
 
-import org.lwjgl.input.Keyboard;
-
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,8 +24,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import stevekung.mods.moreplanets.client.gui.GuiCelestialSelection;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -45,6 +43,8 @@ import stevekung.mods.moreplanets.world.IMeteorType;
 
 public class EntityEventHandler
 {
+    private boolean openCelestialGui;
+
     @SubscribeEvent
     public void onZombieSummonAid(SummonAidEvent event)
     {
@@ -104,6 +104,12 @@ public class EntityEventHandler
     }
 
     @SubscribeEvent
+    public void onDisconnect(FMLNetworkEvent.ClientDisconnectionFromServerEvent event)
+    {
+        this.openCelestialGui = false;
+    }
+
+    @SubscribeEvent
     public void onLivingUpdate(LivingUpdateEvent event)
     {
         EntityLivingBase living = event.getEntityLiving();
@@ -117,20 +123,13 @@ public class EntityEventHandler
         if (living instanceof EntityPlayerMP)
         {
             EntityPlayerMP player = (EntityPlayerMP)living;
-            String startedPlanet = ConfigManagerMP.moreplanets_general.startedPlanet;
-            
-            if (Keyboard.isKeyDown(Keyboard.KEY_F9))
-            Minecraft.getMinecraft().displayGuiScreen(new GuiCelestialSelection());
 
-            if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && !WorldTickEventHandler.startedDimensionData.startedDimension && !(startedPlanet.equals("planet.") || startedPlanet.equals("moon.") || startedPlanet.equals("satellite.")))
+            if (player.ticksExisted > 100 && ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && !WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData && !this.openCelestialGui)
             {
-                LoggerMP.debug("Start teleporting player to dimension {}", startedPlanet);
-                
-//                TeleportUtils.startNewDimension(player);
-                WorldTickEventHandler.startedDimensionData.startedDimension = true;
-                WorldTickEventHandler.startedDimensionData.planetToBack = startedPlanet;
-                WorldTickEventHandler.startedDimensionData.setDirty(true);
+                GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_OPEN_SURVIVAL_PLANET_GUI, player.dimension), player);
+                this.openCelestialGui = true;
             }
+
             if (player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) || this.isInOxygen(world, player))
             {
                 player.removePotionEffect(MPPotions.INFECTED_SPORE);

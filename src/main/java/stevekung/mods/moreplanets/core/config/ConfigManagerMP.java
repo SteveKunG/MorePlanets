@@ -25,10 +25,6 @@ public class ConfigManagerMP
     // General
     public static class General
     {
-        @Config.Comment("Put planet name that you would like to spawn (Also you need to enable started planet in the config). For example \"planet.nibiru\", \"moon.moon\", \"satellite.spacestation.overworld\" ")
-        @Config.Name(value = "Planet to Start")
-        public String startedPlanet = "planet.";
-
         @Config.Name(value = "Enable Debug Logging")
         public boolean enableDebug = false;
 
@@ -45,8 +41,8 @@ public class ConfigManagerMP
         @Config.Name(value = "Enable Black Hole Explosion")
         public boolean enableBlackHoleExplosion = true;
 
-        @Config.Name(value = "Enable Started Planet")
-        public boolean enableStartedPlanet = false;
+        @Config.Name(value = "Enable Survival Planet Selection")
+        public boolean enableSurvivalPlanetSelection = false;
 
         @Config.Name(value = "Use 3D Item Model for Torch")
         @Config.RequiresMcRestart

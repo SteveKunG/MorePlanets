@@ -45,12 +45,11 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        String startedPlanet = ConfigManagerMP.moreplanets_general.startedPlanet;
-
-        if (ConfigManagerMP.moreplanets_general.enableStartedPlanet && !(startedPlanet.equals("planet.") || startedPlanet.equals("moon.") || startedPlanet.equals("satellite.")))
+        if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
         {
             if (!player.isRiding() && !player.isBeingRidden() && player.isNonBoss() && player instanceof EntityPlayerMP)
             {
+                String survivalPlanet = WorldTickEventHandler.survivalPlanetData.survivalPlanetName;
                 EntityPlayerMP playerMP = (EntityPlayerMP)player;
 
                 if (playerMP.dimension != -1)
@@ -60,7 +59,7 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
                 }
                 else
                 {
-                    int dimID = WorldUtil.getProviderForNameServer(WorldTickEventHandler.startedDimensionData.planetToBack).getDimension();
+                    int dimID = WorldUtil.getProviderForNameServer(survivalPlanet).getDimension();
                     playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterMP(playerMP.mcServer.getWorld(dimID)));
                     GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, playerMP.dimension), playerMP);
                 }

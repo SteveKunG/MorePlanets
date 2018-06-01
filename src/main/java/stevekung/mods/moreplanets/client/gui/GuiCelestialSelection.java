@@ -10,13 +10,16 @@ import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.utils.dimension.WorldProviderMP;
+import stevekung.mods.moreplanets.utils.dimension.IDarkEnergyProvider;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
@@ -49,7 +52,7 @@ public class GuiCelestialSelection extends GuiScreen
 
             if (button.id == 0 && entry != null)
             {
-                entry.teleportToPlanet();
+                entry.teleport();
             }
         }
     }
@@ -69,64 +72,111 @@ public class GuiCelestialSelection extends GuiScreen
                 if (this.selectionList.isSelected(i))
                 {
                     CelestialBody celestial = this.selectionList.getSelectedCelestial().getCelestialBody();
-                    infoList.add("Basic Information: ");
+                    infoList.add(ColorUtils.stringToRGB("149, 200, 237").toColoredFont() + "Basic Information:");
 
                     try
                     {
-                        WorldProvider provider = celestial.getWorldProvider().newInstance();
+                        if (celestial.getDimensionID() != -1)
+                        {
+                            WorldProvider provider = WorldUtil.getProviderForDimensionClient(celestial.getDimensionID());
 
-                        if (provider instanceof WorldProviderSpace)
-                        {
-                            WorldProviderSpace space = (WorldProviderSpace)provider;
-                            
-                            if (space.getDayLength() <= 0)
+                            if (provider instanceof WorldProviderSpace)
                             {
-                                infoList.add("Day-night Cycle: " + "No day-night cycle");
-                            }
-                            else
-                            {
-                                double dayDouble = space.getDayLength() / 24000;
-                                infoList.add("Day-night Cycle: " + dayDouble + (dayDouble <= 1 ? " Day" : " Days"));
-                            }
-                        }
-                        if (provider instanceof IGalacticraftWorldProvider)
-                        {
-                            IGalacticraftWorldProvider gcProvider = (IGalacticraftWorldProvider)provider;
-                            infoList.add("Gravity: " + gcProvider.getGravity());
-                            infoList.add("Wind: " + gcProvider.getWindLevel());
-//                            infoList.add("Meteor Frequency: " + gcProvider.getMeteorFrequency());
-                        }
-                        if (provider instanceof WorldProviderMP)
-                        {
-                            WorldProviderMP gcProvider = (WorldProviderMP)provider;
-//                            infoList.add("Thermal: " + gcProvider.getThermalLevelModifier());
-                        }
+                                WorldProviderSpace space = (WorldProviderSpace)provider;
+                                String thermal = "";
 
-                        if (celestial instanceof Planet)
-                        {
-                            Planet planet = (Planet)celestial;
-                            infoList.add("Solar System: " + planet.getParentSolarSystem().getLocalizedName());
-                            infoList.add("Galaxy: " + planet.getParentSolarSystem().getLocalizedParentGalaxyName());
+                                try
+                                {
+                                    thermal = String.valueOf(space.getThermalLevelModifier());
+                                }
+                                catch (Exception e)
+                                {
+                                    thermal = TextFormatting.RED + "Unknown";
+                                }
+
+                                if (space.getDayLength() <= 0)
+                                {
+                                    infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Day-night Cycle:", "No day-night cycle"));
+                                }
+                                else
+                                {
+                                    double dayDouble = space.getDayLength() / 24000;
+
+                                    if (dayDouble % 1 == 0)
+                                    {
+                                        int dayInt = (int)(space.getDayLength() / 24000);
+                                        infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Day-night Cycle:", dayInt + (dayInt == 1 ? " Day" : " Days")));
+                                    }
+                                    else
+                                    {
+                                        infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Day-night Cycle:", dayDouble + (dayDouble <= 1 ? " Day" : " Days")));
+                                    }
+                                }
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gravity:", String.valueOf(space.getGravity()) + "g"));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Wind:", String.valueOf(space.getWindLevel())));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Thermal:", thermal));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Breathable Atmosphere:", space.hasBreathableAtmosphere()));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Corrode Armor:", space.shouldCorrodeArmor()));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Sound Reduction:", String.valueOf(space.getSoundVolReductionAmount() / 1.0F) + "%"));
+                            }
+                            else if (provider instanceof ISolarLevel)
+                            {
+                                ISolarLevel solar = (ISolarLevel)provider;
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar Level:", String.valueOf(solar.getSolarEnergyMultiplier()) + "%"));
+                            }
+                            else if (provider instanceof IDarkEnergyProvider)
+                            {
+                                IDarkEnergyProvider space = (IDarkEnergyProvider)provider;
+                                String darkEnergy = "";
+
+                                try
+                                {
+                                    darkEnergy = String.valueOf(space.getDarkEnergyMultiplier(null, null)) + "%";
+                                }
+                                catch (Exception e)
+                                {
+                                    darkEnergy = TextFormatting.RED + "Unstable Dark Energy";
+                                }
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Dark Energy Level:", darkEnergy));
+                            }
+
+                            if (celestial instanceof Planet)
+                            {
+                                Planet planet = (Planet)celestial;
+
+                                if (!planet.atmosphere.composition.isEmpty())
+                                {
+                                    infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gas:", String.valueOf(planet.atmosphere.composition)));//TODO Get official name of gases
+                                }
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar System:", planet.getParentSolarSystem().getLocalizedName()));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Galaxy:", planet.getParentSolarSystem().getLocalizedParentGalaxyName()));
+                            }
+                            else if (celestial instanceof Moon)
+                            {
+                                Moon moon = (Moon)celestial;
+
+                                if (!moon.atmosphere.composition.isEmpty())
+                                {
+                                    infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gas:", String.valueOf(moon.atmosphere.composition)));//TODO Get official name of gases
+                                }
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar System:", moon.getParentPlanet().getParentSolarSystem().getLocalizedName()));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Galaxy:", moon.getParentPlanet().getParentSolarSystem().getLocalizedParentGalaxyName()));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Parent Planet:", moon.getParentPlanet().getParentSolarSystem().getLocalizedParentGalaxyName()));
+                            }
                         }
-                        else if (celestial instanceof Moon)
+                        else
                         {
-                            Moon moon = (Moon)celestial;
-                            infoList.add("Solar System: " + moon.getParentPlanet().getParentSolarSystem().getLocalizedName());
-                            infoList.add("Galaxy: " + moon.getParentPlanet().getParentSolarSystem().getLocalizedParentGalaxyName());
-                            infoList.add("Parent Planet: " + moon.getParentPlanet().getLocalizedName());
+                            infoList.add(TextFormatting.RED + "No Basic Celestial Info");
                         }
                     }
-                    catch (Exception e)
-                    {
-                        infoList.add("No Basic Celestial Info");
-                    }
+                    catch (Exception e) {}
 
                     for (int textSize = 0; textSize < infoList.size(); textSize++)
                     {
                         String text = infoList.get(textSize);
-                        int fontHeight = this.mc.fontRenderer.FONT_HEIGHT + 2;
+                        int fontHeight = ColorUtils.coloredFontRenderer.FONT_HEIGHT + 2;
                         int y = 36 + fontHeight * textSize;
-                        this.mc.fontRenderer.drawString(text, this.width / 2 - 16, y, 16777215);
+                        ColorUtils.coloredFontRenderer.drawString(text, this.width / 2 - 16, y, 16777215);
                     }
                 }
             }
@@ -157,5 +207,15 @@ public class GuiCelestialSelection extends GuiScreen
     public void selectCelestial(@Nullable GuiListCelestialSelectionEntry entry)
     {
         this.doneButton.enabled = entry != null && entry.isReachable();
+    }
+
+    private String format(String key, String value)
+    {
+        return key + " " + TextFormatting.RESET + value;
+    }
+
+    private String format(String key, boolean value)
+    {
+        return key + " " + TextFormatting.RESET + (value ? TextFormatting.GREEN : TextFormatting.RED) + value;
     }
 }
