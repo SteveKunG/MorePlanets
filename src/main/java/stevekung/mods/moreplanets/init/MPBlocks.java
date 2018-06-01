@@ -39,7 +39,7 @@ import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescription;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockSingleLeaves;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockSlabMP;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
-import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
+import stevekung.mods.stevekunglib.utils.enums.EnumHarvestLevel;
 
 public class MPBlocks
 {

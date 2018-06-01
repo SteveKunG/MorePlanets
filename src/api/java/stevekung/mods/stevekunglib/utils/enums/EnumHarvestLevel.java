@@ -1,4 +1,4 @@
-package stevekung.mods.stevekunglib.utils;
+package stevekung.mods.stevekunglib.utils.enums;
 
 public enum EnumHarvestLevel
 {

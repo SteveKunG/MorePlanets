@@ -1,4 +1,4 @@
-package stevekung.mods.stevekunglib.utils;
+package stevekung.mods.stevekunglib.utils.client;
 
 import java.util.ArrayList;
 import java.util.Arrays;

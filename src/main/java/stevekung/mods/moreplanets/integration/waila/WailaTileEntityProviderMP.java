@@ -26,9 +26,9 @@ import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
-import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
 @WailaPlugin
 public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlugin

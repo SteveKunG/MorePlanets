@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.client.particle.ParticleDiggingNoColor;
-import stevekung.mods.stevekunglib.utils.RenderUtils;
+import stevekung.mods.stevekunglib.utils.client.RenderUtils;
 
 @SideOnly(Side.CLIENT)
 public class ClientRendererUtils

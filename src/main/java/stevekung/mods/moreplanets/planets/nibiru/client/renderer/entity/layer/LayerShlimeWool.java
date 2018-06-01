@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.planets.nibiru.client.model.ModelShlimeFur;
 import stevekung.mods.moreplanets.planets.nibiru.client.renderer.entity.RenderShlime;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityShlime;
-import stevekung.mods.stevekunglib.utils.CachedEnum;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 @SideOnly(Side.CLIENT)
 public class LayerShlimeWool implements LayerRenderer<EntityShlime>

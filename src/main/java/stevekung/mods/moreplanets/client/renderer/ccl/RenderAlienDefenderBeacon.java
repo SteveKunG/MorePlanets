@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
-import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class RenderAlienDefenderBeacon extends CCLRenderBase
 {

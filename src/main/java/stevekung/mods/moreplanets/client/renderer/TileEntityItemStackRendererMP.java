@@ -27,7 +27,7 @@ import stevekung.mods.moreplanets.tileentity.TileEntityAlienChest;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
-import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer

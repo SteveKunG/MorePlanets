@@ -10,7 +10,7 @@ import stevekung.mods.moreplanets.integration.jei.MorePlanetsJEIPlugin;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
-import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
+import stevekung.mods.stevekunglib.utils.enums.EnumToolSpeed;
 
 public class ItemAxeMP extends ItemAxe implements ISortableItem, IItemModelRender
 {

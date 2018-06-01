@@ -26,6 +26,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import stevekung.mods.stevekunglib.utils.enums.EnumEntityTrackerType;
 
 public class CommonRegistryUtils
 {

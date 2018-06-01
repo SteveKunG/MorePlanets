@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 import stevekung.mods.stevekunglib.utils.client.ColoredFontRenderer;
 
 public class ColorUtils

@@ -1,4 +1,4 @@
-package stevekung.mods.stevekunglib.utils;
+package stevekung.mods.stevekunglib.utils.enums;
 
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumDyeColor;
@@ -16,6 +16,5 @@ public class CachedEnum
     public static final EnumFacing.Axis[] axisValues = EnumFacing.Axis.values();
     public static final TextFormatting[] textFormatValues = TextFormatting.values();
     public static final EnumAction[] actionValues = EnumAction.values();
-    public static final EnumMCVersion[] mcValues = EnumMCVersion.values();
     public static final Rotation[] rotationValues = Rotation.values();
 }

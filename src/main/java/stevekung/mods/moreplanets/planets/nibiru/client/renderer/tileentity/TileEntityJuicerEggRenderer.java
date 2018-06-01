@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.planets.nibiru.client.model.ModelJuicerEgg;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
-import stevekung.mods.stevekunglib.utils.RenderUtils;
+import stevekung.mods.stevekunglib.utils.client.RenderUtils;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityJuicerEggRenderer extends TileEntitySpecialRenderer<TileEntityJuicerEgg>

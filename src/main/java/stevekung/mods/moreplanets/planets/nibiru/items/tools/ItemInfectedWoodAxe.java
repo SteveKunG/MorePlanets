@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.items.tools.ItemAxeMP;
-import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
+import stevekung.mods.stevekunglib.utils.enums.EnumToolSpeed;
 
 public class ItemInfectedWoodAxe extends ItemAxeMP
 {

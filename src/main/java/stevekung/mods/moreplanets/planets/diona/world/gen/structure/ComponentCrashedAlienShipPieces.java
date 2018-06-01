@@ -24,7 +24,7 @@ import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityCrashedAlie
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienChest;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.moreplanets.utils.LoggerMP;
-import stevekung.mods.stevekunglib.utils.CachedEnum;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
 {

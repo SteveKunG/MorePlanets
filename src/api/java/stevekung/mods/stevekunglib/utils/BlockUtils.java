@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.oredict.OreDictionary;
+import stevekung.mods.stevekunglib.utils.enums.EnumHarvestLevel;
 
 public class BlockUtils
 {

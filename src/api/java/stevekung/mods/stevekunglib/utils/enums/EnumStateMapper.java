@@ -1,4 +1,4 @@
-package stevekung.mods.stevekunglib.utils;
+package stevekung.mods.stevekunglib.utils.enums;
 
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFenceGate;
@@ -6,6 +6,7 @@ import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.properties.IProperty;
 import net.minecraftforge.fluids.BlockFluidBase;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public enum EnumStateMapper
 {

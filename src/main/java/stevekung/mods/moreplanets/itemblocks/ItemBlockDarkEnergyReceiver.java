@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescription;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
-import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
 public class ItemBlockDarkEnergyReceiver extends ItemBlockDescription
 {

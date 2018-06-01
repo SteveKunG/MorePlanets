@@ -18,8 +18,8 @@ import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
-import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
 public class ItemBlockDarkEnergyGenerator extends ItemBlockTESRMP
 {

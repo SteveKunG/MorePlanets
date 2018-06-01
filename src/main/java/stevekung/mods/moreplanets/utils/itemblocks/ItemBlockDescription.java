@@ -19,8 +19,8 @@ import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
 import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockAdvancedTileMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
-import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
 public class ItemBlockDescription extends ItemBlockTESRMP
 {

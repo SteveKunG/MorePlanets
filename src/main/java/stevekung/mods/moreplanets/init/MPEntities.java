@@ -23,7 +23,7 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.*;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.*;
 import stevekung.mods.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
-import stevekung.mods.stevekunglib.utils.EnumEntityTrackerType;
+import stevekung.mods.stevekunglib.utils.enums.EnumEntityTrackerType;
 
 public class MPEntities
 {

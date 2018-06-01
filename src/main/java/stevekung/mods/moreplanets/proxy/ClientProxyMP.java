@@ -51,9 +51,9 @@ import stevekung.mods.moreplanets.utils.client.particle.ParticleBreakingMC;
 import stevekung.mods.moreplanets.utils.client.particle.ParticleFallingDustMP;
 import stevekung.mods.moreplanets.utils.client.particle.ParticleLavaMC;
 import stevekung.mods.moreplanets.utils.client.particle.ParticleLiquidDrip;
-import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class ClientProxyMP extends ServerProxyMP
 {

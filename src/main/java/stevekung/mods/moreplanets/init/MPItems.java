@@ -23,8 +23,8 @@ import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.items.*;
 import stevekung.mods.moreplanets.utils.items.tools.*;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
-import stevekung.mods.stevekunglib.utils.EnumHarvestLevel;
-import stevekung.mods.stevekunglib.utils.EnumToolSpeed;
+import stevekung.mods.stevekunglib.utils.enums.EnumHarvestLevel;
+import stevekung.mods.stevekunglib.utils.enums.EnumToolSpeed;
 
 public class MPItems
 {

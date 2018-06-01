@@ -1,4 +1,4 @@
-package stevekung.mods.stevekunglib.utils;
+package stevekung.mods.stevekunglib.utils.client;
 
 import javax.annotation.Nonnull;
 
@@ -22,6 +22,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import stevekung.mods.stevekunglib.utils.enums.EnumStateMapper;
 
 public class ClientRegistryUtils
 {

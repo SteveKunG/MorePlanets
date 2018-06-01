@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.stevekunglib.utils.GLConstants;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 public abstract class SkyProviderBaseMP extends IRenderHandler
 {

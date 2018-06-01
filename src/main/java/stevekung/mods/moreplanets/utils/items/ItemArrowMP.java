@@ -22,8 +22,8 @@ import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfected
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
-import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
 public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelRender
 {

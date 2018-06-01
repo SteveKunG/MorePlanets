@@ -1,4 +1,4 @@
-package stevekung.mods.stevekunglib.utils;
+package stevekung.mods.stevekunglib.utils.client;
 
 import org.lwjgl.opengl.GL11;
 

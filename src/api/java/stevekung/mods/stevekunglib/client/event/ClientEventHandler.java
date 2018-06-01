@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
 public class ClientEventHandler
 {
-    private Minecraft mc;
+    private final Minecraft mc;
     public static int ticks;
     public static int ticksPaused;
     public static float renderPartialTicks;

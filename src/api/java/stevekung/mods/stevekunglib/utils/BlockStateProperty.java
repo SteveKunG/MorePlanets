@@ -7,6 +7,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.IStringSerializable;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class BlockStateProperty
 {

@@ -2,7 +2,7 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.structure;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockStainedHardenedClay;
+import net.minecraft.block.BlockColored;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -176,7 +176,7 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
                 }
             }
 
-            IBlockState orangeClay = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.ORANGE);
+            IBlockState orangeClay = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE);
             IBlockState iblockstate1 = MPBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
             IBlockState iblockstate2 = MPBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
             IBlockState iblockstate3 = MPBlocks.INFECTED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST);
@@ -263,7 +263,7 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
             this.setBlockState(world, orangeClay, 11, 0, 11, box);
             this.setBlockState(world, orangeClay, 10, 0, 12, box);
             this.setBlockState(world, orangeClay, 10, 0, 13, box);
-            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.RED), 10, 0, 10, box);
+            this.setBlockState(world, Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.RED), 10, 0, 10, box);
 
             for (int j2 = 0; j2 <= this.scatteredFeatureSizeX - 1; j2 += this.scatteredFeatureSizeX - 1)
             {

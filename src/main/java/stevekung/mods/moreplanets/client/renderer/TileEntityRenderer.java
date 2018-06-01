@@ -12,7 +12,7 @@ import stevekung.mods.moreplanets.tileentity.*;
 import stevekung.mods.moreplanets.utils.client.renderer.tileentity.TileEntityAncientChestRendererMP;
 import stevekung.mods.moreplanets.utils.client.renderer.tileentity.TileEntityChestRendererMP;
 import stevekung.mods.moreplanets.utils.client.renderer.tileentity.TileEntityTreasureChestRendererMP;
-import stevekung.mods.stevekunglib.utils.ClientRegistryUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class TileEntityRenderer
 {

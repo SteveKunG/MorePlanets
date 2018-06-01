@@ -1,4 +1,4 @@
-package stevekung.mods.stevekunglib.utils;
+package stevekung.mods.stevekunglib.utils.client;
 
 import org.lwjgl.input.Keyboard;
 
@@ -8,6 +8,7 @@ import net.minecraft.util.text.Style;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import stevekung.mods.stevekunglib.utils.JsonUtils;
 
 public class ClientUtils
 {

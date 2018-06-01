@@ -32,7 +32,11 @@ import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.CreativeTabsMP;
 import stevekung.mods.moreplanets.utils.LoggerMP;
-import stevekung.mods.stevekunglib.utils.*;
+import stevekung.mods.stevekunglib.utils.CommonRegistryUtils;
+import stevekung.mods.stevekunglib.utils.CommonUtils;
+import stevekung.mods.stevekunglib.utils.VersionChecker;
+import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
 @Mod(modid = MorePlanetsMod.MOD_ID, name = MorePlanetsMod.NAME, version = MorePlanetsMod.VERSION, dependencies = MorePlanetsMod.DEPENDENCIES, updateJSON = MorePlanetsMod.JSON_URL, certificateFingerprint = MorePlanetsMod.CERTIFICATE)
 public class MorePlanetsMod

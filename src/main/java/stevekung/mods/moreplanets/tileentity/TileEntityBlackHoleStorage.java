@@ -40,9 +40,9 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityAdvancedMP;
-import stevekung.mods.stevekunglib.utils.ClientUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
+import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
 public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IInventoryDefaults, ISidedInventory, IFluidHandlerWrapper, IConnector
 {
