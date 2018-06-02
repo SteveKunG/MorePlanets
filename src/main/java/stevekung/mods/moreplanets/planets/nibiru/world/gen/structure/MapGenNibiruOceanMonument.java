@@ -9,8 +9,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraft.world.gen.structure.*;
+import net.minecraft.world.gen.structure.MapGenStructure;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraft.world.gen.structure.StructureStart;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedGuardian;
 import stevekung.mods.moreplanets.utils.LoggerMP;
@@ -19,15 +21,14 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 {
     private int spacing;
     private int separation;
-    public List<Biome> waterBiomes = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
-    public Biome spawnBiome = MPBiomes.INFECTED_DEEP_OCEAN;
-    private static List<SpawnListEntry> MONUMENT_ENEMIES = new ArrayList<>();
+    private static final List<Biome> waterBiomes = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
+    private static final List<Biome.SpawnListEntry> GUARDIAN = new ArrayList<>();
 
     static
     {
-        MONUMENT_ENEMIES.add(new SpawnListEntry(EntityInfectedGuardian.class, 1, 2, 4));
+        MapGenNibiruOceanMonument.GUARDIAN.add(new Biome.SpawnListEntry(EntityInfectedGuardian.class, 1, 2, 4));
         MapGenStructureIO.registerStructure(StartMonument.class, "NibiruOceanMonument");
-        StructureOceanMonumentPieces.registerOceanMonumentPieces();
+        StructureNibiruOceanMonumentPieces.registerOceanMonumentPieces();
     }
 
     public MapGenNibiruOceanMonument()
@@ -67,12 +68,12 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 
         if (i == k && j == l)
         {
-            if (!this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 16, new ArrayList<>(Arrays.asList(this.spawnBiome))))
+            if (!this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 16, new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_DEEP_OCEAN))))
             {
                 return false;
             }
 
-            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, this.waterBiomes);
+            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, MapGenNibiruOceanMonument.waterBiomes);
 
             if (flag)
             {
@@ -95,9 +96,9 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
         return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.spacing, this.separation, 10387313, true, 100, findUnexplored);
     }
 
-    public List<SpawnListEntry> getSpawnList()
+    public List<Biome.SpawnListEntry> getSpawnList()
     {
-        return MONUMENT_ENEMIES;
+        return MapGenNibiruOceanMonument.GUARDIAN;
     }
 
     public static class StartMonument extends StructureStart
@@ -125,7 +126,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
             int i1 = x * 16 + 8 - 29;
             int j1 = z * 16 + 8 - 29;
             EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
-            this.components.add(new StructureOceanMonumentPieces.MonumentBuilding(rand, i1, j1, enumfacing));
+            this.components.add(new StructureNibiruOceanMonumentPieces.MonumentBuilding(rand, i1, j1, enumfacing));
             this.updateBoundingBox();
             this.wasCreated = true;
         }

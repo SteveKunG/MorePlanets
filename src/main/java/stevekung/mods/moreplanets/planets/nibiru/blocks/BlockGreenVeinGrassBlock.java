@@ -94,10 +94,7 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            if (MPBlocks.TERRAPUFF_HERB.canPlaceBlockAt(world, blockpos1))
-                            {
-                                world.setBlockState(blockpos1, MPBlocks.TERRAPUFF_HERB.getDefaultState(), 3);
-                            }
+                            world.getBiome(blockpos1).plantFlower(world, rand, blockpos1);
                         }
                         else
                         {

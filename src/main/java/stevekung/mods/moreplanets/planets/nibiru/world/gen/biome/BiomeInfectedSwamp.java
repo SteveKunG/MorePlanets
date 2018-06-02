@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -19,14 +20,27 @@ public class BiomeInfectedSwamp extends BiomeNibiru
     public BiomeInfectedSwamp(BiomeProperties prop)
     {
         super(prop);
-        this.decorator.infectedTreesPerChunk = 2;
-        this.decorator.infectedTallGrassPerChunk = 30;
-        this.decorator.waterlilyPerChunk = 4;
-        this.decorator.whiteTailPerChunk = 4;
-        this.decorator.clayPerChunk = 1;
+        this.decorator.treesPerChunk = 2;
+        this.decorator.flowersPerChunk = 1;
+        this.decorator.deadBushPerChunk = 1;
         this.decorator.reedsPerChunk = 10;
+        this.decorator.clayPerChunk = 1;
+        this.decorator.waterlilyPerChunk = 4;
         this.decorator.sandPatchesPerChunk = 0;
         this.decorator.gravelPatchesPerChunk = 0;
+        this.decorator.grassPerChunk = 60;
+    }
+
+    @Override
+    public IBlockState pickRandomModdedFlower(Random rand, BlockPos pos)
+    {
+        return MPBlocks.WHITE_TAIL.getDefaultState();
+    }
+
+    @Override
+    public void addDefaultFlowers()
+    {
+        this.addFlower(MPBlocks.WHITE_TAIL.getDefaultState(), 20);
     }
 
     @Override

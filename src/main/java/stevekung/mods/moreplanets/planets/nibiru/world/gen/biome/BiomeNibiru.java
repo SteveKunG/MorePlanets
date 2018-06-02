@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.BiomeDecoratorNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
@@ -16,6 +17,7 @@ import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfec
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedVinesDirt;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenNibiruFossils;
 import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
+import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeNibiru extends BiomeMP
 {
@@ -28,6 +30,7 @@ public class BiomeNibiru extends BiomeMP
     protected static final WorldGenInfectedTrees TREE_NO_LEAVES = new WorldGenInfectedTrees(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
     protected static final WorldGenInfectedVinesDirt SCATTERED_DIRT = new WorldGenInfectedVinesDirt();
     protected static final WorldGenNibiruFossils FOSSILS = new WorldGenNibiruFossils();
+    protected static final WorldGenFlowersBase GRASS = new WorldGenFlowersBase(MPBlocks.INFECTED_GRASS.getDefaultState());
 
     public BiomeNibiru(BiomeProperties prop)
     {
@@ -36,13 +39,6 @@ public class BiomeNibiru extends BiomeMP
         this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.liquidBlock = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
-        this.decorator.clayPerChunk = 1;
-        this.decorator.gravelPatchesPerChunk = 1;
-        this.decorator.sandPatchesPerChunk = 3;
-        this.decorator.pureHurbPerChunk = 4;
-        this.decorator.treesPerChunk = -999;
-        this.decorator.flowersPerChunk = -999;
-        this.decorator.grassPerChunk = -999;
     }
 
     @Override
@@ -55,6 +51,24 @@ public class BiomeNibiru extends BiomeMP
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         return rand.nextInt(10) == 0 ? BiomeNibiru.BIG_TREE : BiomeNibiru.TREE;
+    }
+
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random rand)
+    {
+        return BiomeNibiru.GRASS;
+    }
+
+    @Override
+    public void addDefaultFlowers()
+    {
+        this.addFlower(MPBlocks.PURE_HERB.getDefaultState(), 20);
+    }
+
+    @Override
+    public IBlockState pickRandomModdedFlower(Random rand, BlockPos pos)
+    {
+        return MPBlocks.PURE_HERB.getDefaultState();
     }
 
     @Override

@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,17 +21,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.BlockUtils;
 
 public class BlockInfectedSugarCane extends BlockBushMP
 {
-    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 1.0D, 0.875D);
 
     public BlockInfectedSugarCane(String name)
     {
         super(Material.PLANTS);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_15, 0));
         this.setUnlocalizedName(name);
     }
 
@@ -55,16 +54,16 @@ public class BlockInfectedSugarCane extends BlockBushMP
 
                 if (i < 3)
                 {
-                    int j = state.getValue(AGE).intValue();
+                    int j = state.getValue(BlockStateProperty.AGE_15).intValue();
 
                     if (j == 15)
                     {
                         world.setBlockState(pos.up(), this.getDefaultState());
-                        world.setBlockState(pos, state.withProperty(AGE, 0), 4);
+                        world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_15, 0), 4);
                     }
                     else
                     {
-                        world.setBlockState(pos, state.withProperty(AGE, j + 1), 4);
+                        world.setBlockState(pos, state.withProperty(BlockStateProperty.AGE_15, j + 1), 4);
                     }
                 }
             }
@@ -72,7 +71,7 @@ public class BlockInfectedSugarCane extends BlockBushMP
     }
 
     @Override
-    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos.down()).getBlock();
 
@@ -80,21 +79,33 @@ public class BlockInfectedSugarCane extends BlockBushMP
         {
             return false;
         }
-        if (block == this)
+        else if (block == this)
         {
             return true;
         }
         else
         {
-            for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+            for (EnumFacing facing : EnumFacing.Plane.HORIZONTAL)
             {
-                if ((block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_SAND) && world.getBlockState(pos.offset(enumfacing).down()).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
+                if ((block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_SAND) && world.getBlockState(pos.offset(facing).down()).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
                     return true;
                 }
             }
             return false;
         }
+    }
+
+    @Override
+    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    {
+        return this.canPlaceBlockAt(world, pos);
+    }
+
+    @Override
+    protected boolean validBlock(Block block)
+    {
+        return block == this || block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT || block == MPBlocks.INFECTED_SAND;
     }
 
     @Override
@@ -131,18 +142,18 @@ public class BlockInfectedSugarCane extends BlockBushMP
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(AGE, meta);
+        return this.getDefaultState().withProperty(BlockStateProperty.AGE_15, meta);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(AGE).intValue();
+        return state.getValue(BlockStateProperty.AGE_15);
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, AGE);
+        return new BlockStateContainer(this, BlockStateProperty.AGE_15);
     }
 }

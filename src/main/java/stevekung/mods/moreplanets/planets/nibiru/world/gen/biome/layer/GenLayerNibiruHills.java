@@ -1,6 +1,5 @@
-package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernew;
+package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layer;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
@@ -56,10 +55,6 @@ public class GenLayerNibiruHills extends GenLayer
                     {
                         biome1 = MPBiomes.INFECTED_WOODED_HILLS;
                     }
-                    else if (biome == Biomes.BIRCH_FOREST)
-                    {
-                        biome1 = Biomes.BIRCH_FOREST_HILLS;
-                    }
                     else if (biome == MPBiomes.INFECTED_DEAD_DARK_FOREST)
                     {
                         biome1 = MPBiomes.INFECTED_PLAINS;
@@ -68,13 +63,13 @@ public class GenLayerNibiruHills extends GenLayer
                     {
                         biome1 = MPBiomes.INFECTED_TAIGA_HILLS;
                     }
-                    else if (biome == Biomes.REDWOOD_TAIGA)
+                    else if (biome == MPBiomes.INFECTED_GIANT_TREE_TAIGA)
                     {
-                        biome1 = Biomes.REDWOOD_TAIGA_HILLS;
+                        biome1 = MPBiomes.INFECTED_GIANT_TREE_TAIGA_HILLS;
                     }
-                    else if (biome == Biomes.COLD_TAIGA)
+                    else if (biome == MPBiomes.INFECTED_SNOWY_TAIGA)
                     {
-                        biome1 = Biomes.COLD_TAIGA_HILLS;
+                        biome1 = MPBiomes.INFECTED_SNOWY_TAIGA_HILLS;
                     }
                     else if (biome == MPBiomes.INFECTED_PLAINS)
                     {

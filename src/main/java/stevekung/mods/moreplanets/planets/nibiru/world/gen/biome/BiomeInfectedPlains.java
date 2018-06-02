@@ -17,10 +17,10 @@ public class BiomeInfectedPlains extends BiomeNibiru
     public BiomeInfectedPlains(BiomeProperties prop, boolean infested)
     {
         super(prop);
-        this.decorator.infectedTallGrassPerChunk = 10;
+        this.decorator.treesPerChunk = 0;
         this.decorator.extraTreeChance = 0.05F;
-        this.decorator.infectedTreesPerChunk = 0;
-        this.decorator.reedsPerChunk = 10;
+        this.decorator.flowersPerChunk = 4;
+        this.decorator.grassPerChunk = 120;
         this.infested = infested;
     }
 
@@ -31,11 +31,11 @@ public class BiomeInfectedPlains extends BiomeNibiru
 
         if (grassColorNoise < -0.8D)
         {
-            this.decorator.infectedTallGrassPerChunk = 86;
+            this.decorator.grassPerChunk = 100;
         }
         else
         {
-            this.decorator.infectedTallGrassPerChunk = 128;
+            this.decorator.grassPerChunk = 120;
 
             for (int i = 0; i < 7; ++i)
             {

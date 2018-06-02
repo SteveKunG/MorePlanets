@@ -1,6 +1,5 @@
-package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernew;
+package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layer;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
@@ -27,7 +26,7 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
                 this.initChunkSeed(j + areaX, i + areaY);
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
 
-                if (!this.replaceBiomeEdgeIfNecessary(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS), Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS_EDGE)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.REDWOOD_TAIGA), Biome.getIdForBiome(MPBiomes.INFECTED_TAIGA)))
+                if (!this.replaceBiomeEdgeIfNecessary(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS), Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS_EDGE)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS_PLATEAU), Biome.getIdForBiome(MPBiomes.INFECTED_BADLANDS)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_GIANT_TREE_TAIGA), Biome.getIdForBiome(MPBiomes.INFECTED_TAIGA)))
                 {
                     if (k == Biome.getIdForBiome(MPBiomes.INFECTED_DESERT))
                     {
@@ -52,7 +51,7 @@ public class GenLayerNibiruBiomeEdge extends GenLayer
                         int j1 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
                         int k1 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-                        if (l != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && l != Biome.getIdForBiome(Biomes.COLD_TAIGA) && i1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && j1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && k1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && l != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA))
+                        if (l != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_DESERT) && l != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TAIGA) && l != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_TUNDRA))
                         {
                             if (l != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && k1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && i1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE) && j1 != Biome.getIdForBiome(MPBiomes.INFECTED_JUNGLE))
                             {

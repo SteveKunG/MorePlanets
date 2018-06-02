@@ -83,28 +83,26 @@ public class BlockInfectedSeaweed extends BlockBushMP
     @Override
     protected boolean validBlock(Block block)
     {
-        return block == MPBlocks.INFECTED_DIRT || block == MPBlocks.INFECTED_COARSE_DIRT;
+        return true;
     }
 
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        Block blockDown = world.getBlockState(pos.down()).getBlock();
         IBlockState blockUp = world.getBlockState(pos.up());
-        return super.canPlaceBlockAt(world, pos) && this.validBlock(blockDown) && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+        return super.canPlaceBlockAt(world, pos) && world.getBlockState(pos.down()).isFullBlock() && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
     }
 
     @Override
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
-        Block blockDown = world.getBlockState(pos.down()).getBlock();
         IBlockState blockUp = world.getBlockState(pos.up());
 
         if (state.getBlock() == this)
         {
-            return this.validBlock(blockDown) && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+            return world.getBlockState(pos.down()).isFullBlock() && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
         }
-        return this.validBlock(blockDown) && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+        return world.getBlockState(pos.down()).isFullBlock() && blockUp == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
     }
 
     @Override

@@ -1,11 +1,10 @@
-package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernew;
+package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -60,7 +59,7 @@ public class GenLayerNibiruBiome extends GenLayer
                 int l = (k & 3840) >> 8;
             k = k & -3841;
 
-            if (isBiomeOceanic(k))
+            if (this.isOcean(k))
             {
                 aint1[j + i * areaWidth] = k;
             }
@@ -101,7 +100,7 @@ public class GenLayerNibiruBiome extends GenLayer
             {
                 if (l > 0)
                 {
-                    aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.REDWOOD_TAIGA);
+                    aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.INFECTED_GIANT_TREE_TAIGA);
                 }
                 else
                 {
@@ -129,7 +128,6 @@ public class GenLayerNibiruBiome extends GenLayer
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_DEAD_DARK_FOREST, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_MOUNTAINS, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_PLAINS, 10));
-        list.add(new BiomeManager.BiomeEntry(Biomes.BIRCH_FOREST, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_SWAMP, 10));
         currentBiomes[BiomeManager.BiomeType.WARM.ordinal()] = new ArrayList<>(list);
         list.clear();
@@ -140,7 +138,7 @@ public class GenLayerNibiruBiome extends GenLayer
         currentBiomes[BiomeManager.BiomeType.COOL.ordinal()] = new ArrayList<>(list);
         list.clear();
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_SNOWY_TUNDRA, 30));
-        list.add(new BiomeManager.BiomeEntry(Biomes.COLD_TAIGA, 10));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_SNOWY_TAIGA, 10));
         currentBiomes[BiomeManager.BiomeType.ICY.ordinal()] = new ArrayList<>(list);
         list.clear();
         currentBiomes[BiomeManager.BiomeType.DESERT.ordinal()] = new ArrayList<>(list);
@@ -160,5 +158,10 @@ public class GenLayerNibiruBiome extends GenLayer
         int totalWeight = WeightedRandom.getTotalWeight(biomeList);
         int weight = this.nextInt(totalWeight / 10) * 10;
         return WeightedRandom.getRandomItem(biomeList, weight);
+    }
+
+    private boolean isOcean(int id)
+    {
+        return Biome.getBiome(id) == MPBiomes.INFECTED_OCEAN || Biome.getBiome(id) == MPBiomes.INFECTED_DEEP_OCEAN;
     }
 }

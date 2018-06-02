@@ -11,7 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -106,8 +105,6 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
         }
 
         biome.decorate(this.world, this.rand, pos);
-        WorldEntitySpawner.performWorldGenSpawning(this.world, biome, x + 8, z + 8, 16, 16, this.rand);
-
         pos = pos.add(8, 0, 8);
 
         for (int snowX = 0; snowX < 16; ++snowX)

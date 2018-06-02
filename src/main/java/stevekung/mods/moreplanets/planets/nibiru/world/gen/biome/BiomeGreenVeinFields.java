@@ -3,11 +3,13 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 import java.util.LinkedList;
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityTerrastoneGolem;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenAlienBerryBigTree;
@@ -24,15 +26,34 @@ public class BiomeGreenVeinFields extends BiomeNibiru
     private static final WorldGenFlowersBase TERRASHROOM_FLOWER = new WorldGenFlowersBase(MPBlocks.TERRASHROOM.getDefaultState());
     private static final WorldGenAlienBerryTree TREE = new WorldGenAlienBerryTree();
     private static final WorldGenAlienBerryBigTree BIG_TREE = new WorldGenAlienBerryBigTree();
+    protected static final WorldGenFlowersBase GRASS = new WorldGenFlowersBase(MPBlocks.GREEN_VEIN_GRASS.getDefaultState());
 
     public BiomeGreenVeinFields(BiomeProperties prop)
     {
         super(prop);
         this.topBlock = MPBlocks.GREEN_VEIN_GRASS_BLOCK.getDefaultState();
-        this.decorator.pureHurbPerChunk = -999;
-        this.decorator.terrapuffHurbPerChunk = 4;
-        this.decorator.greenVeinTallGrassPerChunk = 128;
-        this.decorator.infectedTreesPerChunk = 4;
+        this.decorator.grassPerChunk = 120;
+        this.decorator.flowersPerChunk = 4;
+        this.decorator.treesPerChunk = 4;
+    }
+
+    @Override
+    public IBlockState pickRandomModdedFlower(Random rand, BlockPos pos)
+    {
+        return rand.nextInt(3) > 0 ? MPBlocks.TERRAPUFF_HERB.getDefaultState() : MPBlocks.TERRASHROOM.getDefaultState();
+    }
+
+    @Override
+    public void addDefaultFlowers()
+    {
+        this.addFlower(MPBlocks.TERRAPUFF_HERB.getDefaultState(), 20);
+        this.addFlower(MPBlocks.TERRASHROOM.getDefaultState(), 20);
+    }
+
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random rand)
+    {
+        return BiomeGreenVeinFields.GRASS;
     }
 
     @Override

@@ -126,10 +126,7 @@ public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowa
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            if (MPBlocks.PURE_HERB.canPlaceBlockAt(world, blockpos1))
-                            {
-                                world.setBlockState(blockpos1, MPBlocks.PURE_HERB.getDefaultState(), 3);
-                            }
+                            world.getBiome(blockpos1).plantFlower(world, rand, blockpos1);
                         }
                         else
                         {

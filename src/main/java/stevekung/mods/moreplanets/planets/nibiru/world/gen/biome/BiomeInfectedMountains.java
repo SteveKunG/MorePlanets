@@ -26,10 +26,9 @@ public class BiomeInfectedMountains extends BiomeNibiru
 
         if (type == Type.EXTRA_TREES)
         {
-            this.decorator.infectedTreesPerChunk = 3;
+            this.decorator.treesPerChunk = 3;
         }
         this.type = type;
-        this.decorator.infectedTallGrassPerChunk = 2;
     }
 
     @Override

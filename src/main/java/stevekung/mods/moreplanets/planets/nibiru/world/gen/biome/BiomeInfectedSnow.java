@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 import java.util.LinkedList;
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -24,16 +25,25 @@ public class BiomeInfectedSnow extends BiomeNibiru
     public BiomeInfectedSnow(BiomeProperties prop, boolean superIcy)
     {
         super(prop);
-        this.decorator.infectedTallGrassPerChunk = 1;
-        this.decorator.philipyPerChunk = 2;
-        this.decorator.pureHurbPerChunk = 2;
-        this.decorator.infectedTreesPerChunk = 0;
         this.superIcy = superIcy;
 
         if (superIcy)
         {
             this.topBlock = MPBlocks.INFECTED_SNOW.getDefaultState();
         }
+    }
+
+    @Override
+    public IBlockState pickRandomModdedFlower(Random rand, BlockPos pos)
+    {
+        return rand.nextInt(3) > 0 ? MPBlocks.PURE_HERB.getDefaultState() : MPBlocks.PHILIPY.getDefaultState();
+    }
+
+    @Override
+    public void addDefaultFlowers()
+    {
+        this.addFlower(MPBlocks.PURE_HERB.getDefaultState(), 20);
+        this.addFlower(MPBlocks.PHILIPY.getDefaultState(), 10);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.client.renderer;
 
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockInfectedSugarCane;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.utils.blocks.BlockDropableLitOre;
 import stevekung.mods.moreplanets.utils.blocks.BlockSaplingMP;
@@ -33,7 +32,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_OAK_DOOR, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_DOOR, EnumStateMapper.DOOR);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ELECTRICAL_FIRE, EnumStateMapper.FIRE);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SUGAR_CANE, BlockInfectedSugarCane.AGE);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SUGAR_CANE, EnumStateMapper.PLANT_AGE_15);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SEAWEED, EnumStateMapper.VANILLA_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.HELIUM_GAS_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);

@@ -8,11 +8,6 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.*;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layer.*;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernew.GenLayerNibiruBiome;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernew.GenLayerNibiruBiomeEdge;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernew.GenLayerNibiruHills;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernewtest.GenLayerNibiruAddIsland;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layernewtest.GenLayerNibiruIsland;
 
 public class BiomeProviderNibiru extends BiomeProvider
 {
@@ -81,22 +76,22 @@ public class BiomeProviderNibiru extends BiomeProvider
     private void initLayers(long seed)
     {
         int i = 4;
-        GenLayer genlayer = new GenLayerNibiruIsland(1L);
+        GenLayer genlayer = new GenLayerIsland(1L);
         genlayer = new GenLayerFuzzyZoom(2000L, genlayer);
-        GenLayer genlayeraddisland = new GenLayerNibiruAddIsland(1L, genlayer);
+        GenLayer genlayeraddisland = new GenLayerAddIsland(1L, genlayer);
         GenLayer genlayerzoom = new GenLayerZoom(2001L, genlayeraddisland);
-        GenLayer genlayeraddisland1 = new GenLayerNibiruAddIsland(2L, genlayerzoom);
-        genlayeraddisland1 = new GenLayerNibiruAddIsland(50L, genlayeraddisland1);
-        genlayeraddisland1 = new GenLayerNibiruAddIsland(70L, genlayeraddisland1);
+        GenLayer genlayeraddisland1 = new GenLayerAddIsland(2L, genlayerzoom);
+        genlayeraddisland1 = new GenLayerAddIsland(50L, genlayeraddisland1);
+        genlayeraddisland1 = new GenLayerAddIsland(70L, genlayeraddisland1);
         GenLayer genlayerremovetoomuchocean = new GenLayerRemoveTooMuchOcean(2L, genlayeraddisland1);
         GenLayer genlayeraddsnow = new GenLayerAddSnow(2L, genlayerremovetoomuchocean);
-        GenLayer genlayeraddisland2 = new GenLayerNibiruAddIsland(3L, genlayeraddsnow);
+        GenLayer genlayeraddisland2 = new GenLayerAddIsland(3L, genlayeraddsnow);
         GenLayer genlayeredge = new GenLayerEdge(2L, genlayeraddisland2, GenLayerEdge.Mode.COOL_WARM);
         genlayeredge = new GenLayerEdge(2L, genlayeredge, GenLayerEdge.Mode.HEAT_ICE);
         genlayeredge = new GenLayerEdge(3L, genlayeredge, GenLayerEdge.Mode.SPECIAL);
         GenLayer genlayerzoom1 = new GenLayerZoom(2002L, genlayeredge);
         genlayerzoom1 = new GenLayerZoom(2003L, genlayerzoom1);
-        GenLayer genlayeraddisland3 = new GenLayerNibiruAddIsland(4L, genlayerzoom1);
+        GenLayer genlayeraddisland3 = new GenLayerAddIsland(4L, genlayerzoom1);
         GenLayer genlayeraddmushroomisland = new GenLayerAddGreenVeinBadlands(5L, genlayeraddisland3);
         GenLayer genlayerdeepocean = new GenLayerInfectedDeepOcean(4L, genlayeraddmushroomisland);
         GenLayer genlayer4 = GenLayerZoom.magnify(1000L, genlayerdeepocean, 0);
@@ -117,7 +112,7 @@ public class BiomeProviderNibiru extends BiomeProvider
 
             if (k == 0)
             {
-                genlayerhills = new GenLayerNibiruAddIsland(3L, genlayerhills);
+                genlayerhills = new GenLayerAddIsland(3L, genlayerhills);
             }
 
             if (k == 1 || i == 1)

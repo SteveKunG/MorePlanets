@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen;
 
 import java.util.Random;
 
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -9,6 +11,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.*;
+import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.moreplanets.utils.world.gen.feature.WorldGenDoublePlantMP;
 import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
@@ -16,80 +19,48 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeDecoratorNibiru extends BiomeDecoratorMP
 {
-    public int infectedTallGrassPerChunk;
-    public int infectedFernPerChunk;
-    public int infectedCactusPerChunk;
-    public int deadBushPerChunk;
-    public int infectedTreesPerChunk;
-    public int pureHurbPerChunk;
-    public int terrapuffHurbPerChunk;
-    public int greenVeinTallGrassPerChunk;
     public int orangeBushPerChunk;
-    public int batasiaDandelionPerChunk;
-    public int pyoloniaPerChunk;
-    public int philipyPerChunk;
-    public int whiteTailPerChunk;
-    public int vealiumVinePerChunk;
-    public int seaweedPerChunk;
 
     @Override
     protected void generate(Biome biome, World world, Random rand)
     {
-        int i;
-
-        for (i = 0; i < this.infectedTallGrassPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.INFECTED_GRASS.getDefaultState()), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.pureHurbPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.PURE_HERB.getDefaultState()), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.terrapuffHurbPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.TERRAPUFF_HERB.getDefaultState()), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.batasiaDandelionPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.BATASIA_DANDELION.getDefaultState()), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.pyoloniaPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.PYOLONIA.getDefaultState()), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.philipyPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.PHILIPY.getDefaultState()), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.whiteTailPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.WHITE_TAIL.getDefaultState()), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.vealiumVinePerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.VEALIUM_VINES.getDefaultState()), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.seaweedPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenNibiruSeaweed(MPBlocks.INFECTED_SEAWEED.getDefaultState()), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.infectedCactusPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenInfectedCactus(), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.deadBushPerChunk; ++i)
-        {
-            WorldDecorateUtils.generatePlants(new WorldGenDeadBush(), world, rand, this.chunkPos);
-        }
-        for (i = 0; i < this.infectedFernPerChunk; ++i)
+        for (int i = 0; i < this.grassPerChunk; ++i)
         {
             WorldDecorateUtils.generatePlants(biome.getRandomWorldGenForGrass(rand), world, rand, this.chunkPos);
         }
-        for (i = 0; i < this.greenVeinTallGrassPerChunk; ++i)
+        for (int i = 0; i < this.flowersPerChunk; ++i)
         {
-            WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.GREEN_VEIN_GRASS.getDefaultState()), world, rand, this.chunkPos);
+            if (!(biome instanceof BiomeMP))
+            {
+                return;
+            }
+
+            int x = rand.nextInt(16) + 8;
+            int z = rand.nextInt(16) + 8;
+            int y = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+            if (y > 0)
+            {
+                int randY = rand.nextInt(y);
+                BlockPos blockpos1 = this.chunkPos.add(x, randY, z);
+                IBlockState state = ((BiomeMP)biome).pickRandomModdedFlower(rand, blockpos1);
+
+                if (state.getMaterial() != Material.AIR)
+                {
+                    WorldGenFlowersBase worldGen = new WorldGenFlowersBase(state);
+                    worldGen.generate(world, rand, blockpos1);
+                }
+            }
         }
-        for (i = 0; i < this.waterlilyPerChunk; ++i)
+        for (int i = 0; i < this.cactiPerChunk; ++i)
+        {
+            WorldDecorateUtils.generatePlants(new WorldGenInfectedCactus(), world, rand, this.chunkPos);
+        }
+        for (int i = 0; i < this.deadBushPerChunk; ++i)
+        {
+            WorldDecorateUtils.generatePlants(new WorldGenDeadBush(), world, rand, this.chunkPos);
+        }
+        for (int i = 0; i < this.waterlilyPerChunk; ++i)
         {
             int x = rand.nextInt(16) + 8;
             int z = rand.nextInt(16) + 8;
@@ -113,46 +84,47 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
                 new WorldGenSporelily().generate(world, rand, blockpos4);
             }
         }
-        for (i = 0; i < this.clayPerChunk; ++i)
+        for (int i = 0; i < this.clayPerChunk; ++i)
         {
             int l1 = rand.nextInt(16) + 8;
             int i6 = rand.nextInt(16) + 8;
             new WorldGenNibiruClay(4).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(l1, 0, i6)));
         }
-        for (i = 0; i < this.reedsPerChunk; ++i)
+        for (int i = 0; i < this.reedsPerChunk; ++i)
         {
             WorldDecorateUtils.generatePlants(new WorldGenInfectedSugarCane(), world, rand, this.chunkPos);
         }
-        for (i = 0; i < this.sandPatchesPerChunk; ++i)
+        for (int i = 0; i < this.sandPatchesPerChunk; ++i)
         {
             int j = rand.nextInt(16) + 8;
             int k = rand.nextInt(16) + 8;
             new WorldGenNibiruSand(MPBlocks.INFECTED_SAND.getDefaultState(), 7).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
         }
-        for (i = 0; i < this.gravelPatchesPerChunk; ++i)
+        for (int i = 0; i < this.gravelPatchesPerChunk; ++i)
         {
             int i2 = rand.nextInt(16) + 8;
             int j6 = rand.nextInt(16) + 8;
             new WorldGenNibiruSand(MPBlocks.INFECTED_GRAVEL.getDefaultState(), 6).generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
         }
 
-        int treesPerChunk = this.infectedTreesPerChunk;
+        int treesPerChunk = this.treesPerChunk;
 
-        if (rand.nextInt(10) == 0)
+        if (rand.nextFloat() < this.extraTreeChance)
         {
             ++treesPerChunk;
         }
 
-        for (i = 0; i < treesPerChunk; ++i)
+        for (int i = 0; i < treesPerChunk; ++i)
         {
-            int k6 = rand.nextInt(16) + 8;
-            int l = rand.nextInt(16) + 8;
-            BlockPos blockpos = world.getHeight(this.chunkPos.add(k6, 0, l));
-            WorldGenAbstractTree worldgenabstracttree = biome.getRandomTreeFeature(rand);
+            int x = rand.nextInt(16) + 8;
+            int z = rand.nextInt(16) + 8;
+            BlockPos pos = world.getHeight(this.chunkPos.add(x, 0, z));
+            WorldGenAbstractTree tree = biome.getRandomTreeFeature(rand);
+            tree.setDecorationDefaults();
 
-            if (worldgenabstracttree.generate(world, rand, blockpos))
+            if (tree.generate(world, rand, pos))
             {
-                worldgenabstracttree.generateSaplings(world, rand, blockpos);
+                tree.generateSaplings(world, rand, pos);
             }
         }
 
@@ -167,7 +139,7 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
         {
             int roseBushPerChunk = rand.nextInt(5) - this.orangeBushPerChunk;
 
-            for (i = 0; i < roseBushPerChunk; ++i)
+            for (int i = 0; i < roseBushPerChunk; ++i)
             {
                 for (int i2 = 0; i2 < 5; ++i2)
                 {
@@ -182,7 +154,7 @@ public class BiomeDecoratorNibiru extends BiomeDecoratorMP
             }
         }
 
-        for (i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             new WorldGenMultalicCrystal().generate(world, rand, this.chunkPos.add(rand.nextInt(16) + 8, rand.nextInt(36), rand.nextInt(16) + 8));
         }

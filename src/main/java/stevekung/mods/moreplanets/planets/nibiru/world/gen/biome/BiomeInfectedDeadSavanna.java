@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -20,11 +21,22 @@ public class BiomeInfectedDeadSavanna extends BiomeNibiru
     public BiomeInfectedDeadSavanna(BiomeProperties prop)
     {
         super(prop);
-        this.decorator.infectedTallGrassPerChunk = 86;
-        this.decorator.infectedTreesPerChunk = 1;
-        this.decorator.philipyPerChunk = 4;
-        this.decorator.reedsPerChunk = 10;
-        this.decorator.pureHurbPerChunk = -999;
+        this.decorator.treesPerChunk = 1;
+        this.decorator.flowersPerChunk = 4;
+        this.decorator.grassPerChunk = 110;
+    }
+
+    @Override
+    public IBlockState pickRandomModdedFlower(Random rand, BlockPos pos)
+    {
+        return MPBlocks.PHILIPY.getDefaultState();
+    }
+
+    @Override
+    public void addDefaultFlowers()
+    {
+        this.addFlower(MPBlocks.PHILIPY.getDefaultState(), 20);
+        this.addFlower(MPBlocks.PURE_HERB.getDefaultState(), 10);
     }
 
     @Override

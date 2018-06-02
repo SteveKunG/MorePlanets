@@ -8,7 +8,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -58,7 +57,6 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
     protected void populate(BlockPos pos, ChunkPos chunkpos, Biome biome, int chunkX, int chunkZ, int x, int z)
     {
         int y = this.rand.nextInt(this.rand.nextInt(248) + 8);
-        WorldEntitySpawner.performWorldGenSpawning(this.world, biome, x + 8, z + 8, 16, 16, this.rand);
         this.decorator.decorate(this.world, this.rand, biome, pos);
         this.dungeonGenerator.generateStructure(this.world, this.rand, chunkpos);
         this.mineshaftGenerator.generateStructure(this.world, this.rand, chunkpos);

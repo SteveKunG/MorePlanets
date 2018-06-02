@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 import java.util.LinkedList;
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -16,7 +17,6 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 
 public class BiomeInfectedJungle extends BiomeNibiru
 {
-    private static final WorldGenFlowersBase GRASS = new WorldGenFlowersBase(MPBlocks.INFECTED_GRASS.getDefaultState());
     private static final WorldGenFlowersBase FERN = new WorldGenFlowersBase(MPBlocks.INFECTED_FERN.getDefaultState());
     private static final WorldGenNibiruMelon MELON = new WorldGenNibiruMelon();
     private static final WorldGenInfectedVines VINES = new WorldGenInfectedVines();
@@ -31,18 +31,28 @@ public class BiomeInfectedJungle extends BiomeNibiru
 
         if (isEdge)
         {
-            this.decorator.infectedTreesPerChunk = 2;
+            this.decorator.treesPerChunk = 2;
         }
         else
         {
-            this.decorator.infectedTreesPerChunk = 50;
+            this.decorator.treesPerChunk = 50;
         }
+        this.decorator.grassPerChunk = 115;
+        this.decorator.flowersPerChunk = 4;
+    }
 
-        this.decorator.infectedTallGrassPerChunk = 25;
-        this.decorator.vealiumVinePerChunk = 4;
-        this.decorator.pyoloniaPerChunk = 4;
-        this.decorator.infectedFernPerChunk = 25;
-        this.decorator.pureHurbPerChunk = 4;
+    @Override
+    public IBlockState pickRandomModdedFlower(Random rand, BlockPos pos)
+    {
+        return rand.nextInt(6) > 3 ? MPBlocks.PURE_HERB.getDefaultState() : rand.nextInt(3) == 0 ? MPBlocks.PYOLONIA.getDefaultState() : MPBlocks.VEALIUM_VINES.getDefaultState();
+    }
+
+    @Override
+    public void addDefaultFlowers()
+    {
+        this.addFlower(MPBlocks.PURE_HERB.getDefaultState(), 20);
+        this.addFlower(MPBlocks.PYOLONIA.getDefaultState(), 20);
+        this.addFlower(MPBlocks.VEALIUM_VINES.getDefaultState(), 10);
     }
 
     @Override
@@ -74,7 +84,7 @@ public class BiomeInfectedJungle extends BiomeNibiru
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
-        return rand.nextInt(4) == 0 ? BiomeInfectedJungle.FERN : BiomeInfectedJungle.GRASS;
+        return rand.nextInt(4) == 0 ? BiomeInfectedJungle.FERN : BiomeNibiru.GRASS;
     }
 
     @Override

@@ -10,7 +10,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -58,7 +57,6 @@ public class ChunkGeneratorChalos extends ChunkGeneratorBaseMP
     {
         biome.decorate(this.world, this.rand, pos);
         this.decorator.decorate(this.world, this.rand, biome, pos);
-        WorldEntitySpawner.performWorldGenSpawning(this.world, biome, x + 8, z + 8, 16, 16, this.rand);
         int pocketX = chunkX << 4;
         int pocketZ = chunkZ << 4;
         ChunkGeneratorBaseMP.generatePocket(this.world, this.rand, pocketX + 15, pocketZ + 15, MPBlocks.GASEOUS_CHEESE_MILK_BLOCK.getDefaultState(), Sets.newHashSet(MPBiomes.SLIMELY_STREAM), 16 + this.rand.nextInt(16), 3 + this.rand.nextInt(2));

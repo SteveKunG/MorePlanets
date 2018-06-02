@@ -32,15 +32,15 @@ public class BiomeInfectedTaiga extends BiomeNibiru
     {
         super(prop);
         this.type = type;
-        this.decorator.infectedTreesPerChunk = 10;
+        this.decorator.treesPerChunk = 10;
 
         if (type != Type.MEGA && type != Type.MEGA_SPRUCE)
         {
-            this.decorator.infectedTallGrassPerChunk = 20;
+            this.decorator.grassPerChunk = 40;
         }
         else
         {
-            this.decorator.infectedTallGrassPerChunk = 32;
+            this.decorator.grassPerChunk = 100;
             this.decorator.deadBushPerChunk = 1;
         }
     }
@@ -48,6 +48,15 @@ public class BiomeInfectedTaiga extends BiomeNibiru
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
+        if (type != Type.MEGA && type != Type.MEGA_SPRUCE)
+        {
+            this.decorator.grassPerChunk = 40;
+        }
+        else
+        {
+            this.decorator.grassPerChunk = 100;
+            this.decorator.deadBushPerChunk = 1;
+        }
         if (rand.nextInt(25) == 0)
         {
             BiomeNibiru.SCATTERED_DIRT.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
