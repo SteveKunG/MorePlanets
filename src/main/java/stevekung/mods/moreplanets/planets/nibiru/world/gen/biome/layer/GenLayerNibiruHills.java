@@ -82,7 +82,7 @@ public class GenLayerNibiruHills extends GenLayer
                             biome1 = MPBiomes.INFECTED_FOREST;
                         }
                     }
-                    else if (biome == MPBiomes.INFECTED_SNOWY_TUNDRA)
+                    else if (biome == MPBiomes.INFECTED_ICE_SPIKES)
                     {
                         biome1 = MPBiomes.INFECTED_SNOWY_MOUNTAINS;
                     }

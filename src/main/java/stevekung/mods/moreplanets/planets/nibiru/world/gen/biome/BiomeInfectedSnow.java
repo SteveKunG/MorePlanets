@@ -62,7 +62,7 @@ public class BiomeInfectedSnow extends BiomeNibiru
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
-        if (this.superIcy && rand.nextInt(100) == 0)
+        if (this.superIcy)
         {
             for (int i = 0; i < 3; ++i)
             {

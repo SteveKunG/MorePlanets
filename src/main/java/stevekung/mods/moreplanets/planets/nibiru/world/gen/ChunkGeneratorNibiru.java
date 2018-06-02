@@ -35,6 +35,7 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
     private MapGenNibiruPyramid pyramidGenerator = new MapGenNibiruPyramid();
     private MapGenNibiruJungleTemple jungleTempleGenerator = new MapGenNibiruJungleTemple();
     private MapGenNibiruOceanMonument oceanMonumentGenerator = new MapGenNibiruOceanMonument();
+    private MapGenNibiruIgloo iglooGenerator = new MapGenNibiruIgloo();
     private BiomeDecoratorNibiruOre decorator = new BiomeDecoratorNibiruOre();
     private MapGenNibiruDungeon dungeonGenerator = new MapGenNibiruDungeon(new DungeonConfigurationMP(MPBlocks.NIBIRU_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), MPBlocks.INFECTED_TORCH.getDefaultState(), MPBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossNibiru.class, RoomTreasureNibiru.class, RoomSpawnerNibiru.class, RoomChestNibiru.class));
 
@@ -59,6 +60,7 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
         this.oceanMonumentGenerator.generate(this.world, chunkX, chunkZ, primer);
         this.villageGenerator.generate(this.world, chunkX, chunkZ, primer);
         this.dungeonGenerator.generate(this.world, chunkX, chunkZ, primer);
+        this.iglooGenerator.generate(this.world, chunkX, chunkZ, primer);
     }
 
     @Override
@@ -72,6 +74,7 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
         this.oceanMonumentGenerator.generateStructure(this.world, this.rand, chunkpos);
         this.villageGenerator.generateStructure(this.world, this.rand, chunkpos);
         this.dungeonGenerator.generateStructure(this.world, this.rand, chunkpos);
+        this.iglooGenerator.generateStructure(this.world, this.rand, chunkpos);
 
         int worldX = chunkX << 4;
         int worldZ = chunkZ << 4;
@@ -206,6 +209,10 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
         {
             return this.dungeonGenerator.getNearestStructurePos(world, pos, findUnexplored);
         }
+        else if ("NibiruIgloo".equals(name) && this.iglooGenerator != null)
+        {
+            return this.iglooGenerator.getNearestStructurePos(world, pos, findUnexplored);
+        }
         else if ("NibiruPyramid".equals(name) && this.pyramidGenerator != null)
         {
             return this.pyramidGenerator.getNearestStructurePos(world, pos, findUnexplored);
@@ -239,6 +246,10 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
         {
             return this.dungeonGenerator.isInsideStructure(pos);
         }
+        else if ("NibiruIgloo".equals(name) && this.iglooGenerator != null)
+        {
+            return this.iglooGenerator.isInsideStructure(pos);
+        }
         else if ("NibiruPyramid".equals(name) && this.pyramidGenerator != null)
         {
             return this.pyramidGenerator.isInsideStructure(pos);
@@ -259,5 +270,6 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
         this.oceanMonumentGenerator.generate(this.world, chunkX, chunkZ, null);
         this.villageGenerator.generate(this.world, chunkX, chunkZ, null);
         this.dungeonGenerator.generate(this.world, chunkX, chunkZ, null);
+        this.iglooGenerator.generate(this.world, chunkX, chunkZ, null);
     }
 }

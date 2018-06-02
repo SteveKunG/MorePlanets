@@ -137,7 +137,7 @@ public class GenLayerNibiruBiome extends GenLayer
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_PLAINS, 10));
         currentBiomes[BiomeManager.BiomeType.COOL.ordinal()] = new ArrayList<>(list);
         list.clear();
-        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_SNOWY_TUNDRA, 30));
+        list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_ICE_SPIKES, 30));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_SNOWY_TAIGA, 10));
         currentBiomes[BiomeManager.BiomeType.ICY.ordinal()] = new ArrayList<>(list);
         list.clear();
