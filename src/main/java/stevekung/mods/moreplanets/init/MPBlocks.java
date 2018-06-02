@@ -1004,7 +1004,7 @@ public class MPBlocks
         MPBlocks.CRYSTALLIZED_LAVA_FLUID = new FluidMP("crystallized_lava_fluid").setBlock(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK).setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
         MPBlocks.CHEESE_MILK_FLUID = new FluidMP("cheese_milk_fluid").setBlock(MPBlocks.CHEESE_MILK_FLUID_BLOCK).setViscosity(1000);
         MPBlocks.GASEOUS_CHEESE_MILK = new FluidGaseousCheeseMilk("gaseous_cheese_milk", "moreplanets:blocks/gaseous_cheese_milk", "moreplanets:blocks/gaseous_cheese_milk").setBlock(MPBlocks.GASEOUS_CHEESE_MILK_BLOCK);
-        MPBlocks.INFECTED_WATER_FLUID = new FluidMP("infected_water_fluid").setBlock(MPBlocks.INFECTED_WATER_FLUID_BLOCK);
+        MPBlocks.INFECTED_WATER_FLUID = new FluidMP("infected_water_fluid_mp", "moreplanets:blocks/infected_water_still", "moreplanets:blocks/infected_water_flowing").setBlock(MPBlocks.INFECTED_WATER_FLUID_BLOCK);
         MPBlocks.HELIUM_GAS = new FluidHeliumGas("helium_gas", "moreplanets:blocks/helium_gas", "moreplanets:blocks/helium_gas").setBlock(MPBlocks.HELIUM_GAS_BLOCK);
         MPBlocks.NUCLEAR_WASTE_FLUID = new FluidMP("nuclear_waste_fluid").setBlock(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK).setLuminosity(15).setDensity(3000).setViscosity(8000).setTemperature(2600);
         MPBlocks.PURIFIED_WATER_FLUID = new FluidMP("purified_water_fluid").setBlock(MPBlocks.PURIFIED_WATER_FLUID_BLOCK);
@@ -1020,7 +1020,7 @@ public class MPBlocks
         MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK = new BlockFluidCrystallizedLava("crystallized_lava_fluid");
         MPBlocks.GASEOUS_CHEESE_MILK_BLOCK = new BlockGaseousCheeseMilk("gaseous_cheese_milk");
         MPBlocks.CHEESE_MILK_FLUID_BLOCK = new BlockFluidCheeseMilk("cheese_milk_fluid");
-        MPBlocks.INFECTED_WATER_FLUID_BLOCK = new BlockFluidInfectedWater("infected_water_fluid");
+        MPBlocks.INFECTED_WATER_FLUID_BLOCK = new BlockFluidInfectedWater("infected_water_fluid_mp");
         MPBlocks.HELIUM_GAS_BLOCK = new BlockGasHelium("helium_gas");
         MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK = new BlockFluidNuclearWaste("nuclear_waste_fluid");
         MPBlocks.PURIFIED_WATER_FLUID_BLOCK = new BlockFluidPurifyWater("purified_water_fluid");

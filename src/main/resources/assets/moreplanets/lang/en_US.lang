@@ -308,7 +308,7 @@ tile.terrastone_furnace.name=Terrastone Furnace
 tile.sealable_nuclear_waste_rod.name=Sealable Nuclear Waste Rod
 tile.mossy_nibiru_dungeon_brick.name=Mossy Nibiru Dungeon Brick
 tile.infected_farmland.name=Infected Farmland
-tile.infected_water_fluid.name=Infected Water
+tile.infected_water_fluid_mp.name=Infected Water
 tile.helium_gas.name=Helium Gas
 tile.nuclear_waste_fluid.name=Nuclear Waste
 tile.purified_water_fluid.name=Purified Water
@@ -536,7 +536,7 @@ fluid.gaseous_cheese_milk=Gaseous Cheese Milk
 fluid.helium_gas=Helium Gas
 fluid.nuclear_waste_fluid=Nuclear Waste
 fluid.purified_water_fluid=Purified Water
-fluid.infected_water_fluid=Infected Water
+fluid.infected_water_fluid_mp=Infected Water
 
 # ENTITY
 entity.moreplanets.albetius_worm.name=Albetius Worm
