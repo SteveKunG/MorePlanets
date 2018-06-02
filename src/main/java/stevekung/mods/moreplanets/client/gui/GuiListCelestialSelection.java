@@ -3,12 +3,10 @@ package stevekung.mods.moreplanets.client.gui;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiListExtended;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -23,23 +21,42 @@ public class GuiListCelestialSelection extends GuiListExtended
 {
     private final GuiCelestialSelection selection;
     private final List<GuiListCelestialSelectionEntry> entries = new ArrayList<>();
+    public List<CelestialBody> listCelestial;
     private int selectedId = -1;
 
-    public GuiListCelestialSelection(GuiCelestialSelection gui, int width, int height, int top, int bottom, int slotHeight)
+    public GuiListCelestialSelection(GuiCelestialSelection gui, List<CelestialBody> listCelestial, int width, int height, int top, int bottom, int slotHeight)
     {
         super(Minecraft.getMinecraft(), width, height, top, bottom, slotHeight);
         this.selection = gui;
-        this.refreshList();
+        this.listCelestial = listCelestial;
+        this.refreshList(GuiCelestialSelection.SortType.A_TO_Z);
     }
 
-    private void refreshList()
+    public void refreshList(GuiCelestialSelection.SortType type)
     {
-        List<CelestialBody> listCelestial = new ArrayList<>();
-        listCelestial.addAll(GalaxyRegistry.getRegisteredPlanets().values().stream().filter(planet -> planet.getDimensionID() != 0).collect(Collectors.toList()));
-        listCelestial.addAll(GalaxyRegistry.getRegisteredMoons().values());
-        Collections.sort(listCelestial, (celestial1, celestial2) -> celestial1.getName().compareTo(celestial2.getName()));
+        this.entries.clear();
+        Collections.sort(this.listCelestial, type);
 
-        for (CelestialBody celestial : listCelestial)
+        for (CelestialBody celestial : this.listCelestial)
+        {
+            this.entries.add(new GuiListCelestialSelectionEntry(this, celestial));
+        }
+    }
+
+    public void refreshListSearch(String text)
+    {
+        this.entries.clear();
+        List<CelestialBody> listCelestialTemp = new ArrayList<>();
+
+        for (CelestialBody body : this.listCelestial)
+        {
+            if (body.getName().toLowerCase().contains(text.toLowerCase()))
+            {
+                listCelestialTemp.add(body);
+            }
+        }
+
+        for (CelestialBody celestial : listCelestialTemp)
         {
             this.entries.add(new GuiListCelestialSelectionEntry(this, celestial));
         }
@@ -60,13 +77,13 @@ public class GuiListCelestialSelection extends GuiListExtended
     @Override
     protected int getScrollBarX()
     {
-        return super.getScrollBarX() - 160;
+        return super.getScrollBarX() - 165;
     }
 
     @Override
     public int getListWidth()
     {
-        return super.getListWidth() + 120;
+        return super.getListWidth() + 150;
     }
 
     @Override
@@ -95,7 +112,7 @@ public class GuiListCelestialSelection extends GuiListExtended
             if (this.showSelectionBox && this.isSelected(j))
             {
                 int left = this.left + this.width / 2 - this.getListWidth() / 2;
-                int right = this.left + this.width / 2 - 210 + this.getListWidth() / 2;
+                int right = this.left + this.width / 2 - 230 + this.getListWidth() / 2;
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 GlStateManager.disableTexture2D();
                 bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
@@ -129,5 +146,10 @@ public class GuiListCelestialSelection extends GuiListExtended
     public GuiCelestialSelection getGui()
     {
         return this.selection;
+    }
+
+    public List<CelestialBody> getCelestialList()
+    {
+        return this.listCelestial;
     }
 }

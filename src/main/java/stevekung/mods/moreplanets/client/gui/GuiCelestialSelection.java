@@ -1,8 +1,11 @@
 package stevekung.mods.moreplanets.client.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -15,6 +18,7 @@ import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,14 +31,48 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 public class GuiCelestialSelection extends GuiScreen
 {
     private GuiButton doneButton;
+    private GuiButton azButton;
+    private GuiButton zaButton;
+    private GuiButton reachableButton;
+    private GuiTextField searchField;
     private GuiListCelestialSelection selectionList;
+    private String lastFilterText = "";
+    private List<CelestialBody> listCelestial = new ArrayList<>();
+
+    public GuiCelestialSelection()
+    {
+        this.listCelestial.addAll(GalaxyRegistry.getRegisteredPlanets().values().stream().filter(planet -> planet.getDimensionID() != 0).collect(Collectors.toList()));
+        this.listCelestial.addAll(GalaxyRegistry.getRegisteredMoons().values());
+    }
 
     @Override
     public void initGui()
     {
-        this.selectionList = new GuiListCelestialSelection(this, this.width, this.height, 32, this.height - 36, 36);
-        this.doneButton = this.addButton(new GuiButton(0, this.width / 2 - 100, this.height - 32, LangUtils.translate("gui.done")));
+        this.selectionList = new GuiListCelestialSelection(this, this.listCelestial, this.width, this.height, 48, this.height - 32, 36);
+        this.doneButton = this.addButton(new GuiButton(0, this.width / 2 - 32, this.height - 26, 150, 20, LangUtils.translate("gui.done")));
         this.doneButton.enabled = false;
+
+        this.addButton(this.azButton = new GuiButton(SortType.A_TO_Z.id, this.width / 2 - 185, 26, 40, 20, "A-Z"));
+        this.azButton.enabled = false;
+        this.addButton(this.zaButton = new GuiButton(SortType.Z_TO_A.id, this.width / 2 - 144, 26, 40, 20, "Z-A"));
+        this.addButton(this.reachableButton = new GuiButton(SortType.REACHALBLE.id, this.width / 2 - 103, 26, 60, 20, "Reachable"));
+
+        this.searchField = new GuiTextField(0, this.fontRenderer, this.width / 2 - 150, this.height - 26, 100, 14);
+        this.searchField.setFocused(true);
+        this.searchField.setCanLoseFocus(true);
+    }
+
+    @Override
+    public void updateScreen()
+    {
+        super.updateScreen();
+        this.searchField.updateCursorCounter();
+
+        if (!this.searchField.getText().equals(this.lastFilterText))
+        {
+            this.lastFilterText = this.searchField.getText();
+            this.selectionList.refreshListSearch(this.lastFilterText);
+        }
     }
 
     @Override
@@ -45,7 +83,10 @@ public class GuiCelestialSelection extends GuiScreen
     }
 
     @Override
-    protected void keyTyped(char typedChar, int keyCode) throws IOException {}
+    protected void keyTyped(char typedChar, int keyCode) throws IOException
+    {
+        this.searchField.textboxKeyTyped(typedChar, keyCode);
+    }
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException
@@ -59,6 +100,21 @@ public class GuiCelestialSelection extends GuiScreen
                 entry.teleport();
                 this.mc.displayGuiScreen(null);
             }
+
+            SortType type = SortType.getTypeForButton(button);
+
+            if (type != null)
+            {
+                for (GuiButton buttonType : this.buttonList)
+                {
+                    if (SortType.getTypeForButton(buttonType) != null)
+                    {
+                        buttonType.enabled = true;
+                    }
+                }
+                button.enabled = false;
+                this.selectionList.refreshList(type);
+            }
         }
     }
 
@@ -70,7 +126,8 @@ public class GuiCelestialSelection extends GuiScreen
         if (this.selectionList != null)
         {
             this.selectionList.drawScreen(mouseX, mouseY, partialTicks);
-            this.drawCenteredString(this.fontRenderer, "Select Celestial", this.width / 2, 20, 16777215);
+            this.drawCenteredString(this.fontRenderer, "Select Celestial", this.width / 2, 15, 16777215);
+            this.drawCenteredString(this.fontRenderer, LangUtils.translate("fml.menu.mods.search"), this.width / 2 - 173, this.height - 23, 16777215);
 
             for (int i = 0; i < this.selectionList.getSize(); ++i)
             {
@@ -92,7 +149,7 @@ public class GuiCelestialSelection extends GuiScreen
 
                                 try
                                 {
-                                    thermal = String.valueOf(space.getThermalLevelModifier());
+                                    thermal = String.valueOf(String.format("%.2f", 1.8F * space.getThermalLevelModifier() * 32)) + "\u2103";//TODO fahrenheit to celsius??
                                 }
                                 catch (Exception e)
                                 {
@@ -110,26 +167,26 @@ public class GuiCelestialSelection extends GuiScreen
                                     if (dayDouble % 1 == 0)
                                     {
                                         int dayInt = (int)(space.getDayLength() / 24000);
-                                        infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Day-night Cycle:", dayInt + (dayInt == 1 ? " Day" : " Days")));
+                                        infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Day-night Cycle:", dayInt + (dayInt == 1 ? " Day" : " Days") + " / " + dayInt * 24 + " hours"));
                                     }
                                     else
                                     {
-                                        infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Day-night Cycle:", dayDouble + (dayDouble <= 1 ? " Day" : " Days")));
+                                        infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Day-night Cycle:", dayDouble + (dayDouble <= 1 ? " Day" : " Days") + " / " + dayDouble * 24 + " hours"));
                                     }
                                 }
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Gravity:", String.valueOf(space.getGravity()) + "g"));
-                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Wind:", String.valueOf(space.getWindLevel())));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Wind:", String.valueOf(String.format("%.1f", space.getWindLevel() * 100.0F)) + "%"));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Thermal:", thermal));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Breathable Atmosphere:", space.hasBreathableAtmosphere()));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Corrode Armor:", space.shouldCorrodeArmor()));
                                 infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Sound Reduction:", String.valueOf(space.getSoundVolReductionAmount() / 1.0F) + "%"));
                             }
-                            else if (provider instanceof ISolarLevel)
+                            if (provider instanceof ISolarLevel)
                             {
                                 ISolarLevel solar = (ISolarLevel)provider;
-                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar Level:", String.valueOf(solar.getSolarEnergyMultiplier()) + "%"));
+                                infoList.add(this.format(ColorUtils.stringToRGB("135, 242, 230").toColoredFont() + "Solar Level:", String.valueOf(String.format("%.1f", solar.getSolarEnergyMultiplier() * 100.0D)) + "%"));
                             }
-                            else if (provider instanceof IDarkEnergyProvider)
+                            if (provider instanceof IDarkEnergyProvider)
                             {
                                 IDarkEnergyProvider space = (IDarkEnergyProvider)provider;
                                 String darkEnergy = "";
@@ -185,12 +242,13 @@ public class GuiCelestialSelection extends GuiScreen
                     {
                         String text = infoList.get(textSize);
                         int fontHeight = ColorUtils.coloredFontRenderer.FONT_HEIGHT + 2;
-                        int y = 36 + fontHeight * textSize;
-                        ColorUtils.coloredFontRenderer.drawString(text, this.width / 2 - 16, y, 16777215);
+                        int y = 54 + fontHeight * textSize;
+                        ColorUtils.coloredFontRenderer.drawString(text, this.width / 2 - 24, y, 16777215);
                     }
                 }
             }
         }
+        this.searchField.drawTextBox();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -206,6 +264,12 @@ public class GuiCelestialSelection extends GuiScreen
     {
         super.mouseReleased(mouseX, mouseY, state);
         this.selectionList.mouseReleased(mouseX, mouseY, state);
+        this.searchField.mouseClicked(mouseX, mouseY, state);
+
+        if (state == 1 && mouseX >= this.searchField.x && mouseX < this.searchField.x + this.searchField.width && mouseY >= this.searchField.y && mouseY < this.searchField.y + this.searchField.height)
+        {
+            this.searchField.setText("");
+        }
     }
 
     public void selectCelestial(@Nullable GuiListCelestialSelectionEntry entry)
@@ -221,5 +285,58 @@ public class GuiCelestialSelection extends GuiScreen
     private String format(String key, boolean value)
     {
         return key + " " + TextFormatting.RESET + (value ? TextFormatting.GREEN : TextFormatting.RED) + value;
+    }
+
+    static enum SortType implements Comparator<CelestialBody>
+    {
+        A_TO_Z(1),
+        Z_TO_A(2)
+        {
+            @Override
+            protected int compareType(CelestialBody celestial1, CelestialBody celestial2)
+            {
+                return celestial2.getName().compareTo(celestial1.getName());
+            }
+        },
+        REACHALBLE(3)
+        {
+            @Override
+            protected int compareType(CelestialBody celestial1, CelestialBody celestial2)
+            {
+                return Boolean.compare(celestial2.getReachable(), celestial1.getReachable());
+            }
+        };
+
+        protected static final SortType[] values = SortType.values();
+        private int id;
+
+        private SortType(int id)
+        {
+            this.id = id;
+        }
+
+        @Override
+        public int compare(CelestialBody celestial1, CelestialBody celestial2)
+        {
+            return this.compareType(celestial1, celestial2);
+        }
+
+        protected int compareType(CelestialBody celestial1, CelestialBody celestial2)
+        {
+            return celestial1.getName().compareTo(celestial2.getName());
+        }
+
+        @Nullable
+        protected static SortType getTypeForButton(GuiButton button)
+        {
+            for (SortType type : SortType.values)
+            {
+                if (type.id == button.id)
+                {
+                    return type;
+                }
+            }
+            return null;
+        }
     }
 }
