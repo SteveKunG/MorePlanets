@@ -23,6 +23,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.utils.dimension.IDarkEnergyProvider;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
@@ -39,15 +40,11 @@ public class GuiCelestialSelection extends GuiScreen
     private String lastFilterText = "";
     private List<CelestialBody> listCelestial = new ArrayList<>();
 
-    public GuiCelestialSelection()
-    {
-        this.listCelestial.addAll(GalaxyRegistry.getRegisteredPlanets().values().stream().filter(planet -> planet.getDimensionID() != 0).collect(Collectors.toList()));
-        this.listCelestial.addAll(GalaxyRegistry.getRegisteredMoons().values());
-    }
-
     @Override
     public void initGui()
     {
+        this.listCelestial.addAll(GalaxyRegistry.getRegisteredPlanets().values().stream().filter(planet -> planet.getDimensionID() != 0 && planet.getDimensionID() != ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether).collect(Collectors.toList()));
+        this.listCelestial.addAll(GalaxyRegistry.getRegisteredMoons().values());
         this.selectionList = new GuiListCelestialSelection(this, this.listCelestial, this.width, this.height, 48, this.height - 32, 36);
         this.doneButton = this.addButton(new GuiButton(0, this.width / 2 - 32, this.height - 26, 150, 20, LangUtils.translate("gui.done")));
         this.doneButton.enabled = false;
@@ -293,7 +290,7 @@ public class GuiCelestialSelection extends GuiScreen
         Z_TO_A(2)
         {
             @Override
-            protected int compareType(CelestialBody celestial1, CelestialBody celestial2)
+            public int compare(CelestialBody celestial1, CelestialBody celestial2)
             {
                 return celestial2.getName().compareTo(celestial1.getName());
             }
@@ -301,7 +298,7 @@ public class GuiCelestialSelection extends GuiScreen
         REACHALBLE(3)
         {
             @Override
-            protected int compareType(CelestialBody celestial1, CelestialBody celestial2)
+            public int compare(CelestialBody celestial1, CelestialBody celestial2)
             {
                 return Boolean.compare(celestial2.getReachable(), celestial1.getReachable());
             }
@@ -317,11 +314,6 @@ public class GuiCelestialSelection extends GuiScreen
 
         @Override
         public int compare(CelestialBody celestial1, CelestialBody celestial2)
-        {
-            return this.compareType(celestial1, celestial2);
-        }
-
-        protected int compareType(CelestialBody celestial1, CelestialBody celestial2)
         {
             return celestial1.getName().compareTo(celestial2.getName());
         }

@@ -774,6 +774,7 @@ container.nibiru.treasurechest.name=Nibiru Treasure Chest
 container.schematic.black_hole_storage=Black Hole Storage
 
 # PLANETS
+planet.space_nether=Space Nether
 planet.diona=Diona
 planet.chalos=Chalos
 planet.nibiru=Nibiru

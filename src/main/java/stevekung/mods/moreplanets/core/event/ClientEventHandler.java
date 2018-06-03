@@ -15,7 +15,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGameOver;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -56,7 +55,6 @@ import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWas
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.LoggerMP;
-import stevekung.mods.moreplanets.utils.client.gui.GuiGameOverMP;
 
 public class ClientEventHandler
 {
@@ -193,10 +191,6 @@ public class ClientEventHandler
             }
             if (this.mc.player != null)
             {
-                if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && this.mc.player.dimension == -1 && this.mc.currentScreen instanceof GuiGameOver && !(this.mc.currentScreen instanceof GuiGameOverMP))
-                {
-                    this.mc.displayGuiScreen(new GuiGameOverMP());
-                }
                 if (!this.initVersionCheck)
                 {
                     MorePlanetsMod.CHECKER.startCheckIfFailed();

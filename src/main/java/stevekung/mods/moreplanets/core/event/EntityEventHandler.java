@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.core.event;
 
+import micdoodle8.mods.galacticraft.api.event.oxygen.GCCoreOxygenSuffocationEvent;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -27,6 +28,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import stevekung.mods.moreplanets.core.dimension.WorldProviderSpaceNether;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -166,6 +168,18 @@ public class EntityEventHandler
                 {
                     living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onOxygenSuffocation(GCCoreOxygenSuffocationEvent.Pre event)
+    {
+        if (event.getEntityLiving().world.provider instanceof WorldProviderSpaceNether)
+        {
+            if (EntityEffectUtils.isSpaceNetherMob(event.getEntityLiving()))
+            {
+                event.setCanceled(true);
             }
         }
     }

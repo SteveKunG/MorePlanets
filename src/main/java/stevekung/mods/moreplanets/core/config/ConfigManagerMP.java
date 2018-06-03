@@ -52,6 +52,9 @@ public class ConfigManagerMP
     // Dimensions
     public static class Dimension
     {
+        @Config.Name(value = "Space Nether Dimension ID")
+        public int idDimensionSpaceNether = -2541;
+
         @Config.Name(value = "Diona Dimension ID")
         public int idDimensionDiona = -2542;
 

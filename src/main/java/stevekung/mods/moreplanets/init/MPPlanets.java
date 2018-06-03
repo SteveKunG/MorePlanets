@@ -5,9 +5,11 @@ import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
 import micdoodle8.mods.galacticraft.core.entities.*;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import stevekung.mods.moreplanets.core.dimension.WorldProviderSpaceNether;
 import stevekung.mods.moreplanets.planets.chalos.dimension.WorldProviderChalos;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseCow;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseFloater;
@@ -23,6 +25,7 @@ import stevekung.mods.moreplanets.utils.CelestialRegistryUtils;
 
 public class MPPlanets
 {
+    public static Planet SPACE_NETHER;
     public static Planet DIONA;
     public static Planet CHALOS;
     public static Planet NIBIRU;
@@ -36,6 +39,7 @@ public class MPPlanets
         MPPlanets.LAZENDUS_SOLAR_SYSTEM = CelestialRegistryUtils.createStarAndSolarSystem(MPPlanets.LAZENDUS_SOLAR_SYSTEM, MPPlanets.LAZENDUS, "lazendus", "lazendus", new Vector3(0.75F, 1.25F, 0.0F), "lazendus_celestial");
 
         // Planets
+        MPPlanets.SPACE_NETHER = CelestialRegistryUtils.createPlanet("space_nether", GalacticraftCore.solarSystemSol, 0.0F, 0.25F, 1.0F, 1.0F, -1, ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether, WorldProviderSpaceNether.class);
         MPPlanets.DIONA = CelestialRegistryUtils.createPlanet("diona", MPPlanets.LAZENDUS_SOLAR_SYSTEM, -14.25F, 4.25F, 20.0F, 0.876F, ConfigManagerMP.moreplanets_planet_settings.planetDionaTier, ConfigManagerMP.moreplanets_dimension.idDimensionDiona, WorldProviderDiona.class);
         MPPlanets.CHALOS = CelestialRegistryUtils.createPlanet("chalos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 8.75F, 3.5F, 60.5F, 10.0F, ConfigManagerMP.moreplanets_planet_settings.planetChalosTier, ConfigManagerMP.moreplanets_dimension.idDimensionChalos, WorldProviderChalos.class);
         MPPlanets.NIBIRU = CelestialRegistryUtils.createPlanet("nibiru", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 27.0F, 2.0F, 1050.5F, 2.0F, ConfigManagerMP.moreplanets_planet_settings.planetNibiruTier, ConfigManagerMP.moreplanets_dimension.idDimensionNibiru, WorldProviderNibiru.class);
@@ -93,6 +97,7 @@ public class MPPlanets
     public static void register()
     {
         CelestialRegistryUtils.registerSolarSystem(MPPlanets.LAZENDUS_SOLAR_SYSTEM);
+        CelestialRegistryUtils.registerPlanet(MPPlanets.SPACE_NETHER);
         CelestialRegistryUtils.registerPlanet(MPPlanets.DIONA);
         CelestialRegistryUtils.registerPlanet(MPPlanets.CHALOS);
         CelestialRegistryUtils.registerPlanet(MPPlanets.NIBIRU);
