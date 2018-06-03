@@ -91,7 +91,7 @@ public class MPOreDictionary
         OreDictionaryUtils.registerOreDictionary("dirt", MPBlocks.CHEESE_DIRT);
         OreDictionaryUtils.registerOreDictionary("grass", MPBlocks.CHEESE_GRASS_BLOCK);
         OreDictionaryUtils.registerOreDictionary("stone", MPBlocks.CHALOS_ROCK);
-        OreDictionaryUtils.registerOreDictionary("cobblestone", MPBlocks.CHALOS_ROCK);
+        OreDictionaryUtils.registerOreDictionary("cobblestone", MPBlocks.CHALOS_COBBLESTONE);
         OreDictionaryUtils.registerOreDictionary("blockSlime", MPBlocks.CHEESE_SLIME_BLOCK);
         OreDictionaryUtils.registerOreDictionary("workbench", MPBlocks.CHEESE_SPORE_CRAFTING_TABLE);
         OreDictionaryUtils.registerOreDictionary("chestWood", MPBlocks.CHEESE_SPORE_CHEST);

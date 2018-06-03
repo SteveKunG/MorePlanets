@@ -1,13 +1,13 @@
 {
     "group": "crafting_table",
-    "type": "minecraft:crafting_shaped",
+    "type": "forge:ore_shaped",
     "pattern": [
         "XX",
         "XX"
     ],
     "key": {
         "X": {
-            "item": "moreplanets:infected_oak_planks"
+            "item": "#INFECTEDPLANK"
         }
     },
     "result": {
