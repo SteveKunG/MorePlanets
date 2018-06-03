@@ -48,7 +48,7 @@ public class BiomeInfectedTaiga extends BiomeNibiru
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
-        if (type != Type.MEGA && type != Type.MEGA_SPRUCE)
+        if (this.type != Type.MEGA && this.type != Type.MEGA_SPRUCE)
         {
             this.decorator.grassPerChunk = 40;
         }

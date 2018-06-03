@@ -7,7 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
-import net.minecraftforge.oredict.OreDictionary;
 import stevekung.mods.stevekunglib.utils.enums.EnumHarvestLevel;
 
 public class BlockUtils
@@ -30,15 +29,5 @@ public class BlockUtils
     public static boolean isFluid(World world, BlockPos pos)
     {
         return world.getBlockState(pos).getBlock() instanceof BlockLiquid || world.getBlockState(pos).getBlock() instanceof BlockFluidBase;
-    }
-
-    public static void registerOreDictionary(String name, Block block)
-    {
-        OreDictionary.registerOre(name, block);
-    }
-
-    public static void registerOreDictionary(String name, Item item)
-    {
-        OreDictionary.registerOre(name, item);
     }
 }
