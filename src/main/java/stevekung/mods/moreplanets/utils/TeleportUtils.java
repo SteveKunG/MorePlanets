@@ -39,9 +39,7 @@ import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
@@ -188,119 +186,6 @@ public class TeleportUtils
         player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
         FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, sourceDim, targetDim);
         player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
-        return player;
-    }
-
-    // OLD STUFF
-    @Deprecated
-    public static EntityPlayerMP setWarpDimension(EntityPlayerMP player, WorldServer world, int x, int y, int z, int dimID, boolean nether)
-    {
-        if (!world.isRemote)
-        {
-            MinecraftServer mcServer = FMLCommonHandler.instance().getMinecraftServerInstance();
-
-            if (mcServer != null)
-            {
-                WorldServer worldServer = mcServer.getWorld(dimID);
-
-                if (worldServer == null)
-                {
-                    LoggerMP.error("Cannot Transfer Entity to Dimension: Could not get World for Dimension {}", dimID);
-                    return null;
-                }
-                return teleportEntity(worldServer, player, x, y, z, dimID, nether);
-            }
-        }
-        return null;
-    }
-
-    @Deprecated
-    private static EntityPlayerMP teleportEntity(World worldNew, EntityPlayerMP player, int x, int y, int z, int dimID, boolean nether)
-    {
-        BlockPos blockpos = player.getBedLocation(dimID);
-        boolean flag = player.isSpawnForced(dimID);
-        boolean dimChange = player.world != worldNew;
-        player.world.updateEntityWithOptionalForce(player, false);
-        int oldDimID = GCCoreUtil.getDimensionID(player.world);
-        ChunkPos pair = worldNew.getChunkFromChunkCoords(x, z).getPos();
-        y = (int) (y + 1.5F);
-
-        if (dimChange)
-        {
-            World worldOld = player.world;
-
-            try
-            {
-                ((WorldServer) worldOld).getPlayerChunkMap().removePlayer(player);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-
-            player.closeScreen();
-            player.dimension = dimID;
-            player.connection.sendPacket(new SPacketRespawn(dimID, player.world.getDifficulty(), player.world.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
-            worldOld.playerEntities.remove(player);
-            worldOld.updateAllPlayersSleepingFlag();
-            int i = player.chunkCoordX;
-            int j = player.chunkCoordZ;
-
-            if (player.addedToChunk && worldOld.isBlockLoaded(new BlockPos(i << 4, 63, j << 4), true))
-            {
-                Chunk chunkOld = worldOld.getChunkFromChunkCoords(player.chunkCoordX, player.chunkCoordZ);
-                chunkOld.removeEntity(player);
-                chunkOld.setModified(true);
-            }
-
-            worldOld.loadedEntityList.remove(player);
-            worldOld.onEntityRemoved(player);
-            worldNew.spawnEntity(player);
-            player.setWorld(worldNew);
-            ((WorldServer) worldNew).getChunkProvider().loadChunk(pair.x, pair.z);
-            worldNew.updateEntityWithOptionalForce(player, false);
-
-            if (!nether)
-            {
-                player.setLocationAndAngles(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
-                player.mcServer.getPlayerList().preparePlayer(player, (WorldServer) worldNew);
-                player.connection.setPlayerLocation(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
-            }
-            else
-            {
-                if (blockpos != null)
-                {
-                    BlockPos blockpos1 = EntityPlayer.getBedSpawnLocation(player.mcServer.getWorld(player.dimension), blockpos, flag);
-
-                    if (blockpos1 != null)
-                    {
-                        player.setLocationAndAngles(blockpos1.getX() + 0.5F, blockpos1.getY() + 0.1F, blockpos1.getZ() + 0.5F, 0.0F, 0.0F);
-                        player.setSpawnPoint(blockpos, flag);
-                    }
-                }
-            }
-
-            player.interactionManager.setWorld((WorldServer) worldNew);
-            player.mcServer.getPlayerList().updateTimeAndWeatherForPlayer(player, (WorldServer) worldNew);
-            player.mcServer.getPlayerList().syncPlayerInventory(player);
-            player.setSneaking(false);
-
-            player.getActivePotionEffects().forEach(potion ->
-            {
-                player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion));
-            });
-            player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
-        }
-        else
-        {
-            player.closeScreen();
-            player.setSneaking(false);
-            worldNew.updateEntityWithOptionalForce(player, false);
-            player.connection.setPlayerLocation(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
-            player.setLocationAndAngles(x + 0.5F, y + 0.5F, z + 0.5F, player.rotationYaw, player.rotationPitch);
-            worldNew.updateEntityWithOptionalForce(player, false);
-        }
-        FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, oldDimID, dimID);
         return player;
     }
 

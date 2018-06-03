@@ -11,7 +11,6 @@ import micdoodle8.mods.galacticraft.core.network.NetworkUtil;
 import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
-import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
@@ -21,7 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -29,12 +27,10 @@ import stevekung.mods.moreplanets.client.gui.GuiCelestialSelection;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGenerator;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGeneratorConfig;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
-import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.LoggerMP;
-import stevekung.mods.moreplanets.utils.PlanetSpawnerUtils;
 import stevekung.mods.moreplanets.utils.TeleportUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
@@ -169,17 +165,6 @@ public class PacketSimpleMP extends PacketBase
             world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
             world.setBlockToAir(pos);
             break;
-        case S_RESPAWN_PLAYER_NETHER:
-            if (world instanceof WorldServer)
-            {
-                WorldServer worldOld = (WorldServer) world;
-                WorldServer worldNew = PlanetSpawnerUtils.getStartWorld(worldOld);
-                BlockPos spawnPos = worldNew.getTopSolidOrLiquidBlock(worldNew.getSpawnPoint());
-                TeleportUtils.setWarpDimension(playerMP, worldNew, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), WorldUtil.getProviderForNameServer(WorldTickEventHandler.survivalPlanetData.survivalPlanetName).getDimension(), true);
-                player.respawnPlayer();
-                player.closeScreen();
-            }
-            break;
         case S_BLACK_HOLE_STORAGE_OPTION:
             tile = world.getTileEntity((BlockPos) this.data.get(0));
             type = (String) this.data.get(1);
@@ -294,7 +279,6 @@ public class PacketSimpleMP extends PacketBase
     {
         // SERVER
         S_FIRE_EXTINGUISH(Side.SERVER, BlockPos.class),
-        S_RESPAWN_PLAYER_NETHER(Side.SERVER),
         S_BLACK_HOLE_STORAGE_OPTION(Side.SERVER, BlockPos.class, String.class),
         S_SHIELD_VISIBLE(Side.SERVER, BlockPos.class, Boolean.class),
         S_ENABLE_SHIELD(Side.SERVER, BlockPos.class),

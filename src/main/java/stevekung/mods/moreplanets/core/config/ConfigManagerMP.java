@@ -42,6 +42,7 @@ public class ConfigManagerMP
         public boolean enableBlackHoleExplosion = true;
 
         @Config.Name(value = "Enable Survival Planet Selection")
+        @Config.RequiresMcRestart
         public boolean enableSurvivalPlanetSelection = false;
 
         @Config.Name(value = "Use 3D Item Model for Torch")

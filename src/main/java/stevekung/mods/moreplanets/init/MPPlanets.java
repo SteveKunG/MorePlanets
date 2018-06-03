@@ -97,7 +97,12 @@ public class MPPlanets
     public static void register()
     {
         CelestialRegistryUtils.registerSolarSystem(MPPlanets.LAZENDUS_SOLAR_SYSTEM);
-        CelestialRegistryUtils.registerPlanet(MPPlanets.SPACE_NETHER);
+
+        if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection)
+        {
+            CelestialRegistryUtils.registerPlanet(MPPlanets.SPACE_NETHER);
+        }
+
         CelestialRegistryUtils.registerPlanet(MPPlanets.DIONA);
         CelestialRegistryUtils.registerPlanet(MPPlanets.CHALOS);
         CelestialRegistryUtils.registerPlanet(MPPlanets.NIBIRU);
