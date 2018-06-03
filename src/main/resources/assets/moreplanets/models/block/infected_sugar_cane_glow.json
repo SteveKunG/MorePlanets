@@ -1,0 +1,7 @@
+{
+    "parent": "moreplanets:block/cross_glow",
+    "textures": {
+        "cross": "moreplanets:blocks/infected_sugar_cane",
+        "glow": "moreplanets:blocks/infected_sugar_cane_glow"
+    }
+}

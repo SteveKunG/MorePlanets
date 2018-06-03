@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.client.renderer;
 
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.utils.blocks.BlockDropableLitOre;
 import stevekung.mods.moreplanets.utils.blocks.BlockSaplingMP;
@@ -55,7 +56,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_SHIP_BOOSTER, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALBETIUS_WORM_EGG_ROCK, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_MINER_BLOOD, ctm);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.CRASHED_ALIEN_PROBE, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.CRASHED_ALIEN_PROBE, new StateMapperCTM(BlockCrashedAlienProbe.HAS_ALIEN));
         ClientRegistryUtils.registerStateMapper(MPBlocks.GLOWING_IRON_BLOCK, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_PLANKS, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_FENCE, ctm);
@@ -64,5 +65,6 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.SPORELILY, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.TERRAPUFF_HERB, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SUGAR_CANE, new StateMapperCTM(BlockStateProperty.AGE_15));
     }
 }

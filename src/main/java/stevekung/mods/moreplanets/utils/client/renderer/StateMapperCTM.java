@@ -10,24 +10,34 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 
 @SideOnly(Side.CLIENT)
 public class StateMapperCTM extends StateMapperBase
 {
+    private IProperty<?> toRemove;
+
+    public StateMapperCTM() {}
+
+    public StateMapperCTM(IProperty<?> toRemove)
+    {
+        this.toRemove = toRemove;
+    }
+
     @Override
     protected ModelResourceLocation getModelResourceLocation(IBlockState state)
     {
         Map<IProperty<?>, Comparable<?>> map = new LinkedHashMap<>(state.getProperties());
-        boolean ignoreState = state.getBlock() == MPBlocks.CRASHED_ALIEN_PROBE;
-
-        if (ignoreState)
-        {
-            map.remove(BlockCrashedAlienProbe.HAS_ALIEN);
-        }
         String ctm = CompatibilityManagerMP.isCTMLoaded ? "_glow" : "";
-        return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()) + ctm, this.getPropertyString(ignoreState ? map : state.getProperties()));
+
+        if (this.toRemove != null)
+        {
+            map.remove(this.toRemove);
+            return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()) + ctm, this.getPropertyString(map));
+        }
+        else
+        {
+            return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()) + ctm, this.getPropertyString(state.getProperties()));
+        }
     }
 }
