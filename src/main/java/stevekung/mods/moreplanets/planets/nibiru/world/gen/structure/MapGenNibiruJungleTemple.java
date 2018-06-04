@@ -137,7 +137,7 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
         public Start(World world, Random rand, int chunkX, int chunkZ)
         {
             super(chunkX, chunkZ);
-            LoggerMP.debug("Generate jungle temple at x:{} z:{}", chunkX * 16, chunkZ * 16);
+            LoggerMP.debug("Generate jungle temple at {} {}", chunkX * 16, chunkZ * 16);
             Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8));
 
             if (biomegenbase == MPBiomes.INFECTED_JUNGLE)

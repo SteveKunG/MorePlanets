@@ -57,7 +57,7 @@ public class DungeonStartMP extends RoomEntranceMP
         {
             int xPos = this.boundingBox.minX + (this.boundingBox.maxX - this.boundingBox.minX) / 2;
             int zPos = this.boundingBox.minZ + (this.boundingBox.maxZ - this.boundingBox.minZ) / 2;
-            LoggerMP.error("Could not find valid dungeon layout! This is a bug, please report it, including your world seed (/seed) and dungeon location x:{} z:{}", xPos, zPos);
+            LoggerMP.error("Could not find valid dungeon layout! This is a bug, please report it, including your world seed (/seed) and dungeon location {} {}", xPos, zPos);
         }
         super.buildComponent(component, listIn, rand);
     }

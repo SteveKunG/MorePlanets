@@ -135,7 +135,7 @@ public class MapGenNibiruPyramid extends MapGenStructure
         public Start(World world, Random rand, int chunkX, int chunkZ)
         {
             super(chunkX, chunkZ);
-            LoggerMP.debug("Generate pyramid at x:{} z:{}", chunkX * 16, chunkZ * 16);
+            LoggerMP.debug("Generate nibiru pyramid at {} {}", chunkX * 16, chunkZ * 16);
             StructureNibiruPyramidPieces.NibiruPyramid componentscatteredfeaturepieces$desertpyramid = new StructureNibiruPyramidPieces.NibiruPyramid(rand, chunkX * 16, chunkZ * 16);
             this.components.add(componentscatteredfeaturepieces$desertpyramid);
             this.updateBoundingBox();

@@ -251,7 +251,7 @@ public class EntityEventHandler
                         if (!world.isRemote)
                         {
                             world.spawnEntity(meteorEntity);
-                            LoggerMP.debug("Spawn {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
+                            LoggerMP.debug("Spawn meteor {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
                         }
                     }
                 }
@@ -271,7 +271,7 @@ public class EntityEventHandler
                         if (!world.isRemote)
                         {
                             world.spawnEntity(meteorEntity);
-                            LoggerMP.debug("Spawn {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
+                            LoggerMP.debug("Spawn meteor {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
                         }
                     }
                 }

@@ -171,9 +171,9 @@ public class WorldGenSpaceDungeons extends WorldGenerator
             }
             else
             {
-                LoggerMP.error("Failed to fetch mob spawner entity at x:{} y:{} z:{}", pos.getX(), pos.getY(), pos.getZ());
+                LoggerMP.error("Failed to fetch mob spawner entity at {} {} {}", pos.getX(), pos.getY(), pos.getZ());
             }
-            LoggerMP.debug("Generate {} spawner at: x:{} y:{} z:{}", ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().getEntityId().toString(), pos.getX(), pos.getY(), pos.getZ());
+            LoggerMP.debug("Generate {} spawner at {} {} {}", ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().getEntityId().toString(), pos.getX(), pos.getY(), pos.getZ());
             return true;
         }
         else

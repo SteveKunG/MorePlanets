@@ -111,7 +111,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
         public StartMonument(World world, Random rand, int x, int z)
         {
             super(x, z);
-            LoggerMP.debug("Generate Nibiru Ocean Monument at x:{} z:{}", x * 16, z * 16);
+            LoggerMP.debug("Generate Nibiru Ocean Monument at {} {}", x * 16, z * 16);
             this.create(world, rand, x, z);
         }
 

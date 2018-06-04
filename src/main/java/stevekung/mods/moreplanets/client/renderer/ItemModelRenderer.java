@@ -76,8 +76,7 @@ public class ItemModelRenderer
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.VEIN_FRAME, new RenderVeinFrame());
             ItemModelRenderer.registerCCLItemRenderer(MPItems.INFECTED_CRYSTALLIZED_BOMB, new RenderInfectedCrystallizedBombCCL());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_CHEST, new RenderChest(new TileEntityAlienChest()));
-
-            LoggerMP.info("Successfully registered CodeChickenCore item rendering for More Planets tile entities");
+            LoggerMP.info("Successfully registered CodeChickenCore item renderer for More Planets blocks/items");
         }
         catch (Exception e)
         {

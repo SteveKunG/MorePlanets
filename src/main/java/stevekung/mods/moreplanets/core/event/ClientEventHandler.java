@@ -183,7 +183,7 @@ public class ClientEventHandler
             {
                 if (--this.loadRendererTick == 0)
                 {
-                    LoggerMP.debug("Reload chunk renderer");
+                    LoggerMP.debug("Reload renderers");
                     this.mc.renderGlobal.loadRenderers();
                     this.loadRendererTick = 30;
                     ClientEventHandler.loadRenderers = false;
