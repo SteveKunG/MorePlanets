@@ -29,7 +29,6 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.dimension.WorldProviderSpaceNether;
-import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
@@ -38,6 +37,7 @@ import stevekung.mods.moreplanets.planets.diona.entity.EntityZeliusZombie;
 import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityShlime;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.LoggerMP;
@@ -142,11 +142,11 @@ public class EntityEventHandler
             }
             if (world.provider instanceof WorldProviderNibiru)
             {
-                if (world.isRainingAt(player.getPosition()) && !this.isGodPlayer(player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiome(player.getPosition()) != MPBiomes.GREEN_VEIN_FIELDS)
+                if (world.isRainingAt(player.getPosition()) && !this.isGodPlayer(player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !(world.getBiome(player.getPosition()) instanceof BiomeGreenVeinFields))
                 {
                     player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
                 }
-                if (player.ticksExisted % 128 == 0 && !this.isGodPlayer(player) && !this.isInOxygen(world, player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && world.getBiome(player.getPosition()) != MPBiomes.GREEN_VEIN_FIELDS)
+                if (player.ticksExisted % 128 == 0 && !this.isGodPlayer(player) && !this.isInOxygen(world, player) && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !(world.getBiome(player.getPosition()) instanceof BiomeGreenVeinFields))
                 {
                     player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
                 }
@@ -160,11 +160,11 @@ public class EntityEventHandler
         {
             if (!(living instanceof EntityPlayer) && !EntityEffectUtils.isGalacticraftMob(living) && !(living instanceof EntityJuicer))
             {
-                if (living.ticksExisted % 128 == 0 && world.getBiome(living.getPosition()) != MPBiomes.GREEN_VEIN_FIELDS)
+                if (living.ticksExisted % 128 == 0 && !(world.getBiome(living.getPosition()) instanceof BiomeGreenVeinFields))
                 {
                     living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
                 }
-                if (world.isRainingAt(living.getPosition()) && world.getBiome(living.getPosition()) != MPBiomes.GREEN_VEIN_FIELDS)
+                if (world.isRainingAt(living.getPosition()) && !(world.getBiome(living.getPosition()) instanceof BiomeGreenVeinFields))
                 {
                     living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 40));
                 }

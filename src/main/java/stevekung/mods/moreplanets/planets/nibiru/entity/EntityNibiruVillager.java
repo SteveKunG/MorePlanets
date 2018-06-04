@@ -49,11 +49,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.planets.nibiru.entity.ai.*;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
@@ -706,7 +706,7 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData data)
     {
         data = super.onInitialSpawn(difficulty, data);
-        this.setProfession(this.world.getBiome(this.getPosition()) == MPBiomes.GREEN_VEIN_FIELDS ? 3 + this.rand.nextInt(3) : this.rand.nextInt(3));
+        this.setProfession(this.world.getBiome(this.getPosition()) instanceof BiomeGreenVeinFields ? 3 + this.rand.nextInt(3) : this.rand.nextInt(3));
         this.setAdditionalAItasks();
         this.populateBuyingList();
         return data;
@@ -717,7 +717,7 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
     {
         EntityNibiruVillager entity = new EntityNibiruVillager(this.world);
         entity.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entity)), null);
-        entity.setProfession(this.world.getBiome(this.getPosition()) == MPBiomes.GREEN_VEIN_FIELDS ? 3 + this.rand.nextInt(3) : this.rand.nextInt(3));
+        entity.setProfession(this.world.getBiome(this.getPosition()) instanceof BiomeGreenVeinFields ? 3 + this.rand.nextInt(3) : this.rand.nextInt(3));
         return entity;
     }
 

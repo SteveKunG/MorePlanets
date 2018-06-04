@@ -33,12 +33,12 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
 import stevekung.mods.moreplanets.utils.blocks.IFire;
 import stevekung.mods.moreplanets.utils.items.IDungeonKey;
 import stevekung.mods.moreplanets.utils.items.IDungeonKeyable;
@@ -198,7 +198,7 @@ public class GeneralEventHandler
         Block sourceBlock = sourceState.getBlock();
         EntityPlayer player = event.getPlayer();
 
-        if (sourceBlock == MPBlocks.INFECTED_FARMLAND && event.getWorld().getBiomeForCoordsBody(event.getPos()) == MPBiomes.GREEN_VEIN_FIELDS)
+        if (sourceBlock == MPBlocks.INFECTED_FARMLAND && event.getWorld().getBiomeForCoordsBody(event.getPos()) instanceof BiomeGreenVeinFields)
         {
             return;
         }

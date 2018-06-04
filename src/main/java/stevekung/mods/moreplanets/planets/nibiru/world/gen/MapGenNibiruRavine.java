@@ -13,6 +13,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
 
 public class MapGenNibiruRavine extends MapGenBase
 {
@@ -212,7 +213,7 @@ public class MapGenNibiruRavine extends MapGenBase
 
     private boolean isExceptionBiome(Biome biome)
     {
-        if (biome == MPBiomes.GREEN_VEIN_FIELDS)
+        if (biome instanceof BiomeGreenVeinFields)
         {
             return true;
         }
