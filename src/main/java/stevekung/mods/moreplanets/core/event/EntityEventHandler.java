@@ -175,12 +175,18 @@ public class EntityEventHandler
     @SubscribeEvent
     public void onOxygenSuffocation(GCCoreOxygenSuffocationEvent.Pre event)
     {
-        if (event.getEntityLiving().world.provider instanceof WorldProviderSpaceNether)
+        EntityLivingBase living = event.getEntityLiving();
+
+        if (living.world.provider instanceof WorldProviderSpaceNether)
         {
-            if (EntityEffectUtils.isSpaceNetherMob(event.getEntityLiving()))
+            if (EntityEffectUtils.isSpaceNetherMob(living))
             {
                 event.setCanceled(true);
             }
+        }
+        if (living.world.getBiome(living.getPosition()) instanceof BiomeGreenVeinFields)
+        {
+            event.setCanceled(true);
         }
     }
 
