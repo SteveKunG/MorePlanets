@@ -47,8 +47,9 @@ public class MPBiomes
     public static Biome INFECTED_SNOWY_TUNDRA = new BiomeInfectedSnow(new Biome.BiomeProperties("Infected Snowy Tundra").setSnowEnabled().setTemperature(0.0F).setRainfall(0.5F).setBaseHeight(0.125F).setHeightVariation(0.05F), false);
     public static Biome INFECTED_SNOWY_MOUNTAINS = new BiomeInfectedSnow(new Biome.BiomeProperties("Infected Snowy Mountains").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.0F).setRainfall(0.5F).setSnowEnabled(), false);
     public static Biome INFECTED_ICE_SPIKES = new BiomeInfectedSnow(new Biome.BiomeProperties("Infected Ice Spikes").setBaseBiome("infected_snowy_tundra").setBaseHeight(0.425F).setHeightVariation(0.45000002F).setTemperature(0.0F).setRainfall(0.5F).setSnowEnabled(), true);
-    public static Biome GREEN_VEIN_FIELDS = new BiomeGreenVeinFields(new Biome.BiomeProperties("Green Vein Fields").setTemperature(0.9F).setRainfall(1.0F).setBaseHeight(0.125F).setHeightVariation(0.05F));
-    public static Biome GREEN_VEIN_FIELD_SHORE = new BiomeGreenVeinFields(new Biome.BiomeProperties("Green Vein Field Shore").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.9F).setRainfall(1.0F));
+    public static Biome GREEN_VEIN_FIELDS = new BiomeGreenVeinFields(new Biome.BiomeProperties("Green Vein Fields").setTemperature(0.9F).setRainfall(1.0F).setBaseHeight(0.125F).setHeightVariation(0.05F), false);
+    public static Biome COLD_GREEN_VEIN_FIELDS = new BiomeGreenVeinFields(new Biome.BiomeProperties("Cold Green Vein Fields").setBaseBiome("green_vein_fields").setTemperature(0.0F).setRainfall(0.5F).setBaseHeight(1.25F).setHeightVariation(0.5F), true);
+    public static Biome GREEN_VEIN_FIELD_SHORE = new BiomeGreenVeinFields(new Biome.BiomeProperties("Green Vein Field Shore").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.9F).setRainfall(1.0F), false);
     public static Biome INFECTED_BEACHES = new BiomeInfectedBeach(new Biome.BiomeProperties("Infected Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F), false);
     public static Biome INFECTED_STONE_SHORE = new BiomeInfectedBeach(new Biome.BiomeProperties("Infected Stone Shore").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F), true);
     public static Biome INFECTED_SNOWY_BEACH = new BiomeInfectedBeach(new Biome.BiomeProperties("Infected Snowy Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.05F).setRainfall(0.3F).setSnowEnabled(), false);
@@ -94,6 +95,7 @@ public class MPBiomes
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_SNOWY_MOUNTAINS, "infected_snowy_mountains");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_ICE_SPIKES, "infected_ice_spikes");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.GREEN_VEIN_FIELDS, "green_vein_fields");
+        MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.COLD_GREEN_VEIN_FIELDS, "cold_green_vein_fields");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.GREEN_VEIN_FIELD_SHORE, "green_vein_field_shore");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_BEACHES, "infected_beaches");
         MorePlanetsMod.COMMON_REGISTRY.registerBiome(MPBiomes.INFECTED_STONE_SHORE, "infected_stone_shore");
@@ -141,6 +143,7 @@ public class MPBiomes
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_SNOWY_MOUNTAINS, COLD, SNOWY, DEAD, MOUNTAIN);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_ICE_SPIKES, COLD, SNOWY, DEAD, HILLS, RARE);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.GREEN_VEIN_FIELDS, FOREST, RARE, MAGICAL);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.COLD_GREEN_VEIN_FIELDS, FOREST, RARE, MAGICAL, COLD, SNOWY);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.GREEN_VEIN_FIELD_SHORE, FOREST, RARE, MAGICAL, BEACH);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_BEACHES, BEACH, DEAD);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_STONE_SHORE, BEACH, DEAD);

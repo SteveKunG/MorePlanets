@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import stevekung.mods.moreplanets.core.data.WorldDataSurvivalPlanet;
+import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityAlienBeam;
@@ -118,7 +119,7 @@ public class WorldTickEventHandler
                             }
                             if (raining && worldServer.canSnowAt(pos, true))
                             {
-                                worldServer.setBlockState(pos, MPBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                                worldServer.setBlockState(pos, biome == MPBiomes.COLD_GREEN_VEIN_FIELDS ? MPBlocks.PURIFIED_SNOW_LAYER.getDefaultState() : MPBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                             }
                             if (raining && worldServer.getBiome(pos1).canRain())
                             {

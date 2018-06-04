@@ -123,7 +123,8 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
                 }
                 if (this.world.canSnowAt(blockpos1, true))
                 {
-                    this.world.setBlockState(blockpos1, MPBlocks.INFECTED_SNOW_LAYER.getDefaultState(), 2);
+                    Biome biome2 = this.world.getBiome(blockpos1);
+                    this.world.setBlockState(blockpos1, biome2 == MPBiomes.COLD_GREEN_VEIN_FIELDS ? MPBlocks.PURIFIED_SNOW_LAYER.getDefaultState() : MPBlocks.INFECTED_SNOW_LAYER.getDefaultState(), 2);
                 }
             }
         }

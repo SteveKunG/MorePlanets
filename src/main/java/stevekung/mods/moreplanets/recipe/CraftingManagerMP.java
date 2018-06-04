@@ -141,6 +141,7 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_OAK_BOOKSHELF), new Object[] { "WWW", "BBB", "WWW", 'W', MPBlocks.INFECTED_OAK_PLANKS, 'B', Items.BOOK });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_OAK_BOOKSHELF), new Object[] { "WWW", "BBB", "WWW", 'W', MPBlocks.ALIEN_BERRY_OAK_PLANKS, 'B', Items.BOOK });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_SNOW), new Object[] { "XX", "XX", 'X', MPItems.INFECTED_SNOWBALL });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.PURIFIED_SNOW), new Object[] { "XX", "XX", 'X', MPItems.PURIFIED_SNOWBALL });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_MELON), new Object[] { "XXX", "XXX", "XXX", 'X', MPItems.INFECTED_MELON_SLICE });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CLAY), new Object[] { "XX", "XX", 'X', MPItems.INFECTED_CLAY_BALL });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE, 4), new Object[] { "SS", "SS", 'S', MPItems.INFECTED_PRISMARINE_SHARD });
@@ -154,6 +155,7 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CHEST), new Object[] { "XXX", "X X", "XXX", 'X', MPBlocks.INFECTED_OAK_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_CHEST), new Object[] { "XXX", "X X", "XXX", 'X', MPBlocks.ALIEN_BERRY_OAK_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_SNOW_LAYER, 6), new Object[] { "XXX", 'X', MPBlocks.INFECTED_SNOW });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.PURIFIED_SNOW_LAYER, 6), new Object[] { "XXX", 'X', MPBlocks.PURIFIED_SNOW });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_TORCH, 4), new Object[] { "C", "S", 'S', "stickWood", 'C', MPItems.INFECTED_COAL});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_TORCH, 4), null, "infected_torch_from_charcoal", new Object[] { "C", "S", 'S', "stickWood", 'C', MPItems.INFECTED_CHARCOAL});
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_FURNACE), new Object[] { "XXX", "X X", "XXX", 'X', MPBlocks.NIBIRU_COBBLESTONE});

@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
 import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
@@ -21,7 +22,8 @@ public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
     private WorldGenerator copperGen;
     private WorldGenerator lapisGen;
     private WorldGenerator dirtGen;
-    private WorldGenerator gravelGen;
+    private WorldGenerator infectedGravelGen;
+    private WorldGenerator purifiedGravelGen;
     private WorldGenerator goldGen;
     private WorldGenerator diamondGen;
     private WorldGenerator siliconGen;
@@ -44,7 +46,8 @@ public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
         this.inferumiteGen = new WorldGenMinableBase(MPBlocks.INFERUMITE_CRYSTAL_ORE.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), 4);
         this.redstoneGen = new WorldGenMinableBase(MPBlocks.INFECTED_REDSTONE_ORE.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.REDSTONE);
         this.oilGen = new WorldGenMinableBase(MPBlocks.OIL_ORE.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), 4);
-        this.gravelGen = new WorldGenMinableBase(MPBlocks.INFECTED_GRAVEL.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.GRAVEL);
+        this.infectedGravelGen = new WorldGenMinableBase(MPBlocks.INFECTED_GRAVEL.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.GRAVEL);
+        this.purifiedGravelGen = new WorldGenMinableBase(MPBlocks.PURIFIED_GRAVEL.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), EnumOreGen.GRAVEL);
     }
 
     @Override
@@ -64,7 +67,7 @@ public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
         this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
         this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
         this.generateOre(this.siliconGen, EnumOreGen.SILICON, world, rand);
-        this.generateOre(this.gravelGen, EnumOreGen.GRAVEL, world, rand);
+        this.generateOre(biome instanceof BiomeGreenVeinFields ? this.purifiedGravelGen : this.infectedGravelGen, EnumOreGen.GRAVEL, world, rand);
         this.generateOre(this.inferumiteGen, 16, 0, 64, world, rand);
         this.generateOre(this.oilGen, 3, 0, 36, world, rand);
         this.generateLapis(this.lapisGen, EnumOreGen.LAPIS, world, rand);

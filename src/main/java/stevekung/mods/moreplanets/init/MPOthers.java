@@ -6,6 +6,7 @@ import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfected
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedEgg;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedSnowball;
+import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityPurifiedSnowball;
 import stevekung.mods.stevekunglib.utils.BehaviorProjectileDispenseBase;
 
 public class MPOthers
@@ -20,6 +21,7 @@ public class MPOthers
     {
         MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_CRYSTALLIZED_BOMB, new BehaviorProjectileDispenseBase(EntityInfectedCrystallizedBomb.class));
         MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_SNOWBALL, new BehaviorProjectileDispenseBase(EntityInfectedSnowball.class));
+        MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.PURIFIED_SNOWBALL, new BehaviorProjectileDispenseBase(EntityPurifiedSnowball.class));
         MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_EGG, new BehaviorProjectileDispenseBase(EntityInfectedEgg.class));
         MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_CRYSTALLIZED_ARROW, new BehaviorProjectileDispenseBase(EntityInfectedCrystallizedArrow.class, true));
         MorePlanetsMod.COMMON_REGISTRY.registerProjectileDispense(MPItems.INFECTED_ARROW, new BehaviorProjectileDispenseBase(EntityInfectedArrow.class, true));

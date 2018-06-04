@@ -14,19 +14,22 @@ import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 
 public class BlockInfectedSnow extends BlockBaseMP
 {
-    public BlockInfectedSnow(String name)
+    private boolean isPurified;
+
+    public BlockInfectedSnow(String name, boolean isPurified)
     {
         super(Material.CRAFTED_SNOW);
         this.setTickRandomly(true);
         this.setUnlocalizedName(name);
         this.setHardness(0.2F);
         this.setSoundType(SoundType.SNOW);
+        this.isPurified = isPurified;
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return MPItems.INFECTED_SNOWBALL;
+        return this.isPurified ? MPItems.PURIFIED_SNOWBALL : MPItems.INFECTED_SNOWBALL;
     }
 
     @Override

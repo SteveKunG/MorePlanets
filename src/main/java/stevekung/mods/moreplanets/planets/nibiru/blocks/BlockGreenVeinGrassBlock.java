@@ -2,20 +2,34 @@ package stevekung.mods.moreplanets.planets.nibiru.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
 public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrowable
 {
+    private static final PropertyBool SNOWY = PropertyBool.create("snowy");
+
     public BlockGreenVeinGrassBlock(String name)
     {
         super();
+        this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, false));
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        Block block = world.getBlockState(pos.up()).getBlock();
+        return state.withProperty(SNOWY, block == MPBlocks.PURIFIED_SNOW || block == MPBlocks.PURIFIED_SNOW_LAYER);
     }
 
     @Override
@@ -116,5 +130,17 @@ public class BlockGreenVeinGrassBlock extends BlockGrassBlockMP implements IGrow
                 ++j;
             }
         }
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return 0;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, SNOWY);
     }
 }

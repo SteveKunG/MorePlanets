@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
 
 public class BlockInfectedGrassBlock extends BlockGrassBlockMP implements IGrowable
 {
-    public static PropertyBool SNOWY = PropertyBool.create("snowy");
+    private static final PropertyBool SNOWY = PropertyBool.create("snowy");
 
     public BlockInfectedGrassBlock(String name)
     {

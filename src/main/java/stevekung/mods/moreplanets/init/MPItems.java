@@ -133,6 +133,7 @@ public class MPItems
     public static Item INFECTED_WHEAT;
     public static Item INFECTED_CLAY_BALL;
     public static Item INFECTED_SNOWBALL;
+    public static Item PURIFIED_SNOWBALL;
     public static Item NIBIRU_DUNGEON_KEY;
     public static Item NIBIRU_DUNGEON_KEY_BOW;
     public static Item NIBIRU_DUNGEON_KEY_BLADE;
@@ -356,6 +357,7 @@ public class MPItems
         MPItems.INFECTED_WHEAT = new ItemBaseMP("infected_wheat");
         MPItems.INFECTED_CLAY_BALL = new ItemBaseMP("infected_clay_ball");
         MPItems.INFECTED_SNOWBALL = new ItemInfectedSnowball("infected_snowball");
+        MPItems.PURIFIED_SNOWBALL = new ItemPurifiedSnowball("purified_snowball");
         MPItems.NIBIRU_DUNGEON_KEY = new ItemDungeonKeyMP("nibiru_dungeon_key", 6);
         MPItems.NIBIRU_DUNGEON_KEY_BOW = new ItemBaseMP("nibiru_dungeon_key_bow").setSortCategory(EnumSortCategoryItem.DUNGEON_KEY);
         MPItems.NIBIRU_DUNGEON_KEY_BLADE = new ItemBaseMP("nibiru_dungeon_key_blade").setSortCategory(EnumSortCategoryItem.DUNGEON_KEY);
@@ -581,6 +583,7 @@ public class MPItems
         BlocksItemsRegistry.registerItem(MPItems.INFECTED_WHEAT);
         BlocksItemsRegistry.registerItem(MPItems.INFECTED_CLAY_BALL);
         BlocksItemsRegistry.registerItem(MPItems.INFECTED_SNOWBALL);
+        BlocksItemsRegistry.registerItem(MPItems.PURIFIED_SNOWBALL);
         BlocksItemsRegistry.registerItem(MPItems.NIBIRU_DUNGEON_KEY);
         BlocksItemsRegistry.registerItem(MPItems.NIBIRU_DUNGEON_KEY_BOW);
         BlocksItemsRegistry.registerItem(MPItems.NIBIRU_DUNGEON_KEY_BLADE);

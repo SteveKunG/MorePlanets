@@ -74,6 +74,7 @@ public class MPEntities
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityNibiruLightningBolt.class, "nibiru_lightning_bolt");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityDarkLightningBolt.class, "dark_lightning_bolt");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedSnowball.class, "infected_snowball", EnumEntityTrackerType.THROWABLE_LARGE);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityPurifiedSnowball.class, "purified_snowball", EnumEntityTrackerType.THROWABLE_LARGE);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityBlackHole.class, "black_hole");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedEgg.class, "infected_egg", EnumEntityTrackerType.THROWABLE_LARGE);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedCrystallizedArrow.class, "infected_crystallized_arrow", EnumEntityTrackerType.ARROW);

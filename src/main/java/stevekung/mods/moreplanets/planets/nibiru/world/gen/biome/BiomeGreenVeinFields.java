@@ -27,27 +27,37 @@ public class BiomeGreenVeinFields extends BiomeNibiru
     private static final WorldGenAlienBerryTree TREE = new WorldGenAlienBerryTree();
     private static final WorldGenAlienBerryBigTree BIG_TREE = new WorldGenAlienBerryBigTree();
     protected static final WorldGenFlowersBase GRASS = new WorldGenFlowersBase(MPBlocks.GREEN_VEIN_GRASS.getDefaultState());
+    private boolean snow;
 
-    public BiomeGreenVeinFields(BiomeProperties prop)
+    public BiomeGreenVeinFields(BiomeProperties prop, boolean snow)
     {
         super(prop);
         this.topBlock = MPBlocks.GREEN_VEIN_GRASS_BLOCK.getDefaultState();
         this.decorator.grassPerChunk = 120;
         this.decorator.flowersPerChunk = 4;
         this.decorator.treesPerChunk = 4;
+        this.snow = snow;
     }
 
     @Override
     public IBlockState pickRandomModdedFlower(Random rand, BlockPos pos)
     {
-        return rand.nextInt(3) > 0 ? MPBlocks.TERRAPUFF_HERB.getDefaultState() : MPBlocks.TERRASHROOM.getDefaultState();
+        if (!this.snow)
+        {
+            return rand.nextInt(3) > 0 ? MPBlocks.TERRAPUFF_HERB.getDefaultState() : MPBlocks.TERRASHROOM.getDefaultState();
+        }
+        return MPBlocks.TERRAPUFF_HERB.getDefaultState();
     }
 
     @Override
     public void addDefaultFlowers()
     {
         this.addFlower(MPBlocks.TERRAPUFF_HERB.getDefaultState(), 20);
-        this.addFlower(MPBlocks.TERRASHROOM.getDefaultState(), 20);
+
+        if (!this.snow)
+        {
+            this.addFlower(MPBlocks.TERRASHROOM.getDefaultState(), 20);
+        }
     }
 
     @Override
@@ -76,13 +86,16 @@ public class BiomeGreenVeinFields extends BiomeNibiru
                 BiomeGreenVeinFields.TALL_GRASS.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
             }
         }
-        if (rand.nextInt(15) == 0)
+        if (!this.snow)
         {
-            BiomeGreenVeinFields.TERRASHROOM.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
-        }
-        if (rand.nextInt(4) == 0)
-        {
-            BiomeGreenVeinFields.TERRASHROOM_FLOWER.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            if (rand.nextInt(15) == 0)
+            {
+                BiomeGreenVeinFields.TERRASHROOM.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            }
+            if (rand.nextInt(4) == 0)
+            {
+                BiomeGreenVeinFields.TERRASHROOM_FLOWER.generate(world, rand, WorldDecorateUtils.getSimplePos(world, pos, rand));
+            }
         }
         super.decorate(world, rand, pos);
     }
@@ -90,7 +103,7 @@ public class BiomeGreenVeinFields extends BiomeNibiru
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return rand.nextInt(3) == 0 ? BiomeGreenVeinFields.BIG_TREE : BiomeGreenVeinFields.TREE;
+        return rand.nextInt(20) == 0 ? BiomeGreenVeinFields.BIG_TREE : BiomeGreenVeinFields.TREE;
     }
 
     @Override

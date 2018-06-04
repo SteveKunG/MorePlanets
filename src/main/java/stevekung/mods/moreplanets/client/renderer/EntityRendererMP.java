@@ -63,6 +63,7 @@ public class EntityRendererMP
         ClientRegistryUtils.registerEntityRendering(EntityNibiruLightningBolt.class, RenderNibiruLightningBolt::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedSnowman.class, RenderInfectedSnowman::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedSnowball.class, manager -> new RenderSnowballMP(manager, new ItemStack(MPItems.INFECTED_SNOWBALL)));
+        ClientRegistryUtils.registerEntityRendering(EntityPurifiedSnowball.class, manager -> new RenderSnowballMP(manager, new ItemStack(MPItems.PURIFIED_SNOWBALL)));
         ClientRegistryUtils.registerEntityRendering(EntityZeliusSkeleton.class, RenderZeliusSkeleton::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedGuardian.class, RenderInfectedGuardian::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedElderGuardian.class, RenderInfectedElderGuardian::new);

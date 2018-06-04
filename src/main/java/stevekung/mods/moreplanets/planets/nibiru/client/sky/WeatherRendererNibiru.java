@@ -20,7 +20,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
-import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
+import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 
 public class WeatherRendererNibiru extends IRenderHandler
@@ -28,6 +28,7 @@ public class WeatherRendererNibiru extends IRenderHandler
     private static final ResourceLocation RAIN = new ResourceLocation("moreplanets:textures/environment/infected_rain.png");
     private static final ResourceLocation PURIFIED_RAIN = new ResourceLocation("moreplanets:textures/environment/purified_rain.png");
     private static final ResourceLocation SNOW = new ResourceLocation("moreplanets:textures/environment/infected_snow.png");
+    private static final ResourceLocation PURIFIED_SNOW = new ResourceLocation("moreplanets:textures/environment/purified_snow.png");
     private final float[] rainXCoords = new float[1024];
     private final float[] rainYCoords = new float[1024];
     private int rainSoundCounter;
@@ -214,6 +215,7 @@ public class WeatherRendererNibiru extends IRenderHandler
     private void renderNibiruWeather(Minecraft mc, float rainStrength, int rendererUpdateCount, float partialTicks)
     {
         mc.entityRenderer.enableLightmap();
+        float f1 = rendererUpdateCount + partialTicks;
         Entity entity = mc.getRenderViewEntity();
         World world = mc.world;
         int i = MathHelper.floor(entity.posX);
@@ -280,7 +282,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                         mutablePos.setPos(l1, k2, k1);
                         biome.getTemperature(mutablePos);
 
-                        if (biome instanceof BiomeGreenVeinFields)
+                        if (biome == MPBiomes.GREEN_VEIN_FIELDS || biome == MPBiomes.GREEN_VEIN_FIELD_SHORE)
                         {
                             if (j1 != 0)
                             {
@@ -305,6 +307,34 @@ public class WeatherRendererNibiru extends IRenderHandler
                     buffer.pos(l1 + d3 + 0.5D, k2, k1 + d4 + 0.5D).tex(1.0D, k2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
                     buffer.pos(l1 + d3 + 0.5D, l2, k1 + d4 + 0.5D).tex(1.0D, l2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
                     buffer.pos(l1 - d3 + 0.5D, l2, k1 - d4 + 0.5D).tex(0.0D, l2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
+                        }
+                        else if (biome == MPBiomes.COLD_GREEN_VEIN_FIELDS)
+                        {
+                            if (j1 != 1)
+                            {
+                                if (j1 >= 0)
+                                {
+                                    tessellator.draw();
+                                }
+                                j1 = 1;
+                                mc.getTextureManager().bindTexture(WeatherRendererNibiru.PURIFIED_SNOW);
+                                buffer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
+                            }
+                            double d8 = ((rendererUpdateCount & 511) + partialTicks) / 512.0F;
+                            double d9 = this.rand.nextDouble() + f1 * 0.01D * (float)this.rand.nextGaussian();
+                            double d10 = this.rand.nextDouble() + f1 * (float)this.rand.nextGaussian() * 0.001D;
+                            double d11 = l1 + 0.5F - entity.posX;
+                            double d12 = k1 + 0.5F - entity.posZ;
+                            float f6 = MathHelper.sqrt(d11 * d11 + d12 * d12) / i1;
+                            float f5 = ((1.0F - f6 * f6) * 0.3F + 0.5F) * rainStrength;
+                            mutablePos.setPos(l1, i3, k1);
+                            int i4 = (world.getCombinedLight(mutablePos, 0) * 3 + 15728880) / 4;
+                            int j4 = i4 >> 16 & 65535;
+                int k4 = i4 & 65535;
+                buffer.pos(l1 - d3 + 0.5D, k2, k1 - d4 + 0.5D).tex(0.0D + d9, k2 * 0.25D + d8 + d10).color(1.0F, 1.0F, 1.0F, f5).lightmap(j4, k4).endVertex();
+                buffer.pos(l1 + d3 + 0.5D, k2, k1 + d4 + 0.5D).tex(1.0D + d9, k2 * 0.25D + d8 + d10).color(1.0F, 1.0F, 1.0F, f5).lightmap(j4, k4).endVertex();
+                buffer.pos(l1 + d3 + 0.5D, l2, k1 + d4 + 0.5D).tex(1.0D + d9, l2 * 0.25D + d8 + d10).color(1.0F, 1.0F, 1.0F, f5).lightmap(j4, k4).endVertex();
+                buffer.pos(l1 - d3 + 0.5D, l2, k1 - d4 + 0.5D).tex(0.0D + d9, l2 * 0.25D + d8 + d10).color(1.0F, 1.0F, 1.0F, f5).lightmap(j4, k4).endVertex();
                         }
                     }
                 }
