@@ -1,11 +1,13 @@
 package stevekung.mods.moreplanets.utils.world.gen.feature;
 
+import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
@@ -163,17 +165,27 @@ public class WorldGenSpaceDungeons extends WorldGenerator
             }
 
             world.setBlockState(pos, Blocks.MOB_SPAWNER.getDefaultState(), 2);
-            TileEntity tileentity = world.getTileEntity(pos);
+            TileEntity tile = world.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityMobSpawner)
+            if (tile instanceof TileEntityMobSpawner)
             {
-                ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(this.pickMobSpawner(rand));
+                TileEntityMobSpawner spawner = (TileEntityMobSpawner)tile;
+                MobSpawnerBaseLogic logic = spawner.getSpawnerBaseLogic();
+                logic.setEntityId(this.pickMobSpawner(rand));
+
+                try
+                {
+                    Class<?> clazz = logic.getClass();
+                    Method method = clazz.getMethod("getEntityId");
+                    method.setAccessible(true);
+                    LoggerMP.debug("Generate {} spawner at {} {} {}", method.invoke(logic).toString(), pos.getX(), pos.getY(), pos.getZ());
+                }
+                catch (Exception e) {}
             }
             else
             {
                 LoggerMP.error("Failed to fetch mob spawner entity at {} {} {}", pos.getX(), pos.getY(), pos.getZ());
             }
-            LoggerMP.debug("Generate {} spawner at {} {} {}", ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().getEntityId().toString(), pos.getX(), pos.getY(), pos.getZ());
             return true;
         }
         else
