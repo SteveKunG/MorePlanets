@@ -113,13 +113,14 @@ public abstract class ComponentCheeseSporeHutPieces extends StructureComponent
 
     public static class CheeseSporeHut extends ComponentCheeseSporeHutPieces
     {
-        private static final ResourceLocation CHEESE_SPORE_HUT = new ResourceLocation("moreplanets:cheese_spore_hut");
+        private static final ResourceLocation CHEESE_SPORE_HUT_STEM = new ResourceLocation("moreplanets:cheese_spore_hut/cheese_spore_hut_stem");
+        private static final ResourceLocation CHEESE_SPORE_HUT_TOP = new ResourceLocation("moreplanets:cheese_spore_hut/cheese_spore_hut_top");
 
         public CheeseSporeHut() {}
 
         public CheeseSporeHut(Random rand, int x, int z)
         {
-            super(rand, x, 64, z, 18, 17, 18);
+            super(rand, x, 64, z, 8, 11, 8);
         }
 
         @Override
@@ -137,10 +138,13 @@ public abstract class ComponentCheeseSporeHutPieces extends StructureComponent
                 MinecraftServer server = world.getMinecraftServer();
                 TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
                 PlacementSettings settings = new PlacementSettings().setRotation(arotation[rand.nextInt(arotation.length)]).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(box1);
-                Template template = manager.getTemplate(server, CheeseSporeHut.CHEESE_SPORE_HUT);
+                Template template = manager.getTemplate(server, CheeseSporeHut.CHEESE_SPORE_HUT_STEM);
+                Template template1 = manager.getTemplate(server, CheeseSporeHut.CHEESE_SPORE_HUT_TOP);
+                BlockPos blockpos1 = pos.add(template.calculateConnectedPos(settings, new BlockPos(7, -4, 0), settings, new BlockPos(9, -9, 2)));
                 template.addBlocksToWorldChunk(world, pos, settings);
+                template1.addBlocksToWorldChunk(world, blockpos1, settings);
                 LoggerMP.debug("Generate Cheese Spore Hut at {} {} {}", pos.getX(), pos.getY(), pos.getZ());
-                Map<BlockPos, String> map = template.getDataBlocks(pos, settings);
+                Map<BlockPos, String> map = template1.getDataBlocks(blockpos1, settings);
 
                 for (Entry<BlockPos, String> entry : map.entrySet())
                 {

@@ -118,7 +118,7 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
 
         public CrashedAlienShip(Random rand, int x, int z)
         {
-            super(rand, x, 64, z, 17, 9, 11);
+            super(rand, x, 64, z, 16, 9, 11);
         }
 
         @Override

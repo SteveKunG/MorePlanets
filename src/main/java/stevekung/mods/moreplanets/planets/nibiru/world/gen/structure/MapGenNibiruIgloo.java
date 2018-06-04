@@ -11,6 +11,7 @@ import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureStart;
 import stevekung.mods.moreplanets.init.MPBiomes;
+import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruIgloo extends MapGenStructure
 {
@@ -93,10 +94,11 @@ public class MapGenNibiruIgloo extends MapGenStructure
     {
         public Start() {}
 
-        public Start(World world, Random random, int chunkX, int chunkZ)
+        public Start(World world, Random rand, int chunkX, int chunkZ)
         {
             super(chunkX, chunkZ);
-            StructureNibiruIglooPieces igloo = new StructureNibiruIglooPieces(random, chunkX * 16, chunkZ * 16);
+            LoggerMP.debug("Generate nibiru igloo at {} {}", chunkX * 16, chunkZ * 16);
+            StructureNibiruIglooPieces igloo = new StructureNibiruIglooPieces(rand, chunkX * 16, chunkZ * 16);
             this.components.add(igloo);
             this.updateBoundingBox();
         }
