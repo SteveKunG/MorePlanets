@@ -43,8 +43,15 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
     {
         String name = this.celestial.getLocalizedName();
         String reach = this.celestial.getReachable() ? TextFormatting.DARK_GREEN + "Reachable" : TextFormatting.DARK_RED + "Unreachable";
-        this.mc.fontRenderer.drawString(name, x + 32 + 3, y + 1, 16777215);
-        this.mc.fontRenderer.drawString(reach, x + 32 + 3, y + this.mc.fontRenderer.FONT_HEIGHT + 3, 8421504);
+        String tier = String.valueOf(this.celestial.getTierRequirement());
+        this.mc.fontRenderer.drawString(name, x + 35, y + 1, 16777215);
+        this.mc.fontRenderer.drawString(reach, x + 35, y + this.mc.fontRenderer.FONT_HEIGHT + 3, 8421504);
+
+        if (this.celestial.getReachable())
+        {
+            this.mc.fontRenderer.drawString("Tier " + tier, x + 35, y + this.mc.fontRenderer.FONT_HEIGHT + 14, 8421504);
+        }
+
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(this.celestialIcon);
         GlStateManager.enableBlend();
