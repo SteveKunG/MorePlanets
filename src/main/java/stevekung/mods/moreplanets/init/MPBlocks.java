@@ -421,9 +421,9 @@ public class MPBlocks
     public static Block INFECTED_ICE;
     public static Block INFECTED_PACKED_ICE;
     public static Block INFECTED_SNOW;
-    public static Block INFECTED_SNOW_LAYER;
+    public static BlockSnowLayerMP INFECTED_SNOW_LAYER;
     public static Block PURIFIED_SNOW;
-    public static Block PURIFIED_SNOW_LAYER;
+    public static BlockSnowLayerMP PURIFIED_SNOW_LAYER;
     public static Block GREEN_VEIN_GRASS_BLOCK;
     public static Block INFECTED_MELON;
     public static Block INFECTED_WHEAT;
@@ -870,9 +870,9 @@ public class MPBlocks
         MPBlocks.INFECTED_SNOW = new BlockInfectedSnow("infected_snow", false);
         MPBlocks.INFECTED_ICE = new BlockInfectedIce("infected_ice");
         MPBlocks.INFECTED_PACKED_ICE = new BlockInfectedPackedIce("infected_packed_ice");
-        MPBlocks.INFECTED_SNOW_LAYER = new BlockSnowLayerMP("infected_snow_layer", MPItems.INFECTED_SNOWBALL);
+        MPBlocks.INFECTED_SNOW_LAYER = new BlockSnowLayerMP("infected_snow_layer");
         MPBlocks.PURIFIED_SNOW = new BlockInfectedSnow("purified_snow", true);
-        MPBlocks.PURIFIED_SNOW_LAYER = new BlockSnowLayerMP("purified_snow_layer", MPItems.PURIFIED_SNOWBALL);
+        MPBlocks.PURIFIED_SNOW_LAYER = new BlockSnowLayerMP("purified_snow_layer");
         MPBlocks.GREEN_VEIN_GRASS_BLOCK = new BlockGreenVeinGrassBlock("green_vein_grass_block");
         MPBlocks.INFECTED_MELON = new BlockInfectedMelon("infected_melon");
         MPBlocks.INFECTED_WHEAT = new BlockInfectedWheat("infected_wheat");

@@ -28,15 +28,14 @@ public class BlockSnowLayerMP extends BlockBaseMP
     private static final AxisAlignedBB[] SNOW_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
     private Item snowball;
 
-    public BlockSnowLayerMP(String name, Item snow)
+    public BlockSnowLayerMP(String name)
     {
         super(Material.SNOW);
-        this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.LAYERS, 1));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.LAYERS, 1));
         this.setTickRandomly(true);
         this.setSoundType(SoundType.SNOW);
         this.setHardness(0.1F);
         this.setUnlocalizedName(name);
-        this.snowball = snow;
     }
 
     @Override
@@ -188,5 +187,10 @@ public class BlockSnowLayerMP extends BlockBaseMP
     {
         state = this.getActualState(world.getBlockState(pos), world, pos);
         return state.getValue(BlockStateProperty.LAYERS) >= 8;
+    }
+
+    public void setSnowball(Item snowball)
+    {
+        this.snowball = snowball;
     }
 }

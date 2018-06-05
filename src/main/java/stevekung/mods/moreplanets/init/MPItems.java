@@ -704,5 +704,7 @@ public class MPItems
         MPBlocks.CHEESE_SPORE_DOOR.setDoorItem(MPItems.CHEESE_SPORE_DOOR);
         MPBlocks.INFECTED_OAK_DOOR.setDoorItem(MPItems.INFECTED_OAK_DOOR);
         MPBlocks.ALIEN_BERRY_OAK_DOOR.setDoorItem(MPItems.ALIEN_BERRY_OAK_DOOR);
+        MPBlocks.INFECTED_SNOW_LAYER.setSnowball(MPItems.INFECTED_SNOWBALL);
+        MPBlocks.PURIFIED_SNOW_LAYER.setSnowball(MPItems.PURIFIED_SNOWBALL);
     }
 }
