@@ -2,9 +2,9 @@ package stevekung.mods.moreplanets.utils.dimension;
 
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
 import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
@@ -22,18 +22,6 @@ import stevekung.mods.moreplanets.world.IStartedDimension;
 
 public abstract class WorldProviderMP extends WorldProviderSpace implements ISolarLevel, IMeteorType, IStartedDimension, IDarkEnergyProvider
 {
-    @Override
-    public Vector3 getFogColor()
-    {
-        return new Vector3(0, 0, 0);
-    }
-
-    @Override
-    public Vector3 getSkyColor()
-    {
-        return new Vector3(0, 0, 0);
-    }
-
     @Override
     public boolean canRespawnHere()
     {
@@ -129,6 +117,18 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
     }
 
     @Override
+    public BiomeProvider getBiomeProvider()
+    {
+        return this.biomeProvider;
+    }
+
+    @Override
+    protected void init()
+    {
+        this.hasSkyLight = true;
+    }
+
+    @Override
     public Class<? extends IChunkGenerator> getChunkProviderClass()
     {
         return null;
@@ -140,23 +140,14 @@ public abstract class WorldProviderMP extends WorldProviderSpace implements ISol
         return null;
     }
 
-    @Override
-    public boolean hasSkyLight()
+    protected void renderCloud()
     {
-        return true;
+        this.setCloudRenderer(new CloudRenderer());
     }
 
-    @Override
-    public BiomeProvider getBiomeProvider()
-    {
-        return this.biomeProvider;
-    }
+    protected void renderSky() {}
+    protected void renderWeather() {}
 
-    protected abstract void renderSky();
-    protected abstract void renderCloud();
-    protected abstract void renderWeather();
-    @Override
-    public abstract void init();
     @Override
     public abstract IChunkGenerator createChunkGenerator();
 }

@@ -12,7 +12,6 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -22,7 +21,6 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
@@ -61,10 +59,10 @@ public class WorldProviderNibiru extends WorldProviderMP
     @Override
     public boolean canBlockFreeze(BlockPos pos, boolean byWater)
     {
-        Biome biomegenbase = this.getBiomeForCoords(pos);
-        float f = biomegenbase.getTemperature(pos);
+        Biome biome = this.getBiomeForCoords(pos);
+        float temp = biome.getTemperature(pos);
 
-        if (f > 0.15F)
+        if (temp > 0.15F)
         {
             return false;
         }
@@ -72,9 +70,9 @@ public class WorldProviderNibiru extends WorldProviderMP
         {
             if (pos.getY() >= 0 && pos.getY() < 256 && this.world.getLightFor(EnumSkyBlock.BLOCK, pos) < 10)
             {
-                IBlockState iblockstate = this.world.getBlockState(pos);
+                Block block = this.world.getBlockState(pos).getBlock();
 
-                if (iblockstate == MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState())
+                if (block == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
                     if (!byWater)
                     {
@@ -93,18 +91,13 @@ public class WorldProviderNibiru extends WorldProviderMP
         }
     }
 
-    private boolean isWater(BlockPos pos)
-    {
-        return this.world.getBlockState(pos).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK;
-    }
-
     @Override
     public boolean canSnowAt(BlockPos pos, boolean checkLight)
     {
-        Biome biomegenbase = this.getBiomeForCoords(pos);
-        float f = biomegenbase.getTemperature(pos);
+        Biome biome = this.getBiomeForCoords(pos);
+        float temp = biome.getTemperature(pos);
 
-        if (f > 0.15F)
+        if (temp > 0.15F)
         {
             return false;
         }
@@ -286,14 +279,9 @@ public class WorldProviderNibiru extends WorldProviderMP
     }
 
     @Override
-    public Class<? extends BiomeProvider> getBiomeProviderClass()
-    {
-        return BiomeProviderNibiru.class;
-    }
-
-    @Override
     public void init()
     {
+        super.init();
         this.biomeProvider = new BiomeProviderNibiru(this.world.getSeed());
     }
 
@@ -313,5 +301,10 @@ public class WorldProviderNibiru extends WorldProviderMP
     public List<Block> getSurfaceBlocks()
     {
         return Arrays.asList(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK, MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.TERRASTONE);
+    }
+
+    private boolean isWater(BlockPos pos)
+    {
+        return this.world.getBlockState(pos).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK;
     }
 }

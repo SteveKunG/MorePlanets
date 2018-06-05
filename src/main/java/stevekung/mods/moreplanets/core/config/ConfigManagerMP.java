@@ -18,6 +18,10 @@ public class ConfigManagerMP
     @Config.Comment(value = "Planet Configuration.")
     public static final PlanetSettings moreplanets_planet_settings = new PlanetSettings();
 
+    @Config.LangKey(value = "moreplanets_moon_settings")
+    @Config.Comment(value = "Moon Configuration.")
+    public static final MoonSettings moreplanets_moon_settings = new MoonSettings();
+
     @Config.LangKey(value = "moreplanets_other")
     @Config.Comment(value = "Others Configuration.")
     public static final Other moreplanets_other = new Other();
@@ -67,6 +71,9 @@ public class ConfigManagerMP
 
         @Config.Name(value = "Fronos Dimension ID")
         public int idDimensionFronos = -2545;
+        
+        @Config.Name(value = "Koentus Dimension ID")
+        public int idDimensionKoentus = -2642;
     }
 
     // Planet Settings
@@ -83,6 +90,14 @@ public class ConfigManagerMP
         @Config.Name(value = "Nibiru Planet Tier")
         @Config.RequiresMcRestart
         public int planetNibiruTier = 3;
+    }
+
+    // Moon Settings
+    public static class MoonSettings
+    {
+        @Config.Name(value = "Koentus Moon Tier")
+        @Config.RequiresMcRestart
+        public int moonKoentusTier = 3;
     }
 
     // Others

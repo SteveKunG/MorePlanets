@@ -5,13 +5,11 @@ import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -137,7 +135,7 @@ public class WorldProviderChalos extends WorldProviderMP
     @Override
     public int getDarkEnergyMultiplier(World world, BlockPos pos)
     {
-        return pos.getY();
+        return 50 + pos.getY();
     }
 
     @Override
@@ -147,23 +145,9 @@ public class WorldProviderChalos extends WorldProviderMP
     }
 
     @Override
-    protected void renderCloud()
-    {
-        this.setCloudRenderer(new CloudRenderer());
-    }
-
-    @Override
-    protected void renderWeather() {}
-
-    @Override
-    public Class<? extends BiomeProvider> getBiomeProviderClass()
-    {
-        return BiomeProviderChalos.class;
-    }
-
-    @Override
     public void init()
     {
+        super.init();
         this.biomeProvider = new BiomeProviderChalos(this.world.getSeed());
     }
 

@@ -10,7 +10,6 @@ import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 
 public class CelestialRegistryUtils
@@ -81,11 +80,6 @@ public class CelestialRegistryUtils
         celestial.addMobInfo(new SpawnListEntry(entity, weight, min, max));
     }
 
-    public static void setBiomeInfo(CelestialBody celestial, Biome... biome)
-    {
-        celestial.setBiomeInfo(biome);
-    }
-
     public static void setChecklistKeys(CelestialBody celestial, String... keys)
     {
         celestial.addChecklistKeys(keys);
@@ -105,6 +99,11 @@ public class CelestialRegistryUtils
     public static void registerPlanet(Planet planet)
     {
         GalaxyRegistry.registerPlanet(planet);
+    }
+
+    public static void registerMoon(Moon moon)
+    {
+        GalaxyRegistry.registerMoon(moon);
     }
 
     public static void registerTeleportType(Class<? extends WorldProvider> clazz, ITeleportType type)

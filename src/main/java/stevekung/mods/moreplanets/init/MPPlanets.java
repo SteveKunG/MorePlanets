@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.init;
 
+import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
@@ -10,6 +11,7 @@ import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
 import micdoodle8.mods.galacticraft.core.entities.*;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.dimension.WorldProviderSpaceNether;
+import stevekung.mods.moreplanets.moons.koentus.dimension.WorldProviderKoentus;
 import stevekung.mods.moreplanets.planets.chalos.dimension.WorldProviderChalos;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseCow;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseFloater;
@@ -30,6 +32,7 @@ public class MPPlanets
     public static Planet CHALOS;
     public static Planet NIBIRU;
     public static Planet FRONOS;
+    public static Moon KOENTUS;
     public static SolarSystem LAZENDUS_SOLAR_SYSTEM;
     public static Star LAZENDUS;
 
@@ -44,10 +47,13 @@ public class MPPlanets
         MPPlanets.CHALOS = CelestialRegistryUtils.createPlanet("chalos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 8.75F, 3.5F, 60.5F, 10.0F, ConfigManagerMP.moreplanets_planet_settings.planetChalosTier, ConfigManagerMP.moreplanets_dimension.idDimensionChalos, WorldProviderChalos.class);
         MPPlanets.NIBIRU = CelestialRegistryUtils.createPlanet("nibiru", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 27.0F, 2.0F, 1050.5F, 2.0F, ConfigManagerMP.moreplanets_planet_settings.planetNibiruTier, ConfigManagerMP.moreplanets_dimension.idDimensionNibiru, WorldProviderNibiru.class);
 
+        // Moons
+        MPPlanets.KOENTUS = CelestialRegistryUtils.createMoon("koentus", MPPlanets.DIONA, 2.436F, 9.5F, 1 / 0.01F, 0.3867F, ConfigManagerMP.moreplanets_moon_settings.moonKoentusTier, ConfigManagerMP.moreplanets_dimension.idDimensionKoentus, WorldProviderKoentus.class);
+
+        // Planets
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.DIONA, EnumAtmosphericGas.ARGON, EnumAtmosphericGas.HELIUM);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.DIONA, false, false, false, 0.0F, 0.0F, 0.0F);
-        CelestialRegistryUtils.setChecklistKeys(MPPlanets.DIONA, "equipOxygenSuit");
-        CelestialRegistryUtils.setBiomeInfo(MPPlanets.DIONA, MPBiomes.DIONA);
+        CelestialRegistryUtils.setChecklistKeys(MPPlanets.DIONA, "equip_oxygen_suit");
         CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityEvolvedZombie.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityEvolvedSpider.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityEvolvedSkeleton.class, 100, 4, 4);
@@ -61,8 +67,7 @@ public class MPPlanets
 
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.CHALOS, EnumAtmosphericGas.HYDROGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.CO2);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.CHALOS, false, false, false, 0.0F, 0.65F, 28.0F);
-        CelestialRegistryUtils.setChecklistKeys(MPPlanets.CHALOS, "equipOxygenSuit");
-        CelestialRegistryUtils.setBiomeInfo(MPPlanets.CHALOS, MPBiomes.CHALOS_PLAINS, MPBiomes.CHALOS_MOUTAINS, MPBiomes.SLIMELY_STREAM);
+        CelestialRegistryUtils.setChecklistKeys(MPPlanets.CHALOS, "equip_oxygen_suit");
         CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedZombie.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedSpider.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedSkeleton.class, 100, 4, 4);
@@ -75,8 +80,7 @@ public class MPPlanets
 
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.NIBIRU, EnumAtmosphericGas.WATER, EnumAtmosphericGas.HELIUM, EnumAtmosphericGas.CO2, EnumAtmosphericGas.ARGON);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.NIBIRU, false, true, true, 0.0F, 1.25F, 46.5F);
-        CelestialRegistryUtils.setChecklistKeys(MPPlanets.NIBIRU, "equipOxygenSuit", "thermalPaddingT2", "craftInfectedProtectionCapsule");
-        CelestialRegistryUtils.setBiomeInfo(MPPlanets.NIBIRU, MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_RIVER, MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_FOREST, MPBiomes.INFECTED_DEAD_DARK_FOREST, MPBiomes.INFECTED_MOUNTAINS, MPBiomes.INFECTED_SWAMP, MPBiomes.INFECTED_TAIGA, MPBiomes.INFECTED_JUNGLE, MPBiomes.INFECTED_ICE_SPIKES, MPBiomes.GREEN_VEIN_FIELDS);
+        CelestialRegistryUtils.setChecklistKeys(MPPlanets.NIBIRU, "equip_oxygen_suit", "thermal_padding_t2", "equip_shield_controller", "craft_infected_spore_protection_capsule");
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedZombie.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedSpider.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedSkeleton.class, 100, 4, 4);
@@ -89,6 +93,10 @@ public class MPPlanets
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityInfectedZombie.class, 100, 4, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityGiantWorm.class, 100, 2, 4);
         CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityInfectedSquid.class, 10, 4, 4);
+        
+        // Moons
+        CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.KOENTUS, EnumAtmosphericGas.HYDROGEN, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.HELIUM);
+        CelestialRegistryUtils.setAtmosphere(MPPlanets.KOENTUS, false, false, false, -2.0F, 2.0F, 5.0F);
 
         //        MPPlanets.FRONOS = CelestialRegisterHelper.createPlanet("fronos", MPPlanets.LAZENDUS_SOLAR_SYSTEM, 1.2762F, 1.5F, 1 / 0.05F, 0.5F, 7, ConfigManagerMP.idDimensionFronos, WorldProviderFronos.class);
         //        CelestialRegisterHelper.setAtmosphereComponentList(MPPlanets.NIBIRU, EnumAtmosphericGas.OXYGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.HYDROGEN);
@@ -96,6 +104,8 @@ public class MPPlanets
 
     public static void register()
     {
+        TeleportTypeMoon teleport = new TeleportTypeMoon();
+        
         CelestialRegistryUtils.registerSolarSystem(MPPlanets.LAZENDUS_SOLAR_SYSTEM);
 
         if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection)
@@ -106,14 +116,17 @@ public class MPPlanets
         CelestialRegistryUtils.registerPlanet(MPPlanets.DIONA);
         CelestialRegistryUtils.registerPlanet(MPPlanets.CHALOS);
         CelestialRegistryUtils.registerPlanet(MPPlanets.NIBIRU);
+        CelestialRegistryUtils.registerMoon(MPPlanets.KOENTUS);
         //        CelestialRegisterHelper.registerPlanet(MPPlanets.FRONOS);
-        CelestialRegistryUtils.registerTeleportType(WorldProviderDiona.class, new TeleportTypeMoon());
-        CelestialRegistryUtils.registerTeleportType(WorldProviderChalos.class, new TeleportTypeMoon());
-        CelestialRegistryUtils.registerTeleportType(WorldProviderNibiru.class, new TeleportTypeMoon());
+        CelestialRegistryUtils.registerTeleportType(WorldProviderDiona.class, teleport);
+        CelestialRegistryUtils.registerTeleportType(WorldProviderChalos.class, teleport);
+        CelestialRegistryUtils.registerTeleportType(WorldProviderNibiru.class, teleport);
+        CelestialRegistryUtils.registerTeleportType(WorldProviderKoentus.class, teleport);
         //        CelestialRegisterHelper.registerTeleportType(WorldProviderFronos.class, new TeleportTypeMoon());
         CelestialRegistryUtils.registerRocketGui(WorldProviderDiona.class, "diona");
         CelestialRegistryUtils.registerRocketGui(WorldProviderChalos.class, "chalos");
         CelestialRegistryUtils.registerRocketGui(WorldProviderNibiru.class, "nibiru");
+        CelestialRegistryUtils.registerRocketGui(WorldProviderKoentus.class, "koentus");
         //        CelestialRegisterHelper.registerRocketGui(WorldProviderFronos.class, "fronos");
     }
 }

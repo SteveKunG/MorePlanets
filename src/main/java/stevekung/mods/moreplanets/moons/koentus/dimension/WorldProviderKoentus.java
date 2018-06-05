@@ -1,10 +1,11 @@
-package stevekung.mods.moreplanets.planets.diona.dimension;
+package stevekung.mods.moreplanets.moons.koentus.dimension;
 
 import java.util.Arrays;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.api.world.IExitHeight;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -17,30 +18,29 @@ import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
-import stevekung.mods.moreplanets.planets.diona.client.sky.SkyProviderDiona;
-import stevekung.mods.moreplanets.planets.diona.world.gen.BiomeProviderDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.ChunkGeneratorDiona;
 import stevekung.mods.moreplanets.utils.dimension.WorldProviderMP;
 
-public class WorldProviderDiona extends WorldProviderMP
+public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
 {
     @Override
     public Vector3 getFogColor()
     {
         float f = 1.2F - this.getStarBrightness(1.0F);
-        return new Vector3(24.0D / 255.0D * f, 24.0D / 255.0D * f, 24.0D / 255.0D * f);
+        return new Vector3(23F / 255F * f, 49F / 255F * f, 108F / 255F * f);
     }
 
     @Override
     public Vector3 getSkyColor()
     {
-        return new Vector3(0, 0, 0);
+        float f = 1.3F - this.getStarBrightness(1.0F);
+        return new Vector3(35 / 255F * f, 74 / 255F * f, 165 / 255F * f);
     }
 
     @Override
     public long getDayLength()
     {
-        return 96000L;
+        return 12000L;
     }
 
     @Override
@@ -48,66 +48,72 @@ public class WorldProviderDiona extends WorldProviderMP
     public float getStarBrightness(float partialTicks)
     {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
+        float value = 0.8F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
 
         if (value < 0.0F)
         {
             value = 0.0F;
         }
-        if (value > 0.75F)
+        if (value > 1.0F)
         {
-            value = 0.75F;
+            value = 1.0F;
         }
-        return value * value * 0.5F + 0.3F;
+        return value * value * 0.75F;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public float getSunBrightness(float partialTicks)
     {
-        float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.1F);
+        float angle = this.world.getCelestialAngle(1.0F);
+        float value = 0.45F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
 
-        if (value < 0.55F)//day
+        if (value < 0.0F)// day
         {
-            value = 0.55F;
+            value = 0.0F;
         }
-        if (value > 1.075F)//night
+        if (value > 1.0F)// night
         {
-            value = 1.075F;
+            value = 1.0F;
         }
         value = 1.0F - value;
-        return value * 0.8F;
+        return value * 1.0F;
     }
 
     @Override
     public double getSolarEnergyMultiplier()
     {
-        return 2.5D;
+        return 1.6D;
     }
 
     @Override
     public float getGravity()
     {
-        return 0.065F;
+        return 0.07F;
+    }
+
+    @Override
+    public double getYCoordinateToTeleport()
+    {
+        return 512;
     }
 
     @Override
     public boolean canSpaceshipTierPass(int tier)
     {
-        return tier >= ConfigManagerMP.moreplanets_planet_settings.planetDionaTier;
+        return tier >= ConfigManagerMP.moreplanets_moon_settings.moonKoentusTier;
     }
 
     @Override
     public float getFallDamageModifier()
     {
-        return 0.4F;
+        return 0.24F;
     }
 
     @Override
     public CelestialBody getCelestialBody()
     {
-        return MPPlanets.DIONA;
+        return MPPlanets.KOENTUS;
     }
 
     @Override
@@ -115,55 +121,38 @@ public class WorldProviderDiona extends WorldProviderMP
     {
         if (this.isDaytime())
         {
-            return -0.5F;
+            return 0.5F;
         }
-        else
-        {
-            return -1.75F;
-        }
+        return -1.0F;
     }
 
     @Override
     public int getDarkEnergyMultiplier(World world, BlockPos pos)
     {
-        if (this.isDaytime())
-        {
-            return 120 + pos.getY() * 2;
-        }
-        else
-        {
-            return 150 + pos.getY() * 4;
-        }
-    }
-
-    @Override
-    protected void renderSky()
-    {
-        this.setSkyRenderer(new SkyProviderDiona(this));
-    }
-
-    @Override
-    public void init()
-    {
-        super.init();
-        this.biomeProvider = new BiomeProviderDiona();
-    }
-
-    @Override
-    public IChunkGenerator createChunkGenerator()
-    {
-        return new ChunkGeneratorDiona(this.world, this.world.getSeed());
-    }
-
-    @Override
-    public DimensionType getDimensionType()
-    {
-        return MPDimensions.DIONA;
+        return 100;
     }
 
     @Override
     public List<Block> getSurfaceBlocks()
     {
-        return Arrays.asList(MPBlocks.DIONA_SURFACE_ROCK, MPBlocks.DIONA_SUB_SURFACE_ROCK);
+        return Arrays.asList(MPBlocks.KOENTUS_REGOLITH);
+    }
+
+    @Override
+    protected void renderSky()//TODO
+    {
+
+    }
+
+    @Override
+    public IChunkGenerator createChunkGenerator()
+    {
+        return new ChunkGeneratorDiona(this.world, this.world.getSeed());//TODO
+    }
+
+    @Override
+    public DimensionType getDimensionType()
+    {
+        return MPDimensions.KOENTUS;
     }
 }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -12,7 +12,6 @@ import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeProviderSingle;
@@ -29,18 +28,24 @@ import stevekung.mods.moreplanets.utils.dimension.WorldProviderMP;
 public class WorldProviderSpaceNether extends WorldProviderMP
 {
     @Override
-    public void init()
+    public Vector3 getFogColor()
     {
-        this.biomeProvider = new BiomeProviderSingle(Biomes.HELL);
-        this.doesWaterVaporize = true;
-        this.nether = true;
+        return new Vector3(0.20000000298023224D, 0.029999999329447746D, 0.029999999329447746D);
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public Vec3d getFogColor(float angle, float partialTicks)
+    public Vector3 getSkyColor()
     {
-        return new Vec3d(0.20000000298023224D, 0.029999999329447746D, 0.029999999329447746D);
+        return new Vector3(0, 0, 0);
+    }
+
+    @Override
+    public void init()
+    {
+        super.init();
+        this.biomeProvider = new BiomeProviderSingle(Biomes.HELL);
+        this.doesWaterVaporize = true;
+        this.nether = true;
     }
 
     @Override
@@ -130,15 +135,6 @@ public class WorldProviderSpaceNether extends WorldProviderMP
     {
         this.setSkyRenderer(new SkyProviderSpaceNether(this));
     }
-
-    @Override
-    protected void renderCloud()
-    {
-        this.setCloudRenderer(new CloudRenderer());
-    }
-
-    @Override
-    protected void renderWeather() {}
 
     @Override
     public long getDayLength()

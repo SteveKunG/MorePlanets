@@ -113,9 +113,12 @@ public class WorldTickEventHandler
                         {
                             BlockPos pos1 = pos.down();
 
-                            if (worldServer.canBlockFreezeNoWater(pos1))
+                            if (worldServer.isAreaLoaded(pos1, 1))
                             {
-                                worldServer.setBlockState(pos1, MPBlocks.INFECTED_ICE.getDefaultState());
+                                if (worldServer.canBlockFreezeNoWater(pos1))
+                                {
+                                    worldServer.setBlockState(pos1, MPBlocks.INFECTED_ICE.getDefaultState());
+                                }
                             }
                             if (raining && worldServer.canSnowAt(pos, true))
                             {

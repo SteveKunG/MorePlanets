@@ -616,7 +616,7 @@ potion.infected_spore_protection=Infected Spore Protection
 potion.dark_energy_protection=Dark Energy Protection
 
 # CHECKLIST KEYS
-checklist.craftInfectedProtectionCapsule.key=Craft Infected Protection Capsule
+checklist.craft_infected_spore_protection_capsule.key=Craft Infected Spore Protection Capsule
 
 # GUI CREATIVE
 item_group.more_planets_blocks=More Planets Blocks
