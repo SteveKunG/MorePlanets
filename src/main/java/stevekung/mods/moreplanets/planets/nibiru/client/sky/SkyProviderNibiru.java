@@ -32,9 +32,9 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         float red = 189 / 255.0F;
         float green = 105 / 255.0F;
         float blue = 32 / 255.0F;
-        float alpha = 0.3F - (rainStrength - 0.1F);
+        float alpha = 0.4F - rainStrength;
         float scale;
-        float baseValue = world.isThundering() ? 0.05F : 0.2F;
+        float baseValue = 0.15F;
         starBrightness = 1.0F - starBrightness;
 
         GlStateManager.pushMatrix();
@@ -80,21 +80,15 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
         GlStateManager.popMatrix();
 
-        this.renderSolar(SkyProviderNibiru.LAZENDUS, this.solarSize, false, true, 4.0F, world.getRainStrength(partialTicks));
-        this.renderObject(1.25F, 80.0F, 200.0F, true, SkyProviderNibiru.CHALOS, partialTicks);
-        this.renderObject(0.5F, 40.0F, 0.0F, true, SkyProviderNibiru.DIONA, partialTicks);
+        this.renderSolar(SkyProviderNibiru.LAZENDUS, this.solarSize, false, true, 4.0F, alpha);
+        this.renderObject(1.25F, 80.0F, 200.0F, true, SkyProviderNibiru.CHALOS, alpha, partialTicks);
+        this.renderObject(0.5F, 40.0F, 0.0F, true, SkyProviderNibiru.DIONA, alpha, partialTicks);
     }
 
     @Override
     protected void renderStars(float starBrightness)
     {
-        GlStateManager.color(1.0F, 1.0F, 1.0F, this.hasRain || this.useDefaultStarBrightness() ? starBrightness : this.getStarBrightness());
-    }
-
-    @Override
-    protected boolean useDefaultStarBrightness()
-    {
-        return false;
+        GlStateManager.color(1.0F, 1.0F, 1.0F, this.hasRain ? starBrightness : this.getStarBrightness());
     }
 
     @Override
@@ -113,6 +107,33 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
     protected double getStarSpreadMultiplier()
     {
         return 150.0D;
+    }
+
+    private void renderObject(float scale, float rot1, float rot2, boolean rotate, ResourceLocation resource, float rainStrength, float partialTicks)
+    {
+        Minecraft mc = Minecraft.getMinecraft();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder buffer = tessellator.getBuffer();
+
+        GlStateManager.pushMatrix();
+        GlStateManager.rotate(rot1, 0.0F, 0.0F, 1.0F);
+        GlStateManager.rotate(rot2, 1.0F, 0.0F, 0.0F);
+
+        if (rotate)
+        {
+            GlStateManager.rotate(mc.world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
+        }
+
+        mc.getTextureManager().bindTexture(resource);
+        GlStateManager.enableBlend();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, rainStrength);
+        buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
+        buffer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
+        buffer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
+        buffer.pos(scale, 100.0D, scale).tex(1.0D, 1.0D).endVertex();
+        buffer.pos(-scale, 100.0D, scale).tex(0.0D, 1.0D).endVertex();
+        tessellator.draw();
+        GlStateManager.popMatrix();
     }
 
     private void renderSolar(ResourceLocation resource, float scale, boolean renderBlack, boolean renderConceal, float toDivide, float rainStrength)
@@ -155,7 +176,7 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
 
         // render solar
         mc.getTextureManager().bindTexture(resource);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F - (rainStrength - 0.1F));
+        GlStateManager.color(1.0F, 1.0F, 1.0F, rainStrength);
         buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
         buffer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
         buffer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
