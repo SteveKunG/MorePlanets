@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.planets.diona.client.sky;
 
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -8,8 +9,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import stevekung.mods.moreplanets.client.renderer.sky.SkyProviderBaseMP;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 public class SkyProviderDiona extends SkyProviderBaseMP
 {
@@ -17,120 +18,92 @@ public class SkyProviderDiona extends SkyProviderBaseMP
     private static final ResourceLocation CHALOS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/chalos.png");
     private static final ResourceLocation NIBIRU = new ResourceLocation("moreplanets:textures/gui/celestialbodies/nibiru.png");
 
-    public SkyProviderDiona(IGalacticraftWorldProvider provider)
+    public SkyProviderDiona(float solarSize)
     {
-        super();
-        this.sunSize = 17.5F * provider.getSolarSize();
+        this.solarSize = 50.0F * solarSize;
     }
 
     @Override
-    protected void renderPlanetInSky(float partialTicks, WorldClient world, Minecraft mc)
+    protected void renderObjects(float partialTicks, WorldClient world, Minecraft mc)
+    {
+        this.renderSolar(SkyProviderDiona.LAZENDUS, this.solarSize, true, true, 4.0F);
+        this.renderObject(2.0F, 50.0F, 200.0F, true, SkyProviderDiona.CHALOS, partialTicks);
+        this.renderObject(1.5F, -150.0F, -200.0F, true, SkyProviderDiona.NIBIRU, partialTicks);
+    }
+
+    @Override
+    protected void renderStars()//TODO More color
     {
         Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder worldrenderer = tessellator.getBuffer();
-        float scale;
+        BufferBuilder buffer = tessellator.getBuffer();
+        Random rand = new Random(10842L);
+        buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION);
 
-        GlStateManager.enableTexture2D();
-        GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
-        GlStateManager.translate(0.0F, 0.0F, 0.0F);
-        GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.blendFunc(770, 771);
-        GlStateManager.disableTexture2D();
-        GlStateManager.color(0.0F, 0.0F, 0.0F, 1.0F);
-        scale = 11.0F / 3.5F;
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
-        worldrenderer.pos(-scale, 99.9D, -scale).endVertex();
-        worldrenderer.pos(scale, 99.9D, -scale).endVertex();
-        worldrenderer.pos(scale, 99.9D, scale).endVertex();
-        worldrenderer.pos(-scale, 99.9D, scale).endVertex();
+        for (int i = 0; i < this.getStarCount(); ++i)
+        {
+            double d0 = rand.nextFloat() * 2.0F - 1.0F;
+            double d1 = rand.nextFloat() * 2.0F - 1.0F;
+            double d2 = rand.nextFloat() * 2.0F - 1.0F;
+            double d3 = 0.15F + rand.nextFloat() * 0.1F;
+            double d4 = d0 * d0 + d1 * d1 + d2 * d2;
+
+            if (d4 < 1.0D && d4 > 0.01D)
+            {
+                d4 = 1.0D / Math.sqrt(d4);
+                d0 *= d4;
+                d1 *= d4;
+                d2 *= d4;
+                double d5 = d0 * (rand.nextDouble() * this.getStarSpreadMultiplier() + 100D);
+                double d6 = d1 * (rand.nextDouble() * this.getStarSpreadMultiplier() + 100D);
+                double d7 = d2 * (rand.nextDouble() * this.getStarSpreadMultiplier() + 100D);
+                double d8 = Math.atan2(d0, d2);
+                double d9 = Math.sin(d8);
+                double d10 = Math.cos(d8);
+                double d11 = Math.atan2(Math.sqrt(d0 * d0 + d2 * d2), d1);
+                double d12 = Math.sin(d11);
+                double d13 = Math.cos(d11);
+                double d14 = rand.nextDouble() * Math.PI * 2.0D;
+                double d15 = Math.sin(d14);
+                double d16 = Math.cos(d14);
+
+                for (int j = 0; j < 4; ++j)
+                {
+                    double d18 = ((j & 2) - 1) * d3;
+                    double d19 = ((j + 1 & 2) - 1) * d3;
+                    double d21 = d18 * d16 - d19 * d15;
+                    double d22 = d19 * d16 + d18 * d15;
+                    double d23 = d21 * d12 + 0.0D * d13;
+                    double d24 = 0.0D * d12 - d21 * d13;
+                    double d25 = d24 * d9 - d22 * d10;
+                    double d26 = d22 * d9 + d24 * d10;
+                    buffer.pos(d5 + d25, d6 + d23, d7 + d26).endVertex();
+                }
+            }
+        }
         tessellator.draw();
-        GlStateManager.enableTexture2D();
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-
-        // Sirius
-        GlStateManager.disableTexture2D();
-        GlStateManager.blendFunc(770, 1);
-        GlStateManager.color(0.0F, 0.0F, 0.0F, 1.0F);
-
-        // Some blanking to conceal the stars
-        scale = this.sunSize / 2.5F;
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
-        worldrenderer.pos(-scale, 99.9D, -scale).endVertex();
-        worldrenderer.pos(scale, 99.9D, -scale).endVertex();
-        worldrenderer.pos(scale, 99.9D, scale).endVertex();
-        worldrenderer.pos(-scale, 99.9D, scale).endVertex();
-        tessellator.draw();
-        GlStateManager.enableTexture2D();
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        scale = this.sunSize + 5.0F;
-        mc.getTextureManager().bindTexture(SkyProviderDiona.LAZENDUS);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, scale).tex(1.0D, 1.0D).endVertex();
-        worldrenderer.pos(-scale, 100.0D, scale).tex(0.0D, 1.0D).endVertex();
-        tessellator.draw();
-
-        GlStateManager.disableBlend();
-        GlStateManager.pushMatrix();
-
-        scale = 3.0F;
-        GlStateManager.scale(0.6F, 0.6F, 0.6F);
-        GlStateManager.rotate(50.0F, 0.0F, 0.0F, 1.0F);
-        GlStateManager.rotate(200F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1F);
-        GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
-        mc.getTextureManager().bindTexture(SkyProviderDiona.CHALOS);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, scale).tex(1.0D, 1.0D).endVertex();
-        worldrenderer.pos(-scale, 100.0D, scale).tex(0.0D, 1.0D).endVertex();
-        tessellator.draw();
-
-        GlStateManager.popMatrix();
-        GlStateManager.pushMatrix();
-
-        // Nibiru
-        scale = 2.0F;
-        GlStateManager.scale(0.6F, 0.6F, 0.6F);
-        GlStateManager.rotate(-150.0F, 1.0F, 0.0F, 1.0F);
-        GlStateManager.rotate(-200F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1F);
-        GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
-        mc.getTextureManager().bindTexture(SkyProviderDiona.NIBIRU);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, scale).tex(1.0D, 1.0D).endVertex();
-        worldrenderer.pos(-scale, 100.0D, scale).tex(0.0D, 1.0D).endVertex();
-        tessellator.draw();
-
-        GlStateManager.popMatrix();
     }
 
     @Override
-    protected double[] getMaxStarCount()
+    protected void renderStars(float starBrightness)
     {
-        return new double[] { 50000D, 150D, 100D };
+        GlStateManager.color(starBrightness, starBrightness, starBrightness, this.getStarBrightness());
     }
 
     @Override
-    protected float[] getStarBrightness()
+    protected float getStarBrightness()
     {
-        return new float[] { 0.35F, 0.35F };
+        return 0.35F;
     }
 
     @Override
-    protected boolean useDefaultStarBrightness()
+    protected int getStarCount()
     {
-        return false;
+        return 75000;
     }
 
     @Override
-    protected float getRainStrength(World world, float partialTicks)
+    protected double getStarSpreadMultiplier()
     {
-        return 0.0F;
+        return 150.0D;
     }
 }

@@ -45,6 +45,11 @@ public class ColorUtils
         return ColorUtils.stringToRGB(color, false, null);
     }
 
+    public static RGB stringToFullRGB(String color)
+    {
+        return ColorUtils.stringToFullRGB(color, false, null);
+    }
+
     public static RGB intToRGB(int red, int green, int blue, int alpha)
     {
         return new RGB(red, green, blue, alpha);
@@ -59,6 +64,29 @@ public class ColorUtils
             float green = Float.parseFloat(colorArray[1]);
             float blue = Float.parseFloat(colorArray[2]);
             return new RGB(red, green, blue, 255.0F);
+        }
+        catch (Exception e)
+        {
+            if (printException)
+            {
+                ModLogger.error("Invalid RGB Color format at option {}!", optionName);
+                ClientUtils.printClientMessage("Invalid RGB Color format at option " + optionName + "!", JsonUtils.red());
+                e.printStackTrace();
+            }
+            return new RGB(true);
+        }
+    }
+
+    public static RGB stringToFullRGB(String color, boolean printException, String optionName)
+    {
+        try
+        {
+            String[] colorArray = color.split(",");
+            float red = Float.parseFloat(colorArray[0]);
+            float green = Float.parseFloat(colorArray[1]);
+            float blue = Float.parseFloat(colorArray[2]);
+            float alpha = Float.parseFloat(colorArray[3]);
+            return new RGB(red, green, blue, alpha);
         }
         catch (Exception e)
         {

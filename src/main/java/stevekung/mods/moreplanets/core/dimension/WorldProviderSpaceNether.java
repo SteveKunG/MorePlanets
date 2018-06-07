@@ -133,7 +133,7 @@ public class WorldProviderSpaceNether extends WorldProviderMP
     @Override
     protected void renderSky()
     {
-        this.setSkyRenderer(new SkyProviderSpaceNether(this));
+        this.setSkyRenderer(new SkyProviderSpaceNether(this.getSolarSize()));
     }
 
     @Override

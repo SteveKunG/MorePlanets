@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.planets.nibiru.client.sky;
 
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -8,8 +7,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import stevekung.mods.moreplanets.client.renderer.sky.SkyProviderBaseMP;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 public class SkyProviderNibiru extends SkyProviderBaseMP
 {
@@ -17,165 +16,79 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
     private static final ResourceLocation CHALOS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/chalos.png");
     private static final ResourceLocation LAZENDUS = new ResourceLocation("moreplanets:textures/gui/celestialbodies/lazendus.png");
 
-    public SkyProviderNibiru(IGalacticraftWorldProvider provider)
+    public SkyProviderNibiru(float solarSize)
     {
-        super();
-        this.sunSize = 17.5F * provider.getSolarSize();
+        this.solarSize = 85.0F * solarSize;
+        this.hasRain = true;
     }
 
     @Override
-    protected void renderPlanetInSky(float partialTicks, WorldClient world, Minecraft mc)
+    protected void renderObjects(float partialTicks, WorldClient world, Minecraft mc)
     {
         Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder worldrenderer = tessellator.getBuffer();
-        float red;
-        float green;
-        float blue;
-        float scale;
+        BufferBuilder buffer = tessellator.getBuffer();
         float starBrightness = world.getStarBrightness(partialTicks);
-        float[] color = new float[4];
-        float rainStrength = this.getRainStrength(world, partialTicks);
+        float rainStrength = world.getRainStrength(partialTicks);
+        float red = 189 / 255.0F;
+        float green = 105 / 255.0F;
+        float blue = 32 / 255.0F;
+        float alpha = 0.3F - (rainStrength - 0.1F);
+        float scale;
+        float baseValue = world.isThundering() ? 0.05F : 0.2F;
+        starBrightness = 1.0F - starBrightness;
 
+        GlStateManager.pushMatrix();
         GlStateManager.disableTexture2D();
         GlStateManager.shadeModel(7425);
-        GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
-        color[0] = 232 / 255.0F;
-        color[1] = 120 / 255.0F;
-        color[2] = 32 / 255.0F;
-        color[3] = 0.3F - (rainStrength - 0.1F);
-        red = color[0];
-        green = color[1];
-        blue = color[2];
-        starBrightness = 1.0F - starBrightness;
-        float sunAura = color[3];
-        float baseValue = world.isThundering() ? 0.1F : 0.2F;
 
-        if (sunAura < baseValue)
+        if (alpha < baseValue)
         {
-            sunAura = baseValue;
+            alpha = baseValue;
         }
 
-        sunAura = sunAura * 2 / starBrightness;
-        worldrenderer.begin(6, DefaultVertexFormats.POSITION_COLOR);
-        worldrenderer.pos(0.0D, 100.0D, 0.0D).color(red * starBrightness, green * starBrightness, blue * starBrightness, sunAura).endVertex();
-
         // Render sun aura
-        scale = 10.0F;
-        worldrenderer.pos(-scale, 100.0D, -scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(0, 100.0D, (double) -scale * 1.5F).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(scale, 100.0D, -scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos((double) scale * 1.5F, 100.0D, 0).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(scale, 100.0D, scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(0, 100.0D, (double) scale * 1.5F).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(-scale, 100.0D, scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos((double) -scale * 1.5F, 100.0D, 0).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(-scale, 100.0D, -scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-
-        sunAura = sunAura * starBrightness;
+        scale = 25.0F;
+        buffer.begin(GLConstants.TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
+        buffer.pos(0.0D, 100.0D, 0.0D).color(red * starBrightness, green * starBrightness, blue * starBrightness, alpha * 2 / starBrightness).endVertex();
+        buffer.pos(-scale, 100.0D, -scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(0, 100.0D, (double) -scale * 1.5F).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(scale, 100.0D, -scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos((double) scale * 1.5F, 100.0D, 0).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(scale, 100.0D, scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(0, 100.0D, (double) scale * 1.5F).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(-scale, 100.0D, scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos((double) -scale * 1.5F, 100.0D, 0).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(-scale, 100.0D, -scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
         tessellator.draw();
-        worldrenderer.begin(6, DefaultVertexFormats.POSITION_COLOR);
-        worldrenderer.pos(0.0D, 100.0D, 0.0D).color(red * starBrightness, green * starBrightness, blue * starBrightness, sunAura).endVertex();
 
         // Render larger sun aura
-        scale = 25.0F;
-        worldrenderer.pos(-scale, 100.0D, -scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(0, 100.0D, (double) -scale * 1.5F).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(scale, 100.0D, -scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos((double) scale * 1.5F, 100.0D, 0).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(scale, 100.0D, scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(0, 100.0D, (double) scale * 1.5F).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(-scale, 100.0D, scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos((double) -scale * 1.5F, 100.0D, 0).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
-        worldrenderer.pos(-scale, 100.0D, -scale).color(color[0] * starBrightness, color[1] * starBrightness, color[2] * starBrightness, 0.0F).endVertex();
+        scale = 40.0F;
+        buffer.begin(GLConstants.TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
+        buffer.pos(0.0D, 100.0D, 0.0D).color(red * starBrightness, green * starBrightness, blue * starBrightness, alpha * starBrightness).endVertex();
+        buffer.pos(-scale, 100.0D, -scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(0, 100.0D, (double) -scale * 1.5F).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(scale, 100.0D, -scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos((double) scale * 1.5F, 100.0D, 0).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(scale, 100.0D, scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(0, 100.0D, (double) scale * 1.5F).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(-scale, 100.0D, scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos((double) -scale * 1.5F, 100.0D, 0).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
+        buffer.pos(-scale, 100.0D, -scale).color(red * starBrightness, green * starBrightness, blue * starBrightness, 0.0F).endVertex();
         tessellator.draw();
-        GlStateManager.popMatrix();
         GlStateManager.shadeModel(7424);
         GlStateManager.enableTexture2D();
         GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
+        GlStateManager.popMatrix();
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(0.0F, 0.0F, 0.0F);
-        GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.blendFunc(770, 771);
-        GlStateManager.disableTexture2D();
-        GlStateManager.color(0.0F, 0.0F, 0.0F, 1.0F);
-        scale = 10.0F / Float.MAX_VALUE;
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
-        worldrenderer.pos(-scale, 99.9D, -scale).endVertex();
-        worldrenderer.pos(scale, 99.9D, -scale).endVertex();
-        worldrenderer.pos(scale, 99.9D, scale).endVertex();
-        worldrenderer.pos(-scale, 99.9D, scale).endVertex();
-        tessellator.draw();
-        GlStateManager.enableTexture2D();
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-
-        // Sirius
-        GlStateManager.disableTexture2D();
-        GlStateManager.blendFunc(770, 1);
-        GlStateManager.color(0.0F, 0.0F, 0.0F, 1.0F);
-
-        //Some blanking to conceal the stars
-        scale = this.sunSize / 3.5F;
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
-        worldrenderer.pos(-scale, 99.9D, -scale).endVertex();
-        worldrenderer.pos(scale, 99.9D, -scale).endVertex();
-        worldrenderer.pos(scale, 99.9D, scale).endVertex();
-        worldrenderer.pos(-scale, 99.9D, scale).endVertex();
-        tessellator.draw();
-        GlStateManager.enableTexture2D();
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F - (rainStrength - 0.1F));
-        scale = this.sunSize + 3.5F;
-        mc.getTextureManager().bindTexture(SkyProviderNibiru.LAZENDUS);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, scale).tex(1.0D, 1.0D).endVertex();
-        worldrenderer.pos(-scale, 100.0D, scale).tex(0.0D, 1.0D).endVertex();
-        tessellator.draw();
-
-        // Render chalos
-        scale = 1.2F;
-        GlStateManager.scale(0.6F, 0.6F, 0.6F);
-        GlStateManager.rotate(80.0F, 0.0F, 0.0F, 1.0F);
-        GlStateManager.rotate(200F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F - (rainStrength - 0.1F));
-        mc.getTextureManager().bindTexture(SkyProviderNibiru.CHALOS);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, scale).tex(1.0D, 1.0D).endVertex();
-        worldrenderer.pos(-scale, 100.0D, scale).tex(0.0D, 1.0D).endVertex();
-        tessellator.draw();
-
-        // Render diona
-        scale = 1.25F;
-        GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.scale(0.6F, 0.6F, 0.6F);
-        GlStateManager.rotate(40.0F, 0.0F, 0.0F, 1.0F);
-        GlStateManager.rotate(0F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F - (rainStrength - 0.1F));
-        mc.getTextureManager().bindTexture(SkyProviderNibiru.DIONA);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
-        worldrenderer.pos(scale, 100.0D, scale).tex(1.0D, 1.0D).endVertex();
-        worldrenderer.pos(-scale, 100.0D, scale).tex(0.0D, 1.0D).endVertex();
-        tessellator.draw();
+        this.renderSolar(SkyProviderNibiru.LAZENDUS, this.solarSize, false, true, 4.0F, world.getRainStrength(partialTicks));
+        this.renderObject(1.25F, 80.0F, 200.0F, true, SkyProviderNibiru.CHALOS, partialTicks);
+        this.renderObject(0.5F, 40.0F, 0.0F, true, SkyProviderNibiru.DIONA, partialTicks);
     }
 
     @Override
-    protected double[] getMaxStarCount()
+    protected void renderStars(float starBrightness)
     {
-        return new double[] { 50000D, 150D, 130D };
-    }
-
-    @Override
-    protected float[] getStarBrightness()
-    {
-        return new float[] { 0.3F, 0.3F };
+        GlStateManager.color(1.0F, 1.0F, 1.0F, this.hasRain || this.useDefaultStarBrightness() ? starBrightness : this.getStarBrightness());
     }
 
     @Override
@@ -185,15 +98,71 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
     }
 
     @Override
-    protected float getRainStrength(World world, float partialTicks)
+    protected float getStarBrightness()
     {
-        if (world.isThundering())
+        return 0.4F;
+    }
+
+    @Override
+    protected int getStarCount()
+    {
+        return 50000;
+    }
+
+    @Override
+    protected double getStarSpreadMultiplier()
+    {
+        return 150.0D;
+    }
+
+    private void renderSolar(ResourceLocation resource, float scale, boolean renderBlack, boolean renderConceal, float toDivide, float rainStrength)
+    {
+        Minecraft mc = Minecraft.getMinecraft();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder buffer = tessellator.getBuffer();
+
+        GlStateManager.pushMatrix();
+
+        if (renderBlack)
         {
-            return world.getRainStrength(partialTicks) + 0.075F;
+            GlStateManager.blendFunc(770, 771);
+            GlStateManager.disableTexture2D();
+            GlStateManager.color(0.0F, 0.0F, 0.0F, 1.0F);
+            float blackScale = scale / toDivide;
+            buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION);
+            buffer.pos(-blackScale, 99.9D, -blackScale).endVertex();
+            buffer.pos(blackScale, 99.9D, -blackScale).endVertex();
+            buffer.pos(blackScale, 99.9D, blackScale).endVertex();
+            buffer.pos(-blackScale, 99.9D, blackScale).endVertex();
+            tessellator.draw();
+            GlStateManager.enableTexture2D();
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         }
-        else
+        if (renderConceal)
         {
-            return world.getRainStrength(partialTicks);
+            float blackScale2 = scale / toDivide;// Some blanking to conceal the stars
+            GlStateManager.disableTexture2D();
+            GlStateManager.blendFunc(770, 1);
+            GlStateManager.color(0.0F, 0.0F, 0.0F, 1.0F);
+            buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION);
+            buffer.pos(-blackScale2, 99.9D, -blackScale2).endVertex();
+            buffer.pos(blackScale2, 99.9D, -blackScale2).endVertex();
+            buffer.pos(blackScale2, 99.9D, blackScale2).endVertex();
+            buffer.pos(-blackScale2, 99.9D, blackScale2).endVertex();
+            tessellator.draw();
+            GlStateManager.enableTexture2D();
         }
+
+        // render solar
+        mc.getTextureManager().bindTexture(resource);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F - (rainStrength - 0.1F));
+        buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
+        buffer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
+        buffer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
+        buffer.pos(scale, 100.0D, scale).tex(1.0D, 1.0D).endVertex();
+        buffer.pos(-scale, 100.0D, scale).tex(0.0D, 1.0D).endVertex();
+        tessellator.draw();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
     }
 }

@@ -143,16 +143,8 @@ public class WorldProviderNibiru extends WorldProviderMP
     public float getStarBrightness(float partialTicks)
     {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
-
-        if (value < 0.0F)
-        {
-            value = 0.0F;
-        }
-        if (value > 0.95F)
-        {
-            value = 0.95F;
-        }
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.25F);
+        value = MathHelper.clamp(value, 0.0F, 0.85F);
         return value * value * 0.35F;
     }
 
@@ -161,19 +153,11 @@ public class WorldProviderNibiru extends WorldProviderMP
     public float getSunBrightness(float partialTicks)
     {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
-
-        if (value < 0.0F)//day
-        {
-            value = 0.0F;
-        }
-        if (value > 1.0F)//night
-        {
-            value = 1.0F;
-        }
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.2F);
+        value = MathHelper.clamp(value, 0.0F, 1.0F);
         value = 1.0F - value;
-        value = (float)(value * (1.0D - this.world.getRainStrength(partialTicks) * 6.0F / 16.0D));
-        value = (float)(value * (1.0D - this.world.getThunderStrength(partialTicks) * 8.0F / 16.0D));
+        value = value * (1.0F - this.world.getRainStrength(partialTicks) * 6.0F / 16.0F);
+        value = value * (1.0F - this.world.getThunderStrength(partialTicks) * 8.0F / 16.0F);
         return value * 1.0F;
     }
 
@@ -263,7 +247,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     @Override
     protected void renderSky()
     {
-        this.setSkyRenderer(new SkyProviderNibiru(this));
+        this.setSkyRenderer(new SkyProviderNibiru(this.getSolarSize()));
     }
 
     @Override

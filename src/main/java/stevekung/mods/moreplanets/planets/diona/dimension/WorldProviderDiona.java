@@ -48,16 +48,8 @@ public class WorldProviderDiona extends WorldProviderMP
     public float getStarBrightness(float partialTicks)
     {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
-
-        if (value < 0.0F)
-        {
-            value = 0.0F;
-        }
-        if (value > 0.75F)
-        {
-            value = 0.75F;
-        }
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.25F);
+        value = MathHelper.clamp(value, 0.0F, 1.0F);
         return value * value * 0.5F + 0.3F;
     }
 
@@ -66,18 +58,10 @@ public class WorldProviderDiona extends WorldProviderMP
     public float getSunBrightness(float partialTicks)
     {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.1F);
-
-        if (value < 0.55F)//day
-        {
-            value = 0.55F;
-        }
-        if (value > 1.075F)//night
-        {
-            value = 1.075F;
-        }
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.1F);
+        value = MathHelper.clamp(value, 0.55F, 1.0F);
         value = 1.0F - value;
-        return value * 0.8F;
+        return value * 0.9F;
     }
 
     @Override
@@ -139,7 +123,7 @@ public class WorldProviderDiona extends WorldProviderMP
     @Override
     protected void renderSky()
     {
-        this.setSkyRenderer(new SkyProviderDiona(this));
+        this.setSkyRenderer(new SkyProviderDiona(this.getSolarSize()));
     }
 
     @Override

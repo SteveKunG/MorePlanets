@@ -55,16 +55,8 @@ public class WorldProviderChalos extends WorldProviderMP
     public float getStarBrightness(float partialTicks)
     {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
-
-        if (value < 0.0F)
-        {
-            value = 0.0F;
-        }
-        if (value > 1.0F)
-        {
-            value = 1.0F;
-        }
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.25F);
+        value = MathHelper.clamp(value, 0.0F, 1.0F);
         return value * value * 0.4F;
     }
 
@@ -73,16 +65,8 @@ public class WorldProviderChalos extends WorldProviderMP
     public float getSunBrightness(float partialTicks)
     {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
-
-        if (value < 0.0F)//day
-        {
-            value = 0.0F;
-        }
-        if (value > 1.025F)//night
-        {
-            value = 1.025F;
-        }
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.2F);
+        value = MathHelper.clamp(value, 0.0F, 1.0F);
         value = 1.0F - value;
         return value * 1.0F;
     }
@@ -141,7 +125,7 @@ public class WorldProviderChalos extends WorldProviderMP
     @Override
     protected void renderSky()
     {
-        this.setSkyRenderer(new SkyProviderChalos(this));
+        this.setSkyRenderer(new SkyProviderChalos(this.getSolarSize()));
     }
 
     @Override
