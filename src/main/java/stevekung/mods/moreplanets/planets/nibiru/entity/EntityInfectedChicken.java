@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.planets.nibiru.entity;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,8 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -50,11 +49,8 @@ public class EntityInfectedChicken extends EntityChicken implements ISpaceMob, I
     @Override
     public boolean getCanSpawnHere()
     {
-        int i = MathHelper.floor(this.posX);
-        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
-        int k = MathHelper.floor(this.posZ);
-        BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getBlockState(blockpos.down()).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK && this.world.getLight(blockpos) > 8 && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
+        Block block = this.world.getBlockState(this.getPosition().down()).getBlock();
+        return (block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.GREEN_VEIN_GRASS_BLOCK) && this.world.getLight(this.getPosition()) > 8 && this.getBlockPathWeight(this.getPosition()) >= 0.0F;
     }
 
     @Override

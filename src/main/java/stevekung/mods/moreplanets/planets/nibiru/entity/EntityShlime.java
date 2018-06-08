@@ -69,7 +69,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     private int jumpDuration;
     private boolean wasOnGround;
     private int currentMoveTypeDuration;
-    private final EntityAIShlimeEatGrass entityAIEatGrass = new EntityAIShlimeEatGrass(this);
+    private EntityAIShlimeEatGrass entityAIEatGrass;
     private int sheepTimer;
     private float squishAmount;
     public float squishFactor;
@@ -89,14 +89,40 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     @Override
     protected void initEntityAI()
     {
+        this.entityAIEatGrass = new EntityAIShlimeEatGrass(this);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(1, new AIPanic(this, 2.2D));
         this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(3, new EntityAITempt(this, 0.6D, false, Sets.newHashSet(MPItems.INFECTED_WHEAT, MPItems.TERRABERRY)));
+        this.tasks.addTask(5, this.entityAIEatGrass);
         this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 0.6D));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.tasks.addTask(8, new EntityAIFleeNibiruThunder(this, 2.2D));
+    }
+
+    @Override
+    public void fall(float distance, float damageMultiplier) {}
+
+    @Override
+    protected void updateFallState(double y, boolean onGround, IBlockState state, BlockPos pos)
+    {
+        if (!this.isInWater())
+        {
+            this.handleWaterMovement();
+        }
+        if (onGround)
+        {
+            if (this.fallDistance > 0.0F)
+            {
+                state.getBlock().onFallenUpon(this.world, pos, this, this.fallDistance);
+            }
+            this.fallDistance = 0.0F;
+        }
+        else if (y < 0.0D)
+        {
+            this.fallDistance = (float)(this.fallDistance - y);
+        }
     }
 
     @Override
@@ -126,7 +152,8 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.world.getBlockState(this.getPosition().down()).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK && this.world.getLight(this.getPosition()) > 8 && this.getBlockPathWeight(this.getPosition()) >= 0.0F;
+        Block block = this.world.getBlockState(this.getPosition().down()).getBlock();
+        return (block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.GREEN_VEIN_GRASS_BLOCK) && this.world.getLight(this.getPosition()) > 8 && this.getBlockPathWeight(this.getPosition()) >= 0.0F;
     }
 
     @Override
@@ -270,6 +297,8 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
             }
         }
         this.wasOnGround = this.onGround;
+        this.sheepTimer = this.entityAIEatGrass.getEatingGrassTimer();
+        super.updateAITasks();
     }
 
     @Override
@@ -286,6 +315,10 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
             this.jumpTicks = 0;
             this.jumpDuration = 0;
             this.setJumping(false);
+        }
+        if (this.world.isRemote)
+        {
+            this.sheepTimer = Math.max(0, this.sheepTimer - 1);
         }
     }
 

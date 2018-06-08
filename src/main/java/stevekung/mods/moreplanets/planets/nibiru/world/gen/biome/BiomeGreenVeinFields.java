@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 
-import java.util.LinkedList;
 import java.util.Random;
 
 import net.minecraft.block.state.IBlockState;
@@ -37,6 +36,9 @@ public class BiomeGreenVeinFields extends BiomeNibiru
         this.decorator.flowersPerChunk = 4;
         this.decorator.treesPerChunk = 4;
         this.snow = snow;
+        this.spawnableMonsterList.clear();
+        this.spawnableWaterCreatureList.clear();
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityTerrastoneGolem.class, 8, 2, 4));
     }
 
     @Override
@@ -64,14 +66,6 @@ public class BiomeGreenVeinFields extends BiomeNibiru
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
         return BiomeGreenVeinFields.GRASS;
-    }
-
-    @Override
-    public void initialiseMobLists(LinkedList<Biome.SpawnListEntry> mobInfo)
-    {
-        super.initialiseMobLists(mobInfo);
-        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityTerrastoneGolem.class, 8, 2, 4));
-        this.spawnableMonsterList.clear();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.planets.nibiru.entity;
 
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityCow;
@@ -45,7 +46,8 @@ public class EntityInfectedCow extends EntityCow implements ISpaceMob, IEntityBr
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.world.getBlockState(this.getPosition().down()).getBlock() == MPBlocks.INFECTED_GRASS_BLOCK && this.world.getLight(this.getPosition()) > 8 && this.getBlockPathWeight(this.getPosition()) >= 0.0F;
+        Block block = this.world.getBlockState(this.getPosition().down()).getBlock();
+        return (block == MPBlocks.INFECTED_GRASS_BLOCK || block == MPBlocks.GREEN_VEIN_GRASS_BLOCK) && this.world.getLight(this.getPosition()) > 8 && this.getBlockPathWeight(this.getPosition()) >= 0.0F;
     }
 
     @Override

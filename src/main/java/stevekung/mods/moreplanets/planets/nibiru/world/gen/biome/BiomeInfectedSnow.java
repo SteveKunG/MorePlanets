@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome;
 
-import java.util.LinkedList;
 import java.util.Random;
 
 import net.minecraft.block.state.IBlockState;
@@ -31,6 +30,7 @@ public class BiomeInfectedSnow extends BiomeNibiru
         {
             this.topBlock = MPBlocks.INFECTED_SNOW.getDefaultState();
         }
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedSnowman.class, 50, 1, 1));
     }
 
     @Override
@@ -50,13 +50,6 @@ public class BiomeInfectedSnow extends BiomeNibiru
     public float getSpawningChance()
     {
         return 0.07F;
-    }
-
-    @Override
-    public void initialiseMobLists(LinkedList<Biome.SpawnListEntry> mobInfo)
-    {
-        super.initialiseMobLists(mobInfo);
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedSnowman.class, 50, 1, 1));
     }
 
     @Override

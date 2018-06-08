@@ -7,8 +7,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseCow;
+import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseFloater;
+import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseSlime;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.BiomeDecoratorChalos;
 import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 
@@ -23,9 +27,9 @@ public class BiomeChalos extends BiomeMP
         this.topBlock = MPBlocks.CHEESE_GRASS_BLOCK.getDefaultState();
         this.fillerBlock = MPBlocks.CHEESE_DIRT.getDefaultState();
         this.stoneBlock = MPBlocks.CHALOS_ROCK.getDefaultState();
-        this.decorator.treesPerChunk = -999;
-        this.decorator.flowersPerChunk = -999;
-        this.decorator.grassPerChunk = -999;
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityCheeseFloater.class, 20, 1, 2));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityCheeseSlime.class, 30, 2, 4));
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityCheeseCow.class, 8, 4, 4));
     }
 
     @Override

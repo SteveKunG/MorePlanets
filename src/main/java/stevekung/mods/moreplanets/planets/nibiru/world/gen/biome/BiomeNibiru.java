@@ -7,10 +7,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.entity.*;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.BiomeDecoratorNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedBigTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenInfectedTrees;
@@ -39,6 +41,14 @@ public class BiomeNibiru extends BiomeMP
         this.fillerBlock = MPBlocks.INFECTED_DIRT.getDefaultState();
         this.stoneBlock = MPBlocks.NIBIRU_ROCK.getDefaultState();
         this.liquidBlock = MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState();
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedZombie.class, 100, 4, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedSkeleton.class, 100, 4, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedCreeper.class, 100, 4, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGiantWorm.class, 100, 2, 4));
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityInfectedChicken.class, 10, 4, 4));
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityInfectedCow.class, 8, 4, 4));
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityShlime.class, 12, 4, 4));
+        this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntityInfectedSquid.class, 10, 4, 4));
     }
 
     @Override

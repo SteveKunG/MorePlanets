@@ -11,6 +11,10 @@ public class BiomeChalosMoutains extends BiomeChalos
     public BiomeChalosMoutains(BiomeProperties prop)
     {
         super(prop);
+        this.decorator.flowersPerChunk = 1;
+        this.decorator.treesPerChunk = -999;
+        this.decorator.cheeseSporeStemPerChunk = 4;
+        this.decorator.grassPerChunk = 80;
     }
 
     @Override

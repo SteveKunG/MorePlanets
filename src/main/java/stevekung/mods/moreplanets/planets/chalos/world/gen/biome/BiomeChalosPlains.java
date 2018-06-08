@@ -15,6 +15,10 @@ public class BiomeChalosPlains extends BiomeChalos
     public BiomeChalosPlains(BiomeProperties prop)
     {
         super(prop);
+        this.decorator.treesPerChunk = 4;
+        this.decorator.flowersPerChunk = 1;
+        this.decorator.cheeseSporeStemPerChunk = 1;
+        this.decorator.grassPerChunk = 120;
     }
 
     @Override

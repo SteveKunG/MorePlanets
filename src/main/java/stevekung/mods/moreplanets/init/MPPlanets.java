@@ -8,21 +8,12 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
-import micdoodle8.mods.galacticraft.core.entities.*;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.dimension.WorldProviderSpaceNether;
 import stevekung.mods.moreplanets.moons.koentus.dimension.WorldProviderKoentus;
 import stevekung.mods.moreplanets.planets.chalos.dimension.WorldProviderChalos;
-import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseCow;
-import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseFloater;
-import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseSlime;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
-import stevekung.mods.moreplanets.planets.diona.entity.EntityAlienMiner;
-import stevekung.mods.moreplanets.planets.diona.entity.EntityZeliusCreeper;
-import stevekung.mods.moreplanets.planets.diona.entity.EntityZeliusSkeleton;
-import stevekung.mods.moreplanets.planets.diona.entity.EntityZeliusZombie;
 import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
-import stevekung.mods.moreplanets.planets.nibiru.entity.*;
 import stevekung.mods.moreplanets.utils.CelestialRegistryUtils;
 
 public class MPPlanets
@@ -54,46 +45,15 @@ public class MPPlanets
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.DIONA, EnumAtmosphericGas.ARGON, EnumAtmosphericGas.HELIUM);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.DIONA, false, false, false, 0.0F, 0.0F, 0.0F);
         CelestialRegistryUtils.setChecklistKeys(MPPlanets.DIONA, "equip_oxygen_suit");
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityEvolvedZombie.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityEvolvedSpider.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityEvolvedSkeleton.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityEvolvedCreeper.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityEvolvedEnderman.class, 10, 1, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityEvolvedWitch.class, 5, 1, 1);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityZeliusZombie.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityZeliusCreeper.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityZeliusSkeleton.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.DIONA, EntityAlienMiner.class, 1, 1, 2);
 
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.CHALOS, EnumAtmosphericGas.HYDROGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.CO2);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.CHALOS, false, false, false, 0.0F, 0.65F, 28.0F);
         CelestialRegistryUtils.setChecklistKeys(MPPlanets.CHALOS, "equip_oxygen_suit");
-        CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedZombie.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedSpider.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedSkeleton.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedCreeper.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedEnderman.class, 10, 1, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityEvolvedWitch.class, 5, 1, 1);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityCheeseFloater.class, 20, 1, 2);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityCheeseSlime.class, 30, 2, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.CHALOS, EntityCheeseCow.class, 8, 4, 4);
 
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.NIBIRU, EnumAtmosphericGas.WATER, EnumAtmosphericGas.HELIUM, EnumAtmosphericGas.CO2, EnumAtmosphericGas.ARGON);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.NIBIRU, false, true, true, 0.0F, 1.25F, 46.5F);
         CelestialRegistryUtils.setChecklistKeys(MPPlanets.NIBIRU, "equip_oxygen_suit", "thermal_padding_t2", "equip_shield_controller", "craft_infected_spore_protection_capsule");
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedZombie.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedSpider.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedSkeleton.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedCreeper.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedEnderman.class, 10, 1, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityEvolvedWitch.class, 5, 1, 1);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityInfectedChicken.class, 10, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityInfectedCow.class, 8, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityShlime.class, 12, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityInfectedZombie.class, 100, 4, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityGiantWorm.class, 100, 2, 4);
-        CelestialRegistryUtils.addMobInfo(MPPlanets.NIBIRU, EntityInfectedSquid.class, 10, 4, 4);
-        
+
         // Moons
         CelestialRegistryUtils.setAtmosphereComponentList(MPPlanets.KOENTUS, EnumAtmosphericGas.HYDROGEN, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.HELIUM);
         CelestialRegistryUtils.setAtmosphere(MPPlanets.KOENTUS, false, false, false, -2.0F, 2.0F, 5.0F);
@@ -105,7 +65,7 @@ public class MPPlanets
     public static void register()
     {
         TeleportTypeMoon teleport = new TeleportTypeMoon();
-        
+
         CelestialRegistryUtils.registerSolarSystem(MPPlanets.LAZENDUS_SOLAR_SYSTEM);
 
         if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection)

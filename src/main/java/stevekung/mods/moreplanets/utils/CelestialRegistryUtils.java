@@ -7,10 +7,8 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 
 public class CelestialRegistryUtils
 {
@@ -73,11 +71,6 @@ public class CelestialRegistryUtils
     public static void setAtmosphere(CelestialBody celestial, Boolean breathable, boolean precipitation, boolean corrosive, float relativeTemperature, float windLevel, float density)
     {
         celestial.setAtmosphere(new AtmosphereInfo(breathable, precipitation, corrosive, relativeTemperature, windLevel, density));
-    }
-
-    public static void addMobInfo(CelestialBody celestial, Class<? extends EntityLiving> entity, int weight, int min, int max)
-    {
-        celestial.addMobInfo(new SpawnListEntry(entity, weight, min, max));
     }
 
     public static void setChecklistKeys(CelestialBody celestial, String... keys)

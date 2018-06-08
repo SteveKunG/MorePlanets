@@ -7,12 +7,12 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosMoutains;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeChalosPlains;
 import stevekung.mods.moreplanets.planets.chalos.world.gen.biome.BiomeSlimelyStream;
+import stevekung.mods.moreplanets.planets.diona.world.gen.BiomeDiona;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.*;
-import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 
 public class MPBiomes
 {
-    public static Biome DIONA = new BiomeMP(new Biome.BiomeProperties("Diona").setRainfall(0.0F));
+    public static Biome DIONA = new BiomeDiona(new Biome.BiomeProperties("Diona").setRainfall(0.0F).setTemperature(0.2F));
     public static Biome CHALOS_PLAINS = new BiomeChalosPlains(new Biome.BiomeProperties("Chalos Plains").setTemperature(0.8F).setRainfall(0.4F).setBaseHeight(0.125F).setHeightVariation(0.05F));
     public static Biome CHALOS_MOUTAINS = new BiomeChalosMoutains(new Biome.BiomeProperties("Chalos Moutains").setTemperature(0.2F).setRainfall(0.3F).setBaseHeight(1.0F).setHeightVariation(0.5F));
     public static Biome SLIMELY_STREAM = new BiomeSlimelyStream(new Biome.BiomeProperties("Slimely Stream").setBaseHeight(0.2F).setHeightVariation(0.2F));
