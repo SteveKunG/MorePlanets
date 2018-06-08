@@ -65,6 +65,7 @@ public class MPEntities
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityBearry.class, "bearry", ColorUtils.rgbToDecimal(179, 47, 47), ColorUtils.rgbToDecimal(0, 143, 0));
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityJellySlime.class, "jelly_slime", ColorUtils.rgbToDecimal(244, 69, 109), ColorUtils.rgbToDecimal(199, 56, 89));
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityTerrastoneGolem.class, "terrastone_golem", ColorUtils.rgbToDecimal(101, 78, 83), ColorUtils.rgbToDecimal(101, 130, 56));
+        MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityTerrasquid.class, "terrasquid", ColorUtils.rgbToDecimal(106, 152, 187), ColorUtils.rgbToDecimal(109, 219, 210));
 
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySpaceMinecartChest.class, "space_minecart_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedCrystallizedTentacle.class, "infected_crystallized_tentacle");

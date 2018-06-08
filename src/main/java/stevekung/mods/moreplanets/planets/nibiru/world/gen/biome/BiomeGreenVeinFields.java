@@ -10,6 +10,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.entity.EntityTerrasquid;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityTerrastoneGolem;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenAlienBerryBigTree;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenAlienBerryTree;
@@ -39,6 +40,7 @@ public class BiomeGreenVeinFields extends BiomeNibiru
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityTerrastoneGolem.class, 8, 2, 4));
+        this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntityTerrasquid.class, 10, 4, 4));
     }
 
     @Override
