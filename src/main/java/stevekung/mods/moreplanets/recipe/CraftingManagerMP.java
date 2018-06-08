@@ -20,6 +20,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.debug.JSONRecipe;
+import stevekung.mods.moreplanets.utils.debug.JSONTags;
 import stevekung.mods.moreplanets.utils.helper.RecipeHelper;
 
 public class CraftingManagerMP
@@ -33,6 +34,7 @@ public class CraftingManagerMP
             CraftingManagerMP.addBlockRecipe();
             CraftingManagerMP.addItemRecipe();
         }
+        JSONTags.init();
         JSONRecipe.generateConstants();
     }
 
@@ -131,6 +133,8 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.CHEESE_SPORE_STAIRS, 4), "wooden_stairs", new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.CHEESE_SPORE_PLANKS });
         RecipeHelper.addShapelessRecipe(new ItemStack(MPBlocks.CHEESE_SPORE_PLANKS, 4), "planks", MPBlocks.CHEESE_SPORE_STEM );
 
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_OAK_PRESSURE_PLATE), new Object[] { "XX", 'X', "infectedPlank" });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_OAK_PRESSURE_PLATE), new Object[] { "XX", 'X', MPBlocks.ALIEN_BERRY_OAK_PLANKS });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFERUMITE_BLOCK), new Object[] { "XXX", "XXX", "XXX", 'X', MPItems.INFERUMITE_CRYSTAL });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CRAFTING_TABLE), "crafting_table", new Object[] { "XX", "XX", 'X', "infectedPlank" });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_CRAFTING_TABLE), "crafting_table", new Object[] { "XX", "XX", 'X', MPBlocks.ALIEN_BERRY_OAK_PLANKS });
