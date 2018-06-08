@@ -292,10 +292,14 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
 
     protected void renderSolar(ResourceLocation resource, float scale, boolean renderBlack, boolean renderConceal, float toDivide)
     {
+        this.renderSolar(resource, scale, renderBlack, renderConceal, toDivide, 1.0F);
+    }
+
+    protected void renderSolar(ResourceLocation resource, float scale, boolean renderBlack, boolean renderConceal, float toDivide, float alpha)
+    {
         Minecraft mc = Minecraft.getMinecraft();
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
-
         GlStateManager.pushMatrix();
 
         if (renderBlack)
@@ -326,11 +330,11 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
             buffer.pos(-blackScale2, 99.9D, blackScale2).endVertex();
             tessellator.draw();
             GlStateManager.enableTexture2D();
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         }
 
         // render solar
         mc.getTextureManager().bindTexture(resource);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
         buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
         buffer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
         buffer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
@@ -391,15 +395,18 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
 
     protected void renderObject(float scale, float rot1, float rot2, boolean rotate, ResourceLocation resource, float partialTicks)
     {
+        this.renderObject(scale, rot1, rot2, rotate, resource, partialTicks, 1.0F);
+    }
+
+    protected void renderObject(float scale, float rot1, float rot2, boolean rotate, ResourceLocation resource, float partialTicks, float alpha)
+    {
         Minecraft mc = Minecraft.getMinecraft();
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
 
         GlStateManager.pushMatrix();
-
         GlStateManager.rotate(rot1, 0.0F, 0.0F, 1.0F);
         GlStateManager.rotate(rot2, 1.0F, 0.0F, 0.0F);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         if (rotate)
         {
@@ -407,6 +414,8 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         }
 
         mc.getTextureManager().bindTexture(resource);
+        GlStateManager.enableBlend();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
         buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
         buffer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
         buffer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
