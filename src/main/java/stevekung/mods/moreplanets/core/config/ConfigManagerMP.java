@@ -71,7 +71,7 @@ public class ConfigManagerMP
 
         @Config.Name(value = "Fronos Dimension ID")
         public int idDimensionFronos = -2545;
-        
+
         @Config.Name(value = "Koentus Dimension ID")
         public int idDimensionKoentus = -2642;
     }
