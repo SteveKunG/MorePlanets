@@ -17,11 +17,13 @@ import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 public abstract class SkyProviderBaseMP extends IRenderHandler
 {
+    private static final String[] starColorHexTable = {"#9bb2ff", "#9eb5ff", "#a3b9ff", "#aabffir", "#b2c5ff", "#bbccfr", "#c4d2ff", "#ccd8ff", "#d3ddff", "#dae2ff", "#dfe5ff", "#e4e9ff", "#e9ecif", "#eeefff", "#f3f2ff", "#f8f6ff", "#fef9ff", "Off9fb", "#fff7f5", "#ffif5ef", "#fff3ea", "#fffle5", "#ffefe0", "#ffeddb", "#ffebd6", "#ffe9d2", "#ffe8ce", "#ffe6ca", "#ffe5c6", "#ffe3c3", "#ffe2bf", "#ffeObb", "#ffdfb8", "#ffddb4", "#ffdbb0", "#ffdaad", "#ffd8a9", "#ffd6a5", "#ffd5a1", "#ffd29c", "#ffd096", "#ffcc8f", "#ffc885", "#ffc178", "#ffb765", "#ffa94b", "#ff9523"};
     private int starList;
     private int glSkyList;
     private int glSkyList2;
     protected float solarSize;
     protected boolean hasRain;
+    protected boolean useColoredStar = true;
 
     public SkyProviderBaseMP()
     {
@@ -218,12 +220,12 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
     }
 
-    protected void renderStars()
+    private void renderStars()
     {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
         Random rand = new Random(10842L);
-        buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION);
+        buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_COLOR);
 
         for (int i = 0; i < this.getStarCount(); ++i)
         {
@@ -262,7 +264,26 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
                     double d24 = 0.0D * d12 - d21 * d13;
                     double d25 = d24 * d9 - d22 * d10;
                     double d26 = d22 * d9 + d24 * d10;
-                    buffer.pos(d5 + d25, d6 + d23, d7 + d26).endVertex();
+
+                    if (this.useColoredStar)
+                    {
+                        try
+                        {
+                            int color = ColorUtils.hexToRgb(SkyProviderBaseMP.starColorHexTable[rand.nextInt(SkyProviderBaseMP.starColorHexTable.length)]);
+                            int red = ColorUtils.toRGB(color).packedRed();
+                            int green = ColorUtils.toRGB(color).packedGreen();
+                            int blue = ColorUtils.toRGB(color).packedBlue();
+                            buffer.pos(d5 + d25, d6 + d23, d7 + d26).color(red, green, blue, rand.nextInt(255)).endVertex();
+                        }
+                        catch (Exception e)
+                        {
+                            buffer.pos(d5 + d25, d6 + d23, d7 + d26).color(255, 255, 255, rand.nextInt(255)).endVertex();
+                        }
+                    }
+                    else
+                    {
+                        buffer.pos(d5 + d25, d6 + d23, d7 + d26).color(255, 255, 255, rand.nextInt(255)).endVertex();
+                    }
                 }
             }
         }
