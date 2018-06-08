@@ -395,7 +395,28 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
 
     protected void renderObject(float scale, float rot1, float rot2, boolean rotate, ResourceLocation resource, float partialTicks)
     {
-        this.renderObject(scale, rot1, rot2, rotate, resource, partialTicks, 1.0F);
+        Minecraft mc = Minecraft.getMinecraft();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder buffer = tessellator.getBuffer();
+
+        GlStateManager.pushMatrix();
+        GlStateManager.rotate(rot1, 0.0F, 0.0F, 1.0F);
+        GlStateManager.rotate(rot2, 1.0F, 0.0F, 0.0F);
+
+        if (rotate)
+        {
+            GlStateManager.rotate(mc.world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
+        }
+
+        mc.getTextureManager().bindTexture(resource);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
+        buffer.pos(-scale, 100.0D, -scale).tex(0.0D, 0.0D).endVertex();
+        buffer.pos(scale, 100.0D, -scale).tex(1.0D, 0.0D).endVertex();
+        buffer.pos(scale, 100.0D, scale).tex(1.0D, 1.0D).endVertex();
+        buffer.pos(-scale, 100.0D, scale).tex(0.0D, 1.0D).endVertex();
+        tessellator.draw();
+        GlStateManager.popMatrix();
     }
 
     protected void renderObject(float scale, float rot1, float rot2, boolean rotate, ResourceLocation resource, float partialTicks, float alpha)
