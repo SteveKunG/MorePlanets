@@ -122,7 +122,7 @@ public class WorldTickEventHandler
                             }
                             if (raining && worldServer.canSnowAt(pos, true))
                             {
-                                worldServer.setBlockState(pos, biome == MPBiomes.COLD_GREEN_VEIN_FIELDS ? MPBlocks.PURIFIED_SNOW_LAYER.getDefaultState() : MPBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                                worldServer.setBlockState(pos, biome == MPBiomes.COLD_GREEN_VEIN_MOUTAINS ? MPBlocks.PURIFIED_SNOW_LAYER.getDefaultState() : MPBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                             }
                             if (raining && worldServer.getBiome(pos1).canRain())
                             {

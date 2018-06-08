@@ -308,7 +308,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                     buffer.pos(l1 + d3 + 0.5D, l2, k1 + d4 + 0.5D).tex(1.0D, l2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
                     buffer.pos(l1 - d3 + 0.5D, l2, k1 - d4 + 0.5D).tex(0.0D, l2 * 0.25D + d5).color(1.0F, 1.0F, 1.0F, f4).lightmap(k3, l3).endVertex();
                         }
-                        else if (biome == MPBiomes.COLD_GREEN_VEIN_FIELDS)
+                        else if (biome == MPBiomes.COLD_GREEN_VEIN_MOUTAINS)
                         {
                             if (j1 != 1)
                             {
