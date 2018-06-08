@@ -94,7 +94,7 @@ public class TileEntityShieldGeneratorRenderer extends TileEntitySpecialRenderer
             GlStateManager.disableLighting();
             GlStateManager.disableCull();
             GlStateManager.alphaFunc(516, 0.1F);
-            GlStateManager.blendFunc(770, 771);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.matrixMode(5890);
             GlStateManager.loadIdentity();

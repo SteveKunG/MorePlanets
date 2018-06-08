@@ -34,7 +34,7 @@ public class LayerInfectedCrystallizedSlimeBossBarrier implements LayerRenderer<
             this.render.bindTexture(LayerInfectedCrystallizedSlimeBossBarrier.GLOW);
             GlStateManager.enableBlend();
             GlStateManager.disableAlpha();
-            GlStateManager.blendFunc(1, 1);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
             GlStateManager.disableLighting();
             GlStateManager.depthMask(!entity.isInvisible());
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
@@ -60,7 +60,7 @@ public class LayerInfectedCrystallizedSlimeBossBarrier implements LayerRenderer<
             GlStateManager.enableBlend();
             GlStateManager.color(0.5F, 0.5F, 0.5F, 1.0F);
             GlStateManager.disableLighting();
-            GlStateManager.blendFunc(1, 1);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
             this.model.setModelAttributes(this.render.getMainModel());
             Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
             this.model.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
@@ -78,7 +78,7 @@ public class LayerInfectedCrystallizedSlimeBossBarrier implements LayerRenderer<
             this.render.bindTexture(LayerInfectedCrystallizedSlimeBossBarrier.GLOW);
             GlStateManager.enableBlend();
             GlStateManager.disableAlpha();
-            GlStateManager.blendFunc(1, 1);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
             GlStateManager.disableLighting();
             GlStateManager.depthMask(!entity.isInvisible());
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);

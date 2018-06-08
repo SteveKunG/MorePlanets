@@ -45,7 +45,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             GlStateManager.disableCull();
             GlStateManager.disableBlend();
             GlStateManager.depthMask(true);
-            GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             double d0 = tile.getWorld().getTotalWorldTime() + (double)partialTicks;
             double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor(-d0 * 0.1D));
             float f1 = 0.85F;
@@ -83,7 +83,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             worldrenderer.pos(x + d4, y + k, z + d5).tex(0.0D, d15).color(f1, f2, f3, 1.0F).endVertex();
             tessellator.draw();
             GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.depthMask(false);
             d2 = 0.2D;
             d4 = 0.8D;
@@ -174,7 +174,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
                 this.bindTexture(END_SKY_TEXTURE);
                 f5 = 0.15F;
                 GlStateManager.enableBlend();
-                GlStateManager.blendFunc(770, 771);
+                GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             }
             if (k >= 1)
             {
@@ -183,7 +183,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             if (k == 1)
             {
                 GlStateManager.enableBlend();
-                GlStateManager.blendFunc(1, 1);
+                GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
             }
 
             GlStateManager.texGen(GlStateManager.TexGen.S, 9216);

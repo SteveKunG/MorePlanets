@@ -26,7 +26,7 @@ public class LayerInfectedCaveSpiderEyes implements LayerRenderer<EntityInfected
         this.render.bindTexture(LayerInfectedCaveSpiderEyes.TEXTURE);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
-        GlStateManager.blendFunc(1, 1);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
 
         if (entity.isInvisible())
         {

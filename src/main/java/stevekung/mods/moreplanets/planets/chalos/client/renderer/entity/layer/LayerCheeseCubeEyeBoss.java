@@ -28,7 +28,7 @@ public class LayerCheeseCubeEyeBoss implements LayerRenderer<EntityCheeseCubeEye
             this.render.bindTexture(LayerCheeseCubeEyeBoss.TEXTURE);
             GlStateManager.enableBlend();
             GlStateManager.disableAlpha();
-            GlStateManager.blendFunc(1, 1);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
             GlStateManager.disableLighting();
             GlStateManager.depthMask(!entity.isInvisible());
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);

@@ -38,7 +38,7 @@ public class LayerInfectedCreeperCharge implements LayerRenderer<EntityCreeper>
             float f1 = 0.5F;
             GlStateManager.color(f1, f1, f1, 1.0F);
             GlStateManager.disableLighting();
-            GlStateManager.blendFunc(1, 1);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
             this.model.setModelAttributes(this.render.getMainModel());
             this.model.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
             GlStateManager.matrixMode(5890);

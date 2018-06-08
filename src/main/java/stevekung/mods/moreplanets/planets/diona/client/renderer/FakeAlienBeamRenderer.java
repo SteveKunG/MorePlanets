@@ -56,7 +56,7 @@ public class FakeAlienBeamRenderer
         GlStateManager.glTexParameterf(3553, 10243, 10497.0F);
         GlStateManager.disableBlend();
         GlStateManager.depthMask(true);
-        GlStateManager.blendFunc(770, 1);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         double d0 = (double)Minecraft.getMinecraft().world.getTotalWorldTime() + (double)partialTicks;
         double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor(-d0 * 0.1D));
@@ -97,7 +97,7 @@ public class FakeAlienBeamRenderer
         worldrenderer.pos(x + d4, y + k, z + d5).tex(0.0D, d15).color(red, green, blue, alpha).endVertex();
         tessellator.draw();
         GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.depthMask(false);
         d2 = 0.2D;
         d4 = 0.8D;

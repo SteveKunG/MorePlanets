@@ -58,11 +58,11 @@ public class TileEntitySpaceWarpPadFullRenderer extends TileEntitySpecialRendere
         this.model.renderRod();
         GlStateManager.disableAlpha();
         GlStateManager.depthMask(false);
-        GlStateManager.blendFunc(771, 1);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.DestFactor.ONE);
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         GlStateManager.enableAlpha();
         GlStateManager.enableLighting();
         GlStateManager.depthMask(true);

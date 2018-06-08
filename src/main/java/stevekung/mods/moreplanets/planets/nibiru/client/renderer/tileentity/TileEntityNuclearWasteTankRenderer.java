@@ -49,7 +49,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 GlStateManager.translate(0.0F, 0.5F - i, 0.0F);
                 GlStateManager.disableLighting();
                 GlStateManager.enableBlend();
-                GlStateManager.blendFunc(770, 771);
+                GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
                 OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
                 this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
                 FluidStack tankFluid = FluidRegistry.getFluidStack("nuclear_waste_fluid", 0);
@@ -154,7 +154,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
 
         this.model.renderBase();
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         this.model.renderGlass();
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
@@ -193,7 +193,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 GlStateManager.translate(0.0F, 0.5F - i, 0.0F);
                 GlStateManager.disableLighting();
                 GlStateManager.enableBlend();
-                GlStateManager.blendFunc(770, 771);
+                GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
                 OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
                 Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
                 FluidStack tankFluid = FluidRegistry.getFluidStack("nuclear_waste_fluid", 0);
@@ -271,7 +271,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
         Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityNuclearWasteTankRenderer.TEXTURE);
         this.model.renderBase();
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.model.renderGlass();
         GlStateManager.disableBlend();

@@ -76,7 +76,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableBlend();
         GlStateManager.enableNormalize();
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         GlStateManager.translate(x + 0.5F, y, z + 0.5F);
         this.translateFromDirection(facing);
         GlStateManager.rotate(angle1, 0.1F, 1.0F, 0.0F);
@@ -170,7 +170,7 @@ public class TileEntityMultalicCrystalRenderer extends TileEntitySpecialRenderer
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableBlend();
         GlStateManager.enableNormalize();
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         GlStateManager.translate(0.475F, -0.3F, 0.5F);
         GlStateManager.rotate(angle1, 0.1F, 1.0F, 0.0F);
         GlStateManager.rotate(angle2, 1.0F, 0.0F, 0.0F);

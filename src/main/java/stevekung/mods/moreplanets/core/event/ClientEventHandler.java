@@ -88,7 +88,7 @@ public class ClientEventHandler
                 {
                     TileEntity tile = this.mc.world.getTileEntity(renderPos);
                     GlStateManager.pushMatrix();
-                    GlStateManager.blendFunc(770, 771);
+                    GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 
                     if (tile != null && tile instanceof TileEntityDarkEnergyReceiver)
                     {
@@ -117,7 +117,7 @@ public class ClientEventHandler
                 {
                     TileEntity tile = this.mc.world.getTileEntity(renderPos);
                     GlStateManager.pushMatrix();
-                    GlStateManager.blendFunc(770, 771);
+                    GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 
                     if (tile != null && tile instanceof TileEntityNuclearWasteGenerator)
                     {
@@ -314,7 +314,7 @@ public class ClientEventHandler
                     GlStateManager.depthFunc(519);
                     GlStateManager.depthMask(false);
                     GlStateManager.enableBlend();
-                    GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+                    GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
                     float f = 1.0F;
 
                     for (int i = 0; i < 2; ++i)
@@ -556,7 +556,7 @@ public class ClientEventHandler
         BufferBuilder worldrenderer = tessellator.getBuffer();
         GlStateManager.color(brightness, brightness, brightness, alpha);
         GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.pushMatrix();
         float f7 = -this.mc.player.rotationYaw / 64.0F;
         float f8 = this.mc.player.rotationPitch / 64.0F;

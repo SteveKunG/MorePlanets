@@ -31,7 +31,7 @@ public class RenderNibiruLightningBolt extends Render<EntityNibiruLightningBolt>
         GlStateManager.disableTexture2D();
         GlStateManager.disableLighting();
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(770, 1);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         double[] adouble = new double[8];
         double[] adouble1 = new double[8];

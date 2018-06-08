@@ -77,7 +77,7 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         tessellator.draw();
         GlStateManager.shadeModel(7424);
         GlStateManager.enableTexture2D();
-        GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.popMatrix();
 
         this.renderSolar(SkyProviderNibiru.LAZENDUS, this.solarSize, false, true, 4.0F, alpha);
@@ -146,7 +146,7 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
 
         if (renderBlack)
         {
-            GlStateManager.blendFunc(770, 771);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             GlStateManager.disableTexture2D();
             GlStateManager.color(0.0F, 0.0F, 0.0F, 1.0F);
             float blackScale = scale / toDivide;
@@ -163,7 +163,7 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         {
             float blackScale2 = scale / toDivide;// Some blanking to conceal the stars
             GlStateManager.disableTexture2D();
-            GlStateManager.blendFunc(770, 1);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
             GlStateManager.color(0.0F, 0.0F, 0.0F, 1.0F);
             buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION);
             buffer.pos(-blackScale2, 99.9D, -blackScale2).endVertex();

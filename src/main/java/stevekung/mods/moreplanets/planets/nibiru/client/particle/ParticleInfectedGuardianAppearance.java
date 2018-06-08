@@ -59,7 +59,7 @@ public class ParticleInfectedGuardianAppearance extends Particle
             GlStateManager.depthMask(true);
             GlStateManager.enableBlend();
             GlStateManager.enableDepth();
-            GlStateManager.blendFunc(770, 771);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             float f2 = 240.0F;
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, f2, f2);
             GlStateManager.pushMatrix();

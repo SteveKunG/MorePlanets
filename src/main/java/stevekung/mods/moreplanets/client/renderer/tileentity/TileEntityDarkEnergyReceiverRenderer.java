@@ -159,7 +159,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
             GlStateManager.disableCull();
             GlStateManager.disableBlend();
             GlStateManager.depthMask(true);
-            GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             double d0 = (double)tile.getWorld().getTotalWorldTime() + (double)partialTicks;
             double d1 = MathHelper.frac(-d0 * 0.2D - MathHelper.floor(-d0 * 0.1D));
             float f1 = tile.failedTick > 0 ? 0.1F : tile.successful ? 0.1F : 0.3F;
@@ -180,7 +180,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
             double d15 = height * f * 2.5D + d14;
             GlStateManager.translate(0.0F, 0.15F, 0.0F);
             GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.depthMask(true);
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
             worldrenderer.pos(x + d4, y + k, z + d5).tex(1.0D, d15).color(f1, f2, f3, 0.5F).endVertex();
@@ -201,7 +201,7 @@ public class TileEntityDarkEnergyReceiverRenderer extends TileEntitySpecialRende
             worldrenderer.pos(x + d4, y + k, z + d5).tex(0.0D, d15).color(f1, f2, f3, 0.5F).endVertex();
             tessellator.draw();
             GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.depthMask(false);
             d2 = 0.2D;
             d4 = 0.8D;

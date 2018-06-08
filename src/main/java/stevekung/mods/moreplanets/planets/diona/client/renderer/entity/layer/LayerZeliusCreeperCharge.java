@@ -40,7 +40,7 @@ public class LayerZeliusCreeperCharge implements LayerRenderer<EntityZeliusCreep
             GlStateManager.color(f1, f1, f1, 1.0F);
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
             GlStateManager.disableLighting();
-            GlStateManager.blendFunc(1, 1);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
             this.model.setModelAttributes(this.render.getMainModel());
             this.model.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
             GlStateManager.matrixMode(5890);

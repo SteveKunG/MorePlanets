@@ -49,7 +49,7 @@ public class ModelInfectedCrystallizedSlimeBoss extends ModelBase
         GlStateManager.pushMatrix();
         GlStateManager.enableCull();
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         this.body1.render(scale);
         this.body2.render(scale);
         this.eye1.render(scale);

@@ -40,7 +40,7 @@ public class ModelCheeseCubeEyeBoss extends ModelBase
     {
         this.updateRotation(entity);
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         this.body1.render(scale);
         this.body2.render(scale);
         this.body3.render(scale);

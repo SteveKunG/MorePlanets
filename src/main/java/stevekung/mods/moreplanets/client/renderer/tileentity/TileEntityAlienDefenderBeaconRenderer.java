@@ -39,7 +39,7 @@ public class TileEntityAlienDefenderBeaconRenderer extends TileEntitySpecialRend
         GlStateManager.enableCull();
         GlStateManager.enableBlend();
         GlStateManager.depthMask(false);
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         this.model.renderBeam();
         GlStateManager.disableBlend();
         GlStateManager.cullFace(1029);

@@ -84,7 +84,7 @@ public class RenderInfectedElderGuardian extends RenderLiving<EntityInfectedElde
             GlStateManager.depthMask(true);
             float f1 = 240.0F;
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, f1, f1);
-            GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             float f2 = entity.world.getTotalWorldTime() + partialTicks;
             float f3 = f2 * 0.5F % 1.0F;
             float f4 = entity.getEyeHeight();

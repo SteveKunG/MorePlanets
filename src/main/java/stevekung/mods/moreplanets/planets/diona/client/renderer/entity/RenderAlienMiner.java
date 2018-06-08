@@ -60,7 +60,7 @@ public class RenderAlienMiner extends RenderLiving<EntityAlienMiner>
             GlStateManager.enableAlpha();
             float f1 = 240.0F;
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, f1, f1);
-            GlStateManager.blendFunc(770, 771);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             float f2 = entity.world.getTotalWorldTime() + partialTicks;
             float f3 = f2 * 0.5F % 1.0F;
             float f4 = entity.getEyeHeight() + 0.25F - 0.5F + entity.getHoverTick(partialTicks);

@@ -32,7 +32,7 @@ public class CloudRendererChalos extends IRenderHandler
         float f3 = 4.0F;
         mc.renderEngine.bindTexture(CloudRendererChalos.TEXTURE);
         GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         byte b0 = 8;
         byte b1 = 4;
         float f13 = 9.765625E-4F;

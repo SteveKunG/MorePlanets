@@ -33,7 +33,7 @@ public class LayerInfectedCrystallizeSlimeBossDeath implements LayerRenderer<Ent
             GlStateManager.disableTexture2D();
             GlStateManager.shadeModel(7425);
             GlStateManager.enableBlend();
-            GlStateManager.blendFunc(770, 1);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
             GlStateManager.disableAlpha();
             GlStateManager.enableCull();
             GlStateManager.depthMask(false);

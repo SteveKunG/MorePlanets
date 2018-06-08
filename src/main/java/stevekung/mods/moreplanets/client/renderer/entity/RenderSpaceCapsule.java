@@ -85,7 +85,7 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
             GlStateManager.disableLighting();
             GlStateManager.enableBlend();
-            GlStateManager.blendFunc(770, 1);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
             GlStateManager.cullFace(1028);
 
             int color = ColorUtil.to32BitColor(entity.posY >= 790.0F ? 255 : (int) Math.max(Math.min(255, -(entity.motionY + 0.6F) * 100.0F), 0), 255, 255, 255);
@@ -103,7 +103,7 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
 
             GlStateManager.cullFace(1029);
             GlStateManager.enableCull();
-            GlStateManager.blendFunc(770, 771);
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             RenderHelper.enableStandardItemLighting();
         }
 

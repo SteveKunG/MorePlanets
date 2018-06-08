@@ -76,7 +76,7 @@ public class MultiblockRendererUtils
         Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE);
         MODEL.renderBase();
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         MODEL.renderGlass();
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();

@@ -33,7 +33,7 @@ public class RenderBlackHole extends Render<EntityBlackHole>
         GlStateManager.translate((float)x, (float)y - 0.75F, (float)z);
         GlStateManager.scale(5.0F, 5.0F, 5.0F);
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(770, 771);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder worldrenderer = tessellator.getBuffer();
         GlStateManager.rotate(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
