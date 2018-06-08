@@ -93,6 +93,13 @@ public class GeneralEventHandler
         {
             event.setResult(Result.ALLOW);
         }
+        if (event.getWorld().getBiome(event.getPos()) instanceof BiomeGreenVeinFields)
+        {
+            if (block == MPBlocks.PURIFIED_WATER_FLUID_BLOCK)
+            {
+                event.setResult(Result.ALLOW);
+            }
+        }
     }
 
     @SubscribeEvent

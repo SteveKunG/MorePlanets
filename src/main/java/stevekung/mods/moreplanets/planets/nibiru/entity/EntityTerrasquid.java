@@ -49,12 +49,12 @@ public class EntityTerrasquid extends EntitySquid implements IEntityBreathable
             {
                 this.entity.setMovementVector(0.0F, 0.0F, 0.0F);
             }
-            else if (this.entity.getRNG().nextInt(100) == 0 || !this.entity.inWater || !this.entity.hasMovementVector())
+            else if (this.entity.getRNG().nextInt(50) == 0 || !this.entity.inWater || !this.entity.hasMovementVector())
             {
                 float f = this.entity.getRNG().nextFloat() * ((float)Math.PI * 2F);
-                float f1 = MathHelper.cos(f) * 0.2F;
-                float f2 = -0.1F + this.entity.getRNG().nextFloat() * 0.2F;
-                float f3 = MathHelper.sin(f) * 0.2F;
+                float f1 = MathHelper.cos(f) * 0.1F;
+                float f2 = -0.1F + this.entity.getRNG().nextFloat() * 0.1F;
+                float f3 = MathHelper.sin(f) * 0.1F;
                 this.entity.setMovementVector(f1, f2, f3);
             }
         }
