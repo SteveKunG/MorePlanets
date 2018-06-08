@@ -13,6 +13,7 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenFlowersBase;
 public class BiomeDecoratorChalos extends BiomeDecoratorMP
 {
     public int cheeseSporeStemPerChunk = 1;
+    public float extraStemChance = 0.1F;
 
     @Override
     protected void generate(Biome biome, World world, Random rand)
@@ -26,14 +27,9 @@ public class BiomeDecoratorChalos extends BiomeDecoratorMP
             WorldDecorateUtils.generatePlants(new WorldGenFlowersBase(MPBlocks.CHEESE_GRASS.getDefaultState()), world, rand, this.chunkPos);
         }
 
-        int chance;
-        chance = this.treesPerChunk;
+        int chance = this.treesPerChunk;
 
-        if (rand.nextInt(1) == 0)
-        {
-            --chance;
-        }
-        if (rand.nextInt(6) == 0)
+        if (rand.nextFloat() < this.extraTreeChance)
         {
             ++chance;
         }
@@ -45,11 +41,7 @@ public class BiomeDecoratorChalos extends BiomeDecoratorMP
 
         chance = this.cheeseSporeStemPerChunk;
 
-        if (rand.nextInt(1) == 0)
-        {
-            --chance;
-        }
-        if (rand.nextInt(8) == 0)
+        if (rand.nextFloat() < this.extraStemChance)
         {
             ++chance;
         }
