@@ -244,11 +244,11 @@ public class MPItems
     // Tool/Armor Material
     public static final ToolMaterial ILLENIUM_TOOL = EnumHelper.addToolMaterial("ILLENIUM", 3, 1432, 8.5F, 4.5F, 10);
     public static final ToolMaterial DIREMSIUM_TOOL = EnumHelper.addToolMaterial("DIREMSIUM", 3, 1532, 9.0F, 5.0F, 10);
-    public static final ToolMaterial MULTALIC_CRYSTAL_TOOL = EnumHelper.addToolMaterial("MULTALIC_CRYSTAL", 3, 1951, 10.0F, 3.75F, 12);
+    public static final ToolMaterial MULTALIC_CRYSTAL_TOOL = EnumHelper.addToolMaterial("MULTALIC_CRYSTAL", 3, 1951, 10.0F, 5.25F, 12);
 
     public static final ArmorMaterial ILLENIUM_ARMOR = EnumHelper.addArmorMaterial("ILLENIUM", "ILLENIUM", 40, new int[] { 5, 10, 8, 5 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.25F);
     public static final ArmorMaterial DIREMSIUM_ARMOR = EnumHelper.addArmorMaterial("DIREMSIUM", "DIREMSIUM", 48, new int[] { 7, 12, 10, 7 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.5F);
-    public static final ArmorMaterial MULTALIC_CRYSTAL_ARMOR = EnumHelper.addArmorMaterial("MULTALIC_CRYSTAL", "MULTALIC_CRYSTAL", 41, new int[] { 4, 10, 7, 4 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F);
+    public static final ArmorMaterial MULTALIC_CRYSTAL_ARMOR = EnumHelper.addArmorMaterial("MULTALIC_CRYSTAL", "MULTALIC_CRYSTAL", 40, new int[] { 8, 13, 11, 8 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
 
     public static void init()
     {
