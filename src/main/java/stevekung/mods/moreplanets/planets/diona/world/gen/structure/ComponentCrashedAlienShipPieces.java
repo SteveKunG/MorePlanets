@@ -138,7 +138,7 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
                 PlacementSettings settings = new PlacementSettings().setRotation(arotation[rand.nextInt(arotation.length)]).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(box1);
                 settings.setIntegrity(0.65F);
                 Template template = manager.getTemplate(server, CrashedAlienShip.ALIEN_SHIP);
-                pos = world.getTopSolidOrLiquidBlock(pos).add(0, -4, 0);
+                pos = pos.add(0, -4, 0);
                 template.addBlocksToWorldChunk(world, pos, settings);
                 LoggerMP.debug("Generate Crashed Alien Ship at {} {} {}", pos.getX(), pos.getY(), pos.getZ());
                 Map<BlockPos, String> map = template.getDataBlocks(pos, settings);
