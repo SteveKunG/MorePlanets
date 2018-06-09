@@ -51,6 +51,10 @@ public class MorePlanetsJEIPlugin implements IModPlugin
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.CHEESE_SPORE_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.INFECTED_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.INFECTED_FURNACE), VanillaRecipeCategoryUid.SMELTING);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.TERRASTONE_FURNACE), VanillaRecipeCategoryUid.SMELTING);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.INFECTED_FURNACE), VanillaRecipeCategoryUid.FUEL);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.TERRASTONE_FURNACE), VanillaRecipeCategoryUid.FUEL);
 
         Item item = MorePlanetsJEIPlugin.ILLENIUM.values().iterator().next();
         List<ItemStack> list = new ArrayList<>(MorePlanetsJEIPlugin.ILLENIUM.keySet());
