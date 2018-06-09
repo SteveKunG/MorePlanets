@@ -592,7 +592,7 @@ public class ClientEventHandler
 
         if (player.getRNG().nextInt(512) == 0 && player.world.provider instanceof WorldProviderDiona)
         {
-            if (player.world.getSunBrightness(1.0F) < 0.25F)
+            if (player.world.getSunBrightness(1.0F) < 0.1F)
             {
                 double freq = player.getRNG().nextDouble() * Math.PI * 2.0F;
                 double dist = 64.0F;

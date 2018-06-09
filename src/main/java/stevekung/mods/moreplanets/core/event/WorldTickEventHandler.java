@@ -174,19 +174,16 @@ public class WorldTickEventHandler
         }
         else
         {
-            return this.getSunBrightness(world) < 0.25F;
+            return this.getSunBrightness(world) < 0.1F;
         }
     }
 
     private float getSunBrightness(WorldServer world)
     {
-        float partialTicks = 1.0F;
-        float angle = world.getCelestialAngle(partialTicks);
-        float celestialAngle = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2F)) * 2.0F + 0.2F);
-        celestialAngle = MathHelper.clamp(celestialAngle, 0.0F, 1.0F);
-        celestialAngle = 1.0F - celestialAngle;
-        celestialAngle = (float)(celestialAngle * (1.0D - world.getRainStrength(partialTicks) * 5.0F / 16.0D));
-        celestialAngle = (float)(celestialAngle * (1.0D - world.getThunderStrength(partialTicks) * 5.0F / 16.0D));
-        return celestialAngle * 0.8F + 0.2F;
+        float angle = world.getCelestialAngle(1.0F);
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.1F);
+        value = MathHelper.clamp(value, 0.55F, 1.0F);
+        value = 1.0F - value;
+        return value * 0.9F;
     }
 }
