@@ -39,6 +39,7 @@ public class GuiShieldGenerator extends GuiContainerMP
     {
         super(new ContainerShieldGenerator(inventory, tile));
         this.tile = tile;
+        this.xSize = 201;
         this.ySize = 212;
     }
 
@@ -62,7 +63,11 @@ public class GuiShieldGenerator extends GuiContainerMP
         super.initGui();
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
+        x += 12;
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 77, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 176, y + 59, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_capacity_upgrade.desc.0"), LangUtils.translate("gui.shield_capacity_upgrade.desc.1")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 176, y + 41, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_size_upgrade.desc.0"), LangUtils.translate("gui.shield_size_upgrade.desc.1")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 176, y + 23, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_damage_upgrade.desc.0"), LangUtils.translate("gui.shield_damage_upgrade.desc.1")), this.width, this));
         List<String> electricityDesc = new ArrayList<>();
         electricityDesc.add(LangUtils.translate("gui.energy_storage.desc.0"));
         electricityDesc.add(TextFormatting.YELLOW + LangUtils.translate("gui.energy_storage.desc.1") + ((int) Math.floor(this.tile.getEnergyStoredGC()) + " / " + (int) Math.floor(this.tile.getMaxEnergyStoredGC())));
@@ -106,8 +111,8 @@ public class GuiShieldGenerator extends GuiContainerMP
             this.fontRenderer.drawString(text, this.xSize / 2 - 80, y, 2536735);
             y += 10;
         }
-        this.fontRenderer.drawString(owner + this.tile.getName(), 8, 10, 4210752);
-        this.fontRenderer.drawString(LangUtils.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
+        this.fontRenderer.drawString(owner + this.tile.getName(), 20, 10, 4210752);
+        this.fontRenderer.drawString(LangUtils.translate("container.inventory"), 20, this.ySize - 90 + 2, 4210752);
     }
 
     @Override
@@ -117,13 +122,14 @@ public class GuiShieldGenerator extends GuiContainerMP
         this.mc.getTextureManager().bindTexture(GuiShieldGenerator.TEXTURE);
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
+        x += 12;
         this.drawTexturedModalRect(x, y + 5, 0, 0, this.xSize, this.ySize);
         int scale = this.tile.getScaledElecticalLevel(42);
-        this.drawTexturedModalRect(x + 156, y + 64 - scale, 176, 42 - scale + 10, 8, scale);
+        this.drawTexturedModalRect(x + 156, y + 64 - scale, 201, 42 - scale + 10, 8, scale);
 
         if (this.tile.getEnergyStoredGC() > 0)
         {
-            this.drawTexturedModalRect(x + 154, y + 66, 176, 0, 11, 10);
+            this.drawTexturedModalRect(x + 154, y + 66, 201, 0, 11, 10);
         }
 
         List<String> electricityDesc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
