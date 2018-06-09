@@ -118,7 +118,7 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
 
         public CrashedAlienShip(Random rand, int x, int z)
         {
-            super(rand, x, 64, z, 16, 9, 11);
+            super(rand, x, 64, z, 8, 9, 8);
         }
 
         @Override
@@ -131,13 +131,14 @@ public abstract class ComponentCrashedAlienShipPieces extends StructureComponent
             else
             {
                 StructureBoundingBox box1 = this.getBoundingBox();
-                BlockPos pos = new BlockPos(box1.minX, box1.minY, box1.minZ).add(0, -4, 0);
+                BlockPos pos = new BlockPos(box1.minX, box1.minY, box1.minZ);
                 Rotation[] arotation = CachedEnum.rotationValues;
                 MinecraftServer server = world.getMinecraftServer();
                 TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
                 PlacementSettings settings = new PlacementSettings().setRotation(arotation[rand.nextInt(arotation.length)]).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(box1);
                 settings.setIntegrity(0.65F);
                 Template template = manager.getTemplate(server, CrashedAlienShip.ALIEN_SHIP);
+                pos = world.getTopSolidOrLiquidBlock(pos).add(0, -4, 0);
                 template.addBlocksToWorldChunk(world, pos, settings);
                 LoggerMP.debug("Generate Crashed Alien Ship at {} {} {}", pos.getX(), pos.getY(), pos.getZ());
                 Map<BlockPos, String> map = template.getDataBlocks(pos, settings);
