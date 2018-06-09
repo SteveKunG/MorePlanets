@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -93,6 +94,12 @@ public class BlockOilOre extends BlockBaseMP implements IDetectableResource, ITe
         {
             world.setBlockState(pos, GCBlocks.crudeOil.getDefaultState());
         }
+    }
+
+    @Override
+    public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosion)
+    {
+        world.setBlockState(pos, GCBlocks.crudeOil.getDefaultState());
     }
 
     @Override
