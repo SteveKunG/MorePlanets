@@ -79,6 +79,10 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         {
             return BlockPlaceableBushMP.TERRASHROOM;
         }
+        else if (this.type == BlockType.CREEP_VINES)
+        {
+            return Block.FULL_BLOCK_AABB;
+        }
         return BlockPlaceableBushMP.FLOWER;
     }
 
@@ -126,7 +130,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         {
             return 2;
         }
-        else if (this.type == BlockType.TERRAPUFF_HERB || this.type == BlockType.VEALIUM_VINES)
+        else if (this.type == BlockType.TERRAPUFF_HERB || this.type == BlockType.VEALIUM_VINES || this.type == BlockType.CREEP_VINES)
         {
             return 4;
         }
@@ -203,6 +207,10 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         {
             return blockUp == MPBlocks.INFECTED_JUNGLE_LEAVES || blockUp == this;
         }
+        else if (this.type == BlockType.CREEP_VINES)
+        {
+            return blockUp == MPBlocks.CREEP_BLOCK || blockUp == MPBlocks.GRAVITY_CREEP_BLOCK || blockUp == MPBlocks.GRAVITY_CREEP_EXTRACTOR;
+        }
         else if (this.type == BlockType.TERRASHROOM)
         {
             return super.canPlaceBlockAt(world, pos) || world.getLight(pos) < 13 && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.DOWN);
@@ -225,6 +233,10 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         else if (this.type == BlockType.VEALIUM_VINES)
         {
             return blockUp == MPBlocks.INFECTED_JUNGLE_LEAVES || blockUp == this;
+        }
+        else if (this.type == BlockType.CREEP_VINES)
+        {
+            return blockUp == MPBlocks.CREEP_BLOCK || blockUp == MPBlocks.GRAVITY_CREEP_BLOCK || blockUp == MPBlocks.GRAVITY_CREEP_EXTRACTOR;
         }
         return super.canBlockStay(world, pos, state);
     }
@@ -365,7 +377,8 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         PHILIPY(true),
         WHITE_TAIL(true),
         VEALIUM_VINES(true),
-        TERRASHROOM(true);
+        TERRASHROOM(true),
+        CREEP_VINES(true);
 
         private boolean isFlower;
 

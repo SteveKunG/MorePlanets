@@ -18,7 +18,9 @@ import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPDimensions;
 import stevekung.mods.moreplanets.init.MPPlanets;
-import stevekung.mods.moreplanets.planets.diona.world.gen.ChunkGeneratorDiona;
+import stevekung.mods.moreplanets.moons.koentus.client.sky.SkyProviderKoentus;
+import stevekung.mods.moreplanets.moons.koentus.world.gen.BiomeProviderKoentus;
+import stevekung.mods.moreplanets.moons.koentus.world.gen.ChunkGeneratorKoentus;
 import stevekung.mods.moreplanets.utils.dimension.WorldProviderMP;
 
 public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
@@ -27,14 +29,14 @@ public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
     public Vector3 getFogColor()
     {
         float f = 1.2F - this.getStarBrightness(1.0F);
-        return new Vector3(23F / 255F * f, 49F / 255F * f, 108F / 255F * f);
+        return new Vector3(23 / 255F * f, 49 / 255F * f, 91 / 255F * f);
     }
 
     @Override
     public Vector3 getSkyColor()
     {
         float f = 1.3F - this.getStarBrightness(1.0F);
-        return new Vector3(35 / 255F * f, 74 / 255F * f, 165 / 255F * f);
+        return new Vector3(35 / 255F * f, 74 / 255F * f, 120 / 255F * f);
     }
 
     @Override
@@ -48,16 +50,8 @@ public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
     public float getStarBrightness(float partialTicks)
     {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 0.8F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
-
-        if (value < 0.0F)
-        {
-            value = 0.0F;
-        }
-        if (value > 1.0F)
-        {
-            value = 1.0F;
-        }
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.25F);
+        value = MathHelper.clamp(value, 0.0F, 1.0F);
         return value * value * 0.75F;
     }
 
@@ -65,19 +59,11 @@ public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
     @SideOnly(Side.CLIENT)
     public float getSunBrightness(float partialTicks)
     {
-        float angle = this.world.getCelestialAngle(1.0F);
-        float value = 0.45F - (MathHelper.cos(angle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
-
-        if (value < 0.0F)// day
-        {
-            value = 0.0F;
-        }
-        if (value > 1.0F)// night
-        {
-            value = 1.0F;
-        }
+        float angle = this.world.getCelestialAngle(partialTicks);
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.1F);
+        value = MathHelper.clamp(value, 0.55F, 1.0F);
         value = 1.0F - value;
-        return value * 1.0F;
+        return value * 0.8F;
     }
 
     @Override
@@ -121,9 +107,9 @@ public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
     {
         if (this.isDaytime())
         {
-            return 0.5F;
+            return 1.0F;
         }
-        return -1.0F;
+        return -2.5F;
     }
 
     @Override
@@ -139,15 +125,22 @@ public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
     }
 
     @Override
-    protected void renderSky()//TODO
+    protected void renderSky()
     {
+        this.setSkyRenderer(new SkyProviderKoentus(this.getSolarSize()));
+    }
 
+    @Override
+    protected void init()
+    {
+        super.init();
+        this.biomeProvider = new BiomeProviderKoentus();
     }
 
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkGeneratorDiona(this.world, this.world.getSeed());//TODO
+        return new ChunkGeneratorKoentus(this.world, this.world.getSeed());
     }
 
     @Override

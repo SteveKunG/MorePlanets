@@ -1,0 +1,23 @@
+{
+    "animation": {
+        "frametime": 10,
+        "interpolate": true,
+        "frames": [
+            1,
+            1,
+            0,
+            0,
+            2,
+            2,
+            0,
+            0
+        ]
+    },
+    "ctm": {
+        "ctm_version": 1,
+        "layer": "CUTOUT",
+        "extra": {
+            "light": 12
+        }
+    }
+}

@@ -35,6 +35,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
 import stevekung.mods.moreplanets.items.ItemCapsule;
+import stevekung.mods.moreplanets.moons.koentus.client.particle.ParticleGravityHarvester;
 import stevekung.mods.moreplanets.moons.koentus.client.particle.ParticleKoentusMeteor;
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
@@ -238,11 +239,15 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.KOENTUS_METEOR_SMOKE)
             {
-                particle = new ParticleKoentusMeteor(mc.world, x, y, z, motionX, motionY, motionZ);
+                particle = new ParticleKoentusMeteor(mc.world, x, y, z, 0.0D, 0.0D, 0.0D);
             }
             else if (type == EnumParticleTypesMP.CUSTOM_FALLING_DUST)
             {
                 particle = new ParticleFallingDustMP(mc.world, x, y, z, (int) data[0]);
+            }
+            else if (type == EnumParticleTypesMP.GRAVITY_HARVESTER)
+            {
+                particle = new ParticleGravityHarvester(mc.world, x, y, z, (boolean) data[0]);
             }
 
             if (particle != null)

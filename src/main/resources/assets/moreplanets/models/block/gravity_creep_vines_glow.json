@@ -1,0 +1,7 @@
+{
+    "parent": "moreplanets:block/cross_glow",
+    "textures": {
+        "cross": "moreplanets:blocks/gravity_creep_vines",
+        "glow": "moreplanets:blocks/gravity_creep_vines_glow"
+    }
+}

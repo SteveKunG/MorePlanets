@@ -79,15 +79,11 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
 
         if (!world.getBlockState(pos.up()).isSideSolid(world, pos.up(), EnumFacing.UP))
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 8; i++)
             {
                 double d0 = pos.getX() + rand.nextFloat();
                 double d2 = pos.getZ() + rand.nextFloat();
-                double d3 = 0.0D;
-                double d5 = 0.0D;
-                d3 = (rand.nextFloat() - 0.5D) * 0.5D;
-                d5 = (rand.nextFloat() - 0.5D) * 0.5D;
-                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.KOENTUS_METEOR_SMOKE, d0, pos.getY() + 2, d2, d3, -2.0D, d5);
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.KOENTUS_METEOR_SMOKE, d0, pos.getY() - 0.5D, d2);
             }
         }
     }

@@ -8,12 +8,14 @@ import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.entity.EntityAntiGravFallingBlock;
 import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBasicMP;
 
 public class BlockAntiGravityOre extends BlockBasicMP implements IDetectableResource
@@ -23,6 +25,12 @@ public class BlockAntiGravityOre extends BlockBasicMP implements IDetectableReso
         super(Material.ROCK);
         this.setHardness(3.0F);
         this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
+    {
+        return CompatibilityManagerMP.isCTMLoaded ? layer == BlockRenderLayer.CUTOUT : super.canRenderInLayer(state, layer);
     }
 
     @Override

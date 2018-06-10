@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.utils.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -25,6 +26,12 @@ public class BlockFallingMP extends BlockFalling implements ISortableBlock, IIte
 
     public BlockFallingMP(String name)
     {
+        this.setUnlocalizedName(name);
+    }
+
+    public BlockFallingMP(String name, Material material)
+    {
+        super(material);
         this.setUnlocalizedName(name);
     }
 

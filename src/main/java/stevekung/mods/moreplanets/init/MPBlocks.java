@@ -13,10 +13,7 @@ import stevekung.mods.moreplanets.blocks.decoration.BlockAllHalfSlab;
 import stevekung.mods.moreplanets.blocks.decoration.BlockAllWall;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.itemblocks.*;
-import stevekung.mods.moreplanets.moons.koentus.blocks.BlockAntiGravityOre;
-import stevekung.mods.moreplanets.moons.koentus.blocks.BlockFallenKoentusMeteor;
-import stevekung.mods.moreplanets.moons.koentus.blocks.BlockGlowingHardenedIce;
-import stevekung.mods.moreplanets.moons.koentus.blocks.BlockKoentusIce;
+import stevekung.mods.moreplanets.moons.koentus.blocks.*;
 import stevekung.mods.moreplanets.moons.koentus.itemblocks.ItemBlockAntiGravity;
 import stevekung.mods.moreplanets.planets.chalos.blocks.*;
 import stevekung.mods.moreplanets.planets.chalos.blocks.fluid.FluidGaseousCheeseMilk;
@@ -266,6 +263,12 @@ public class MPBlocks
     public static Block GREEN_GLOWING_HARDENED_ICE;
     public static Block RED_GLOWING_HARDENED_ICE;
     public static Block BLACK_GLOWING_HARDENED_ICE;
+
+    // Creep Block
+    public static Block CREEP_BLOCK;
+    public static Block GRAVITY_CREEP_BLOCK;
+    public static Block GRAVITY_CREEP_EXTRACTOR;
+    public static Block GRAVITY_CREEP_VINES;
 
     //////////////////////// KOENTUS STUFF ////////////////////////
 
@@ -721,6 +724,12 @@ public class MPBlocks
         MPBlocks.RED_GLOWING_HARDENED_ICE = new BlockGlowingHardenedIce("red_glowing_hardened_ice", EnumDyeColor.RED);
         MPBlocks.BLACK_GLOWING_HARDENED_ICE = new BlockGlowingHardenedIce("black_glowing_hardened_ice", EnumDyeColor.BLACK);
 
+        // Creep Block
+        MPBlocks.CREEP_BLOCK = new BlockCreep("creep_block", BlockCreep.BlockType.CREEP_BLOCK);
+        MPBlocks.GRAVITY_CREEP_BLOCK = new BlockCreep("gravity_creep_block", BlockCreep.BlockType.GRAVITY_CREEP_BLOCK);
+        MPBlocks.GRAVITY_CREEP_EXTRACTOR = new BlockCreep("gravity_creep_extractor", BlockCreep.BlockType.GRAVITY_CREEP_EXTRACTOR);
+        MPBlocks.GRAVITY_CREEP_VINES = new BlockPlaceableBushMP("gravity_creep_vines", BlockPlaceableBushMP.BlockType.CREEP_VINES);
+
         //////////////////////// CHALOS STUFF ////////////////////////
 
         // Chalos Block
@@ -1110,6 +1119,12 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.GREEN_GLOWING_HARDENED_ICE);
         BlocksItemsRegistry.registerBlock(MPBlocks.RED_GLOWING_HARDENED_ICE);
         BlocksItemsRegistry.registerBlock(MPBlocks.BLACK_GLOWING_HARDENED_ICE);
+        
+        // Creep Block
+        BlocksItemsRegistry.registerBlock(MPBlocks.CREEP_BLOCK);
+        BlocksItemsRegistry.registerBlock(MPBlocks.GRAVITY_CREEP_BLOCK, ItemBlockAntiGravity::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.GRAVITY_CREEP_EXTRACTOR, ItemBlockAntiGravity::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.GRAVITY_CREEP_VINES, ItemBlockAntiGravity::new);
 
         // Chalos Block
         BlocksItemsRegistry.registerBlock(MPBlocks.CHALOS_ROCK);
@@ -1577,6 +1592,9 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_ANCIENT_CHEST, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ANTI_GRAVITY_ORE, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.GOLDENITE_CRYSTALS_ORE, EnumHarvestLevel.PICKAXE, 2);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.CREEP_BLOCK, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.GRAVITY_CREEP_BLOCK, EnumHarvestLevel.SHOVEL, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.GRAVITY_CREEP_EXTRACTOR, EnumHarvestLevel.SHOVEL, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.KOENTUS_REGOLITH, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.KOENTUS_FINE_REGOLITH, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.KOENTUS_ROCK, EnumHarvestLevel.PICKAXE, 1);

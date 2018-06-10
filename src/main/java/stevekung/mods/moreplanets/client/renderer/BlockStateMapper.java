@@ -66,5 +66,9 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.SPORELILY, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.TERRAPUFF_HERB, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SUGAR_CANE, new StateMapperCTM(BlockStateProperty.AGE_15));
+        ClientRegistryUtils.registerStateMapper(MPBlocks.ANTI_GRAVITY_ORE, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.GRAVITY_CREEP_BLOCK, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.GRAVITY_CREEP_EXTRACTOR, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.GRAVITY_CREEP_VINES, ctm);
     }
 }
