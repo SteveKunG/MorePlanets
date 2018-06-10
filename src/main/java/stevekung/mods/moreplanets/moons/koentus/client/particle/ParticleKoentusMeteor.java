@@ -15,12 +15,9 @@ public class ParticleKoentusMeteor extends Particle
     private final double portalPosY;
     private final double portalPosZ;
 
-    public ParticleKoentusMeteor(World world, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed)
+    public ParticleKoentusMeteor(World world, double xCoord, double yCoord, double zCoord)
     {
         super(world, xCoord, yCoord, zCoord, 0.0D, 0.0D, 0.0D);
-        this.motionX = xSpeed;
-        this.motionY = ySpeed;
-        this.motionZ = zSpeed;
         this.posX = xCoord;
         this.posY = yCoord;
         this.posZ = zCoord;

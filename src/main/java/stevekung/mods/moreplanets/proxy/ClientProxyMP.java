@@ -239,7 +239,7 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.KOENTUS_METEOR_SMOKE)
             {
-                particle = new ParticleKoentusMeteor(mc.world, x, y, z, 0.0D, 0.0D, 0.0D);
+                particle = new ParticleKoentusMeteor(mc.world, x, y, z);
             }
             else if (type == EnumParticleTypesMP.CUSTOM_FALLING_DUST)
             {
