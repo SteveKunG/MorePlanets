@@ -13,6 +13,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.moons.koentus.world.gen.feature.WorldGenGravityHarvester;
 import stevekung.mods.moreplanets.planets.diona.world.gen.BiomeDecoratorDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.MapGenCrashedAlienShipFeature;
 import stevekung.mods.moreplanets.planets.diona.world.gen.feature.WorldGenCrashedAlienProbe;
@@ -47,7 +48,7 @@ public class ChunkGeneratorKoentus extends ChunkGeneratorBaseMP
     @Override
     protected void populate(BlockPos pos, ChunkPos chunkpos, Biome biome, int chunkX, int chunkZ, int x, int z)
     {
-        int y = this.rand.nextInt(this.rand.nextInt(248) + 8);
+        //int y = this.rand.nextInt(this.rand.nextInt(248) + 8);
         this.decorator.decorate(this.world, this.rand, biome, pos);
         this.alienShipFeatureGenerator.generateStructure(this.world, this.rand, chunkpos);
 
@@ -65,6 +66,11 @@ public class ChunkGeneratorKoentus extends ChunkGeneratorBaseMP
         //                new WorldGenLiquidLake(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), true).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
         //            }
         //        }
+        if (this.rand.nextInt(20) == 0)
+        {
+            int posY = this.world.getTopSolidOrLiquidBlock(pos.add(0, 0, 0)).getY();
+            new WorldGenGravityHarvester().generate(this.world, this.rand, pos.add(0, posY + 2 + this.rand.nextInt(3), 0));
+        }
         for (int i = 0; i < 8; ++i)
         {
             new WorldGenSpaceDungeons(MPBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), MPBlocks.KOENTUS_COBBLESTONE.getDefaultState(), MPBlocks.ALBETIUS_WORM_EGG_ROCK.getDefaultState()).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(256), this.rand.nextInt(16) + 8));

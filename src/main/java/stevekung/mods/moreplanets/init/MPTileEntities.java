@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.init;
 
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.moons.koentus.tileentity.TileEntityGravityExtractor;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosAncientChest;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosDungeonSpawner;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosTreasureChest;
@@ -50,5 +51,6 @@ public class MPTileEntities
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityTerrastoneFurnace.class, "terrastone_furnace");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNibiruDungeonSpawner.class, "nibiru_dungeon_spawner");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntitySpacePortal.class, "space_portal");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityGravityExtractor.class, "gravity_extractor");
     }
 }

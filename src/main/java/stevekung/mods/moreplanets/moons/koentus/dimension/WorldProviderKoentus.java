@@ -60,8 +60,8 @@ public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
     public float getSunBrightness(float partialTicks)
     {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.1F);
-        value = MathHelper.clamp(value, 0.55F, 1.0F);
+        float value = 1.0F - (MathHelper.cos(angle * ((float)Math.PI * 2.0F)) * 2.0F + 0.25F);
+        value = MathHelper.clamp(value, 0.3F, 1.0F);
         value = 1.0F - value;
         return value * 0.8F;
     }
