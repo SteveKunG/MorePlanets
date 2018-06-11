@@ -1,0 +1,22 @@
+{
+    "display": {
+        "icon": {
+            "item": "moreplanets:infected_crystallized_planks"
+        },
+        "title": {
+            "translate": "advancements.diona.find_diona_mineshaft.title"
+        },
+        "description": {
+            "translate": "advancements.diona.find_diona_mineshaft.description"
+        }
+    },
+    "parent": "moreplanets:diona/root",
+    "criteria": {
+        "diona_mineshaft": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "feature": "DionaMineshaft"
+            }
+        }
+    }
+}

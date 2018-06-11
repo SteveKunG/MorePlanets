@@ -780,6 +780,20 @@ container.nibiru.ancientchest.name=Nibiru Ancient Chest
 container.nibiru.treasurechest.name=Nibiru Treasure Chest
 container.schematic.black_hole_storage=Black Hole Storage
 
+# ADVANCEMENT
+chat.type.advancement.task_purple=%s has made the advancement %s
+advancements.toast.task_purple=Advancement Made!
+advancements.diona.root.title=The beginning of More Planets
+advancements.diona.root.description=Reaches to the Diona like a moon!
+advancements.diona.kill_an_alien_miner.title=Robot Hunter
+advancements.diona.kill_an_alien_miner.description=Kill the damaged miner robot
+advancements.diona.obtain_glowing_iron.title=A Glowing Iron
+advancements.diona.obtain_glowing_iron.description=Obtains Glowing Iron Block that spawn around the Diona!
+advancements.diona.find_diona_mineshaft.title=Crystal Mineshaft?
+advancements.diona.find_diona_mineshaft.description=Find a way to the Crystallized Mineshaft!
+advancements.diona.find_crashed_alien_ship.title=Mystery Crashed Ship?
+advancements.diona.find_crashed_alien_ship.description=What's going on here?
+
 # PLANETS
 planet.space_nether=Space Nether
 planet.diona=Diona

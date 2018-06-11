@@ -3,12 +3,15 @@ package stevekung.mods.moreplanets.core;
 import java.util.Arrays;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import net.minecraft.advancements.FrameType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -98,6 +101,7 @@ public class MorePlanetsMod
         {
             MorePlanetsMod.CHECKER.startCheck();
         }
+        EnumHelper.addEnum(FrameType.class, "TASK_PURPLE", new Class[] { String.class, Integer.TYPE, TextFormatting.class }, "task_purple", 0, TextFormatting.DARK_PURPLE);
     }
 
     @EventHandler

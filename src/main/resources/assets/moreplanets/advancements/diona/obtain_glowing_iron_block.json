@@ -1,0 +1,26 @@
+{
+    "display": {
+        "icon": {
+            "item": "moreplanets:glowing_iron_block"
+        },
+        "title": {
+            "translate": "advancements.diona.obtain_glowing_iron.title"
+        },
+        "description": {
+            "translate": "advancements.diona.obtain_glowing_iron.description"
+        }
+    },
+    "parent": "moreplanets:diona/kill_an_alien_miner",
+    "criteria": {
+        "obtain_glowing_iron_block": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "moreplanets:glowing_iron_block"
+                    }
+                ]
+            }
+        }
+    }
+}

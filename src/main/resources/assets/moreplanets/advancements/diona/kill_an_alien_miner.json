@@ -1,0 +1,29 @@
+{
+    "display": {
+        "icon": {
+            "item": "moreplanets:illenium_sword"
+        },
+        "title": {
+            "translate": "advancements.diona.kill_an_alien_miner.title"
+        },
+        "description": {
+            "translate": "advancements.diona.kill_an_alien_miner.description"
+        }
+    },
+    "parent": "moreplanets:diona/root",
+    "criteria": {
+        "alien_miner": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "moreplanets:alien_miner"
+                }
+            }
+        }
+    },
+    "requirements": [
+        [
+            "alien_miner"
+        ]
+    ]
+}
