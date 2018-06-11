@@ -18,6 +18,7 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public abstract class StructureNibiruPyramidPieces extends StructureComponent
@@ -333,6 +334,11 @@ public abstract class StructureNibiruPyramidPieces extends StructureComponent
             if (box.isVecInside(blockpos))
             {
                 world.setBlockState(blockpos, MPBlocks.JUICER_EGG.getDefaultState(), 2);
+
+                if (world.getTileEntity(blockpos) instanceof TileEntityJuicerEgg)
+                {
+                    ((TileEntityJuicerEgg)world.getTileEntity(blockpos)).setNeedPlayerNearby();
+                }
             }
 
             this.setBlockState(world, Blocks.AIR.getDefaultState(), 8, -11, 10, box);

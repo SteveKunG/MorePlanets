@@ -6,12 +6,50 @@ import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 public class TileEntityJuicerEgg extends TileEntityRenderTickable
 {
+    private boolean needPlayerNearby;
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        super.readFromNBT(nbt);
+        this.needPlayerNearby = nbt.getBoolean("NeedPlayerNearby");
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
+    {
+        super.writeToNBT(nbt);
+        nbt.setBoolean("NeedPlayerNearby", this.needPlayerNearby);
+        return nbt;
+    }
+
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()
+    {
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setBoolean("NeedPlayerNearby", this.needPlayerNearby);
+        return new SPacketUpdateTileEntity(this.pos, -1, nbt);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        if (pkt.getTileEntityType() == -1)
+        {
+            NBTTagCompound nbt = pkt.getNbtCompound();
+            this.needPlayerNearby = nbt.getBoolean("NeedPlayerNearby");
+        }
+    }
+
     @Override
     public void update()
     {
@@ -43,24 +81,32 @@ public class TileEntityJuicerEgg extends TileEntityRenderTickable
                                 juicer.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, 0.0F, 0.0F);
                                 this.world.spawnEntity(juicer);
                             }
+                        }
+                    }
+                }
+            }
 
-                            if (this.world.rand.nextInt(10) == 0)
-                            {
-                                if (!playerList.isEmpty())
-                                {
-                                    for (EntityPlayer player : playerList)
-                                    {
-                                        EntityJuicer juicer = new EntityJuicer(this.world);
-                                        juicer.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, 0.0F, 0.0F);
-                                        this.world.spawnEntity(juicer);
-                                        juicer.startRiding(player);
-                                    }
-                                }
-                            }
+            if (!playerList.isEmpty())
+            {
+                for (EntityPlayer player : playerList)
+                {
+                    if (!player.isCreative() && !player.isSpectator())
+                    {
+                        if (this.needPlayerNearby && this.world.rand.nextInt(20) == 0)
+                        {
+                            this.world.destroyBlock(this.pos, false);
+                            EntityJuicer juicer = new EntityJuicer(this.world);
+                            juicer.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, 0.0F, 0.0F);
+                            this.world.spawnEntity(juicer);
                         }
                     }
                 }
             }
         }
+    }
+
+    public void setNeedPlayerNearby()
+    {
+        this.needPlayerNearby = true;
     }
 }
