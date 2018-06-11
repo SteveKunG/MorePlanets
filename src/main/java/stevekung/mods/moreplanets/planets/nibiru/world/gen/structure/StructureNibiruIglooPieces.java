@@ -18,8 +18,8 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.minecraft.world.storage.loot.LootTableList;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
@@ -120,7 +120,7 @@ public class StructureNibiruIglooPieces extends StructureComponent
 
                         if (tile instanceof TileEntityChestMP)
                         {
-                            ((TileEntityChestMP)tile).setLootTable(LootTableList.CHESTS_IGLOO_CHEST, rand.nextLong());
+                            ((TileEntityChestMP)tile).setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, rand.nextLong());
                         }
                     }
                 }
