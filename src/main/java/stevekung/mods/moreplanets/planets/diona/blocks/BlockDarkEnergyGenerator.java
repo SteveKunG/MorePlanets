@@ -29,7 +29,9 @@ import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescription
 {
@@ -236,5 +238,11 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
     public ItemDescription getDescription()
     {
         return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockDarkEnergyGenerator.this.getUnlocalizedName() + ".description"));
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.MACHINE);
     }
 }

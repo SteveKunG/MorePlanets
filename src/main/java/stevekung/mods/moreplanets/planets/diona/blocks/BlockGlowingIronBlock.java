@@ -10,6 +10,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockGlowingIronBlock extends BlockBaseMP implements IDetectableResource
 {
@@ -33,6 +35,12 @@ public class BlockGlowingIronBlock extends BlockBaseMP implements IDetectableRes
     public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.INGOT_BLOCK;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
     }
 
     @Override

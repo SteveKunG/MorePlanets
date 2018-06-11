@@ -6,11 +6,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRender
+public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRender, IItemRarity
 {
     private EnumSortCategoryBlock category;
     private String name;
+    private ColorUtils.RGB rgb;
 
     public BlockBaseMP(Material material)
     {
@@ -55,9 +58,21 @@ public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRend
         return this.name;
     }
 
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return this.rgb != null ? this.rgb : ColorUtils.stringToFullRGB(IItemRarity.DEFAULT);
+    }
+
     public BlockBaseMP setSortCategory(EnumSortCategoryBlock category)
     {
         this.category = category;
+        return this;
+    }
+
+    public BlockBaseMP setRarityRGB(ColorUtils.RGB rgb)
+    {
+        this.rgb = rgb;
         return this;
     }
 }

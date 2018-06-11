@@ -28,6 +28,8 @@ import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityVeinFrame;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
 {
@@ -135,5 +137,11 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileEntityVeinFrame();
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.COMMON);
     }
 }

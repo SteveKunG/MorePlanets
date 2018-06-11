@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.utils.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockInfectedCrystallizedSlime extends BlockBreakableMP
@@ -104,5 +105,11 @@ public class BlockInfectedCrystallizedSlime extends BlockBreakableMP
     public boolean isStickyBlock(IBlockState state)
     {
         return true;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
     }
 }

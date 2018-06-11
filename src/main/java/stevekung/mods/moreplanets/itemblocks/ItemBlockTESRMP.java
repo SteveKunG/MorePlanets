@@ -1,10 +1,10 @@
 package stevekung.mods.moreplanets.itemblocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
 import stevekung.mods.moreplanets.client.renderer.TileEntityItemStackRendererMP;
+import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockMP;
 
-public class ItemBlockTESRMP extends ItemBlock
+public class ItemBlockTESRMP extends ItemBlockMP
 {
     public ItemBlockTESRMP(Block block)
     {

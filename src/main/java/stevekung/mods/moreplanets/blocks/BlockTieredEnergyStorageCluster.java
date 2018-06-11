@@ -30,7 +30,9 @@ import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDescription
 {
@@ -182,6 +184,12 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDes
     public ItemDescription getDescription()
     {
         return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.type.toString() + ".description"));
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.MACHINE);
     }
 
     public static enum BlockType

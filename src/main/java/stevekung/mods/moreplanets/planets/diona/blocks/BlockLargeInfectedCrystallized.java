@@ -31,7 +31,9 @@ import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityLargeInfectedCrystallized;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITileEntityProvider
 {
@@ -296,6 +298,12 @@ public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITile
     public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.DECORATION_NON_BLOCK;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
     }
 
     private boolean canPlaceBlock(World world, BlockPos pos, EnumFacing facing)

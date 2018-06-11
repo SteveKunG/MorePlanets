@@ -20,6 +20,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockMP;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
 import stevekung.mods.stevekunglib.utils.LangUtils;
@@ -34,7 +35,7 @@ public class BlocksItemsRegistry
 
     public static void registerBlock(Block block)
     {
-        BlocksItemsRegistry.registerBlock(block, ItemBlock::new);
+        BlocksItemsRegistry.registerBlock(block, ItemBlockMP::new);
     }
 
     public static void registerBlock(Block block, @Nullable Function<Block, ItemBlock> itemBlock)

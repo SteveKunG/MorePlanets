@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.items;
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -21,10 +22,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem, IItemModelRender
+public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem, IItemModelRender, IItemRarity
 {
     public ItemSpaceFishingRod(String name)
     {
@@ -182,5 +185,25 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     public String getName()
     {
         return "space_fishing_rod";
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.SPECIAL);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    @Nullable
+    public FontRenderer getFontRenderer(ItemStack itemStack)
+    {
+        return ColorUtils.coloredFontRenderer;
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack itemStack)
+    {
+        return this instanceof IItemRarity ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 }

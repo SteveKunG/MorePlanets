@@ -7,8 +7,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class BlockFenceMP extends BlockFence implements ISortableBlock, IItemModelRender
+public class BlockFenceMP extends BlockFence implements ISortableBlock, IItemModelRender, IItemRarity
 {
     private String name;
 
@@ -44,5 +46,11 @@ public class BlockFenceMP extends BlockFence implements ISortableBlock, IItemMod
     public String getName()
     {
         return this.name;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return this.name.equals("infected_crystallized_fence") ? ColorUtils.stringToFullRGB(IItemRarity.ALIEN) : ColorUtils.stringToFullRGB(IItemRarity.DEFAULT);
     }
 }

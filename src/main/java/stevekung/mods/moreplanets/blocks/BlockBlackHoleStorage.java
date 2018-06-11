@@ -35,6 +35,8 @@ import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
@@ -274,5 +276,11 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     public ItemDescription getDescription()
     {
         return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockBlackHoleStorage.this.getUnlocalizedName() + ".description"));
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.SPECIAL);
     }
 }

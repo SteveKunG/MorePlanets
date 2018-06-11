@@ -13,9 +13,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public abstract class BlockTreasureChestMP extends BlockContainerMP
+public abstract class BlockTreasureChestMP extends BlockContainerMP implements IItemRarity
 {
     private static final AxisAlignedBB CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 
@@ -132,5 +134,11 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP
     public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.TREASURE_CHEST;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.COMMON);
     }
 }

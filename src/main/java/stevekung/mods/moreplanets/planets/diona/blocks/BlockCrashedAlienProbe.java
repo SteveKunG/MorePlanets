@@ -20,6 +20,8 @@ import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityCrashedAlie
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockCrashedAlienProbe extends BlockTileMP
 {
@@ -92,5 +94,11 @@ public class BlockCrashedAlienProbe extends BlockTileMP
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, HAS_ALIEN);
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
     }
 }

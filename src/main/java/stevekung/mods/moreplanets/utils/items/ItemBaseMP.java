@@ -1,19 +1,27 @@
 package stevekung.mods.moreplanets.utils.items;
 
+import javax.annotation.Nullable;
+
+import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender
+public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender, IItemRarity
 {
     private EnumSortCategoryItem category;
+    private ColorUtils.RGB rgb;
     private String name;
 
-    public ItemBaseMP()
-    {
-        super();
-    }
+    public ItemBaseMP() {}
 
     public ItemBaseMP(String name)
     {
@@ -40,15 +48,48 @@ public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender
         return this.category == null ? EnumSortCategoryItem.GENERAL : this.category;
     }
 
+    @Override
+    public String getName()
+    {
+        return this.name;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return this.rgb != null ? this.rgb : ColorUtils.stringToFullRGB(IItemRarity.DEFAULT);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack itemStack)
+    {
+        return ClientProxyCore.galacticraftItem;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    @Nullable
+    public FontRenderer getFontRenderer(ItemStack itemStack)
+    {
+        return ColorUtils.coloredFontRenderer;
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack itemStack)
+    {
+        return this instanceof IItemRarity ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+    }
+
     public ItemBaseMP setSortCategory(EnumSortCategoryItem category)
     {
         this.category = category;
         return this;
     }
 
-    @Override
-    public String getName()
+    public ItemBaseMP setRarityRGB(ColorUtils.RGB rgb)
     {
-        return this.name;
+        this.rgb = rgb;
+        return this;
     }
 }

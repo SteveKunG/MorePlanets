@@ -33,6 +33,8 @@ import stevekung.mods.moreplanets.utils.TeleporterSpaceNether;
 import stevekung.mods.moreplanets.utils.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRender, ITileEntityProvider
 {
@@ -154,5 +156,11 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
     protected boolean renderSideWithState()
     {
         return false;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.MACHINE);
     }
 }

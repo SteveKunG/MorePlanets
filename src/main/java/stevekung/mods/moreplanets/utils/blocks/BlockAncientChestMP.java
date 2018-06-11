@@ -21,9 +21,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public abstract class BlockAncientChestMP extends BlockContainerMP
+public abstract class BlockAncientChestMP extends BlockContainerMP implements IItemRarity
 {
     private static final AxisAlignedBB NORTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0D, 0.9375D, 0.875D, 0.9375D);
     private static final AxisAlignedBB SOUTH_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 1.0D);
@@ -432,6 +434,12 @@ public abstract class BlockAncientChestMP extends BlockContainerMP
     public EnumSortCategoryBlock getBlockCategory()
     {
         return EnumSortCategoryBlock.ANCIENT_CHEST;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.COMMON);
     }
 
     protected abstract TileEntity getChestTile();

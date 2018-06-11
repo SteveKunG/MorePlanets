@@ -27,6 +27,8 @@ import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCry
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITileEntityProvider
 {
@@ -175,6 +177,12 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
     public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
     {
         return BlockFaceShape.MIDDLE_POLE;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
     }
 
     public static enum BlockType

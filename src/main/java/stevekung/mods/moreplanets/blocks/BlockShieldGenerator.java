@@ -28,7 +28,9 @@ import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockAdvancedTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescription
 {
@@ -210,5 +212,11 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescri
     public ItemDescription getDescription()
     {
         return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockShieldGenerator.this.getUnlocalizedName() + ".description"));
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.SPECIAL);
     }
 }

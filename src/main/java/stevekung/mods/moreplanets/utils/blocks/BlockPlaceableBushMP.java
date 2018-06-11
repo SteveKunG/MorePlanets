@@ -21,6 +21,8 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.WorldGenTerrashroom;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGrowable
 {
@@ -346,6 +348,12 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
         {
             this.generateBigMushroom(world, pos, state, rand);
         }
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return this.type == BlockType.CREEP_VINES ? ColorUtils.stringToFullRGB(IItemRarity.ALIEN) : ColorUtils.stringToFullRGB(IItemRarity.DEFAULT);
     }
 
     private boolean generateBigMushroom(World world, BlockPos pos, IBlockState state, Random rand)

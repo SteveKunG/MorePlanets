@@ -6,7 +6,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
@@ -17,8 +16,9 @@ import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.BlockFluidBase;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockMP;
 
-public class ItemBlockSporelily extends ItemBlock
+public class ItemBlockSporelily extends ItemBlockMP
 {
     public ItemBlockSporelily(Block block)
     {

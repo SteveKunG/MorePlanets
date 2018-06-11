@@ -7,17 +7,17 @@ import javax.annotation.Nullable;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.IDescription;
+import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
-public class ItemBlockSpaceWarpPad extends ItemBlock
+public class ItemBlockSpaceWarpPad extends ItemBlockMP
 {
     public ItemBlockSpaceWarpPad(Block block)
     {

@@ -22,9 +22,10 @@ import stevekung.mods.moreplanets.moons.koentus.tileentity.TileEntityGravityExtr
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockFallingMP;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class BlockCreep extends BlockFallingMP implements ITileEntityProvider
+public class BlockCreep extends BlockFallingMP implements ITileEntityProvider, IItemRarity
 {
     private BlockType type;
 
@@ -105,6 +106,12 @@ public class BlockCreep extends BlockFallingMP implements ITileEntityProvider
     public boolean hasTileEntity(IBlockState state)
     {
         return this.type == BlockType.GRAVITY_CREEP_EXTRACTOR ? true : false;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
     }
 
     private void checkFallable(World world, BlockPos pos)

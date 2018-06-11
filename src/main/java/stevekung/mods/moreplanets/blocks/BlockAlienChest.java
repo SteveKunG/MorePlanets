@@ -16,9 +16,11 @@ import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienChest;
 import stevekung.mods.moreplanets.utils.blocks.BlockChestMP;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class BlockAlienChest extends BlockChestMP
+public class BlockAlienChest extends BlockChestMP implements IItemRarity
 {
     public BlockAlienChest(String name)
     {
@@ -116,5 +118,11 @@ public class BlockAlienChest extends BlockChestMP
     public TileEntity getChestTile()
     {
         return new TileEntityAlienChest();
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
     }
 }

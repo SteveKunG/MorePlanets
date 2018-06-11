@@ -38,10 +38,8 @@ import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
-import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.CommonUtils;
-import stevekung.mods.stevekunglib.utils.JsonUtils;
-import stevekung.mods.stevekunglib.utils.LangUtils;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.*;
 
 public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
 {
@@ -391,5 +389,11 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, BlockStateProperty.FACING_HORIZON);
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.SPECIAL);
     }
 }

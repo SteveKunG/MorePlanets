@@ -11,7 +11,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
@@ -77,5 +79,11 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
             }
         }
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
     }
 }
