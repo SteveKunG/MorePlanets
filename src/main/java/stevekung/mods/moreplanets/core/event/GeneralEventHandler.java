@@ -47,13 +47,19 @@ import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class GeneralEventHandler
 {
-    private static final List<BreakBlockData> INFECTED_BLOCK_LIST = new ArrayList<>();
+    private static final List<Block> INFECTED_BLOCK_LIST = new ArrayList<>();
 
     static
     {
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.JUICER_EGG));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.OIL_ORE));
-        GeneralEventHandler.INFECTED_BLOCK_LIST.add(new BreakBlockData(MPBlocks.SPORELILY));
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.PURE_HERB);
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.BATASIA_DANDELION);
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.PYOLONIA);
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.PHILIPY);
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.WHITE_TAIL);
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.VEALIUM_VINES);
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.JUICER_EGG);
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.OIL_ORE);
+        GeneralEventHandler.INFECTED_BLOCK_LIST.add(MPBlocks.SPORELILY);
     }
 
     @SubscribeEvent
@@ -210,10 +216,8 @@ public class GeneralEventHandler
             return;
         }
 
-        GeneralEventHandler.INFECTED_BLOCK_LIST.forEach(data ->
+        GeneralEventHandler.INFECTED_BLOCK_LIST.forEach(block ->
         {
-            Block block = data.getBlock();
-
             if (sourceBlock == block && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
             {
                 player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
@@ -317,20 +321,5 @@ public class GeneralEventHandler
     private boolean isShears(EntityPlayer player)
     {
         return !player.getActiveItemStack().isEmpty() && player.getActiveItemStack().getItem() instanceof ItemShears;
-    }
-
-    static class BreakBlockData
-    {
-        private Block block;
-
-        public BreakBlockData(Block block)
-        {
-            this.block = block;
-        }
-
-        public Block getBlock()
-        {
-            return this.block;
-        }
     }
 }
