@@ -113,6 +113,6 @@ public class BlockNuclearWasteGenerator extends BlockTileMP implements IDescript
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.MACHINE);
+        return ColorUtils.stringToRGB(IItemRarity.MACHINE);
     }
 }

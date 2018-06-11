@@ -135,6 +135,6 @@ public class BlockJuicerEgg extends BlockBaseMP implements ITileEntityProvider
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.COMMON);
+        return ColorUtils.stringToRGB(IItemRarity.COMMON);
     }
 }

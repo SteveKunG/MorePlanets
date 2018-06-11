@@ -123,6 +123,6 @@ public class BlockAlienChest extends BlockChestMP implements IItemRarity
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
     }
 }

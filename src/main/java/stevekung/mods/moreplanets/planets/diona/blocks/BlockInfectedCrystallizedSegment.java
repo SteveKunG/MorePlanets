@@ -182,7 +182,7 @@ public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITi
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
     }
 
     public static enum BlockType

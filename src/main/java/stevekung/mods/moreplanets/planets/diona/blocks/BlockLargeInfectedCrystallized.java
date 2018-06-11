@@ -303,7 +303,7 @@ public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITile
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
     }
 
     private boolean canPlaceBlock(World world, BlockPos pos, EnumFacing facing)

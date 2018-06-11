@@ -114,7 +114,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.rgb != null ? this.rgb : ColorUtils.stringToFullRGB(IItemRarity.DEFAULT);
+        return this.rgb != null ? this.rgb : ColorUtils.stringToRGB(IItemRarity.DEFAULT);
     }
 
     @Override

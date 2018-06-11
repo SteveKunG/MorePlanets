@@ -281,6 +281,6 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.SPECIAL);
+        return ColorUtils.stringToRGB(IItemRarity.SPECIAL);
     }
 }

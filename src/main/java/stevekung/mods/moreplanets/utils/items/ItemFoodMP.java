@@ -61,7 +61,7 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IIte
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.rgb != null ? this.rgb : ColorUtils.stringToFullRGB(IItemRarity.DEFAULT);
+        return this.rgb != null ? this.rgb : ColorUtils.stringToRGB(IItemRarity.DEFAULT);
     }
 
     @Override

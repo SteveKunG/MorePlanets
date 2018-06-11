@@ -57,7 +57,7 @@ public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender,
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.rgb != null ? this.rgb : ColorUtils.stringToFullRGB(IItemRarity.DEFAULT);
+        return this.rgb != null ? this.rgb : ColorUtils.stringToRGB(IItemRarity.DEFAULT);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class SkyProviderChalos extends SkyProviderBaseMP
     @Override
     protected void renderObjects(float partialTicks, WorldClient world, Minecraft mc)
     {
-        this.renderSolarAura(14.0F, 30.0F, world.getStarBrightness(partialTicks), ColorUtils.stringToFullRGB("217, 123, 38, 102"), partialTicks);
+        this.renderSolarAura(14.0F, 30.0F, world.getStarBrightness(partialTicks), ColorUtils.stringToRGB("217, 123, 38, 102"), partialTicks);
         this.renderSolar(SkyProviderChalos.LAZENDUS, this.solarSize, false, true, 4.0F);
         this.renderObject(1.75F, 0.0F, 220.0F, false, SkyProviderChalos.DIONA, partialTicks);
     }

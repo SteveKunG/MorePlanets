@@ -189,7 +189,7 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDes
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.MACHINE);
+        return ColorUtils.stringToRGB(IItemRarity.MACHINE);
     }
 
     public static enum BlockType

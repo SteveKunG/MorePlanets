@@ -125,6 +125,6 @@ public class BlockInfectedCrystallizedWeb extends BlockBaseMP
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
     }
 }

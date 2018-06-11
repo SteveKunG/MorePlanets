@@ -108,6 +108,6 @@ public class BlockAlienDefenderBeacon extends BlockBaseMP implements ITileEntity
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
     }
 }

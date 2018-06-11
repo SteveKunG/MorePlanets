@@ -111,7 +111,7 @@ public class BlockCreep extends BlockFallingMP implements ITileEntityProvider, I
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
     }
 
     private void checkFallable(World world, BlockPos pos)

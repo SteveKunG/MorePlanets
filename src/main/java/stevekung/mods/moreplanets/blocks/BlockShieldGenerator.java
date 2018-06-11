@@ -217,6 +217,6 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescri
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.SPECIAL);
+        return ColorUtils.stringToRGB(IItemRarity.SPECIAL);
     }
 }

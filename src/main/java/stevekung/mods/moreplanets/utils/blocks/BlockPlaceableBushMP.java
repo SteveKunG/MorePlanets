@@ -353,7 +353,7 @@ public class BlockPlaceableBushMP extends BlockBushMP implements IShearable, IGr
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.type == BlockType.CREEP_VINES ? ColorUtils.stringToFullRGB(IItemRarity.ALIEN) : ColorUtils.stringToFullRGB(IItemRarity.DEFAULT);
+        return this.type == BlockType.CREEP_VINES ? ColorUtils.stringToRGB(IItemRarity.ALIEN) : ColorUtils.stringToRGB(IItemRarity.DEFAULT);
     }
 
     private boolean generateBigMushroom(World world, BlockPos pos, IBlockState state, Random rand)

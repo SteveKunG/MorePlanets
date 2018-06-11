@@ -394,6 +394,6 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.SPECIAL);
+        return ColorUtils.stringToRGB(IItemRarity.SPECIAL);
     }
 }

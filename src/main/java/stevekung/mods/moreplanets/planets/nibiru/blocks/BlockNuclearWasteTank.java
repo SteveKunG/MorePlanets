@@ -206,6 +206,6 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.MACHINE);
+        return ColorUtils.stringToRGB(IItemRarity.MACHINE);
     }
 }

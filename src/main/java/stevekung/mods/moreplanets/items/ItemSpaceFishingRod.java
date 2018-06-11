@@ -190,7 +190,7 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.SPECIAL);
+        return ColorUtils.stringToRGB(IItemRarity.SPECIAL);
     }
 
     @Override

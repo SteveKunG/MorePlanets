@@ -439,7 +439,7 @@ public abstract class BlockAncientChestMP extends BlockContainerMP implements II
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.COMMON);
+        return ColorUtils.stringToRGB(IItemRarity.COMMON);
     }
 
     protected abstract TileEntity getChestTile();

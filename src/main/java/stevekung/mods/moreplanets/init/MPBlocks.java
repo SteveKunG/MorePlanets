@@ -593,9 +593,9 @@ public class MPBlocks
         MPBlocks.SHIELD_GENERATOR = new BlockShieldGenerator("shield_generator");
 
         // Alien Ship
-        MPBlocks.ALIEN_SHIP_BOOSTER = new BlockCTMGlowing("alien_ship_booster", Material.IRON).setRarityRGB(ColorUtils.stringToFullRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
-        MPBlocks.ALIEN_SHIP_DECORATION_0 = new BlockBaseMP("alien_ship_decoration_0", Material.IRON).setRarityRGB(ColorUtils.stringToFullRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
-        MPBlocks.ALIEN_SHIP_DECORATION_1 = new BlockBaseMP("alien_ship_decoration_1", Material.IRON).setRarityRGB(ColorUtils.stringToFullRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_BOOSTER = new BlockCTMGlowing("alien_ship_booster", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_DECORATION_0 = new BlockBaseMP("alien_ship_decoration_0", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_DECORATION_1 = new BlockBaseMP("alien_ship_decoration_1", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
         MPBlocks.ALIEN_CHEST = new BlockAlienChest("alien_chest");
 
         // Tinted Glass
@@ -639,7 +639,7 @@ public class MPBlocks
         // Others
         MPBlocks.POLISHED_TIN_DECORATION_BLOCK = new BlockBaseMP("polished_tin_decoration_block", Material.ROCK).setHardness(1.5F);
         MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK = new BlockBaseMP("polished_aluminum_decoration_block", Material.ROCK).setHardness(1.5F);
-        MPBlocks.DUNGEON_GLOWSTONE = new BlockBaseMP("dungeon_glowstone", Material.GLASS).setRarityRGB(ColorUtils.stringToFullRGB(IItemRarity.COMMON)).setSoundType(SoundType.GLASS).setResistance(100.0F).setHardness(0.3F).setLightLevel(1.0F);
+        MPBlocks.DUNGEON_GLOWSTONE = new BlockBaseMP("dungeon_glowstone", Material.GLASS).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.COMMON)).setSoundType(SoundType.GLASS).setResistance(100.0F).setHardness(0.3F).setLightLevel(1.0F);
 
         // Wall
         MPBlocks.DIONA_COBBLESTONE_WALL = new BlockAllWall("diona_cobblestone_wall", BlockAllWall.BlockType.DIONA_COBBLESTONE_WALL);
@@ -671,10 +671,10 @@ public class MPBlocks
         MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE = new BlockInfectedCrystallizedSegment("infected_crystallized_ender_core", BlockInfectedCrystallizedSegment.BlockType.INFECTED_CRYSTALLIZED_ENDER_CORE);
 
         // Others
-        MPBlocks.ALBETIUS_WORM_EGG_ROCK = new BlockAlbetiusWormEgg("albetius_worm_egg_rock").setRarityRGB(ColorUtils.stringToFullRGB(IItemRarity.ALIEN));
+        MPBlocks.ALBETIUS_WORM_EGG_ROCK = new BlockAlbetiusWormEgg("albetius_worm_egg_rock").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPBlocks.DIONA_ANCIENT_CHEST = new BlockDionaAncientChest("diona_ancient_chest");
         MPBlocks.DIONA_TREASURE_CHEST = new BlockDionaTreasureChest("diona_treasure_chest");
-        MPBlocks.INFECTED_CRYSTALLIZED_PLANKS = new BlockCTMGlowing("infected_crystallized_planks", Material.WOOD).setRarityRGB(ColorUtils.stringToFullRGB(IItemRarity.ALIEN)).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
+        MPBlocks.INFECTED_CRYSTALLIZED_PLANKS = new BlockCTMGlowing("infected_crystallized_planks", Material.WOOD).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         MPBlocks.INFECTED_CRYSTALLIZED_FENCE = new BlockFenceMP("infected_crystallized_fence");
         MPBlocks.INFECTED_CRYSTALLIZED_WEB = new BlockInfectedCrystallizedWeb("infected_crystallized_web");
         MPBlocks.INFECTED_CRYSTALLIZED_TORCH = new BlockInfectedCrystallizedTorch("infected_crystallized_torch");

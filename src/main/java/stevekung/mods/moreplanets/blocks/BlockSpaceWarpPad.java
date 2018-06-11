@@ -112,7 +112,7 @@ public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSe
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.MACHINE);
+        return ColorUtils.stringToRGB(IItemRarity.MACHINE);
     }
 
     private boolean checkAxis(World world, BlockPos pos, EnumFacing facing)

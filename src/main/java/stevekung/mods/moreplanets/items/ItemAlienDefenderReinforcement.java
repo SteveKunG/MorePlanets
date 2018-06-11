@@ -84,6 +84,6 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.ALIEN);
+        return ColorUtils.stringToRGB(IItemRarity.ALIEN);
     }
 }

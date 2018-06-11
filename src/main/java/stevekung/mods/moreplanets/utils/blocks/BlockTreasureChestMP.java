@@ -139,6 +139,6 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.COMMON);
+        return ColorUtils.stringToRGB(IItemRarity.COMMON);
     }
 }

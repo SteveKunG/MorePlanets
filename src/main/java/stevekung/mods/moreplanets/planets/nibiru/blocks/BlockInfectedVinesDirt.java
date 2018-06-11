@@ -96,6 +96,6 @@ public class BlockInfectedVinesDirt extends BlockBaseMP
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return ColorUtils.stringToFullRGB(IItemRarity.COMMON);
+        return ColorUtils.stringToRGB(IItemRarity.COMMON);
     }
 }
