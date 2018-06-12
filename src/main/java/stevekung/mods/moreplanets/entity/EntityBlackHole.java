@@ -89,7 +89,7 @@ public class EntityBlackHole extends Entity
 
         if (this.lifeTick == 0)
         {
-            this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_CREATED, SoundCategory.AMBIENT, 2.0F, 1.0F);
+            this.world.playSound(null, this.getPosition(), MPSounds.BLACK_HOLE_CREATED, SoundCategory.AMBIENT, 2.0F, 1.0F);
         }
         if (this.lifeTick < this.getMaxLife())
         {
@@ -101,7 +101,7 @@ public class EntityBlackHole extends Entity
         }
         if (this.lifeTick % 20 == 0)
         {
-            this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.AMBIENT, 2.0F, 1.0F);
+            this.world.playSound(null, this.getPosition(), MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.AMBIENT, 2.0F, 1.0F);
         }
 
         if (!this.world.isRemote)
@@ -181,7 +181,7 @@ public class EntityBlackHole extends Entity
     @Override
     public void setDead()
     {
-        this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.BLACK_HOLE_DESTROYED, SoundCategory.AMBIENT, 2.0F, 1.0F);
+        this.world.playSound(null, this.getPosition(), MPSounds.BLACK_HOLE_DESTROYED, SoundCategory.AMBIENT, 2.0F, 1.0F);
         super.setDead();
     }
 

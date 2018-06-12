@@ -154,7 +154,7 @@ public class EntityInfectedCrystallizedTentacle extends Entity
             {
                 this.markVelocityChanged();
                 this.setDamage(this.getDamage() + amount * 10.0F);
-                this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.INFECTED_MOB_ATTACK, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                this.world.playSound(null, this.getPosition(), MPSounds.INFECTED_MOB_ATTACK, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
                 if (this.world instanceof WorldServer)
                 {
@@ -168,7 +168,7 @@ public class EntityInfectedCrystallizedTentacle extends Entity
                     this.setDead();
                     List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(4.0D, 4.0D, 4.0D));
                     this.world.createExplosion(null, this.posX, this.posY, this.posZ, 1.0F + this.rand.nextFloat(), true);
-                    this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                    this.world.playSound(null, this.getPosition(), MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.HOSTILE, 1.0F, 1.0F);
                     int j = 1 + this.rand.nextInt(4);
 
                     for (int k = 0; k < j; ++k)

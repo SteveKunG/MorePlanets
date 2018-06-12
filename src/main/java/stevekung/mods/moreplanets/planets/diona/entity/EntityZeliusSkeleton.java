@@ -67,8 +67,8 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
         {
             if (entity instanceof EntityLivingBase)
             {
-                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 120, 1));
-                this.world.playSound((EntityPlayer) entity, this.posX, this.posY, this.posZ, MPSounds.ALIEN_MINER_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 120, 1));
+                this.world.playSound((EntityPlayer)entity, this.getPosition(), MPSounds.ALIEN_MINER_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
             return true;
         }

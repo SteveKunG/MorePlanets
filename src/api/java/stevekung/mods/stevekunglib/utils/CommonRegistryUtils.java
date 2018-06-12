@@ -143,8 +143,9 @@ public class CommonRegistryUtils
     public SoundEvent registerSound(String name)
     {
         ResourceLocation resource = new ResourceLocation(this.resourcePath + ":" + name);
-        ForgeRegistries.SOUND_EVENTS.register(new SoundEvent(resource).setRegistryName(resource));
-        return new SoundEvent(resource);
+        SoundEvent event = new SoundEvent(resource).setRegistryName(resource);
+        ForgeRegistries.SOUND_EVENTS.register(event);
+        return event;
     }
 
     public SoundEvent registerRecord(String name)

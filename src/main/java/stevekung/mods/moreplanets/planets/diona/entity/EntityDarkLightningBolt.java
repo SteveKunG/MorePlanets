@@ -50,7 +50,7 @@ public class EntityDarkLightningBolt extends Entity
 
         if (this.lightningState == 2)
         {
-            this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.LOUD_THUNDER, SoundCategory.WEATHER, 5000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+            this.world.playSound(null, this.getPosition(), MPSounds.LOUD_THUNDER, SoundCategory.WEATHER, 5000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
         }
 
         --this.lightningState;

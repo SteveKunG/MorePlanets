@@ -11,6 +11,7 @@ import micdoodle8.mods.galacticraft.core.network.NetworkUtil;
 import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
@@ -27,6 +28,7 @@ import stevekung.mods.moreplanets.client.gui.GuiCelestialSelection;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGenerator;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGeneratorConfig;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
+import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
@@ -266,9 +268,16 @@ public class PacketSimpleMP extends PacketBase
             }
             break;
         case S_START_SURVIVAL_PLANET:
-            int sourceDimId = (int)this.data.get(0);
-            int targetDimId = (int)this.data.get(1);
-            TeleportUtils.teleportPlayerToPlanet(playerMP, playerMP.getServer(), sourceDimId, targetDimId);
+            if (WorldTickEventHandler.survivalPlanetData != null && !WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
+            {
+                int sourceDimId = (int)this.data.get(0);
+                String celestialName = (String)this.data.get(1);
+                LoggerMP.info("Start survival planet at: {}, Dimension: {}", celestialName, WorldUtil.getProviderForNameServer(celestialName).getDimension());
+                WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData = true;
+                WorldTickEventHandler.survivalPlanetData.survivalPlanetName = celestialName;
+                WorldTickEventHandler.survivalPlanetData.setDirty(true);
+                TeleportUtils.teleportPlayerToPlanet(playerMP, playerMP.getServer(), sourceDimId, WorldUtil.getProviderForNameServer(celestialName).getDimension());
+            }
             break;
         default:
             break;
@@ -286,7 +295,7 @@ public class PacketSimpleMP extends PacketBase
         S_SHIELD_GENERATOR_OPTION(Side.SERVER, BlockPos.class, Integer.class, String.class),
         S_SWITCH_SHIELD_GENERATOR_GUI(Side.SERVER, BlockPos.class, Boolean.class),
         S_FAILED_UNLOCK_CHEST(Side.SERVER, String.class),
-        S_START_SURVIVAL_PLANET(Side.SERVER, Integer.class, Integer.class),
+        S_START_SURVIVAL_PLANET(Side.SERVER, Integer.class, String.class),
 
         // CLIENT
         C_ADD_ENTITY_ID(Side.CLIENT, String.class),

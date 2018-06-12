@@ -96,7 +96,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
 
                 if (this.ticks % 33 == 0)
                 {
-                    this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_GENERATOR_AMBIENT, SoundCategory.BLOCKS, 0.05F, 1.0F);
+                    this.world.playSound(null, this.getPos(), MPSounds.MACHINE_GENERATOR_AMBIENT, SoundCategory.BLOCKS, 0.05F, 1.0F);
                 }
                 this.generateWatts = Math.min(Math.max(this.getGenerate(), 0), 1500);
             }

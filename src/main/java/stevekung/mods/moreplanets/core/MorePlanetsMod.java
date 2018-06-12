@@ -6,6 +6,7 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.ClientCommandHandler;
@@ -66,7 +67,7 @@ public class MorePlanetsMod
     public static VersionChecker CHECKER;
     public static final CreativeTabsMP BLOCK_TAB = new CreativeTabsMP("more_planets_blocks");
     public static final CreativeTabsMP ITEM_TAB = new CreativeTabsMP("more_planets_items");
-    public static final ClientRegistryUtils CLIENT_REGISTRY = new ClientRegistryUtils(MOD_ID);
+    public static ClientRegistryUtils CLIENT_REGISTRY;
     public static final CommonRegistryUtils COMMON_REGISTRY = new CommonRegistryUtils(MOD_ID);
 
     static
@@ -78,6 +79,11 @@ public class MorePlanetsMod
             MorePlanetsMod.isDevelopment = Launch.classLoader.getClassBytes("net.minecraft.world.World") != null;
         }
         catch (Exception e) {}
+
+        if (ClientUtils.isClient())
+        {
+            MorePlanetsMod.CLIENT_REGISTRY = new ClientRegistryUtils(MOD_ID);
+        }
     }
 
     @EventHandler
@@ -172,6 +178,15 @@ public class MorePlanetsMod
     public void onBiomeRegister(RegistryEvent.Register<Biome> event)
     {
         MPBiomes.registerTypes();
+    }
+
+    @SubscribeEvent
+    public void registerSounds(RegistryEvent.Register<SoundEvent> event)
+    {
+        if (ClientUtils.isEffectiveClient())
+        {
+            LoggerMP.info("Initialize sounds from {}", MPSounds.class);
+        }
     }
 
     private static void initModInfo(ModMetadata info)

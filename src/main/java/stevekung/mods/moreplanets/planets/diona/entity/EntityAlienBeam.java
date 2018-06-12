@@ -46,7 +46,7 @@ public class EntityAlienBeam extends Entity
 
         if (this.lightningState == 2)
         {
-            this.world.playSound(null, this.posX, this.posY, this.posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+            this.world.playSound(null, this.getPosition(), MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 0.8F + this.rand.nextFloat() * 0.2F);
         }
 
         --this.lightningState;

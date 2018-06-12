@@ -57,7 +57,10 @@ public class SteveKunGLib
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        ColorUtils.init();
+        if (ClientUtils.isEffectiveClient())
+        {
+            ColorUtils.init();
+        }
     }
 
     private static void init(ModMetadata info)

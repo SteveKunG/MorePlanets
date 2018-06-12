@@ -4,8 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -13,11 +13,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import stevekung.mods.moreplanets.core.data.WorldDataSurvivalPlanet;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -35,29 +35,15 @@ public class WorldTickEventHandler
     public static WorldDataSurvivalPlanet survivalPlanetData = null;
 
     @SubscribeEvent
-    public void onServerTick(ServerTickEvent event)
+    public void onWorldLoad(WorldEvent.Load event)
     {
-        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+        this.loadPlanetData();
+    }
 
-        if (server == null)
-        {
-            return;
-        }
-
-        if (event.phase == Phase.START)
-        {
-            if (WorldTickEventHandler.survivalPlanetData == null)
-            {
-                World world = server.getWorld(0);
-                WorldTickEventHandler.survivalPlanetData = (WorldDataSurvivalPlanet) world.getMapStorage().getOrLoadData(WorldDataSurvivalPlanet.class, WorldDataSurvivalPlanet.saveDataID);
-
-                if (WorldTickEventHandler.survivalPlanetData == null)
-                {
-                    WorldTickEventHandler.survivalPlanetData = new WorldDataSurvivalPlanet(WorldDataSurvivalPlanet.saveDataID);
-                    world.getMapStorage().setData(WorldDataSurvivalPlanet.saveDataID, WorldTickEventHandler.survivalPlanetData);
-                }
-            }
-        }
+    @SubscribeEvent
+    public void onClientConnectServer(FMLNetworkEvent.ServerConnectionFromClientEvent event)
+    {
+        this.loadPlanetData();
     }
 
     @SubscribeEvent
@@ -185,5 +171,23 @@ public class WorldTickEventHandler
         value = MathHelper.clamp(value, 0.55F, 1.0F);
         value = 1.0F - value;
         return value * 0.9F;
+    }
+
+    private void loadPlanetData()
+    {
+        World world = WorldUtil.getWorldForDimensionServer(0);
+
+        if (world == null)
+        {
+            return;
+        }
+
+        WorldTickEventHandler.survivalPlanetData = (WorldDataSurvivalPlanet) world.loadData(WorldDataSurvivalPlanet.class, WorldDataSurvivalPlanet.saveDataID);
+
+        if (WorldTickEventHandler.survivalPlanetData == null)
+        {
+            WorldTickEventHandler.survivalPlanetData = new WorldDataSurvivalPlanet(WorldDataSurvivalPlanet.saveDataID);
+            world.setData(WorldDataSurvivalPlanet.saveDataID, WorldTickEventHandler.survivalPlanetData);
+        }
     }
 }

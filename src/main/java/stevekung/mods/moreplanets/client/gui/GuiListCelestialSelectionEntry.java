@@ -14,10 +14,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
-import stevekung.mods.moreplanets.utils.LoggerMP;
 
 @SideOnly(Side.CLIENT)
 public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListEntry
@@ -97,17 +95,16 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
         {
             return;
         }
-
-        this.mc.displayGuiScreen(null);
-
-        if (!WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
+        try
         {
-            String celestialName = this.celestial.getUnlocalizedName();
-            LoggerMP.info("Start survival planet at: {}, Dimension: {}", celestialName, WorldUtil.getProviderForNameClient(celestialName).getDimension());
-            WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData = true;
-            WorldTickEventHandler.survivalPlanetData.survivalPlanetName = celestialName;
-            WorldTickEventHandler.survivalPlanetData.setDirty(true);
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_START_SURVIVAL_PLANET, GCCoreUtil.getDimensionID(this.mc.world), new Object[] { this.mc.world.provider.getDimension(), WorldUtil.getProviderForNameServer(celestialName).getDimension() }));
+            this.mc.displayGuiScreen(null);
+            String celestialName = WorldUtil.getDimensionName(WorldUtil.getProviderForDimensionClient(this.celestial.getDimensionID()));
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_START_SURVIVAL_PLANET, GCCoreUtil.getDimensionID(this.mc.world), new Object[] { this.mc.world.provider.getDimension(), celestialName }));
+        }
+        catch (Exception e)
+        {
+            this.mc.displayGuiScreen(new GuiCelestialSelection());
+            e.printStackTrace();
         }
     }
 

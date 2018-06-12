@@ -231,11 +231,11 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     if (this.activatedTick % 20 == 0)
                     {
-                        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
+                        this.world.playSound(null, this.getPos(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
                     }
                     if (this.activatedTick >= this.getSuccessfulTick() - 5 && this.activatedTick <= this.getSuccessfulTick())
                     {
-                        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_STOP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        this.world.playSound(null, this.getPos(), MPSounds.MACHINE_STOP, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     }
 
                     if (!this.failed)
@@ -298,8 +298,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     }
                     if (this.failedTick % 20 == 0)
                     {
-                        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
-                        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_DANGER, SoundCategory.BLOCKS, 5.0F, 1.0F);
+                        this.world.playSound(null, this.getPos(), MPSounds.MACHINE_ACTIVATE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.025F);
+                        this.world.playSound(null, this.getPos(), MPSounds.MACHINE_DANGER, SoundCategory.BLOCKS, 5.0F, 1.0F);
                     }
                 }
 

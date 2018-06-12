@@ -82,12 +82,13 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
             this.renderTicks = this.renderTicks + this.world.rand.nextInt(100);
             this.initialize = false;
         }
-        if (this.ticks % 20 == 0)
-        {
-            this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-        }
         if (!this.world.isRemote && this.world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES)
         {
+            if (this.ticks % 20 == 0)
+            {
+                this.world.playSound(null, this.getPos(), MPSounds.BLACK_HOLE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
+
             this.updateStorage();
             List<EntityBlackHoleStorage> blackHoleList = this.world.getEntitiesWithinAABB(EntityBlackHoleStorage.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY() + 2, this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 3, this.pos.getZ() + 1.0D));
 

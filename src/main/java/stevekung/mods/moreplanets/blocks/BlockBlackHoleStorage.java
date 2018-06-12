@@ -98,7 +98,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
                 blackHole.setTileEntityPos(pos);
                 blackHole.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, 0.0F, 0.0F);
                 world.spawnEntity(blackHole);
-                world.playSound(null, pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, MPSounds.BLACK_HOLE_CREATED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.playSound(null, pos.add(0, 2, 0), MPSounds.BLACK_HOLE_CREATED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
                 if (tile instanceof TileEntityBlackHoleStorage)
                 {
@@ -175,7 +175,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
         world.updateComparatorOutputLevel(pos, this);
-        world.playSound(null, pos.getX() + 0.5D, pos.getY() + 2, pos.getZ() + 0.5D, MPSounds.BLACK_HOLE_DESTROYED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        world.playSound(null, pos.add(0, 2, 0), MPSounds.BLACK_HOLE_DESTROYED, SoundCategory.BLOCKS, 1.0F, 1.0F);
         super.breakBlock(world, pos, state);
     }
 

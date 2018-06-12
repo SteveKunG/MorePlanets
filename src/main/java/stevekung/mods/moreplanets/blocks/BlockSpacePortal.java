@@ -50,7 +50,7 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
+        if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
         {
             if (!player.isRiding() && !player.isBeingRidden() && player instanceof EntityPlayerMP)
             {

@@ -3,6 +3,8 @@ package stevekung.mods.stevekunglib.utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 import stevekung.mods.stevekunglib.utils.client.ColoredFontRenderer;
@@ -11,10 +13,18 @@ public class ColorUtils
 {
     public static ColoredFontRenderer coloredFontRenderer;
 
+    @SideOnly(Side.CLIENT)
     public static void init()
     {
-        ColorUtils.coloredFontRenderer = new ColoredFontRenderer(Minecraft.getMinecraft().gameSettings, new ResourceLocation("textures/font/ascii.png"), Minecraft.getMinecraft().renderEngine);
-        ((IReloadableResourceManager)Minecraft.getMinecraft().getResourceManager()).registerReloadListener(ColorUtils.coloredFontRenderer);
+        Minecraft mc = Minecraft.getMinecraft();
+        ColorUtils.coloredFontRenderer = new ColoredFontRenderer(mc.gameSettings, new ResourceLocation("textures/font/ascii.png"), mc.renderEngine);
+
+        if (mc.gameSettings.language != null)
+        {
+            ColorUtils.coloredFontRenderer.setUnicodeFlag(mc.getLanguageManager().isCurrentLocaleUnicode() || mc.gameSettings.forceUnicodeFont);
+            ColorUtils.coloredFontRenderer.setBidiFlag(mc.getLanguageManager().isCurrentLanguageBidirectional());
+        }
+        ((IReloadableResourceManager)mc.getResourceManager()).registerReloadListener(ColorUtils.coloredFontRenderer);
     }
 
     public static int rgbToDecimal(int r, int g, int b)
@@ -196,19 +206,25 @@ public class ColorUtils
             {
                 if (ClientEventHandler.ticks % 16 >= 0 && ClientEventHandler.ticks % 16 <= 8)
                 {
-                    return ColoredFontRenderer.color(255, 85, 85);
+                    return this.formatColored(255, 85, 85);
                 }
                 else
                 {
-                    return ColoredFontRenderer.color(255, 255, 255);
+                    return this.formatColored(255, 255, 255);
                 }
             }
-            return ColoredFontRenderer.color(this.red(), this.green(), this.blue());
+            return this.formatColored(this.red(), this.green(), this.blue());
         }
 
         public int to32Bit()
         {
             return ColorUtils.to32BitColor(255, this.red(), this.green(), this.blue());
+        }
+
+        private String formatColored(int r, int g, int b)
+        {
+            int marker = 59136;
+            return String.format("%c%c%c", (char) (marker + (r & 255)), (char) (marker + (g & 255)), (char) (marker + (b & 255)));
         }
     }
 }

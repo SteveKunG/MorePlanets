@@ -178,13 +178,13 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
                     if (this.ticks % 33 == 0)
                     {
-                        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_GENERATOR_AMBIENT, SoundCategory.BLOCKS, 0.05F, 1.0F);
+                        this.world.playSound(null, this.getPos(), MPSounds.MACHINE_GENERATOR_AMBIENT, SoundCategory.BLOCKS, 0.05F, 1.0F);
                     }
                     if (this.alertTick % 100 == 0)
                     {
                         if (this.missingWaste || this.missingTank)
                         {
-                            this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), MPSounds.MACHINE_ALERT, SoundCategory.BLOCKS, 5.0F, 1.0F);
+                            this.world.playSound(null, this.getPos(), MPSounds.MACHINE_ALERT, SoundCategory.BLOCKS, 5.0F, 1.0F);
                         }
                     }
                 }

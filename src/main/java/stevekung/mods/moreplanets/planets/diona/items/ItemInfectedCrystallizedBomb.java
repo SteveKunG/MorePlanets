@@ -9,7 +9,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.client.renderer.TileEntityItemStackRendererMP;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityInfectedCrystallizedBomb;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
@@ -21,7 +20,6 @@ public class ItemInfectedCrystallizedBomb extends ItemBaseMP
         super();
         this.setMaxStackSize(32);
         this.setUnlocalizedName(name);
-        this.setTileEntityItemStackRenderer(TileEntityItemStackRendererMP.INSTANCE);
     }
 
     @Override

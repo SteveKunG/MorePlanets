@@ -16,7 +16,10 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.client.renderer.TileEntityItemStackRendererMP;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.blocks.ISortableBlock;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
@@ -56,6 +59,12 @@ public class BlocksItemsRegistry
             if (ClientUtils.isEffectiveClient())
             {
                 BlocksItemsRegistry.registerSorted(block);
+                ItemBlock itemBlockTESR = itemBlock.apply(block);
+
+                if (itemBlockTESR instanceof ItemBlockTESRMP)
+                {
+                    BlocksItemsRegistry.setTESR(itemBlockTESR);
+                }
             }
         }
     }
@@ -76,6 +85,11 @@ public class BlocksItemsRegistry
         if (ClientUtils.isEffectiveClient())
         {
             BlocksItemsRegistry.registerSorted(item);
+
+            if (item == MPItems.INFECTED_CRYSTALLIZED_BOMB)
+            {
+                BlocksItemsRegistry.setTESR(item);
+            }
         }
     }
 
@@ -167,5 +181,11 @@ public class BlocksItemsRegistry
     public static List<String> getDescription(String name)
     {
         return Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(LangUtils.translate(name), 150);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void setTESR(Item item)
+    {
+        item.setTileEntityItemStackRenderer(TileEntityItemStackRendererMP.INSTANCE);
     }
 }
