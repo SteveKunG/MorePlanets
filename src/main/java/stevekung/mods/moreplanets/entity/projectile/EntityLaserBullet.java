@@ -171,7 +171,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             for (int i = 0; i < 4; ++i)
             {
                 this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX - this.motionX, this.posY - this.motionY, this.posZ - this.motionZ, this.motionX, this.motionY, this.motionZ);
-                this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 0.25F, 0.9F);
+                this.world.playSound(null, this.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 0.25F, 0.9F);
             }
             this.setDead();
         }

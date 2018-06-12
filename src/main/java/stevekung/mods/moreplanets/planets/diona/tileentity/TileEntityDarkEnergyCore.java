@@ -88,7 +88,7 @@ public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
                                     }
                                     if (this.transformTime == 0)
                                     {
-                                        this.world.playSound(null, mainItem.posX + 0.5D, mainItem.posY + 0.5D, mainItem.posZ + 0.5D, SoundEvents.ENTITY_ZOMBIE_INFECT, SoundCategory.BLOCKS, 0.25F, (mainItem.world.rand.nextFloat() - mainItem.world.rand.nextFloat()) * 0.2F + 1.0F);
+                                        this.world.playSound(null, mainItem.getPosition(), SoundEvents.ENTITY_ZOMBIE_INFECT, SoundCategory.BLOCKS, 0.25F, (mainItem.world.rand.nextFloat() - mainItem.world.rand.nextFloat()) * 0.2F + 1.0F);
                                         ((WorldServer)mainItem.world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, mainItem.posX, mainItem.posY + 0.25D, mainItem.posZ, 24, 0.0D, 0.0D, 0.0D, 0.0D);
                                         ((WorldServer)requiredItem.world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, requiredItem.posX, requiredItem.posY + 0.25D, requiredItem.posZ, 24, 0.0D, 0.0D, 0.0D, 0.0D);
                                         mainItem.setItem(new ItemStack(data.getOutput().getItem(), mainItemStack.getCount(), data.getOutput().getItemDamage()));

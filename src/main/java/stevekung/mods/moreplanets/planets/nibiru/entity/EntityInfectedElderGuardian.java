@@ -93,7 +93,7 @@ public class EntityInfectedElderGuardian extends EntityInfectedGuardian
                 if (!player.isPotionActive(potion) || player.getActivePotionEffect(potion).getAmplifier() < 2 || player.getActivePotionEffect(potion).getDuration() < 1200)
                 {
                     MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE, player.posX, player.posY, player.posZ);
-                    player.world.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                    player.world.playSound(player, player.getPosition(), SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, SoundCategory.HOSTILE, 1.0F, 1.0F);
                     player.addPotionEffect(new PotionEffect(potion, 6000, 2));
 
                     if (!player.capabilities.isCreativeMode && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION))

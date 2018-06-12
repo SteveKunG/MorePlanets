@@ -39,7 +39,7 @@ public class ItemCapsule extends ItemFoodMP
             }
             if (!world.isRemote)
             {
-                world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+                world.playSound(null, player.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 
                 if (this.type == CapsuleType.INFECTED_SPORE)
                 {

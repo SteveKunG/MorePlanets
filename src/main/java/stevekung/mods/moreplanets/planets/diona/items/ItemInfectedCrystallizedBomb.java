@@ -32,7 +32,7 @@ public class ItemInfectedCrystallizedBomb extends ItemBaseMP
             itemStack.shrink(1);
         }
 
-        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+        world.playSound(null, player.getPosition(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
         player.swingArm(hand);
 
         if (!world.isRemote)

@@ -136,7 +136,7 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
         }
         else
         {
-            world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            world.playSound(null, player.getPosition(), SoundEvents.ENTITY_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
             if (!world.isRemote)
             {

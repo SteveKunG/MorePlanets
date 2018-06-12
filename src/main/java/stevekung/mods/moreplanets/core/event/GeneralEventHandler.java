@@ -298,7 +298,7 @@ public class GeneralEventHandler
         }
 
         event.setResult(Result.ALLOW);
-        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
+        world.playSound(null, pos, SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
 
         for (EnumHand hand : CachedEnum.handValues)
         {
@@ -310,7 +310,7 @@ public class GeneralEventHandler
     {
         world.setBlockState(pos, farmland.getDefaultState());
         event.setResult(Result.ALLOW);
-        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
+        world.playSound(null, pos, SoundType.GROUND.getStepSound(), SoundCategory.BLOCKS, (SoundType.GROUND.getVolume() + 1.0F) / 2.0F, SoundType.GROUND.getPitch() * 0.8F);
 
         for (EnumHand hand : CachedEnum.handValues)
         {

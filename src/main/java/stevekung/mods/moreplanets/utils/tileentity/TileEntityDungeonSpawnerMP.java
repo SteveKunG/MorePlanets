@@ -40,7 +40,7 @@ public class TileEntityDungeonSpawnerMP<E extends Entity> extends TileEntityDung
     @Override
     public void playSpawnSound(Entity entity)
     {
-        this.world.playSound(null, entity.posX, entity.posY, entity.posZ, GCSounds.scaryScape, SoundCategory.AMBIENT, 9.0F, 1.4F);
+        this.world.playSound(null, entity.getPosition(), GCSounds.scaryScape, SoundCategory.AMBIENT, 9.0F, 1.4F);
     }
 
     @Override
