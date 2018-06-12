@@ -4,14 +4,19 @@ import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -171,7 +176,7 @@ public class WorldGenSpaceDungeons extends WorldGenerator
             {
                 TileEntityMobSpawner spawner = (TileEntityMobSpawner)tile;
                 MobSpawnerBaseLogic logic = spawner.getSpawnerBaseLogic();
-                logic.setEntityId(this.pickMobSpawner(rand));
+                logic.setEntityId(EntityList.getKey(this.pickMobSpawner(rand)));
 
                 try
                 {
@@ -194,20 +199,20 @@ public class WorldGenSpaceDungeons extends WorldGenerator
         }
     }
 
-    private ResourceLocation pickMobSpawner(Random rand)
+    private Class<? extends Entity> pickMobSpawner(Random rand)
     {
         if (rand.nextInt(5) == 0)
         {
-            return new ResourceLocation("galacticraftcore:evolved_spider");
+            return EntityEvolvedSpider.class;
         }
         else if (rand.nextInt(10) == 0)
         {
-            return new ResourceLocation("galacticraftcore:evolved_skeleton");
+            return EntityEvolvedSkeleton.class;
         }
         else if (rand.nextInt(25) == 0)
         {
-            return new ResourceLocation("galacticraftcore:evolved_creeper");
+            return EntityEvolvedCreeper.class;
         }
-        return new ResourceLocation("galacticraftcore:evolved_zombie");
+        return EntityEvolvedZombie.class;
     }
 }

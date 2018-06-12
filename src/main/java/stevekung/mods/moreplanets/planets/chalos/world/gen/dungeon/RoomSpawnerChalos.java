@@ -2,13 +2,19 @@ package stevekung.mods.moreplanets.planets.chalos.world.gen.dungeon;
 
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseFloater;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.RoomEmptyMP;
 
@@ -52,7 +58,7 @@ public class RoomSpawnerChalos extends RoomEmptyMP
 
             if (spawner != null)
             {
-                spawner.getSpawnerBaseLogic().setEntityId(this.getRandomMob(rand));
+                spawner.getSpawnerBaseLogic().setEntityId(EntityList.getKey(this.getRandomMob(rand)));
             }
 
             blockpos = new BlockPos(this.getXWithOffset(this.sizeX - 1, this.sizeZ - 1), this.getYWithOffset(0), this.getZWithOffset(this.sizeX - 1, this.sizeZ - 1));
@@ -60,28 +66,28 @@ public class RoomSpawnerChalos extends RoomEmptyMP
 
             if (spawner != null)
             {
-                spawner.getSpawnerBaseLogic().setEntityId(this.getRandomMob(rand));
+                spawner.getSpawnerBaseLogic().setEntityId(EntityList.getKey(this.getRandomMob(rand)));
             }
             return true;
         }
         return false;
     }
 
-    protected ResourceLocation getRandomMob(Random rand)
+    private Class<? extends Entity> getRandomMob(Random rand)
     {
         switch (rand.nextInt(5))
         {
         case 0:
         default:
-            return new ResourceLocation("moreplanets:cheese_floater");
+            return EntityCheeseFloater.class;
         case 2:
-            return new ResourceLocation("galacticraftcore:evolved_spider");
+            return EntityEvolvedSpider.class;
         case 3:
-            return new ResourceLocation("galacticraftcore:evolved_creeper");
+            return EntityEvolvedCreeper.class;
         case 4:
-            return new ResourceLocation("galacticraftcore:evolved_skeleton");
+            return EntityEvolvedSkeleton.class;
         case 5:
-            return new ResourceLocation("galacticraftcore:evolved_zombie");
+            return EntityEvolvedZombie.class;
         }
     }
 }

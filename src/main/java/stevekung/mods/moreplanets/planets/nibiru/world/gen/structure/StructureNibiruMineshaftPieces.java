@@ -11,6 +11,7 @@ import net.minecraft.block.BlockRailBase;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -27,6 +28,7 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.entity.EntitySpaceMinecartChest;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
+import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedCaveSpider;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class StructureNibiruMineshaftPieces
@@ -265,7 +267,7 @@ public class StructureNibiruMineshaftPieces
 
                             if (tileentity instanceof TileEntityMobSpawner)
                             {
-                                ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(new ResourceLocation("moreplanets:infected_cave_spider"));
+                                ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(EntityList.getKey(EntityInfectedCaveSpider.class));
                             }
                         }
                     }

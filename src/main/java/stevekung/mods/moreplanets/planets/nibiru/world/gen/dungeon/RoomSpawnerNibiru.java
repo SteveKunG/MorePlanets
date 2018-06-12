@@ -2,13 +2,21 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.dungeon;
 
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedCreeper;
+import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedSkeleton;
+import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
 public class RoomSpawnerNibiru extends RoomEmptyNibiru
@@ -51,7 +59,7 @@ public class RoomSpawnerNibiru extends RoomEmptyNibiru
 
             if (spawner != null)
             {
-                spawner.getSpawnerBaseLogic().setEntityId(this.getRandomMob(rand));
+                spawner.getSpawnerBaseLogic().setEntityId(EntityList.getKey(this.getRandomMob(rand)));
             }
 
             blockpos = new BlockPos(this.getXWithOffset(this.sizeX - 1, this.sizeZ - 1), this.getYWithOffset(0), this.getZWithOffset(this.sizeX - 1, this.sizeZ - 1));
@@ -59,32 +67,32 @@ public class RoomSpawnerNibiru extends RoomEmptyNibiru
 
             if (spawner != null)
             {
-                spawner.getSpawnerBaseLogic().setEntityId(this.getRandomMob(rand));
+                spawner.getSpawnerBaseLogic().setEntityId(EntityList.getKey(this.getRandomMob(rand)));
             }
             return true;
         }
         return false;
     }
 
-    protected ResourceLocation getRandomMob(Random rand)
+    private Class<? extends Entity> getRandomMob(Random rand)
     {
         switch (rand.nextInt(6))
         {
         case 0:
         default:
-            return new ResourceLocation("moreplanets:infected_zombie");
+            return EntityInfectedZombie.class;
         case 1:
-            return new ResourceLocation("moreplanets:infected_creeper");
+            return EntityInfectedCreeper.class;
         case 2:
-            return new ResourceLocation("moreplanets:infected_skeleton");
+            return EntityInfectedSkeleton.class;
         case 3:
-            return new ResourceLocation("galacticraftcore:evolved_spider");
+            return EntityEvolvedSpider.class;
         case 4:
-            return new ResourceLocation("galacticraftcore:evolved_creeper");
+            return EntityEvolvedCreeper.class;
         case 5:
-            return new ResourceLocation("galacticraftcore:evolved_skeleton");
+            return EntityEvolvedSkeleton.class;
         case 6:
-            return new ResourceLocation("galacticraftcore:evolved_zombie");
+            return EntityEvolvedZombie.class;
         }
     }
 }
