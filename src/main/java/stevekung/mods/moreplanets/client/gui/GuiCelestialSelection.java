@@ -44,6 +44,7 @@ public class GuiCelestialSelection extends GuiScreen
     @Override
     public void initGui()
     {
+        this.listCelestial.clear();
         this.listCelestial.addAll(GalaxyRegistry.getRegisteredPlanets().values().stream().filter(planet -> planet.getDimensionID() != 0 && planet.getDimensionID() != ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether).collect(Collectors.toList()));
         this.listCelestial.addAll(GalaxyRegistry.getRegisteredMoons().values());
         this.selectionList = new GuiListCelestialSelection(this, this.listCelestial, this.width, this.height, 48, this.height - 32, 36);
