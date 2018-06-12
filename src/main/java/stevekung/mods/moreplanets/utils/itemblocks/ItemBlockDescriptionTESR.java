@@ -15,15 +15,16 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
 import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockAdvancedTileMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
-public class ItemBlockDescription extends ItemBlockMP
+public class ItemBlockDescriptionTESR extends ItemBlockTESRMP
 {
-    public ItemBlockDescription(Block block)
+    public ItemBlockDescriptionTESR(Block block)
     {
         super(block);
     }

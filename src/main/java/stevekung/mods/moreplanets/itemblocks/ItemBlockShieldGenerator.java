@@ -9,12 +9,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescription;
+import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescriptionTESR;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
-public class ItemBlockShieldGenerator extends ItemBlockDescription
+public class ItemBlockShieldGenerator extends ItemBlockDescriptionTESR
 {
     public ItemBlockShieldGenerator(Block block)
     {

@@ -16,7 +16,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.client.renderer.TileEntityItemStackRendererMP;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
@@ -35,6 +34,7 @@ public class BlocksItemsRegistry
     public static final Map<EnumSortCategoryItem, List<StackSorted>> SORT_MAP_ITEMS = new HashMap<>();
     public static final Map<Block, String> SINGLE_BLOCK_RENDER_LIST = new HashMap<>();
     public static final Map<Item, String> SINGLE_ITEM_RENDER_LIST = new HashMap<>();
+    public static final List<Item> TESR_ITEM_RENDER = new ArrayList<>();
 
     public static void registerBlock(Block block)
     {
@@ -63,7 +63,7 @@ public class BlocksItemsRegistry
 
                 if (itemBlockTESR instanceof ItemBlockTESRMP)
                 {
-                    BlocksItemsRegistry.setTESR(itemBlockTESR);
+                    BlocksItemsRegistry.TESR_ITEM_RENDER.add(Item.getItemFromBlock(itemBlockTESR.getBlock()));
                 }
             }
         }
@@ -85,11 +85,7 @@ public class BlocksItemsRegistry
         if (ClientUtils.isEffectiveClient())
         {
             BlocksItemsRegistry.registerSorted(item);
-
-            if (item == MPItems.INFECTED_CRYSTALLIZED_BOMB)
-            {
-                BlocksItemsRegistry.setTESR(item);
-            }
+            BlocksItemsRegistry.TESR_ITEM_RENDER.add(MPItems.INFECTED_CRYSTALLIZED_BOMB);
         }
     }
 
@@ -181,11 +177,5 @@ public class BlocksItemsRegistry
     public static List<String> getDescription(String name)
     {
         return Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(LangUtils.translate(name), 150);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void setTESR(Item item)
-    {
-        item.setTileEntityItemStackRenderer(TileEntityItemStackRendererMP.INSTANCE);
     }
 }

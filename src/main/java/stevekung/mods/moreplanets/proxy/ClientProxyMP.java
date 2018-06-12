@@ -45,6 +45,7 @@ import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleDarkPort
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleAlienBerryLeavesSpark;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedSpore;
+import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
@@ -122,7 +123,10 @@ public class ClientProxyMP extends ServerProxyMP
     @SideOnly(Side.CLIENT)
     public void onModelBake(ModelBakeEvent event)
     {
-
+        for (Item item : BlocksItemsRegistry.TESR_ITEM_RENDER)
+        {
+            item.setTileEntityItemStackRenderer(TileEntityItemStackRendererMP.INSTANCE);
+        }
     }
 
     @SubscribeEvent
