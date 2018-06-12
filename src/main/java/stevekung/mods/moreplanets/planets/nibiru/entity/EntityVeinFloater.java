@@ -15,7 +15,6 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -32,6 +31,8 @@ import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityVeinBall;
 import stevekung.mods.moreplanets.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
@@ -55,6 +56,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     public EntityVeinFloater(World world)
     {
         super(world);
+        this.ignoreFrustumCheck = true;
         this.partArray = new MultiPartEntityPart[] { this.partHead = new MultiPartEntityPart(this, "head", 6.0F, 4.0F) };
         this.isImmuneToFire = true;
         this.setSize(6.0F, 16.0F);
@@ -381,9 +383,19 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
             }
             this.entitiesWithinLast = this.entitiesWithin;
         }
-        if (!this.playMusic)
+        if (!this.playMusic && !this.isDead)
         {
-            this.world.playEvent(1010, this.getPosition(), Item.getIdFromItem(MPItems.VEIN_FLOATER_DISC));
+            int range = 256;
+            List<EntityPlayer> players = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+
+            for (EntityPlayer player : players)
+            {
+                if (player != null && player instanceof EntityPlayerMP)
+                {
+                    EntityPlayerMP playerMP = (EntityPlayerMP)player;
+                    GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_PLAY_VEIN_FLOATER_MUSIC, playerMP.dimension), playerMP);
+                }
+            }
             this.playMusic = true;
         }
         this.partHead.onUpdate();
@@ -401,7 +413,19 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
             this.spawner.boss = null;
             this.spawner.spawned = false;
         }
+        this.playMusic = false;
         MorePlanetsMod.PROXY.removeBoss(this);
+        int range = 256;
+        List<EntityPlayer> players = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+
+        for (EntityPlayer player : players)
+        {
+            if (player != null && player instanceof EntityPlayerMP)
+            {
+                EntityPlayerMP playerMP = (EntityPlayerMP)player;
+                GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_STOP_VEIN_FLOATER_MUSIC, playerMP.dimension), playerMP);
+            }
+        }
         super.setDead();
     }
 

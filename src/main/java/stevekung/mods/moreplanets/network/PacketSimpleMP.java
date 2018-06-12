@@ -12,9 +12,12 @@ import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemRecord;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +32,8 @@ import stevekung.mods.moreplanets.client.gui.GuiShieldGenerator;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGeneratorConfig;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
+import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
@@ -144,6 +149,13 @@ public class PacketSimpleMP extends PacketBase
         case C_MESSAGE_SURVIVAL_PLANET:
             String name = (String)this.data.get(0);
             player.sendMessage(JsonUtils.create("You select " + TextFormatting.AQUA + name + TextFormatting.RESET + " as survival planet, Good Luck!"));
+            break;
+        case C_PLAY_VEIN_FLOATER_MUSIC:
+            FMLClientHandler.instance().getClient().getSoundHandler().playSound(new PositionedSoundRecord(MPSounds.A_PLANET_TO_CONQUER.getRegistryName(), SoundCategory.PLAYERS, 1.0F, 1.0F, false, 0, ISound.AttenuationType.NONE, 0.0F, 0.0F, 0.0F));
+            FMLClientHandler.instance().getClient().ingameGUI.setRecordPlayingMessage(((ItemRecord)MPItems.VEIN_FLOATER_DISC).getRecordNameLocal());
+            break;
+        case C_STOP_VEIN_FLOATER_MUSIC:
+            FMLClientHandler.instance().getClient().getSoundHandler().stop(MPSounds.A_PLANET_TO_CONQUER.getRegistryName().toString(), SoundCategory.PLAYERS);
             break;
         default:
             break;
@@ -305,7 +317,9 @@ public class PacketSimpleMP extends PacketBase
         C_SWITCH_SHIELD_GENERATOR_GUI(Side.CLIENT, BlockPos.class, Integer.class, Boolean.class),
         C_REMOVE_GENERATOR_GUIDE_POS(Side.CLIENT, BlockPos.class),
         C_OPEN_SURVIVAL_PLANET_GUI(Side.CLIENT),
-        C_MESSAGE_SURVIVAL_PLANET(Side.CLIENT, String.class);
+        C_MESSAGE_SURVIVAL_PLANET(Side.CLIENT, String.class),
+        C_PLAY_VEIN_FLOATER_MUSIC(Side.CLIENT),
+        C_STOP_VEIN_FLOATER_MUSIC(Side.CLIENT);
 
         private Side targetSide;
         private Class[] decodeAs;
