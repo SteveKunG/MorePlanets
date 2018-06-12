@@ -26,6 +26,7 @@ import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class StructureNibiruStrongholdPieces
 {
@@ -636,10 +637,10 @@ public class StructureNibiruStrongholdPieces
                 this.setBlockState(world, iblockstate3, k, 3, 6, box);
             }
 
-            IBlockState iblockstate4 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.NORTH);
-            IBlockState iblockstate = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.SOUTH);
-            IBlockState iblockstate1 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.EAST);
-            IBlockState iblockstate2 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockVeinFrame.FACING, EnumFacing.WEST);
+            IBlockState iblockstate4 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH);
+            IBlockState iblockstate = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.SOUTH);
+            IBlockState iblockstate1 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.EAST);
+            IBlockState iblockstate2 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.WEST);
             boolean flag = true;
             boolean[] aboolean = new boolean[12];
 

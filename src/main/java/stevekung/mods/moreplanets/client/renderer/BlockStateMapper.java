@@ -37,7 +37,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SEAWEED, EnumStateMapper.VANILLA_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.HELIUM_GAS_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.VEIN_FRAME, BlockVeinFrame.EYE, BlockVeinFrame.FACING);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.VEIN_FRAME, BlockVeinFrame.EYE, BlockStateProperty.FACING_HORIZON);
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_BERRY_OAK_FENCE_GATE, EnumStateMapper.FENCE_GATE);
         ClientRegistryUtils.registerStateMapper(MPBlocks.PURIFIED_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.MULTALIC_CRYSTAL, BlockStateProperty.FACING_ALL);

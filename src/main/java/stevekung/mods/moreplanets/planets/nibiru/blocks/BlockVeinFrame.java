@@ -9,7 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -29,11 +28,11 @@ import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityVeinFrame;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
 {
-    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final PropertyBool EYE = PropertyBool.create("eye");
     private static final AxisAlignedBB AABB_BLOCK = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
     private static final AxisAlignedBB AABB_EYE = new AxisAlignedBB(0.3175D, 0.0D, 0.3175D, 0.6825D, 0.875D, 0.6825D);
@@ -41,7 +40,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     public BlockVeinFrame(String name)
     {
         super(Material.ROCK);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(EYE, false));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.NORTH).withProperty(EYE, false));
         this.setLightLevel(0.125F);
         this.setBlockUnbreakable();
         this.setResistance(6000000.0F);
@@ -93,7 +92,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(EYE, false);
+        return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, placer.getHorizontalFacing().getOpposite()).withProperty(EYE, false);
     }
 
     @Override
@@ -111,14 +110,14 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(EYE, (meta & 4) != 0).withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
+        return this.getDefaultState().withProperty(EYE, (meta & 4) != 0).withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.getHorizontal(meta & 3));
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
-        i = i | state.getValue(FACING).getHorizontalIndex();
+        i = i | state.getValue(BlockStateProperty.FACING_HORIZON).getHorizontalIndex();
 
         if (state.getValue(EYE))
         {
@@ -130,7 +129,7 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, FACING, EYE);
+        return new BlockStateContainer(this, BlockStateProperty.FACING_HORIZON, EYE);
     }
 
     @Override
