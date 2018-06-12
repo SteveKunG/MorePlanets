@@ -8,6 +8,8 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -23,6 +25,9 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
+import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedWorm;
+import stevekung.mods.moreplanets.planets.nibiru.entity.EntityZergius;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
@@ -30,26 +35,28 @@ import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 
 public class StructureNibiruStrongholdPieces
 {
-    private static final PieceWeight[] PIECE_WEIGHTS = new PieceWeight[] {new PieceWeight(Straight.class, 40, 0), new PieceWeight(Prison.class, 5, 5), new PieceWeight(LeftTurn.class, 20, 0), new PieceWeight(RightTurn.class, 20, 0), new PieceWeight(RoomCrossing.class, 10, 6), new PieceWeight(StairsStraight.class, 5, 5), new PieceWeight(Stairs.class, 5, 5), new PieceWeight(Crossing.class, 5, 4), new PieceWeight(ChestCorridor.class, 5, 4), new PieceWeight(Library.class, 10, 2)
-    {
-        @Override
-        public boolean canSpawnMoreStructuresOfType(int count)
-        {
-            return super.canSpawnMoreStructuresOfType(count) && count > 4;
-        }
-    }, new PieceWeight(PortalRoom.class, 20, 1)
-    {
-        @Override
-        public boolean canSpawnMoreStructuresOfType(int count)
-        {
-            return super.canSpawnMoreStructuresOfType(count) && count > 5;
-        }
-    }
-    };
+    private static final PieceWeight[] PIECE_WEIGHTS = new PieceWeight[]
+            {
+                    new PieceWeight(Straight.class, 40, 0), new PieceWeight(Prison.class, 5, 5), new PieceWeight(LeftTurn.class, 20, 0), new PieceWeight(RightTurn.class, 20, 0), new PieceWeight(RoomCrossing.class, 10, 6), new PieceWeight(StairsStraight.class, 5, 5), new PieceWeight(Stairs.class, 5, 5), new PieceWeight(Crossing.class, 5, 4), new PieceWeight(ChestCorridor.class, 5, 4), new PieceWeight(Library.class, 10, 2)
+                    {
+                        @Override
+                        public boolean canSpawnMoreStructuresOfType(int type)
+                        {
+                            return super.canSpawnMoreStructuresOfType(type) && type > 4;
+                        }
+                    }, new PieceWeight(PortalRoom.class, 20, 1)
+                    {
+                        @Override
+                        public boolean canSpawnMoreStructuresOfType(int type)
+                        {
+                            return super.canSpawnMoreStructuresOfType(type) && type > 5;
+                        }
+                    }
+            };
 
     private static List<PieceWeight> structurePieceList;
     private static Class<? extends Stronghold> strongComponentType;
-    private static int totalWeight;
+    static int totalWeight;
     private static final Stones STRONGHOLD_STONES = new Stones();
 
     public static void registerStrongholdPieces()
@@ -71,14 +78,171 @@ public class StructureNibiruStrongholdPieces
 
     public static void prepareStructurePieces()
     {
-        StructureNibiruStrongholdPieces.structurePieceList = new ArrayList<>();
+        structurePieceList = new ArrayList<>();
 
-        for (PieceWeight piece : StructureNibiruStrongholdPieces.PIECE_WEIGHTS)
+        for (PieceWeight pieceweight : PIECE_WEIGHTS)
         {
-            piece.instancesSpawned = 0;
-            StructureNibiruStrongholdPieces.structurePieceList.add(piece);
+            pieceweight.instancesSpawned = 0;
+            structurePieceList.add(pieceweight);
         }
-        StructureNibiruStrongholdPieces.strongComponentType = null;
+        strongComponentType = null;
+    }
+
+    private static boolean canAddStructurePieces()
+    {
+        boolean flag = false;
+        totalWeight = 0;
+
+        for (PieceWeight pieceweight : structurePieceList)
+        {
+            if (pieceweight.instancesLimit > 0 && pieceweight.instancesSpawned < pieceweight.instancesLimit)
+            {
+                flag = true;
+            }
+            totalWeight += pieceweight.pieceWeight;
+        }
+        return flag;
+    }
+
+    private static Stronghold findAndCreatePieceFactory(Class<? extends Stronghold> clazz, List<StructureComponent> component, Random rand, int x, int y, int z, @Nullable EnumFacing facing, int type)
+    {
+        Stronghold stronghold = null;
+
+        if (clazz == Straight.class)
+        {
+            stronghold = Straight.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == Prison.class)
+        {
+            stronghold = Prison.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == LeftTurn.class)
+        {
+            stronghold = LeftTurn.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == RightTurn.class)
+        {
+            stronghold = LeftTurn.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == RoomCrossing.class)
+        {
+            stronghold = RoomCrossing.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == StairsStraight.class)
+        {
+            stronghold = StairsStraight.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == Stairs.class)
+        {
+            stronghold = Stairs.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == Crossing.class)
+        {
+            stronghold = Crossing.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == ChestCorridor.class)
+        {
+            stronghold = ChestCorridor.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == Library.class)
+        {
+            stronghold = Library.createPiece(component, rand, x, y, z, facing, type);
+        }
+        else if (clazz == PortalRoom.class)
+        {
+            stronghold = PortalRoom.createPiece(component, x, y, z, facing, type);
+        }
+        return stronghold;
+    }
+
+    private static Stronghold generatePieceFromSmallDoor(Stairs2 stairs, List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
+    {
+        if (!canAddStructurePieces())
+        {
+            return null;
+        }
+        else
+        {
+            if (strongComponentType != null)
+            {
+                Stronghold stronghold = findAndCreatePieceFactory(strongComponentType, component, rand, x, y, z, facing, type);
+                strongComponentType = null;
+
+                if (stronghold != null)
+                {
+                    return stronghold;
+                }
+            }
+
+            int j = 0;
+
+            while (j < 5)
+            {
+                ++j;
+                int i = rand.nextInt(totalWeight);
+
+                for (PieceWeight pieceweight : structurePieceList)
+                {
+                    i -= pieceweight.pieceWeight;
+
+                    if (i < 0)
+                    {
+                        if (!pieceweight.canSpawnMoreStructuresOfType(type) || pieceweight == stairs.lastPlaced)
+                        {
+                            break;
+                        }
+
+                        Stronghold stronghold1 = findAndCreatePieceFactory(pieceweight.pieceClass, component, rand, x, y, z, facing, type);
+
+                        if (stronghold1 != null)
+                        {
+                            ++pieceweight.instancesSpawned;
+                            stairs.lastPlaced = pieceweight;
+
+                            if (!pieceweight.canSpawnMoreStructures())
+                            {
+                                structurePieceList.remove(pieceweight);
+                            }
+                            return stronghold1;
+                        }
+                    }
+                }
+            }
+
+            StructureBoundingBox box = Corridor.findPieceBox(component, x, y, z, facing);
+
+            if (box != null && box.minY > 1)
+            {
+                return new Corridor(type, box, facing);
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+    private static StructureComponent generateAndAddPiece(Stairs2 stairs, List<StructureComponent> component, Random rand, int x, int y, int z, @Nullable EnumFacing facing, int type)
+    {
+        if (type > 50)
+        {
+            return null;
+        }
+        else if (Math.abs(x - stairs.getBoundingBox().minX) <= 112 && Math.abs(z - stairs.getBoundingBox().minZ) <= 112)
+        {
+            StructureComponent structurecomponent = generatePieceFromSmallDoor(stairs, component, rand, x, y, z, facing, type + 1);
+
+            if (structurecomponent != null)
+            {
+                component.add(structurecomponent);
+                stairs.pendingChildren.add(structurecomponent);
+            }
+            return structurecomponent;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public static class ChestCorridor extends Stronghold
@@ -145,6 +309,12 @@ public class StructureNibiruStrongholdPieces
                 return true;
             }
         }
+
+        protected static ChestCorridor createPiece(List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, 7, facing);
+            return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(component, box) == null ? new ChestCorridor(type, rand, box, facing) : null;
+        }
     }
 
     public static class Corridor extends Stronghold
@@ -209,6 +379,33 @@ public class StructureNibiruStrongholdPieces
                 return true;
             }
         }
+
+        protected static StructureBoundingBox findPieceBox(List<StructureComponent> component, int x, int y, int z, EnumFacing facing)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, 4, facing);
+            StructureComponent structurecomponent = StructureComponent.findIntersecting(component, box);
+
+            if (structurecomponent == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (structurecomponent.getBoundingBox().minY == box.minY)
+                {
+                    for (int j = 3; j >= 1; --j)
+                    {
+                        box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, j - 1, facing);
+
+                        if (!structurecomponent.getBoundingBox().intersectsWith(box))
+                        {
+                            return StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, j, facing);
+                        }
+                    }
+                }
+                return null;
+            }
+        }
     }
 
     public static class Crossing extends Stronghold
@@ -257,14 +454,16 @@ public class StructureNibiruStrongholdPieces
         {
             int i = 3;
             int j = 5;
-            EnumFacing enumfacing = this.getCoordBaseMode();
-            this.getNextComponentNormal((Stairs2)component, list, rand, 5, 1);
+            EnumFacing facing = this.getCoordBaseMode();
 
-            if (enumfacing == EnumFacing.WEST || enumfacing == EnumFacing.NORTH)
+            if (facing == EnumFacing.WEST || facing == EnumFacing.NORTH)
             {
                 i = 8 - i;
                 j = 8 - j;
             }
+
+            this.getNextComponentNormal((Stairs2)component, list, rand, 5, 1);
+
             if (this.leftLow)
             {
                 this.getNextComponentX((Stairs2)component, list, rand, i, 1);
@@ -311,6 +510,7 @@ public class StructureNibiruStrongholdPieces
                 {
                     this.fillWithBlocks(world, box, 9, 5, 7, 9, 7, 9, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
+
                 this.fillWithBlocks(world, box, 5, 1, 10, 7, 3, 10, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 this.fillWithRandomizedBlocks(world, box, 1, 2, 1, 8, 2, 6, false, rand, STRONGHOLD_STONES);
                 this.fillWithRandomizedBlocks(world, box, 4, 1, 5, 4, 4, 9, false, rand, STRONGHOLD_STONES);
@@ -329,6 +529,12 @@ public class StructureNibiruStrongholdPieces
                 return true;
             }
         }
+
+        protected static Crossing createPiece(List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -3, 0, 10, 9, 11, facing);
+            return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(component, box) == null ? new Crossing(type, rand, box, facing) : null;
+        }
     }
 
     public static class LeftTurn extends Stronghold
@@ -346,9 +552,9 @@ public class StructureNibiruStrongholdPieces
         @Override
         public void buildComponent(StructureComponent component, List<StructureComponent> list, Random rand)
         {
-            EnumFacing enumfacing = this.getCoordBaseMode();
+            EnumFacing facing = this.getCoordBaseMode();
 
-            if (enumfacing != EnumFacing.NORTH && enumfacing != EnumFacing.EAST)
+            if (facing != EnumFacing.NORTH && facing != EnumFacing.EAST)
             {
                 this.getNextComponentZ((Stairs2)component, list, rand, 1, 1);
             }
@@ -369,9 +575,9 @@ public class StructureNibiruStrongholdPieces
             {
                 this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 4, 4, 4, true, rand, STRONGHOLD_STONES);
                 this.placeDoor(world, box, this.entryDoor, 1, 1, 0);
-                EnumFacing enumfacing = this.getCoordBaseMode();
+                EnumFacing facing = this.getCoordBaseMode();
 
-                if (enumfacing != EnumFacing.NORTH && enumfacing != EnumFacing.EAST)
+                if (facing != EnumFacing.NORTH && facing != EnumFacing.EAST)
                 {
                     this.fillWithBlocks(world, box, 4, 1, 1, 4, 3, 3, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
@@ -381,6 +587,12 @@ public class StructureNibiruStrongholdPieces
                 }
                 return true;
             }
+        }
+
+        protected static LeftTurn createPiece(List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, 5, facing);
+            return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(component, box) == null ? new LeftTurn(type, rand, box, facing) : null;
         }
     }
 
@@ -460,6 +672,7 @@ public class StructureNibiruStrongholdPieces
                         }
                     }
                 }
+
                 for (int k1 = 3; k1 < 12; k1 += 2)
                 {
                     this.fillWithBlocks(world, box, 3, 1, k1, 4, 3, k1, MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), MPBlocks.INFECTED_OAK_BOOKSHELF.getDefaultState(), false);
@@ -522,23 +735,39 @@ public class StructureNibiruStrongholdPieces
                 return true;
             }
         }
+
+        protected static Library createPiece(List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -1, 0, 14, 11, 15, facing);
+
+            if (!canStrongholdGoDeeper(box) || StructureComponent.findIntersecting(component, box) != null)
+            {
+                box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -1, 0, 14, 6, 15, facing);
+
+                if (!canStrongholdGoDeeper(box) || StructureComponent.findIntersecting(component, box) != null)
+                {
+                    return null;
+                }
+            }
+            return new Library(type, rand, box, facing);
+        }
     }
 
     static class PieceWeight
     {
         public Class<? extends Stronghold> pieceClass;
-        public int pieceWeight;
+        public final int pieceWeight;
         public int instancesSpawned;
         public int instancesLimit;
 
-        public PieceWeight(Class<? extends Stronghold> clazz, int weight, int limit)
+        public PieceWeight(Class<? extends Stronghold> pieceClass, int pieceWeight, int instancesLimit)
         {
-            this.pieceClass = clazz;
-            this.pieceWeight = weight;
-            this.instancesLimit = limit;
+            this.pieceClass = pieceClass;
+            this.pieceWeight = pieceWeight;
+            this.instancesLimit = instancesLimit;
         }
 
-        public boolean canSpawnMoreStructuresOfType(int count)
+        public boolean canSpawnMoreStructuresOfType(int type)
         {
             return this.instancesLimit == 0 || this.instancesSpawned < this.instancesLimit;
         }
@@ -551,8 +780,6 @@ public class StructureNibiruStrongholdPieces
 
     public static class PortalRoom extends Stronghold
     {
-        private boolean hasSpawner;
-
         public PortalRoom() {}
 
         public PortalRoom(int type, StructureBoundingBox box, EnumFacing facing)
@@ -560,20 +787,6 @@ public class StructureNibiruStrongholdPieces
             super(type);
             this.setCoordBaseMode(facing);
             this.boundingBox = box;
-        }
-
-        @Override
-        protected void writeStructureToNBT(NBTTagCompound nbt)
-        {
-            super.writeStructureToNBT(nbt);
-            nbt.setBoolean("Mob", this.hasSpawner);
-        }
-
-        @Override
-        protected void readStructureFromNBT(NBTTagCompound nbt, TemplateManager manager)
-        {
-            super.readStructureFromNBT(nbt, manager);
-            this.hasSpawner = nbt.getBoolean("Mob");
         }
 
         @Override
@@ -595,31 +808,37 @@ public class StructureNibiruStrongholdPieces
             this.fillWithRandomizedBlocks(world, box, 9, i, 1, 9, i, 14, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 2, i, 1, 8, i, 2, false, rand, STRONGHOLD_STONES);
             this.fillWithRandomizedBlocks(world, box, 2, i, 14, 8, i, 14, false, rand, STRONGHOLD_STONES);
-            this.fillWithRandomizedBlocks(world, box, 1, 1, 1, 2, 1, 4, false, rand, STRONGHOLD_STONES);
-            this.fillWithRandomizedBlocks(world, box, 8, 1, 1, 9, 1, 4, false, rand, STRONGHOLD_STONES);
 
-            if (rand.nextInt(50) == 0)
+            if (rand.nextBoolean())
             {
+                this.createWasteTank(new BlockPos(this.getXWithOffset(2, 1), this.getYWithOffset(1), this.getZWithOffset(2, 1)), world, rand, box);
                 this.createWasteTank(new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(1), this.getZWithOffset(1, 1)), world, rand, box);
                 this.createWasteTank(new BlockPos(this.getXWithOffset(1, 2), this.getYWithOffset(1), this.getZWithOffset(1, 2)), world, rand, box);
+                this.createWasteTank(new BlockPos(this.getXWithOffset(8, 1), this.getYWithOffset(1), this.getZWithOffset(8, 1)), world, rand, box);
                 this.createWasteTank(new BlockPos(this.getXWithOffset(9, 1), this.getYWithOffset(1), this.getZWithOffset(9, 1)), world, rand, box);
                 this.createWasteTank(new BlockPos(this.getXWithOffset(9, 2), this.getYWithOffset(1), this.getZWithOffset(9, 2)), world, rand, box);
-                this.createWasteTank(new BlockPos(this.getXWithOffset(1, 14), this.getYWithOffset(1), this.getZWithOffset(1, 14)), world, rand, box);
-                this.createWasteTank(new BlockPos(this.getXWithOffset(9, 14), this.getYWithOffset(1), this.getZWithOffset(9, 14)), world, rand, box);
             }
             else
             {
+                this.createJuicerEgg(3, 1, 1, world, rand, box);
+                this.createJuicerEgg(7, 1, 1, world, rand, box);
+                this.fillWithRandomizedBlocks(world, box, 1, 1, 1, 2, 1, 4, false, rand, STRONGHOLD_STONES);
+                this.fillWithRandomizedBlocks(world, box, 8, 1, 1, 9, 1, 4, false, rand, STRONGHOLD_STONES);
                 this.fillWithBlocks(world, box, 1, 1, 1, 1, 1, 3, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
                 this.fillWithBlocks(world, box, 9, 1, 1, 9, 1, 3, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
-                this.fillWithRandomizedBlocks(world, box, 3, 1, 8, 7, 1, 12, false, rand, STRONGHOLD_STONES);
-                this.fillWithBlocks(world, box, 4, 1, 9, 6, 1, 11, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
             }
+
+            this.createWasteTank(new BlockPos(this.getXWithOffset(1, 14), this.getYWithOffset(1), this.getZWithOffset(1, 14)), world, rand, box);
+            this.createWasteTank(new BlockPos(this.getXWithOffset(9, 14), this.getYWithOffset(1), this.getZWithOffset(9, 14)), world, rand, box);
+            this.fillWithRandomizedBlocks(world, box, 3, 1, 8, 7, 1, 12, false, rand, STRONGHOLD_STONES);
+            this.fillWithBlocks(world, box, 4, 1, 9, 6, 1, 11, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState(), false);
 
             for (int j = 3; j < 14; j += 2)
             {
                 this.fillWithBlocks(world, box, 0, 3, j, 0, 4, j, Blocks.IRON_BARS.getDefaultState(), Blocks.IRON_BARS.getDefaultState(), false);
                 this.fillWithBlocks(world, box, 10, 3, j, 10, 4, j, Blocks.IRON_BARS.getDefaultState(), Blocks.IRON_BARS.getDefaultState(), false);
             }
+
             for (int i1 = 2; i1 < 9; i1 += 2)
             {
                 this.fillWithBlocks(world, box, i1, 3, 15, i1, 4, 15, Blocks.IRON_BARS.getDefaultState(), Blocks.IRON_BARS.getDefaultState(), false);
@@ -641,13 +860,11 @@ public class StructureNibiruStrongholdPieces
             IBlockState iblockstate = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.SOUTH);
             IBlockState iblockstate1 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.EAST);
             IBlockState iblockstate2 = MPBlocks.VEIN_FRAME.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, EnumFacing.WEST);
-            boolean flag = true;
             boolean[] aboolean = new boolean[12];
 
             for (int l = 0; l < aboolean.length; ++l)
             {
                 aboolean[l] = rand.nextFloat() > 0.9F;
-                flag &= aboolean[l];
             }
 
             this.setBlockState(world, iblockstate4.withProperty(BlockVeinFrame.EYE, aboolean[0]), 4, 3, 8, box);
@@ -662,43 +879,30 @@ public class StructureNibiruStrongholdPieces
             this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, aboolean[9]), 7, 3, 9, box);
             this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, aboolean[10]), 7, 3, 10, box);
             this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, aboolean[11]), 7, 3, 11, box);
-
-            if (flag)
-            {
-                IBlockState iblockstate5 = Blocks.END_PORTAL.getDefaultState();
-                this.setBlockState(world, iblockstate5, 4, 3, 9, box);
-                this.setBlockState(world, iblockstate5, 5, 3, 9, box);
-                this.setBlockState(world, iblockstate5, 6, 3, 9, box);
-                this.setBlockState(world, iblockstate5, 4, 3, 10, box);
-                this.setBlockState(world, iblockstate5, 5, 3, 10, box);
-                this.setBlockState(world, iblockstate5, 6, 3, 10, box);
-                this.setBlockState(world, iblockstate5, 4, 3, 11, box);
-                this.setBlockState(world, iblockstate5, 5, 3, 11, box);
-                this.setBlockState(world, iblockstate5, 6, 3, 11, box);
-            }
-
-            if (!this.hasSpawner)
-            {
-                this.createSpawner(world, new BlockPos(this.getXWithOffset(5, 6), this.getYWithOffset(3), this.getZWithOffset(5, 6)), box, "infected_worm");
-                this.createSpawner(world, new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(0), this.getZWithOffset(1, 1)), box, "zergius");
-                this.createSpawner(world, new BlockPos(this.getXWithOffset(9, 1), this.getYWithOffset(0), this.getZWithOffset(9, 1)), box, "zergius");
-                this.createSpawner(world, new BlockPos(this.getXWithOffset(1, 14), this.getYWithOffset(0), this.getZWithOffset(1, 14)), box, "zergius");
-                this.createSpawner(world, new BlockPos(this.getXWithOffset(9, 14), this.getYWithOffset(0), this.getZWithOffset(9, 14)), box, "zergius");
-            }
+            this.createSpawner(world, new BlockPos(this.getXWithOffset(5, 6), this.getYWithOffset(3), this.getZWithOffset(5, 6)), box, EntityInfectedWorm.class);
+            this.createSpawner(world, new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(0), this.getZWithOffset(1, 1)), box, EntityZergius.class);
+            this.createSpawner(world, new BlockPos(this.getXWithOffset(9, 1), this.getYWithOffset(0), this.getZWithOffset(9, 1)), box, EntityZergius.class);
+            this.createSpawner(world, new BlockPos(this.getXWithOffset(1, 14), this.getYWithOffset(0), this.getZWithOffset(1, 14)), box, EntityZergius.class);
+            this.createSpawner(world, new BlockPos(this.getXWithOffset(9, 14), this.getYWithOffset(0), this.getZWithOffset(9, 14)), box, EntityZergius.class);
             return true;
         }
 
-        private void createSpawner(World world, BlockPos pos, StructureBoundingBox box, String name)
+        protected static PortalRoom createPiece(List<StructureComponent> component, int x, int y, int z, EnumFacing facing, int type)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -1, 0, 11, 8, 16, facing);
+            return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(component, box) == null ? new PortalRoom(type, box, facing) : null;
+        }
+
+        private void createSpawner(World world, BlockPos pos, StructureBoundingBox box, Class<? extends Entity> entity)
         {
             if (box.isVecInside(pos))
             {
-                this.hasSpawner = true;
                 world.setBlockState(pos, Blocks.MOB_SPAWNER.getDefaultState(), 2);
                 TileEntity tileentity = world.getTileEntity(pos);
 
                 if (tileentity instanceof TileEntityMobSpawner)
                 {
-                    ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(new ResourceLocation("moreplanets:" + name));
+                    ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(EntityList.getKey(entity));
                 }
             }
         }
@@ -751,6 +955,12 @@ public class StructureNibiruStrongholdPieces
                 return true;
             }
         }
+
+        protected static Prison createPiece(List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 9, 5, 11, facing);
+            return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(component, box) == null ? new Prison(type, rand, box, facing) : null;
+        }
     }
 
     public static class RightTurn extends LeftTurn
@@ -758,9 +968,9 @@ public class StructureNibiruStrongholdPieces
         @Override
         public void buildComponent(StructureComponent component, List<StructureComponent> list, Random rand)
         {
-            EnumFacing enumfacing = this.getCoordBaseMode();
+            EnumFacing facing = this.getCoordBaseMode();
 
-            if (enumfacing != EnumFacing.NORTH && enumfacing != EnumFacing.EAST)
+            if (facing != EnumFacing.NORTH && facing != EnumFacing.EAST)
             {
                 this.getNextComponentX((Stairs2)component, list, rand, 1, 1);
             }
@@ -781,9 +991,9 @@ public class StructureNibiruStrongholdPieces
             {
                 this.fillWithRandomizedBlocks(world, box, 0, 0, 0, 4, 4, 4, true, rand, STRONGHOLD_STONES);
                 this.placeDoor(world, box, this.entryDoor, 1, 1, 0);
-                EnumFacing enumfacing = this.getCoordBaseMode();
+                EnumFacing facing = this.getCoordBaseMode();
 
-                if (enumfacing != EnumFacing.NORTH && enumfacing != EnumFacing.EAST)
+                if (facing != EnumFacing.NORTH && facing != EnumFacing.EAST)
                 {
                     this.fillWithBlocks(world, box, 0, 1, 1, 0, 3, 3, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
                 }
@@ -852,14 +1062,18 @@ public class StructureNibiruStrongholdPieces
                 {
                 case 0:
                     this.createWasteTank(new BlockPos(this.getXWithOffset(5, 5), this.getYWithOffset(1), this.getZWithOffset(5, 5)), world, rand, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 4, 1, 4, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 4, 1, 5, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 4, 1, 6, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 4, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 5, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 6, 1, 6, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 5, 1, 4, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS_SLAB.getDefaultState(), 5, 1, 6, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.WEST), 4, 3, 5, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.EAST), 6, 3, 5, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.SOUTH), 5, 3, 4, box);
+                    this.setBlockState(world, MPBlocks.INFECTED_TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.NORTH), 5, 3, 6, box);
+                    this.createJuicerEgg(4, 1, 4, world, rand, box);
+                    this.createJuicerEgg(4, 1, 5, world, rand, box);
+                    this.createJuicerEgg(4, 1, 6, world, rand, box);
+                    this.createJuicerEgg(6, 1, 4, world, rand, box);
+                    this.createJuicerEgg(6, 1, 5, world, rand, box);
+                    this.createJuicerEgg(6, 1, 6, world, rand, box);
+                    this.createJuicerEgg(5, 1, 4, world, rand, box);
+                    this.createJuicerEgg(5, 1, 6, world, rand, box);
                     break;
                 case 1:
                     for (int i1 = 0; i1 < 5; ++i1)
@@ -869,9 +1083,7 @@ public class StructureNibiruStrongholdPieces
                         this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3 + i1, 1, 3, box);
                         this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 3 + i1, 1, 7, box);
                     }
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 5, 1, 5, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 5, 2, 5, box);
-                    this.setBlockState(world, MPBlocks.INFECTED_STONE_BRICKS.getDefaultState(), 5, 3, 5, box);
+                    this.createWasteTank(new BlockPos(this.getXWithOffset(5, 5), this.getYWithOffset(1), this.getZWithOffset(5, 5)), world, rand, box);
                     this.setBlockState(world, MPBlocks.INFECTED_WATER_FLUID_BLOCK.getDefaultState(), 5, 4, 5, box);
                     break;
                 case 2:
@@ -885,6 +1097,7 @@ public class StructureNibiruStrongholdPieces
                         this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), j, 3, 1, box);
                         this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), j, 3, 9, box);
                     }
+
                     this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 1, 4, box);
                     this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 1, 6, box);
                     this.setBlockState(world, MPBlocks.NIBIRU_COBBLESTONE.getDefaultState(), 5, 3, 4, box);
@@ -915,9 +1128,11 @@ public class StructureNibiruStrongholdPieces
                             this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 5, 3, l, box);
                             this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 6, 3, l, box);
                         }
+
                         this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 7, 3, l, box);
                         this.setBlockState(world, MPBlocks.INFECTED_OAK_PLANKS.getDefaultState(), 8, 3, l, box);
                     }
+
                     IBlockState iblockstate = Blocks.LADDER.getDefaultState().withProperty(BlockLadder.FACING, EnumFacing.WEST);
                     this.setBlockState(world, iblockstate, 9, 1, 3, box);
                     this.setBlockState(world, iblockstate, 9, 2, 3, box);
@@ -926,6 +1141,12 @@ public class StructureNibiruStrongholdPieces
                 }
                 return true;
             }
+        }
+
+        protected static RoomCrossing createPiece(List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -1, 0, 11, 7, 11, facing);
+            return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(component, box) == null ? new RoomCrossing(type, rand, box, facing) : null;
         }
     }
 
@@ -980,7 +1201,7 @@ public class StructureNibiruStrongholdPieces
         {
             if (this.source)
             {
-                StructureNibiruStrongholdPieces.strongComponentType = Crossing.class;
+                strongComponentType = Crossing.class;
             }
             this.getNextComponentNormal((Stairs2)component, list, rand, 1, 1);
         }
@@ -1017,11 +1238,17 @@ public class StructureNibiruStrongholdPieces
                 return true;
             }
         }
+
+        protected static Stairs createPiece(List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -7, 0, 5, 11, 5, facing);
+            return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(component, box) == null ? new Stairs(type, rand, box, facing) : null;
+        }
     }
 
     public static class Stairs2 extends Stairs
     {
-        public PieceWeight strongholdPieceWeight;
+        public PieceWeight lastPlaced;
         public PortalRoom strongholdPortalRoom;
         public List<StructureComponent> pendingChildren = new ArrayList<>();
 
@@ -1080,6 +1307,12 @@ public class StructureNibiruStrongholdPieces
                 }
                 return true;
             }
+        }
+
+        protected static StairsStraight createPiece(List<StructureComponent> p_175861_0_, Random p_175861_1_, int p_175861_2_, int p_175861_3_, int p_175861_4_, EnumFacing p_175861_5_, int p_175861_6_)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(p_175861_2_, p_175861_3_, p_175861_4_, -1, -7, 0, 5, 11, 8, p_175861_5_);
+            return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(p_175861_0_, box) == null ? new StairsStraight(p_175861_6_, p_175861_1_, box, p_175861_5_) : null;
         }
     }
 
@@ -1196,6 +1429,12 @@ public class StructureNibiruStrongholdPieces
                 return true;
             }
         }
+
+        protected static Straight createPiece(List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
+        {
+            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, 7, facing);
+            return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(component, box) == null ? new Straight(type, rand, box, facing) : null;
+        }
     }
 
     public abstract static class Stronghold extends StructureComponent
@@ -1265,6 +1504,29 @@ public class StructureNibiruStrongholdPieces
             }
         }
 
+        @Override
+        protected boolean generateChest(World world, StructureBoundingBox box, Random rand, int x, int y, int z, ResourceLocation loot)
+        {
+            BlockPos pos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
+
+            if (box.isVecInside(pos) && world.getBlockState(pos).getBlock() != MPBlocks.INFECTED_CHEST)
+            {
+                IBlockState iblockstate = MPBlocks.INFECTED_CHEST.getDefaultState();
+                world.setBlockState(pos, MPBlocks.INFECTED_CHEST.correctFacing(world, pos, iblockstate), 2);
+                TileEntity tileentity = world.getTileEntity(pos);
+
+                if (tileentity instanceof TileEntityChestMP)
+                {
+                    ((TileEntityChestMP)tileentity).setLootTable(loot, rand.nextLong());
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         protected Door getRandomDoor(Random rand)
         {
             int i = rand.nextInt(5);
@@ -1284,328 +1546,78 @@ public class StructureNibiruStrongholdPieces
             }
         }
 
-        protected StructureComponent getNextComponentNormal(Stairs2 stairs, List<StructureComponent> list, Random rand, int x, int z)
+        @Nullable
+        protected StructureComponent getNextComponentNormal(Stairs2 stairs, List<StructureComponent> component, Random rand, int x, int z)
         {
-            EnumFacing enumfacing = this.getCoordBaseMode();
+            EnumFacing facing = this.getCoordBaseMode();
 
-            if (enumfacing != null)
+            if (facing != null)
             {
-                switch (enumfacing)
+                switch (facing)
                 {
-                case NORTH:
                 default:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.minX + x, this.boundingBox.minY + z, this.boundingBox.minZ - 1, enumfacing, this.getComponentType());
+                case NORTH:
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + x, this.boundingBox.minY + z, this.boundingBox.minZ - 1, facing, this.getComponentType());
                 case SOUTH:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.minX + x, this.boundingBox.minY + z, this.boundingBox.maxZ + 1, enumfacing, this.getComponentType());
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + x, this.boundingBox.minY + z, this.boundingBox.maxZ + 1, facing, this.getComponentType());
                 case WEST:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY + z, this.boundingBox.minZ + x, enumfacing, this.getComponentType());
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + z, this.boundingBox.minZ + x, facing, this.getComponentType());
                 case EAST:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + z, this.boundingBox.minZ + x, enumfacing, this.getComponentType());
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + z, this.boundingBox.minZ + x, facing, this.getComponentType());
                 }
             }
             return null;
         }
 
-        protected StructureComponent getNextComponentX(Stairs2 stairs, List<StructureComponent> list, Random rand, int x, int z)
+        @Nullable
+        protected StructureComponent getNextComponentX(Stairs2 stairs, List<StructureComponent> component, Random rand, int x, int z)
         {
-            EnumFacing enumfacing = this.getCoordBaseMode();
+            EnumFacing facing = this.getCoordBaseMode();
 
-            if (enumfacing != null)
+            if (facing != null)
             {
-                switch (enumfacing)
+                switch (facing)
                 {
-                case NORTH:
                 default:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
+                case NORTH:
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
                 case SOUTH:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX - 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.WEST, this.getComponentType());
                 case WEST:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
                 case EAST:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
                 }
             }
             return null;
         }
 
-        protected StructureComponent getNextComponentZ(Stairs2 stairs, List<StructureComponent> list, Random rand, int x, int z)
+        @Nullable
+        protected StructureComponent getNextComponentZ(Stairs2 stairs, List<StructureComponent> component, Random rand, int x, int z)
         {
-            EnumFacing enumfacing = this.getCoordBaseMode();
+            EnumFacing facing = this.getCoordBaseMode();
 
-            if (enumfacing != null)
+            if (facing != null)
             {
-                switch (enumfacing)
+                switch (facing)
                 {
-                case NORTH:
                 default:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
+                case NORTH:
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
                 case SOUTH:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + x, this.boundingBox.minZ + z, EnumFacing.EAST, this.getComponentType());
                 case WEST:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
                 case EAST:
-                    return this.generateAndAddPiece(stairs, list, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                    return generateAndAddPiece(stairs, component, rand, this.boundingBox.minX + z, this.boundingBox.minY + x, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
                 }
             }
             return null;
         }
 
-        private StructureBoundingBox findPieceBox(List<StructureComponent> list, int x, int y, int z, EnumFacing facing)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, 4, facing);
-            StructureComponent structurecomponent = StructureComponent.findIntersecting(list, box);
-
-            if (structurecomponent == null)
-            {
-                return null;
-            }
-            else
-            {
-                if (structurecomponent.getBoundingBox().minY == box.minY)
-                {
-                    for (int j = 3; j >= 1; --j)
-                    {
-                        box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, j - 1, facing);
-
-                        if (!structurecomponent.getBoundingBox().intersectsWith(box))
-                        {
-                            return StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, j, facing);
-                        }
-                    }
-                }
-                return null;
-            }
-        }
-
-        private boolean canAddStructurePieces()
-        {
-            boolean flag = false;
-            StructureNibiruStrongholdPieces.totalWeight = 0;
-
-            for (PieceWeight piece : StructureNibiruStrongholdPieces.structurePieceList)
-            {
-                if (piece.instancesLimit > 0 && piece.instancesSpawned < piece.instancesLimit)
-                {
-                    flag = true;
-                }
-                StructureNibiruStrongholdPieces.totalWeight += piece.pieceWeight;
-            }
-            return flag;
-        }
-
-        private Stronghold findAndCreatePieceFactory(Class<? extends Stronghold> clazz, List<StructureComponent> list, Random rand, int x, int y, int z, @Nullable EnumFacing facing, int type)
-        {
-            Stronghold stronghold = null;
-
-            if (clazz == Straight.class)
-            {
-                stronghold = this.createStraightPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == Prison.class)
-            {
-                stronghold = this.createPrisonPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == LeftTurn.class)
-            {
-                stronghold = this.createLeftTurnPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == RightTurn.class)
-            {
-                stronghold = this.createLeftTurnPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == RoomCrossing.class)
-            {
-                stronghold = this.createRoomCrossingPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == StairsStraight.class)
-            {
-                stronghold = this.createStairsStraightPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == Stairs.class)
-            {
-                stronghold = this.createStairsPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == Crossing.class)
-            {
-                stronghold = this.createCrossingPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == ChestCorridor.class)
-            {
-                stronghold = this.createChestCorridorPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == Library.class)
-            {
-                stronghold = this.createLibraryPiece(list, rand, x, y, z, facing, type);
-            }
-            else if (clazz == PortalRoom.class)
-            {
-                stronghold = this.createPortalRoomPiece(list, x, y, z, facing, type);
-            }
-            return stronghold;
-        }
-
-        private Stronghold generatePieceFromSmallDoor(Stairs2 stairs, List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            if (!this.canAddStructurePieces())
-            {
-                return null;
-            }
-            else
-            {
-                int j = 0;
-
-                if (StructureNibiruStrongholdPieces.strongComponentType != null)
-                {
-                    Stronghold stronghold = this.findAndCreatePieceFactory(StructureNibiruStrongholdPieces.strongComponentType, list, rand, x, y, z, facing, type);
-                    StructureNibiruStrongholdPieces.strongComponentType = null;
-
-                    if (stronghold != null)
-                    {
-                        return stronghold;
-                    }
-                }
-                while (j < 5)
-                {
-                    ++j;
-                    int i = rand.nextInt(StructureNibiruStrongholdPieces.totalWeight);
-
-                    for (PieceWeight piece : StructureNibiruStrongholdPieces.structurePieceList)
-                    {
-                        i -= piece.pieceWeight;
-
-                        if (i < 0)
-                        {
-                            if (!piece.canSpawnMoreStructuresOfType(type) || piece == stairs.strongholdPieceWeight)
-                            {
-                                break;
-                            }
-
-                            Stronghold structurestrongholdpieces$stronghold1 = this.findAndCreatePieceFactory(piece.pieceClass, list, rand, x, y, z, facing, type);
-
-                            if (structurestrongholdpieces$stronghold1 != null)
-                            {
-                                ++piece.instancesSpawned;
-                                stairs.strongholdPieceWeight = piece;
-
-                                if (!piece.canSpawnMoreStructures())
-                                {
-                                    StructureNibiruStrongholdPieces.structurePieceList.remove(piece);
-                                }
-                                return structurestrongholdpieces$stronghold1;
-                            }
-                        }
-                    }
-                }
-
-                StructureBoundingBox box = this.findPieceBox(list, x, y, z, facing);
-
-                if (box != null && box.minY > 1)
-                {
-                    return new Corridor(type, box, facing);
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        private StructureComponent generateAndAddPiece(Stairs2 stairs, List<StructureComponent> list, Random rand, int x, int y, int z, @Nullable EnumFacing facing, int type)
-        {
-            if (type > 50)
-            {
-                return null;
-            }
-            else if (Math.abs(x - stairs.getBoundingBox().minX) <= 112 && Math.abs(z - stairs.getBoundingBox().minZ) <= 112)
-            {
-                StructureComponent component = this.generatePieceFromSmallDoor(stairs, list, rand, x, y, z, facing, type + 1);
-
-                if (component != null)
-                {
-                    list.add(component);
-                    stairs.pendingChildren.add(component);
-                }
-                return component;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        protected boolean canStrongholdGoDeeper(StructureBoundingBox box)
+        protected static boolean canStrongholdGoDeeper(StructureBoundingBox box)
         {
             return box != null && box.minY > 10;
-        }
-
-        private Straight createStraightPiece(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, 7, facing);
-            return this.canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(list, box) == null ? new Straight(type, rand, box, facing) : null;
-        }
-
-        private Prison createPrisonPiece(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 9, 5, 11, facing);
-            return this.canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(list, box) == null ? new Prison(type, rand, box, facing) : null;
-        }
-
-        private LeftTurn createLeftTurnPiece(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, 5, facing);
-            return this.canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(list, box) == null ? new LeftTurn(type, rand, box, facing) : null;
-        }
-
-        private RoomCrossing createRoomCrossingPiece(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -1, 0, 11, 7, 11, facing);
-            return this.canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(list, box) == null ? new RoomCrossing(type, rand, box, facing) : null;
-        }
-
-        private StairsStraight createStairsStraightPiece(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -7, 0, 5, 11, 8, facing);
-            return this.canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(list, box) == null ? new StairsStraight(type, rand, box, facing) : null;
-        }
-
-        private Stairs createStairsPiece(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -7, 0, 5, 11, 5, facing);
-            return this.canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(list, box) == null ? new Stairs(type, rand, box, facing) : null;
-        }
-
-        private Crossing createCrossingPiece(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -3, 0, 10, 9, 11, facing);
-            return this.canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(list, box) == null ? new Crossing(type, rand, box, facing) : null;
-        }
-
-        private ChestCorridor createChestCorridorPiece(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -1, -1, 0, 5, 5, 7, facing);
-            return this.canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(list, box) == null ? new ChestCorridor(type, rand, box, facing) : null;
-        }
-
-        private Library createLibraryPiece(List<StructureComponent> list, Random rand, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -1, 0, 14, 11, 15, facing);
-
-            if (!this.canStrongholdGoDeeper(box) || StructureComponent.findIntersecting(list, box) != null)
-            {
-                box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -1, 0, 14, 6, 15, facing);
-
-                if (!this.canStrongholdGoDeeper(box) || StructureComponent.findIntersecting(list, box) != null)
-                {
-                    return null;
-                }
-            }
-            return new Library(type, rand, box, facing);
-        }
-
-        private PortalRoom createPortalRoomPiece(List<StructureComponent> list, int x, int y, int z, EnumFacing facing, int type)
-        {
-            StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -1, 0, 11, 8, 16, facing);
-            return this.canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(list, box) == null ? new PortalRoom(type, box, facing) : null;
         }
 
         protected void createWasteTank(BlockPos pos, World world, Random rand, StructureBoundingBox box)
@@ -1635,27 +1647,20 @@ public class StructureNibiruStrongholdPieces
             }
         }
 
-        @Override
-        protected boolean generateChest(World world, StructureBoundingBox box, Random rand, int x, int y, int z, ResourceLocation loot)
+        protected void createJuicerEgg(int x, int y, int z, World world, Random rand, StructureBoundingBox box)
         {
-            BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
+            BlockPos pos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
 
-            if (box.isVecInside(blockpos) && world.getBlockState(blockpos).getBlock() != MPBlocks.INFECTED_CHEST)
+            if (box.isVecInside(pos))
             {
-                IBlockState iblockstate = MPBlocks.INFECTED_CHEST.getDefaultState();
-                world.setBlockState(blockpos, MPBlocks.INFECTED_CHEST.correctFacing(world, blockpos, iblockstate), 2);
-                TileEntity tileentity = world.getTileEntity(blockpos);
+                world.setBlockState(pos, MPBlocks.JUICER_EGG.getDefaultState(), 2);
+                TileEntity tile = world.getTileEntity(pos);
 
-                if (tileentity instanceof TileEntityChestMP)
+                if (tile instanceof TileEntityJuicerEgg)
                 {
-                    ((TileEntityChestMP)tileentity).setLootTable(loot, rand.nextLong());
+                    TileEntityJuicerEgg egg = (TileEntityJuicerEgg) tile;
+                    egg.setNeedPlayerNearby();
                 }
-
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
 
