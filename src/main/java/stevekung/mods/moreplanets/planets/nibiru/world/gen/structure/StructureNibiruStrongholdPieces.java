@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,7 +25,6 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.planets.nibiru.blocks.BlockVeinFrame;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedWorm;
-import stevekung.mods.moreplanets.planets.nibiru.entity.EntityZergius;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
 import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
@@ -879,11 +877,25 @@ public class StructureNibiruStrongholdPieces
             this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, aboolean[9]), 7, 3, 9, box);
             this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, aboolean[10]), 7, 3, 10, box);
             this.setBlockState(world, iblockstate2.withProperty(BlockVeinFrame.EYE, aboolean[11]), 7, 3, 11, box);
-            this.createSpawner(world, new BlockPos(this.getXWithOffset(5, 6), this.getYWithOffset(3), this.getZWithOffset(5, 6)), box, EntityInfectedWorm.class);
-            this.createSpawner(world, new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(0), this.getZWithOffset(1, 1)), box, EntityZergius.class);
+
+            i = this.getYWithOffset(3);
+            BlockPos pos = new BlockPos(this.getXWithOffset(5, 6), i, this.getZWithOffset(5, 6));
+
+            if (box.isVecInside(pos))
+            {
+                world.setBlockState(pos, Blocks.MOB_SPAWNER.getDefaultState(), 2);
+                TileEntity tile = world.getTileEntity(pos);
+
+                if (tile instanceof TileEntityMobSpawner)
+                {
+                    ((TileEntityMobSpawner)tile).getSpawnerBaseLogic().setEntityId(EntityList.getKey(EntityInfectedWorm.class));
+                }
+            }
+            //TODO New fucking spawner...
+            /*this.createSpawner(world, new BlockPos(this.getXWithOffset(1, 1), this.getYWithOffset(0), this.getZWithOffset(1, 1)), box, EntityZergius.class);
             this.createSpawner(world, new BlockPos(this.getXWithOffset(9, 1), this.getYWithOffset(0), this.getZWithOffset(9, 1)), box, EntityZergius.class);
             this.createSpawner(world, new BlockPos(this.getXWithOffset(1, 14), this.getYWithOffset(0), this.getZWithOffset(1, 14)), box, EntityZergius.class);
-            this.createSpawner(world, new BlockPos(this.getXWithOffset(9, 14), this.getYWithOffset(0), this.getZWithOffset(9, 14)), box, EntityZergius.class);
+            this.createSpawner(world, new BlockPos(this.getXWithOffset(9, 14), this.getYWithOffset(0), this.getZWithOffset(9, 14)), box, EntityZergius.class);*/
             return true;
         }
 
@@ -891,20 +903,6 @@ public class StructureNibiruStrongholdPieces
         {
             StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, -4, -1, 0, 11, 8, 16, facing);
             return canStrongholdGoDeeper(box) && StructureComponent.findIntersecting(component, box) == null ? new PortalRoom(type, box, facing) : null;
-        }
-
-        private void createSpawner(World world, BlockPos pos, StructureBoundingBox box, Class<? extends Entity> entity)
-        {
-            if (box.isVecInside(pos))
-            {
-                world.setBlockState(pos, Blocks.MOB_SPAWNER.getDefaultState(), 2);
-                TileEntity tileentity = world.getTileEntity(pos);
-
-                if (tileentity instanceof TileEntityMobSpawner)
-                {
-                    ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityId(EntityList.getKey(entity));
-                }
-            }
         }
     }
 
@@ -1505,19 +1503,21 @@ public class StructureNibiruStrongholdPieces
         }
 
         @Override
-        protected boolean generateChest(World world, StructureBoundingBox box, Random rand, int x, int y, int z, ResourceLocation loot)
+        protected boolean generateChest(World world, StructureBoundingBox box, Random rand, BlockPos pos, ResourceLocation lootTable, @Nullable IBlockState state)
         {
-            BlockPos pos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
-
             if (box.isVecInside(pos) && world.getBlockState(pos).getBlock() != MPBlocks.INFECTED_CHEST)
             {
-                IBlockState iblockstate = MPBlocks.INFECTED_CHEST.getDefaultState();
-                world.setBlockState(pos, MPBlocks.INFECTED_CHEST.correctFacing(world, pos, iblockstate), 2);
-                TileEntity tileentity = world.getTileEntity(pos);
-
-                if (tileentity instanceof TileEntityChestMP)
+                if (state == null)
                 {
-                    ((TileEntityChestMP)tileentity).setLootTable(loot, rand.nextLong());
+                    state = MPBlocks.INFECTED_CHEST.correctFacing(world, pos, MPBlocks.INFECTED_CHEST.getDefaultState());
+                }
+
+                world.setBlockState(pos, state, 2);
+                TileEntity tile = world.getTileEntity(pos);
+
+                if (tile instanceof TileEntityChestMP)
+                {
+                    ((TileEntityChestMP)tile).setLootTable(lootTable, rand.nextLong());
                 }
                 return true;
             }

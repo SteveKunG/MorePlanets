@@ -19,6 +19,8 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -124,6 +126,18 @@ public class BlockVeinFrame extends BlockBaseMP implements ITileEntityProvider
             i |= 4;
         }
         return i;
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rotation)
+    {
+        return state.withProperty(BlockStateProperty.FACING_HORIZON, rotation.rotate(state.getValue(BlockStateProperty.FACING_HORIZON)));
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
+    {
+        return state.withRotation(mirror.toRotation(state.getValue(BlockStateProperty.FACING_HORIZON)));
     }
 
     @Override
