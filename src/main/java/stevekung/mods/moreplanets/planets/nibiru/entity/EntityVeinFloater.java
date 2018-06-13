@@ -460,6 +460,12 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     }
 
     @Override
+    protected boolean canDespawn()
+    {
+        return false;
+    }
+
+    @Override
     public World getWorld()
     {
         return this.world;

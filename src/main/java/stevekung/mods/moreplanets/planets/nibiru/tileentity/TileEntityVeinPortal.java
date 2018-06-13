@@ -126,15 +126,11 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
                     if (!this.spawnedBoss)
                     {
                         EntityVeinFloater vein = new EntityVeinFloater(this.world);
-                        vein.setLocationAndAngles(this.getPos().getX() + 0.5D, this.getPos().getY() + 64, this.getPos().getZ() + 0.5D, 0.0F, 0.0F);
+                        vein.setLocationAndAngles(this.getPos().getX() + 0.5D, this.world.getTopSolidOrLiquidBlock(this.getPos()).getY(), this.getPos().getZ() + 0.5D, 0.0F, 0.0F);
                         this.world.spawnEntity(vein);
                         this.spawnedBoss = true;
                     }
-                    for (int yRender = this.pos.getY(); yRender < 99; yRender++)
-                    {
-                        this.world.setBlockToAir(new BlockPos(this.pos.getX(), yRender + 1, this.pos.getZ()));
-                        this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), MPBlocks.VEIN_PORTAL.getDefaultState(), 3);
-                    }
+                    this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), MPBlocks.VEIN_PORTAL.getDefaultState(), 3);
                 }
             }
         }
@@ -155,7 +151,7 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
                     EntityPlayerMP playerMP = (EntityPlayerMP) player;
                     playerMP.dismountRidingEntity();
                     playerMP.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 120, 10));
-                    playerMP.connection.setPlayerLocation(playerMP.posX, playerMP.posY + 64, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
+                    playerMP.connection.setPlayerLocation(playerMP.posX + playerMP.world.rand.nextInt(64), playerMP.world.getTopSolidOrLiquidBlock(playerMP.getPosition()).getY(), playerMP.posZ + playerMP.world.rand.nextInt(64), playerMP.rotationYaw, playerMP.rotationPitch);
                 }
             }
             if (this.renderTicks % 50 == 0 && vein.isEmpty())

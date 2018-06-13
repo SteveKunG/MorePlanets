@@ -37,7 +37,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             int i = 0;
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder worldrenderer = tessellator.getBuffer();
-            int k = i + 66;
+            int k = i + 256;
             this.bindTexture(END_GATEWAY_BEAM_TEXTURE);
             GlStateManager.glTexParameterf(3553, 10242, 10497.0F);
             GlStateManager.glTexParameterf(3553, 10243, 10497.0F);

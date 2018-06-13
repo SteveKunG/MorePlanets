@@ -133,6 +133,12 @@ public class WorldProviderNibiru extends WorldProviderMP
     }
 
     @Override
+    public boolean shouldDisablePrecipitation()
+    {
+        return false;
+    }
+
+    @Override
     public long getDayLength()
     {
         return 144000L;
