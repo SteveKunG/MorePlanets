@@ -27,7 +27,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -96,13 +95,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
 
         if (this.getHealth() <= 0.0F)
         {
-            int i = (300 + this.rand.nextInt(600)) * 20;
-            WorldInfo worldinfo = this.world.getWorldInfo();
-            worldinfo.setCleanWeatherTime(0);
-            worldinfo.setRainTime(i);
-            worldinfo.setThunderTime(i);
-            worldinfo.setRaining(true);
-            worldinfo.setThundering(false);
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_UPDATE_NIBIRU_WEATHER, GCCoreUtil.getDimensionID(this.world), new Object[] { false }));
             this.dataManager.set(VINE_PULL, false);
             return;
         }
@@ -110,7 +103,23 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
         int tick = this.ticksExisted;
         tick %= 600;
 
-        if (this.getHealth() <= this.getMaxHealth() / 2)
+        if (this.getHealth() <= this.getMaxHealth() / 3)
+        {
+            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_UPDATE_NIBIRU_WEATHER, GCCoreUtil.getDimensionID(this.world), new Object[] { true }));
+
+            if (this.rand.nextFloat() > 0.975F && !this.isDead)
+            {
+                EntityPlayer player = this.world.getClosestPlayer(this.posX, this.posY, this.posZ, 32, false);
+
+                if (player != null && !player.capabilities.isCreativeMode && !player.isDead)
+                {
+                    EntityNibiruLightningBolt bolt = new EntityNibiruLightningBolt(this.world);
+                    bolt.setLocationAndAngles(player.posX, player.posY, player.posZ, 0.0F, 0.0F);
+                    this.world.spawnEntity(bolt);
+                }
+            }
+        }
+        else if (this.getHealth() <= this.getMaxHealth() / 2)
         {
             if (!this.isDead)
             {
@@ -178,28 +187,6 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
                     {
                         near.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F);
                     }
-                }
-            }
-        }
-        if (this.getHealth() <= this.getMaxHealth() / 3)
-        {
-            int i = (300 + this.rand.nextInt(600)) * 20;
-            WorldInfo worldinfo = this.world.getWorldInfo();
-            worldinfo.setCleanWeatherTime(0);
-            worldinfo.setRainTime(i);
-            worldinfo.setThunderTime(i);
-            worldinfo.setRaining(true);
-            worldinfo.setThundering(true);
-
-            if (this.rand.nextFloat() > 0.975F && !this.isDead)
-            {
-                EntityPlayer player = this.world.getClosestPlayer(this.posX, this.posY, this.posZ, 32, false);
-
-                if (player != null && !player.capabilities.isCreativeMode && !player.isDead)
-                {
-                    EntityNibiruLightningBolt bolt = new EntityNibiruLightningBolt(this.world);
-                    bolt.setLocationAndAngles(player.posX, player.posY, player.posZ, 0.0F, 0.0F);
-                    this.world.spawnEntity(bolt);
                 }
             }
         }

@@ -135,6 +135,7 @@ public class WorldProviderNibiru extends WorldProviderMP
     @Override
     public boolean shouldDisablePrecipitation()
     {
+        super.updateWeatherOverride();
         return false;
     }
 

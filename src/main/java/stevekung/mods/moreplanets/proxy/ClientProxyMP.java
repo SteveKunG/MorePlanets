@@ -1,13 +1,8 @@
 package stevekung.mods.moreplanets.proxy;
 
-import com.google.common.base.Function;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.ColorizerGrass;
@@ -16,29 +11,21 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.internal.FMLMessage.EntitySpawnMessage;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.*;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
-import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSchematics;
 import stevekung.mods.moreplanets.items.ItemCapsule;
 import stevekung.mods.moreplanets.moons.koentus.client.particle.ParticleGravityHarvester;
 import stevekung.mods.moreplanets.moons.koentus.client.particle.ParticleKoentusMeteor;
-import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntityCheeseSpore;
-import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleAlienMinerSpark;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleCrystallizedFlame;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleDarkPortal;
@@ -71,7 +58,6 @@ public class ClientProxyMP extends ServerProxyMP
     {
         ModelLoaderRegistry.registerLoader(OBJLoaderMP.INSTANCE);
         EntityRendererMP.init();
-        ClientProxyMP.handleCustomSpawning();
         CommonUtils.registerEventHandler(this);
 
         if (CompatibilityManagerMP.isCCLLoaded)
@@ -271,99 +257,5 @@ public class ClientProxyMP extends ServerProxyMP
     public void removeBoss(IMorePlanetsBoss boss)
     {
         ClientEventHandler.bossList.remove(boss);
-    }
-
-    private static void handleCustomSpawning()
-    {
-        EntityRegistration entityRegistration = EntityRegistry.instance().lookupModSpawn(EntitySpaceFishHook.class, false);
-
-        Function<EntitySpawnMessage, Entity> handler = input ->
-        {
-            int entityID = 0;
-            double posX = 0;
-            double posY = 0;
-            double posZ = 0;
-            WorldClient world = FMLClientHandler.instance().getWorldClient();
-
-            try
-            {
-                entityID = ReflectionHelper.findField(EntitySpawnMessage.class, "throwerId").getInt(input);
-                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
-                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
-                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-
-            Entity angler = world.getEntityByID(entityID);
-
-            if (angler instanceof EntityPlayer)
-            {
-                Entity entity = new EntitySpaceFishHook(world, (EntityPlayer) angler, posX, posY, posZ);
-                return entity;
-            }
-            return null;
-        };
-        entityRegistration.setCustomSpawning(handler, false);
-        entityRegistration = EntityRegistry.instance().lookupModSpawn(EntityCheeseSpore.class, false);
-
-        handler = input ->
-        {
-            double posX = 0;
-            double posY = 0;
-            double posZ = 0;
-            double speedScaledX = 0;
-            double speedScaledY = 0;
-            double speedScaledZ = 0;
-            WorldClient world = FMLClientHandler.instance().getWorldClient();
-
-            try
-            {
-                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
-                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
-                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
-                speedScaledX = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledX").getDouble(input);
-                speedScaledY = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledY").getDouble(input);
-                speedScaledZ = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-            Entity entity = new EntityCheeseSpore(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
-            return entity;
-        };
-        entityRegistration.setCustomSpawning(handler, false);
-        entityRegistration = EntityRegistry.instance().lookupModSpawn(EntitySmallCheeseSpore.class, false);
-
-        handler = input ->
-        {
-            double posX = 0;
-            double posY = 0;
-            double posZ = 0;
-            double speedScaledX = 0;
-            double speedScaledY = 0;
-            double speedScaledZ = 0;
-            WorldClient world = FMLClientHandler.instance().getWorldClient();
-
-            try
-            {
-                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
-                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
-                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
-                speedScaledX = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledX").getDouble(input);
-                speedScaledY = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledY").getDouble(input);
-                speedScaledZ = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-            Entity entity = new EntitySmallCheeseSpore(world, posX, posY, posZ, speedScaledX, speedScaledY, speedScaledZ);
-            return entity;
-        };
-        entityRegistration.setCustomSpawning(handler, false);
     }
 }

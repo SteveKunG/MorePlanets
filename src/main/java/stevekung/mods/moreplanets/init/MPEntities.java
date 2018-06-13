@@ -85,7 +85,7 @@ public class MPEntities
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityVeinEye.class, "vein_eye", 64, 4, true);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityLaserBullet.class, "laser_bullet", 60, 10, true);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySpaceCapsule.class, "space_capsule");
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityVeinBall.class, "vein_ball", EnumEntityTrackerType.THROWABLE_LARGE);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityVeinBall.class, "vein_ball", 256, 1, true);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityBlackHoleStorage.class, "black_hole_storage");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAntiGravityArrow.class, "anti_gravity_arrow", EnumEntityTrackerType.ARROW);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityFallingKoentusMeteor.class, "falling_koentus_meteor", 160, 20, true);

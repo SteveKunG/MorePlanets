@@ -24,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -291,6 +292,16 @@ public class PacketSimpleMP extends PacketBase
                 TeleportUtils.teleportPlayerToPlanet(playerMP, playerMP.getServer(), sourceDimId, WorldUtil.getProviderForNameServer(celestialName).getDimension());
             }
             break;
+        case S_UPDATE_NIBIRU_WEATHER:
+            int i = (300 + world.rand.nextInt(600)) * 20;
+            boolean thunder = (boolean)this.data.get(0);
+            WorldInfo worldinfo = world.getWorldInfo();
+            worldinfo.setCleanWeatherTime(0);
+            worldinfo.setRainTime(i);
+            worldinfo.setThunderTime(i);
+            worldinfo.setRaining(true);
+            worldinfo.setThundering(thunder);
+            break;
         default:
             break;
         }
@@ -308,6 +319,7 @@ public class PacketSimpleMP extends PacketBase
         S_SWITCH_SHIELD_GENERATOR_GUI(Side.SERVER, BlockPos.class, Boolean.class),
         S_FAILED_UNLOCK_CHEST(Side.SERVER, String.class),
         S_START_SURVIVAL_PLANET(Side.SERVER, Integer.class, String.class),
+        S_UPDATE_NIBIRU_WEATHER(Side.SERVER, Boolean.class),
 
         // CLIENT
         C_ADD_ENTITY_ID(Side.CLIENT, String.class),
