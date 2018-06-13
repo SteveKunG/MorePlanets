@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
+import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
@@ -15,10 +16,11 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 public class InfectedCrystallizedEffect extends PotionMP
 {
     public static final IAttribute CRYSTALLIZED_EFFECT = new RangedAttribute(null, "generic.crystallized_effect", 0.0D, 0.0D, 0.0D).setShouldWatch(true);
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/potions/infected_crystallized.png");
 
     public InfectedCrystallizedEffect()
     {
-        super("infected_crystallized", true, ColorUtils.rgbToDecimal(136, 97, 209), 0);
+        super("infected_crystallized", true, ColorUtils.rgbToDecimal(136, 97, 209));
         this.registerPotionAttributeModifier(InfectedCrystallizedEffect.CRYSTALLIZED_EFFECT, "0B0BC323-E263-4EF8-9108-4B6503129B16", 0.0D, 0);
     }
 
@@ -56,5 +58,11 @@ public class InfectedCrystallizedEffect extends PotionMP
         {
             living.attackEntityFrom(DamageSourceMP.INFECTED_CRYSTALLIZED, 1.0F);
         }
+    }
+
+    @Override
+    protected ResourceLocation getPotionIcon()
+    {
+        return InfectedCrystallizedEffect.TEXTURE;
     }
 }

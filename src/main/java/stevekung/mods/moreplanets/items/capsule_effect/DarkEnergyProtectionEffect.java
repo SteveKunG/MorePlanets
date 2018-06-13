@@ -1,15 +1,18 @@
 package stevekung.mods.moreplanets.items.capsule_effect;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.utils.PotionMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class DarkEnergyProtectionEffect extends PotionMP
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/potions/dark_energy_protection.png");
+
     public DarkEnergyProtectionEffect()
     {
-        super("dark_energy_protection", false, ColorUtils.rgbToDecimal(200, 200, 200), 4);
+        super("dark_energy_protection", false, ColorUtils.rgbToDecimal(200, 200, 200));
         this.setBeneficial();
     }
 
@@ -20,5 +23,11 @@ public class DarkEnergyProtectionEffect extends PotionMP
         {
             living.removePotionEffect(MPPotions.DARK_ENERGY);
         }
+    }
+
+    @Override
+    protected ResourceLocation getPotionIcon()
+    {
+        return DarkEnergyProtectionEffect.TEXTURE;
     }
 }
