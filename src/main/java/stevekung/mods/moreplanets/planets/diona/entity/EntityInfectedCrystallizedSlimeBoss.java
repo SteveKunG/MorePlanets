@@ -63,6 +63,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
     public EntityInfectedCrystallizedSlimeBoss(World world)
     {
         super(world);
+        MorePlanetsMod.PROXY.addBoss(this);
     }
 
     @Override
@@ -322,6 +323,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
                 this.world.spawnEntity(entityslime);
             }
         }
+        MorePlanetsMod.PROXY.removeBoss(this);
         this.isDead = true;
     }
 
