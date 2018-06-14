@@ -49,6 +49,13 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityVeinFloater.class, DataSerializers.BOOLEAN);
     private MultiPartEntityPart[] partArray;
     private MultiPartEntityPart partHead;
+    private MultiPartEntityPart partTentacle0;
+    private MultiPartEntityPart partTentacle1;
+    private MultiPartEntityPart partTentacle2;
+    private MultiPartEntityPart partHoodN;
+    private MultiPartEntityPart partHoodE;
+    private MultiPartEntityPart partHoodW;
+    private MultiPartEntityPart partHoodS;
     private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
     private boolean playMusic;
 
@@ -57,9 +64,24 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
         super(world);
         MorePlanetsMod.PROXY.addBoss(this);
         this.ignoreFrustumCheck = true;
-        this.partArray = new MultiPartEntityPart[] { this.partHead = new MultiPartEntityPart(this, "head", 6.0F, 4.0F) };
+        this.partArray = new MultiPartEntityPart[] {
+                this.partHead = new MultiPartEntityPart(this, "head", 7.0F, 5.0F),
+                        this.partHoodN = new MultiPartEntityPart(this, "hood_n", 6.0F, 2.0F),
+                        this.partHoodE = new MultiPartEntityPart(this, "hood_e", 6.0F, 2.0F),
+                        this.partHoodW = new MultiPartEntityPart(this, "hood_w", 6.0F, 2.0F),
+                        this.partHoodS = new MultiPartEntityPart(this, "hood_s", 6.0F, 2.0F),
+                        this.partTentacle2 = new MultiPartEntityPart(this, "tentacle_2", 7.0F, 5.0F),
+                        this.partTentacle1 = new MultiPartEntityPart(this, "tentacle_1", 7.0F, 5.0F),
+                        this.partTentacle0 = new MultiPartEntityPart(this, "tentacle_0", 7.0F, 5.0F)
+        };
         this.isImmuneToFire = true;
-        this.setSize(6.0F, 16.0F);
+        this.setSize(16.0F, 16.0F);
+    }
+
+    @Override
+    public float getEyeHeight()
+    {
+        return 16.0F;
     }
 
     @Override
@@ -190,6 +212,22 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
                     }
                 }
             }
+        }
+
+        if (!this.playMusic && !this.isDead && this.ticksExisted > 20)
+        {
+            int range = 256;
+            List<EntityPlayer> players = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
+
+            for (EntityPlayer player : players)
+            {
+                if (player != null && player instanceof EntityPlayerMP)
+                {
+                    EntityPlayerMP playerMP = (EntityPlayerMP)player;
+                    GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_PLAY_VEIN_FLOATER_MUSIC, playerMP.dimension), playerMP);
+                }
+            }
+            this.playMusic = true;
         }
     }
 
@@ -371,23 +409,31 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
             }
             this.entitiesWithinLast = this.entitiesWithin;
         }
-        if (!this.playMusic && !this.isDead)
-        {
-            int range = 256;
-            List<EntityPlayer> players = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range));
 
-            for (EntityPlayer player : players)
-            {
-                if (player != null && player instanceof EntityPlayerMP)
-                {
-                    EntityPlayerMP playerMP = (EntityPlayerMP)player;
-                    GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_PLAY_VEIN_FLOATER_MUSIC, playerMP.dimension), playerMP);
-                }
-            }
-            this.playMusic = true;
-        }
+        this.partTentacle0.onUpdate();
+        this.partTentacle0.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);
+
+        this.partTentacle1.onUpdate();
+        this.partTentacle1.setLocationAndAngles(this.posX, this.posY + 5.0D, this.posZ, 0.0F, 0.0F);
+
+        this.partTentacle2.onUpdate();
+        this.partTentacle2.setLocationAndAngles(this.posX, this.posY + 10.0D, this.posZ, 0.0F, 0.0F);
+
         this.partHead.onUpdate();
         this.partHead.setLocationAndAngles(this.posX, this.posY + 13.0D, this.posZ, 0.0F, 0.0F);
+
+        this.partHoodN.onUpdate();
+        this.partHoodN.setLocationAndAngles(this.posX, this.posY + 13.0D, this.posZ - 6.0D, 0.0F, 0.0F);
+
+        this.partHoodE.onUpdate();
+        this.partHoodE.setLocationAndAngles(this.posX + 6.0D, this.posY + 13.0D, this.posZ, 0.0F, 0.0F);
+
+        this.partHoodW.onUpdate();
+        this.partHoodW.setLocationAndAngles(this.posX - 6.0D, this.posY + 13.0D, this.posZ, 0.0F, 0.0F);
+
+        this.partHoodS.onUpdate();
+        this.partHoodS.setLocationAndAngles(this.posX, this.posY + 13.0D, this.posZ + 6.0D, 0.0F, 0.0F);
+
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         super.onLivingUpdate();
     }
