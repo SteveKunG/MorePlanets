@@ -7,6 +7,6 @@ public interface IMeteorType
 
     public static enum EnumMeteorType
     {
-        ANTAROS;
+        KOENTUS;
     }
 }

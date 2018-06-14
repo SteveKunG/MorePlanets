@@ -2,11 +2,12 @@ package stevekung.mods.moreplanets.core.event;
 
 import micdoodle8.mods.galacticraft.api.event.oxygen.GCCoreOxygenSuffocationEvent;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -16,21 +17,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
-import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.dimension.WorldProviderSpaceNether;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityZeliusZombie;
@@ -151,9 +151,9 @@ public class EntityEventHandler
                     player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 80));
                 }
             }
-            if (world.provider instanceof IMeteorType)
+            if (!world.isRemote && world.provider instanceof IMeteorType)
             {
-                //this.spawnMeteor(world, player, (IMeteorType)world.provider);
+                this.spawnMeteors(world, player, (IMeteorType)world.provider);
             }
         }
         if (world.provider instanceof WorldProviderNibiru)
@@ -218,68 +218,64 @@ public class EntityEventHandler
         }
     }
 
-    public void spawnMeteor(World world, EntityPlayerMP player, IMeteorType meteor)
+    @SubscribeEvent
+    public void onEntityUpdate(EntityEvent.CanUpdate event)
     {
-        Entity meteorEntity = null;
-
-        if (FMLCommonHandler.instance().getEffectiveSide() != Side.CLIENT)
+        if (event.getEntity() instanceof EntityKoentusMeteor)
         {
-            if (((IMeteorType)world.provider).getMeteorSpawnFrequency() > 0.0D && meteor.getMeteorType() != null)
+            event.setCanUpdate(true);
+            return;
+        }
+    }
+
+    private void spawnMeteors(World world, EntityPlayerMP player, IMeteorType meteor)
+    {
+        if (meteor.getMeteorSpawnFrequency() > 0.0D && ConfigManagerCore.meteorSpawnMod > 0.0D && meteor.getMeteorType() != null)
+        {
+            Entity meteorEntity = null;
+            int frequency = (int)(meteor.getMeteorSpawnFrequency() * 750.0D * (1.0D / ConfigManagerCore.meteorSpawnMod));
+            int serverDistance = world.getMinecraftServer().getPlayerList().getViewDistance();
+            int x, z;
+            double motX, motZ;
+            x = world.rand.nextInt(20) + 160;
+            z = world.rand.nextInt(20) - 10;
+            motX = world.rand.nextDouble() * 2 - 2.5D;
+            motZ = world.rand.nextDouble() * 5 - 2.5D;
+            int px = MathHelper.floor(player.posX);
+            EntityPlayer closestPlayer = world.getClosestPlayerToEntity(player, 100.0D);
+
+            if (closestPlayer == null || closestPlayer.getEntityId() <= player.getEntityId())
             {
-                int f = (int) (((IMeteorType)world.provider).getMeteorSpawnFrequency() * 750D);
-                int r = ((WorldServer)world).getMinecraftServer().getPlayerList().getViewDistance();
-                int x, z;
-                double motX, motZ;
-                x = world.rand.nextInt(20) + 160;
-                z = world.rand.nextInt(20) - 10;
-                motX = world.rand.nextDouble() * 2 - 2.5D;
-                motZ = world.rand.nextDouble() * 5 - 2.5D;
-                int px = MathHelper.floor(player.posX);
-
-                if (world.rand.nextInt(f) == 0)
+                if ((x + px >> 4) - (px >> 4) >= serverDistance)
                 {
-                    EntityPlayer closestPlayer = world.getClosestPlayerToEntity(player, 100);
-
-                    if (closestPlayer == null || closestPlayer.getEntityId() <= player.getEntityId())
-                    {
-                        if ((x + px >> 4) - (px >> 4) >= r)
-                        {
-                            x = ((px >> 4) + r << 4) - 1 - px;
-                        }
-
-                        switch (meteor.getMeteorType())
-                        {
-                        case ANTAROS:
-                            meteorEntity = new EntityMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, 1);//TODO
-                            break;
-                        }
-
-                        if (!world.isRemote)
-                        {
-                            world.spawnEntity(meteorEntity);
-                            LoggerMP.debug("Spawn meteor {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
-                        }
-                    }
+                    x = ((px >> 4) + serverDistance << 4) - 1 - px;
                 }
-                if (world.rand.nextInt(f * 3) == 0)
+
+                if (world.rand.nextInt(frequency) == 0)
                 {
-                    EntityPlayer closestPlayer = world.getClosestPlayerToEntity(player, 100);
+                    int size = 1 + world.rand.nextInt(2);
 
-                    if (closestPlayer == null || closestPlayer.getEntityId() <= player.getEntityId())
+                    switch (meteor.getMeteorType())
                     {
-                        switch (meteor.getMeteorType())
-                        {
-                        case ANTAROS:
-                            meteorEntity = new EntityMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, 1);//TODO
-                            break;
-                        }
-
-                        if (!world.isRemote)
-                        {
-                            world.spawnEntity(meteorEntity);
-                            LoggerMP.debug("Spawn meteor {} at {} {} {}", meteor.getClass().getSimpleName(), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
-                        }
+                    case KOENTUS:
+                        meteorEntity = new EntityKoentusMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, size);
+                        break;
                     }
+                    world.spawnEntity(meteorEntity);
+                    LoggerMP.debug("Spawn meteor {} at {} {} {}", EntityList.getKey(meteorEntity), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
+                }
+                if (world.rand.nextInt(frequency * 3) == 0)
+                {
+                    int size = 3 + world.rand.nextInt(6);
+
+                    switch (meteor.getMeteorType())
+                    {
+                    case KOENTUS:
+                        meteorEntity = new EntityKoentusMeteor(world, player.posX + x, 355.0D, player.posZ + z, motX - 2.5D, 0, motZ - 2.5D, size);
+                        break;
+                    }
+                    world.spawnEntity(meteorEntity);
+                    LoggerMP.debug("Spawn meteor {} at {} {} {}", EntityList.getKey(meteorEntity), (int)meteorEntity.posX, (int)meteorEntity.posY, (int)meteorEntity.posZ);
                 }
             }
         }

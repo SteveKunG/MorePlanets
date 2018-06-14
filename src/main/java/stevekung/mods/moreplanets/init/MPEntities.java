@@ -6,6 +6,7 @@ import stevekung.mods.moreplanets.entity.*;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
+import stevekung.mods.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseCow;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseCubeEyeBoss;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseFloater;
@@ -90,6 +91,7 @@ public class MPEntities
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAntiGravityArrow.class, "anti_gravity_arrow", EnumEntityTrackerType.ARROW);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityFallingKoentusMeteor.class, "falling_koentus_meteor", 160, 20, true);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAntiGravFallingBlock.class, "anti_gravity_falling_block", 80, 1, true);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityKoentusMeteor.class, "koentus_meteor", 150, 5, true);
 
         MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityAlienMiner.class, SpawnPlacementType.ON_GROUND);
         MorePlanetsMod.COMMON_REGISTRY.registerEntityPlacement(EntityZeliusZombie.class, SpawnPlacementType.ON_GROUND);

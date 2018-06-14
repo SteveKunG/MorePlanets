@@ -612,6 +612,7 @@ entity.moreplanets.black_hole_storage.name=Black Hole Storage
 entity.moreplanets.anti_gravity_arrow.name=Anti Gravity Arrow
 entity.moreplanets.falling_koentus_meteor.name=Falling Koentus Meteor
 entity.moreplanets.anti_gravity_falling_block.name=Anti Gravity Falling Block
+entity.moreplanets.koentus_meteor.name=Koentus Meteor
 
 # POTIONS
 potion.infected_crystallized=Crystal Infection

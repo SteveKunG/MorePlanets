@@ -148,4 +148,16 @@ public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
     {
         return MPDimensions.KOENTUS;
     }
+
+    @Override
+    public EnumMeteorType getMeteorType()
+    {
+        return EnumMeteorType.KOENTUS;
+    }
+
+    @Override
+    public double getMeteorSpawnFrequency()
+    {
+        return 2.5D;
+    }
 }

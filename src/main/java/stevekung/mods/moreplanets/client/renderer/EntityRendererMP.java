@@ -10,7 +10,9 @@ import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.moons.koentus.client.renderer.entity.RenderFallingKoentusMeteor;
+import stevekung.mods.moreplanets.moons.koentus.client.renderer.entity.RenderKoentusMeteor;
 import stevekung.mods.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
+import stevekung.mods.moreplanets.moons.koentus.entity.EntityKoentusMeteor;
 import stevekung.mods.moreplanets.planets.chalos.client.renderer.entity.*;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseCow;
 import stevekung.mods.moreplanets.planets.chalos.entity.EntityCheeseCubeEyeBoss;
@@ -100,5 +102,6 @@ public class EntityRendererMP
         ClientRegistryUtils.registerEntityRendering(EntityAntiGravFallingBlock.class, RenderAntiGravFallingBlock::new);
         ClientRegistryUtils.registerEntityRendering(EntityTerrastoneGolem.class, RenderTerrastoneGolem::new);
         ClientRegistryUtils.registerEntityRendering(EntityTerrasquid.class, RenderTerrasquid::new);
+        ClientRegistryUtils.registerEntityRendering(EntityKoentusMeteor.class, RenderKoentusMeteor::new);
     }
 }
