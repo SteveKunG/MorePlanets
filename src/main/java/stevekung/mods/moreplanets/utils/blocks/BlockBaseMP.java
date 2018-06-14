@@ -61,7 +61,7 @@ public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRend
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.rgb != null ? this.rgb : ColorUtils.stringToRGB(IItemRarity.DEFAULT);
+        return this.rgb != null ? this.rgb : null;
     }
 
     public BlockBaseMP setSortCategory(EnumSortCategoryBlock category)

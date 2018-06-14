@@ -57,7 +57,7 @@ public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender,
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.rgb != null ? this.rgb : ColorUtils.stringToRGB(IItemRarity.DEFAULT);
+        return this.rgb != null ? this.rgb : null;
     }
 
     @Override
@@ -78,7 +78,13 @@ public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender,
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this instanceof IItemRarity ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this instanceof IItemRarity && ((IItemRarity)this).getRarity() != null ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+    }
+
+    @Override
+    public String getHighlightTip(ItemStack itemStack, String displayName)
+    {
+        return super.getItemStackDisplayName(itemStack);
     }
 
     public ItemBaseMP setSortCategory(EnumSortCategoryItem category)

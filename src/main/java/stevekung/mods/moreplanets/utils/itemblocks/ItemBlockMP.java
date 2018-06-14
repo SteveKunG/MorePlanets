@@ -30,7 +30,13 @@ public class ItemBlockMP extends ItemBlock
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this.block instanceof IItemRarity ? ((IItemRarity)this.block).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.block instanceof IItemRarity && ((IItemRarity)this.block).getRarity() != null ? ((IItemRarity)this.block).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+    }
+
+    @Override
+    public String getHighlightTip(ItemStack itemStack, String displayName)
+    {
+        return super.getItemStackDisplayName(itemStack);
     }
 
     @Override

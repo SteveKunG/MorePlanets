@@ -51,6 +51,6 @@ public class BlockFenceMP extends BlockFence implements ISortableBlock, IItemMod
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.name.equals("infected_crystallized_fence") ? ColorUtils.stringToRGB(IItemRarity.ALIEN) : ColorUtils.stringToRGB(IItemRarity.DEFAULT);
+        return this.name.equals("infected_crystallized_fence") ? ColorUtils.stringToRGB(IItemRarity.ALIEN) : null;
     }
 }

@@ -204,6 +204,12 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        return this instanceof IItemRarity ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
+        return this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack);
+    }
+
+    @Override
+    public String getHighlightTip(ItemStack itemStack, String displayName)
+    {
+        return super.getItemStackDisplayName(itemStack);
     }
 }
