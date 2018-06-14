@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.planets.nibiru.client.renderer.entity;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
-import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -18,7 +17,6 @@ public class RenderInfectedZombie extends RenderBiped<EntityInfectedZombie>
     public RenderInfectedZombie(RenderManager manager)
     {
         super(manager, new ModelInfectedZombie(), 0.5F);
-        this.addLayer(new LayerHeldItem(this));
         LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
         {
             @Override
