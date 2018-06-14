@@ -12,6 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
@@ -23,7 +24,6 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
     private int glSkyList2;
     protected float solarSize;
     protected boolean hasRain;
-    protected boolean useColoredStar = true;
 
     public SkyProviderBaseMP()
     {
@@ -154,7 +154,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
             GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(-19.0F, 0.0F, 1.0F, 0.0F);
-            this.renderStars(starBrightness);
+            this.renderStars(starBrightness);//TODO Fix star alpha
             GlStateManager.callList(this.starList);
             GlStateManager.popMatrix();
         }
@@ -225,7 +225,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
         Random rand = new Random(10842L);
-        buffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_COLOR);
+        buffer.begin(GLConstants.QUADS, ConfigManagerMP.moreplanets_general.useColoredStar || ConfigManagerMP.moreplanets_general.useFancyStar ? DefaultVertexFormats.POSITION_COLOR : DefaultVertexFormats.POSITION);
 
         for (int i = 0; i < this.getStarCount(); ++i)
         {
@@ -265,7 +265,7 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
                     double d25 = d24 * d9 - d22 * d10;
                     double d26 = d22 * d9 + d24 * d10;
 
-                    if (this.useColoredStar)
+                    if (ConfigManagerMP.moreplanets_general.useColoredStar)
                     {
                         try
                         {
@@ -281,6 +281,13 @@ public abstract class SkyProviderBaseMP extends IRenderHandler
                         }
                     }
                     else
+                    {
+                        if (!ConfigManagerMP.moreplanets_general.useFancyStar)
+                        {
+                            buffer.pos(d5 + d25, d6 + d23, d7 + d26).endVertex();
+                        }
+                    }
+                    if (!ConfigManagerMP.moreplanets_general.useColoredStar && ConfigManagerMP.moreplanets_general.useFancyStar)
                     {
                         buffer.pos(d5 + d25, d6 + d23, d7 + d26).color(255, 255, 255, rand.nextInt(255)).endVertex();
                     }

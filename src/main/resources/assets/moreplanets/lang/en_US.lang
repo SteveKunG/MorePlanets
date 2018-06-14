@@ -731,6 +731,7 @@ moreplanets_general=General Config
 moreplanets_dimension=Dimensions Config
 moreplanets_addon_compat=GC-Addon Config
 moreplanets_planet_settings=Planets Config
+moreplanets_moon_settings=Moons Config
 moreplanets_other=Others Config
 
 # GUI JEI

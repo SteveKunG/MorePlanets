@@ -52,6 +52,14 @@ public class ConfigManagerMP
         @Config.Name(value = "Use 3D Item Model for Torch")
         @Config.RequiresMcRestart
         public boolean use3DTorchItemModel = true;
+
+        @Config.Name(value = "Use Colored Star in the Sky")
+        @Config.RequiresWorldRestart
+        public boolean useColoredStar = true;
+
+        @Config.Name(value = "Use Fancy Star in the Sky")
+        @Config.RequiresWorldRestart
+        public boolean useFancyStar = true;
     }
 
     // Dimensions

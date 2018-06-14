@@ -15,7 +15,6 @@ public class SkyProviderKoentus extends SkyProviderBaseMP
     public SkyProviderKoentus(float solarSize)
     {
         this.solarSize = 47.5F * solarSize;
-        this.useColoredStar = false;
     }
 
     @Override
