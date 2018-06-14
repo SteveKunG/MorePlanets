@@ -47,8 +47,8 @@ public class MorePlanetsMod
 {
     public static final String NAME = "More Planets";
     public static final String MOD_ID = "moreplanets";
-    private static final int MAJOR_VERSION = 3;
-    private static final int MINOR_VERSION = 0;
+    private static final int MAJOR_VERSION = 2;
+    private static final int MINOR_VERSION = 1;
     private static final int BUILD_VERSION = 0;
     public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
     private static final String FORGE_VERSION = "after:forge@[14.23.4.2705,);";
