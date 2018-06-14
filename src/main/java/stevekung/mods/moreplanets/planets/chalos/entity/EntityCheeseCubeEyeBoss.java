@@ -63,6 +63,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public EntityCheeseCubeEyeBoss(World world)
     {
         super(world);
+        MorePlanetsMod.PROXY.addBoss(this);
         this.setSize(1.8F, 2.0F);
         this.moveHelper = new FlyingMoveHelper(this);
     }
