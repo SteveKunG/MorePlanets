@@ -21,7 +21,7 @@ public class EntityInfectedCrystallizedSpider extends EntitySpider implements IE
     public EntityInfectedCrystallizedSpider(World world)
     {
         super(world);
-        this.setSize(0.7F, 0.5F);
+        this.setSize(0.9F, 0.6F);
     }
 
     @Override
@@ -85,5 +85,11 @@ public class EntityInfectedCrystallizedSpider extends EntitySpider implements IE
     public boolean isPotionApplicable(PotionEffect potion)
     {
         return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZED ? false : super.isPotionApplicable(potion);
+    }
+
+    @Override
+    public float getEyeHeight()
+    {
+        return 0.45F;
     }
 }

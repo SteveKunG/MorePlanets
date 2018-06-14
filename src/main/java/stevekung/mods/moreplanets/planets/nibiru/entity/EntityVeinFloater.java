@@ -55,6 +55,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
     public EntityVeinFloater(World world)
     {
         super(world);
+        MorePlanetsMod.PROXY.addBoss(this);
         this.ignoreFrustumCheck = true;
         this.partArray = new MultiPartEntityPart[] { this.partHead = new MultiPartEntityPart(this, "head", 6.0F, 4.0F) };
         this.isImmuneToFire = true;
@@ -400,6 +401,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
             this.spawner.boss = null;
             this.spawner.spawned = false;
         }
+
         this.playMusic = false;
         MorePlanetsMod.PROXY.removeBoss(this);
         int range = 256;

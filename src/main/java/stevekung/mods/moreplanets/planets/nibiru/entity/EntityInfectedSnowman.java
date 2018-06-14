@@ -33,7 +33,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     public EntityInfectedSnowman(World world)
     {
         super(world);
-        this.setSize(0.7F, 1.9F);
+        this.setSize(0.7F, 1.725F);
         this.experienceValue = 5;
     }
 
@@ -133,7 +133,7 @@ public class EntityInfectedSnowman extends EntityGolem implements IRangedAttackM
     @Override
     public float getEyeHeight()
     {
-        return 1.7F;
+        return 1.6F;
     }
 
     @Override

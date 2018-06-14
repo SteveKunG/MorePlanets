@@ -48,7 +48,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     public EntityAlienMiner(World world)
     {
         super(world);
-        this.setSize(0.5F, 1.25F);
+        this.setSize(0.5F, 1.65F);
         this.isImmuneToFire = true;
         this.experienceValue = 10;
     }
@@ -206,6 +206,12 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     public EnumMobType getMobType()
     {
         return EnumMobType.ROBOT;
+    }
+
+    @Override
+    public float getEyeHeight()
+    {
+        return 1.3F;
     }
 
     public float getChargedTime(float time)

@@ -78,7 +78,7 @@ public class EntityShlime extends EntityAnimal implements IShearable, ISpaceMob,
     public EntityShlime(World world)
     {
         super(world);
-        this.setSize(0.675F, 0.75F);
+        this.setSize(0.675F, 0.9F);
         this.jumpHelper = new ShlimeJumpHelper(this);
         this.moveHelper = new ShlimeMoveHelper(this);
         this.inventoryCrafting.setInventorySlotContents(0, new ItemStack(Items.DYE, 1, 0));

@@ -27,7 +27,6 @@ public class EntityZeliusZombie extends EntityZombie implements IEntityBreathabl
     public EntityZeliusZombie(World world)
     {
         super(world);
-        this.setSize(0.6F, 1.8F);
     }
 
     @Override

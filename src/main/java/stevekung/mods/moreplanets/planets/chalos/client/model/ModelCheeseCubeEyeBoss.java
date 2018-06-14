@@ -38,7 +38,7 @@ public class ModelCheeseCubeEyeBoss extends ModelBase
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        this.updateRotation(entity);
+        this.updateRotation(entity, ageInTicks);
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         this.body1.render(scale);
@@ -49,13 +49,16 @@ public class ModelCheeseCubeEyeBoss extends ModelBase
         GlStateManager.disableBlend();
     }
 
-    private void updateRotation(Entity entity)
+    private void updateRotation(Entity entity, float ageInTicks)
     {
-        float z = 0.03F * (entity.getEntityId() % 5) + 0.05F;
-        float z1 = 0.05F * (entity.getEntityId() % 5) + 0.1F;
-        this.body1.rotateAngleZ = entity.ticksExisted * z + (float) (Math.PI / 8) * 1.0F;
-        this.body2.rotateAngleZ = -entity.ticksExisted * z + (float) (Math.PI / 8) * 1.0F;
-        this.body3.rotateAngleZ = entity.ticksExisted * z1 + (float) (Math.PI / 8) * 2.0F;
-        this.body4.rotateAngleZ = -entity.ticksExisted * z1 + (float) (Math.PI / 8) * 2.0F;
+        float partialTicks = entity.ticksExisted + ageInTicks;
+        float z = (float)Math.PI * 0.05F;
+        float z1 = (float)Math.PI * -0.05F;
+        this.body1.offsetZ = -0.025F;
+        this.body3.offsetZ = 0.025F;
+        this.body1.rotateAngleZ = partialTicks * z + (float) (Math.PI / 8) * 1.0F;
+        this.body2.rotateAngleZ = -partialTicks * z + (float) (Math.PI / 8) * 1.0F;
+        this.body3.rotateAngleZ = partialTicks * z1 + (float) (Math.PI / 8) * 0.5F;
+        this.body4.rotateAngleZ = -partialTicks * z1 + (float) (Math.PI / 8) * 0.5F;
     }
 }

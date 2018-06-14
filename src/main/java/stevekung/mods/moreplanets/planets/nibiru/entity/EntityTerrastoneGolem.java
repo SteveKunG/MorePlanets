@@ -35,7 +35,7 @@ public class EntityTerrastoneGolem extends EntityGolem
     public EntityTerrastoneGolem(World world)
     {
         super(world);
-        this.setSize(1.4F, 2.7F);
+        this.setSize(1.2F, 2.3F);
     }
 
     @Override
@@ -157,12 +157,6 @@ public class EntityTerrastoneGolem extends EntityGolem
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    public int getAttackTimer()
-    {
-        return this.attackTimer;
-    }
-
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
@@ -186,5 +180,17 @@ public class EntityTerrastoneGolem extends EntityGolem
     protected ResourceLocation getLootTable()
     {
         return MPLootTables.TERRASTONE_GOLEM;
+    }
+
+    @Override
+    public float getEyeHeight()
+    {
+        return 2.05F;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getAttackTimer()
+    {
+        return this.attackTimer;
     }
 }

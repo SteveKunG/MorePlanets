@@ -24,7 +24,7 @@ public class EntityVeinFloaterMinion extends EntityMob implements IEntityBreatha
     public EntityVeinFloaterMinion(World world)
     {
         super(world);
-        this.setSize(0.8F, 2.0F);
+        this.setSize(0.8F, 1.7F);
         this.experienceValue = 10;
     }
 

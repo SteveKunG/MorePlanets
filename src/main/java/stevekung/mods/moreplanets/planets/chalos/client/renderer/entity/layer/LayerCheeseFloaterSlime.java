@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.planets.chalos.client.renderer.entity.layer;
 
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,16 @@ public class LayerCheeseFloaterSlime implements LayerRenderer<EntityCheeseFloate
             item.hoverStart = 0.0F;
             GlStateManager.translate(0.0F, 1.615F - hoverTime, 0.0F);
             GlStateManager.rotate(180.0F, 1, 0, 0);
+            GlStateManager.enableRescaleNormal();
+            GlStateManager.alphaFunc(516, 0.1F);
+            GlStateManager.enableBlend();
+            RenderHelper.enableStandardItemLighting();
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+            GlStateManager.pushMatrix();
             this.render.getRenderManager().renderEntity(item, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
+            GlStateManager.popMatrix();
+            GlStateManager.disableRescaleNormal();
+            GlStateManager.disableBlend();
         }
     }
 

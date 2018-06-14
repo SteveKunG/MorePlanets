@@ -50,7 +50,7 @@ public class ModelCheeseFloater extends ModelBase
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        this.updateRotation(entity);
+        this.updateRotation(entity, ageInTicks);
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         this.body1.render(scale);
@@ -64,18 +64,19 @@ public class ModelCheeseFloater extends ModelBase
         GlStateManager.disableBlend();
     }
 
-    private void updateRotation(Entity entity)
+    private void updateRotation(Entity entity, float ageInTicks)
     {
+        float partialTicks = entity.ticksExisted + ageInTicks;
         float y = 0.01F * (entity.getEntityId() % 5) + 0.15F;
         float y1 = 0.01F * (entity.getEntityId() % 5) + 0.25F;
         float y2 = 0.01F * (entity.getEntityId() % 3) + 0.025F;
-        this.body1.rotateAngleY = entity.ticksExisted * y + (float) (Math.PI / 8) * 2;
-        this.body2.rotateAngleY = -entity.ticksExisted * y + (float) (Math.PI / 8) * 2;
-        this.body3.rotateAngleY = -entity.ticksExisted * y1 + (float) (Math.PI / 8) * 2;
-        this.body4.rotateAngleY = entity.ticksExisted * y1 + (float) (Math.PI / 8) * 2;
-        this.eye1.rotateAngleY = entity.ticksExisted * y2 + (float) (Math.PI / 8) * 2;
-        this.eye2.rotateAngleY = entity.ticksExisted * y2 + (float) (Math.PI / 8) * 2;
-        this.eye3.rotateAngleY = entity.ticksExisted * y2 + (float) (Math.PI / 8) * 2;
-        this.eye4.rotateAngleY = entity.ticksExisted * y2 + (float) (Math.PI / 8) * 2;
+        this.body1.rotateAngleY = partialTicks * y + (float) (Math.PI / 8) * 2;
+        this.body2.rotateAngleY = -partialTicks * y + (float) (Math.PI / 8) * 2;
+        this.body3.rotateAngleY = -partialTicks * y1 + (float) (Math.PI / 8) * 2;
+        this.body4.rotateAngleY = partialTicks * y1 + (float) (Math.PI / 8) * 2;
+        this.eye1.rotateAngleY = partialTicks * y2 + (float) (Math.PI / 8) * 2;
+        this.eye2.rotateAngleY = partialTicks * y2 + (float) (Math.PI / 8) * 2;
+        this.eye3.rotateAngleY = partialTicks * y2 + (float) (Math.PI / 8) * 2;
+        this.eye4.rotateAngleY = partialTicks * y2 + (float) (Math.PI / 8) * 2;
     }
 }

@@ -27,7 +27,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     public EntityAlbetiusWorm(World world)
     {
         super(world);
-        this.setSize(0.3F, 0.3F);
+        this.setSize(0.4F, 0.1F);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     @Override
     public float getEyeHeight()
     {
-        return 0.1F;
+        return 0.05F;
     }
 
     @Override

@@ -32,6 +32,7 @@ public class RenderCheeseCubeEyeBoss extends RenderLiving<EntityCheeseCubeEyeBos
     @Override
     protected void preRenderCallback(EntityCheeseCubeEyeBoss entity, float partialTicks)
     {
+        GlStateManager.translate(0.0F, -0.25F, 0.0F);
         GlStateManager.scale(1.5F, 1.5F, 1.5F);
     }
 }

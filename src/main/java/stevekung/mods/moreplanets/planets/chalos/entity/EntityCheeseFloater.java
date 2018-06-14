@@ -56,6 +56,12 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     }
 
     @Override
+    public float getEyeHeight()
+    {
+        return 1.25F;
+    }
+
+    @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();

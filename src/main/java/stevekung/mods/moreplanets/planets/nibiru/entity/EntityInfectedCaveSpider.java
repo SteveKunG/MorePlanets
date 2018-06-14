@@ -17,7 +17,7 @@ public class EntityInfectedCaveSpider extends EntitySpider implements ISpaceMob,
     public EntityInfectedCaveSpider(World world)
     {
         super(world);
-        this.setSize(0.7F, 0.5F);
+        this.setSize(0.9F, 0.6F);
     }
 
     @Override

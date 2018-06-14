@@ -4,7 +4,6 @@ import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
-import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,7 +19,6 @@ public class RenderZeliusZombie extends RenderBiped<EntityZeliusZombie>
     {
         super(manager, new ModelZombie(), 0.5F);
         this.addLayer(new LayerGlowingTexture(this, "zelius_zombie_glow", true));
-        this.addLayer(new LayerHeldItem(this));
         LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
         {
             @Override

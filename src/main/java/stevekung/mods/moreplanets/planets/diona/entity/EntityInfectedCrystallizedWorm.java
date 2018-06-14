@@ -29,7 +29,7 @@ public class EntityInfectedCrystallizedWorm extends EntityMob implements IEntity
     public EntityInfectedCrystallizedWorm(World world)
     {
         super(world);
-        this.setSize(0.75F, 0.5F);
+        this.setSize(0.75F, 0.4F);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class EntityInfectedCrystallizedWorm extends EntityMob implements IEntity
     @Override
     public float getEyeHeight()
     {
-        return 0.1F;
+        return 0.275F;
     }
 
     @Override

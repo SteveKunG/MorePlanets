@@ -39,10 +39,6 @@ public class EntityInfectedGuardian extends EntityGuardian implements ISpaceMob,
     {
         super(world);
         this.moveHelper = new GuardianMoveHelper(this);
-        this.clientSideTailAnimation = this.rand.nextFloat();
-        this.clientSideTailAnimationO = this.clientSideTailAnimation;
-        this.experienceValue = 10;
-        this.setSize(0.85F, 0.85F);
     }
 
     @Override

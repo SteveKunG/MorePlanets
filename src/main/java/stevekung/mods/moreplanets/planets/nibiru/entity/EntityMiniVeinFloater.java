@@ -52,8 +52,9 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     public EntityMiniVeinFloater(World world)
     {
         super(world);
+        this.ignoreFrustumCheck = true;
         this.isImmuneToFire = true;
-        this.setSize(3.0F, 8.0F);
+        this.setSize(3.0F, 8.2F);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     public EntityZergius(World world)
     {
         super(world);
-        this.setSize(0.7F, 0.7F);
+        this.setSize(0.6F, 0.6F);
         this.moveHelper = new ZergiusMoveHelper();
         this.experienceValue = 5;
     }
@@ -85,6 +85,12 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     public boolean getCanSpawnHere()
     {
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox()) && this.world.getLightBrightness(this.getPosition()) <= 1.0F;
+    }
+
+    @Override
+    public float getEyeHeight()
+    {
+        return 0.45F;
     }
 
     @Override

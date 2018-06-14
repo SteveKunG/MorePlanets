@@ -27,7 +27,7 @@ public class EntityGiantWorm extends EntityMob implements IEntityBreathable, ISp
     public EntityGiantWorm(World world)
     {
         super(world);
-        this.setSize(1.2F, 0.4F);
+        this.setSize(1.4F, 0.3F);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class EntityGiantWorm extends EntityMob implements IEntityBreathable, ISp
     @Override
     public float getEyeHeight()
     {
-        return 0.1F;
+        return 0.2F;
     }
 
     @Override

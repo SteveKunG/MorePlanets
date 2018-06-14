@@ -104,6 +104,12 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     }
 
     @Override
+    public float getEyeHeight()
+    {
+        return 1.0F;
+    }
+
+    @Override
     public void onKillCommand()
     {
         this.setHealth(0.0F);
