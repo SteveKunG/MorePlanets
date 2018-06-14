@@ -26,6 +26,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class EntityZergius extends EntityFlying implements IMob, IEntityBreathable, ISpaceMob
 {
@@ -39,7 +40,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
     {
         super(world);
         this.setSize(0.7F, 0.7F);
-        this.moveHelper = new ZergiusMoveHelper(this);
+        this.moveHelper = new ZergiusMoveHelper();
         this.experienceValue = 5;
     }
 
@@ -208,9 +209,9 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
         private int courseChangeCooldown = 0;
         private double closeEnough = 0.3D;
 
-        public ZergiusMoveHelper(EntityZergius entity)
+        public ZergiusMoveHelper()
         {
-            super(entity);
+            super(EntityZergius.this);
         }
 
         @Override
@@ -293,7 +294,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
                 return;
             }
 
-            List<EnumFacing> directions = Arrays.asList(EnumFacing.VALUES);
+            List<EnumFacing> directions = Arrays.asList(CachedEnum.facingValues);
             Collections.shuffle(directions);
 
             for (EnumFacing facing : directions)
@@ -318,6 +319,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
             double dirX = 0.0D;
             double dirY = 0.0D;
             double dirZ = 0.0D;
+
             switch (facing.getAxis())
             {
             case X:
@@ -326,7 +328,8 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
             case Y:
                 dirY = rand.nextDouble() * facing.getAxisDirection().getOffset() * maxDistance;
                 break;
-            case Z: default:
+            case Z:
+            default:
                 dirZ = rand.nextDouble() * facing.getAxisDirection().getOffset() * maxDistance;
                 break;
             }

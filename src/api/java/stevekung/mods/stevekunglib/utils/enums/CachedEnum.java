@@ -13,6 +13,7 @@ public class CachedEnum
     public static final EnumHand[] handValues = EnumHand.values();
     public static final EnumDyeColor[] dyeColorValues = EnumDyeColor.values();
     public static final BiomeManager.BiomeType[] biomeValues = BiomeManager.BiomeType.values();
+    public static final EnumFacing[] facingValues = EnumFacing.values();
     public static final EnumFacing.Axis[] axisValues = EnumFacing.Axis.values();
     public static final TextFormatting[] textFormatValues = TextFormatting.values();
     public static final EnumAction[] actionValues = EnumAction.values();
