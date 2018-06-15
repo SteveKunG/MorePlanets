@@ -3,12 +3,12 @@ package stevekung.mods.moreplanets.utils.client.gui;
 import java.util.Iterator;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.client.RenderUtils;
 
 @SideOnly(Side.CLIENT)
@@ -51,7 +51,7 @@ public class GuiElementInfoRegionMP extends Gui
         {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             int k = this.getHoverState(this.withinRegion);
-            Gui.drawRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, ColorUtil.to32BitColor(100 * k, 255, 0, 0));
+            Gui.drawRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, ColorUtils.to32BitColor(100 * k, 255, 0, 0));
         }
 
         if (this.tooltipStrings != null && !this.tooltipStrings.isEmpty() && this.withinRegion)
