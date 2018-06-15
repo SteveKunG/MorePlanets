@@ -37,7 +37,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -53,6 +52,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider, IInventoryDefaults, ISidedInventory
@@ -90,6 +90,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public String ownerUUID = "";
     private boolean initialize = true;
     private final ShieldEvent event = new ShieldEvent(this);
+    private final ShieldClientEvent eventClient = new ShieldClientEvent(this);
 
     public TileEntityShieldGenerator()
     {
@@ -104,7 +105,11 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         if (!this.world.isRemote)
         {
-            MinecraftForge.EVENT_BUS.unregister(this.event);
+            CommonUtils.unregisterEventHandler(this.event);
+        }
+        else
+        {
+            CommonUtils.unregisterEventHandler(this.eventClient);
         }
     }
 
@@ -115,7 +120,11 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         if (!this.world.isRemote)
         {
-            MinecraftForge.EVENT_BUS.unregister(this.event);
+            CommonUtils.unregisterEventHandler(this.event);
+        }
+        else
+        {
+            CommonUtils.unregisterEventHandler(this.eventClient);
         }
     }
 
@@ -124,7 +133,11 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     {
         if (!this.world.isRemote)
         {
-            MinecraftForge.EVENT_BUS.register(this.event);
+            CommonUtils.registerEventHandler(this.event);
+        }
+        else
+        {
+            CommonUtils.registerEventHandler(this.eventClient);
         }
     }
 
@@ -714,6 +727,16 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                     this.tile.shieldCapacity -= motion * 2;
                 }
             }
+        }
+    }
+
+    public static class ShieldClientEvent
+    {
+        private TileEntityShieldGenerator tile;
+
+        public ShieldClientEvent(TileEntityShieldGenerator tile)
+        {
+            this.tile = tile;
         }
 
         @SubscribeEvent
