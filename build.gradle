@@ -4,28 +4,28 @@ buildscript {
         maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.0.10'
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.10"
     }
 }
 
 plugins {
-    id 'com.matthewprenger.cursegradle' version '1.0.10'
-    id 'net.franz-becker.gradle-lombok' version '1.5'
+    id "com.matthewprenger.cursegradle" version "1.0.10"
+    id "net.franz-becker.gradle-lombok" version "1.5"
 }
 
 def api = new groovy.json.JsonSlurper().parseText(file("${api_token_path}").text)
 def keystore = new groovy.json.JsonSlurper().parseText(file("${keystore_path}").text)
 def mcVersion = project.mc_version
 
-apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: "net.minecraftforge.gradle.forge"
 
 sourceSets.main {
     java {
-        srcDirs = ['src/main/java', 'dependencies/main/java', 'src/api/java']
+        srcDirs = ["src/main/java", "dependencies/main/java", "src/api/java"]
     }
     resources {
-        srcDirs = ['src/main/resources', 'dependencies/main/resources', 'src/api/resources']
+        srcDirs = ["src/main/resources", "dependencies/main/resources", "src/api/resources"]
     }
 }
 
@@ -35,13 +35,13 @@ archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.12.2-14.23.4.2705"
+    version = "1.12.2-14.23.4.2708"
     runDir = "run"
     mappings = "snapshot_20171003"
     makeObfSourceJar = false
 
-    replace '@FINGERPRINT@', keystore.sha1
-    replace '4.0.1.-1', project.gc_require_version
+    replace "@FINGERPRINT@", keystore.sha1
+    replace "4.0.1.-1", project.gc_require_version
     replaceIn "MorePlanetsMod.java"
 }
 
@@ -80,12 +80,12 @@ dependencies {
 curseforge {
     apiKey = api.more_planets
     project {
-        id = '261990'
-        changelog = 'To read full change log use command /mpchangelog in-game.\n\n or following by this link: https://discord.gg/5KDqYh2'
-        releaseType = 'release'
+        id = "261990"
+        changelog = "To read full change log use command /mpchangelog in-game.\n\n or following by this link: https://discord.gg/5KDqYh2"
+        releaseType = "release"
         addGameVersion mcVersion
 
-        mainArtifact(file('build/libs/More-Planets-' + mcVersion + '-' + version + '.jar')) {
+        mainArtifact(file("build/libs/More-Planets-" + mcVersion + "-" + version + ".jar")) {
             displayName = "More-Planets-" + mcVersion + "-" + version
         }
     }
@@ -98,7 +98,7 @@ lombok {
 
 ext.finalJar = "build/libs/" + "More-Planets-" + mcVersion + "-" + version + ".jar"
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
-ext.coreFiles = ['stevekung/mods/moreplanets/**', 'assets/moreplanets/**', 'license.txt', 'pack.mcmeta', 'META-INF/moreplanets_at.cfg']
+ext.coreFiles = ["stevekung/mods/moreplanets/**", "assets/moreplanets/**", "license.txt", "pack.mcmeta", "META-INF/moreplanets_at.cfg"]
 
 // signing jar first
 task buildJar(type: SignJar, dependsOn: "processJar") {
@@ -125,21 +125,21 @@ task processJar(type: Jar, dependsOn: "rePackAllJar") {
 }
 
 task rePackAllJar(type: Jar, dependsOn: "copyModFiles") {
-    from 'temporary'
+    from "temporary"
 }
 
 task copyModFiles(type: Copy, dependsOn: "reobfJar") {
     from(zipTree(project.ext.coreJar))
-    into 'temporary'
+    into "temporary"
 }
 
 task deleteTemporary(type: Delete) {
-    delete 'temporary'
+    delete "temporary"
 }
 
 task buildDeobfJar(type: Jar) {
     from sourceSets.main.output
-    classifier = 'deobf'
+    classifier = "deobf"
     manifest {
         attributes.put("FMLAT", "moreplanets_at.cfg")
         attributes.put("FMLCorePluginContainsFMLMod", "true")
