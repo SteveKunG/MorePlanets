@@ -18,10 +18,10 @@ public class ContainerShieldGenerator extends Container
     public ContainerShieldGenerator(InventoryPlayer inventory, TileEntityShieldGenerator tile)
     {
         this.tile = tile;
-        this.addSlotToContainer(new SlotSpecific(tile, 0, 164, 78, IItemElectric.class));
-        this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 1, 189, 24, "damage"));
-        this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 2, 189, 42, "size"));
-        this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 3, 189, 60, "capacity"));
+        this.addSlotToContainer(new SlotSpecific(tile, 0, 165, 78, IItemElectric.class));
+        this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 1, 190, 24, "damage"));
+        this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 2, 190, 42, "size"));
+        this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 3, 190, 60, "capacity"));
 
         int i;
         int j;
@@ -30,12 +30,12 @@ public class ContainerShieldGenerator extends Container
         {
             for (j = 0; j < 9; ++j)
             {
-                this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 20 + j * 18, 136 + i * 18));
+                this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 21 + j * 18, 136 + i * 18));
             }
         }
         for (i = 0; i < 9; ++i)
         {
-            this.addSlotToContainer(new Slot(inventory, i, 20 + i * 18, 194));
+            this.addSlotToContainer(new Slot(inventory, i, 21 + i * 18, 194));
         }
     }
 
