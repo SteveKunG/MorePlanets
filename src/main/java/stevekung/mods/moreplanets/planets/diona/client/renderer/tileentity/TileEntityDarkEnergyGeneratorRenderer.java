@@ -44,22 +44,21 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
-        GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
 
         switch (meta)
         {
         case 0:
-            GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
             break;
         case 1:
-            GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(0.0F, 0.0F, 1.0F, 0.0F);
             break;
         case 2:
-            GlStateManager.rotate(-360.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
             break;
         case 3:
-            GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
             break;
         }
 
@@ -79,7 +78,6 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         GlStateManager.enableLighting();
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
         GlStateManager.disableRescaleNormal();
-        GlStateManager.popMatrix();
 
         if (destroyStage >= 0)
         {
@@ -94,22 +92,6 @@ public class TileEntityDarkEnergyGeneratorRenderer extends TileEntitySpecialRend
         else
         {
             this.bindTexture(TileEntityDarkEnergyGeneratorRenderer.TEXTURE);
-        }
-
-        switch (meta)
-        {
-        case 0:
-            GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
-            break;
-        case 1:
-            GlStateManager.rotate(0.0F, 0.0F, 1.0F, 0.0F);
-            break;
-        case 2:
-            GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
-            break;
-        case 3:
-            GlStateManager.rotate(-180.0F, 0.0F, 1.0F, 0.0F);
-            break;
         }
 
         this.model.renderBase();
