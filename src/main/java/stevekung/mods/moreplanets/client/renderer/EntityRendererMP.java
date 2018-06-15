@@ -5,7 +5,6 @@ import stevekung.mods.moreplanets.client.renderer.entity.*;
 import stevekung.mods.moreplanets.entity.EntityAntiGravFallingBlock;
 import stevekung.mods.moreplanets.entity.EntityBlackHole;
 import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
-import stevekung.mods.moreplanets.entity.EntitySpaceCapsule;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -87,7 +86,6 @@ public class EntityRendererMP
         ClientRegistryUtils.registerEntityRendering(EntityZergius.class, RenderZergius::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedCreeper.class, RenderInfectedCreeper::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedSkeleton.class, RenderInfectedSkeleton::new);
-        ClientRegistryUtils.registerEntityRendering(EntitySpaceCapsule.class, RenderSpaceCapsule::new);
         ClientRegistryUtils.registerEntityRendering(EntityVeinFloater.class, RenderVeinFloater::new);
         ClientRegistryUtils.registerEntityRendering(EntityVeinFloaterMinion.class, RenderVeinFloaterMinion::new);
         ClientRegistryUtils.registerEntityRendering(EntityVeinBall.class, RenderVeinBall::new);
