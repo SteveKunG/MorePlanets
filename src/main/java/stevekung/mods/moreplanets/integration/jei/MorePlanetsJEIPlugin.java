@@ -26,13 +26,6 @@ import stevekung.mods.moreplanets.recipe.DarkEnergyRecipeData;
 @JEIPlugin
 public class MorePlanetsJEIPlugin implements IModPlugin
 {
-    public static final Map<ItemStack, Item> ILLENIUM = new HashMap<>();
-    public static final Map<ItemStack, Item> DIREMSIUM = new HashMap<>();
-    public static final Map<ItemStack, Item> CHEESE_SPORE = new HashMap<>();
-    public static final Map<ItemStack, Item> MULTALIC_CRYSTAL = new HashMap<>();
-    public static final Map<ItemStack, Item> INFECTED_WOOD = new HashMap<>();
-    public static final Map<ItemStack, Item> NIBIRU_STONE = new HashMap<>();
-
     @Override
     public void register(IModRegistry registry)
     {
@@ -56,28 +49,28 @@ public class MorePlanetsJEIPlugin implements IModPlugin
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.INFECTED_FURNACE), VanillaRecipeCategoryUid.FUEL);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.TERRASTONE_FURNACE), VanillaRecipeCategoryUid.FUEL);
 
-        Item item = MorePlanetsJEIPlugin.ILLENIUM.values().iterator().next();
-        List<ItemStack> list = new ArrayList<>(MorePlanetsJEIPlugin.ILLENIUM.keySet());
+        Item item = MPJEIRecipes.ILLENIUM.values().iterator().next();
+        List<ItemStack> list = new ArrayList<>(MPJEIRecipes.ILLENIUM.keySet());
         JEIRegistryHelper.registerAnvilRecipe(item, list);
 
-        item = MorePlanetsJEIPlugin.DIREMSIUM.values().iterator().next();
-        list = new ArrayList<>(MorePlanetsJEIPlugin.DIREMSIUM.keySet());
+        item = MPJEIRecipes.DIREMSIUM.values().iterator().next();
+        list = new ArrayList<>(MPJEIRecipes.DIREMSIUM.keySet());
         JEIRegistryHelper.registerAnvilRecipe(item, list);
 
-        item = MorePlanetsJEIPlugin.CHEESE_SPORE.values().iterator().next();
-        list = new ArrayList<>(MorePlanetsJEIPlugin.CHEESE_SPORE.keySet());
+        item = MPJEIRecipes.CHEESE_SPORE.values().iterator().next();
+        list = new ArrayList<>(MPJEIRecipes.CHEESE_SPORE.keySet());
         JEIRegistryHelper.registerAnvilRecipe(item, list);
 
-        item = MorePlanetsJEIPlugin.MULTALIC_CRYSTAL.values().iterator().next();
-        list = new ArrayList<>(MorePlanetsJEIPlugin.MULTALIC_CRYSTAL.keySet());
+        item = MPJEIRecipes.MULTALIC_CRYSTAL.values().iterator().next();
+        list = new ArrayList<>(MPJEIRecipes.MULTALIC_CRYSTAL.keySet());
         JEIRegistryHelper.registerAnvilRecipe(item, list);
 
-        item = MorePlanetsJEIPlugin.INFECTED_WOOD.values().iterator().next();
-        list = new ArrayList<>(MorePlanetsJEIPlugin.INFECTED_WOOD.keySet());
+        item = MPJEIRecipes.INFECTED_WOOD.values().iterator().next();
+        list = new ArrayList<>(MPJEIRecipes.INFECTED_WOOD.keySet());
         JEIRegistryHelper.registerAnvilRecipe(item, list);
 
-        item = MorePlanetsJEIPlugin.NIBIRU_STONE.values().iterator().next();
-        list = new ArrayList<>(MorePlanetsJEIPlugin.NIBIRU_STONE.keySet());
+        item = MPJEIRecipes.NIBIRU_STONE.values().iterator().next();
+        list = new ArrayList<>(MPJEIRecipes.NIBIRU_STONE.keySet());
         JEIRegistryHelper.registerAnvilRecipe(item, list);
 
         Map<ItemStack, ItemStack> spaceFishingRod = new HashMap<>();
@@ -101,33 +94,5 @@ public class MorePlanetsJEIPlugin implements IModPlugin
 
         JEIRegistryHelper.registerRecipeCategories(new DarkEnergyTransformRecipeCategory());
         JEIRegistryHelper.registerRecipeCategories(new BlackHoleStorageRecipeCategory());
-    }
-
-    public static void collectAnvilList(String name, Item toAdd, Item toRepair)
-    {
-        if (name.contains("illenium"))
-        {
-            MorePlanetsJEIPlugin.ILLENIUM.put(new ItemStack(toAdd), toRepair);
-        }
-        if (name.contains("diremsium"))
-        {
-            MorePlanetsJEIPlugin.DIREMSIUM.put(new ItemStack(toAdd), toRepair);
-        }
-        if (name.contains("cheese_spore"))
-        {
-            MorePlanetsJEIPlugin.CHEESE_SPORE.put(new ItemStack(toAdd), toRepair);
-        }
-        if (name.contains("multalic_crystal"))
-        {
-            MorePlanetsJEIPlugin.MULTALIC_CRYSTAL.put(new ItemStack(toAdd), toRepair);
-        }
-        if (name.contains("infected_wood"))
-        {
-            MorePlanetsJEIPlugin.INFECTED_WOOD.put(new ItemStack(toAdd), toRepair);
-        }
-        if (name.contains("nibiru_stone"))
-        {
-            MorePlanetsJEIPlugin.NIBIRU_STONE.put(new ItemStack(toAdd), toRepair);
-        }
     }
 }

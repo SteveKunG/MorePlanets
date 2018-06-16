@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.integration.jei.MorePlanetsJEIPlugin;
+import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
 import stevekung.mods.moreplanets.utils.items.ISortableItem;
@@ -30,7 +30,7 @@ public class ItemHoeMP extends ItemHoe implements ISortableItem, IItemModelRende
         super(material);
         this.repairItem = item;
         this.setUnlocalizedName(name);
-        MorePlanetsJEIPlugin.collectAnvilList(name, this, item);
+        MPJEIRecipes.collectAnvilList(name, this, item);
     }
 
     @Override

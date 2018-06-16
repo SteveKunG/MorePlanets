@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.integration.jei.MorePlanetsJEIPlugin;
+import stevekung.mods.moreplanets.integration.jei.MPJEIRecipes;
 import stevekung.mods.moreplanets.utils.ModelRegistryUtils;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
@@ -33,7 +33,7 @@ public abstract class ItemBreathableArmor extends ItemArmor implements IBreathab
     public Item setUnlocalizedName(String name)
     {
         this.name = name;
-        MorePlanetsJEIPlugin.collectAnvilList(name, this, this.getRepairItem());
+        MPJEIRecipes.collectAnvilList(name, this, this.getRepairItem());
         return super.setUnlocalizedName(name);
     }
 
