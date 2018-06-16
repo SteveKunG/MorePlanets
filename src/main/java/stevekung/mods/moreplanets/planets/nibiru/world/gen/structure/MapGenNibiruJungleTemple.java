@@ -2,16 +2,12 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.structure;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 
-import net.minecraft.entity.monster.EntityWitch;
+import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -21,7 +17,7 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruJungleTemple extends MapGenStructure
 {
-    private List<SpawnListEntry> scatteredFeatureSpawnList;
+    private List<Biome.SpawnListEntry> scatteredFeatureSpawnList;
     private int maxDistanceBetweenScatteredFeatures;
     private int minDistanceBetweenScatteredFeatures;
 
@@ -36,20 +32,7 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
         this.scatteredFeatureSpawnList = new ArrayList<>();
         this.maxDistanceBetweenScatteredFeatures = 32;
         this.minDistanceBetweenScatteredFeatures = 8;
-        this.scatteredFeatureSpawnList.add(new SpawnListEntry(EntityWitch.class, 1, 1, 1));
-    }
-
-    public MapGenNibiruJungleTemple(Map<String, String> map)
-    {
-        this();
-
-        for (Entry<String, String> entry : map.entrySet())
-        {
-            if (entry.getKey().equals("distance"))
-            {
-                this.maxDistanceBetweenScatteredFeatures = MathHelper.getInt(entry.getValue(), this.maxDistanceBetweenScatteredFeatures, this.minDistanceBetweenScatteredFeatures + 1);
-            }
-        }
+        this.scatteredFeatureSpawnList.add(new Biome.SpawnListEntry(EntityEvolvedWitch.class, 1, 1, 1));
     }
 
     @Override
@@ -83,13 +66,13 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
 
         if (i == k && j == l)
         {
-            Biome biomegenbase = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
+            Biome biome = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
 
-            if (biomegenbase == null)
+            if (biome == null)
             {
                 return false;
             }
-            if (biomegenbase == MPBiomes.INFECTED_JUNGLE)
+            if (biome == MPBiomes.INFECTED_JUNGLE)
             {
                 return true;
             }
@@ -125,7 +108,7 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
         }
     }
 
-    public List<SpawnListEntry> getSpawnList()
+    public List<Biome.SpawnListEntry> getSpawnList()
     {
         return this.scatteredFeatureSpawnList;
     }
@@ -138,13 +121,8 @@ public class MapGenNibiruJungleTemple extends MapGenStructure
         {
             super(chunkX, chunkZ);
             LoggerMP.debug("Generate jungle temple at {} {}", chunkX * 16, chunkZ * 16);
-            Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8));
-
-            if (biomegenbase == MPBiomes.INFECTED_JUNGLE)
-            {
-                StructureNibiruJungleTemplePieces.JungleTemple component = new StructureNibiruJungleTemplePieces.JungleTemple(rand, chunkX * 16, chunkZ * 16);
-                this.components.add(component);
-            }
+            StructureNibiruJungleTemplePieces.JungleTemple component = new StructureNibiruJungleTemplePieces.JungleTemple(rand, chunkX * 16, chunkZ * 16);
+            this.components.add(component);
             this.updateBoundingBox();
         }
     }

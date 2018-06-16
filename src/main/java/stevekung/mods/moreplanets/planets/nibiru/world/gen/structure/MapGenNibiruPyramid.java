@@ -2,16 +2,12 @@ package stevekung.mods.moreplanets.planets.nibiru.world.gen.structure;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
+import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureStart;
@@ -20,7 +16,7 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruPyramid extends MapGenStructure
 {
-    private List<SpawnListEntry> entitySpawnList;
+    private List<Biome.SpawnListEntry> entitySpawnList;
     private int maxDistanceBetweenScatteredFeatures;
     private int minDistanceBetweenScatteredFeatures;
 
@@ -35,39 +31,7 @@ public class MapGenNibiruPyramid extends MapGenStructure
         this.maxDistanceBetweenScatteredFeatures = 32;
         this.minDistanceBetweenScatteredFeatures = 8;
         this.entitySpawnList = new ArrayList<>();
-        this.entitySpawnList.add(new SpawnListEntry(EntityEvolvedWitch.class, 1, 1, 1));
-    }
-
-    public MapGenNibiruPyramid(Map<String, String> map)
-    {
-        this();
-
-        for (Entry<String, String> entry : map.entrySet())
-        {
-            if (entry.getKey().equals("distance"))
-            {
-                this.maxDistanceBetweenScatteredFeatures = MathHelper.getInt(entry.getValue(), this.maxDistanceBetweenScatteredFeatures, this.minDistanceBetweenScatteredFeatures + 1);
-            }
-        }
-    }
-
-    public List<SpawnListEntry> getSpawnList()
-    {
-        return this.entitySpawnList;
-    }
-
-    public boolean canMobSpawn(BlockPos pos)
-    {
-        StructureStart structurestart = this.getStructureAt(pos);
-
-        if (structurestart != null && structurestart instanceof Start && !structurestart.getComponents().isEmpty())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        this.entitySpawnList.add(new Biome.SpawnListEntry(EntityJuicer.class, 1, 1, 1));
     }
 
     @Override
@@ -101,13 +65,13 @@ public class MapGenNibiruPyramid extends MapGenStructure
 
         if (i == k && j == l)
         {
-            Biome biomegenbase = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
+            Biome biome = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
 
-            if (biomegenbase == null)
+            if (biome == null)
             {
                 return false;
             }
-            if (biomegenbase == MPBiomes.INFECTED_DESERT)
+            if (biome == MPBiomes.INFECTED_DESERT)
             {
                 return true;
             }
@@ -128,6 +92,25 @@ public class MapGenNibiruPyramid extends MapGenStructure
         return MapGenStructure.findNearestStructurePosBySpacing(world, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 14357617, false, 100, findUnexplored);
     }
 
+    public List<Biome.SpawnListEntry> getSpawnList()
+    {
+        return this.entitySpawnList;
+    }
+
+    public boolean canMobSpawn(BlockPos pos)
+    {
+        StructureStart structurestart = this.getStructureAt(pos);
+
+        if (structurestart != null && structurestart instanceof Start && !structurestart.getComponents().isEmpty())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public static class Start extends StructureStart
     {
         public Start() {}
@@ -136,8 +119,8 @@ public class MapGenNibiruPyramid extends MapGenStructure
         {
             super(chunkX, chunkZ);
             LoggerMP.debug("Generate nibiru pyramid at {} {}", chunkX * 16, chunkZ * 16);
-            StructureNibiruPyramidPieces.NibiruPyramid componentscatteredfeaturepieces$desertpyramid = new StructureNibiruPyramidPieces.NibiruPyramid(rand, chunkX * 16, chunkZ * 16);
-            this.components.add(componentscatteredfeaturepieces$desertpyramid);
+            StructureNibiruPyramidPieces.NibiruPyramid pyramid = new StructureNibiruPyramidPieces.NibiruPyramid(rand, chunkX * 16, chunkZ * 16);
+            this.components.add(pyramid);
             this.updateBoundingBox();
         }
     }

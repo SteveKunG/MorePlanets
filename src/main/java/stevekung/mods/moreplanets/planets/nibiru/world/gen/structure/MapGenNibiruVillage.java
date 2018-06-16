@@ -18,7 +18,7 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruVillage extends MapGenStructure
 {
-    public static List<Biome> VILLAGE_SPAWN_BIOMES = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.GREEN_VEIN_FIELDS));
+    private static final List<Biome> BIOMES = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.GREEN_VEIN_FIELDS));
     private int size;
     private int distance;
 
@@ -64,7 +64,7 @@ public class MapGenNibiruVillage extends MapGenStructure
 
         if (i == k && j == l)
         {
-            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, VILLAGE_SPAWN_BIOMES);
+            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, MapGenNibiruVillage.BIOMES);
 
             if (flag)
             {
@@ -140,17 +140,17 @@ public class MapGenNibiruVillage extends MapGenStructure
         }
 
         @Override
-        public void writeToNBT(NBTTagCompound tagCompound)
+        public void writeToNBT(NBTTagCompound nbt)
         {
-            super.writeToNBT(tagCompound);
-            tagCompound.setBoolean("Valid", this.hasMoreThanTwoComponents);
+            super.writeToNBT(nbt);
+            nbt.setBoolean("Valid", this.hasMoreThanTwoComponents);
         }
 
         @Override
-        public void readFromNBT(NBTTagCompound tagCompound)
+        public void readFromNBT(NBTTagCompound nbt)
         {
-            super.readFromNBT(tagCompound);
-            this.hasMoreThanTwoComponents = tagCompound.getBoolean("Valid");
+            super.readFromNBT(nbt);
+            this.hasMoreThanTwoComponents = nbt.getBoolean("Valid");
         }
     }
 }

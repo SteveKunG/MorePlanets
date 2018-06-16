@@ -21,7 +21,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 {
     private int spacing;
     private int separation;
-    private static final List<Biome> waterBiomes = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
+    private static final List<Biome> BIOMES = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
     private static final List<Biome.SpawnListEntry> GUARDIAN = new ArrayList<>();
 
     static
@@ -73,7 +73,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
                 return false;
             }
 
-            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, MapGenNibiruOceanMonument.waterBiomes);
+            boolean flag = this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 29, MapGenNibiruOceanMonument.BIOMES);
 
             if (flag)
             {
@@ -115,22 +115,6 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
             this.create(world, rand, x, z);
         }
 
-        private void create(World world, Random rand, int x, int z)
-        {
-            rand.setSeed(world.getSeed());
-            long i = rand.nextLong();
-            long j = rand.nextLong();
-            long k = x * i;
-            long l = z * j;
-            rand.setSeed(k ^ l ^ world.getSeed());
-            int i1 = x * 16 + 8 - 29;
-            int j1 = z * 16 + 8 - 29;
-            EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
-            this.components.add(new StructureNibiruOceanMonumentPieces.MonumentBuilding(rand, i1, j1, enumfacing));
-            this.updateBoundingBox();
-            this.wasCreated = true;
-        }
-
         @Override
         public void generateStructure(World world, Random rand, StructureBoundingBox box)
         {
@@ -156,9 +140,9 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
         }
 
         @Override
-        public void writeToNBT(NBTTagCompound tagCompound)
+        public void writeToNBT(NBTTagCompound nbt)
         {
-            super.writeToNBT(tagCompound);
+            super.writeToNBT(nbt);
             NBTTagList nbttaglist = new NBTTagList();
 
             for (ChunkPos chunkpos : this.processed)
@@ -168,17 +152,17 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
                 nbttagcompound.setInteger("Z", chunkpos.z);
                 nbttaglist.appendTag(nbttagcompound);
             }
-            tagCompound.setTag("Processed", nbttaglist);
+            nbt.setTag("Processed", nbttaglist);
         }
 
         @Override
-        public void readFromNBT(NBTTagCompound tagCompound)
+        public void readFromNBT(NBTTagCompound nbt)
         {
-            super.readFromNBT(tagCompound);
+            super.readFromNBT(nbt);
 
-            if (tagCompound.hasKey("Processed", 9))
+            if (nbt.hasKey("Processed", 9))
             {
-                NBTTagList nbttaglist = tagCompound.getTagList("Processed", 10);
+                NBTTagList nbttaglist = nbt.getTagList("Processed", 10);
 
                 for (int i = 0; i < nbttaglist.tagCount(); ++i)
                 {
@@ -186,6 +170,22 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
                     this.processed.add(new ChunkPos(nbttagcompound.getInteger("X"), nbttagcompound.getInteger("Z")));
                 }
             }
+        }
+
+        private void create(World world, Random rand, int x, int z)
+        {
+            rand.setSeed(world.getSeed());
+            long i = rand.nextLong();
+            long j = rand.nextLong();
+            long k = x * i;
+            long l = z * j;
+            rand.setSeed(k ^ l ^ world.getSeed());
+            int i1 = x * 16 + 8 - 29;
+            int j1 = z * 16 + 8 - 29;
+            EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
+            this.components.add(new StructureNibiruOceanMonumentPieces.MonumentBuilding(rand, i1, j1, enumfacing));
+            this.updateBoundingBox();
+            this.wasCreated = true;
         }
     }
 }

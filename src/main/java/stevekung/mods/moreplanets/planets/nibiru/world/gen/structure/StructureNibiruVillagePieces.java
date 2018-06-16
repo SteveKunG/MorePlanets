@@ -1092,11 +1092,11 @@ public class StructureNibiruVillagePieces
                 }
             }
 
-            EnumFacing enumfacing = this.getCoordBaseMode();
+            EnumFacing facing = this.getCoordBaseMode();
 
-            if (flag && rand.nextInt(3) > 0 && enumfacing != null)
+            if (flag && rand.nextInt(3) > 0 && facing != null)
             {
-                switch (enumfacing)
+                switch (facing)
                 {
                 case NORTH:
                 default:
@@ -1113,9 +1113,9 @@ public class StructureNibiruVillagePieces
                 }
             }
 
-            if (flag && rand.nextInt(3) > 0 && enumfacing != null)
+            if (flag && rand.nextInt(3) > 0 && facing != null)
             {
-                switch (enumfacing)
+                switch (facing)
                 {
                 case NORTH:
                 default:
@@ -1358,8 +1358,20 @@ public class StructureNibiruVillagePieces
         @Override
         protected void replaceAirAndLiquidDownwards(World world, IBlockState state, int x, int y, int z, StructureBoundingBox box)
         {
-            IBlockState iblockstate = this.getBiomeSpecificBlockState(state);
-            super.replaceAirAndLiquidDownwards(world, iblockstate, x, y, z, box);
+            state = this.getBiomeSpecificBlockState(state);
+            int i = this.getXWithOffset(x, z);
+            int j = this.getYWithOffset(y);
+            int k = this.getZWithOffset(x, z);
+            BlockPos pos = new BlockPos(i, j, k);
+
+            if (box.isVecInside(pos))
+            {
+                while ((world.isAirBlock(pos) || world.getBlockState(pos).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK || world.getBlockState(pos).getBlock() == MPBlocks.PURIFIED_WATER_FLUID_BLOCK) && j > 1)
+                {
+                    world.setBlockState(pos, state, 2);
+                    --j;
+                }
+            }
         }
 
         @Override
@@ -1388,11 +1400,11 @@ public class StructureNibiruVillagePieces
 
         protected StructureComponent getNextComponentNN(Start start, List<StructureComponent> component, Random rand, int x, int z)
         {
-            EnumFacing enumfacing = this.getCoordBaseMode();
+            EnumFacing facing = this.getCoordBaseMode();
 
-            if (enumfacing != null)
+            if (facing != null)
             {
-                switch (enumfacing)
+                switch (facing)
                 {
                 case NORTH:
                 default:
@@ -1413,11 +1425,11 @@ public class StructureNibiruVillagePieces
 
         protected StructureComponent getNextComponentPP(Start start, List<StructureComponent> component, Random rand, int x, int z)
         {
-            EnumFacing enumfacing = this.getCoordBaseMode();
+            EnumFacing facing = this.getCoordBaseMode();
 
-            if (enumfacing != null)
+            if (facing != null)
             {
-                switch (enumfacing)
+                switch (facing)
                 {
                 case NORTH:
                 default:
@@ -1637,7 +1649,7 @@ public class StructureNibiruVillagePieces
 
         private Village findAndCreateComponentFactory(Start start, PieceWeight weight, List<StructureComponent> component, Random rand, int x, int y, int z, EnumFacing facing, int type)
         {
-            Class <? extends Village> oclass = weight.villagePieceClass;
+            Class<? extends Village> oclass = weight.villagePieceClass;
             Village village = null;
 
             if (oclass == House4Garden.class)
