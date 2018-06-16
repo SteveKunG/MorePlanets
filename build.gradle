@@ -87,6 +87,12 @@ curseforge {
 
         mainArtifact(file("build/libs/More-Planets-" + mcVersion + "-" + version + ".jar")) {
             displayName = "More-Planets-" + mcVersion + "-" + version
+            relations {
+                requiredLibrary "stevekungs-lib"
+                optionalLibrary "jei"
+                optionalLibrary "ctm"
+                optionalLibrary "hwyla"
+            }
         }
     }
 }
