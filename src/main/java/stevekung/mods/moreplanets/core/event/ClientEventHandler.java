@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.core.event;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.lwjgl.input.Keyboard;
 
@@ -65,7 +66,7 @@ public class ClientEventHandler
     private boolean initVersionCheck;
     public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
     public static final List<BlockPos> wasteRenderPos = new ArrayList<>();
-    public static final List<String> entityId = new ArrayList<>();
+    public static final List<String> entityId = new CopyOnWriteArrayList<>();
     public static final Set<IMorePlanetsBoss> bossList = Collections.newSetFromMap(new WeakHashMap<>());
     private static final ResourceLocation BOSS_BAR = new ResourceLocation("moreplanets:textures/gui/boss_bars.png");
 
@@ -204,6 +205,10 @@ public class ClientEventHandler
                         MorePlanetsMod.CHECKER.printChangeLog(this.mc.player);
                     }
                     this.initVersionCheck = true;
+                }
+                if (this.mc.player.ticksExisted % 20 == 0)
+                {
+                    ClientEventHandler.entityId.removeIf(ids -> this.mc.world.getEntityByID(Integer.valueOf(ids)) == null);
                 }
             }
         }
