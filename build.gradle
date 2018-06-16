@@ -82,7 +82,8 @@ curseforge {
     project {
         id = "261990"
         changelog = "To read full change log use command /mpchangelog in-game.\n\n or following by this link: https://discord.gg/5KDqYh2"
-        releaseType = "release"
+        changelogType = "markdown"
+        releaseType = "beta"
         addGameVersion mcVersion
 
         mainArtifact(file("build/libs/More-Planets-" + mcVersion + "-" + version + ".jar")) {
