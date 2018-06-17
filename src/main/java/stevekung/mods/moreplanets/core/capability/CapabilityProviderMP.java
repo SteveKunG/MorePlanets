@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.utils.debug;
+package stevekung.mods.moreplanets.core.capability;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -8,9 +8,9 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 public class CapabilityProviderMP implements ICapabilitySerializable<NBTTagCompound>
 {
-    @CapabilityInject(MorePlanetsCapabilityData.class)
-    public static final Capability<MorePlanetsCapabilityData> MORE_PLANETS_CAP = null;
-    private MorePlanetsCapabilityData instance = CapabilityProviderMP.MORE_PLANETS_CAP.getDefaultInstance();
+    @CapabilityInject(AbstractCapabilityDataMP.class)
+    public static final Capability<AbstractCapabilityDataMP> MORE_PLANETS_CAP = null;
+    private final AbstractCapabilityDataMP instance = CapabilityProviderMP.MORE_PLANETS_CAP.getDefaultInstance();
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing)

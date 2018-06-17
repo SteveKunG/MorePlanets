@@ -24,6 +24,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.client.command.CommandChangeLog;
+import stevekung.mods.moreplanets.core.capability.CapabilityHandlerMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.*;
 import stevekung.mods.moreplanets.core.handler.GuiHandlerMP;
@@ -92,6 +93,7 @@ public class MorePlanetsMod
         CompatibilityManagerMP.init();
         MorePlanetsMod.initModInfo(event.getModMetadata());
         CommonUtils.registerEventHandler(this);
+        CapabilityHandlerMP.register();
 
         MPBlocks.init();
         MPItems.init();

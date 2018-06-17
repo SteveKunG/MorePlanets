@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.utils.debug;
+package stevekung.mods.moreplanets.core.capability;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,21 +30,21 @@ public class CapabilityHandlerMP
     @SubscribeEvent
     public void onPlayerClone(PlayerEvent.Clone event)
     {
-        if (event.isWasDeath())
+        /*if (event.isWasDeath())
         {
             EntityPlayer player = event.getEntityPlayer();
             MorePlanetsCapabilityData currentData = player.getCapability(CapabilityProviderMP.MORE_PLANETS_CAP, null);
             MorePlanetsCapabilityData oldData = event.getOriginal().getCapability(CapabilityProviderMP.MORE_PLANETS_CAP, null);
             currentData.setStartCelestial(oldData.getStartCelestial());
-        }
+        }*/
     }
 
     public static void register()
     {
-        CapabilityManager.INSTANCE.register(MorePlanetsCapabilityData.class, new Capability.IStorage<MorePlanetsCapabilityData>()
+        CapabilityManager.INSTANCE.register(AbstractCapabilityDataMP.class, new Capability.IStorage<AbstractCapabilityDataMP>()
         {
             @Override
-            public NBTBase writeNBT(Capability<MorePlanetsCapabilityData> capability, MorePlanetsCapabilityData instance, EnumFacing side)
+            public NBTBase writeNBT(Capability<AbstractCapabilityDataMP> capability, AbstractCapabilityDataMP instance, EnumFacing side)
             {
                 NBTTagCompound nbt = new NBTTagCompound();
                 instance.writeNBT(nbt);
@@ -52,11 +52,11 @@ public class CapabilityHandlerMP
             }
 
             @Override
-            public void readNBT(Capability<MorePlanetsCapabilityData> capability, MorePlanetsCapabilityData instance, EnumFacing side, NBTBase nbt)
+            public void readNBT(Capability<AbstractCapabilityDataMP> capability, AbstractCapabilityDataMP instance, EnumFacing side, NBTBase nbt)
             {
                 instance.readNBT((NBTTagCompound) nbt);
             }
-        }, MPCapData::new);
+        }, CapabilityDataMP::new);
         CommonUtils.registerEventHandler(new CapabilityHandlerMP());
     }
 }

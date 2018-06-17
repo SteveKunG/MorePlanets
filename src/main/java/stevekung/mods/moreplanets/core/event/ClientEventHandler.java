@@ -12,12 +12,15 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRender;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -27,6 +30,8 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -45,17 +50,21 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.MultiblockRendererUtils;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
+import stevekung.mods.moreplanets.network.PacketSimpleMP;
+import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.LoggerMP;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 public class ClientEventHandler
 {
@@ -210,6 +219,7 @@ public class ClientEventHandler
                 {
                     ClientEventHandler.entityId.removeIf(ids -> this.mc.world.getEntityByID(Integer.valueOf(ids)) == null);
                 }
+                this.runPortalTick();
             }
         }
     }
@@ -307,7 +317,17 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT) //TODO Fix overlay
     public void onRenderGameOverlay(RenderGameOverlayEvent event)
     {
-        if (event.getType().equals(RenderGameOverlayEvent.ElementType.ALL))
+        if (event.getType().equals(RenderGameOverlayEvent.ElementType.PORTAL))
+        {
+            AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(this.mc.player);
+            float f1 = data.getPrevTimeInPortal() + (data.getTimeInPortal() - data.getPrevTimeInPortal()) * event.getPartialTicks();
+
+            if (f1 > 0.0F)
+            {
+                this.renderPortal(f1, event.getResolution());
+            }
+        }
+        else if (event.getType().equals(RenderGameOverlayEvent.ElementType.ALL))
         {
             if (this.mc.gameSettings.thirdPersonView == 0)
             {
@@ -609,6 +629,98 @@ public class ClientEventHandler
                 this.mc.world.playSound(player, posX, player.posY, posZ, MPSounds.ALIEN_BEAM, SoundCategory.WEATHER, 100.0F, 1.0F + player.getRNG().nextFloat() * 0.8F);
                 this.beamList.put(new BlockPos(posX, posY, posZ), 40);
             }
+        }
+    }
+
+    private void renderPortal(float timeInPortal, ScaledResolution res)
+    {
+        if (timeInPortal < 1.0F)
+        {
+            timeInPortal = timeInPortal * timeInPortal;
+            timeInPortal = timeInPortal * timeInPortal;
+            timeInPortal = timeInPortal * 0.8F + 0.2F;
+        }
+        GlStateManager.disableAlpha();
+        GlStateManager.disableDepth();
+        GlStateManager.depthMask(false);
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, timeInPortal);
+        this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        TextureAtlasSprite textureatlassprite = this.mc.getBlockRendererDispatcher().getBlockModelShapes().getTexture(Blocks.PORTAL.getDefaultState());
+        float f = textureatlassprite.getMinU();
+        float f1 = textureatlassprite.getMinV();
+        float f2 = textureatlassprite.getMaxU();
+        float f3 = textureatlassprite.getMaxV();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos(0.0D, res.getScaledHeight(), -90.0D).tex(f, f3).endVertex();
+        bufferbuilder.pos(res.getScaledWidth(), res.getScaledHeight(), -90.0D).tex(f2, f3).endVertex();
+        bufferbuilder.pos(res.getScaledWidth(), 0.0D, -90.0D).tex(f2, f1).endVertex();
+        bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex(f, f1).endVertex();
+        tessellator.draw();
+        GlStateManager.depthMask(true);
+        GlStateManager.enableDepth();
+        GlStateManager.enableAlpha();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
+    private void runPortalTick()
+    {
+        AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(this.mc.player);
+        data.setPrevTimeInPortal(data.getTimeInPortal());
+
+        if (data.isInPortal())
+        {
+            if (data.getTimeInPortal() == 0.0F)
+            {
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.BLOCK_PORTAL_TRIGGER, this.mc.player.world.rand.nextFloat() * 0.4F + 0.8F));
+            }
+
+            data.setTimeInPortal(data.getTimeInPortal() + 0.0125F);
+
+            if (data.getTimeInPortal() >= 1.0F)
+            {
+                data.setTimeInPortal(1.0F);
+            }
+
+            // SERVER
+            int maxTime = 80;
+            data.setPortalCounter(data.getPortalCounter() + 1);
+
+            if (data.getPortalCounter() >= maxTime)
+            {
+                data.setPortalCounter(maxTime);
+                data.setTimeUntilPortal(this.mc.player.getPortalCooldown());
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_READY_TO_TELEPORT, GCCoreUtil.getDimensionID(this.mc.world)));
+            }
+            data.setInPortal(false);
+        }
+        else
+        {
+            if (data.getTimeInPortal() > 0.0F)
+            {
+                data.setTimeInPortal(data.getTimeInPortal() - 0.05F);
+            }
+            if (data.getTimeInPortal() < 0.0F)
+            {
+                data.setTimeInPortal(0.0F);
+            }
+
+            // SERVER
+            if (data.getPortalCounter() > 0)
+            {
+                data.setPortalCounter(data.getPortalCounter() - 4);
+            }
+            if (data.getPortalCounter() < 0)
+            {
+                data.setPortalCounter(0);
+            }
+        }
+
+        if (data.getTimeUntilPortal() > 0)
+        {
+            data.setTimeUntilPortal(data.getTimeUntilPortal() - 1);
         }
     }
 }
