@@ -8,7 +8,6 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.entities.IBubbleProvider;
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
-import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.Block;
@@ -46,7 +45,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.blocks.BlockShieldGenerator;
-import stevekung.mods.moreplanets.client.renderer.ShieldRenderer;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
@@ -90,7 +88,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public String ownerUUID = "";
     private boolean initialize = true;
     private final ShieldEvent event = new ShieldEvent(this);
-    private final ShieldClientEvent eventClient = new ShieldClientEvent(this);
 
     public TileEntityShieldGenerator()
     {
@@ -107,10 +104,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             CommonUtils.unregisterEventHandler(this.event);
         }
-        else
-        {
-            CommonUtils.unregisterEventHandler(this.eventClient);
-        }
     }
 
     @Override
@@ -122,10 +115,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             CommonUtils.unregisterEventHandler(this.event);
         }
-        else
-        {
-            CommonUtils.unregisterEventHandler(this.eventClient);
-        }
     }
 
     @Override
@@ -135,10 +124,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             CommonUtils.registerEventHandler(this.event);
         }
-        else
-        {
-            CommonUtils.registerEventHandler(this.eventClient);
-        }
     }
 
     @Override
@@ -146,6 +131,20 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     {
         super.update();
         this.renderTicks++;
+
+        EntityPlayer player = this.world.getClosestPlayer(this.pos.getX(), this.pos.getY(), this.pos.getZ(), 512, false);
+
+        if (!this.world.isRemote)
+        {
+            if (player == null)
+            {
+                CommonUtils.unregisterEventHandler(this.event);
+            }
+            else
+            {
+                CommonUtils.registerEventHandler(this.event);
+            }
+        }
 
         if (this.initialize)
         {
@@ -727,23 +726,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                     this.tile.shieldCapacity -= motion * 2;
                 }
             }
-        }
-    }
-
-    public static class ShieldClientEvent
-    {
-        private TileEntityShieldGenerator tile;
-
-        public ShieldClientEvent(TileEntityShieldGenerator tile)
-        {
-            this.tile = tile;
-        }
-
-        @SubscribeEvent
-        @SideOnly(Side.CLIENT)
-        public void onSpecialRender(ClientProxyCore.EventSpecialRender event)
-        {
-            ShieldRenderer.renderShields(this.tile, FMLClientHandler.instance().getClientPlayerEntity(), event.partialTicks);
         }
     }
 }

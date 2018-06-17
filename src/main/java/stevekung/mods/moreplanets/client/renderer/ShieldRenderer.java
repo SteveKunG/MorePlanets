@@ -1,5 +1,8 @@
 package stevekung.mods.moreplanets.client.renderer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.common.collect.ImmutableList;
 
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
@@ -16,7 +19,18 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 public class ShieldRenderer
 {
     private static final ResourceLocation OBJ = new ResourceLocation("moreplanets:shield.obj");
+    private static final List<TileEntityShieldGenerator> SHIELD = new ArrayList<>();
     private static IBakedModel SPHERE;
+
+    public static void clearShields()
+    {
+        ShieldRenderer.SHIELD.clear();
+    }
+
+    public static void addShield(TileEntityShieldGenerator tile)
+    {
+        ShieldRenderer.SHIELD.add(tile);
+    }
 
     private static void updateModels()
     {
@@ -30,7 +44,7 @@ public class ShieldRenderer
         }
     }
 
-    public static void renderShields(TileEntityShieldGenerator tile, EntityPlayer player, float partialTicks)
+    public static void renderShields(EntityPlayer player, float partialTicks)
     {
         Minecraft mc = Minecraft.getMinecraft();
         double interpPosX = player.lastTickPosX + (player.posX - player.lastTickPosX) * partialTicks;
@@ -58,8 +72,12 @@ public class ShieldRenderer
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
 
-        if (tile.getBubbleVisible())
+        for (TileEntityShieldGenerator tile : ShieldRenderer.SHIELD)
         {
+            if (!tile.getBubbleVisible())
+            {
+                continue;
+            }
             GlStateManager.pushMatrix();
             float x = (float) (tile.getPos().getX() - interpPosX);
             float y = (float) (tile.getPos().getY() - interpPosY);

@@ -49,6 +49,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.renderer.MultiblockRendererUtils;
+import stevekung.mods.moreplanets.client.renderer.ShieldRenderer;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
@@ -62,6 +63,7 @@ import stevekung.mods.moreplanets.planets.diona.client.renderer.FakeAlienBeamRen
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
+import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
@@ -215,9 +217,16 @@ public class ClientEventHandler
                     }
                     this.initVersionCheck = true;
                 }
-                if (this.mc.player.ticksExisted % 20 == 0)
+
+                ClientEventHandler.entityId.removeIf(ids -> this.mc.world.getEntityByID(Integer.valueOf(ids)) == null);
+                ShieldRenderer.clearShields();
+
+                for (TileEntity tile : this.mc.player.world.tickableTileEntities)
                 {
-                    ClientEventHandler.entityId.removeIf(ids -> this.mc.world.getEntityByID(Integer.valueOf(ids)) == null);
+                    if (tile instanceof TileEntityShieldGenerator)
+                    {
+                        ShieldRenderer.addShield((TileEntityShieldGenerator)tile);
+                    }
                 }
                 this.runPortalTick();
             }
@@ -253,6 +262,7 @@ public class ClientEventHandler
                 Map.Entry<BlockPos, Integer> entry = it.next();
                 FakeAlienBeamRenderer.INSTANCE.renderBeam(entry.getKey().getX() - ClientProxyCore.playerPosX, entry.getKey().getY() - ClientProxyCore.playerPosY, entry.getKey().getZ() - ClientProxyCore.playerPosZ, event.partialTicks);
             }
+            ShieldRenderer.renderShields(this.mc.player, event.partialTicks);
         }
     }
 
