@@ -50,6 +50,24 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER), new Object[] { "EAE", "ANA", "EAE", 'E', MPBlocks.DARK_ENERGY_STORAGE_CLUSTER, 'A', MPItems.ALIEN_MINER_PART, 'N', MPBlocks.NUCLEAR_WASTE_TANK });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_PORTAL), new Object[] { "OFO", "OOO", "OOO", 'O', "obsidian", 'F', Items.FLINT_AND_STEEL });
 
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.DIONA_COBBLESTONE), "block_from_slab", "diona_cobblestone_from_slab", new Object[] { "X", "X", 'X', MPBlocks.DIONA_COBBLESTONE_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.CHALOS_COBBLESTONE), "block_from_slab", "chalos_cobblestone_from_slab", new Object[] { "X", "X", 'X', MPBlocks.CHALOS_COBBLESTONE_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.NIBIRU_COBBLESTONE), "block_from_slab", "nibiru_cobblestone_from_slab", new Object[] { "X", "X", 'X', MPBlocks.NIBIRU_COBBLESTONE_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.DIONA_DUNGEON_BRICK), "block_from_slab", "diona_dungeon_brick_from_slab", new Object[] { "X", "X", 'X', MPBlocks.DIONA_DUNGEON_BRICK_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.CHALOS_DUNGEON_BRICK), "block_from_slab", "chalos_dungeon_brick_from_slab", new Object[] { "X", "X", 'X', MPBlocks.CHALOS_DUNGEON_BRICK_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.NIBIRU_DUNGEON_BRICK), "block_from_slab", "nibiru_dungeon_brick_from_slab", new Object[] { "X", "X", 'X', MPBlocks.NIBIRU_DUNGEON_BRICK_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.CHEESE_SPORE_PLANKS), "block_from_slab", "cheese_spore_planks_from_slab", new Object[] { "X", "X", 'X', MPBlocks.CHEESE_SPORE_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_OAK_PLANKS), "block_from_slab", "infected_oak_planks_from_slab", new Object[] { "X", "X", 'X', MPBlocks.INFECTED_OAK_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_OAK_PLANKS), "block_from_slab", "alien_berry_oak_planks_from_slab", new Object[] { "X", "X", 'X', MPBlocks.ALIEN_BERRY_OAK_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE), "block_from_slab", "infected_prismarine_from_slab", new Object[] { "X", "X", 'X', MPBlocks.INFECTED_PRISMARINE_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PRISMARINE_BRICKS), "block_from_slab", "infected_prismarine_bricks_from_slab", new Object[] { "X", "X", 'X', MPBlocks.INFECTED_PRISMARINE_BRICK_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_DARK_PRISMARINE), "block_from_slab", "infected_dark_prismarine_from_slab", new Object[] { "X", "X", 'X', MPBlocks.INFECTED_DARK_PRISMARINE_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_VEIN_STONE_BRICKS), "block_from_slab", "infected_vein_stone_bricks_from_slab", new Object[] { "X", "X", 'X', MPBlocks.INFECTED_VEIN_STONE_BRICKS_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CRACKED_STONE_BRICKS), "block_from_slab", "infected_cracked_stone_bricks_from_slab", new Object[] { "X", "X", 'X', MPBlocks.INFECTED_CRACKED_STONE_BRICKS_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.TERRASTONE), "block_from_slab", "terrastone_from_slab", new Object[] { "X", "X", 'X', MPBlocks.TERRASTONE_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CUT_SANDSTONE), "block_from_slab", "infected_cut_sandstone_from_slab", new Object[] { "X", "X", 'X', MPBlocks.INFECTED_CUT_SANDSTONE_SLAB });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.ALIEN_SHIP_DECORATION_0), "block_from_slab", "alien_ship_decoration_from_slab", new Object[] { "X", "X", 'X', MPBlocks.ALIEN_SHIP_DECORATION_SLAB });
+
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.DIONA_COBBLESTONE_SLAB, 6), "cobblestone_slab", new Object[] { "XXX", 'X', MPBlocks.DIONA_COBBLESTONE });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.CHALOS_COBBLESTONE_SLAB, 6), "cobblestone_slab", new Object[] { "XXX", 'X', MPBlocks.CHALOS_COBBLESTONE });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.NIBIRU_COBBLESTONE_SLAB, 6), "cobblestone_slab", new Object[] { "XXX", 'X', MPBlocks.NIBIRU_COBBLESTONE });

@@ -1,0 +1,16 @@
+{
+    "group": "block_from_slab",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X",
+        "X"
+    ],
+    "key": {
+        "X": {
+            "item": "moreplanets:infected_oak_slab"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_oak_planks"
+    }
+}
