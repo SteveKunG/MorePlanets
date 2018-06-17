@@ -89,10 +89,9 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
     {
-        return BlockRenderLayer.TRANSLUCENT;
+        return layer == BlockRenderLayer.SOLID || layer == BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override

@@ -1,5 +1,18 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "model": "forge:multi-layer",
+        "custom": {
+            "base": "moreplanets:space_portal#base",
+            "Solid": "moreplanets:space_portal#base",
+            "Translucent": "moreplanets:space_portal#portal"
+        },
+        "transform": "forge:default-block"
+     },
     "variants": {
-        "normal": { "model": "moreplanets:space_portal" }
+        "normal": [{}],
+        "inventory": [{}],
+        "portal": [{ "model": "moreplanets:space_portal_top" }],
+        "base": [{ "model": "moreplanets:space_portal_base" }]
     }
 }
