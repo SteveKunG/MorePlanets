@@ -53,28 +53,29 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        if (!entity.isRiding() && !entity.isBeingRidden() && entity.isNonBoss())
+        if (entity instanceof EntityPlayerMP)
         {
-            AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(entity);
+            EntityPlayerMP playerMP = (EntityPlayerMP)entity;
 
-            if (data.getTimeUntilPortal() > 0)
+            if (!playerMP.isRiding() && !playerMP.isBeingRidden() && playerMP.isNonBoss())
             {
-                data.setTimeUntilPortal(entity.getPortalCooldown());
-            }
-            else
-            {
-                data.setInPortal(true);
-            }
+                AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(playerMP);
 
-            if (data.isReadyToTeleport())
-            {
-                if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
+                if (data.getTimeUntilPortal() > 0)
                 {
-                    if (entity instanceof EntityPlayerMP)
+                    data.setTimeUntilPortal(playerMP.getPortalCooldown());
+                }
+                else
+                {
+                    data.setInPortal(true);
+                }
+
+                if (data.isReadyToTeleport())
+                {
+                    if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
                     {
                         int netherId = ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether;
                         String survivalPlanet = WorldTickEventHandler.survivalPlanetData.survivalPlanetName;
-                        EntityPlayerMP playerMP = (EntityPlayerMP)entity;
 
                         if (playerMP.dimension != netherId)
                         {
