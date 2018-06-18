@@ -29,6 +29,7 @@ import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityMultalicCr
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProvider
 {
@@ -146,7 +147,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        for (EnumFacing facing : EnumFacing.VALUES)
+        for (EnumFacing facing : CachedEnum.facingValues)
         {
             if (this.canPlaceBlock(world, pos, facing))
             {

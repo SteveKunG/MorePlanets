@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class WorldGenLargeInfectedCrystallized extends WorldGenerator
 {
@@ -17,7 +18,7 @@ public class WorldGenLargeInfectedCrystallized extends WorldGenerator
     {
         for (int i = 0; i < 2; ++i)
         {
-            for (EnumFacing facing : EnumFacing.VALUES)
+            for (EnumFacing facing : CachedEnum.facingValues)
             {
                 Block block = MPBlocks.LARGE_INFECTED_CRYSTALLIZED;
 

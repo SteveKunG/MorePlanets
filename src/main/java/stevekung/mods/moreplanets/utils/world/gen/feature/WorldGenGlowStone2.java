@@ -7,6 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class WorldGenGlowStone2 extends WorldGenerator
 {
@@ -33,7 +34,7 @@ public class WorldGenGlowStone2 extends WorldGenerator
                 {
                     int j = 0;
 
-                    for (EnumFacing enumfacing : EnumFacing.values())
+                    for (EnumFacing enumfacing : CachedEnum.facingValues)
                     {
                         if (world.getBlockState(blockpos.offset(enumfacing)).getBlock() == Blocks.GLOWSTONE)
                         {

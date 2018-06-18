@@ -34,6 +34,7 @@ import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITileEntityProvider
 {
@@ -186,7 +187,7 @@ public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITile
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        for (EnumFacing facing : EnumFacing.VALUES)
+        for (EnumFacing facing : CachedEnum.facingValues)
         {
             if (this.canPlaceBlock(world, pos, facing))
             {

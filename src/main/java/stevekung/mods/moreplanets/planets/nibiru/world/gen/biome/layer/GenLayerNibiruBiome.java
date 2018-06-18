@@ -122,7 +122,7 @@ public class GenLayerNibiruBiome extends GenLayer
 
     private ArrayList<BiomeManager.BiomeEntry>[] setupBiomes()
     {
-        ArrayList<BiomeManager.BiomeEntry>[] currentBiomes = new ArrayList[BiomeManager.BiomeType.values().length];
+        ArrayList<BiomeManager.BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.biomeValues.length];
         List<BiomeManager.BiomeEntry> list = new ArrayList<>();
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_FOREST, 10));
         list.add(new BiomeManager.BiomeEntry(MPBiomes.INFECTED_DEAD_DARK_FOREST, 10));
