@@ -5,23 +5,24 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ContainerWorkbenchMP extends Container
 {
     private final InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
-    private final IInventory craftResult = new InventoryCraftResult();
-    private final World worldObj;
+    private final InventoryCraftResult craftResult = new InventoryCraftResult();
+    private final World world;
+    private final Block block;
     private final BlockPos pos;
-    private final Block table;
+    private final EntityPlayer player;
 
-    public ContainerWorkbenchMP(InventoryPlayer inv, World world, BlockPos pos, Block table)
+    public ContainerWorkbenchMP(InventoryPlayer inv, World world, BlockPos pos, Block block)
     {
-        this.worldObj = world;
+        this.world = world;
         this.pos = pos;
-        this.table = table;
+        this.player = inv.player;
+        this.block = block;
         this.addSlotToContainer(new SlotCrafting(inv.player, this.craftMatrix, this.craftResult, 0, 124, 35));
 
         for (int i = 0; i < 3; ++i)
@@ -42,13 +43,12 @@ public class ContainerWorkbenchMP extends Container
         {
             this.addSlotToContainer(new Slot(inv, l, 8 + l * 18, 142));
         }
-        this.onCraftMatrixChanged(this.craftMatrix);
     }
 
     @Override
-    public void onCraftMatrixChanged(IInventory inventory)
+    public void onCraftMatrixChanged(IInventory inv)
     {
-        this.craftResult.setInventorySlotContents(0, CraftingManager.findMatchingResult(this.craftMatrix, this.worldObj));
+        this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
     }
 
     @Override
@@ -56,24 +56,23 @@ public class ContainerWorkbenchMP extends Container
     {
         super.onContainerClosed(player);
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            for (int i = 0; i < 9; ++i)
-            {
-                ItemStack itemStack = this.craftMatrix.removeStackFromSlot(i);
-
-                if (!itemStack.isEmpty())
-                {
-                    player.entityDropItem(itemStack, 0.0F);
-                }
-            }
+            this.clearContainer(player, this.world, this.craftMatrix);
         }
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.worldObj.getBlockState(this.pos).getBlock() != this.table ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        if (this.world.getBlockState(this.pos).getBlock() != this.block)
+        {
+            return false;
+        }
+        else
+        {
+            return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        }
     }
 
     @Override
@@ -89,6 +88,8 @@ public class ContainerWorkbenchMP extends Container
 
             if (index == 0)
             {
+                itemStack1.getItem().onCreated(itemStack1, this.world, player);
+
                 if (!this.mergeItemStack(itemStack1, 10, 46, true))
                 {
                     return ItemStack.EMPTY;
@@ -114,7 +115,7 @@ public class ContainerWorkbenchMP extends Container
                 return ItemStack.EMPTY;
             }
 
-            if (itemStack1.getCount() == 0)
+            if (itemStack1.isEmpty())
             {
                 slot.putStack(ItemStack.EMPTY);
             }
@@ -127,7 +128,13 @@ public class ContainerWorkbenchMP extends Container
             {
                 return ItemStack.EMPTY;
             }
-            slot.onTake(player, itemStack1);
+
+            ItemStack itemStack2 = slot.onTake(player, itemStack1);
+
+            if (index == 0)
+            {
+                player.dropItem(itemStack2, false);
+            }
         }
         return itemStack;
     }
