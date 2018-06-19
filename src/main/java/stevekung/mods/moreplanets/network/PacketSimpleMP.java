@@ -54,14 +54,10 @@ public class PacketSimpleMP extends PacketBase
         super();
     }
 
-    public PacketSimpleMP(EnumSimplePacketMP packetType, int dimID, Object... data)
-    {
-        this(packetType, dimID, Arrays.asList(data));
-    }
-
-    public PacketSimpleMP(EnumSimplePacketMP packetType, int dimID, List<Object> data)
+    public PacketSimpleMP(EnumSimplePacketMP packetType, int dimID, Object... dataList)
     {
         super(dimID);
+        List<Object> data = Arrays.asList(dataList);
 
         if (packetType.getDecodeClasses().length != data.size())
         {

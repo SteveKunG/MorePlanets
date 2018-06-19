@@ -2,7 +2,10 @@ package stevekung.mods.moreplanets.init;
 
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
-import stevekung.mods.moreplanets.entity.*;
+import stevekung.mods.moreplanets.entity.EntityAntiGravFallingBlock;
+import stevekung.mods.moreplanets.entity.EntityBlackHole;
+import stevekung.mods.moreplanets.entity.EntityBlackHoleStorage;
+import stevekung.mods.moreplanets.entity.EntitySpaceMinecartChest;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
