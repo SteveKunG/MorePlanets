@@ -54,6 +54,6 @@ public class BiomeMP extends Biome
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos)
     {
-        return 747097;
+        return -8798118;
     }
 }
