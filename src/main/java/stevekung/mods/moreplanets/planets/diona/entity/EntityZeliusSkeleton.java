@@ -28,7 +28,7 @@ import stevekung.mods.moreplanets.utils.entity.ai.EntityAIAttackRangedBowMP;
 
 public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreathable
 {
-    private final EntityAIAttackRangedBowMP aiArrowAttack = new EntityAIAttackRangedBowMP(this, 1.0D, 20, 15.0F);
+    private final EntityAIAttackRangedBowMP<EntityZeliusSkeleton> aiArrowAttack = new EntityAIAttackRangedBowMP<>(this, 1.0D, 20, 15.0F);
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
     {
         @Override

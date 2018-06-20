@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public abstract class GuiContainerMP extends GuiContainer
 {
-    protected List<GuiElementInfoRegionMP> infoRegions = new ArrayList<>();
+    protected final List<GuiElementInfoRegionMP> infoRegions = new ArrayList<>();
     protected boolean renderInfo = true;
 
     public GuiContainerMP(Container container)

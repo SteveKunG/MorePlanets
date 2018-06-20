@@ -35,7 +35,6 @@ public class ParticleLavaMC extends Particle
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public int getBrightnessForRender(float partialTicks)
     {
         int i = super.getBrightnessForRender(partialTicks);
