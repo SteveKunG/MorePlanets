@@ -510,7 +510,7 @@ public class ClientEventHandler
 
             if (event.celestialBody == GalacticraftCore.planetOverworld && enable)
             {
-                float size = GuiCelestialSelection.getWidthForCelestialBodyStatic(event.celestialBody) / 16.0F;
+                float size = gui.getWidthForCelestialBody(event.celestialBody) / 16.0F;
                 float orbitTick = MathHelper.sin(partialTicks * 0.2F) / 10.0F + 0.5F;
                 GlStateManager.translate(6.0F, orbitTick + -6.5F, 0.0F);
                 this.mc.renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/gui/celestialbodies/ion_cannon.png"));
