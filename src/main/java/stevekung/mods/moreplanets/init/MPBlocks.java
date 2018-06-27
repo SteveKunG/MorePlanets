@@ -211,7 +211,7 @@ public class MPBlocks
     public static Block DIONA_TREASURE_CHEST;
     public static Block INFECTED_CRYSTALLIZED_PLANKS;
     public static Block INFECTED_CRYSTALLIZED_FENCE;
-    public static Block INFECTED_CRYSTALLIZED_WEB;
+    public static Block INFECTED_CRYSTALLIZED_COBWEB;
     public static Block INFECTED_CRYSTALLIZED_TORCH;
     public static Block ZELIUS_EGG;
     public static Block LARGE_INFECTED_CRYSTALLIZED;
@@ -673,7 +673,7 @@ public class MPBlocks
         MPBlocks.DIONA_TREASURE_CHEST = new BlockDionaTreasureChest("diona_treasure_chest");
         MPBlocks.INFECTED_CRYSTALLIZED_PLANKS = new BlockCTMGlowing("infected_crystallized_planks", Material.WOOD).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
         MPBlocks.INFECTED_CRYSTALLIZED_FENCE = new BlockFenceMP("infected_crystallized_fence");
-        MPBlocks.INFECTED_CRYSTALLIZED_WEB = new BlockInfectedCrystallizedWeb("infected_crystallized_web");
+        MPBlocks.INFECTED_CRYSTALLIZED_COBWEB = new BlockInfectedCrystallizedCobweb("infected_crystallized_cobweb");
         MPBlocks.INFECTED_CRYSTALLIZED_TORCH = new BlockInfectedCrystallizedTorch("infected_crystallized_torch");
         MPBlocks.ZELIUS_EGG = new BlockZeliusEgg("zelius_egg");
         MPBlocks.LARGE_INFECTED_CRYSTALLIZED = new BlockLargeInfectedCrystallized("large_infected_crystallized");
@@ -1070,7 +1070,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_ANCIENT_CHEST, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_TREASURE_CHEST, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ZELIUS_EGG, ItemBlockTESRMP::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_WEB);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_COBWEB);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_TORCH);
         BlocksItemsRegistry.registerBlock(MPBlocks.LARGE_INFECTED_CRYSTALLIZED, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_MINER_BLOOD);

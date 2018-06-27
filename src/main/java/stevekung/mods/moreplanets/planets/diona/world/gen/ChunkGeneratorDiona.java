@@ -30,7 +30,7 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
     private BiomeDecoratorDiona decorator = new BiomeDecoratorDiona();
     private MapGenCavesBase caveGenerator = new MapGenCavesBase(MPBlocks.DIONA_SURFACE_ROCK.getDefaultState(), MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), Sets.newHashSet(MPBlocks.DIONA_SUB_SURFACE_ROCK, MPBlocks.DIONA_ROCK));
     private MapGenDionaMineshaft mineshaftGenerator = new MapGenDionaMineshaft();
-    private MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(MPBlocks.DIONA_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), MPBlocks.INFECTED_CRYSTALLIZED_WEB.getDefaultState(), MPBlocks.INFECTED_CRYSTALLIZED_TORCH.getDefaultState(), MPBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
+    private MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(MPBlocks.DIONA_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), MPBlocks.INFECTED_CRYSTALLIZED_COBWEB.getDefaultState(), MPBlocks.INFECTED_CRYSTALLIZED_TORCH.getDefaultState(), MPBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
     private MapGenCrashedAlienShipFeature alienShipFeatureGenerator = new MapGenCrashedAlienShipFeature();
 
     public ChunkGeneratorDiona(World world, long seed)

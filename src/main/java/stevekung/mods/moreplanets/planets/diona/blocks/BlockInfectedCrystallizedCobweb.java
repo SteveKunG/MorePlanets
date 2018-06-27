@@ -27,9 +27,9 @@ import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class BlockInfectedCrystallizedWeb extends BlockBaseMP
+public class BlockInfectedCrystallizedCobweb extends BlockBaseMP
 {
-    public BlockInfectedCrystallizedWeb(String name)
+    public BlockInfectedCrystallizedCobweb(String name)
     {
         super(Material.WEB);
         this.setUnlocalizedName(name);

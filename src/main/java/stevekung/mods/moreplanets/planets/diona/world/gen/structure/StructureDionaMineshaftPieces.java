@@ -231,7 +231,7 @@ public class StructureDionaMineshaftPieces
 
                 if (this.hasSpiders)
                 {
-                    this.generateMaybeBox(world, box, rand, 0.6F, 0, 0, 0, 2, 1, i1, MPBlocks.INFECTED_CRYSTALLIZED_WEB.getDefaultState(), Blocks.AIR.getDefaultState(), false, 8);
+                    this.generateMaybeBox(world, box, rand, 0.6F, 0, 0, 0, 2, 1, i1, MPBlocks.INFECTED_CRYSTALLIZED_COBWEB.getDefaultState(), Blocks.AIR.getDefaultState(), false, 8);
                 }
 
                 for (int j1 = 0; j1 < this.sectionCount; ++j1)
@@ -333,7 +333,7 @@ public class StructureDionaMineshaftPieces
         {
             if (this.getSkyBrightness(world, x, y, z, box) < 8)
             {
-                this.randomlyPlaceBlock(world, box, rand, chance, x, y, z, MPBlocks.INFECTED_CRYSTALLIZED_WEB.getDefaultState());
+                this.randomlyPlaceBlock(world, box, rand, chance, x, y, z, MPBlocks.INFECTED_CRYSTALLIZED_COBWEB.getDefaultState());
             }
         }
     }

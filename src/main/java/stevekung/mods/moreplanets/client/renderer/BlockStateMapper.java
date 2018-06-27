@@ -60,7 +60,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.GLOWING_IRON_BLOCK, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_PLANKS, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_FENCE, ctm);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_WEB, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_COBWEB, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_EYE_CORE, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.SPORELILY, ctm);
