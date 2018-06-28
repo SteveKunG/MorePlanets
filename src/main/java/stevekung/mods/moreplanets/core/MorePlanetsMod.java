@@ -50,7 +50,7 @@ public class MorePlanetsMod
     public static final String MOD_ID = "moreplanets";
     private static final int MAJOR_VERSION = 2;
     private static final int MINOR_VERSION = 1;
-    private static final int BUILD_VERSION = 2;
+    private static final int BUILD_VERSION = 3;
     public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
     private static final String FORGE_VERSION = "after:forge@[14.23.4.2705,);";
     protected static final String DEPENDENCIES = "required-after:stevekung's_lib@[1.0.0,); required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION;
