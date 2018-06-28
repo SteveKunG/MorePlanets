@@ -13,6 +13,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
@@ -53,25 +54,27 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        if (entity instanceof EntityPlayerMP)
+        if (entity instanceof EntityPlayer)
         {
-            EntityPlayerMP playerMP = (EntityPlayerMP)entity;
+            EntityPlayer player = (EntityPlayer)entity;
 
-            if (!playerMP.isRiding() && !playerMP.isBeingRidden() && playerMP.isNonBoss())
+            if (!player.isRiding() && !player.isBeingRidden() && player.isNonBoss())
             {
-                AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(playerMP);
+                AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(player);
 
                 if (data.getTimeUntilPortal() > 0)
                 {
-                    data.setTimeUntilPortal(playerMP.getPortalCooldown());
+                    data.setTimeUntilPortal(player.getPortalCooldown());
                 }
                 else
                 {
                     data.setInPortal(true);
                 }
 
-                if (data.isReadyToTeleport())
+                if (player instanceof EntityPlayerMP)
                 {
+                    EntityPlayerMP playerMP = (EntityPlayerMP)player;
+
                     if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
                     {
                         int netherId = ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether;
