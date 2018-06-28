@@ -1407,7 +1407,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD, ItemBlockSpaceWarpPad::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_WARP_PAD_FULL, null);
         BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_RECEIVER, ItemBlockDarkEnergyReceiver::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_PORTAL);
+        BlocksItemsRegistry.registerBlock(MPBlocks.SPACE_PORTAL, ItemBlockSpacePortal::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.BLACK_HOLE_STORAGE, ItemBlockBlackHoleStorage::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_DEFENDER_BEACON, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.SHIELD_GENERATOR, ItemBlockShieldGenerator::new);

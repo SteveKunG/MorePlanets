@@ -1,0 +1,5 @@
+{
+    "conditions": {
+        "condition": "stevekung.mods.moreplanets.recipe.SurvivalPlanetCondition"
+    }
+}

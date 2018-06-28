@@ -5,6 +5,12 @@
         "OOO",
         "OOO"
     ],
+    "conditions": [
+        {
+            "type": "moreplanets:condition",
+            "survival_planet": true
+        }
+    ],
     "key": {
         "F": {
             "item": "minecraft:flint_and_steel"
