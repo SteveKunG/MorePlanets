@@ -13,7 +13,6 @@
            "south": { },
            "west": { }
         },
-        "normal": [{}],
-        "inventory": [{}]
+        "normal": [{}]
     }
 }

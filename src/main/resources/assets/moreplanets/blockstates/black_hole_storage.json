@@ -7,7 +7,6 @@
         "model": "moreplanets:dummy"
     },
     "variants": {
-        "normal": [{}],
-        "inventory": [{}]
+        "normal": [{}]
     }
 }
