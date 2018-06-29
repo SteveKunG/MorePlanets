@@ -12,12 +12,10 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRender;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
@@ -31,7 +29,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -57,8 +54,6 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.network.PacketSimpleMP;
-import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
@@ -228,7 +223,6 @@ public class ClientEventHandler
                         ShieldRenderer.addShield((TileEntityShieldGenerator)tile);
                     }
                 }
-                this.runPortalTick();
             }
         }
     }
@@ -673,64 +667,5 @@ public class ClientEventHandler
         GlStateManager.enableDepth();
         GlStateManager.enableAlpha();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-    }
-
-    private void runPortalTick()
-    {
-        AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(this.mc.player);
-        data.setPrevTimeInPortal(data.getTimeInPortal());
-
-        if (data.isInPortal())
-        {
-            if (data.getTimeInPortal() == 0.0F)
-            {
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.BLOCK_PORTAL_TRIGGER, this.mc.player.world.rand.nextFloat() * 0.4F + 0.8F));
-            }
-
-            data.setTimeInPortal(data.getTimeInPortal() + 0.0125F);
-
-            if (data.getTimeInPortal() >= 1.0F)
-            {
-                data.setTimeInPortal(1.0F);
-            }
-
-            // SERVER
-            int maxTime = 80;
-            data.setPortalCounter(data.getPortalCounter() + 1);
-
-            if (data.getPortalCounter() >= maxTime)
-            {
-                data.setPortalCounter(maxTime);
-                data.setTimeUntilPortal(this.mc.player.getPortalCooldown());
-                GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_READY_TO_TELEPORT, GCCoreUtil.getDimensionID(this.mc.world)));
-            }
-            data.setInPortal(false);
-        }
-        else
-        {
-            if (data.getTimeInPortal() > 0.0F)
-            {
-                data.setTimeInPortal(data.getTimeInPortal() - 0.05F);
-            }
-            if (data.getTimeInPortal() < 0.0F)
-            {
-                data.setTimeInPortal(0.0F);
-            }
-
-            // SERVER
-            if (data.getPortalCounter() > 0)
-            {
-                data.setPortalCounter(data.getPortalCounter() - 4);
-            }
-            if (data.getPortalCounter() < 0)
-            {
-                data.setPortalCounter(0);
-            }
-        }
-
-        if (data.getTimeUntilPortal() > 0)
-        {
-            data.setTimeUntilPortal(data.getTimeUntilPortal() - 1);
-        }
     }
 }

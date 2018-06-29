@@ -5,27 +5,34 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
+import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.dimension.WorldProviderSpaceNether;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -41,6 +48,7 @@ import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinF
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.LoggerMP;
+import stevekung.mods.moreplanets.utils.TeleporterSpaceNether;
 import stevekung.mods.moreplanets.world.IMeteorType;
 
 public class EntityEventHandler
@@ -121,6 +129,16 @@ public class EntityEventHandler
         {
             int id = GCCoreUtil.getDimensionID(living.world);
             PacketSimpleMP.sendToAllAround(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_ENTITY_ID, id, String.valueOf(living.getEntityId())), living.world, id, living.getPosition(), 64);
+        }
+        if (living instanceof EntityPlayer)
+        {
+            EntityPlayer player = (EntityPlayer)living;
+
+            if (!player.world.isRemote && player.world instanceof WorldServer)
+            {
+                this.runPortalTick(player);
+            }
+            this.runPortalTickClient(player);
         }
         if (living instanceof EntityPlayerMP)
         {
@@ -289,5 +307,104 @@ public class EntityEventHandler
     private boolean isGodPlayer(EntityPlayer player)
     {
         return player.capabilities.isCreativeMode || player.isSpectator();
+    }
+
+    private void runPortalTick(EntityPlayer player)
+    {
+        AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(player);
+
+        if (data.isInPortal())
+        {
+            int maxTime = 80;
+            data.setPortalCounter(data.getPortalCounter() + 1);
+
+            if (data.getPortalCounter() >= maxTime)
+            {
+                data.setPortalCounter(maxTime);
+                data.setTimeUntilPortal(player.getPortalCooldown());
+
+                if (player instanceof EntityPlayerMP)
+                {
+                    EntityPlayerMP playerMP = (EntityPlayerMP)player;
+
+                    if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
+                    {
+                        int netherId = ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether;
+                        String survivalPlanet = WorldTickEventHandler.survivalPlanetData.survivalPlanetName;
+
+                        if (playerMP.dimension != netherId)
+                        {
+                            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, netherId, new TeleporterSpaceNether(playerMP.mcServer.getWorld(netherId), playerMP.getPosition(), playerMP.world.provider));
+                            GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, playerMP.dimension), playerMP);
+                        }
+                        else
+                        {
+                            int dimID = WorldUtil.getProviderForNameServer(survivalPlanet).getDimension();
+                            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterSpaceNether(playerMP.mcServer.getWorld(dimID), playerMP.getPosition(), playerMP.world.provider));
+                            GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, playerMP.dimension), playerMP);
+                        }
+                    }
+                }
+            }
+            data.setInPortal(false);
+        }
+        else
+        {
+            if (data.getPortalCounter() > 0)
+            {
+                data.setPortalCounter(data.getPortalCounter() - 4);
+            }
+            if (data.getPortalCounter() < 0)
+            {
+                data.setPortalCounter(0);
+            }
+        }
+    }
+
+    private void runPortalTickClient(EntityPlayer player)
+    {
+        AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(player);
+        data.setPrevTimeInPortal(data.getTimeInPortal());
+
+        if (data.isInPortal())
+        {
+            if (FMLClientHandler.instance().getClient().currentScreen != null && !FMLClientHandler.instance().getClient().currentScreen.doesGuiPauseGame())
+            {
+                if (FMLClientHandler.instance().getClient().currentScreen instanceof GuiContainer)
+                {
+                    player.closeScreen();
+                }
+                FMLClientHandler.instance().getClient().displayGuiScreen(null);
+            }
+
+            if (data.getTimeInPortal() == 0.0F)
+            {
+                FMLClientHandler.instance().getClient().getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.BLOCK_PORTAL_TRIGGER, player.world.rand.nextFloat() * 0.4F + 0.8F));
+            }
+
+            data.setTimeInPortal(data.getTimeInPortal() + 0.0125F);
+
+            if (data.getTimeInPortal() >= 1.0F)
+            {
+                data.setTimeInPortal(1.0F);
+            }
+            data.setInPortal(false);
+        }
+        else
+        {
+            if (data.getTimeInPortal() > 0.0F)
+            {
+                data.setTimeInPortal(data.getTimeInPortal() - 0.05F);
+            }
+            if (data.getTimeInPortal() < 0.0F)
+            {
+                data.setTimeInPortal(0.0F);
+            }
+        }
+
+        if (data.getTimeUntilPortal() > 0)
+        {
+            data.setTimeUntilPortal(data.getTimeUntilPortal() - 1);
+        }
     }
 }

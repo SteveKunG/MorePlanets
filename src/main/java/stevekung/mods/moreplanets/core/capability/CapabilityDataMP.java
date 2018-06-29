@@ -5,7 +5,6 @@ import net.minecraft.nbt.NBTTagCompound;
 public class CapabilityDataMP implements AbstractCapabilityDataMP
 {
     private boolean inPortal;
-    private boolean readyToTeleport;
     private int timeUntilPortal;
     private int portalCounter;
     private float timeInPortal;
@@ -15,7 +14,6 @@ public class CapabilityDataMP implements AbstractCapabilityDataMP
     public void writeNBT(NBTTagCompound nbt)
     {
         nbt.setBoolean("InPortal", this.inPortal);
-        nbt.setBoolean("ReadyToTeleport", this.readyToTeleport);
         nbt.setInteger("TimeUntilPortal", this.timeUntilPortal);
         nbt.setInteger("PortalCounter", this.portalCounter);
         nbt.setFloat("TimeInPortal", this.timeInPortal);
@@ -26,7 +24,6 @@ public class CapabilityDataMP implements AbstractCapabilityDataMP
     public void readNBT(NBTTagCompound nbt)
     {
         this.inPortal = nbt.getBoolean("InPortal");
-        this.readyToTeleport = nbt.getBoolean("ReadyToTeleport");
         this.timeUntilPortal = nbt.getInteger("TimeUntilPortal");
         this.portalCounter = nbt.getInteger("PortalCounter");
         this.timeInPortal = nbt.getFloat("TimeInPortal");
@@ -43,18 +40,6 @@ public class CapabilityDataMP implements AbstractCapabilityDataMP
     public boolean isInPortal()
     {
         return this.inPortal;
-    }
-
-    @Override
-    public void setReadyToTeleport(boolean ready)
-    {
-        this.readyToTeleport = ready;
-    }
-
-    @Override
-    public boolean isReadyToTeleport()
-    {
-        return this.readyToTeleport;
     }
 
     @Override

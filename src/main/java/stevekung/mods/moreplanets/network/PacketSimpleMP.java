@@ -31,7 +31,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.client.gui.GuiCelestialSelection;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGenerator;
 import stevekung.mods.moreplanets.client.gui.GuiShieldGeneratorConfig;
-import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.init.MPItems;
@@ -299,10 +298,6 @@ public class PacketSimpleMP extends PacketBase
             worldinfo.setRaining(true);
             worldinfo.setThundering(thunder);
             break;
-        case S_READY_TO_TELEPORT:
-            AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(player);
-            data.setReadyToTeleport(true);
-            break;
         default:
             break;
         }
@@ -321,7 +316,6 @@ public class PacketSimpleMP extends PacketBase
         S_FAILED_UNLOCK_CHEST(Side.SERVER, String.class),
         S_START_SURVIVAL_PLANET(Side.SERVER, Integer.class, String.class),
         S_UPDATE_NIBIRU_WEATHER(Side.SERVER, Boolean.class),
-        S_READY_TO_TELEPORT(Side.SERVER),
 
         // CLIENT
         C_ADD_ENTITY_ID(Side.CLIENT, String.class),

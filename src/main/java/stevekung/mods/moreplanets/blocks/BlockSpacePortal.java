@@ -5,8 +5,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -14,7 +12,6 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -28,12 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
-import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
-import stevekung.mods.moreplanets.network.PacketSimpleMP;
-import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.tileentity.TileEntitySpacePortal;
-import stevekung.mods.moreplanets.utils.TeleporterSpaceNether;
 import stevekung.mods.moreplanets.utils.blocks.BlockBreakableMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
@@ -69,31 +61,6 @@ public class BlockSpacePortal extends BlockBreakableMP implements IItemModelRend
                 else
                 {
                     data.setInPortal(true);
-                }
-
-                if (player instanceof EntityPlayerMP)
-                {
-                    EntityPlayerMP playerMP = (EntityPlayerMP)player;
-
-                    if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
-                    {
-                        int netherId = ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether;
-                        String survivalPlanet = WorldTickEventHandler.survivalPlanetData.survivalPlanetName;
-
-                        if (playerMP.dimension != netherId)
-                        {
-                            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, netherId, new TeleporterSpaceNether(playerMP.mcServer.getWorld(netherId), pos, playerMP.world.provider));
-                            GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, playerMP.dimension), playerMP);
-                            data.setReadyToTeleport(false);
-                        }
-                        else
-                        {
-                            int dimID = WorldUtil.getProviderForNameServer(survivalPlanet).getDimension();
-                            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, dimID, new TeleporterSpaceNether(playerMP.mcServer.getWorld(dimID), pos, playerMP.world.provider));
-                            GalacticraftCore.packetPipeline.sendTo(new PacketSimpleMP(EnumSimplePacketMP.C_RELOAD_RENDERER, playerMP.dimension), playerMP);
-                            data.setReadyToTeleport(false);
-                        }
-                    }
                 }
             }
         }

@@ -18,10 +18,6 @@ public interface AbstractCapabilityDataMP
 
     public boolean isInPortal();
 
-    public void setReadyToTeleport(boolean ready);
-
-    public boolean isReadyToTeleport();
-
     public void setTimeUntilPortal(int time);
 
     public int getTimeUntilPortal();
