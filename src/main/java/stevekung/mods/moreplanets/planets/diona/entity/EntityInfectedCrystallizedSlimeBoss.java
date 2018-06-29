@@ -220,7 +220,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
                     }
                     int slot = this.rand.nextInt(chest.getSizeInventory());
                     chest.setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, this.rand.nextLong());
-                    chest.setInventorySlotContents(slot, MPLootTables.getTieredKey(this.rand, 3));
+                    chest.setInventorySlotContents(slot, MPLootTables.getTieredKey(this.rand, 4));
                 }
             }
 

@@ -37,10 +37,7 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
 import stevekung.mods.moreplanets.recipe.CraftingManagerMP;
 import stevekung.mods.moreplanets.recipe.SmeltingManagerMP;
-import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
-import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
-import stevekung.mods.moreplanets.utils.CreativeTabsMP;
-import stevekung.mods.moreplanets.utils.LoggerMP;
+import stevekung.mods.moreplanets.utils.*;
 import stevekung.mods.stevekunglib.utils.CommonRegistryUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.VersionChecker;
@@ -140,6 +137,8 @@ public class MorePlanetsMod
         CommonUtils.registerEventHandler(new GeneralEventHandler());
         CommonUtils.registerEventHandler(new WorldTickEventHandler());
         CommonUtils.registerEventHandler(new MissingMappingHandler());
+        SchematicsRegistry.registerSchematicDungeonLoot(4, new ItemStack(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC));
+        SchematicsRegistry.registerSchematicDungeonLoot(4, new ItemStack(MPItems.ION_CANNON_SCHEMATIC));
     }
 
     @EventHandler
