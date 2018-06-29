@@ -11,6 +11,7 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
+import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -40,7 +41,7 @@ public class MorePlanetsJEIPlugin implements IModPlugin
         JEIRegistryHelper.registerRecipe(DarkEnergyRecipeData.getRecipeList(), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
         JEIRegistryHelper.registerRecipe(BlackHoleStorageRecipes.getRecipesList(), MPJEIRecipes.BLACK_HOLE_STORAGE);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.DARK_ENERGY_CORE), MPJEIRecipes.DARK_ENERGY_TRANSFORM);
-        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.BLACK_HOLE_STORAGE), MPJEIRecipes.BLACK_HOLE_STORAGE);
+        JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(GCBlocks.nasaWorkbench), MPJEIRecipes.BLACK_HOLE_STORAGE);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.CHEESE_SPORE_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.INFECTED_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);
         JEIRegistryHelper.registerStackDisplayRecipe(new ItemStack(MPBlocks.ALIEN_BERRY_CRAFTING_TABLE), VanillaRecipeCategoryUid.CRAFTING);

@@ -30,13 +30,13 @@ public class DarkEnergyTransformRecipeCategory implements IRecipeCategory
     @Override
     public IDrawable getBackground()
     {
-        return JEIRegistryHelper.guiHelper.createBlankDrawable(120, 45);
+        return JEIRegistryHelper.guiHelper.createBlankDrawable(145, 50);
     }
 
     @Override
     public void drawExtras(Minecraft mc)
     {
-        JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/dark_energy_transform.png"), 0, 0, 71, 36).draw(mc, 24, 0);
+        JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/dark_energy_transform.png"), 0, 0, 89, 44).draw(mc, 24, 0);
     }
 
     @Override
@@ -44,7 +44,8 @@ public class DarkEnergyTransformRecipeCategory implements IRecipeCategory
     {
         IGuiItemStackGroup itemStack = recipeLayout.getItemStacks();
         itemStack.init(0, true, 26, 14);
-        itemStack.init(1, false, 75, 14);
+        itemStack.init(1, true, 44, 14);
+        itemStack.init(2, false, 93, 14);
         itemStack.set(ingredients);
     }
 

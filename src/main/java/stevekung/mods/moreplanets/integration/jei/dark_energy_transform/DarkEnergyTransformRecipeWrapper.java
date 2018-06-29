@@ -28,16 +28,16 @@ public class DarkEnergyTransformRecipeWrapper implements IRecipeWrapper
     public void drawInfo(Minecraft mc, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
     {
         int time = this.time / 20;
-        String text = "Transform Time : " + time + "s * Count";
+        String text = "Time : " + time + "s * Count";
         FontRenderer fontRendererObj = mc.fontRenderer;
         int width = fontRendererObj.getStringWidth(text) / 2;
-        mc.fontRenderer.drawString(text, recipeWidth - 60 - width, 38, Color.gray.getRGB());
+        mc.fontRenderer.drawString(text, recipeWidth - width - 78, 38, Color.gray.getRGB());
     }
 
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInput(ItemStack.class, new ArrayList<>(this.input.values()));
+        ingredients.setInputs(ItemStack.class, new ArrayList<>(this.input.values()));
         ingredients.setOutput(ItemStack.class, this.output);
     }
 }
