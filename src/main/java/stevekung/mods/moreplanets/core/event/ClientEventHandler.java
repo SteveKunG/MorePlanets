@@ -473,7 +473,7 @@ public class ClientEventHandler
 
             if (event.celestialBody == GalacticraftCore.planetOverworld && enable)
             {
-                float size = GuiCelestialSelection.getWidthForCelestialBodyStatic(event.celestialBody) / 16.0F;
+                float size = gui.getWidthForCelestialBody(event.celestialBody) / 16.0F;
                 float orbitTick = MathHelper.sin(this.partialTicks * 0.2F) / 10.0F + 0.5F;
                 GlStateManager.rotate(this.partialTicks, 0.0F, 0.0F, 1.0F);
                 GlStateManager.translate(orbitTick + 5.0F, 5.0F, 0.0F);
