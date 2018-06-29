@@ -18,7 +18,7 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.SHIELD_GENERATOR, BlockStateProperty.FACING_HORIZON);
         ClientRegistryUtils.registerStateMapper(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.LARGE_INFECTED_CRYSTALLIZED, BlockStateProperty.FACING_ALL);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, BlockStateProperty.FACING_ALL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.CHEESE_MILK_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.GASEOUS_CHEESE_MILK_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.CHEESE_SPORE_FENCE_GATE, EnumStateMapper.FENCE_GATE);

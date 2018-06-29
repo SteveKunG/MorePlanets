@@ -90,7 +90,7 @@ public class ClientProxyMP extends ServerProxyMP
         TileEntityRenderer.init();
 
         ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> world != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(world, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D), MPBlocks.FRONOS_GRASS_BLOCK);
-        ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(120, 85, 190), MPBlocks.LARGE_INFECTED_CRYSTALLIZED);
+        ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(120, 85, 190), MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL);
         ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), MPBlocks.MULTALIC_CRYSTAL);
         ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), MPBlocks.MULTALIC_CRYSTAL_BLOCK);
         ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(143, 55, 33), MPBlocks.INFECTED_MELON_STEM);

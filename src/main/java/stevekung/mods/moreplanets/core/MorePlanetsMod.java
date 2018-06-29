@@ -32,6 +32,7 @@ import stevekung.mods.moreplanets.core.event.GeneralEventHandler;
 import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.core.handler.GuiHandlerMP;
 import stevekung.mods.moreplanets.core.handler.MissingMappingHandler;
+import stevekung.mods.moreplanets.core.handler.DataFixersMP;
 import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
@@ -120,6 +121,7 @@ public class MorePlanetsMod
         MPTileEntities.init();
         MPOreDictionary.init();
         MPPlanets.register();
+        DataFixersMP.init();
         GalacticraftCore.packetPipeline.addDiscriminator(1999, PacketSimpleMP.class);
         MorePlanetsMod.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.CRASHED_ALIEN_PROBE));
         MorePlanetsMod.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));

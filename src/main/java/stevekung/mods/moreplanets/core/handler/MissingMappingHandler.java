@@ -14,11 +14,13 @@ public class MissingMappingHandler
     public void onBlockMissingMappings(RegistryEvent.MissingMappings<Block> event)
     {
         BlockItemRemapper.remapBlock(event, MorePlanetsMod.MOD_ID, "infected_crystallized_web", MPBlocks.INFECTED_CRYSTALLIZED_COBWEB);
+        BlockItemRemapper.remapBlock(event, MorePlanetsMod.MOD_ID, "large_infected_crystallized", MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL);
     }
 
     @SubscribeEvent
     public void onItemMissingMappings(RegistryEvent.MissingMappings<Item> event)
     {
         BlockItemRemapper.remapItem(event, MorePlanetsMod.MOD_ID, "infected_crystallized_web", MPBlocks.INFECTED_CRYSTALLIZED_COBWEB);
+        BlockItemRemapper.remapItem(event, MorePlanetsMod.MOD_ID, "large_infected_crystallized", MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL);
     }
 }

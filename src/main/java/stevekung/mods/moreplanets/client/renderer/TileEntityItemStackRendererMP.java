@@ -14,7 +14,7 @@ import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosTrea
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.entity.RenderInfectedCrystallizedBomb;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityDarkEnergyGeneratorRenderer;
-import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityLargeInfectedCrystallizedRenderer;
+import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityInfectedCrystallizedCrystalRenderer;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyCore;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaAncientChest;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaTreasureChest;
@@ -60,9 +60,9 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
             ClientRegistryUtils.renderTESR(new TileEntityZeliusEgg());
             GlStateManager.enableBlend();
         }
-        else if (block == MPBlocks.LARGE_INFECTED_CRYSTALLIZED)
+        else if (block == MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL)
         {
-            TileEntityLargeInfectedCrystallizedRenderer.INSTANCE.render();
+            TileEntityInfectedCrystallizedCrystalRenderer.INSTANCE.render();
         }
         else if (block == MPBlocks.DARK_ENERGY_RECEIVER)
         {

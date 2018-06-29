@@ -70,7 +70,7 @@ public class ItemModelRenderer
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_BERRY_CHEST, new RenderChest(new TileEntityAlienBerryChest()));
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_DEFENDER_BEACON, new RenderAlienDefenderBeacon());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ZELIUS_EGG, new RenderZeliusEgg());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.LARGE_INFECTED_CRYSTALLIZED, new RenderLargeInfectedCrystallized());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, new RenderInfectedCrystallizedCrystal());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.MULTALIC_CRYSTAL, new RenderMultalicCrystal());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.JUICER_EGG, new RenderJuicerEgg());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.VEIN_FRAME, new RenderVeinFrame());

@@ -12,20 +12,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityLargeInfectedCrystallized;
+import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCrystallizedCrystal;
 import stevekung.mods.moreplanets.utils.client.model.ModelCrystal;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpecialRenderer<TileEntityLargeInfectedCrystallized>
+public class TileEntityInfectedCrystallizedCrystalRenderer extends TileEntitySpecialRenderer<TileEntityInfectedCrystallizedCrystal>
 {
     private final ModelCrystal model = new ModelCrystal();
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/infected_crystallized_crystal.png");
-    public static final TileEntityLargeInfectedCrystallizedRenderer INSTANCE = new TileEntityLargeInfectedCrystallizedRenderer();
+    public static final TileEntityInfectedCrystallizedCrystalRenderer INSTANCE = new TileEntityInfectedCrystallizedCrystalRenderer();
 
     @Override
-    public void render(TileEntityLargeInfectedCrystallized tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    public void render(TileEntityInfectedCrystallizedCrystal tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         int meta;
 
@@ -53,7 +53,7 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
         }
     }
 
-    private void drawCrystal(TileEntityLargeInfectedCrystallized tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size, int facing)
+    private void drawCrystal(TileEntityInfectedCrystallizedCrystal tile, float x, float y, float z, float angle1, float angle2, Random rand, int color, float size, int facing)
     {
         float shade = MathHelper.sin((tile.renderTicks + rand.nextInt(20)) / (16.0F + rand.nextFloat())) * 0.075F + 0.925F;
         Color c = new Color(color);
@@ -81,7 +81,7 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightX / 1.0F, lightZ / 1.0F);
         }
         GlStateManager.color(r, g, b, 1.0F);
-        this.bindTexture(TileEntityLargeInfectedCrystallizedRenderer.TEXTURE);
+        this.bindTexture(TileEntityInfectedCrystallizedCrystalRenderer.TEXTURE);
         this.model.render();
         GlStateManager.scale(1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();
@@ -159,7 +159,7 @@ public class TileEntityLargeInfectedCrystallizedRenderer extends TileEntitySpeci
                 GlStateManager.scale((0.15F + rand.nextFloat() * 0.075F) * size, (0.5F + rand.nextFloat() * 0.1F) * size, (0.15F + rand.nextFloat() * 0.05F) * size);
                 OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightX / 1.0F, lightZ / 1.0F);
                 GlStateManager.color(r, g, b, 1.0F);
-                Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityLargeInfectedCrystallizedRenderer.TEXTURE);
+                Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityInfectedCrystallizedCrystalRenderer.TEXTURE);
                 this.model.render();
                 GlStateManager.scale(1.0F, 1.0F, 1.0F);
                 GlStateManager.disableBlend();

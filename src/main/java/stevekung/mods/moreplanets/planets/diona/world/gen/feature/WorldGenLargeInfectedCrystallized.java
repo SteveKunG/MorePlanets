@@ -20,7 +20,7 @@ public class WorldGenLargeInfectedCrystallized extends WorldGenerator
         {
             for (EnumFacing facing : CachedEnum.facingValues)
             {
-                Block block = MPBlocks.LARGE_INFECTED_CRYSTALLIZED;
+                Block block = MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL;
 
                 if (world.isAirBlock(pos) && block.canPlaceBlockOnSide(world, pos, facing))
                 {

@@ -214,7 +214,7 @@ public class MPBlocks
     public static Block INFECTED_CRYSTALLIZED_COBWEB;
     public static Block INFECTED_CRYSTALLIZED_TORCH;
     public static Block ZELIUS_EGG;
-    public static Block LARGE_INFECTED_CRYSTALLIZED;
+    public static Block INFECTED_CRYSTALLIZED_CRYSTAL;
     public static Block ALIEN_MINER_BLOOD;
     public static Block INFECTED_CRYSTALLIZED_SLIME_BLOCK;
     public static Block DARK_ENERGY_CORE;
@@ -676,7 +676,7 @@ public class MPBlocks
         MPBlocks.INFECTED_CRYSTALLIZED_COBWEB = new BlockInfectedCrystallizedCobweb("infected_crystallized_cobweb");
         MPBlocks.INFECTED_CRYSTALLIZED_TORCH = new BlockInfectedCrystallizedTorch("infected_crystallized_torch");
         MPBlocks.ZELIUS_EGG = new BlockZeliusEgg("zelius_egg");
-        MPBlocks.LARGE_INFECTED_CRYSTALLIZED = new BlockLargeInfectedCrystallized("large_infected_crystallized");
+        MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL = new BlockInfectedCrystallizedCrystal("infected_crystallized_crystal");
         MPBlocks.ALIEN_MINER_BLOOD = new BlockAlienMinerBlood("alien_miner_blood");
         MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK = new BlockInfectedCrystallizedSlime("infected_crystallized_slime_block");
         MPBlocks.DARK_ENERGY_CORE = new BlockDarkEnergyCore("dark_energy_core");
@@ -1072,7 +1072,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.ZELIUS_EGG, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_COBWEB);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_TORCH);
-        BlocksItemsRegistry.registerBlock(MPBlocks.LARGE_INFECTED_CRYSTALLIZED, ItemBlockTESRMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_MINER_BLOOD);
         BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK);
         BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_CORE, ItemBlockDescriptionTESR::new);
@@ -1585,7 +1585,7 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.CRASHED_ALIEN_PROBE, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.GLOWING_IRON_BLOCK, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.LARGE_INFECTED_CRYSTALLIZED, EnumHarvestLevel.PICKAXE, 3);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, EnumHarvestLevel.PICKAXE, 3);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CRYSTALLIZED_PLANKS, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CRYSTALLIZED_FENCE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_ANCIENT_CHEST, EnumHarvestLevel.AXE, 0);

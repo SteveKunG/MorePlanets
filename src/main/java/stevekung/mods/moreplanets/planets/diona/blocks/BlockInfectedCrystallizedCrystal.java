@@ -28,7 +28,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityLargeInfectedCrystallized;
+import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedCrystallizedCrystal;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
@@ -36,9 +36,9 @@ import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
-public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITileEntityProvider
+public class BlockInfectedCrystallizedCrystal extends BlockBaseMP implements ITileEntityProvider
 {
-    public BlockLargeInfectedCrystallized(String name)
+    public BlockInfectedCrystallizedCrystal(String name)
     {
         super(Material.GLASS);
         this.setLightLevel(0.4F);
@@ -175,7 +175,7 @@ public class BlockLargeInfectedCrystallized extends BlockBaseMP implements ITile
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
-        return new TileEntityLargeInfectedCrystallized();
+        return new TileEntityInfectedCrystallizedCrystal();
     }
 
     @Override
