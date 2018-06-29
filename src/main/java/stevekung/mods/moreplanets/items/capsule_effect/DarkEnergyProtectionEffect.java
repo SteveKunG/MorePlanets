@@ -1,6 +1,10 @@
 package stevekung.mods.moreplanets.items.capsule_effect;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.utils.PotionMP;
@@ -29,5 +33,11 @@ public class DarkEnergyProtectionEffect extends PotionMP
     protected ResourceLocation getPotionIcon()
     {
         return DarkEnergyProtectionEffect.TEXTURE;
+    }
+
+    @Override
+    public List<ItemStack> getCurativeItems()
+    {
+        return new ArrayList<>();
     }
 }
