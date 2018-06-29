@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityInfectedCrystallizedCrystalRenderer;
 
-public class RenderInfectedCrystallizedCrystal extends CCLRenderBase
+public class CCLInfectedCrystallizedCrystal extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)

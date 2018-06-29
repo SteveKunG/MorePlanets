@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.entity.RenderInfectedCrystallizedBomb;
 
-public class RenderInfectedCrystallizedBombCCL extends CCLRenderBase
+public class CCLInfectedCrystallizedBomb extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)

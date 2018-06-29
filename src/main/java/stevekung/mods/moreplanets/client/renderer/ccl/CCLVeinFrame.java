@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityVeinFrame;
 import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
-public class RenderVeinFrame extends CCLRenderBase
+public class CCLVeinFrame extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)

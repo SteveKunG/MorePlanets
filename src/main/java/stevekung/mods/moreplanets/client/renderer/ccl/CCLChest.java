@@ -12,11 +12,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.model.TRSRTransformation;
 import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
-public class RenderChest extends CCLRenderBase
+public class CCLChest extends CCLRenderBase
 {
     private final TileEntity tile;
 
-    public RenderChest(TileEntity tile)
+    public CCLChest(TileEntity tile)
     {
         this.tile = tile;
     }

@@ -13,7 +13,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
-public class RenderBlackHoleStorage extends CCLRenderBase
+public class CCLBlackHoleStorage extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)

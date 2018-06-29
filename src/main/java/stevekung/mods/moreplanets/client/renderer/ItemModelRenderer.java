@@ -53,29 +53,29 @@ public class ItemModelRenderer
     {
         try
         {
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.BLACK_HOLE_STORAGE, new RenderBlackHoleStorage());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DARK_ENERGY_RECEIVER, new RenderDarkEnergyReceiver());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.SHIELD_GENERATOR, new RenderShieldGenerator());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DARK_ENERGY_CORE, new RenderDarkEnergyCore());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DARK_ENERGY_GENERATOR, new RenderDarkEnergyGenerator());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.NUCLEAR_WASTE_TANK, new RenderNuclearWasteTank());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.CHEESE_SPORE_CHEST, new RenderChest(new TileEntityCheeseSporeChest()));
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DIONA_ANCIENT_CHEST, new RenderChest(new TileEntityDionaAncientChest()));
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DIONA_TREASURE_CHEST, new RenderChest(new TileEntityDionaTreasureChest()));
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.CHALOS_ANCIENT_CHEST, new RenderChest(new TileEntityChalosAncientChest()));
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.CHALOS_TREASURE_CHEST, new RenderChest(new TileEntityChalosTreasureChest()));
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.NIBIRU_ANCIENT_CHEST, new RenderChest(new TileEntityNibiruAncientChest()));
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.NIBIRU_TREASURE_CHEST, new RenderChest(new TileEntityNibiruTreasureChest()));
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.INFECTED_CHEST, new RenderChest(new TileEntityInfectedChest()));
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_BERRY_CHEST, new RenderChest(new TileEntityAlienBerryChest()));
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_DEFENDER_BEACON, new RenderAlienDefenderBeacon());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ZELIUS_EGG, new RenderZeliusEgg());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, new RenderInfectedCrystallizedCrystal());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.MULTALIC_CRYSTAL, new RenderMultalicCrystal());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.JUICER_EGG, new RenderJuicerEgg());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.VEIN_FRAME, new RenderVeinFrame());
-            ItemModelRenderer.registerCCLItemRenderer(MPItems.INFECTED_CRYSTALLIZED_BOMB, new RenderInfectedCrystallizedBombCCL());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_CHEST, new RenderChest(new TileEntityAlienChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.BLACK_HOLE_STORAGE, new CCLBlackHoleStorage());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DARK_ENERGY_RECEIVER, new CCLDarkEnergyReceiver());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.SHIELD_GENERATOR, new CCLShieldGenerator());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DARK_ENERGY_CORE, new CCLDarkEnergyCore());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DARK_ENERGY_GENERATOR, new CCLDarkEnergyGenerator());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.NUCLEAR_WASTE_TANK, new CCLNuclearWasteTank());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.CHEESE_SPORE_CHEST, new CCLChest(new TileEntityCheeseSporeChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DIONA_ANCIENT_CHEST, new CCLChest(new TileEntityDionaAncientChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.DIONA_TREASURE_CHEST, new CCLChest(new TileEntityDionaTreasureChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.CHALOS_ANCIENT_CHEST, new CCLChest(new TileEntityChalosAncientChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.CHALOS_TREASURE_CHEST, new CCLChest(new TileEntityChalosTreasureChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.NIBIRU_ANCIENT_CHEST, new CCLChest(new TileEntityNibiruAncientChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.NIBIRU_TREASURE_CHEST, new CCLChest(new TileEntityNibiruTreasureChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.INFECTED_CHEST, new CCLChest(new TileEntityInfectedChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_BERRY_CHEST, new CCLChest(new TileEntityAlienBerryChest()));
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_DEFENDER_BEACON, new CCLAlienDefenderBeacon());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ZELIUS_EGG, new CCLZeliusEgg());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, new CCLInfectedCrystallizedCrystal());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.MULTALIC_CRYSTAL, new CCLMultalicCrystal());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.JUICER_EGG, new CCLJuicerEgg());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.VEIN_FRAME, new CCLVeinFrame());
+            ItemModelRenderer.registerCCLItemRenderer(MPItems.INFECTED_CRYSTALLIZED_BOMB, new CCLInfectedCrystallizedBomb());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_CHEST, new CCLChest(new TileEntityAlienChest()));
             LoggerMP.info("Successfully registered CodeChickenCore item renderer for More Planets blocks/items");
         }
         catch (Exception e)

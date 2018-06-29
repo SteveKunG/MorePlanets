@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityZeliusEgg;
 import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
-public class RenderZeliusEgg extends CCLRenderBase
+public class CCLZeliusEgg extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)

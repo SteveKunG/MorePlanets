@@ -9,24 +9,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
-import stevekung.mods.moreplanets.planets.nibiru.client.renderer.tileentity.TileEntityNuclearWasteTankRenderer;
+import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityDarkEnergyGeneratorRenderer;
 
-public class RenderNuclearWasteTank extends CCLRenderBase
+public class CCLDarkEnergyGenerator extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        boolean hasRod = true;
-        boolean createRod = false;
-        int amount = 0;
-
-        if (itemStack.hasTagCompound())
-        {
-            hasRod = itemStack.getTagCompound().getBoolean("HasRod");
-            createRod = itemStack.getTagCompound().getBoolean("CreateRod");
-            amount = itemStack.getTagCompound().hasKey("FluidTank") ? itemStack.getTagCompound().getCompoundTag("FluidTank").getInteger("Amount") : 0;
-        }
-        TileEntityNuclearWasteTankRenderer.INSTANCE.render(hasRod, createRod, amount);
+        TileEntityDarkEnergyGeneratorRenderer.INSTANCE.render();
     }
 
     @Override
@@ -34,7 +24,7 @@ public class RenderNuclearWasteTank extends CCLRenderBase
     {
         Map<TransformType, TRSRTransformation> map = new HashMap<>();
         TRSRTransformation thirdPerson = TransformUtils.create(0, 2.5F, 0, 75, 45, 0, 0.375F);
-        map.put(TransformType.GUI, TransformUtils.create(0, -4, 0, 30, 225, 0, 0.3F));
+        map.put(TransformType.GUI, TransformUtils.create(0, -1.0F, 0, 30, 225, 0, 0.625F));
         map.put(TransformType.GROUND, TransformUtils.create(0, 3, 0, 0, 0, 0, 0.25F));
         map.put(TransformType.FIXED, TransformUtils.create(0, 0, 0, 0, 0, 0, 0.5F));
         map.put(TransformType.THIRD_PERSON_RIGHT_HAND, thirdPerson);

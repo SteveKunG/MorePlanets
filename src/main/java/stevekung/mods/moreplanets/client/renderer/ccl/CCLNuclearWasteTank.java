@@ -9,28 +9,36 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.model.TRSRTransformation;
-import stevekung.mods.moreplanets.planets.nibiru.client.renderer.tileentity.TileEntityJuicerEggRenderer;
-import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityJuicerEgg;
-import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
+import stevekung.mods.moreplanets.planets.nibiru.client.renderer.tileentity.TileEntityNuclearWasteTankRenderer;
 
-public class RenderJuicerEgg extends CCLRenderBase
+public class CCLNuclearWasteTank extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        TileEntityJuicerEggRenderer.renderItem(type, false);
-        ClientRegistryUtils.renderTESR(new TileEntityJuicerEgg());
+        boolean hasRod = true;
+        boolean createRod = false;
+        int amount = 0;
+
+        if (itemStack.hasTagCompound())
+        {
+            hasRod = itemStack.getTagCompound().getBoolean("HasRod");
+            createRod = itemStack.getTagCompound().getBoolean("CreateRod");
+            amount = itemStack.getTagCompound().hasKey("FluidTank") ? itemStack.getTagCompound().getCompoundTag("FluidTank").getInteger("Amount") : 0;
+        }
+        TileEntityNuclearWasteTankRenderer.INSTANCE.render(hasRod, createRod, amount);
     }
 
     @Override
     protected CCModelState getCustomTransforms()
     {
         Map<TransformType, TRSRTransformation> map = new HashMap<>();
-        map.put(TransformType.GUI, TransformUtils.create(0, -1.25F, 0, 30, 135, 0, 0.575F));
+        TRSRTransformation thirdPerson = TransformUtils.create(0, 2.5F, 0, 75, 45, 0, 0.375F);
+        map.put(TransformType.GUI, TransformUtils.create(0, -4, 0, 30, 225, 0, 0.3F));
         map.put(TransformType.GROUND, TransformUtils.create(0, 3, 0, 0, 0, 0, 0.25F));
         map.put(TransformType.FIXED, TransformUtils.create(0, 0, 0, 0, 0, 0, 0.5F));
-        map.put(TransformType.THIRD_PERSON_RIGHT_HAND, TransformUtils.create(0, 2.5F, 0, 75, -45, 0, 0.375F));
-        map.put(TransformType.THIRD_PERSON_LEFT_HAND, TransformUtils.create(0, 2.5F, 0, 75, -225, 0, 0.375F));
+        map.put(TransformType.THIRD_PERSON_RIGHT_HAND, thirdPerson);
+        map.put(TransformType.THIRD_PERSON_LEFT_HAND, thirdPerson);
         map.put(TransformType.FIRST_PERSON_RIGHT_HAND, TransformUtils.create(0, 0, 0, 0, 45, 0, 0.4F));
         map.put(TransformType.FIRST_PERSON_LEFT_HAND, TransformUtils.create(0, 0, 0, 0, 225, 0, 0.4F));
         return new CCModelState(map);

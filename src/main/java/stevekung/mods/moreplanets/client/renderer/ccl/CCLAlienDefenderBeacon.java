@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import stevekung.mods.moreplanets.tileentity.TileEntityAlienDefenderBeacon;
 import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
-public class RenderAlienDefenderBeacon extends CCLRenderBase
+public class CCLAlienDefenderBeacon extends CCLRenderBase
 {
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
