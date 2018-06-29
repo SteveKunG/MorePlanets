@@ -30,7 +30,7 @@ public class TeleporterSpaceNether extends Teleporter
     @Override
     public void placeInPortal(Entity entity, float rotationYaw)
     {
-        if (this.world.getBlockState(this.pos).getBlock() != MPBlocks.SPACE_PORTAL)
+        if (this.world.getBlockState(this.pos).getBlock() != MPBlocks.SPACE_PORTAL && this.world.provider.getDimension() == ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether)
         {
             for (int x = -2; x < 3; x++)
             {

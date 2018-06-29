@@ -68,7 +68,7 @@ public class ClientEventHandler
     private final Map<BlockPos, Integer> beamList = new HashMap<>();
     private Minecraft mc;
     public static boolean loadRenderers;
-    private int loadRendererTick = 30;
+    private int loadRendererTick = 10;
     private boolean initVersionCheck;
     public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
     public static final List<BlockPos> wasteRenderPos = new ArrayList<>();
@@ -192,7 +192,7 @@ public class ClientEventHandler
                 {
                     LoggerMP.debug("Reload renderers");
                     this.mc.renderGlobal.loadRenderers();
-                    this.loadRendererTick = 30;
+                    this.loadRendererTick = 10;
                     ClientEventHandler.loadRenderers = false;
                 }
             }
