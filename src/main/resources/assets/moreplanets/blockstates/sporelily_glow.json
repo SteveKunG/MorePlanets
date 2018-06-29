@@ -8,7 +8,6 @@
         "model": "moreplanets:lilyplant_glow"
     },
     "variants": {
-        "normal": [{ "y": 90 }, { "y": 180 }, { "y": 270 }],
-        "inventory": [{}]
+        "normal": [{ "y": 90 }, { "y": 180 }, { "y": 270 }]
     }
 }

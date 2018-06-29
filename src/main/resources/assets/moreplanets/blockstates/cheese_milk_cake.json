@@ -19,7 +19,6 @@
             "5": { "model": "cake_slice5", "textures": { "inside": "moreplanets:blocks/cheese_milk_cake_inner" } },
             "6": { "model": "cake_slice6", "textures": { "inside": "moreplanets:blocks/cheese_milk_cake_inner" } }
         },
-        "normal": [{}],
-        "inventory": [{}]
+        "normal": [{}]
     }
 }

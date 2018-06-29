@@ -11,7 +11,6 @@
      },
     "variants": {
         "normal": [{}],
-        "inventory": [{}],
         "portal": [{ "model": "moreplanets:space_portal_top" }],
         "base": [{ "model": "moreplanets:space_portal_base" }]
     }

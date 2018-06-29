@@ -7,7 +7,6 @@
         "model": "moreplanets:slime"
     },
     "variants": {
-        "normal": [{}],
-        "inventory": [{}]
+        "normal": [{}]
     }
 }
