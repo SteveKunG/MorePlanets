@@ -53,7 +53,7 @@ public class SlotBlackHoleStorageSchematic extends Slot
         case 7:
         case 8:
         case 9:
-            return itemStack.getItem() == MPItems.GLOWING_IRON_INGOT;
+            return itemStack.getItem() == MPItems.BLACK_HOLE_FRAGMENTS;
         case 10:
         case 11:
         case 12:
@@ -63,7 +63,7 @@ public class SlotBlackHoleStorageSchematic extends Slot
         case 17:
         case 18:
         case 22:
-            return itemStack.getItem() == MPItems.BLACK_HOLE_FRAGMENTS;
+            return itemStack.getItem() == MPItems.GLOWING_IRON_INGOT;
         case 14:
         case 16:
         case 19:

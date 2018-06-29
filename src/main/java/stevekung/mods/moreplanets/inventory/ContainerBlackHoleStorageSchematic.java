@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.inventory;
 
 import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.inventory.SlotRocketBenchResult;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -19,14 +18,14 @@ import stevekung.mods.moreplanets.recipe.BlackHoleStorageRecipes;
 
 public class ContainerBlackHoleStorageSchematic extends Container
 {
-    public InventoryBlackHoleStorageSchematic craftMatrix = new InventoryBlackHoleStorageSchematic(this);
-    public IInventory craftResult = new InventoryCraftResult();
-    private World worldObj;
+    private final InventoryBlackHoleStorageSchematic craftMatrix = new InventoryBlackHoleStorageSchematic(this);
+    private final IInventory craftResult = new InventoryCraftResult();
+    private final World world;
 
     public ContainerBlackHoleStorageSchematic(InventoryPlayer inventory, BlockPos pos)
     {
-        this.worldObj = inventory.player.world;
-        this.addSlotToContainer(new SlotRocketBenchResult(inventory.player, this.craftMatrix, this.craftResult, 0, 142, 18 + 69 + 27));
+        this.world = inventory.player.world;
+        this.addSlotToContainer(new SlotBlackHoleStorageResult(inventory.player, this.craftMatrix, this.craftResult, 0, 142, 18 + 69 + 27));
         int i;
         int j;
         int count = 10;
@@ -76,7 +75,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
     {
         super.onContainerClosed(player);
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i)
             {

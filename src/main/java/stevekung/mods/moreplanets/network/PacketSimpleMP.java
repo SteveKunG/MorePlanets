@@ -154,6 +154,10 @@ public class PacketSimpleMP extends PacketBase
         case C_STOP_VEIN_FLOATER_MUSIC:
             FMLClientHandler.instance().getClient().getSoundHandler().stop(MPSounds.A_PLANET_TO_CONQUER.getRegistryName().toString(), SoundCategory.PLAYERS);
             break;
+        case C_PLAY_CREATED_BLACK_HOLE_SOUND:
+            player.playSound(MPSounds.BLACK_HOLE_CREATED, 5.0F, 0.8F);
+            player.playSound(MPSounds.BLACK_HOLE_AMBIENT, 5.0F, 1.0F);
+            break;
         default:
             break;
         }
@@ -327,7 +331,9 @@ public class PacketSimpleMP extends PacketBase
         C_OPEN_SURVIVAL_PLANET_GUI(Side.CLIENT),
         C_MESSAGE_SURVIVAL_PLANET(Side.CLIENT, String.class),
         C_PLAY_VEIN_FLOATER_MUSIC(Side.CLIENT),
-        C_STOP_VEIN_FLOATER_MUSIC(Side.CLIENT);
+        C_STOP_VEIN_FLOATER_MUSIC(Side.CLIENT),
+        C_PLAY_CREATED_BLACK_HOLE_SOUND(Side.CLIENT),
+        ;
 
         private Side targetSide;
         private Class[] decodeAs;
