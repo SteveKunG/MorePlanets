@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.core.event;
+package stevekung.mods.moreplanets.core.handler;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

@@ -28,6 +28,7 @@ import stevekung.mods.moreplanets.core.capability.CapabilityHandlerMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.*;
 import stevekung.mods.moreplanets.core.handler.GuiHandlerMP;
+import stevekung.mods.moreplanets.core.handler.MissingMappingHandler;
 import stevekung.mods.moreplanets.init.*;
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.proxy.ServerProxyMP;
