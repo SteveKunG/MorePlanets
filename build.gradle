@@ -5,13 +5,12 @@ buildscript {
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.10"
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.11"
     }
 }
 
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.0.10"
-    id "net.franz-becker.gradle-lombok" version "1.5"
+    id "com.matthewprenger.cursegradle" version "1.0.11"
 }
 
 def api = new groovy.json.JsonSlurper().parseText(file("${api_token_path}").text)
@@ -35,7 +34,7 @@ archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.12.2-14.23.4.2708"
+    version = "1.12.2-14.23.4.2725"
     runDir = "run"
     mappings = "snapshot_20171003"
     makeObfSourceJar = false
@@ -46,7 +45,7 @@ minecraft {
 }
 
 repositories {
-    // Hwyla
+    // Hwyla : https://tehnut.info/maven/mcp/mobius/waila/Hwyla/
     maven {
         url "http://tehnut.info/maven/"
     }
@@ -54,7 +53,7 @@ repositories {
     maven {
         url "http://dvs1.progwml6.com/files/maven"
     }
-    // Code Chicken mods
+    // Code Chicken Lib : http://chickenbones.net/maven/codechicken/CodeChickenLib/
     maven {
         url "http://chickenbones.net/maven/"
     }
@@ -62,7 +61,7 @@ repositories {
     maven {
         url "https://plugins.gradle.org/m2/"
     }
-    // CTM
+    // CTM : https://maven.tterrag.com/index.php?dir=team%2Fchisel%2Fctm%2FCTM
     maven {
         url "http://maven.tterrag.com/"
     }
@@ -81,7 +80,7 @@ curseforge {
     apiKey = api.more_planets
     project {
         id = "261990"
-        changelog = "To read full change log use command /mpchangelog in-game.\n\n or following by this link: https://discord.gg/5KDqYh2"
+        changelog = ""
         changelogType = "markdown"
         releaseType = "beta"
         addGameVersion mcVersion
@@ -96,11 +95,6 @@ curseforge {
             }
         }
     }
-}
-
-lombok {
-    version = "1.16.6"
-    sha256 = "e0a471be03e1e6b02bf019480cec7a3ac9801702bf7bf62f15d077ad4df8dd5d"
 }
 
 ext.finalJar = "build/libs/" + "More-Planets-" + mcVersion + "-" + version + ".jar"
