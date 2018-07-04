@@ -327,7 +327,7 @@ public class EntityEventHandler
                 {
                     EntityPlayerMP playerMP = (EntityPlayerMP)player;
 
-                    if (ConfigManagerMP.moreplanets_general.enableSurvivalPlanetSelection && WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
+                    if (WorldTickEventHandler.survivalPlanetData != null && WorldTickEventHandler.survivalPlanetData.hasSurvivalPlanetData)
                     {
                         int netherId = ConfigManagerMP.moreplanets_dimension.idDimensionSpaceNether;
                         String survivalPlanet = WorldTickEventHandler.survivalPlanetData.survivalPlanetName;
