@@ -36,9 +36,6 @@ public class ConfigManagerMP
         @Config.RequiresMcRestart
         public boolean enableVersionChecker = true;
 
-        @Config.Name(value = "Enable Change Log in Game")
-        public boolean enableChangeLogInGame = true;
-
         @Config.Name(value = "Enable Night Vision Effect while boss fight")
         public boolean enableNightVisionEffect = false;
 

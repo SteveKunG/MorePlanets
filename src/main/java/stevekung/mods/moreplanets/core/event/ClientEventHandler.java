@@ -206,10 +206,6 @@ public class ClientEventHandler
                     {
                         MorePlanetsMod.CHECKER.printInfo(this.mc.player);
                     }
-                    if (ConfigManagerMP.moreplanets_general.enableChangeLogInGame)
-                    {
-                        MorePlanetsMod.CHECKER.printChangeLog(this.mc.player);
-                    }
                     this.initVersionCheck = true;
                 }
 

@@ -9,7 +9,6 @@ import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.util.EnumHelper;
@@ -23,7 +22,6 @@ import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import stevekung.mods.moreplanets.client.command.CommandChangeLog;
 import stevekung.mods.moreplanets.core.capability.CapabilityHandlerMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
@@ -106,7 +104,7 @@ public class MorePlanetsMod
         MPBiomes.init();
         MPOthers.init();
         MorePlanetsMod.PROXY.preInit(event);
-        MorePlanetsMod.CHECKER = new VersionChecker(MorePlanetsMod.INSTANCE, MorePlanetsMod.NAME, MorePlanetsMod.URL, "mpchangelog");
+        MorePlanetsMod.CHECKER = new VersionChecker(MorePlanetsMod.INSTANCE, MorePlanetsMod.NAME, MorePlanetsMod.URL);
 
         if (ConfigManagerMP.moreplanets_general.enableVersionChecker)
         {
@@ -132,7 +130,6 @@ public class MorePlanetsMod
             BlocksItemsRegistry.postRegisteredSortBlock();
             BlocksItemsRegistry.postRegisteredSortItem();
             CommonUtils.registerEventHandler(new ClientEventHandler());
-            ClientCommandHandler.instance.registerCommand(new CommandChangeLog());
         }
 
         CommonUtils.registerEventHandler(new EntityEventHandler());
