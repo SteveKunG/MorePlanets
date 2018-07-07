@@ -632,7 +632,7 @@ moreplanets.jei.rocketCrusher=火箭粉碎机
 
 # DESCRIPTION
 tile.space_warp_pad.description=传送垫允许你传送到各个太空维度,需要摆成3x3的形状.
-tile.rocket_crusher.description=火箭粉碎机可将火箭转化为重装防护板.它需要用在NASA工作台.
+tile.rocket_crusher.description=火箭粉碎机可将火箭转化为重装防护板.
 tile.cheese_of_milk_cake.description=奶酪牛奶蛋糕由奶酪星的奶酪牛奶凝乳制成,可放置并食用.
 tile.dark_energy_receiver.description=暗黑能量接收器将收集银河系的未知能量,并用来制作暗黑能量机器.非常危险!
 tile.dark_energy_core.description=用来转化物品来获取暗黑能量. (WIP)
