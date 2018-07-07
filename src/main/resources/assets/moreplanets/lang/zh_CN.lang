@@ -1,8 +1,8 @@
 # BLOCKS - MAIN
-tile.space_warp_pad.name=Space Warp Pad
+tile.space_warp_pad.name=太空传送垫
 tile.rocket_crusher.name=火箭粉碎机
 tile.dungeon_glowstone.name=地牢萤石
-tile.dark_energy_receiver.name=暗黑能量无限接收器
+tile.dark_energy_receiver.name=暗黑能量接收器
 tile.polished_space_decoration.tin.name=饰锡墙砖
 tile.polished_space_decoration.aluminum.name=饰铝墙砖
 tile.tinted_glass_pane.white.name=强化玻璃板
@@ -317,7 +317,7 @@ tile.jelly_block.orange.name=橙子果冻
 tile.jelly_block.lemon.name=柠檬果冻
 
 # ITEMS
-item.space_warper_core.name=Space Warper Core
+item.space_warper_core.name=太空传送核心
 item.capsule.name=胶囊
 item.space_bow.name=太空弓
 item.space_fishing_rod.name=太空钓鱼竿
@@ -561,50 +561,50 @@ itemGroup.MorePlanetsBlocks=更多行星方块
 itemGroup.MorePlanetsItems=更多行星物品
 
 # GUI STATUS
-gui.status.no_warp_pos.name=No Warp Position
-gui.status.missing_warp_pad.name=Missing Warp Pad
+gui.status.no_warp_pos.name=无传送位置
+gui.status.missing_warp_pad.name=传送垫丢失
 gui.status.dark_energy_percent0.name=%s
 gui.status.dark_energy_percent1.name=% Complete
-gui.status.dark_energy_core_created.name=Core Created
-gui.status.dark_energy_offline.name=Offline
-gui.status.machine_status.name=Machine Status
-gui.status.no_waste_sources.name=No Waste Sources
-gui.status.waste_depleted.name=Waste Depleted
-gui.status.waste_tank_depleted.name=Waste Tank Depleted
-gui.status.waste_and_tank_depleted.name=Power Sources Depleted
-gui.status.dark_energy_fuel.name=Dark Energy Fuel
+gui.status.dark_energy_core_created.name=暗黑核心已做好
+gui.status.dark_energy_offline.name=离线
+gui.status.machine_status.name=机器状态
+gui.status.no_waste_sources.name=无核废料资源
+gui.status.waste_depleted.name=核废料耗尽
+gui.status.waste_tank_depleted.name=核废料槽耗尽
+gui.status.waste_and_tank_depleted.name=发电资源耗尽
+gui.status.dark_energy_fuel.name=暗黑能量燃料
 gui.status.use_hopper.name=漏斗
 gui.status.collect_mode.name=收集
 gui.status.collect_item.name=物品
 gui.status.collect_xp.name=经验
 
 # GUI MESSAGE
-gui.no_warp_data.message=No Space Warp Pad data stored
-gui.cannot_detect_pad.message=Cannot Detect Space Warp Pad
-gui.warp_pad_data_add.message=Space Warp Pad data added
-gui.warp_pad_data_add_fail.message=Failed to set dimension data, You need to collect dimension data first!
-gui.place_only_space.message=Space Warp Pad can be placed only in the Space or Overworld dimension!
-gui.dark_energy_success.message=Dark Energy Receiver successfully activated
-gui.dark_energy_already_active.message=Dark Energy Receiver already activated
-gui.dark_energy_no_power.message=Dark Energy Receiver needs large power source to running!
-gui.dark_energy_disabled.message=You should enable this first!
-gui.dark_energy_malfunction.message=Dark Energy Receiver Malfunction, machine will explode in %s
-gui.warp_core_data_add.message=Space Dimension data added
-gui.warp_core_data_add_fail0.message=You need to standing on Space Warp Pad to collect dimension data!
-gui.warp_core_data_add_fail1.message=You need to standing on the center of Space Warp Pad!
-gui.space_dimension_only.message=Space Warper Core can be collect data only in Space or Overworld dimension!
-gui.place_in_liquid.message=Cannot place block inside liquid!
-gui.bh_storage.too_close.message=Too close another Black Hole Storage
-gui.bh_storage_not_owner.message=You are not owner of this storage!
-gui.alien_defender_beacon.message=Alien Defender Reinforcement beacon is created!
-gui.alien_defender_arrived.message=Alien Defender Reinforcement have arrived!
-gui.target_too_far.message=Target is too far away %s blocks!
-gui.not_air_block.message=Target is not air block!
+gui.no_warp_data.message=无太空传送垫数据储存
+gui.cannot_detect_pad.message=未检测到太空传送垫
+gui.warp_pad_data_add.message=太空传送垫数据已添加
+gui.warp_pad_data_add_fail.message=设置维度数据失败,你需要先收集维度数据!
+gui.place_only_space.message=太空传送垫只能放在太空或地球上!
+gui.dark_energy_success.message=暗黑能量接收器已成功激活
+gui.dark_energy_already_active.message=暗黑能量接收器已激活
+gui.dark_energy_no_power.message=暗黑能量接收器需要很多电力来运行!
+gui.dark_energy_disabled.message=你应该先启动它!
+gui.dark_energy_malfunction.message=暗黑能量接收器发生故障,机器将爆炸在 %s
+gui.warp_core_data_add.message=太空维度数据已添加
+gui.warp_core_data_add_fail0.message=你需要站在太空传送垫来收集维度数据!
+gui.warp_core_data_add_fail1.message=你需要站在太空传送垫的中心!
+gui.space_dimension_only.message=太空传送核心只能在太空或地球收集维度数据!
+gui.place_in_liquid.message=不能在液体里放置方块!
+gui.bh_storage.too_close.message=与其他黑洞物品储存器靠得太近
+gui.bh_storage_not_owner.message=你不是这个储存器的拥有者!
+gui.alien_defender_beacon.message=外星防御增强信标已做好!
+gui.alien_defender_arrived.message=外星防御增强模块已到达!
+gui.target_too_far.message=目标离 %s 的方块太远!
+gui.not_air_block.message=目标不是空气方块!
 
 # GUI DESCRIPTION
-gui.receiver_render_guide.desc=Receiver Placing Guide
+gui.receiver_render_guide.desc=接收器摆放指南
 gui.disable_black_hole.desc=禁用黑洞
-gui.use_hopper.desc=Use Hopper
+gui.use_hopper.desc=使用漏斗
 gui.collect_mode.desc=收集模式
 gui.xp_value.desc=经验
 
@@ -623,30 +623,31 @@ gui.config.mp.other=其他配置.
 configgeneralguimp=通用配置
 configdimensionguimp=维度配置
 configbiomeguimp=生物群系配置
+config_moreplanets_gc_addon_compat=星系拓展兼容性配置
 configotherguimp=其他配置
 
 # GUI JEI
-moreplanets.jei.darkEnergyTransform=Dark Energy Transform
+moreplanets.jei.darkEnergyTransform=暗黑能量转化
 moreplanets.jei.rocketCrusher=火箭粉碎机
 
 # DESCRIPTION
-tile.space_warp_pad.description=Warp Pad allows you to travel in the space dimension, setup by 3x3 area.
-tile.rocket_crusher.description=Rocket Crusher will turn rocket into the advanced Heavy-Duty Plate. Its required to use in the rocket crafting bench.
-tile.cheese_of_milk_cake.description=Cheese of Milk Cake are created from Cheese of Milk Curd from 奶酪星, place-able and editble.
-tile.dark_energy_receiver.description=Dark Energy Receiver will collecting the unknown energy from distant planet in milky way galaxy, and used to create dark energy machine. So dangerous!
-tile.dark_energy_core.description=Used for transforming items that can handle dark power. (WIP)
-tile.nuclear_waste_generator.description=Nuclear Waste Generator will collect nuclear waste radiation nearby that area to produce large power source.
-tile.tiered_energy_storage_cluster_0.description=Dark Energy Storage Cluster is used to store large amounts of energy for later use. Stores and outputs more energy than its predecessor. Also its used an alien material!
-tile.tiered_energy_storage_cluster_1.description=Nuclear Waste Energy Storage Cluster is used to store large amounts of energy for later use. Stores and outputs more energy than its predecessor. Nuclear Waste can be stored more energy!
-tile.dark_energy_generator.description=Dark Energy Generator will collect dark energy from unknown distant planet or Dark Energy Pearl, storing it for further use.
-tile.black_hole_storage.description=Black Hole Storage is a large item storage that using Black Hole to pull Item/EXP into it container. Items and EXP in a storage will stored with its config.
-item.infected_arrow.description=Can be obtained by thrown normal arrow into infected water
+tile.space_warp_pad.description=传送垫允许你传送到各个太空维度,需要摆成3x3的形状.
+tile.rocket_crusher.description=火箭粉碎机可将火箭转化为重装防护板.它需要用在NASA工作台. (WIP)
+tile.cheese_of_milk_cake.description=奶酪牛奶蛋糕由奶酪星的奶酪牛奶凝乳制成,可放置并食用.
+tile.dark_energy_receiver.description=暗黑能量接收器将收集银河系的未知能量,并用来制作暗黑能量机器.非常危险!
+tile.dark_energy_core.description=用来转化物品来获取暗黑能量. (WIP)
+tile.nuclear_waste_generator.description=核废料发电机将收集附近核废料的辐射来产生大量电力.
+tile.tiered_energy_storage_cluster_0.description=暗黑能量储存模块能够存储大量电力以备使用,且拥有更高的储量和更大的功率.
+tile.tiered_energy_storage_cluster_1.description=核废料能量储存模块能够存储大量电力以备使用,且拥有更高的储量和更大的功率.
+tile.dark_energy_generator.description=暗黑能量发电机将收集未知行星或暗黑能量珍珠的能量,存储它以进一步使用.
+tile.black_hole_storage.description=黑洞物品储存器是一个使用黑洞将物品或经验吸进去的大型物品储存器.物品和经验随配置储存.
+item.infected_arrow.description=可将普通的箭投入被感染的水中获得
 desc.tier_4.name=四阶火箭
 desc.tier_5.name=五阶火箭
 desc.tier_6.name=六阶火箭
 desc.energy_stored.name=能量存储: %s
-desc.dark_energy_fuel.name=Dark Energy Fuel: %s
-desc.ion_cannon.name=Ion Cannon
+desc.dark_energy_fuel.name=暗黑能量燃料: %s
+desc.ion_cannon.name=离子炮
 desc.black_hole_storage.name=黑洞物品储存器
 desc.bhs_disable.name=禁用
 desc.bhs_hopper.name=使用漏斗
@@ -655,8 +656,8 @@ desc.bhs_xp.name=经验
 desc.bhs_slot_used.name=Slot Used
 
 # CONTAINER
-container.space_warp_pad.name=Space Warp Pad
-container.dark_energy_receiver.name=暗黑能量无限接收器
+container.space_warp_pad.name=太空传送垫
+container.dark_energy_receiver.name=暗黑能量接收器
 container.nuclear_waste_generator.name=核废料发电机
 container.tiered_energy_storage_cluster_0.name=暗黑能量储存模块
 container.tiered_energy_storage_cluster_1.name=核废料能量储存模块
