@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.utils.tileentity;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,7 +10,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -17,29 +18,39 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import stevekung.mods.moreplanets.utils.world.capability.SpaceDoubleChestItemHandlerMP;
+import stevekung.mods.moreplanets.utils.world.capability.DoubleChestItemHandlerMP;
+import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class TileEntityChestMP extends TileEntityLockableLoot implements ITickable, IInventoryDefaults
+public abstract class TileEntityChestMP extends TileEntityLockableLoot implements ITickable, IInventoryDefaults
 {
     private NonNullList<ItemStack> chestContents = NonNullList.withSize(27, ItemStack.EMPTY);
-    public boolean adjacentChestChecked;
+    protected boolean adjacentChestChecked;
     public TileEntityChestMP adjacentChestZNeg;
     public TileEntityChestMP adjacentChestXPos;
     public TileEntityChestMP adjacentChestXNeg;
     public TileEntityChestMP adjacentChestZPos;
+    private DoubleChestItemHandlerMP doubleChestHandler;
     public float lidAngle;
     public float prevLidAngle;
-    public int numPlayersUsing;
+    private int numPlayersUsing;
     private int ticksSinceSync;
     private String customName;
-    public SpaceDoubleChestItemHandlerMP doubleChestHandler;
     private Block block;
+    private String name;
 
     public TileEntityChestMP(Block block)
     {
         this.block = block;
+    }
+
+    public TileEntityChestMP(Block block, String name)
+    {
+        this.block = block;
+        this.name = name;
     }
 
     @Override
@@ -70,7 +81,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     @Override
     public String getName()
     {
-        return this.hasCustomName() ? this.customName : "container.chest";
+        return this.name != null ? LangUtils.translate("container." + this.name + ".ancientchest.name") : this.hasCustomName() ? this.customName : "container.chest";
     }
 
     @Override
@@ -106,13 +117,13 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     {
         super.writeToNBT(nbt);
 
-        if (!this.checkLootAndWrite(nbt))
-        {
-            ItemStackHelper.saveAllItems(nbt, this.chestContents);
-        }
         if (this.hasCustomName())
         {
             nbt.setString("CustomName", this.customName);
+        }
+        if (!this.checkLootAndWrite(nbt))
+        {
+            ItemStackHelper.saveAllItems(nbt, this.chestContents);
         }
         return nbt;
     }
@@ -131,87 +142,6 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
         this.doubleChestHandler = null;
     }
 
-    @SuppressWarnings("incomplete-switch")
-    private void setNeighbor(TileEntityChestMP chestTe, EnumFacing side)
-    {
-        if (chestTe.isInvalid())
-        {
-            this.adjacentChestChecked = false;
-        }
-        else if (this.adjacentChestChecked)
-        {
-            switch (side)
-            {
-            case NORTH:
-                if (this.adjacentChestZNeg != chestTe)
-                {
-                    this.adjacentChestChecked = false;
-                }
-                break;
-            case SOUTH:
-                if (this.adjacentChestZPos != chestTe)
-                {
-                    this.adjacentChestChecked = false;
-                }
-                break;
-            case EAST:
-                if (this.adjacentChestXPos != chestTe)
-                {
-                    this.adjacentChestChecked = false;
-                }
-                break;
-            case WEST:
-                if (this.adjacentChestXNeg != chestTe)
-                {
-                    this.adjacentChestChecked = false;
-                }
-            }
-        }
-    }
-
-    public void checkForAdjacentChests()
-    {
-        if (!this.adjacentChestChecked)
-        {
-            this.adjacentChestChecked = true;
-            this.adjacentChestXNeg = this.getAdjacentChest(EnumFacing.WEST);
-            this.adjacentChestXPos = this.getAdjacentChest(EnumFacing.EAST);
-            this.adjacentChestZNeg = this.getAdjacentChest(EnumFacing.NORTH);
-            this.adjacentChestZPos = this.getAdjacentChest(EnumFacing.SOUTH);
-        }
-    }
-
-    protected TileEntityChestMP getAdjacentChest(EnumFacing side)
-    {
-        BlockPos blockpos = this.pos.offset(side);
-
-        if (this.isChestAt(blockpos))
-        {
-            TileEntity tileentity = this.world.getTileEntity(blockpos);
-
-            if (tileentity instanceof TileEntityChestMP)
-            {
-                TileEntityChestMP tileentitychest = (TileEntityChestMP)tileentity;
-                tileentitychest.setNeighbor(this, side.getOpposite());
-                return tileentitychest;
-            }
-        }
-        return null;
-    }
-
-    protected boolean isChestAt(BlockPos pos)
-    {
-        if (this.world == null)
-        {
-            return false;
-        }
-        else
-        {
-            Block block = this.world.getBlockState(pos).getBlock();
-            return block == this.block;
-        }
-    }
-
     @Override
     public void update()
     {
@@ -224,9 +154,8 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
         if (!this.world.isRemote && this.numPlayersUsing != 0 && (this.ticksSinceSync + i + j + k) % 200 == 0)
         {
             this.numPlayersUsing = 0;
-            float f = 5.0F;
 
-            this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f)).forEach(player ->
+            for (EntityPlayer player : this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - 5.0F, j - 5.0F, k - 5.0F, i + 1 + 5.0F, j + 1 + 5.0F, k + 1 + 5.0F)))
             {
                 if (player.openContainer instanceof ContainerChest)
                 {
@@ -237,11 +166,10 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
                         ++this.numPlayersUsing;
                     }
                 }
-            });
+            }
         }
 
         this.prevLidAngle = this.lidAngle;
-        float f1 = 0.1F;
 
         if (this.numPlayersUsing > 0 && this.lidAngle == 0.0F && this.adjacentChestZNeg == null && this.adjacentChestXNeg == null)
         {
@@ -265,11 +193,11 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
 
             if (this.numPlayersUsing > 0)
             {
-                this.lidAngle += f1;
+                this.lidAngle += 0.1F;
             }
             else
             {
-                this.lidAngle -= f1;
+                this.lidAngle -= 0.1F;
             }
 
             if (this.lidAngle > 1.0F)
@@ -277,9 +205,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
                 this.lidAngle = 1.0F;
             }
 
-            float f3 = 0.5F;
-
-            if (this.lidAngle < f3 && f2 >= f3 && this.adjacentChestZNeg == null && this.adjacentChestXNeg == null)
+            if (this.lidAngle < 0.5F && f2 >= 0.5F && this.adjacentChestZNeg == null && this.adjacentChestXNeg == null)
             {
                 double d3 = i + 0.5D;
                 double d0 = k + 0.5D;
@@ -359,7 +285,7 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     @Override
     public String getGuiID()
     {
-        return "minecraft:chest";
+        return "moreplanets:ancient_chest";
     }
 
     @Override
@@ -370,15 +296,22 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     }
 
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+    public boolean canRenderBreaking()
+    {
+        return true;
+    }
+
+    @Override
+    @Nullable
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
     {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
         {
             if (this.doubleChestHandler == null || this.doubleChestHandler.needsRefresh())
             {
-                this.doubleChestHandler = SpaceDoubleChestItemHandlerMP.get(this);
+                this.doubleChestHandler = DoubleChestItemHandlerMP.get(this);
             }
-            if (this.doubleChestHandler != null && this.doubleChestHandler != SpaceDoubleChestItemHandlerMP.NO_ADJACENT_CHESTS_INSTANCE)
+            if (this.doubleChestHandler != null && this.doubleChestHandler != DoubleChestItemHandlerMP.NO_ADJACENT_CHESTS_INSTANCE)
             {
                 return (T) this.doubleChestHandler;
             }
@@ -387,19 +320,68 @@ public class TileEntityChestMP extends TileEntityLockableLoot implements ITickab
     }
 
     @Override
-    public boolean canRenderBreaking()
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox()
     {
-        return true;
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
+        return new AxisAlignedBB(this.getPos().add(-1, 0, -1), this.getPos().add(2, 2, 2));
     }
 
     public IItemHandler getSingleChestHandler()
     {
         return super.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
     }
+
+    protected boolean isChestAt(BlockPos pos)
+    {
+        if (this.world == null)
+        {
+            return false;
+        }
+        else
+        {
+            Block block = this.world.getBlockState(pos).getBlock();
+            return block == this.block;
+        }
+    }
+
+    @SuppressWarnings("incomplete-switch")
+    protected void setNeighbor(TileEntityChestMP tile, EnumFacing side)
+    {
+        if (tile.isInvalid())
+        {
+            this.adjacentChestChecked = false;
+        }
+        else if (this.adjacentChestChecked)
+        {
+            switch (side)
+            {
+            case NORTH:
+                if (this.adjacentChestZNeg != tile)
+                {
+                    this.adjacentChestChecked = false;
+                }
+                break;
+            case SOUTH:
+                if (this.adjacentChestZPos != tile)
+                {
+                    this.adjacentChestChecked = false;
+                }
+                break;
+            case EAST:
+                if (this.adjacentChestXPos != tile)
+                {
+                    this.adjacentChestChecked = false;
+                }
+                break;
+            case WEST:
+                if (this.adjacentChestXNeg != tile)
+                {
+                    this.adjacentChestChecked = false;
+                }
+                break;
+            }
+        }
+    }
+
+    public abstract void checkForAdjacentChests();
 }

@@ -1,23 +1,20 @@
 package stevekung.mods.moreplanets.planets.chalos.blocks;
 
-import java.util.Iterator;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosAncientChest;
-import stevekung.mods.moreplanets.utils.blocks.BlockAncientChestMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockChestMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class BlockChalosAncientChest extends BlockAncientChestMP
+public class BlockChalosAncientChest extends BlockChestMP
 {
     public BlockChalosAncientChest(String name)
     {
@@ -28,88 +25,16 @@ public class BlockChalosAncientChest extends BlockAncientChestMP
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
-        TileEntity tileentity = world.getTileEntity(pos);
+        TileEntity tile = world.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityChalosAncientChest)
+        if (tile instanceof TileEntityChalosAncientChest)
         {
-            tileentity.updateContainingBlockInfo();
+            tile.updateContainingBlockInfo();
         }
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        if (world.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            ILockableContainer lock = this.getLockableContainer(world, pos);
-
-            if (lock != null)
-            {
-                player.displayGUIChest(lock);
-            }
-        }
-        return true;
-    }
-
-    public ILockableContainer getLockableContainer(World world, BlockPos pos)
-    {
-        TileEntity tileentity = world.getTileEntity(pos);
-
-        if (!(tileentity instanceof TileEntityChalosAncientChest))
-        {
-            return null;
-        }
-        else
-        {
-            Object object = tileentity;
-
-            if (this.isBlocked(world, pos))
-            {
-                return null;
-            }
-            else
-            {
-                Iterator iterator = EnumFacing.Plane.HORIZONTAL.iterator();
-
-                while (iterator.hasNext())
-                {
-                    EnumFacing enumfacing = (EnumFacing)iterator.next();
-                    BlockPos blockpos1 = pos.offset(enumfacing);
-                    Block block = world.getBlockState(blockpos1).getBlock();
-
-                    if (block == this)
-                    {
-                        if (this.isBlocked(world, blockpos1))
-                        {
-                            return null;
-                        }
-
-                        TileEntity tileentity1 = world.getTileEntity(blockpos1);
-
-                        if (tileentity1 instanceof TileEntityChalosAncientChest)
-                        {
-                            if (enumfacing != EnumFacing.WEST && enumfacing != EnumFacing.NORTH)
-                            {
-                                object = new InventoryLargeChest(LangUtils.translate("container.chalos.ancientchest.name"), (ILockableContainer)object, (TileEntityChalosAncientChest)tileentity1);
-                            }
-                            else
-                            {
-                                object = new InventoryLargeChest(LangUtils.translate("container.chalos.ancientchest.name"), (TileEntityChalosAncientChest)tileentity1, (ILockableContainer)object);
-                            }
-                        }
-                    }
-                }
-                return (ILockableContainer)object;
-            }
-        }
-    }
-
-    @Override
-    public TileEntity getChestTile()
+    protected TileEntityChestMP getChestTile()
     {
         return new TileEntityChalosAncientChest();
     }
@@ -117,6 +42,57 @@ public class BlockChalosAncientChest extends BlockAncientChestMP
     @Override
     public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
-        return Container.calcRedstoneFromInventory(this.getLockableContainer(world, pos));
+        return Container.calcRedstoneFromInventory(this.getLockableContainer(world, pos, false));
+    }
+
+    @Override
+    protected ILockableContainer getLockableContainer(World world, BlockPos pos, boolean allowBlocking)
+    {
+        TileEntity tile = world.getTileEntity(pos);
+
+        if (!(tile instanceof TileEntityChalosAncientChest))
+        {
+            return null;
+        }
+        else
+        {
+            ILockableContainer ilockablecontainer = (TileEntityChalosAncientChest)tile;
+
+            if (!allowBlocking && this.isBlocked(world, pos))
+            {
+                return null;
+            }
+            else
+            {
+                for (EnumFacing facing : EnumFacing.Plane.HORIZONTAL)
+                {
+                    BlockPos blockpos = pos.offset(facing);
+                    Block block = world.getBlockState(blockpos).getBlock();
+
+                    if (block == this)
+                    {
+                        if (!allowBlocking && this.isBlocked(world, blockpos))
+                        {
+                            return null;
+                        }
+
+                        TileEntity tileentity1 = world.getTileEntity(blockpos);
+
+                        if (tileentity1 instanceof TileEntityChalosAncientChest)
+                        {
+                            if (facing != EnumFacing.WEST && facing != EnumFacing.NORTH)
+                            {
+                                ilockablecontainer = new InventoryLargeChest(LangUtils.translate("container.chalos.ancientchest.name"), ilockablecontainer, (TileEntityChalosAncientChest)tileentity1);
+                            }
+                            else
+                            {
+                                ilockablecontainer = new InventoryLargeChest(LangUtils.translate("container.chalos.ancientchest.name"), (TileEntityChalosAncientChest)tileentity1, ilockablecontainer);
+                            }
+                        }
+                    }
+                }
+                return ilockablecontainer;
+            }
+        }
     }
 }

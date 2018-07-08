@@ -18,6 +18,10 @@ public class TileEntityAlienChest extends TileEntityChestMP
     {
         if (!this.adjacentChestChecked)
         {
+            if (this.world == null || !this.world.isAreaLoaded(this.pos, 1))
+            {
+                return;
+            }
             this.adjacentChestChecked = true;
             this.adjacentChestXNeg = this.getAdjacentChest(EnumFacing.WEST);
             this.adjacentChestXPos = this.getAdjacentChest(EnumFacing.EAST);
@@ -26,8 +30,7 @@ public class TileEntityAlienChest extends TileEntityChestMP
         }
     }
 
-    @Override
-    protected TileEntityAlienChest getAdjacentChest(EnumFacing side)
+    private TileEntityAlienChest getAdjacentChest(EnumFacing side)
     {
         BlockPos blockpos = this.pos.offset(side);
 
@@ -38,48 +41,10 @@ public class TileEntityAlienChest extends TileEntityChestMP
             if (tileentity instanceof TileEntityAlienChest)
             {
                 TileEntityAlienChest tileentitychest = (TileEntityAlienChest)tileentity;
-                tileentitychest.getAdjacentChestFacing(this, side.getOpposite());
+                tileentitychest.setNeighbor(this, side.getOpposite());
                 return tileentitychest;
             }
         }
         return null;
-    }
-
-    @SuppressWarnings("incomplete-switch")
-    private void getAdjacentChestFacing(TileEntityAlienChest chest, EnumFacing side)
-    {
-        if (chest.isInvalid())
-        {
-            this.adjacentChestChecked = false;
-        }
-        else if (this.adjacentChestChecked)
-        {
-            switch (side)
-            {
-            case NORTH:
-                if (this.adjacentChestZNeg != chest)
-                {
-                    this.adjacentChestChecked = false;
-                }
-                break;
-            case SOUTH:
-                if (this.adjacentChestZPos != chest)
-                {
-                    this.adjacentChestChecked = false;
-                }
-                break;
-            case EAST:
-                if (this.adjacentChestXPos != chest)
-                {
-                    this.adjacentChestChecked = false;
-                }
-                break;
-            case WEST:
-                if (this.adjacentChestXNeg != chest)
-                {
-                    this.adjacentChestChecked = false;
-                }
-            }
-        }
     }
 }

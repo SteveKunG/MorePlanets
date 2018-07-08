@@ -22,8 +22,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.utils.LoggerMP;
-import stevekung.mods.moreplanets.utils.blocks.BlockAncientChestMP;
-import stevekung.mods.moreplanets.utils.tileentity.TileEntityAncientChestMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockChestMP;
+import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class WorldGenSpaceDungeons extends WorldGenerator
 {
@@ -150,12 +150,12 @@ public class WorldGenSpaceDungeons extends WorldGenerator
 
                             if (k2 == 1)
                             {
-                                world.setBlockState(blockpos2, ((BlockAncientChestMP)this.chest.getBlock()).correctFacing(world, blockpos2, this.chest), 2);
+                                world.setBlockState(blockpos2, ((BlockChestMP)this.chest.getBlock()).correctFacing(world, blockpos2, this.chest), 2);
                                 TileEntity tileentity1 = world.getTileEntity(blockpos2);
 
-                                if (tileentity1 instanceof TileEntityAncientChestMP)
+                                if (tileentity1 instanceof TileEntityChestMP)
                                 {
-                                    ((TileEntityAncientChestMP)tileentity1).setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, rand.nextLong());
+                                    ((TileEntityChestMP)tileentity1).setLootTable(MPLootTables.COMMON_SPACE_DUNGEON, rand.nextLong());
                                 }
                                 break label100;
                             }
