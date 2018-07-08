@@ -8,6 +8,7 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.items.*;
+import stevekung.mods.moreplanets.moons.koentus.items.ItemGravityBoots;
 import stevekung.mods.moreplanets.planets.chalos.items.ItemCheeseSpore;
 import stevekung.mods.moreplanets.planets.chalos.items.ItemCheeseSporeSeed;
 import stevekung.mods.moreplanets.planets.chalos.items.armor.ItemArmorDiremsium;
@@ -147,6 +148,10 @@ public class MPItems
     public static Item WASTE_ROD_PICKER;
     public static Item NUCLEAR_WASTE_ROD;
 
+    //////////////////////// KOENTUS STUFF ////////////////////////
+
+    public static Item GRAVITY_BOOTS;
+
     //////////////////////// FRONOS STUFF ////////////////////////
 
     // Fronos Item
@@ -251,6 +256,7 @@ public class MPItems
     public static final ArmorMaterial ILLENIUM_ARMOR = EnumHelper.addArmorMaterial("ILLENIUM", "ILLENIUM", 40, new int[] { 5, 10, 8, 5 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.25F);
     public static final ArmorMaterial DIREMSIUM_ARMOR = EnumHelper.addArmorMaterial("DIREMSIUM", "DIREMSIUM", 48, new int[] { 7, 12, 10, 7 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.5F);
     public static final ArmorMaterial MULTALIC_CRYSTAL_ARMOR = EnumHelper.addArmorMaterial("MULTALIC_CRYSTAL", "MULTALIC_CRYSTAL", 40, new int[] { 8, 13, 11, 8 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
+    public static final ArmorMaterial GRAVITY_BOOTS_MAT = EnumHelper.addArmorMaterial("GRAVITY_BOOTS", "GRAVITY_BOOTS", 0, new int[] { 0, 0, 0, 0 }, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 
     public static void init()
     {
@@ -370,6 +376,10 @@ public class MPItems
         MPItems.VEIN_EYE = new ItemVeinEye("vein_eye");
         MPItems.WASTE_ROD_PICKER = new ItemBaseMP("waste_rod_picker").setSortCategory(EnumSortCategoryItem.OTHER_TOOL).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.MACHINE)).setMaxStackSize(1).setMaxDamage(15);
         MPItems.NUCLEAR_WASTE_ROD = new ItemBaseMP("nuclear_waste_rod");
+
+        //////////////////////// KOENTUS STUFF ////////////////////////
+
+        MPItems.GRAVITY_BOOTS = new ItemGravityBoots("gravity_boots", MPItems.GRAVITY_BOOTS_MAT);
 
         //////////////////////// FRONOS STUFF ////////////////////////
 
@@ -596,6 +606,9 @@ public class MPItems
         BlocksItemsRegistry.registerItem(MPItems.VEIN_EYE);
         BlocksItemsRegistry.registerItem(MPItems.WASTE_ROD_PICKER);
         BlocksItemsRegistry.registerItem(MPItems.NUCLEAR_WASTE_ROD);
+
+        // Koentus Item
+        BlocksItemsRegistry.registerItem(MPItems.GRAVITY_BOOTS);
 
         // Fronos Item
         BlocksItemsRegistry.registerItem(MPItems.EXTRAILONITE_INGOT);

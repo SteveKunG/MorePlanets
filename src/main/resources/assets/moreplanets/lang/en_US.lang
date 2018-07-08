@@ -508,6 +508,9 @@ item.waste_rod_picker.name=Waste Rod Picker
 item.nuclear_waste_rod.name=Nuclear Waste Rod
 item.infected_charcoal.name=Infected Charcoal
 
+# ITEMS - KOENTUS
+item.gravity_boots.name=Gravity Boots
+
 # ITEMS - FRONOS
 item.extrailonite_ingot.name=Extrailonite Ingot
 item.compressed_extrailonite.name=Compressed Extrailonite
