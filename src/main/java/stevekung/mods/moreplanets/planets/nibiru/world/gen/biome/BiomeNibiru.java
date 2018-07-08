@@ -44,7 +44,7 @@ public class BiomeNibiru extends BiomeMP
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedZombie.class, 100, 4, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedSkeleton.class, 100, 4, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityInfectedCreeper.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGiantWorm.class, 100, 2, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGiantWorm.class, 20, 2, 4));
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityInfectedChicken.class, 10, 4, 4));
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityInfectedCow.class, 8, 4, 4));
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityShlime.class, 12, 4, 4));
