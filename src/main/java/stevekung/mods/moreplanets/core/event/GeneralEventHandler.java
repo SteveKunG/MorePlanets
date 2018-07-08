@@ -42,6 +42,7 @@ import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinF
 import stevekung.mods.moreplanets.utils.blocks.IFire;
 import stevekung.mods.moreplanets.utils.items.IDungeonKey;
 import stevekung.mods.moreplanets.utils.items.IDungeonKeyable;
+import stevekung.mods.moreplanets.utils.items.ItemDoorMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
 import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
@@ -72,21 +73,25 @@ public class GeneralEventHandler
         {
             event.setBurnTime(100);
         }
-        if (item == MPItems.INFECTED_CRYSTALLIZED_SHARD)
+        else if (item == MPItems.INFECTED_CRYSTALLIZED_SHARD)
         {
             event.setBurnTime(400);
         }
-        if (item == MPItems.INFECTED_COAL || item == MPItems.INFECTED_CHARCOAL)
+        else if (item == MPItems.INFECTED_COAL || item == MPItems.INFECTED_CHARCOAL)
         {
             event.setBurnTime(1600);
         }
-        if (ItemStack.areItemStackTagsEqual(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.CRYSTALLIZED_LAVA_FLUID, 1000)), event.getItemStack()))
+        else if (ItemStack.areItemStackTagsEqual(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.CRYSTALLIZED_LAVA_FLUID, 1000)), event.getItemStack()))
         {
             event.setBurnTime(25000);
         }
-        if (ItemStack.areItemStackTagsEqual(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.NUCLEAR_WASTE_FLUID, 1000)), event.getItemStack()))
+        else if (ItemStack.areItemStackTagsEqual(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.NUCLEAR_WASTE_FLUID, 1000)), event.getItemStack()))
         {
             event.setBurnTime(60000);
+        }
+        else if (item instanceof ItemDoorMP)
+        {
+            event.setBurnTime(200);
         }
     }
 
