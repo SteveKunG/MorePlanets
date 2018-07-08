@@ -30,7 +30,7 @@ public class DarkEnergyTransformRecipeCategory implements IRecipeCategory
     @Override
     public IDrawable getBackground()
     {
-        return JEIRegistryHelper.guiHelper.createBlankDrawable(145, 50);
+        return JEIRegistryHelper.guiHelper.createBlankDrawable(145, 44);
     }
 
     @Override
@@ -43,9 +43,9 @@ public class DarkEnergyTransformRecipeCategory implements IRecipeCategory
     public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
     {
         IGuiItemStackGroup itemStack = recipeLayout.getItemStacks();
-        itemStack.init(0, true, 26, 14);
-        itemStack.init(1, true, 44, 14);
-        itemStack.init(2, false, 93, 14);
+        itemStack.init(0, true, 26, 2);
+        itemStack.init(1, true, 44, 2);
+        itemStack.init(2, false, 93, 2);
         itemStack.set(ingredients);
     }
 

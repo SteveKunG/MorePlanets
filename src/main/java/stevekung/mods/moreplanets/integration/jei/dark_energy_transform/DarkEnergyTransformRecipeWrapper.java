@@ -31,7 +31,7 @@ public class DarkEnergyTransformRecipeWrapper implements IRecipeWrapper
         String text = "Time : " + time + "s * Count";
         FontRenderer fontRendererObj = mc.fontRenderer;
         int width = fontRendererObj.getStringWidth(text) / 2;
-        mc.fontRenderer.drawString(text, recipeWidth - width - 78, 38, Color.gray.getRGB());
+        mc.fontRenderer.drawString(text, recipeWidth - width - 78, 30, Color.gray.getRGB());
     }
 
     @Override
