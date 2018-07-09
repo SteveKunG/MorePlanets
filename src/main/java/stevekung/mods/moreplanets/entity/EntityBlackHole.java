@@ -7,6 +7,9 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -24,6 +27,8 @@ public class EntityBlackHole extends Entity
 {
     private int lifeTick;
     private int spawnBlockRadiusTick;
+    private static final DataParameter<Integer> RANGE = EntityDataManager.createKey(EntityBlackHole.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> MAX_LIFE = EntityDataManager.createKey(EntityBlackHole.class, DataSerializers.VARINT);
 
     public EntityBlackHole(World world)
     {
@@ -36,6 +41,13 @@ public class EntityBlackHole extends Entity
     {
         this(world);
         this.setPosition(x, y, z);
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        this.dataManager.register(RANGE, 0);
+        this.dataManager.register(MAX_LIFE, 0);
     }
 
     @Override
@@ -70,6 +82,8 @@ public class EntityBlackHole extends Entity
             }
         }
 
+        int fallingBlockSize = this.world.getEntitiesWithinAABB(EntityFallingBlock.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range)).size();
+
         if (this.lifeTick == 0)
         {
             this.world.playSound(null, this.getPosition(), MPSounds.BLACK_HOLE_CREATED, SoundCategory.AMBIENT, 2.0F, 1.0F);
@@ -78,7 +92,7 @@ public class EntityBlackHole extends Entity
         {
             this.lifeTick++;
         }
-        if (this.lifeTick % 80 == 0 && this.spawnBlockRadiusTick < 15)
+        if (this.lifeTick % 80 == 0 && this.spawnBlockRadiusTick < 15 && fallingBlockSize < 32)
         {
             this.spawnBlockRadiusTick++;
         }
@@ -128,13 +142,12 @@ public class EntityBlackHole extends Entity
     }
 
     @Override
-    protected void entityInit() {}
-
-    @Override
     protected void readEntityFromNBT(NBTTagCompound nbt)
     {
         this.lifeTick = nbt.getInteger("LifeTick");
         this.spawnBlockRadiusTick = nbt.getInteger("SpawnBlockRadiusTick");
+        this.setRange(nbt.getInteger("Range"));
+        this.setMaxLife(nbt.getInteger("MaxLife"));
     }
 
     @Override
@@ -142,21 +155,28 @@ public class EntityBlackHole extends Entity
     {
         nbt.setInteger("LifeTick", this.lifeTick);
         nbt.setInteger("SpawnBlockRadiusTick", this.spawnBlockRadiusTick);
+        nbt.setInteger("Range", this.getRange());
+        nbt.setInteger("MaxLife", this.getMaxLife());
     }
 
-    protected int getMaxLife()
+    public void setRange(int range)
     {
-        return 6000;
+        this.dataManager.set(RANGE, range);
     }
 
-    protected int getRange()
+    public void setMaxLife(int maxLife)
     {
-        return 64;
+        this.dataManager.set(MAX_LIFE, maxLife);
     }
 
-    protected double getPullSpeed()
+    private int getRange()
     {
-        return 0.2D;
+        return this.dataManager.get(RANGE);
+    }
+
+    private int getMaxLife()
+    {
+        return this.dataManager.get(MAX_LIFE);
     }
 
     private void spawnFallingBlock()

@@ -398,6 +398,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     {
                         EntityBlackHole blackHole = new EntityBlackHole(this.world);
                         blackHole.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 2.0D, this.pos.getZ() + 0.5D, 0.0F, 0.0F);
+                        blackHole.setRange(64);
+                        blackHole.setMaxLife(6000);
                         this.world.spawnEntity(blackHole);
                         this.world.createExplosion(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), 5.0F, true);
                         this.world.destroyBlock(this.pos, false);
