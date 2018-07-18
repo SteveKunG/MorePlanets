@@ -7,7 +7,6 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
-import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -379,7 +378,7 @@ public class EntityEventHandler
 
             if (data.getTimeInPortal() == 0.0F)
             {
-                FMLClientHandler.instance().getClient().getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.BLOCK_PORTAL_TRIGGER, player.world.rand.nextFloat() * 0.4F + 0.8F));
+                player.playSound(SoundEvents.BLOCK_PORTAL_TRIGGER, 0.25F, player.world.rand.nextFloat() * 0.4F + 0.8F);
             }
 
             data.setTimeInPortal(data.getTimeInPortal() + 0.0125F);
