@@ -678,16 +678,16 @@ gui.status.has_waste=상태: 쓰레기 유체 보유중
 gui.button.config.name=환경설정
 
 # GUI MESSAGE
-gui.place_only_space.message=A Space Warp Pad can be placed only in the Space or Overworld dimension!
-gui.no_warp_destination.message=Unknown destination!
-gui.dark_energy_success.message=Dark Energy Receiver successfully activated
-gui.dark_energy_already_active.message=Dark Energy Receiver already activated
-gui.dark_energy_no_power.message=Dark Energy Receiver needs a large power source to run!
-gui.dark_energy_disabled.message=You should enable this first!
-gui.dark_energy_malfunction.message=Dark Energy Receiver Malfunction, machine will explode in %s
-gui.warp_core_data_add.message=Space Dimension data added
-gui.warp_core_data_add_fail.message=You can only add Dimension data at once!
-gui.space_dimension_only.message=Space Warper Core can collect data only in the Space or Overworld dimension!
+gui.place_only_space.message=우주 순간이동 패드는 우주 또는 오버월드차원에서만 배치할 수 있습니다!
+gui.no_warp_destination.message=도착지가 불명합니다!
+gui.dark_energy_success.message=다크 에너지 수신기가 성공적으로 활성화되었습니다.
+gui.dark_energy_already_active.message=다크 에너지 수신기가 이미 활성화되었습니다.
+gui.dark_energy_no_power.message=다크 에너지 수신기에 많은 에너지가 필요합니다.
+gui.dark_energy_disabled.message=이것을 처음으로 하게 해야 합니다.
+gui.dark_energy_malfunction.message=다크 에너지 수신기가 오작동합니다, 기계가 %s이내에 폭발합니다.
+gui.warp_core_data_add.message=우주 차원 데이터가 추가 되었습니다.
+gui.warp_core_data_add_fail.message=한번만 차원 데이터를 추가할 수 있습니다!
+gui.space_dimension_only.message=우주 순간이동 코어는 오직 우주 또는 오버월드 차원에서만 데이터를 수집할 수 있습니다!
 gui.place_in_liquid.message=Cannot place block inside a liquid!
 gui.bh_storage.too_close.message=Too close to another Black Hole Storage
 gui.bh_storage_not_owner.message=You are not the owner of this storage!
