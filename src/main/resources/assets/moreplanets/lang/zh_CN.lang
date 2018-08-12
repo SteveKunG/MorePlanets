@@ -1,8 +1,8 @@
 # BLOCKS - MAIN
-tile.space_warp_pad.name=Space Warp Pad
+tile.space_warp_pad.name=太空传送垫
 tile.rocket_crusher.name=火箭粉碎机
 tile.dungeon_glowstone.name=地牢萤石
-tile.dark_energy_receiver.name=暗黑能量无限接收器
+tile.dark_energy_receiver.name=暗黑能量接收器
 tile.polished_space_decoration.tin.name=饰锡墙砖
 tile.polished_space_decoration.aluminum.name=饰铝墙砖
 tile.tinted_glass_pane.white.name=强化玻璃板
@@ -58,7 +58,7 @@ tile.dungeon_brick_wall_mp.nibiru.name=尼比鲁地牢砖墙
 tile.space_portal.name=太空入口
 tile.black_hole_storage.name=黑洞物品储存器
 tile.alien_defender_beacon.name=外星防御信标
-tile.shield_generator.name=Shield Generator
+tile.shield_generator.name=屏障发生器
 
 # BLOCKS - DIONA
 tile.diona_block.surface_rock.name=狄俄娜表层岩
@@ -95,6 +95,39 @@ tile.glowing_iron_block.name=发光铁块
 tile.crashed_alien_probe.name=外星人坠毁探测器
 tile.crystallize_water_fluid.name=晶化水
 tile.crystallize_lava_fluid.name=晶化岩浆
+
+# BLOCKS - KOENTUS
+tile.koentus_block.surface_rock.name=卡恩塔斯地表岩石
+tile.koentus_block.sub_surface.name=卡恩塔斯地底岩石
+tile.koentus_block.rock.name=卡恩塔斯石头
+tile.koentus_block.cobblestone.name=卡恩塔斯圆石
+tile.koentus_block.anti_gravity_ore.name=反重力矿石(卡恩塔斯)
+tile.koentus_block.goldenite_crystal_ore.name=黄铜水晶矿石(卡恩塔斯)
+tile.koentus_block.tin_ore.name=锡矿石(卡恩塔斯)
+tile.koentus_block.copper_ore.name=铜矿石(卡恩塔斯)
+tile.koentus_block.aluminum_ore.name=铝矿石(卡恩塔斯)
+tile.koentus_block.iron_ore.name=铁矿石(卡恩塔斯)
+tile.koentus_block.anti_grav_block.name=反重力块
+tile.koentus_block.goldenite_block.name=黄铜水晶块
+tile.koentus_block.dungeon_brick.name=卡恩塔斯地牢石砖
+tile.fallen_koentus_meteor.name=卡恩塔斯陨石
+tile.koentus_ice.name=卡恩塔斯冰
+tile.glowing_hardened_ice.white.name=白色发光卡恩塔斯冰
+tile.glowing_hardened_ice.orange.name=橙色发光卡恩塔斯冰
+tile.glowing_hardened_ice.magenta.name=品红发光卡恩塔斯冰
+tile.glowing_hardened_ice.lightBlue.name=浅蓝色发光卡恩塔斯冰
+tile.glowing_hardened_ice.yellow.name=黄色发光卡恩塔斯冰
+tile.glowing_hardened_ice.lime.name=黄绿色发光卡恩塔斯冰
+tile.glowing_hardened_ice.pink.name=粉色发光卡恩塔斯冰
+tile.glowing_hardened_ice.gray.name=灰色发光卡恩塔斯冰
+tile.glowing_hardened_ice.silver.name=浅灰色发光卡恩塔斯冰
+tile.glowing_hardened_ice.cyan.name=青色发光卡恩塔斯冰
+tile.glowing_hardened_ice.purple.name=紫色发光卡恩塔斯冰
+tile.glowing_hardened_ice.blue.name=蓝色发光卡恩塔斯冰
+tile.glowing_hardened_ice.brown.name=棕色发光卡恩塔斯冰
+tile.glowing_hardened_ice.green.name=绿色发光卡恩塔斯冰
+tile.glowing_hardened_ice.red.name=红色发光卡恩塔斯冰
+tile.glowing_hardened_ice.black.name=黑色发光卡恩塔斯冰
 
 # BLOCKS - CHALOS
 tile.cheese_grass.name=奶酪草地
@@ -319,8 +352,11 @@ tile.jelly_block.green.name=绿色果冻
 tile.jelly_block.orange.name=橙子果冻
 tile.jelly_block.lemon.name=柠檬果冻
 
+# FLUIDS
+fluid.xpjuice=经验
+
 # ITEMS
-item.space_warper_core.name=Space Warper Core
+item.space_warper_core.name=太空传送核心
 item.capsule.name=胶囊
 item.space_bow.name=太空弓
 item.space_fishing_rod.name=太空钓鱼竿
@@ -333,6 +369,12 @@ item.space_fish.glowing_alien.name=发光外星鱼
 item.space_fish.cheese.name=奶酪鱼
 item.alien_defender_reinforcement.name=外星防御增强模块
 item.creative_space_kit.name=创造太空套装
+item.upgrade_template.name=升级模块
+item.shield_damage_upgrade.name=屏障伤害升级模块
+item.shield_size_upgrade.name=屏障尺寸升级模块
+item.shield_capacity_upgrade.name=屏障容量升级模块
+item.machine_speed_upgrade.name=机器速度升级模块
+item.gravity_amulet.name=重力护符(WIP)
 
 # ITEMS - DIONA
 item.diona_dungeon_key.name=四阶地牢钥匙
@@ -525,7 +567,7 @@ entity.moreplanets.bearry.name=草莓
 entity.moreplanets.berry.name=蓝莓
 entity.moreplanets.zelius_skeleton.name=晶化骷髅
 entity.moreplanets.infected_guardian.name=变异守卫者
-entity.moreplanets.infected_elder_guardian.name=Infected Elder Guardian
+entity.moreplanets.infected_elder_guardian.name=变异远古守卫者
 entity.moreplanets.infected_squid.name=变异鱿鱼
 entity.moreplanets.infected_chicken.name=变异鸡
 entity.moreplanets.infected_cow.name=变异牛
@@ -544,6 +586,7 @@ entity.moreplanets.mini_vein_floater.name=迷你漂浮者
 entity.moreplanets.giant_blueberry.name=超大蓝莓
 entity.moreplanets.marshmallow.name=棉花糖
 entity.moreplanets.jelly_slime.name=果冻史莱姆
+entity.moreplanets.terrastone_golem.name=远古苔石傀儡
  
 # NON-ENTITY
 entity.moreplanets.space_minecart_chest.name=太空运输矿车
@@ -580,11 +623,11 @@ itemGroup.MorePlanetsBlocks=更多行星方块
 itemGroup.MorePlanetsItems=更多行星物品
 
 # GUI STATUS
-gui.status.no_warp_pos.name=No Warp Position
-gui.status.missing_warp_pad.name=Missing Warp Pad
+gui.status.empty_dimension_data.name=无维度数据!
+gui.status.warp_core_required.name=需要太空传送核心!
 gui.status.dark_energy_percent0.name=%s
 gui.status.dark_energy_percent1.name=% 完成
-gui.status.dark_energy_core_created.name=Core Created
+gui.status.dark_energy_core_created.name=暗黑核心已做好
 gui.status.dark_energy_offline.name=离线
 gui.status.machine_status.name=机器状态
 gui.status.no_waste_sources.name=没有核废料资源
@@ -597,44 +640,66 @@ gui.status.collect_mode.name=收集
 gui.status.collect_item.name=物品
 gui.status.collect_xp.name=经验
 gui.status.collect_item_and_xp.name=物品/经验
-gui.status.knock_amount.name=Knock Amount
-gui.status.shield_damage.name=Shield Damage
-gui.status.shield_size.name=Shield Size
-gui.status.set_shield_damage.name=Damage
-gui.status.set_max_shield_size.name=Size
+gui.status.knock_amount.name=锁定量
+gui.status.shield_damage.name=屏障伤害
+gui.status.shield_size.name=屏障尺寸
+gui.status.set_shield_damage.name=伤害
+gui.status.set_max_shield_size.name=尺寸
+gui.status.empty.name=空
+gui.status.dimension.name=维度
+gui.status.name.name=名字
+gui.status.destination.name=目标
+gui.status.destruct.name=破坏
+gui.status.process.name=处理
+gui.status.transform_time.name=转化时间
+gui.status.shield_capacity.name=屏障容量
+gui.status.shield_charge_cooldown.name=充电冷却
+gui.status.shield_charging.name=充电中...
+gui.status.settings.name=设置
+gui.status.config_save.name=配置保存!
+gui.status.owner.name=拥有者
+gui.status.mode.name=模式
+
+# GUI BUTTON
+gui.button.config.name=配置
 
 # GUI MESSAGE
-gui.no_warp_data.message=No Space Warp Pad data stored
-gui.cannot_detect_pad.message=Cannot Detect Space Warp Pad
-gui.warp_pad_data_add.message=Space Warp Pad data added
-gui.warp_pad_data_add_fail.message=Failed to set dimension data, You need to collect dimension data first!
-gui.place_only_space.message=Space Warp Pad can be placed only in the Space or Overworld dimension!
-gui.dark_energy_success.message=Dark Energy Receiver successfully activated
-gui.dark_energy_already_active.message=Dark Energy Receiver already activated
-gui.dark_energy_no_power.message=Dark Energy Receiver needs large power source to running!
-gui.dark_energy_disabled.message=You should enable this first!
-gui.dark_energy_malfunction.message=Dark Energy Receiver Malfunction, machine will explode in %s
-gui.warp_core_data_add.message=Space Dimension data added
-gui.warp_core_data_add_fail0.message=You need to standing on Space Warp Pad to collect dimension data!
-gui.warp_core_data_add_fail1.message=You need to standing on the center of Space Warp Pad!
-gui.space_dimension_only.message=Space Warper Core can be collect data only in Space or Overworld dimension!
-gui.place_in_liquid.message=Cannot place block inside liquid!
-gui.bh_storage.too_close.message=Too close another Black Hole Storage
-gui.bh_storage_not_owner.message=You are not owner of this storage!
-gui.alien_defender_beacon.message=Alien Defender Reinforcement beacon is created!
-gui.alien_defender_arrived.message=Alien Defender Reinforcement have arrived!
-gui.target_too_far.message=Target is too far away %s blocks!
-gui.not_air_block.message=Target is not air block!
+gui.place_only_space.message=太空传送垫只能放在太空或地球上!
+gui.no_warp_destination.message=未知目标!
+gui.dark_energy_success.message=暗黑能量接收器已成功激活
+gui.dark_energy_already_active.message=暗黑能量接收器已激活
+gui.dark_energy_no_power.message=暗黑能量接收器需要很多电力来运行!
+gui.dark_energy_disabled.message=你应该先启动它!
+gui.dark_energy_malfunction.message=暗黑能量接收器发生故障,机器将爆炸在 %s
+gui.warp_core_data_add.message=太空维度数据已添加
+gui.warp_core_data_add_fail0.message=你需要站在太空传送垫来收集维度数据!
+gui.warp_core_data_add_fail1.message=你需要站在太空传送垫的中心!
+gui.space_dimension_only.message=太空传送核心只能在太空或地球收集维度数据!
+gui.place_in_liquid.message=不能在液体里放置方块!
+gui.bh_storage.too_close.message=与其他黑洞物品储存器靠得太近
+gui.bh_storage_not_owner.message=你不是这个储存器的拥有者!
+gui.alien_defender_beacon.message=外星防御增强信标已做好!
+gui.alien_defender_arrived.message=外星防御增强模块已到达!
+gui.target_too_far.message=目标离 %s 的方块太远!
+gui.not_air_block.message=目标不是空气方块!
 
 # GUI DESCRIPTION
-gui.receiver_render_guide.desc=Receiver Placing Guide
-gui.disable_black_hole.desc=Disable Black Hole
+gui.multiblock_guide.desc=接收器摆放指南
+gui.disable_black_hole.desc=禁用黑洞
 gui.use_hopper.desc=使用漏斗
 gui.collect_mode.desc=收集模式
 gui.xp_value.desc=经验
-gui.shield_visible.desc=Shield Visible
-gui.increase_knock.desc=Increase Knock
-gui.decrease_knock.desc=Decrease Knock
+gui.shield_visible.desc=屏障可见
+gui.enable_shield.desc=启动屏障
+gui.enable_shield_damage.desc=启动伤害
+gui.machine_upgrade_slot.desc.0=机器速度升级插槽,
+gui.machine_upgrade_slot.desc.1=放在这里来增加保护速度
+gui.shield_damage_upgrade.desc.0=屏障伤害升级插槽,
+gui.shield_damage_upgrade.desc.1=放在这里来增加屏障伤害上限
+gui.shield_size_upgrade.desc.0=屏障尺寸升级插槽,
+gui.shield_size_upgrade.desc.1=放在这里来扩大屏障范围
+gui.shield_capacity_upgrade.desc.0=屏障容量升级插槽,
+gui.shield_capacity_upgrade.desc.1=放在这里来增加屏障容量上限
 item.record.a_planet_to_conquer.desc=Phil Rey - A planet to conquer
 
 # GUI DEATH MESSAGE
@@ -648,24 +713,22 @@ death.attack.laser=%s 被镭射弹射死了
 gui.config.mp=更多行星配置GUI
 gui.config.mp.general=基于更多行星配置.版本检查,调试,Mod选项.等等.
 gui.config.mp.dimension=行星/卫星维度ID配置.
-gui.config.mp.biome=世界生物群系ID配置.
 gui.config.mp.gcaddon=GC插件兼容配置.
 gui.config.mp.other=其他配置.
 config_moreplanets_general=通用配置
 config_moreplanets_dimensions=维度配置
-config_moreplanets_biomes=生物群系配置
 config_moreplanets_gc_addon_compat=GC插件配置
 config_moreplanets_others=其他配置
 
 # GUI JEI
-gui.jei.dark_energy_transform=Dark Energy Transform
+gui.jei.dark_energy_transform=暗黑能量转化
 gui.jei.rocket_t4=四阶火箭
 gui.jei.rocket_t5=五阶火箭
 gui.jei.rocket_t6=六阶火箭
 
 # DESCRIPTION
-tile.space_warp_pad.description=Warp Pad allows you to travel in the space dimension, setup by 3x3 area.
-tile.rocket_crusher.description=火箭粉碎机可将火箭变成重装防护板.它需要用在火箭工作台里.
+tile.space_warp_pad.description=传送垫允许你传送到各个太空维度,需要摆成3x3的形状.
+tile.rocket_crusher.description=火箭粉碎机可将火箭变成重装防护板.
 tile.cheese_of_milk_cake.description=奶酪牛奶蛋糕由奶酪星的奶酪牛奶制成,可放置并食用.
 tile.dark_energy_receiver.description=暗黑能量无线接收器将从银河系遥远星系收集未知能量,用来制造暗黑能量机器.非常危险!
 tile.dark_energy_core.description=从未知遥远星系来的强大方块.将物品放在方块顶部,可将物品变成宇宙中难获得的东西.
@@ -674,30 +737,34 @@ tile.tiered_energy_storage_cluster_0.description=暗黑能量储存模块能存�
 tile.tiered_energy_storage_cluster_1.description=核废料能量储存模块能存储大量电力以备使用.拥有更高的储量和更大的功率.核废料能存储更多能源!
 tile.dark_energy_generator.description=暗黑能量发电机将从遥远未知的星球或暗黑能量珍珠收集能量,储存以进一步使用.
 tile.black_hole_storage.description=黑洞物品储存器是一个用黑洞吸取物品/经验的大型物品储存器.物品和经验将用其配置储存.
-tile.shield_generator.description=Shield Generator will protect players from dangerous things (monster, projectile) and it still WIP.
+tile.shield_generator.description=屏障发生器将保护玩家不受危险事物(怪物,抛体)的伤害并且它仍WIP.
+tile.sealable_nuclear_waste_rod.description=密封方块需要用在空气无法进入的地方,比如太空底墙.
 item.infected_arrow.description=可将箭丢入被感染的水获得.
 desc.tier_4.name=四阶火箭
 desc.tier_5.name=五阶火箭
 desc.tier_6.name=六阶火箭
 desc.energy_stored.name=能量收集: %s
 desc.dark_energy_fuel.name=暗黑能量燃料: %s
-desc.ion_cannon.name=Ion Cannon
+desc.ion_cannon.name=离子炮
 desc.black_hole_storage.name=黑洞物品储存器
 desc.bhs_disable.name=禁用
 desc.bhs_hopper.name=使用漏斗
 desc.bhs_collect_mode.name=收集模式
 desc.bhs_xp.name=经验
 desc.bhs_slot_used.name=Slot Used
+desc.bhs_more.name=and %s more...
+desc.shift_info.name=按下<SHIFT>键来查看更多
+desc.control_info.name=按下<CONTROL>键来查看更多
 
 # CONTAINER
-container.space_warp_pad.name=Space Warp Pad
+container.space_warp_pad.name=太空传送垫
 container.dark_energy_receiver.name=暗黑能量无限接收器
 container.nuclear_waste_generator.name=核废料发电机
 container.tiered_energy_storage_cluster_0.name=暗黑能量储存模块
 container.tiered_energy_storage_cluster_1.name=核废料能量储存模块
 container.dark_energy_generator.name=暗黑能量发电机
 container.black_hole_storage=黑洞物品储存器
-container.shield_generator.name=Shield Generator
+container.shield_generator.name=屏障发生器
 container.black_hole_storage_short.name=BH. 储存
 container.diona.ancientchest.name=狄俄娜箱子
 container.diona.treasurechest.name=四阶珍宝箱
