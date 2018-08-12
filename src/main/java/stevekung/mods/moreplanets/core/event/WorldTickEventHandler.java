@@ -5,25 +5,24 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
-import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import stevekung.mods.moreplanets.core.data.WorldDataStartedDimension;
-import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.module.planets.diona.dimension.WorldProviderDiona;
 import stevekung.mods.moreplanets.module.planets.diona.entity.EntityAlienBeam;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.weather.EntityNibiruLightningBolt;
+import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.BiomeGreenVein;
+import stevekung.mods.moreplanets.module.planets.nibiru.world.gen.biome.BiomeInfectedDesert;
 
 public class WorldTickEventHandler
 {
@@ -31,117 +30,79 @@ public class WorldTickEventHandler
     public static WorldDataStartedDimension startedDimensionData = null;
 
     @SubscribeEvent
-    public void onServerTick(ServerTickEvent event)
+    public void onWorldTick(WorldTickEvent event)
     {
-        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+        World world = event.world;
 
-        if (server == null)
+        if (event.phase == Phase.END)//TODO Check entity spawning outside unloaded chunk
         {
-            return;
-        }
-
-        if (event.phase == Phase.START)
-        {
-            if (WorldTickEventHandler.startedDimensionData == null)
+            if (world != null && world instanceof WorldServer)
             {
-                World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(0);
-                WorldTickEventHandler.startedDimensionData = (WorldDataStartedDimension) world.getMapStorage().getOrLoadData(WorldDataStartedDimension.class, WorldDataStartedDimension.saveDataID);
+                WorldServer worldServer = (WorldServer) world;
 
-                if (WorldTickEventHandler.startedDimensionData == null)
+                for (Iterator<Chunk> iterator = worldServer.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext();)
                 {
-                    WorldTickEventHandler.startedDimensionData = new WorldDataStartedDimension(WorldDataStartedDimension.saveDataID);
-                    world.getMapStorage().setData(WorldDataStartedDimension.saveDataID, WorldTickEventHandler.startedDimensionData);
-                }
-            }
-        }
-        if (event.phase == Phase.END)
-        {
-            World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.idDimensionDiona);
+                    Chunk chunk = iterator.next();
+                    int x = chunk.x * 16;
+                    int z = chunk.z * 16;
+                    this.updateLCG = this.updateLCG * 3 + 1013904223;
+                    int l = this.updateLCG >> 2;
+                    BlockPos pos = this.adjustPosToNearbyEntity(worldServer, new BlockPos(x + (l & 15), 0, z + (l >> 8 & 15)));
 
-            if (world.provider instanceof WorldProviderDiona)
-            {
-                if (world instanceof WorldServer)
-                {
-                    WorldServer worldServer = (WorldServer) world;
-
-                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.profiler.endSection())
+                    if (worldServer.provider instanceof WorldProviderDiona)
                     {
-                        Chunk chunk = iterator.next();
-                        int j = chunk.x * 16;
-                        int k = chunk.z * 16;
-
-                        if (world.rand.nextInt(75000) == 0)
+                        if (worldServer.rand.nextInt(75000) == 0)
                         {
-                            this.updateLCG = this.updateLCG * 3 + 1013904223;
-                            int l = this.updateLCG >> 2;
-                            BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
-
-                            if (this.canBeamStrike(world, blockpos))
+                            if (this.canBeamStrike(worldServer, pos))
                             {
-                                EntityAlienBeam beam = new EntityAlienBeam(world);
-                                beam.setLocationAndAngles(blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0.0F, 0.0F);
-                                world.spawnEntity(beam);
+                                EntityAlienBeam beam = new EntityAlienBeam(worldServer);
+                                beam.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0.0F, 0.0F);
+
+                                if (worldServer.isBlockLoaded(pos))
+                                {
+                                    worldServer.spawnEntity(beam);
+                                }
                             }
                         }
                     }
-                }
-            }
-
-            world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(ConfigManagerMP.idDimensionNibiru);
-
-            if (world.provider instanceof WorldProviderNibiru)
-            {
-                if (world instanceof WorldServer)
-                {
-                    WorldServer worldServer = (WorldServer) world;
-
-                    for (Iterator<Chunk> iterator = world.getPersistentChunkIterable(worldServer.getPlayerChunkMap().getChunkIterator()); iterator.hasNext(); world.profiler.endSection())
+                    if (worldServer.provider instanceof WorldProviderNibiru)
                     {
-                        Chunk chunk = iterator.next();
-                        int j = chunk.x * 16;
-                        int k = chunk.z * 16;
-                        boolean flag = world.isRaining();
-                        boolean flag1 = world.isThundering();
+                        boolean raining = worldServer.isRaining();
+                        boolean thunder = worldServer.isThundering();
+                        Biome biome = worldServer.getBiome(pos);
 
-                        if (world.provider.canDoLightning(chunk) && flag && flag1 && world.rand.nextInt(1000) == 0)
+                        if (worldServer.provider.canDoLightning(chunk) && raining && thunder && worldServer.rand.nextInt(1000) == 0)
                         {
-                            this.updateLCG = this.updateLCG * 3 + 1013904223;
-                            int l = this.updateLCG >> 2;
-                            BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
-
-                            if (world.isRainingAt(blockpos))
+                            if (worldServer.isRainingAt(pos))
                             {
-                                world.spawnEntity(new EntityNibiruLightningBolt(world, blockpos.getX(), blockpos.getY(), blockpos.getZ(), true));
+                                worldServer.spawnEntity(new EntityNibiruLightningBolt(worldServer, pos.getX(), pos.getY(), pos.getZ(), true));
                             }
                         }
-                        if (world.rand.nextInt(16) == 0)
+                        if (worldServer.rand.nextInt(16) == 0)
                         {
-                            this.updateLCG = this.updateLCG * 3 + 1013904223;
-                            int j2 = this.updateLCG >> 2;
-                            BlockPos blockpos1 = world.getPrecipitationHeight(new BlockPos(j + (j2 & 15), 0, k + (j2 >> 8 & 15)));
-                            BlockPos blockpos2 = blockpos1.down();
+                            BlockPos pos1 = pos.down();
 
-                            if (world.canBlockFreezeNoWater(blockpos2))
+                            if (worldServer.isAreaLoaded(pos1, 1))
                             {
-                                world.setBlockState(blockpos2, NibiruBlocks.INFECTED_ICE.getDefaultState());
+                                if (worldServer.canBlockFreezeNoWater(pos1))
+                                {
+                                    worldServer.setBlockState(pos1, NibiruBlocks.INFECTED_ICE.getDefaultState());
+                                }
                             }
-                            if (flag && world.canSnowAt(blockpos1, true))
+                            if (raining && worldServer.canSnowAt(pos, true))
                             {
-                                world.setBlockState(blockpos1, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
+                                worldServer.setBlockState(pos, NibiruBlocks.INFECTED_SNOW_LAYER.getDefaultState());
                             }
-                            if (flag && world.getBiome(blockpos2).canRain())
+                            if (raining && worldServer.getBiome(pos1).canRain())
                             {
-                                world.getBlockState(blockpos2).getBlock().fillWithRain(world, blockpos2);
+                                worldServer.getBlockState(pos1).getBlock().fillWithRain(worldServer, pos1);
                             }
                         }
-                        if (world.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_DESERT || world.getBiome(new BlockPos(j, 0, k)) == MPBiomes.INFECTED_EXTREME_HILLS)
+                        if (biome instanceof BiomeInfectedDesert || biome instanceof BiomeGreenVein)
                         {
-                            if (world.rand.nextInt(250000) == 0)
+                            if (worldServer.rand.nextInt(250000) == 0)
                             {
-                                this.updateLCG = this.updateLCG * 3 + 1013904223;
-                                int l = this.updateLCG >> 2;
-                                BlockPos blockpos = this.adjustPosToNearbyEntity(world, new BlockPos(j + (l & 15), 0, k + (l >> 8 & 15)));
-                                world.spawnEntity(new EntityNibiruLightningBolt(world, blockpos.getX(), blockpos.getY(), blockpos.getZ(), false));
+                                worldServer.spawnEntity(new EntityNibiruLightningBolt(worldServer, pos.getX(), pos.getY(), pos.getZ(), false));
                             }
                         }
                     }
