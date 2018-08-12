@@ -103,6 +103,7 @@ public class MorePlanetsMod
         MPPotions.init();
         MPBiomes.init();
         MPOthers.init();
+        MPPlanets.register();
         MorePlanetsMod.PROXY.preInit(event);
         MorePlanetsMod.CHECKER = new VersionChecker(MorePlanetsMod.INSTANCE, MorePlanetsMod.NAME, MorePlanetsMod.URL);
 
@@ -118,7 +119,6 @@ public class MorePlanetsMod
     {
         MPTileEntities.init();
         MPOreDictionary.init();
-        MPPlanets.register();
         DataFixersMP.init();
         GalacticraftCore.packetPipeline.addDiscriminator(1999, PacketSimpleMP.class);
         MorePlanetsMod.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.CRASHED_ALIEN_PROBE));
