@@ -5,12 +5,12 @@ buildscript {
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.11"
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.1.0"
     }
 }
 
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.0.11"
+    id "com.matthewprenger.cursegradle" version "1.1.0"
 }
 
 def api = new groovy.json.JsonSlurper().parseText(file("${api_token_path}").text)
@@ -21,20 +21,20 @@ apply plugin: "net.minecraftforge.gradle.forge"
 
 sourceSets.main {
     java {
-        srcDirs = ["src/main/java", "dependencies/main/java", "src/api/java"]
+        srcDirs = ["src/main/java", "dependencies/main/java"]
     }
     resources {
-        srcDirs = ["src/main/resources", "dependencies/main/resources", "src/api/resources"]
+        srcDirs = ["src/main/resources", "dependencies/main/resources"]
     }
 }
 
 version = project.version
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = targetCompatibility = 1.8
 
 minecraft {
-    version = "1.12.2-14.23.4.2725"
+    version = "1.12.2-14.23.4.2760"
     runDir = "run"
     mappings = "snapshot_20171003"
     makeObfSourceJar = false
@@ -80,10 +80,14 @@ curseforge {
     apiKey = api.more_planets
     project {
         id = "261990"
-        changelog = ""
+        changelog = "Change Log"
         changelogType = "markdown"
         releaseType = "beta"
         addGameVersion mcVersion
+
+        afterEvaluate { //TODO Temp fix
+            gameVersionStrings.remove('Java 9')
+        }
 
         mainArtifact(file("build/libs/More-Planets-" + mcVersion + "-" + version + ".jar")) {
             displayName = "More-Planets-" + mcVersion + "-" + version
