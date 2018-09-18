@@ -85,6 +85,7 @@ public class MorePlanetsCore
         MPPotions.init();
         MPBiomes.init();
         MPOthers.init();
+        MPPlanets.register();
         MorePlanetsCore.PROXY.registerPreRendering();
     }
 
@@ -93,7 +94,6 @@ public class MorePlanetsCore
     {
         MPTileEntities.init();
         MPOreDictionary.init();
-        MPPlanets.register();
         GalacticraftCore.packetPipeline.addDiscriminator(ConfigManagerMP.idNetworkHandler, PacketSimpleMP.class);
         MorePlanetsCore.BLOCK_TAB.setDisplayItemStack(new ItemStack(MPBlocks.ROCKET_CRUSHER));
         MorePlanetsCore.ITEM_TAB.setDisplayItemStack(new ItemStack(MPItems.SPACE_WARPER_CORE));
