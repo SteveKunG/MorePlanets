@@ -92,7 +92,7 @@ public class EntityBlackHole extends Entity
         {
             this.lifeTick++;
         }
-        if (this.lifeTick % 80 == 0 && this.spawnBlockRadiusTick < 15 && fallingBlockSize < 32)
+        if (this.lifeTick % 80 == 0 && this.spawnBlockRadiusTick < 15 && fallingBlockSize <= 32)
         {
             this.spawnBlockRadiusTick++;
         }
