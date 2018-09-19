@@ -50,7 +50,10 @@ public class BlockSpaceWarpPad extends BlockAdvancedTileMP implements IPartialSe
     {
         if (!(GCCoreUtil.getDimensionID(world) == 0 || world.provider instanceof IGalacticraftWorldProvider))
         {
-            ClientUtils.printClientMessage(JsonUtils.create(LangUtils.translate("gui.place_only_space.message")).setStyle(JsonUtils.red()));
+            if (world.isRemote)
+            {
+                ClientUtils.printClientMessage(JsonUtils.create(LangUtils.translate("gui.place_only_space.message")).setStyle(JsonUtils.red()));
+            }
             return false;
         }
         if (!this.checkAxis(world, pos, EnumFacing.EAST) || !this.checkAxis(world, pos, EnumFacing.WEST) || !this.checkAxis(world, pos, EnumFacing.NORTH) || !this.checkAxis(world, pos, EnumFacing.SOUTH))

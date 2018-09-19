@@ -355,41 +355,37 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     }
                 }
 
-                if (this.activatedTick == this.getSuccessfulTick())
+                if (!this.successful && this.activatedTick == this.getSuccessfulTick())
                 {
-                    if (!this.successful)
+                    if (this.world.getBlockState(this.getPos().up()).getBlock() != MPBlocks.DARK_ENERGY_CORE)
                     {
-                        if (this.world.getBlockState(this.getPos().up()).getBlock() != MPBlocks.DARK_ENERGY_CORE)
-                        {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                            bolt.setLocationAndAngles(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), 0.0F, 0.0F);
-                            this.world.playSound(null, this.getPos().add(0, 2, 0), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
-                            this.world.spawnEntity(bolt);
-                            this.world.setBlockState(this.getPos().up(), MPBlocks.DARK_ENERGY_CORE.getDefaultState());
-                        }
-                        TileEntityDarkEnergyReceiver.multiBlockLists.entrySet().forEach(list ->
-                        {
-                            IBlockState state = list.getValue();
-                            BlockPos pos = this.pos.add(list.getKey());
-
-                            if (state != MPBlocks.DUNGEON_GLOWSTONE.getDefaultState() && state != MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState())
-                            {
-                                for (int i = 0; i < 120; i++)
-                                {
-                                    MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, pos.getX() + this.world.rand.nextDouble() * 1.0D, pos.getY() + this.world.rand.nextDouble() * 1.0D, pos.getZ() + this.world.rand.nextDouble() * 1.0D, 0.0D, -this.world.rand.nextDouble(), 0.0D);
-                                }
-                                this.world.setBlockToAir(pos);
-                            }
-                            else
-                            {
-                                this.world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
-                            }
-                        });
-                        this.setDisabled(0, true);
-                        this.activatedMessage = true;
-                        this.successful = true;
-                        ClientUtils.printClientMessage(JsonUtils.create(LangUtils.translate("gui.status.dark_energy_core_created.name")).setStyle(JsonUtils.green()));
+                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
+                        bolt.setLocationAndAngles(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), 0.0F, 0.0F);
+                        this.world.playSound(null, this.getPos().add(0, 2, 0), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
+                        this.world.spawnEntity(bolt);
+                        this.world.setBlockState(this.getPos().up(), MPBlocks.DARK_ENERGY_CORE.getDefaultState());
                     }
+                    TileEntityDarkEnergyReceiver.multiBlockLists.entrySet().forEach(list ->
+                    {
+                        IBlockState state = list.getValue();
+                        BlockPos pos = this.pos.add(list.getKey());
+
+                        if (state != MPBlocks.DUNGEON_GLOWSTONE.getDefaultState() && state != MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState())
+                        {
+                            for (int i = 0; i < 120; i++)
+                            {
+                                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.DARK_PORTAL, pos.getX() + this.world.rand.nextDouble() * 1.0D, pos.getY() + this.world.rand.nextDouble() * 1.0D, pos.getZ() + this.world.rand.nextDouble() * 1.0D, 0.0D, -this.world.rand.nextDouble(), 0.0D);
+                            }
+                            this.world.setBlockToAir(pos);
+                        }
+                        else
+                        {
+                            this.world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
+                        }
+                    });
+                    this.setDisabled(0, true);
+                    this.activatedMessage = true;
+                    this.successful = true;
                 }
 
                 if (this.failedTick > 600)
@@ -433,6 +429,11 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
             if (this.successful && this.solarRotate < 180)
             {
                 this.solarRotate++;
+            }
+            if (this.activatedMessage)
+            {
+                ClientUtils.printClientMessage(JsonUtils.create(LangUtils.translate("gui.status.dark_energy_core_created.name")).setStyle(JsonUtils.green()));
+                this.activatedMessage = false;
             }
         }
     }
