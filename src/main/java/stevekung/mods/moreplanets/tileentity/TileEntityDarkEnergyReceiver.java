@@ -38,7 +38,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
@@ -51,7 +50,6 @@ import stevekung.mods.moreplanets.module.planets.diona.entity.EntityDarkLightnin
 import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
-import stevekung.mods.moreplanets.util.JsonUtil;
 
 public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
 {
@@ -337,7 +335,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         this.setDisabled(0, true);
                         this.activatedMessage = true;
                         this.successful = true;
-                        FMLClientHandler.instance().getClient().player.sendMessage(new JsonUtil().text(GCCoreUtil.translate("gui.status.dark_energy_core_created.name")).setStyle(new JsonUtil().colorFromConfig("green")));
+                        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SEND_GREEN_MESSAGE, world.provider.getDimension(), new Object[] { GCCoreUtil.translate("gui.status.dark_energy_core_created.name") }));
                     }
                 }
 

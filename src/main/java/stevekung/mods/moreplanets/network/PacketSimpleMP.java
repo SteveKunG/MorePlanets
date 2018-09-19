@@ -17,6 +17,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -29,6 +30,7 @@ import stevekung.mods.moreplanets.core.event.WorldTickEventHandler;
 import stevekung.mods.moreplanets.inventory.ContainerShieldGeneratorConfig;
 import stevekung.mods.moreplanets.tileentity.TileEntityBlackHoleStorage;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
+import stevekung.mods.moreplanets.util.JsonUtil;
 import stevekung.mods.moreplanets.util.MPLog;
 import stevekung.mods.moreplanets.util.TeleportUtil;
 import stevekung.mods.moreplanets.util.helper.WorldDimensionHelper;
@@ -258,6 +260,12 @@ public class PacketSimpleMP extends PacketBase
                 PacketSimpleMP.openShieldGeneratorConfig(playerMP, shield, isConfig);
             }
             break;
+        case S_SEND_RED_MESSAGE:
+            player.sendMessage(new TextComponentString((String)this.data.get(0)).setStyle(new JsonUtil().red()));
+            break;
+        case S_SEND_GREEN_MESSAGE:
+            player.sendMessage(new TextComponentString((String)this.data.get(0)).setStyle(new JsonUtil().colorFromConfig("green")));
+            break;
         default:
             break;
         }
@@ -274,6 +282,8 @@ public class PacketSimpleMP extends PacketBase
         S_ENABLE_SHIELD_DAMAGE(Side.SERVER, BlockPos.class),
         S_SHIELD_GENERATOR_OPTION(Side.SERVER, BlockPos.class, Integer.class, String.class),
         S_SWITCH_SHIELD_GENERATOR_GUI(Side.SERVER, BlockPos.class, Boolean.class),
+        S_SEND_RED_MESSAGE(Side.SERVER, String.class),
+        S_SEND_GREEN_MESSAGE(Side.SERVER, String.class),
 
         // CLIENT
         C_ADD_ENTITY_ID(Side.CLIENT, String.class),
