@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -37,7 +38,7 @@ public class DarkEnergyTransformRecipeWrapper implements IRecipeWrapper
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInputs(ItemStack.class, new ArrayList<>(this.input.values()));
-        ingredients.setOutput(ItemStack.class, this.output);
+        ingredients.setInputs(VanillaTypes.ITEM, new ArrayList<>(this.input.values()));
+        ingredients.setOutput(VanillaTypes.ITEM, this.output);
     }
 }

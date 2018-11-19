@@ -7,6 +7,7 @@ import java.util.List;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IModRegistry;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -91,6 +92,6 @@ public class JEIRegistryHelper
 
     public static void addInfo(ItemStack itemStack, String... desc)
     {
-        JEIRegistryHelper.registry.addIngredientInfo(itemStack, ItemStack.class, desc);
+        JEIRegistryHelper.registry.addIngredientInfo(itemStack, VanillaTypes.ITEM, desc);
     }
 }

@@ -3,9 +3,9 @@ package stevekung.mods.moreplanets.integration.jei.black_hole_storage;
 import java.util.ArrayList;
 
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
-import net.minecraft.item.ItemStack;
 
 public class BlackHoleStorageRecipeWrapper implements IRecipeWrapper
 {
@@ -19,7 +19,7 @@ public class BlackHoleStorageRecipeWrapper implements IRecipeWrapper
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInputs(ItemStack.class, new ArrayList<>(this.recipe.getRecipeInput().values()));
-        ingredients.setOutput(ItemStack.class, this.recipe.getRecipeOutput());
+        ingredients.setInputs(VanillaTypes.ITEM, new ArrayList<>(this.recipe.getRecipeInput().values()));
+        ingredients.setOutput(VanillaTypes.ITEM, this.recipe.getRecipeOutput());
     }
 }
