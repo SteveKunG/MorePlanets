@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = "https://files.minecraftforge.net/maven" }
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
@@ -45,15 +45,15 @@ minecraft {
 }
 
 repositories {
-    // Hwyla
+    // Hwyla : https://tehnut.info/maven/mcp/mobius/waila/Hwyla/
     maven {
         url "http://tehnut.info/maven/"
     }
-    // JEI
+    // JEI : http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.12.2/
     maven {
         url "http://dvs1.progwml6.com/files/maven"
     }
-    // Code Chicken mods
+    // Code Chicken Lib : http://chickenbones.net/maven/codechicken/CodeChickenLib/
     maven {
         url "http://chickenbones.net/maven/"
     }
@@ -61,7 +61,7 @@ repositories {
     maven {
         url "https://plugins.gradle.org/m2/"
     }
-    // CTM
+    // CTM : https://maven.tterrag.com/index.php?dir=team%2Fchisel%2Fctm%2FCTM
     maven {
         url "http://maven.tterrag.com/"
     }
