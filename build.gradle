@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = "https://files.minecraftforge.net/maven" }
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
@@ -49,7 +49,7 @@ repositories {
     maven {
         url "http://tehnut.info/maven/"
     }
-    // JEI
+    // JEI : http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.12.2/
     maven {
         url "http://dvs1.progwml6.com/files/maven"
     }
