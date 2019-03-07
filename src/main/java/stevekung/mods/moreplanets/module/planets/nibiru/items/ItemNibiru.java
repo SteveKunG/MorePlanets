@@ -39,7 +39,7 @@ public class ItemNibiru extends ItemBaseVariantsMP
     @Override
     public int getItemBurnTime(ItemStack itemStack)
     {
-        return itemStack.getItemDamage() == 2 ? 1600 : -1;
+        return itemStack.getItemDamage() == 2 || itemStack.getItemDamage() == 5 ? 1600 : -1;
     }
 
     public static enum ItemType

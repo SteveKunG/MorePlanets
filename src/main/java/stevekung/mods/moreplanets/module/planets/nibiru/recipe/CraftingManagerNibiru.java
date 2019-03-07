@@ -64,6 +64,7 @@ public class CraftingManagerNibiru
         RecipeHelper.addRecipe(new ItemStack(NibiruBlocks.ALIEN_BERRY_CHEST), new Object[] { "XXX", "X X", "XXX", 'X', new ItemStack(NibiruBlocks.NIBIRU_PLANKS, 1, 2) });
         RecipeHelper.addRecipe(new ItemStack(NibiruBlocks.INFECTED_SNOW_LAYER, 6), new Object[] { "XXX", 'X', NibiruBlocks.INFECTED_SNOW });
         RecipeHelper.addRecipe(new ItemStack(NibiruBlocks.INFECTED_TORCH, 4), new Object[] { "C", "S", 'S', Items.STICK, 'C', new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 2)});
+        RecipeHelper.addRecipe(new ItemStack(NibiruBlocks.INFECTED_TORCH, 4), new Object[] { "C", "S", 'S', Items.STICK, 'C', new ItemStack(NibiruItems.NIBIRU_ITEM, 1, 5)});
         RecipeHelper.addRecipe(new ItemStack(NibiruBlocks.NIBIRU_FURNACE), new Object[] { "XXX", "X X", "XXX", 'X', new ItemStack(NibiruBlocks.NIBIRU_BLOCK, 1, 1)});
         RecipeHelper.addRecipe(new ItemStack(NibiruBlocks.HALF_INFECTED_PRISMARINE_SLAB, 6, 0), new Object[] { "XXX", 'X', new ItemStack(NibiruBlocks.INFECTED_PRISMARINE, 1, 0) });
         RecipeHelper.addRecipe(new ItemStack(NibiruBlocks.HALF_INFECTED_PRISMARINE_SLAB, 6, 1), new Object[] { "XXX", 'X', new ItemStack(NibiruBlocks.INFECTED_PRISMARINE, 1, 1) });
