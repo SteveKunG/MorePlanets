@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "moreplanets:nibiru_item",
+      "data": 5
+    }
+  },
+  "result": {
+    "item": "moreplanets:infected_torch",
+    "count": 4
+  }
+}
