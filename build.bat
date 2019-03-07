@@ -1,2 +1,2 @@
-set GRADLE_USER_HOME=M:\Modding\MorePlanets\1.12.2\.gradle_data
+set GRADLE_USER_HOME=C:\Users\SteveKunG\.gradle_eclipse
 gradlew buildJar
