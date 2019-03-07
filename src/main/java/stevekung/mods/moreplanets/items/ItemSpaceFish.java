@@ -27,13 +27,13 @@ public class ItemSpaceFish extends ItemFoodVariantsMP
     @Override
     public int getHealAmount(ItemStack itemStack)
     {
-        return ItemType.valuesCached()[itemStack.getItemDamage()].hunger;
+        return ItemType.valuesCached()[itemStack.getItemDamage() % ItemType.valuesCached().length].hunger;
     }
 
     @Override
     public float getSaturationModifier(ItemStack itemStack)
     {
-        return ItemType.valuesCached()[itemStack.getItemDamage()].saturation;
+        return ItemType.valuesCached()[itemStack.getItemDamage() % ItemType.valuesCached().length].saturation;
     }
 
     public static enum ItemType
