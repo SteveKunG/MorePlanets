@@ -34,7 +34,7 @@ archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = 1.8
 
 minecraft {
-    version = "1.12.2-14.23.4.2760"
+    version = "1.12.2-14.23.5.2814"
     runDir = "run"
     mappings = "snapshot_20171003"
     makeObfSourceJar = false
@@ -61,7 +61,7 @@ repositories {
     maven {
         url "https://plugins.gradle.org/m2/"
     }
-    // CTM : https://maven.tterrag.com/index.php?dir=team%2Fchisel%2Fctm%2FCTM
+    // CTM : https://maven.tterrag.com/team/chisel/ctm/CTM
     maven {
         url "http://maven.tterrag.com/"
     }
