@@ -216,7 +216,7 @@ public class GeneralEventHandler
         Block sourceBlock = sourceState.getBlock();
         EntityPlayer player = event.getPlayer();
 
-        if (sourceBlock == MPBlocks.INFECTED_FARMLAND && event.getWorld().getBiomeForCoordsBody(event.getPos()) instanceof BiomeGreenVeinFields)
+        if (sourceBlock == MPBlocks.INFECTED_FARMLAND && event.getWorld().getBiomeForCoordsBody(event.getPos()) instanceof BiomeGreenVeinFields || player == null)
         {
             return;
         }
