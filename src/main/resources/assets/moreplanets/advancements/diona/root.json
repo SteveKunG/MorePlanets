@@ -21,7 +21,7 @@
         "entered_diona": {
             "trigger": "minecraft:changed_dimension",
             "conditions": {
-                "to": "Diona"
+                "to": "planet.diona"
             }
         }
     }
