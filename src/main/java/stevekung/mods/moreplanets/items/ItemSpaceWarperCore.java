@@ -80,7 +80,7 @@ public class ItemSpaceWarperCore extends ItemBaseMP
         {
             list.add("Destination: " + itemStack.getTagCompound().getInteger("X") + " " + itemStack.getTagCompound().getInteger("Y") + " " + itemStack.getTagCompound().getInteger("Z"));
             list.add("Dimension ID: " + itemStack.getTagCompound().getInteger("DimensionID"));
-            list.add("Dimension Name: " + WorldUtil.getProviderForDimensionClient(itemStack.getTagCompound().getInteger("DimensionID")).getDimensionType().getName());
+            list.add("Dimension Name: " + WorldUtil.getProviderForDimensionServer(itemStack.getTagCompound().getInteger("DimensionID")).getDimensionType().getName());
         }
     }
 
