@@ -51,20 +51,6 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescriptionTESR
                     BlockPos posAt = pos.add(x, y, z);
                     Block block = world.getBlockState(posAt).getBlock();
 
-                    for (int y2 = 0; y2 < 3; y2++)
-                    {
-                        BlockPos posAt1 = pos.add(0, y2, 0);
-                        Block block1 = world.getBlockState(posAt1).getBlock();
-
-                        if (world.getBlockState(posAt1).getMaterial() != Material.AIR && !block1.isReplaceable(world, posAt1))
-                        {
-                            if (world.isRemote)
-                            {
-                                ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
-                            }
-                            return false;
-                        }
-                    }
                     if (block == MPBlocks.BLACK_HOLE_STORAGE)
                     {
                         if (world.isRemote)
@@ -74,6 +60,20 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescriptionTESR
                         return false;
                     }
                 }
+            }
+        }
+        for (int y2 = 0; y2 < 3; y2++)
+        {
+            BlockPos posAt1 = pos.add(0, y2, 0);
+            Block block1 = world.getBlockState(posAt1).getBlock();
+
+            if (world.getBlockState(posAt1).getMaterial() != Material.AIR && !block1.isReplaceable(world, posAt1))
+            {
+                if (world.isRemote)
+                {
+                    ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
+                }
+                return false;
             }
         }
         return super.placeBlockAt(itemStack, player, world, pos, facing, hitX, hitY, hitZ, state);
