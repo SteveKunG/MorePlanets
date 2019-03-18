@@ -5,12 +5,12 @@ buildscript {
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.1.0"
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.1.2"
     }
 }
 
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.1.0"
+    id "com.matthewprenger.cursegradle" version "1.1.2"
 }
 
 def api = new groovy.json.JsonSlurper().parseText(file("${api_token_path}").text)
@@ -61,9 +61,12 @@ repositories {
     maven {
         url "https://plugins.gradle.org/m2/"
     }
-    // CTM : https://maven.tterrag.com/index.php?dir=team%2Fchisel%2Fctm%2FCTM
+    // CTM : https://maven.tterrag.com/team/chisel/ctm/CTM
     maven {
         url "http://maven.tterrag.com/"
+    }
+    maven {
+        url = "https://minecraft.curseforge.com/api/maven/"
     }
 }
 
@@ -74,6 +77,14 @@ dependencies {
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
     runtime "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
+    compileOnly "mekanism:Mekanism-1.12.2:9.4.13.349:api"
+    compileOnly "applied-energistics-2:appliedenergistics2-rv6:stable:6"
+    compileOnly "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2399:universal"
+    compileOnly "buildcraft-lib:buildcraft:lib:7.99.21"
+    compileOnly "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
+    compileOnly "actually-additions:ActuallyAdditions:1.12.2:r144"
+    compileOnly "industrial-craft:industrialcraft-2-2.8.109:ex112:api"
+    compileOnly "player-api:PlayerAPI:1.12.1:1.0"
 }
 
 curseforge {
