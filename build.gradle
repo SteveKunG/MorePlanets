@@ -65,15 +65,38 @@ repositories {
     maven {
         url "http://maven.tterrag.com/"
     }
+    // Baubles : http://maven.thiakil.com/com/azanor/baubles/Baubles/
+    maven {
+        url = "http://maven.thiakil.com/"
+    }
+    maven {
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
+    // BuildCraft
+    maven {
+        url = "https://mod-buildcraft.com/maven/"
+    }
+    // Actually Additions
+    maven {
+        url = "https://maven.chaosfield.at/"
+    }
 }
 
 dependencies {
     compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    compile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
+    compile "mekanism:Mekanism-1.12.2:9.4.13.349:api"
+    compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2399:api"
+    compile "com.mod-buildcraft:buildcraft-api:7.99.21"
+    compile "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
+    compile "industrial-craft:industrialcraft-2-2.8.109:ex112:api"
+    compile "player-api:PlayerAPI:1.12.1:1.0"
+    compile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144:api"
+    compile "appeng:appliedenergistics2:rv6-stable-6:api"
+    deobfCompile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
     deobfCompile "team.chisel.ctm:CTM:MC${ctm_version}"
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
+    deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    runtime "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
 }
 
 curseforge {
