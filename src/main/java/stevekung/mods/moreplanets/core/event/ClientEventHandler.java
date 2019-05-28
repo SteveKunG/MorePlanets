@@ -220,7 +220,6 @@ public class ClientEventHandler
                         {
                             player.sendMessage(json.text(log).setStyle(json.colorFromConfig("gray")));
                         }
-                        player.sendMessage(json.text("To read More Planets full change log. Use /mpchangelog command!").setStyle(json.colorFromConfig("gray").setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mpchangelog"))));
                     }
                     MorePlanetsCore.STATUS_CHECK[1] = true;
                 }

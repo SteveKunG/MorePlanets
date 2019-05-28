@@ -8,7 +8,6 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
-import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -17,7 +16,6 @@ import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
-import stevekung.mods.moreplanets.client.command.CommandChangeLog;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.*;
 import stevekung.mods.moreplanets.core.handler.GuiHandlerMP;
@@ -110,7 +108,6 @@ public class MorePlanetsCore
             CommonRegisterHelper.postRegisteredSortBlock();
             CommonRegisterHelper.postRegisteredSortItem();
             CommonRegisterHelper.registerForgeEvent(new ClientEventHandler());
-            ClientCommandHandler.instance.registerCommand(new CommandChangeLog());
         }
 
         CommonRegisterHelper.registerForgeEvent(new EntityEventHandler());
