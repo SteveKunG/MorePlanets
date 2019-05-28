@@ -5,12 +5,12 @@ buildscript {
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.1.2"
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.2.0"
     }
 }
 
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.1.2"
+    id "com.matthewprenger.cursegradle" version "1.2.0"
 }
 
 def api = new groovy.json.JsonSlurper().parseText(file("${api_token_path}").text)
@@ -34,7 +34,7 @@ archivesBaseName = "More-Planets-All"
 sourceCompatibility = targetCompatibility = 1.8
 
 minecraft {
-    version = "1.12.2-14.23.5.2814"
+    version = "1.12.2-14.23.5.2838"
     runDir = "run"
     mappings = "snapshot_20171003"
     makeObfSourceJar = false
@@ -49,9 +49,12 @@ repositories {
     maven {
         url "http://tehnut.info/maven/"
     }
-    // JEI : http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.12.2/
+    // JEI
     maven {
-        url "http://dvs1.progwml6.com/files/maven"
+        url "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        url "https://modmaven.k-4u.nl"
     }
     // Code Chicken Lib : http://chickenbones.net/maven/codechicken/CodeChickenLib/
     maven {
@@ -84,11 +87,11 @@ repositories {
 
 dependencies {
     compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    compile "mekanism:Mekanism-1.12.2:9.4.13.349:api"
-    compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2399:api"
-    compile "com.mod-buildcraft:buildcraft-api:7.99.21"
+    compile "mekanism:Mekanism-1.12.2:9.7.5.376:api"
+    compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2441:api"
+    compile "com.mod-buildcraft:buildcraft-api:7.99.24.1"
     compile "redstone-flux:RedstoneFlux-1.12:2.1.0.6:universal"
-    compile "industrial-craft:industrialcraft-2-2.8.109:ex112:api"
+    compile "industrial-craft:industrialcraft-2-2.8.157:ex112:api"
     compile "player-api:PlayerAPI:1.12.1:1.0"
     compile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144:api"
     compile "appeng:appliedenergistics2:rv6-stable-6:api"
@@ -122,7 +125,7 @@ curseforge {
 
 ext.finalJar = "build/libs/" + "More-Planets-" + mcVersion + "-" + version + ".jar"
 ext.coreJar = "build/libs/" + archivesBaseName + "-" + version + ".jar"
-ext.coreFiles = ["stevekung/mods/moreplanets/**", "assets/moreplanets/**", "license.txt", "pack.mcmeta", "META-INF/moreplanets_at.cfg"]
+ext.coreFiles = ["stevekung/mods/moreplanets/**", "assets/moreplanets/**", "pack.mcmeta", "META-INF/moreplanets_at.cfg"]
 
 // signing jar first
 task buildJar(type: SignJar, dependsOn: "processJar") {

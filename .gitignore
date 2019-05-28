@@ -1,6 +1,5 @@
 # folder
 .gradle
-.gradle_data
 .settings
 bin
 build
