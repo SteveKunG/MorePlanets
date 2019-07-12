@@ -1,9 +1,6 @@
 package stevekung.mods.moreplanets.utils.items;
 
-import javax.annotation.Nullable;
-
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -65,23 +62,9 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IIte
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    @Nullable
-    public FontRenderer getFontRenderer(ItemStack itemStack)
-    {
-        return ColorUtils.coloredFontRenderer;
-    }
-
-    @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
         return this instanceof IItemRarity && ((IItemRarity)this).getRarity() != null ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
-    }
-
-    @Override
-    public String getHighlightTip(ItemStack itemStack, String displayName)
-    {
-        return super.getItemStackDisplayName(itemStack);
     }
 
     public ItemFoodMP setRarityRGB(ColorUtils.RGB rgb)

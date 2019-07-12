@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.core.TransformerHooks;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -118,23 +117,9 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    @Nullable
-    public FontRenderer getFontRenderer(ItemStack itemStack)
-    {
-        return ColorUtils.coloredFontRenderer;
-    }
-
-    @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
         return this instanceof IItemRarity && ((IItemRarity)this).getRarity() != null ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
-    }
-
-    @Override
-    public String getHighlightTip(ItemStack itemStack, String displayName)
-    {
-        return super.getItemStackDisplayName(itemStack);
     }
 
     public ItemArrowMP setRarityRGB(ColorUtils.RGB rgb)

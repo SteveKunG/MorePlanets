@@ -241,9 +241,9 @@ public class GuiCelestialSelection extends GuiScreen
                     for (int textSize = 0; textSize < infoList.size(); textSize++)
                     {
                         String text = infoList.get(textSize);
-                        int fontHeight = ColorUtils.coloredFontRenderer.FONT_HEIGHT + 2;
+                        int fontHeight = this.fontRenderer.FONT_HEIGHT + 2;
                         int y = 54 + fontHeight * textSize;
-                        ColorUtils.coloredFontRenderer.drawString(text, this.width / 2 - 24, y, 16777215);
+                        this.fontRenderer.drawString(text, this.width / 2 - 24, y, 16777215);
                     }
                 }
             }

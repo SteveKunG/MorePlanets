@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.items;
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -194,22 +193,8 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    @Nullable
-    public FontRenderer getFontRenderer(ItemStack itemStack)
-    {
-        return ColorUtils.coloredFontRenderer;
-    }
-
-    @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
         return this.getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack);
-    }
-
-    @Override
-    public String getHighlightTip(ItemStack itemStack, String displayName)
-    {
-        return super.getItemStackDisplayName(itemStack);
     }
 }
