@@ -44,6 +44,7 @@ import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleCrystall
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleDarkPortal;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleAlienBerryLeavesSpark;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
+import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedRain;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedSpore;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityVeinBall;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
@@ -118,6 +119,10 @@ public class ClientProxyMP extends ServerProxyMP
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/crystallized_lava");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/alien_berry_leaves_spark");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/crystallized_flame");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_0");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_1");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_2");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_3");
     }
 
     @SubscribeEvent
@@ -253,6 +258,10 @@ public class ClientProxyMP extends ServerProxyMP
             else if (type == EnumParticleTypesMP.GRAVITY_HARVESTER)
             {
                 particle = new ParticleGravityHarvester(mc.world, x, y, z, (boolean) data[0]);
+            }
+            else if (type == EnumParticleTypesMP.INFECTED_RAIN)
+            {
+                particle = new ParticleInfectedRain(mc.world, x, y, z);
             }
 
             if (particle != null)

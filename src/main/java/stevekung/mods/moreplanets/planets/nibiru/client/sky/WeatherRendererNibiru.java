@@ -2,7 +2,6 @@ package stevekung.mods.moreplanets.planets.nibiru.client.sky;
 
 import java.util.Random;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -10,11 +9,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -57,10 +52,6 @@ public class WeatherRendererNibiru extends IRenderHandler
         if (mc.player.posY > 256)
         {
             return;
-        }
-        if (rendererUpdateCount == -1)//TODO Fix vanilla particles
-        {
-            this.addRainParticles(mc, rendererUpdateCount);
         }
 
         float rainStrength = mc.world.getRainStrength(partialTicks);
@@ -350,83 +341,5 @@ public class WeatherRendererNibiru extends IRenderHandler
         GlStateManager.disableBlend();
         GlStateManager.alphaFunc(516, 0.1F);
         mc.entityRenderer.disableLightmap();
-    }
-
-    private void addRainParticles(Minecraft mc, int rendererUpdateCount)
-    {
-        float f = mc.world.getRainStrength(1.0F);
-
-        if (!mc.gameSettings.fancyGraphics)
-        {
-            f /= 2.0F;
-        }
-
-        if (f != 0.0F)
-        {
-            this.rand.setSeed(rendererUpdateCount * 312987231L);
-            Entity entity = mc.getRenderViewEntity();
-            World world = mc.world;
-            BlockPos blockpos = new BlockPos(entity);
-            int i = 10;
-            double d0 = 0.0D;
-            double d1 = 0.0D;
-            double d2 = 0.0D;
-            int j = 0;
-            int k = (int)(100.0F * f * f);
-
-            if (mc.gameSettings.particleSetting == 1)
-            {
-                k >>= 1;
-            }
-            else if (mc.gameSettings.particleSetting == 2)
-            {
-                k = 0;
-            }
-
-            for (int l = 0; l < k; ++l)
-            {
-                BlockPos blockpos1 = world.getPrecipitationHeight(blockpos.add(this.rand.nextInt(i) - this.rand.nextInt(i), 0, this.rand.nextInt(i) - this.rand.nextInt(i)));
-                Biome biomegenbase = world.getBiome(blockpos1);
-                BlockPos blockpos2 = blockpos1.down();
-
-                if (blockpos1.getY() <= blockpos.getY() + i && blockpos1.getY() >= blockpos.getY() - i && biomegenbase.canRain() && biomegenbase.getTemperature(blockpos1) >= 0.15F)
-                {
-                    double d3 = this.rand.nextDouble();
-                    double d4 = this.rand.nextDouble();
-                    AxisAlignedBB axisalignedbb = world.getBlockState(blockpos2).getBoundingBox(world, blockpos2);
-
-                    if (world.getBlockState(blockpos2).getMaterial() == Material.LAVA)
-                    {
-                        mc.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, blockpos1.getX() + d3, blockpos1.getY() + 0.1F - axisalignedbb.minY, blockpos1.getZ() + d4, 0.0D, 0.0D, 0.0D, new int[0]);
-                    }
-                    else if (world.getBlockState(blockpos2).getMaterial() != Material.AIR)
-                    {
-                        ++j;
-
-                        if (this.rand.nextInt(j) == 0)
-                        {
-                            d0 = blockpos2.getX() + d3;
-                            d1 = blockpos2.getY() + 0.1F + axisalignedbb.maxY - 1.0D;
-                            d2 = blockpos2.getZ() + d4;
-                        }
-                        //TODO mc.effectRenderer.addEffect(new EntityInfectedRainFX(world, blockpos2.getX() + d3, blockpos2.getY() + 0.1F + block.getBlockBoundsMaxY(), blockpos2.getZ() + d4));
-                    }
-                }
-            }
-
-            if (j > 0 && this.rand.nextInt(3) < this.rainSoundCounter++)
-            {
-                this.rainSoundCounter = 0;
-
-                if (d1 > blockpos.getY() + 1 && world.getPrecipitationHeight(blockpos).getY() > MathHelper.floor(blockpos.getY()))
-                {
-                    mc.world.playSound(d0, d1, d2, SoundEvents.WEATHER_RAIN_ABOVE, SoundCategory.WEATHER, 0.1F, 0.5F, false);
-                }
-                else
-                {
-                    mc.world.playSound(d0, d1, d2, SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.2F, 1.0F, false);
-                }
-            }
-        }
     }
 }

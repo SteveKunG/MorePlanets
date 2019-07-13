@@ -36,6 +36,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
@@ -57,11 +58,14 @@ import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
 import stevekung.mods.moreplanets.planets.diona.dimension.WorldProviderDiona;
+import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteGenerator;
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
+import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import stevekung.mods.stevekunglib.utils.client.event.AddRainParticleEvent;
 import stevekung.mods.stevekunglib.utils.client.event.CameraTransformEvent;
 
 public class ClientEventHandler
@@ -540,6 +544,19 @@ public class ClientEventHandler
             GlStateManager.rotate((rendererUpdateCount + partialTicks) * i, 0.0F, 1.0F, 1.0F);
             GlStateManager.scale(1.0F / f2, 1.0F, 1.0F);
             GlStateManager.rotate(-(rendererUpdateCount + partialTicks) * i, 0.0F, 1.0F, 1.0F);
+        }
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onAddRainParticle(AddRainParticleEvent event)
+    {
+        World world = event.getWorld();
+
+        if (world.provider instanceof WorldProviderNibiru)
+        {
+            event.setCanceled(true);
+            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_RAIN, event.getX(), event.getY(), event.getZ());
         }
     }
 
