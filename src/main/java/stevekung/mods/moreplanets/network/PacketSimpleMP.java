@@ -117,7 +117,7 @@ public class PacketSimpleMP extends PacketBase
             ClientEventHandler.receiverRenderPos.remove(pos);
             break;
         case C_RELOAD_RENDERER:
-            ClientEventHandler.loadRenderers = true;
+            FMLClientHandler.instance().getClient().renderGlobal.loadRenderers();
             break;
         case C_SWITCH_SHIELD_GENERATOR_GUI:
             pos = (BlockPos) this.data.get(0);

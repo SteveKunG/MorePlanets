@@ -70,13 +70,14 @@ public class WorldTickEventHandler
         {
             if (world.provider instanceof WorldProviderNibiru)
             {
+                Chunk chunk = new Chunk(world, event.getChunkX(), event.getChunkZ());
                 boolean raining = world.isRaining();
                 boolean thunder = world.isThundering();
                 Biome biome = world.getBiome(pos);
                 EntityNibiruLightningBolt bolt = new EntityNibiruLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), false);
                 EntityNibiruLightningBolt boltFire = new EntityNibiruLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), true);
 
-                if (world.provider.canDoLightning(new Chunk(world, event.getChunkX(), event.getChunkZ())) && raining && thunder && world.rand.nextInt(1000) == 0)
+                if (world.provider.canDoLightning(chunk) && raining && thunder && world.rand.nextInt(1000) == 0)
                 {
                     if (world.isRainingAt(pos))
                     {

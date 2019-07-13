@@ -29,6 +29,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -60,15 +61,13 @@ import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWas
 import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
+import stevekung.mods.stevekunglib.utils.client.event.CameraTransformEvent;
 
 public class ClientEventHandler
 {
     private final Map<BlockPos, Integer> beamList = new HashMap<>();
     private Minecraft mc;
-    public static boolean loadRenderers;
-    private int loadRendererTick = 10;
     private boolean initVersionCheck;
     public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
     public static final List<BlockPos> wasteRenderPos = new ArrayList<>();
@@ -186,16 +185,6 @@ public class ClientEventHandler
         }
         if (event.phase == Phase.START)
         {
-            if (ClientEventHandler.loadRenderers)
-            {
-                if (--this.loadRendererTick == 0)
-                {
-                    LoggerMP.debug("Reload renderers");
-                    this.mc.renderGlobal.loadRenderers();
-                    this.loadRendererTick = 10;
-                    ClientEventHandler.loadRenderers = false;
-                }
-            }
             if (this.mc.player != null)
             {
                 if (!this.initVersionCheck)
@@ -526,6 +515,31 @@ public class ClientEventHandler
                 f1 = f1 * f1;
             }
             event.setNewfov(event.getNewfov() * (1.0F - f1 * 0.15F));
+        }
+    }
+
+    @SubscribeEvent
+    public void onCameraTransform(CameraTransformEvent event)
+    {
+        AbstractCapabilityDataMP data = AbstractCapabilityDataMP.get(this.mc.player);
+        int rendererUpdateCount = event.getRendererUpdateCount();
+        float partialTicks = event.getPartialTicks();
+        float f1 = data.getPrevTimeInPortal() + (data.getTimeInPortal() - data.getPrevTimeInPortal()) * partialTicks;
+
+        if (f1 > 0.0F)
+        {
+            int i = 20;
+
+            if (this.mc.player.isPotionActive(MobEffects.NAUSEA))
+            {
+                i = 7;
+            }
+
+            float f2 = 5.0F / (f1 * f1 + 5.0F) - f1 * 0.04F;
+            f2 = f2 * f2;
+            GlStateManager.rotate((rendererUpdateCount + partialTicks) * i, 0.0F, 1.0F, 1.0F);
+            GlStateManager.scale(1.0F / f2, 1.0F, 1.0F);
+            GlStateManager.rotate(-(rendererUpdateCount + partialTicks) * i, 0.0F, 1.0F, 1.0F);
         }
     }
 
