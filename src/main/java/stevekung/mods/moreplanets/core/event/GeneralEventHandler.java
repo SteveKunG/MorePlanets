@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -36,10 +34,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
-import stevekung.mods.moreplanets.network.PacketSimpleMP;
-import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
-import stevekung.mods.moreplanets.utils.blocks.IFire;
 import stevekung.mods.moreplanets.utils.items.IDungeonKey;
 import stevekung.mods.moreplanets.utils.items.IDungeonKeyable;
 import stevekung.mods.moreplanets.utils.items.ItemDoorMP;
@@ -110,18 +105,6 @@ public class GeneralEventHandler
             {
                 event.setResult(Result.ALLOW);
             }
-        }
-    }
-
-    @SubscribeEvent
-    public void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event)
-    {
-        BlockPos firePos = event.getPos().offset(event.getFace());
-
-        if (event.getWorld().getBlockState(firePos).getBlock() instanceof IFire)
-        {
-            event.setCanceled(true);
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_FIRE_EXTINGUISH, GCCoreUtil.getDimensionID(event.getWorld()), firePos));
         }
     }
 

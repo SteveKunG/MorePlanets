@@ -18,9 +18,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.utils.blocks.IFire;
+import stevekung.mods.stevekunglib.utils.IFireBlock;
 
-public class BlockElectricalFire extends BlockFire implements IFire
+public class BlockElectricalFire extends BlockFire implements IFireBlock
 {
     public BlockElectricalFire(String name)
     {

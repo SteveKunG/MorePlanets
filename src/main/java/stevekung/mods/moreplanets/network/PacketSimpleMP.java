@@ -16,7 +16,6 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
@@ -175,11 +174,6 @@ public class PacketSimpleMP extends PacketBase
 
         switch (this.type)
         {
-        case S_FIRE_EXTINGUISH:
-            pos = (BlockPos) this.data.get(0);
-            world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
-            world.setBlockToAir(pos);
-            break;
         case S_BLACK_HOLE_STORAGE_OPTION:
             tile = world.getTileEntity((BlockPos) this.data.get(0));
             type = (String) this.data.get(1);
@@ -310,7 +304,6 @@ public class PacketSimpleMP extends PacketBase
     public static enum EnumSimplePacketMP
     {
         // SERVER
-        S_FIRE_EXTINGUISH(Side.SERVER, BlockPos.class),
         S_BLACK_HOLE_STORAGE_OPTION(Side.SERVER, BlockPos.class, String.class),
         S_SHIELD_VISIBLE(Side.SERVER, BlockPos.class, Boolean.class),
         S_ENABLE_SHIELD(Side.SERVER, BlockPos.class),
