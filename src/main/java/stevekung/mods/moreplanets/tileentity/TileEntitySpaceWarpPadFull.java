@@ -306,6 +306,16 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
         return 0;
     }
 
+    public String getDimensionName()
+    {
+        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
+        {
+            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
+            return compound.getString("DimensionName");
+        }
+        return null;
+    }
+
     public float getRotationPitch()
     {
         if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())

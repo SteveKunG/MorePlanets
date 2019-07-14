@@ -8,7 +8,6 @@ import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -74,7 +73,7 @@ public class GuiSpaceWarpPad extends GuiContainerMP
         {
             NBTTagCompound compound = this.tile.containingItems.get(1).getTagCompound();
             dimension = TextFormatting.GREEN + String.valueOf(compound.getInteger("DimensionID"));
-            name = TextFormatting.GREEN + WorldUtil.getProviderForDimensionClient(compound.getInteger("DimensionID")).getDimensionType().getName();
+            name = TextFormatting.GREEN + String.valueOf(compound.getString("DimensionName"));
             dest = TextFormatting.GREEN + "" + compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
         }
         this.fontRenderer.drawString(GCCoreUtil.translate("gui.status.dimension.name") + ": " + dimension + " ", 46, 26, 2536735);
