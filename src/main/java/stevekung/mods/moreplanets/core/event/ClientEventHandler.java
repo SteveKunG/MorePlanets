@@ -53,7 +53,6 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.FakeAlienBeamRenderer;
@@ -499,26 +498,6 @@ public class ClientEventHandler
                 this.mc.renderEngine.bindTexture(new ResourceLocation("moreplanets:textures/gui/celestialbodies/ion_cannon.png"));
                 gui.drawTexturedModalRect(-7.5F * size, -1.75F * size, 2.0F, 2.0F, 0, 0, 32, 32, false, false, 32, 32);
             }
-        }
-    }
-
-    @SubscribeEvent
-    public void onFOVUpdate(FOVUpdateEvent event)
-    {
-        if (event.getEntity().isHandActive() && !event.getEntity().getActiveItemStack().isEmpty() && event.getEntity().getActiveItemStack().getItem() == MPItems.SPACE_BOW)
-        {
-            int i = event.getEntity().getItemInUseMaxCount();
-            float f1 = i / 20.0F;
-
-            if (f1 > 1.0F)
-            {
-                f1 = 1.0F;
-            }
-            else
-            {
-                f1 = f1 * f1;
-            }
-            event.setNewfov(event.getNewfov() * (1.0F - f1 * 0.15F));
         }
     }
 
