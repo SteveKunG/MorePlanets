@@ -26,6 +26,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -41,7 +42,6 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -70,6 +70,7 @@ import stevekung.mods.stevekunglib.utils.client.GLConstants;
 import stevekung.mods.stevekunglib.utils.client.event.AddRainParticleEvent;
 import stevekung.mods.stevekunglib.utils.client.event.CameraTransformEvent;
 import stevekung.mods.stevekunglib.utils.client.event.FirstPersonViewOverlayEvent;
+import stevekung.mods.stevekunglib.utils.client.event.RenderEntityOverlayEvent;
 
 public class ClientEventHandler
 {
@@ -253,59 +254,64 @@ public class ClientEventHandler
     }
 
     @SubscribeEvent
-    public void onRenderLiving(RenderLivingEvent.Post event)
+    public void onRenderEntityOverlay(RenderEntityOverlayEvent event)
     {
-        EntityLivingBase living = event.getEntity();
+        Entity entity = event.getEntity();
 
-        if (ClientEventHandler.entityId.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
+        if (entity instanceof EntityLivingBase)
         {
-            GlStateManager.disableLighting();
-            TextureMap texturemap = this.mc.getTextureMapBlocks();
-            TextureAtlasSprite textureatlassprite = texturemap.getAtlasSprite("moreplanets:blocks/infected_crystallized");
-            GlStateManager.pushMatrix();
-            GlStateManager.translate((float)event.getX(), (float)event.getY(), (float)event.getZ());
-            float f = living.width * 1.4F;
-            GlStateManager.scale(f, f, f);
-            Tessellator tessellator = Tessellator.getInstance();
-            BufferBuilder worldrenderer = tessellator.getBuffer();
-            float f1 = 0.5F;
-            float f2 = 0.0F;
-            float f3 = living.height / f;
-            float f4 = (float)(living.posY - living.getEntityBoundingBox().minY);
-            GlStateManager.rotate(-event.getRenderer().getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
-            GlStateManager.translate(0.0F, 0.0F, -0.3F + (int)f3 * 0.02F);
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            float f5 = 0.0F;
-            int i = 0;
-            worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+            EntityLivingBase living = (EntityLivingBase)entity;
 
-            while (f3 > 0.0F)
+            if (ClientEventHandler.entityId.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
             {
-                event.getRenderer().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-                float f6 = textureatlassprite.getMinU();
-                float f7 = textureatlassprite.getMinV();
-                float f8 = textureatlassprite.getMaxU();
-                float f9 = textureatlassprite.getMaxV();
+                GlStateManager.disableLighting();
+                TextureMap texturemap = this.mc.getTextureMapBlocks();
+                TextureAtlasSprite textureatlassprite = texturemap.getAtlasSprite("moreplanets:blocks/infected_crystallized");
+                GlStateManager.pushMatrix();
+                GlStateManager.translate((float)event.getX(), (float)event.getY(), (float)event.getZ());
+                float f = living.width * 1.4F;
+                GlStateManager.scale(f, f, f);
+                Tessellator tessellator = Tessellator.getInstance();
+                BufferBuilder worldrenderer = tessellator.getBuffer();
+                float f1 = 0.5F;
+                float f2 = 0.0F;
+                float f3 = living.height / f;
+                float f4 = (float)(living.posY - living.getEntityBoundingBox().minY);
+                GlStateManager.rotate(-this.mc.getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
+                GlStateManager.translate(0.0F, 0.0F, -0.3F + (int)f3 * 0.02F);
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                float f5 = 0.0F;
+                int i = 0;
+                worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
 
-                if (i / 2 % 2 == 0)
+                while (f3 > 0.0F)
                 {
-                    float f10 = f8;
-                    f8 = f6;
-                    f6 = f10;
+                    this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+                    float f6 = textureatlassprite.getMinU();
+                    float f7 = textureatlassprite.getMinV();
+                    float f8 = textureatlassprite.getMaxU();
+                    float f9 = textureatlassprite.getMaxV();
+
+                    if (i / 2 % 2 == 0)
+                    {
+                        float f10 = f8;
+                        f8 = f6;
+                        f6 = f10;
+                    }
+                    worldrenderer.pos(f1 - f2, 0.0F - f4, f5).tex(f8, f9).endVertex();
+                    worldrenderer.pos(-f1 - f2, 0.0F - f4, f5).tex(f6, f9).endVertex();
+                    worldrenderer.pos(-f1 - f2, 1.4F - f4, f5).tex(f6, f7).endVertex();
+                    worldrenderer.pos(f1 - f2, 1.4F - f4, f5).tex(f8, f7).endVertex();
+                    f3 -= 0.45F;
+                    f4 -= 0.45F;
+                    f1 *= 0.9F;
+                    f5 += 0.03F;
+                    ++i;
                 }
-                worldrenderer.pos(f1 - f2, 0.0F - f4, f5).tex(f8, f9).endVertex();
-                worldrenderer.pos(-f1 - f2, 0.0F - f4, f5).tex(f6, f9).endVertex();
-                worldrenderer.pos(-f1 - f2, 1.4F - f4, f5).tex(f6, f7).endVertex();
-                worldrenderer.pos(f1 - f2, 1.4F - f4, f5).tex(f8, f7).endVertex();
-                f3 -= 0.45F;
-                f4 -= 0.45F;
-                f1 *= 0.9F;
-                f5 += 0.03F;
-                ++i;
+                tessellator.draw();
+                GlStateManager.popMatrix();
+                GlStateManager.enableLighting();
             }
-            tessellator.draw();
-            GlStateManager.popMatrix();
-            GlStateManager.enableLighting();
         }
     }
 
