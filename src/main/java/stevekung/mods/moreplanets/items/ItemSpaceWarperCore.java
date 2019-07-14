@@ -46,6 +46,7 @@ public class ItemSpaceWarperCore extends ItemBaseMP
                     {
                         itemStack.setTagCompound(new NBTTagCompound());
                         itemStack.getTagCompound().setInteger("DimensionID", GCCoreUtil.getDimensionID(world));
+                        itemStack.getTagCompound().setString("DimensionName", WorldUtil.getProviderForDimensionServer(GCCoreUtil.getDimensionID(world)).getDimensionType().getName());
                         itemStack.getTagCompound().setInteger("X", MathHelper.floor(player.posX));
                         itemStack.getTagCompound().setInteger("Y", MathHelper.floor(player.posY));
                         itemStack.getTagCompound().setInteger("Z", MathHelper.floor(player.posZ));
@@ -80,7 +81,7 @@ public class ItemSpaceWarperCore extends ItemBaseMP
         {
             list.add("Destination: " + itemStack.getTagCompound().getInteger("X") + " " + itemStack.getTagCompound().getInteger("Y") + " " + itemStack.getTagCompound().getInteger("Z"));
             list.add("Dimension ID: " + itemStack.getTagCompound().getInteger("DimensionID"));
-            list.add("Dimension Name: " + WorldUtil.getProviderForDimensionServer(itemStack.getTagCompound().getInteger("DimensionID")).getDimensionType().getName());
+            list.add("Dimension Name: " + itemStack.getTagCompound().getString("DimensionName"));
         }
     }
 }
