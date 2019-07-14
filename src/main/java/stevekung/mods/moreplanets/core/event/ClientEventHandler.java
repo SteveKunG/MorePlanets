@@ -37,9 +37,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
+import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -66,6 +69,7 @@ import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
 import stevekung.mods.stevekunglib.utils.client.event.AddRainParticleEvent;
 import stevekung.mods.stevekunglib.utils.client.event.CameraTransformEvent;
+import stevekung.mods.stevekunglib.utils.client.event.FirstPersonViewOverlayEvent;
 
 public class ClientEventHandler
 {
@@ -306,7 +310,7 @@ public class ClientEventHandler
     }
 
     @SubscribeEvent
-    @SideOnly(Side.CLIENT) //TODO Fix overlay
+    @SideOnly(Side.CLIENT)
     public void onRenderGameOverlay(RenderGameOverlayEvent event)
     {
         if (event.getType().equals(RenderGameOverlayEvent.ElementType.PORTAL))
@@ -319,51 +323,51 @@ public class ClientEventHandler
                 this.renderPortal(f1, event.getResolution());
             }
         }
-        else if (event.getType().equals(RenderGameOverlayEvent.ElementType.ALL))
-        {
-            if (this.mc.gameSettings.thirdPersonView == 0)
-            {
-                if (this.mc.player.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
-                {
-                    Tessellator tessellator = Tessellator.getInstance();
-                    BufferBuilder worldrenderer = tessellator.getBuffer();
-                    GlStateManager.color(1.0F, 1.0F, 1.0F, 0.9F);
-                    GlStateManager.depthFunc(519);
-                    GlStateManager.depthMask(false);
-                    GlStateManager.enableBlend();
-                    GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-                    float f = 1.0F;
+    }
 
-                    for (int i = 0; i < 2; ++i)
-                    {
-                        GlStateManager.pushMatrix();
-                        TextureAtlasSprite textureatlassprite = this.mc.getTextureMapBlocks().getAtlasSprite("moreplanets:blocks/infected_crystallized");
-                        this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-                        float f1 = textureatlassprite.getMinU();
-                        float f2 = textureatlassprite.getMaxU();
-                        float f3 = textureatlassprite.getMinV();
-                        float f4 = textureatlassprite.getMaxV();
-                        float f5 = (0.0F - f) / 2.0F;
-                        float f6 = f5 + f;
-                        float f7 = 0.0F - f / 2.0F;
-                        float f8 = f7 + f;
-                        float f9 = -0.5F;
-                        GlStateManager.translate(-(i * 2 - 1) * 0.24F, -0.3F, 0.0F);
-                        GlStateManager.rotate((i * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
-                        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-                        worldrenderer.pos(f5, f7, f9).tex(f2, f4).endVertex();
-                        worldrenderer.pos(f6, f7, f9).tex(f1, f4).endVertex();
-                        worldrenderer.pos(f6, f8, f9).tex(f1, f3).endVertex();
-                        worldrenderer.pos(f5, f8, f9).tex(f2, f3).endVertex();
-                        tessellator.draw();
-                        GlStateManager.popMatrix();
-                    }
-                    GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-                    GlStateManager.disableBlend();
-                    GlStateManager.depthMask(true);
-                    GlStateManager.depthFunc(515);
-                }
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onRenderFirstPersonViewOverlay(FirstPersonViewOverlayEvent event)
+    {
+        if (this.mc.player.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
+        {
+            Tessellator tessellator = Tessellator.getInstance();
+            BufferBuilder worldrenderer = tessellator.getBuffer();
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 0.9F);
+            GlStateManager.depthFunc(519);
+            GlStateManager.depthMask(false);
+            GlStateManager.enableBlend();
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+            float f = 1.0F;
+
+            for (int i = 0; i < 2; ++i)
+            {
+                GlStateManager.pushMatrix();
+                TextureAtlasSprite textureatlassprite = this.mc.getTextureMapBlocks().getAtlasSprite("moreplanets:blocks/infected_crystallized");
+                this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+                float f1 = textureatlassprite.getMinU();
+                float f2 = textureatlassprite.getMaxU();
+                float f3 = textureatlassprite.getMinV();
+                float f4 = textureatlassprite.getMaxV();
+                float f5 = (0.0F - f) / 2.0F;
+                float f6 = f5 + f;
+                float f7 = 0.0F - f / 2.0F;
+                float f8 = f7 + f;
+                float f9 = -0.5F;
+                GlStateManager.translate(-(i * 2 - 1) * 0.24F, -0.2F, 0.0F);
+                GlStateManager.rotate((i * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
+                worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
+                worldrenderer.pos(f5, f7, f9).tex(f2, f4).endVertex();
+                worldrenderer.pos(f6, f7, f9).tex(f1, f4).endVertex();
+                worldrenderer.pos(f6, f8, f9).tex(f1, f3).endVertex();
+                worldrenderer.pos(f5, f8, f9).tex(f2, f3).endVertex();
+                tessellator.draw();
+                GlStateManager.popMatrix();
             }
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            GlStateManager.disableBlend();
+            GlStateManager.depthMask(true);
+            GlStateManager.depthFunc(515);
         }
     }
 
