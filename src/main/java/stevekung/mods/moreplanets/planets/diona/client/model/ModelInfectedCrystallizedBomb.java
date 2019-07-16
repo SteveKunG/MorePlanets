@@ -6,14 +6,14 @@ import net.minecraft.entity.Entity;
 
 public class ModelInfectedCrystallizedBomb extends ModelBase
 {
-    private ModelRenderer base1;
-    private ModelRenderer base2;
-    private ModelRenderer base3;
-    private ModelRenderer base4;
-    private ModelRenderer base5;
-    private ModelRenderer base6;
-    private ModelRenderer base7;
-    private ModelRenderer base8;
+    private final ModelRenderer base1;
+    private final ModelRenderer base2;
+    private final ModelRenderer base3;
+    private final ModelRenderer base4;
+    private final ModelRenderer base5;
+    private final ModelRenderer base6;
+    private final ModelRenderer base7;
+    private final ModelRenderer base8;
 
     public ModelInfectedCrystallizedBomb()
     {

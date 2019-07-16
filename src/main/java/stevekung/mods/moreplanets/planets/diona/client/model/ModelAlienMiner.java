@@ -6,33 +6,33 @@ import net.minecraft.entity.Entity;
 
 public class ModelAlienMiner extends ModelBase
 {
-    private ModelRenderer head1;
-    private ModelRenderer head2;
-    private ModelRenderer head3;
-    private ModelRenderer head4;
-    private ModelRenderer head5;
-    private ModelRenderer head6;
-    private ModelRenderer top1;
-    private ModelRenderer top2;
-    private ModelRenderer top3;
-    private ModelRenderer armp1;
-    private ModelRenderer armp2;
-    private ModelRenderer armp3;
-    private ModelRenderer armp4;
-    private ModelRenderer armp5;
-    private ModelRenderer armp6;
-    private ModelRenderer armpten1;
-    private ModelRenderer armpten2;
-    private ModelRenderer armpten3;
-    private ModelRenderer armpten4;
-    private ModelRenderer armpten5;
-    private ModelRenderer armpten6;
-    private ModelRenderer bottom1;
-    private ModelRenderer bottom2;
-    private ModelRenderer bottom3;
-    private ModelRenderer tentacle1;
-    private ModelRenderer tentacle2;
-    private ModelRenderer tentacle3;
+    private final ModelRenderer head1;
+    private final ModelRenderer head2;
+    private final ModelRenderer head3;
+    private final ModelRenderer head4;
+    private final ModelRenderer head5;
+    private final ModelRenderer head6;
+    private final ModelRenderer top1;
+    private final ModelRenderer top2;
+    private final ModelRenderer top3;
+    private final ModelRenderer armp1;
+    private final ModelRenderer armp2;
+    private final ModelRenderer armp3;
+    private final ModelRenderer armp4;
+    private final ModelRenderer armp5;
+    private final ModelRenderer armp6;
+    private final ModelRenderer armpten1;
+    private final ModelRenderer armpten2;
+    private final ModelRenderer armpten3;
+    private final ModelRenderer armpten4;
+    private final ModelRenderer armpten5;
+    private final ModelRenderer armpten6;
+    private final ModelRenderer bottom1;
+    private final ModelRenderer bottom2;
+    private final ModelRenderer bottom3;
+    private final ModelRenderer tentacle1;
+    private final ModelRenderer tentacle2;
+    private final ModelRenderer tentacle3;
 
     public ModelAlienMiner()
     {

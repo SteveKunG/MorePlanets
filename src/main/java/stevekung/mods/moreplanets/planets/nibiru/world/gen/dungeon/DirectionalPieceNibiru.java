@@ -20,16 +20,6 @@ public abstract class DirectionalPieceNibiru extends PieceNibiru
         this.direction = direction;
     }
 
-    public EnumFacing getDirection()
-    {
-        return this.direction;
-    }
-
-    public void setDirection(EnumFacing direction)
-    {
-        this.direction = direction;
-    }
-
     @Override
     protected void writeStructureToNBT(NBTTagCompound tagCompound)
     {
@@ -81,5 +71,15 @@ public abstract class DirectionalPieceNibiru extends PieceNibiru
             return null;
         }
         return new CorridorNibiru(this.configuration, rand, blockX, blockZ, sizeX, small ? 3 : this.configuration.getHallwayHeight(), sizeZ, randomDir);
+    }
+
+    public EnumFacing getDirection()
+    {
+        return this.direction;
+    }
+
+    public void setDirection(EnumFacing direction)
+    {
+        this.direction = direction;
     }
 }

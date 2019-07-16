@@ -10,7 +10,7 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenNibiruClay extends WorldGenerator
 {
-    private int numberOfBlocks;
+    private final int numberOfBlocks;
 
     public WorldGenNibiruClay(int num)
     {

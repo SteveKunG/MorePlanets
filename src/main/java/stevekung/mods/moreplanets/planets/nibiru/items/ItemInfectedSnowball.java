@@ -17,7 +17,6 @@ public class ItemInfectedSnowball extends ItemBaseMP
 {
     public ItemInfectedSnowball(String name)
     {
-        super();
         this.setMaxStackSize(16);
         this.setUnlocalizedName(name);
     }

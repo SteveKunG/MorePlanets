@@ -27,7 +27,6 @@ public class BlockKoentusIce extends BlockIceMP
 {
     public BlockKoentusIce(String name)
     {
-        super();
         this.setUnlocalizedName(name);
         this.setDefaultSlipperiness(1.05F);
     }

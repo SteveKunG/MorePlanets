@@ -16,14 +16,14 @@ public class GuiElementInfoRegionMP extends Gui
 {
     private int width;
     private int height;
-    private int xPosition;
-    private int yPosition;
-    private boolean enabled;
+    private final int xPosition;
+    private final int yPosition;
+    private final boolean enabled;
     private boolean drawRegion;
     private boolean withinRegion;
     public List<String> tooltipStrings;
-    private int parentWidth;
-    private GuiContainerMP parentGui;
+    private final int parentWidth;
+    private final GuiContainerMP parentGui;
 
     public GuiElementInfoRegionMP(int xPos, int yPos, int width, int height, List<String> tooltipStrings, int parentWidth, GuiContainerMP parentGui)
     {

@@ -417,6 +417,6 @@ public class CraftingManagerMP
         input.put(20, new ItemStack(MPBlocks.ALIEN_CHEST));
         input.put(21, new ItemStack(AsteroidsItems.basicItem, 1, 5));
         input.put(22, new ItemStack(MPItems.GLOWING_IRON_INGOT));
-        BlackHoleStorageRecipes.recipes.add(new NasaWorkbenchRecipe(new ItemStack(MPBlocks.BLACK_HOLE_STORAGE), input));
+        BlackHoleStorageRecipes.RECIPES.add(new NasaWorkbenchRecipe(new ItemStack(MPBlocks.BLACK_HOLE_STORAGE), input));
     }
 }

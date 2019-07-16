@@ -11,12 +11,12 @@ import stevekung.mods.moreplanets.planets.nibiru.entity.EntityTerrastoneGolem;
 @SideOnly(Side.CLIENT)
 public class ModelTerrastoneGolem extends ModelBase
 {
-    private ModelRenderer ironGolemHead;
-    private ModelRenderer ironGolemBody;
-    private ModelRenderer ironGolemRightArm;
-    private ModelRenderer ironGolemLeftArm;
-    private ModelRenderer ironGolemLeftLeg;
-    private ModelRenderer ironGolemRightLeg;
+    private final ModelRenderer ironGolemHead;
+    private final ModelRenderer ironGolemBody;
+    private final ModelRenderer ironGolemRightArm;
+    private final ModelRenderer ironGolemLeftArm;
+    private final ModelRenderer ironGolemLeftLeg;
+    private final ModelRenderer ironGolemRightLeg;
 
     public ModelTerrastoneGolem()
     {

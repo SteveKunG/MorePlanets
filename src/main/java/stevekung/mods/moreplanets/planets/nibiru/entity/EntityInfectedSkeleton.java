@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
+import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -23,11 +24,10 @@ import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
-import stevekung.mods.moreplanets.utils.entity.ai.EntityAIAttackRangedBowMP;
 
 public class EntityInfectedSkeleton extends EntitySkeleton implements IEntityBreathable, ISpaceMob
 {
-    private final EntityAIAttackRangedBowMP<EntityInfectedSkeleton> aiArrowAttack = new EntityAIAttackRangedBowMP<>(this, 1.0D, 20, 15.0F);
+    private final EntityAIAttackRangedBow<EntityInfectedSkeleton> aiArrowAttack = new EntityAIAttackRangedBow<>(this, 1.0D, 20, 15.0F);
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
     {
         @Override

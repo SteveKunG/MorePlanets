@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.items;
 
-import javax.annotation.Nullable;
-
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,46 +14,35 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.moreplanets.utils.items.EnumSortCategoryItem;
-import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
+import stevekung.mods.moreplanets.utils.items.ISortableItem;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public class ItemSpaceBow extends ItemBaseMP
+public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRender, IItemRarity
 {
+    private final String name;
+
     public ItemSpaceBow(String name)
     {
-        super();
+        this.name = name;
         this.setMaxStackSize(1);
         this.setMaxDamage(511);
         this.setUnlocalizedName(name);
-
-        this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
+        this.addPropertyOverride(new ResourceLocation("pull"), (itemStack, world, living) ->
         {
-            @Override
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack itemStack, @Nullable World world, @Nullable EntityLivingBase entity)
+            if (living == null)
             {
-                if (entity == null)
-                {
-                    return 0.0F;
-                }
-                else
-                {
-                    return entity.getActiveItemStack().getItem() == MPItems.SPACE_BOW ? (itemStack.getMaxItemUseDuration() - entity.getItemInUseCount()) / 20.0F : 0.0F;
-                }
+                return 0.0F;
+            }
+            else
+            {
+                return living.getActiveItemStack().getItem() == MPItems.SPACE_BOW ? (itemStack.getMaxItemUseDuration() - living.getItemInUseCount()) / 20.0F : 0.0F;
             }
         });
-        this.addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter()
-        {
-            @Override
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack itemStack, @Nullable World world, @Nullable EntityLivingBase entity)
-            {
-                return entity != null && entity.isHandActive() && entity.getActiveItemStack() == itemStack ? 1.0F : 0.0F;
-            }
-        });
+        this.addPropertyOverride(new ResourceLocation("pulling"), (itemStack, world, living) -> living != null && living.isHandActive() && living.getActiveItemStack() == itemStack ? 1.0F : 0.0F);
     }
 
     @Override
@@ -157,34 +144,22 @@ public class ItemSpaceBow extends ItemBaseMP
         return EnumSortCategoryItem.BOW;
     }
 
-    private ItemStack findAmmo(EntityPlayer player)
+    @Override
+    public ColorUtils.RGB getRarity()
     {
-        if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND)))
-        {
-            return player.getHeldItem(EnumHand.OFF_HAND);
-        }
-        else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND)))
-        {
-            return player.getHeldItem(EnumHand.MAIN_HAND);
-        }
-        else
-        {
-            for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
-            {
-                ItemStack itemStack = player.inventory.getStackInSlot(i);
-
-                if (this.isArrow(itemStack))
-                {
-                    return itemStack;
-                }
-            }
-            return ItemStack.EMPTY;
-        }
+        return ColorUtils.stringToRGB(IItemRarity.SPECIAL);
     }
 
+    @Override
+    public String getName()
+    {
+        return this.name;
+    }
+
+    @Override
     protected boolean isArrow(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && (itemStack.getItem() instanceof ItemArrow || itemStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_ARROW || itemStack.getItem() == MPItems.INFECTED_ARROW || itemStack.getItem() == MPItems.ANTI_GRAVITY_ARROW);
+        return super.isArrow(itemStack) || itemStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_ARROW || itemStack.getItem() == MPItems.INFECTED_ARROW || itemStack.getItem() == MPItems.ANTI_GRAVITY_ARROW;
     }
 
     private static void spawnArrow(ItemStack itemStack, ItemStack arrowStack, World world, EntityPlayer player, EntityArrow arrow, Item arrowItem, int power, int punch, float duration, boolean flag)

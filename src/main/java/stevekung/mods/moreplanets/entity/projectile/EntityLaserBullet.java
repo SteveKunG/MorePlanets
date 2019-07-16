@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.entity.projectile;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import io.netty.buffer.ByteBuf;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -25,6 +27,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -90,6 +93,20 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
+        double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 10.0D;
+
+        if (Double.isNaN(d0))
+        {
+            d0 = 1.0D;
+        }
+        d0 = d0 * 64.0D * getRenderDistanceWeight();
+        return distance < d0 * d0;
+    }
+
+    @Override
     protected void entityInit()
     {
         this.dataManager.register(EntityLaserBullet.LASER_TYPE, 0);
@@ -102,9 +119,9 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         x = x / f;
         y = y / f;
         z = z / f;
-        x = x + this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * inaccuracy;
-        y = y + this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * inaccuracy;
-        z = z + this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * inaccuracy;
+        x = x + this.rand.nextGaussian() * 0.007499999832361937D * inaccuracy;
+        y = y + this.rand.nextGaussian() * 0.007499999832361937D * inaccuracy;
+        z = z + this.rand.nextGaussian() * 0.007499999832361937D * inaccuracy;
         x = x * velocity;
         y = y * velocity;
         z = z * velocity;
@@ -112,8 +129,10 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         this.motionY = y;
         this.motionZ = z;
         float f1 = MathHelper.sqrt(x * x + z * z);
-        this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(x, z) * 180.0D / Math.PI);
-        this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(y, f1) * 180.0D / Math.PI);
+        this.rotationYaw = (float)(MathHelper.atan2(x, z) * (180D / Math.PI));
+        this.rotationPitch = (float)(MathHelper.atan2(y, f1) * (180D / Math.PI));
+        this.prevRotationYaw = this.rotationYaw;
+        this.prevRotationPitch = this.rotationPitch;
     }
 
     @Override
@@ -151,14 +170,16 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
             float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-            this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(this.motionY, f) * 180.0D / Math.PI);
+            this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
+            this.rotationPitch = (float)(MathHelper.atan2(this.motionY, f) * (180D / Math.PI));
+            this.prevRotationYaw = this.rotationYaw;
+            this.prevRotationPitch = this.rotationPitch;
         }
 
         ++this.ticksInAir;
         Vec3d vec31 = new Vec3d(this.posX, this.posY, this.posZ);
         Vec3d vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec31, vec3, false, true, false);
+        RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec31, vec3, false, true, false);
         vec31 = new Vec3d(this.posX, this.posY, this.posZ);
         vec3 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -175,50 +196,25 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
             }
             this.setDead();
         }
-        if (movingobjectposition != null)
+        if (raytraceresult != null)
         {
-            vec3 = new Vec3d(movingobjectposition.hitVec.x, movingobjectposition.hitVec.y, movingobjectposition.hitVec.z);
+            vec3 = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
         }
 
-        Entity entity = null;
-        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
-        double d0 = 0.0D;
-
-        for (int i = 0; i < list.size(); ++i)
-        {
-            Entity entity1 = list.get(i);
-
-            if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5))
-            {
-                float f1 = 0.3F;
-                AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().grow(f1, f1, f1);
-                RayTraceResult movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
-
-                if (movingobjectposition1 != null)
-                {
-                    double d1 = vec31.squareDistanceTo(movingobjectposition1.hitVec);
-
-                    if (d1 < d0 || d0 == 0.0D)
-                    {
-                        entity = entity1;
-                        d0 = d1;
-                    }
-                }
-            }
-        }
+        Entity entity = this.findEntityOnPath(vec31, vec3);
 
         if (entity != null)
         {
-            movingobjectposition = new RayTraceResult(entity);
+            raytraceresult = new RayTraceResult(entity);
         }
 
-        if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer)
+        if (raytraceresult != null && raytraceresult.entityHit instanceof EntityPlayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;
+            EntityPlayer entityplayer = (EntityPlayer)raytraceresult.entityHit;
 
-            if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))
+            if (this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))
             {
-                movingobjectposition = null;
+                raytraceresult = null;
             }
         }
 
@@ -236,61 +232,9 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         {
             this.damage = 0.0D;
         }
-        if (movingobjectposition != null)
+        if (raytraceresult != null && !ForgeEventFactory.onProjectileImpact(this, raytraceresult))
         {
-            if (movingobjectposition.entityHit != null)
-            {
-                float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                int l = MathHelper.ceil(f2 * this.damage);
-
-                DamageSource damagesource;
-
-                if (this.shootingEntity == null)
-                {
-                    damagesource = DamageSourceMP.causeLaserDamage(this, this);
-                }
-                else
-                {
-                    damagesource = DamageSourceMP.causeLaserDamage(this, this.shootingEntity);
-                }
-
-                if (movingobjectposition.entityHit.attackEntityFrom(damagesource, l))
-                {
-                    if (movingobjectposition.entityHit instanceof EntityLivingBase)
-                    {
-                        EntityLivingBase entitylivingbase = (EntityLivingBase)movingobjectposition.entityHit;
-
-                        if (this.shootingEntity instanceof EntityLivingBase)
-                        {
-                            EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
-                            EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase)this.shootingEntity, entitylivingbase);
-                        }
-                        if (this.shootingEntity != null && movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
-                        {
-                            ((EntityPlayerMP)this.shootingEntity).connection.sendPacket(new SPacketChangeGameState(6, 0.0F));
-                        }
-                        if (this.getLaserType() == 1)
-                        {
-                            entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 100));
-                        }
-                    }
-                    if (!(movingobjectposition.entityHit instanceof EntityEnderman))
-                    {
-                        this.setDead();
-                    }
-                }
-            }
-            else
-            {
-                this.motionX = (float)(movingobjectposition.hitVec.x - this.posX);
-                this.motionY = (float)(movingobjectposition.hitVec.y - this.posY);
-                this.motionZ = (float)(movingobjectposition.hitVec.z - this.posZ);
-                float f5 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                this.posX -= this.motionX / f5 * 0.05000000074505806D;
-                this.posY -= this.motionY / f5 * 0.05000000074505806D;
-                this.posZ -= this.motionZ / f5 * 0.05000000074505806D;
-                this.setDead();
-            }
+            this.onHit(raytraceresult);
         }
 
         this.posX += this.motionX;
@@ -403,6 +347,96 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     private void setLaserType(int type)
     {
         this.dataManager.set(EntityLaserBullet.LASER_TYPE, type);
+    }
+
+    @Nullable
+    private Entity findEntityOnPath(Vec3d start, Vec3d end)
+    {
+        Entity entity = null;
+        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D));
+        double d0 = 0.0D;
+
+        for (int i = 0; i < list.size(); ++i)
+        {
+            Entity entity1 = list.get(i);
+
+            if (entity1 != this.shootingEntity || this.ticksInAir >= 5)
+            {
+                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.30000001192092896D);
+                RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
+
+                if (raytraceresult != null)
+                {
+                    double d1 = start.squareDistanceTo(raytraceresult.hitVec);
+
+                    if (d1 < d0 || d0 == 0.0D)
+                    {
+                        entity = entity1;
+                        d0 = d1;
+                    }
+                }
+            }
+        }
+        return entity;
+    }
+
+    private void onHit(RayTraceResult raytraceResult)
+    {
+        Entity entity = raytraceResult.entityHit;
+
+        if (entity != null)
+        {
+            float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+            int l = MathHelper.ceil(f2 * this.damage);
+
+            DamageSource damagesource;
+
+            if (this.shootingEntity == null)
+            {
+                damagesource = DamageSourceMP.causeLaserDamage(this, this);
+            }
+            else
+            {
+                damagesource = DamageSourceMP.causeLaserDamage(this, this.shootingEntity);
+            }
+
+            if (entity.attackEntityFrom(damagesource, l))
+            {
+                if (entity instanceof EntityLivingBase)
+                {
+                    EntityLivingBase entitylivingbase = (EntityLivingBase)entity;
+
+                    if (this.shootingEntity instanceof EntityLivingBase)
+                    {
+                        EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
+                        EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase)this.shootingEntity, entitylivingbase);
+                    }
+                    if (this.shootingEntity != null && entity != this.shootingEntity && entity instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
+                    {
+                        ((EntityPlayerMP)this.shootingEntity).connection.sendPacket(new SPacketChangeGameState(6, 0.0F));
+                    }
+                    if (this.getLaserType() == 1)
+                    {
+                        entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 100));
+                    }
+                }
+                if (!(entity instanceof EntityEnderman))
+                {
+                    this.setDead();
+                }
+            }
+        }
+        else
+        {
+            this.motionX = (float)(raytraceResult.hitVec.x - this.posX);
+            this.motionY = (float)(raytraceResult.hitVec.y - this.posY);
+            this.motionZ = (float)(raytraceResult.hitVec.z - this.posZ);
+            float f5 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+            this.posX -= this.motionX / f5 * 0.05000000074505806D;
+            this.posY -= this.motionY / f5 * 0.05000000074505806D;
+            this.posZ -= this.motionZ / f5 * 0.05000000074505806D;
+            this.setDead();
+        }
     }
 
     public static enum EnumLaserType

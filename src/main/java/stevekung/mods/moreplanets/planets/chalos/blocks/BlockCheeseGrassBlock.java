@@ -17,7 +17,6 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
 {
     public BlockCheeseGrassBlock(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

@@ -24,7 +24,6 @@ public class BlockSporelily extends BlockBushMP
 
     public BlockSporelily(String name)
     {
-        super();
         this.setUnlocalizedName(name);
         this.setSoundType(MPSounds.LILYPAD);
     }

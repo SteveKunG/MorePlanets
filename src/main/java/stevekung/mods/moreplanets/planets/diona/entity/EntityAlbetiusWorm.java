@@ -141,8 +141,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
     {
         if (super.getCanSpawnHere())
         {
-            EntityPlayer player = this.world.getNearestPlayerNotCreative(this, 5.0D);
-            return player == null;
+            return this.world.getNearestPlayerNotCreative(this, 5.0D) == null;
         }
         else
         {
@@ -291,7 +290,7 @@ public class EntityAlbetiusWorm extends EntityMob implements IEntityBreathable
             }
         }
 
-        public void notifyHurt()
+        private void notifyHurt()
         {
             if (this.lookForFriends == 0)
             {

@@ -108,6 +108,25 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
         }
     }
 
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        return new ItemStack(this);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getDustColor(IBlockState state)
+    {
+        return ColorUtils.rgbToDecimal(29, 89, 141);
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
+    {
+        return BlockFaceShape.UNDEFINED;
+    }
+
     private void checkFallable(World world, BlockPos pos)
     {
         if ((world.isAirBlock(pos.down()) || BlockFalling.canFallThrough(world.getBlockState(pos.down()))) && pos.getY() >= 0)
@@ -134,24 +153,5 @@ public class BlockFallenKoentusMeteor extends BlockFallingMP
                 }
             }
         }
-    }
-
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-    {
-        return new ItemStack(this);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getDustColor(IBlockState state)
-    {
-        return ColorUtils.rgbToDecimal(29, 89, 141);
-    }
-
-    @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
-    {
-        return BlockFaceShape.UNDEFINED;
     }
 }

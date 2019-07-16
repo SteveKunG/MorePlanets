@@ -27,7 +27,6 @@ public class WeatherRendererNibiru extends IRenderHandler
     private static final ResourceLocation PURIFIED_SNOW = new ResourceLocation("moreplanets:textures/environment/purified_snow.png");
     private final float[] rainXCoords = new float[1024];
     private final float[] rainYCoords = new float[1024];
-    private int rainSoundCounter;
     private final Random rand = new Random();
 
     public WeatherRendererNibiru()

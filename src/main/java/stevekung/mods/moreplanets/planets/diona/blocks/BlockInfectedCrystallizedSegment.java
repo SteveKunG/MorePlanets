@@ -32,7 +32,7 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockInfectedCrystallizedSegment extends BlockBaseMP implements ITileEntityProvider
 {
-    private BlockType type;
+    private final BlockType type;
 
     public BlockInfectedCrystallizedSegment(String name, BlockType type)
     {

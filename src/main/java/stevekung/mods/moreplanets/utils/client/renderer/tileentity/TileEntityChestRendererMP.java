@@ -17,10 +17,10 @@ public class TileEntityChestRendererMP extends TileEntitySpecialRenderer<TileEnt
 {
     private static final ResourceLocation CHRISTMAS_DOUBLE = new ResourceLocation("textures/entity/chest/christmas_double.png");
     private static final ResourceLocation CHRISTMAS = new ResourceLocation("textures/entity/chest/christmas.png");
-    private ResourceLocation textureNormalDouble;
-    private ResourceLocation textureNormal;
-    private ResourceLocation morePlanetsChestNormal;
-    private ResourceLocation morePlanetsLargeChestNormal;
+    private final ResourceLocation textureNormalDouble;
+    private final ResourceLocation textureNormal;
+    private final ResourceLocation morePlanetsChestNormal;
+    private final ResourceLocation morePlanetsLargeChestNormal;
     private final ModelChest simpleChest = new ModelChest();
     private final ModelChest largeChest = new ModelLargeChest();
 

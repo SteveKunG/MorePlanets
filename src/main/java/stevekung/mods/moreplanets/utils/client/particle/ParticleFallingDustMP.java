@@ -11,8 +11,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ParticleFallingDustMP extends Particle
 {
-    float oSize;
-    final float rotSpeed;
+    private final float oSize;
+    private final float rotSpeed;
 
     public ParticleFallingDustMP(World world, double x, double y, double z, int color)
     {

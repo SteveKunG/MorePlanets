@@ -9,8 +9,8 @@ import stevekung.mods.moreplanets.utils.entity.ai.PathNavigateGroundMP;
 
 public class EntityAIFronosTempt extends EntityAIBase
 {
-    private EntityCreature temptedEntity;
-    private double speed;
+    private final EntityCreature temptedEntity;
+    private final double speed;
     private double targetX;
     private double targetY;
     private double targetZ;
@@ -18,8 +18,8 @@ public class EntityAIFronosTempt extends EntityAIBase
     private double rotationYaw;
     private EntityPlayer temptingPlayer;
     private int delayTemptCounter;
-    private Item item;
-    private boolean scaredByPlayerMovement;
+    private final Item item;
+    private final boolean scaredByPlayerMovement;
     private int timer;
 
     public EntityAIFronosTempt(EntityCreature entity, double speed, Item item, boolean scared)

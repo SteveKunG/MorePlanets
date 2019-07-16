@@ -27,9 +27,9 @@ import stevekung.mods.moreplanets.utils.tileentity.TileEntityChestMP;
 
 public class WorldGenSpaceDungeons extends WorldGenerator
 {
-    private IBlockState chest;
-    private IBlockState cobblestone;
-    private IBlockState moss;
+    private final IBlockState chest;
+    private final IBlockState cobblestone;
+    private final IBlockState moss;
 
     public WorldGenSpaceDungeons(IBlockState chest, IBlockState cobblestone, IBlockState moss)
     {

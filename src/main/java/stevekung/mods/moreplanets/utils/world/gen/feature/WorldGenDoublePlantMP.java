@@ -9,7 +9,7 @@ import stevekung.mods.moreplanets.utils.blocks.BlockDoublePlantMP;
 
 public class WorldGenDoublePlantMP extends WorldGenerator
 {
-    private BlockDoublePlantMP block;
+    private final BlockDoublePlantMP block;
 
     public WorldGenDoublePlantMP(BlockDoublePlantMP block)
     {

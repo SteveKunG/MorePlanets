@@ -18,7 +18,6 @@ public class BlockDionaAncientChest extends BlockChestMP
 {
     public BlockDionaAncientChest(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

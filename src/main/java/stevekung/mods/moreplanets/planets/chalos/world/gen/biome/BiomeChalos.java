@@ -18,8 +18,8 @@ import stevekung.mods.moreplanets.utils.world.gen.biome.BiomeMP;
 
 public class BiomeChalos extends BiomeMP
 {
-    protected IBlockState stoneBlock;
-    protected BiomeDecoratorChalos decorator = new BiomeDecoratorChalos();
+    protected final IBlockState stoneBlock;
+    protected final BiomeDecoratorChalos decorator = new BiomeDecoratorChalos();
 
     public BiomeChalos(BiomeProperties prop)
     {

@@ -5,16 +5,16 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelVeinFrame extends ModelBase
 {
-    private ModelRenderer base;
-    private ModelRenderer eye;
-    private ModelRenderer rod1;
-    private ModelRenderer rod2;
-    private ModelRenderer rod3;
-    private ModelRenderer rod4;
-    private ModelRenderer rod5;
-    private ModelRenderer rod6;
-    private ModelRenderer rod7;
-    private ModelRenderer rod8;
+    private final ModelRenderer base;
+    private final ModelRenderer eye;
+    private final ModelRenderer rod1;
+    private final ModelRenderer rod2;
+    private final ModelRenderer rod3;
+    private final ModelRenderer rod4;
+    private final ModelRenderer rod5;
+    private final ModelRenderer rod6;
+    private final ModelRenderer rod7;
+    private final ModelRenderer rod8;
 
     public ModelVeinFrame()
     {

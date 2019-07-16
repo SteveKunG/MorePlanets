@@ -10,16 +10,16 @@ import stevekung.mods.moreplanets.planets.fronos.entity.EntityGiantBlueberry;
 
 public class ModelGiantBlueberry extends ModelBase
 {
-    private ModelRenderer body;
-    private ModelRenderer leg1;
-    private ModelRenderer leg2;
-    private ModelRenderer hand1;
-    private ModelRenderer hand2;
-    private ModelRenderer top1;
-    private ModelRenderer top2;
-    private ModelRenderer top3;
-    private ModelRenderer top4;
-    private ModelRenderer top5;
+    private final ModelRenderer body;
+    private final ModelRenderer leg1;
+    private final ModelRenderer leg2;
+    private final ModelRenderer hand1;
+    private final ModelRenderer hand2;
+    private final ModelRenderer top1;
+    private final ModelRenderer top2;
+    private final ModelRenderer top3;
+    private final ModelRenderer top4;
+    private final ModelRenderer top5;
 
     public ModelGiantBlueberry()
     {

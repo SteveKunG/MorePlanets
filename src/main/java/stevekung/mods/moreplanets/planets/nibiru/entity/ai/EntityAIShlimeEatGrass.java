@@ -9,8 +9,8 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class EntityAIShlimeEatGrass extends EntityAIBase
 {
-    private EntityLiving entity;
-    private World world;
+    private final EntityLiving entity;
+    private final World world;
     int eatingGrassTimer;
 
     public EntityAIShlimeEatGrass(EntityLiving entity)

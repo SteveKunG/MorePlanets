@@ -41,8 +41,8 @@ import stevekung.mods.moreplanets.utils.items.ISortableItem;
 
 public class ItemElectricHoeMP extends ItemHoe implements IItemElectric, ISortableItem
 {
-    public float transferMax = 200;
-    private float maxPower;
+    private final float transferMax = 200;
+    private final float maxPower;
 
     public ItemElectricHoeMP(String name, ToolMaterial material, float maxPower)
     {

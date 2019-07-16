@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
+import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -24,11 +25,10 @@ import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
-import stevekung.mods.moreplanets.utils.entity.ai.EntityAIAttackRangedBowMP;
 
 public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreathable
 {
-    private final EntityAIAttackRangedBowMP<EntityZeliusSkeleton> aiArrowAttack = new EntityAIAttackRangedBowMP<>(this, 1.0D, 20, 15.0F);
+    private final EntityAIAttackRangedBow<EntityZeliusSkeleton> aiArrowAttack = new EntityAIAttackRangedBow<>(this, 1.0D, 20, 15.0F);
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
     {
         @Override

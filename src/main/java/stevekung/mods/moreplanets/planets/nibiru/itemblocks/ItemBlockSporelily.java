@@ -77,7 +77,6 @@ public class ItemBlockSporelily extends ItemBlockMP
                     return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
                 }
             }
-
             return new ActionResult<>(EnumActionResult.FAIL, itemStack);
         }
     }

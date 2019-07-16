@@ -16,10 +16,10 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruStronghold extends MapGenStructure
 {
-    public List<Biome> allowedBiomes;
+    public final List<Biome> allowedBiomes;
     private boolean ranBiomeCheck;
-    private ChunkPos[] structureCoords;
-    private double distance;
+    private final ChunkPos[] structureCoords = new ChunkPos[128];
+    private final double distance = 32.0D;
     private int spread;
 
     static
@@ -30,8 +30,6 @@ public class MapGenNibiruStronghold extends MapGenStructure
 
     public MapGenNibiruStronghold()
     {
-        this.structureCoords = new ChunkPos[128];
-        this.distance = 32.0D;
         this.spread = 3;
         this.allowedBiomes = new ArrayList<>();
 

@@ -15,6 +15,8 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class DarkEnergyTransformRecipeCategory implements IRecipeCategory
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/jei/dark_energy_transform.png");
+
     @Override
     public String getUid()
     {
@@ -36,7 +38,7 @@ public class DarkEnergyTransformRecipeCategory implements IRecipeCategory
     @Override
     public void drawExtras(Minecraft mc)
     {
-        JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/dark_energy_transform.png"), 0, 0, 89, 44).draw(mc, 24, 0);
+        JEIRegistryHelper.guiHelper.createDrawable(TEXTURE, 0, 0, 89, 44).draw(mc, 24, 0);
     }
 
     @Override

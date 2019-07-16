@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 
 public class ContainerShieldGeneratorConfig extends Container
 {
-    private TileEntityShieldGenerator tile;
+    private final TileEntityShieldGenerator tile;
 
     public ContainerShieldGeneratorConfig(InventoryPlayer inventory, TileEntityShieldGenerator tile)
     {
@@ -22,7 +22,6 @@ public class ContainerShieldGeneratorConfig extends Container
         this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 1, 152, 24, "damage"));
         this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 2, 152, 42, "size"));
         this.addSlotToContainer(new SlotShieldGeneratorUpgrade(tile, 3, 152, 60, "capacity"));
-
         int i;
         int j;
 

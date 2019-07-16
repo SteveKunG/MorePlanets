@@ -47,11 +47,6 @@ public class PacketSimpleMP extends PacketBase
     private EnumSimplePacketMP type;
     private List<Object> data;
 
-    public PacketSimpleMP()
-    {
-        super();
-    }
-
     public PacketSimpleMP(EnumSimplePacketMP packetType, int dimID, Object... dataList)
     {
         super(dimID);
@@ -169,7 +164,6 @@ public class PacketSimpleMP extends PacketBase
         GCPlayerStats stats = GCPlayerStats.get(playerMP);
         World world = player.world;
         TileEntity tile;
-        BlockPos pos;
         String type;
 
         switch (this.type)

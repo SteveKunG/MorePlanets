@@ -11,8 +11,8 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 
 public class WorldGenNibiruSand extends WorldGenerator
 {
-    private IBlockState block;
-    private int radius;
+    private final IBlockState block;
+    private final int radius;
 
     public WorldGenNibiruSand(IBlockState block, int radius)
     {

@@ -6,8 +6,8 @@ import net.minecraft.world.World;
 
 public class EntityAIFaceTexture extends EntityAIBase
 {
-    private EntityLiving entity;
-    private World world;
+    private final EntityLiving entity;
+    private final World world;
     private int timer;
 
     public EntityAIFaceTexture(EntityLiving entity)

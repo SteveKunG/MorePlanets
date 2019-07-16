@@ -12,35 +12,21 @@ import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenDungeonMP extends MapGenStructure
 {
-    private static boolean initialized;
-    protected DungeonConfigurationMP configuration;
+    protected final DungeonConfigurationMP configuration;
 
     static
     {
-        try
-        {
-            MapGenDungeonMP.initiateStructures();
-        }
-        catch (Throwable e) {}
+        MapGenStructureIO.registerStructure(Start.class, "MPDungeon");
+        MapGenStructureIO.registerStructureComponent(DungeonStartMP.class, "MPDungeonStart");
+        MapGenStructureIO.registerStructureComponent(CorridorMP.class, "MPDungeonCorridor");
+        MapGenStructureIO.registerStructureComponent(RoomEmptyMP.class, "MPDungeonEmptyRoom");
+        MapGenStructureIO.registerStructureComponent(RoomSpawnerMP.class, "MPDungeonSpawnerRoom");
+        MapGenStructureIO.registerStructureComponent(RoomChestMP.class, "MPDungeonChestRoom");
     }
 
     public MapGenDungeonMP(DungeonConfigurationMP configuration)
     {
         this.configuration = configuration;
-    }
-
-    public static void initiateStructures() throws Throwable
-    {
-        if (!MapGenDungeonMP.initialized)
-        {
-            MapGenStructureIO.registerStructure(Start.class, "MPDungeon");
-            MapGenStructureIO.registerStructureComponent(DungeonStartMP.class, "MPDungeonStart");
-            MapGenStructureIO.registerStructureComponent(CorridorMP.class, "MPDungeonCorridor");
-            MapGenStructureIO.registerStructureComponent(RoomEmptyMP.class, "MPDungeonEmptyRoom");
-            MapGenStructureIO.registerStructureComponent(RoomSpawnerMP.class, "MPDungeonSpawnerRoom");
-            MapGenStructureIO.registerStructureComponent(RoomChestMP.class, "MPDungeonChestRoom");
-        }
-        MapGenDungeonMP.initialized = true;
     }
 
     @Override

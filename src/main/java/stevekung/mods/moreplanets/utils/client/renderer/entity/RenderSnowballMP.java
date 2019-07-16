@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderSnowballMP extends Render<Entity>
 {
-    private ItemStack itemStack;
+    private final ItemStack itemStack;
 
     public RenderSnowballMP(RenderManager render, ItemStack itemStack)
     {

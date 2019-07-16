@@ -14,7 +14,7 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class ItemRecordMP extends ItemRecord implements ISortableItem, IItemModelRender
 {
-    protected String name;
+    private final String name;
 
     public ItemRecordMP(String name, String recordName, SoundEvent sound)
     {

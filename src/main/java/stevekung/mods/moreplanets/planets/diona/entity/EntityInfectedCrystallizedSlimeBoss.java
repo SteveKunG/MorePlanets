@@ -244,7 +244,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
     {
         super.onUpdate();
         MorePlanetsMod.PROXY.addBoss(this);
-        List<EntityInfectedCrystallizedTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizedTentacle.class, this.getEntityBoundingBox().grow(32.0F, 32.0F, 32.0F));
+        List<EntityInfectedCrystallizedTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizedTentacle.class, this.getEntityBoundingBox().grow(32.0D));
         this.updateTentacle();
 
         if (list.size() > 0)
@@ -502,7 +502,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
             }
         }
 
-        List<EntityInfectedCrystallizedTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizedTentacle.class, this.getEntityBoundingBox().grow(32.0F, 32.0F, 32.0F));
+        List<EntityInfectedCrystallizedTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizedTentacle.class, this.getEntityBoundingBox().grow(32.0D));
         EntityInfectedCrystallizedTentacle tentacle = null;
         double distance1 = Double.MAX_VALUE;
         Iterator iterator = list.iterator();

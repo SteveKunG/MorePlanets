@@ -6,28 +6,28 @@ import net.minecraft.client.renderer.GlStateManager;
 
 public class ModelDarkEnergyGenerator extends ModelBase
 {
-    private ModelRenderer base1;
-    private ModelRenderer base2;
-    private ModelRenderer base3;
-    private ModelRenderer ball;
-    private ModelRenderer rod1;
-    private ModelRenderer rod2;
-    private ModelRenderer rod3;
-    private ModelRenderer rod4;
-    private ModelRenderer rods1;
-    private ModelRenderer rods2;
-    private ModelRenderer rods3;
-    private ModelRenderer rods4;
-    private ModelRenderer baseside1;
-    private ModelRenderer baseside2;
-    private ModelRenderer baseside3;
-    private ModelRenderer baseside4;
-    private ModelRenderer baseside5;
-    private ModelRenderer baseside6;
-    private ModelRenderer baseside7;
-    private ModelRenderer baseside8;
-    private ModelRenderer baseside9;
-    private ModelRenderer baseside10;
+    private final ModelRenderer base1;
+    private final ModelRenderer base2;
+    private final ModelRenderer base3;
+    private final ModelRenderer ball;
+    private final ModelRenderer rod1;
+    private final ModelRenderer rod2;
+    private final ModelRenderer rod3;
+    private final ModelRenderer rod4;
+    private final ModelRenderer rods1;
+    private final ModelRenderer rods2;
+    private final ModelRenderer rods3;
+    private final ModelRenderer rods4;
+    private final ModelRenderer baseside1;
+    private final ModelRenderer baseside2;
+    private final ModelRenderer baseside3;
+    private final ModelRenderer baseside4;
+    private final ModelRenderer baseside5;
+    private final ModelRenderer baseside6;
+    private final ModelRenderer baseside7;
+    private final ModelRenderer baseside8;
+    private final ModelRenderer baseside9;
+    private final ModelRenderer baseside10;
 
     public ModelDarkEnergyGenerator()
     {

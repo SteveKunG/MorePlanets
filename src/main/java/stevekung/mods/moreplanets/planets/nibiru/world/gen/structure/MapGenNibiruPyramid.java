@@ -16,9 +16,9 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruPyramid extends MapGenStructure
 {
-    private List<Biome.SpawnListEntry> entitySpawnList;
-    private int maxDistanceBetweenScatteredFeatures;
-    private int minDistanceBetweenScatteredFeatures;
+    private final List<Biome.SpawnListEntry> entitySpawnList;
+    private final int maxDistanceBetweenScatteredFeatures;
+    private final int minDistanceBetweenScatteredFeatures;
 
     static
     {

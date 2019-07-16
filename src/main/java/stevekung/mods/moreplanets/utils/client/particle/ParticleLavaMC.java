@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ParticleLavaMC extends Particle
 {
-    private float lavaParticleScale;
+    private final float lavaParticleScale;
 
     public ParticleLavaMC(World world, double x, double y, double z, String texture)
     {

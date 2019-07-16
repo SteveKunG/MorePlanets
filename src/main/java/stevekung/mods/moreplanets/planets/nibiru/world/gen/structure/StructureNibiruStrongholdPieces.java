@@ -54,7 +54,7 @@ public class StructureNibiruStrongholdPieces
                     }
             };
 
-    private static List<PieceWeight> structurePieceList;
+    private static final List<PieceWeight> structurePieceList = new ArrayList<>();
     private static Class<? extends Stronghold> strongComponentType;
     static int totalWeight;
     private static final Stones STRONGHOLD_STONES = new Stones();
@@ -78,8 +78,6 @@ public class StructureNibiruStrongholdPieces
 
     public static void prepareStructurePieces()
     {
-        structurePieceList = new ArrayList<>();
-
         for (PieceWeight pieceweight : PIECE_WEIGHTS)
         {
             pieceweight.instancesSpawned = 0;

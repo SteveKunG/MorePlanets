@@ -30,5 +30,5 @@ public enum EnumSortCategoryItem
     BOOTS,
     HELMET_BREATHABLE;
 
-    public static final EnumSortCategoryItem[] values = EnumSortCategoryItem.values();
+    public static final EnumSortCategoryItem[] VALUES = EnumSortCategoryItem.values();
 }

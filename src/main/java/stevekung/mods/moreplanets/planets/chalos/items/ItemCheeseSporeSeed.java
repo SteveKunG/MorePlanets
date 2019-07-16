@@ -16,7 +16,6 @@ public class ItemCheeseSporeSeed extends ItemBaseMP
 {
     public ItemCheeseSporeSeed(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

@@ -12,12 +12,12 @@ import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWas
 
 public class ContainerNuclearWasteGenerator extends Container
 {
-    private TileEntityNuclearWasteGenerator tileEntity;
+    private TileEntityNuclearWasteGenerator tile;
 
-    public ContainerNuclearWasteGenerator(InventoryPlayer invPlayer, TileEntityNuclearWasteGenerator generator)
+    public ContainerNuclearWasteGenerator(InventoryPlayer invPlayer, TileEntityNuclearWasteGenerator tile)
     {
-        this.tileEntity = generator;
-        this.addSlotToContainer(new SlotSpecific(generator, 0, 122, 20, IItemElectric.class));
+        this.tile = tile;
+        this.addSlotToContainer(new SlotSpecific(tile, 0, 122, 20, IItemElectric.class));
 
         for (int i = 0; i < 3; ++i)
         {
@@ -35,14 +35,14 @@ public class ContainerNuclearWasteGenerator extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileEntity.isUsableByPlayer(player);
+        return this.tile.isUsableByPlayer(player);
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slot)
+    public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot invSlot = this.inventorySlots.get(slot);
+        Slot invSlot = this.inventorySlots.get(index);
         int slotSize = this.inventorySlots.size();
 
         if (invSlot != null && invSlot.getHasStack())
@@ -51,7 +51,7 @@ public class ContainerNuclearWasteGenerator extends Container
             itemStack = stack.copy();
             boolean movedToMachineSlot = false;
 
-            if (slot == 0)
+            if (index == 0)
             {
                 if (!this.mergeItemStack(stack, slotSize - 36, slotSize, true))
                 {
@@ -70,7 +70,7 @@ public class ContainerNuclearWasteGenerator extends Container
                 }
                 else
                 {
-                    if (slot < slotSize - 9)
+                    if (index < slotSize - 9)
                     {
                         if (!this.mergeItemStack(stack, slotSize - 9, slotSize, false))
                         {

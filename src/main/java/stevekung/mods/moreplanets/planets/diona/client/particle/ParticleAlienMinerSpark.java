@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ParticleAlienMinerSpark extends Particle
 {
-    float reddustParticleScale;
+    private final float reddustParticleScale;
 
     public ParticleAlienMinerSpark(World world, double x, double y, double z, float time)
     {

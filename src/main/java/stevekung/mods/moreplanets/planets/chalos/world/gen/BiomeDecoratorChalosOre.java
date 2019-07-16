@@ -14,14 +14,14 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
 public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
 {
-    private WorldGenerator dirtGen;
-    private WorldGenerator diremsiumGen;
-    private WorldGenerator zyptoriumGen;
-    private WorldGenerator ironGen;
-    private WorldGenerator cheeseGen;
-    private WorldGenerator aluminumGen;
-    private WorldGenerator tinGen;
-    private WorldGenerator copperGen;
+    private final WorldGenerator dirtGen;
+    private final WorldGenerator diremsiumGen;
+    private final WorldGenerator zyptoriumGen;
+    private final WorldGenerator ironGen;
+    private final WorldGenerator cheeseGen;
+    private final WorldGenerator aluminumGen;
+    private final WorldGenerator tinGen;
+    private final WorldGenerator copperGen;
 
     public BiomeDecoratorChalosOre()
     {

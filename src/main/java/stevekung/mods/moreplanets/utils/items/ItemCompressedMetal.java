@@ -6,7 +6,6 @@ public class ItemCompressedMetal extends ItemBaseMP
 {
     public ItemCompressedMetal(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

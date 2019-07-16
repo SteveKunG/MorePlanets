@@ -119,7 +119,7 @@ public class BlocksItemsRegistry
     {
         List<StackSorted> itemOrderListBlocks = new ArrayList<>();
 
-        Arrays.asList(EnumSortCategoryBlock.values).forEach(type ->
+        Arrays.asList(EnumSortCategoryBlock.VALUES).forEach(type ->
         {
             List<StackSorted> stackSorteds = BlocksItemsRegistry.SORT_MAP_BLOCKS.get(type);
 
@@ -155,7 +155,7 @@ public class BlocksItemsRegistry
     {
         List<StackSorted> itemOrderListItems = new ArrayList<>();
 
-        Arrays.asList(EnumSortCategoryItem.values).forEach(type ->
+        Arrays.asList(EnumSortCategoryItem.VALUES).forEach(type ->
         {
             List<StackSorted> stackSorteds = BlocksItemsRegistry.SORT_MAP_ITEMS.get(type);
 

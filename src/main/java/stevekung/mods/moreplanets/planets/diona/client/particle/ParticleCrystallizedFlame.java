@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ParticleCrystallizedFlame extends Particle
 {
-    private float flameScale;
+    private final float flameScale;
 
     public ParticleCrystallizedFlame(World world, double x, double y, double z)
     {

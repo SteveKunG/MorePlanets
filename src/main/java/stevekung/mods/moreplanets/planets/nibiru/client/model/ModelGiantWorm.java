@@ -7,9 +7,9 @@ import net.minecraft.util.math.MathHelper;
 
 public class ModelGiantWorm extends ModelBase
 {
-    private ModelRenderer[] body = new ModelRenderer[9];
-    private ModelRenderer head;
-    private ModelRenderer[][] pincers = new ModelRenderer[4][4];
+    private final ModelRenderer[] body = new ModelRenderer[9];
+    private final ModelRenderer head;
+    private final ModelRenderer[][] pincers = new ModelRenderer[4][4];
 
     public ModelGiantWorm()
     {

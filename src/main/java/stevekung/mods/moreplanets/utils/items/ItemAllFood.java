@@ -23,7 +23,6 @@ public class ItemAllFood extends ItemFoodMP
 
     public ItemAllFood(String name, ItemType type)
     {
-        super();
         this.setUnlocalizedName(name);
         this.type = type;
     }

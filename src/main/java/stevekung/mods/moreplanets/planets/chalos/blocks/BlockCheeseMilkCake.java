@@ -9,7 +9,6 @@ public class BlockCheeseMilkCake extends BlockCakeMP implements IDescription
 {
     public BlockCheeseMilkCake(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

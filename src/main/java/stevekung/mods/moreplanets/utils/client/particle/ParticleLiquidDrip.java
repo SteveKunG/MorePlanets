@@ -15,7 +15,7 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 public class ParticleLiquidDrip extends Particle
 {
     private int bobTimer;
-    private boolean isLavaDrip;
+    private final boolean isLavaDrip;
 
     public ParticleLiquidDrip(World world, double x, double y, double z, ColorUtils.RGB rgb, boolean isLavaDrip)
     {

@@ -7,7 +7,7 @@ import stevekung.mods.moreplanets.init.MPItems;
 
 public class SlotShieldGeneratorUpgrade extends Slot
 {
-    private String type;
+    private final String type;
 
     public SlotShieldGeneratorUpgrade(IInventory inventory, int index, int xPosition, int yPosition, String type)
     {

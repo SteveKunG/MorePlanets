@@ -12,17 +12,17 @@ import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageCluste
 
 public class ContainerEnergyStorageCluster extends Container
 {
-    private TileEntityEnergyStorageClusterMP tileEntity;
+    private final TileEntityEnergyStorageClusterMP tile;
 
-    public ContainerEnergyStorageCluster(InventoryPlayer invPlayer, TileEntityEnergyStorageClusterMP batteryBox)
+    public ContainerEnergyStorageCluster(InventoryPlayer invPlayer, TileEntityEnergyStorageClusterMP tile)
     {
-        this.tileEntity = batteryBox;
+        this.tile = tile;
         // Top slot for battery output
-        this.addSlotToContainer(new SlotSpecific(batteryBox, 0, 15, 24, IItemElectric.class));
-        this.addSlotToContainer(new SlotSpecific(batteryBox, 1, 33, 24, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(tile, 0, 15, 24, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(tile, 1, 33, 24, IItemElectric.class));
         // Bottom slot for batter input
-        this.addSlotToContainer(new SlotSpecific(batteryBox, 2, 15, 48, IItemElectric.class));
-        this.addSlotToContainer(new SlotSpecific(batteryBox, 3, 33, 48, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(tile, 2, 15, 48, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(tile, 3, 33, 48, IItemElectric.class));
         int i;
 
         for (i = 0; i < 3; ++i)
@@ -41,14 +41,14 @@ public class ContainerEnergyStorageCluster extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileEntity.isUsableByPlayer(player);
+        return this.tile.isUsableByPlayer(player);
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slotID)
+    public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
         ItemStack returnStack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(slotID);
+        Slot slot = this.inventorySlots.get(index);
         int invSize = this.inventorySlots.size();
 
         if (slot != null && slot.getHasStack())
@@ -57,7 +57,7 @@ public class ContainerEnergyStorageCluster extends Container
             returnStack = itemStack.copy();
             boolean movedToMachineSlot = false;
 
-            if (slotID != 0 && slotID != 1 && slotID != 2 && slotID != 3)
+            if (index != 0 && index != 1 && index != 2 && index != 3)
             {
                 if (EnergyUtil.isElectricItem(itemStack.getItem()))
                 {
@@ -83,7 +83,7 @@ public class ContainerEnergyStorageCluster extends Container
                 }
                 else
                 {
-                    if (slotID < invSize - 9)
+                    if (index < invSize - 9)
                     {
                         if (!this.mergeItemStack(itemStack, invSize - 9, invSize, false))
                         {

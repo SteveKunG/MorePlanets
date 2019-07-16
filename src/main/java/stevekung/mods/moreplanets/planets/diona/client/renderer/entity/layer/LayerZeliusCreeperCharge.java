@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.planets.diona.entity.EntityZeliusCreeper;
 @SideOnly(Side.CLIENT)
 public class LayerZeliusCreeperCharge implements LayerRenderer<EntityZeliusCreeper>
 {
-    private RenderZeliusCreeper render;
+    private final RenderZeliusCreeper render;
     private final ModelCreeper model = new ModelCreeper(2.0F);
     private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/creeper/creeper_armor.png");
 

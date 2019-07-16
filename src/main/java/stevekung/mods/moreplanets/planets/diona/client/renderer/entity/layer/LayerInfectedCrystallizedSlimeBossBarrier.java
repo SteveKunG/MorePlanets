@@ -15,7 +15,7 @@ import stevekung.mods.moreplanets.planets.diona.entity.EntityInfectedCrystallize
 @SideOnly(Side.CLIENT)
 public class LayerInfectedCrystallizedSlimeBossBarrier implements LayerRenderer<EntityInfectedCrystallizedSlimeBoss>
 {
-    private RenderInfectedCrystallizedSlimeBoss render;
+    private final RenderInfectedCrystallizedSlimeBoss render;
     private final ModelInfectedCrystallizedSlimeBoss model = new ModelInfectedCrystallizedSlimeBoss();
     private static final ResourceLocation GLOW = new ResourceLocation("moreplanets:textures/entity/infected_crystallized_slime_boss_glow.png");
     private static final ResourceLocation POWER = new ResourceLocation("galacticraftcore:textures/model/power.png");

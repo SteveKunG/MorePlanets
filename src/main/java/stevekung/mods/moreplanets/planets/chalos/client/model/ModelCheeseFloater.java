@@ -7,14 +7,14 @@ import net.minecraft.entity.Entity;
 
 public class ModelCheeseFloater extends ModelBase
 {
-    private ModelRenderer body1;
-    private ModelRenderer body2;
-    private ModelRenderer body3;
-    private ModelRenderer body4;
-    private ModelRenderer eye1;
-    private ModelRenderer eye2;
-    private ModelRenderer eye3;
-    private ModelRenderer eye4;
+    private final ModelRenderer body1;
+    private final ModelRenderer body2;
+    private final ModelRenderer body3;
+    private final ModelRenderer body4;
+    private final ModelRenderer eye1;
+    private final ModelRenderer eye2;
+    private final ModelRenderer eye3;
+    private final ModelRenderer eye4;
 
     public ModelCheeseFloater()
     {

@@ -45,11 +45,6 @@ public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
         }
     }
 
-    private EntityHangingSchematic createEntity(World world, BlockPos pos, EnumFacing side, int index)
-    {
-        return new EntityHangingSchematic(world, pos, side, index);
-    }
-
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
@@ -65,5 +60,10 @@ public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
     protected int getIndex(int damage)
     {
         return damage;
+    }
+
+    private EntityHangingSchematic createEntity(World world, BlockPos pos, EnumFacing side, int index)
+    {
+        return new EntityHangingSchematic(world, pos, side, index);
     }
 }

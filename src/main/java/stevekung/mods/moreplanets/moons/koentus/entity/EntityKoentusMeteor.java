@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.moons.koentus.entity;
 
-import java.util.Iterator;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -81,18 +80,14 @@ public class EntityKoentusMeteor extends Entity
         }
 
         Entity entity = null;
-        List<?> entityList = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(2.0D, 2.0D, 2.0D));
+        List<Entity> entityList = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(2.0D));
         double distance = 0.0D;
-        Iterator<?> iterator = entityList.iterator();
-        double range = 0.01D;
 
-        while (iterator.hasNext())
+        for (Entity entity2 : entityList)
         {
-            Entity entity2 = (Entity) iterator.next();
-
-            if (entity2.canBeCollidedWith() && !entity2.isEntityEqual(this.shootingEntity))
+            if (entity2.canBeCollidedWith())
             {
-                AxisAlignedBB aabb = entity2.getEntityBoundingBox().grow(range, range, range);
+                AxisAlignedBB aabb = entity2.getEntityBoundingBox().grow(0.01D);
                 RayTraceResult result2 = aabb.calculateIntercept(vec1, vec2);
 
                 if (result2 != null)

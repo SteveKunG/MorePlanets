@@ -17,7 +17,7 @@ public class RenderInfectedCrystallizedBomb extends Render<EntityInfectedCrystal
     public static final RenderInfectedCrystallizedBomb INSTANCE = new RenderInfectedCrystallizedBomb(Minecraft.getMinecraft().getRenderManager());
     private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/model/infected_crystallized_bomb.png");
     private static final ResourceLocation GLOW = new ResourceLocation("moreplanets:textures/model/infected_crystallized_bomb_glow.png");
-    private ModelInfectedCrystallizedBomb model = new ModelInfectedCrystallizedBomb();
+    private final ModelInfectedCrystallizedBomb model = new ModelInfectedCrystallizedBomb();
 
     public RenderInfectedCrystallizedBomb(RenderManager manager)
     {

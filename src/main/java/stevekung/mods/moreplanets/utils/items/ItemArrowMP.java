@@ -31,9 +31,9 @@ import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
 public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelRender, IItemRarity
 {
-    private ArrowType type;
+    private final ArrowType type;
     private ColorUtils.RGB rgb;
-    private String name;
+    private final String name;
 
     public ItemArrowMP(String name, ArrowType type)
     {

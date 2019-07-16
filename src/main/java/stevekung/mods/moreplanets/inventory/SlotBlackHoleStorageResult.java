@@ -13,14 +13,14 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 
 public class SlotBlackHoleStorageResult extends Slot
 {
-    private final IInventory craftMatrix;
-    private final EntityPlayer thePlayer;
+    private final IInventory inventory;
+    private final EntityPlayer player;
 
     public SlotBlackHoleStorageResult(EntityPlayer player, IInventory invCraft, IInventory result, int index, int x, int y)
     {
         super(result, index, x, y);
-        this.thePlayer = player;
-        this.craftMatrix = invCraft;
+        this.player = player;
+        this.inventory = invCraft;
     }
 
     @Override
@@ -32,27 +32,27 @@ public class SlotBlackHoleStorageResult extends Slot
     @Override
     public ItemStack onTake(EntityPlayer player, ItemStack itemStack)
     {
-        for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i)
+        for (int i = 0; i < this.inventory.getSizeInventory(); ++i)
         {
-            ItemStack slotStack = this.craftMatrix.getStackInSlot(i);
+            ItemStack slotStack = this.inventory.getStackInSlot(i);
 
             if (!slotStack.isEmpty())
             {
-                this.craftMatrix.decrStackSize(i, 1);
+                this.inventory.decrStackSize(i, 1);
 
                 if (slotStack.getItem().hasContainerItem(slotStack))
                 {
                     ItemStack result = new ItemStack(slotStack.getItem().getContainerItem());
 
-                    if (!this.thePlayer.inventory.addItemStackToInventory(result))
+                    if (!this.player.inventory.addItemStackToInventory(result))
                     {
-                        if (this.craftMatrix.getStackInSlot(i).isEmpty())
+                        if (this.inventory.getStackInSlot(i).isEmpty())
                         {
-                            this.craftMatrix.setInventorySlotContents(i, result);
+                            this.inventory.setInventorySlotContents(i, result);
                         }
                         else
                         {
-                            this.thePlayer.entityDropItem(result, 0.0F);
+                            this.player.entityDropItem(result, 0.0F);
                         }
                     }
                 }

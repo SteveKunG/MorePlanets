@@ -10,7 +10,7 @@ import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenNibiruMineshaft extends MapGenStructure
 {
-    private double chance = 0.004D;
+    private final double chance = 0.004D;
 
     public MapGenNibiruMineshaft() {}
 

@@ -19,10 +19,10 @@ import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 
 public class TileEntityVeinPortal extends TileEntityRenderTickable
 {
-    public long age;
+    private long age;
     public boolean isMiddle;
-    public boolean spawnedBoss;
-    public int delayToTeleport;
+    private boolean spawnedBoss;
+    private int delayToTeleport;
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)

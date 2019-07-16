@@ -11,7 +11,7 @@ import stevekung.mods.moreplanets.utils.blocks.BlockBushMP;
 
 public class WorldGenNibiruSeaweed extends WorldGenerator
 {
-    private IBlockState flower;
+    private final IBlockState flower;
 
     public WorldGenNibiruSeaweed(IBlockState flower)
     {

@@ -7,18 +7,18 @@ import net.minecraft.util.math.MathHelper;
 
 public class ModelInfectedCrystallizedTentacle extends ModelBase
 {
-    private ModelRenderer body1;
-    private ModelRenderer eye1;
-    private ModelRenderer eye2;
-    private ModelRenderer eye3;
-    private ModelRenderer eye4;
-    private ModelRenderer body2;
-    private ModelRenderer body3;
-    private ModelRenderer eye5;
-    private ModelRenderer eye6;
-    private ModelRenderer eye7;
-    private ModelRenderer eye8;
-    private ModelRenderer body4;
+    private final ModelRenderer body1;
+    private final ModelRenderer eye1;
+    private final ModelRenderer eye2;
+    private final ModelRenderer eye3;
+    private final ModelRenderer eye4;
+    private final ModelRenderer body2;
+    private final ModelRenderer body3;
+    private final ModelRenderer eye5;
+    private final ModelRenderer eye6;
+    private final ModelRenderer eye7;
+    private final ModelRenderer eye8;
+    private final ModelRenderer body4;
 
     public ModelInfectedCrystallizedTentacle()
     {

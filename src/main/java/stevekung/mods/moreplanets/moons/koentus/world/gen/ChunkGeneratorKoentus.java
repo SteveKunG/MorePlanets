@@ -23,9 +23,9 @@ import stevekung.mods.stevekunglib.world.gen.MapGenCavesBase;
 
 public class ChunkGeneratorKoentus extends ChunkGeneratorBaseMP
 {
-    private BiomeDecoratorDiona decorator = new BiomeDecoratorDiona();
-    private MapGenCavesBase caveGenerator = new MapGenCavesBase(MPBlocks.KOENTUS_REGOLITH.getDefaultState(), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.KOENTUS_FINE_REGOLITH, MPBlocks.KOENTUS_ROCK));
-    private MapGenCrashedAlienShipFeature alienShipFeatureGenerator = new MapGenCrashedAlienShipFeature();
+    private final BiomeDecoratorDiona decorator = new BiomeDecoratorDiona();
+    private final MapGenCavesBase caveGenerator = new MapGenCavesBase(MPBlocks.KOENTUS_REGOLITH.getDefaultState(), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.KOENTUS_FINE_REGOLITH, MPBlocks.KOENTUS_ROCK));
+    private final MapGenCrashedAlienShipFeature alienShipFeatureGenerator = new MapGenCrashedAlienShipFeature();
 
     public ChunkGeneratorKoentus(World world, long seed)
     {

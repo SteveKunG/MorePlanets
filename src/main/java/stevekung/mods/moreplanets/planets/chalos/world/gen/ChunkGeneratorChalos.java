@@ -29,11 +29,11 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorChalos extends ChunkGeneratorBaseMP
 {
-    private MapGenCavesBase caveGenerator = new MapGenCavesBase(MPBlocks.CHEESE_GRASS_BLOCK.getDefaultState(), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.CHEESE_DIRT, MPBlocks.CHALOS_ROCK));
-    private MapGenRavineBase ravineGenerator = new MapGenRavineBase(MPBlocks.CHEESE_GRASS_BLOCK.getDefaultState(), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.CHEESE_DIRT, MPBlocks.CHALOS_ROCK), Sets.newHashSet(MPBlocks.CHEESE_MILK_FLUID_BLOCK));
-    private BiomeDecoratorChalosOre decorator = new BiomeDecoratorChalosOre();
-    private MapGenCheeseSporeHutFeature cheeseSporeHutFeatureGenerator = new MapGenCheeseSporeHutFeature();
-    private MapGenChalosDungeon dungeonGenerator = new MapGenChalosDungeon(new DungeonConfigurationMP(MPBlocks.CHALOS_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), GCBlocks.unlitTorch.getDefaultState(), MPBlocks.CHALOS_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossChalos.class, RoomTreasureChalos.class, RoomSpawnerChalos.class, RoomChestMP.class));
+    private final MapGenCavesBase caveGenerator = new MapGenCavesBase(MPBlocks.CHEESE_GRASS_BLOCK.getDefaultState(), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.CHEESE_DIRT, MPBlocks.CHALOS_ROCK));
+    private final MapGenRavineBase ravineGenerator = new MapGenRavineBase(MPBlocks.CHEESE_GRASS_BLOCK.getDefaultState(), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.CHEESE_DIRT, MPBlocks.CHALOS_ROCK), Sets.newHashSet(MPBlocks.CHEESE_MILK_FLUID_BLOCK));
+    private final BiomeDecoratorChalosOre decorator = new BiomeDecoratorChalosOre();
+    private final MapGenCheeseSporeHutFeature cheeseSporeHutFeatureGenerator = new MapGenCheeseSporeHutFeature();
+    private final MapGenChalosDungeon dungeonGenerator = new MapGenChalosDungeon(new DungeonConfigurationMP(MPBlocks.CHALOS_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), GCBlocks.unlitTorch.getDefaultState(), MPBlocks.CHALOS_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossChalos.class, RoomTreasureChalos.class, RoomSpawnerChalos.class, RoomChestMP.class));
 
     public ChunkGeneratorChalos(World world, long seed)
     {

@@ -22,7 +22,7 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 public class BlockJelly extends BlockBreakableMP
 {
     private static final Map<BlockType, float[]> JELLY_RGB = new EnumMap<>(BlockType.class);
-    private BlockType type;
+    private final BlockType type;
 
     static
     {

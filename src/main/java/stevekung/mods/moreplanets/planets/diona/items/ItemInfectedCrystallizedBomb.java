@@ -17,7 +17,6 @@ public class ItemInfectedCrystallizedBomb extends ItemBaseMP
 {
     public ItemInfectedCrystallizedBomb(String name)
     {
-        super();
         this.setMaxStackSize(32);
         this.setUnlocalizedName(name);
     }

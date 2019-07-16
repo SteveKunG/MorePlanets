@@ -11,7 +11,7 @@ import stevekung.mods.stevekunglib.utils.WorldDecorateUtils;
 
 public class BiomeInfectedPlains extends BiomeNibiru
 {
-    private boolean infested;
+    private final boolean infested;
     private static final WorldGenDoublePlantMP TALL_GRASS = new WorldGenDoublePlantMP(MPBlocks.INFECTED_TALL_GRASS);
 
     public BiomeInfectedPlains(BiomeProperties prop, boolean infested)

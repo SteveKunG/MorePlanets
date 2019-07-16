@@ -8,9 +8,9 @@ import net.minecraft.item.ItemStack;
 
 public class DarkEnergyRecipeData
 {
-    private HashMap<Integer, ItemStack> input;
-    private ItemStack output;
-    private int timeMultiplier;
+    private final HashMap<Integer, ItemStack> input;
+    private final ItemStack output;
+    private final int timeMultiplier;
     private static final List<DarkEnergyRecipeData> RECIPES = new ArrayList<>();
 
     private DarkEnergyRecipeData(HashMap<Integer, ItemStack> input, ItemStack output, int timeMultiplier)

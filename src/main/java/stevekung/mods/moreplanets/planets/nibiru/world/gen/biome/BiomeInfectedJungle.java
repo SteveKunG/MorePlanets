@@ -19,7 +19,7 @@ public class BiomeInfectedJungle extends BiomeNibiru
     private static final WorldGenInfectedVines VINES = new WorldGenInfectedVines();
     private static final WorldGenInfectedMegaJungleTree MEGA_JUNGLE_TREE = new WorldGenInfectedMegaJungleTree();
     private static final WorldGenInfectedShrub SHRUB = new WorldGenInfectedShrub(MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
-    private boolean isEdge;
+    private final boolean isEdge;
 
     public BiomeInfectedJungle(BiomeProperties prop, boolean isEdge)
     {

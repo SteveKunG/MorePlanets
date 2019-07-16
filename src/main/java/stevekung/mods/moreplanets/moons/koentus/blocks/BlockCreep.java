@@ -27,7 +27,7 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class BlockCreep extends BlockFallingMP implements ITileEntityProvider, IItemRarity
 {
-    private BlockType type;
+    private final BlockType type;
 
     public BlockCreep(String name, BlockType type)
     {

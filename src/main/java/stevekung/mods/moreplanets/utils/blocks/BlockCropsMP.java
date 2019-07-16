@@ -24,7 +24,6 @@ public abstract class BlockCropsMP extends BlockBushMP implements IGrowable
 {
     public BlockCropsMP()
     {
-        super();
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.AGE_7, 0));
     }
 

@@ -20,7 +20,6 @@ public class BlockInfectedVines extends BlockVinesMP
 {
     public BlockInfectedVines(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

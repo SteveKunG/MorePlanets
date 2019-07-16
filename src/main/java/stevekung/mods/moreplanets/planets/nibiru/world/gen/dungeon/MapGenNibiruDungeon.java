@@ -12,15 +12,17 @@ import stevekung.mods.moreplanets.utils.world.gen.dungeon.MapGenDungeonMP;
 
 public class MapGenNibiruDungeon extends MapGenDungeonMP
 {
-    private static boolean initialized;
-
     static
     {
-        try
-        {
-            MapGenNibiruDungeon.initiateStructures();
-        }
-        catch (Throwable e) {}
+        MapGenStructureIO.registerStructure(Start.class, "NibiruDungeon");
+        MapGenStructureIO.registerStructureComponent(DungeonStartNibiru.class, "NibiruDungeonStart");
+        MapGenStructureIO.registerStructureComponent(RoomEmptyNibiru.class, "NibiruDungeonEmptyRoom");
+        MapGenStructureIO.registerStructureComponent(RoomSpawnerNibiru.class, "NibiruDungeonSpawnerRoom");
+        MapGenStructureIO.registerStructureComponent(RoomChestNibiru.class, "NibiruDungeonChestRoom");
+        MapGenStructureIO.registerStructureComponent(RoomBossNibiru.class, "NibiruDungeonBossRoom");
+        MapGenStructureIO.registerStructureComponent(RoomTreasureNibiru.class, "NibiruDungeonTreasureRoom");
+        MapGenStructureIO.registerStructureComponent(RoomSpawnerNibiru.class, "NibiruDungeonSpawnerRoom");
+        MapGenStructureIO.registerStructureComponent(CorridorNibiru.class, "NibiruCorridor");
     }
 
     public MapGenNibiruDungeon(DungeonConfigurationMP configuration)
@@ -28,27 +30,16 @@ public class MapGenNibiruDungeon extends MapGenDungeonMP
         super(configuration);
     }
 
-    public static void initiateStructures() throws Throwable
-    {
-        if (!MapGenNibiruDungeon.initialized)
-        {
-            MapGenStructureIO.registerStructure(Start.class, "NibiruDungeon");
-            MapGenStructureIO.registerStructureComponent(DungeonStartNibiru.class, "NibiruDungeonStart");
-            MapGenStructureIO.registerStructureComponent(RoomEmptyNibiru.class, "NibiruDungeonEmptyRoom");
-            MapGenStructureIO.registerStructureComponent(RoomSpawnerNibiru.class, "NibiruDungeonSpawnerRoom");
-            MapGenStructureIO.registerStructureComponent(RoomChestNibiru.class, "NibiruDungeonChestRoom");
-            MapGenStructureIO.registerStructureComponent(RoomBossNibiru.class, "NibiruDungeonBossRoom");
-            MapGenStructureIO.registerStructureComponent(RoomTreasureNibiru.class, "NibiruDungeonTreasureRoom");
-            MapGenStructureIO.registerStructureComponent(RoomSpawnerNibiru.class, "NibiruDungeonSpawnerRoom");
-            MapGenStructureIO.registerStructureComponent(CorridorNibiru.class, "NibiruCorridor");
-        }
-        MapGenNibiruDungeon.initialized = true;
-    }
-
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
         return new Start(this.world, this.rand, chunkX, chunkZ, this.configuration);
+    }
+
+    @Override
+    public String getStructureName()
+    {
+        return "NibiruBossDungeon";
     }
 
     public static class Start extends StructureStart
@@ -70,11 +61,5 @@ public class MapGenNibiruDungeon extends MapGenDungeonMP
             }
             this.updateBoundingBox();
         }
-    }
-
-    @Override
-    public String getStructureName()
-    {
-        return "NibiruBossDungeon";
     }
 }

@@ -18,7 +18,7 @@ public class BiomeInfectedMountains extends BiomeNibiru
     private static final WorldGenEmerald EMERALD = new WorldGenEmerald();
     private static final WorldGenMultalicCrystal CRYSTAL = new WorldGenMultalicCrystal();
     private static final WorldGenMinableBase INFESTED_ROCK = new WorldGenMinableBase(MPBlocks.INFESTED_NIBIRU_ROCK.getDefaultState(), MPBlocks.NIBIRU_ROCK.getDefaultState(), 8);
-    private Type type;
+    private final Type type;
 
     public BiomeInfectedMountains(BiomeProperties prop, Type type)
     {

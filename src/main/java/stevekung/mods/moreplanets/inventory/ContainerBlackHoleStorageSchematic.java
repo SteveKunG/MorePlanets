@@ -102,10 +102,10 @@ public class ContainerBlackHoleStorageSchematic extends Container
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slot)
+    public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot invSlot = this.inventorySlots.get(slot);
+        Slot invSlot = this.inventorySlots.get(index);
         int slotSize = this.inventorySlots.size();
 
         if (invSlot != null && invSlot.getHasStack())
@@ -113,13 +113,13 @@ public class ContainerBlackHoleStorageSchematic extends Container
             ItemStack slotStack = invSlot.getStack();
             itemStack = slotStack.copy();
 
-            if (slot < slotSize - 36)
+            if (index < slotSize - 36)
             {
                 if (!this.mergeItemStack(slotStack, slotSize - 36, slotSize, true))
                 {
                     return ItemStack.EMPTY;
                 }
-                if (slot == 0)
+                if (index == 0)
                 {
                     invSlot.onSlotChange(slotStack, itemStack);
                 }
@@ -141,7 +141,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
                 }
                 else
                 {
-                    if (slot < slotSize - 9)
+                    if (index < slotSize - 9)
                     {
                         if (!this.mergeItemStack(slotStack, slotSize - 9, slotSize, false))
                         {
@@ -171,7 +171,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
         return itemStack;
     }
 
-    protected boolean mergeOneItemTestValid(ItemStack itemStack, int startIndex, int endIndex)
+    private boolean mergeOneItemTestValid(ItemStack itemStack, int startIndex, int endIndex)
     {
         boolean flag = false;
 

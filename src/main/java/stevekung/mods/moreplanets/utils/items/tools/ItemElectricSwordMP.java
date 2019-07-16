@@ -40,8 +40,8 @@ import stevekung.mods.moreplanets.utils.items.ISortableItem;
 
 public class ItemElectricSwordMP extends ItemSword implements IItemElectric, ISortableItem
 {
-    public float transferMax = 200;
-    private float maxPower;
+    private final float transferMax = 200;
+    private final float maxPower;
 
     public ItemElectricSwordMP(String name, ToolMaterial material, float maxPower)
     {

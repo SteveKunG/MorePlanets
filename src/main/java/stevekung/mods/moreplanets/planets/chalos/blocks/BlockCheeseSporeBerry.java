@@ -25,7 +25,6 @@ public class BlockCheeseSporeBerry extends BlockCropsMP
 
     public BlockCheeseSporeBerry(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

@@ -27,7 +27,7 @@ public class BiomeInfectedBadlands extends BiomeNibiru
     private NoiseGeneratorPerlin clayBandsOffsetNoise;
     private final boolean brycePillars;
     private final boolean hasForest;
-    private WorldGenerator goldGen;
+    private final WorldGenerator goldGen;
 
     public BiomeInfectedBadlands(BiomeProperties prop, boolean brycePillars, boolean hasForest)
     {

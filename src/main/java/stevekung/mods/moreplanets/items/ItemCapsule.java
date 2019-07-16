@@ -16,11 +16,10 @@ import stevekung.mods.stevekunglib.utils.ColorUtils;
 
 public class ItemCapsule extends ItemFoodMP
 {
-    private CapsuleType type;
+    private final CapsuleType type;
 
     public ItemCapsule(String name, CapsuleType type)
     {
-        super();
         this.setMaxStackSize(16);
         this.setUnlocalizedName(name);
         this.type = type;

@@ -23,7 +23,6 @@ public class ItemInfectedSugarCane extends ItemBaseMP
 {
     public ItemInfectedSugarCane(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

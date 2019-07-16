@@ -19,7 +19,6 @@ public class ItemIonCannonSchematic extends ItemSchematicMP
 
     public ItemIonCannonSchematic(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

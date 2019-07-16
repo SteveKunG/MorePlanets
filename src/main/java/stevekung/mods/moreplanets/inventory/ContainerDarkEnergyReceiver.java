@@ -12,13 +12,12 @@ import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 
 public class ContainerDarkEnergyReceiver extends Container
 {
-    private TileEntityDarkEnergyReceiver tileEntity;
+    private final TileEntityDarkEnergyReceiver tile;
 
     public ContainerDarkEnergyReceiver(InventoryPlayer invPlayer, TileEntityDarkEnergyReceiver tile)
     {
-        this.tileEntity = tile;
+        this.tile = tile;
         this.addSlotToContainer(new SlotSpecific(tile, 0, 32, 27, IItemElectric.class));
-
         int i;
         int j;
 
@@ -39,14 +38,14 @@ public class ContainerDarkEnergyReceiver extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileEntity.isUsableByPlayer(player);
+        return this.tile.isUsableByPlayer(player);
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slot)
+    public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot invSlot = this.inventorySlots.get(slot);
+        Slot invSlot = this.inventorySlots.get(index);
         int slotSize = this.inventorySlots.size();
 
         if (invSlot != null && invSlot.getHasStack())
@@ -55,7 +54,7 @@ public class ContainerDarkEnergyReceiver extends Container
             itemStack = stack.copy();
             boolean movedToMachineSlot = false;
 
-            if (slot == 0)
+            if (index == 0)
             {
                 if (!this.mergeItemStack(stack, slotSize - 36, slotSize, true))
                 {
@@ -74,7 +73,7 @@ public class ContainerDarkEnergyReceiver extends Container
                 }
                 else
                 {
-                    if (slot < slotSize - 9)
+                    if (index < slotSize - 9)
                     {
                         if (!this.mergeItemStack(stack, slotSize - 9, slotSize, false))
                         {

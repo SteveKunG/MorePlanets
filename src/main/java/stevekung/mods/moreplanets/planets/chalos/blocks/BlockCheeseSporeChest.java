@@ -17,7 +17,6 @@ public class BlockCheeseSporeChest extends BlockChestMP
 {
     public BlockCheeseSporeChest(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

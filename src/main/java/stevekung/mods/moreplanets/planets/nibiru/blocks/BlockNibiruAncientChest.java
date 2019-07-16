@@ -18,7 +18,6 @@ public class BlockNibiruAncientChest extends BlockChestMP
 {
     public BlockNibiruAncientChest(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

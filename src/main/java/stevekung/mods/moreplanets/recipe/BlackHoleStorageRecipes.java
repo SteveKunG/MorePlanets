@@ -10,11 +10,11 @@ import stevekung.mods.moreplanets.inventory.InventoryBlackHoleStorageSchematic;
 
 public class BlackHoleStorageRecipes
 {
-    public static final List<INasaWorkbenchRecipe> recipes = new ArrayList<>();
+    public static final List<INasaWorkbenchRecipe> RECIPES = new ArrayList<>();
 
     public static ItemStack findMatchingBlackHoleStorageRecipe(InventoryBlackHoleStorageSchematic craftMatrix)
     {
-        for (INasaWorkbenchRecipe recipe : BlackHoleStorageRecipes.recipes)
+        for (INasaWorkbenchRecipe recipe : BlackHoleStorageRecipes.RECIPES)
         {
             if (recipe.matches(craftMatrix))
             {
@@ -27,12 +27,7 @@ public class BlackHoleStorageRecipes
     public static List<BlackHoleStorageRecipeWrapper> getRecipesList()
     {
         List<BlackHoleStorageRecipeWrapper> recipes = new ArrayList<>();
-
-        BlackHoleStorageRecipes.recipes.forEach(recipe ->
-        {
-            BlackHoleStorageRecipeWrapper wrapper = new BlackHoleStorageRecipeWrapper(recipe);
-            recipes.add(wrapper);
-        });
+        BlackHoleStorageRecipes.RECIPES.forEach(recipe -> recipes.add(new BlackHoleStorageRecipeWrapper(recipe)));
         return recipes;
     }
 }

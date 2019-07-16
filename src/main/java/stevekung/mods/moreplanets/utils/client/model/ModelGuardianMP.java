@@ -10,10 +10,10 @@ import net.minecraft.util.math.Vec3d;
 
 public class ModelGuardianMP extends ModelBase
 {
-    private ModelRenderer guardianBody;
-    private ModelRenderer guardianEye;
-    private ModelRenderer[] guardianSpines;
-    private ModelRenderer[] guardianTail;
+    private final ModelRenderer guardianBody;
+    private final ModelRenderer guardianEye;
+    private final ModelRenderer[] guardianSpines;
+    private final ModelRenderer[] guardianTail;
 
     public ModelGuardianMP()
     {

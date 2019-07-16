@@ -26,7 +26,6 @@ public class BlockInfectedIce extends BlockIceMP
 {
     public BlockInfectedIce(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

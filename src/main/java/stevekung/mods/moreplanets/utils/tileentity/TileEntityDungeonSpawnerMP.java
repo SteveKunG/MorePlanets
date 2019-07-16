@@ -50,10 +50,7 @@ public class TileEntityDungeonSpawnerMP<E extends Entity> extends TileEntityDung
 
         if (this.spawned && ConfigManagerMP.moreplanets_general.enableNightVisionEffect)
         {
-            this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.getPos().getX() - 16.0D, this.getPos().getY() - 16.0D, this.getPos().getZ() - 16.0D, this.getPos().getX() + 16.0D, this.getPos().getY() + 16.0D, this.getPos().getZ() + 16.0D)).forEach(player ->
-            {
-                player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 240));
-            });
+            this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.getPos().getX() - 16.0D, this.getPos().getY() - 16.0D, this.getPos().getZ() - 16.0D, this.getPos().getX() + 16.0D, this.getPos().getY() + 16.0D, this.getPos().getZ() + 16.0D)).forEach(player -> player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 240)));
         }
     }
 

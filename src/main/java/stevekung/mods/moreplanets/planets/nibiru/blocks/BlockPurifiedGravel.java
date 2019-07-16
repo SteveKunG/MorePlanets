@@ -15,7 +15,6 @@ public class BlockPurifiedGravel extends BlockFallingMP
 {
     public BlockPurifiedGravel(String name)
     {
-        super();
         this.setUnlocalizedName(name);
         this.setHardness(0.6F);
         this.setSoundType(SoundType.GROUND);

@@ -28,11 +28,6 @@ public class BiomeMP extends Biome
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEvolvedWitch.class, 5, 1, 1));
     }
 
-    public IBlockState pickRandomModdedFlower(Random rand, BlockPos pos)
-    {
-        return null;
-    }
-
     @Override
     public void plantFlower(World world, Random rand, BlockPos pos)
     {
@@ -55,5 +50,10 @@ public class BiomeMP extends Biome
     public int getGrassColorAtPos(BlockPos pos)
     {
         return -8798118;
+    }
+
+    public IBlockState pickRandomModdedFlower(Random rand, BlockPos pos)
+    {
+        return null;
     }
 }

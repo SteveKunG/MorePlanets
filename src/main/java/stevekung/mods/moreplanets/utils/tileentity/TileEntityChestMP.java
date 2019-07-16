@@ -39,7 +39,7 @@ public abstract class TileEntityChestMP extends TileEntityLockableLoot implement
     private int numPlayersUsing;
     private int ticksSinceSync;
     private String customName;
-    private Block block;
+    private final Block block;
     private String name;
 
     public TileEntityChestMP(Block block)

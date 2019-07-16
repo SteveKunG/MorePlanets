@@ -24,7 +24,6 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
 {
     public BlockElectricalFire(String name)
     {
-        super();
         this.setLightLevel(1.0F);
         this.setUnlocalizedName(name);
         this.setTickRandomly(true);
@@ -154,66 +153,6 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
         }
     }
 
-    private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face)
-    {
-        int i = world.getBlockState(pos).getBlock().getFlammability(world, pos, face);
-
-        if (random.nextInt(chance) < i)
-        {
-            IBlockState iblockstate = world.getBlockState(pos);
-
-            if (random.nextInt(age + 10) < 5 && !world.isRainingAt(pos))
-            {
-                int j = age + random.nextInt(5) / 4;
-
-                if (j > 15)
-                {
-                    j = 15;
-                }
-                world.setBlockState(pos, this.getDefaultState().withProperty(AGE, j), 3);
-            }
-            else
-            {
-                world.setBlockToAir(pos);
-            }
-
-            if (iblockstate.getBlock() == Blocks.TNT)
-            {
-                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, true));
-            }
-        }
-    }
-
-    private boolean canNeighborCatchFire(World world, BlockPos pos)
-    {
-        for (EnumFacing enumfacing : EnumFacing.VALUES)
-        {
-            if (this.canCatchFire(world, pos.offset(enumfacing), enumfacing.getOpposite()))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private int getNeighborEncouragement(World world, BlockPos pos)
-    {
-        if (!world.isAirBlock(pos))
-        {
-            return 0;
-        }
-        else
-        {
-            int i = 0;
-
-            for (EnumFacing enumfacing : EnumFacing.VALUES)
-            {
-                i = Math.max(world.getBlockState(pos.offset(enumfacing)).getBlock().getFlammability(world, pos.offset(enumfacing), enumfacing.getOpposite()), i);
-            }
-            return i;
-        }
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand)
@@ -296,5 +235,65 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
             return state.withProperty(NORTH, this.canCatchFire(world, pos.north(), EnumFacing.SOUTH)).withProperty(EAST,  this.canCatchFire(world, pos.east(), EnumFacing.WEST)).withProperty(SOUTH, this.canCatchFire(world, pos.south(), EnumFacing.NORTH)).withProperty(WEST,  this.canCatchFire(world, pos.west(), EnumFacing.EAST)).withProperty(UPPER, this.canCatchFire(world, pos.up(), EnumFacing.DOWN));
         }
         return this.getDefaultState();
+    }
+
+    private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face)
+    {
+        int i = world.getBlockState(pos).getBlock().getFlammability(world, pos, face);
+
+        if (random.nextInt(chance) < i)
+        {
+            IBlockState iblockstate = world.getBlockState(pos);
+
+            if (random.nextInt(age + 10) < 5 && !world.isRainingAt(pos))
+            {
+                int j = age + random.nextInt(5) / 4;
+
+                if (j > 15)
+                {
+                    j = 15;
+                }
+                world.setBlockState(pos, this.getDefaultState().withProperty(AGE, j), 3);
+            }
+            else
+            {
+                world.setBlockToAir(pos);
+            }
+
+            if (iblockstate.getBlock() == Blocks.TNT)
+            {
+                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, true));
+            }
+        }
+    }
+
+    private boolean canNeighborCatchFire(World world, BlockPos pos)
+    {
+        for (EnumFacing enumfacing : EnumFacing.VALUES)
+        {
+            if (this.canCatchFire(world, pos.offset(enumfacing), enumfacing.getOpposite()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int getNeighborEncouragement(World world, BlockPos pos)
+    {
+        if (!world.isAirBlock(pos))
+        {
+            return 0;
+        }
+        else
+        {
+            int i = 0;
+
+            for (EnumFacing enumfacing : EnumFacing.VALUES)
+            {
+                i = Math.max(world.getBlockState(pos.offset(enumfacing)).getBlock().getFlammability(world, pos.offset(enumfacing), enumfacing.getOpposite()), i);
+            }
+            return i;
+        }
     }
 }

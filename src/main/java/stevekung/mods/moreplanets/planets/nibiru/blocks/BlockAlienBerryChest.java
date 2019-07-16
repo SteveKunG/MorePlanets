@@ -17,7 +17,6 @@ public class BlockAlienBerryChest extends BlockChestMP
 {
     public BlockAlienBerryChest(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

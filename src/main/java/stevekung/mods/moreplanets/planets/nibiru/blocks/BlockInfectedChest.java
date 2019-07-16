@@ -17,7 +17,6 @@ public class BlockInfectedChest extends BlockChestMP
 {
     public BlockInfectedChest(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

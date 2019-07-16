@@ -71,7 +71,7 @@ public abstract class PieceNibiru extends StructureComponent
         return new StructureBoundingBox(blockX, blockZ, blockX + sizeX, blockZ + sizeZ);
     }
 
-    public PieceNibiru getNextPiece(DungeonStartNibiru startPiece, Random rand)
+    protected PieceNibiru getNextPiece(DungeonStartNibiru startPiece, Random rand)
     {
         return null;
     }

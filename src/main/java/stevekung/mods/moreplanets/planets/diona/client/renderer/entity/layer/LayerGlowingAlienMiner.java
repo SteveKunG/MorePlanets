@@ -18,7 +18,7 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
     private static final ResourceLocation TEXTURE2 = new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_2.png");
     private static final ResourceLocation TEXTURE3 = new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_3.png");
     private static final ResourceLocation TEXTURE4 = new ResourceLocation("moreplanets:textures/entity/alien_miner_glow_4.png");
-    private RenderAlienMiner render;
+    private final RenderAlienMiner render;
 
     public LayerGlowingAlienMiner(RenderAlienMiner render)
     {

@@ -25,7 +25,7 @@ public class BiomeNibiru extends BiomeMP
 {
     protected IBlockState stoneBlock;
     protected IBlockState liquidBlock;
-    protected BiomeDecoratorNibiru decorator = new BiomeDecoratorNibiru();
+    protected final BiomeDecoratorNibiru decorator = new BiomeDecoratorNibiru();
     protected static final WorldGenInfectedBigTree BIG_TREE = new WorldGenInfectedBigTree(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
     protected static final WorldGenInfectedBigTree BIG_TREE_NO_LEAVES = new WorldGenInfectedBigTree(false, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());
     protected static final WorldGenInfectedTrees TREE = new WorldGenInfectedTrees(true, MPBlocks.INFECTED_OAK_LOG.getDefaultState(), MPBlocks.INFECTED_OAK_LEAVES.getDefaultState());

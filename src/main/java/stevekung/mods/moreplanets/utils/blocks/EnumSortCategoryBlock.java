@@ -27,5 +27,5 @@ public enum EnumSortCategoryBlock
     FLOWER,
     SAPLING;
 
-    public static final EnumSortCategoryBlock[] values = EnumSortCategoryBlock.values();
+    public static final EnumSortCategoryBlock[] VALUES = EnumSortCategoryBlock.values();
 }

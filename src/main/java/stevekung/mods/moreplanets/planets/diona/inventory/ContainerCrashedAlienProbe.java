@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerCrashedAlienProbe extends Container
 {
-    private IInventory hopperInventory;
+    private final IInventory hopperInventory;
 
     public ContainerCrashedAlienProbe(InventoryPlayer playerInventory, IInventory hopperInventory, EntityPlayer player)
     {

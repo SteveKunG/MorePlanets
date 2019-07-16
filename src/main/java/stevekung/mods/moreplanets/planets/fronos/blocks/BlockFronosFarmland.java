@@ -9,7 +9,6 @@ public class BlockFronosFarmland extends BlockFarmlandMP
 {
     public BlockFronosFarmland(String name)
     {
-        super();
         this.setDefaultState(this.getDefaultState().withProperty(BlockStateProperty.MOISTURE, 0));
         this.setUnlocalizedName(name);
     }

@@ -78,32 +78,6 @@ public class CorridorNibiru extends SizedPieceNibiru
         return true;
     }
 
-    private <T extends SizedPieceNibiru> T getRoom(Class<?> clazz, DungeonStartNibiru startPiece, Random rand)
-    {
-        try
-        {
-            Constructor<?> c0 = clazz.getConstructor(DungeonConfigurationMP.class, Random.class, Integer.TYPE, Integer.TYPE, EnumFacing.class);
-            T dummy = (T) c0.newInstance(this.configuration, rand, 0, 0, this.getDirection().getOpposite());
-            StructureBoundingBox extension = this.getExtension(this.getDirection(), this.getDirection().getAxis() == EnumFacing.Axis.X ? dummy.getSizeX() : dummy.getSizeZ(), this.getDirection().getAxis() == EnumFacing.Axis.X ? dummy.getSizeZ() : dummy.getSizeX());
-            if (startPiece.checkIntersection(extension))
-            {
-                return null;
-            }
-            int sizeX = extension.maxX - extension.minX;
-            int sizeZ = extension.maxZ - extension.minZ;
-            int sizeY = dummy.getSizeY();
-            int blockX = extension.minX;
-            int blockZ = extension.minZ;
-            Constructor<?> c1 = clazz.getConstructor(DungeonConfigurationMP.class, Random.class, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, EnumFacing.class);
-            return (T) c1.newInstance(this.configuration, rand, blockX, blockZ, sizeX, sizeY, sizeZ, this.getDirection().getOpposite());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     @Override
     public PieceNibiru getNextPiece(DungeonStartNibiru startPiece, Random rand)
     {
@@ -176,6 +150,34 @@ public class CorridorNibiru extends SizedPieceNibiru
                     }
                 }
             }
+        }
+        return null;
+    }
+
+    private <T extends SizedPieceNibiru> T getRoom(Class<?> clazz, DungeonStartNibiru startPiece, Random rand)
+    {
+        try
+        {
+            Constructor<?> c0 = clazz.getConstructor(DungeonConfigurationMP.class, Random.class, Integer.TYPE, Integer.TYPE, EnumFacing.class);
+            T dummy = (T) c0.newInstance(this.configuration, rand, 0, 0, this.getDirection().getOpposite());
+            StructureBoundingBox extension = this.getExtension(this.getDirection(), this.getDirection().getAxis() == EnumFacing.Axis.X ? dummy.getSizeX() : dummy.getSizeZ(), this.getDirection().getAxis() == EnumFacing.Axis.X ? dummy.getSizeZ() : dummy.getSizeX());
+
+            if (startPiece.checkIntersection(extension))
+            {
+                return null;
+            }
+
+            int sizeX = extension.maxX - extension.minX;
+            int sizeZ = extension.maxZ - extension.minZ;
+            int sizeY = dummy.getSizeY();
+            int blockX = extension.minX;
+            int blockZ = extension.minZ;
+            Constructor<?> c1 = clazz.getConstructor(DungeonConfigurationMP.class, Random.class, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, EnumFacing.class);
+            return (T) c1.newInstance(this.configuration, rand, blockX, blockZ, sizeX, sizeY, sizeZ, this.getDirection().getOpposite());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
         return null;
     }

@@ -9,8 +9,8 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerBlackHoleStorage extends Container
 {
-    private EntityPlayer player;
-    private IInventory inventory;
+    private final EntityPlayer player;
+    private final IInventory inventory;
 
     public ContainerBlackHoleStorage(IInventory playerInventory, IInventory chestInventory)
     {
@@ -67,7 +67,7 @@ public class ContainerBlackHoleStorage extends Container
         this.inventory.closeInventory(player);
     }
 
-    protected void addSlotForContainer(IInventory playerInventory, IInventory chestInventory, int xSize, int ySize)
+    private void addSlotForContainer(IInventory playerInventory, IInventory chestInventory, int xSize, int ySize)
     {
         int rowCount = 108 / 12;
         int leftCol = (xSize - 243) / 2 + 1;

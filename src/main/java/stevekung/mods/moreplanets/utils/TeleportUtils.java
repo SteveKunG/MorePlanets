@@ -179,10 +179,7 @@ public class TeleportUtils
         playerList.updateTimeAndWeatherForPlayer(player, targetWorld);
         playerList.syncPlayerInventory(player);
 
-        player.getActivePotionEffects().forEach(potion ->
-        {
-            player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion));
-        });
+        player.getActivePotionEffects().forEach(potion -> player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion)));
         player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
         FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, sourceDim, targetDim);
         player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
@@ -355,11 +352,7 @@ public class TeleportUtils
         }
 
         player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 15 * 20, 5));
-
-        player.getActivePotionEffects().forEach(potion ->
-        {
-            player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion));
-        });
+        player.getActivePotionEffects().forEach(potion -> player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion)));
         player.connection.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
         player.connection.sendPacket(new SPacketSpawnPosition(spawnPos));
         AttributeMap attributemap = (AttributeMap) player.getAttributeMap();

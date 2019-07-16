@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class ItemDoorMP extends ItemBaseMP
 {
-    private Block door;
+    private final Block door;
 
     public ItemDoorMP(String name, Block door)
     {

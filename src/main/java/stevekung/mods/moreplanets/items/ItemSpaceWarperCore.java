@@ -26,7 +26,6 @@ public class ItemSpaceWarperCore extends ItemBaseMP
 {
     public ItemSpaceWarperCore(String name)
     {
-        super();
         this.setMaxStackSize(1);
         this.setUnlocalizedName(name);
     }

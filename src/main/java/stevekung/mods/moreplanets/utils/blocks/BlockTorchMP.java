@@ -10,7 +10,6 @@ public abstract class BlockTorchMP extends BlockTorch implements ISortableBlock,
 {
     public BlockTorchMP()
     {
-        super();
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
         this.setHardness(0.0F);
         this.setTickRandomly(true);

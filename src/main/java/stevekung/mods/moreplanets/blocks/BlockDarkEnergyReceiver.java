@@ -117,10 +117,8 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
                 {
                     if (TileEntityDarkEnergyReceiver.checkValidMultiblock(pos, world))
                     {
-                        TileEntityDarkEnergyReceiver.multiBlockLists.entrySet().forEach(list ->
+                        TileEntityDarkEnergyReceiver.multiBlockLists.forEach((blockpos, blockstate) ->
                         {
-                            BlockPos blockpos = list.getKey();
-                            IBlockState blockstate = list.getValue();
                             BlockPos newPos = pos.add(blockpos);
 
                             if (world.getBlockState(newPos) != blockstate)

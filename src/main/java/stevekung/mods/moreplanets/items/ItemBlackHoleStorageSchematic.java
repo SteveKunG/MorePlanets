@@ -19,7 +19,6 @@ public class ItemBlackHoleStorageSchematic extends ItemSchematicMP
 
     public ItemBlackHoleStorageSchematic(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

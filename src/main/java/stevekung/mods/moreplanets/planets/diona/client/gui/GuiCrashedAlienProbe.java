@@ -13,9 +13,9 @@ import stevekung.mods.moreplanets.utils.client.gui.GuiContainerMP;
 @SideOnly(Side.CLIENT)
 public class GuiCrashedAlienProbe extends GuiContainerMP
 {
-    private ResourceLocation texture = new ResourceLocation("textures/gui/container/hopper.png");
-    private IInventory playerInventory;
-    private IInventory hopperInventory;
+    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/gui/container/hopper.png");
+    private final IInventory playerInventory;
+    private final IInventory hopperInventory;
 
     public GuiCrashedAlienProbe(InventoryPlayer playerInv, IInventory hopperInv)
     {
@@ -37,7 +37,7 @@ public class GuiCrashedAlienProbe extends GuiContainerMP
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(this.texture);
+        this.mc.getTextureManager().bindTexture(GuiCrashedAlienProbe.TEXTURE);
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);

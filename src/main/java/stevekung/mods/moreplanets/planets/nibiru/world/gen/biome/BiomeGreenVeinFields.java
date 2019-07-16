@@ -26,8 +26,8 @@ public class BiomeGreenVeinFields extends BiomeNibiru
     private static final WorldGenFlowersBase TERRASHROOM_FLOWER = new WorldGenFlowersBase(MPBlocks.TERRASHROOM.getDefaultState());
     private static final WorldGenAlienBerryTree TREE = new WorldGenAlienBerryTree();
     private static final WorldGenAlienBerryBigTree BIG_TREE = new WorldGenAlienBerryBigTree();
-    protected static final WorldGenFlowersBase GRASS = new WorldGenFlowersBase(MPBlocks.GREEN_VEIN_GRASS.getDefaultState());
-    private boolean snow;
+    private static final WorldGenFlowersBase GRASS = new WorldGenFlowersBase(MPBlocks.GREEN_VEIN_GRASS.getDefaultState());
+    private final boolean snow;
 
     public BiomeGreenVeinFields(BiomeProperties prop, boolean snow)
     {

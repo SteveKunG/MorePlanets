@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 
 public class ModelMarshmallow extends ModelBase
 {
-    private ModelRenderer body;
+    private final ModelRenderer body;
 
     public ModelMarshmallow()
     {

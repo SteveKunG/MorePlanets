@@ -7,8 +7,8 @@ import net.minecraft.util.math.Vec3d;
 
 public class EntityAIFronosPanic extends EntityAIBase
 {
-    private EntityCreature entity;
-    private double speed;
+    private final EntityCreature entity;
+    private final double speed;
     private double randPosX;
     private double randPosY;
     private double randPosZ;

@@ -24,8 +24,8 @@ public class MPBiomes
     public static Biome INFECTED_DEAD_SAVANNA_PLATEAU = new BiomeInfectedDeadSavanna(new Biome.BiomeProperties("Infected Dead Savanna Plateau").setBaseHeight(1.5F).setHeightVariation(0.025F).setTemperature(1.0F).setRainfall(0.0F).setRainDisabled());
     public static Biome INFECTED_DESERT = new BiomeInfectedDesert(new Biome.BiomeProperties("Infected Desert").setRainDisabled().setRainfall(0.0F).setTemperature(2.0F).setBaseHeight(0.125F).setHeightVariation(0.05F));
     public static Biome INFECTED_DESERT_HILLS = new BiomeInfectedDesert(new Biome.BiomeProperties("Infected Desert Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled());
-    public static Biome INFECTED_RIVER = new BiomeInfectedRiver(new Biome.BiomeProperties("Infected River").setBaseHeight(-0.5F).setHeightVariation(0.0F));
-    public static Biome INFECTED_FROZEN_RIVER = new BiomeInfectedRiver(new Biome.BiomeProperties("Infected Frozen River").setBaseHeight(-0.5F).setHeightVariation(0.0F).setTemperature(0.0F).setRainfall(0.5F).setSnowEnabled());
+    public static Biome INFECTED_RIVER = new BiomeNibiru(new Biome.BiomeProperties("Infected River").setBaseHeight(-0.5F).setHeightVariation(0.0F));
+    public static Biome INFECTED_FROZEN_RIVER = new BiomeNibiru(new Biome.BiomeProperties("Infected Frozen River").setBaseHeight(-0.5F).setHeightVariation(0.0F).setTemperature(0.0F).setRainfall(0.5F).setSnowEnabled());
     public static Biome INFECTED_OCEAN = new BiomeInfectedOcean(new Biome.BiomeProperties("Infected Ocean").setBaseHeight(-1.0F).setHeightVariation(0.1F));
     public static Biome INFECTED_FOREST = new BiomeInfectedForest(new Biome.BiomeProperties("Infected Forest").setTemperature(0.7F).setRainfall(0.8F), BiomeInfectedForest.Type.NORMAL);
     public static Biome INFECTED_WOODED_HILLS = new BiomeInfectedForest(new Biome.BiomeProperties("Infected Wooded Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F), BiomeInfectedForest.Type.NORMAL);

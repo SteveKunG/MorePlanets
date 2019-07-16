@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP
 
 public class RoomEntranceNibiru extends SizedPieceNibiru
 {
-    private int range = 4;
+    private final int range = 4;
 
     public RoomEntranceNibiru() {}
 

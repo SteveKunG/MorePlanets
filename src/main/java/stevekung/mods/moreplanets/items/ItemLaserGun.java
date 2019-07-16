@@ -12,7 +12,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,62 +35,47 @@ import stevekung.mods.moreplanets.utils.items.ItemBaseMP;
 
 public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemModelRender, IItemElectric
 {
-    private float transferMax = 200.0F;
+    private final float transferMax = 200.0F;
     private static final int DAMAGE_RANGE = 100;
 
     public ItemLaserGun(String name)
     {
-        super();
         this.setMaxStackSize(1);
         this.setMaxDamage(DAMAGE_RANGE);
         this.setNoRepair();
         this.setUnlocalizedName(name);
-
-        this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
+        this.addPropertyOverride(new ResourceLocation("pull"), (itemStack, world, living) ->
         {
-            @Override
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack itemStack, @Nullable World world, @Nullable EntityLivingBase living)
+            if (living == null)
             {
-                if (living == null)
-                {
-                    return 0.0F;
-                }
-                else
-                {
-                    ItemStack gun = living.getActiveItemStack();
+                return 0.0F;
+            }
+            else
+            {
+                ItemStack gun = living.getActiveItemStack();
 
-                    if (living instanceof EntityPlayer)
+                if (living instanceof EntityPlayer)
+                {
+                    EntityPlayer player = (EntityPlayer) living;
+
+                    if (!gun.isEmpty() && gun.getItem() == MPItems.LASER_GUN)
                     {
-                        EntityPlayer player = (EntityPlayer) living;
+                        int i = itemStack.getMaxItemUseDuration() - player.getItemInUseCount();
 
-                        if (!gun.isEmpty() && gun.getItem() == MPItems.LASER_GUN)
+                        if (i > 12)
                         {
-                            int i = itemStack.getMaxItemUseDuration() - player.getItemInUseCount();
-
-                            if (i > 12)
-                            {
-                                return 0.9F;
-                            }
-                            if (i > 0)
-                            {
-                                return 0.65F;
-                            }
+                            return 0.9F;
+                        }
+                        if (i > 0)
+                        {
+                            return 0.65F;
                         }
                     }
-                    return 0.0F;
                 }
+                return 0.0F;
             }
         });
-        this.addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter()
-        {
-            @Override
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack itemStack, @Nullable World world, @Nullable EntityLivingBase living)
-            {
-                return living != null && living.isHandActive() && living.getActiveItemStack() == itemStack ? 1.0F : 0.0F;
-            }
-        });
+        this.addPropertyOverride(new ResourceLocation("pulling"), (itemStack, world, living) -> living != null && living.isHandActive() && living.getActiveItemStack() == itemStack ? 1.0F : 0.0F);
     }
 
     @Override
@@ -343,7 +327,7 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
         }
     }
 
-    protected boolean isBullet(ItemStack itemStack)
+    private boolean isBullet(ItemStack itemStack)
     {
         return !itemStack.isEmpty() && (itemStack.getItem() == MPItems.LASER_BULLET || itemStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET);
     }

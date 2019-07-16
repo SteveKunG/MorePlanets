@@ -14,14 +14,13 @@ import stevekung.mods.moreplanets.tileentity.TileEntitySpaceWarpPadFull;
 
 public class ContainerSpaceWarpPad extends Container
 {
-    private TileBaseElectricBlock tileEntity;
+    private TileBaseElectricBlock tile;
 
     public ContainerSpaceWarpPad(InventoryPlayer invPlayer, TileEntitySpaceWarpPadFull tile)
     {
-        this.tileEntity = tile;
+        this.tile = tile;
         this.addSlotToContainer(new SlotSpecific(tile, 0, 22, 72, IItemElectric.class));
         this.addSlotToContainer(new SlotSpaceWarpPad(tile, 1, 22, 54));
-
         int i;
         int j;
 
@@ -32,7 +31,6 @@ public class ContainerSpaceWarpPad extends Container
                 this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 112 + i * 18));
             }
         }
-
         for (i = 0; i < 9; ++i)
         {
             this.addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 170));
@@ -42,14 +40,14 @@ public class ContainerSpaceWarpPad extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileEntity.isUsableByPlayer(player);
+        return this.tile.isUsableByPlayer(player);
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slot)
+    public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot invSlot = this.inventorySlots.get(slot);
+        Slot invSlot = this.inventorySlots.get(index);
         int slotSize = this.inventorySlots.size();
 
         if (invSlot != null && invSlot.getHasStack())
@@ -58,7 +56,7 @@ public class ContainerSpaceWarpPad extends Container
             itemStack = stack.copy();
             boolean movedToMachineSlot = false;
 
-            if (slot == 0 || slot == 1)
+            if (index == 0 || index == 1)
             {
                 if (!this.mergeItemStack(stack, slotSize - 36, slotSize, true))
                 {
@@ -84,7 +82,7 @@ public class ContainerSpaceWarpPad extends Container
                 }
                 else
                 {
-                    if (slot < slotSize - 9)
+                    if (index < slotSize - 9)
                     {
                         if (!this.mergeItemStack(stack, slotSize - 9, slotSize, false))
                         {

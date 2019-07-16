@@ -27,7 +27,6 @@ public class BlockFronosGrass extends BlockGrassBlockMP
 
     public BlockFronosGrass(String name)
     {
-        super();
         this.setUnlocalizedName(name);
         this.setDefaultState(this.getDefaultState().withProperty(HAS_LAYER, BlockType.NONE));
     }

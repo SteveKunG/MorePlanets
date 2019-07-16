@@ -6,7 +6,6 @@ public class ItemBeaconPayment extends ItemBaseMP
 {
     public ItemBeaconPayment(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

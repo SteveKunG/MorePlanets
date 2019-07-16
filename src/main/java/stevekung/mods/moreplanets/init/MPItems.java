@@ -280,7 +280,7 @@ public class MPItems
 
         // Other
         MPItems.SPACE_WARPER_CORE = new ItemSpaceWarperCore("space_warper_core");
-        MPItems.SPACE_BOW = new ItemSpaceBow("space_bow").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.SPECIAL));
+        MPItems.SPACE_BOW = new ItemSpaceBow("space_bow");
         MPItems.SPACE_FISHING_ROD = new ItemSpaceFishingRod("space_fishing_rod");
         MPItems.BLUE_DYE = new ItemDyeMP("blue_dye");
         MPItems.LASER_GUN = new ItemLaserGun("laser_gun").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.SPECIAL));

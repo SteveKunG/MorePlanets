@@ -27,17 +27,17 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 
 public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
 {
-    private MapGenCavesBase caveGenerator = new MapGenCavesBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.INFECTED_SANDSTONE, Blocks.STAINED_HARDENED_CLAY), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
-    private MapGenRavineBase ravineGenerator = new MapGenRavineBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.INFECTED_SANDSTONE, Blocks.STAINED_HARDENED_CLAY), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
-    private MapGenNibiruStronghold strongholdGenerator = new MapGenNibiruStronghold();
-    private MapGenNibiruVillage villageGenerator = new MapGenNibiruVillage();
-    private MapGenNibiruMineshaft mineshaftGenerator = new MapGenNibiruMineshaft();
-    private MapGenNibiruPyramid pyramidGenerator = new MapGenNibiruPyramid();
-    private MapGenNibiruJungleTemple jungleTempleGenerator = new MapGenNibiruJungleTemple();
-    private MapGenNibiruOceanMonument oceanMonumentGenerator = new MapGenNibiruOceanMonument();
-    private MapGenNibiruIgloo iglooGenerator = new MapGenNibiruIgloo();
-    private BiomeDecoratorNibiruOre decorator = new BiomeDecoratorNibiruOre();
-    private MapGenNibiruDungeon dungeonGenerator = new MapGenNibiruDungeon(new DungeonConfigurationMP(MPBlocks.NIBIRU_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), MPBlocks.INFECTED_TORCH.getDefaultState(), MPBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossNibiru.class, RoomTreasureNibiru.class, RoomSpawnerNibiru.class, RoomChestNibiru.class));
+    private final MapGenCavesBase caveGenerator = new MapGenCavesBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.INFECTED_SANDSTONE, Blocks.STAINED_HARDENED_CLAY), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
+    private final MapGenRavineBase ravineGenerator = new MapGenRavineBase(Sets.newHashSet(MPBlocks.INFECTED_GRASS_BLOCK, MPBlocks.GREEN_VEIN_GRASS_BLOCK), Blocks.LAVA.getDefaultState(), Sets.newHashSet(MPBlocks.INFECTED_DIRT, MPBlocks.NIBIRU_ROCK, MPBlocks.INFECTED_SANDSTONE, Blocks.STAINED_HARDENED_CLAY), Sets.newHashSet(MPBlocks.INFECTED_WATER_FLUID_BLOCK, MPBlocks.PURIFIED_WATER_FLUID_BLOCK));
+    private final MapGenNibiruStronghold strongholdGenerator = new MapGenNibiruStronghold();
+    private final MapGenNibiruVillage villageGenerator = new MapGenNibiruVillage();
+    private final MapGenNibiruMineshaft mineshaftGenerator = new MapGenNibiruMineshaft();
+    private final MapGenNibiruPyramid pyramidGenerator = new MapGenNibiruPyramid();
+    private final MapGenNibiruJungleTemple jungleTempleGenerator = new MapGenNibiruJungleTemple();
+    private final MapGenNibiruOceanMonument oceanMonumentGenerator = new MapGenNibiruOceanMonument();
+    private final MapGenNibiruIgloo iglooGenerator = new MapGenNibiruIgloo();
+    private final BiomeDecoratorNibiruOre decorator = new BiomeDecoratorNibiruOre();
+    private final MapGenNibiruDungeon dungeonGenerator = new MapGenNibiruDungeon(new DungeonConfigurationMP(MPBlocks.NIBIRU_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), Blocks.WEB.getDefaultState(), MPBlocks.INFECTED_TORCH.getDefaultState(), MPBlocks.NIBIRU_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossNibiru.class, RoomTreasureNibiru.class, RoomSpawnerNibiru.class, RoomChestNibiru.class));
 
     public ChunkGeneratorNibiru(World world, long seed)
     {

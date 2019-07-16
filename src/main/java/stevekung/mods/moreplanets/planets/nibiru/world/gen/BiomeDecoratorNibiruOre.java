@@ -15,21 +15,21 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
 public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
 {
-    private WorldGenerator ironGen;
-    private WorldGenerator coalGen;
-    private WorldGenerator aluminumGen;
-    private WorldGenerator tinGen;
-    private WorldGenerator copperGen;
-    private WorldGenerator lapisGen;
-    private WorldGenerator dirtGen;
-    private WorldGenerator infectedGravelGen;
-    private WorldGenerator purifiedGravelGen;
-    private WorldGenerator goldGen;
-    private WorldGenerator diamondGen;
-    private WorldGenerator siliconGen;
-    private WorldGenerator inferumiteGen;
-    private WorldGenerator oilGen;
-    private WorldGenerator redstoneGen;
+    private final WorldGenerator ironGen;
+    private final WorldGenerator coalGen;
+    private final WorldGenerator aluminumGen;
+    private final WorldGenerator tinGen;
+    private final WorldGenerator copperGen;
+    private final WorldGenerator lapisGen;
+    private final WorldGenerator dirtGen;
+    private final WorldGenerator infectedGravelGen;
+    private final WorldGenerator purifiedGravelGen;
+    private final WorldGenerator goldGen;
+    private final WorldGenerator diamondGen;
+    private final WorldGenerator siliconGen;
+    private final WorldGenerator inferumiteGen;
+    private final WorldGenerator oilGen;
+    private final WorldGenerator redstoneGen;
 
     public BiomeDecoratorNibiruOre()
     {

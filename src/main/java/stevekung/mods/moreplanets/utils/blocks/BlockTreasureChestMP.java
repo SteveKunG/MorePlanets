@@ -72,16 +72,6 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
         return this.getDefaultState().withProperty(BlockStateProperty.FACING_HORIZON, placer.getHorizontalFacing().getOpposite());
     }
 
-    public boolean cannotOpenChest(World world, BlockPos pos)
-    {
-        return this.isBelowSolidBlock(world, pos);
-    }
-
-    private boolean isBelowSolidBlock(World world, BlockPos pos)
-    {
-        return world.isSideSolid(pos.up(), EnumFacing.DOWN, false);
-    }
-
     @Override
     public boolean hasComparatorInputOverride(IBlockState state)
     {
@@ -140,5 +130,15 @@ public abstract class BlockTreasureChestMP extends BlockContainerMP implements I
     public ColorUtils.RGB getRarity()
     {
         return ColorUtils.stringToRGB(IItemRarity.COMMON);
+    }
+
+    protected boolean cannotOpenChest(World world, BlockPos pos)
+    {
+        return this.isBelowSolidBlock(world, pos);
+    }
+
+    private boolean isBelowSolidBlock(World world, BlockPos pos)
+    {
+        return world.isSideSolid(pos.up(), EnumFacing.DOWN, false);
     }
 }

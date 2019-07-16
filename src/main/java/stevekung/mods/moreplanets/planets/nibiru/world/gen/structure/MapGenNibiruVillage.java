@@ -19,8 +19,7 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 public class MapGenNibiruVillage extends MapGenStructure
 {
     private static final List<Biome> BIOMES = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_PLAINS, MPBiomes.INFECTED_DESERT, MPBiomes.INFECTED_DEAD_SAVANNA, MPBiomes.GREEN_VEIN_FIELDS));
-    private int size;
-    private int distance;
+    private final int distance;
 
     static
     {
@@ -77,7 +76,7 @@ public class MapGenNibiruVillage extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new Start(this.world, this.rand, chunkX, chunkZ, this.size);
+        return new Start(this.world, this.rand, chunkX, chunkZ, 0);
     }
 
     @Override

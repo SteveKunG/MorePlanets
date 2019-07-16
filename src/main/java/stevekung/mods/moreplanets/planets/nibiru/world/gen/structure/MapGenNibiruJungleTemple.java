@@ -17,9 +17,9 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruJungleTemple extends MapGenStructure
 {
-    private List<Biome.SpawnListEntry> scatteredFeatureSpawnList;
-    private int maxDistanceBetweenScatteredFeatures;
-    private int minDistanceBetweenScatteredFeatures;
+    private final List<Biome.SpawnListEntry> scatteredFeatureSpawnList;
+    private final int maxDistanceBetweenScatteredFeatures;
+    private final int minDistanceBetweenScatteredFeatures;
 
     static
     {

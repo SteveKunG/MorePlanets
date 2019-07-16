@@ -19,8 +19,8 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 
 public class MapGenNibiruOceanMonument extends MapGenStructure
 {
-    private int spacing;
-    private int separation;
+    private final int spacing;
+    private final int separation;
     private static final List<Biome> BIOMES = new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_OCEAN, MPBiomes.INFECTED_DEEP_OCEAN, MPBiomes.INFECTED_RIVER));
     private static final List<Biome.SpawnListEntry> GUARDIAN = new ArrayList<>();
 

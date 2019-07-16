@@ -21,21 +21,20 @@ import stevekung.mods.moreplanets.utils.blocks.BlockIceMP;
 
 public class BlockGlowingHardenedIce extends BlockIceMP
 {
-    private final EnumDyeColor type;
+    private final EnumDyeColor color;
 
-    public BlockGlowingHardenedIce(String name, EnumDyeColor type)
+    public BlockGlowingHardenedIce(String name, EnumDyeColor color)
     {
-        super();
         this.setUnlocalizedName(name);
         this.setLightLevel(1.0F);
-        this.type = type;
+        this.color = color;
     }
 
     @Override
     @Nullable
     public float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos)
     {
-        return EntitySheep.getDyeRgb(this.type);
+        return EntitySheep.getDyeRgb(this.color);
     }
 
     @Override
@@ -48,7 +47,7 @@ public class BlockGlowingHardenedIce extends BlockIceMP
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return MapColor.getBlockColor(this.type);
+        return MapColor.getBlockColor(this.color);
     }
 
     @Override

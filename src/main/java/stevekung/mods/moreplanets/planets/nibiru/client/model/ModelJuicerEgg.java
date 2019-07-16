@@ -5,19 +5,19 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelJuicerEgg extends ModelBase
 {
-    private ModelRenderer core;
-    private ModelRenderer stoneplate;
-    private ModelRenderer base1;
-    private ModelRenderer base2;
-    private ModelRenderer coreside1;
-    private ModelRenderer coreside2;
-    private ModelRenderer coreside3;
-    private ModelRenderer coreside4;
-    private ModelRenderer top1;
-    private ModelRenderer top2;
-    private ModelRenderer top3;
-    private ModelRenderer top4;
-    private ModelRenderer topbase;
+    private final ModelRenderer core;
+    private final ModelRenderer stoneplate;
+    private final ModelRenderer base1;
+    private final ModelRenderer base2;
+    private final ModelRenderer coreside1;
+    private final ModelRenderer coreside2;
+    private final ModelRenderer coreside3;
+    private final ModelRenderer coreside4;
+    private final ModelRenderer top1;
+    private final ModelRenderer top2;
+    private final ModelRenderer top3;
+    private final ModelRenderer top4;
+    private final ModelRenderer topbase;
 
     public ModelJuicerEgg()
     {

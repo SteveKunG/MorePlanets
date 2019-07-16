@@ -12,7 +12,7 @@ public class BiomeInfectedForest extends BiomeNibiru
 {
     private static final WorldGenInfectedRoofedTree ROOFED_TREE = new WorldGenInfectedRoofedTree(true);
     private static final WorldGenInfectedRoofedTree ROOFED_TREE_NO_LEAVES = new WorldGenInfectedRoofedTree(false);
-    private Type type;
+    private final Type type;
 
     public BiomeInfectedForest(BiomeProperties prop, Type type)
     {

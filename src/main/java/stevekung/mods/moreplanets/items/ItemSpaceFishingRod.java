@@ -1,15 +1,11 @@
 package stevekung.mods.moreplanets.items;
 
-import javax.annotation.Nullable;
-
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,29 +29,23 @@ public class ItemSpaceFishingRod extends ItemFishingRod implements ISortableItem
         this.setMaxDamage(127);
         this.setMaxStackSize(1);
         this.setUnlocalizedName(name);
-
-        this.addPropertyOverride(new ResourceLocation("cast"), new IItemPropertyGetter()
+        this.addPropertyOverride(new ResourceLocation("cast"), (itemStack, world, living) ->
         {
-            @Override
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack itemStack, @Nullable World world, @Nullable EntityLivingBase entity)
+            if (living == null)
             {
-                if (entity == null)
-                {
-                    return 0.0F;
-                }
-                else
-                {
-                    ItemStack mainStack = entity.getHeldItemMainhand();
-                    boolean flag = mainStack.getItem() == itemStack.getItem() && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
-                    boolean flag1 = entity.getHeldItemOffhand().getItem() == itemStack.getItem() && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
+                return 0.0F;
+            }
+            else
+            {
+                ItemStack mainStack = living.getHeldItemMainhand();
+                boolean flag = mainStack.getItem() == itemStack.getItem() && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
+                boolean flag1 = living.getHeldItemOffhand().getItem() == itemStack.getItem() && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("Cast");
 
-                    if (mainStack.getItem() instanceof ItemSpaceFishingRod && mainStack.hasTagCompound() && mainStack.getTagCompound().getBoolean("Cast"))
-                    {
-                        flag1 = false;
-                    }
-                    return flag || flag1 ? 1.0F : 0.0F;
+                if (mainStack.getItem() instanceof ItemSpaceFishingRod && mainStack.hasTagCompound() && mainStack.getTagCompound().getBoolean("Cast"))
+                {
+                    flag1 = false;
                 }
+                return flag || flag1 ? 1.0F : 0.0F;
             }
         });
     }

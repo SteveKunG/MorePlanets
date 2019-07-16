@@ -57,14 +57,6 @@ public class RenderInfectedElderGuardian extends RenderLiving<EntityInfectedElde
         }
     }
 
-    private Vec3d getPosition(EntityLivingBase entity, double height, float partialTicks)
-    {
-        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks;
-        double d1 = height + entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks;
-        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks;
-        return new Vec3d(d0, d1, d2);
-    }
-
     @Override
     public void doRender(EntityInfectedElderGuardian entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
@@ -167,5 +159,13 @@ public class RenderInfectedElderGuardian extends RenderLiving<EntityInfectedElde
     protected ResourceLocation getEntityTexture(EntityInfectedElderGuardian entity)
     {
         return RenderInfectedElderGuardian.TEXTURE;
+    }
+
+    private Vec3d getPosition(EntityLivingBase entity, double height, float partialTicks)
+    {
+        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks;
+        double d1 = height + entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks;
+        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks;
+        return new Vec3d(d0, d1, d2);
     }
 }

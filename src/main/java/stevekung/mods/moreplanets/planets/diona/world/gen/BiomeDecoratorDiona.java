@@ -14,13 +14,13 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenMinableBase;
 
 public class BiomeDecoratorDiona extends BiomeDecoratorMP
 {
-    private WorldGenerator dirtGen;
-    private WorldGenerator setroriumGen;
-    private WorldGenerator illeniumGen;
-    private WorldGenerator aluminumGen;
-    private WorldGenerator tinGen;
-    private WorldGenerator copperGen;
-    private WorldGenerator wormEggGen;
+    private final WorldGenerator dirtGen;
+    private final WorldGenerator setroriumGen;
+    private final WorldGenerator illeniumGen;
+    private final WorldGenerator aluminumGen;
+    private final WorldGenerator tinGen;
+    private final WorldGenerator copperGen;
+    private final WorldGenerator wormEggGen;
 
     public BiomeDecoratorDiona()
     {

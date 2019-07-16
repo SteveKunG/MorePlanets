@@ -22,7 +22,6 @@ public class ItemBaseMP extends Item implements ISortableItem, IItemModelRender,
 
     public ItemBaseMP(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 

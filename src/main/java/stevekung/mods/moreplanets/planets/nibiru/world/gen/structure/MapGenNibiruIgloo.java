@@ -16,7 +16,7 @@ import stevekung.mods.moreplanets.utils.LoggerMP;
 public class MapGenNibiruIgloo extends MapGenStructure
 {
     private static final List<Biome> BIOMES = Arrays.asList(MPBiomes.INFECTED_ICE_SPIKES, MPBiomes.INFECTED_SNOWY_TAIGA);
-    private int maxDistanceBetweenScatteredFeatures;
+    private final int maxDistanceBetweenScatteredFeatures;
 
     static
     {

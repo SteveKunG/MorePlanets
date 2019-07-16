@@ -10,12 +10,12 @@ import stevekung.mods.moreplanets.planets.fronos.entity.EntityBearry;
 
 public class ModelBearry extends ModelBase
 {
-    private ModelRenderer body;
-    private ModelRenderer leg1;
-    private ModelRenderer leg2;
-    private ModelRenderer hand1;
-    private ModelRenderer hand2;
-    private ModelRenderer breach;
+    private final ModelRenderer body;
+    private final ModelRenderer leg1;
+    private final ModelRenderer leg2;
+    private final ModelRenderer hand1;
+    private final ModelRenderer hand2;
+    private final ModelRenderer breach;
 
     public ModelBearry()
     {

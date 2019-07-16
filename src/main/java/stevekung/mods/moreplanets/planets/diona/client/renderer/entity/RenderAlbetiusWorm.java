@@ -12,6 +12,8 @@ import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowin
 @SideOnly(Side.CLIENT)
 public class RenderAlbetiusWorm extends RenderLiving<EntityAlbetiusWorm>
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/entity/albetius_worm.png");
+
     public RenderAlbetiusWorm(RenderManager manager)
     {
         super(manager, new ModelSludgeling(), 0.2F);
@@ -21,6 +23,6 @@ public class RenderAlbetiusWorm extends RenderLiving<EntityAlbetiusWorm>
     @Override
     protected ResourceLocation getEntityTexture(EntityAlbetiusWorm entity)
     {
-        return new ResourceLocation("moreplanets:textures/entity/albetius_worm.png");
+        return RenderAlbetiusWorm.TEXTURE;
     }
 }

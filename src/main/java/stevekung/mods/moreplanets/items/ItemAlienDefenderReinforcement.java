@@ -22,7 +22,6 @@ public class ItemAlienDefenderReinforcement extends ItemBaseMP
 {
     public ItemAlienDefenderReinforcement(String name)
     {
-        super();
         this.setMaxStackSize(1);
         this.setUnlocalizedName(name);
     }

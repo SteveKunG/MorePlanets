@@ -13,14 +13,14 @@ import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyG
 
 public class ContainerDarkEnergyGenerator extends Container
 {
-    private TileEntityDarkEnergyGenerator tileEntity;
+    private final TileEntityDarkEnergyGenerator tile;
 
-    public ContainerDarkEnergyGenerator(InventoryPlayer invPlayer, TileEntityDarkEnergyGenerator generator)
+    public ContainerDarkEnergyGenerator(InventoryPlayer invPlayer, TileEntityDarkEnergyGenerator tile)
     {
-        this.tileEntity = generator;
-        this.addSlotToContainer(new SlotSpecific(generator, 0, 8, 85, IItemElectric.class));
-        this.addSlotToContainer(new SlotSpecific(generator, 1, 26, 85, IItemElectric.class));
-        this.addSlotToContainer(new SlotDarkEnergyFuel(generator, 2, 62, 85));
+        this.tile = tile;
+        this.addSlotToContainer(new SlotSpecific(tile, 0, 8, 85, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(tile, 1, 26, 85, IItemElectric.class));
+        this.addSlotToContainer(new SlotDarkEnergyFuel(tile, 2, 62, 85));
 
         // Player inv:
         for (int i = 0; i < 3; ++i)
@@ -39,7 +39,7 @@ public class ContainerDarkEnergyGenerator extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.tileEntity.isUsableByPlayer(player);
+        return this.tile.isUsableByPlayer(player);
     }
 
     @Override

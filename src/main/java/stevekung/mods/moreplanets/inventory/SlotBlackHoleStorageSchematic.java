@@ -17,9 +17,9 @@ import stevekung.mods.moreplanets.init.MPItems;
 
 public class SlotBlackHoleStorageSchematic extends Slot
 {
-    private int index;
-    private BlockPos pos;
-    private EntityPlayer player;
+    private final int index;
+    private final BlockPos pos;
+    private final EntityPlayer player;
 
     public SlotBlackHoleStorageSchematic(IInventory inventory, int index, int x, int y, BlockPos pos, EntityPlayer player)
     {

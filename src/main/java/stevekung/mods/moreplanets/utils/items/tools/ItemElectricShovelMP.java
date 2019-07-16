@@ -36,8 +36,8 @@ import stevekung.mods.moreplanets.utils.items.ISortableItem;
 
 public class ItemElectricShovelMP extends ItemSpade implements IItemElectric, ISortableItem
 {
-    public float transferMax = 200;
-    private float maxPower;
+    private final float transferMax = 200;
+    private final float maxPower;
 
     public ItemElectricShovelMP(String name, ToolMaterial material, float maxPower)
     {

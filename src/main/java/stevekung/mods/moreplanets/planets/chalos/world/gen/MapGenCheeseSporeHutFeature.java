@@ -19,7 +19,7 @@ public class MapGenCheeseSporeHutFeature extends MapGenStructure
         MapGenStructureIO.registerStructureComponent(ComponentCheeseSporeHutPieces.CheeseSporeHut.class, "ChalosHut");
     }
 
-    private int maxDistanceBetweenScatteredFeatures;
+    private final int maxDistanceBetweenScatteredFeatures;
 
     public MapGenCheeseSporeHutFeature()
     {

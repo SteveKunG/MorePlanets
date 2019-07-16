@@ -15,9 +15,9 @@ import stevekung.mods.moreplanets.tileentity.TileEntitySpacePortal;
 
 public class TeleporterSpaceNether extends Teleporter
 {
-    private WorldServer world;
-    private BlockPos pos;
-    private int prevDim;
+    private final WorldServer world;
+    private final BlockPos pos;
+    private final int prevDim;
 
     public TeleporterSpaceNether(WorldServer world, BlockPos pos, WorldProvider provider)
     {

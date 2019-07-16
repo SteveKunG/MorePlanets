@@ -16,7 +16,6 @@ public class BlockChalosTreasureChest extends BlockTreasureChestMP
 {
     public BlockChalosTreasureChest(String name)
     {
-        super();
         this.setUnlocalizedName(name);
     }
 
@@ -39,7 +38,19 @@ public class BlockChalosTreasureChest extends BlockTreasureChestMP
         }
     }
 
-    public IInventory getContainer(World world, BlockPos pos)
+    @Override
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+    {
+        return Container.calcRedstoneFromInventory(this.getContainer(world, pos));
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta)
+    {
+        return new TileEntityChalosTreasureChest();
+    }
+
+    private IInventory getContainer(World world, BlockPos pos)
     {
         TileEntity tileentity = world.getTileEntity(pos);
 
@@ -60,17 +71,5 @@ public class BlockChalosTreasureChest extends BlockTreasureChestMP
                 return (IInventory)object;
             }
         }
-    }
-
-    @Override
-    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
-    {
-        return Container.calcRedstoneFromInventory(this.getContainer(world, pos));
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World world, int meta)
-    {
-        return new TileEntityChalosTreasureChest();
     }
 }

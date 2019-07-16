@@ -6,31 +6,16 @@ import stevekung.mods.moreplanets.utils.world.gen.dungeon.MapGenDungeonMP;
 
 public class MapGenDionaDungeon extends MapGenDungeonMP
 {
-    private static boolean initialized;
-
     static
     {
-        try
-        {
-            MapGenDionaDungeon.initiateStructures();
-        }
-        catch (Throwable e) {}
+        MapGenStructureIO.registerStructureComponent(RoomBossDiona.class, "DionaDungeonBossRoom");
+        MapGenStructureIO.registerStructureComponent(RoomTreasureDiona.class, "DionaDungeonTreasureRoom");
+        MapGenStructureIO.registerStructureComponent(RoomSpawnerDiona.class, "DionaDungeonSpawnerRoom");
     }
 
     public MapGenDionaDungeon(DungeonConfigurationMP configuration)
     {
         super(configuration);
-    }
-
-    public static void initiateStructures() throws Throwable
-    {
-        if (!MapGenDionaDungeon.initialized)
-        {
-            MapGenStructureIO.registerStructureComponent(RoomBossDiona.class, "DionaDungeonBossRoom");
-            MapGenStructureIO.registerStructureComponent(RoomTreasureDiona.class, "DionaDungeonTreasureRoom");
-            MapGenStructureIO.registerStructureComponent(RoomSpawnerDiona.class, "DionaDungeonSpawnerRoom");
-        }
-        MapGenDionaDungeon.initialized = true;
     }
 
     @Override

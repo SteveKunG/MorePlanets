@@ -38,6 +38,13 @@ import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class BlockInfectedCrystallizedCrystal extends BlockBaseMP implements ITileEntityProvider
 {
+    private static final AxisAlignedBB NORTH = new AxisAlignedBB(0.0625D, 0.0625D, 0.0625D, 0.9375, 0.9375, 1.0D);
+    private static final AxisAlignedBB EAST = new AxisAlignedBB(0.0D, 0.0625D, 0.0625D, 0.9375, 0.9375, 0.9375);
+    private static final AxisAlignedBB WEST = new AxisAlignedBB(0.0625D, 0.0625D, 0.0625D, 1.0D, 0.9375, 0.9375);
+    private static final AxisAlignedBB SOUTH = new AxisAlignedBB(0.0625D, 0.0625D, 0.0D, 0.9375, 0.9375, 0.9375);
+    private static final AxisAlignedBB UP = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375, 0.9375, 0.9375);
+    private static final AxisAlignedBB DOWN = new AxisAlignedBB(0.0625D, 0.0625D, 0.0625D, 0.9375, 1.0D, 0.9375);
+
     public BlockInfectedCrystallizedCrystal(String name)
     {
         super(Material.GLASS);
@@ -54,23 +61,22 @@ public class BlockInfectedCrystallizedCrystal extends BlockBaseMP implements ITi
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         EnumFacing facing = state.getValue(BlockStateProperty.FACING_ALL);
-        double box = 0.0625D;
 
         switch (facing)
         {
         case NORTH:
         default:
-            return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D);
+            return NORTH;
         case EAST:
-            return new AxisAlignedBB(0.0D, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D - box);
+            return EAST;
         case WEST:
-            return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D + box, 1.0D, 1.0D - box, 1.0D - box);
+            return WEST;
         case SOUTH:
-            return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D, 1.0D - box, 1.0D - box, 1.0D - box);
+            return SOUTH;
         case UP:
-            return new AxisAlignedBB(0.0D + box, 0.0D, 0.0D + box, 1.0D - box, 1.0D - box, 1.0D - box);
+            return UP;
         case DOWN:
-            return new AxisAlignedBB(0.0D + box, 0.0D + box, 0.0D + box, 1.0D - box, 1.0D, 1.0D - box);
+            return DOWN;
         }
     }
 

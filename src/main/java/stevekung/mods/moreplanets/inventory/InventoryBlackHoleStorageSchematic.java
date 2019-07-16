@@ -9,13 +9,13 @@ import net.minecraft.util.NonNullList;
 
 public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
 {
-    private NonNullList<ItemStack> stackList;
-    private Container eventHandler;
+    private final NonNullList<ItemStack> stackList;
+    private final Container container;
 
     public InventoryBlackHoleStorageSchematic(Container container)
     {
         this.stackList = NonNullList.withSize(23, ItemStack.EMPTY);
-        this.eventHandler = container;
+        this.container = container;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
         if (!oldstack.isEmpty())
         {
             this.markDirty();
-            this.eventHandler.onCraftMatrixChanged(this);
+            this.container.onCraftMatrixChanged(this);
         }
         return oldstack;
     }
@@ -57,7 +57,7 @@ public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
         if (!itemStack.isEmpty())
         {
             this.markDirty();
-            this.eventHandler.onCraftMatrixChanged(this);
+            this.container.onCraftMatrixChanged(this);
         }
         return itemStack;
     }
@@ -71,7 +71,7 @@ public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
         }
         this.stackList.set(index, itemStack);
         this.markDirty();
-        this.eventHandler.onCraftMatrixChanged(this);
+        this.container.onCraftMatrixChanged(this);
     }
 
     @Override

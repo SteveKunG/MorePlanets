@@ -13,7 +13,7 @@ import stevekung.mods.stevekunglib.utils.CalendarUtils;
 public class TileEntityTreasureChestRendererMP extends TileEntitySpecialRenderer<TileEntityTreasureChestMP>
 {
     private static final ResourceLocation CHRISTMAS = new ResourceLocation("textures/entity/chest/christmas.png");
-    private ResourceLocation textureNormal;
+    private final ResourceLocation textureNormal;
     private final ModelTreasureChest model = new ModelTreasureChest();
 
     public TileEntityTreasureChestRendererMP(String texture)

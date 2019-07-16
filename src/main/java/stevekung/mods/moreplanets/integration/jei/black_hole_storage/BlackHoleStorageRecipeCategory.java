@@ -15,6 +15,8 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class BlackHoleStorageRecipeCategory implements IRecipeCategory
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/jei/black_hole_storage.png");
+
     @Override
     public String getUid()
     {
@@ -36,7 +38,7 @@ public class BlackHoleStorageRecipeCategory implements IRecipeCategory
     @Override
     public void drawExtras(Minecraft mc)
     {
-        JEIRegistryHelper.guiHelper.createDrawable(new ResourceLocation("moreplanets:textures/gui/jei/black_hole_storage.png"), 0, 0, 152, 119).draw(mc, 24, 0);
+        JEIRegistryHelper.guiHelper.createDrawable(TEXTURE, 0, 0, 152, 119).draw(mc, 24, 0);
     }
 
     @Override

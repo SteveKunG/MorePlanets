@@ -294,10 +294,9 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         this.world.spawnEntity(bolt);
                         this.world.setBlockState(this.getPos().up(), MPBlocks.DARK_ENERGY_CORE.getDefaultState());
                     }
-                    TileEntityDarkEnergyReceiver.multiBlockLists.entrySet().forEach(list ->
+                    TileEntityDarkEnergyReceiver.multiBlockLists.forEach((mPos, state) ->
                     {
-                        IBlockState state = list.getValue();
-                        BlockPos pos = this.pos.add(list.getKey());
+                        BlockPos pos = this.pos.add(mPos);
 
                         if (state != MPBlocks.DUNGEON_GLOWSTONE.getDefaultState() && state != MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK.getDefaultState())
                         {

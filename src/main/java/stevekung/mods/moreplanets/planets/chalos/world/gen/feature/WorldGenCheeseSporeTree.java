@@ -12,8 +12,8 @@ import stevekung.mods.stevekunglib.utils.BlockStateProperty.EnumAxis;
 
 public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
 {
-    private int blockMaxHigh;
-    private boolean genSpore;
+    private final int blockMaxHigh;
+    private final boolean genSpore;
 
     public WorldGenCheeseSporeTree(int blockMaxHigh, boolean genSpore)
     {

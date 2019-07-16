@@ -19,7 +19,6 @@ public class BlockInfectedCrystallizedTorch extends BlockTorchMP
 {
     public BlockInfectedCrystallizedTorch(String name)
     {
-        super();
         this.setLightLevel(0.9375F);
         this.setSoundType(SoundType.WOOD);
         this.setUnlocalizedName(name);

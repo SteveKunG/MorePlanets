@@ -7,11 +7,11 @@ import net.minecraft.entity.Entity;
 
 public class ModelCheeseCubeEyeBoss extends ModelBase
 {
-    private ModelRenderer body1;
-    private ModelRenderer body2;
-    private ModelRenderer body3;
-    private ModelRenderer body4;
-    private ModelRenderer eye;
+    private final ModelRenderer body1;
+    private final ModelRenderer body2;
+    private final ModelRenderer body3;
+    private final ModelRenderer body4;
+    private final ModelRenderer eye;
 
     public ModelCheeseCubeEyeBoss()
     {

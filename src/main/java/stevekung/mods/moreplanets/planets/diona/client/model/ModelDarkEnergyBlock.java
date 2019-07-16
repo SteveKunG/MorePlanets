@@ -6,19 +6,19 @@ import net.minecraft.client.renderer.GlStateManager;
 
 public class ModelDarkEnergyBlock extends ModelBase
 {
-    private ModelRenderer base1;
-    private ModelRenderer base2;
-    private ModelRenderer base3;
-    private ModelRenderer base4;
-    private ModelRenderer rod1;
-    private ModelRenderer rod2;
-    private ModelRenderer rod3;
-    private ModelRenderer rod4;
-    private ModelRenderer rod5;
-    private ModelRenderer rod6;
-    private ModelRenderer rod7;
-    private ModelRenderer rod8;
-    private ModelRenderer energyBall;
+    private final ModelRenderer base1;
+    private final ModelRenderer base2;
+    private final ModelRenderer base3;
+    private final ModelRenderer base4;
+    private final ModelRenderer rod1;
+    private final ModelRenderer rod2;
+    private final ModelRenderer rod3;
+    private final ModelRenderer rod4;
+    private final ModelRenderer rod5;
+    private final ModelRenderer rod6;
+    private final ModelRenderer rod7;
+    private final ModelRenderer rod8;
+    private final ModelRenderer energyBall;
 
     public ModelDarkEnergyBlock()
     {

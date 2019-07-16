@@ -17,7 +17,7 @@ public class MapGenCrashedAlienShipFeature extends MapGenStructure
         MapGenStructureIO.registerStructureComponent(ComponentCrashedAlienShipPieces.CrashedAlienShip.class, "CrashedAlienShip");
     }
 
-    private int maxDistanceBetweenScatteredFeatures;
+    private final int maxDistanceBetweenScatteredFeatures;
 
     public MapGenCrashedAlienShipFeature()
     {

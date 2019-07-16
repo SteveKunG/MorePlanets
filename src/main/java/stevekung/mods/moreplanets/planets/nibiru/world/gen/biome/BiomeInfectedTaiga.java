@@ -26,7 +26,7 @@ public class BiomeInfectedTaiga extends BiomeNibiru
     private static final WorldGenInfectedMegaPineTree MEGA_PINE_BASE_HEIGHT = new WorldGenInfectedMegaPineTree(true, true);
     private static final WorldGenInfectedMegaPineTree MEGA_PINE_NO_LEAVES = new WorldGenInfectedMegaPineTree(false, false);
     private static final WorldGenInfectedMegaPineTree MEGA_PINE_BASE_HEIGHT_NO_LEAVES = new WorldGenInfectedMegaPineTree(false, true);
-    private Type type;
+    private final Type type;
 
     public BiomeInfectedTaiga(BiomeProperties prop, Type type)
     {
