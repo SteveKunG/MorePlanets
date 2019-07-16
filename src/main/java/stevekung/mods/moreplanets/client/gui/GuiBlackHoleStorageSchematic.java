@@ -16,7 +16,7 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 @SideOnly(Side.CLIENT)
 public class GuiBlackHoleStorageSchematic extends GuiPositionedContainer implements ISchematicResultPage
 {
-    private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/black_hole_storage_schematic.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/black_hole_storage_schematic.png");
     private int pageIndex;
 
     public GuiBlackHoleStorageSchematic(InventoryPlayer player, BlockPos pos)
@@ -45,7 +45,7 @@ public class GuiBlackHoleStorageSchematic extends GuiPositionedContainer impleme
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(GuiBlackHoleStorageSchematic.texture);
+        this.mc.renderEngine.bindTexture(GuiBlackHoleStorageSchematic.TEXTURE);
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);

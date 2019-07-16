@@ -15,10 +15,12 @@ import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class CCLBlackHoleStorage extends CCLRenderBase
 {
+    private final TileEntityBlackHoleStorage blackHole = new TileEntityBlackHoleStorage();
+
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        ClientRegistryUtils.renderTESR(new TileEntityBlackHoleStorage());
+        ClientRegistryUtils.renderTESR(this.blackHole);
         GlStateManager.enableBlend();
     }
 

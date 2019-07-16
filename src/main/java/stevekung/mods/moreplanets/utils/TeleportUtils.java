@@ -210,7 +210,7 @@ public class TeleportUtils
         targetWorld.spawnEntity(player);
         targetWorld.updateEntityWithOptionalForce(player, false);
         player.setWorld(targetWorld);
-        MorePlanetsMod.PROXY.resetFloatingTick(player);//prevent kicked from lan or server world
+        MorePlanetsMod.PROXY.resetFloatingTick(player); // prevent kicked from LAN or server world
 
         playerList.preparePlayer(player, sourceWorld);
         player.connection.setPlayerLocation(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), player.rotationYaw, player.rotationPitch);

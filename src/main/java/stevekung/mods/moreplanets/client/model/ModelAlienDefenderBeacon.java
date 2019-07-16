@@ -5,16 +5,16 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelAlienDefenderBeacon extends ModelBase
 {
-    private ModelRenderer base;
-    private ModelRenderer light;
-    private ModelRenderer beam1;
-    private ModelRenderer beam2;
-    private ModelRenderer beam3;
-    private ModelRenderer beam4;
-    private ModelRenderer decor1;
-    private ModelRenderer decor2;
-    private ModelRenderer decor3;
-    private ModelRenderer decor4;
+    private final ModelRenderer base;
+    private final ModelRenderer light;
+    private final ModelRenderer beam1;
+    private final ModelRenderer beam2;
+    private final ModelRenderer beam3;
+    private final ModelRenderer beam4;
+    private final ModelRenderer decor1;
+    private final ModelRenderer decor2;
+    private final ModelRenderer decor3;
+    private final ModelRenderer decor4;
 
     public ModelAlienDefenderBeacon()
     {

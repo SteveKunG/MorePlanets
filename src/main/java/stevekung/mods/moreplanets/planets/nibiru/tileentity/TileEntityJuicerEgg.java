@@ -7,8 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
@@ -30,24 +28,6 @@ public class TileEntityJuicerEgg extends TileEntityRenderTickable
         super.writeToNBT(nbt);
         nbt.setBoolean("NeedPlayerNearby", this.needPlayerNearby);
         return nbt;
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setBoolean("NeedPlayerNearby", this.needPlayerNearby);
-        return new SPacketUpdateTileEntity(this.pos, -1, nbt);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        if (pkt.getTileEntityType() == -1)
-        {
-            NBTTagCompound nbt = pkt.getNbtCompound();
-            this.needPlayerNearby = nbt.getBoolean("NeedPlayerNearby");
-        }
     }
 
     @Override

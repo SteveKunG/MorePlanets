@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.moons.koentus.entity.EntityFallingKoentusMeteor;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderFallingKoentusMeteor extends Render<EntityFallingKoentusMeteor>
@@ -52,7 +53,7 @@ public class RenderFallingKoentusMeteor extends Render<EntityFallingKoentusMeteo
                     GlStateManager.enableOutlineMode(this.getTeamColor(entity));
                 }
 
-                vertexbuffer.begin(7, DefaultVertexFormats.BLOCK);
+                vertexbuffer.begin(GLConstants.QUADS, DefaultVertexFormats.BLOCK);
                 BlockPos blockpos = new BlockPos(entity.posX, entity.getEntityBoundingBox().maxY, entity.posZ);
                 GlStateManager.translate((float)(x - blockpos.getX() - 0.5D), (float)(y - blockpos.getY()), (float)(z - blockpos.getZ() - 0.5D));
                 BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();

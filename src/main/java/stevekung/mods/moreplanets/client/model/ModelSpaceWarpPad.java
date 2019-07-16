@@ -5,37 +5,37 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelSpaceWarpPad extends ModelBase
 {
-    private ModelRenderer base1;
-    private ModelRenderer base2;
-    private ModelRenderer base3;
-    private ModelRenderer rod11;
-    private ModelRenderer rod12;
-    private ModelRenderer rod13;
-    private ModelRenderer rod14;
-    private ModelRenderer rod21;
-    private ModelRenderer rod22;
-    private ModelRenderer rod23;
-    private ModelRenderer rod24;
-    private ModelRenderer rod31;
-    private ModelRenderer rod32;
-    private ModelRenderer rod33;
-    private ModelRenderer rod34;
-    private ModelRenderer rod41;
-    private ModelRenderer rod42;
-    private ModelRenderer rod43;
-    private ModelRenderer rod44;
-    private ModelRenderer rodh1;
-    private ModelRenderer rodh2;
-    private ModelRenderer rodh3;
-    private ModelRenderer rodh4;
-    private ModelRenderer rodh5;
-    private ModelRenderer rodh6;
-    private ModelRenderer rodh7;
-    private ModelRenderer rodh8;
-    private ModelRenderer rodh9;
-    private ModelRenderer rodh10;
-    private ModelRenderer rodh11;
-    private ModelRenderer rodh12;
+    private final ModelRenderer base1;
+    private final ModelRenderer base2;
+    private final ModelRenderer base3;
+    private final ModelRenderer rod11;
+    private final ModelRenderer rod12;
+    private final ModelRenderer rod13;
+    private final ModelRenderer rod14;
+    private final ModelRenderer rod21;
+    private final ModelRenderer rod22;
+    private final ModelRenderer rod23;
+    private final ModelRenderer rod24;
+    private final ModelRenderer rod31;
+    private final ModelRenderer rod32;
+    private final ModelRenderer rod33;
+    private final ModelRenderer rod34;
+    private final ModelRenderer rod41;
+    private final ModelRenderer rod42;
+    private final ModelRenderer rod43;
+    private final ModelRenderer rod44;
+    private final ModelRenderer rodh1;
+    private final ModelRenderer rodh2;
+    private final ModelRenderer rodh3;
+    private final ModelRenderer rodh4;
+    private final ModelRenderer rodh5;
+    private final ModelRenderer rodh6;
+    private final ModelRenderer rodh7;
+    private final ModelRenderer rodh8;
+    private final ModelRenderer rodh9;
+    private final ModelRenderer rodh10;
+    private final ModelRenderer rodh11;
+    private final ModelRenderer rodh12;
 
     public ModelSpaceWarpPad()
     {

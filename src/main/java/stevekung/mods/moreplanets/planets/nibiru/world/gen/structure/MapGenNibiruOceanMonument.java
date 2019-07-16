@@ -68,7 +68,7 @@ public class MapGenNibiruOceanMonument extends MapGenStructure
 
         if (i == k && j == l)
         {
-            if (!this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 16, new ArrayList<>(Arrays.asList(MPBiomes.INFECTED_DEEP_OCEAN))))
+            if (!this.world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 16, Collections.singletonList(MPBiomes.INFECTED_DEEP_OCEAN)))
             {
                 return false;
             }

@@ -97,7 +97,7 @@ public class ItemBlockBlackHoleStorage extends ItemBlockDescriptionTESR
                 }
                 else if (ClientUtils.isControlKeyDown() && this.hasItemsKey(itemStack))
                 {
-                    NonNullList<ItemStack> nonNullList = storage.inventory;
+                    NonNullList<ItemStack> nonNullList = storage.containingItems;
                     ItemStackHelper.loadAllItems(itemStack.getTagCompound(), nonNullList);
                     int i = 0;
                     int j = 0;

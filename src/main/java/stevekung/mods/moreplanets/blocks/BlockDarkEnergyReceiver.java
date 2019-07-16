@@ -369,7 +369,7 @@ public class BlockDarkEnergyReceiver extends BlockTileMP implements IDescription
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockDarkEnergyReceiver.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
     }
 
     @Override

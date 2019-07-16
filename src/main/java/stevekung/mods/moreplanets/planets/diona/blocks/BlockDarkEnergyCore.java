@@ -122,7 +122,7 @@ public class BlockDarkEnergyCore extends BlockBaseMP implements ITileEntityProvi
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockDarkEnergyCore.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
     }
 
     @Override

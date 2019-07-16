@@ -5,32 +5,32 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelShieldGenerator extends ModelBase
 {
-    private ModelRenderer base;
-    private ModelRenderer baseside;
-    private ModelRenderer side1;
-    private ModelRenderer side2;
-    private ModelRenderer side3;
-    private ModelRenderer side4;
-    private ModelRenderer basetop;
-    private ModelRenderer rod;
-    private ModelRenderer rodbase;
-    private ModelRenderer rodbase1;
-    private ModelRenderer rodbase2;
-    private ModelRenderer rodbase3;
-    private ModelRenderer rodbase4;
-    private ModelRenderer rodbase5;
-    private ModelRenderer rodbase6;
-    private ModelRenderer rodbase7;
-    private ModelRenderer rodbase8;
-    private ModelRenderer rodbase51;
-    private ModelRenderer solar1;
-    private ModelRenderer rodbase61;
-    private ModelRenderer solar2;
-    private ModelRenderer rodbase71;
-    private ModelRenderer solar3;
-    private ModelRenderer rodbase81;
-    private ModelRenderer solar4;
-    private ModelRenderer input;
+    private final ModelRenderer base;
+    private final ModelRenderer baseside;
+    private final ModelRenderer side1;
+    private final ModelRenderer side2;
+    private final ModelRenderer side3;
+    private final ModelRenderer side4;
+    private final ModelRenderer basetop;
+    private final ModelRenderer rod;
+    private final ModelRenderer rodbase;
+    private final ModelRenderer rodbase1;
+    private final ModelRenderer rodbase2;
+    private final ModelRenderer rodbase3;
+    private final ModelRenderer rodbase4;
+    private final ModelRenderer rodbase5;
+    private final ModelRenderer rodbase6;
+    private final ModelRenderer rodbase7;
+    private final ModelRenderer rodbase8;
+    private final ModelRenderer rodbase51;
+    private final ModelRenderer solar1;
+    private final ModelRenderer rodbase61;
+    private final ModelRenderer solar2;
+    private final ModelRenderer rodbase71;
+    private final ModelRenderer solar3;
+    private final ModelRenderer rodbase81;
+    private final ModelRenderer solar4;
+    private final ModelRenderer input;
 
     public ModelShieldGenerator()
     {

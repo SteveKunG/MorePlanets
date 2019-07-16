@@ -8,10 +8,12 @@ import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class CCLAlienDefenderBeacon extends CCLRenderBase
 {
+    private final TileEntityAlienDefenderBeacon alienBeacon = new TileEntityAlienDefenderBeacon();
+
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        ClientRegistryUtils.renderTESR(new TileEntityAlienDefenderBeacon());
+        ClientRegistryUtils.renderTESR(this.alienBeacon);
         GlStateManager.enableBlend();
         GlStateManager.enableCull();
     }

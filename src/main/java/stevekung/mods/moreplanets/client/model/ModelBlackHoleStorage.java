@@ -5,21 +5,21 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelBlackHoleStorage extends ModelBase
 {
-    private ModelRenderer base;
-    private ModelRenderer rod1;
-    private ModelRenderer rod2;
-    private ModelRenderer rod3;
-    private ModelRenderer rod4;
-    private ModelRenderer top1;
-    private ModelRenderer top2;
-    private ModelRenderer side1;
-    private ModelRenderer side2;
-    private ModelRenderer side3;
-    private ModelRenderer side4;
-    private ModelRenderer rodt1;
-    private ModelRenderer rodt2;
-    private ModelRenderer rodt3;
-    private ModelRenderer rodt4;
+    private final ModelRenderer base;
+    private final ModelRenderer rod1;
+    private final ModelRenderer rod2;
+    private final ModelRenderer rod3;
+    private final ModelRenderer rod4;
+    private final ModelRenderer top1;
+    private final ModelRenderer top2;
+    private final ModelRenderer side1;
+    private final ModelRenderer side2;
+    private final ModelRenderer side3;
+    private final ModelRenderer side4;
+    private final ModelRenderer rodt1;
+    private final ModelRenderer rodt2;
+    private final ModelRenderer rodt3;
+    private final ModelRenderer rodt4;
 
     public ModelBlackHoleStorage()
     {

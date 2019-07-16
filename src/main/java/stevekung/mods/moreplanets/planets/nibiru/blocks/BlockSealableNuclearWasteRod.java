@@ -92,7 +92,7 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockSealableNuclearWasteRod.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
     }
 
     @Override

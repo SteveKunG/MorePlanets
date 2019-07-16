@@ -35,33 +35,33 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
 {
     public WailaTileEntityProviderMP()
     {
-        WailaUtil.dataProvider = this;
+        WailaUtils.dataProvider = this;
     }
 
     @Override
     public void register(IWailaRegistrar register)
     {
         LoggerMP.info("Waila Integration initialized");
-        WailaUtil.register = register;
+        WailaUtils.register = register;
 
         HUDHandlerFurnaceMP.register(register);
-        WailaUtil.register(TileEntityDarkEnergyReceiver.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityDarkEnergyCore.class, true, true, false, false, false);
-        WailaUtil.register(TileEntitySpaceWarpPadFull.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityDarkEnergyGenerator.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityEnergyStorageClusterMP.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityBlackHoleStorage.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityShieldGenerator.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityNuclearWasteGenerator.class, true, true, false, false, false);
-        WailaUtil.register(TileEntityNuclearWasteTank.class, true, true, false, false, false);
-        WailaUtil.register(IDescription.class, false, false, true, false, false);
-        WailaUtil.register(BlockDummy.class, true, true, true, false, false);
-        WailaUtil.register(MPBlocks.DER_SOLAR1_DUMMY.getClass(), true, true, true, false, false);
-        WailaUtil.register(MPBlocks.DER_SOLAR2_DUMMY.getClass(), true, true, true, false, false);
-        WailaUtil.register(MPBlocks.DER_SOLAR3_DUMMY.getClass(), true, true, true, false, false);
-        WailaUtil.register(MPBlocks.DER_SOLAR4_DUMMY.getClass(), true, true, true, false, false);
-        WailaUtil.register(MPBlocks.WARP_PAD_DUMMY.getClass(), true, true, true, false, false);
-        WailaUtil.register(MPBlocks.SHIELD_GENERATOR_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtils.register(TileEntityDarkEnergyReceiver.class, true, true, false, false, false);
+        WailaUtils.register(TileEntityDarkEnergyCore.class, true, true, false, false, false);
+        WailaUtils.register(TileEntitySpaceWarpPadFull.class, true, true, false, false, false);
+        WailaUtils.register(TileEntityDarkEnergyGenerator.class, true, true, false, false, false);
+        WailaUtils.register(TileEntityEnergyStorageClusterMP.class, true, true, false, false, false);
+        WailaUtils.register(TileEntityBlackHoleStorage.class, true, true, false, false, false);
+        WailaUtils.register(TileEntityShieldGenerator.class, true, true, false, false, false);
+        WailaUtils.register(TileEntityNuclearWasteGenerator.class, true, true, false, false, false);
+        WailaUtils.register(TileEntityNuclearWasteTank.class, true, true, false, false, false);
+        WailaUtils.register(IDescription.class, false, false, true, false, false);
+        WailaUtils.register(BlockDummy.class, true, true, true, false, false);
+        WailaUtils.register(MPBlocks.DER_SOLAR1_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtils.register(MPBlocks.DER_SOLAR2_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtils.register(MPBlocks.DER_SOLAR3_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtils.register(MPBlocks.DER_SOLAR4_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtils.register(MPBlocks.WARP_PAD_DUMMY.getClass(), true, true, true, false, false);
+        WailaUtils.register(MPBlocks.SHIELD_GENERATOR_DUMMY.getClass(), true, true, true, false, false);
     }
 
     @Override

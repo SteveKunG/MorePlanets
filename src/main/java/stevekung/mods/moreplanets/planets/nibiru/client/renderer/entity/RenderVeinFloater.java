@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.planets.nibiru.client.model.ModelVeinFloater;
 import stevekung.mods.moreplanets.planets.nibiru.client.renderer.entity.layer.LayerVeinFloaterDeath;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityVeinFloater;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
@@ -70,7 +71,7 @@ public class RenderVeinFloater extends RenderLiving<EntityVeinFloater>
                 GlStateManager.rotate(f5 * (180F / (float)Math.PI), 1.0F, 0.0F, 0.0F);
                 int i = 1;
                 double d1 = f2 * 0.05D * (1.0D - (i & 1) * 2.5D);
-                worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
                 int j = 255;
                 int k = 255;
                 int l = 255;

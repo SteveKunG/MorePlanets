@@ -31,22 +31,12 @@ public class ItemModelRenderer
 
     private static void registerBlockRenderer()
     {
-        BlocksItemsRegistry.SINGLE_BLOCK_RENDER_LIST.entrySet().forEach(map ->
-        {
-            Block block = map.getKey();
-            String name = map.getValue();
-            MorePlanetsMod.CLIENT_REGISTRY.registerModelRender(block, name);
-        });
+        BlocksItemsRegistry.SINGLE_BLOCK_RENDER_LIST.forEach((block, name) -> MorePlanetsMod.CLIENT_REGISTRY.registerModelRender(block, name));
     }
 
     private static void registerItemRenderer()
     {
-        BlocksItemsRegistry.SINGLE_ITEM_RENDER_LIST.entrySet().forEach(map ->
-        {
-            Item item = map.getKey();
-            String name = map.getValue();
-            MorePlanetsMod.CLIENT_REGISTRY.registerModelRender(item, name);
-        });
+        BlocksItemsRegistry.SINGLE_ITEM_RENDER_LIST.forEach((item, name) -> MorePlanetsMod.CLIENT_REGISTRY.registerModelRender(item, name));
     }
 
     public static void registerCCLRenderer()

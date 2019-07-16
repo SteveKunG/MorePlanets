@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,59 +11,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class TileEntityDummy extends TileBaseElectricBlock
 {
-    @NetworkedField(targetSide = Side.CLIENT)
     public BlockPos mainBlockPosition;
-
-    public void setMainBlock(BlockPos mainBlock)
-    {
-        this.mainBlockPosition = mainBlock;
-
-        if (!this.world.isRemote)
-        {
-            this.world.notifyBlockUpdate(this.getPos(), this.world.getBlockState(this.getPos()), this.world.getBlockState(this.mainBlockPosition), 3);
-        }
-    }
-
-    public void onBlockRemoval()
-    {
-        if (this.mainBlockPosition != null)
-        {
-            TileEntity tileEntity = this.world.getTileEntity(this.mainBlockPosition);
-
-            if (tileEntity instanceof IMultiBlock)
-            {
-                IMultiBlock mainBlock = (IMultiBlock) tileEntity;
-                mainBlock.onDestroy(this);
-            }
-        }
-    }
-
-    public boolean onBlockActivated(World worldIn, BlockPos pos, EntityPlayer player)
-    {
-        if (this.mainBlockPosition != null)
-        {
-            TileEntity tileEntity = this.world.getTileEntity(this.mainBlockPosition);
-
-            if (tileEntity instanceof IMultiBlock)
-            {
-                return ((IMultiBlock) tileEntity).onActivated(player);
-            }
-        }
-        return false;
-    }
-
-    public TileEntity getMainBlockTile()
-    {
-        if (this.mainBlockPosition != null)
-        {
-            return this.world.getTileEntity(this.mainBlockPosition);
-        }
-        return null;
-    }
 
     @Override
     public void slowDischarge() {}
@@ -130,6 +80,53 @@ public class TileEntityDummy extends TileBaseElectricBlock
     @Override
     public EnumFacing getFront()
     {
+        return null;
+    }
+
+    public void setMainBlock(BlockPos mainBlock)
+    {
+        this.mainBlockPosition = mainBlock;
+
+        if (!this.world.isRemote)
+        {
+            this.world.notifyBlockUpdate(this.getPos(), this.world.getBlockState(this.getPos()), this.world.getBlockState(this.mainBlockPosition), 3);
+        }
+    }
+
+    public void onBlockRemoval()
+    {
+        if (this.mainBlockPosition != null)
+        {
+            TileEntity tileEntity = this.world.getTileEntity(this.mainBlockPosition);
+
+            if (tileEntity instanceof IMultiBlock)
+            {
+                IMultiBlock mainBlock = (IMultiBlock) tileEntity;
+                mainBlock.onDestroy(this);
+            }
+        }
+    }
+
+    public boolean onBlockActivated(World worldIn, BlockPos pos, EntityPlayer player)
+    {
+        if (this.mainBlockPosition != null)
+        {
+            TileEntity tileEntity = this.world.getTileEntity(this.mainBlockPosition);
+
+            if (tileEntity instanceof IMultiBlock)
+            {
+                return ((IMultiBlock) tileEntity).onActivated(player);
+            }
+        }
+        return false;
+    }
+
+    public TileEntity getMainBlockTile()
+    {
+        if (this.mainBlockPosition != null)
+        {
+            return this.world.getTileEntity(this.mainBlockPosition);
+        }
         return null;
     }
 }

@@ -95,7 +95,7 @@ public class GuiHandlerMP implements IGuiHandler
         }
         else if (tile instanceof TileEntityEnergyStorageClusterMP)
         {
-            return new GuiDarkEnergyStorage(player.inventory, (TileEntityEnergyStorageClusterMP)tile);
+            return new GuiEnergyStorageClusterMP(player.inventory, (TileEntityEnergyStorageClusterMP)tile);
         }
         else if (tile instanceof TileEntityDarkEnergyGenerator)
         {

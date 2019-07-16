@@ -18,6 +18,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.LoggerMP;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class GuiListEntityFilter extends GuiListExtended
@@ -111,7 +112,7 @@ public class GuiListEntityFilter extends GuiListExtended
                 int j1 = this.left + this.width / 2 + this.getListWidth() / 2;
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 GlStateManager.disableTexture2D();
-                vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                vertexbuffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
                 vertexbuffer.pos(i1, k + l + 2, 0.0D).tex(0.0D, 1.0D).color(128, 128, 128, 255).endVertex();
                 vertexbuffer.pos(j1, k + l + 2, 0.0D).tex(1.0D, 1.0D).color(128, 128, 128, 255).endVertex();
                 vertexbuffer.pos(j1, k - 2, 0.0D).tex(1.0D, 0.0D).color(128, 128, 128, 255).endVertex();
@@ -173,19 +174,19 @@ public class GuiListEntityFilter extends GuiListExtended
                     l1 = this.top;
                 }
 
-                vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                vertexbuffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
                 vertexbuffer.pos(i, this.bottom, 0.0D).tex(0.0D, 1.0D).color(0, 0, 0, 255).endVertex();
                 vertexbuffer.pos(j, this.bottom, 0.0D).tex(1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
                 vertexbuffer.pos(j, this.top, 0.0D).tex(1.0D, 0.0D).color(0, 0, 0, 255).endVertex();
                 vertexbuffer.pos(i, this.top, 0.0D).tex(0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
                 tessellator.draw();
-                vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                vertexbuffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
                 vertexbuffer.pos(i, l1 + k1, 0.0D).tex(0.0D, 1.0D).color(128, 128, 128, 255).endVertex();
                 vertexbuffer.pos(j, l1 + k1, 0.0D).tex(1.0D, 1.0D).color(128, 128, 128, 255).endVertex();
                 vertexbuffer.pos(j, l1, 0.0D).tex(1.0D, 0.0D).color(128, 128, 128, 255).endVertex();
                 vertexbuffer.pos(i, l1, 0.0D).tex(0.0D, 0.0D).color(128, 128, 128, 255).endVertex();
                 tessellator.draw();
-                vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                vertexbuffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
                 vertexbuffer.pos(i, l1 + k1 - 1, 0.0D).tex(0.0D, 1.0D).color(192, 192, 192, 255).endVertex();
                 vertexbuffer.pos(j - 1, l1 + k1 - 1, 0.0D).tex(1.0D, 1.0D).color(192, 192, 192, 255).endVertex();
                 vertexbuffer.pos(j - 1, l1, 0.0D).tex(1.0D, 0.0D).color(192, 192, 192, 255).endVertex();

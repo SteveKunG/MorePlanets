@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.planets.nibiru.client.model.ModelNuclearWasteTank;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityNuclearWasteTank;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRenderer<TileEntityNuclearWasteTank>
@@ -64,7 +65,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 float levelInv = 0.0F;
 
                 // North
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(-0.4, levelInv, -0.399).tex(uMin, vMin).endVertex();
                 worldRenderer.pos(-0.4, 1.0, -0.399).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
                 worldRenderer.pos(0.4, 1.0, -0.399).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
@@ -72,7 +73,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 tess.draw();
 
                 // South
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(0.4, levelInv, 0.399).tex(uMax, vMin).endVertex();
                 worldRenderer.pos(0.4, 1.0, 0.399).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
                 worldRenderer.pos(-0.4, 1.0, 0.399).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
@@ -80,7 +81,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 tess.draw();
 
                 // West
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(-0.399, 1.0, -0.4).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
                 worldRenderer.pos(-0.399, levelInv, -0.4).tex(uMin, vMin).endVertex();
                 worldRenderer.pos(-0.399, levelInv, 0.4).tex(uMax, vMin).endVertex();
@@ -88,7 +89,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 tess.draw();
 
                 // East
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(0.399, 1.0, 0.4).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
                 worldRenderer.pos(0.399, levelInv, 0.4).tex(uMax, vMin).endVertex();
                 worldRenderer.pos(0.399, levelInv, -0.4).tex(uMin, vMin).endVertex();
@@ -96,7 +97,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 tess.draw();
 
                 // Top
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(0.4, 0.01 + levelInv, 0.4).tex(uMax, vMax).endVertex();
                 worldRenderer.pos(-0.4, 0.01 + levelInv, 0.4).tex(uMax, vMin).endVertex();
                 worldRenderer.pos(-0.4, 0.01 + levelInv, -0.4).tex(uMin, vMin).endVertex();
@@ -208,7 +209,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 float levelInv = 0.0F;
 
                 // North
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(-0.4, levelInv, -0.399).tex(uMin, vMin).endVertex();
                 worldRenderer.pos(-0.4, 1.0, -0.399).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
                 worldRenderer.pos(0.4, 1.0, -0.399).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
@@ -216,7 +217,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 tess.draw();
 
                 // South
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(0.4, levelInv, 0.399).tex(uMax, vMin).endVertex();
                 worldRenderer.pos(0.4, 1.0, 0.399).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
                 worldRenderer.pos(-0.4, 1.0, 0.399).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
@@ -224,7 +225,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 tess.draw();
 
                 // West
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(-0.399, 1.0, -0.4).tex(uMin, vMin + (vMax - vMin) * level).endVertex();
                 worldRenderer.pos(-0.399, levelInv, -0.4).tex(uMin, vMin).endVertex();
                 worldRenderer.pos(-0.399, levelInv, 0.4).tex(uMax, vMin).endVertex();
@@ -232,7 +233,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 tess.draw();
 
                 // East
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(0.399, 1.0, 0.4).tex(uMax, vMin + (vMax - vMin) * level).endVertex();
                 worldRenderer.pos(0.399, levelInv, 0.4).tex(uMax, vMin).endVertex();
                 worldRenderer.pos(0.399, levelInv, -0.4).tex(uMin, vMin).endVertex();
@@ -240,7 +241,7 @@ public class TileEntityNuclearWasteTankRenderer extends TileEntitySpecialRendere
                 tess.draw();
 
                 // Top
-                worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
                 worldRenderer.pos(0.4, 0.01 + levelInv, 0.4).tex(uMax, vMax).endVertex();
                 worldRenderer.pos(-0.4, 0.01 + levelInv, 0.4).tex(uMax, vMin).endVertex();
                 worldRenderer.pos(-0.4, 0.01 + levelInv, -0.4).tex(uMin, vMin).endVertex();

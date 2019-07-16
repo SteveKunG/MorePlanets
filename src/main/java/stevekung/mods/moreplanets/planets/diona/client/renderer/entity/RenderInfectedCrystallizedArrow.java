@@ -11,6 +11,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCrystallizedArrow extends Render<EntityInfectedCrystallizedArrow>
@@ -56,14 +57,14 @@ public class RenderInfectedCrystallizedArrow extends Render<EntityInfectedCrysta
         GlStateManager.scale(f8, f8, f8);
         GlStateManager.translate(-4.0F, 0.0F, 0.0F);
         GlStateManager.glNormal3f(f8, 0.0F, 0.0F);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-7.0D, -2.0D, -2.0D).tex(f4, f6).endVertex();
         worldrenderer.pos(-7.0D, -2.0D, 2.0D).tex(f5, f6).endVertex();
         worldrenderer.pos(-7.0D, 2.0D, 2.0D).tex(f5, f7).endVertex();
         worldrenderer.pos(-7.0D, 2.0D, -2.0D).tex(f4, f7).endVertex();
         tessellator.draw();
         GlStateManager.glNormal3f(-f8, 0.0F, 0.0F);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-7.0D, 2.0D, -2.0D).tex(f4, f6).endVertex();
         worldrenderer.pos(-7.0D, 2.0D, 2.0D).tex(f5, f6).endVertex();
         worldrenderer.pos(-7.0D, -2.0D, 2.0D).tex(f5, f7).endVertex();
@@ -74,7 +75,7 @@ public class RenderInfectedCrystallizedArrow extends Render<EntityInfectedCrysta
         {
             GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.glNormal3f(0.0F, 0.0F, f8);
-            worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+            worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
             worldrenderer.pos(-8.0D, -2.0D, 0.0D).tex(f, f2).endVertex();
             worldrenderer.pos(8.0D, -2.0D, 0.0D).tex(f1, f2).endVertex();
             worldrenderer.pos(8.0D, 2.0D, 0.0D).tex(f1, f3).endVertex();

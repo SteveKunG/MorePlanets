@@ -211,7 +211,7 @@ public class BlockShieldGenerator extends BlockAdvancedTileMP implements IDescri
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockShieldGenerator.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
     }
 
     @Override

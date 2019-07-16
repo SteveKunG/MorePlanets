@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.utils.blocks;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -440,6 +440,6 @@ public class BlockVinesMP extends BlockBaseMP implements IShearable
     @Override
     public List<ItemStack> onSheared(ItemStack itemStack, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return Arrays.asList(new ItemStack(this, 1));
+        return Collections.singletonList(new ItemStack(this, 1));
     }
 }

@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.client.particle.ParticleDiggingNoColor;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 import stevekung.mods.stevekunglib.utils.client.RenderUtils;
 
 @SideOnly(Side.CLIENT)
@@ -66,7 +67,7 @@ public class ClientRendererUtils
         for (int j = listQuads.size(); i < j; ++i)
         {
             BakedQuad bakedquad = listQuads.get(i);
-            vertexbuffer.begin(7, DefaultVertexFormats.ITEM);
+            vertexbuffer.begin(GLConstants.QUADS, DefaultVertexFormats.ITEM);
             vertexbuffer.addVertexData(bakedquad.getVertexData());
 
             if (bakedquad.hasTintIndex())

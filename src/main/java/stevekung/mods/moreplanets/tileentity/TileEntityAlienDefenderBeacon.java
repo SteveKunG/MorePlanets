@@ -1,18 +1,13 @@
 package stevekung.mods.moreplanets.tileentity;
 
-import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityAdvancedMP;
 
 public class TileEntityAlienDefenderBeacon extends TileEntityAdvancedMP
 {
-    @NetworkedField(targetSide = Side.CLIENT)
     public int bossCountdown = 1;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean prepareBossSpawn = false;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean creativeSpawn = false;
     public int age = 0;
 

@@ -12,17 +12,17 @@ import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageCluste
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 @SideOnly(Side.CLIENT)
-public class GuiDarkEnergyStorage extends GuiContainerMP
+public class GuiEnergyStorageClusterMP extends GuiContainerMP
 {
-    private static ResourceLocation texture;
+    private static ResourceLocation TEXTURE;
     private final TileEntityEnergyStorageClusterMP tile;
 
-    public GuiDarkEnergyStorage(InventoryPlayer invPlayer, TileEntityEnergyStorageClusterMP tile)
+    public GuiEnergyStorageClusterMP(InventoryPlayer invPlayer, TileEntityEnergyStorageClusterMP tile)
     {
         super(new ContainerEnergyStorageCluster(invPlayer, tile));
         this.tile = tile;
         this.ySize = 171;
-        GuiDarkEnergyStorage.texture = new ResourceLocation("moreplanets:textures/gui/" + tile.containerName + ".png");
+        GuiEnergyStorageClusterMP.TEXTURE = new ResourceLocation("moreplanets:textures/gui/" + tile.containerName + ".png");
     }
 
     @Override
@@ -48,7 +48,7 @@ public class GuiDarkEnergyStorage extends GuiContainerMP
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
-        this.mc.renderEngine.bindTexture(GuiDarkEnergyStorage.texture);
+        this.mc.renderEngine.bindTexture(GuiEnergyStorageClusterMP.TEXTURE);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;

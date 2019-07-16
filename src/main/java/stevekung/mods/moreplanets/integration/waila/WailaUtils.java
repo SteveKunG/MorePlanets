@@ -3,7 +3,7 @@ package stevekung.mods.moreplanets.integration.waila;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
-public class WailaUtil
+public class WailaUtils
 {
     public static String WAILA_CONSTANT = "MorePlanets";
     static IWailaRegistrar register;
@@ -11,8 +11,8 @@ public class WailaUtil
 
     public static void register(Class<?> clazz, boolean nbt, boolean head, boolean body, boolean tail, boolean stack)
     {
-        IWailaRegistrar register = WailaUtil.register;
-        IWailaDataProvider dataProvider = WailaUtil.dataProvider;
+        IWailaRegistrar register = WailaUtils.register;
+        IWailaDataProvider dataProvider = WailaUtils.dataProvider;
 
         if (nbt)
         {
@@ -38,7 +38,7 @@ public class WailaUtil
 
     public static void register(Class<?> clazz, IWailaDataProvider dataProvider, boolean nbt, boolean head, boolean body, boolean tail, boolean stack)
     {
-        IWailaRegistrar register = WailaUtil.register;
+        IWailaRegistrar register = WailaUtils.register;
 
         if (nbt)
         {

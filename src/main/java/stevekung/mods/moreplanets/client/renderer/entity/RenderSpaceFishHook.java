@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.entity.projectile.EntitySpaceFishHook;
 import stevekung.mods.moreplanets.init.MPItems;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
@@ -51,7 +52,7 @@ public class RenderSpaceFishHook extends Render<EntitySpaceFishHook>
                 GlStateManager.enableOutlineMode(this.getTeamColor(entity));
             }
 
-            vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_NORMAL);
+            vertexbuffer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_NORMAL);
             vertexbuffer.pos(-0.5D, -0.5D, 0.0D).tex(0.0625D, 0.1875D).normal(0.0F, 1.0F, 0.0F).endVertex();
             vertexbuffer.pos(0.5D, -0.5D, 0.0D).tex(0.125D, 0.1875D).normal(0.0F, 1.0F, 0.0F).endVertex();
             vertexbuffer.pos(0.5D, 0.5D, 0.0D).tex(0.125D, 0.125D).normal(0.0F, 1.0F, 0.0F).endVertex();

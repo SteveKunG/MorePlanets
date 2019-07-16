@@ -14,10 +14,12 @@ import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class CCLDarkEnergyReceiver extends CCLRenderBase
 {
+    private final TileEntityDarkEnergyReceiver receiver = new TileEntityDarkEnergyReceiver();
+
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        ClientRegistryUtils.renderTESR(new TileEntityDarkEnergyReceiver());
+        ClientRegistryUtils.renderTESR(this.receiver);
     }
 
     @Override

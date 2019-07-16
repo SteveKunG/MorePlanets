@@ -1,8 +1,6 @@
 package stevekung.mods.moreplanets.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntitySpacePortal extends TileEntity
@@ -25,21 +23,9 @@ public class TileEntitySpacePortal extends TileEntity
     }
 
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(this.pos, 1, this.getUpdateTag());
-    }
-
-    @Override
     public NBTTagCompound getUpdateTag()
     {
         return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
-    {
-        this.readFromNBT(packet.getNbtCompound());
     }
 
     public void setDimension(int id)

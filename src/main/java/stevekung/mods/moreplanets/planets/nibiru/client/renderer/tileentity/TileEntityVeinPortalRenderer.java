@@ -15,6 +15,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntityVeinPortal;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<TileEntityVeinPortal>
@@ -64,7 +65,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             double d13 = 1.0D;
             double d14 = -1.0D + d1;
             double d15 = 8 * 8 * 2.5D + d14;
-            worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+            worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
             worldrenderer.pos(x + d4, y + k, z + d5).tex(1.0D, d15).color(f1, f2, f3, 1.0F).endVertex();
             worldrenderer.pos(x + d4, y + i, z + d5).tex(1.0D, d14).color(f1, f2, f3, 1.0F).endVertex();
             worldrenderer.pos(x + d6, y + i, z + d7).tex(0.0D, d14).color(f1, f2, f3, 1.0F).endVertex();
@@ -96,7 +97,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             d11 = 1.0D;
             d12 = -1.0D + d1;
             d13 = 8 * 8 + d12;
-            worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+            worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
             worldrenderer.pos(x + 0.2D, y + k, z + 0.2D).tex(1.0D, d13).color(f1, f2, f3, 0.125F).endVertex();
             worldrenderer.pos(x + 0.2D, y + i, z + 0.2D).tex(1.0D, d12).color(f1, f2, f3, 0.125F).endVertex();
             worldrenderer.pos(x + 0.8D, y + i, z + 0.2D).tex(0.0D, d12).color(f1, f2, f3, 0.125F).endVertex();
@@ -209,7 +210,7 @@ public class TileEntityVeinPortalRenderer extends TileEntitySpecialRenderer<Tile
             GlStateManager.multMatrix(MODELVIEW);
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder worldRenderer = tessellator.getBuffer();
-            worldRenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+            worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_COLOR);
             float f2 = RANDOM.nextFloat() * 0.85F * f5;
             float f3 = RANDOM.nextFloat() * 0.35F * f5;
             float f4 = RANDOM.nextFloat() * 0.2F * f5;

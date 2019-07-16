@@ -47,7 +47,7 @@ import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IInventoryDefaults, ISidedInventory, IFluidHandlerWrapper, IConnector
 {
     private static final int[] SLOTS = new int[108];
-    public NonNullList<ItemStack> inventory = NonNullList.withSize(108, ItemStack.EMPTY);
+    public NonNullList<ItemStack> containingItems = NonNullList.withSize(108, ItemStack.EMPTY);
     @NetworkedField(targetSide = Side.CLIENT)
     public FluidTankGC fluidTank = new FluidTankGC(1000000, this);
     @NetworkedField(targetSide = Side.CLIENT)
@@ -56,7 +56,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     public boolean useHopper = false;
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
-    @NetworkedField(targetSide = Side.CLIENT)
     public int xp = 0;
     @NetworkedField(targetSide = Side.CLIENT)
     public int xpTemp = 0;
@@ -110,8 +109,8 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.inventory);
+        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.containingItems);
 
         if (nbt.hasKey("XpFluid"))
         {
@@ -136,7 +135,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        ItemStackHelper.saveAllItems(nbt, this.inventory);
+        ItemStackHelper.saveAllItems(nbt, this.containingItems);
         nbt.setString("OwnerUUID", this.ownerUUID);
         nbt.setString("CollectMode", this.collectMode);
 
@@ -153,19 +152,19 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     @Override
     public int getSizeInventory()
     {
-        return this.inventory.size();
+        return this.containingItems.size();
     }
 
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        return this.getItems().get(index);
+        return this.containingItems.get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
 
         if (!itemStack.isEmpty())
         {
@@ -177,13 +176,13 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        return ItemStackHelper.getAndRemove(this.getItems(), index);
+        return ItemStackHelper.getAndRemove(this.containingItems, index);
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.getItems().set(index, itemStack);
+        this.containingItems.set(index, itemStack);
 
         if (itemStack.getCount() > this.getInventoryStackLimit())
         {
@@ -261,7 +260,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     @Override
     public boolean isEmpty()
     {
-        for (ItemStack itemStack : this.inventory)
+        for (ItemStack itemStack : this.containingItems)
         {
             if (!itemStack.isEmpty())
             {
@@ -269,11 +268,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
             }
         }
         return true;
-    }
-
-    protected NonNullList<ItemStack> getItems()
-    {
-        return this.inventory;
     }
 
     @Override
@@ -537,7 +531,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
 
     private boolean isFull()
     {
-        for (ItemStack itemStack : this.inventory)
+        for (ItemStack itemStack : this.containingItems)
         {
             if (itemStack.isEmpty() || itemStack.getCount() != itemStack.getMaxStackSize())
             {
@@ -677,7 +671,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
             this.world.playEvent(2001, this.pos, Block.getStateId(iblockstate));
             ItemStack itemStack = new ItemStack(MPBlocks.BLACK_HOLE_STORAGE);
             NBTTagCompound nbt = new NBTTagCompound();
-            ItemStackHelper.saveAllItems(nbt, this.inventory);
+            ItemStackHelper.saveAllItems(nbt, this.containingItems);
             nbt.setBoolean("Disable", this.disableBlackHole);
             nbt.setBoolean("Hopper", this.useHopper);
             nbt.setString("Mode", this.collectMode);

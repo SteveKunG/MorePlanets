@@ -61,8 +61,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @NetworkedField(targetSide = Side.CLIENT)
     public float shieldSize;
     @NetworkedField(targetSide = Side.CLIENT)
-    public float prevShieldSize;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean shouldRender = true;
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean enableShield = true;
@@ -82,7 +80,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public int maxShieldDamage;
     @NetworkedField(targetSide = Side.CLIENT)
     public int shieldChargeCooldown = 1200;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean needCharged;
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
@@ -376,13 +373,13 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        return this.getItems().get(index);
+        return this.containingItems.get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
 
         if (!itemStack.isEmpty())
         {
@@ -394,13 +391,13 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        return ItemStackHelper.getAndRemove(this.getItems(), index);
+        return ItemStackHelper.getAndRemove(this.containingItems, index);
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.getItems().set(index, itemStack);
+        this.containingItems.set(index, itemStack);
 
         if (itemStack.getCount() > this.getInventoryStackLimit())
         {
@@ -420,11 +417,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             }
         }
         return true;
-    }
-
-    protected NonNullList<ItemStack> getItems()
-    {
-        return this.containingItems;
     }
 
     @Override

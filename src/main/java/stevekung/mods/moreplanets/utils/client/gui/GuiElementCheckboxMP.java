@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class GuiElementCheckboxMP extends GuiElementCheckbox
@@ -75,7 +76,7 @@ public class GuiElementCheckboxMP extends GuiElementCheckbox
         float f1 = 0.00390625F;
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder worldRenderer = tessellator.getBuffer();
-        worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        worldRenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
         worldRenderer.pos(x + 0, y + height, this.zLevel).tex((textureX + 0) * f, (textureY + this.texHeight) * f1).endVertex();
         worldRenderer.pos(x + width, y + height, this.zLevel).tex((textureX + this.texWidth) * f, (textureY + this.texHeight) * f1).endVertex();
         worldRenderer.pos(x + width, y + 0, this.zLevel).tex((textureX + this.texWidth) * f, (textureY + 0) * f1).endVertex();

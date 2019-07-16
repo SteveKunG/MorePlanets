@@ -44,15 +44,7 @@ public abstract class GuiContainerMP extends GuiContainer
         }
     }
 
-    protected void renderInfo(int mouseX, int mouseY)
-    {
-        this.infoRegions.forEach(info ->
-        {
-            info.drawRegion(mouseX, mouseY);
-        });
-    }
-
-    public int getTooltipOffset(int mouseX, int mouseY)
+    protected int getTooltipOffset(int mouseX, int mouseY)
     {
         for (Slot slot : this.inventorySlots.inventorySlots)
         {
@@ -74,5 +66,10 @@ public abstract class GuiContainerMP extends GuiContainer
             }
         }
         return 0;
+    }
+
+    protected void renderInfo(int mouseX, int mouseY)
+    {
+        this.infoRegions.forEach(info -> info.drawRegion(mouseX, mouseY));
     }
 }

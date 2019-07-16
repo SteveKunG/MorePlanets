@@ -15,11 +15,13 @@ import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class CCLJuicerEgg extends CCLRenderBase
 {
+    private final TileEntityJuicerEgg egg = new TileEntityJuicerEgg();
+
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
         TileEntityJuicerEggRenderer.renderItem(type, false);
-        ClientRegistryUtils.renderTESR(new TileEntityJuicerEgg());
+        ClientRegistryUtils.renderTESR(this.egg);
     }
 
     @Override

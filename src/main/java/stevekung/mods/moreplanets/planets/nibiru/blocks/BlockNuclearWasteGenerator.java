@@ -107,7 +107,7 @@ public class BlockNuclearWasteGenerator extends BlockTileMP implements IDescript
     @Override
     public ItemDescription getDescription()
     {
-        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(BlockNuclearWasteGenerator.this.getUnlocalizedName() + ".description"));
+        return (itemStack, list) -> list.addAll(BlocksItemsRegistry.getDescription(this.getUnlocalizedName() + ".description"));
     }
 
     @Override

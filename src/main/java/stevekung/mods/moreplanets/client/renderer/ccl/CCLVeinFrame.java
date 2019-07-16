@@ -8,10 +8,12 @@ import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class CCLVeinFrame extends CCLRenderBase
 {
+    private final TileEntityVeinFrame frame = new TileEntityVeinFrame();
+
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        ClientRegistryUtils.renderTESR(new TileEntityVeinFrame());
+        ClientRegistryUtils.renderTESR(this.frame);
         GlStateManager.enableBlend();
     }
 }

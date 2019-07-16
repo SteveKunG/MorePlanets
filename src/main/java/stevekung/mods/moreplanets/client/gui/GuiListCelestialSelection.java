@@ -15,13 +15,14 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class GuiListCelestialSelection extends GuiListExtended
 {
     private final GuiCelestialSelection selection;
     private final List<GuiListCelestialSelectionEntry> entries = new ArrayList<>();
-    public List<CelestialBody> listCelestial;
+    public final List<CelestialBody> listCelestial;
     private int selectedId = -1;
 
     public GuiListCelestialSelection(GuiCelestialSelection gui, List<CelestialBody> listCelestial, int width, int height, int top, int bottom, int slotHeight)
@@ -115,7 +116,7 @@ public class GuiListCelestialSelection extends GuiListExtended
                 int right = this.left + this.width / 2 - 230 + this.getListWidth() / 2;
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 GlStateManager.disableTexture2D();
-                bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                bufferbuilder.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
                 bufferbuilder.pos(left, k + l + 2, 0.0D).tex(0.0D, 1.0D).color(128, 128, 128, 255).endVertex();
                 bufferbuilder.pos(right, k + l + 2, 0.0D).tex(1.0D, 1.0D).color(128, 128, 128, 255).endVertex();
                 bufferbuilder.pos(right, k - 2, 0.0D).tex(1.0D, 0.0D).color(128, 128, 128, 255).endVertex();

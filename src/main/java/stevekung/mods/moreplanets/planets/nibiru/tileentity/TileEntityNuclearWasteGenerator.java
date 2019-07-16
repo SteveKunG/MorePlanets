@@ -45,8 +45,8 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     public boolean missingWaste;
     private int alertTick;
     public static final Map<BlockPos, IBlockState> multiBlockLists = new HashMap<>();
-    public List<BlockPos> multiTileClientLists = new ArrayList<>();
-    public Map<BlockPos, IBlockState> multiBlockClientLists = new HashMap<>();
+    public final List<BlockPos> multiTileClientLists = new ArrayList<>();
+    public final Map<BlockPos, IBlockState> multiBlockClientLists = new HashMap<>();
     public boolean initMultiBlock;
 
     static
@@ -110,29 +110,8 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
         {
             ClientEventHandler.wasteRenderPos.forEach(renderPos ->
             {
-                if (this.pos.equals(renderPos))
-                {
-                    for (Iterator<Map.Entry<BlockPos, IBlockState>> iterator = this.multiBlockClientLists.entrySet().iterator(); iterator.hasNext();)
-                    {
-                        Map.Entry<BlockPos, IBlockState> entry = iterator.next();
-                        BlockPos pos = entry.getKey();
-                        IBlockState state = entry.getValue();
-
-                        if (this.world.getBlockState(this.pos.add(pos)) == state)
-                        {
-                            iterator.remove();
-                        }
-                    }
-                    for (Iterator<BlockPos> iterator = this.multiTileClientLists.iterator(); iterator.hasNext();)
-                    {
-                        BlockPos pos = iterator.next();
-
-                        if (this.world.isRemote && this.world.getTileEntity(this.pos.add(pos)) != null && this.world.getTileEntity(this.pos.add(pos)).getClass().equals(TileEntityNuclearWasteTank.class))
-                        {
-                            iterator.remove();
-                        }
-                    }
-                }
+                this.multiBlockClientLists.entrySet().removeIf(entry -> this.pos.equals(renderPos) && this.world.getBlockState(this.pos.add(entry.getKey())) == entry.getValue());
+                this.multiTileClientLists.removeIf(pos -> this.pos.equals(renderPos) && this.world.isRemote && this.world.getTileEntity(this.pos.add(pos)) != null && this.world.getTileEntity(this.pos.add(pos)).getClass().equals(TileEntityNuclearWasteTank.class));
             });
         }
 
@@ -148,12 +127,9 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
                     {
                         for (int z = -1; z < 2; z++)
                         {
-                            if (this.getWaste(this.getPos().add(x, -1, z)))
+                            if (this.world.rand.nextInt(5000000) == 0 && this.getWaste(this.getPos().add(x, -1, z)))
                             {
-                                if (this.world.rand.nextInt(5000000) == 0)
-                                {
-                                    this.world.setBlockState(this.getPos().add(x, -1, z), Blocks.OBSIDIAN.getDefaultState());
-                                }
+                                this.world.setBlockState(this.getPos().add(x, -1, z), Blocks.OBSIDIAN.getDefaultState());
                             }
                         }
                     }
@@ -189,24 +165,10 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
                     }
                 }
 
-                if (!(this.getWaste(this.getPos().add(1, -1, 0)) && this.getWaste(this.getPos().add(-1, -1, 0)) && this.getWaste(this.getPos().add(0, -1, 1)) && this.getWaste(this.getPos().add(0, -1, -1)) && this.getWaste(this.getPos().add(1, -1, 1)) && this.getWaste(this.getPos().add(-1, -1, 1)) && this.getWaste(this.getPos().add(-1, -1, -1)) && this.getWaste(this.getPos().add(1, -1, -1))))
-                {
-                    this.missingWaste = true;
-                }
-                else
-                {
-                    this.missingWaste = false;
-                }
-                if (!(this.getTank(this.getPos().add(3, 0, 0)) && this.getTank(this.getPos().add(-3, 0, 0)) && this.getTank(this.getPos().add(0, 0, 3)) && this.getTank(this.getPos().add(0, 0, -3)) && this.getTank(this.getPos().add(2, 0, 2)) && this.getTank(this.getPos().add(-2, 0, 2)) && this.getTank(this.getPos().add(2, 0, -2)) && this.getTank(this.getPos().add(-2, 0, -2))))
-                {
-                    this.missingTank = true;
-                }
-                else
-                {
-                    this.missingTank = false;
-                }
+                this.missingWaste = !this.hasValidWaste();
+                this.missingTank = !this.hasValidTank();
 
-                if (this.getWaste(this.getPos().add(1, -1, 0)) && this.getWaste(this.getPos().add(-1, -1, 0)) && this.getWaste(this.getPos().add(0, -1, 1)) && this.getWaste(this.getPos().add(0, -1, -1)) && this.getWaste(this.getPos().add(1, -1, 1)) && this.getWaste(this.getPos().add(-1, -1, 1)) && this.getWaste(this.getPos().add(-1, -1, -1)) && this.getWaste(this.getPos().add(1, -1, -1)) && this.getTank(this.getPos().add(3, 0, 0)) && this.getTank(this.getPos().add(-3, 0, 0)) && this.getTank(this.getPos().add(0, 0, 3)) && this.getTank(this.getPos().add(0, 0, -3)) && this.getTank(this.getPos().add(2, 0, 2)) && this.getTank(this.getPos().add(-2, 0, 2)) && this.getTank(this.getPos().add(2, 0, -2)) && this.getTank(this.getPos().add(-2, 0, -2)))
+                if (this.hasValidSource())
                 {
                     this.generateTick = Math.min(this.generateTick + Math.max(this.generateTick * 0.005F, 1.0F), this.maxGenerate);
                 }
@@ -245,35 +207,6 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
         nbt.setBoolean("MissingWaste", this.missingWaste);
         ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
-    }
-
-    private boolean getWaste(BlockPos pos)
-    {
-        if (this.world.getBlockState(pos) == MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private boolean getTank(BlockPos pos)
-    {
-        if (this.world.getBlockState(pos) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState())
-        {
-            return this.world.getTileEntity(pos) instanceof TileEntityNuclearWasteTank && ((TileEntityNuclearWasteTank)this.world.getTileEntity(pos)).hasRod;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public int getScaledElecticalLevel(int i)
-    {
-        return (int) Math.floor(this.getEnergyStoredGC() * i / this.getMaxEnergyStoredGC());
     }
 
     @Override
@@ -341,13 +274,13 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        return this.getItems().get(index);
+        return this.containingItems.get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
 
         if (!itemStack.isEmpty())
         {
@@ -359,13 +292,13 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        return ItemStackHelper.getAndRemove(this.getItems(), index);
+        return ItemStackHelper.getAndRemove(this.containingItems, index);
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.getItems().set(index, itemStack);
+        this.containingItems.set(index, itemStack);
 
         if (itemStack.getCount() > this.getInventoryStackLimit())
         {
@@ -429,9 +362,9 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
         return true;
     }
 
-    protected NonNullList<ItemStack> getItems()
+    public int getScaledElecticalLevel(int i)
     {
-        return this.containingItems;
+        return (int) Math.floor(this.getEnergyStoredGC() * i / this.getMaxEnergyStoredGC());
     }
 
     public String getStatus()
@@ -457,5 +390,34 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
             return TextFormatting.DARK_GREEN + LangUtils.translate("gui.status.collectingenergy.name");
         }
         return TextFormatting.DARK_RED + LangUtils.translate("gui.status.no_waste_sources.name");
+    }
+
+    private boolean hasValidSource()
+    {
+        return this.hasValidWaste() && this.hasValidTank();
+    }
+
+    private boolean hasValidTank()
+    {
+        return this.getTank(this.getPos().add(3, 0, 0)) && this.getTank(this.getPos().add(-3, 0, 0)) && this.getTank(this.getPos().add(0, 0, 3)) && this.getTank(this.getPos().add(0, 0, -3)) && this.getTank(this.getPos().add(2, 0, 2)) && this.getTank(this.getPos().add(-2, 0, 2)) && this.getTank(this.getPos().add(2, 0, -2)) && this.getTank(this.getPos().add(-2, 0, -2));
+    }
+
+    private boolean hasValidWaste()
+    {
+        return this.getWaste(this.getPos().add(1, -1, 0)) && this.getWaste(this.getPos().add(-1, -1, 0)) && this.getWaste(this.getPos().add(0, -1, 1)) && this.getWaste(this.getPos().add(0, -1, -1)) && this.getWaste(this.getPos().add(1, -1, 1)) && this.getWaste(this.getPos().add(-1, -1, 1)) && this.getWaste(this.getPos().add(-1, -1, -1)) && this.getWaste(this.getPos().add(1, -1, -1));
+    }
+
+    private boolean getWaste(BlockPos pos)
+    {
+        return this.world.getBlockState(pos) == MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK.getDefaultState();
+    }
+
+    private boolean getTank(BlockPos pos)
+    {
+        if (this.world.getBlockState(pos) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState())
+        {
+            return this.world.getTileEntity(pos) instanceof TileEntityNuclearWasteTank && ((TileEntityNuclearWasteTank)this.world.getTileEntity(pos)).hasRod;
+        }
+        return false;
     }
 }

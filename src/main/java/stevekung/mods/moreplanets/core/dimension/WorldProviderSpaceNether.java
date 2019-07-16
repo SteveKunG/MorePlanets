@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.core.dimension;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
@@ -127,7 +127,7 @@ public class WorldProviderSpaceNether extends WorldProviderMP
     @Override
     public List<Block> getSurfaceBlocks()
     {
-        return Arrays.asList(Blocks.NETHERRACK);
+        return Collections.singletonList(Blocks.NETHERRACK);
     }
 
     @Override

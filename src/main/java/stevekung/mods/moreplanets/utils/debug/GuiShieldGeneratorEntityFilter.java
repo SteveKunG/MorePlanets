@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.utils.debug;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
@@ -61,9 +62,9 @@ public class GuiShieldGeneratorEntityFilter extends GuiContainerMP
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 77, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 60, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.shield_visible.desc")), this.width, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 80, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield.desc")), this.width, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 100, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 60, y + 70, 13, 13, Collections.singletonList(LangUtils.translate("gui.shield_visible.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 80, y + 70, 13, 13, Collections.singletonList(LangUtils.translate("gui.enable_shield.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 100, y + 70, 13, 13, Collections.singletonList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this));
         this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.back.name")));
         this.buttonList.add(this.buttonAdd = new GuiButton(1, this.width / 2 - 160, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.add.name")));
         this.buttonAdd.enabled = false;

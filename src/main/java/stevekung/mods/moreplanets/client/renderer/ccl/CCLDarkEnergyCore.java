@@ -14,10 +14,12 @@ import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class CCLDarkEnergyCore extends CCLRenderBase
 {
+    private final TileEntityDarkEnergyCore core = new TileEntityDarkEnergyCore();
+
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        ClientRegistryUtils.renderTESR(new TileEntityDarkEnergyCore());
+        ClientRegistryUtils.renderTESR(this.core);
     }
 
     @Override

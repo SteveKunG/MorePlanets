@@ -4,7 +4,6 @@ import com.google.common.base.Function;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +20,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.internal.FMLMessage.EntitySpawnMessage;
+import net.minecraftforge.fml.common.network.internal.FMLMessage;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry.EntityRegistration;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
@@ -119,10 +118,11 @@ public class ClientProxyMP extends ServerProxyMP
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/crystallized_lava");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/alien_berry_leaves_spark");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/crystallized_flame");
-        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_0");
-        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_1");
-        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_2");
-        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_3");
+
+        for (int i = 0; i <= 3; i++)
+        {
+            MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_" + i);
+        }
     }
 
     @SubscribeEvent
@@ -163,7 +163,6 @@ public class ClientProxyMP extends ServerProxyMP
     @Override
     public void spawnParticle(EnumParticleTypesMP type, double x, double y, double z, double motionX, double motionY, double motionZ, Object[] data)
     {
-        Particle particle = null;
         Minecraft mc = Minecraft.getMinecraft();
 
         if (mc.getRenderViewEntity() != null && mc.effectRenderer != null && mc.world != null)
@@ -189,84 +188,79 @@ public class ClientProxyMP extends ServerProxyMP
 
             if (type == EnumParticleTypesMP.CRYSTALLIZED_FLAME)
             {
-                particle = new ParticleCrystallizedFlame(mc.world, x, y, z);
+                mc.effectRenderer.addEffect(new ParticleCrystallizedFlame(mc.world, x, y, z));
             }
             else if (type == EnumParticleTypesMP.CHEESE_MILK_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(255, 236, 182, 210), false);
+                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(255, 236, 182, 210), false));
             }
             else if (type == EnumParticleTypesMP.INFECTED_SPORE)
             {
-                particle = new ParticleInfectedSpore(mc.world, x, y, z, motionX, motionY, motionZ);
+                mc.effectRenderer.addEffect(new ParticleInfectedSpore(mc.world, x, y, z, motionX, motionY, motionZ));
             }
             else if (type == EnumParticleTypesMP.ALIEN_MINER_SPARK)
             {
-                particle = new ParticleAlienMinerSpark(mc.world, x, y, z, (float) data[0]);
+                mc.effectRenderer.addEffect(new ParticleAlienMinerSpark(mc.world, x, y, z, (float) data[0]));
             }
             else if (type == EnumParticleTypesMP.INFECTED_GUARDIAN_APPEARANCE)
             {
-                particle = new ParticleInfectedGuardianAppearance(mc.world, x, y, z);
+                mc.effectRenderer.addEffect(new ParticleInfectedGuardianAppearance(mc.world, x, y, z));
             }
             else if (type == EnumParticleTypesMP.DARK_PORTAL)
             {
-                particle = new ParticleDarkPortal(mc.world, x, y, z, motionX, motionY, motionZ);
+                mc.effectRenderer.addEffect(new ParticleDarkPortal(mc.world, x, y, z, motionX, motionY, motionZ));
             }
             else if (type == EnumParticleTypesMP.ALIEN_BERRY_LEAVES_SPARK)
             {
-                particle = new ParticleAlienBerryLeavesSpark(mc.world, x, y, z);
+                mc.effectRenderer.addEffect(new ParticleAlienBerryLeavesSpark(mc.world, x, y, z));
             }
             else if (type == EnumParticleTypesMP.CUSTOM_BREAKING)
             {
-                particle = new ParticleBreakingMC(mc.world, x, y, z, (Item) data[0]);
+                mc.effectRenderer.addEffect(new ParticleBreakingMC(mc.world, x, y, z, (Item) data[0]));
             }
             else if (type == EnumParticleTypesMP.CUSTOM_BREAKING_MOTION)
             {
-                particle = new ParticleBreakingMC(mc.world, x, y, z, motionX, motionY, motionZ, (Item) data[0]);
+                mc.effectRenderer.addEffect(new ParticleBreakingMC(mc.world, x, y, z, motionX, motionY, motionZ, (Item) data[0]));
             }
             else if (type == EnumParticleTypesMP.INFECTED_WATER_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 51, 31, 204), false);
+                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 51, 31, 204), false));
             }
             else if (type == EnumParticleTypesMP.CRYSTALLIZED_WATER_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 102, 194, 150), false);
+                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 102, 194, 150), false));
             }
             else if (type == EnumParticleTypesMP.CRYSTALLIZED_LAVA_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(153, 127, 204, 255), true);
+                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(153, 127, 204, 255), true));
             }
             else if (type == EnumParticleTypesMP.CRYSTALLIZED_LAVA)
             {
-                particle = new ParticleLavaMC(mc.world, x, y, z, "crystallized_lava");
+                mc.effectRenderer.addEffect(new ParticleLavaMC(mc.world, x, y, z, "crystallized_lava"));
             }
             else if (type == EnumParticleTypesMP.NUCLEAR_WASTE_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(145, 242, 88, 255), true);
+                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(145, 242, 88, 255), true));
             }
             else if (type == EnumParticleTypesMP.PURIFY_WATER_DRIP)
             {
-                particle = new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(147, 209, 255, 130), false);
+                mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(147, 209, 255, 130), false));
             }
             else if (type == EnumParticleTypesMP.KOENTUS_METEOR_SMOKE)
             {
-                particle = new ParticleKoentusMeteor(mc.world, x, y, z);
+                mc.effectRenderer.addEffect(new ParticleKoentusMeteor(mc.world, x, y, z));
             }
             else if (type == EnumParticleTypesMP.CUSTOM_FALLING_DUST)
             {
-                particle = new ParticleFallingDustMP(mc.world, x, y, z, (int) data[0]);
+                mc.effectRenderer.addEffect(new ParticleFallingDustMP(mc.world, x, y, z, (int) data[0]));
             }
             else if (type == EnumParticleTypesMP.GRAVITY_HARVESTER)
             {
-                particle = new ParticleGravityHarvester(mc.world, x, y, z, (boolean) data[0]);
+                mc.effectRenderer.addEffect(new ParticleGravityHarvester(mc.world, x, y, z, (boolean) data[0]));
             }
             else if (type == EnumParticleTypesMP.INFECTED_RAIN)
             {
-                particle = new ParticleInfectedRain(mc.world, x, y, z);
-            }
-
-            if (particle != null)
-            {
-                mc.effectRenderer.addEffect(particle);
+                mc.effectRenderer.addEffect(new ParticleInfectedRain(mc.world, x, y, z));
             }
         }
     }
@@ -288,7 +282,7 @@ public class ClientProxyMP extends ServerProxyMP
         WorldClient world = FMLClientHandler.instance().getWorldClient();
         EntityRegistration entityRegistration = EntityRegistry.instance().lookupModSpawn(EntitySpaceFishHook.class, false);
 
-        Function<EntitySpawnMessage, Entity> handler = input ->
+        Function<FMLMessage.EntitySpawnMessage, Entity> handler = input ->
         {
             int entityID = 0;
             double posX = 0;
@@ -297,10 +291,10 @@ public class ClientProxyMP extends ServerProxyMP
 
             try
             {
-                entityID = ReflectionHelper.findField(EntitySpawnMessage.class, "throwerId").getInt(input);
-                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
-                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
-                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
+                entityID = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "throwerId", null).getInt(input);
+                posX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX", null).getDouble(input);
+                posY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY", null).getDouble(input);
+                posZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ", null).getDouble(input);
             }
             catch (Exception e)
             {
@@ -330,12 +324,12 @@ public class ClientProxyMP extends ServerProxyMP
 
             try
             {
-                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
-                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
-                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
-                speedScaledX = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledX").getDouble(input);
-                speedScaledY = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledY").getDouble(input);
-                speedScaledZ = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
+                posX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX", null).getDouble(input);
+                posY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY", null).getDouble(input);
+                posZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ", null).getDouble(input);
+                speedScaledX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledX", null).getDouble(input);
+                speedScaledY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledY", null).getDouble(input);
+                speedScaledZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledZ", null).getDouble(input);
             }
             catch (Exception e)
             {
@@ -358,12 +352,12 @@ public class ClientProxyMP extends ServerProxyMP
 
             try
             {
-                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
-                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
-                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
-                speedScaledX = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledX").getDouble(input);
-                speedScaledY = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledY").getDouble(input);
-                speedScaledZ = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
+                posX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX", null).getDouble(input);
+                posY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY", null).getDouble(input);
+                posZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ", null).getDouble(input);
+                speedScaledX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledX", null).getDouble(input);
+                speedScaledY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledY", null).getDouble(input);
+                speedScaledZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledZ", null).getDouble(input);
             }
             catch (Exception e)
             {
@@ -386,12 +380,12 @@ public class ClientProxyMP extends ServerProxyMP
 
             try
             {
-                posX = ReflectionHelper.findField(EntitySpawnMessage.class, "rawX").getDouble(input);
-                posY = ReflectionHelper.findField(EntitySpawnMessage.class, "rawY").getDouble(input);
-                posZ = ReflectionHelper.findField(EntitySpawnMessage.class, "rawZ").getDouble(input);
-                speedScaledX = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledX").getDouble(input);
-                speedScaledY = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledY").getDouble(input);
-                speedScaledZ = ReflectionHelper.findField(EntitySpawnMessage.class, "speedScaledZ").getDouble(input);
+                posX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawX", null).getDouble(input);
+                posY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawY", null).getDouble(input);
+                posZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "rawZ", null).getDouble(input);
+                speedScaledX = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledX", null).getDouble(input);
+                speedScaledY = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledY", null).getDouble(input);
+                speedScaledZ = ReflectionHelper.findField(FMLMessage.EntitySpawnMessage.class, "speedScaledZ", null).getDouble(input);
             }
             catch (Exception e)
             {

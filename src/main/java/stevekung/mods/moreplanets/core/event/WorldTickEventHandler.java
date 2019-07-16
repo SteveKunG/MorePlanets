@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.core.event;
 
-import java.util.Random;
-
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -27,7 +25,6 @@ import stevekung.mods.stevekunglib.utils.event.WeatherTickEvent;
 
 public class WorldTickEventHandler
 {
-    private int updateLCG = new Random().nextInt();
     public static WorldDataSurvivalPlanet survivalPlanetData = null;
 
     @SubscribeEvent
@@ -47,8 +44,6 @@ public class WorldTickEventHandler
     {
         World world = event.getWorld();
         BlockPos pos = event.getStrikePos();
-        this.updateLCG = this.updateLCG * 3 + 1013904223;
-        int l = this.updateLCG >> 2;
 
         if (DimensionManager.getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionDiona) != null)
         {

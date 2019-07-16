@@ -18,8 +18,8 @@ public class HUDHandlerFurnaceMP implements IWailaDataProvider
 {
     public static void register(IWailaRegistrar register)
     {
-        register.addConfig(WailaUtil.WAILA_CONSTANT, "vanilla.furnacedisplay", true);
-        WailaUtil.register(TileEntityFurnaceMP.class, new HUDHandlerFurnaceMP(), true, false, true, false, false);
+        register.addConfig(WailaUtils.WAILA_CONSTANT, "vanilla.furnacedisplay", true);
+        WailaUtils.register(TileEntityFurnaceMP.class, new HUDHandlerFurnaceMP(), true, false, true, false, false);
     }
 
     @Override

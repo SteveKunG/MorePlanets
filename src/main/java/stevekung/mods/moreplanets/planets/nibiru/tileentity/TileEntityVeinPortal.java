@@ -7,8 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -45,30 +43,6 @@ public class TileEntityVeinPortal extends TileEntityRenderTickable
         nbt.setBoolean("SpawnedBoss", this.spawnedBoss);
         nbt.setInteger("DelayToTeleport", this.delayToTeleport);
         return nbt;
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setLong("Age", this.age);
-        nbt.setBoolean("Middle", this.isMiddle);
-        nbt.setBoolean("SpawnedBoss", this.spawnedBoss);
-        nbt.setInteger("DelayToTeleport", this.delayToTeleport);
-        return new SPacketUpdateTileEntity(this.pos, -1, nbt);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        if (pkt.getTileEntityType() == -1)
-        {
-            NBTTagCompound nbt = pkt.getNbtCompound();
-            this.age = nbt.getLong("Age");
-            this.isMiddle = nbt.getBoolean("Middle");
-            this.spawnedBoss = nbt.getBoolean("SpawnedBoss");
-            this.delayToTeleport = nbt.getInteger("DelayToTeleport");
-        }
     }
 
     @Override

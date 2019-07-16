@@ -16,8 +16,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -37,10 +35,9 @@ import stevekung.mods.moreplanets.tileentity.TileEntityDummy;
 
 public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMultiBlock, IFluidHandlerWrapper
 {
+    @NetworkedField(targetSide = Side.CLIENT)
     public int renderTicks;
-    @NetworkedField(targetSide = Side.CLIENT)
     public int rodCreateTime = 0;
-    @NetworkedField(targetSide = Side.CLIENT)
     public int time = 0;
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean hasRod = true;
@@ -74,34 +71,6 @@ public class TileEntityNuclearWasteTank extends TileEntityDummy implements IMult
             nbt.setTag("FluidTank", this.fluidTank.writeToNBT(new NBTTagCompound()));
         }
         return nbt;
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger("RodCreateTime", this.rodCreateTime);
-        nbt.setInteger("Time", this.time);
-        nbt.setBoolean("HasRod", this.hasRod);
-        nbt.setBoolean("CreateRod", this.createRod);
-
-        if (this.fluidTank.getFluid() != null)
-        {
-            nbt.setTag("FluidTank", this.fluidTank.writeToNBT(new NBTTagCompound()));
-        }
-        SPacketUpdateTileEntity tileUpdate = new SPacketUpdateTileEntity(this.getPos(), -1, nbt);
-        return tileUpdate;
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        NBTTagCompound nbt = pkt.getNbtCompound();
-        this.rodCreateTime = nbt.getInteger("RodCreateTime");
-        this.time = nbt.getInteger("Time");
-        this.hasRod = nbt.getBoolean("HasRod");
-        this.createRod = nbt.getBoolean("CreateRod");
-        this.fluidTank.readFromNBT(nbt.getCompoundTag("FluidTank"));
     }
 
     @Override

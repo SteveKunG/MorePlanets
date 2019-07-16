@@ -5,20 +5,20 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelDarkEnergyReceiver extends ModelBase
 {
-    private ModelRenderer base;
-    private ModelRenderer core;
-    private ModelRenderer core1;
-    private ModelRenderer core2;
-    private ModelRenderer rod1;
-    private ModelRenderer rod2;
-    private ModelRenderer top;
-    private ModelRenderer trans1;
-    private ModelRenderer trans2;
-    private ModelRenderer trans3;
-    private ModelRenderer control1;
-    private ModelRenderer control2;
-    private ModelRenderer solar1;
-    private ModelRenderer solar2;
+    private final ModelRenderer base;
+    private final ModelRenderer core;
+    private final ModelRenderer core1;
+    private final ModelRenderer core2;
+    private final ModelRenderer rod1;
+    private final ModelRenderer rod2;
+    private final ModelRenderer top;
+    private final ModelRenderer trans1;
+    private final ModelRenderer trans2;
+    private final ModelRenderer trans3;
+    private final ModelRenderer control1;
+    private final ModelRenderer control2;
+    private final ModelRenderer solar1;
+    private final ModelRenderer solar2;
 
     public ModelDarkEnergyReceiver()
     {

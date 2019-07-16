@@ -76,15 +76,11 @@ public class MorePlanetsJEIPlugin implements IModPlugin
 
         Map<ItemStack, ItemStack> spaceFishingRod = new HashMap<>();
         spaceFishingRod.put(new ItemStack(MPItems.SPACE_FISHING_ROD), new ItemStack(MarsItems.marsItemBasic, 1, 5));
-        ItemStack stack = spaceFishingRod.values().iterator().next();
-        list = new ArrayList<>(spaceFishingRod.keySet());
-        JEIRegistryHelper.registerAnvilRecipe(stack, list);
+        JEIRegistryHelper.registerAnvilRecipe(spaceFishingRod.values().iterator().next().getItem(), new ArrayList<>(spaceFishingRod.keySet()));
 
         Map<ItemStack, ItemStack> spaceBow = new HashMap<>();
         spaceBow.put(new ItemStack(MPItems.SPACE_BOW), new ItemStack(MarsItems.marsItemBasic, 1, 5));
-        stack = spaceBow.values().iterator().next();
-        list = new ArrayList<>(spaceBow.keySet());
-        JEIRegistryHelper.registerAnvilRecipe(stack, list);
+        JEIRegistryHelper.registerAnvilRecipe(spaceBow.values().iterator().next().getItem(), new ArrayList<>(spaceBow.keySet()));
     }
 
     @Override

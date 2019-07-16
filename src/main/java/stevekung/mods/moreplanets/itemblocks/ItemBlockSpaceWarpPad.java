@@ -36,7 +36,7 @@ public class ItemBlockSpaceWarpPad extends ItemBlockMP
             }
             else
             {
-                list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(75 * 20)));
+                list.add(TextFormatting.GREEN + LangUtils.translate("item_desc.powerdraw.name", EnergyDisplayHelper.getEnergyDisplayS(1500)));
                 list.add(LangUtils.translate("desc.shift_info.name"));
             }
         }

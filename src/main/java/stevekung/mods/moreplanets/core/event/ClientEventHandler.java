@@ -107,20 +107,8 @@ public class ClientEventHandler
                     if (tile != null && tile instanceof TileEntityDarkEnergyReceiver)
                     {
                         TileEntityDarkEnergyReceiver der = (TileEntityDarkEnergyReceiver) tile;
-
-                        der.multiBlockClientLists.entrySet().forEach(entry ->
-                        {
-                            BlockPos pos = entry.getKey();
-                            IBlockState state = entry.getValue();
-                            MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state);
-
-                        });
-                        der.multiTileClientLists.entrySet().forEach(entry ->
-                        {
-                            BlockPos pos = entry.getKey();
-                            TileEntity tile2 = entry.getValue();
-                            MultiblockRendererUtils.renderTile(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, tile2);
-                        });
+                        der.multiBlockClientLists.forEach((pos, state) -> MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state));
+                        der.multiTileClientLists.forEach((pos, tile2) -> MultiblockRendererUtils.renderTile(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, tile2));
                     }
                 });
                 GlStateManager.popMatrix();
@@ -136,18 +124,8 @@ public class ClientEventHandler
                     if (tile != null && tile instanceof TileEntityNuclearWasteGenerator)
                     {
                         TileEntityNuclearWasteGenerator generator = (TileEntityNuclearWasteGenerator) tile;
-
-                        generator.multiBlockClientLists.entrySet().forEach(entry ->
-                        {
-                            BlockPos pos = entry.getKey();
-                            IBlockState state = entry.getValue();
-                            MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state);
-
-                        });
-                        generator.multiTileClientLists.forEach(pos ->
-                        {
-                            MultiblockRendererUtils.renderTankTile(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos);
-                        });
+                        generator.multiBlockClientLists.forEach((pos, state) -> MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state));
+                        generator.multiTileClientLists.forEach(pos -> MultiblockRendererUtils.renderTankTile(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos));
                     }
                     GlStateManager.popMatrix();
                 });
@@ -224,16 +202,7 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onPlayerTick(PlayerTickEvent event)
     {
-        EntityPlayer player = event.player;
-
-        if (player != null)
-        {
-            // prevent rare NPE
-            if (this.mc.player == player)
-            {
-                this.runAlienBeamTick(player);
-            }
-        }
+        this.runAlienBeamTick(event.player);
     }
 
     @SubscribeEvent
@@ -605,7 +574,7 @@ public class ClientEventHandler
         GlStateManager.pushMatrix();
         float f7 = -this.mc.player.rotationYaw / 64.0F;
         float f8 = this.mc.player.rotationPitch / 64.0F;
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(-1.0D, -1.0D, zoom).tex(4.0F + f7, 4.0F + f8).endVertex();
         worldrenderer.pos(1.0D, -1.0D, zoom).tex(0.0F + f7, 4.0F + f8).endVertex();
         worldrenderer.pos(1.0D, 1.0D, zoom).tex(0.0F + f7, 0.0F + f8).endVertex();

@@ -176,13 +176,13 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        return this.getItems().get(index);
+        return this.containingItems.get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
 
         if (!itemStack.isEmpty())
         {
@@ -194,13 +194,13 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        return ItemStackHelper.getAndRemove(this.getItems(), index);
+        return ItemStackHelper.getAndRemove(this.containingItems, index);
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.getItems().set(index, itemStack);
+        this.containingItems.set(index, itemStack);
 
         if (itemStack.getCount() > this.getInventoryStackLimit())
         {
@@ -253,6 +253,25 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             return itemStack.getItem() == MPItems.SPACE_WARPER_CORE;
         }
         return slotID == 0 && ItemElectricBase.isElectricItem(itemStack.getItem());
+    }
+
+    @Override
+    public EnumBlockMultiType getMultiType()
+    {
+        return null;
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        for (ItemStack itemStack : this.containingItems)
+        {
+            if (!itemStack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public String getGUIStatus()
@@ -363,29 +382,5 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             }
         }
         return result;
-    }
-
-    @Override
-    public EnumBlockMultiType getMultiType()
-    {
-        return null;
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.containingItems)
-        {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    protected NonNullList<ItemStack> getItems()
-    {
-        return this.containingItems;
     }
 }

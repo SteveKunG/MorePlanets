@@ -17,6 +17,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 public class WeatherRendererNibiru extends IRenderHandler
 {
@@ -143,7 +144,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                                 }
                                 j1 = 0;
                                 mc.getTextureManager().bindTexture(WeatherRendererNibiru.RAIN);
-                                buffer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
+                                buffer.begin(GLConstants.QUADS, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
                             }
                             double d5 = ((double)(rendererUpdateCount + l1 * l1 * 3121 + l1 * 45238971 + k1 * k1 * 418711 + k1 * 13761 & 31) + (double)partialTicks) / 32.0D * (3.0D + this.rand.nextDouble());
                             double d6 = l1 + 0.5F - entity.posX;
@@ -169,7 +170,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                                 }
                                 j1 = 1;
                                 mc.getTextureManager().bindTexture(WeatherRendererNibiru.SNOW);
-                                buffer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
+                                buffer.begin(GLConstants.QUADS, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
                             }
                             double d8 = ((rendererUpdateCount & 511) + partialTicks) / 512.0F;
                             double d9 = this.rand.nextDouble() + f1 * 0.01D * (float)this.rand.nextGaussian();
@@ -283,7 +284,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                                 }
                                 j1 = 0;
                                 mc.getTextureManager().bindTexture(WeatherRendererNibiru.PURIFIED_RAIN);
-                                buffer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
+                                buffer.begin(GLConstants.QUADS, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
                             }
                             double d5 = ((double)(rendererUpdateCount + l1 * l1 * 3121 + l1 * 45238971 + k1 * k1 * 418711 + k1 * 13761 & 31) + (double)partialTicks) / 32.0D * (3.0D + this.rand.nextDouble());
                             double d6 = l1 + 0.5F - entity.posX;
@@ -309,7 +310,7 @@ public class WeatherRendererNibiru extends IRenderHandler
                                 }
                                 j1 = 1;
                                 mc.getTextureManager().bindTexture(WeatherRendererNibiru.PURIFIED_SNOW);
-                                buffer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
+                                buffer.begin(GLConstants.QUADS, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
                             }
                             double d8 = ((rendererUpdateCount & 511) + partialTicks) / 512.0F;
                             double d9 = this.rand.nextDouble() + f1 * 0.01D * (float)this.rand.nextGaussian();

@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.IRenderHandler;
 import stevekung.mods.stevekunglib.client.event.ClientEventHandler;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 public class CloudRendererNibiru extends IRenderHandler
 {
@@ -98,7 +99,7 @@ public class CloudRendererNibiru extends IRenderHandler
                 {
                     for (int i1 = -b1 + 1; i1 <= b1; ++i1)
                     {
-                        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
+                        worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
                         float f14 = l * b0;
                         float f15 = i1 * b0;
                         float f16 = f14 - f11;

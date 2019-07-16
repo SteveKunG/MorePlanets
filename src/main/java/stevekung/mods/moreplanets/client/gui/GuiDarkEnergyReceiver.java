@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.client.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -30,7 +31,7 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 @SideOnly(Side.CLIENT)
 public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCallback
 {
-    private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/dark_energy_receiver.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/dark_energy_receiver.png");
     private final TileEntityDarkEnergyReceiver tile;
     private GuiElementInfoRegionMP electricInfoRegion;
     private GuiButton buttonEnable;
@@ -64,7 +65,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
 
         if (!this.tile.successful && !this.tile.activated)
         {
-            this.infoRegions.add(new GuiElementInfoRegionMP(x + 155, y + 87, 13, 13, Arrays.asList(LangUtils.translate("gui.multiblock_guide.desc")), this.width, this));
+            this.infoRegions.add(new GuiElementInfoRegionMP(x + 155, y + 87, 13, 13, Collections.singletonList(LangUtils.translate("gui.multiblock_guide.desc")), this.width, this));
         }
 
         this.electricInfoRegion = new GuiElementInfoRegionMP(x + 107, y + 31, 56, 9, new ArrayList<>(), this.width, this);
@@ -91,7 +92,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(GuiDarkEnergyReceiver.texture);
+        this.mc.getTextureManager().bindTexture(GuiDarkEnergyReceiver.TEXTURE);
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y + 5, 0, 0, this.xSize, 181);
@@ -106,7 +107,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
         {
             this.drawTexturedModalRect(x + 64, y + 16, 176, 10, 16, 16);
         }
-        List<String> desc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
+        List<String> desc = Collections.singletonList(LangUtils.translate("gui.energy_storage.desc.0"));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), desc);
         this.electricInfoRegion.tooltipStrings = desc;
         this.checkboxRender.isSelected = ClientEventHandler.receiverRenderPos.contains(this.tile.getPos());

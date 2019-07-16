@@ -162,7 +162,13 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
         return new TextComponentTranslation(this.getName());
     }
 
-    protected void fillWithLoot(@Nullable EntityPlayer player)
+    public void setLootTable(ResourceLocation lootTable, long seed)
+    {
+        this.lootTable = lootTable;
+        this.lootTableSeed = seed;
+    }
+
+    private void fillWithLoot(@Nullable EntityPlayer player)
     {
         if (this.lootTable != null)
         {
@@ -189,7 +195,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
         }
     }
 
-    protected boolean checkLootAndRead(NBTTagCompound compound)
+    private boolean checkLootAndRead(NBTTagCompound compound)
     {
         if (compound.hasKey("LootTable", 8))
         {
@@ -203,7 +209,7 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
         }
     }
 
-    protected boolean checkLootAndWrite(NBTTagCompound compound)
+    private boolean checkLootAndWrite(NBTTagCompound compound)
     {
         if (this.lootTable != null)
         {
@@ -220,11 +226,5 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
         {
             return false;
         }
-    }
-
-    public void setLootTable(ResourceLocation lootTable, long seed)
-    {
-        this.lootTable = lootTable;
-        this.lootTableSeed = seed;
     }
 }

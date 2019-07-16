@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 import stevekung.mods.stevekunglib.utils.client.RenderUtils;
 
 @SideOnly(Side.CLIENT)
@@ -78,7 +79,7 @@ public class FakeAlienBeamRenderer
         double d14 = -1.0D + d1;
         double d15 = (float)512 * 512 * 2.5D + d14;
         GlStateManager.enableBlend();
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+        worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
         worldrenderer.pos(x + d4, y + k, z + d5).tex(1.0D, d15).color(red, green, blue, alpha).endVertex();
         worldrenderer.pos(x + d4, y, z + d5).tex(1.0D, d14).color(red, green, blue, alpha).endVertex();
         worldrenderer.pos(x + d6, y, z + d7).tex(0.0D, d14).color(red, green, blue, alpha).endVertex();
@@ -110,7 +111,7 @@ public class FakeAlienBeamRenderer
         d11 = 1.0D;
         d12 = -1.0D + d1;
         d13 = (float)512 * 512 + d12;
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+        worldrenderer.begin(GLConstants.QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
         worldrenderer.pos(x + 0.2D, y + k, z + 0.2D).tex(1.0D, d13).color(red, green, blue, 0.125F).endVertex();
         worldrenderer.pos(x + 0.2D, y, z + 0.2D).tex(1.0D, d12).color(red, green, blue, 0.125F).endVertex();
         worldrenderer.pos(x + 0.8D, y, z + 0.2D).tex(0.0D, d12).color(red, green, blue, 0.125F).endVertex();

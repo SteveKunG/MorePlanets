@@ -8,10 +8,12 @@ import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
 
 public class CCLZeliusEgg extends CCLRenderBase
 {
+    private final TileEntityZeliusEgg egg = new TileEntityZeliusEgg();
+
     @Override
     public void renderItem(ItemStack itemStack, ItemCameraTransforms.TransformType type)
     {
-        ClientRegistryUtils.renderTESR(new TileEntityZeliusEgg());
+        ClientRegistryUtils.renderTESR(this.egg);
         GlStateManager.enableBlend();
     }
 }

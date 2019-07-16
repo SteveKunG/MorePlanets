@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.client.gui;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.UUID;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -26,8 +26,8 @@ import stevekung.mods.stevekunglib.utils.LangUtils;
 @SideOnly(Side.CLIENT)
 public class GuiBlackHoleStorage extends GuiContainerMP implements ICheckBoxCallback
 {
-    private static final ResourceLocation texture = new ResourceLocation("moreplanets:textures/gui/black_hole_storage.png");
-    private static final ResourceLocation textureXP = new ResourceLocation("moreplanets:textures/gui/black_hole_storage_xp.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("moreplanets:textures/gui/black_hole_storage.png");
+    private static final ResourceLocation XP_TEXTURE = new ResourceLocation("moreplanets:textures/gui/black_hole_storage_xp.png");
     private GuiElementCheckbox disableBlackHoleCheckbox;
     private GuiElementCheckbox useHopperCheckbox;
     private GuiElementCheckboxMP collectModeCheckbox;
@@ -48,9 +48,9 @@ public class GuiBlackHoleStorage extends GuiContainerMP implements ICheckBoxCall
         super.initGui();
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 178, y + 192, 13, 13, Arrays.asList(LangUtils.translate("gui.disable_black_hole.desc")), this.width, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 198, y + 192, 13, 13, Arrays.asList(LangUtils.translate("gui.use_hopper.desc")), this.width, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 218, y + 192, 13, 13, Arrays.asList(LangUtils.translate("gui.collect_mode.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 178, y + 192, 13, 13, Collections.singletonList(LangUtils.translate("gui.disable_black_hole.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 198, y + 192, 13, 13, Collections.singletonList(LangUtils.translate("gui.use_hopper.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 218, y + 192, 13, 13, Collections.singletonList(LangUtils.translate("gui.collect_mode.desc")), this.width, this));
         this.infoRegions.add(this.xpValueInfo = new GuiElementInfoRegionMP(x + 238, y + 170, 5, 37, null, this.width, this));
         this.disableBlackHoleCheckbox = new GuiElementCheckbox(0, this, x + 178, y + 192, "");
         this.useHopperCheckbox = new GuiElementCheckbox(1, this, x + 198, y + 192, "");
@@ -75,18 +75,18 @@ public class GuiBlackHoleStorage extends GuiContainerMP implements ICheckBoxCall
         String collectMode = this.tile.collectMode.equals("item") ? TextFormatting.AQUA + LangUtils.translate("gui.status.collect_item.name") : this.tile.collectMode.equals("item_and_xp") ? TextFormatting.AQUA + LangUtils.translate("gui.status.collect_item_and_xp.name") : TextFormatting.AQUA + LangUtils.translate("gui.status.collect_xp.name");
         this.fontRenderer.drawString(LangUtils.translate("gui.status.collect_mode.name") + ": " + collectMode, this.xSize - 91 + 8, this.ySize - 86 + 64, 2536735);
 
-        this.xpValueInfo.tooltipStrings = Arrays.asList(LangUtils.translate("gui.xp_value.desc") + ": " + this.tile.xpTemp + "/" + this.tile.getMaxXP());
+        this.xpValueInfo.tooltipStrings = Collections.singletonList(LangUtils.translate("gui.xp_value.desc") + ": " + this.tile.xpTemp + "/" + this.tile.getMaxXP());
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(GuiBlackHoleStorage.texture);
+        this.mc.getTextureManager().bindTexture(GuiBlackHoleStorage.TEXTURE);
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
-        this.mc.getTextureManager().bindTexture(GuiBlackHoleStorage.textureXP);
+        this.mc.getTextureManager().bindTexture(GuiBlackHoleStorage.XP_TEXTURE);
         int level = Math.min((int) Math.floor(this.tile.fluidTank.getFluidAmount() * 37 / this.tile.getMaxXP()), 37);
         this.drawTexturedModalRect(x + 238, y + 170 + 37 - level, 238, 170 - level + 37, 5, level);
         this.disableBlackHoleCheckbox.isSelected = this.tile.disableBlackHole;

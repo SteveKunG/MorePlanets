@@ -116,7 +116,7 @@ public class GeneralEventHandler
         BlockPos pos = event.getPos();
         ItemStack heldItem = event.getItemStack();
 
-        //Skip events triggered from Thaumcraft Golems and other non-players
+        // Skip events triggered from Thaumcraft Golems and other non-players
         if (player == null || pos == null || world == null)
         {
             return;

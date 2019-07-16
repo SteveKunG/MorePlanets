@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.client.gui;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.UUID;
 
 import org.lwjgl.input.Keyboard;
@@ -79,9 +80,9 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 59, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_capacity_upgrade.desc.0"), LangUtils.translate("gui.shield_capacity_upgrade.desc.1")), this.width, this));
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 41, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_size_upgrade.desc.0"), LangUtils.translate("gui.shield_size_upgrade.desc.1")), this.width, this));
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 151, y + 23, 18, 18, Arrays.asList(LangUtils.translate("gui.shield_damage_upgrade.desc.0"), LangUtils.translate("gui.shield_damage_upgrade.desc.1")), this.width, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 60, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.shield_visible.desc")), this.width, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 80, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield.desc")), this.width, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 100, y + 70, 13, 13, Arrays.asList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 60, y + 70, 13, 13, Collections.singletonList(LangUtils.translate("gui.shield_visible.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 80, y + 70, 13, 13, Collections.singletonList(LangUtils.translate("gui.enable_shield.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 100, y + 70, 13, 13, Collections.singletonList(LangUtils.translate("gui.enable_shield_damage.desc")), this.width, this));
         this.checkboxRenderShield = new GuiElementCheckbox(100, this, x + 60, y + 70, "");
         this.checkboxEnableShield = new GuiElementCheckbox(101, this, x + 80, y + 70, "");
         this.checkboxEnableDamage = new GuiElementCheckbox(102, this, x + 100, y + 70, "");

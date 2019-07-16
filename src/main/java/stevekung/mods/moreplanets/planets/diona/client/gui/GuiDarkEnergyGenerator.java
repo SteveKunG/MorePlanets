@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.planets.diona.client.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -94,7 +95,7 @@ public class GuiDarkEnergyGenerator extends GuiContainerMP
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(TEXTURE);
-        List<String> electricityDesc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
+        List<String> electricityDesc = Collections.singletonList(LangUtils.translate("gui.energy_storage.desc.0"));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
         int x = (this.width - this.xSize) / 2;

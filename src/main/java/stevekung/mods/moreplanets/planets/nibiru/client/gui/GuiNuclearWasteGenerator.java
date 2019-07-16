@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.planets.nibiru.client.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -66,7 +67,7 @@ public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBo
         this.electricInfoRegion = new GuiElementInfoRegionMP(x + 46, y + 24, 56, 9, new ArrayList<>(), this.width, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.infoRegions.add(new GuiElementInfoRegionMP(x + 121, y + 19, 18, 18, Arrays.asList(LangUtils.translate("gui.battery_slot.desc.0"), LangUtils.translate("gui.battery_slot.desc.1")), this.width, this));
-        this.infoRegions.add(new GuiElementInfoRegionMP(x + 155, y + 87, 13, 13, Arrays.asList(LangUtils.translate("gui.multiblock_guide.desc")), this.width, this));
+        this.infoRegions.add(new GuiElementInfoRegionMP(x + 155, y + 87, 13, 13, Collections.singletonList(LangUtils.translate("gui.multiblock_guide.desc")), this.width, this));
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 36, this.height / 2 - 19, 72, 20, !this.tile.getDisabled(0) ? LangUtils.translate("gui.button.disable.name") : LangUtils.translate("gui.button.enable.name")));
         this.buttonEnable.enabled = this.tile.disableCooldown == 0;
         this.checkboxRender = new GuiElementCheckbox(1, this, x + 155, y + 87, "");

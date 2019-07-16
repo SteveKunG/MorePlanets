@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.tileentity;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +23,6 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -62,23 +59,18 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public boolean activated;
     @NetworkedField(targetSide = Side.CLIENT)
     public int activatedTick;
-    @NetworkedField(targetSide = Side.CLIENT)
     public int failedTick;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean activatedMessage;
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean successful;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean spawnedBlackHole;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean failed;
-    @NetworkedField(targetSide = Side.CLIENT)
     public boolean rendered;
     public float solarRotate;
     public float rodUp;
     public static final Map<BlockPos, IBlockState> multiBlockLists = new HashMap<>();
-    public Map<BlockPos, TileEntity> multiTileClientLists = new HashMap<>();
-    public Map<BlockPos, IBlockState> multiBlockClientLists = new HashMap<>();
+    public final Map<BlockPos, TileEntity> multiTileClientLists = new HashMap<>();
+    public final Map<BlockPos, IBlockState> multiBlockClientLists = new HashMap<>();
     public boolean initMultiBlock;
 
     static
@@ -168,31 +160,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         {
             ClientEventHandler.receiverRenderPos.forEach(renderPos ->
             {
-                if (this.pos.equals(renderPos))
-                {
-                    for (Iterator<Map.Entry<BlockPos, IBlockState>> iterator = this.multiBlockClientLists.entrySet().iterator(); iterator.hasNext();)
-                    {
-                        Map.Entry<BlockPos, IBlockState> entry = iterator.next();
-                        BlockPos pos = entry.getKey();
-                        IBlockState state = entry.getValue();
-
-                        if (this.world.getBlockState(this.pos.add(pos)) == state)
-                        {
-                            iterator.remove();
-                        }
-                    }
-                    for (Iterator<Map.Entry<BlockPos, TileEntity>> iterator = this.multiTileClientLists.entrySet().iterator(); iterator.hasNext();)
-                    {
-                        Map.Entry<BlockPos, TileEntity> entry = iterator.next();
-                        BlockPos pos = entry.getKey();
-                        TileEntity tile = entry.getValue();
-
-                        if (this.world.isRemote && this.world.getTileEntity(this.pos.add(pos)) != null && this.world.getTileEntity(this.pos.add(pos)).getClass().equals(tile.getClass()))
-                        {
-                            iterator.remove();
-                        }
-                    }
-                }
+                this.multiBlockClientLists.entrySet().removeIf(entry -> this.pos.equals(renderPos) && this.world.getBlockState(this.pos.add(entry.getKey())) == entry.getValue());
+                this.multiTileClientLists.entrySet().removeIf(entry -> this.pos.equals(renderPos) && this.world.isRemote && this.world.getTileEntity(this.pos.add(entry.getKey())) != null && this.world.getTileEntity(this.pos.add(entry.getKey())).getClass().equals(entry.getValue().getClass()));
             });
         }
 
@@ -240,28 +209,10 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
                     if (!this.failed)
                     {
-                        if (this.world.rand.nextInt(50) == 0)
+                        if (this.world.rand.nextInt(30) == 0)
                         {
                             EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                            bolt.setLocationAndAngles(this.pos.getX() + 3, this.pos.getY() + 2.5D, this.pos.getZ() + 3, 0.0F, 0.0F);
-                            this.world.spawnEntity(bolt);
-                        }
-                        if (this.world.rand.nextInt(50) == 0)
-                        {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                            bolt.setLocationAndAngles(this.pos.getX() - 3, this.pos.getY() + 2.5D, this.pos.getZ() + 3, 0.0F, 0.0F);
-                            this.world.spawnEntity(bolt);
-                        }
-                        if (this.world.rand.nextInt(50) == 0)
-                        {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                            bolt.setLocationAndAngles(this.pos.getX() + 3, this.pos.getY() + 2.5D, this.pos.getZ() - 3, 0.0F, 0.0F);
-                            this.world.spawnEntity(bolt);
-                        }
-                        if (this.world.rand.nextInt(50) == 0)
-                        {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                            bolt.setLocationAndAngles(this.pos.getX() - 3, this.pos.getY() + 2.5D, this.pos.getZ() - 3, 0.0F, 0.0F);
+                            bolt.setLocationAndAngles(this.world.rand.nextBoolean() ? this.pos.getX() + 3 : this.pos.getX() - 3, this.pos.getY() + 2.5D, this.world.rand.nextBoolean() ? this.pos.getZ() + 3 : this.pos.getZ() - 3, 0.0F, 0.0F);
                             this.world.spawnEntity(bolt);
                         }
                         this.activatedTick++;
@@ -272,28 +223,10 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     this.failedTick++;
 
-                    if (this.world.rand.nextInt(12) == 0)
+                    if (this.world.rand.nextInt(10) == 0)
                     {
                         EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                        bolt.setLocationAndAngles(this.pos.getX() + 3, this.pos.getY() + 2.5D, this.pos.getZ() + 3, 0.0F, 0.0F);
-                        this.world.spawnEntity(bolt);
-                    }
-                    if (this.world.rand.nextInt(12) == 0)
-                    {
-                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                        bolt.setLocationAndAngles(this.pos.getX() - 3, this.pos.getY() + 2.5D, this.pos.getZ() + 3, 0.0F, 0.0F);
-                        this.world.spawnEntity(bolt);
-                    }
-                    if (this.world.rand.nextInt(12) == 0)
-                    {
-                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                        bolt.setLocationAndAngles(this.pos.getX() + 3, this.pos.getY() + 2.5D, this.pos.getZ() - 3, 0.0F, 0.0F);
-                        this.world.spawnEntity(bolt);
-                    }
-                    if (this.world.rand.nextInt(12) == 0)
-                    {
-                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                        bolt.setLocationAndAngles(this.pos.getX() - 3, this.pos.getY() + 2.5D, this.pos.getZ() - 3, 0.0F, 0.0F);
+                        bolt.setLocationAndAngles(this.world.rand.nextBoolean() ? this.pos.getX() + 3 : this.pos.getX() - 3, this.pos.getY() + 2.5D, this.world.rand.nextBoolean() ? this.pos.getZ() + 3 : this.pos.getZ() - 3, 0.0F, 0.0F);
                         this.world.spawnEntity(bolt);
                     }
                     if (this.failedTick % 20 == 0)
@@ -303,11 +236,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     }
                 }
 
-                if (TileEntityDarkEnergyReceiver.checkValidMultiblock(this.pos, this.world))
-                {
-                    this.failed = true;
-                }
-                if (this.getEnergyStoredGC() < 20000.0F)
+                if (TileEntityDarkEnergyReceiver.checkValidMultiblock(this.pos, this.world) || this.getEnergyStoredGC() < 20000.0F)
                 {
                     this.failed = true;
                 }
@@ -471,38 +400,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     }
 
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setBoolean("Activated", this.activated);
-        nbt.setBoolean("ActivatedMessage", this.activatedMessage);
-        nbt.setBoolean("Successful", this.successful);
-        nbt.setBoolean("SpawnedBlackHole", this.spawnedBlackHole);
-        nbt.setBoolean("Failed", this.failed);
-        nbt.setBoolean("Rendered", this.rendered);
-        nbt.setInteger("ActivatedTick", this.activatedTick);
-        nbt.setInteger("FailedTick", this.failedTick);
-        return new SPacketUpdateTileEntity(this.pos, -1, nbt);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        if (pkt.getTileEntityType() == -1)
-        {
-            NBTTagCompound nbt = pkt.getNbtCompound();
-            this.activated = nbt.getBoolean("Activated");
-            this.activatedMessage = nbt.getBoolean("ActivatedMessage");
-            this.successful = nbt.getBoolean("Successful");
-            this.spawnedBlackHole = nbt.getBoolean("SpawnedBlackHole");
-            this.failed = nbt.getBoolean("Failed");
-            this.rendered = nbt.getBoolean("Rendered");
-            this.activatedTick = nbt.getInteger("ActivatedTick");
-            this.failedTick = nbt.getInteger("FailedTick");
-        }
-    }
-
-    @Override
     public boolean onActivated(EntityPlayer player)
     {
         return MPBlocks.DARK_ENERGY_RECEIVER.onBlockActivated(this.world, this.mainBlockPosition, MPBlocks.DARK_ENERGY_RECEIVER.getDefaultState(), player, player.getActiveHand(), player.getHorizontalFacing(), 0.0F, 0.0F, 0.0F);
@@ -612,13 +509,13 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        return this.getItems().get(index);
+        return this.containingItems.get(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
+        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
 
         if (!itemStack.isEmpty())
         {
@@ -630,13 +527,13 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        return ItemStackHelper.getAndRemove(this.getItems(), index);
+        return ItemStackHelper.getAndRemove(this.containingItems, index);
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack itemStack)
     {
-        this.getItems().set(index, itemStack);
+        this.containingItems.set(index, itemStack);
 
         if (itemStack.getCount() > this.getInventoryStackLimit())
         {
@@ -706,9 +603,10 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         return true;
     }
 
-    protected NonNullList<ItemStack> getItems()
+    @Override
+    public EnumBlockMultiType getMultiType()
     {
-        return this.containingItems;
+        return null;
     }
 
     public boolean isActivated()
@@ -742,37 +640,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
             }
         }
         return false;
-    }
-
-    private boolean destroyBlock(BlockPos pos, boolean dropBlock)
-    {
-        IBlockState iblockstate = this.world.getBlockState(pos);
-
-        if (iblockstate.getMaterial() == Material.AIR)
-        {
-            return false;
-        }
-        else
-        {
-            this.world.playEvent(2001, pos, Block.getStateId(iblockstate));
-
-            if (dropBlock)
-            {
-                ItemStack machine = new ItemStack(MPBlocks.DARK_ENERGY_RECEIVER);
-                TileEntityDarkEnergyReceiver electric = this;
-
-                if (electric.getEnergyStoredGC() > 0)
-                {
-                    machine.setTagCompound(new NBTTagCompound());
-                    machine.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
-                }
-                if (!electric.successful && !electric.failed)
-                {
-                    Block.spawnAsEntity(this.world, pos, machine);
-                }
-            }
-            return this.world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
-        }
     }
 
     public String getGUIStatus()
@@ -813,9 +680,34 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         return TextFormatting.DARK_GREEN + LangUtils.translate("gui.status.active.name");
     }
 
-    @Override
-    public EnumBlockMultiType getMultiType()
+    private boolean destroyBlock(BlockPos pos, boolean dropBlock)
     {
-        return null;
+        IBlockState iblockstate = this.world.getBlockState(pos);
+
+        if (iblockstate.getMaterial() == Material.AIR)
+        {
+            return false;
+        }
+        else
+        {
+            this.world.playEvent(2001, pos, Block.getStateId(iblockstate));
+
+            if (dropBlock)
+            {
+                ItemStack machine = new ItemStack(MPBlocks.DARK_ENERGY_RECEIVER);
+                TileEntityDarkEnergyReceiver electric = this;
+
+                if (electric.getEnergyStoredGC() > 0)
+                {
+                    machine.setTagCompound(new NBTTagCompound());
+                    machine.getTagCompound().setFloat("EnergyStored", electric.getEnergyStoredGC());
+                }
+                if (!electric.successful && !electric.failed)
+                {
+                    Block.spawnAsEntity(this.world, pos, machine);
+                }
+            }
+            return this.world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+        }
     }
 }

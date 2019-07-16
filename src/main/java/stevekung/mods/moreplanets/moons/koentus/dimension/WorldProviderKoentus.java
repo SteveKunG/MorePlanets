@@ -1,6 +1,6 @@
 package stevekung.mods.moreplanets.moons.koentus.dimension;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
@@ -121,7 +121,7 @@ public class WorldProviderKoentus extends WorldProviderMP implements IExitHeight
     @Override
     public List<Block> getSurfaceBlocks()
     {
-        return Arrays.asList(MPBlocks.KOENTUS_REGOLITH);
+        return Collections.singletonList(MPBlocks.KOENTUS_REGOLITH);
     }
 
     @Override

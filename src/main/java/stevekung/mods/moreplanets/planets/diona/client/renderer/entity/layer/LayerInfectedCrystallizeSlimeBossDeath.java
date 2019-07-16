@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityInfectedCrystallizedSlimeBoss;
+import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
 public class LayerInfectedCrystallizeSlimeBossDeath implements LayerRenderer<EntityInfectedCrystallizedSlimeBoss>
@@ -50,7 +51,7 @@ public class LayerInfectedCrystallizeSlimeBossDeath implements LayerRenderer<Ent
                 GlStateManager.rotate(random.nextFloat() * 360.0F + f * 90.0F, 0.0F, 0.0F, 1.0F);
                 float f2 = random.nextFloat() * 20.0F + 5.0F + f1 * 10.0F;
                 float f3 = random.nextFloat() * 2.0F + 1.0F + f1 * 2.0F;
-                worldrenderer.begin(6, DefaultVertexFormats.POSITION_COLOR);
+                worldrenderer.begin(GLConstants.TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
                 worldrenderer.pos(0.0D, 0.0D, 0.0D).color(100, 100, 255, (int)(255.0F * (1.0F - f1))).endVertex();
                 worldrenderer.pos(-0.866D * f3, f2, -0.5F * f3).color(100, 100, 255, 0).endVertex();
                 worldrenderer.pos(0.866D * f3, f2, -0.5F * f3).color(100, 100, 255, 0).endVertex();

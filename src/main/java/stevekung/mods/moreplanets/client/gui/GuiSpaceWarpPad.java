@@ -1,7 +1,7 @@
 package stevekung.mods.moreplanets.client.gui;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -101,7 +101,7 @@ public class GuiSpaceWarpPad extends GuiContainerMP
         {
             this.drawTexturedModalRect(x + 6, y + 80, 176, 0, 11, 10);
         }
-        List<String> electricityDesc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
+        List<String> electricityDesc = Collections.singletonList(LangUtils.translate("gui.energy_storage.desc.0"));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
     }
