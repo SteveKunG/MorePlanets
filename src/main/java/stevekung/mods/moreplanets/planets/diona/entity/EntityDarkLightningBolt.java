@@ -12,6 +12,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
 
 public class EntityDarkLightningBolt extends Entity
@@ -104,4 +106,25 @@ public class EntityDarkLightningBolt extends Entity
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound nbt) {}
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
+        double d0 = this.getEntityBoundingBox().getAverageEdgeLength();
+
+        if (Double.isNaN(d0))
+        {
+            d0 = 1.0D;
+        }
+        d0 = d0 * 128.0D * getRenderDistanceWeight();
+        return distance < d0 * d0;
+    }
+
+    public void spawnWeather()
+    {
+        this.world.addWeatherEffect(this);
+        this.world.loadedEntityList.add(this);
+        this.world.onEntityAdded(this);
+    }
 }

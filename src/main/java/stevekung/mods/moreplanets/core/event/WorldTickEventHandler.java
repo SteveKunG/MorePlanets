@@ -40,7 +40,7 @@ public class WorldTickEventHandler
     }
 
     @SubscribeEvent
-    public void onWeatherTick(WeatherTickEvent event) //TODO Fix entity spawning outside unloaded chunk
+    public void onWeatherTick(WeatherTickEvent event)
     {
         World world = event.getWorld();
         BlockPos pos = event.getStrikePos();
@@ -51,17 +51,16 @@ public class WorldTickEventHandler
             {
                 if (this.canBeamStrike(world, pos) && world.rand.nextInt(75000) == 0)
                 {
-                    EntityAlienBeam beam = new EntityAlienBeam(world);
-                    beam.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0.0F, 0.0F);
+                    EntityAlienBeam beam = new EntityAlienBeam(world, pos.getX(), pos.getY(), pos.getZ());
 
                     if (world.isBlockLoaded(pos))
                     {
-                        world.spawnEntity(beam);
+                        beam.spawnWeather();
                     }
                 }
             }
         }
-        else if (DimensionManager.getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionNibiru) != null)
+        if (DimensionManager.getWorld(ConfigManagerMP.moreplanets_dimension.idDimensionNibiru) != null)
         {
             if (world.provider instanceof WorldProviderNibiru)
             {
@@ -76,7 +75,7 @@ public class WorldTickEventHandler
                 {
                     if (world.isRainingAt(pos))
                     {
-                        world.spawnEntity(boltFire);
+                        boltFire.spawnWeather();
                     }
                 }
                 if (world.rand.nextInt(16) == 0)
@@ -106,7 +105,7 @@ public class WorldTickEventHandler
                 {
                     if (world.rand.nextInt(250000) == 0)
                     {
-                        world.spawnEntity(bolt);
+                        bolt.spawnWeather();
                     }
                 }
             }

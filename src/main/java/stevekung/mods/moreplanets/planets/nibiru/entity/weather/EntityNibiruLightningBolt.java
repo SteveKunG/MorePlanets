@@ -11,6 +11,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityVeinFloater;
@@ -126,4 +128,25 @@ public class EntityNibiruLightningBolt extends Entity
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound tagCompound) {}
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
+        double d0 = this.getEntityBoundingBox().getAverageEdgeLength();
+
+        if (Double.isNaN(d0))
+        {
+            d0 = 1.0D;
+        }
+        d0 = d0 * 128.0D * getRenderDistanceWeight();
+        return distance < d0 * d0;
+    }
+
+    public void spawnWeather()
+    {
+        this.world.addWeatherEffect(this);
+        this.world.loadedEntityList.add(this);
+        this.world.onEntityAdded(this);
+    }
 }

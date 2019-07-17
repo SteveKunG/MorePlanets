@@ -211,8 +211,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                     {
                         if (this.world.rand.nextInt(30) == 0)
                         {
-                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                            bolt.setLocationAndAngles(this.world.rand.nextBoolean() ? this.pos.getX() + 3 : this.pos.getX() - 3, this.pos.getY() + 2.5D, this.world.rand.nextBoolean() ? this.pos.getZ() + 3 : this.pos.getZ() - 3, 0.0F, 0.0F);
+                            EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world, this.world.rand.nextBoolean() ? this.pos.getX() + 3 : this.pos.getX() - 3, this.pos.getY() + 2.5D, this.world.rand.nextBoolean() ? this.pos.getZ() + 3 : this.pos.getZ() - 3);
                             this.world.spawnEntity(bolt);
                         }
                         this.activatedTick++;
@@ -225,8 +224,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
                     if (this.world.rand.nextInt(10) == 0)
                     {
-                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                        bolt.setLocationAndAngles(this.world.rand.nextBoolean() ? this.pos.getX() + 3 : this.pos.getX() - 3, this.pos.getY() + 2.5D, this.world.rand.nextBoolean() ? this.pos.getZ() + 3 : this.pos.getZ() - 3, 0.0F, 0.0F);
+                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world, this.world.rand.nextBoolean() ? this.pos.getX() + 3 : this.pos.getX() - 3, this.pos.getY() + 2.5D, this.world.rand.nextBoolean() ? this.pos.getZ() + 3 : this.pos.getZ() - 3);
                         this.world.spawnEntity(bolt);
                     }
                     if (this.failedTick % 20 == 0)
@@ -288,8 +286,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     if (this.world.getBlockState(this.getPos().up()).getBlock() != MPBlocks.DARK_ENERGY_CORE)
                     {
-                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world);
-                        bolt.setLocationAndAngles(this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ(), 0.0F, 0.0F);
+                        EntityDarkLightningBolt bolt = new EntityDarkLightningBolt(this.world, this.pos.getX(), this.pos.getY() + 2.5D, this.pos.getZ());
                         this.world.playSound(null, this.getPos().add(0, 2, 0), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
                         this.world.spawnEntity(bolt);
                         this.world.setBlockState(this.getPos().up(), MPBlocks.DARK_ENERGY_CORE.getDefaultState());
