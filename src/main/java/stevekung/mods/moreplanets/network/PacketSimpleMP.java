@@ -47,6 +47,8 @@ public class PacketSimpleMP extends PacketBase
     private EnumSimplePacketMP type;
     private List<Object> data;
 
+    public PacketSimpleMP() {}
+
     public PacketSimpleMP(EnumSimplePacketMP packetType, int dimID, Object... dataList)
     {
         super(dimID);
