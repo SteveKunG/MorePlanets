@@ -1,4 +1,4 @@
-package stevekung.mods.moreplanets.planets.nibiru.client.particle;
+package stevekung.mods.moreplanets.utils.client.particle;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -12,9 +12,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ParticleInfectedRain extends Particle
+public class ParticleCustomRain extends Particle
 {
-    public ParticleInfectedRain(World world, double x, double y, double z)
+    public ParticleCustomRain(World world, double x, double y, double z, String name)
     {
         super(world, x, y, z, 0.0D, 0.0D, 0.0D);
         this.motionX *= 0.30000001192092896D;
@@ -23,7 +23,7 @@ public class ParticleInfectedRain extends Particle
         this.particleRed = 1.0F;
         this.particleGreen = 1.0F;
         this.particleBlue = 1.0F;
-        this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("moreplanets:particle/infected_rain_" + this.rand.nextInt(4)));
+        this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("moreplanets:particle/" + name + "_" + this.rand.nextInt(4)));
         this.setSize(0.01F, 0.01F);
         this.particleGravity = 0.06F;
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));

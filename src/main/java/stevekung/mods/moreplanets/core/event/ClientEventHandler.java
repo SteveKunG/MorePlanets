@@ -38,6 +38,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
@@ -55,6 +56,7 @@ import stevekung.mods.moreplanets.client.renderer.ShieldRenderer;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
@@ -510,11 +512,21 @@ public class ClientEventHandler
     public void onAddRainParticle(AddRainParticleEvent event)
     {
         World world = event.getWorld();
+        BlockPos pos = new BlockPos(event.getX(), event.getY(), event.getZ());
+        Biome biome = world.getBiome(pos);
 
         if (world.provider instanceof WorldProviderNibiru)
         {
             event.setCanceled(true);
-            MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_RAIN, event.getX(), event.getY(), event.getZ());
+
+            if (biome == MPBiomes.GREEN_VEIN_FIELDS || biome == MPBiomes.GREEN_VEIN_FIELD_SHORE)
+            {
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.PURIFIED_RAIN, event.getX(), event.getY(), event.getZ());
+            }
+            else
+            {
+                MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_RAIN, event.getX(), event.getY(), event.getZ());
+            }
         }
     }
 

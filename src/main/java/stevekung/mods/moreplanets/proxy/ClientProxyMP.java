@@ -43,17 +43,13 @@ import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleCrystall
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleDarkPortal;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleAlienBerryLeavesSpark;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
-import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedRain;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedSpore;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityVeinBall;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
-import stevekung.mods.moreplanets.utils.client.particle.ParticleBreakingMC;
-import stevekung.mods.moreplanets.utils.client.particle.ParticleFallingDustMP;
-import stevekung.mods.moreplanets.utils.client.particle.ParticleLavaMC;
-import stevekung.mods.moreplanets.utils.client.particle.ParticleLiquidDrip;
+import stevekung.mods.moreplanets.utils.client.particle.*;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientRegistryUtils;
@@ -122,6 +118,7 @@ public class ClientProxyMP extends ServerProxyMP
         for (int i = 0; i <= 3; i++)
         {
             MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_rain_" + i);
+            MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/purified_rain_" + i);
         }
     }
 
@@ -260,7 +257,11 @@ public class ClientProxyMP extends ServerProxyMP
             }
             else if (type == EnumParticleTypesMP.INFECTED_RAIN)
             {
-                mc.effectRenderer.addEffect(new ParticleInfectedRain(mc.world, x, y, z));
+                mc.effectRenderer.addEffect(new ParticleCustomRain(mc.world, x, y, z, "infected_rain"));
+            }
+            else if (type == EnumParticleTypesMP.PURIFIED_RAIN)
+            {
+                mc.effectRenderer.addEffect(new ParticleCustomRain(mc.world, x, y, z, "purified_rain"));
             }
         }
     }

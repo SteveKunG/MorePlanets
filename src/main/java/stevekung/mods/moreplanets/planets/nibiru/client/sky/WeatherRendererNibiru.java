@@ -271,7 +271,6 @@ public class WeatherRendererNibiru extends IRenderHandler
                     {
                         this.rand.setSeed(l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761);
                         mutablePos.setPos(l1, k2, k1);
-                        biome.getTemperature(mutablePos);
 
                         if (biome == MPBiomes.GREEN_VEIN_FIELDS || biome == MPBiomes.GREEN_VEIN_FIELD_SHORE)
                         {
