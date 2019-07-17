@@ -25,6 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.utils.dimension.IDarkEnergyProvider;
+import stevekung.mods.moreplanets.utils.items.IDarkEnergyFuel;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSource implements IDisableableMachine, ISidedInventory, IConnector, IInventoryDefaults
@@ -72,6 +73,8 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
             this.receiveEnergyGC(null, this.generateWatts, false);
             this.recharge(this.containingItems.get(0));
             this.recharge(this.containingItems.get(1));
+            
+            ItemStack darkEnergy = this.containingItems.get(2);
 
             if (!this.disabled)
             {
@@ -79,11 +82,14 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
                 {
                     this.darkEnergyFuel--;
                 }
-                if (!this.containingItems.get(2).isEmpty() && this.darkEnergyFuel <= 0)
+                if (!darkEnergy.isEmpty() && this.darkEnergyFuel <= 0)
                 {
-                    this.darkEnergyFuel = 1000;//TODO More dark energy fuel
-                    this.prevDarkEnergyFuel = this.darkEnergyFuel;
-                    this.containingItems.get(2).shrink(1);
+                    if (darkEnergy.getItem() instanceof IDarkEnergyFuel)
+                    {
+                        this.darkEnergyFuel = ((IDarkEnergyFuel)darkEnergy.getItem()).getDarkEnergyFuel();
+                        this.prevDarkEnergyFuel = this.darkEnergyFuel;
+                        darkEnergy.shrink(1);
+                    }
                 }
             }
             if (this.disableCooldown > 0)

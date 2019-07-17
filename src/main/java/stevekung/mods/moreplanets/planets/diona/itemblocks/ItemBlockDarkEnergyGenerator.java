@@ -9,15 +9,19 @@ import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.itemblocks.ItemBlockTESRMP;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyGenerator;
 import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.blocks.BlockTileMP;
+import stevekung.mods.moreplanets.utils.items.IDarkEnergyFuel;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
@@ -54,10 +58,25 @@ public class ItemBlockDarkEnergyGenerator extends ItemBlockTESRMP
                     }
                     if (tile instanceof TileEntityDarkEnergyGenerator)
                     {
-                        if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("DarkEnergyFuel"))
+                        if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("DarkEnergyFuel") && itemStack.getTagCompound().hasKey("Items"))
                         {
+                            int fuelValue = 0;
+                            NBTTagList listTag = itemStack.getTagCompound().getTagList("Items", NBT.TAG_COMPOUND);
+
+                            for (int i = 0; i < listTag.tagCount(); ++i)
+                            {
+                                NBTTagCompound compound = listTag.getCompoundTagAt(i);
+                                int slot = compound.getByte("Slot") & 255;
+                                ItemStack darkEnergyFuel = new ItemStack(compound);
+
+                                if (slot == 2 && darkEnergyFuel.getItem() instanceof IDarkEnergyFuel)
+                                {
+                                    IDarkEnergyFuel fuel = (IDarkEnergyFuel)darkEnergyFuel.getItem();
+                                    fuelValue = fuel.getDarkEnergyFuel();
+                                }
+                            }
                             int power = itemStack.getTagCompound().getInteger("DarkEnergyFuel");
-                            power = power * 100 / 1000;//TODO More dark energy fuel
+                            power = power * 100 / fuelValue;
                             list.add(TextFormatting.GREEN + LangUtils.translate("desc.dark_energy_fuel.name", power) + "%");
                         }
                     }

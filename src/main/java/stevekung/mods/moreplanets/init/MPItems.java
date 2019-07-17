@@ -13,6 +13,7 @@ import stevekung.mods.moreplanets.planets.chalos.items.ItemCheeseSpore;
 import stevekung.mods.moreplanets.planets.chalos.items.ItemCheeseSporeSeed;
 import stevekung.mods.moreplanets.planets.chalos.items.armor.ItemArmorDiremsium;
 import stevekung.mods.moreplanets.planets.chalos.items.armor.ItemBreathableDiremsium;
+import stevekung.mods.moreplanets.planets.diona.items.ItemDarkEnergyPearl;
 import stevekung.mods.moreplanets.planets.diona.items.ItemInfectedCrystallizedBomb;
 import stevekung.mods.moreplanets.planets.diona.items.armor.ItemArmorIllenium;
 import stevekung.mods.moreplanets.planets.diona.items.armor.ItemBreathableIllenium;
@@ -312,7 +313,7 @@ public class MPItems
         MPItems.INFECTED_CRYSTALLIZED_BOMB = new ItemInfectedCrystallizedBomb("infected_crystallized_bomb").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL = new ItemBaseMP("infected_crystallized_slimeball").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.INFECTED_CRYSTALLIZED_ARROW = new ItemArrowMP("infected_crystallized_arrow", ItemArrowMP.ArrowType.INFECTED_CRYSTALLIZED).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
-        MPItems.DARK_ENERGY_PEARL = new ItemBaseMP("dark_energy_pearl").setSortCategory(EnumSortCategoryItem.GENERAL).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
+        MPItems.DARK_ENERGY_PEARL = new ItemDarkEnergyPearl("dark_energy_pearl").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.ANTI_GRAVITY_ARROW = new ItemArrowMP("anti_gravity_arrow", ItemArrowMP.ArrowType.ANTI_GRAVITY).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.SPECIAL));
 
         //////////////////////// CHALOS STUFF ////////////////////////
