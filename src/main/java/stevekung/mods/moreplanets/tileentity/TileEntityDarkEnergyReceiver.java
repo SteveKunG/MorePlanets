@@ -7,7 +7,6 @@ import java.util.Map;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -21,8 +20,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -34,8 +31,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -51,9 +46,8 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP;
 import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 
-public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
+public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMultiBlock
 {
-    private NonNullList<ItemStack> containingItems = NonNullList.withSize(1, ItemStack.EMPTY);
     @NetworkedField(targetSide = Side.CLIENT)
     public int facing;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -116,6 +110,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
     public TileEntityDarkEnergyReceiver()
     {
+        super("container.dark_energy_receiver.name");
+        this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
         this.storage.setMaxExtract(1000);
         this.storage.setCapacity(250000.0F);
     }
@@ -395,8 +391,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         this.rendered = nbt.getBoolean("Rendered");
         this.activatedTick = nbt.getInteger("ActivatedTick");
         this.failedTick = nbt.getInteger("FailedTick");
-        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.containingItems);
     }
 
     @Override
@@ -412,7 +406,6 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
         nbt.setBoolean("Rendered", this.rendered);
         nbt.setInteger("ActivatedTick", this.activatedTick);
         nbt.setInteger("FailedTick", this.failedTick);
-        ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
     }
 
@@ -552,69 +545,9 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     }
 
     @Override
-    public int getSizeInventory()
-    {
-        return this.containingItems.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.getItems().get(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
-
-        if (!itemStack.isEmpty())
-        {
-            this.markDirty();
-        }
-        return itemStack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        return ItemStackHelper.getAndRemove(this.getItems(), index);
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack itemStack)
-    {
-        this.getItems().set(index, itemStack);
-
-        if (itemStack.getCount() > this.getInventoryStackLimit())
-        {
-            itemStack.setCount(this.getInventoryStackLimit());
-        }
-        this.markDirty();
-    }
-
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("container.dark_energy_receiver.name");
-    }
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TextComponentTranslation(this.getName());
-    }
-
-    @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
         return new int[] { 0 };
-    }
-
-    @Override
-    public boolean canInsertItem(int slotID, ItemStack itemStack, EnumFacing side)
-    {
-        return this.isItemValidForSlot(slotID, itemStack);
     }
 
     @Override
@@ -638,25 +571,14 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     @Override
     public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.containingItems)
+        if (this.world.getTileEntity(this.pos) != this)
         {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
+            return false;
         }
-        return true;
-    }
-
-    protected NonNullList<ItemStack> getItems()
-    {
-        return this.containingItems;
+        else
+        {
+            return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        }
     }
 
     public boolean isActivated()

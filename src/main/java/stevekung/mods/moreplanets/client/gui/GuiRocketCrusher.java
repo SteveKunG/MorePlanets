@@ -88,7 +88,7 @@ public class GuiRocketCrusher extends GuiContainerMP
         electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
-        int speed = !this.tile.containingItems.get(2).isEmpty() ? 1 + this.tile.containingItems.get(2).getCount() : 1;
+        int speed = !this.tile.getInventory().get(2).isEmpty() ? 1 + this.tile.getInventory().get(2).getCount() : 1;
 
         if (this.tile.getEnergyStoredGC() > 0)
         {

@@ -13,6 +13,11 @@ public class TileEntityLargeInfectedCrystallize extends TileEntityAdvancedMP
     private int preLoadFacing = -1;
     public int renderTicks;
 
+    public TileEntityLargeInfectedCrystallize()
+    {
+        super("");
+    }
+
     @Override
     public void update()
     {
@@ -55,6 +60,18 @@ public class TileEntityLargeInfectedCrystallize extends TileEntityAdvancedMP
     public boolean isNetworkedTile()
     {
         return true;
+    }
+
+    @Override
+    public int[] getSlotsForFace(EnumFacing side)
+    {
+        return new int[0];
+    }
+
+    @Override
+    protected boolean handleInventory()
+    {
+        return false;
     }
 
     public void setFacing(EnumFacing facing)

@@ -9,7 +9,6 @@ import javax.annotation.Nullable;
 import micdoodle8.mods.galacticraft.api.item.IKeyable;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityAdvanced;
@@ -20,7 +19,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.*;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ContainerChest;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -39,14 +41,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPSounds;
 
-public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKeyable, IInteractionObject, ISidedInventory, IInventoryDefaults
+public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKeyable, IInteractionObject
 {
-    private NonNullList<ItemStack> chestContents = NonNullList.withSize(27, ItemStack.EMPTY);
     public float lidAngle;
     public float prevLidAngle;
     public int numPlayersUsing;
     private int ticksSinceSync;
-    private String name;
     private Block block;
     private ResourceLocation lootTable;
     private long lootTableSeed;
@@ -58,114 +58,63 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
 
     public TileEntityTreasureChestMP(int tier, String name, Block block)
     {
+        super("container." + name + ".treasurechest.name");
+        this.inventory = NonNullList.withSize(27, ItemStack.EMPTY);
         this.tier = tier;
-        this.name = name;
         this.block = block;
-    }
-
-    @Override
-    public int getSizeInventory()
-    {
-        return 27;
     }
 
     @Override
     public ItemStack getStackInSlot(int index)
     {
         this.fillWithLoot((EntityPlayer)null);
-        return this.getItems().get(index);
+        return super.getStackInSlot(index);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
         this.fillWithLoot((EntityPlayer)null);
-        ItemStack itemstack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
-
-        if (!itemstack.isEmpty())
-        {
-            this.markDirty();
-        }
-
-        return itemstack;
+        return super.decrStackSize(index, count);
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
         this.fillWithLoot((EntityPlayer)null);
-        return ItemStackHelper.getAndRemove(this.getItems(), index);
+        return super.removeStackFromSlot(index);
     }
 
     @Override
     public void setInventorySlotContents(int index, @Nullable ItemStack stack)
     {
         this.fillWithLoot((EntityPlayer)null);
-        this.getItems().set(index, stack);
-
-        if (stack.getCount() > this.getInventoryStackLimit())
-        {
-            stack.setCount(this.getInventoryStackLimit());
-        }
-        this.markDirty();
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.chestContents)
-        {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    protected NonNullList<ItemStack> getItems()
-    {
-        return this.chestContents;
-    }
-
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("container." + this.name + ".treasurechest.name");
+        super.setInventorySlotContents(index, stack);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
-        super.readFromNBT(nbt);
-        this.chestContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         this.locked = nbt.getBoolean("isLocked");
         this.tier = nbt.getInteger("tier");
 
         if (!this.checkLootAndRead(nbt))
         {
-            ItemStackHelper.loadAllItems(nbt, this.chestContents);
+            super.readFromNBT(nbt);
         }
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(nbt);
         nbt.setBoolean("isLocked", this.locked);
         nbt.setInteger("tier", this.tier);
 
         if (!this.checkLootAndWrite(nbt))
         {
-            ItemStackHelper.saveAllItems(nbt, this.chestContents);
+            super.writeToNBT(nbt);
         }
         return nbt;
-    }
-
-    @Override
-    public int getInventoryStackLimit()
-    {
-        return 64;
     }
 
     @Override
@@ -332,7 +281,7 @@ public class TileEntityTreasureChestMP extends TileEntityAdvanced implements IKe
     public void clear()
     {
         this.fillWithLoot((EntityPlayer)null);
-        this.getItems().clear();
+        super.clear();
     }
 
     @Override

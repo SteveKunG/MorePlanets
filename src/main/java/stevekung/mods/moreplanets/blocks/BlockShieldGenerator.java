@@ -136,7 +136,7 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
                 shield.needCharged = nbt.getBoolean("NeedCharged");
                 shield.enableShield = nbt.getBoolean("EnableShield");
                 shield.enableDamage = nbt.getBoolean("EnableDamage");
-                ItemStackHelper.loadAllItems(itemStack.getTagCompound(), shield.containingItems);
+                ItemStackHelper.loadAllItems(itemStack.getTagCompound(), shield.inventory);
             }
             if (placer instanceof EntityPlayer)
             {
@@ -167,7 +167,7 @@ public class BlockShieldGenerator extends BlockAdvancedTile implements ISortable
             nbt.setBoolean("NeedCharged", shield.needCharged);
             nbt.setBoolean("EnableShield", shield.enableShield);
             nbt.setBoolean("EnableDamage", shield.enableDamage);
-            ItemStackHelper.saveAllItems(nbt, shield.containingItems);
+            ItemStackHelper.saveAllItems(nbt, shield.inventory);
 
             if (shield.getEnergyStoredGC() > 0)
             {

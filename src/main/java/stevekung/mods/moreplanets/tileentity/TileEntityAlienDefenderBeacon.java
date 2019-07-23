@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.tileentity;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.util.tileentity.TileEntityAdvancedMP;
 
@@ -15,6 +16,11 @@ public class TileEntityAlienDefenderBeacon extends TileEntityAdvancedMP
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean creativeSpawn = false;
     public int age = 0;
+
+    public TileEntityAlienDefenderBeacon()
+    {
+        super("");
+    }
 
     @Override
     public void update()
@@ -71,5 +77,17 @@ public class TileEntityAlienDefenderBeacon extends TileEntityAdvancedMP
     public boolean isNetworkedTile()
     {
         return true;
+    }
+
+    @Override
+    public int[] getSlotsForFace(EnumFacing side)
+    {
+        return new int[0];
+    }
+
+    @Override
+    protected boolean handleInventory()
+    {
+        return false;
     }
 }

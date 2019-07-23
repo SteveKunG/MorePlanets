@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.util.tileentity;
 import java.util.Iterator;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +25,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import stevekung.mods.moreplanets.util.world.capability.DoubleAncientChestItemHandlerMP;
 
-public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot implements ITickable, IInventoryDefaults
+public abstract class TileEntityAncientChestMP extends TileEntityLockableLoot implements ITickable, IInventory
 {
     private NonNullList<ItemStack> chestContents = NonNullList.withSize(27, ItemStack.EMPTY);
     public boolean adjacentChestChecked;

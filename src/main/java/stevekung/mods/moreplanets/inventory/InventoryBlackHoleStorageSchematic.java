@@ -1,13 +1,15 @@
 package stevekung.mods.moreplanets.inventory;
 
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 
-public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
+public class InventoryBlackHoleStorageSchematic implements IInventory
 {
     private NonNullList<ItemStack> stackList;
     private Container eventHandler;
@@ -106,5 +108,41 @@ public class InventoryBlackHoleStorageSchematic implements IInventoryDefaults
             }
         }
         return true;
+    }
+
+    @Override
+    public void openInventory(EntityPlayer player) {}
+
+    @Override
+    public void closeInventory(EntityPlayer player) {}
+
+    @Override
+    public int getField(int id)
+    {
+        return 0;
+    }
+
+    @Override
+    public void setField(int id, int value) {}
+
+    @Override
+    public int getFieldCount()
+    {
+        return 0;
+    }
+
+    @Override
+    public void clear() {}
+
+    @Override
+    public boolean hasCustomName()
+    {
+        return false;
+    }
+
+    @Override
+    public ITextComponent getDisplayName()
+    {
+        return new TextComponentTranslation(this.getName());
     }
 }

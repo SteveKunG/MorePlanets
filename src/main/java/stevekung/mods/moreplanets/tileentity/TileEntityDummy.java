@@ -19,6 +19,22 @@ public class TileEntityDummy extends TileBaseElectricBlock
     @NetworkedField(targetSide = Side.CLIENT)
     public BlockPos mainBlockPosition;
 
+    public TileEntityDummy()
+    {
+        super("");
+    }
+
+    public TileEntityDummy(String tileName)
+    {
+        super(tileName);
+    }
+
+    @Override
+    protected boolean handleInventory()
+    {
+        return false;
+    }
+
     public void setMainBlock(BlockPos mainBlock)
     {
         this.mainBlockPosition = mainBlock;
@@ -131,5 +147,11 @@ public class TileEntityDummy extends TileBaseElectricBlock
     public EnumFacing getFront()
     {
         return null;
+    }
+
+    @Override
+    public int[] getSlotsForFace(EnumFacing side)
+    {
+        return new int[0];
     }
 }

@@ -4,15 +4,12 @@ import java.util.ArrayList;
 
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.inventory.PersistantInventoryCrafting;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,14 +17,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.blocks.BlockRocketCrusher;
 import stevekung.mods.moreplanets.recipe.RocketCrusherRecipes;
 import stevekung.mods.moreplanets.util.recipes.ShapedRecipesMP;
 
-public class TileEntityRocketCrusher extends TileBaseElectricBlock implements IInventoryDefaults, ISidedInventory
+public class TileEntityRocketCrusher extends TileBaseElectricBlock
 {
     public static int PROCESS_TIME_REQUIRED_BASE = 200;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -36,11 +31,12 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     public int processTicks = 0;
     private ItemStack producingStack = ItemStack.EMPTY;
     private long ticks;
-    public NonNullList<ItemStack> containingItems = NonNullList.withSize(3, ItemStack.EMPTY);
     public PersistantInventoryCrafting compressingCraftMatrix = new PersistantInventoryCrafting();
 
     public TileEntityRocketCrusher()
     {
+        super("tile.rocket_crusher.name");
+        this.inventory = NonNullList.withSize(3, ItemStack.EMPTY);
         this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 125 : 100);
         this.setTierGC(3);
     }
@@ -59,7 +55,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
         if (!this.world.isRemote)
         {
             boolean updateInv = false;
-            int speed = !this.containingItems.get(2).isEmpty() ? 1 + this.containingItems.get(2).getCount() : 1;
+            int speed = !this.getInventory().get(2).isEmpty() ? 1 + this.getInventory().get(2).getCount() : 1;
 
             if (this.hasEnoughEnergyToRun)
             {
@@ -108,15 +104,15 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
         {
             return false;
         }
-        if (this.containingItems.get(1).isEmpty())
+        if (this.getInventory().get(1).isEmpty())
         {
             return true;
         }
-        if (!this.containingItems.get(1).isEmpty() && !this.containingItems.get(1).isItemEqual(itemstack))
+        if (!this.getInventory().get(1).isEmpty() && !this.getInventory().get(1).isItemEqual(itemstack))
         {
             return false;
         }
-        int result = this.containingItems.get(1).isEmpty() ? 0 : this.containingItems.get(1).getCount() + itemstack.getCount();
+        int result = this.getInventory().get(1).isEmpty() ? 0 : this.getInventory().get(1).getCount() + itemstack.getCount();
         return result <= this.getInventoryStackLimit() && result <= itemstack.getMaxStackSize();
     }
 
@@ -136,15 +132,15 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
         {
             ItemStack resultItemStack = this.producingStack.copy();
 
-            if (this.containingItems.get(slot).isEmpty())
+            if (this.getInventory().get(slot).isEmpty())
             {
-                this.containingItems.set(slot, resultItemStack);
+                this.getInventory().set(slot, resultItemStack);
             }
-            else if (this.containingItems.get(slot).isItemEqual(resultItemStack))
+            else if (this.getInventory().get(slot).isItemEqual(resultItemStack))
             {
-                if (this.containingItems.get(slot).getCount() + resultItemStack.getCount() > 64)
+                if (this.getInventory().get(slot).getCount() + resultItemStack.getCount() > 64)
                 {
-                    for (int i = 0; i < this.containingItems.get(slot).getCount() + resultItemStack.getCount() - 64; i++)
+                    for (int i = 0; i < this.getInventory().get(slot).getCount() + resultItemStack.getCount() - 64; i++)
                     {
                         float var = 0.7F;
                         double dx = this.world.rand.nextFloat() * var + (1.0F - var) * 0.5D;
@@ -154,11 +150,11 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
                         entityitem.setPickupDelay(10);
                         this.world.spawnEntity(entityitem);
                     }
-                    this.containingItems.get(slot).setCount(64);
+                    this.getInventory().get(slot).setCount(64);
                 }
                 else
                 {
-                    this.containingItems.get(slot).grow(resultItemStack.getCount());
+                    this.getInventory().get(slot).grow(resultItemStack.getCount());
                 }
             }
 
@@ -175,7 +171,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     {
         super.readFromNBT(nbt);
         this.processTicks = nbt.getInteger("ProcessTicks");
-        this.containingItems = NonNullList.withSize(this.getSizeInventory() - this.compressingCraftMatrix.getSizeInventory(), ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(this.getSizeInventory() - this.compressingCraftMatrix.getSizeInventory(), ItemStack.EMPTY);
         NBTTagList nbttaglist = nbt.getTagList("Items", 10);
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
@@ -183,13 +179,13 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot") & 255;
 
-            if (j >= 0 && j < this.containingItems.size())
+            if (j >= 0 && j < this.inventory.size())
             {
-                this.containingItems.set(j, new ItemStack(nbttagcompound));
+                this.inventory.set(j, new ItemStack(nbttagcompound));
             }
-            else if (j < this.containingItems.size() + this.compressingCraftMatrix.getSizeInventory())
+            else if (j < this.inventory.size() + this.compressingCraftMatrix.getSizeInventory())
             {
-                this.compressingCraftMatrix.setInventorySlotContents(j - this.containingItems.size(), new ItemStack(nbttagcompound));
+                this.compressingCraftMatrix.setInventorySlotContents(j - this.inventory.size(), new ItemStack(nbttagcompound));
             }
         }
         this.updateInput();
@@ -203,13 +199,13 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
         NBTTagList list = new NBTTagList();
         int i;
 
-        for (i = 0; i < this.containingItems.size(); ++i)
+        for (i = 0; i < this.inventory.size(); ++i)
         {
-            if (!this.containingItems.get(i).isEmpty())
+            if (!this.inventory.get(i).isEmpty())
             {
                 NBTTagCompound compound = new NBTTagCompound();
                 compound.setByte("Slot", (byte) i);
-                this.containingItems.get(i).writeToNBT(compound);
+                this.inventory.get(i).writeToNBT(compound);
                 list.appendTag(compound);
             }
         }
@@ -218,7 +214,7 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
             if (!this.compressingCraftMatrix.getStackInSlot(i).isEmpty())
             {
                 NBTTagCompound compound = new NBTTagCompound();
-                compound.setByte("Slot", (byte) (i + this.containingItems.size()));
+                compound.setByte("Slot", (byte) (i + this.inventory.size()));
                 this.compressingCraftMatrix.getStackInSlot(i).writeToNBT(compound);
                 list.appendTag(compound);
             }
@@ -230,25 +226,25 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     @Override
     public int getSizeInventory()
     {
-        return this.containingItems.size() + this.compressingCraftMatrix.getSizeInventory();
+        return this.inventory.size() + this.compressingCraftMatrix.getSizeInventory();
     }
 
     @Override
     public ItemStack getStackInSlot(int slot)
     {
-        if (slot >= this.containingItems.size())
+        if (slot >= this.inventory.size())
         {
-            return this.compressingCraftMatrix.getStackInSlot(slot - this.containingItems.size());
+            return this.compressingCraftMatrix.getStackInSlot(slot - this.inventory.size());
         }
-        return this.containingItems.get(slot);
+        return this.inventory.get(slot);
     }
 
     @Override
     public ItemStack decrStackSize(int slot, int size)
     {
-        if (slot >= this.containingItems.size())
+        if (slot >= this.inventory.size())
         {
-            ItemStack result = this.compressingCraftMatrix.decrStackSize(slot - this.containingItems.size(), size);
+            ItemStack result = this.compressingCraftMatrix.decrStackSize(slot - this.inventory.size(), size);
 
             if (!result.isEmpty())
             {
@@ -258,24 +254,24 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
             return result;
         }
 
-        if (!this.containingItems.get(slot).isEmpty())
+        if (!this.inventory.get(slot).isEmpty())
         {
             ItemStack itemStack;
 
-            if (this.containingItems.get(slot).getCount() <= size)
+            if (this.inventory.get(slot).getCount() <= size)
             {
-                itemStack = this.containingItems.get(slot);
-                this.containingItems.set(slot, ItemStack.EMPTY);
+                itemStack = this.inventory.get(slot);
+                this.inventory.set(slot, ItemStack.EMPTY);
                 this.markDirty();
                 return itemStack;
             }
             else
             {
-                itemStack = this.containingItems.get(slot).splitStack(size);
+                itemStack = this.inventory.get(slot).splitStack(size);
 
-                if (this.containingItems.get(slot).isEmpty())
+                if (this.inventory.get(slot).isEmpty())
                 {
-                    this.containingItems.set(slot, ItemStack.EMPTY);
+                    this.inventory.set(slot, ItemStack.EMPTY);
                 }
                 this.markDirty();
                 return itemStack;
@@ -290,15 +286,15 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        if (index >= this.containingItems.size())
+        if (index >= this.inventory.size())
         {
             this.markDirty();
-            return this.compressingCraftMatrix.removeStackFromSlot(index - this.containingItems.size());
+            return this.compressingCraftMatrix.removeStackFromSlot(index - this.inventory.size());
         }
-        if (!this.containingItems.get(index).isEmpty())
+        if (!this.inventory.get(index).isEmpty())
         {
-            ItemStack itemStack = this.containingItems.get(index);
-            this.containingItems.set(index, ItemStack.EMPTY);
+            ItemStack itemStack = this.inventory.get(index);
+            this.inventory.set(index, ItemStack.EMPTY);
             this.markDirty();
             return itemStack;
         }
@@ -311,14 +307,14 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     @Override
     public void setInventorySlotContents(int slot, ItemStack itemStack)
     {
-        if (slot >= this.containingItems.size())
+        if (slot >= this.inventory.size())
         {
-            this.compressingCraftMatrix.setInventorySlotContents(slot - this.containingItems.size(), itemStack);
+            this.compressingCraftMatrix.setInventorySlotContents(slot - this.inventory.size(), itemStack);
             this.updateInput();
         }
         else
         {
-            this.containingItems.set(slot, itemStack);
+            this.inventory.set(slot, itemStack);
 
             if (!itemStack.isEmpty() && itemStack.getCount() > this.getInventoryStackLimit())
             {
@@ -326,18 +322,6 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
             }
         }
         this.markDirty();
-    }
-
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.rocket_crusher.name");
-    }
-
-    @Override
-    public int getInventoryStackLimit()
-    {
-        return 64;
     }
 
     @Override
@@ -440,12 +424,6 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     public void slowDischarge() {}
 
     @Override
-    public boolean canInsertItem(int slot, ItemStack itemStack, EnumFacing side)
-    {
-        return this.isItemValidForSlot(slot, itemStack);
-    }
-
-    @Override
     public boolean canExtractItem(int slot, ItemStack itemStack, EnumFacing side)
     {
         return slot == 1 || slot == 2;
@@ -473,12 +451,6 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
     public ItemStack getBatteryInSlot()
     {
         return this.getStackInSlot(0);
-    }
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TextComponentTranslation(this.getName());
     }
 
     private boolean isItemCompressorInput(ItemStack itemStack, int id)
@@ -517,18 +489,5 @@ public class TileEntityRocketCrusher extends TileBaseElectricBlock implements II
             }
         }
         return false;
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.containingItems)
-        {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
-        }
-        return true;
     }
 }
