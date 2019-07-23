@@ -73,9 +73,9 @@ public class GuiSpaceWarpPad extends GuiContainerMP
         this.fontRenderer.drawSplitString(LangUtils.translate("gui.message.status.name") + ": " + this.tile.getGUIStatus(), 46, 56, 120, 2536735);
         this.fontRenderer.drawString(LangUtils.translate("container.inventory"), 8, this.ySize - 90 + 2, 4210752);
 
-        if (this.tile.hasWarpCore() && this.tile.containingItems.get(1).hasTagCompound())
+        if (this.tile.hasWarpCore() && this.tile.getInventory().get(1).hasTagCompound())
         {
-            NBTTagCompound compound = this.tile.containingItems.get(1).getTagCompound();
+            NBTTagCompound compound = this.tile.getInventory().get(1).getTagCompound();
             dimension = TextFormatting.GREEN + String.valueOf(compound.getInteger("DimensionID"));
             name = TextFormatting.GREEN + String.valueOf(compound.getString("DimensionName"));
             dest = TextFormatting.GREEN + "" + compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");

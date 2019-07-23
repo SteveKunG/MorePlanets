@@ -4,8 +4,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.planets.diona.blocks.BlockCrashedAlienProbe;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityRenderTickable;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implements IInventoryDefaults
+public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implements IInventory
 {
     protected ResourceLocation lootTable;
     protected long lootTableSeed;
@@ -160,6 +160,42 @@ public class TileEntityCrashedAlienProbe extends TileEntityRenderTickable implem
     public ITextComponent getDisplayName()
     {
         return new TextComponentTranslation(this.getName());
+    }
+
+    @Override
+    public void openInventory(EntityPlayer player) {}
+
+    @Override
+    public void closeInventory(EntityPlayer player) {}
+
+    @Override
+    public int getField(int id)
+    {
+        return 0;
+    }
+
+    @Override
+    public void setField(int id, int value) {}
+
+    @Override
+    public int getFieldCount()
+    {
+        return 0;
+    }
+
+    @Override
+    public void clear()
+    {
+        for (int i = 0; i < this.containingItems.size(); ++i)
+        {
+            this.containingItems.set(i, ItemStack.EMPTY);
+        }
+    }
+
+    @Override
+    public boolean hasCustomName()
+    {
+        return false;
     }
 
     public void setLootTable(ResourceLocation lootTable, long seed)

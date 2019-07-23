@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.FluidTankGC;
 import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
@@ -18,7 +17,6 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,8 +26,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.*;
@@ -44,10 +40,9 @@ import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 import stevekung.mods.stevekunglib.utils.client.ClientUtils;
 
-public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IInventoryDefaults, ISidedInventory, IFluidHandlerWrapper, IConnector
+public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements IFluidHandlerWrapper, IConnector
 {
     private static final int[] SLOTS = new int[108];
-    public NonNullList<ItemStack> containingItems = NonNullList.withSize(108, ItemStack.EMPTY);
     @NetworkedField(targetSide = Side.CLIENT)
     public FluidTankGC fluidTank = new FluidTankGC(1000000, this);
     @NetworkedField(targetSide = Side.CLIENT)
@@ -68,6 +63,12 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     static
     {
         for (int i = 0; i < TileEntityBlackHoleStorage.SLOTS.length; TileEntityBlackHoleStorage.SLOTS[i] = i++) {}
+    }
+
+    public TileEntityBlackHoleStorage()
+    {
+        super("container.black_hole_storage.name");
+        this.inventory = NonNullList.withSize(108, ItemStack.EMPTY);
     }
 
     @Override
@@ -109,8 +110,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.containingItems);
 
         if (nbt.hasKey("XpFluid"))
         {
@@ -123,7 +122,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
             fluidNbt.setInteger("Amount", nbt.getInteger("XP"));
             this.fluidTank.readFromNBT(fluidNbt);
         }
-
         this.disableBlackHole = nbt.getBoolean("DisableBlackHole");
         this.useHopper = nbt.getBoolean("UseHopper");
         this.collectMode = nbt.getString("CollectMode");
@@ -135,7 +133,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        ItemStackHelper.saveAllItems(nbt, this.containingItems);
         nbt.setString("OwnerUUID", this.ownerUUID);
         nbt.setString("CollectMode", this.collectMode);
 
@@ -150,54 +147,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     }
 
     @Override
-    public int getSizeInventory()
-    {
-        return this.containingItems.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.containingItems.get(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
-
-        if (!itemStack.isEmpty())
-        {
-            this.markDirty();
-        }
-        return itemStack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        return ItemStackHelper.getAndRemove(this.containingItems, index);
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack itemStack)
-    {
-        this.containingItems.set(index, itemStack);
-
-        if (itemStack.getCount() > this.getInventoryStackLimit())
-        {
-            itemStack.setCount(this.getInventoryStackLimit());
-        }
-        this.markDirty();
-    }
-
-    @Override
-    public String getName()
-    {
-        return "container.black_hole_storage.name";
-    }
-
-    @Override
     public int getInventoryStackLimit()
     {
         return 64;
@@ -206,19 +155,20 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     @Override
     public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        if (this.world.getTileEntity(this.pos) != this)
+        {
+            return false;
+        }
+        else
+        {
+            return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        }
     }
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack itemStack)
     {
         return itemStack.getItem() != Item.getItemFromBlock(MPBlocks.BLACK_HOLE_STORAGE);
-    }
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TextComponentTranslation(this.getName());
     }
 
     @Override
@@ -254,19 +204,6 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
     @Override
     public boolean canRenderBreaking()
     {
-        return true;
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.containingItems)
-        {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
-        }
         return true;
     }
 
@@ -531,7 +468,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
 
     private boolean isFull()
     {
-        for (ItemStack itemStack : this.containingItems)
+        for (ItemStack itemStack : this.getInventory())
         {
             if (itemStack.isEmpty() || itemStack.getCount() != itemStack.getMaxStackSize())
             {
@@ -671,7 +608,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
             this.world.playEvent(2001, this.pos, Block.getStateId(iblockstate));
             ItemStack itemStack = new ItemStack(MPBlocks.BLACK_HOLE_STORAGE);
             NBTTagCompound nbt = new NBTTagCompound();
-            ItemStackHelper.saveAllItems(nbt, this.containingItems);
+            ItemStackHelper.saveAllItems(nbt, this.getInventory());
             nbt.setBoolean("Disable", this.disableBlackHole);
             nbt.setBoolean("Hopper", this.useHopper);
             nbt.setString("Mode", this.collectMode);

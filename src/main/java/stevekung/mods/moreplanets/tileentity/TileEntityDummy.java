@@ -16,6 +16,28 @@ public class TileEntityDummy extends TileBaseElectricBlock
 {
     public BlockPos mainBlockPosition;
 
+    public TileEntityDummy()
+    {
+        super("");
+    }
+
+    public TileEntityDummy(String tileName)
+    {
+        super(tileName);
+    }
+
+    @Override
+    protected boolean handleInventory()
+    {
+        return false;
+    }
+
+    @Override
+    public int[] getSlotsForFace(EnumFacing side)
+    {
+        return new int[0];
+    }
+
     @Override
     public void slowDischarge() {}
 

@@ -6,24 +6,17 @@ import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSides;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorageCluster;
-import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectricalSource implements ISidedInventory, IInventoryDefaults, IConnector, IMachineSides
+public class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectricalSource implements IConnector, IMachineSides
 {
-    private NonNullList<ItemStack> containingItems = NonNullList.withSize(4, ItemStack.EMPTY);
     public int scaledEnergyLevel;
     public int lastScaledEnergyLevel;
     private float lastEnergy = 0;
@@ -37,6 +30,8 @@ public class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectrica
 
     public TileEntityEnergyStorageClusterMP(float capacity, float extract, int tier, String containerName)
     {
+        super("container." + containerName + ".name");
+        this.inventory = NonNullList.withSize(4, ItemStack.EMPTY);
         this.setTierGC(tier);
         this.storage.setCapacity(capacity);
         this.storage.setMaxExtract(extract);
@@ -72,10 +67,10 @@ public class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectrica
         }
         if (!this.world.isRemote)
         {
-            this.recharge(this.containingItems.get(0));
-            this.recharge(this.containingItems.get(1));
-            this.discharge(this.containingItems.get(2));
-            this.discharge(this.containingItems.get(3));
+            this.recharge(this.getInventory().get(0));
+            this.recharge(this.getInventory().get(1));
+            this.discharge(this.getInventory().get(2));
+            this.discharge(this.getInventory().get(3));
             this.produce();
         }
         this.lastScaledEnergyLevel = this.scaledEnergyLevel;
@@ -86,8 +81,6 @@ public class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectrica
     {
         super.readFromNBT(nbt);
         this.readMachineSidesFromNBT(nbt);
-        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.containingItems);
     }
 
     @Override
@@ -95,56 +88,7 @@ public class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectrica
     {
         super.writeToNBT(nbt);
         this.addMachineSidesToNBT(nbt);
-        ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
-    }
-
-    @Override
-    public int getSizeInventory()
-    {
-        return this.containingItems.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.getItems().get(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
-
-        if (!itemStack.isEmpty())
-        {
-            this.markDirty();
-        }
-        return itemStack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        return ItemStackHelper.getAndRemove(this.getItems(), index);
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack itemStack)
-    {
-        this.getItems().set(index, itemStack);
-
-        if (itemStack.getCount() > this.getInventoryStackLimit())
-        {
-            itemStack.setCount(this.getInventoryStackLimit());
-        }
-        this.markDirty();
-    }
-
-    @Override
-    public String getName()
-    {
-        return LangUtils.translate("container." + this.containerName + ".name");
     }
 
     @Override
@@ -156,19 +100,20 @@ public class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectrica
     @Override
     public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
+        if (this.world.getTileEntity(this.pos) != this)
+        {
+            return false;
+        }
+        else
+        {
+            return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        }
     }
 
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
         return new int[0];
-    }
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TextComponentTranslation(this.getName());
     }
 
     @Override
@@ -320,22 +265,4 @@ public class TileEntityEnergyStorageClusterMP extends TileBaseUniversalElectrica
         return BlockTieredEnergyStorageCluster.MACHINESIDES_RENDERTYPE;
     }
     //------------------END OF IMachineSides implementation
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.containingItems)
-        {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    protected NonNullList<ItemStack> getItems()
-    {
-        return this.containingItems;
-    }
 }

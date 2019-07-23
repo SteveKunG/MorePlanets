@@ -7,10 +7,8 @@ import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,17 +16,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.utils.dimension.IDarkEnergyProvider;
 import stevekung.mods.moreplanets.utils.items.IDarkEnergyFuel;
-import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSource implements IDisableableMachine, ISidedInventory, IConnector, IInventoryDefaults
+public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSource implements IDisableableMachine, IConnector
 {
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean disabled = false;
@@ -40,12 +35,13 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     public int darkEnergyFuel = 0;
     @NetworkedField(targetSide = Side.CLIENT)
     public int prevDarkEnergyFuel = 0;
-    public NonNullList<ItemStack> containingItems = NonNullList.withSize(3, ItemStack.EMPTY);
     public int renderTicks;
     private boolean initialize = true;
 
     public TileEntityDarkEnergyGenerator()
     {
+        super("container.dark_energy_generator.name");
+        this.inventory = NonNullList.withSize(3, ItemStack.EMPTY);
         this.storage.setMaxExtract(2500);
         this.storage.setMaxReceive(2500);
         this.storage.setCapacity(500000);
@@ -71,10 +67,10 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         if (!this.world.isRemote)
         {
             this.receiveEnergyGC(null, this.generateWatts, false);
-            this.recharge(this.containingItems.get(0));
-            this.recharge(this.containingItems.get(1));
-            
-            ItemStack darkEnergy = this.containingItems.get(2);
+            this.recharge(this.getInventory().get(0));
+            this.recharge(this.getInventory().get(1));
+
+            ItemStack darkEnergy = this.getInventory().get(2);
 
             if (!this.disabled)
             {
@@ -123,8 +119,7 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         this.disableCooldown = nbt.getInteger("DisabledCooldown");
         this.darkEnergyFuel = nbt.getInteger("DarkEnergyFuel");
         this.prevDarkEnergyFuel = nbt.getInteger("PrevDarkEnergyFuel");
-        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.containingItems);
+        ItemStackHelper.loadAllItems(nbt, this.getInventory());
     }
 
     @Override
@@ -136,7 +131,6 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
         nbt.setBoolean("Disabled", this.getDisabled(0));
         nbt.setInteger("DarkEnergyFuel", this.darkEnergyFuel);
         nbt.setInteger("PrevDarkEnergyFuel", this.prevDarkEnergyFuel);
-        ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
     }
 
@@ -172,12 +166,6 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     }
 
     @Override
-    public String getName()
-    {
-        return LangUtils.translate("container.dark_energy_generator.name");
-    }
-
-    @Override
     public void setDisabled(int index, boolean disabled)
     {
         if (this.disableCooldown == 0)
@@ -194,69 +182,22 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
     }
 
     @Override
-    public int getSizeInventory()
-    {
-        return this.containingItems.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.containingItems.get(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
-
-        if (!itemStack.isEmpty())
-        {
-            this.markDirty();
-        }
-        return itemStack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        return ItemStackHelper.getAndRemove(this.containingItems, index);
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack itemStack)
-    {
-        this.containingItems.set(index, itemStack);
-
-        if (itemStack.getCount() > this.getInventoryStackLimit())
-        {
-            itemStack.setCount(this.getInventoryStackLimit());
-        }
-        this.markDirty();
-    }
-
-    @Override
-    public int getInventoryStackLimit()
-    {
-        return 64;
-    }
-
-    @Override
     public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
+        if (this.world.getTileEntity(this.pos) != this)
+        {
+            return false;
+        }
+        else
+        {
+            return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        }
     }
 
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
         return new int[] { 0 };
-    }
-
-    @Override
-    public boolean canInsertItem(int slotID, ItemStack itemStack, EnumFacing side)
-    {
-        return this.isItemValidForSlot(slotID, itemStack);
     }
 
     @Override
@@ -283,25 +224,6 @@ public class TileEntityDarkEnergyGenerator extends TileBaseUniversalElectricalSo
             return false;
         }
         return direction == this.getElectricOutputDirection();
-    }
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TextComponentTranslation(this.getName());
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.containingItems)
-        {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
-        }
-        return true;
     }
 
     public int getScaledElecticalLevel(int i)

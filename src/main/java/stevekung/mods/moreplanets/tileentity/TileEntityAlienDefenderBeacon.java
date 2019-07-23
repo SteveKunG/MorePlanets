@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.tileentity;
 
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityAdvancedMP;
 
 public class TileEntityAlienDefenderBeacon extends TileEntityAdvancedMP
@@ -10,6 +11,11 @@ public class TileEntityAlienDefenderBeacon extends TileEntityAdvancedMP
     public boolean prepareBossSpawn = false;
     public boolean creativeSpawn = false;
     public int age = 0;
+
+    public TileEntityAlienDefenderBeacon()
+    {
+        super("");
+    }
 
     @Override
     public void update()
@@ -66,5 +72,17 @@ public class TileEntityAlienDefenderBeacon extends TileEntityAdvancedMP
     public boolean isNetworkedTile()
     {
         return true;
+    }
+
+    @Override
+    public int[] getSlotsForFace(EnumFacing side)
+    {
+        return new int[0];
+    }
+
+    @Override
+    protected boolean handleInventory()
+    {
+        return false;
     }
 }

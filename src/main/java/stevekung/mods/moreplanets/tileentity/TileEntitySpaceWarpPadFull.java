@@ -5,12 +5,9 @@ import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -18,8 +15,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
@@ -29,13 +24,14 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMultiBlock, IInventoryDefaults, ISidedInventory
+public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMultiBlock
 {
-    public NonNullList<ItemStack> containingItems = NonNullList.withSize(2, ItemStack.EMPTY);
     private boolean initialised;
 
     public TileEntitySpaceWarpPadFull()
     {
+        super("container.space_warp_pad.name");
+        this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
         this.storage.setMaxExtract(75);
         this.storage.setCapacity(20000.0F);
     }
@@ -121,22 +117,6 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
-        super.readFromNBT(nbt);
-        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.containingItems);
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
-    {
-        super.writeToNBT(nbt);
-        ItemStackHelper.saveAllItems(nbt, this.containingItems);
-        return nbt;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox()
     {
@@ -168,69 +148,9 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     }
 
     @Override
-    public int getSizeInventory()
-    {
-        return this.containingItems.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.containingItems.get(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
-
-        if (!itemStack.isEmpty())
-        {
-            this.markDirty();
-        }
-        return itemStack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        return ItemStackHelper.getAndRemove(this.containingItems, index);
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack itemStack)
-    {
-        this.containingItems.set(index, itemStack);
-
-        if (itemStack.getCount() > this.getInventoryStackLimit())
-        {
-            itemStack.setCount(this.getInventoryStackLimit());
-        }
-        this.markDirty();
-    }
-
-    @Override
-    public String getName()
-    {
-        return LangUtils.translate("container.space_warp_pad.name");
-    }
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TextComponentTranslation(this.getName());
-    }
-
-    @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
         return new int[] { 0 };
-    }
-
-    @Override
-    public boolean canInsertItem(int slotID, ItemStack itemStack, EnumFacing side)
-    {
-        return this.isItemValidForSlot(slotID, itemStack);
     }
 
     @Override
@@ -261,19 +181,6 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
         return null;
     }
 
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.containingItems)
-        {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public String getGUIStatus()
     {
         if (this.getEnergyStoredGC() == 0)
@@ -292,7 +199,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
         {
             return TextFormatting.DARK_RED + LangUtils.translate("gui.status.warp_core_required.name");
         }
-        if (this.hasWarpCore() && !this.containingItems.get(1).hasTagCompound())
+        if (this.hasWarpCore() && !this.getInventory().get(1).hasTagCompound())
         {
             return TextFormatting.DARK_RED + LangUtils.translate("gui.status.empty_dimension_data.name");
         }
@@ -301,14 +208,14 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
 
     public boolean hasWarpCore()
     {
-        return !this.containingItems.get(1).isEmpty();
+        return !this.getInventory().get(1).isEmpty();
     }
 
     public BlockPos getDestinationPos()
     {
-        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
+        if (this.hasWarpCore() && this.getInventory().get(1).hasTagCompound())
         {
-            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
+            NBTTagCompound compound = this.getInventory().get(1).getTagCompound();
             return new BlockPos(compound.getInteger("X"), compound.getInteger("Y"), compound.getInteger("Z"));
         }
         return null;
@@ -316,9 +223,9 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
 
     public int getDimensionId()
     {
-        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
+        if (this.hasWarpCore() && this.getInventory().get(1).hasTagCompound())
         {
-            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
+            NBTTagCompound compound = this.getInventory().get(1).getTagCompound();
             return compound.getInteger("DimensionID");
         }
         return 0;
@@ -326,9 +233,9 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
 
     public String getDimensionName()
     {
-        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
+        if (this.hasWarpCore() && this.getInventory().get(1).hasTagCompound())
         {
-            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
+            NBTTagCompound compound = this.getInventory().get(1).getTagCompound();
             return compound.getString("DimensionName");
         }
         return null;
@@ -336,9 +243,9 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
 
     public float getRotationPitch()
     {
-        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
+        if (this.hasWarpCore() && this.getInventory().get(1).hasTagCompound())
         {
-            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
+            NBTTagCompound compound = this.getInventory().get(1).getTagCompound();
             return compound.getFloat("Pitch");
         }
         return 0.0F;
@@ -346,9 +253,9 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
 
     public float getRotationYaw()
     {
-        if (this.hasWarpCore() && this.containingItems.get(1).hasTagCompound())
+        if (this.hasWarpCore() && this.getInventory().get(1).hasTagCompound())
         {
-            NBTTagCompound compound = this.containingItems.get(1).getTagCompound();
+            NBTTagCompound compound = this.getInventory().get(1).getTagCompound();
             return compound.getFloat("Yaw");
         }
         return 0.0F;

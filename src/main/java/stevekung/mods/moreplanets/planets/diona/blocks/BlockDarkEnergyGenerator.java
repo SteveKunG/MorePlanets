@@ -126,8 +126,8 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
                 NBTTagCompound nbt = itemStack.getTagCompound();
                 energy.storage.setEnergyStored(nbt.getFloat("EnergyStored"));
                 energy.darkEnergyFuel = nbt.getInteger("DarkEnergyFuel");
-                energy.containingItems = NonNullList.withSize(energy.getSizeInventory(), ItemStack.EMPTY);
-                ItemStackHelper.loadAllItems(nbt, energy.containingItems);
+                energy.inventory = NonNullList.withSize(energy.getSizeInventory(), ItemStack.EMPTY);
+                ItemStackHelper.loadAllItems(nbt, energy.inventory);
             }
         }
     }
@@ -149,7 +149,7 @@ public class BlockDarkEnergyGenerator extends BlockTileMP implements IDescriptio
             {
                 nbt.setInteger("DarkEnergyFuel", electric.darkEnergyFuel);
             }
-            ItemStackHelper.saveAllItems(nbt, electric.containingItems);
+            ItemStackHelper.saveAllItems(nbt, electric.inventory);
             itemStack.setTagCompound(nbt);
             Block.spawnAsEntity(world, pos, itemStack);
         }

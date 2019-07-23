@@ -5,6 +5,11 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class TileEntityAdvancedMP extends TileEntityAdvanced
 {
+    public TileEntityAdvancedMP(String tileName)
+    {
+        super(tileName);
+    }
+
     @Override
     public int getPacketCooldown()
     {

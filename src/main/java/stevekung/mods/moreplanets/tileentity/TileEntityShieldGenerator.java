@@ -7,7 +7,6 @@ import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.entities.IBubbleProvider;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.Block;
@@ -22,7 +21,6 @@ import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.entity.projectile.EntityShulkerBullet;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,8 +29,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -53,11 +49,10 @@ import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider, IInventoryDefaults, ISidedInventory
+public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider
 {
     public int renderTicks;
     public int solarRotate;
-    public NonNullList<ItemStack> containingItems = NonNullList.withSize(4, ItemStack.EMPTY);
     @NetworkedField(targetSide = Side.CLIENT)
     public float shieldSize;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -88,6 +83,8 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
     public TileEntityShieldGenerator()
     {
+        super("container.shield_generator.name");
+        this.inventory = NonNullList.withSize(4, ItemStack.EMPTY);
         this.storage.setMaxExtract(250);
         this.storage.setCapacity(100000.0F);
     }
@@ -166,9 +163,9 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             int capacityUpgradeCount = 0;
 
             // shield damage upgrade
-            if (!this.containingItems.get(1).isEmpty())
+            if (!this.getInventory().get(1).isEmpty())
             {
-                count = this.containingItems.get(1).getCount();
+                count = this.getInventory().get(1).getCount();
                 this.maxShieldDamage = 8 * count;
             }
             else
@@ -177,9 +174,9 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             }
 
             // shield size upgrade
-            if (!this.containingItems.get(2).isEmpty())
+            if (!this.getInventory().get(2).isEmpty())
             {
-                count = this.containingItems.get(2).getCount();
+                count = this.getInventory().get(2).getCount();
                 this.maxShieldSizeUpgrade = 16 + count;
             }
             else
@@ -188,10 +185,10 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             }
 
             // shield capacity upgrade
-            if (!this.containingItems.get(3).isEmpty())
+            if (!this.getInventory().get(3).isEmpty())
             {
-                count = this.containingItems.get(3).getCount();
-                capacityUpgradeCount = this.containingItems.get(3).getCount();
+                count = this.getInventory().get(3).getCount();
+                capacityUpgradeCount = this.getInventory().get(3).getCount();
                 this.maxShieldCapacity = 32000 * count;
             }
             else
@@ -340,8 +337,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         this.enableShield = nbt.getBoolean("EnableShield");
         this.enableDamage = nbt.getBoolean("EnableDamage");
         this.ownerUUID = nbt.getString("OwnerUUID");
-        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.containingItems);
     }
 
     @Override
@@ -359,100 +354,27 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         nbt.setBoolean("NeedCharged", this.needCharged);
         nbt.setBoolean("EnableShield", this.enableShield);
         nbt.setBoolean("EnableDamage", this.enableDamage);
-        ItemStackHelper.saveAllItems(nbt, this.containingItems);
         nbt.setString("OwnerUUID", this.ownerUUID);
         return nbt;
     }
 
     @Override
-    public int getSizeInventory()
-    {
-        return this.containingItems.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.containingItems.get(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
-
-        if (!itemStack.isEmpty())
-        {
-            this.markDirty();
-        }
-        return itemStack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        return ItemStackHelper.getAndRemove(this.containingItems, index);
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack itemStack)
-    {
-        this.containingItems.set(index, itemStack);
-
-        if (itemStack.getCount() > this.getInventoryStackLimit())
-        {
-            itemStack.setCount(this.getInventoryStackLimit());
-        }
-        this.markDirty();
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.containingItems)
-        {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public String getName()
-    {
-        return LangUtils.translate("container.shield_generator.name");
-    }
-
-    @Override
-    public int getInventoryStackLimit()
-    {
-        return 64;
-    }
-
-    @Override
     public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
-    }
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TextComponentTranslation(this.getName());
+        if (this.world.getTileEntity(this.pos) != this)
+        {
+            return false;
+        }
+        else
+        {
+            return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        }
     }
 
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
         return new int[] { 0 };
-    }
-
-    @Override
-    public boolean canInsertItem(int slotID, ItemStack itemStack, EnumFacing side)
-    {
-        return this.isItemValidForSlot(slotID, itemStack);
     }
 
     @Override
@@ -613,7 +535,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             {
                 nbt.setFloat("EnergyStored", shield.getEnergyStoredGC());
             }
-            ItemStackHelper.saveAllItems(nbt, shield.containingItems);
+            ItemStackHelper.saveAllItems(nbt, shield.inventory);
             machine.setTagCompound(nbt);
             Block.spawnAsEntity(this.world, this.pos, machine);
             return this.world.setBlockState(this.pos, Blocks.AIR.getDefaultState(), 3);

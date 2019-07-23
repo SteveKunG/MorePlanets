@@ -107,11 +107,11 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
 
                     if (itemStack.hasTagCompound())
                     {
-                        storage.containingItems = NonNullList.withSize(storage.getSizeInventory(), ItemStack.EMPTY);
+                        storage.inventory = NonNullList.withSize(storage.getSizeInventory(), ItemStack.EMPTY);
                         storage.disableBlackHole = itemStack.getTagCompound().getBoolean("Disable");
                         storage.useHopper = itemStack.getTagCompound().getBoolean("Hopper");
                         storage.collectMode = itemStack.getTagCompound().getString("Mode");
-                        ItemStackHelper.loadAllItems(itemStack.getTagCompound(), storage.containingItems);
+                        ItemStackHelper.loadAllItems(itemStack.getTagCompound(), storage.inventory);
                         storage.fluidTank.readFromNBT(itemStack.getTagCompound().getCompoundTag("XpFluid"));
                     }
                 }
@@ -189,7 +189,7 @@ public class BlockBlackHoleStorage extends BlockBaseMP implements ITileEntityPro
             ItemStack itemStack = new ItemStack(this);
             NBTTagCompound nbt = new NBTTagCompound();
             TileEntityBlackHoleStorage storage = (TileEntityBlackHoleStorage) tile;
-            ItemStackHelper.saveAllItems(nbt, storage.containingItems);
+            ItemStackHelper.saveAllItems(nbt, storage.inventory);
             nbt.setBoolean("Disable", storage.disableBlackHole);
             nbt.setBoolean("Hopper", storage.useHopper);
             nbt.setString("Mode", storage.collectMode);

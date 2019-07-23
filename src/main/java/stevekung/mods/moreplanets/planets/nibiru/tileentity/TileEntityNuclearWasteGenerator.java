@@ -7,21 +7,16 @@ import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import stevekung.mods.moreplanets.core.event.ClientEventHandler;
@@ -29,10 +24,9 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
-public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectricalSource implements IConnector, IDisableableMachine, ISidedInventory, IInventoryDefaults
+public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectricalSource implements IConnector, IDisableableMachine
 {
     public int maxGenerate = 50000;
-    private NonNullList<ItemStack> containingItems = NonNullList.withSize(1, ItemStack.EMPTY);
     @NetworkedField(targetSide = Side.CLIENT)
     public float generateTick;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -74,6 +68,8 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
     public TileEntityNuclearWasteGenerator()
     {
+        super("container.nuclear_waste_generator.name");
+        this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
         this.initMultiBlock = true;
         this.setTierGC(4);
         this.storage.setCapacity(100000000.0F);
@@ -179,7 +175,7 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
                 this.generateTick = Math.min(Math.max(this.generateTick, 0.0F), this.getMaxEnergyStoredGC());
             }
             this.produce();
-            this.recharge(this.containingItems.get(0));
+            this.recharge(this.getInventory().get(0));
         }
     }
 
@@ -192,8 +188,6 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
         this.disableCooldown = nbt.getInteger("DisabledCooldown");
         this.missingTank = nbt.getBoolean("MissingTank");
         this.missingWaste = nbt.getBoolean("MissingWaste");
-        this.containingItems = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.containingItems);
     }
 
     @Override
@@ -205,7 +199,6 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
         nbt.setBoolean("Disabled", this.getDisabled(0));
         nbt.setBoolean("MissingTank", this.missingTank);
         nbt.setBoolean("MissingWaste", this.missingWaste);
-        ItemStackHelper.saveAllItems(nbt, this.containingItems);
         return nbt;
     }
 
@@ -244,12 +237,6 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     }
 
     @Override
-    public String getName()
-    {
-        return LangUtils.translate("container.nuclear_waste_generator.name");
-    }
-
-    @Override
     public void setDisabled(int index, boolean disabled)
     {
         if (this.disableCooldown == 0)
@@ -266,48 +253,6 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     }
 
     @Override
-    public int getSizeInventory()
-    {
-        return this.containingItems.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.containingItems.get(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemStack = ItemStackHelper.getAndSplit(this.containingItems, index, count);
-
-        if (!itemStack.isEmpty())
-        {
-            this.markDirty();
-        }
-        return itemStack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        return ItemStackHelper.getAndRemove(this.containingItems, index);
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack itemStack)
-    {
-        this.containingItems.set(index, itemStack);
-
-        if (itemStack.getCount() > this.getInventoryStackLimit())
-        {
-            itemStack.setCount(this.getInventoryStackLimit());
-        }
-        this.markDirty();
-    }
-
-    @Override
     public int getInventoryStackLimit()
     {
         return 1;
@@ -316,19 +261,20 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     @Override
     public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.world.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
+        if (this.world.getTileEntity(this.pos) != this)
+        {
+            return false;
+        }
+        else
+        {
+            return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        }
     }
 
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
         return new int[] { 0 };
-    }
-
-    @Override
-    public boolean canInsertItem(int slot, ItemStack itemStack, EnumFacing side)
-    {
-        return this.isItemValidForSlot(slot, itemStack);
     }
 
     @Override
@@ -341,25 +287,6 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
     public boolean isItemValidForSlot(int slot, ItemStack itemStack)
     {
         return slot == 0 && ItemElectricBase.isElectricItem(itemStack.getItem());
-    }
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TextComponentTranslation(this.getName());
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemStack : this.containingItems)
-        {
-            if (!itemStack.isEmpty())
-            {
-                return false;
-            }
-        }
-        return true;
     }
 
     public int getScaledElecticalLevel(int i)

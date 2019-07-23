@@ -113,9 +113,9 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                 String name = LangUtils.translate("gui.status.unknown.name");
                 String dest = LangUtils.translate("gui.status.unknown.name");
 
-                if (warp.hasWarpCore() && warp.containingItems.get(1).hasTagCompound())
+                if (warp.hasWarpCore() && warp.getInventory().get(1).hasTagCompound())
                 {
-                    NBTTagCompound compound = warp.containingItems.get(1).getTagCompound();
+                    NBTTagCompound compound = warp.getInventory().get(1).getTagCompound();
                     dimension = String.valueOf(compound.getInteger("DimensionID"));
                     name = WorldUtil.getProviderForDimensionClient(compound.getInteger("DimensionID")).getDimensionType().getName();
                     dest = compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
@@ -202,9 +202,9 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
             String name = LangUtils.translate("gui.status.unknown.name");
             String dest = LangUtils.translate("gui.status.unknown.name");
 
-            if (warp.hasWarpCore() && warp.containingItems.get(1).hasTagCompound())
+            if (warp.hasWarpCore() && warp.getInventory().get(1).hasTagCompound())
             {
-                NBTTagCompound compound = warp.containingItems.get(1).getTagCompound();
+                NBTTagCompound compound = warp.getInventory().get(1).getTagCompound();
                 dimension = String.valueOf(compound.getInteger("DimensionID"));
                 name = WorldUtil.getProviderForDimensionClient(compound.getInteger("DimensionID")).getDimensionType().getName();
                 dest = compound.getInteger("X") + " " + compound.getInteger("Y") + " " + compound.getInteger("Z");
