@@ -5,7 +5,6 @@ import micdoodle8.mods.galacticraft.api.transmission.tile.IConductor;
 import micdoodle8.mods.galacticraft.api.transmission.tile.INetworkConnection;
 import micdoodle8.mods.galacticraft.api.transmission.tile.ITransmitter;
 import micdoodle8.mods.galacticraft.core.energy.EnergyUtil;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityAluminumWire;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -20,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.planets.nibiru.tileentity.TileEntitySealableNuclearWasteRod;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
@@ -80,7 +80,7 @@ public class BlockSealableNuclearWasteRod extends BlockBaseMP implements IPartia
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
-        return new TileEntityAluminumWire(4);
+        return new TileEntitySealableNuclearWasteRod();
     }
 
     @Override
