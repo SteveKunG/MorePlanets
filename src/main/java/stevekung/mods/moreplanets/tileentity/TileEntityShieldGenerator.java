@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.tileentity;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -144,6 +146,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         {
             this.renderTicks = this.renderTicks + this.world.rand.nextInt(100);
             this.solarRotate = this.solarRotate + this.world.rand.nextInt(360);
+            TileEntityDummy.initialiseMultiTiles(this.getPos(), this.getWorld(), this);
             this.initialize = false;
         }
         if (this.hasEnoughEnergyToRun && !this.disabled)
@@ -272,19 +275,45 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public void onCreate(World world, BlockPos pos)
     {
         this.mainBlockPosition = pos;
+        this.markDirty();
+        List<BlockPos> positions = new LinkedList<>();
+        this.getPositions(pos, positions);
+        MPBlocks.SHIELD_GENERATOR_DUMMY.makeFakeBlock(world, positions, pos);
     }
 
     @Override
     public void onDestroy(TileEntity tile)
     {
-        BlockPos thisBlock = this.getPos();
+        BlockPos thisBlock = getPos();
+        List<BlockPos> positions = new ArrayList<>();
+        this.getPositions(thisBlock, positions);
 
-        if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
+        for (BlockPos pos : positions)
         {
-            FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(thisBlock.up(), MPBlocks.SHIELD_GENERATOR_DUMMY.getDefaultState());
+            IBlockState stateAt = this.world.getBlockState(pos);
+
+            if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
+            {
+                FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(pos, this.world.getBlockState(pos));
+            }
+            this.world.destroyBlock(pos, false);
         }
         this.destroyBlock();
-        this.world.destroyBlock(thisBlock.up(), false);
+    }
+
+    @Override
+    public void getPositions(BlockPos placedPosition, List<BlockPos> positions)
+    {
+        int buildHeight = this.world.getHeight() - 1;
+
+        for (int y = 1; y < 2; y++)
+        {
+            if (placedPosition.getY() + y > buildHeight)
+            {
+                return;
+            }
+            positions.add(new BlockPos(placedPosition.getX(), placedPosition.getY() + y, placedPosition.getZ()));
+        }
     }
 
     @Override
@@ -448,9 +477,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     {
         return this.shouldRender;
     }
-
-    @Override
-    public void getPositions(BlockPos placedPosition, List<BlockPos> positions) {}
 
     @Override
     @SideOnly(Side.CLIENT)

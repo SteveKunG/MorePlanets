@@ -6,7 +6,7 @@ import java.util.List;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
@@ -61,7 +62,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             {
                 this.onCreate(this.world, this.getPos());
             }
-            this.initialiseMultiTiles(this.getPos(), this.world);
+            TileEntityDummy.initialiseMultiTiles(this.getPos(), this.world, this);
             this.initialised = true;
         }
         super.update();
@@ -77,43 +78,48 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     public void onCreate(World world, BlockPos placedPosition)
     {
         this.mainBlockPosition = placedPosition;
+        this.markDirty();
+        List<BlockPos> positions = new ArrayList<>();
+        this.getPositions(placedPosition, positions);
+        MPBlocks.WARP_PAD_DUMMY.makeFakeBlock(world, positions, placedPosition);
+    }
+
+    @Override
+    public void getPositions(BlockPos placedPosition, List<BlockPos> positions)
+    {
+        int y = placedPosition.getY();
 
         for (int x = -1; x < 2; x++)
         {
             for (int z = -1; z < 2; z++)
             {
-                BlockPos vecToAdd = new BlockPos(placedPosition.getX() + x, placedPosition.getY(), placedPosition.getZ() + z);
-
-                if (!vecToAdd.equals(placedPosition))
+                if (x == 0 && z == 0)
                 {
-                    MPBlocks.WARP_PAD_DUMMY.makeFakeBlock(world, vecToAdd, placedPosition);
+                    continue;
                 }
+                positions.add(new BlockPos(placedPosition.getX() + x, y, placedPosition.getZ() + z));
             }
         }
     }
 
     @Override
-    public void getPositions(BlockPos placedPosition, List<BlockPos> positions) {}
-
-    @Override
     public void onDestroy(TileEntity callingBlock)
     {
-        BlockPos thisBlock = this.getPos();
-        this.world.destroyBlock(thisBlock, true);
+        BlockPos thisBlock = getPos();
+        List<BlockPos> positions = new ArrayList<>();
+        this.getPositions(thisBlock, positions);
 
-        for (int x = -1; x < 2; x++)
+        for (BlockPos pos : positions)
         {
-            for (int z = -1; z < 2; z++)
-            {
-                BlockPos pos = new BlockPos(thisBlock.getX() + x, thisBlock.getY(), thisBlock.getZ() + z);
+            IBlockState stateAt = this.world.getBlockState(pos);
 
-                if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
-                {
-                    Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(pos, MPBlocks.SPACE_WARP_PAD.getDefaultState());
-                }
-                this.world.destroyBlock(pos, false);
+            if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
+            {
+                FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(pos, this.world.getBlockState(pos));
             }
+            this.world.destroyBlock(pos, false);
         }
+        this.world.destroyBlock(thisBlock, true);
     }
 
     @Override
@@ -259,35 +265,5 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             return compound.getFloat("Yaw");
         }
         return 0.0F;
-    }
-
-    private boolean initialiseMultiTiles(BlockPos pos, World world)
-    {
-        IMultiBlock thisTile = this;
-
-        //Client can create its own fake blocks and tiles - no need for networking in 1.8+
-        if (world.isRemote)
-        {
-            thisTile.onCreate(world, pos);
-        }
-
-        List<BlockPos> positions = new ArrayList<>();
-        thisTile.getPositions(pos, positions);
-        boolean result = true;
-
-        for (BlockPos vecToAdd : positions)
-        {
-            TileEntity tile = world.getTileEntity(vecToAdd);
-
-            if (tile instanceof TileEntityDummy)
-            {
-                ((TileEntityDummy) tile).mainBlockPosition = pos;
-            }
-            else
-            {
-                result = false;
-            }
-        }
-        return result;
     }
 }

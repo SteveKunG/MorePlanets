@@ -1,14 +1,12 @@
 package stevekung.mods.moreplanets.itemblocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.itemblocks.ItemBlockDescriptionTESR;
 import stevekung.mods.stevekunglib.utils.JsonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
@@ -24,32 +22,20 @@ public class ItemBlockShieldGenerator extends ItemBlockDescriptionTESR
     @Override
     public boolean placeBlockAt(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, IBlockState state)
     {
-        BlockPos vecToAdd = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-        Block block = world.getBlockState(vecToAdd).getBlock();
+        for (int y = 0; y < 2; y++)
+        {
+            IBlockState stateAt = world.getBlockState(pos.add(0, y, 0));
+            int buildHeight = world.getHeight() - 1;
 
-        if (world.getBlockState(vecToAdd).getMaterial() != Material.AIR && !block.isReplaceable(world, vecToAdd))
-        {
-            if (world.isRemote)
+            if (!stateAt.getMaterial().isReplaceable() || pos.getY() + y > buildHeight)
             {
-                ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()).getFormattedText());
+                if (world.isRemote)
+                {
+                    ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()).getFormattedText());
+                }
+                return false;
             }
-            return false;
         }
-        else if (vecToAdd.getY() > 255)
-        {
-            if (world.isRemote)
-            {
-                ClientUtils.setOverlayMessage(JsonUtils.create(LangUtils.translate("gui.warning.noroom")).setStyle(JsonUtils.red()));
-            }
-            return false;
-        }
-        else
-        {
-            if (!vecToAdd.equals(pos))
-            {
-                MPBlocks.SHIELD_GENERATOR_DUMMY.makeFakeBlock(world, vecToAdd, pos);
-            }
-            return super.placeBlockAt(itemStack, player, world, pos, facing, hitX, hitY, hitZ, state);
-        }
+        return super.placeBlockAt(itemStack, player, world, pos, facing, hitX, hitY, hitZ, state);
     }
 }

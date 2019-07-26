@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.tileentity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
@@ -24,6 +25,12 @@ public class TileEntityDummy extends TileBaseElectricBlock
     public TileEntityDummy(String tileName)
     {
         super(tileName);
+    }
+
+    public TileEntityDummy(BlockPos mainBlockPosition)
+    {
+        super("");
+        this.mainBlockPosition = mainBlockPosition;
     }
 
     @Override
@@ -105,16 +112,6 @@ public class TileEntityDummy extends TileBaseElectricBlock
         return null;
     }
 
-    public void setMainBlock(BlockPos mainBlock)
-    {
-        this.mainBlockPosition = mainBlock;
-
-        if (!this.world.isRemote)
-        {
-            this.world.notifyBlockUpdate(this.getPos(), this.world.getBlockState(this.getPos()), this.world.getBlockState(this.mainBlockPosition), 3);
-        }
-    }
-
     public void onBlockRemoval()
     {
         if (this.mainBlockPosition != null)
@@ -150,5 +147,33 @@ public class TileEntityDummy extends TileBaseElectricBlock
             return this.world.getTileEntity(this.mainBlockPosition);
         }
         return null;
+    }
+
+    public static boolean initialiseMultiTiles(BlockPos pos, World world, IMultiBlock thisTile)
+    {
+        // Client can create its own fake blocks and tiles - no need for networking in 1.8+
+        if (world.isRemote)
+        {
+            thisTile.onCreate(world, pos);
+        }
+
+        List<BlockPos> positions = new ArrayList<>();
+        thisTile.getPositions(pos, positions);
+        boolean result = true;
+
+        for (BlockPos vecToAdd : positions)
+        {
+            TileEntity tile = world.getTileEntity(vecToAdd);
+
+            if (tile instanceof TileEntityDummy)
+            {
+                ((TileEntityDummy) tile).mainBlockPosition = pos;
+            }
+            else
+            {
+                result = false;
+            }
+        }
+        return result;
     }
 }

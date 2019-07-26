@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.blocks;
 
+import java.util.Collection;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -239,11 +240,19 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         return this.type == BlockType.NUCLEAR_WASTE_TANK_TOP ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
 
+    public void makeFakeBlock(World world, Collection<BlockPos> posList, BlockPos mainBlock)
+    {
+        posList.forEach(pos ->
+        {
+            world.setBlockState(pos, this.getDefaultState(), 3);
+            world.setTileEntity(pos, new TileEntityDummy(mainBlock));
+        });
+    }
+
     public void makeFakeBlock(World world, BlockPos pos, BlockPos mainBlock)
     {
         world.setBlockState(pos, this.getDefaultState(), 3);
-        world.getTileEntity(pos).setWorld(world);
-        ((TileEntityDummy) world.getTileEntity(pos)).setMainBlock(mainBlock);
+        world.setTileEntity(pos, new TileEntityDummy(mainBlock));
     }
 
     private boolean onNuclearTankActivated(World world, BlockPos pos, BlockPos detectPos, EntityPlayer player, ItemStack heldStack)
