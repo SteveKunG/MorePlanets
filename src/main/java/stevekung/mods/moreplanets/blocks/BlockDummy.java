@@ -2,6 +2,8 @@ package stevekung.mods.moreplanets.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import net.minecraft.block.Block;
@@ -10,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -48,7 +51,6 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);
         this.setUnlocalizedName(name);
-        this.setResistance(1000000000000000.0F);
         this.type = type;
     }
 
@@ -116,6 +118,23 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
     }
 
     @Override
+    public float getExplosionResistance(World world, BlockPos pos, @Nullable Entity exploder, Explosion explosion)
+    {
+        TileEntity tileEntity = world.getTileEntity(pos);
+
+        if (tileEntity instanceof TileEntityDummy)
+        {
+            BlockPos mainBlockPosition = ((TileEntityDummy) tileEntity).mainBlockPosition;
+
+            if (mainBlockPosition != null && !mainBlockPosition.equals(pos))
+            {
+                return world.getBlockState(mainBlockPosition).getBlock().getExplosionResistance(world, mainBlockPosition, exploder, explosion);
+            }
+        }
+        return super.getExplosionResistance(world, pos, exploder, explosion);
+    }
+
+    @Override
     public boolean isSealed(World world, BlockPos pos, EnumFacing facing)
     {
         if (this.type == BlockType.WARP_PAD)
@@ -147,86 +166,7 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         {
             return false;
         }
-        if (this.type == BlockType.NUCLEAR_WASTE_TANK_MIDDLE && world.getTileEntity(pos.down()) instanceof TileEntityNuclearWasteTank && world.getBlockState(pos.down()) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState())
-        {
-            TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) world.getTileEntity(pos.down());
-
-            if (!heldStack.isEmpty())
-            {
-                if (tank.hasRod && !tank.createRod)
-                {
-                    if (heldStack.getItem() == MPItems.WASTE_ROD_PICKER)
-                    {
-                        if (!player.capabilities.isCreativeMode)
-                        {
-                            heldStack.damageItem(1, player);
-                        }
-                        Block.spawnAsEntity(world, pos, new ItemStack(MPItems.NUCLEAR_WASTE_ROD));
-                        tank.hasRod = false;
-                        tank.createRod = false;
-                        return true;
-                    }
-                }
-                else
-                {
-                    int slot = player.inventory.currentItem;
-                    FluidActionResult result = FluidUtil.interactWithFluidHandler(player.inventory.getCurrentItem(), tank.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null), player);
-
-                    if (result.isSuccess())
-                    {
-                        tank.createRod = true;
-                        tank.setTime();
-                        player.inventory.setInventorySlotContents(slot, result.result);
-
-                        if (player.inventoryContainer != null)
-                        {
-                            player.inventoryContainer.detectAndSendChanges();
-                        }
-                        return true;
-                    }
-                }
-            }
-        }
-        if (this.type == BlockType.NUCLEAR_WASTE_TANK_TOP && world.getTileEntity(pos.down(2)) instanceof TileEntityNuclearWasteTank && world.getBlockState(pos.down(2)) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState())
-        {
-            TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) world.getTileEntity(pos.down(2));
-
-            if (!heldStack.isEmpty())
-            {
-                if (tank.hasRod && !tank.createRod)
-                {
-                    if (heldStack.getItem() == MPItems.WASTE_ROD_PICKER)
-                    {
-                        if (!player.capabilities.isCreativeMode)
-                        {
-                            heldStack.damageItem(1, player);
-                        }
-                        Block.spawnAsEntity(world, pos, new ItemStack(MPItems.NUCLEAR_WASTE_ROD));
-                        tank.hasRod = false;
-                        return true;
-                    }
-                }
-                else
-                {
-                    int slot = player.inventory.currentItem;
-                    FluidActionResult result = FluidUtil.interactWithFluidHandler(player.inventory.getCurrentItem(), tank.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null), player);
-
-                    if (result.isSuccess())
-                    {
-                        tank.createRod = true;
-                        tank.setTime();
-                        player.inventory.setInventorySlotContents(slot, result.result);
-
-                        if (player.inventoryContainer != null)
-                        {
-                            player.inventoryContainer.detectAndSendChanges();
-                        }
-                        return true;
-                    }
-                }
-            }
-        }
-        return tileEntity.onBlockActivated(world, pos, player);
+        return this.onNuclearTankActivated(world, pos, this.type == BlockType.NUCLEAR_WASTE_TANK_MIDDLE ? pos.down() : pos.down(2), player, heldStack) || tileEntity.onBlockActivated(world, pos, player);
     }
 
     @Override
@@ -304,6 +244,50 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
         world.setBlockState(pos, this.getDefaultState(), 3);
         world.getTileEntity(pos).setWorld(world);
         ((TileEntityDummy) world.getTileEntity(pos)).setMainBlock(mainBlock);
+    }
+
+    private boolean onNuclearTankActivated(World world, BlockPos pos, BlockPos detectPos, EntityPlayer player, ItemStack heldStack)
+    {
+        if (world.getTileEntity(detectPos) instanceof TileEntityNuclearWasteTank && world.getBlockState(detectPos) == MPBlocks.NUCLEAR_WASTE_TANK.getDefaultState())
+        {
+            TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) world.getTileEntity(detectPos);
+
+            if (!heldStack.isEmpty())
+            {
+                if (tank.hasRod && !tank.createRod)
+                {
+                    if (heldStack.getItem() == MPItems.WASTE_ROD_PICKER)
+                    {
+                        if (!player.capabilities.isCreativeMode)
+                        {
+                            heldStack.damageItem(1, player);
+                        }
+                        Block.spawnAsEntity(world, pos, new ItemStack(MPItems.NUCLEAR_WASTE_ROD));
+                        tank.hasRod = false;
+                        return true;
+                    }
+                }
+                else
+                {
+                    int slot = player.inventory.currentItem;
+                    FluidActionResult result = FluidUtil.interactWithFluidHandler(player.inventory.getCurrentItem(), tank.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null), player);
+
+                    if (result.isSuccess())
+                    {
+                        tank.createRod = true;
+                        tank.setTime();
+                        player.inventory.setInventorySlotContents(slot, result.result);
+
+                        if (player.inventoryContainer != null)
+                        {
+                            player.inventoryContainer.detectAndSendChanges();
+                        }
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public static enum BlockType

@@ -354,6 +354,11 @@ public class WailaTileEntityProviderMP implements IWailaDataProvider, IWailaPlug
                     TileEntityNuclearWasteTank tank = (TileEntityNuclearWasteTank) world.getTileEntity(dummy.mainBlockPosition);
                     return tank.writeToNBT(nbt);
                 }
+                if (world.getTileEntity(dummyPos) instanceof TileEntitySpaceWarpPadFull)
+                {
+                    TileEntitySpaceWarpPadFull pad = (TileEntitySpaceWarpPadFull) world.getTileEntity(dummy.mainBlockPosition);
+                    return pad.writeToNBT(nbt);
+                }
             }
         }
         if (tile instanceof TileEntityDarkEnergyReceiver)
