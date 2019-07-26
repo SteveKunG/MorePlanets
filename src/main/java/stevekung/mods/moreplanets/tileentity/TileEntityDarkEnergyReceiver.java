@@ -66,6 +66,8 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
     public final Map<BlockPos, TileEntity> multiTileClientLists = new HashMap<>();
     public final Map<BlockPos, IBlockState> multiBlockClientLists = new HashMap<>();
     public boolean initMultiBlock;
+    private final TileEntityZeliusEgg egg = new TileEntityZeliusEgg();
+    private final TileEntityInfectedCrystallizedEnderCore core = new TileEntityInfectedCrystallizedEnderCore();
 
     static
     {
@@ -138,16 +140,14 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
         if (this.initMultiBlock)
         {
-            TileEntityZeliusEgg egg = new TileEntityZeliusEgg();
-            TileEntityInfectedCrystallizedEnderCore core = new TileEntityInfectedCrystallizedEnderCore();
-            this.multiTileClientLists.put(new BlockPos(1, -1, 0), egg);
-            this.multiTileClientLists.put(new BlockPos(0, -1, 1), egg);
-            this.multiTileClientLists.put(new BlockPos(-1, -1, 0), egg);
-            this.multiTileClientLists.put(new BlockPos(0, -1, -1), egg);
-            this.multiTileClientLists.put(new BlockPos(3, 2, 3), core);
-            this.multiTileClientLists.put(new BlockPos(-3, 2, 3), core);
-            this.multiTileClientLists.put(new BlockPos(3, 2, -3), core);
-            this.multiTileClientLists.put(new BlockPos(-3, 2, -3), core);
+            this.multiTileClientLists.put(new BlockPos(1, -1, 0), this.egg);
+            this.multiTileClientLists.put(new BlockPos(0, -1, 1), this.egg);
+            this.multiTileClientLists.put(new BlockPos(-1, -1, 0), this.egg);
+            this.multiTileClientLists.put(new BlockPos(0, -1, -1), this.egg);
+            this.multiTileClientLists.put(new BlockPos(3, 2, 3), this.core);
+            this.multiTileClientLists.put(new BlockPos(-3, 2, 3), this.core);
+            this.multiTileClientLists.put(new BlockPos(3, 2, -3), this.core);
+            this.multiTileClientLists.put(new BlockPos(-3, 2, -3), this.core);
             this.multiBlockClientLists.putAll(multiBlockLists);
             this.initMultiBlock = false;
         }
