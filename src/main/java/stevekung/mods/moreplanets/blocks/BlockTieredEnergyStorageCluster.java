@@ -25,6 +25,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyStorageCluster;
+import stevekung.mods.moreplanets.tileentity.TileEntityNuclearWasteEnergyStorageCluster;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.IDescription;
 import stevekung.mods.moreplanets.utils.ItemDescription;
@@ -111,11 +113,11 @@ public class BlockTieredEnergyStorageCluster extends BlockTileMP implements IDes
     {
         if (this.type == BlockType.DARK_ENERGY_STORAGE_CLUSTER)
         {
-            return new TileEntityEnergyStorageClusterMP(12500000.0F, 2500.0F, 4, BlockType.DARK_ENERGY_STORAGE_CLUSTER.toString());
+            return new TileEntityDarkEnergyStorageCluster();
         }
         else
         {
-            return new TileEntityEnergyStorageClusterMP(50000000.0F, 7500.0F, 5, BlockType.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER.toString());
+            return new TileEntityNuclearWasteEnergyStorageCluster();
         }
     }
 

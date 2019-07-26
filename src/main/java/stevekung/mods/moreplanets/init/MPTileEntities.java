@@ -9,7 +9,6 @@ import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityCheeseSpor
 import stevekung.mods.moreplanets.planets.diona.tileentity.*;
 import stevekung.mods.moreplanets.planets.nibiru.tileentity.*;
 import stevekung.mods.moreplanets.tileentity.*;
-import stevekung.mods.moreplanets.utils.tileentity.TileEntityEnergyStorageClusterMP;
 
 public class MPTileEntities
 {
@@ -19,7 +18,8 @@ public class MPTileEntities
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntitySpaceWarpPadFull.class, "space_warp_pad_full");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDummy.class, "dummy");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDarkEnergyReceiver.class, "dark_energy_receiver");
-        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityEnergyStorageClusterMP.class, "energy_storage_cluster");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDarkEnergyStorageCluster.class, "dark_energy_storage_cluster");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityNuclearWasteEnergyStorageCluster.class, "nuclear_waste_energy_storage_cluster");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityBlackHoleStorage.class, "black_hole_storage");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityAlienDefenderBeacon.class, "alien_defender_beacon");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityShieldGenerator.class, "shield_generator");
