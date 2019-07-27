@@ -284,14 +284,12 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @Override
     public void onDestroy(TileEntity tile)
     {
-        BlockPos thisBlock = getPos();
+        BlockPos thisBlock = this.getPos();
         List<BlockPos> positions = new ArrayList<>();
         this.getPositions(thisBlock, positions);
 
         for (BlockPos pos : positions)
         {
-            IBlockState stateAt = this.world.getBlockState(pos);
-
             if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
             {
                 FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(pos, this.world.getBlockState(pos));

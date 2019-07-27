@@ -6,7 +6,6 @@ import java.util.List;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -105,14 +104,12 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
     @Override
     public void onDestroy(TileEntity callingBlock)
     {
-        BlockPos thisBlock = getPos();
+        BlockPos thisBlock = this.getPos();
         List<BlockPos> positions = new ArrayList<>();
         this.getPositions(thisBlock, positions);
 
         for (BlockPos pos : positions)
         {
-            IBlockState stateAt = this.world.getBlockState(pos);
-
             if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
             {
                 FMLClientHandler.instance().getClient().effectRenderer.addBlockDestroyEffects(pos, this.world.getBlockState(pos));
