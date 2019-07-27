@@ -50,11 +50,11 @@ public class MorePlanetsMod
     public static final String MOD_ID = "moreplanets";
     private static final int MAJOR_VERSION = 2;
     private static final int MINOR_VERSION = 1;
-    private static final int BUILD_VERSION = 7;
+    private static final int BUILD_VERSION = 8;
     public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
     private static final String FORGE_VERSION = "after:forge@[14.23.5.2838,); ";
-    private static final String DEPENDENCIES = "after:jei@[4.10.0.200,); ";
-    protected static final String MAIN_DEPENDENCIES = "required-after:stevekung's_lib@[1.1.1,); required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION + MorePlanetsMod.DEPENDENCIES;
+    private static final String DEPENDENCIES = "after:jei@[4.15.0.268,); ";
+    protected static final String MAIN_DEPENDENCIES = "required-after:stevekung's_lib@[1.1.2,); required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION + MorePlanetsMod.DEPENDENCIES;
     protected static final String CERTIFICATE = "@FINGERPRINT@";
     public static final String URL = "https://minecraft.curseforge.com/projects/galacticraft-add-on-more-planets";
     protected static final String JSON_URL = "https://raw.githubusercontent.com/SteveKunG/VersionCheckLibrary/master/more_planets_version.json";
