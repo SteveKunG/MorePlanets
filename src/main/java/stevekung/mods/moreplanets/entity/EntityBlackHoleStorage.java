@@ -71,7 +71,7 @@ public class EntityBlackHoleStorage extends Entity
             {
                 int range = 12;
 
-                this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range)).forEach(entity ->
+                for (EntityItem entity : this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range)))
                 {
                     double motionX = this.posX - entity.posX;
                     double motionY = this.posY - entity.posY + 0.5D;
@@ -79,13 +79,13 @@ public class EntityBlackHoleStorage extends Entity
                     entity.motionX = motionX * 0.1F;
                     entity.motionY = motionY * 0.1F;
                     entity.motionZ = motionZ * 0.1F;
-                });
+                }
             }
             if (this.getCollectMode().equals("xp") || collectAll)
             {
                 int range = 12;
 
-                this.world.getEntitiesWithinAABB(EntityXPOrb.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range)).forEach(entity ->
+                for (EntityXPOrb entity : this.world.getEntitiesWithinAABB(EntityXPOrb.class, new AxisAlignedBB(this.posX - range, this.posY - range, this.posZ - range, this.posX + range, this.posY + range, this.posZ + range)))
                 {
                     double motionX = this.posX - entity.posX;
                     double motionY = this.posY - entity.posY + 0.5D;
@@ -94,7 +94,7 @@ public class EntityBlackHoleStorage extends Entity
                     entity.motionY = motionY * 0.1F;
                     entity.motionZ = motionZ * 0.1F;
                     entity.delayBeforeCanPickup = 5;
-                });
+                }
             }
             if (this.world.isRemote)
             {

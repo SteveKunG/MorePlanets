@@ -119,7 +119,7 @@ public class BlocksItemsRegistry
     {
         List<StackSorted> itemOrderListBlocks = new ArrayList<>();
 
-        Arrays.asList(EnumSortCategoryBlock.VALUES).forEach(type ->
+        for (EnumSortCategoryBlock type : EnumSortCategoryBlock.VALUES)
         {
             List<StackSorted> stackSorteds = BlocksItemsRegistry.SORT_MAP_BLOCKS.get(type);
 
@@ -127,7 +127,7 @@ public class BlocksItemsRegistry
             {
                 itemOrderListBlocks.addAll(stackSorteds);
             }
-        });
+        }
         Comparator<ItemStack> tabSorterBlocks = Ordering.explicit(itemOrderListBlocks).onResultOf(input -> new StackSorted(input.getItem()));
         MorePlanetsMod.BLOCK_TAB.setTabSorter(tabSorterBlocks);
     }
@@ -155,7 +155,7 @@ public class BlocksItemsRegistry
     {
         List<StackSorted> itemOrderListItems = new ArrayList<>();
 
-        Arrays.asList(EnumSortCategoryItem.VALUES).forEach(type ->
+        for (EnumSortCategoryItem type : EnumSortCategoryItem.VALUES)
         {
             List<StackSorted> stackSorteds = BlocksItemsRegistry.SORT_MAP_ITEMS.get(type);
 
@@ -163,7 +163,7 @@ public class BlocksItemsRegistry
             {
                 itemOrderListItems.addAll(stackSorteds);
             }
-        });
+        }
         Comparator<ItemStack> tabSorterItems = Ordering.explicit(itemOrderListItems).onResultOf(input -> new StackSorted(input.getItem()));
         MorePlanetsMod.ITEM_TAB.setTabSorter(tabSorterItems);
     }

@@ -33,11 +33,11 @@ public class TileEntitySpaceWarpPad extends TileEntity implements ITickable
 
             if (attachedLaunchPads.size() == 9)
             {
-                attachedLaunchPads.forEach(tile ->
+                for (TileEntity tile : attachedLaunchPads)
                 {
                     this.world.markTileEntityForRemoval(tile);
                     ((TileEntitySpaceWarpPad)tile).corner = 1;
-                });
+                }
 
                 this.world.setBlockState(this.getPos(), MPBlocks.SPACE_WARP_PAD_FULL.getDefaultState(), 2);
                 TileEntitySpaceWarpPadFull tilePadFull = (TileEntitySpaceWarpPadFull) this.world.getTileEntity(this.getPos());

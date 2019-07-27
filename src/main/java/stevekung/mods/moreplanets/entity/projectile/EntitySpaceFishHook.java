@@ -503,7 +503,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                 Block block = this.world.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
                 ResourceLocation resource = block instanceof IFishableLiquidBlock ? ((IFishableLiquidBlock)block).getLootTable() : this.world.provider instanceof IGalacticraftWorldProvider ? MPLootTables.SPACE_FISHING : LootTableList.GAMEPLAY_FISHING;
 
-                this.world.getLootTableManager().getLootTableFromLocation(resource).generateLootForPools(this.rand, lootBuilder.build()).forEach(itemStack ->
+                for (ItemStack itemStack : this.world.getLootTableManager().getLootTableFromLocation(resource).generateLootForPools(this.rand, lootBuilder.build()))
                 {
                     EntityItem entityItem = new EntityItem(this.world, this.posX, this.posY, this.posZ, itemStack);
                     double d0 = this.angler.posX - this.posX;
@@ -521,7 +521,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
                     {
                         this.angler.addStat(StatList.FISH_CAUGHT, 1);
                     }
-                });
+                }
                 i = 1;
             }
             if (this.inGround)

@@ -106,22 +106,22 @@ public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBo
             this.drawTexturedModalRect(x + 33, y + 24, 176, 0, 11, 10);
         }
         this.drawTexturedModalRect(x + 47, y + 25, 187, 0, Math.min(this.tile.getScaledElecticalLevel(54), 54), 7);
-        this.checkboxRender.isSelected = ClientEventHandler.wasteRenderPos.contains(this.tile.getPos());
+        this.checkboxRender.isSelected = ClientEventHandler.WASTE_RENDER_POS.contains(this.tile.getPos());
     }
 
     @Override
     public void onSelectionChanged(GuiElementCheckbox checkbox, boolean newSelected)
     {
-        if (ClientEventHandler.wasteRenderPos.contains(this.tile.getPos()))
+        if (ClientEventHandler.WASTE_RENDER_POS.contains(this.tile.getPos()))
         {
             this.tile.initMultiBlock = true;
             this.tile.multiTileClientLists.clear();
             this.tile.multiBlockClientLists.clear();
-            ClientEventHandler.wasteRenderPos.remove(this.tile.getPos());
+            ClientEventHandler.WASTE_RENDER_POS.remove(this.tile.getPos());
         }
         else
         {
-            ClientEventHandler.wasteRenderPos.add(this.tile.getPos());
+            ClientEventHandler.WASTE_RENDER_POS.add(this.tile.getPos());
         }
     }
 
@@ -134,7 +134,7 @@ public class GuiNuclearWasteGenerator extends GuiContainerMP implements ICheckBo
     @Override
     public boolean getInitiallySelected(GuiElementCheckbox checkbox)
     {
-        return ClientEventHandler.wasteRenderPos.contains(this.tile.getPos());
+        return ClientEventHandler.WASTE_RENDER_POS.contains(this.tile.getPos());
     }
 
     @Override

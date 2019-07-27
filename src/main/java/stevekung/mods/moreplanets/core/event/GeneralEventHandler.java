@@ -204,13 +204,13 @@ public class GeneralEventHandler
             return;
         }
 
-        GeneralEventHandler.INFECTED_BLOCK_LIST.forEach(block ->
+        for (Block block : GeneralEventHandler.INFECTED_BLOCK_LIST)
         {
             if (sourceBlock == block && !player.isPotionActive(MPPotions.INFECTED_SPORE_PROTECTION) && !player.capabilities.isCreativeMode)
             {
                 player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 60));
             }
-        });
+        }
 
         if (sourceBlock.getRegistryName().toString().startsWith("moreplanets"))
         {

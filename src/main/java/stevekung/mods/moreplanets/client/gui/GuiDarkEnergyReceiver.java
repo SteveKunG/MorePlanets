@@ -110,22 +110,22 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
         List<String> desc = new ArrayList<>(Arrays.asList(LangUtils.translate("gui.energy_storage.desc.0")));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tile.getEnergyStoredGC(), this.tile.getMaxEnergyStoredGC(), desc);
         this.electricInfoRegion.tooltipStrings = desc;
-        this.checkboxRender.isSelected = ClientEventHandler.receiverRenderPos.contains(this.tile.getPos());
+        this.checkboxRender.isSelected = ClientEventHandler.RECEIVER_RENDER_POS.contains(this.tile.getPos());
     }
 
     @Override
     public void onSelectionChanged(GuiElementCheckbox checkbox, boolean newSelected)
     {
-        if (ClientEventHandler.receiverRenderPos.contains(this.tile.getPos()))
+        if (ClientEventHandler.RECEIVER_RENDER_POS.contains(this.tile.getPos()))
         {
             this.tile.initMultiBlock = true;
             this.tile.multiTileClientLists.clear();
             this.tile.multiBlockClientLists.clear();
-            ClientEventHandler.receiverRenderPos.remove(this.tile.getPos());
+            ClientEventHandler.RECEIVER_RENDER_POS.remove(this.tile.getPos());
         }
         else
         {
-            ClientEventHandler.receiverRenderPos.add(this.tile.getPos());
+            ClientEventHandler.RECEIVER_RENDER_POS.add(this.tile.getPos());
         }
     }
 
@@ -138,7 +138,7 @@ public class GuiDarkEnergyReceiver extends GuiContainerMP implements ICheckBoxCa
     @Override
     public boolean getInitiallySelected(GuiElementCheckbox checkbox)
     {
-        return ClientEventHandler.receiverRenderPos.contains(this.tile.getPos());
+        return ClientEventHandler.RECEIVER_RENDER_POS.contains(this.tile.getPos());
     }
 
     @Override

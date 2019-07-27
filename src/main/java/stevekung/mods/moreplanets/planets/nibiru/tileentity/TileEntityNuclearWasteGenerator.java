@@ -104,11 +104,11 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
 
         if (this.world.isRemote)
         {
-            ClientEventHandler.wasteRenderPos.forEach(renderPos ->
+            for (BlockPos renderPos : ClientEventHandler.WASTE_RENDER_POS)
             {
                 this.multiBlockClientLists.entrySet().removeIf(entry -> this.pos.equals(renderPos) && this.world.getBlockState(this.pos.add(entry.getKey())) == entry.getValue());
                 this.multiTileClientLists.removeIf(pos -> this.pos.equals(renderPos) && this.world.isRemote && this.world.getTileEntity(this.pos.add(pos)) != null && this.world.getTileEntity(this.pos.add(pos)).getClass().equals(TileEntityNuclearWasteTank.class));
-            });
+            }
         }
 
         if (!this.world.isRemote)

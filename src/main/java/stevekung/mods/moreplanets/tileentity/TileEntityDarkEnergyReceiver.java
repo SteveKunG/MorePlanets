@@ -154,11 +154,11 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
 
         if (this.world.isRemote)
         {
-            ClientEventHandler.receiverRenderPos.forEach(renderPos ->
+            for (BlockPos renderPos : ClientEventHandler.RECEIVER_RENDER_POS)
             {
                 this.multiBlockClientLists.entrySet().removeIf(entry -> this.pos.equals(renderPos) && this.world.getBlockState(this.pos.add(entry.getKey())) == entry.getValue());
                 this.multiTileClientLists.entrySet().removeIf(entry -> this.pos.equals(renderPos) && this.world.isRemote && this.world.getTileEntity(this.pos.add(entry.getKey())) != null && this.world.getTileEntity(this.pos.add(entry.getKey())).getClass().equals(entry.getValue().getClass()));
-            });
+            }
         }
 
         if (!this.world.isRemote)
@@ -169,7 +169,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                 {
                     int radius = 32;
 
-                    this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - radius, this.pos.getY() - radius, this.pos.getZ() - radius, this.pos.getX() + radius, this.pos.getY() + radius, this.pos.getZ() + radius)).forEach(entity ->
+                    for (Entity entity : this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - radius, this.pos.getY() - radius, this.pos.getZ() - radius, this.pos.getX() + radius, this.pos.getY() + radius, this.pos.getZ() + radius)))
                     {
                         if (entity instanceof EntityLivingBase)
                         {
@@ -189,7 +189,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                                 }
                             }
                         }
-                    });
+                    }
                 }
 
                 if (this.activatedTick < this.getSuccessfulTick())

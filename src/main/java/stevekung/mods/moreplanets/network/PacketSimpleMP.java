@@ -100,18 +100,18 @@ public class PacketSimpleMP extends PacketBase
         {
         case C_ADD_ENTITY_ID:
             String entityIDAdd = (String) this.data.get(0);
-            if (!ClientEventHandler.entityId.contains(entityIDAdd))
+            if (!ClientEventHandler.ENTITY_IDS.contains(entityIDAdd))
             {
-                ClientEventHandler.entityId.add(entityIDAdd);
+                ClientEventHandler.ENTITY_IDS.add(entityIDAdd);
             }
             break;
         case C_REMOVE_ENTITY_ID:
             String entityIDRemove = (String) this.data.get(0);
-            ClientEventHandler.entityId.remove(entityIDRemove);
+            ClientEventHandler.ENTITY_IDS.remove(entityIDRemove);
             break;
         case C_REMOVE_GUIDE_POS:
             pos = (BlockPos) this.data.get(0);
-            ClientEventHandler.receiverRenderPos.remove(pos);
+            ClientEventHandler.RECEIVER_RENDER_POS.remove(pos);
             break;
         case C_RELOAD_RENDERER:
             FMLClientHandler.instance().getClient().renderGlobal.loadRenderers();
@@ -133,7 +133,7 @@ public class PacketSimpleMP extends PacketBase
             break;
         case C_REMOVE_GENERATOR_GUIDE_POS:
             pos = (BlockPos) this.data.get(0);
-            ClientEventHandler.wasteRenderPos.remove(pos);
+            ClientEventHandler.WASTE_RENDER_POS.remove(pos);
             break;
         case C_OPEN_SURVIVAL_PLANET_GUI:
             GuiCelestialSelection gui = new GuiCelestialSelection();
@@ -352,7 +352,7 @@ public class PacketSimpleMP extends PacketBase
         double z = pos.getZ() + 0.5D;
         double r2 = radius * radius;
 
-        world.playerEntities.forEach(player ->
+        for (EntityPlayer player : world.playerEntities)
         {
             if (player instanceof EntityPlayerMP)
             {
@@ -370,7 +370,7 @@ public class PacketSimpleMP extends PacketBase
                     }
                 }
             }
-        });
+        }
     }
 
     private static void openShieldGeneratorConfig(EntityPlayerMP player, TileEntityShieldGenerator tile, boolean isConfig)

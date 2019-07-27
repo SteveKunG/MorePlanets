@@ -247,7 +247,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
 
         float range = this.shieldSize;
 
-        this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - range, this.pos.getY() - range, this.pos.getZ() - range, this.pos.getX() + range, this.pos.getY() + range, this.pos.getZ() + range)).forEach(entity ->
+        for (Entity entity : this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.pos.getX() - range, this.pos.getY() - range, this.pos.getZ() - range, this.pos.getX() + range, this.pos.getY() + range, this.pos.getZ() + range)))
         {
             if (!this.disabled && this.enableShield && this.shieldCapacity > 0)
             {
@@ -262,7 +262,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
                     entity.setDead();
                 }
             }
-        });
+        }
     }
 
     @Override

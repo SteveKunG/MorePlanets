@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.utils;
 
-import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
@@ -27,6 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.utils.client.particle.ParticleDiggingNoColor;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
 import stevekung.mods.stevekunglib.utils.client.RenderUtils;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 @SideOnly(Side.CLIENT)
 public class ClientRendererUtils
@@ -51,10 +51,10 @@ public class ClientRendererUtils
 
     public static void renderModelBrightnessColor(IBlockState state, IBakedModel model, float brightness, float red, float green, float blue)
     {
-        Arrays.asList(EnumFacing.VALUES).forEach(facing ->
+        for (EnumFacing facing : CachedEnum.facingValues)
         {
             ClientRendererUtils.renderModelBrightnessColorQuads(brightness, red, green, blue, model.getQuads(state, facing, 0L));
-        });
+        }
         ClientRendererUtils.renderModelBrightnessColorQuads(brightness, red, green, blue, model.getQuads(state, null, 0L));
     }
 

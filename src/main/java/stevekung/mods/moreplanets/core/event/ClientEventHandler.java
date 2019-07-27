@@ -79,10 +79,10 @@ public class ClientEventHandler
     private final Map<BlockPos, Integer> beamList = new HashMap<>();
     private Minecraft mc;
     private boolean initVersionCheck;
-    public static final List<BlockPos> receiverRenderPos = new ArrayList<>();
-    public static final List<BlockPos> wasteRenderPos = new ArrayList<>();
-    public static final List<String> entityId = new CopyOnWriteArrayList<>();
-    public static final Set<IMorePlanetsBoss> bossList = Collections.newSetFromMap(new WeakHashMap<>());
+    public static final List<BlockPos> RECEIVER_RENDER_POS = new ArrayList<>();
+    public static final List<BlockPos> WASTE_RENDER_POS = new ArrayList<>();
+    public static final List<String> ENTITY_IDS = new CopyOnWriteArrayList<>();
+    public static final Set<IMorePlanetsBoss> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
     private static final ResourceLocation BOSS_BAR = new ResourceLocation("moreplanets:textures/gui/boss_bars.png");
 
     public ClientEventHandler()
@@ -98,9 +98,9 @@ public class ClientEventHandler
 
         if (this.mc.world != null)
         {
-            if (!ClientEventHandler.receiverRenderPos.isEmpty())
+            if (!ClientEventHandler.RECEIVER_RENDER_POS.isEmpty())
             {
-                ClientEventHandler.receiverRenderPos.forEach(renderPos ->
+                for (BlockPos renderPos : ClientEventHandler.RECEIVER_RENDER_POS)
                 {
                     TileEntity tile = this.mc.world.getTileEntity(renderPos);
                     GlStateManager.pushMatrix();
@@ -112,12 +112,12 @@ public class ClientEventHandler
                         der.multiBlockClientLists.forEach((pos, state) -> MultiblockRendererUtils.renderBlock(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, state));
                         der.multiTileClientLists.forEach((pos, tile2) -> MultiblockRendererUtils.renderTile(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos, tile2));
                     }
-                });
+                }
                 GlStateManager.popMatrix();
             }
-            if (!ClientEventHandler.wasteRenderPos.isEmpty())
+            if (!ClientEventHandler.WASTE_RENDER_POS.isEmpty())
             {
-                ClientEventHandler.wasteRenderPos.forEach(renderPos ->
+                for (BlockPos renderPos : ClientEventHandler.WASTE_RENDER_POS)
                 {
                     TileEntity tile = this.mc.world.getTileEntity(renderPos);
                     GlStateManager.pushMatrix();
@@ -130,7 +130,7 @@ public class ClientEventHandler
                         generator.multiTileClientLists.forEach(pos -> MultiblockRendererUtils.renderTankTile(renderPos.getX() - manager.renderPosX, renderPos.getY() - manager.renderPosY, renderPos.getZ() - manager.renderPosZ, pos));
                     }
                     GlStateManager.popMatrix();
-                });
+                }
             }
         }
     }
@@ -166,10 +166,10 @@ public class ClientEventHandler
         }
         if (this.mc.currentScreen instanceof GuiMainMenu)
         {
-            ClientEventHandler.receiverRenderPos.clear();
-            ClientEventHandler.wasteRenderPos.clear();
-            ClientEventHandler.entityId.clear();
-            ClientEventHandler.bossList.clear();
+            ClientEventHandler.RECEIVER_RENDER_POS.clear();
+            ClientEventHandler.WASTE_RENDER_POS.clear();
+            ClientEventHandler.ENTITY_IDS.clear();
+            ClientEventHandler.BOSSES.clear();
         }
         if (event.phase == Phase.START)
         {
@@ -186,7 +186,7 @@ public class ClientEventHandler
                     this.initVersionCheck = true;
                 }
 
-                ClientEventHandler.entityId.removeIf(ids -> this.mc.world.getEntityByID(Integer.valueOf(ids)) == null);
+                ClientEventHandler.ENTITY_IDS.removeIf(ids -> this.mc.world.getEntityByID(Integer.valueOf(ids)) == null);
                 ShieldRenderer.clearShields();
 
                 for (TileEntity tile : this.mc.player.world.tickableTileEntities)
@@ -233,7 +233,7 @@ public class ClientEventHandler
         {
             EntityLivingBase living = (EntityLivingBase)entity;
 
-            if (ClientEventHandler.entityId.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
+            if (ClientEventHandler.ENTITY_IDS.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
             {
                 GlStateManager.disableLighting();
                 TextureMap texturemap = this.mc.getTextureMapBlocks();
@@ -361,7 +361,7 @@ public class ClientEventHandler
         int barY = y + 4;
         int percent = (int) (bossBarWidth * event.getBossInfo().getPercent());
 
-        ClientEventHandler.bossList.forEach(boss ->
+        for (IMorePlanetsBoss boss : ClientEventHandler.BOSSES)
         {
             if (boss.getBossUUID().equals(uuid))
             {
@@ -378,7 +378,7 @@ public class ClientEventHandler
                 this.mc.ingameGUI.getFontRenderer().drawStringWithShadow(TextFormatting.ITALIC + name, width / 2 - this.mc.ingameGUI.getFontRenderer().getStringWidth(name) / 2, y + 8, boss.getBossTextColor());
                 event.setIncrement(bossBarHeight * 2);
             }
-        });
+        }
     }
 
     @SubscribeEvent

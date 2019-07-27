@@ -269,13 +269,13 @@ public class ClientProxyMP extends ServerProxyMP
     @Override
     public void addBoss(IMorePlanetsBoss boss)
     {
-        ClientEventHandler.bossList.add(boss);
+        ClientEventHandler.BOSSES.add(boss);
     }
 
     @Override
     public void removeBoss(IMorePlanetsBoss boss)
     {
-        ClientEventHandler.bossList.remove(boss);
+        ClientEventHandler.BOSSES.remove(boss);
     }
 
     private static void handleCustomSpawning()

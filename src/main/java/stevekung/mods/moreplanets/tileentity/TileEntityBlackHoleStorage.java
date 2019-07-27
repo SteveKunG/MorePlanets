@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.tileentity;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
@@ -90,17 +88,17 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
             }
 
             this.updateStorage();
-            List<EntityBlackHoleStorage> blackHoleList = this.world.getEntitiesWithinAABB(EntityBlackHoleStorage.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY() + 2, this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 3, this.pos.getZ() + 1.0D));
 
-            blackHoleList.forEach(bh ->
+            for (EntityBlackHoleStorage bh : this.world.getEntitiesWithinAABB(EntityBlackHoleStorage.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY() + 2, this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 3, this.pos.getZ() + 1.0D)))
             {
+                if (bh == null)
+                {
+                    this.destroyBlock();
+                    ClientUtils.printClientMessage(JsonUtils.create(LangUtils.translate("gui.black_hole_disappear.message")).setStyle(JsonUtils.red()));
+                    return;
+                }
                 bh.setDisable(this.disableBlackHole);
                 bh.setCollectMode(this.collectMode);
-            });
-            if (blackHoleList.isEmpty())
-            {
-                this.destroyBlock();
-                ClientUtils.printClientMessage(JsonUtils.create(LangUtils.translate("gui.black_hole_disappear.message")).setStyle(JsonUtils.red()));
             }
             this.xpTemp = this.fluidTank.getFluidAmount();
         }

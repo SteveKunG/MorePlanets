@@ -26,6 +26,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -242,11 +243,11 @@ public class BlockDummy extends BlockContainerMP implements IPartialSealableBloc
 
     public void makeFakeBlock(World world, Collection<BlockPos> posList, BlockPos mainBlock)
     {
-        posList.forEach(pos ->
+        for (BlockPos pos : posList)
         {
-            world.setBlockState(pos, this.getDefaultState(), 3);
+            world.setBlockState(pos, this.getDefaultState(), Constants.BlockFlags.DEFAULT);
             world.setTileEntity(pos, new TileEntityDummy(mainBlock));
-        });
+        }
     }
 
     public void makeFakeBlock(World world, BlockPos pos, BlockPos mainBlock)
