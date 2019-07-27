@@ -280,11 +280,11 @@ public class ClientProxyMP extends ServerProxyMP
 
     private static void handleCustomSpawning()
     {
-        WorldClient world = FMLClientHandler.instance().getWorldClient();
         EntityRegistration entityRegistration = EntityRegistry.instance().lookupModSpawn(EntitySpaceFishHook.class, false);
 
         Function<FMLMessage.EntitySpawnMessage, Entity> handler = input ->
         {
+            WorldClient world = FMLClientHandler.instance().getWorldClient();
             int entityID = 0;
             double posX = 0;
             double posY = 0;
@@ -316,6 +316,7 @@ public class ClientProxyMP extends ServerProxyMP
 
         handler = input ->
         {
+            WorldClient world = FMLClientHandler.instance().getWorldClient();
             double posX = 0;
             double posY = 0;
             double posZ = 0;
@@ -344,6 +345,7 @@ public class ClientProxyMP extends ServerProxyMP
 
         handler = input ->
         {
+            WorldClient world = FMLClientHandler.instance().getWorldClient();
             double posX = 0;
             double posY = 0;
             double posZ = 0;
@@ -372,6 +374,7 @@ public class ClientProxyMP extends ServerProxyMP
 
         handler = input ->
         {
+            WorldClient world = FMLClientHandler.instance().getWorldClient();
             double posX = 0;
             double posY = 0;
             double posZ = 0;
