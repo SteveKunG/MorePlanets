@@ -3,6 +3,7 @@ package stevekung.mods.moreplanets.planets.nibiru.entity;
 import java.util.List;
 import java.util.UUID;
 
+import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -30,9 +31,12 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
+import stevekung.mods.moreplanets.utils.BossType;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
@@ -48,14 +52,19 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     private int entitiesWithinLast;
     private static final DataParameter<Boolean> VINE_PULL = EntityDataManager.createKey(EntityMiniVeinFloater.class, DataSerializers.BOOLEAN);
     private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private UUID bossInfoUUID = this.bossInfo.getUniqueId();
 
     public EntityMiniVeinFloater(World world)
     {
         super(world);
-        MorePlanetsMod.PROXY.addBoss(this);
         this.ignoreFrustumCheck = true;
         this.isImmuneToFire = true;
         this.setSize(3.0F, 8.2F);
+
+        if (world.isRemote)
+        {
+            MorePlanetsMod.PROXY.addBoss(this);
+        }
     }
 
     @Override
@@ -87,7 +96,6 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     public void onUpdate()
     {
         super.onUpdate();
-        MorePlanetsMod.PROXY.addBoss(this);
         this.motionY *= 0.5D;
 
         if (this.getHealth() <= 0.0F)
@@ -325,7 +333,10 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
             this.spawner.boss = null;
             this.spawner.spawned = false;
         }
-        MorePlanetsMod.PROXY.removeBoss(this);
+        if (this.world.isRemote)
+        {
+            MorePlanetsMod.PROXY.removeBoss(this);
+        }
         super.setDead();
     }
 
@@ -368,7 +379,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     @Override
     public UUID getBossUUID()
     {
-        return this.bossInfo.getUniqueId();
+        return this.bossInfoUUID;
     }
 
     @Override
@@ -378,15 +389,31 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
     }
 
     @Override
-    public String getBossType()
+    public BossType getBossType()
     {
-        return "Nibiru Mini Boss";
+        return BossType.NIBIRU_MINI;
     }
 
     @Override
     public int getBossTextColor()
     {
         return ColorUtils.rgbToDecimal(189, 95, 17);
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer)
+    {
+        buffer.writeLong(this.bossInfoUUID.getMostSignificantBits());
+        buffer.writeLong(this.bossInfoUUID.getLeastSignificantBits());
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void readSpawnData(ByteBuf buffer)
+    {
+        long msb = buffer.readLong();
+        long lsb = buffer.readLong();
+        this.bossInfoUUID = new UUID(msb, lsb);
     }
 
     public boolean getVinePull()

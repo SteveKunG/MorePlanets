@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -38,11 +39,14 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntityCheeseSpore;
+import stevekung.mods.moreplanets.utils.BossType;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.entity.EntityFlyingBossMP;
 import stevekung.mods.moreplanets.utils.tileentity.TileEntityTreasureChestMP;
@@ -59,13 +63,18 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     private int entitiesWithinLast;
     private int spawnCount = 10;
     private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private UUID bossInfoUUID = this.bossInfo.getUniqueId();
 
     public EntityCheeseCubeEyeBoss(World world)
     {
         super(world);
-        MorePlanetsMod.PROXY.addBoss(this);
         this.setSize(1.8F, 2.0F);
         this.moveHelper = new FlyingMoveHelper(this);
+
+        if (world.isRemote)
+        {
+            MorePlanetsMod.PROXY.addBoss(this);
+        }
     }
 
     @Override
@@ -238,7 +247,10 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     @Override
     public void setDead()
     {
-        MorePlanetsMod.PROXY.removeBoss(this);
+        if (this.world.isRemote)
+        {
+            MorePlanetsMod.PROXY.removeBoss(this);
+        }
         super.setDead();
     }
 
@@ -286,7 +298,6 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     public void onUpdate()
     {
         super.onUpdate();
-        MorePlanetsMod.PROXY.addBoss(this);
 
         if (this.getHealth() <= 0.0F)
         {
@@ -428,7 +439,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     @Override
     public UUID getBossUUID()
     {
-        return this.bossInfo.getUniqueId();
+        return this.bossInfoUUID;
     }
 
     @Override
@@ -438,15 +449,31 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
     }
 
     @Override
-    public String getBossType()
+    public BossType getBossType()
     {
-        return "Chalos Boss";
+        return BossType.CHALOS;
     }
 
     @Override
     public int getBossTextColor()
     {
         return ColorUtils.rgbToDecimal(246, 220, 160);
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer)
+    {
+        buffer.writeLong(this.bossInfoUUID.getMostSignificantBits());
+        buffer.writeLong(this.bossInfoUUID.getLeastSignificantBits());
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void readSpawnData(ByteBuf buffer)
+    {
+        long msb = buffer.readLong();
+        long lsb = buffer.readLong();
+        this.bossInfoUUID = new UUID(msb, lsb);
     }
 
     static class AICheeseSporeAttack extends EntityAIBase

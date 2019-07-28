@@ -365,7 +365,7 @@ public class ClientEventHandler
         {
             if (boss.getBossUUID().equals(uuid))
             {
-                String bossType = boss.getBossType();
+                String bossType = boss.getBossType().getName();
                 String name = boss.getBossName();
 
                 // start render custom boss bar

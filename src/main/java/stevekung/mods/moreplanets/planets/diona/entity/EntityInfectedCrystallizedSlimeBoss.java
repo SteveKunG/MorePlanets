@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
@@ -37,10 +38,13 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.utils.BossType;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
 import stevekung.mods.moreplanets.utils.entity.EntitySlimeBaseMP;
@@ -58,12 +62,17 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
     private static final DataParameter<Boolean> BARRIER = EntityDataManager.createKey(EntityInfectedCrystallizedSlimeBoss.class, DataSerializers.BOOLEAN);
     public EntityInfectedCrystallizedTentacle tentacle;
     private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private UUID bossInfoUUID = this.bossInfo.getUniqueId();
     private boolean tentacleSpawning = true;
 
     public EntityInfectedCrystallizedSlimeBoss(World world)
     {
         super(world);
-        MorePlanetsMod.PROXY.addBoss(this);
+
+        if (world.isRemote)
+        {
+            MorePlanetsMod.PROXY.addBoss(this);
+        }
     }
 
     @Override
@@ -243,7 +252,6 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
     public void onUpdate()
     {
         super.onUpdate();
-        MorePlanetsMod.PROXY.addBoss(this);
         List<EntityInfectedCrystallizedTentacle> list = this.world.getEntitiesWithinAABB(EntityInfectedCrystallizedTentacle.class, this.getEntityBoundingBox().grow(32.0D));
         this.updateTentacle();
 
@@ -323,7 +331,10 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
                 this.world.spawnEntity(entityslime);
             }
         }
-        MorePlanetsMod.PROXY.removeBoss(this);
+        if (this.world.isRemote)
+        {
+            MorePlanetsMod.PROXY.removeBoss(this);
+        }
         this.isDead = true;
     }
 
@@ -466,7 +477,7 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
     @Override
     public UUID getBossUUID()
     {
-        return this.bossInfo.getUniqueId();
+        return this.bossInfoUUID;
     }
 
     @Override
@@ -476,15 +487,31 @@ public class EntityInfectedCrystallizedSlimeBoss extends EntitySlimeBaseMP imple
     }
 
     @Override
-    public String getBossType()
+    public BossType getBossType()
     {
-        return "Zelius Boss";
+        return BossType.ZELIUS;
     }
 
     @Override
     public int getBossTextColor()
     {
         return ColorUtils.rgbToDecimal(157, 147, 183);
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer)
+    {
+        buffer.writeLong(this.bossInfoUUID.getMostSignificantBits());
+        buffer.writeLong(this.bossInfoUUID.getLeastSignificantBits());
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void readSpawnData(ByteBuf buffer)
+    {
+        long msb = buffer.readLong();
+        long lsb = buffer.readLong();
+        this.bossInfoUUID = new UUID(msb, lsb);
     }
 
     public boolean getBarrier()
