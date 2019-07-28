@@ -81,8 +81,8 @@ public class SkyProviderNibiru extends SkyProviderBaseMP
         GlStateManager.popMatrix();
 
         this.renderSolar(SkyProviderNibiru.LAZENDUS, this.solarSize, false, true, 4.0F, alpha);
-        this.renderObject(1.25F, 80.0F, 200.0F, true, SkyProviderNibiru.CHALOS, alpha, partialTicks);
-        this.renderObject(0.5F, 40.0F, 0.0F, true, SkyProviderNibiru.DIONA, alpha, partialTicks);
+        this.renderObject(1.25F, 80.0F, 200.0F, true, SkyProviderNibiru.CHALOS, partialTicks, alpha);
+        this.renderObject(0.5F, 40.0F, 0.0F, true, SkyProviderNibiru.DIONA, partialTicks, alpha);
     }
 
     @Override
