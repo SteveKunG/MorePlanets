@@ -42,7 +42,6 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
         this.setSoundType(SoundType.GLASS);
         this.setUnlocalizedName(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStateProperty.FACING_ALL, EnumFacing.UP));
-        this.setLightOpacity(255);
     }
 
     @Override
