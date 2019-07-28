@@ -148,14 +148,11 @@ public class EntityCheeseFloater extends EntityMob implements IEntityBreathable
     {
         if (!(damageSource.getImmediateSource() instanceof EntitySmallCheeseSpore))
         {
-            if (!this.world.isRemote && this.world instanceof WorldServer)
+            if (!this.world.isRemote && this.world instanceof WorldServer && this.getHealth() > 0.0F && this.hurtTime == 0)
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    if (this.getHealth() > 0.0F)
-                    {
-                        ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
-                    }
+                    ((WorldServer)this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + 1.5D, this.posZ, 10, this.width / 4.0F, 0.0D, this.width / 4.0F, 0.05D, new int[] {Block.getStateId(MPBlocks.CHEESE_SLIME_BLOCK.getDefaultState())});
                 }
             }
 
