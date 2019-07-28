@@ -285,7 +285,7 @@ public class PacketSimpleMP extends PacketBase
         case S_UPDATE_NIBIRU_WEATHER:
             int i = (300 + world.rand.nextInt(600)) * 20;
             boolean thunder = (boolean)this.data.get(0);
-            WorldInfo worldinfo = world.getWorldInfo();
+            WorldInfo worldinfo = playerMP.mcServer.worlds[0].getWorldInfo();
             worldinfo.setCleanWeatherTime(0);
             worldinfo.setRainTime(i);
             worldinfo.setThunderTime(i);
