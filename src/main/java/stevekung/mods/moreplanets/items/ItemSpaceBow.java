@@ -1,6 +1,8 @@
 package stevekung.mods.moreplanets.items;
 
+import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +16,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
@@ -160,6 +165,25 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
     protected boolean isArrow(ItemStack itemStack)
     {
         return super.isArrow(itemStack) || itemStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_ARROW || itemStack.getItem() == MPItems.INFECTED_ARROW || itemStack.getItem() == MPItems.ANTI_GRAVITY_ARROW;
+    }
+
+    @Override
+    public CreativeTabs getCreativeTab()
+    {
+        return MorePlanetsMod.ITEM_TAB;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack itemStack)
+    {
+        return ClientProxyCore.galacticraftItem;
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack itemStack)
+    {
+        return this instanceof IItemRarity && ((IItemRarity)this).getRarity() != null ? ((IItemRarity)this).getRarity().toColoredFont() + super.getItemStackDisplayName(itemStack) : super.getItemStackDisplayName(itemStack);
     }
 
     private static void spawnArrow(ItemStack itemStack, ItemStack arrowStack, World world, EntityPlayer player, EntityArrow arrow, Item arrowItem, int power, int punch, float duration, boolean flag)
