@@ -12,6 +12,7 @@ import stevekung.mods.moreplanets.planets.diona.client.renderer.entity.layer.Lay
 import stevekung.mods.moreplanets.planets.diona.client.renderer.entity.layer.LayerInfectedCrystallizedSlimeBossBarrier;
 import stevekung.mods.moreplanets.planets.diona.entity.EntityInfectedCrystallizedSlimeBoss;
 import stevekung.mods.moreplanets.utils.ClientRendererUtils;
+import stevekung.mods.moreplanets.utils.client.renderer.entity.layer.LayerGlowingTexture;
 
 @SideOnly(Side.CLIENT)
 public class RenderInfectedCrystallizedSlimeBoss extends RenderLiving<EntityInfectedCrystallizedSlimeBoss>
@@ -21,8 +22,9 @@ public class RenderInfectedCrystallizedSlimeBoss extends RenderLiving<EntityInfe
     public RenderInfectedCrystallizedSlimeBoss(RenderManager manager)
     {
         super(manager, new ModelInfectedCrystallizedSlimeBoss(), 1.0F);
-        this.addLayer(new LayerInfectedCrystallizedSlimeBossBarrier(this));
+        this.addLayer(new LayerGlowingTexture(this, "infected_crystallized_slime_boss_glow", true));
         this.addLayer(new LayerInfectedCrystallizeSlimeBossDeath());
+        this.addLayer(new LayerInfectedCrystallizedSlimeBossBarrier(this));
     }
 
     @Override

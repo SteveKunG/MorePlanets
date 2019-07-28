@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.utils.client.renderer.entity.layer;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -16,18 +17,20 @@ public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
     private final RenderLiving render;
     private final String textureToRender;
     private final boolean light;
+    private final ResourceLocation texture;
 
     public LayerGlowingTexture(RenderLiving render, String textureToRender, boolean light)
     {
         this.render = render;
         this.textureToRender = textureToRender;
         this.light = light;
+        this.texture = new ResourceLocation("moreplanets:textures/entity/" + this.textureToRender + ".png");
     }
 
     @Override
     public void doRenderLayer(EntityLiving entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        this.render.bindTexture(new ResourceLocation("moreplanets:textures/entity/" + this.textureToRender + ".png"));
+        this.render.bindTexture(this.texture);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
@@ -47,7 +50,9 @@ public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         }
 
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();

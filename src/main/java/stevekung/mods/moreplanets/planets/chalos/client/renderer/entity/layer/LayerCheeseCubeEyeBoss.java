@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.planets.chalos.client.renderer.entity.layer;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
@@ -34,7 +35,9 @@ public class LayerCheeseCubeEyeBoss implements LayerRenderer<EntityCheeseCubeEye
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
             GlStateManager.enableLighting();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
             this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+            Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
             this.render.setLightmap(entity);
             GlStateManager.depthMask(true);
             GlStateManager.disableBlend();

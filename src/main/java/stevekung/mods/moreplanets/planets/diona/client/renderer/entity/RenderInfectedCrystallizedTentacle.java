@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.planets.diona.client.renderer.entity;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
@@ -49,7 +50,9 @@ public class RenderInfectedCrystallizedTentacle extends Render<EntityInfectedCry
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
         GlStateManager.disableLighting();
         this.bindTexture(RenderInfectedCrystallizedTentacle.EYES);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         this.model.render(entity, 0.0F, 0.0F, f3 * 0.2F, 0.0F, 0.0F, 0.0625F);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         GlStateManager.enableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableBlend();

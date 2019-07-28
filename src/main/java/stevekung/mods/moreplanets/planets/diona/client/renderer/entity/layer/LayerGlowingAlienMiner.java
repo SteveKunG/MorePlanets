@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.planets.diona.client.renderer.entity.layer;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
@@ -37,7 +38,9 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         GlStateManager.enableLighting();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
@@ -54,7 +57,9 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         float time = entity.ticksExisted + partialTicks;
         float sin = (MathHelper.sin(time / 4) + 1F) / 2F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
@@ -71,7 +76,9 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         time = entity.ticksExisted + partialTicks;
         sin = (MathHelper.sin(time / 8) + 1F) / 2F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
@@ -86,7 +93,9 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         GlStateManager.enableLighting();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
@@ -103,7 +112,9 @@ public class LayerGlowingAlienMiner implements LayerRenderer<EntityAlienMiner>
         time = entity.ticksExisted + partialTicks;
         sin = (MathHelper.sin(time / 16) + 1F) / 1F + 0.15F;
         GlStateManager.color(sin, sin, sin, sin);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         this.render.setLightmap(entity);
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();

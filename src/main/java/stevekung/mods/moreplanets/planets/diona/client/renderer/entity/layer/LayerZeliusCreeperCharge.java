@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.planets.diona.client.renderer.entity.layer;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelCreeper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -42,7 +43,9 @@ public class LayerZeliusCreeperCharge implements LayerRenderer<EntityZeliusCreep
             GlStateManager.disableLighting();
             GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
             this.model.setModelAttributes(this.render.getMainModel());
-            this.model.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+            Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
+            this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+            Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
             GlStateManager.matrixMode(5890);
             GlStateManager.loadIdentity();
             GlStateManager.matrixMode(5888);

@@ -1,5 +1,6 @@
 package stevekung.mods.moreplanets.planets.nibiru.client.renderer.entity.layer;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
@@ -41,7 +42,9 @@ public class LayerInfectedCaveSpiderEyes implements LayerRenderer<EntityInfected
         int k = i / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         this.render.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         i = entity.getBrightnessForRender();
         j = i % 65536;
         k = i / 65536;
