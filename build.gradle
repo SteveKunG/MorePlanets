@@ -162,18 +162,18 @@ task processJar(type: Jar, dependsOn: "rePackAllJar") {
     outputs.upToDateWhen { false }
     baseName = "More-Planets-" + mcVersion
 
-    from(configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }) {
+    /*from(configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }) {
         exclude "LICENSE.txt", "META-INF/MANIFSET.MF", "META-INF/maven/**", "META-INF/*.RSA", "META-INF/*.SF"
-    }
+    }*/
     from(zipTree(project.ext.coreJar)) {
         includes.addAll(project.ext.coreFiles)
     }
     manifest {
         attributes("FMLAT": "moreplanets_at.cfg",
-                   "FMLCorePluginContainsFMLMod": "true",
+                   "FMLCorePluginContainsFMLMod": "true"/*,
                    "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
                    "MixinConfigs": "mixins.moreplanets.json",
-                   "ForceLoadAsMod": "true"
+                   "ForceLoadAsMod": "true"*/
         )
     }
 }
