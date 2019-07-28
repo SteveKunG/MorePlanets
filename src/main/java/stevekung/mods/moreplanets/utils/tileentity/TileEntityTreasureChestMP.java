@@ -142,16 +142,16 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
         {
             this.numPlayersUsing = 0;
             f = 5.0F;
-            List list = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f));
-            Iterator iterator = list.iterator();
+            List<EntityPlayer> list = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - f, j - f, k - f, i + 1 + f, j + 1 + f, k + 1 + f));
+            Iterator<EntityPlayer> iterator = list.iterator();
 
             while (iterator.hasNext())
             {
-                EntityPlayer entityplayer = (EntityPlayer)iterator.next();
+                EntityPlayer player = iterator.next();
 
-                if (entityplayer.openContainer instanceof ContainerChest)
+                if (player.openContainer instanceof ContainerChest)
                 {
-                    IInventory iinventory = ((ContainerChest)entityplayer.openContainer).getLowerChestInventory();
+                    IInventory iinventory = ((ContainerChest)player.openContainer).getLowerChestInventory();
 
                     if (iinventory == this || iinventory instanceof InventoryLargeChest && ((InventoryLargeChest)iinventory).isPartOfLargeChest(this))
                     {

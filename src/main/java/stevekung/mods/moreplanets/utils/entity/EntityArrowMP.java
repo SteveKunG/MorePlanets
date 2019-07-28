@@ -112,10 +112,8 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
             List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D));
             double d0 = 0.0D;
 
-            for (int i = 0; i < list.size(); ++i)
+            for (Entity entity1 : list)
             {
-                Entity entity1 = list.get(i);
-
                 if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5))
                 {
                     AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().grow(0.3D);

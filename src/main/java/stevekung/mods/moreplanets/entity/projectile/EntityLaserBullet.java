@@ -356,10 +356,8 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D));
         double d0 = 0.0D;
 
-        for (int i = 0; i < list.size(); ++i)
+        for (Entity entity1 : list)
         {
-            Entity entity1 = list.get(i);
-
             if (entity1 != this.shootingEntity || this.ticksInAir >= 5)
             {
                 AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.30000001192092896D);

@@ -279,12 +279,7 @@ public class EntityCheeseCubeEyeBoss extends EntityFlyingBossMP implements IEnti
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> playerWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
-
-                for (EntityPlayer player2 : playerWithin)
-                {
-                    player2.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
-                }
+                this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11()).forEach(player2 -> player2.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red())));
                 this.setDead();
                 return;
             }

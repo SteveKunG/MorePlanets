@@ -166,7 +166,7 @@ public class EntityInfectedCrystallizedTentacle extends Entity
                 if (source.isCreativePlayer() || this.getDamage() > 2048.0F)
                 {
                     this.setDead();
-                    List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(4.0D, 4.0D, 4.0D));
+                    this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(4.0D, 4.0D, 4.0D)).forEach(entity -> entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 120, 0)));
                     this.world.createExplosion(null, this.posX, this.posY, this.posZ, 1.0F + this.rand.nextFloat(), true);
                     this.world.playSound(null, this.getPosition(), MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.HOSTILE, 1.0F, 1.0F);
                     int j = 1 + this.rand.nextInt(4);
@@ -174,10 +174,6 @@ public class EntityInfectedCrystallizedTentacle extends Entity
                     for (int k = 0; k < j; ++k)
                     {
                         this.entityDropItem(new ItemStack(MPItems.INFECTED_CRYSTALLIZED_SHARD), 0.0F);
-                    }
-                    for (EntityLivingBase living : list)
-                    {
-                        living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 120, 0));
                     }
                 }
             }

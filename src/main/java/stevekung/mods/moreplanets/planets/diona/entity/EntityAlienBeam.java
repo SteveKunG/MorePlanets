@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.planets.diona.entity;
 
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -72,12 +70,7 @@ public class EntityAlienBeam extends Entity
             if (!this.world.isRemote)
             {
                 double d0 = 1.0D;
-                List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
-
-                for (Entity entity : list)
-                {
-                    entity.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 10.0F);
-                }
+                this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0)).forEach(entity -> entity.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 10.0F));
             }
         }
     }

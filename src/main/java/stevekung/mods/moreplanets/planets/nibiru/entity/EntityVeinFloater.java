@@ -212,12 +212,7 @@ public class EntityVeinFloater extends EntityMob implements IMorePlanetsBoss, IE
                     entity.motionX = motionX * 0.025F;
                     entity.motionY = motionY * 0.025F;
                     entity.motionZ = motionZ * 0.025F;
-                    List<EntityPlayer> entityNearBH = this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D));
-
-                    for (EntityPlayer near : entityNearBH)
-                    {
-                        near.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F);
-                    }
+                    this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 12.5D, this.posZ + 5.0D)).forEach(near -> near.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F));
                 }
             }
         }

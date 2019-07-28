@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.planets.nibiru.entity;
 
-import java.util.List;
-
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -69,21 +67,11 @@ public class EntityInfectedCreeper extends EntityCreeper implements IEntityBreat
             if (this.getPowered())
             {
                 this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * 2, flag);
-                List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius * 2, this.posY - this.explosionRadius * 2, this.posZ - this.explosionRadius * 2, this.posX + this.explosionRadius * 2, this.posY + this.explosionRadius * 2, this.posZ + this.explosionRadius * 2));
-
-                for (EntityLivingBase living : list)
-                {
-                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 240, 1));
-                }
+                this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius * 2, this.posY - this.explosionRadius * 2, this.posZ - this.explosionRadius * 2, this.posX + this.explosionRadius * 2, this.posY + this.explosionRadius * 2, this.posZ + this.explosionRadius * 2)).forEach(entity -> entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 240, 1)));
             }
             else
             {
-                List<EntityLivingBase> list = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius, this.posY - this.explosionRadius, this.posZ - this.explosionRadius, this.posX + this.explosionRadius, this.posY + this.explosionRadius, this.posZ + this.explosionRadius));
-
-                for (EntityLivingBase living : list)
-                {
-                    living.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 120, 1));
-                }
+                this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius, this.posY - this.explosionRadius, this.posZ - this.explosionRadius, this.posX + this.explosionRadius, this.posY + this.explosionRadius, this.posZ + this.explosionRadius)).forEach(entity -> entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE, 120, 1)));
                 this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, flag);
             }
             this.setDead();

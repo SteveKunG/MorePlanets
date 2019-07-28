@@ -134,12 +134,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
                     entity.motionX = motionX * 0.025F;
                     entity.motionY = motionY * 0.025F;
                     entity.motionZ = motionZ * 0.025F;
-                    List<EntityPlayer> entityNearBH = this.world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 6.5D, this.posZ + 5.0D));
-
-                    for (EntityPlayer near : entityNearBH)
-                    {
-                        near.attackEntityFrom(DamageSource.causeMobDamage(this), 4.0F);
-                    }
+                    this.world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(this.posX - 1.0D, this.posY - 1.0D, this.posZ - 1.0D, this.posX + 5.0D, this.posY + 6.5D, this.posZ + 5.0D)).forEach(near -> near.attackEntityFrom(DamageSource.causeMobDamage(this), 4.0F));
                 }
             }
         }
@@ -309,12 +304,7 @@ public class EntityMiniVeinFloater extends EntityMob implements IMorePlanetsBoss
 
             if (this.entitiesWithin == 0 && this.entitiesWithinLast != 0)
             {
-                List<EntityPlayer> playerWithin = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11());
-
-                for (EntityPlayer player : playerWithin)
-                {
-                    player.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red()));
-                }
+                this.world.getEntitiesWithinAABB(EntityPlayer.class, this.spawner.getRangeBoundsPlus11()).forEach(player2 -> player2.sendMessage(JsonUtils.create(LangUtils.translate("gui.skeleton_boss.message")).setStyle(JsonUtils.red())));
                 this.setDead();
                 return;
             }

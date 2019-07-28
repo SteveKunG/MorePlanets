@@ -106,10 +106,8 @@ public class EntityNibiruLightningBolt extends Entity
                 double d0 = 3.0D;
                 List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
 
-                for (int i = 0; i < list.size(); ++i)
+                for (Entity entity : list)
                 {
-                    Entity entity = list.get(i);
-
                     if (!(entity instanceof EntityVeinFloater))
                     {
                         entity.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 8.0F);
