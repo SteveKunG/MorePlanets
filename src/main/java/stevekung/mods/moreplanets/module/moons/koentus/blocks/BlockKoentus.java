@@ -265,7 +265,7 @@ public class BlockKoentus extends BlockBasicMP implements IDetectableResource, I
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta]);
+        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta % BlockType.valuesCached().length]);
     }
 
     @Override

@@ -138,7 +138,7 @@ public class BlockNibiruSeaweed extends BlockBushMP implements IBlockVariants
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta]).withProperty(BlockLiquid.LEVEL, 15);
+        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta % BlockType.valuesCached().length]).withProperty(BlockLiquid.LEVEL, 15);
     }
 
     @Override

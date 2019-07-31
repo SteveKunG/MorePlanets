@@ -314,7 +314,7 @@ public class BlockNibiruOre extends BlockBasicMP implements IDetectableResource,
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta]);
+        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta % BlockType.valuesCached().length]);
     }
 
     @Override

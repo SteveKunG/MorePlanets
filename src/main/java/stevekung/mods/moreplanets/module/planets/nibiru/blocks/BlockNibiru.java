@@ -131,7 +131,7 @@ public class BlockNibiru extends BlockBaseMP implements IBlockVariants
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta]);
+        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta % BlockType.valuesCached().length]);
     }
 
     @Override

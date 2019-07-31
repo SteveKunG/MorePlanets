@@ -141,7 +141,7 @@ public class BlockSpaceDungeonSpawner extends BlockBaseMP implements ITileEntity
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(PLANET, DungeonType.valuesCached()[meta]);
+        return this.getDefaultState().withProperty(PLANET, DungeonType.valuesCached()[meta % DungeonType.valuesCached().length]);
     }
 
     @Override

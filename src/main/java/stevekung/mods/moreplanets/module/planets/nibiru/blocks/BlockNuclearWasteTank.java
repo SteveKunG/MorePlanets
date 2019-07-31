@@ -133,7 +133,7 @@ public class BlockNuclearWasteTank extends BlockBaseMP implements ITileEntityPro
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(STATE, BlockType.valuesCached()[meta]);
+        return this.getDefaultState().withProperty(STATE, BlockType.valuesCached()[meta % BlockType.valuesCached().length]);
     }
 
     @Override

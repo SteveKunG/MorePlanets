@@ -195,7 +195,7 @@ public class BlockInfectedCrystallizePart extends BlockBaseMP implements IBlockV
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta]);
+        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta % BlockType.valuesCached().length]);
     }
 
     @Override

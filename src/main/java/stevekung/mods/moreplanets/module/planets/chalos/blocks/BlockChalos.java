@@ -188,7 +188,7 @@ public class BlockChalos extends BlockBasicMP implements IDetectableResource, IS
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta]);
+        return this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta % BlockType.valuesCached().length]);
     }
 
     @Override
