@@ -74,7 +74,7 @@ public class JSONRecipe
         }
 
         setupDir();
-        Map<String, Object> json = new LinkedHashMap<>();
+        Map<String, Object> json = new HashMap<>();
         List<String> pattern = new ArrayList<>();
         int i = 0;
 
@@ -162,7 +162,7 @@ public class JSONRecipe
         }
 
         setupDir();
-        Map<String, Object> json = new LinkedHashMap<>();
+        Map<String, Object> json = new HashMap<>();
         boolean isOreDict = false;
         List<Map<String, Object>> ingredients = new ArrayList<>();
         List<Map<String, Object>> ingredients2 = new ArrayList<>();
@@ -216,7 +216,7 @@ public class JSONRecipe
         if (obj instanceof ItemStack)
         {
             ItemStack itemStack = (ItemStack) obj;
-            Map<String, Object> ret = new LinkedHashMap<>();
+            Map<String, Object> ret = new HashMap<>();
 
             if (itemStack.hasTagCompound())
             {
@@ -262,7 +262,7 @@ public class JSONRecipe
         if (obj instanceof ItemStack)
         {
             ItemStack itemStack = (ItemStack) obj;
-            Map<String, Object> ret = new LinkedHashMap<>();
+            Map<String, Object> ret = new HashMap<>();
 
             ret.put("item", itemStack.getItem().getRegistryName().toString());
 
@@ -300,16 +300,16 @@ public class JSONRecipe
         }
 
         setupAdvDir();
-        Map<String, Object> json = new LinkedHashMap<>();
-        Map<String, Object> rewards = new LinkedHashMap<>();
-        List<String> recipes = new LinkedList<>();
-        Map<String, Map<String, Object>> criteria = new LinkedHashMap<>();
-        Map<String, Object> has_item = new LinkedHashMap<>();
-        Map<String, Object> conditions = new LinkedHashMap<>();
-        Map<String, Object> conditions2 = new LinkedHashMap<>();
-        Map<String, Object> has_the_recipe = new LinkedHashMap<>();
-        LinkedList<LinkedList<String>> requirements = new LinkedList<>();
-        LinkedList<String> reqs = new LinkedList<>();
+        Map<String, Object> json = new HashMap<>();
+        Map<String, Object> rewards = new HashMap<>();
+        List<String> recipes = new ArrayList<>();
+        Map<String, Map<String, Object>> criteria = new HashMap<>();
+        Map<String, Object> has_item = new HashMap<>();
+        Map<String, Object> conditions = new HashMap<>();
+        Map<String, Object> conditions2 = new HashMap<>();
+        Map<String, Object> has_the_recipe = new HashMap<>();
+        ArrayList<ArrayList<String>> requirements = new ArrayList<>();
+        ArrayList<String> reqs = new ArrayList<>();
 
         json.put("parent", "minecraft:recipes/root");
         recipes.add("moreplanets:" + name);

@@ -1,9 +1,6 @@
 package stevekung.mods.moreplanets.planets.nibiru.blocks;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -20,6 +17,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
 public class BlockInfectedSponge extends BlockBaseMP
 {
@@ -57,49 +55,43 @@ public class BlockInfectedSponge extends BlockBaseMP
 
     private boolean absorb(World world, BlockPos pos)
     {
-        LinkedList<Tuple> linkedlist = new LinkedList<>();
-        ArrayList<BlockPos> arraylist = new ArrayList<>();
-        linkedlist.add(new Tuple<>(pos, 0));
+        Queue<Tuple<BlockPos, Integer>> queue = new LinkedList<>();
+        List<BlockPos> list = new ArrayList<>();
+        queue.add(new Tuple(pos, Integer.valueOf(0)));
         int i = 0;
-        BlockPos blockpos1;
 
-        while (!linkedlist.isEmpty())
+        while (!queue.isEmpty())
         {
-            Tuple tuple = linkedlist.poll();
-            blockpos1 = (BlockPos)tuple.getFirst();
-            int j = ((Integer)tuple.getSecond()).intValue();
-            EnumFacing[] aenumfacing = EnumFacing.VALUES;
-            int k = aenumfacing.length;
+            Tuple<BlockPos, Integer> tuple = queue.poll();
+            BlockPos blockpos = tuple.getFirst();
+            int j = tuple.getSecond().intValue();
 
-            for (int l = 0; l < k; ++l)
+            for (EnumFacing facing : CachedEnum.facingValues)
             {
-                EnumFacing enumfacing = aenumfacing[l];
-                BlockPos blockpos2 = blockpos1.offset(enumfacing);
+                BlockPos blockpos1 = blockpos.offset(facing);
 
-                if (world.getBlockState(blockpos2).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
+                if (world.getBlockState(blockpos1).getBlock() == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
                 {
-                    world.setBlockState(blockpos2, Blocks.AIR.getDefaultState(), 2);
-                    arraylist.add(blockpos2);
+                    world.setBlockState(blockpos1, Blocks.AIR.getDefaultState(), 2);
+                    list.add(blockpos1);
                     ++i;
 
                     if (j < 6)
                     {
-                        linkedlist.add(new Tuple<>(blockpos2, j + 1));
+                        queue.add(new Tuple(blockpos1, j + 1));
                     }
                 }
             }
+
             if (i > 64)
             {
                 break;
             }
         }
 
-        Iterator iterator = arraylist.iterator();
-
-        while (iterator.hasNext())
+        for (BlockPos blockpos2 : list)
         {
-            blockpos1 = (BlockPos)iterator.next();
-            world.notifyNeighborsOfStateChange(blockpos1, Blocks.AIR, false);
+            world.notifyNeighborsOfStateChange(blockpos2, Blocks.AIR, false);
         }
         return i > 0;
     }
