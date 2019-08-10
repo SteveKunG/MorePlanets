@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.utils.items;
 
+import java.util.Optional;
+
 import micdoodle8.mods.galacticraft.api.recipe.ISchematicItem;
 import micdoodle8.mods.galacticraft.core.entities.EntityHangingSchematic;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,9 +28,9 @@ public class ItemSchematicMP extends ItemBaseMP implements ISchematicItem
 
         if (facing != EnumFacing.DOWN && facing != EnumFacing.UP && player.canPlayerEdit(blockpos, facing, itemStack))
         {
-            EntityHangingSchematic entityhanging = this.createEntity(world, blockpos, facing, this.getIndex(itemStack.getItemDamage()));
+            EntityHangingSchematic entityhanging = Optional.ofNullable(this.createEntity(world, blockpos, facing, this.getIndex(itemStack.getItemDamage()))).orElse(null);
 
-            if (entityhanging != null && entityhanging.onValidSurface())
+            if (entityhanging.onValidSurface())
             {
                 if (!world.isRemote)
                 {

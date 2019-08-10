@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.utils.items;
 
+import java.util.Optional;
+
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
@@ -58,7 +60,7 @@ public abstract class ItemFoodMP extends ItemFood implements ISortableItem, IIte
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.rgb != null ? this.rgb : null;
+        return Optional.ofNullable(this.rgb).orElse(null);
     }
 
     @Override

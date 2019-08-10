@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layer;
 
+import java.util.Optional;
+
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
@@ -27,7 +29,7 @@ public class GenLayerNibiruShore extends GenLayer
             {
                 this.initChunkSeed(j + areaX, i + areaY);
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
-                Biome biome = Biome.getBiome(k);
+                Biome biome = Optional.ofNullable(Biome.getBiome(k)).orElse(null);
 
                 if (k == Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELDS))
                 {
@@ -45,7 +47,7 @@ public class GenLayerNibiruShore extends GenLayer
                         aint1[j + i * areaWidth] = Biome.getIdForBiome(MPBiomes.GREEN_VEIN_FIELD_SHORE);
                     }
                 }
-                else if (biome != null && biome.getBiomeClass() == BiomeInfectedJungle.class)
+                else if (biome.getBiomeClass() == BiomeInfectedJungle.class)
                 {
                     int i2 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                     int l2 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
@@ -70,7 +72,7 @@ public class GenLayerNibiruShore extends GenLayer
                 }
                 else if (k != Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS) && k != Biome.getIdForBiome(MPBiomes.INFECTED_WOODED_MOUNTAINS) && k != Biome.getIdForBiome(MPBiomes.INFECTED_MOUNTAINS_EDGE))
                 {
-                    if (biome != null && biome.isSnowyBiome())
+                    if (biome.isSnowyBiome())
                     {
                         this.replaceIfNeighborOcean(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(MPBiomes.INFECTED_SNOWY_BEACH));
                     }

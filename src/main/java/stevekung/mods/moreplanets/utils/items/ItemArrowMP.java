@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.utils.items;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -113,7 +114,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return this.rgb != null ? this.rgb : null;
+        return Optional.ofNullable(this.rgb).orElse(null);
     }
 
     @Override

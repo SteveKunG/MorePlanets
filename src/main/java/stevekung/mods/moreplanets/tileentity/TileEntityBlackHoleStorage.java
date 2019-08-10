@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.tileentity;
 
+import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
@@ -286,7 +288,7 @@ public class TileEntityBlackHoleStorage extends TileEntityAdvancedMP implements 
         }
         else
         {
-            return fluid == null || this.fluidTank.getFluid() != null && this.fluidTank.getFluid().getFluid() == fluid;
+            return fluid == null || Optional.ofNullable(this.fluidTank.getFluid()).orElse(null).getFluid() == fluid;
         }
     }
 

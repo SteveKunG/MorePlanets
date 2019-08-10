@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.utils.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -174,20 +175,14 @@ public class BlockStemMP extends BlockBushMP implements IGrowable
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         List<ItemStack> ret = new ArrayList<>();
+        Item item = Optional.ofNullable(this.getSeedItem()).orElse(null);
+        int i = state.getValue(BlockStateProperty.AGE_7).intValue();
+
+        for (int j = 0; j < 3; ++j)
         {
-            Item item = this.getSeedItem();
-
-            if (item != null)
+            if (RANDOM.nextInt(15) <= i)
             {
-                int i = state.getValue(BlockStateProperty.AGE_7).intValue();
-
-                for (int j = 0; j < 3; ++j)
-                {
-                    if (RANDOM.nextInt(15) <= i)
-                    {
-                        ret.add(new ItemStack(item));
-                    }
-                }
+                ret.add(new ItemStack(item));
             }
         }
         return ret;

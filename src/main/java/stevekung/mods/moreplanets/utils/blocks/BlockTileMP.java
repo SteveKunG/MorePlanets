@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.utils.blocks;
 
+import java.util.Optional;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.IInventory;
@@ -30,8 +32,7 @@ public abstract class BlockTileMP extends BlockAdvancedMP
     @Override
     public boolean eventReceived(IBlockState state, World world, BlockPos pos, int eventID, int eventParam)
     {
-        super.eventReceived(state, world, pos, eventID, eventParam);
-        TileEntity tile = world.getTileEntity(pos);
-        return tile != null && tile.receiveClientEvent(eventID, eventParam);
+        TileEntity tile = Optional.ofNullable(world.getTileEntity(pos)).orElse(null);
+        return tile.receiveClientEvent(eventID, eventParam);
     }
 }

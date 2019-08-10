@@ -9,7 +9,7 @@ import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 
 public class BlackHoleStorageRecipeWrapper implements IRecipeWrapper
 {
-    private INasaWorkbenchRecipe recipe;
+    private final INasaWorkbenchRecipe recipe;
 
     public BlackHoleStorageRecipeWrapper(INasaWorkbenchRecipe recipe)
     {

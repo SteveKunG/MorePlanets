@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.planets.nibiru.entity;
 
+import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
@@ -49,7 +51,7 @@ public class EntityTerrastoneGolem extends EntityGolem
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.tasks.addTask(8, new EntityAIFleeNibiruThunder(this, 1.5D));
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityLiving.class, 10, false, true, entity -> entity != null && IMob.VISIBLE_MOB_SELECTOR.apply(entity)));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityLiving.class, 10, false, true, entity -> IMob.VISIBLE_MOB_SELECTOR.apply(Optional.ofNullable(entity).orElse(null))));
     }
 
     @Override

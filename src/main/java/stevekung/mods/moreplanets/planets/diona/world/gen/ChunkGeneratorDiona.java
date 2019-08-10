@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.planets.diona.world.gen;
 
+import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Sets;
@@ -100,27 +102,20 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
     @Override
     public boolean isInsideStructure(World world, String name, BlockPos pos)
     {
-        if ("DionaMineshaft".equals(name) && this.mineshaftGenerator != null)
-        {
-            return this.mineshaftGenerator.isInsideStructure(pos);
-        }
-        else
-        {
-            return "AlienShip".equals(name) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.isInsideStructure(pos.add(0, 4, 0)) : false;
-        }
+        return "AlienShip".equals(name) && Optional.ofNullable(this.alienShipFeatureGenerator.isInsideStructure(pos.add(0, 4, 0))).orElse(false) || "DionaMineshaft".equals(name) && Optional.ofNullable(this.mineshaftGenerator.isInsideStructure(pos)).orElse(false);
     }
 
     @Override
     @Nullable
     public BlockPos getNearestStructurePos(World world, String name, BlockPos pos, boolean findUnexplored)
     {
-        if ("DionaMineshaft".equals(name) && this.mineshaftGenerator != null)
+        if ("DionaMineshaft".equals(name))
         {
-            return this.mineshaftGenerator.getNearestStructurePos(world, pos, findUnexplored);
+            return Optional.ofNullable(this.mineshaftGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored);
         }
         else
         {
-            return "AlienShip".equals(name) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.getNearestStructurePos(world, pos, findUnexplored) : null;
+            return "AlienShip".equals(name) ? Optional.ofNullable(this.alienShipFeatureGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored) : null;
         }
     }
 

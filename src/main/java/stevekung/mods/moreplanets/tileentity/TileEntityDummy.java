@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.tileentity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
@@ -114,39 +115,29 @@ public class TileEntityDummy extends TileBaseElectricBlock
 
     public void onBlockRemoval()
     {
-        if (this.mainBlockPosition != null)
-        {
-            TileEntity tileEntity = this.world.getTileEntity(this.mainBlockPosition);
+        TileEntity tileEntity = this.world.getTileEntity(Optional.ofNullable(this.mainBlockPosition).orElse(null));
 
-            if (tileEntity instanceof IMultiBlock)
-            {
-                IMultiBlock mainBlock = (IMultiBlock) tileEntity;
-                mainBlock.onDestroy(this);
-            }
+        if (tileEntity instanceof IMultiBlock)
+        {
+            IMultiBlock mainBlock = (IMultiBlock) tileEntity;
+            mainBlock.onDestroy(this);
         }
     }
 
     public boolean onBlockActivated(World worldIn, BlockPos pos, EntityPlayer player)
     {
-        if (this.mainBlockPosition != null)
-        {
-            TileEntity tileEntity = this.world.getTileEntity(this.mainBlockPosition);
+        TileEntity tileEntity = this.world.getTileEntity(Optional.ofNullable(this.mainBlockPosition).orElse(null));
 
-            if (tileEntity instanceof IMultiBlock)
-            {
-                return ((IMultiBlock) tileEntity).onActivated(player);
-            }
+        if (tileEntity instanceof IMultiBlock)
+        {
+            return ((IMultiBlock) tileEntity).onActivated(player);
         }
         return false;
     }
 
     public TileEntity getMainBlockTile()
     {
-        if (this.mainBlockPosition != null)
-        {
-            return this.world.getTileEntity(this.mainBlockPosition);
-        }
-        return null;
+        return this.world.getTileEntity(Optional.ofNullable(this.mainBlockPosition).orElse(null));
     }
 
     public static boolean initialiseMultiTiles(BlockPos pos, World world, IMultiBlock thisTile)

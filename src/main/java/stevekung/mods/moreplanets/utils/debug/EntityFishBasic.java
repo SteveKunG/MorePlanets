@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.utils.debug;
 
+import java.util.Optional;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -136,8 +138,8 @@ public class EntityFishBasic extends EntityWaterMob
 
     protected Entity findEntityToAttack()
     {
-        EntityPlayer player = this.world.getNearestPlayerNotCreative(this, 16.0D);
-        return player != null && this.canEntityBeSeen(player) ? player : null;
+        EntityPlayer player = Optional.ofNullable(this.world.getNearestPlayerNotCreative(this, 16.0D)).orElse(null);
+        return this.canEntityBeSeen(player) ? player : null;
     }
 
     @Override
