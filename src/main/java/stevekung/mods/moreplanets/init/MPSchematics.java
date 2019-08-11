@@ -13,10 +13,8 @@ public class MPSchematics
     public static void init()
     {
         SchematicsRegistry.registerSchematicRecipe(new BlackHoleStorageSchematic());
-        ItemBlackHoleStorageSchematic.SCHEMATIC_INDEX = SchematicsRegistry.registerSchematicItem(new ItemStack(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC));
-        SchematicsRegistry.registerSchematicItem(new ItemStack(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC));
         ItemIonCannonSchematic.SCHEMATIC_INDEX = SchematicsRegistry.registerSchematicItem(new ItemStack(MPItems.ION_CANNON_SCHEMATIC));
-        SchematicsRegistry.registerSchematicItem(new ItemStack(MPItems.ION_CANNON_SCHEMATIC));
+        ItemBlackHoleStorageSchematic.SCHEMATIC_INDEX = SchematicsRegistry.registerSchematicItem(new ItemStack(MPItems.BLACK_HOLE_STORAGE_SCHEMATIC));
     }
 
     @SideOnly(Side.CLIENT)
