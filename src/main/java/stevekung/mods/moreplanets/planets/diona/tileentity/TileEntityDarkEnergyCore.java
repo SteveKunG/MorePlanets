@@ -17,7 +17,6 @@ public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
 {
     private int transformTime;
     private boolean checkTransform = true;
-    private boolean initialize = true;
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
@@ -41,11 +40,6 @@ public class TileEntityDarkEnergyCore extends TileEntityRenderTickable
         List<EntityItem> entityItemMain = this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 1.5D, this.pos.getZ() + 1.0D));
         List<EntityItem> entityItemRequired = this.world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX() + 1.0D, this.pos.getY() + 1.5D, this.pos.getZ() + 1.0D));
 
-        if (this.initialize)
-        {
-            this.renderTicks = this.renderTicks + this.world.rand.nextInt(100);
-            this.initialize = false;
-        }
         if (entityItemMain.isEmpty() && entityItemRequired.isEmpty())
         {
             this.transformTime = -1;

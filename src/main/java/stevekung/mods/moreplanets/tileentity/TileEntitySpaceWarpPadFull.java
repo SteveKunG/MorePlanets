@@ -61,8 +61,7 @@ public class TileEntitySpaceWarpPadFull extends TileEntityDummy implements IMult
             {
                 this.onCreate(this.world, this.getPos());
             }
-            TileEntityDummy.initialiseMultiTiles(this.getPos(), this.world, this);
-            this.initialised = true;
+            this.initialised = TileEntityDummy.initialiseMultiTiles(this.getPos(), this.world, this);
         }
         super.update();
     }

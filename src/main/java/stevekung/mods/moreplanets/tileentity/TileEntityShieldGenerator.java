@@ -80,7 +80,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     public boolean needCharged;
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
-    private boolean initialize = true;
+    private boolean initialize;
     private final ShieldEvent event = new ShieldEvent(this);
 
     public TileEntityShieldGenerator()
@@ -142,12 +142,11 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             }
         }
 
-        if (this.initialize)
+        if (!this.initialize)
         {
             this.renderTicks = this.renderTicks + this.world.rand.nextInt(100);
             this.solarRotate = this.solarRotate + this.world.rand.nextInt(360);
-            TileEntityDummy.initialiseMultiTiles(this.getPos(), this.getWorld(), this);
-            this.initialize = false;
+            this.initialize = TileEntityDummy.initialiseMultiTiles(this.getPos(), this.getWorld(), this);
         }
         if (this.hasEnoughEnergyToRun && !this.disabled)
         {

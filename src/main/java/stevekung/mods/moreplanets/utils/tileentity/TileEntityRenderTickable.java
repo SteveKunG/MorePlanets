@@ -8,10 +8,16 @@ public class TileEntityRenderTickable extends TileEntity implements ITickable
 {
     public int renderTicks;
     protected boolean isContainer;
+    protected boolean initialize;
 
     @Override
     public void update()
     {
+        if (!this.initialize)
+        {
+            this.renderTicks = this.renderTicks + this.world.rand.nextInt(100);
+            this.initialize = true;
+        }
         this.renderTicks++;
     }
 
