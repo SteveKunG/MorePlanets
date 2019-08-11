@@ -424,31 +424,30 @@ public abstract class TileEntityTreasureChestMP extends TileEntityAdvanced imple
         }
     }
 
-    protected void fillWithLoot(@Nullable EntityPlayer player)
+    private void fillWithLoot(@Nullable EntityPlayer player)
     {
         if (this.lootTable != null)
         {
-            LootTable loottable = this.world.getLootTableManager().getLootTableFromLocation(this.lootTable);
+            LootTable loot = this.world.getLootTableManager().getLootTableFromLocation(this.lootTable);
             this.lootTable = null;
-            Random random;
+            Random rand;
 
             if (this.lootTableSeed == 0L)
             {
-                random = new Random();
+                rand = new Random();
             }
             else
             {
-                random = new Random(this.lootTableSeed);
+                rand = new Random(this.lootTableSeed);
             }
 
-            LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer)this.world);
+            LootContext.Builder builder = new LootContext.Builder((WorldServer)this.world);
 
             if (player != null)
             {
-                lootcontext$builder.withLuck(player.getLuck());
+                builder.withLuck(player.getLuck());
             }
-
-            loottable.fillInventory(this, random, lootcontext$builder.build());
+            loot.fillInventory(this, rand, builder.build());
         }
     }
 }
