@@ -6,8 +6,6 @@ import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -16,7 +14,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
@@ -27,28 +24,9 @@ import stevekung.mods.moreplanets.utils.entity.ISpaceMob;
 
 public class EntityInfectedSkeleton extends EntitySkeleton implements IEntityBreathable, ISpaceMob
 {
-    private final EntityAIAttackRangedBow<EntityInfectedSkeleton> aiArrowAttack = new EntityAIAttackRangedBow<>(this, 1.0D, 20, 15.0F);
-    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
-    {
-        @Override
-        public void resetTask()
-        {
-            super.resetTask();
-            EntityInfectedSkeleton.this.setSwingingArms(false);
-        }
-
-        @Override
-        public void startExecuting()
-        {
-            super.startExecuting();
-            EntityInfectedSkeleton.this.setSwingingArms(true);
-        }
-    };
-
     public EntityInfectedSkeleton(World world)
     {
         super(world);
-        this.setCombatTask();
     }
 
     @Override
@@ -96,27 +74,6 @@ public class EntityInfectedSkeleton extends EntitySkeleton implements IEntityBre
     {
         super.setEquipmentBasedOnDifficulty(difficulty);
         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(MPItems.SPACE_BOW));
-    }
-
-    @Override
-    public void setCombatTask()
-    {
-        if (this.world != null && !this.world.isRemote)
-        {
-            ItemStack itemStack = this.getHeldItemMainhand();
-
-            if (itemStack.getItem() == MPItems.SPACE_BOW)
-            {
-                int i = 20;
-
-                if (this.world.getDifficulty() != EnumDifficulty.HARD)
-                {
-                    i = 40;
-                }
-                this.aiArrowAttack.setAttackCooldown(i);
-                this.tasks.addTask(4, this.aiArrowAttack);
-            }
-        }
     }
 
     @Override
