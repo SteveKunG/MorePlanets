@@ -19,7 +19,7 @@ import stevekung.mods.moreplanets.recipe.BlackHoleStorageRecipes;
 public class ContainerBlackHoleStorageSchematic extends Container
 {
     private final InventoryBlackHoleStorageSchematic craftMatrix = new InventoryBlackHoleStorageSchematic(this);
-    private final IInventory craftResult = new InventoryCraftResult();
+    private final InventoryCraftResult craftResult = new InventoryCraftResult();
     private final World world;
 
     public ContainerBlackHoleStorageSchematic(InventoryPlayer inventory, BlockPos pos)
@@ -185,7 +185,7 @@ public class ContainerBlackHoleStorageSchematic extends Container
                 slot = this.inventorySlots.get(i);
                 slotStack = slot.getStack();
 
-                if (slotStack == ItemStack.EMPTY && slot.isItemValid(itemStack))
+                if (slotStack.isEmpty())
                 {
                     ItemStack stackOneItem = itemStack.copy();
                     stackOneItem.setCount(1);
