@@ -3,11 +3,13 @@
 .settings
 bin
 build
-dependencies
 eclipse
+libs
 run
 
 # file
-.classpath
+!gradlew.bat
+*.bat
 *.launch
+.classpath
 .project

@@ -58,7 +58,7 @@ public class ModelInfectedCrystallizedSlimeBoss extends ModelBase
         this.eye4.render(scale);
         this.eye5.render(scale);
         GlStateManager.disableBlend();
-        GlStateManager.cullFace(1029);
+        GlStateManager.cullFace(GlStateManager.CullFace.BACK);
         GlStateManager.disableCull();
         GlStateManager.popMatrix();
     }
