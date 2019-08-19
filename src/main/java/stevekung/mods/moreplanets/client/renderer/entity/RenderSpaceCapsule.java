@@ -83,7 +83,7 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
             GlStateManager.disableLighting();
             GlStateManager.enableBlend();
             GlStateManager.blendFunc(770, 1);
-            GlStateManager.cullFace(1028);
+            GlStateManager.cullFace(GlStateManager.CullFace.FRONT);
 
             int color = ColorUtil.to32BitColor(entity.posY >= 790.0F ? 255 : (int) Math.max(Math.min(255, -(entity.motionY + 0.6F) * 100.0F), 0), 255, 255, 255);
 
@@ -98,7 +98,7 @@ public class RenderSpaceCapsule extends Render<EntitySpaceCapsule>
             GlStateManager.rotate(entity.ticksExisted * 5.0F, 0.0F, 1.0F, 0.0F);
             ClientUtil.drawBakedModelColored(this.modelFlame, color);
 
-            GlStateManager.cullFace(1029);
+            GlStateManager.cullFace(GlStateManager.CullFace.BACK);
             GlStateManager.enableCull();
             GlStateManager.blendFunc(770, 771);
             RenderHelper.enableStandardItemLighting();

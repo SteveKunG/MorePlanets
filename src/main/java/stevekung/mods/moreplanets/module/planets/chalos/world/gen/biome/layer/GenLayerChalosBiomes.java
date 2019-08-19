@@ -16,7 +16,6 @@ import stevekung.mods.moreplanets.util.CachedEnumUtil;
 
 public class GenLayerChalosBiomes extends GenLayerChalos
 {
-    @SuppressWarnings("unchecked")
     private List<BiomeEntry>[] biomes = new ArrayList[CachedEnumUtil.valuesBiomeCached().length];
     private ArrayList<BiomeEntry>[] biomesList = this.setupBiomes();
 
@@ -42,7 +41,6 @@ public class GenLayerChalosBiomes extends GenLayerChalos
 
     private ArrayList<BiomeEntry>[] setupBiomes()
     {
-        @SuppressWarnings("unchecked")
         ArrayList<BiomeEntry>[] currentBiomes = new ArrayList[CachedEnumUtil.valuesBiomeCached().length];
         List<BiomeEntry> list = new ArrayList<>();
         list.add(new BiomeEntry(MPBiomes.CHALOS_PLAINS, 30));
