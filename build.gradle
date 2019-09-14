@@ -69,46 +69,36 @@ dependencies {
 }
 
 repositories {
-    // Hwyla : https://tehnut.info/maven/mcp/mobius/waila/Hwyla/
     maven {
         url "http://tehnut.info/maven/"
     }
-    // JEI
     maven {
         url "https://dvs1.progwml6.com/files/maven/"
     }
     maven {
         url "https://modmaven.k-4u.nl"
     }
-    // Code Chicken Lib : http://chickenbones.net/maven/codechicken/CodeChickenLib/
     maven {
         url "http://chickenbones.net/maven/"
     }
-    // Curse Gradle
     maven {
         url "https://plugins.gradle.org/m2/"
     }
-    // CTM : https://maven.tterrag.com/team/chisel/ctm/CTM
     maven {
         url "http://maven.tterrag.com/"
     }
-    // Baubles : http://maven.thiakil.com/com/azanor/baubles/Baubles/
     maven {
         url = "http://maven.thiakil.com/"
     }
-    // Curse Forge
     maven {
         url = "https://minecraft.curseforge.com/api/maven/"
     }
-    // BuildCraft
     maven {
         url = "https://mod-buildcraft.com/maven/"
     }
-    // Actually Additions
     maven {
         url = "https://maven.chaosfield.at/"
     }
-    // Mixin
     maven {
         url = "http://repo.spongepowered.org/maven/"
     }
