@@ -114,9 +114,15 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
                 zombie.setPosition(pos.getX() + 0.5D, pos.getY() + 1, pos.getZ() + 0.5D);
                 world.spawnEntity(zombie);
             }
-            world.setBlockToAir(pos);
         }
+        world.setBlockToAir(pos);
         world.playSound(null, pos, MPSounds.ALIEN_EGG_DESTROYED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+    }
+
+    @Override
+    public boolean canDropFromExplosion(Explosion explosionIn)
+    {
+        return false;
     }
 
     @Override
