@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.core.event;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.lwjgl.input.Keyboard;
 
@@ -56,6 +55,7 @@ import stevekung.mods.moreplanets.client.renderer.ShieldRenderer;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.core.capability.AbstractCapabilityDataMP;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
+import stevekung.mods.moreplanets.entity.IInfectedPurlonite;
 import stevekung.mods.moreplanets.init.MPBiomes;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPPotions;
@@ -81,7 +81,6 @@ public class ClientEventHandler
     private boolean initVersionCheck;
     public static final List<BlockPos> RECEIVER_RENDER_POS = new ArrayList<>();
     public static final List<BlockPos> WASTE_RENDER_POS = new ArrayList<>();
-    public static final List<String> ENTITY_IDS = new CopyOnWriteArrayList<>();
     public static final Set<IMorePlanetsBoss> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
     private static final ResourceLocation BOSS_BAR = new ResourceLocation("moreplanets:textures/gui/boss_bars.png");
 
@@ -168,7 +167,6 @@ public class ClientEventHandler
         {
             ClientEventHandler.RECEIVER_RENDER_POS.clear();
             ClientEventHandler.WASTE_RENDER_POS.clear();
-            ClientEventHandler.ENTITY_IDS.clear();
             ClientEventHandler.BOSSES.clear();
         }
         if (event.phase == Phase.START)
@@ -186,7 +184,6 @@ public class ClientEventHandler
                     this.initVersionCheck = true;
                 }
 
-                ClientEventHandler.ENTITY_IDS.removeIf(ids -> this.mc.world.getEntityByID(Integer.valueOf(ids)) == null);
                 ShieldRenderer.clearShields();
 
                 for (TileEntity tile : this.mc.player.world.tickableTileEntities)
@@ -233,7 +230,7 @@ public class ClientEventHandler
         {
             EntityLivingBase living = (EntityLivingBase)entity;
 
-            if (ClientEventHandler.ENTITY_IDS.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_PURLONITE))
+            if (((IInfectedPurlonite)living).isInfectedPurlonite())
             {
                 GlStateManager.disableLighting();
                 TextureMap texturemap = this.mc.getTextureMapBlocks();

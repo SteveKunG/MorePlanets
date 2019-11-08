@@ -98,17 +98,6 @@ public class PacketSimpleMP extends PacketBase
 
         switch (this.type)
         {
-        case C_ADD_ENTITY_ID:
-            String entityIDAdd = (String) this.data.get(0);
-            if (!ClientEventHandler.ENTITY_IDS.contains(entityIDAdd))
-            {
-                ClientEventHandler.ENTITY_IDS.add(entityIDAdd);
-            }
-            break;
-        case C_REMOVE_ENTITY_ID:
-            String entityIDRemove = (String) this.data.get(0);
-            ClientEventHandler.ENTITY_IDS.remove(entityIDRemove);
-            break;
         case C_REMOVE_GUIDE_POS:
             pos = (BlockPos) this.data.get(0);
             ClientEventHandler.RECEIVER_RENDER_POS.remove(pos);
@@ -311,8 +300,6 @@ public class PacketSimpleMP extends PacketBase
         S_UPDATE_NIBIRU_WEATHER(Side.SERVER, Boolean.class),
 
         // CLIENT
-        C_ADD_ENTITY_ID(Side.CLIENT, String.class),
-        C_REMOVE_ENTITY_ID(Side.CLIENT, String.class),
         C_REMOVE_GUIDE_POS(Side.CLIENT, BlockPos.class),
         C_RELOAD_RENDERER(Side.CLIENT),
         C_SWITCH_SHIELD_GENERATOR_GUI(Side.CLIENT, BlockPos.class, Integer.class, Boolean.class),

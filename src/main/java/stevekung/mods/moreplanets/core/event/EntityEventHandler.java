@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.core.event;
 import micdoodle8.mods.galacticraft.api.event.oxygen.GCCoreOxygenSuffocationEvent;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
@@ -17,12 +16,13 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
@@ -52,7 +52,17 @@ import stevekung.mods.moreplanets.world.IMeteorType;
 
 public class EntityEventHandler
 {
+    public static final DataParameter<Boolean> INFECTED_PURLONITE = new DataParameter<>(122, DataSerializers.BOOLEAN);
     private boolean openCelestialGui;
+
+    @SubscribeEvent
+    public void onEntityConstruct(EntityEvent.EntityConstructing event)
+    {
+        if (event.getEntity() instanceof EntityLivingBase)
+        {
+            event.getEntity().getDataManager().register(INFECTED_PURLONITE, false);
+        }
+    }
 
     @SubscribeEvent
     public void onZombieSummonAid(SummonAidEvent event)
@@ -79,14 +89,6 @@ public class EntityEventHandler
             }
             event.setResult(Result.DENY);
         }
-    }
-
-    @SubscribeEvent
-    public void onLivingDeath(LivingDeathEvent event)
-    {
-        EntityLivingBase living = event.getEntityLiving();
-        int id = GCCoreUtil.getDimensionID(living.world);
-        PacketSimpleMP.sendToAllAround(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_ENTITY_ID, id, String.valueOf(living.getEntityId())), living.world, id, living.getPosition(), 64);
     }
 
     @SubscribeEvent //TODO Fix fall damage
@@ -124,11 +126,6 @@ public class EntityEventHandler
         EntityLivingBase living = event.getEntityLiving();
         World world = living.world;
 
-        if (living.isDead)
-        {
-            int id = GCCoreUtil.getDimensionID(living.world);
-            PacketSimpleMP.sendToAllAround(new PacketSimpleMP(EnumSimplePacketMP.C_REMOVE_ENTITY_ID, id, String.valueOf(living.getEntityId())), living.world, id, living.getPosition(), 64);
-        }
         if (living instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer)living;

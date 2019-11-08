@@ -106,13 +106,21 @@ repositories {
 
 sourceSets {
     main {
-        ext.refMap = "mixins.moreplanets.refmap.json"
+        ext.refMap = "mixins.more_planets.refmap.json"
     }
 }
 
 jar {
+    from(configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }) {
+        exclude "LICENSE.txt", "META-INF/*.txt", "META-INF/MANIFSET.MF", "META-INF/maven/**", "META-INF/*.RSA", "META-INF/*.SF"
+    }
     manifest {
-        attributes("FMLAT": "moreplanets_at.cfg")
+        attributes("FMLAT": "moreplanets_at.cfg",
+                   "FMLCorePluginContainsFMLMod": "true",
+                   "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+                   "MixinConfigs": "mixins.more_planets.json",
+                   "ForceLoadAsMod": "true"
+        )
     }
     baseName = "More-Planets-" + mcVersion
 }
