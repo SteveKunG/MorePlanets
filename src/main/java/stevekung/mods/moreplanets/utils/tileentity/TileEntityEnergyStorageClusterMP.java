@@ -233,7 +233,7 @@ public abstract class TileEntityEnergyStorageClusterMP extends TileBaseUniversal
     }
 
     @Override
-    public MachineSidePack[] getAllMachineSides()
+    public synchronized MachineSidePack[] getAllMachineSides()
     {
         if (this.machineSides == null)
         {
