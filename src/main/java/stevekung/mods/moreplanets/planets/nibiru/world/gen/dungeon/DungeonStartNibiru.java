@@ -10,7 +10,7 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
 
-public class DungeonStartNibiru extends RoomEntranceNibiru
+public class DungeonStartNibiru extends EntranceCraterNibiru
 {
     public final List<StructureComponent> attachedComponents = new ArrayList<>();
     public final List<StructureBoundingBox> componentBounds = new ArrayList<>();

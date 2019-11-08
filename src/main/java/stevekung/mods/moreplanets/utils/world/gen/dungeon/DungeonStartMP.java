@@ -9,7 +9,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import stevekung.mods.moreplanets.utils.LoggerMP;
 
-public class DungeonStartMP extends RoomEntranceMP
+public class DungeonStartMP extends EntranceCraterMP
 {
     public List<StructureComponent> attachedComponents = new ArrayList<>();
     public List<StructureBoundingBox> componentBounds = new ArrayList<>();

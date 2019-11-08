@@ -51,11 +51,11 @@ public abstract class DirectionalPieceNibiru extends PieceNibiru
         int sizeZ;
         boolean valid;
         int attempts = maxAttempts;
+        int randDir = rand.nextInt(3);
 
         do
         {
-            int randDir = rand.nextInt(4);
-            randomDir = EnumFacing.getHorizontal((randDir == this.getDirection().getOpposite().getHorizontalIndex() ? randDir + 1 : randDir) % 4);
+            randomDir = EnumFacing.getHorizontal((this.getDirection().getOpposite().getHorizontalIndex() + 1 + randDir) % 4);
             StructureBoundingBox extension = this.getExtension(randomDir, this.configuration.getHallwayLengthMin() + rand.nextInt(this.configuration.getHallwayLengthMax() - this.configuration.getHallwayLengthMin()), 5);
             blockX = extension.minX;
             blockZ = extension.minZ;
@@ -63,6 +63,7 @@ public abstract class DirectionalPieceNibiru extends PieceNibiru
             sizeZ = extension.maxZ - extension.minZ;
             valid = !startPiece.checkIntersection(extension);
             attempts--;
+            randDir++;
         }
         while (!valid && attempts > 0);
 

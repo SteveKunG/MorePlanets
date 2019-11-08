@@ -22,6 +22,7 @@ public class MapGenDungeonMP extends MapGenStructure
         MapGenStructureIO.registerStructureComponent(RoomEmptyMP.class, "MPDungeonEmptyRoom");
         MapGenStructureIO.registerStructureComponent(RoomSpawnerMP.class, "MPDungeonSpawnerRoom");
         MapGenStructureIO.registerStructureComponent(RoomChestMP.class, "MPDungeonChestRoom");
+        MapGenStructureIO.registerStructureComponent(RoomEntranceMP.class, "MPDungeonEntranceRoom");
     }
 
     public MapGenDungeonMP(DungeonConfigurationMP configuration)

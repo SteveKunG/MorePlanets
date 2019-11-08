@@ -22,7 +22,8 @@ public class MapGenNibiruDungeon extends MapGenDungeonMP
         MapGenStructureIO.registerStructureComponent(RoomBossNibiru.class, "NibiruDungeonBossRoom");
         MapGenStructureIO.registerStructureComponent(RoomTreasureNibiru.class, "NibiruDungeonTreasureRoom");
         MapGenStructureIO.registerStructureComponent(RoomSpawnerNibiru.class, "NibiruDungeonSpawnerRoom");
-        MapGenStructureIO.registerStructureComponent(CorridorNibiru.class, "NibiruCorridor");
+        MapGenStructureIO.registerStructureComponent(RoomEntranceNibiru.class, "NibiruDungeonEntranceRoom");
+        MapGenStructureIO.registerStructureComponent(CorridorNibiru.class, "NibiruDungeonCorridor");
     }
 
     public MapGenNibiruDungeon(DungeonConfigurationMP configuration)
