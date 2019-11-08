@@ -33,7 +33,7 @@ public class CompatibilityManagerMP
             CompatibilityManagerMP.registerExtremeReactorFluid("infected_water_fluid", 0.45F, 0.925F, 1.25F, CompatibilityManagerMP.conductivityCopper);
             CompatibilityManagerMP.registerExtremeReactorFluid("purify_water_fluid", 0.525F, 0.75F, 4.0F, CompatibilityManagerMP.conductivityEmerald);
             CompatibilityManagerMP.registerExtremeReactorFluid("cheese_milk_fluid", 0.675F, 0.575F, 1.95F, CompatibilityManagerMP.conductivityGold);
-            CompatibilityManagerMP.registerExtremeReactorFluid("crystallized_water_fluid", 0.3F, 0.65F, 2.45F, CompatibilityManagerMP.conductivityCopper);
+            CompatibilityManagerMP.registerExtremeReactorFluid("infected_purlonite_water_fluid", 0.3F, 0.65F, 2.45F, CompatibilityManagerMP.conductivityCopper);
         }
     }
 

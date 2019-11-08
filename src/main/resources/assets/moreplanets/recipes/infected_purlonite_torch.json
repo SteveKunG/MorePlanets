@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "I",
+        "S"
+    ],
+    "key": {
+        "S": {
+            "item": "#STICKWOOD"
+        },
+        "I": {
+            "item": "moreplanets:infected_purlonite_shard"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_purlonite_torch",
+        "count": 4
+    }
+}

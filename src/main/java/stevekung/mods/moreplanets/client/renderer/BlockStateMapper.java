@@ -16,9 +16,9 @@ public class BlockStateMapper
     public static void init()
     {
         ClientRegistryUtils.registerStateMapper(MPBlocks.SHIELD_GENERATOR, BlockStateProperty.FACING_HORIZON);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, BlockStateProperty.FACING_ALL);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_PURLONITE_CRYSTAL, BlockStateProperty.FACING_ALL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.CHEESE_MILK_FLUID_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.GASEOUS_CHEESE_MILK_BLOCK, EnumStateMapper.FORGE_LEVEL);
         ClientRegistryUtils.registerStateMapper(MPBlocks.CHEESE_SPORE_FENCE_GATE, EnumStateMapper.FENCE_GATE);
@@ -58,11 +58,11 @@ public class BlockStateMapper
         ClientRegistryUtils.registerStateMapper(MPBlocks.ALIEN_MINER_BLOOD, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.CRASHED_ALIEN_PROBE, new StateMapperCTM(BlockCrashedAlienProbe.HAS_ALIEN));
         ClientRegistryUtils.registerStateMapper(MPBlocks.GLOWING_IRON_BLOCK, ctm);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_PLANKS, ctm);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_FENCE, ctm);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_COBWEB, ctm);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_EYE_CORE, ctm);
-        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_PURLONITE_PLANKS, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_PURLONITE_FENCE, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_PURLONITE_COBWEB, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_PURLONITE_EYE_CORE, ctm);
+        ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_PURLONITE_ENDER_CORE, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.SPORELILY, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.TERRAPUFF_HERB, ctm);
         ClientRegistryUtils.registerStateMapper(MPBlocks.INFECTED_SUGAR_CANE, new StateMapperCTM(BlockStateProperty.AGE_15));

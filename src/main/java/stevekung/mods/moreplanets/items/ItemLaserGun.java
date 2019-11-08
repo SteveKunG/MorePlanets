@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet;
-import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet.EnumLaserType;
+import stevekung.mods.moreplanets.entity.projectile.EntityLaserBullet.LaserType;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
@@ -131,11 +131,11 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
                     {
                         if (bulletStack.getItem() == MPItems.LASER_BULLET)
                         {
-                            laser.setLaserType(EnumLaserType.NORMAL);
+                            laser.setLaserType(LaserType.NORMAL);
                         }
-                        if (bulletStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET)
+                        if (bulletStack.getItem() == MPItems.INFECTED_PURLONITE_LASER_BULLET)
                         {
-                            laser.setLaserType(EnumLaserType.INFECTED_CRYSTALLIZED);
+                            laser.setLaserType(LaserType.INFECTED_PURLONITE);
                         }
                         slot = i;
                         break;
@@ -329,6 +329,6 @@ public class ItemLaserGun extends ItemBaseMP implements ISortableItem, IItemMode
 
     private boolean isBullet(ItemStack itemStack)
     {
-        return !itemStack.isEmpty() && (itemStack.getItem() == MPItems.LASER_BULLET || itemStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET);
+        return !itemStack.isEmpty() && (itemStack.getItem() == MPItems.LASER_BULLET || itemStack.getItem() == MPItems.INFECTED_PURLONITE_LASER_BULLET);
     }
 }

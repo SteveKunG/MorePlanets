@@ -22,7 +22,7 @@ import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntitySmallCh
 import stevekung.mods.moreplanets.planets.diona.client.renderer.entity.*;
 import stevekung.mods.moreplanets.planets.diona.entity.*;
 import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityAntiGravityArrow;
-import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
+import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
 import stevekung.mods.moreplanets.planets.fronos.client.render.entity.RenderBearry;
 import stevekung.mods.moreplanets.planets.fronos.client.render.entity.RenderGiantBlueberry;
 import stevekung.mods.moreplanets.planets.fronos.client.render.entity.RenderJellySlime;
@@ -43,10 +43,10 @@ public class EntityRendererMP
     public static void init()
     {
         ClientRegistryUtils.registerEntityRendering(EntityAlbetiusWorm.class, RenderAlbetiusWorm::new);
-        ClientRegistryUtils.registerEntityRendering(EntityInfectedCrystallizedWorm.class, RenderInfectedCrystallizedWorm::new);
-        ClientRegistryUtils.registerEntityRendering(EntityInfectedCrystallizedSpider.class, RenderInfectedCrystallizedSpider::new);
-        ClientRegistryUtils.registerEntityRendering(EntityInfectedCrystallizedTentacle.class, RenderInfectedCrystallizedTentacle::new);
-        ClientRegistryUtils.registerEntityRendering(EntityInfectedCrystallizedSlimeBoss.class, RenderInfectedCrystallizedSlimeBoss::new);
+        ClientRegistryUtils.registerEntityRendering(EntityInfectedPurloniteWorm.class, RenderInfectedPurloniteWorm::new);
+        ClientRegistryUtils.registerEntityRendering(EntityInfectedPurloniteSpider.class, RenderInfectedPurloniteSpider::new);
+        ClientRegistryUtils.registerEntityRendering(EntityInfectedPurloniteTentacle.class, RenderInfectedPurloniteTentacle::new);
+        ClientRegistryUtils.registerEntityRendering(EntityInfectedPurloniteSlimeBoss.class, RenderInfectedPurloniteSlimeBoss::new);
         ClientRegistryUtils.registerEntityRendering(EntityZeliusZombie.class, RenderZeliusZombie::new);
         ClientRegistryUtils.registerEntityRendering(EntityZeliusCreeper.class, RenderZeliusCreeper::new);
         ClientRegistryUtils.registerEntityRendering(EntityCheeseCubeEyeBoss.class, RenderCheeseCubeEyeBoss::new);
@@ -55,11 +55,11 @@ public class EntityRendererMP
         ClientRegistryUtils.registerEntityRendering(EntityCheeseFloater.class, RenderCheeseFloater::new);
         ClientRegistryUtils.registerEntityRendering(EntityCheeseSlime.class, RenderCheeseSlime::new);
         ClientRegistryUtils.registerEntityRendering(EntityCheeseCow.class, RenderCheeseCow::new);
-        ClientRegistryUtils.registerEntityRendering(EntityInfectedCrystallizedBomb.class, RenderInfectedCrystallizedBomb::new);
+        ClientRegistryUtils.registerEntityRendering(EntityInfectedPurloniteBomb.class, RenderInfectedPurloniteBomb::new);
         ClientRegistryUtils.registerEntityRendering(EntityGiantWorm.class, RenderGiantWorm::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedZombie.class, RenderInfectedZombie::new);
         ClientRegistryUtils.registerEntityRendering(EntityAlienMiner.class, RenderAlienMiner::new);
-        ClientRegistryUtils.registerEntityRendering(EntityInfectedCrystallizedSlimeMinion.class, RenderInfectedCrystallizedSlimeMinion::new);
+        ClientRegistryUtils.registerEntityRendering(EntityInfectedPurloniteSlimeMinion.class, RenderInfectedPurloniteSlimeMinion::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedWorm.class, RenderInfectedWorm::new);
         ClientRegistryUtils.registerEntityRendering(EntityNibiruLightningBolt.class, RenderNibiruLightningBolt::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedSnowman.class, RenderInfectedSnowman::new);
@@ -73,7 +73,7 @@ public class EntityRendererMP
         ClientRegistryUtils.registerEntityRendering(EntityDarkLightningBolt.class, RenderDarkLightningBolt::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedEgg.class, manager -> new RenderSnowballMP(manager, new ItemStack(MPItems.INFECTED_EGG)));
         ClientRegistryUtils.registerEntityRendering(EntityInfectedChicken.class, RenderInfectedChicken::new);
-        ClientRegistryUtils.registerEntityRendering(EntityInfectedCrystallizedArrow.class, RenderInfectedCrystallizedArrow::new);
+        ClientRegistryUtils.registerEntityRendering(EntityInfectedPurloniteArrow.class, RenderInfectedPurloniteArrow::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedCow.class, RenderInfectedCow::new);
         ClientRegistryUtils.registerEntityRendering(EntityInfectedArrow.class, RenderInfectedArrow::new);
         ClientRegistryUtils.registerEntityRendering(EntitySpaceFishHook.class, RenderSpaceFishHook::new);

@@ -78,13 +78,13 @@ public class MPOreDictionary
         OreDictionaryUtils.registerOreDictionary("paneGlassGreen", MPBlocks.GREEN_TINTED_GLASS_PANE);
         OreDictionaryUtils.registerOreDictionary("paneGlassRed", MPBlocks.RED_TINTED_GLASS_PANE);
         OreDictionaryUtils.registerOreDictionary("paneGlassBlack", MPBlocks.BLACK_TINTED_GLASS_PANE);
-        OreDictionaryUtils.registerOreDictionary("plankWood", MPBlocks.INFECTED_CRYSTALLIZED_PLANKS);
+        OreDictionaryUtils.registerOreDictionary("plankWood", MPBlocks.INFECTED_PURLONITE_PLANKS);
         OreDictionaryUtils.registerOreDictionary("stone", MPBlocks.DIONA_ROCK);
         OreDictionaryUtils.registerOreDictionary("cobblestone", MPBlocks.DIONA_COBBLESTONE);
-        OreDictionaryUtils.registerOreDictionary("blockSlime", MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK);
+        OreDictionaryUtils.registerOreDictionary("blockSlime", MPBlocks.INFECTED_PURLONITE_SLIME_BLOCK);
         OreDictionaryUtils.registerOreDictionary("chestWood", MPBlocks.DIONA_ANCIENT_CHEST);
         OreDictionaryUtils.registerOreDictionary("chest", MPBlocks.DIONA_ANCIENT_CHEST);
-        OreDictionaryUtils.registerOreDictionary("torch", MPBlocks.INFECTED_CRYSTALLIZED_TORCH);
+        OreDictionaryUtils.registerOreDictionary("torch", MPBlocks.INFECTED_PURLONITE_TORCH);
         OreDictionaryUtils.registerOreDictionary("plankWood", MPBlocks.CHEESE_SPORE_PLANKS);
         OreDictionaryUtils.registerOreDictionary("logWood", MPBlocks.CHEESE_SPORE_STEM);
         OreDictionaryUtils.registerOreDictionary("stairWood", MPBlocks.CHEESE_SPORE_STAIRS);
@@ -107,7 +107,7 @@ public class MPOreDictionary
         OreDictionaryUtils.registerOreDictionary("fenceWood", MPBlocks.ALIEN_BERRY_OAK_FENCE);
         OreDictionaryUtils.registerOreDictionary("fenceWood", MPBlocks.CHEESE_SPORE_FENCE);
         OreDictionaryUtils.registerOreDictionary("fenceWood", MPBlocks.INFECTED_OAK_FENCE);
-        OreDictionaryUtils.registerOreDictionary("fenceWood", MPBlocks.INFECTED_CRYSTALLIZED_FENCE);
+        OreDictionaryUtils.registerOreDictionary("fenceWood", MPBlocks.INFECTED_PURLONITE_FENCE);
         OreDictionaryUtils.registerOreDictionary("fenceGateWood", MPBlocks.ALIEN_BERRY_OAK_FENCE_GATE);
         OreDictionaryUtils.registerOreDictionary("fenceGateWood", MPBlocks.CHEESE_SPORE_FENCE_GATE);
         OreDictionaryUtils.registerOreDictionary("fenceGateWood", MPBlocks.INFECTED_OAK_FENCE_GATE);
@@ -170,7 +170,7 @@ public class MPOreDictionary
         OreDictionaryUtils.registerOreDictionary("blockCandy", MPBlocks.PURPLE_CANDY_CANE);
         OreDictionaryUtils.registerOreDictionary("blockCandy", MPBlocks.RAINBOW_CANDY_CANE);
         OreDictionaryUtils.registerOreDictionary("dyeBlue", MPItems.BLUE_DYE);
-        OreDictionaryUtils.registerOreDictionary("slimeball", MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
+        OreDictionaryUtils.registerOreDictionary("slimeball", MPItems.INFECTED_PURLONITE_SLIMEBALL);
         OreDictionaryUtils.registerOreDictionary("slimeball", MPItems.CHEESE_SLIMEBALL);
         OreDictionaryUtils.registerOreDictionary("cropWheat", MPItems.INFECTED_WHEAT);
         OreDictionaryUtils.registerOreDictionary("sugarcane", MPItems.INFECTED_SUGAR_CANE);

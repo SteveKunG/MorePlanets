@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.init.MPBlocks;
-import stevekung.mods.moreplanets.planets.diona.world.gen.feature.WorldGenLargeInfectedCrystallized;
+import stevekung.mods.moreplanets.planets.diona.world.gen.feature.WorldGenInfectedPurloniteCrystal;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
 import stevekung.mods.stevekunglib.world.gen.WorldGenCaveLiquid;
@@ -50,17 +50,17 @@ public class BiomeDecoratorDiona extends BiomeDecoratorMP
         for (int i = 0; i < 50; ++i)
         {
             int y = rand.nextInt(rand.nextInt(248) + 8);
-            new WorldGenCaveLiquid(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (int i = 0; i < 20; ++i)
         {
             int y = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
-            new WorldGenCaveLiquid(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenCaveLiquid(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState()).generate(world, rand, this.chunkPos.add(x, y, z));
         }
         for (int i = 0; i < 16; ++i)
         {
             int y = rand.nextInt(48);
-            new WorldGenLargeInfectedCrystallized().generate(world, rand, this.chunkPos.add(x, y, z));
+            new WorldGenInfectedPurloniteCrystal().generate(world, rand, this.chunkPos.add(x, y, z));
         }
     }
 }

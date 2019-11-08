@@ -164,7 +164,7 @@ public class ItemSpaceBow extends ItemBow implements ISortableItem, IItemModelRe
     @Override
     protected boolean isArrow(ItemStack itemStack)
     {
-        return super.isArrow(itemStack) || itemStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_ARROW || itemStack.getItem() == MPItems.INFECTED_ARROW || itemStack.getItem() == MPItems.ANTI_GRAVITY_ARROW;
+        return super.isArrow(itemStack) || itemStack.getItem() == MPItems.INFECTED_PURLONITE_ARROW || itemStack.getItem() == MPItems.INFECTED_ARROW || itemStack.getItem() == MPItems.ANTI_GRAVITY_ARROW;
     }
 
     @Override

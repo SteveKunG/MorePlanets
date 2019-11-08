@@ -1,0 +1,7 @@
+{
+    "parent": "moreplanets:block/fluid_block",
+    "textures": {
+        "top": "moreplanets:blocks/infected_purlonite_water_still",
+        "side": "moreplanets:blocks/infected_purlonite_water_flowing"
+    }
+}

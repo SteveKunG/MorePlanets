@@ -21,7 +21,7 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.init.MPSounds;
-import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
+import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
 
 public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreathable
 {
@@ -45,7 +45,7 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
         {
             if (entity instanceof EntityLivingBase)
             {
-                ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 120, 1));
+                ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MPPotions.INFECTED_PURLONITE, 120, 1));
                 this.world.playSound((EntityPlayer)entity, this.getPosition(), MPSounds.ALIEN_MINER_ATTACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
             return true;
@@ -66,7 +66,7 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distance)
     {
-        EntityInfectedCrystallizedArrow arrow = new EntityInfectedCrystallizedArrow(this.world, this);
+        EntityInfectedPurloniteArrow arrow = new EntityInfectedPurloniteArrow(this.world, this);
         double d0 = target.posX - this.posX;
         double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - arrow.posY;
         double d2 = target.posZ - this.posZ;
@@ -86,7 +86,7 @@ public class EntityZeliusSkeleton extends EntitySkeleton implements IEntityBreat
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZED ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_PURLONITE ? false : super.isPotionApplicable(potion);
     }
 
     @Override

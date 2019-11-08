@@ -68,7 +68,7 @@ public class GeneralEventHandler
         {
             event.setBurnTime(100);
         }
-        else if (item == MPItems.INFECTED_CRYSTALLIZED_SHARD)
+        else if (item == MPItems.INFECTED_PURLONITE_SHARD)
         {
             event.setBurnTime(400);
         }
@@ -76,7 +76,7 @@ public class GeneralEventHandler
         {
             event.setBurnTime(1600);
         }
-        else if (ItemStack.areItemStackTagsEqual(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.CRYSTALLIZED_LAVA_FLUID, 1000)), event.getItemStack()))
+        else if (ItemStack.areItemStackTagsEqual(FluidUtil.getFilledBucket(new FluidStack(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID, 1000)), event.getItemStack()))
         {
             event.setBurnTime(25000);
         }
@@ -95,7 +95,7 @@ public class GeneralEventHandler
     {
         Block block = event.getState().getBlock();
 
-        if (block == MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK || block == MPBlocks.CHEESE_MILK_FLUID_BLOCK || block == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
+        if (block == MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK || block == MPBlocks.CHEESE_MILK_FLUID_BLOCK || block == MPBlocks.INFECTED_WATER_FLUID_BLOCK)
         {
             event.setResult(Result.ALLOW);
         }
@@ -216,7 +216,7 @@ public class GeneralEventHandler
         {
             String sourceName = sourceBlock.getUnlocalizedName().substring(5);
 
-            if (sourceName.contains("infected_crystallized"))
+            if (sourceName.startsWith("infected_purlonite"))
             {
                 return;
             }

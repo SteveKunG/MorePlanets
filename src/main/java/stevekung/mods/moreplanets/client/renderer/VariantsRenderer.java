@@ -28,7 +28,7 @@ public class VariantsRenderer
     {
         if (!ConfigManagerMP.moreplanets_general.use3DTorchItemModel)
         {
-            MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPBlocks.INFECTED_CRYSTALLIZED_TORCH, "infected_crystallized_torch_vanilla");
+            MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPBlocks.INFECTED_PURLONITE_TORCH, "infected_purlonite_torch_vanilla");
             MorePlanetsMod.CLIENT_REGISTRY.registerVariantsName(MPBlocks.INFECTED_TORCH, "infected_torch_vanilla");
         }
     }

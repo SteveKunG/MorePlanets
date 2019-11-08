@@ -18,7 +18,7 @@ import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntityCheeseS
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import stevekung.mods.moreplanets.planets.diona.entity.*;
 import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityAntiGravityArrow;
-import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
+import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
 import stevekung.mods.moreplanets.planets.fronos.entity.EntityBearry;
 import stevekung.mods.moreplanets.planets.fronos.entity.EntityGiantBlueberry;
 import stevekung.mods.moreplanets.planets.fronos.entity.EntityJellySlime;
@@ -34,9 +34,9 @@ public class MPEntities
     public static void init()
     {
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityAlbetiusWorm.class, "albetius_worm", ColorUtils.rgbToDecimal(137, 115, 196), ColorUtils.rgbToDecimal(52, 38, 89));
-        MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedCrystallizedSpider.class, "infected_crystallized_spider", ColorUtils.rgbToDecimal(51, 26, 63), ColorUtils.rgbToDecimal(188, 159, 242));
-        MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedCrystallizedWorm.class, "infected_crystallized_worm", ColorUtils.rgbToDecimal(102, 80, 146), ColorUtils.rgbToDecimal(147, 111, 213));
-        MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedCrystallizedSlimeBoss.class, "infected_crystallized_slime_boss", ColorUtils.rgbToDecimal(59, 50, 71), ColorUtils.rgbToDecimal(91, 19, 110));
+        MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedPurloniteSpider.class, "infected_purlonite_spider", ColorUtils.rgbToDecimal(51, 26, 63), ColorUtils.rgbToDecimal(188, 159, 242));
+        MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedPurloniteWorm.class, "infected_purlonite_worm", ColorUtils.rgbToDecimal(102, 80, 146), ColorUtils.rgbToDecimal(147, 111, 213));
+        MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedPurloniteSlimeBoss.class, "infected_purlonite_slime_boss", ColorUtils.rgbToDecimal(59, 50, 71), ColorUtils.rgbToDecimal(91, 19, 110));
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityZeliusZombie.class, "zelius_zombie", ColorUtils.rgbToDecimal(23, 130, 130), ColorUtils.rgbToDecimal(108, 94, 118));
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityZeliusCreeper.class, "zelius_creeper", ColorUtils.rgbToDecimal(87, 72, 124), ColorUtils.rgbToDecimal(44, 22, 69));
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityCheeseCubeEyeBoss.class, "cheese_cube_eye_boss", ColorUtils.rgbToDecimal(255, 218, 131), ColorUtils.rgbToDecimal(194, 39, 36));
@@ -46,7 +46,7 @@ public class MPEntities
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityGiantWorm.class, "giant_worm", -2060769, -1413099);
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedZombie.class, "infected_zombie", ColorUtils.rgbToDecimal(74, 55, 50), ColorUtils.rgbToDecimal(66, 25, 15));
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityAlienMiner.class, "alien_miner", ColorUtils.rgbToDecimal(75, 75, 75), ColorUtils.rgbToDecimal(176, 193, 227));
-        MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedCrystallizedSlimeMinion.class, "infected_crystallized_slime_minion", ColorUtils.rgbToDecimal(59, 50, 71), ColorUtils.rgbToDecimal(91, 19, 110));
+        MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedPurloniteSlimeMinion.class, "infected_purlonite_slime_minion", ColorUtils.rgbToDecimal(59, 50, 71), ColorUtils.rgbToDecimal(91, 19, 110));
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedWorm.class, "infected_worm", ColorUtils.rgbToDecimal(150, 52, 32), ColorUtils.rgbToDecimal(160, 70, 52));
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityInfectedSnowman.class, "infected_snowman", ColorUtils.rgbToDecimal(164, 101, 84), ColorUtils.rgbToDecimal(145, 145, 145));
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityZeliusSkeleton.class, "zelius_skeleton", ColorUtils.rgbToDecimal(100, 85, 106), ColorUtils.rgbToDecimal(120, 86, 188));
@@ -72,17 +72,17 @@ public class MPEntities
         MorePlanetsMod.COMMON_REGISTRY.registerEntity(EntityTerrasquid.class, "terrasquid", ColorUtils.rgbToDecimal(106, 152, 187), ColorUtils.rgbToDecimal(109, 219, 210));
 
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySpaceMinecartChest.class, "space_minecart_chest");
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedCrystallizedTentacle.class, "infected_crystallized_tentacle");
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedPurloniteTentacle.class, "infected_purlonite_tentacle");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityCheeseSpore.class, "cheese_spore", 256, 1, true);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySmallCheeseSpore.class, "small_cheese_spore", 256, 1, true);
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedCrystallizedBomb.class, "infected_crystallized_bomb", EnumEntityTrackerType.THROWABLE_LARGE);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedPurloniteBomb.class, "infected_purlonite_bomb", EnumEntityTrackerType.THROWABLE_LARGE);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityNibiruLightningBolt.class, "nibiru_lightning_bolt");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityDarkLightningBolt.class, "dark_lightning_bolt");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedSnowball.class, "infected_snowball", EnumEntityTrackerType.THROWABLE_LARGE);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityPurifiedSnowball.class, "purified_snowball", EnumEntityTrackerType.THROWABLE_LARGE);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityBlackHole.class, "black_hole");
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedEgg.class, "infected_egg", EnumEntityTrackerType.THROWABLE_LARGE);
-        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedCrystallizedArrow.class, "infected_crystallized_arrow", EnumEntityTrackerType.ARROW);
+        MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedPurloniteArrow.class, "infected_purlonite_arrow", EnumEntityTrackerType.ARROW);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityInfectedArrow.class, "infected_arrow", EnumEntityTrackerType.ARROW);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntitySpaceFishHook.class, "space_fish_hook", EnumEntityTrackerType.FISHING_HOOK);
         MorePlanetsMod.COMMON_REGISTRY.registerNonMobEntity(EntityAlienBeam.class, "alien_beam");

@@ -10,9 +10,9 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 public class MPLootTables
 {
     // Entity
-    public static final ResourceLocation INFECTED_CRYSTALLIZED_SPIDER = MorePlanetsMod.COMMON_REGISTRY.registerEntityLoot("infected_crystallized_spider");
-    public static final ResourceLocation INFECTED_CRYSTALLIZED_SLIME_BOSS = MorePlanetsMod.COMMON_REGISTRY.registerEntityLoot("infected_crystallized_slime_boss");
-    public static final ResourceLocation INFECTED_CRYSTALLIZED_SLIME = MorePlanetsMod.COMMON_REGISTRY.registerEntityLoot("infected_crystallized_slime");
+    public static final ResourceLocation INFECTED_PURLONITE_SPIDER = MorePlanetsMod.COMMON_REGISTRY.registerEntityLoot("infected_purlonite_spider");
+    public static final ResourceLocation INFECTED_PURLONITE_SLIME_BOSS = MorePlanetsMod.COMMON_REGISTRY.registerEntityLoot("infected_purlonite_slime_boss");
+    public static final ResourceLocation INFECTED_PURLONITE_SLIME = MorePlanetsMod.COMMON_REGISTRY.registerEntityLoot("infected_purlonite_slime");
     public static final ResourceLocation ZELIUS_CREEPER = MorePlanetsMod.COMMON_REGISTRY.registerEntityLoot("zelius_creeper");
     public static final ResourceLocation ZELIUS_ZOMBIE = MorePlanetsMod.COMMON_REGISTRY.registerEntityLoot("zelius_zombie");
     public static final ResourceLocation ZELIUS_SKELETON = MorePlanetsMod.COMMON_REGISTRY.registerEntityLoot("zelius_skeleton");
@@ -76,9 +76,9 @@ public class MPLootTables
     public static final ResourceLocation SPACE_FISHING = MorePlanetsMod.COMMON_REGISTRY.registerGameplayLoot("space_fishing");
     public static final ResourceLocation SPACE_FISH_JUNK = MorePlanetsMod.COMMON_REGISTRY.registerFishingLoot("junk_space");
     public static final ResourceLocation SPACE_FISH_TREASURE = MorePlanetsMod.COMMON_REGISTRY.registerFishingLoot("treasure_space");
-    public static final ResourceLocation CRYSTALLIZED_WATER_FISHING = MorePlanetsMod.COMMON_REGISTRY.registerGameplayLoot("crystallized_water_fishing");
+    public static final ResourceLocation INFECTED_PURLONITE_WATER_FISHING = MorePlanetsMod.COMMON_REGISTRY.registerGameplayLoot("infected_purlonite_water_fishing");
     public static final ResourceLocation CHEESE_MILK_FISHING = MorePlanetsMod.COMMON_REGISTRY.registerGameplayLoot("cheese_milk_fishing");
-    public static final ResourceLocation CRYSTALLIZED_WATER_FISH = MorePlanetsMod.COMMON_REGISTRY.registerFishingLoot("crystallized_fish");
+    public static final ResourceLocation INFECTED_PURLONITE_WATER_FISH = MorePlanetsMod.COMMON_REGISTRY.registerFishingLoot("infected_purlonite_fish");
     public static final ResourceLocation CHEESE_FISH = MorePlanetsMod.COMMON_REGISTRY.registerFishingLoot("cheese_fish");
 
     public static ItemStack getTieredKey(Random rand, int tier)

@@ -60,11 +60,11 @@ public class ItemModelRenderer
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_BERRY_CHEST, new CCLChest(new TileEntityAlienBerryChest()));
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_DEFENDER_BEACON, new CCLAlienDefenderBeacon());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ZELIUS_EGG, new CCLZeliusEgg());
-            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, new CCLInfectedCrystallizedCrystal());
+            ItemModelRenderer.registerCCLItemRenderer(MPBlocks.INFECTED_PURLONITE_CRYSTAL, new CCLInfectedPurloniteCrystal());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.MULTALIC_CRYSTAL, new CCLMultalicCrystal());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.JUICER_EGG, new CCLJuicerEgg());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.VEIN_FRAME, new CCLVeinFrame());
-            ItemModelRenderer.registerCCLItemRenderer(MPItems.INFECTED_CRYSTALLIZED_BOMB, new CCLInfectedCrystallizedBomb());
+            ItemModelRenderer.registerCCLItemRenderer(MPItems.INFECTED_PURLONITE_BOMB, new CCLInfectedPurloniteBomb());
             ItemModelRenderer.registerCCLItemRenderer(MPBlocks.ALIEN_CHEST, new CCLChest(new TileEntityAlienChest()));
             LoggerMP.info("Successfully registered CodeChickenCore item renderer for More Planets blocks/items");
         }

@@ -9,14 +9,14 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.planets.diona.entity.EntityInfectedCrystallizedSlimeBoss;
+import stevekung.mods.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
 
 @SideOnly(Side.CLIENT)
-public class LayerInfectedCrystallizeSlimeBossDeath implements LayerRenderer<EntityInfectedCrystallizedSlimeBoss>
+public class LayerInfectedCrystallizeSlimeBossDeath implements LayerRenderer<EntityInfectedPurloniteSlimeBoss>
 {
     @Override
-    public void doRenderLayer(EntityInfectedCrystallizedSlimeBoss entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    public void doRenderLayer(EntityInfectedPurloniteSlimeBoss entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         if (entity.deathTicks > 0)
         {

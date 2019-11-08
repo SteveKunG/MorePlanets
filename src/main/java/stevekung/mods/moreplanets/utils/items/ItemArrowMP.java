@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsMod;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityAntiGravityArrow;
-import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedCrystallizedArrow;
+import stevekung.mods.moreplanets.planets.diona.entity.projectile.EntityInfectedPurloniteArrow;
 import stevekung.mods.moreplanets.planets.nibiru.entity.projectile.EntityInfectedArrow;
 import stevekung.mods.moreplanets.utils.BlocksItemsRegistry;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
@@ -66,8 +66,8 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
     {
         switch (this.type)
         {
-        case INFECTED_CRYSTALLIZED:
-            return new EntityInfectedCrystallizedArrow(world, shooter);
+        case INFECTED_PURLONITE:
+            return new EntityInfectedPurloniteArrow(world, shooter);
         case INFECTED:
             return new EntityInfectedArrow(world, shooter);
         case ANTI_GRAVITY:
@@ -130,7 +130,7 @@ public class ItemArrowMP extends ItemArrow implements ISortableItem, IItemModelR
 
     public static enum ArrowType
     {
-        INFECTED_CRYSTALLIZED,
+        INFECTED_PURLONITE,
         INFECTED,
         ANTI_GRAVITY;
     }

@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "moreplanets:blocks/infected_purlonite_ender_core",
+            "side": "moreplanets:blocks/infected_purlonite_block",
+            "up": "moreplanets:blocks/infected_purlonite_ender_core",
+            "down": "moreplanets:blocks/infected_purlonite_block"
+        },
+        "model": "moreplanets:obelisk_ender_core_part"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

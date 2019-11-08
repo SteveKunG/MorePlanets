@@ -39,7 +39,7 @@ import stevekung.mods.moreplanets.moons.koentus.client.particle.ParticleKoentusM
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleAlienMinerSpark;
-import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleCrystallizedFlame;
+import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleInfectedPurloniteFlame;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleDarkPortal;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleAlienBerryLeavesSpark;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
@@ -86,7 +86,7 @@ public class ClientProxyMP extends ServerProxyMP
         TileEntityRenderer.init();
 
         ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> world != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(world, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D), MPBlocks.FRONOS_GRASS_BLOCK);
-        ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(120, 85, 190), MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL);
+        ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(120, 85, 190), MPBlocks.INFECTED_PURLONITE_CRYSTAL);
         ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), MPBlocks.MULTALIC_CRYSTAL);
         ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(50, 101, 236), MPBlocks.MULTALIC_CRYSTAL_BLOCK);
         ClientRegistryUtils.registerBlockColor((state, world, pos, tint) -> ColorUtils.rgbToDecimal(143, 55, 33), MPBlocks.INFECTED_MELON_STEM);
@@ -107,13 +107,13 @@ public class ClientProxyMP extends ServerProxyMP
     @SideOnly(Side.CLIENT)
     public void onTexturesStitch(TextureStitchEvent.Pre event)
     {
-        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/infected_crystallized");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/infected_purlonite");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/shield");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/xpjuice_still");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "blocks/xpjuice_flowing");
-        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/crystallized_lava");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_purlonite_lava");
         MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/alien_berry_leaves_spark");
-        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/crystallized_flame");
+        MorePlanetsMod.CLIENT_REGISTRY.registerSpriteTexture(event, "particle/infected_purlonite_flame");
 
         for (int i = 0; i <= 3; i++)
         {
@@ -183,9 +183,9 @@ public class ClientProxyMP extends ServerProxyMP
                 return;
             }
 
-            if (type == EnumParticleTypesMP.CRYSTALLIZED_FLAME)
+            if (type == EnumParticleTypesMP.INFECTED_PURLONITE_FLAME)
             {
-                mc.effectRenderer.addEffect(new ParticleCrystallizedFlame(mc.world, x, y, z));
+                mc.effectRenderer.addEffect(new ParticleInfectedPurloniteFlame(mc.world, x, y, z));
             }
             else if (type == EnumParticleTypesMP.CHEESE_MILK_DRIP)
             {
@@ -223,17 +223,17 @@ public class ClientProxyMP extends ServerProxyMP
             {
                 mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 51, 31, 204), false));
             }
-            else if (type == EnumParticleTypesMP.CRYSTALLIZED_WATER_DRIP)
+            else if (type == EnumParticleTypesMP.INFECTED_PURLONITE_WATER_DRIP)
             {
                 mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(133, 102, 194, 150), false));
             }
-            else if (type == EnumParticleTypesMP.CRYSTALLIZED_LAVA_DRIP)
+            else if (type == EnumParticleTypesMP.INFECTED_PURLONITE_LAVA_DRIP)
             {
                 mc.effectRenderer.addEffect(new ParticleLiquidDrip(mc.world, x, y, z, ColorUtils.intToRGB(153, 127, 204, 255), true));
             }
-            else if (type == EnumParticleTypesMP.CRYSTALLIZED_LAVA)
+            else if (type == EnumParticleTypesMP.INFECTED_PURLONITE_LAVA)
             {
-                mc.effectRenderer.addEffect(new ParticleLavaMC(mc.world, x, y, z, "crystallized_lava"));
+                mc.effectRenderer.addEffect(new ParticleLavaMC(mc.world, x, y, z, "infected_purlonite_lava"));
             }
             else if (type == EnumParticleTypesMP.NUCLEAR_WASTE_DRIP)
             {

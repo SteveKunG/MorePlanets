@@ -14,7 +14,7 @@ import stevekung.mods.moreplanets.planets.chalos.items.ItemCheeseSporeSeed;
 import stevekung.mods.moreplanets.planets.chalos.items.armor.ItemArmorDiremsium;
 import stevekung.mods.moreplanets.planets.chalos.items.armor.ItemBreathableDiremsium;
 import stevekung.mods.moreplanets.planets.diona.items.ItemDarkEnergyPearl;
-import stevekung.mods.moreplanets.planets.diona.items.ItemInfectedCrystallizedBomb;
+import stevekung.mods.moreplanets.planets.diona.items.ItemInfectedPurloniteBomb;
 import stevekung.mods.moreplanets.planets.diona.items.armor.ItemArmorIllenium;
 import stevekung.mods.moreplanets.planets.diona.items.armor.ItemBreathableIllenium;
 import stevekung.mods.moreplanets.planets.nibiru.items.*;
@@ -39,7 +39,7 @@ public class MPItems
 
     // Laser Bullet
     public static Item LASER_BULLET;
-    public static Item INFECTED_CRYSTALLIZED_LASER_BULLET;
+    public static Item INFECTED_PURLONITE_LASER_BULLET;
 
     // Schematic
     public static Item ION_CANNON_SCHEMATIC;
@@ -73,7 +73,7 @@ public class MPItems
     public static Item SETRORIUM_SHARD;
     public static Item COMPRESSED_ILLENIUM;
     public static Item COMPRESSED_SETRORIUM;
-    public static Item INFECTED_CRYSTALLIZED_SHARD;
+    public static Item INFECTED_PURLONITE_SHARD;
     public static Item ALIEN_MINER_PART;
     public static Item GLOWING_IRON_INGOT;
     public static Item BLACK_HOLE_FRAGMENTS;
@@ -81,9 +81,9 @@ public class MPItems
 
     // Other
     public static Item DIONA_DUNGEON_KEY;
-    public static Item INFECTED_CRYSTALLIZED_BOMB;
-    public static Item INFECTED_CRYSTALLIZED_SLIMEBALL;
-    public static Item INFECTED_CRYSTALLIZED_ARROW;
+    public static Item INFECTED_PURLONITE_BOMB;
+    public static Item INFECTED_PURLONITE_SLIMEBALL;
+    public static Item INFECTED_PURLONITE_ARROW;
     public static Item DARK_ENERGY_PEARL;
     public static Item ANTI_GRAVITY_ARROW;
 
@@ -268,7 +268,7 @@ public class MPItems
 
         // Laser Bullet
         MPItems.LASER_BULLET = new ItemBaseMP("laser_bullet").setSortCategory(EnumSortCategoryItem.PROJECTILE);
-        MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET = new ItemBaseMP("infected_crystallized_laser_bullet").setSortCategory(EnumSortCategoryItem.PROJECTILE).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
+        MPItems.INFECTED_PURLONITE_LASER_BULLET = new ItemBaseMP("infected_purlonite_laser_bullet").setSortCategory(EnumSortCategoryItem.PROJECTILE).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
 
         // Schematic
         MPItems.ION_CANNON_SCHEMATIC = new ItemIonCannonSchematic("ion_cannon_schematic").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.SPECIAL));
@@ -302,7 +302,7 @@ public class MPItems
         MPItems.SETRORIUM_SHARD = new ItemBaseMP("setrorium_shard");
         MPItems.COMPRESSED_ILLENIUM = new ItemCompressedMetal("compressed_illenium").setSortCategory(EnumSortCategoryItem.PLATE);
         MPItems.COMPRESSED_SETRORIUM = new ItemCompressedMetal("compressed_setrorium").setSortCategory(EnumSortCategoryItem.PLATE);
-        MPItems.INFECTED_CRYSTALLIZED_SHARD = new ItemBaseMP("infected_crystallized_shard").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
+        MPItems.INFECTED_PURLONITE_SHARD = new ItemBaseMP("infected_purlonite_shard").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.ALIEN_MINER_PART = new ItemBaseMP("alien_miner_part").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.GLOWING_IRON_INGOT = new ItemBaseMP("glowing_iron_ingot").setSortCategory(EnumSortCategoryItem.INGOT).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.BLACK_HOLE_FRAGMENTS = new ItemBaseMP("black_hole_fragments").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.SPECIAL));
@@ -310,9 +310,9 @@ public class MPItems
 
         // Other
         MPItems.DIONA_DUNGEON_KEY = new ItemDungeonKeyMP("diona_dungeon_key", 4);
-        MPItems.INFECTED_CRYSTALLIZED_BOMB = new ItemInfectedCrystallizedBomb("infected_crystallized_bomb").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
-        MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL = new ItemBaseMP("infected_crystallized_slimeball").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
-        MPItems.INFECTED_CRYSTALLIZED_ARROW = new ItemArrowMP("infected_crystallized_arrow", ItemArrowMP.ArrowType.INFECTED_CRYSTALLIZED).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
+        MPItems.INFECTED_PURLONITE_BOMB = new ItemInfectedPurloniteBomb("infected_purlonite_bomb").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
+        MPItems.INFECTED_PURLONITE_SLIMEBALL = new ItemBaseMP("infected_purlonite_slimeball").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
+        MPItems.INFECTED_PURLONITE_ARROW = new ItemArrowMP("infected_purlonite_arrow", ItemArrowMP.ArrowType.INFECTED_PURLONITE).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.DARK_ENERGY_PEARL = new ItemDarkEnergyPearl("dark_energy_pearl").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPItems.ANTI_GRAVITY_ARROW = new ItemArrowMP("anti_gravity_arrow", ItemArrowMP.ArrowType.ANTI_GRAVITY).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.SPECIAL));
 
@@ -488,7 +488,7 @@ public class MPItems
 
         // Laser Bullet
         BlocksItemsRegistry.registerItem(MPItems.LASER_BULLET);
-        BlocksItemsRegistry.registerItem(MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET);
+        BlocksItemsRegistry.registerItem(MPItems.INFECTED_PURLONITE_LASER_BULLET);
 
         // Schematic
         BlocksItemsRegistry.registerItem(MPItems.ION_CANNON_SCHEMATIC);
@@ -523,17 +523,17 @@ public class MPItems
         BlocksItemsRegistry.registerItem(MPItems.SETRORIUM_SHARD);
         BlocksItemsRegistry.registerItem(MPItems.COMPRESSED_ILLENIUM);
         BlocksItemsRegistry.registerItem(MPItems.COMPRESSED_SETRORIUM);
-        BlocksItemsRegistry.registerItem(MPItems.INFECTED_CRYSTALLIZED_SHARD);
+        BlocksItemsRegistry.registerItem(MPItems.INFECTED_PURLONITE_SHARD);
         BlocksItemsRegistry.registerItem(MPItems.ALIEN_MINER_PART);
         BlocksItemsRegistry.registerItem(MPItems.GLOWING_IRON_INGOT);
         BlocksItemsRegistry.registerItem(MPItems.BLACK_HOLE_FRAGMENTS);
         BlocksItemsRegistry.registerItem(MPItems.ANTI_GRAVITY_FRAGMENTS);
 
         // Other
-        BlocksItemsRegistry.registerItem(MPItems.INFECTED_CRYSTALLIZED_BOMB);
+        BlocksItemsRegistry.registerItem(MPItems.INFECTED_PURLONITE_BOMB);
         BlocksItemsRegistry.registerItem(MPItems.DIONA_DUNGEON_KEY);
-        BlocksItemsRegistry.registerItem(MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL);
-        BlocksItemsRegistry.registerItem(MPItems.INFECTED_CRYSTALLIZED_ARROW);
+        BlocksItemsRegistry.registerItem(MPItems.INFECTED_PURLONITE_SLIMEBALL);
+        BlocksItemsRegistry.registerItem(MPItems.INFECTED_PURLONITE_ARROW);
         BlocksItemsRegistry.registerItem(MPItems.DARK_ENERGY_PEARL);
         BlocksItemsRegistry.registerItem(MPItems.ANTI_GRAVITY_ARROW);
 
@@ -708,8 +708,8 @@ public class MPItems
         BlockUtils.setToolHarvestLevel(MPItems.MULTALIC_CRYSTAL_PICKAXE, EnumHarvestLevel.PICKAXE, 3);
         BlockUtils.setToolHarvestLevel(MPItems.MULTALIC_CRYSTAL_AXE, EnumHarvestLevel.AXE, 3);
 
-        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.CRYSTALLIZED_WATER_FLUID);
-        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.CRYSTALLIZED_LAVA_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.INFECTED_PURLONITE_WATER_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID);
         MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.CHEESE_MILK_FLUID);
         MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.GASEOUS_CHEESE_MILK);
         MorePlanetsMod.COMMON_REGISTRY.registerForgeBucket(MPBlocks.INFECTED_WATER_FLUID);

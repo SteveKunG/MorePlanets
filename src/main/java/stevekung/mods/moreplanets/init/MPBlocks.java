@@ -175,8 +175,8 @@ public class MPBlocks
     //////////////////////// FLUID STUFF ////////////////////////
 
     public static Fluid FLUID_XP;
-    public static Fluid CRYSTALLIZED_LAVA_FLUID;
-    public static Fluid CRYSTALLIZED_WATER_FLUID;
+    public static Fluid INFECTED_PURLONITE_LAVA_FLUID;
+    public static Fluid INFECTED_PURLONITE_WATER_FLUID;
     public static Fluid CHEESE_MILK_FLUID;
     public static Fluid GASEOUS_CHEESE_MILK;
     public static Fluid INFECTED_WATER_FLUID;
@@ -200,26 +200,26 @@ public class MPBlocks
     public static Block ILLENIUM_BLOCK;
     public static Block DIONA_DUNGEON_BRICK;
 
-    // Crystallized Segment
-    public static Block INFECTED_CRYSTALLIZED_SEGMENT;
-    public static Block INFECTED_CRYSTALLIZED_EYE_CORE;
-    public static Block INFECTED_CRYSTALLIZED_ENDER_CORE;
+    // Purlonite Segment
+    public static Block INFECTED_PURLONITE_SEGMENT;
+    public static Block INFECTED_PURLONITE_EYE_CORE;
+    public static Block INFECTED_PURLONITE_ENDER_CORE;
 
     // Others
     public static Block ALBETIUS_WORM_EGG_ROCK;
     public static Block DIONA_ANCIENT_CHEST;
     public static Block DIONA_TREASURE_CHEST;
-    public static Block INFECTED_CRYSTALLIZED_PLANKS;
-    public static Block INFECTED_CRYSTALLIZED_FENCE;
-    public static Block INFECTED_CRYSTALLIZED_COBWEB;
-    public static Block INFECTED_CRYSTALLIZED_TORCH;
+    public static Block INFECTED_PURLONITE_PLANKS;
+    public static Block INFECTED_PURLONITE_FENCE;
+    public static Block INFECTED_PURLONITE_COBWEB;
+    public static Block INFECTED_PURLONITE_TORCH;
     public static Block ZELIUS_EGG;
-    public static Block INFECTED_CRYSTALLIZED_CRYSTAL;
+    public static Block INFECTED_PURLONITE_CRYSTAL;
     public static Block ALIEN_MINER_BLOOD;
-    public static Block INFECTED_CRYSTALLIZED_SLIME_BLOCK;
+    public static Block INFECTED_PURLONITE_SLIME_BLOCK;
     public static Block DARK_ENERGY_CORE;
-    public static Block CRYSTALLIZED_WATER_FLUID_BLOCK;
-    public static Block CRYSTALLIZED_LAVA_FLUID_BLOCK;
+    public static Block INFECTED_PURLONITE_WATER_FLUID_BLOCK;
+    public static Block INFECTED_PURLONITE_LAVA_FLUID_BLOCK;
     public static Block DIONA_COBBLESTONE_STAIRS;
     public static Block DIONA_DUNGEON_BRICK_STAIRS;
     public static Block DARK_ENERGY_GENERATOR;
@@ -662,23 +662,23 @@ public class MPBlocks
         MPBlocks.ILLENIUM_BLOCK = new BlockCompressedMetal("illenium_block").setSoundType(SoundType.METAL).setHardness(5.0F);
         MPBlocks.DIONA_DUNGEON_BRICK = new BlockBaseMP("diona_dungeon_brick", Material.ROCK).setSortCategory(EnumSortCategoryBlock.DUNGEON_BRICK).setHardness(4.0F).setResistance(40.0F);
 
-        // Crystallized Segment
-        MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT = new BlockInfectedCrystallizedSegment("infected_crystallized_segment", BlockInfectedCrystallizedSegment.BlockType.INFECTED_CRYSTALLIZED_SEGMENT);
-        MPBlocks.INFECTED_CRYSTALLIZED_EYE_CORE = new BlockInfectedCrystallizedSegment("infected_crystallized_eye_core", BlockInfectedCrystallizedSegment.BlockType.INFECTED_CRYSTALLIZED_EYE_CORE);
-        MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE = new BlockInfectedCrystallizedSegment("infected_crystallized_ender_core", BlockInfectedCrystallizedSegment.BlockType.INFECTED_CRYSTALLIZED_ENDER_CORE);
+        // Purlonite Segment
+        MPBlocks.INFECTED_PURLONITE_SEGMENT = new BlockInfectedPurloniteSegment("infected_purlonite_segment", BlockInfectedPurloniteSegment.BlockType.INFECTED_PURLONITE_SEGMENT);
+        MPBlocks.INFECTED_PURLONITE_EYE_CORE = new BlockInfectedPurloniteSegment("infected_purlonite_eye_core", BlockInfectedPurloniteSegment.BlockType.INFECTED_PURLONITE_EYE_CORE);
+        MPBlocks.INFECTED_PURLONITE_ENDER_CORE = new BlockInfectedPurloniteSegment("infected_purlonite_ender_core", BlockInfectedPurloniteSegment.BlockType.INFECTED_PURLONITE_ENDER_CORE);
 
         // Others
         MPBlocks.ALBETIUS_WORM_EGG_ROCK = new BlockAlbetiusWormEgg("albetius_worm_egg_rock").setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN));
         MPBlocks.DIONA_ANCIENT_CHEST = new BlockDionaAncientChest("diona_ancient_chest");
         MPBlocks.DIONA_TREASURE_CHEST = new BlockDionaTreasureChest("diona_treasure_chest");
-        MPBlocks.INFECTED_CRYSTALLIZED_PLANKS = new BlockCTMGlowing("infected_crystallized_planks", Material.WOOD).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
-        MPBlocks.INFECTED_CRYSTALLIZED_FENCE = new BlockFenceMP("infected_crystallized_fence");
-        MPBlocks.INFECTED_CRYSTALLIZED_COBWEB = new BlockInfectedCrystallizedCobweb("infected_crystallized_cobweb");
-        MPBlocks.INFECTED_CRYSTALLIZED_TORCH = new BlockInfectedCrystallizedTorch("infected_crystallized_torch");
+        MPBlocks.INFECTED_PURLONITE_PLANKS = new BlockCTMGlowing("infected_purlonite_planks", Material.WOOD).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSoundType(SoundType.WOOD).setHardness(2.0F).setResistance(5.0F);
+        MPBlocks.INFECTED_PURLONITE_FENCE = new BlockFenceMP("infected_purlonite_fence");
+        MPBlocks.INFECTED_PURLONITE_COBWEB = new BlockInfectedPurloniteCobweb("infected_purlonite_cobweb");
+        MPBlocks.INFECTED_PURLONITE_TORCH = new BlockInfectedPurloniteTorch("infected_purlonite_torch");
         MPBlocks.ZELIUS_EGG = new BlockZeliusEgg("zelius_egg");
-        MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL = new BlockInfectedCrystallizedCrystal("infected_crystallized_crystal");
+        MPBlocks.INFECTED_PURLONITE_CRYSTAL = new BlockInfectedPurloniteCrystal("infected_purlonite_crystal");
         MPBlocks.ALIEN_MINER_BLOOD = new BlockAlienMinerBlood("alien_miner_blood");
-        MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK = new BlockInfectedCrystallizedSlime("infected_crystallized_slime_block");
+        MPBlocks.INFECTED_PURLONITE_SLIME_BLOCK = new BlockInfectedPurloniteSlime("infected_purlonite_slime_block");
         MPBlocks.DARK_ENERGY_CORE = new BlockDarkEnergyCore("dark_energy_core");
         MPBlocks.DIONA_COBBLESTONE_STAIRS = new BlockStairsMP("diona_cobblestone_stairs", EnumStairsType.COBBLESTONE);
         MPBlocks.DIONA_DUNGEON_BRICK_STAIRS = new BlockStairsMP("diona_dungeon_brick_stairs", EnumStairsType.DUNGEON_BRICK).setSortCategory(EnumSortCategoryBlock.STAIRS_DUNGEON_BRICK);
@@ -1012,24 +1012,24 @@ public class MPBlocks
             FluidRegistry.addBucketForFluid(MPBlocks.FLUID_XP);
         }
 
-        MPBlocks.CRYSTALLIZED_WATER_FLUID = new FluidMP("crystallized_water_fluid").setBlock(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK);
-        MPBlocks.CRYSTALLIZED_LAVA_FLUID = new FluidMP("crystallized_lava_fluid").setBlock(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK).setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
+        MPBlocks.INFECTED_PURLONITE_WATER_FLUID = new FluidMP("infected_purlonite_water_fluid").setBlock(MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK);
+        MPBlocks.INFECTED_PURLONITE_LAVA_FLUID = new FluidMP("infected_purlonite_lava_fluid").setBlock(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK).setLuminosity(15).setDensity(3000).setViscosity(6000).setTemperature(1300);
         MPBlocks.CHEESE_MILK_FLUID = new FluidMP("cheese_milk_fluid").setBlock(MPBlocks.CHEESE_MILK_FLUID_BLOCK).setViscosity(1000);
         MPBlocks.GASEOUS_CHEESE_MILK = new FluidGaseousCheeseMilk("gaseous_cheese_milk", "moreplanets:blocks/gaseous_cheese_milk", "moreplanets:blocks/gaseous_cheese_milk").setBlock(MPBlocks.GASEOUS_CHEESE_MILK_BLOCK);
         MPBlocks.INFECTED_WATER_FLUID = new FluidMP("infected_water_fluid_mp", "moreplanets:blocks/infected_water_still", "moreplanets:blocks/infected_water_flowing").setBlock(MPBlocks.INFECTED_WATER_FLUID_BLOCK);
         MPBlocks.HELIUM_GAS = new FluidHeliumGas("helium_gas", "moreplanets:blocks/helium_gas", "moreplanets:blocks/helium_gas").setBlock(MPBlocks.HELIUM_GAS_BLOCK);
         MPBlocks.NUCLEAR_WASTE_FLUID = new FluidMP("nuclear_waste_fluid").setBlock(MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK).setLuminosity(15).setDensity(3000).setViscosity(8000).setTemperature(2600);
         MPBlocks.PURIFIED_WATER_FLUID = new FluidMP("purified_water_fluid").setBlock(MPBlocks.PURIFIED_WATER_FLUID_BLOCK);
-        MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.CRYSTALLIZED_WATER_FLUID);
-        MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.CRYSTALLIZED_LAVA_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.INFECTED_PURLONITE_WATER_FLUID);
+        MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID);
         MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.CHEESE_MILK_FLUID);
         MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.GASEOUS_CHEESE_MILK);
         MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.INFECTED_WATER_FLUID);
         MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.HELIUM_GAS);
         MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.NUCLEAR_WASTE_FLUID);
         MorePlanetsMod.COMMON_REGISTRY.registerFluid(MPBlocks.PURIFIED_WATER_FLUID);
-        MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK = new BlockFluidCrystallizedWater("crystallized_water_fluid");
-        MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK = new BlockFluidCrystallizedLava("crystallized_lava_fluid");
+        MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK = new BlockFluidInfectedPurloniteWater("infected_purlonite_water_fluid");
+        MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK = new BlockFluidInfectedPurloniteLava("infected_purlonite_lava_fluid");
         MPBlocks.GASEOUS_CHEESE_MILK_BLOCK = new BlockGaseousCheeseMilk("gaseous_cheese_milk");
         MPBlocks.CHEESE_MILK_FLUID_BLOCK = new BlockFluidCheeseMilk("cheese_milk_fluid");
         MPBlocks.INFECTED_WATER_FLUID_BLOCK = new BlockFluidInfectedWater("infected_water_fluid_mp");
@@ -1058,26 +1058,26 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.ILLENIUM_BLOCK);
         BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_DUNGEON_BRICK);
 
-        // Crystallized Segment
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_EYE_CORE);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_ENDER_CORE);
+        // Purlonite Segment
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_SEGMENT);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_EYE_CORE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_ENDER_CORE);
 
         // Others
         BlocksItemsRegistry.registerBlock(MPBlocks.ALBETIUS_WORM_EGG_ROCK);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_PLANKS);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_FENCE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_PLANKS);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_FENCE);
         BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_ANCIENT_CHEST, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_TREASURE_CHEST, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ZELIUS_EGG, ItemBlockTESRMP::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_COBWEB);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_TORCH);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, ItemBlockTESRMP::new);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_COBWEB);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_TORCH);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_CRYSTAL, ItemBlockTESRMP::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_MINER_BLOOD);
-        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_SLIME_BLOCK);
         BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_CORE, ItemBlockDescriptionTESR::new);
-        BlocksItemsRegistry.registerBlock(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK);
-        BlocksItemsRegistry.registerBlock(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK);
+        BlocksItemsRegistry.registerBlock(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK);
         BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_COBBLESTONE_STAIRS);
         BlocksItemsRegistry.registerBlock(MPBlocks.DIONA_DUNGEON_BRICK_STAIRS);
         BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_GENERATOR, ItemBlockDarkEnergyGenerator::new);
@@ -1585,9 +1585,9 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.CRASHED_ALIEN_PROBE, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.GLOWING_IRON_BLOCK, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL, EnumHarvestLevel.PICKAXE, 3);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CRYSTALLIZED_PLANKS, EnumHarvestLevel.AXE, 0);
-        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_CRYSTALLIZED_FENCE, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PURLONITE_CRYSTAL, EnumHarvestLevel.PICKAXE, 3);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PURLONITE_PLANKS, EnumHarvestLevel.AXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.INFECTED_PURLONITE_FENCE, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_ANCIENT_CHEST, EnumHarvestLevel.AXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ANTI_GRAVITY_ORE, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.GOLDENITE_CRYSTALS_ORE, EnumHarvestLevel.PICKAXE, 2);
@@ -1846,8 +1846,8 @@ public class MPBlocks
         MPBlocks.DOUBLE_INFECTED_SANDSTONE_SLAB.setHalf(MPBlocks.INFECTED_SANDSTONE_SLAB);
         MPBlocks.DOUBLE_INFECTED_CUT_SANDSTONE_SLAB.setHalf(MPBlocks.INFECTED_CUT_SANDSTONE_SLAB);
 
-        BlockUtils.setFireBurn(MPBlocks.INFECTED_CRYSTALLIZED_PLANKS, 5, 20);
-        BlockUtils.setFireBurn(MPBlocks.INFECTED_CRYSTALLIZED_FENCE, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.INFECTED_PURLONITE_PLANKS, 5, 20);
+        BlockUtils.setFireBurn(MPBlocks.INFECTED_PURLONITE_FENCE, 5, 20);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE_FLOWER, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_SPORE, 60, 100);
         BlockUtils.setFireBurn(MPBlocks.CHEESE_GRASS, 60, 100);

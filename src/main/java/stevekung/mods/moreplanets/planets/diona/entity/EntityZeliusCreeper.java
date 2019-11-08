@@ -63,11 +63,11 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
             if (this.getPowered())
             {
                 this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * 2, flag);
-                this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius * 2, this.posY - this.explosionRadius * 2, this.posZ - this.explosionRadius * 2, this.posX + this.explosionRadius * 2, this.posY + this.explosionRadius * 2, this.posZ + this.explosionRadius * 2)).forEach(entity -> entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 240, 1)));
+                this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius * 2, this.posY - this.explosionRadius * 2, this.posZ - this.explosionRadius * 2, this.posX + this.explosionRadius * 2, this.posY + this.explosionRadius * 2, this.posZ + this.explosionRadius * 2)).forEach(entity -> entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_PURLONITE, 240, 1)));
             }
             else
             {
-                this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius, this.posY - this.explosionRadius, this.posZ - this.explosionRadius, this.posX + this.explosionRadius, this.posY + this.explosionRadius, this.posZ + this.explosionRadius)).forEach(entity -> entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 120, 1)));
+                this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - this.explosionRadius, this.posY - this.explosionRadius, this.posZ - this.explosionRadius, this.posX + this.explosionRadius, this.posY + this.explosionRadius, this.posZ + this.explosionRadius)).forEach(entity -> entity.addPotionEffect(new PotionEffect(MPPotions.INFECTED_PURLONITE, 120, 1)));
                 this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, flag);
             }
             this.setDead();
@@ -85,7 +85,7 @@ public class EntityZeliusCreeper extends EntityCreeper implements IEntityBreatha
     @Override
     public boolean isPotionApplicable(PotionEffect potion)
     {
-        return potion.getPotion() == MPPotions.INFECTED_CRYSTALLIZED ? false : super.isPotionApplicable(potion);
+        return potion.getPotion() == MPPotions.INFECTED_PURLONITE ? false : super.isPotionApplicable(potion);
     }
 
     @Override

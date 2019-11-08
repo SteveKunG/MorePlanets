@@ -28,9 +28,9 @@ import stevekung.mods.stevekunglib.world.gen.WorldGenLiquidLake;
 public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
 {
     private final BiomeDecoratorDiona decorator = new BiomeDecoratorDiona();
-    private final MapGenCavesBase caveGenerator = new MapGenCavesBase(MPBlocks.DIONA_SURFACE_ROCK.getDefaultState(), MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), Sets.newHashSet(MPBlocks.DIONA_SUB_SURFACE_ROCK, MPBlocks.DIONA_ROCK));
+    private final MapGenCavesBase caveGenerator = new MapGenCavesBase(MPBlocks.DIONA_SURFACE_ROCK.getDefaultState(), MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK.getDefaultState(), Sets.newHashSet(MPBlocks.DIONA_SUB_SURFACE_ROCK, MPBlocks.DIONA_ROCK));
     private final MapGenDionaMineshaft mineshaftGenerator = new MapGenDionaMineshaft();
-    private final MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(MPBlocks.DIONA_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), MPBlocks.INFECTED_CRYSTALLIZED_COBWEB.getDefaultState(), MPBlocks.INFECTED_CRYSTALLIZED_TORCH.getDefaultState(), MPBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
+    private final MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(MPBlocks.DIONA_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), MPBlocks.INFECTED_PURLONITE_COBWEB.getDefaultState(), MPBlocks.INFECTED_PURLONITE_TORCH.getDefaultState(), MPBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
     private final MapGenCrashedAlienShipFeature alienShipFeatureGenerator = new MapGenCrashedAlienShipFeature();
 
     public ChunkGeneratorDiona(World world, long seed)
@@ -66,14 +66,14 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
         {
             if (y < 48)
             {
-                new WorldGenLiquidLake(MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), false).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
+                new WorldGenLiquidLake(MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), false).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
             }
         }
         if (this.rand.nextInt(8) == 0)
         {
             if (y < 48)
             {
-                new WorldGenLiquidLake(MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), true).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
+                new WorldGenLiquidLake(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), true).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
             }
         }
         for (int i = 0; i < 8; ++i)

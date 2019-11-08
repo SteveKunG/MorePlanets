@@ -339,7 +339,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         return this.dataManager.get(EntityLaserBullet.LASER_TYPE);
     }
 
-    public void setLaserType(EnumLaserType type)
+    public void setLaserType(LaserType type)
     {
         this.setLaserType(type.ordinal());
     }
@@ -415,7 +415,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
                     }
                     if (this.getLaserType() == 1)
                     {
-                        entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_CRYSTALLIZED, 100));
+                        entitylivingbase.addPotionEffect(new PotionEffect(MPPotions.INFECTED_PURLONITE, 100));
                     }
                 }
                 if (!(entity instanceof EntityEnderman))
@@ -437,9 +437,9 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
         }
     }
 
-    public static enum EnumLaserType
+    public static enum LaserType
     {
         NORMAL,
-        INFECTED_CRYSTALLIZED;
+        INFECTED_PURLONITE;
     }
 }

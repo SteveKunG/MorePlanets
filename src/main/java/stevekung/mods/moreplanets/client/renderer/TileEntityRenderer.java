@@ -20,8 +20,8 @@ public class TileEntityRenderer
         ClientRegistryUtils.registerTileEntityRendering(TileEntitySpaceWarpPadFull.class, new TileEntitySpaceWarpPadFullRenderer());
         ClientRegistryUtils.registerTileEntityRendering(TileEntityZeliusEgg.class, new TileEntityZeliusEggRenderer());
         ClientRegistryUtils.registerTileEntityRendering(TileEntityDarkEnergyReceiver.class, new TileEntityDarkEnergyReceiverRenderer());
-        ClientRegistryUtils.registerTileEntityRendering(TileEntityInfectedCrystallizedCrystal.class, new TileEntityInfectedCrystallizedCrystalRenderer());
-        ClientRegistryUtils.registerTileEntityRendering(TileEntityInfectedCrystallizedEnderCore.class, new TileEntityInfectedCrystallizedEnderCoreRenderer());
+        ClientRegistryUtils.registerTileEntityRendering(TileEntityInfectedPurloniteCrystal.class, new TileEntityInfectedPurloniteCrystalRenderer());
+        ClientRegistryUtils.registerTileEntityRendering(TileEntityInfectedPurloniteEnderCore.class, new TileEntityInfectedPurloniteEnderCoreRenderer());
         ClientRegistryUtils.registerTileEntityRendering(TileEntityDionaTreasureChest.class, new TileEntityTreasureChestRendererMP("diona"));
         ClientRegistryUtils.registerTileEntityRendering(TileEntityDionaAncientChest.class, new TileEntityChestRendererMP("diona_ancient"));
         ClientRegistryUtils.registerTileEntityRendering(TileEntityChalosTreasureChest.class, new TileEntityTreasureChestRendererMP("chalos"));

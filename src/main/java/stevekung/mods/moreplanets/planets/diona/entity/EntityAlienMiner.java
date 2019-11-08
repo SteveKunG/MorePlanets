@@ -177,7 +177,7 @@ public class EntityAlienMiner extends EntityMob implements IEntityBreathable, IS
     public boolean isPotionApplicable(PotionEffect effect)
     {
         Potion potion = effect.getPotion();
-        return potion != MobEffects.POISON && potion != MobEffects.INSTANT_DAMAGE && potion != MobEffects.WITHER && potion != MPPotions.INFECTED_CRYSTALLIZED && potion != MPPotions.INFECTED_SPORE;
+        return potion != MobEffects.POISON && potion != MobEffects.INSTANT_DAMAGE && potion != MobEffects.WITHER && potion != MPPotions.INFECTED_PURLONITE && potion != MPPotions.INFECTED_SPORE;
     }
 
     @Override

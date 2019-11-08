@@ -1,0 +1,20 @@
+{
+    "group": "laser_bullet",
+    "type": "forge:ore_shaped",
+    "pattern": [
+        " R",
+        "I "
+    ],
+    "key": {
+        "R": {
+            "item": "moreplanets:infected_purlonite_shard"
+        },
+        "I": {
+            "item": "#INGOTIRON"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_purlonite_laser_bullet",
+        "count": 8
+    }
+}

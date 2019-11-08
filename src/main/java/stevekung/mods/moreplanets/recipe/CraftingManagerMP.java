@@ -124,14 +124,14 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPItems.EMPTY_CAPSULE), "capsule", new Object[] { " C", "X ", 'C', new ItemStack(GCItems.canister), 'X', "ingotIron" });
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE), "capsule", MPItems.EMPTY_CAPSULE, MPItems.CHEESE_SPORE_BERRY, MPBlocks.CHEESE_SPORE_FLOWER, Blocks.BROWN_MUSHROOM);
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.INFECTED_SPORE_PROTECTION_CAPSULE), "capsule", "infected_spore_protection_capsule_from_herb", MPItems.EMPTY_CAPSULE, MPBlocks.PURE_HERB, MPItems.INFERUMITE_CRYSTAL);
-        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.DARK_ENERGY_PROTECTION_CAPSULE), "capsule", MPItems.EMPTY_CAPSULE, MPItems.INFECTED_CRYSTALLIZED_SHARD, new ItemStack(MarsItems.marsItemBasic, 1, 0));
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.DARK_ENERGY_PROTECTION_CAPSULE), "capsule", MPItems.EMPTY_CAPSULE, MPItems.INFECTED_PURLONITE_SHARD, new ItemStack(MarsItems.marsItemBasic, 1, 0));
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.DARK_ENERGY_PROTECTION_CAPSULE), "capsule", "dark_energy_protection_capsule_herb", MPItems.EMPTY_CAPSULE, MPBlocks.TERRAPUFF_HERB, MPItems.INFERUMITE_CRYSTAL, new ItemStack(MarsItems.marsItemBasic, 1, 0));
 
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.ILLENIUM_BLOCK), new Object[] { "III", "III", "III", 'I', MPItems.ILLENIUM_INGOT });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SETRORIUM_BLOCK), new Object[] { "SSS", "SSS", "SSS", 'S', MPItems.SETRORIUM_SHARD });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.GLOWING_IRON_BLOCK), new Object[] { "SSS", "SSS", "SSS", 'S', MPItems.GLOWING_IRON_INGOT });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK), new Object[] { "SSS", "SSS", "SSS", 'S', MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL });
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CRYSTALLIZED_SEGMENT), new Object[] { "BSB", "BSB", "BSB", 'S', MPItems.INFECTED_CRYSTALLIZED_SHARD, 'B', MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PURLONITE_SLIME_BLOCK), new Object[] { "SSS", "SSS", "SSS", 'S', MPItems.INFECTED_PURLONITE_SLIMEBALL });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PURLONITE_SEGMENT), new Object[] { "BSB", "BSB", "BSB", 'S', MPItems.INFECTED_PURLONITE_SHARD, 'B', MPItems.INFECTED_PURLONITE_SLIMEBALL });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.DARK_ENERGY_GENERATOR), new Object[] { "HPH", "ACA", "WFW", 'H', new ItemStack(AsteroidsItems.basicItem, 1, 5), 'P', MPItems.DARK_ENERGY_PEARL, 'A', MPItems.ALIEN_MINER_PART, 'C', MPItems.MULTALIC_CRYSTAL_PIECES, 'F', new ItemStack(GCItems.basicItem, 1, 14), 'W', new ItemStack(GCBlocks.aluminumWire, 1, 1) });
 
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.DIONA_COBBLESTONE_STAIRS, 4), "cobblestone_stairs", new Object[] { "X  ", "XX ", "XXX", 'X', MPBlocks.DIONA_COBBLESTONE });
@@ -256,18 +256,18 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_BOW), new Object[] { " XS", "X S", " XS", 'S', "string", 'X', "compressedDesh" });
         RecipeHelper.addRecipe(new ItemStack(MPItems.SPACE_FISHING_ROD), new Object[] {"  S", " SX", "S X", 'S', "compressedDesh", 'X', "string"});
         RecipeHelper.addRecipe(new ItemStack(MPItems.LASER_BULLET, 8), "laser_bullet", new Object[] { " R", "I ", 'I', "ingotIron", 'R', "dustRedstone" });
-        RecipeHelper.addRecipe(new ItemStack(MPItems.INFECTED_CRYSTALLIZED_LASER_BULLET, 8), "laser_bullet", new Object[] { " R", "I ", 'I', "ingotIron", 'R', MPItems.INFECTED_CRYSTALLIZED_SHARD });
+        RecipeHelper.addRecipe(new ItemStack(MPItems.INFECTED_PURLONITE_LASER_BULLET, 8), "laser_bullet", new Object[] { " R", "I ", 'I', "ingotIron", 'R', MPItems.INFECTED_PURLONITE_SHARD });
         RecipeHelper.addRecipe(new ItemStack(MPItems.LASER_GUN), new Object[] { "C  ", " DT", "  D", 'C', new ItemStack(AsteroidsItems.basicItem, 1, 8), 'D', "compressedDesh", 'T', "compressedTitanium" });
         RecipeHelper.addRecipe(new ItemStack(MPItems.ALIEN_DEFENDER_REINFORCEMENT), new Object[] { "C", "I", "I", 'I', MPItems.GLOWING_IRON_INGOT, 'C', MPItems.SPACE_WARPER_CORE });
 
-        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_CRYSTALLIZED_TORCH, 4), new Object[] { "I", "S", 'I', MPItems.INFECTED_CRYSTALLIZED_SHARD, 'S', "stickWood" });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.INFECTED_PURLONITE_TORCH, 4), new Object[] { "I", "S", 'I', MPItems.INFECTED_PURLONITE_SHARD, 'S', "stickWood" });
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.ILLENIUM_INGOT, 9), MPBlocks.ILLENIUM_BLOCK);
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.SETRORIUM_SHARD, 9), MPBlocks.SETRORIUM_BLOCK);
         RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.GLOWING_IRON_INGOT, 9), MPBlocks.GLOWING_IRON_BLOCK);
-        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.INFECTED_CRYSTALLIZED_SLIMEBALL, 9), MPBlocks.INFECTED_CRYSTALLIZED_SLIME_BLOCK);
+        RecipeHelper.addShapelessRecipe(new ItemStack(MPItems.INFECTED_PURLONITE_SLIMEBALL, 9), MPBlocks.INFECTED_PURLONITE_SLIME_BLOCK);
 
-        RecipeHelper.addRecipe(new ItemStack(MPItems.INFECTED_CRYSTALLIZED_BOMB, 4), new Object[] { "III", "IGI", "III", 'I', MPItems.INFECTED_CRYSTALLIZED_SHARD, 'G', "gunpowder" });
-        RecipeHelper.addRecipe(new ItemStack(MPItems.INFECTED_CRYSTALLIZED_ARROW, 6), new Object[] { "X", "S", "Y", 'Y', "feather", 'X', MPItems.INFECTED_CRYSTALLIZED_SHARD, 'S', new ItemStack(MarsItems.marsItemBasic, 1, 1) });
+        RecipeHelper.addRecipe(new ItemStack(MPItems.INFECTED_PURLONITE_BOMB, 4), new Object[] { "III", "IGI", "III", 'I', MPItems.INFECTED_PURLONITE_SHARD, 'G', "gunpowder" });
+        RecipeHelper.addRecipe(new ItemStack(MPItems.INFECTED_PURLONITE_ARROW, 6), new Object[] { "X", "S", "Y", 'Y', "feather", 'X', MPItems.INFECTED_PURLONITE_SHARD, 'S', new ItemStack(MarsItems.marsItemBasic, 1, 1) });
 
         RecipeHelper.addRecipe(new ItemStack(MPItems.ILLENIUM_HELMET, 1, 0), new Object[] { "XXX", "X X", 'X', MPItems.COMPRESSED_ILLENIUM });
         RecipeHelper.addRecipe(new ItemStack(MPItems.ILLENIUM_CHESTPLATE, 1, 0), new Object[] { "X X", "XXX", "XXX", 'X', MPItems.COMPRESSED_ILLENIUM });

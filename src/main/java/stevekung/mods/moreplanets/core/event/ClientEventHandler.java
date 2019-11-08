@@ -233,11 +233,11 @@ public class ClientEventHandler
         {
             EntityLivingBase living = (EntityLivingBase)entity;
 
-            if (ClientEventHandler.ENTITY_IDS.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
+            if (ClientEventHandler.ENTITY_IDS.contains(String.valueOf(living.getEntityId())) || living.isPotionActive(MPPotions.INFECTED_PURLONITE))
             {
                 GlStateManager.disableLighting();
                 TextureMap texturemap = this.mc.getTextureMapBlocks();
-                TextureAtlasSprite textureatlassprite = texturemap.getAtlasSprite("moreplanets:blocks/infected_crystallized");
+                TextureAtlasSprite textureatlassprite = texturemap.getAtlasSprite("moreplanets:blocks/infected_purlonite");
                 GlStateManager.pushMatrix();
                 GlStateManager.translate((float)event.getX(), (float)event.getY(), (float)event.getZ());
                 float f = living.width * 1.4F;
@@ -306,7 +306,7 @@ public class ClientEventHandler
     @SideOnly(Side.CLIENT)
     public void onRenderFirstPersonViewOverlay(FirstPersonViewOverlayEvent event)
     {
-        if (this.mc.player.isPotionActive(MPPotions.INFECTED_CRYSTALLIZED))
+        if (this.mc.player.isPotionActive(MPPotions.INFECTED_PURLONITE))
         {
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder worldrenderer = tessellator.getBuffer();
@@ -320,7 +320,7 @@ public class ClientEventHandler
             for (int i = 0; i < 2; ++i)
             {
                 GlStateManager.pushMatrix();
-                TextureAtlasSprite textureatlassprite = this.mc.getTextureMapBlocks().getAtlasSprite("moreplanets:blocks/infected_crystallized");
+                TextureAtlasSprite textureatlassprite = this.mc.getTextureMapBlocks().getAtlasSprite("moreplanets:blocks/infected_purlonite");
                 this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
                 float f1 = textureatlassprite.getMinU();
                 float f2 = textureatlassprite.getMaxU();
@@ -390,10 +390,10 @@ public class ClientEventHandler
 
         if (event.getOverlayType() == OverlayType.WATER)
         {
-            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK))
+            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
-                this.renderOverlay("crystallized_water", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
+                this.renderOverlay("infected_purlonite_water", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
             if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
             {
@@ -424,13 +424,13 @@ public class ClientEventHandler
     {
         EntityPlayer player = this.mc.player;
 
-        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CRYSTALLIZED_WATER_FLUID_BLOCK))
+        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK))
         {
             event.setRed(0.5F);
             event.setGreen(0.375F);
             event.setBlue(0.8F);
         }
-        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CRYSTALLIZED_LAVA_FLUID_BLOCK))
+        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK))
         {
             event.setRed(0.35F);
             event.setGreen(0.25F);

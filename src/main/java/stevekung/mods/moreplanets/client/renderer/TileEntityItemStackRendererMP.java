@@ -12,9 +12,9 @@ import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosAncientChest;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityChalosTreasureChest;
 import stevekung.mods.moreplanets.planets.chalos.tileentity.TileEntityCheeseSporeChest;
-import stevekung.mods.moreplanets.planets.diona.client.renderer.entity.RenderInfectedCrystallizedBomb;
+import stevekung.mods.moreplanets.planets.diona.client.renderer.entity.RenderInfectedPurloniteBomb;
 import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityDarkEnergyGeneratorRenderer;
-import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityInfectedCrystallizedCrystalRenderer;
+import stevekung.mods.moreplanets.planets.diona.client.renderer.tileentity.TileEntityInfectedPurloniteCrystalRenderer;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDarkEnergyCore;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaAncientChest;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityDionaTreasureChest;
@@ -77,17 +77,17 @@ public class TileEntityItemStackRendererMP extends TileEntityItemStackRenderer
             ClientRegistryUtils.renderTESR(this.zeliusEgg);
             GlStateManager.enableBlend();
         }
-        else if (block == MPBlocks.INFECTED_CRYSTALLIZED_CRYSTAL)
+        else if (block == MPBlocks.INFECTED_PURLONITE_CRYSTAL)
         {
-            TileEntityInfectedCrystallizedCrystalRenderer.INSTANCE.render();
+            TileEntityInfectedPurloniteCrystalRenderer.INSTANCE.render();
         }
         else if (block == MPBlocks.DARK_ENERGY_RECEIVER)
         {
             ClientRegistryUtils.renderTESR(this.receiver);
         }
-        else if (itemStack.getItem() == MPItems.INFECTED_CRYSTALLIZED_BOMB)
+        else if (itemStack.getItem() == MPItems.INFECTED_PURLONITE_BOMB)
         {
-            RenderInfectedCrystallizedBomb.INSTANCE.render();
+            RenderInfectedPurloniteBomb.INSTANCE.render();
         }
         else if (block == MPBlocks.NIBIRU_ANCIENT_CHEST)
         {

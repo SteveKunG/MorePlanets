@@ -13,7 +13,7 @@ import stevekung.mods.moreplanets.core.MorePlanetsMod;
 
 public class DataFixersMP
 {
-    private static final int DATA_FIXER_VERSION = 1;
+    private static final int DATA_FIXER_VERSION = 2;
 
     public static void init()
     {
@@ -27,13 +27,15 @@ public class DataFixersMP
         {
             ImmutableMap.Builder<String, String> nameMap = ImmutableMap.builder();
             nameMap.put("moreplanets:large_infected_crystallized", "moreplanets:infected_crystallized_crystal");
+            nameMap.put("moreplanets:infected_crystallized_crystal", "moreplanets:infected_purlonite_crystal");
+            nameMap.put("moreplanets:infected_crystallized_ender_core", "moreplanets:infected_purlonite_ender_core");
             this.tileEntityNames = nameMap.build();
         }
 
         @Override
         public int getFixVersion()
         {
-            return 1;
+            return 2;
         }
 
         @Override

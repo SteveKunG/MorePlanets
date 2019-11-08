@@ -197,7 +197,7 @@ public class EntityNibiruVillager extends EntityAgeable implements INpc, IMercha
                         },
                         {
                             new EntityVillager.ListItemForEmeralds(MPItems.INFERUMITE_CRYSTAL, new EntityVillager.PriceInfo(-5, -2)),
-                            new EntityVillager.ListItemForEmeralds(MPItems.INFECTED_CRYSTALLIZED_SHARD, new EntityVillager.PriceInfo(-4, -2)),
+                            new EntityVillager.ListItemForEmeralds(MPItems.INFECTED_PURLONITE_SHARD, new EntityVillager.PriceInfo(-4, -2)),
                             new EntityVillager.ListItemForEmeralds(new ItemStack(MarsItems.marsItemBasic, 1, 0), new EntityVillager.PriceInfo(-3, -1)),
                             new EntityVillager.ListItemForEmeralds(Item.getItemFromBlock(MPBlocks.TERRAPUFF_HERB), new EntityVillager.PriceInfo(3, 6))
                         },

@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SSS",
+        "SSS",
+        "SSS"
+    ],
+    "key": {
+        "S": {
+            "item": "moreplanets:infected_purlonite_slimeball"
+        }
+    },
+    "result": {
+        "item": "moreplanets:infected_purlonite_slime_block"
+    }
+}

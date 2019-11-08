@@ -85,7 +85,7 @@ public class BlocksItemsRegistry
         if (ClientUtils.isEffectiveClient())
         {
             BlocksItemsRegistry.registerSorted(item);
-            BlocksItemsRegistry.TESR_ITEM_RENDER.add(MPItems.INFECTED_CRYSTALLIZED_BOMB);
+            BlocksItemsRegistry.TESR_ITEM_RENDER.add(MPItems.INFECTED_PURLONITE_BOMB);
         }
     }
 

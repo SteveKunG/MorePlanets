@@ -28,8 +28,8 @@ public class MPTileEntities
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDionaTreasureChest.class, "diona_treasure_chest");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDionaDungeonSpawner.class, "diona_dungeon_spawner");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityZeliusEgg.class, "zelius_egg");
-        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityInfectedCrystallizedEnderCore.class, "infected_crystallized_ender_core");
-        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityInfectedCrystallizedCrystal.class, "infected_crystallized_crystal");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityInfectedPurloniteEnderCore.class, "infected_purlonite_ender_core");
+        MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityInfectedPurloniteCrystal.class, "infected_purlonite_crystal");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDarkEnergyCore.class, "dark_energy_core");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityDarkEnergyGenerator.class, "dark_energy_generator");
         MorePlanetsMod.COMMON_REGISTRY.registerTileEntity(TileEntityCrashedAlienProbe.class, "crashed_alien_probe");
