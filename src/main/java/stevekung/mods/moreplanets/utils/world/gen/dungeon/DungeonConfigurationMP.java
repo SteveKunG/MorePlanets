@@ -65,10 +65,23 @@ public class DungeonConfigurationMP
     {
         try
         {
+            // backward compatibility
+            String webBlock = tagCompound.getString("WebBlock");
+            String torchBlock = tagCompound.getString("TorchBlock");
+
+            if (webBlock.equals("moreplanets:infected_crystallized_cobweb"))
+            {
+                webBlock = "moreplanets:infected_purlonite_cobweb";
+            }
+            if (torchBlock.equals("moreplanets:infected_crystallized_torch"))
+            {
+                torchBlock = "moreplanets:infected_purlonite_torch";
+            }
+
             this.brickBlock = Block.getBlockFromName(tagCompound.getString("DungeonBrickBlock")).getDefaultState();
             this.glowstoneBlock = Block.getBlockFromName(tagCompound.getString("GlowstoneBlock")).getDefaultState();
-            this.webBlock = Block.getBlockFromName(tagCompound.getString("WebBlock")).getDefaultState();
-            this.torchBlock = Block.getBlockFromName(tagCompound.getString("TorchBlock")).getDefaultState();
+            this.webBlock = Block.getBlockFromName(webBlock).getDefaultState();
+            this.torchBlock = Block.getBlockFromName(torchBlock).getDefaultState();
             this.ancientChestBlock = Block.getBlockFromName(tagCompound.getString("AncientChestBlock")).getDefaultState();
             this.yPosition = tagCompound.getInteger("YPosition");
             this.hallwayLengthMin = tagCompound.getInteger("HallwayLengthMin");
