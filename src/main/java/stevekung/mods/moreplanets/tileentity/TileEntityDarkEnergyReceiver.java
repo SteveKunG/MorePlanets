@@ -152,13 +152,10 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
             this.initMultiBlock = false;
         }
 
-        if (this.world.isRemote)
+        for (BlockPos renderPos : ClientEventHandler.RECEIVER_RENDER_POS)
         {
-            for (BlockPos renderPos : ClientEventHandler.RECEIVER_RENDER_POS)
-            {
-                this.multiBlockClientLists.entrySet().removeIf(entry -> this.pos.equals(renderPos) && this.world.getBlockState(this.pos.add(entry.getKey())) == entry.getValue());
-                this.multiTileClientLists.entrySet().removeIf(entry -> this.pos.equals(renderPos) && this.world.isRemote && this.world.getTileEntity(this.pos.add(entry.getKey())) != null && this.world.getTileEntity(this.pos.add(entry.getKey())).getClass().equals(entry.getValue().getClass()));
-            }
+            this.multiBlockClientLists.entrySet().removeIf(entry -> this.world.isRemote && this.pos.equals(renderPos) && this.world.getBlockState(this.pos.add(entry.getKey())) == entry.getValue());
+            this.multiTileClientLists.entrySet().removeIf(entry -> this.world.isRemote && this.pos.equals(renderPos) && this.world.getTileEntity(this.pos.add(entry.getKey())) != null && this.world.getTileEntity(this.pos.add(entry.getKey())).getClass().equals(entry.getValue().getClass()));
         }
 
         if (!this.world.isRemote)
