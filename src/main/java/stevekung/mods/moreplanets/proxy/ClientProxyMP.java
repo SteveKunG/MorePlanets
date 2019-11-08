@@ -39,8 +39,8 @@ import stevekung.mods.moreplanets.moons.koentus.client.particle.ParticleKoentusM
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntityCheeseSpore;
 import stevekung.mods.moreplanets.planets.chalos.entity.projectile.EntitySmallCheeseSpore;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleAlienMinerSpark;
-import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleInfectedPurloniteFlame;
 import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleDarkPortal;
+import stevekung.mods.moreplanets.planets.diona.client.particle.ParticleInfectedPurloniteFlame;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleAlienBerryLeavesSpark;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedGuardianAppearance;
 import stevekung.mods.moreplanets.planets.nibiru.client.particle.ParticleInfectedSpore;
