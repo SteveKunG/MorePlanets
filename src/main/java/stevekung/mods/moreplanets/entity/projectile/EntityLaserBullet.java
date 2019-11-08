@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.entity.projectile;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -303,7 +302,7 @@ public class EntityLaserBullet extends Entity implements IProjectile, IEntityAdd
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        buffer.writeInt(Optional.ofNullable(this.shootingEntity.getEntityId()).orElse(-1));
+        buffer.writeInt(this.shootingEntity != null ? this.shootingEntity.getEntityId() : -1);
     }
 
     @Override

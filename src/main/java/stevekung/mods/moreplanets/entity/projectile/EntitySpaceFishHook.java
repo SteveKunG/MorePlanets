@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.entity.projectile;
 
 import java.util.List;
-import java.util.Optional;
 
 import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
@@ -572,7 +571,7 @@ public class EntitySpaceFishHook extends EntityFishHook implements IEntityAdditi
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        buffer.writeInt(Optional.ofNullable(this.angler.getEntityId()).orElse(0));
+        buffer.writeInt(this.angler != null ? this.angler.getEntityId() : 0);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.utils.blocks;
 
-import java.util.Optional;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -63,7 +61,7 @@ public class BlockBaseMP extends Block implements ISortableBlock, IItemModelRend
     @Override
     public ColorUtils.RGB getRarity()
     {
-        return Optional.ofNullable(this.rgb).orElse(null);
+        return this.rgb != null ? this.rgb : null;
     }
 
     public BlockBaseMP setSortCategory(EnumSortCategoryBlock category)

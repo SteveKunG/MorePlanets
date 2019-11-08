@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.planets.chalos.world.gen;
 
-import java.util.Optional;
-
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Sets;
@@ -109,13 +107,13 @@ public class ChunkGeneratorChalos extends ChunkGeneratorBaseMP
     @Override
     public boolean isInsideStructure(World world, String structureName, BlockPos pos)
     {
-        return "CheeseSporeHut".equals(structureName) && Optional.ofNullable(this.cheeseSporeHutFeatureGenerator.isInsideStructure(pos)).orElse(false);
+        return "CheeseSporeHut".equals(structureName) && this.cheeseSporeHutFeatureGenerator != null ? this.cheeseSporeHutFeatureGenerator.isInsideStructure(pos) : false;
     }
 
     @Override
     @Nullable
     public BlockPos getNearestStructurePos(World world, String structureName, BlockPos position, boolean findUnexplored)
     {
-        return "CheeseSporeHut".equals(structureName) ? Optional.ofNullable(this.cheeseSporeHutFeatureGenerator).orElse(null).getNearestStructurePos(world, position, findUnexplored) : null;
+        return "CheeseSporeHut".equals(structureName) && this.cheeseSporeHutFeatureGenerator != null ? this.cheeseSporeHutFeatureGenerator.getNearestStructurePos(world, position, findUnexplored) : null;
     }
 }

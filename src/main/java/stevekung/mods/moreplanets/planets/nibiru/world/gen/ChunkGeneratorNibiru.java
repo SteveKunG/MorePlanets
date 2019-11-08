@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.google.common.collect.Sets;
 
@@ -191,74 +190,74 @@ public class ChunkGeneratorNibiru extends ChunkGeneratorBaseMP
     @Override
     public BlockPos getNearestStructurePos(World world, String name, BlockPos pos, boolean findUnexplored)
     {
-        if ("NibiruStronghold".equals(name))
+        if ("NibiruStronghold".equals(name) && this.strongholdGenerator != null)
         {
-            return Optional.ofNullable(this.strongholdGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored);
+            return this.strongholdGenerator.getNearestStructurePos(world, pos, findUnexplored);
         }
-        else if ("NibiruOceanMonument".equals(name))
+        else if ("NibiruOceanMonument".equals(name) && this.oceanMonumentGenerator != null)
         {
-            return Optional.ofNullable(this.oceanMonumentGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored);
+            return this.oceanMonumentGenerator.getNearestStructurePos(world, pos, findUnexplored);
         }
-        else if ("NibiruVillage".equals(name))
+        else if ("NibiruVillage".equals(name) && this.villageGenerator != null)
         {
-            return Optional.ofNullable(this.villageGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored);
+            return this.villageGenerator.getNearestStructurePos(world, pos, findUnexplored);
         }
-        else if ("NibiruMineshaft".equals(name))
+        else if ("NibiruMineshaft".equals(name) && this.mineshaftGenerator != null)
         {
-            return Optional.ofNullable(this.mineshaftGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored);
+            return this.mineshaftGenerator.getNearestStructurePos(world, pos, findUnexplored);
         }
-        else if ("NibiruBossDungeon".equals(name))
+        else if ("NibiruBossDungeon".equals(name) && this.dungeonGenerator != null)
         {
-            return Optional.ofNullable(this.dungeonGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored);
+            return this.dungeonGenerator.getNearestStructurePos(world, pos, findUnexplored);
         }
-        else if ("NibiruIgloo".equals(name))
+        else if ("NibiruIgloo".equals(name) && this.iglooGenerator != null)
         {
-            return Optional.ofNullable(this.iglooGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored);
+            return this.iglooGenerator.getNearestStructurePos(world, pos, findUnexplored);
         }
-        else if ("NibiruPyramid".equals(name))
+        else if ("NibiruPyramid".equals(name) && this.pyramidGenerator != null)
         {
-            return Optional.ofNullable(this.pyramidGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored);
+            return this.pyramidGenerator.getNearestStructurePos(world, pos, findUnexplored);
         }
         else
         {
-            return "NibiruJungleTemple".equals(name) ? Optional.ofNullable(this.jungleTempleGenerator).orElse(null).getNearestStructurePos(world, pos, findUnexplored) : null;
+            return "NibiruJungleTemple".equals(name) && this.jungleTempleGenerator != null ? this.jungleTempleGenerator.getNearestStructurePos(world, pos, findUnexplored) : null;
         }
     }
 
     @Override
     public boolean isInsideStructure(World world, String name, BlockPos pos)
     {
-        if ("NibiruStronghold".equals(name))
+        if ("NibiruStronghold".equals(name) && this.strongholdGenerator != null)
         {
-            return Optional.ofNullable(this.strongholdGenerator).orElse(null).isInsideStructure(pos);
+            return this.strongholdGenerator.isInsideStructure(pos);
         }
-        else if ("NibiruOceanMonument".equals(name))
+        else if ("NibiruOceanMonument".equals(name) && this.oceanMonumentGenerator != null)
         {
-            return Optional.ofNullable(this.oceanMonumentGenerator).orElse(null).isInsideStructure(pos);
+            return this.oceanMonumentGenerator.isInsideStructure(pos);
         }
-        else if ("NibiruVillage".equals(name))
+        else if ("NibiruVillage".equals(name) && this.villageGenerator != null)
         {
-            return Optional.ofNullable(this.villageGenerator).orElse(null).isInsideStructure(pos);
+            return this.villageGenerator.isInsideStructure(pos);
         }
-        else if ("NibiruMineshaft".equals(name))
+        else if ("NibiruMineshaft".equals(name) && this.mineshaftGenerator != null)
         {
-            return Optional.ofNullable(this.mineshaftGenerator).orElse(null).isInsideStructure(pos);
+            return this.mineshaftGenerator.isInsideStructure(pos);
         }
-        else if ("NibiruBossDungeon".equals(name))
+        else if ("NibiruBossDungeon".equals(name) && this.dungeonGenerator != null)
         {
-            return Optional.ofNullable(this.dungeonGenerator).orElse(null).isInsideStructure(pos);
+            return this.dungeonGenerator.isInsideStructure(pos);
         }
-        else if ("NibiruIgloo".equals(name))
+        else if ("NibiruIgloo".equals(name) && this.iglooGenerator != null)
         {
-            return Optional.ofNullable(this.iglooGenerator).orElse(null).isInsideStructure(pos);
+            return this.iglooGenerator.isInsideStructure(pos);
         }
-        else if ("NibiruPyramid".equals(name))
+        else if ("NibiruPyramid".equals(name) && this.pyramidGenerator != null)
         {
-            return Optional.ofNullable(this.pyramidGenerator).orElse(null).isInsideStructure(pos);
+            return this.pyramidGenerator.isInsideStructure(pos);
         }
         else
         {
-            return "NibiruJungleTemple".equals(name) && Optional.ofNullable(this.jungleTempleGenerator.isInsideStructure(pos)).orElse(false);
+            return "NibiruJungleTemple".equals(name) && this.jungleTempleGenerator != null ? this.jungleTempleGenerator.isInsideStructure(pos) : false;
         }
     }
 

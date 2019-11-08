@@ -1,7 +1,6 @@
 package stevekung.mods.moreplanets.utils.entity;
 
 import java.util.List;
-import java.util.Optional;
 
 import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.core.TransformerHooks;
@@ -311,7 +310,7 @@ public abstract class EntityArrowMP extends EntityArrow implements IEntityAdditi
     @Override
     public void writeSpawnData(ByteBuf buffer)
     {
-        buffer.writeInt(Optional.ofNullable(this.shootingEntity.getEntityId()).orElse(-1));
+        buffer.writeInt(this.shootingEntity != null ? this.shootingEntity.getEntityId() : -1);
     }
 
     @Override

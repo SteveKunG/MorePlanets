@@ -1,7 +1,5 @@
 package stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.layer;
 
-import java.util.Optional;
-
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
@@ -33,8 +31,8 @@ public class GenLayerNibiruHills extends GenLayer
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
                 int l = aint1[j + 1 + (i + 1) * (areaWidth + 2)];
                 boolean flag = (l - 2) % 29 == 0;
-                Biome biome = Optional.ofNullable(Biome.getBiomeForId(k)).orElse(null);
-                boolean flag1 = biome.isMutation();
+                Biome biome = Biome.getBiomeForId(k);
+                boolean flag1 = biome != null && biome.isMutation();
 
                 if (k != 0 && l >= 2 && (l - 2) % 29 == 1 && !flag1)
                 {
