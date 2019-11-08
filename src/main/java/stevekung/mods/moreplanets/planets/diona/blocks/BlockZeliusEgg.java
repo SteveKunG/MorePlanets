@@ -120,7 +120,7 @@ public class BlockZeliusEgg extends BlockBaseMP implements ITileEntityProvider
     }
 
     @Override
-    public boolean canDropFromExplosion(Explosion explosionIn)
+    public boolean canDropFromExplosion(Explosion explosion)
     {
         return false;
     }
