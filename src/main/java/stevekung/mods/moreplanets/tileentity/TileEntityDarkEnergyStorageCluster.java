@@ -20,7 +20,7 @@ import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
 public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectricalSource implements IConnector, IMachineSides
 {
     private float darkEnergyCapacity = 12500000;
-    public Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
+    public Set<EntityPlayer> playersUsing = new HashSet<>();
     public int scaledEnergyLevel;
     public int lastScaledEnergyLevel;
     private float lastEnergy = 0;

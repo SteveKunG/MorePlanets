@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public abstract class GuiContainerMP extends GuiContainer
 {
-    protected List<GuiElementInfoRegionMP> infoRegions = new ArrayList<GuiElementInfoRegionMP>();
+    protected List<GuiElementInfoRegionMP> infoRegions = new ArrayList<>();
     protected boolean renderInfo = true;
 
     public GuiContainerMP(Container container)

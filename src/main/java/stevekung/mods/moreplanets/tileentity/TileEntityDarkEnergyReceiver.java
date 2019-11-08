@@ -331,7 +331,7 @@ public class TileEntityDarkEnergyReceiver extends TileEntityDummy implements IMu
                         this.setDisabled(0, true);
                         this.activatedMessage = true;
                         this.successful = true;
-                        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SEND_GREEN_MESSAGE, world.provider.getDimension(), new Object[] { GCCoreUtil.translate("gui.status.dark_energy_core_created.name") }));
+                        GalacticraftCore.packetPipeline.sendToServer(new PacketSimpleMP(EnumSimplePacketMP.S_SEND_GREEN_MESSAGE, this.world.provider.getDimension(), new Object[] { GCCoreUtil.translate("gui.status.dark_energy_core_created.name") }));
                     }
                 }
 

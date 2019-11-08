@@ -22,7 +22,7 @@ import stevekung.mods.moreplanets.blocks.BlockTieredEnergyStorage;
 public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElectricalSource implements ISidedInventory, IInventoryDefaults, IConnector, IMachineSides
 {
     private float nuclearWasteCapacity = 50000000;
-    public Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
+    public Set<EntityPlayer> playersUsing = new HashSet<>();
     public int scaledEnergyLevel;
     public int lastScaledEnergyLevel;
     private MachineSidePack[] machineSides;
