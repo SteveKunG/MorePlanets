@@ -41,7 +41,7 @@ public class LayerGlowingTexture implements LayerRenderer<EntityLiving>
 
         if (this.light)
         {
-            float time = entity.ticksExisted + partialTicks;
+            float time = entity.getEntityId() + entity.ticksExisted + partialTicks;
             float sin = (MathHelper.sin(time / 4) + 1F) / 2F + 0.15F;
             GlStateManager.color(sin, sin, sin, sin);
         }
