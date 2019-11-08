@@ -218,7 +218,7 @@ public class TileEntityNuclearWasteStorageCluster extends TileBaseUniversalElect
     }
 
     @Override
-    public MachineSidePack[] getAllMachineSides()
+    public synchronized MachineSidePack[] getAllMachineSides()
     {
         if (this.machineSides == null)
         {

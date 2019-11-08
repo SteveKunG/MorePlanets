@@ -228,7 +228,7 @@ public class TileEntityDarkEnergyStorageCluster extends TileBaseUniversalElectri
     }
 
     @Override
-    public MachineSidePack[] getAllMachineSides()
+    public synchronized MachineSidePack[] getAllMachineSides()
     {
         if (this.machineSides == null)
         {
