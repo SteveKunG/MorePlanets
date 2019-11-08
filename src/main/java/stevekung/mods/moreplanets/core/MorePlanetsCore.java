@@ -7,7 +7,9 @@ import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -15,6 +17,7 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
 import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.core.event.*;
@@ -70,6 +73,7 @@ public class MorePlanetsCore
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        CommonRegisterHelper.registerForgeEvent(this);
         CompatibilityManagerMP.init();
         ConfigManagerMP.init(new File(event.getModConfigurationDirectory(), "MorePlanets.cfg"));
         MorePlanetsCore.initModInfo(event.getModMetadata());
@@ -145,6 +149,12 @@ public class MorePlanetsCore
         {
             throw new RuntimeException("Invalid fingerprint detected! This version will NOT be supported by the author!");
         }
+    }
+
+    @SubscribeEvent
+    public void onSoundRegister(RegistryEvent.Register<SoundEvent> event)
+    {
+        MPLog.info("Initialize sounds from {}", MPSounds.class);
     }
 
     public static boolean isObfuscatedEnvironment()
