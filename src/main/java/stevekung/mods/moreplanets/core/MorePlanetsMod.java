@@ -186,12 +186,9 @@ public class MorePlanetsMod
     }
 
     @SubscribeEvent
-    public void registerSounds(RegistryEvent.Register<SoundEvent> event)
+    public void onSoundRegister(RegistryEvent.Register<SoundEvent> event)
     {
-        if (ClientUtils.isEffectiveClient())
-        {
-            LoggerMP.info("Initialize sounds from {}", MPSounds.class);
-        }
+        LoggerMP.info("Initialize sounds from {}", MPSounds.class);
     }
 
     private static void initModInfo(ModMetadata info)
