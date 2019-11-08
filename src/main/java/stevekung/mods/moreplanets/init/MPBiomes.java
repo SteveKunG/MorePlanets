@@ -150,8 +150,8 @@ public class MPBiomes
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_BEACHES, BEACH, DEAD);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_STONE_SHORE, BEACH, DEAD);
         MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_SNOWY_BEACH, BEACH, DEAD, COLD, SNOWY);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_BADLANDS, MESA, DEAD, SANDY);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU, MESA, DEAD, SANDY, SPARSE);
-        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_BADLANDS_PLATEAU, MESA, DEAD, SANDY);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_BADLANDS, MESA, DEAD, SANDY, DRY);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_WOODED_BADLANDS_PLATEAU, MESA, DEAD, SANDY, DRY, SPARSE);
+        MorePlanetsMod.COMMON_REGISTRY.registerBiomeType(MPBiomes.INFECTED_BADLANDS_PLATEAU, MESA, DEAD, DRY, SANDY);
     }
 }
