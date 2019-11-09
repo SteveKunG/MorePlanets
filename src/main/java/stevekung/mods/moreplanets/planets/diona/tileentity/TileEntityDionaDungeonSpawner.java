@@ -17,9 +17,9 @@ public class TileEntityDionaDungeonSpawner extends TileEntityDungeonSpawnerMP<En
         // backward compatibility
         String bossClass = nbt.getString("bossClass");
 
-        if (bossClass.equals("stevekung.mods.moreplanets.planets.diona.entity.RenderInfectedCrystallizedSlimeBoss"))
+        if (!bossClass.equals("stevekung.mods.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss"))
         {
-            bossClass = "stevekung.mods.moreplanets.planets.diona.entity.RenderInfectedPurloniteSlimeBoss";
+            bossClass = "stevekung.mods.moreplanets.planets.diona.entity.EntityInfectedPurloniteSlimeBoss";
         }
 
         try
