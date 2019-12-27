@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
 import stevekung.mods.stevekunglib.world.gen.EnumOreGen;
@@ -44,10 +45,15 @@ public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
         this.generateOre(this.zyptoriumGen, 8, 0, 24, world, rand);
         this.generateOre(this.diremsiumGen, 16, 0, 64, world, rand);
         this.generateOre(this.cheeseGen, 5, 0, 256, world, rand);
-        this.generateOre(this.ironGen, EnumOreGen.IRON, world, rand);
-        this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
-        this.generateOre(this.tinGen, EnumOreGen.TIN, world, rand);
-        this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
+
+        if (ConfigManagerMP.moreplanets_world_gen_settings.disableCommonOreGenAllPlanets || ConfigManagerMP.moreplanets_world_gen_settings.disableCommonChalosOre)
+        {
+            this.generateOre(this.ironGen, EnumOreGen.IRON, world, rand);
+            this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
+            this.generateOre(this.tinGen, EnumOreGen.TIN, world, rand);
+            this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
+        }
+
         this.generateOre(this.dirtGen, EnumOreGen.DIRT, world, rand);
 
         for (int j = 0; j < 50; ++j)

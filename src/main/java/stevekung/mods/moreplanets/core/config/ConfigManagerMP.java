@@ -22,6 +22,10 @@ public class ConfigManagerMP
     @Config.Comment(value = "Moon Configuration.")
     public static final MoonSettings moreplanets_moon_settings = new MoonSettings();
 
+    @Config.LangKey(value = "moreplanets_world_gen")
+    @Config.Comment(value = "World Gen Configuration.")
+    public static final WorldGenSettings moreplanets_world_gen_settings = new WorldGenSettings();
+
     @Config.LangKey(value = "moreplanets_other")
     @Config.Comment(value = "Others Configuration.")
     public static final Other moreplanets_other = new Other();
@@ -103,6 +107,23 @@ public class ConfigManagerMP
         @Config.Name(value = "Koentus Moon Tier")
         @Config.RequiresMcRestart
         public int moonKoentusTier = 3;
+    }
+
+    // World Gen Settings
+    public static class WorldGenSettings
+    {
+        @Config.Name(value = "Disable All Common Ore Gen on all planets")
+        @Config.Comment(value = "Common Ores are Copper, Tin, Aluminum, vanilla ores.")
+        public boolean disableCommonOreGenAllPlanets = false;
+
+        @Config.Name(value = "Disable Common Ore on Diona")
+        public boolean disableCommonDionaOre = false;
+
+        @Config.Name(value = "Disable Common Ore on Chalos")
+        public boolean disableCommonChalosOre = false;
+
+        @Config.Name(value = "Disable Common Ore on Nibiru")
+        public boolean disableCommonNibiruOre = false;
     }
 
     // Others

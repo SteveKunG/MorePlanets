@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
@@ -58,19 +59,24 @@ public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
         int z = rand.nextInt(16) + 8;
 
         this.generateOre(this.dirtGen, EnumOreGen.DIRT, world, rand);
-        this.generateOre(this.coalGen, EnumOreGen.COAL, world, rand);
-        this.generateOre(this.ironGen, EnumOreGen.IRON, world, rand);
-        this.generateOre(this.goldGen, EnumOreGen.GOLD, world, rand);
-        this.generateOre(this.redstoneGen, EnumOreGen.REDSTONE, world, rand);
-        this.generateOre(this.diamondGen, EnumOreGen.DIAMOND, world, rand);
-        this.generateOre(this.tinGen, EnumOreGen.TIN, world, rand);
-        this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
-        this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
-        this.generateOre(this.siliconGen, EnumOreGen.SILICON, world, rand);
+
+        if (ConfigManagerMP.moreplanets_world_gen_settings.disableCommonOreGenAllPlanets || ConfigManagerMP.moreplanets_world_gen_settings.disableCommonNibiruOre)
+        {
+            this.generateOre(this.coalGen, EnumOreGen.COAL, world, rand);
+            this.generateOre(this.ironGen, EnumOreGen.IRON, world, rand);
+            this.generateOre(this.goldGen, EnumOreGen.GOLD, world, rand);
+            this.generateOre(this.redstoneGen, EnumOreGen.REDSTONE, world, rand);
+            this.generateOre(this.diamondGen, EnumOreGen.DIAMOND, world, rand);
+            this.generateOre(this.tinGen, EnumOreGen.TIN, world, rand);
+            this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
+            this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
+            this.generateOre(this.siliconGen, EnumOreGen.SILICON, world, rand);
+            this.generateLapis(this.lapisGen, EnumOreGen.LAPIS, world, rand);
+        }
+
         this.generateOre(biome instanceof BiomeGreenVeinFields ? this.purifiedGravelGen : this.infectedGravelGen, EnumOreGen.GRAVEL, world, rand);
         this.generateOre(this.inferumiteGen, 16, 0, 64, world, rand);
         this.generateOre(this.oilGen, 3, 0, 36, world, rand);
-        this.generateLapis(this.lapisGen, EnumOreGen.LAPIS, world, rand);
 
         for (i = 0; i < 50; ++i)
         {

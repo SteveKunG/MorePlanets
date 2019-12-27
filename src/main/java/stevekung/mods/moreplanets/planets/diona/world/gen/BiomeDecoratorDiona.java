@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import stevekung.mods.moreplanets.core.config.ConfigManagerMP;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.planets.diona.world.gen.feature.WorldGenInfectedPurloniteCrystal;
 import stevekung.mods.moreplanets.utils.world.gen.feature.BiomeDecoratorMP;
@@ -41,9 +42,14 @@ public class BiomeDecoratorDiona extends BiomeDecoratorMP
 
         this.generateOre(this.illeniumGen, 8, 0, 24, world, rand);
         this.generateOre(this.setroriumGen, 16, 0, 64, world, rand);
-        this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
-        this.generateOre(this.tinGen, EnumOreGen.TIN, world, rand);
-        this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
+
+        if (ConfigManagerMP.moreplanets_world_gen_settings.disableCommonOreGenAllPlanets || ConfigManagerMP.moreplanets_world_gen_settings.disableCommonDionaOre)
+        {
+            this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
+            this.generateOre(this.tinGen, EnumOreGen.TIN, world, rand);
+            this.generateOre(this.copperGen, EnumOreGen.COPPER, world, rand);
+        }
+
         this.generateOre(this.dirtGen, EnumOreGen.DIRT, world, rand);
         this.generateOre(this.wormEggGen, 8, 0, 64, world, rand);
 

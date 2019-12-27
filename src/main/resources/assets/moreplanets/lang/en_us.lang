@@ -736,6 +736,7 @@ moreplanets_addon_compat=GC-Addon Config
 moreplanets_planet_settings=Planets Config
 moreplanets_moon_settings=Moons Config
 moreplanets_other=Others Config
+moreplanets_world_gen=World Gen Config
 
 # GUI JEI
 gui.jei.dark_energy_transform=Dark Energy Transform
