@@ -234,7 +234,7 @@ tile.nibiru_double_plant.infected_grass.name=被感染的高草丛
 tile.nibiru_double_plant.infected_fern.name=被感染的大型蕨
 tile.nibiru_bookshelf.nibiru.name=被感染的橡木书架
 tile.nibiru_bookshelf.alien_berry.name=外星蓝莓橡木书架
-tile.nibiru_ancient_chest.name=六阶珍宝箱
+tile.nibiru_ancient_chest.name=尼比鲁箱子
 tile.nibiru_cobblestone_stairs.name=尼比鲁圆石楼梯
 tile.nibiru_stone_bricks_stairs.name=尼比鲁石砖楼梯
 tile.nibiru_sandstone_stairs.name=尼比鲁沙石楼梯
@@ -287,7 +287,7 @@ tile.half_infected_prismarine_slab.prismarine.name=被感染的海晶石台阶
 tile.half_infected_prismarine_slab.bricks.name=被感染的海晶石砖台阶
 tile.half_infected_prismarine_slab.dark.name=被感染的暗海晶石台阶
 tile.half_infected_stone_bricks_slab.bricks.name=尼比鲁石砖台阶
-tile.half_infected_stone_bricks_slab.vein.name尼比鲁脉石砖台阶
+tile.half_infected_stone_bricks_slab.vein.name=尼比鲁脉石砖台阶
 tile.half_infected_stone_bricks_slab.cracked.name=尼比鲁裂石砖台阶
 tile.half_nibiru_sandstone_slab.default.name=尼比鲁沙石台阶
 tile.half_nibiru_sandstone_slab.smooth.name=平滑尼比鲁沙石台阶
@@ -704,7 +704,7 @@ item.record.a_planet_to_conquer.desc=Phil Rey - A planet to conquer
 
 # GUI DEATH MESSAGE
 death.attack.infected_crystallize=%s 被毒晶杀死了
-death.attack.infected_gas=%s 毒气杀死了
+death.attack.infected_gas=%s 被毒气杀死了
 death.attack.dark_energy=%s 的身体被暗黑能量消耗了
 death.attack.black_hole=%s 被黑洞吞噬了
 death.attack.laser=%s 被镭射弹射死了
@@ -737,7 +737,7 @@ tile.tiered_energy_storage_cluster_0.description=暗黑能量储存模块能存�
 tile.tiered_energy_storage_cluster_1.description=核废料能量储存模块能存储大量电力以备使用.拥有更高的储量和更大的功率.核废料能存储更多能源!
 tile.dark_energy_generator.description=暗黑能量发电机将从遥远未知的星球或暗黑能量珍珠收集能量,储存以进一步使用.
 tile.black_hole_storage.description=黑洞物品储存器是一个用黑洞吸取物品/经验的大型物品储存器.物品和经验将用其配置储存.
-tile.shield_generator.description=屏障发生器将保护玩家不受危险事物(怪物,抛体)的伤害并且它仍WIP.
+tile.shield_generator.description=屏障发生器将保护玩家不受危险事物(怪物,抛体)的伤害(WIP).
 tile.sealable_nuclear_waste_rod.description=密封方块需要用在空气无法进入的地方,比如太空底墙.
 item.infected_arrow.description=可将箭丢入被感染的水获得.
 desc.tier_4.name=四阶火箭
@@ -758,7 +758,7 @@ desc.control_info.name=按下<CONTROL>键来查看更多
 
 # CONTAINER
 container.space_warp_pad.name=太空传送垫
-container.dark_energy_receiver.name=暗黑能量无限接收器
+container.dark_energy_receiver.name=暗黑能量无线接收器
 container.nuclear_waste_generator.name=核废料发电机
 container.tiered_energy_storage_cluster_0.name=暗黑能量储存模块
 container.tiered_energy_storage_cluster_1.name=核废料能量储存模块
