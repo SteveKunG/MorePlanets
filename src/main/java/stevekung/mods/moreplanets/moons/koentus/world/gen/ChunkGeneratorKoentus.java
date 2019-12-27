@@ -66,7 +66,7 @@ public class ChunkGeneratorKoentus extends ChunkGeneratorBaseMP
         //                new WorldGenLiquidLake(MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK.getDefaultState(), MPBlocks.DIONA_ROCK.getDefaultState(), true).generate(this.world, this.rand, pos.add(this.rand.nextInt(16) + 8, y, this.rand.nextInt(16) + 8));
         //            }
         //        }
-        if (this.rand.nextInt(20) == 0)
+        if (this.rand.nextInt(50) == 0)
         {
             int posY = this.world.getTopSolidOrLiquidBlock(pos.add(0, 0, 0)).getY();
             new WorldGenGravityHarvester().generate(this.world, this.rand, pos.add(0, posY + 2 + this.rand.nextInt(3), 0));
