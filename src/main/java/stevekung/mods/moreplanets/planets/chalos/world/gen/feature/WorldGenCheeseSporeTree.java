@@ -134,24 +134,28 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
 
                     for (int k1 = y - i4 + i5; k1 <= y + i5; ++k1)
                     {
-                        int i3 = k1 - (y + 4);
-                        int l1 = 1 - i3 / 2;
+                        int height = k1 - (y + 4);
+                        int width = 1 - height / 2;
 
-                        for (int i2 = x - l1; i2 <= x + l1; ++i2)
+                        for (int i2 = x - width; i2 <= x + width; ++i2)
                         {
                             int j2 = i2 - x;
 
-                            for (int k2 = z - l1; k2 <= z + l1; ++k2)
+                            for (int k2 = z - width; k2 <= z + width; ++k2)
                             {
                                 int l2 = k2 - z;
 
                                 if (this.genSpore)
                                 {
-                                    if (Math.abs(j2) != l1 || Math.abs(l2) != l1 || rand.nextInt(4) != 0 && i3 != 0)
+                                    if (height != 1)
                                     {
                                         this.setBlockAndNotifyAdequately(world, new BlockPos(i2, this.blockMaxHigh + k1 + 1, k2), MPBlocks.CHEESE_SPORE.getDefaultState());
                                     }
-                                    if (Math.abs(j2) != l1 || Math.abs(l2) != l1)
+                                    if ((Math.abs(j2) != width || Math.abs(l2) != width) && height != 0)
+                                    {
+                                        this.setBlockAndNotifyAdequately(world, new BlockPos(i2, this.blockMaxHigh + k1 + 2, k2), MPBlocks.CHEESE_SPORE.getDefaultState());
+                                    }
+                                    if (Math.abs(j2) != width || Math.abs(l2) != width)
                                     {
                                         Block block1 = world.getBlockState(new BlockPos(i2, this.blockMaxHigh + k1, k2)).getBlock();
 
@@ -172,5 +176,11 @@ public class WorldGenCheeseSporeTree extends WorldGenAbstractTree
         {
             return false;
         }
+    }
+
+    @Override
+    protected boolean canGrowInto(Block blockType)
+    {
+        return super.canGrowInto(blockType) || blockType == MPBlocks.CHEESE_SPORE_STEM || blockType == MPBlocks.CHEESE_GRASS || blockType == MPBlocks.CHEESE_SPORE_FLOWER;
     }
 }
