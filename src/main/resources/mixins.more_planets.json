@@ -6,7 +6,8 @@
     "refmap": "mixins.more_planets.refmap.json",
     "target": "@env(DEFAULT)",
     "mixins": [
-        "EntityLivingBaseMixin"
+        "EntityLivingBaseMixin",
+        "CommandLocateMixin"
     ],
     "injectors": {
         "defaultRequire": 1
