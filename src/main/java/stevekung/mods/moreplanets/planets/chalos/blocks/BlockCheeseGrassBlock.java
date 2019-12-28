@@ -100,11 +100,23 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
                 {
                     if (world.isAirBlock(blockpos1))
                     {
-                        IBlockState iblockstate1 = MPBlocks.CHEESE_GRASS.getDefaultState();
-
-                        if (iblockstate1.getBlock().canPlaceBlockAt(world, blockpos1))
+                        if (rand.nextInt(16) == 0)
                         {
-                            world.setBlockState(blockpos1, iblockstate1, 3);
+                            IBlockState iblockstate1 = MPBlocks.CHEESE_SPORE_FLOWER.getDefaultState();
+
+                            if (iblockstate1.getBlock().canPlaceBlockAt(world, blockpos1))
+                            {
+                                world.setBlockState(blockpos1, iblockstate1, 3);
+                            }
+                        }
+                        else
+                        {
+                            IBlockState iblockstate1 = MPBlocks.CHEESE_GRASS.getDefaultState();
+
+                            if (iblockstate1.getBlock().canPlaceBlockAt(world, blockpos1))
+                            {
+                                world.setBlockState(blockpos1, iblockstate1, 3);
+                            }
                         }
                     }
                     break;
