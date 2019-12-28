@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -20,6 +21,7 @@ import stevekung.mods.moreplanets.planets.nibiru.world.gen.feature.*;
 public class BlockSaplingMP extends BlockBushMP implements IGrowable
 {
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
+    public static final PropertyBool NATURAL_GEN = PropertyBool.create("natural_gen");
     private BlockType type;
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
     private static final AxisAlignedBB CHEESE_SPORE = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
@@ -27,7 +29,7 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
     public BlockSaplingMP(String name, BlockType type)
     {
         this.type = type;
-        this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, 0));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, 0).withProperty(NATURAL_GEN, false));
         this.setUnlocalizedName(name);
     }
 
@@ -82,6 +84,10 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
+        if (state.getValue(NATURAL_GEN))
+        {
+            world.setBlockState(pos, state.withProperty(NATURAL_GEN, false), 4);
+        }
         return true;
     }
 
@@ -156,7 +162,10 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
                 worldGen = rand.nextInt(10) == 0 ? new WorldGenAlienBerryBigTree() : new WorldGenAlienBerryTree();
                 break;
             case CHEESE_SPORE_FLOWER:
-                worldGen = new WorldGenCheeseSporeTree(6 + rand.nextInt(4), true);
+                if (!state.getValue(NATURAL_GEN))
+                {
+                    worldGen = new WorldGenCheeseSporeTree(6 + rand.nextInt(4), true);
+                }
                 break;
             }
 
@@ -203,19 +212,26 @@ public class BlockSaplingMP extends BlockBushMP implements IGrowable
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(STAGE, meta);
+        return this.getDefaultState().withProperty(STAGE, meta & 1).withProperty(NATURAL_GEN, (meta & 4) > 0);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(STAGE);
+        int i = 0;
+        i = i | state.getValue(STAGE);
+
+        if (!state.getValue(NATURAL_GEN))
+        {
+            i |= 4;
+        }
+        return i;
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, STAGE);
+        return new BlockStateContainer(this, STAGE, NATURAL_GEN);
     }
 
     private boolean isTwoByTwoOfType(World world, BlockPos pos, int x, int z, BlockType type)
