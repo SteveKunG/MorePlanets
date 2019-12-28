@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.utils.blocks.BlockGrassBlockMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockSaplingMP;
 
 public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowable
 {
@@ -102,7 +103,7 @@ public class BlockCheeseGrassBlock extends BlockGrassBlockMP implements IGrowabl
                     {
                         if (rand.nextInt(16) == 0)
                         {
-                            IBlockState iblockstate1 = MPBlocks.CHEESE_SPORE_FLOWER.getDefaultState();
+                            IBlockState iblockstate1 = MPBlocks.CHEESE_SPORE_FLOWER.getDefaultState().withProperty(BlockSaplingMP.NATURAL_GEN, true);
 
                             if (iblockstate1.getBlock().canPlaceBlockAt(world, blockpos1))
                             {
