@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "galacticraftplanets:blocks/machineframe"
+        },
+        "model": "cube_all"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

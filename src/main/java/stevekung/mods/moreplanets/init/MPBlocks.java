@@ -163,6 +163,7 @@ public class MPBlocks
     public static Block DUNGEON_GLOWSTONE;
     public static Block POLISHED_TIN_DECORATION_BLOCK;
     public static Block POLISHED_ALUMINUM_DECORATION_BLOCK;
+    public static Block DESH_FRAME;
 
     // Wall
     public static Block DIONA_COBBLESTONE_WALL;
@@ -636,6 +637,7 @@ public class MPBlocks
         // Others
         MPBlocks.POLISHED_TIN_DECORATION_BLOCK = new BlockBaseMP("polished_tin_decoration_block", Material.ROCK).setHardness(1.5F);
         MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK = new BlockBaseMP("polished_aluminum_decoration_block", Material.ROCK).setHardness(1.5F);
+        MPBlocks.DESH_FRAME = new BlockDeshFrame("desh_frame");
         MPBlocks.DUNGEON_GLOWSTONE = new BlockBaseMP("dungeon_glowstone", Material.GLASS).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.COMMON)).setSoundType(SoundType.GLASS).setResistance(100.0F).setHardness(0.3F).setLightLevel(1.0F);
 
         // Wall
@@ -1467,6 +1469,7 @@ public class MPBlocks
         // Others
         BlocksItemsRegistry.registerBlock(MPBlocks.POLISHED_TIN_DECORATION_BLOCK);
         BlocksItemsRegistry.registerBlock(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK);
+        BlocksItemsRegistry.registerBlock(MPBlocks.DESH_FRAME);
         BlocksItemsRegistry.registerBlock(MPBlocks.DUNGEON_GLOWSTONE);
 
         // Fronos Block
@@ -1533,6 +1536,7 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.POLISHED_TIN_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.POLISHED_ALUMINUM_DECORATION_BLOCK, EnumHarvestLevel.PICKAXE, 0);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.DESH_FRAME, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_CHEST, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CHALOS_COBBLESTONE_SLAB, EnumHarvestLevel.PICKAXE, 0);

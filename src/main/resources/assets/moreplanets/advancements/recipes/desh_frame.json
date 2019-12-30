@@ -1,0 +1,36 @@
+{
+    "parent": "minecraft:recipes/root",
+    "requirements": [
+        [
+            "has_item",
+            "has_the_recipe"
+        ]
+    ],
+    "criteria": {
+        "has_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "galacticraftplanets:item_basic_mars",
+                        "data": 5
+                    },
+                    {
+                        "item": "minecraft:iron_bars"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "moreplanets:desh_frame"
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "moreplanets:desh_frame"
+        ]
+    }
+}

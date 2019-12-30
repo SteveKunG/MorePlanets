@@ -65,6 +65,7 @@ tile.space_portal.name=Space Portal
 tile.black_hole_storage.name=Black Hole Storage
 tile.alien_defender_beacon.name=Alien Defender Beacon
 tile.shield_generator.name=Shield Generator
+tile.desh_frame.name=Desh Frame
 
 # BLOCKS - DIONA
 tile.diona_surface_rock.name=Diona Surface Rock
