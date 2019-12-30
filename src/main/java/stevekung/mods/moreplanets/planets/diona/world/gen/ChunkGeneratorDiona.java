@@ -17,6 +17,7 @@ import stevekung.mods.moreplanets.planets.diona.world.gen.dungeon.RoomBossDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.dungeon.RoomSpawnerDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.dungeon.RoomTreasureDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.feature.WorldGenCrashedAlienProbe;
+import stevekung.mods.moreplanets.planets.diona.world.gen.structure.MapGenAbandonedSatellite;
 import stevekung.mods.moreplanets.planets.diona.world.gen.structure.MapGenDionaMineshaft;
 import stevekung.mods.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
@@ -32,6 +33,7 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
     private final MapGenDionaMineshaft mineshaftGenerator = new MapGenDionaMineshaft();
     private final MapGenDionaDungeon dungeonGenerator = new MapGenDionaDungeon(new DungeonConfigurationMP(MPBlocks.DIONA_DUNGEON_BRICK.getDefaultState(), MPBlocks.DUNGEON_GLOWSTONE.getDefaultState(), MPBlocks.INFECTED_PURLONITE_COBWEB.getDefaultState(), MPBlocks.INFECTED_PURLONITE_TORCH.getDefaultState(), MPBlocks.DIONA_ANCIENT_CHEST.getDefaultState(), 30, 8, 16, 7, 7, RoomBossDiona.class, RoomTreasureDiona.class, RoomSpawnerDiona.class, RoomChestMP.class));
     private final MapGenCrashedAlienShipFeature alienShipFeatureGenerator = new MapGenCrashedAlienShipFeature();
+    private final MapGenAbandonedSatellite abandonedSatellite = new MapGenAbandonedSatellite();
 
     public ChunkGeneratorDiona(World world, long seed)
     {
@@ -51,6 +53,7 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
         this.mineshaftGenerator.generate(this.world, chunkX, chunkZ, primer);
         this.dungeonGenerator.generate(this.world, chunkX, chunkZ, primer);
         this.alienShipFeatureGenerator.generate(this.world, chunkX, chunkZ, primer);
+        this.abandonedSatellite.generate(this.world, chunkX, chunkZ, primer);
     }
 
     @Override
@@ -61,6 +64,7 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
         this.dungeonGenerator.generateStructure(this.world, this.rand, chunkpos);
         this.mineshaftGenerator.generateStructure(this.world, this.rand, chunkpos);
         this.alienShipFeatureGenerator.generateStructure(this.world, this.rand, chunkpos);
+        this.abandonedSatellite.generateStructure(this.world, this.rand, chunkpos);
 
         if (this.rand.nextInt(4) == 0)
         {
@@ -95,6 +99,7 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
         this.mineshaftGenerator.generate(this.world, chunkX, chunkZ, null);
         this.dungeonGenerator.generate(this.world, chunkX, chunkZ, null);
         this.alienShipFeatureGenerator.generate(this.world, chunkX, chunkZ, null);
+        this.abandonedSatellite.generate(this.world, chunkX, chunkZ, null);
     }
 
     @Override
@@ -103,6 +108,10 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
         if ("DionaMineshaft".equals(name) && this.mineshaftGenerator != null)
         {
             return this.mineshaftGenerator.isInsideStructure(pos);
+        }
+        else if ("AbandonedSatellite".equals(name) && this.abandonedSatellite != null)
+        {
+            return this.abandonedSatellite.isInsideStructure(pos);
         }
         else
         {
@@ -117,6 +126,10 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
         if ("DionaMineshaft".equals(name) && this.mineshaftGenerator != null)
         {
             return this.mineshaftGenerator.getNearestStructurePos(world, pos, findUnexplored);
+        }
+        else if ("AbandonedSatellite".equals(name) && this.abandonedSatellite != null)
+        {
+            return this.abandonedSatellite.getNearestStructurePos(world, pos, findUnexplored);
         }
         else
         {

@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFire;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -18,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.init.MPBlocks;
+import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.stevekunglib.utils.IFireBlock;
 
 public class BlockElectricalFire extends BlockFire implements IFireBlock
@@ -56,7 +56,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
             }
 
             Block block = world.getBlockState(pos.down()).getBlock();
-            boolean flag = block.isFireSource(world, pos.down(), EnumFacing.UP) || block == MPBlocks.GLOWING_IRON_BLOCK || block == MPBlocks.ALIEN_SHIP_DECORATION_0 || block == MPBlocks.ALIEN_SHIP_DECORATION_1 || block == MPBlocks.ALIEN_SHIP_BOOSTER || block == MPBlocks.ALIEN_SHIP_DECORATION_SLAB && world.getBlockState(pos.down()).getValue(BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP;
+            boolean flag = block.isFireSource(world, pos.down(), EnumFacing.UP);
 
             if (!flag && world.isRaining() && this.canDie(world, pos))
             {
@@ -78,7 +78,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
                 {
                     if (!this.canNeighborCatchFire(world, pos))
                     {
-                        if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) || i > 3)
+                        if ((!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) || i > 3) && world.provider instanceof WorldProviderNibiru)
                         {
                             world.setBlockToAir(pos);
                         }
