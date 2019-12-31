@@ -23,7 +23,7 @@ public class MapGenAbandonedSatellite extends MapGenStructure
 
     public MapGenAbandonedSatellite()
     {
-        this.maxDistanceBetweenScatteredFeatures = 64;
+        this.maxDistanceBetweenScatteredFeatures = 256;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class MapGenAbandonedSatellite extends MapGenStructure
     public BlockPos getNearestStructurePos(World world, BlockPos pos, boolean findUnexplored)
     {
         this.world = world;
-        return findNearestStructurePosBySpacing(world, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 14357617, false, 100, findUnexplored);
+        return findNearestStructurePosBySpacing(world, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 14357617, false, 150, findUnexplored);
     }
 
     @Override

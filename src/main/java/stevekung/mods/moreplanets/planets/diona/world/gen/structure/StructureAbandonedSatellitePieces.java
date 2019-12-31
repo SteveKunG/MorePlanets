@@ -96,7 +96,7 @@ public class StructureAbandonedSatellitePieces extends StructureComponent
         else
         {
             StructureBoundingBox box = this.getBoundingBox();
-            BlockPos pos = new BlockPos(box.minX, box.minY - 2, box.minZ);
+            BlockPos pos = new BlockPos(box.minX, box.minY, box.minZ);
             Rotation[] arotation = CachedEnum.rotationValues;
             Rotation rotation = arotation[rand.nextInt(arotation.length)];
             MinecraftServer server = world.getMinecraftServer();
@@ -106,8 +106,8 @@ public class StructureAbandonedSatellitePieces extends StructureComponent
             Template template = manager.getTemplate(server, SATELLITE_BASE_ID);
             Template template1 = manager.getTemplate(server, SATELLITE_DISH_BASE_ID);
             Template template2 = manager.getTemplate(server, SATELLITE_DISH_ID);
-            template.addBlocksToWorldChunk(world, pos, settings);
             template.addBlocksToWorld(world, pos, new ElectricFireBlockProcessor(pos, settings), settings, 2);
+            template.addBlocksToWorldChunk(world, pos, settings);
 
             BlockPos blockpos1 = template.calculateConnectedPos(settings, new BlockPos(0, 4, 0), settings, new BlockPos(-1, 0, -1));
             template1.addBlocksToWorld(world, pos.add(blockpos1), new ElectricFireBlockProcessor(pos.add(blockpos1), settings), settings, 2);
@@ -186,7 +186,7 @@ public class StructureAbandonedSatellitePieces extends StructureComponent
 
                     if (box.isVecInside(mutablePos))
                     {
-                        i += Math.max(world.getTopSolidOrLiquidBlock(mutablePos).getY(), world.provider.getAverageGroundLevel());
+                        i += Math.max(world.getTopSolidOrLiquidBlock(mutablePos).getY(), 56);
                         ++j;
                     }
                 }

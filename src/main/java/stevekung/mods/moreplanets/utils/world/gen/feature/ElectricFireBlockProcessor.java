@@ -18,14 +18,14 @@ public class ElectricFireBlockProcessor implements ITemplateProcessor
 
     public ElectricFireBlockProcessor(BlockPos pos, PlacementSettings settings)
     {
-        this.chance = 0.7F;
+        this.chance = settings.getIntegrity();
         this.random = settings.getRandom(pos);
     }
 
     @Override
     @Nullable
-    public Template.BlockInfo processBlock(World worldIn, BlockPos pos, Template.BlockInfo blockInfoIn)
+    public Template.BlockInfo processBlock(World world, BlockPos pos, Template.BlockInfo info)
     {
-        return this.chance < 1.0F && this.random.nextFloat() > this.chance ? new Template.BlockInfo(pos, MPBlocks.ELECTRICAL_FIRE.getDefaultState(), null) : blockInfoIn;
+        return this.chance < 1.0F && this.random.nextFloat() > this.chance ? new Template.BlockInfo(pos, MPBlocks.ELECTRICAL_FIRE.getDefaultState(), null) : this.chance < 0.8F && this.random.nextFloat() > this.chance ? null : info;
     }
 }
