@@ -7,7 +7,6 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,8 +17,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -29,14 +26,14 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.planets.diona.tileentity.TileEntityInfectedPurloniteCrystal;
-import stevekung.mods.moreplanets.utils.blocks.BlockBaseMP;
+import stevekung.mods.moreplanets.utils.blocks.BlockDirectionalMP;
 import stevekung.mods.moreplanets.utils.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
 import stevekung.mods.stevekunglib.utils.enums.CachedEnum;
 
-public class BlockInfectedPurloniteCrystal extends BlockBaseMP implements ITileEntityProvider
+public class BlockInfectedPurloniteCrystal extends BlockDirectionalMP implements ITileEntityProvider
 {
     private static final AxisAlignedBB NORTH = new AxisAlignedBB(0.0625D, 0.0625D, 0.0625D, 0.9375, 0.9375, 1.0D);
     private static final AxisAlignedBB EAST = new AxisAlignedBB(0.0D, 0.0625D, 0.0625D, 0.9375, 0.9375, 0.9375);
@@ -222,82 +219,6 @@ public class BlockInfectedPurloniteCrystal extends BlockBaseMP implements ITileE
     public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing)
     {
         return BlockFaceShape.UNDEFINED;
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        EnumFacing facing;
-
-        switch (meta & 7)
-        {
-        case 0:
-            facing = EnumFacing.DOWN;
-            break;
-        case 1:
-            facing = EnumFacing.EAST;
-            break;
-        case 2:
-            facing = EnumFacing.WEST;
-            break;
-        case 3:
-            facing = EnumFacing.SOUTH;
-            break;
-        case 4:
-            facing = EnumFacing.NORTH;
-            break;
-        case 5:
-        default:
-            facing = EnumFacing.UP;
-        }
-        return this.getDefaultState().withProperty(BlockStateProperty.FACING_ALL, facing);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        int i;
-
-        switch (state.getValue(BlockStateProperty.FACING_ALL))
-        {
-        case EAST:
-            i = 1;
-            break;
-        case WEST:
-            i = 2;
-            break;
-        case SOUTH:
-            i = 3;
-            break;
-        case NORTH:
-            i = 4;
-            break;
-        case UP:
-        default:
-            i = 5;
-            break;
-        case DOWN:
-            i = 0;
-        }
-        return i;
-    }
-
-    @Override
-    public IBlockState withRotation(IBlockState state, Rotation rotation)
-    {
-        return state.withProperty(BlockStateProperty.FACING_ALL, rotation.rotate(state.getValue(BlockStateProperty.FACING_ALL)));
-    }
-
-    @Override
-    public IBlockState withMirror(IBlockState state, Mirror mirror)
-    {
-        return state.withRotation(mirror.toRotation(state.getValue(BlockStateProperty.FACING_ALL)));
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, BlockStateProperty.FACING_ALL);
     }
 
     @Override

@@ -592,7 +592,7 @@ public class MPBlocks
         MPBlocks.SHIELD_GENERATOR = new BlockShieldGenerator("shield_generator");
 
         // Alien Ship
-        MPBlocks.ALIEN_SHIP_BOOSTER = new BlockCTMGlowing("alien_ship_booster", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
+        MPBlocks.ALIEN_SHIP_BOOSTER = new BlockCTMGlowingDirectional("alien_ship_booster", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
         MPBlocks.ALIEN_SHIP_DECORATION_0 = new BlockBaseMP("alien_ship_decoration_0", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
         MPBlocks.ALIEN_SHIP_DECORATION_1 = new BlockBaseMP("alien_ship_decoration_1", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
         MPBlocks.ALIEN_CHEST = new BlockAlienChest("alien_chest");
