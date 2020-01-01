@@ -7,7 +7,8 @@
     "target": "@env(DEFAULT)",
     "mixins": [
         "EntityLivingBaseMixin",
-        "CommandLocateMixin"
+        "CommandLocateMixin",
+        "WorldUtilMixin"
     ],
     "injectors": {
         "defaultRequire": 1
