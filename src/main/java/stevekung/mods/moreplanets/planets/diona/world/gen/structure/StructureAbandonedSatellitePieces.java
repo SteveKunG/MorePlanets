@@ -106,16 +106,13 @@ public class StructureAbandonedSatellitePieces extends StructureComponent
             Template template = manager.getTemplate(server, SATELLITE_BASE_ID);
             Template template1 = manager.getTemplate(server, SATELLITE_DISH_BASE_ID);
             Template template2 = manager.getTemplate(server, SATELLITE_DISH_ID);
-            template.addBlocksToWorld(world, pos, new ElectricFireBlockProcessor(pos, settings), settings, 2);
-            template.addBlocksToWorldChunk(world, pos, settings);
+            this.addBlocksToWorldChunk(template, world, pos, settings);
 
             BlockPos blockpos1 = template.calculateConnectedPos(settings, new BlockPos(0, 4, 0), settings, new BlockPos(-1, 0, -1));
-            template1.addBlocksToWorld(world, pos.add(blockpos1), new ElectricFireBlockProcessor(pos.add(blockpos1), settings), settings, 2);
-            template1.addBlocksToWorldChunk(world, pos.add(blockpos1), settings);
+            this.addBlocksToWorldChunk(template1, world, pos.add(blockpos1), settings);
 
             BlockPos blockpos4 = pos.add(template.calculateConnectedPos(settings, new BlockPos(0, 8, 0), settings, new BlockPos(0, 0, 4)));
-            template2.addBlocksToWorld(world, blockpos4, new ElectricFireBlockProcessor(blockpos4, settings), settings, 2);
-            template2.addBlocksToWorldChunk(world, blockpos4, settings);
+            this.addBlocksToWorldChunk(template2, world, blockpos4, settings);
 
             Map<BlockPos, String> map = template.getDataBlocks(pos, settings);
 
@@ -164,6 +161,12 @@ public class StructureAbandonedSatellitePieces extends StructureComponent
             }
             return true;
         }
+    }
+
+    private void addBlocksToWorldChunk(Template template, World world, BlockPos pos, PlacementSettings placement)
+    {
+        placement.setBoundingBoxFromChunk();
+        template.addBlocksToWorld(world, pos, new ElectricFireBlockProcessor(pos, placement), placement, 2);
     }
 
     private boolean offsetToAverageGroundLevel(World world, StructureBoundingBox box, int yOffset)
