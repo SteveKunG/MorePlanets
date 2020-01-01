@@ -23,7 +23,11 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, IItemM
         {
             this.setSoundType(SoundType.WOOD);
         }
-        if (type == EnumStairsType.DUNGEON_BRICK)
+        else if (type == EnumStairsType.ALIEN_SHIP)
+        {
+            this.setSoundType(SoundType.METAL);
+        }
+        else if (type == EnumStairsType.DUNGEON_BRICK)
         {
             this.setResistance(40.0F);
         }
@@ -67,7 +71,8 @@ public class BlockStairsMP extends BlockStairs implements ISortableBlock, IItemM
         STONE_BRICK(Blocks.STONE, 1.5F),
         DUNGEON_BRICK(Blocks.STONE, 4.0F),
         SANDSTONE(Blocks.STONE, 0.8F),
-        WOODEN(Blocks.PLANKS, 2.0F);
+        WOODEN(Blocks.PLANKS, 2.0F),
+        ALIEN_SHIP(Blocks.IRON_BLOCK, 4.0F);
 
         private float hardness;
         private Block parent;

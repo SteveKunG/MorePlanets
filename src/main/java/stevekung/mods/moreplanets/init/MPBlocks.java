@@ -120,6 +120,7 @@ public class MPBlocks
     public static Block ALIEN_SHIP_DECORATION_0;
     public static Block ALIEN_SHIP_DECORATION_1;
     public static Block ALIEN_CHEST;
+    public static Block ALIEN_SHIP_DECORATION_STAIRS;
 
     // Tinted Glass
     public static Block TINTED_GLASS;
@@ -595,6 +596,7 @@ public class MPBlocks
         MPBlocks.ALIEN_SHIP_DECORATION_0 = new BlockBaseMP("alien_ship_decoration_0", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
         MPBlocks.ALIEN_SHIP_DECORATION_1 = new BlockBaseMP("alien_ship_decoration_1", Material.IRON).setRarityRGB(ColorUtils.stringToRGB(IItemRarity.ALIEN)).setSortCategory(EnumSortCategoryBlock.DECORATION_BLOCK).setSoundType(SoundType.METAL).setHardness(2.0F);
         MPBlocks.ALIEN_CHEST = new BlockAlienChest("alien_chest");
+        MPBlocks.ALIEN_SHIP_DECORATION_STAIRS = new BlockStairsMP("alien_ship_decoration_stairs", EnumStairsType.ALIEN_SHIP);
 
         // Tinted Glass
         MPBlocks.TINTED_GLASS = new BlockTintedGlass("tinted_glass", EnumDyeColor.WHITE);
@@ -1085,6 +1087,7 @@ public class MPBlocks
         BlocksItemsRegistry.registerBlock(MPBlocks.DARK_ENERGY_GENERATOR, ItemBlockDarkEnergyGenerator::new);
         BlocksItemsRegistry.registerBlock(MPBlocks.GLOWING_IRON_BLOCK);
         BlocksItemsRegistry.registerBlock(MPBlocks.CRASHED_ALIEN_PROBE);
+        BlocksItemsRegistry.registerBlock(MPBlocks.ALIEN_SHIP_DECORATION_STAIRS);
 
         // Koentus Block
         BlocksItemsRegistry.registerBlock(MPBlocks.KOENTUS_REGOLITH);
@@ -1586,6 +1589,7 @@ public class MPBlocks
         BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_MINER_BLOOD, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_COBBLESTONE_STAIRS, EnumHarvestLevel.PICKAXE, 0);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DIONA_DUNGEON_BRICK_STAIRS, EnumHarvestLevel.PICKAXE, 1);
+        BlockUtils.setBlockHarvestLevel(MPBlocks.ALIEN_SHIP_DECORATION_STAIRS, EnumHarvestLevel.PICKAXE, 1);
         BlockUtils.setBlockHarvestLevel(MPBlocks.CRASHED_ALIEN_PROBE, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.GLOWING_IRON_BLOCK, EnumHarvestLevel.PICKAXE, 2);
         BlockUtils.setBlockHarvestLevel(MPBlocks.DARK_ENERGY_GENERATOR, EnumHarvestLevel.PICKAXE, 2);
