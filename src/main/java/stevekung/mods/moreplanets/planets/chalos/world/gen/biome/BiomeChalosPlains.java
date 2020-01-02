@@ -16,9 +16,9 @@ public class BiomeChalosPlains extends BiomeChalos
     {
         super(prop);
         this.decorator.treesPerChunk = 0;
-        this.decorator.extraTreeChance = 0.25F;
+        this.decorator.extraTreeChance = 0.15F;
         this.decorator.cheeseSporeStemPerChunk = 0;
-        this.decorator.extraStemChance = 0.05F;
+        this.decorator.extraStemChance = 0.01F;
         this.decorator.flowersPerChunk = 1;
         this.decorator.grassPerChunk = 120;
     }
