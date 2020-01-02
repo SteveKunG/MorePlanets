@@ -49,7 +49,7 @@ public class MapGenAbandonedSatellite extends MapGenStructure
 
         int k = chunkX / this.maxDistanceBetweenScatteredFeatures;
         int l = chunkZ / this.maxDistanceBetweenScatteredFeatures;
-        Random rand = this.world.setRandomSeed(k, l, 14357617);
+        Random rand = this.world.setRandomSeed(k, l, 19029028);
         k = k * this.maxDistanceBetweenScatteredFeatures;
         l = l * this.maxDistanceBetweenScatteredFeatures;
         k = k + rand.nextInt(this.maxDistanceBetweenScatteredFeatures - 8);
@@ -75,7 +75,7 @@ public class MapGenAbandonedSatellite extends MapGenStructure
     public BlockPos getNearestStructurePos(World world, BlockPos pos, boolean findUnexplored)
     {
         this.world = world;
-        return findNearestStructurePosBySpacing(world, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 14357617, false, 150, findUnexplored);
+        return findNearestStructurePosBySpacing(world, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 19029028, false, 150, findUnexplored);
     }
 
     @Override

@@ -18,6 +18,7 @@ import stevekung.mods.moreplanets.planets.diona.world.gen.dungeon.RoomSpawnerDio
 import stevekung.mods.moreplanets.planets.diona.world.gen.dungeon.RoomTreasureDiona;
 import stevekung.mods.moreplanets.planets.diona.world.gen.feature.WorldGenCrashedAlienProbe;
 import stevekung.mods.moreplanets.planets.diona.world.gen.structure.MapGenAbandonedSatellite;
+import stevekung.mods.moreplanets.planets.diona.world.gen.structure.MapGenCrashedAlienShipFeature;
 import stevekung.mods.moreplanets.planets.diona.world.gen.structure.MapGenDionaMineshaft;
 import stevekung.mods.moreplanets.utils.world.gen.ChunkGeneratorBaseMP;
 import stevekung.mods.moreplanets.utils.world.gen.dungeon.DungeonConfigurationMP;
@@ -115,7 +116,7 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
         }
         else
         {
-            return "AlienShip".equals(name) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.isInsideStructure(pos.add(0, 4, 0)) : false;
+            return "CrashedAlienShip".equals(name) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.isInsideStructure(pos.add(0, 4, 0)) : false;
         }
     }
 
@@ -133,7 +134,7 @@ public class ChunkGeneratorDiona extends ChunkGeneratorBaseMP
         }
         else
         {
-            return "AlienShip".equals(name) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.getNearestStructurePos(world, pos, findUnexplored) : null;
+            return "CrashedAlienShip".equals(name) && this.alienShipFeatureGenerator != null ? this.alienShipFeatureGenerator.getNearestStructurePos(world, pos, findUnexplored) : null;
         }
     }
 
