@@ -3,7 +3,6 @@ package stevekung.mods.moreplanets.tileentity;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
 import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
@@ -15,7 +14,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
@@ -27,19 +25,17 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.event.entity.living.EnderTeleportEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.blocks.BlockShieldGenerator;
@@ -48,7 +44,6 @@ import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPSounds;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.stevekunglib.utils.BlockStateProperty;
-import stevekung.mods.stevekunglib.utils.CommonUtils;
 import stevekung.mods.stevekunglib.utils.LangUtils;
 
 public class TileEntityShieldGenerator extends TileEntityDummy implements IMultiBlock, IBubbleProvider
@@ -81,7 +76,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     @NetworkedField(targetSide = Side.CLIENT)
     public String ownerUUID = "";
     private boolean initialize;
-    private final ShieldEvent event = new ShieldEvent(this);
 
     public TileEntityShieldGenerator()
     {
@@ -92,55 +86,10 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
     }
 
     @Override
-    public void invalidate()
-    {
-        super.invalidate();
-
-        if (!this.world.isRemote)
-        {
-            CommonUtils.unregisterEventHandler(this.event);
-        }
-    }
-
-    @Override
-    public void onChunkUnload()
-    {
-        super.onChunkUnload();
-
-        if (!this.world.isRemote)
-        {
-            CommonUtils.unregisterEventHandler(this.event);
-        }
-    }
-
-    @Override
-    public void onLoad()
-    {
-        if (!this.world.isRemote)
-        {
-            CommonUtils.registerEventHandler(this.event);
-        }
-    }
-
-    @Override
     public void update()
     {
         super.update();
         this.renderTicks++;
-
-        EntityPlayer player = this.world.getClosestPlayer(this.pos.getX(), this.pos.getY(), this.pos.getZ(), 512, false);
-
-        if (!this.world.isRemote)
-        {
-            if (player == null)
-            {
-                CommonUtils.unregisterEventHandler(this.event);
-            }
-            else
-            {
-                CommonUtils.registerEventHandler(this.event);
-            }
-        }
 
         if (!this.initialize)
         {
@@ -516,7 +465,7 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
         return TextFormatting.GREEN + LangUtils.translate("gui.status.active.name");
     }
 
-    private boolean isInRangeOfShield(BlockPos pos)
+    public boolean isInRangeOfShield(BlockPos pos)
     {
         double dx = this.pos.getX() - pos.getX();
         double dy = Math.abs(this.pos.getY() - pos.getY());
@@ -562,107 +511,6 @@ public class TileEntityShieldGenerator extends TileEntityDummy implements IMulti
             machine.setTagCompound(nbt);
             Block.spawnAsEntity(this.world, this.pos, machine);
             return this.world.setBlockState(this.pos, Blocks.AIR.getDefaultState(), 3);
-        }
-    }
-
-    public static class ShieldEvent
-    {
-        private TileEntityShieldGenerator tile;
-
-        public ShieldEvent(TileEntityShieldGenerator tile)
-        {
-            this.tile = tile;
-        }
-
-        @SubscribeEvent
-        public void onLivingSpawn(LivingSpawnEvent.CheckSpawn event)
-        {
-            if (event.getResult() == Result.ALLOW || event.isSpawner())
-            {
-                return;
-            }
-            if (this.tile.world != null && !this.tile.world.isRemote)
-            {
-                if (!this.tile.disabled && this.tile.isInRangeOfShield(event.getEntity().getPosition()))
-                {
-                    event.setResult(Result.DENY);
-                }
-            }
-        }
-
-        @SubscribeEvent
-        public void onEnderTeleport(EnderTeleportEvent event)
-        {
-            if (!this.tile.disabled && this.tile.isInRangeOfShield(event.getEntity().getPosition()))
-            {
-                event.setCanceled(true);
-            }
-        }
-
-        @SubscribeEvent
-        public void onLivingUpdate(LivingUpdateEvent event)
-        {
-            Entity entity = event.getEntity();
-
-            if (entity instanceof IMob)
-            {
-                if (!this.tile.disabled && this.tile.enableShield && this.tile.shieldCapacity > 0 && this.tile.isInRangeOfShield(event.getEntity().getPosition()))
-                {
-                    if (!this.tile.enableDamage)
-                    {
-                        double d4 = entity.getDistance(this.tile.pos.getX(), this.tile.pos.getY(), this.tile.pos.getZ());
-                        double d6 = entity.posX - this.tile.pos.getX();
-                        double d8 = entity.posY - this.tile.pos.getY();
-                        double d10 = entity.posZ - this.tile.pos.getZ();
-                        double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
-                        d6 /= d11;
-                        d8 /= d11;
-                        d10 /= d11;
-                        double d13 = (0.0D - d4) * 2.0D / 10.0D;
-                        double d14 = d13;
-                        double knockSpeed = 10.0D;
-                        entity.motionX -= d6 * d14 / knockSpeed;
-                        entity.motionY -= d8 * d14 / knockSpeed;
-                        entity.motionZ -= d10 * d14 / knockSpeed;
-                    }
-
-                    UUID uuid;
-
-                    try
-                    {
-                        uuid = UUID.fromString(this.tile.ownerUUID);
-                    }
-                    catch (Exception e)
-                    {
-                        uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); //default uuid :)
-                    }
-
-                    if (uuid != null && this.tile.world.getPlayerEntityByUUID(uuid) != null)
-                    {
-                        if (entity.ticksExisted % 8 == 0 && this.tile.world instanceof WorldServer)
-                        {
-                            ((WorldServer)this.tile.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                        }
-                        if (this.tile.enableDamage)
-                        {
-                            entity.attackEntityFrom(DamageSource.causePlayerDamage(this.tile.world.getPlayerEntityByUUID(uuid)), this.tile.shieldDamage);
-                        }
-                    }
-                    else
-                    {
-                        if (entity.ticksExisted % 8 == 0 && this.tile.world instanceof WorldServer)
-                        {
-                            ((WorldServer)this.tile.world).spawnParticle(EnumParticleTypes.CRIT_MAGIC, entity.posX, entity.posY, entity.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
-                        }
-                        if (this.tile.enableDamage)
-                        {
-                            entity.attackEntityFrom(DamageSource.GENERIC, this.tile.shieldDamage);
-                        }
-                    }
-                    float motion = MathHelper.sqrt(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
-                    this.tile.shieldCapacity -= motion * 2;
-                }
-            }
         }
     }
 }

@@ -1,5 +1,7 @@
 package stevekung.mods.moreplanets.core.event;
 
+import java.util.UUID;
+
 import micdoodle8.mods.galacticraft.api.event.oxygen.GCCoreOxygenSuffocationEvent;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
@@ -10,6 +12,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -19,12 +22,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.EnderTeleportEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -44,6 +52,7 @@ import stevekung.mods.moreplanets.planets.nibiru.dimension.WorldProviderNibiru;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityInfectedZombie;
 import stevekung.mods.moreplanets.planets.nibiru.entity.EntityShlime;
 import stevekung.mods.moreplanets.planets.nibiru.world.gen.biome.BiomeGreenVeinFields;
+import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.CompatibilityManagerMP;
 import stevekung.mods.moreplanets.utils.EntityEffectUtils;
 import stevekung.mods.moreplanets.utils.LoggerMP;
@@ -121,7 +130,7 @@ public class EntityEventHandler
     }
 
     @SubscribeEvent
-    public void onLivingUpdate(LivingUpdateEvent event)
+    public void onLivingUpdate(LivingEvent.LivingUpdateEvent event)
     {
         EntityLivingBase living = event.getEntityLiving();
         World world = living.world;
@@ -184,6 +193,74 @@ public class EntityEventHandler
                 }
             }
         }
+
+        for (TileEntity tile : event.getEntityLiving().world.tickableTileEntities)
+        {
+            if (!tile.getWorld().isRemote && tile instanceof TileEntityShieldGenerator)
+            {
+                TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
+
+                if (living instanceof IMob)
+                {
+                    if (!shield.disabled && shield.enableShield && shield.shieldCapacity > 0 && shield.isInRangeOfShield(event.getEntity().getPosition()))
+                    {
+                        if (!shield.enableDamage)
+                        {
+                            double d4 = living.getDistance(shield.getPos().getX(), shield.getPos().getY(), shield.getPos().getZ());
+                            double d6 = living.posX - shield.getPos().getX();
+                            double d8 = living.posY - shield.getPos().getY();
+                            double d10 = living.posZ - shield.getPos().getZ();
+                            double d11 = MathHelper.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
+                            d6 /= d11;
+                            d8 /= d11;
+                            d10 /= d11;
+                            double d13 = (0.0D - d4) * 2.0D / 10.0D;
+                            double d14 = d13;
+                            double knockSpeed = 10.0D;
+                            living.motionX -= d6 * d14 / knockSpeed;
+                            living.motionY -= d8 * d14 / knockSpeed;
+                            living.motionZ -= d10 * d14 / knockSpeed;
+                        }
+
+                        UUID uuid;
+
+                        try
+                        {
+                            uuid = UUID.fromString(shield.ownerUUID);
+                        }
+                        catch (Exception e)
+                        {
+                            uuid = UUID.fromString("eef3a603-1c1b-4c98-8264-d2f04b231ef4"); //default uuid :)
+                        }
+
+                        if (uuid != null && shield.getWorld().getPlayerEntityByUUID(uuid) != null)
+                        {
+                            if (living.ticksExisted % 8 == 0 && shield.getWorld() instanceof WorldServer)
+                            {
+                                ((WorldServer)shield.getWorld()).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                            }
+                            if (shield.enableDamage)
+                            {
+                                living.attackEntityFrom(DamageSource.causePlayerDamage(shield.getWorld().getPlayerEntityByUUID(uuid)), shield.shieldDamage);
+                            }
+                        }
+                        else
+                        {
+                            if (living.ticksExisted % 8 == 0 && shield.getWorld() instanceof WorldServer)
+                            {
+                                ((WorldServer)shield.getWorld()).spawnParticle(EnumParticleTypes.CRIT_MAGIC, living.posX, living.posY, living.posZ, 20, 0.0D, 0.5D, 0.0D, 1.0D);
+                            }
+                            if (shield.enableDamage)
+                            {
+                                living.attackEntityFrom(DamageSource.GENERIC, shield.shieldDamage);
+                            }
+                        }
+                        float motion = MathHelper.sqrt(living.motionX * living.motionX + living.motionZ * living.motionZ);
+                        shield.shieldCapacity -= motion * 2;
+                    }
+                }
+            }
+        }
     }
 
     @SubscribeEvent
@@ -239,6 +316,45 @@ public class EntityEventHandler
         {
             event.setCanUpdate(true);
             return;
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingSpawn(LivingSpawnEvent.CheckSpawn event)
+    {
+        if (event.getResult() == Result.ALLOW || event.isSpawner())
+        {
+            return;
+        }
+
+        for (TileEntity tile : event.getWorld().tickableTileEntities)
+        {
+            if (!tile.getWorld().isRemote && tile instanceof TileEntityShieldGenerator)
+            {
+                TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
+
+                if (!shield.disabled && shield.isInRangeOfShield(event.getEntity().getPosition()))
+                {
+                    event.setResult(Result.DENY);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEnderTeleport(EnderTeleportEvent event)
+    {
+        for (TileEntity tile : event.getEntityLiving().world.tickableTileEntities)
+        {
+            if (!tile.getWorld().isRemote && tile instanceof TileEntityShieldGenerator)
+            {
+                TileEntityShieldGenerator shield = (TileEntityShieldGenerator)tile;
+
+                if (!shield.disabled && shield.isInRangeOfShield(event.getEntity().getPosition()))
+                {
+                    event.setCanceled(true);
+                }
+            }
         }
     }
 
