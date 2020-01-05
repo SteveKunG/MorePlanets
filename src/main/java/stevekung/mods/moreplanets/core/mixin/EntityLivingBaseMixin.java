@@ -15,13 +15,13 @@ public class EntityLivingBaseMixin implements IInfectedPurlonite
 {
     private final EntityLivingBase that = (EntityLivingBase) (Object) this;
 
-    @Inject(method = "updatePotionMetadata()V", cancellable = true, at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.AFTER, ordinal = 0))
+    @Inject(method = "updatePotionMetadata()V", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.AFTER, ordinal = 0))
     private void updatePotionMetadataPre(CallbackInfo info)
     {
         this.setInfectedPurlonite(false);
     }
 
-    @Inject(method = "updatePotionMetadata()V", cancellable = true, at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.BEFORE, ordinal = 1))
+    @Inject(method = "updatePotionMetadata()V", at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.setInvisible(Z)V", shift = At.Shift.BEFORE, ordinal = 1))
     private void updatePotionMetadataPost(CallbackInfo info)
     {
         this.setInfectedPurlonite(this.that.isPotionActive(MPPotions.INFECTED_PURLONITE));
