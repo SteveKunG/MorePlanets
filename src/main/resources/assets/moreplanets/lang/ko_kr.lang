@@ -65,6 +65,7 @@ tile.space_portal.name=우주 포탈
 tile.black_hole_storage.name=블랙홀 저장기
 tile.alien_defender_beacon.name=외계인 방어 수신기
 tile.shield_generator.name=방패 제조기
+tile.desh_frame.name=데쉬 틀
 
 # BLOCKS - DIONA
 tile.diona_surface_rock.name=디오나 표면석
@@ -99,8 +100,8 @@ tile.diona_dungeon_brick_stairs.name=디오나 던전 벽돌 계단
 tile.dark_energy_generator.name=다크 에너지 발전기
 tile.glowing_iron_block.name=광철 블록
 tile.crashed_alien_probe.name=부서진 외계 우주선
-tile.infected_purlonite_water_fluid.name=크리스탈 물
-tile.infected_purlonite_lava_fluid.name=크리스탈 용암
+tile.infected_purlonite_water_fluid.name=감염된 퍼론니트 물
+tile.infected_purlonite_lava_fluid.name=감염된 퍼론니트 용암
 
 # BLOCKS - KOENTUS
 tile.koentus_regolith.name=코엔투스 리골리스
@@ -736,6 +737,7 @@ moreplanets_addon_compat=갤럭티크래프트 애드온 환경설정
 moreplanets_planet_settings=행성 환경설정
 moreplanets_moon_settings=달 환경설정
 moreplanets_other=기타 환경설정
+moreplanets_world_gen=월드 생성 환경설정
 
 # GUI JEI
 gui.jei.dark_energy_transform=다크 에너지 변환기
