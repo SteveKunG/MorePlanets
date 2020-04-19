@@ -42,7 +42,7 @@ public class MorePlanetsCore
     public static final String GUI_FACTORY = "stevekung.mods.moreplanets.core.config.ConfigGuiFactoryMP";
     public static final String CLIENT_CLASS = "stevekung.mods.moreplanets.proxy.ClientProxyMP";
     public static final String SERVER_CLASS = "stevekung.mods.moreplanets.proxy.ServerProxyMP";
-    public static final String FORGE_VERSION = "after:forge@[14.23.5.2847,);";
+    public static final String FORGE_VERSION = "after:forge@[14.23.5.2768,);";
     public static final String DEPENDENCIES = "required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsCore.FORGE_VERSION;
     public static final String MC_VERSION = String.valueOf(FMLInjectionData.data()[4]);
     public static final String CERTIFICATE = "@FINGERPRINT@";
