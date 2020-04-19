@@ -1,15 +1,20 @@
 package stevekung.mods.moreplanets.items;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import stevekung.mods.moreplanets.init.MPItems;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.utils.items.ItemFoodMP;
 import stevekung.mods.stevekunglib.utils.ColorUtils;
@@ -30,32 +35,41 @@ public class ItemCapsule extends ItemFoodMP
     {
         if (living instanceof EntityPlayer)
         {
-            EntityPlayer player = (EntityPlayer) living;
+            EntityPlayer player = (EntityPlayer)living;
+            player.getFoodStats().addStats(this, itemStack);
+            world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+            this.onFoodEaten(itemStack, world, player);
+            player.addStat(StatList.getObjectUseStats(this));
 
-            if (!player.capabilities.isCreativeMode)
+            if (this.type == CapsuleType.INFECTED_SPORE)
             {
-                itemStack.shrink(1);
+                player.removePotionEffect(MPPotions.INFECTED_SPORE_PROTECTION);
+                player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE_PROTECTION, 36020, 0, true, true));
             }
-            if (!world.isRemote)
+            else if (this.type == CapsuleType.DARK_ENERGY)
             {
-                world.playSound(null, player.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+                player.removePotionEffect(MPPotions.DARK_ENERGY_PROTECTION);
+                player.addPotionEffect(new PotionEffect(MPPotions.DARK_ENERGY_PROTECTION, 15020, 0, true, true));
+            }
 
-                if (this.type == CapsuleType.INFECTED_SPORE)
+            if (player instanceof EntityPlayerMP)
+            {
+                CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)player, itemStack);
+            }
+            if (player == null || !player.capabilities.isCreativeMode)
+            {
+                if (itemStack.isEmpty())
                 {
-                    player.removePotionEffect(MPPotions.INFECTED_SPORE_PROTECTION);
-                    player.addPotionEffect(new PotionEffect(MPPotions.INFECTED_SPORE_PROTECTION, 36020, 0, true, true));
+                    return new ItemStack(Items.GLASS_BOTTLE);
                 }
-                if (this.type == CapsuleType.DARK_ENERGY)
+
+                if (player != null)
                 {
-                    player.removePotionEffect(MPPotions.DARK_ENERGY_PROTECTION);
-                    player.addPotionEffect(new PotionEffect(MPPotions.DARK_ENERGY_PROTECTION, 15020, 0, true, true));
-                }
-                if (!player.capabilities.isCreativeMode && !player.inventory.addItemStackToInventory(new ItemStack(this)))
-                {
-                    player.dropItem(new ItemStack(this), false);
+                    player.inventory.addItemStackToInventory(new ItemStack(MPItems.EMPTY_CAPSULE));
                 }
             }
         }
+        itemStack.shrink(1);
         return itemStack;
     }
 
