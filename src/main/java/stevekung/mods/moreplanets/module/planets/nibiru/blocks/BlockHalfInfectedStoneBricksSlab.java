@@ -65,17 +65,17 @@ public class BlockHalfInfectedStoneBricksSlab extends BlockSlabMP
     @Override
     public Comparable<?> getTypeForItem(ItemStack itemStack)
     {
-        return BlockType.valuesCached()[itemStack.getMetadata() & 7];
+        return BlockType.valuesCached()[itemStack.getMetadata() & 3];
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        IBlockState state = this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta & 7]);
+        IBlockState state = this.getDefaultState().withProperty(VARIANT, BlockType.valuesCached()[meta & 3]);
 
         if (!this.isDouble())
         {
-            state = state.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
+            state = state.withProperty(HALF, (meta & 3) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
         }
         return state;
     }
