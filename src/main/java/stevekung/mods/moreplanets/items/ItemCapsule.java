@@ -4,7 +4,6 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -60,7 +59,7 @@ public class ItemCapsule extends ItemFoodMP
             {
                 if (itemStack.isEmpty())
                 {
-                    return new ItemStack(Items.GLASS_BOTTLE);
+                    return new ItemStack(MPItems.EMPTY_CAPSULE);
                 }
 
                 if (player != null)
