@@ -1,6 +1,7 @@
 package stevekung.mods.moreplanets.core.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -11,6 +12,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.moons.koentus.dimension.WorldProviderKoentus;
 import stevekung.mods.moreplanets.planets.chalos.dimension.WorldProviderChalos;
 
+@Pseudo
 @Mixin(value = WorldUtil.class, remap = false)
 public class WorldUtilMixin
 {

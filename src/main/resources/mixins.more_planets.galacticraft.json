@@ -3,13 +3,13 @@
     "minVersion": "0.7.11",
     "compatibilityLevel": "JAVA_8",
     "package": "stevekung.mods.moreplanets.core.mixin",
+    "plugin": "stevekung.mods.moreplanets.core.plugin.MorePlanetsMixinPlugin",
     "refmap": "mixins.more_planets.refmap.json",
     "target": "@env(DEFAULT)",
     "mixins": [
-        "EntityLivingBaseMixin",
-        "CommandLocateMixin"
+        "WorldUtilMixin"
     ],
     "injectors": {
-        "defaultRequire": 1
+        "maxShiftBy": 10
     }
 }
