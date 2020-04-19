@@ -1,6 +1,5 @@
 package stevekung.mods.moreplanets.blocks;
 
-import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSides;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties;
 import micdoodle8.mods.galacticraft.core.tile.IMachineSidesProperties.MachineSidesModel;
@@ -112,14 +111,6 @@ public class BlockTieredEnergyStorage extends BlockTileMP implements IBlockDescr
             }
             Block.spawnAsEntity(world, pos, machine);
         }
-    }
-
-    @Override
-    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        IBlockState state = world.getBlockState(pos);
-        TileBaseUniversalElectrical.onUseWrenchBlock(state, world, pos, state.getValue(FACING));
-        return true;
     }
 
     @Override
