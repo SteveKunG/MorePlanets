@@ -102,12 +102,6 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
             this.initMultiBlock = false;
         }
 
-        for (BlockPos renderPos : ClientEventHandler.WASTE_RENDER_POS)
-        {
-            this.multiBlockClientLists.entrySet().removeIf(entry -> this.world.isRemote && this.pos.equals(renderPos) && this.world.getBlockState(this.pos.add(entry.getKey())) == entry.getValue());
-            this.multiTileClientLists.removeIf(pos -> this.world.isRemote && this.pos.equals(renderPos) && this.world.getTileEntity(this.pos.add(pos)) != null && this.world.getTileEntity(this.pos.add(pos)).getClass().equals(TileEntityNuclearWasteTank.class));
-        }
-
         if (!this.world.isRemote)
         {
             if (!this.disabled)
@@ -173,6 +167,14 @@ public class TileEntityNuclearWasteGenerator extends TileBaseUniversalElectrical
             }
             this.produce();
             this.recharge(this.getInventory().get(0));
+        }
+        else
+        {
+            for (BlockPos renderPos : ClientEventHandler.WASTE_RENDER_POS)
+            {
+                this.multiBlockClientLists.entrySet().removeIf(entry -> this.world.isRemote && this.pos.equals(renderPos) && this.world.getBlockState(this.pos.add(entry.getKey())) == entry.getValue());
+                this.multiTileClientLists.removeIf(pos -> this.world.isRemote && this.pos.equals(renderPos) && this.world.getTileEntity(this.pos.add(pos)) != null && this.world.getTileEntity(this.pos.add(pos)).getClass().equals(TileEntityNuclearWasteTank.class));
+            }
         }
     }
 
