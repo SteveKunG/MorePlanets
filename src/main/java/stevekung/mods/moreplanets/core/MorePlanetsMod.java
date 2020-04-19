@@ -52,7 +52,7 @@ public class MorePlanetsMod
     private static final int MINOR_VERSION = 1;
     private static final int BUILD_VERSION = 10;
     public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
-    private static final String FORGE_VERSION = "after:forge@[14.23.5.2847,); ";
+    private static final String FORGE_VERSION = "after:forge@[14.23.5.2768,); ";
     private static final String DEPENDENCIES = "after:jei@[4.15.0.268,); ";
     protected static final String MAIN_DEPENDENCIES = "required-after:stevekung's_lib@[1.1.5,); required-after:galacticraftcore@[4.0.1.-1,); required-after:galacticraftplanets@[4.0.1.-1,); required-after:micdoodlecore; " + MorePlanetsMod.FORGE_VERSION + MorePlanetsMod.DEPENDENCIES;
     protected static final String CERTIFICATE = "@FINGERPRINT@";
