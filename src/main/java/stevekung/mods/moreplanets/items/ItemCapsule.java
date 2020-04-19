@@ -66,9 +66,9 @@ public class ItemCapsule extends ItemFoodMP
                 {
                     player.inventory.addItemStackToInventory(new ItemStack(MPItems.EMPTY_CAPSULE));
                 }
+                itemStack.shrink(1);
             }
         }
-        itemStack.shrink(1);
         return itemStack;
     }
 
