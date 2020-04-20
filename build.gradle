@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "https://files.minecraftforge.net/maven" }
+        maven { url "https://files.minecraftforge.net/maven" }
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
@@ -21,7 +21,7 @@ apply plugin: "net.minecraftforge.gradle.forge"
 version = project.version
 group = "stevekung.mods.moreplanets"
 archivesBaseName = "More-Planets-All"
-sourceCompatibility = targetCompatibility = 1.8
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = 1.8
 
 minecraft {
     version = "${forge_version}"
@@ -78,16 +78,16 @@ repositories {
         url "http://maven.tterrag.com/"
     }
     maven {
-        url = "http://maven.thiakil.com/"
+        url "http://maven.thiakil.com/"
     }
     maven {
-        url = "https://minecraft.curseforge.com/api/maven/"
+        url "https://minecraft.curseforge.com/api/maven/"
     }
     maven {
-        url = "https://mod-buildcraft.com/maven/"
+        url "https://mod-buildcraft.com/maven/"
     }
     maven {
-        url = "https://maven.chaosfield.at/"
+        url "https://maven.chaosfield.at/"
     }
 }
 
@@ -102,8 +102,8 @@ curseforge {
     apiKey = project.more_planets_api
     project {
         id = "261990"
-        changelog = "Change Log"
-        changelogType = "text"
+        changelog = file("CHANGE_LOG.md")
+        changelogType = "markdown"
         releaseType = "release"
         addGameVersion mcVersion
 
