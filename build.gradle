@@ -123,3 +123,4 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
 }
 
 build.dependsOn signJar
+tasks.curseforge.dependsOn(build)
