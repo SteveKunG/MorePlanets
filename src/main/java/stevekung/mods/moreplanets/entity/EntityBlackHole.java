@@ -273,6 +273,6 @@ public class EntityBlackHole extends Entity
         {
             vecZ = 0;
         }
-        entity.setVelocity(entity.motionX + vecX, entity.motionY + vecY, entity.motionZ + vecZ);
+        entity.addVelocity(vecX, vecY, vecZ);
     }
 }
