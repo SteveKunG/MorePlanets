@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.diona.blocks.DionaBlocks;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class WorldGenInfectedCrystal extends WorldGenerator
@@ -17,7 +18,7 @@ public class WorldGenInfectedCrystal extends WorldGenerator
     {
         for (int i = 0; i < 2; ++i)
         {
-            for (EnumFacing facing : EnumFacing.VALUES)
+            for (EnumFacing facing : CachedEnumUtil.valuesEnumFacingCached())
             {
                 Block block = DionaBlocks.LARGE_INFECTED_CRYSTALLIZE;
 

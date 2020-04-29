@@ -15,6 +15,7 @@ import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 
 public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 {
@@ -187,7 +188,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
 
     private boolean isSurroundingBlockFlammable(World world, BlockPos pos)
     {
-        EnumFacing[] aenumfacing = EnumFacing.VALUES;
+        EnumFacing[] aenumfacing = CachedEnumUtil.valuesEnumFacingCached();
         int i = aenumfacing.length;
 
         for (int j = 0; j < i; ++j)
@@ -210,7 +211,7 @@ public abstract class BlockFluidLavaBaseMP extends BlockFluidBaseMP
     protected boolean checkForMixing(World world, BlockPos pos, IBlockState state)
     {
         boolean flag = false;
-        EnumFacing[] aenumfacing = EnumFacing.VALUES;
+        EnumFacing[] aenumfacing = CachedEnumUtil.valuesEnumFacingCached();
         int i = aenumfacing.length;
 
         for (int j = 0; j < i; ++j)

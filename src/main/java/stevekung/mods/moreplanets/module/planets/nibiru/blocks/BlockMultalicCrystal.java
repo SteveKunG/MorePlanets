@@ -26,6 +26,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.module.planets.nibiru.items.NibiruItems;
 import stevekung.mods.moreplanets.module.planets.nibiru.tileentity.TileEntityMultalicCrystal;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
@@ -152,7 +153,7 @@ public class BlockMultalicCrystal extends BlockBaseMP implements ITileEntityProv
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        for (EnumFacing facing : EnumFacing.VALUES)
+        for (EnumFacing facing : CachedEnumUtil.valuesEnumFacingCached())
         {
             if (this.canPlaceBlock(world, pos, facing))
             {

@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.VariantsName;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
@@ -80,7 +81,7 @@ public class BlockInfectedSponge extends BlockBaseMP implements IBlockVariants
             Tuple tuple = linkedlist.poll();
             blockpos1 = (BlockPos)tuple.getFirst();
             int j = ((Integer)tuple.getSecond()).intValue();
-            EnumFacing[] aenumfacing = EnumFacing.VALUES;
+            EnumFacing[] aenumfacing = CachedEnumUtil.valuesEnumFacingCached();
             int k = aenumfacing.length;
 
             for (int l = 0; l < k; ++l)

@@ -29,6 +29,7 @@ import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
 import stevekung.mods.moreplanets.module.planets.diona.tileentity.TileEntityLargeInfectedCrystallize;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.blocks.BlockBaseMP;
 import stevekung.mods.moreplanets.util.blocks.EnumSortCategoryBlock;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
@@ -190,7 +191,7 @@ public class BlockLargeInfectedCrystallize extends BlockBaseMP implements ITileE
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        for (EnumFacing facing : EnumFacing.VALUES)
+        for (EnumFacing facing : CachedEnumUtil.valuesEnumFacingCached())
         {
             if (this.canPlaceBlock(world, pos, facing))
             {

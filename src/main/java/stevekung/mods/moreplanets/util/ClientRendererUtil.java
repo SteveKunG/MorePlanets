@@ -42,7 +42,7 @@ public class ClientRendererUtil
 
     public static void renderModelBrightnessColor(IBlockState state, IBakedModel model, float brightness, float red, float green, float blue)
     {
-        for (EnumFacing facing : EnumFacing.VALUES)
+        for (EnumFacing facing : CachedEnumUtil.valuesEnumFacingCached())
         {
             ClientRendererUtil.renderModelBrightnessColorQuads(brightness, red, green, blue, model.getQuads(state, facing, 0L));
         }

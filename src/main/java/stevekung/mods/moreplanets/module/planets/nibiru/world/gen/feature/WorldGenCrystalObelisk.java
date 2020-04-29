@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class WorldGenCrystalObelisk extends WorldGenerator
@@ -63,7 +64,7 @@ public class WorldGenCrystalObelisk extends WorldGenerator
 
     private void genCrystal(World world, BlockPos pos)
     {
-        for (EnumFacing facing : EnumFacing.VALUES)
+        for (EnumFacing facing : CachedEnumUtil.valuesEnumFacingCached())
         {
             Block block = NibiruBlocks.MULTALIC_CRYSTAL;
 

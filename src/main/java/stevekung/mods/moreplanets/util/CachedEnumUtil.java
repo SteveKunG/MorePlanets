@@ -2,6 +2,7 @@ package stevekung.mods.moreplanets.util;
 
 import micdoodle8.mods.galacticraft.api.entity.IRocketType;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
@@ -15,6 +16,7 @@ public class CachedEnumUtil
     private static BiomeType[] biomeValues = BiomeType.values();
     private static Axis[] axisValues = Axis.values();
     private static TextFormatting[] textFormatValues = TextFormatting.values();
+    private static EnumFacing[] facingValues = EnumFacing.values();
 
     public static EnumHand[] valuesHandCached()
     {
@@ -44,5 +46,10 @@ public class CachedEnumUtil
     public static TextFormatting[] valuesTextFormattingCached()
     {
         return CachedEnumUtil.textFormatValues;
+    }
+
+    public static EnumFacing[] valuesEnumFacingCached()
+    {
+        return CachedEnumUtil.facingValues;
     }
 }

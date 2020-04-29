@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import stevekung.mods.moreplanets.core.MorePlanetsCore;
 import stevekung.mods.moreplanets.module.planets.diona.items.DionaItems;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.util.blocks.BlockFluidLavaBaseMP;
 
@@ -64,7 +65,7 @@ public class BlockFluidCrystallizeLava extends BlockFluidLavaBaseMP
     protected boolean checkForMixing(World world, BlockPos pos, IBlockState state)
     {
         boolean flag = false;
-        EnumFacing[] aenumfacing = EnumFacing.VALUES;
+        EnumFacing[] aenumfacing = CachedEnumUtil.valuesEnumFacingCached();
         int i = aenumfacing.length;
 
         for (int j = 0; j < i; ++j)

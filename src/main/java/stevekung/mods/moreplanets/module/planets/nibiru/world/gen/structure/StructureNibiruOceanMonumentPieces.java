@@ -16,6 +16,7 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
 import stevekung.mods.moreplanets.module.planets.nibiru.entity.EntityInfectedElderGuardian;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 
 public class StructureNibiruOceanMonumentPieces
 {
@@ -739,7 +740,7 @@ public class StructureNibiruOceanMonumentPieces
 
                         if (aroomdefinition[l4] != null)
                         {
-                            for (EnumFacing enumfacing : EnumFacing.VALUES)
+                            for (EnumFacing enumfacing : CachedEnumUtil.valuesEnumFacingCached())
                             {
                                 int i1 = k2 + enumfacing.getFrontOffsetX();
                                 int j1 = i4 + enumfacing.getFrontOffsetY();

@@ -24,6 +24,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPPotions;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.entity.ISpaceMob;
 import stevekung.mods.moreplanets.util.helper.EntityEffectHelper;
 
@@ -303,7 +304,7 @@ public class EntityZergius extends EntityFlying implements IMob, IEntityBreathab
                 return;
             }
 
-            List<EnumFacing> directions = Arrays.asList(EnumFacing.VALUES);
+            List<EnumFacing> directions = Arrays.asList(CachedEnumUtil.valuesEnumFacingCached());
             Collections.shuffle(directions);
 
             for (EnumFacing facing : directions)

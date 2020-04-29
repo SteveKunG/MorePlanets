@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import stevekung.mods.moreplanets.module.planets.nibiru.blocks.NibiruBlocks;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.helper.BlockStateHelper;
 
 public class WorldGenMultalicCrystal extends WorldGenerator
@@ -15,7 +16,7 @@ public class WorldGenMultalicCrystal extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        for (EnumFacing facing : EnumFacing.VALUES)
+        for (EnumFacing facing : CachedEnumUtil.valuesEnumFacingCached())
         {
             Block block = NibiruBlocks.MULTALIC_CRYSTAL;
 

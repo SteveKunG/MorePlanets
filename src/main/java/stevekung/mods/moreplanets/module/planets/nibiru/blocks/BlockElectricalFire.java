@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import stevekung.mods.moreplanets.util.CachedEnumUtil;
 import stevekung.mods.moreplanets.util.blocks.IFireBlock;
 
 public class BlockElectricalFire extends BlockFire implements IFireBlock
@@ -180,7 +181,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
 
     private boolean canNeighborCatchFire(World world, BlockPos pos)
     {
-        for (EnumFacing enumfacing : EnumFacing.VALUES)
+        for (EnumFacing enumfacing : CachedEnumUtil.valuesEnumFacingCached())
         {
             if (this.canCatchFire(world, pos.offset(enumfacing), enumfacing.getOpposite()))
             {
@@ -200,7 +201,7 @@ public class BlockElectricalFire extends BlockFire implements IFireBlock
         {
             int i = 0;
 
-            for (EnumFacing enumfacing : EnumFacing.VALUES)
+            for (EnumFacing enumfacing : CachedEnumUtil.valuesEnumFacingCached())
             {
                 i = Math.max(world.getBlockState(pos.offset(enumfacing)).getBlock().getFlammability(world, pos.offset(enumfacing), enumfacing.getOpposite()), i);
             }
