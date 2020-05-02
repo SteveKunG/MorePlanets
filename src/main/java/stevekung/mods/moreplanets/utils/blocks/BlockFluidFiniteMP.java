@@ -14,7 +14,7 @@ import net.minecraftforge.fluids.BlockFluidFinite;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import stevekung.mods.moreplanets.core.event.ClientEventHandler;
+import stevekung.mods.moreplanets.utils.blocks.fluid.LiquidUtils;
 import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
 
 public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IItemModelRender
@@ -41,7 +41,7 @@ public abstract class BlockFluidFiniteMP extends BlockFluidFinite implements IIt
         {
             return null;
         }
-        return ClientEventHandler.checkInsideBlock((EntityPlayer) entity, this) && testingHead;
+        return LiquidUtils.checkInsideBlock((EntityPlayer) entity, this) && testingHead;
     }
 
     @Override

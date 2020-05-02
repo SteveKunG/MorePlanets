@@ -11,9 +11,6 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRender;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
@@ -43,7 +40,6 @@ import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
@@ -68,6 +64,7 @@ import stevekung.mods.moreplanets.tileentity.TileEntityDarkEnergyReceiver;
 import stevekung.mods.moreplanets.tileentity.TileEntityShieldGenerator;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
 import stevekung.mods.moreplanets.utils.IMorePlanetsBoss;
+import stevekung.mods.moreplanets.utils.blocks.fluid.LiquidUtils;
 import stevekung.mods.stevekunglib.utils.client.GLConstants;
 import stevekung.mods.stevekunglib.utils.client.event.AddRainParticleEvent;
 import stevekung.mods.stevekunglib.utils.client.event.CameraTransformEvent;
@@ -387,27 +384,27 @@ public class ClientEventHandler
 
         if (event.getOverlayType() == OverlayType.WATER)
         {
-            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK))
+            if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("infected_purlonite_water", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
-            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
+            if (LiquidUtils.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("cheese_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.5D);
             }
-            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
+            if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("infected_water", this.mc.player.getBrightness(), 0.5F, partialTicks, -0.5D);
             }
-            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.GASEOUS_CHEESE_MILK_BLOCK))
+            if (LiquidUtils.checkInsideBlock(player, MPBlocks.GASEOUS_CHEESE_MILK_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("gaseous_cheese_milk", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.25D);
             }
-            if (ClientEventHandler.checkInsideBlock(player, MPBlocks.HELIUM_GAS_BLOCK))
+            if (LiquidUtils.checkInsideBlock(player, MPBlocks.HELIUM_GAS_BLOCK))
             {
                 event.setCanceled(true);
                 this.renderOverlay("helium_gas", this.mc.player.getBrightness(), 0.75F, partialTicks, -0.25D);
@@ -421,37 +418,37 @@ public class ClientEventHandler
     {
         EntityPlayer player = this.mc.player;
 
-        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK))
+        if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_WATER_FLUID_BLOCK))
         {
             event.setRed(0.5F);
             event.setGreen(0.375F);
             event.setBlue(0.8F);
         }
-        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK))
+        if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_PURLONITE_LAVA_FLUID_BLOCK))
         {
             event.setRed(0.35F);
             event.setGreen(0.25F);
             event.setBlue(0.55F);
         }
-        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
+        if (LiquidUtils.checkInsideBlock(player, MPBlocks.CHEESE_MILK_FLUID_BLOCK))
         {
             event.setRed(0.85F);
             event.setGreen(0.8F);
             event.setBlue(0.6F);
         }
-        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
+        if (LiquidUtils.checkInsideBlock(player, MPBlocks.INFECTED_WATER_FLUID_BLOCK))
         {
             event.setRed(0.4F);
             event.setGreen(0.15F);
             event.setBlue(0.1F);
         }
-        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK))
+        if (LiquidUtils.checkInsideBlock(player, MPBlocks.NUCLEAR_WASTE_FLUID_BLOCK))
         {
             event.setRed(0.25F);
             event.setGreen(0.7F);
             event.setBlue(0.05F);
         }
-        if (ClientEventHandler.checkInsideBlock(player, MPBlocks.PURIFIED_WATER_FLUID_BLOCK))
+        if (LiquidUtils.checkInsideBlock(player, MPBlocks.PURIFIED_WATER_FLUID_BLOCK))
         {
             event.setRed(0.4F);
             event.setGreen(0.625F);
@@ -524,51 +521,6 @@ public class ClientEventHandler
             {
                 MorePlanetsMod.PROXY.spawnParticle(EnumParticleTypesMP.INFECTED_RAIN, event.getX(), event.getY(), event.getZ());
             }
-        }
-    }
-
-    @Deprecated //TODO Remove 1.13
-    public static boolean checkInsideBlock(EntityPlayer player, Block blockInside)
-    {
-        double eyeHeight = player.posY + player.getEyeHeight();
-        BlockPos blockpos = new BlockPos(player.posX, eyeHeight, player.posZ);
-        IBlockState iblockstate = player.world.getBlockState(blockpos);
-        Block block = iblockstate.getBlock();
-
-        if (block == blockInside)
-        {
-            return ClientEventHandler.isInsideLiquid(player, blockpos);
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    @Deprecated //TODO Remove 1.13
-    private static boolean isInsideLiquid(EntityPlayer player, BlockPos pos)
-    {
-        IBlockState state = player.world.getBlockState(pos);
-        Block block = state.getBlock();
-        double eyes = player.posY + player.getEyeHeight();
-        double filled = 1.0F;
-
-        if (block instanceof IFluidBlock)
-        {
-            filled = ((IFluidBlock)block).getFilledPercentage(player.world, pos);
-        }
-        else if (block instanceof BlockLiquid)
-        {
-            filled = 1.0F - (BlockLiquid.getLiquidHeightPercent(block.getMetaFromState(state)) - 1.0F / 9.0F);
-        }
-
-        if (filled < 0.0F)
-        {
-            return eyes > pos.getY() + (filled + 1.0F);
-        }
-        else
-        {
-            return eyes < pos.getY() + filled;
         }
     }
 
