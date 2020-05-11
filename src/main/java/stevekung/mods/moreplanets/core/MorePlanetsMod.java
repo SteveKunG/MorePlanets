@@ -50,7 +50,7 @@ public class MorePlanetsMod
     public static final String MOD_ID = "moreplanets";
     private static final int MAJOR_VERSION = 2;
     private static final int MINOR_VERSION = 1;
-    private static final int BUILD_VERSION = 11;
+    private static final int BUILD_VERSION = 12;
     public static final String VERSION = MorePlanetsMod.MAJOR_VERSION + "." + MorePlanetsMod.MINOR_VERSION + "." + MorePlanetsMod.BUILD_VERSION;
     private static final String FORGE_VERSION = "after:forge@[14.23.5.2768,); ";
     private static final String DEPENDENCIES = "after:jei@[4.15.0.268,); ";
