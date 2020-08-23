@@ -39,7 +39,7 @@ public class GuiShieldGenerator extends GuiContainerMP
         super(new ContainerShieldGenerator(inventory, tile));
         this.tile = tile;
         this.xSize = 201;
-        this.ySize = 212;
+        this.ySize = 213;
     }
 
     @Override

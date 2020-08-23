@@ -46,7 +46,8 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
     {
         super(new ContainerShieldGeneratorConfig(inventory, tile));
         this.tile = tile;
-        this.ySize = 212;
+        this.xSize = 177;
+        this.ySize = 213;
         this.renderInfo = false;
     }
 
