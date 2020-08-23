@@ -43,7 +43,7 @@ public class BiomeDecoratorDiona extends BiomeDecoratorMP
         this.generateOre(this.illeniumGen, 8, 0, 24, world, rand);
         this.generateOre(this.setroriumGen, 16, 0, 64, world, rand);
 
-        if (ConfigManagerMP.moreplanets_world_gen_settings.disableCommonOreGenAllPlanets || ConfigManagerMP.moreplanets_world_gen_settings.disableCommonDionaOre)
+        if (ConfigManagerMP.moreplanets_world_gen_settings.enableCommonOreGenAllPlanets || ConfigManagerMP.moreplanets_world_gen_settings.enableCommonDionaOre)
         {
             this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
             this.generateOre(this.tinGen, EnumOreGen.TIN, world, rand);

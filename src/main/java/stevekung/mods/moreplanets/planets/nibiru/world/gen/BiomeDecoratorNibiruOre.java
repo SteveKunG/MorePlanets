@@ -60,7 +60,7 @@ public class BiomeDecoratorNibiruOre extends BiomeDecoratorMP
 
         this.generateOre(this.dirtGen, EnumOreGen.DIRT, world, rand);
 
-        if (ConfigManagerMP.moreplanets_world_gen_settings.disableCommonOreGenAllPlanets || ConfigManagerMP.moreplanets_world_gen_settings.disableCommonNibiruOre)
+        if (ConfigManagerMP.moreplanets_world_gen_settings.enableCommonOreGenAllPlanets || ConfigManagerMP.moreplanets_world_gen_settings.enableCommonNibiruOre)
         {
             this.generateOre(this.coalGen, EnumOreGen.COAL, world, rand);
             this.generateOre(this.ironGen, EnumOreGen.IRON, world, rand);

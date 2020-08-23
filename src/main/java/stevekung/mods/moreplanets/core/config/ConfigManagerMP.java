@@ -115,18 +115,18 @@ public class ConfigManagerMP
     // World Gen Settings
     public static class WorldGenSettings
     {
-        @Config.Name(value = "Disable All Common Ore Gen on all planets")
+        @Config.Name(value = "Enable All Common Ore Gen on all planets")
         @Config.Comment(value = "Common Ores are Copper, Tin, Aluminum, vanilla ores.")
-        public boolean disableCommonOreGenAllPlanets = false;
+        public boolean enableCommonOreGenAllPlanets = true;
 
-        @Config.Name(value = "Disable Common Ore on Diona")
-        public boolean disableCommonDionaOre = false;
+        @Config.Name(value = "Enable Common Ore on Diona")
+        public boolean enableCommonDionaOre = true;
 
-        @Config.Name(value = "Disable Common Ore on Chalos")
-        public boolean disableCommonChalosOre = false;
+        @Config.Name(value = "Enable Common Ore on Chalos")
+        public boolean enableCommonChalosOre = true;
 
-        @Config.Name(value = "Disable Common Ore on Nibiru")
-        public boolean disableCommonNibiruOre = false;
+        @Config.Name(value = "Enable Common Ore on Nibiru")
+        public boolean enableCommonNibiruOre = true;
     }
 
     // Others

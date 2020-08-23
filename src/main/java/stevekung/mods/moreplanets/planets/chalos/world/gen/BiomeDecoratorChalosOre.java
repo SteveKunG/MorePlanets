@@ -46,7 +46,7 @@ public class BiomeDecoratorChalosOre extends BiomeDecoratorMP
         this.generateOre(this.diremsiumGen, 16, 0, 64, world, rand);
         this.generateOre(this.cheeseGen, 5, 0, 256, world, rand);
 
-        if (ConfigManagerMP.moreplanets_world_gen_settings.disableCommonOreGenAllPlanets || ConfigManagerMP.moreplanets_world_gen_settings.disableCommonChalosOre)
+        if (ConfigManagerMP.moreplanets_world_gen_settings.enableCommonOreGenAllPlanets || ConfigManagerMP.moreplanets_world_gen_settings.enableCommonChalosOre)
         {
             this.generateOre(this.ironGen, EnumOreGen.IRON, world, rand);
             this.generateOre(this.aluminumGen, EnumOreGen.ALUMINUM, world, rand);
