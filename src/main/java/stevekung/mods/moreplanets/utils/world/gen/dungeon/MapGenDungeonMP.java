@@ -3,6 +3,8 @@ package stevekung.mods.moreplanets.utils.world.gen.dungeon;
 import java.util.List;
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.core.world.gen.dungeon.MapGenDungeon;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
@@ -39,26 +41,10 @@ public class MapGenDungeonMP extends MapGenStructure
     @Override
     protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
     {
-        byte numChunks = 44;
-        int i = chunkX;
-        int j = chunkZ;
-
-        if (chunkX < 0)
-        {
-            chunkX -= numChunks - 1;
-        }
-        if (chunkZ < 0)
-        {
-            chunkZ -= numChunks - 1;
-        }
-        int k = chunkX / numChunks;
-        int l = chunkZ / numChunks;
-        Random random = this.world.setRandomSeed(k, l, 10387312);
-        k = k * numChunks;
-        l = l * numChunks;
-        k = k + random.nextInt(numChunks);
-        l = l + random.nextInt(numChunks);
-        return i == k && j == l;
+        long dungeonPos = MapGenDungeon.getDungeonPosForCoords(this.world, chunkX, chunkZ, ((IGalacticraftWorldProvider) this.world.provider).getDungeonSpacing());
+        int i = (int) (dungeonPos >> 32);
+        int j = (int) dungeonPos; // Java automatically gives the 32 least significant bits
+        return i == chunkX && j == chunkZ;
     }
 
     @Override
