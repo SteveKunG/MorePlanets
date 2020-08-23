@@ -1,23 +1,22 @@
 package stevekung.mods.moreplanets.utils.blocks;
 
-import java.lang.reflect.Method;
-
-import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
+import micdoodle8.mods.galacticraft.core.blocks.BlockAdvanced;
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
+import net.minecraft.creativetab.CreativeTabs;
+import stevekung.mods.moreplanets.core.MorePlanetsMod;
+import stevekung.mods.moreplanets.utils.client.renderer.IItemModelRender;
+import stevekung.mods.moreplanets.utils.itemblocks.IItemRarity;
+import stevekung.mods.stevekunglib.utils.ColorUtils;
 
-public abstract class BlockAdvancedMP extends BlockBaseMP implements ITileEntityProvider
+public abstract class BlockAdvancedMP extends BlockAdvanced implements ITileEntityProvider, ISortableBlock, IItemModelRender, IItemRarity
 {
+    private EnumSortCategoryBlock category;
+    private String name;
+    private ColorUtils.RGB rgb;
+
     public BlockAdvancedMP(Material material)
     {
         super(material);
@@ -26,146 +25,52 @@ public abstract class BlockAdvancedMP extends BlockBaseMP implements ITileEntity
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
+    public Block setUnlocalizedName(String name)
     {
-        if (hand != EnumHand.MAIN_HAND)
-        {
-            return false;
-        }
-
-        ItemStack heldItem = player.getHeldItem(hand);
-
-        if (this.useWrench(world, pos, player, hand, heldItem, side, hitX, hitY, hitZ))
-        {
-            return true;
-        }
-        if (player.isSneaking())
-        {
-            if (this.onSneakMachineActivated(world, pos, player, hand, heldItem, side, hitX, hitY, hitZ))
-            {
-                return true;
-            }
-        }
-        return this.onMachineActivated(world, pos, state, player, hand, heldItem, side, hitX, hitY, hitZ);
-    }
-
-    protected boolean useWrench(World world, BlockPos pos, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        if (this.isUsableWrench(player, heldItem, pos))
-        {
-            this.damageWrench(player, heldItem, pos);
-
-            if (player.isSneaking())
-            {
-                if (this.onSneakUseWrench(world, pos, player, hand, heldItem, side, hitX, hitY, hitZ))
-                {
-                    player.swingArm(hand);
-                    return true;
-                }
-            }
-            if (this.onUseWrench(world, pos, player, hand, heldItem, side, hitX, hitY, hitZ))
-            {
-                player.swingArm(hand);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isUsableWrench(EntityPlayer entityPlayer, ItemStack itemStack, BlockPos pos)
-    {
-        if (entityPlayer != null && !itemStack.isEmpty())
-        {
-            Item item = itemStack.getItem();
-
-            if (item == GCItems.wrench)
-            {
-                return true;
-            }
-
-            Class<? extends Item> wrenchClass = item.getClass();
-
-            /**
-             * Buildcraft
-             */
-            try
-            {
-                Method methodCanWrench = wrenchClass.getMethod("canWrench", EntityPlayer.class, BlockPos.class);
-                return (Boolean) methodCanWrench.invoke(item, entityPlayer, pos);
-            }
-            catch (Exception e) {}
-
-            if (CompatibilityManager.isIc2Loaded())
-            {
-                /**
-                 * Industrialcraft
-                 */
-                if (wrenchClass == CompatibilityManager.classIC2wrench || wrenchClass == CompatibilityManager.classIC2wrenchElectric )
-                {
-                    return itemStack.getItemDamage() < itemStack.getMaxDamage();
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean damageWrench(EntityPlayer entityPlayer, ItemStack itemStack, BlockPos pos)
-    {
-        if (this.isUsableWrench(entityPlayer, itemStack, pos))
-        {
-            Class<? extends Item> wrenchClass = itemStack.getItem().getClass();
-
-            /**
-             * Buildcraft
-             */
-            try
-            {
-                Method methodWrenchUsed = wrenchClass.getMethod("wrenchUsed", EntityPlayer.class, BlockPos.class);
-                methodWrenchUsed.invoke(itemStack.getItem(), entityPlayer, pos);
-                return true;
-            }
-            catch (Exception e) {}
-
-            /**
-             * Industrialcraft
-             */
-            try
-            {
-                if (wrenchClass == CompatibilityManager.classIC2wrench || wrenchClass == CompatibilityManager.classIC2wrenchElectric )
-                {
-                    Method methodWrenchDamage = wrenchClass.getMethod("damage", ItemStack.class, Integer.TYPE, EntityPlayer.class);
-                    methodWrenchDamage.invoke(itemStack.getItem(), itemStack, 1, entityPlayer);
-                    return true;
-                }
-            }
-            catch (Exception e) {}
-        }
-        return false;
-    }
-
-    public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        return false;
-    }
-
-    public boolean onSneakMachineActivated(World world, BlockPos pos, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        return false;
-    }
-
-    public boolean onUseWrench(World world, BlockPos pos, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        return false;
-    }
-
-    public boolean onSneakUseWrench(World world, BlockPos pos, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        return this.onUseWrench(world, pos, entityPlayer, hand, heldItem, side, hitX, hitY, hitZ);
+        this.name = name;
+        return super.setUnlocalizedName(name);
     }
 
     @Override
-    public boolean isSideSolid(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
+    public Block setSoundType(SoundType sound)
     {
-        return this.isNormalCube(state, world, pos);
+        this.blockSoundType = sound;
+        return this;
+    }
+
+    @Override
+    public CreativeTabs getCreativeTabToDisplayOn()
+    {
+        return MorePlanetsMod.BLOCK_TAB;
+    }
+
+    @Override
+    public EnumSortCategoryBlock getBlockCategory()
+    {
+        return this.category == null ? EnumSortCategoryBlock.BUILDING_BLOCK : this.category;
+    }
+
+    @Override
+    public String getName()
+    {
+        return this.name;
+    }
+
+    @Override
+    public ColorUtils.RGB getRarity()
+    {
+        return this.rgb != null ? this.rgb : null;
+    }
+
+    public BlockAdvancedMP setSortCategory(EnumSortCategoryBlock category)
+    {
+        this.category = category;
+        return this;
+    }
+
+    public BlockAdvancedMP setRarityRGB(ColorUtils.RGB rgb)
+    {
+        this.rgb = rgb;
+        return this;
     }
 }
