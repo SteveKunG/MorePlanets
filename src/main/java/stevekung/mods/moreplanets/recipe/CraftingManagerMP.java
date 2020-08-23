@@ -50,6 +50,7 @@ public class CraftingManagerMP
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.NUCLEAR_WASTE_ENERGY_STORAGE_CLUSTER), new Object[] { "EAE", "ANA", "EAE", 'E', MPBlocks.DARK_ENERGY_STORAGE_CLUSTER, 'A', MPItems.ALIEN_MINER_PART, 'N', MPBlocks.NUCLEAR_WASTE_TANK });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.SPACE_PORTAL), new Object[] { "OFO", "OOO", "OOO", 'O', "obsidian", 'F', Items.FLINT_AND_STEEL });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.DESH_FRAME, 8), new Object[] { "DID", "I I", "DID", 'D', "compressedDesh", 'I', new ItemStack(Blocks.IRON_BARS) });
+        RecipeHelper.addRecipe(new ItemStack(MPBlocks.SHIELD_GENERATOR), new Object[] { "DSD", "HWH", "TTT", 'D', "compressedDesh", 'S', new ItemStack(VenusItems.basicItem, 1, 0), 'H', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'W', new ItemStack(GCItems.basicItem, 1, 14), 'T', "compressedTitanium" });
 
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.DIONA_COBBLESTONE), "block_from_slab", "diona_cobblestone_from_slab", new Object[] { "X", "X", 'X', MPBlocks.DIONA_COBBLESTONE_SLAB });
         RecipeHelper.addRecipe(new ItemStack(MPBlocks.CHALOS_COBBLESTONE), "block_from_slab", "chalos_cobblestone_from_slab", new Object[] { "X", "X", 'X', MPBlocks.CHALOS_COBBLESTONE_SLAB });
