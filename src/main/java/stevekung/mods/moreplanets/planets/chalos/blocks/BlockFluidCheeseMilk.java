@@ -2,15 +2,8 @@ package stevekung.mods.moreplanets.planets.chalos.blocks;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.MobEffects;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import stevekung.mods.moreplanets.init.MPBlocks;
 import stevekung.mods.moreplanets.init.MPLootTables;
 import stevekung.mods.moreplanets.utils.EnumParticleTypesMP;
@@ -26,15 +19,6 @@ public class BlockFluidCheeseMilk extends BlockFluidBaseMP implements IFishableL
         this.setRenderLayer(BlockRenderLayer.TRANSLUCENT);
         this.setLightOpacity(3);
         this.setUnlocalizedName(name);
-    }
-
-    @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
-    {
-        if (entity instanceof EntityLivingBase)
-        {
-            ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MobEffects.SATURATION, 100));
-        }
     }
 
     @Override
