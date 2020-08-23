@@ -60,7 +60,7 @@ dependencies {
 
 repositories {
     maven {
-        url "http://tehnut.info/maven/"
+        url "https://maven.tehnut.info"
     }
     maven {
         url "https://dvs1.progwml6.com/files/maven/"
@@ -87,7 +87,7 @@ repositories {
         url "https://mod-buildcraft.com/maven/"
     }
     maven {
-        url "https://maven.chaosfield.at/"
+        url "http://repo.spongepowered.org/maven/"
     }
 }
 
@@ -99,27 +99,31 @@ jar {
 }
 
 curseforge {
-    apiKey = project.more_planets_api
-    project {
-        id = "261990"
-        changelog = file("CHANGE_LOG.md")
-        changelogType = "markdown"
-        releaseType = "release"
-        addGameVersion mcVersion
+    if (project.hasProperty('upload_api_key')) {
+        apiKey = project.upload_api_key
+        project {
+            id = "261990"
+            changelog = file("CHANGE_LOG.md")
+            changelogType = "markdown"
+            releaseType = "release"
+            addGameVersion mcVersion
 
-        mainArtifact(jar) {
-            displayName = "More-Planets-" + mcVersion + "-" + version
+            mainArtifact(jar) {
+                displayName = "More-Planets-" + mcVersion + "-" + version
+            }
         }
     }
 }
 
 task signJar(type: SignJar, dependsOn: reobfJar) {
-    keyStore = project.keystore_path
-    alias = project.alias
-    storePass = project.keystore_pass
-    keyPass = project.keystore_pass
-    inputFile = jar.archivePath
-    outputFile = jar.archivePath
+    if (project.hasProperty('upload_api_key')) {
+        keyStore = project.keystore_path
+        alias = project.alias
+        storePass = project.keystore_pass
+        keyPass = project.keystore_pass
+        inputFile = jar.archivePath
+        outputFile = jar.archivePath
+    }
 }
 
 build.dependsOn signJar
