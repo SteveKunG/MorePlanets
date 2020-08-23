@@ -32,7 +32,7 @@ public class TileEntityDummy extends TileBaseElectricBlock
     @Override
     protected boolean handleInventory()
     {
-        return false;
+        return this.inventory != null;
     }
 
     public void setMainBlock(BlockPos mainBlock)
