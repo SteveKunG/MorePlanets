@@ -33,7 +33,6 @@ public class GuiShieldGenerator extends GuiContainerMP
     private final TileEntityShieldGenerator tile;
     private GuiElementInfoRegionMP electricInfoRegion;
     private GuiButton buttonEnable;
-    private GuiButton buttonConfig;
 
     public GuiShieldGenerator(InventoryPlayer inventory, TileEntityShieldGenerator tile)
     {
@@ -74,7 +73,7 @@ public class GuiShieldGenerator extends GuiContainerMP
         this.electricInfoRegion = new GuiElementInfoRegionMP(x + 156, y + 21, 8, 43, electricityDesc, this.width, this);
         this.infoRegions.add(this.electricInfoRegion);
         this.buttonList.add(this.buttonEnable = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, !this.tile.getDisabled(0) ? LangUtils.translate("gui.button.disable.name") : LangUtils.translate("gui.button.enable.name")));
-        this.buttonList.add(this.buttonConfig = new GuiButton(1, this.width / 2 + 4, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.config.name")));
+        this.buttonList.add(new GuiButton(1, this.width / 2 + 4, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.config.name")));
     }
 
     @Override

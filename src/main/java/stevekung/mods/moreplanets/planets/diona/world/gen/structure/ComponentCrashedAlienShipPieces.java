@@ -5,6 +5,7 @@ import java.util.Random;
 
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.blocks.BlockBrightLamp;
+import micdoodle8.mods.galacticraft.core.blocks.BlockMachineBase;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMachineTiered;
 import micdoodle8.mods.galacticraft.core.blocks.BlockScreen;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityAirLockController;
@@ -230,7 +231,7 @@ public class ComponentCrashedAlienShipPieces extends StructureComponent
             }
             else if ("energy_storage_west".equals(dataName))
             {
-                world.setBlockState(dataPos, GCBlocks.machineTiered.getDefaultState().withProperty(BlockMachineTiered.TYPE, BlockMachineTiered.EnumTieredMachineType.STORAGE_CLUSTER).withProperty(BlockMachineTiered.FACING, rotation.rotate(EnumFacing.WEST)), 3);
+                world.setBlockState(dataPos, GCBlocks.machineTiered.getDefaultState().withProperty(BlockMachineTiered.TYPE, BlockMachineTiered.EnumTieredMachineType.STORAGE_CLUSTER).withProperty(BlockMachineBase.FACING, rotation.rotate(EnumFacing.WEST)), 3);
                 TileEntity tile = world.getTileEntity(dataPos);
 
                 if (tile instanceof TileEntityEnergyStorageModule)

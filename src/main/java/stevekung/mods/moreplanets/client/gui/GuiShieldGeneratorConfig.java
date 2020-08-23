@@ -35,7 +35,6 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
     private GuiElementCheckbox checkboxRenderShield;
     private GuiElementCheckbox checkboxEnableShield;
     private GuiElementCheckbox checkboxEnableDamage;
-    private GuiButton buttonBack;
     private GuiButton buttonDone;
     private GuiNumberField shieldDamageText;
     private GuiNumberField shieldSizeText;
@@ -90,7 +89,7 @@ public class GuiShieldGeneratorConfig extends GuiContainerMP implements ICheckBo
         this.buttonList.add(this.checkboxRenderShield);
         this.buttonList.add(this.checkboxEnableShield);
         this.buttonList.add(this.checkboxEnableDamage);
-        this.buttonList.add(this.buttonBack = new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.back.name")));
+        this.buttonList.add(new GuiButton(0, this.width / 2 - 76, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.button.back.name")));
         this.buttonList.add(this.buttonDone = new GuiButton(1, this.width / 2 + 4, this.height / 2 - 6, 72, 20, LangUtils.translate("gui.done")));
 
         this.shieldDamageText = new GuiNumberField(1, this.fontRenderer, this.width / 2 - 3, this.height / 2 - 83, 30, 16);

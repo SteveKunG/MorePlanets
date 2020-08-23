@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.blocks.BlockEnclosed;
+import micdoodle8.mods.galacticraft.core.blocks.BlockMachineBase;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMachineTiered;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityEnergyStorageModule;
 import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
@@ -148,7 +149,7 @@ public class StructureAbandonedSatellitePieces extends StructureComponent
                 else if ("energy_storage".equals(entry.getValue()))
                 {
                     BlockPos blockpos2 = entry.getKey();
-                    world.setBlockState(blockpos2, GCBlocks.machineTiered.getDefaultState().withProperty(BlockMachineTiered.TYPE, BlockMachineTiered.EnumTieredMachineType.STORAGE_MODULE).withProperty(BlockMachineTiered.FACING, rotation.rotate(EnumFacing.SOUTH)), 3);
+                    world.setBlockState(blockpos2, GCBlocks.machineTiered.getDefaultState().withProperty(BlockMachineTiered.TYPE, BlockMachineTiered.EnumTieredMachineType.STORAGE_MODULE).withProperty(BlockMachineBase.FACING, rotation.rotate(EnumFacing.SOUTH)), 3);
                     TileEntity tile = world.getTileEntity(blockpos2);
 
                     if (tile instanceof TileEntityEnergyStorageModule)

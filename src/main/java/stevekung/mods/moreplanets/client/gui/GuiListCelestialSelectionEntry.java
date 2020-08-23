@@ -21,7 +21,6 @@ import stevekung.mods.moreplanets.network.PacketSimpleMP.EnumSimplePacketMP;
 public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListEntry
 {
     private final Minecraft mc;
-    private final GuiCelestialSelection celestialSelectionGui;
     private final ResourceLocation celestialIcon;
     private final GuiListCelestialSelection gui;
     private final CelestialBody celestial;
@@ -32,7 +31,6 @@ public class GuiListCelestialSelectionEntry implements GuiListExtended.IGuiListE
         this.mc = Minecraft.getMinecraft();
         this.gui = gui;
         this.celestial = celestial;
-        this.celestialSelectionGui = gui.getGui();
         this.celestialIcon = celestial.getBodyIcon();
     }
 

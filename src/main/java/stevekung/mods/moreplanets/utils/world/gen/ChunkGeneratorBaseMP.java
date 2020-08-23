@@ -39,9 +39,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
     private NoiseGeneratorOctaves maxLimitPerlinNoise;
     private NoiseGeneratorOctaves mainPerlinNoise;
     private NoiseGeneratorPerlin surfaceNoise;
-    private NoiseGeneratorOctaves scaleNoise;
     private NoiseGeneratorOctaves depthNoise;
-    private NoiseGeneratorOctaves forestNoise;
     private double[] depthBuffer = new double[256];
     private double[] heightMap;
     private Biome[] biomesForGeneration;
@@ -72,9 +70,7 @@ public abstract class ChunkGeneratorBaseMP implements IChunkGenerator
         this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
         this.mainPerlinNoise = new NoiseGeneratorOctaves(this.rand, 8);
         this.surfaceNoise = new NoiseGeneratorPerlin(this.rand, 4);
-        this.scaleNoise = new NoiseGeneratorOctaves(this.rand, 10);
         this.depthNoise = new NoiseGeneratorOctaves(this.rand, 16);
-        this.forestNoise = new NoiseGeneratorOctaves(this.rand, 8);
         this.heightMap = new double[825];
         this.biomeWeights = new float[25];
 

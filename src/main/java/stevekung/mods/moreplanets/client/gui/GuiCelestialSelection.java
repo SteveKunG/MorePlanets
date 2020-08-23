@@ -33,9 +33,6 @@ public class GuiCelestialSelection extends GuiScreen
 {
     private GuiButton doneButton;
     private GuiButton azButton;
-    private GuiButton zaButton;
-    private GuiButton reachableButton;
-    private GuiButton tierButton;
     private GuiTextField searchField;
     private GuiListCelestialSelection selectionList;
     private String lastFilterText = "";
@@ -53,9 +50,9 @@ public class GuiCelestialSelection extends GuiScreen
 
         this.addButton(this.azButton = new GuiButton(SortType.A_TO_Z.id, this.width / 2 - 205, 26, 40, 20, "A-Z"));
         this.azButton.enabled = false;
-        this.addButton(this.zaButton = new GuiButton(SortType.Z_TO_A.id, this.width / 2 - 164, 26, 40, 20, "Z-A"));
-        this.addButton(this.reachableButton = new GuiButton(SortType.REACHALBLE.id, this.width / 2 - 123, 26, 60, 20, "Reachable"));
-        this.addButton(this.tierButton = new GuiButton(SortType.TIER.id, this.width / 2 - 62, 26, 40, 20, "Tier"));
+        this.addButton(new GuiButton(SortType.Z_TO_A.id, this.width / 2 - 164, 26, 40, 20, "Z-A"));
+        this.addButton(new GuiButton(SortType.REACHALBLE.id, this.width / 2 - 123, 26, 60, 20, "Reachable"));
+        this.addButton(new GuiButton(SortType.TIER.id, this.width / 2 - 62, 26, 40, 20, "Tier"));
 
         this.searchField = new GuiTextField(0, this.fontRenderer, this.width / 2 - 150, this.height - 26, 100, 14);
         this.searchField.setFocused(true);

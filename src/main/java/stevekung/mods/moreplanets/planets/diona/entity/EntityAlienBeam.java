@@ -13,7 +13,6 @@ import stevekung.mods.moreplanets.init.MPSounds;
 public class EntityAlienBeam extends Entity
 {
     private int lightningState;
-    private long boltVertex;
     private int boltLivingTime;
 
     public EntityAlienBeam(World world)
@@ -23,7 +22,6 @@ public class EntityAlienBeam extends Entity
         this.ignoreFrustumCheck = true;
         this.isImmuneToFire = true;
         this.lightningState = 2;
-        this.boltVertex = this.rand.nextLong();
         this.boltLivingTime = this.rand.nextInt(5) + 2;
     }
 
@@ -35,7 +33,6 @@ public class EntityAlienBeam extends Entity
         this.ignoreFrustumCheck = true;
         this.isImmuneToFire = true;
         this.lightningState = 2;
-        this.boltVertex = this.rand.nextLong();
         this.boltLivingTime = this.rand.nextInt(5) + 2;
     }
 
@@ -61,7 +58,6 @@ public class EntityAlienBeam extends Entity
             {
                 --this.boltLivingTime;
                 this.lightningState = 1;
-                this.boltVertex = this.rand.nextLong();
             }
         }
 
