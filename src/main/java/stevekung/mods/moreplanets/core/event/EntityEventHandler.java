@@ -179,7 +179,7 @@ public class EntityEventHandler
                 this.spawnMeteors(world, player, (IMeteorType)world.provider);
             }
         }
-        if (world.provider instanceof WorldProviderNibiru)
+        if (ConfigManagerMP.moreplanets_planet_settings.enableInfectedSporeForMobs && world.provider instanceof WorldProviderNibiru)
         {
             if (!(living instanceof EntityPlayer) && !EntityEffectUtils.isGalacticraftMob(living) && !(living instanceof EntityJuicer))
             {

@@ -99,6 +99,9 @@ public class ConfigManagerMP
         @Config.Name(value = "Nibiru Planet Tier")
         @Config.RequiresMcRestart
         public int planetNibiruTier = 3;
+
+        @Config.Name(value = "Enable Nibiru Infected Spore suffocation for mobs")
+        public boolean enableInfectedSporeForMobs = true;
     }
 
     // Moon Settings
