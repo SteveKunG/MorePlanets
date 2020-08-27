@@ -53,7 +53,6 @@ dependencies {
     compile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144:api"
     compile "appeng:appliedenergistics2:rv6-stable-6:api"
     compile files(
-		"libs/Galacticraft-API-" + gcDevVersion + ".jar",
 		"libs/GalacticraftCore-Dev-" + gcDevVersion + ".jar",
 		"libs/Galacticraft-Planets-Dev-" + gcDevVersion + ".jar",
 		"libs/MicdoodleCore-Dev-" + gcDevVersion + ".jar"
